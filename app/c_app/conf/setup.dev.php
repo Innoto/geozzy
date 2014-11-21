@@ -40,6 +40,7 @@ define( 'APP_TMP_PATH', APP_BASE_PATH.'/tmp' );
 //
 
 define( 'COGUMELO_LOCATION', '/home/proxectos/cogumelo' );
+define( 'COGUMELO_DIST_LOCATION', '/home/proxectos/geozzy');
 
 
 //

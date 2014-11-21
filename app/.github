@@ -1,0 +1,9 @@
+/phpdoc/
+/app/c_app/tmp/templates_c/*.tpl.php
+/app/c_app/log/*.log
+/app/bower.json
+/app/composer.json
+/app/httpdocs/vendor/
+/app/httpdocs/vendorServer/
+*.log
+

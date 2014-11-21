@@ -108,18 +108,18 @@
 
         /* We execute this two actions from web as we need to operate with the apache permissions*/
         case 'flush': // delete temporary files
-           exec('wget -q --spider http://cogumelo/cogumelo-server.php?q=flush');
+           exec('wget -q --spider http://geozzy/cogumelo-server.php?q=flush');
            echo "Temporary files deleted!\n";
         break;
 
         case 'rotateLogs':
-            exec('wget -q --spider cogumelo/cogumelo-server.php?q=rotate_logs');
+            exec('wget -q --spider http://geozzy/cogumelo-server.php?q=rotate_logs');
             echo "The logs have been stored\n";
         break;
 
         case 'generateClientCaches':
 //          setPermissions();
-          exec('wget -q --spider cogumelo/cogumelo-server.php?q=client_caches');
+          exec('wget -q --spider http://geozzy/cogumelo-server.php?q=client_caches');
           echo "All client cachés generated into 'httpdocs/mediacache/' folder \n";
         break;
         default:
