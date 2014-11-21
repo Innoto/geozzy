@@ -24,3 +24,4 @@
 [14-11-21 14:42:47] [127.0.0.1] [Session ] Warning: include(/home/pblanco/proxectos/geozzy/geozzyApp/app/classes/view/MasterView.php): failed to open stream: Permission denied on file "/home/pblanco/proxectos/cogumelo/coreClasses/coreController/RequestController.php" line:95
 [14-11-21 14:42:47] [127.0.0.1] [Session ] Warning: include(): Failed opening '/home/pblanco/proxectos/geozzy/geozzyApp/httpdocs/../app//classes/view/MasterView.php' for inclusion (include_path='.:/home/pblanco/proxectos/geozzy/geozzyApp/httpdocs/../app/') on file "/home/pblanco/proxectos/cogumelo/coreClasses/coreController/RequestController.php" line:95
 [14-11-21 14:42:47] [127.0.0.1] [Session ] Fatal error: Class 'MasterView' not found on file "/home/pblanco/proxectos/cogumelo/coreClasses/coreController/RequestController.php(97) : eval()'d code" line: 1
+[14-11-21 14:48:10] [127.0.0.1] [Session ] URI not found /
