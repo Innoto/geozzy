@@ -27,6 +27,11 @@ class MasterView extends View
     echo 'PAGE404: Recurso non atopado';
   }
 
+  function main(){
+    $this->template->setTpl('portada.tpl');
+    $this->template->exec();
+  }
+
 }
 
 
