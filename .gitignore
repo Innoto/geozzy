@@ -1,2 +1,20 @@
-/c_packages/sampleApp/app/log/*.log
-geozzyApp/httpdocs/vendor
+
+# Exclude log directory
+geozzyApp/app/log/
+
+# Exclude backups directory
+geozzyApp/app/backups
+
+# Exclude templates directory
+geozzyApp/app/tmp/*
+geozzyApp/app/tmp/templates_c/
+
+# mediaserver caches
+geozzyApp/httpdocs/mediaCache/
+geozzyApp/httpdocs/vendor/
+
+geozzyApp/bower.json
+geozzyApp/composer.json
+geozzyApp/composer.lock
+
+*.log
