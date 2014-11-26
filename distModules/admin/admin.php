@@ -55,5 +55,9 @@ class admin extends Module
 
   function __construct() {
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'$#', 'view:MasterView::main' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/login$#', 'view:AdminLoginView::main' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/senduserlogin$#', 'view:AdminLoginView::sendLoginForm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/logout$#', 'view:MasterView::sendLogout' );
+
   }
 }

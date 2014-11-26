@@ -3,8 +3,8 @@ Cogumelo::load('coreView/View.php');
 
 common::autoIncludes();
 admin::autoIncludes();
-//form::autoIncludes();
-//user::autoIncludes();
+form::autoIncludes();
+user::autoIncludes();
 
 
 class MasterView extends View
@@ -19,12 +19,23 @@ class MasterView extends View
   * @return bool : true -> Access allowed
   */
   function accessCheck() {
-    return true;
+    $useraccesscontrol = new UserAccessController();
+    $res = true;
+    if(!$useraccesscontrol->isLogged()){
+      Cogumelo::redirect('/admin/login');
+      $res = false;
+    }
+    return $res;
   }
 
   function main(){
-    $this->template->setTpl('loginForm.tpl', 'admin');
+    $this->template->setTpl('masterAdmin.tpl', 'admin');
     $this->template->exec();
+  }
+   function sendLogout() {
+    $useraccesscontrol = new UserAccessController();
+    $useraccesscontrol->userLogout();
+    Cogumelo::redirect('/admin');
   }
 }
 

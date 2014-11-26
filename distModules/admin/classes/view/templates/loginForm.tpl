@@ -32,18 +32,7 @@
               <h3 class="panel-title">Sign In</h3>
           </div>
           <div class="panel-body">
-            <form role="form">
-              <fieldset>
-                <div class="form-group">
-                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
-                </div>
-
-                <button class="btn btn-block btn-success" type="submit">Login</button>
-              </fieldset>
-            </form>
+            {$loginHtml}
           </div>
         </div>
       </div>
