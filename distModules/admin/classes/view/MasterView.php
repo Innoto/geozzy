@@ -32,7 +32,8 @@ class MasterView extends View
     $this->template->setTpl('masterAdmin.tpl', 'admin');
     $this->template->exec();
   }
-   function sendLogout() {
+
+  function sendLogout() {
     $useraccesscontrol = new UserAccessController();
     $useraccesscontrol->userLogout();
     Cogumelo::redirect('/admin');
