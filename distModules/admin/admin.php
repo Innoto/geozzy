@@ -40,9 +40,9 @@ class admin extends Module
      "includes" => array("src/respond.js")
     ),
     array(
-     "id" =>"morris",
-     "params" => array("morris.js-0.5.1"),
-     "installer" => "manual",
+     "id" =>"morrisjs",
+     "params" => array("morris.js"),
+     "installer" => "bower",
      "includes" => array("morris.js", "morris.css")
     )
 
@@ -50,6 +50,7 @@ class admin extends Module
 
   public $includesCommon = array(
     'styles/adminBase.less',
+    'js/adminBase.js',
     'styles/admin.less'
   );
 
