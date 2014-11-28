@@ -29,7 +29,7 @@ class admin extends Module
     ),
     array(
      "id" =>"html5shiv",
-     "params" => array("html5shiv --save-dev"),
+     "params" => array("html5shiv"),
      "installer" => "bower",
      "includes" => array("dist/html5shiv.js")
     ),
@@ -40,9 +40,15 @@ class admin extends Module
      "includes" => array("src/respond.js")
     ),
     array(
-     "id" =>"morrisjs",
-     "params" => array("morris.js"),
+     "id" =>"raphael",
+     "params" => array("raphael"),
      "installer" => "bower",
+     "includes" => array("raphael-min.js")
+    ),
+    array(
+     "id" =>"morrisjs",
+     "params" => array("morris.js-0.5.1"),
+     "installer" => "manual",
      "includes" => array("morris.js", "morris.css")
     )
 
