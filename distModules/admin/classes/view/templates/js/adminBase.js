@@ -1,15 +1,20 @@
 $(function() {
 
+
     $('#side-menu').metisMenu();
+    adrian();
+$(window).bind("load resize", function() {
+        adrian();
+    })
 
 });
 
-//Loads the correct sidebar on window load,
-//collapses the sidebar on window resize.
-// Sets the min-height of #page-wrapper to window size
-$(function() {
-    $(window).bind("load resize", function() {
-        topOffset = 50;
+
+
+
+function adrian (){
+
+     topOffset = 50;
         width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
         if (width < 768) {
             $('div.navbar-collapse').addClass('collapse')
@@ -24,5 +29,4 @@ $(function() {
         if (height > topOffset) {
             $("#page-wrapper").css("min-height", (height) + "px");
         }
-    })
-})
+}
