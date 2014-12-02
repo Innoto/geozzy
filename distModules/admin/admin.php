@@ -44,14 +44,13 @@ class admin extends Module
      "params" => array("raphael"),
      "installer" => "bower",
      "includes" => array("raphael-min.js")
-    )
-    /*,
+    ),
     array(
      "id" =>"morrisjs",
      "params" => array("morris.js-0.5.1"),
      "installer" => "manual",
      "includes" => array("morris.js", "morris.css")
-    )*/
+    )
 
   );
 

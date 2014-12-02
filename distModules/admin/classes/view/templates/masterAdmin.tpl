@@ -214,7 +214,6 @@
           {$sectionHtml}
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 

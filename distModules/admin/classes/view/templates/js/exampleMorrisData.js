@@ -1,4 +1,11 @@
-$(function() {
+$(document).ready(function(){
+    setTimeout(function(){
+        createExampleDataMorris();
+    }, 500);
+});
+
+
+function createExampleDataMorris(){
 
     Morris.Area({
         element: 'morris-area-chart',
@@ -113,5 +120,4 @@ $(function() {
         hideHover: 'auto',
         resize: true
     });
-
-});
+}

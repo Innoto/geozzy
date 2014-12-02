@@ -24,6 +24,7 @@ class StadisticView extends MasterView
   }
 
   function main(){
+    $this->template->addClientScript('js/exampleMorrisData.js' , 'admin');
     $this->template->setTpl('stadisticPage.tpl', 'admin');
     $stadisticHTML = $this->template->execToString();
     Cogumelo::console( $stadisticHTML );
