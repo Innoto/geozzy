@@ -211,9 +211,10 @@
         </nav>
 
         <div id="page-wrapper">
-          {$sectionContent}
+          {$sectionHtml}
         </div>
         <!-- /#page-wrapper -->
+
     </div>
     <!-- /#wrapper -->
 

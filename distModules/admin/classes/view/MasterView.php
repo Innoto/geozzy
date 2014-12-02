@@ -29,8 +29,8 @@ class MasterView extends View
   }
 
   function main(){
-   /* $this->template->setTpl('masterAdmin.tpl', 'admin');
-    $this->template->exec();*/
+    $this->template->setTpl('masterAdmin.tpl', 'admin');
+    $this->template->exec();
   }
 
   function sendLogout() {
@@ -40,7 +40,7 @@ class MasterView extends View
   }
 
   function assignHtmlAdmin($html) {
-    $this->template->assign( 'sectionContent' , $html);
+    $this->template->assign( 'sectionHtml' , $html);
     $this->template->setTpl('masterAdmin.tpl', 'admin');
     $this->template->exec();
   }
