@@ -44,25 +44,27 @@ class admin extends Module
      "params" => array("raphael"),
      "installer" => "bower",
      "includes" => array("raphael-min.js")
-    ),
+    )
+    /*,
     array(
      "id" =>"morrisjs",
      "params" => array("morris.js-0.5.1"),
      "installer" => "manual",
      "includes" => array("morris.js", "morris.css")
-    )
+    )*/
 
   );
 
   public $includesCommon = array(
     'styles/admin.less',
     'styles/adminBase.less',
-    'js/adminBase.js',
-    'js/exampleMorrisData.js'
+    'js/adminBase.js'
+    /*,
+    'js/exampleMorrisData.js'*/
   );
 
   function __construct() {
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'$#', 'view:MasterView::main' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'$#', 'view:StadisticView::main' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/login$#', 'view:AdminLoginView::main' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/senduserlogin$#', 'view:AdminLoginView::sendLoginForm' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/logout$#', 'view:MasterView::sendLogout' );

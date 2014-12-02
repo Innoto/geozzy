@@ -29,14 +29,20 @@ class MasterView extends View
   }
 
   function main(){
-    $this->template->setTpl('masterAdmin.tpl', 'admin');
-    $this->template->exec();
+   /* $this->template->setTpl('masterAdmin.tpl', 'admin');
+    $this->template->exec();*/
   }
 
   function sendLogout() {
     $useraccesscontrol = new UserAccessController();
     $useraccesscontrol->userLogout();
     Cogumelo::redirect('/admin');
+  }
+
+  function assignHtmlAdmin($html) {
+    $this->template->assign( 'sectionContent' , $html);
+    $this->template->setTpl('masterAdmin.tpl', 'admin');
+    $this->template->exec();
   }
 }
 
