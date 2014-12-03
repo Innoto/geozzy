@@ -2,7 +2,7 @@
 admin::load('view/MasterView.php');
 
 
-class AdminLoginView extends MasterView
+class AdminViewLogin extends MasterView
 {
 
   function __construct($base_dir){

@@ -50,9 +50,9 @@ define( 'COGUMELO_DIST_LOCATION', '/home/proxectos/geozzy');
 define( 'DB_ENGINE', 'mysql' );
 define( 'DB_HOSTNAME', 'localhost');
 define( 'DB_PORT', '3306');
-define( 'DB_USER', 'base_app');
+define( 'DB_USER', 'geozzyapp');
 define( 'DB_PASSWORD', 'q7w8e9r');
-define( 'DB_NAME', 'base_app');
+define( 'DB_NAME', 'geozzyapp');
 
 
 // allow cache with memcached
