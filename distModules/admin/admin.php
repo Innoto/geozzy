@@ -55,8 +55,8 @@ class admin extends Module
   );
 
   public $includesCommon = array(
-    'styles/admin.less',
     'styles/adminBase.less',
+    'styles/admin.less',
     'js/adminBase.js'
     /*,
     'js/exampleMorrisData.js'*/

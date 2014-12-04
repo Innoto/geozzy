@@ -18,6 +18,18 @@ class AdminViewUser extends MasterView
   }
 
   function showUser() {
+    $useraccesscontrol = new UserAccessController();
+    $user = $useraccesscontrol->getSessiondata();
+
+    /*** Temporalmente mientras no funcionan las relaciones ***/
+
+    $filedataControl = new FiledataController();
+    $filedataVO = $filedataControl->find($user->getter('id'));
+    $user->setter('avatar', $filedataVO);
+
+    /*** ***/
+
+    $this->template->assign( 'user' , $user);
     $this->template->setTpl('showUser.tpl', 'admin');
     $returnedHtml = $this->template->execToString();
     $this->assignHtmlAdmin($returnedHtml);
@@ -28,7 +40,6 @@ class AdminViewUser extends MasterView
     $this->template->setTpl('listUser.tpl', 'admin');
     $returnedHtml = $this->template->execToString();
     $this->assignHtmlAdmin($returnedHtml);
-
   }
 
   function createUser() {

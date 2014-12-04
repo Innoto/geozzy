@@ -107,23 +107,62 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-
-                        <li>
-                            <a href="/admin"><i class="fa fa-puzzle-piece fa-fw"></i>Temáticas</a>
+                        <!-- TOPIC -->
+                        <li class="topics">
+                            <a href="/admin"><i class="fa fa-map-marker fa-fw fa-2x"></i>Topic 1</a>
                         </li>
+
+                        <li class="topics">
+                            <a href="/admin"><i class="fa fa-compass fa-fw fa-2x"></i>Topic 2</a>
+                        </li>
+
+                        <li class="topics">
+                            <a href="/admin"><i class="fa fa-tree fa-fw fa-2x"></i>Topic 3</a>
+                        </li>
+                        <!-- END TOPICS -->
+
                         <li>
                             <a class="active" href="/admin"><i class="fa fa-line-chart fa-fw"></i> Charts</a>
                         </li>
+                        <li>
+                            <a href="/admin"><i class="fa fa-files-o fa-fw"></i> Pages</a>
+                        </li>
 
+                        <!-- Settings -->
                         <li>
-                            <a href="/admin/alltables"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="#"><i class="fa fa-cog fa-fw"></i> Settings <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/alltables"><i class="fa fa-table fa-fw"></i> Tables</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/addcontent"><i class="fa fa-edit fa-fw"></i> Add Content</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-users fa-fw"></i> Users <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                      <li>
+                                        <a href="/admin/addcontent"><i class="fa fa-user fa-fw"></i> User</a>
+                                      </li>
+                                      <li>
+                                        <a href="/admin/addcontent"><i class="fa fa-unlock-alt fa-fw"></i> Permissions</a>
+                                      </li>
+                                      <li>
+                                        <a href="/admin/addcontent"><i class="fa fa-tag fa-fw"></i> Roles</a>
+                                      </li>
+
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                                <li>
+                                    <a href="/admin"><i class="fa fa-inbox fa-fw"></i> Categories</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="/admin/addcontent"><i class="fa fa-edit fa-fw"></i> Add Content</a>
-                        </li>
-                        <li>
-                            <a href="/admin/user/list"><i class="fa fa-users fa-fw"></i> Users</a>
-                        </li>
+
+
+
 
                     </ul>
                 </div>
