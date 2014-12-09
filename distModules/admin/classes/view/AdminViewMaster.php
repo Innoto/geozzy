@@ -7,7 +7,7 @@ form::autoIncludes();
 user::autoIncludes();
 
 
-class MasterView extends View
+class AdminViewMaster extends View
 {
 
   function __construct($base_dir){

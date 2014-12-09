@@ -1,6 +1,5 @@
 $(function() {
 
-
   $('#side-menu').metisMenu();
   resizingPageWrapper();
 

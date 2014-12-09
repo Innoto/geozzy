@@ -142,7 +142,7 @@
                                     <a href="#"><i class="fa fa-users fa-fw"></i> Users <span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                       <li>
-                                        <a href="/admin/addcontent"><i class="fa fa-user fa-fw"></i> User</a>
+                                        <a href="/admin/user/list"><i class="fa fa-user fa-fw"></i> User</a>
                                       </li>
                                       <li>
                                         <a href="/admin/addcontent"><i class="fa fa-unlock-alt fa-fw"></i> Permissions</a>
