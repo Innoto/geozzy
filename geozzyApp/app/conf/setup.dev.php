@@ -123,7 +123,7 @@ define( 'MEDIASERVER_COMPILE_LESS', false );
 global $C_ENABLED_MODULES;
 global $C_INDEX_MODULES;
 
-$C_ENABLED_MODULES = array( 'mediaserver', 'i18nGetLang', 'common', 'devel', 'admin', 'filedata', 'form', 'table', 'user' );
+$C_ENABLED_MODULES = array( 'mediaserver', 'i18nGetLang', 'common', 'devel', 'user', 'filedata', 'admin', 'form', 'table' );
 // before app/Cogumelo.php execution
 $C_INDEX_MODULES  = array( 'mediaserver', 'i18nGetLang', 'user', 'form', 'admin', 'devel' ); // DEVEL SIEMPRE DE ULTIMO!!!
 

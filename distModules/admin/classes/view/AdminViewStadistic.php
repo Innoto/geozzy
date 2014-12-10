@@ -1,8 +1,8 @@
 <?php
-admin::load('view/MasterView.php');
+admin::load('view/AdminViewMaster.php');
 
 
-class AdminViewStadistic extends MasterView
+class AdminViewStadistic extends AdminViewMaster
 {
 
   function __construct($base_dir){

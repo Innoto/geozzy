@@ -58,8 +58,6 @@ class admin extends Module
     'styles/adminBase.less',
     'styles/admin.less',
     'js/adminBase.js'
-    /*,
-    'js/exampleMorrisData.js'*/
   );
 
   function __construct() {
@@ -80,5 +78,23 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/table$#', 'view:AdminViewUser::listUsersTable' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/create$#', 'view:AdminViewUser::createUser' );
 
+  }
+
+  static function moduleRc() {
+
+    user::load("controller/UserController.php");
+    user::load("model/UserVO.php");
+    $userControl = new UserController();
+
+    $userData = array(
+      'login' => 'superAdmin',
+      'password' => '85f990e4fd40ceb232a6613c329fd8dcc0f17ef2',
+      'name' => 'superAdmin',
+      'email' => 'arodriguez@map-experience.com',
+      'role' => 10,
+      'status' => USER_STATUS_ACTIVE
+    );
+
+    $userControl->createFromArray( $userData );
   }
 }
