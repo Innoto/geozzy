@@ -9,6 +9,9 @@ class AdminViewUser extends AdminViewMaster
     parent::__construct($base_dir);
   }
 
+  /**
+  * Section edit user
+  **/
 
   function editUser() {
     $this->template->setTpl('editUser.tpl', 'admin');
@@ -16,6 +19,10 @@ class AdminViewUser extends AdminViewMaster
     $this->assignHtmlAdmin($returnedHtml);
 
   }
+
+  /**
+  * Section user profile
+  **/
 
   function showUser() {
     $useraccesscontrol = new UserAccessController();
@@ -33,12 +40,10 @@ class AdminViewUser extends AdminViewMaster
     $this->assignHtmlAdmin($returnedHtml);
 
   }
-  function createUser() {
-    $this->template->setTpl('createUser.tpl', 'admin');
-    $returnedHtml = $this->template->execToString();
-    $this->assignHtmlAdmin($returnedHtml);
 
-  }
+  /**
+  * Section list user
+  **/
 
   function listUsers() {
 
@@ -56,7 +61,7 @@ class AdminViewUser extends AdminViewMaster
 
     $tabla = new TableController( $userControl );
 
-    $tabla->setTabs('role', array('10'=>'SuperAdmin', '11'=>'User', '*'=> 'Todos' ), '*');
+    $tabla->setTabs('status', array('1'=>'Activos', '2'=>'En espera', '3' => 'Bloqueados', '*'=> 'Todos' ), '*');
 
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
@@ -88,9 +93,42 @@ class AdminViewUser extends AdminViewMaster
 
     // imprimimos o JSON da taboa
     $tabla->exec();
+  }
 
+  /**
+  * Section create user
+  **/
 
+  function createUser() {
 
+    $userView = new UserView();
+
+    $form = $userView->registerFormDefine();
+    $form->setAction('/admin/user/sendnewuser');
+    $form->setSuccess( 'redirect', '/admin/user/list' );
+
+    $createUserHtml = $userView->registerFormGet( $form );
+    $this->template->assign('createUserHtml', $createUserHtml);
+    $this->template->setTpl('createUser.tpl', 'admin');
+
+    $returnedHtml = $this->template->execToString();
+    $this->assignHtmlAdmin($returnedHtml);
+
+  }
+
+  function sendCreateForm() {
+
+    $userView = new UserView();
+
+    $form = $userView->actionRegisterForm();
+
+    if( $form->existErrors() ) {
+      echo $form->jsonFormError();
+    }
+    else {
+      $userView->registerOk( $form );
+      echo $form->jsonFormOk();
+    }
   }
 
 

@@ -77,6 +77,7 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/list$#', 'view:AdminViewUser::listUsers' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/table$#', 'view:AdminViewUser::listUsersTable' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/create$#', 'view:AdminViewUser::createUser' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/sendnewuser$#', 'view:AdminViewUser::sendCreateForm' );
 
   }
 
@@ -86,15 +87,62 @@ class admin extends Module
     user::load("model/UserVO.php");
     $userControl = new UserController();
 
+    fwrite(STDOUT, "Enter the superAdmin password:\n");
+    $passwd = self::getPassword(true);
+    echo $passwd;
+
     $userData = array(
       'login' => 'superAdmin',
-      'password' => '85f990e4fd40ceb232a6613c329fd8dcc0f17ef2',
       'name' => 'superAdmin',
+      'password' => SHA1($passwd),
       'email' => 'arodriguez@map-experience.com',
       'role' => 10,
       'status' => USER_STATUS_ACTIVE
     );
 
     $userControl->createFromArray( $userData );
+  }
+
+  /**
+   * Get a password from the shell.
+   * This function works on *nix systems only and requires shell_exec and stty.
+   *
+   * @param  boolean $stars Wether or not to output stars for given characters
+   * @return string
+   */
+  static function getPassword($stars = false)
+  {
+      // Get current style
+      $oldStyle = shell_exec('stty -g');
+
+      if ($stars === false) {
+          shell_exec('stty -echo');
+          $password = rtrim(fgets(STDIN), "\n");
+      } else {
+          shell_exec('stty -icanon -echo min 1 time 0');
+
+          $password = '';
+          while (true) {
+              $char = fgetc(STDIN);
+
+              if ($char === "\n") {
+                  break;
+              } else if (ord($char) === 127) {
+                  if (strlen($password) > 0) {
+                      fwrite(STDOUT, "\x08 \x08");
+                      $password = substr($password, 0, -1);
+                  }
+              } else {
+                  fwrite(STDOUT, "*");
+                  $password .= $char;
+              }
+          }
+      }
+
+      // Reset old style
+      shell_exec('stty ' . $oldStyle);
+
+      // Return the password
+      return $password;
   }
 }
