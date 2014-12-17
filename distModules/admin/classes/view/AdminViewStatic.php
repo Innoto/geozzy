@@ -12,16 +12,12 @@ class AdminViewStatic extends AdminViewMaster
 
   function allTables() {
     $this->template->setTpl('alltable.tpl', 'admin');
-    $returnedHtml = $this->template->execToString();
-    $this->assignHtmlAdmin($returnedHtml);
-
+    $this->printCommonInterface();
   }
 
   function addContent() {
     $this->template->setTpl('addcontent.tpl', 'admin');
-    $returnedHtml = $this->template->execToString();
-    $this->assignHtmlAdmin($returnedHtml);
-
+    $this->printCommonInterface();
   }
 }
 

@@ -27,16 +27,10 @@ class AdminViewMaster extends View
     }
     return $res;
   }
-  function common(){
+  function printCommonInterface(){
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
     $this->template->assign( 'user' , $user);
-  }
-
-  function assignHtmlAdmin($html) {
-    $this->common();
-    $this->template->assign( 'sectionHtml' , $html);
-    $this->template->setTpl('masterAdmin.tpl', 'admin');
     $this->template->exec();
   }
 

@@ -15,9 +15,7 @@ class AdminViewUser extends AdminViewMaster
 
   function editUser() {
     $this->template->setTpl('editUser.tpl', 'admin');
-    $returnedHtml = $this->template->execToString();
-    $this->assignHtmlAdmin($returnedHtml);
-
+    $this->printCommonInterface();
   }
 
   /**
@@ -25,19 +23,8 @@ class AdminViewUser extends AdminViewMaster
   **/
 
   function showUser() {
-    $useraccesscontrol = new UserAccessController();
-    $user = $useraccesscontrol->getSessiondata();
-
-    /*** Temporalmente mientras no funcionan las relaciones ***/
-    $filedataControl = new FiledataController();
-    $filedataVO = $filedataControl->find($user->getter('id'));
-    $user->setter('avatar', $filedataVO);
-    /*******/
-
-    $this->template->assign( 'user' , $user);
     $this->template->setTpl('showUser.tpl', 'admin');
-    $returnedHtml = $this->template->execToString();
-    $this->assignHtmlAdmin($returnedHtml);
+    $this->printCommonInterface();
 
   }
 
@@ -50,8 +37,7 @@ class AdminViewUser extends AdminViewMaster
     table::autoIncludes();
     $this->template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
     $this->template->setTpl('listUser.tpl', 'admin');
-    $returnedHtml = $this->template->execToString();
-    $this->assignHtmlAdmin($returnedHtml);
+    $this->printCommonInterface();
   }
 
   function listUsersTable(){
@@ -67,7 +53,8 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setSearchRefId('tableSearch');
 
     // set table Actions
-    /*$tabla->setActionMethod('Borrar', 'delete', 'deleteFromId($rowId)');
+/*
+    $tabla->setActionMethod('Borrar', 'delete', 'deleteFromId($rowId)');
     $tabla->setActionMethod('Mover a Lla Coruña', 'moveToAcoruna', 'updateFromArray( array($primaryKey=>$rowId,  "lostProvince"=>1) )');
     $tabla->setActionMethod('Mover a Lugo', 'moveToLugo', 'updateFromArray( array($primaryKey=>$rowId,  "lostProvince"=>2) )');
 */
@@ -111,8 +98,7 @@ class AdminViewUser extends AdminViewMaster
     $this->template->assign('createUserHtml', $createUserHtml);
     $this->template->setTpl('createUser.tpl', 'admin');
 
-    $returnedHtml = $this->template->execToString();
-    $this->assignHtmlAdmin($returnedHtml);
+    $this->printCommonInterface();
 
   }
 
