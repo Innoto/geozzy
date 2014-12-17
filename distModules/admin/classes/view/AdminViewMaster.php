@@ -27,7 +27,7 @@ class AdminViewMaster extends View
     }
     return $res;
   }
-  function printCommonInterface(){
+  function commonAdminInterface(){
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
     $this->template->assign( 'user' , $user);

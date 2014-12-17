@@ -15,7 +15,7 @@ class AdminViewUser extends AdminViewMaster
 
   function editUser() {
     $this->template->setTpl('editUser.tpl', 'admin');
-    $this->printCommonInterface();
+    $this->commonAdminInterface();
   }
 
   /**
@@ -24,7 +24,7 @@ class AdminViewUser extends AdminViewMaster
 
   function showUser() {
     $this->template->setTpl('showUser.tpl', 'admin');
-    $this->printCommonInterface();
+    $this->commonAdminInterface();
 
   }
 
@@ -37,7 +37,7 @@ class AdminViewUser extends AdminViewMaster
     table::autoIncludes();
     $this->template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
     $this->template->setTpl('listUser.tpl', 'admin');
-    $this->printCommonInterface();
+    $this->commonAdminInterface();
   }
 
   function listUsersTable(){
@@ -98,7 +98,7 @@ class AdminViewUser extends AdminViewMaster
     $this->template->assign('createUserHtml', $createUserHtml);
     $this->template->setTpl('createUser.tpl', 'admin');
 
-    $this->printCommonInterface();
+    $this->commonAdminInterface();
 
   }
 
@@ -107,14 +107,7 @@ class AdminViewUser extends AdminViewMaster
     $userView = new UserView();
 
     $form = $userView->actionRegisterForm();
-
-    if( $form->existErrors() ) {
-      echo $form->jsonFormError();
-    }
-    else {
-      $userView->registerOk( $form );
-      echo $form->jsonFormOk();
-    }
+    $form->sendJsonResponse();
   }
 
 

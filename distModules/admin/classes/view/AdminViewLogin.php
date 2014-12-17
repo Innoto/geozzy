@@ -43,13 +43,7 @@ class AdminViewLogin extends AdminViewMaster
     $userView = new UserView();
 
     $form = $userView->actionLoginForm();
-
-    if( $form->existErrors() ) {
-      echo $form->jsonFormError();
-    }
-    else {
-      echo $form->jsonFormOk();
-    }
+    $form->sendJsonResponse();
   }
 }
 
