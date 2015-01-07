@@ -107,7 +107,13 @@ class AdminViewUser extends AdminViewMaster
     $userView = new UserView();
 
     $form = $userView->actionRegisterForm();
-    $form->sendJsonResponse();
+    if( $form->existErrors() ) {
+      echo $form->getJsonError();
+    }
+    else {
+      $userView->registerOk( $form );
+      echo $form->getJsonOk();
+    }
   }
 
 
