@@ -72,13 +72,12 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/login$#', 'view:AdminViewLogin::main' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/senduserlogin$#', 'view:AdminViewLogin::sendLoginForm' );
 
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/edit$#', 'view:AdminViewUser::editUser' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/edit/(.*)$#', 'view:AdminViewUser::editUser' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/show$#', 'view:AdminViewUser::showUser' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/list$#', 'view:AdminViewUser::listUsers' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/table$#', 'view:AdminViewUser::listUsersTable' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/create$#', 'view:AdminViewUser::createUser' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/sendnewuser$#', 'view:AdminViewUser::sendCreateForm' );
-
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/senduser$#', 'view:AdminViewUser::sendUserForm' );
   }
 
   static function moduleRc() {

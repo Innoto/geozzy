@@ -9,14 +9,6 @@ class AdminViewUser extends AdminViewMaster
     parent::__construct($base_dir);
   }
 
-  /**
-  * Section edit user
-  **/
-
-  function editUser() {
-    $this->template->setTpl('editUser.tpl', 'admin');
-    $this->commonAdminInterface();
-  }
 
   /**
   * Section user profile
@@ -90,11 +82,11 @@ class AdminViewUser extends AdminViewMaster
 
     $userView = new UserView();
 
-    $form = $userView->registerFormDefine();
-    $form->setAction('/admin/user/sendnewuser');
+    $form = $userView->userFormDefine();
+    $form->setAction('/admin/user/senduser');
     $form->setSuccess( 'redirect', '/admin/user/list' );
 
-    $createUserHtml = $userView->registerFormGet( $form );
+    $createUserHtml = $userView->userFormGet( $form );
     $this->template->assign('createUserHtml', $createUserHtml);
     $this->template->setTpl('createUser.tpl', 'admin');
 
@@ -102,20 +94,38 @@ class AdminViewUser extends AdminViewMaster
 
   }
 
-  function sendCreateForm() {
+  function sendUserForm() {
 
     $userView = new UserView();
 
-    $form = $userView->actionRegisterForm();
+    $form = $userView->actionUserForm();
     if( $form->existErrors() ) {
       echo $form->getJsonError();
     }
     else {
-      $userView->registerOk( $form );
+      $userView->userFormOk( $form );
       echo $form->getJsonOk();
     }
   }
 
+  /**
+  * Section edit user
+  **/
+
+  function editUser($request) {
+
+    $userView = new UserView();
+    $form = $userView->userUpdateFormDefine($request);
+    $form->setAction('/admin/user/senduser');
+    $form->setSuccess( 'redirect', '/admin/user/list' );
+
+    $editUserHtml = $userView->userFormGet( $form );
+    $this->template->assign('editUserHtml', $editUserHtml);
+
+    $this->template->setTpl('editUser.tpl', 'admin');
+    $this->commonAdminInterface();
+
+  }
 
 }
 
