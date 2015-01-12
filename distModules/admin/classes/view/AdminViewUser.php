@@ -115,12 +115,23 @@ class AdminViewUser extends AdminViewMaster
   function editUser($request) {
 
     $userView = new UserView();
+
+    /*FORM EDIT*/
     $form = $userView->userUpdateFormDefine($request);
     $form->setAction('/admin/user/senduser');
     $form->setSuccess( 'redirect', '/admin/user/list' );
-
     $editUserHtml = $userView->userFormGet( $form );
     $this->template->assign('editUserHtml', $editUserHtml);
+    /*--------------------*/
+
+    /*FORM CHANGE PASSWORD*/
+    $form = $userView->userChangePasswordFormDefine($request);
+    $form->setAction('/admin/user/changepassword');
+    $form->setSuccess( 'redirect', '/admin/user/list' );
+    $changePasswordHtml = $userView->userChangePasswordFormGet( $form );
+    $this->template->assign('changePasswordHtml', $changePasswordHtml);
+
+    /*--------------------*/
 
     $this->template->setTpl('editUser.tpl', 'admin');
     $this->commonAdminInterface();
