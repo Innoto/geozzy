@@ -81,10 +81,9 @@ class admin extends Module
   }
 
   static function moduleRc() {
-
-    user::load("controller/UserController.php");
-    user::load("model/UserVO.php");
-    $userControl = new UserController();
+;
+    user::load("model/UserModel.php");
+    $userControl = new UserModel();
 
     fwrite(STDOUT, "Enter the superAdmin password:\n");
     $passwd = self::getPassword(true);
