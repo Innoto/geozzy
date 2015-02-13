@@ -35,9 +35,9 @@ class AdminViewUser extends AdminViewMaster
   function listUsersTable(){
 
     table::autoIncludes();
-    $userControl =  new UserController();
+    $user =  new UserModel();
 
-    $tabla = new TableController( $userControl );
+    $tabla = new TableController( $user );
 
     $tabla->setTabs('status', array('1'=>'Activos', '2'=>'En espera', '3' => 'Bloqueados', '*'=> 'Todos' ), '*');
 

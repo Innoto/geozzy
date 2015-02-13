@@ -83,11 +83,10 @@ class admin extends Module
   static function moduleRc() {
 ;
     user::load("model/UserModel.php");
-    $userControl = new UserModel();
+
 
     fwrite(STDOUT, "Enter the superAdmin password:\n");
     $passwd = self::getPassword(true);
-    echo $passwd;
 
     $userData = array(
       'login' => 'superAdmin',
@@ -97,8 +96,8 @@ class admin extends Module
       'role' => 10,
       'status' => USER_STATUS_ACTIVE
     );
-
-    $userControl->createFromArray( $userData );
+    $user = new UserModel($userData);
+    $user->save();
   }
 
   /**
