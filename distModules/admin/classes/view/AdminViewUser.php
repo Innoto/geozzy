@@ -94,20 +94,6 @@ class AdminViewUser extends AdminViewMaster
 
   }
 
-  function sendUserForm() {
-
-    $userView = new UserView();
-
-    $form = $userView->actionUserForm();
-    if( $form->existErrors() ) {
-      echo $form->getJsonError();
-    }
-    else {
-      $userView->userFormOk( $form );
-      echo $form->getJsonOk();
-    }
-  }
-
   /**
   * Section edit user
   **/
@@ -125,10 +111,10 @@ class AdminViewUser extends AdminViewMaster
     /*--------------------*/
 
     /*FORM CHANGE PASSWORD*/
-    $form = $userView->userChangePasswordFormDefine($request);
-    $form->setAction('/admin/user/changepassword');
-    $form->setSuccess( 'redirect', '/admin/user/list' );
-    $changePasswordHtml = $userView->userChangePasswordFormGet( $form );
+    $formChange = $userView->userChangePasswordFormDefine($request);
+    $formChange->setAction('/admin/user/changepassword');
+    $formChange->setSuccess( 'redirect', '/admin/user/list' );
+    $changePasswordHtml = $userView->userChangePasswordFormGet( $formChange );
     $this->template->assign('changePasswordHtml', $changePasswordHtml);
 
     /*--------------------*/
@@ -136,6 +122,40 @@ class AdminViewUser extends AdminViewMaster
     $this->template->setTpl('editUser.tpl', 'admin');
     $this->commonAdminInterface();
 
+  }
+
+
+  /**
+   Action userForm
+  */
+  function sendUserForm() {
+
+    $userView = new UserView();
+
+    $form = $userView->actionUserForm();
+    if( $form->existErrors() ) {
+      echo $form->getJsonError();
+    }
+    else {
+      $userView->userFormOk( $form );
+      echo $form->getJsonOk();
+    }
+  }
+  /**
+   Action changeUserPassword()
+  */
+  function changeUserPasswordForm() {
+
+    $userView = new UserView();
+
+    $form = $userView->actionChangeUserPasswordForm();
+    if( $form->existErrors() ) {
+      echo $form->getJsonError();
+    }
+    else {
+      $userView->changeUserPasswordFormOk( $form );
+      echo $form->getJsonOk();
+    }
   }
 
 }
