@@ -83,7 +83,7 @@ class admin extends Module
   }
 
   static function moduleRc() {
-;
+
     user::load("model/UserModel.php");
 
 
@@ -96,7 +96,7 @@ class admin extends Module
       'password' => SHA1($passwd),
       'email' => 'arodriguez@map-experience.com',
       'role' => 10,
-      'status' => USER_STATUS_ACTIVE
+      'active' => 1
     );
     $user = new UserModel($userData);
     $user->save();

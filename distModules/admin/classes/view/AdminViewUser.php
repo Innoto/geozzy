@@ -39,17 +39,15 @@ class AdminViewUser extends AdminViewMaster
 
     $tabla = new TableController( $user );
 
-    $tabla->setTabs('status', array('1'=>'Activos', '2'=>'En espera', '3' => 'Bloqueados', '*'=> 'Todos' ), '*');
+    $tabla->setTabs('active', array('1'=>'Activos', '0'=>'Bloqueados', '*'=> 'Todos' ), '*');
 
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
 
     // set table Actions
-/*
-    $tabla->setActionMethod('Borrar', 'delete', 'deleteFromId($rowId)');
-    $tabla->setActionMethod('Mover a Lla Coruña', 'moveToAcoruna', 'updateFromArray( array($primaryKey=>$rowId,  "lostProvince"=>1) )');
-    $tabla->setActionMethod('Mover a Lugo', 'moveToLugo', 'updateFromArray( array($primaryKey=>$rowId,  "lostProvince"=>2) )');
-*/
+    $tabla->setActionMethod('Activar', 'changeStatusActive', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=>1 ))');
+    $tabla->setActionMethod('Bloquear', 'changeStatusLock', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=>0 ))');
+
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
     $tabla->setCountMethodAlias('listCount');
@@ -64,11 +62,11 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setCol('name', 'Name');
     $tabla->setCol('surname', 'Surname');
     $tabla->setCol('email', 'Email');
-    $tabla->setCol('role', 'Role');
+    //$tabla->setCol('role', 'Role');
 
     // establecer reglas a campo concreto con expresions regulares
-    $tabla->colRule('role', '#10#', 'SuperAdmin');
-    $tabla->colRule('role', '#11#', 'User');
+    //$tabla->colRule('role', '#10#', 'SuperAdmin');
+    //$tabla->colRule('role', '#11#', 'User');
 
     // imprimimos o JSON da taboa
     $tabla->exec();
