@@ -23,12 +23,42 @@ class geozzy extends Module
   static function moduleRc() {
 
     user::load("model/UserModel.php");
+    /*user::load("model/RoleModel.php");
 
+
+    $roleData = array(
+      'name' => 'superAdmin',
+      'description' => 'Role superAdmin'
+    );
+    $role = new RoleModel($roleData);
+    $role->save();
+
+    $roleData = array(
+      'name' => 'administrador',
+      'description' => 'Role Usuario'
+    );
+    $role = new RoleModel($roleData);
+    $role->save();
+
+    $roleData = array(
+      'name' => 'Gestor',
+      'description' => 'Role Gestor'
+    );
+    $role = new RoleModel($roleData);
+    $role->save();
+
+    $roleData = array(
+      'name' => 'usuario',
+      'description' => 'Role Usuario'
+    );
+    $role = new UserModel($roleData);
+    $role->save();
+  */
 
     fwrite(STDOUT, "Enter the superAdmin password:\n");
     $passwd = self::getPassword(true);
 
-    $userData = array(
+    $roleData = array(
       'login' => 'superAdmin',
       'name' => 'superAdmin',
       'password' => SHA1($passwd),
