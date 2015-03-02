@@ -5,9 +5,8 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class Resourceodel extends Model
+class ResourceModel extends Model
 {
-
   static $tableName = 'geozzy_resource';
   static $cols = array(
     'id' => array(
@@ -19,7 +18,6 @@ class Resourceodel extends Model
       'type' => 'VARCHAR',
       'size' => '100'
     ),
-
     'user' => array(
       'type'=>'FOREIGN',
       'vo' => 'UserModel',
@@ -30,7 +28,6 @@ class Resourceodel extends Model
       'vo' => 'UserModel',
       'key'=> 'id'
     ),
-
     'published' => array(
       'type' => 'BOOLEAN'
     ),
@@ -57,7 +54,6 @@ class Resourceodel extends Model
       'size' => 100,
       'translate' => true      
     ),    
-
     'title' => array(
       'type' => 'VARCHAR',
       'size' => 100,
@@ -97,9 +93,7 @@ class Resourceodel extends Model
     )
   );
 
-  var $filters = array(
-
-  );
+  var $filters = array( );
 
 
   function __construct( $datarray= array(), $otherRelObj = false ) {
