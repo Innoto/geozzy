@@ -32,7 +32,7 @@ class RatingModel extends Model
     ),
     'ipVote' => array(
       'type' => 'VARCHAR',
-      'size' => 15
+      'size' => 15  
     ),
   );
 

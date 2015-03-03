@@ -22,11 +22,11 @@ class BlockModel extends Model
       'type' => 'TEXT'
     ),
     'weight' => array(
-      'type' => 'VARCHAR'
+      'type' => 'VARCHAR',
       'size' => 45
-    )
+    ),
     'idicon' => array(
-      'type' => 'VARCHAR'
+      'type' => 'VARCHAR',
       'size' => 45
     )
   );

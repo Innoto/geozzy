@@ -57,7 +57,7 @@ class geozzy extends Module
 
     fwrite(STDOUT, "Enter the superAdmin password:\n");
     $passwd = self::getPassword(true);
-
+/*
     $roleData = array(
       'login' => 'superAdmin',
       'name' => 'superAdmin',
@@ -67,7 +67,7 @@ class geozzy extends Module
       'active' => 1
     );
     $user = new UserModel($userData);
-    $user->save();
+    $user->save();*/
   }
 
   /**
