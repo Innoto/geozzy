@@ -60,7 +60,7 @@ class ResourceModel extends Model
       'translate' => true
     ),
     'shortDescription' => array(
-      'type' => 'VARCHAR'
+      'type' => 'VARCHAR',
       'size' => 100,
       'translate' => true
     ),
@@ -85,12 +85,12 @@ class ResourceModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
       'key' => 'id'
-    )
-    'galery' => array(
+    )//,
+/*    'galery' => array(
       'type'=>'FOREIGN',
       'vo' => 'FilegroupModel',
       'key' => 'groupId'
-    )
+    )*/
   );
 
   var $filters = array( );
