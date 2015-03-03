@@ -9,10 +9,25 @@ class BlockresourceModel extends Model
 {
   static $tableName = 'geozzy_block_resource';
   static $cols = array(
-     'id' => array(
+    'id' => array(
       'type' => 'INT',
       'primarykey' => true,
       'autoincrement' => true
+    ),
+    'title' => array(
+      'type' => 'VARCHAR',
+      'size' => 100
+    ),
+    'description' => array(
+      'type' => 'TEXT'
+    ),
+    'weight' => array(
+      'type' => 'VARCHAR'
+      'size' => 45
+    )
+    'idicon' => array(
+      'type' => 'VARCHAR'
+      'size' => 45
     )
   );
 
