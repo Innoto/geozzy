@@ -10,7 +10,7 @@ user::autoIncludes();
 class AdminViewMaster extends View
 {
 
-  function __construct($base_dir){
+  public function __construct( $base_dir ) {
     parent::__construct($base_dir);
   }
 
@@ -18,7 +18,7 @@ class AdminViewMaster extends View
   * Evaluate the access conditions and report if can continue
   * @return bool : true -> Access allowed
   */
-  function accessCheck() {
+  public function accessCheck() {
     $useraccesscontrol = new UserAccessController();
     $res = true;
     if(!$useraccesscontrol->isLogged()){
@@ -27,7 +27,9 @@ class AdminViewMaster extends View
     }
     return $res;
   }
-  function commonAdminInterface(){
+
+
+  public function commonAdminInterface(){
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
     $this->template->assign( 'user' , $user);
@@ -35,10 +37,10 @@ class AdminViewMaster extends View
   }
 
 
-  function sendLogout() {
+  public function sendLogout() {
     $useraccesscontrol = new UserAccessController();
     $useraccesscontrol->userLogout();
     Cogumelo::redirect('/admin');
   }
-}
 
+}

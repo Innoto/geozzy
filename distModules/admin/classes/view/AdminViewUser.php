@@ -5,16 +5,15 @@ admin::load('view/AdminViewMaster.php');
 class AdminViewUser extends AdminViewMaster
 {
 
-  function __construct($base_dir){
-    parent::__construct($base_dir);
+  public function __construct( $base_dir ) {
+    parent::__construct( $base_dir );
   }
 
 
   /**
   * Section user profile
   **/
-
-  function showUser() {
+  public function showUser() {
     $this->template->setTpl('showUser.tpl', 'admin');
     $this->commonAdminInterface();
 
@@ -23,8 +22,7 @@ class AdminViewUser extends AdminViewMaster
   /**
   * Section list user
   **/
-
-  function listUsers() {
+  public function listUsers() {
 
     table::autoIncludes();
     $this->template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
@@ -32,7 +30,8 @@ class AdminViewUser extends AdminViewMaster
     $this->commonAdminInterface();
   }
 
-  function listUsersTable(){
+
+  public function listUsersTable() {
 
     table::autoIncludes();
     $user =  new UserModel();
@@ -76,7 +75,7 @@ class AdminViewUser extends AdminViewMaster
   * Section create user
   **/
 
-  function createUser() {
+  public function createUser() {
 
     $userView = new UserView();
 
@@ -95,8 +94,7 @@ class AdminViewUser extends AdminViewMaster
   /**
   * Section edit user
   **/
-
-  function editUser($request) {
+  public function editUser( $request ) {
 
     $userView = new UserView();
 
@@ -119,14 +117,13 @@ class AdminViewUser extends AdminViewMaster
 
     $this->template->setTpl('editUser.tpl', 'admin');
     $this->commonAdminInterface();
-
   }
 
 
   /**
    Action userForm
   */
-  function sendUserForm() {
+  public function sendUserForm() {
 
     $userView = new UserView();
 
@@ -139,10 +136,11 @@ class AdminViewUser extends AdminViewMaster
       echo $form->getJsonOk();
     }
   }
+
   /**
    Action changeUserPassword()
   */
-  function changeUserPasswordForm() {
+  public function changeUserPasswordForm() {
 
     $userView = new UserView();
 

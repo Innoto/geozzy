@@ -60,7 +60,7 @@ class admin extends Module
     'js/adminBase.js'
   );
 
-  function __construct() {
+  public function __construct() {
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/charts$#', 'view:AdminViewStadistic::main' );
 
