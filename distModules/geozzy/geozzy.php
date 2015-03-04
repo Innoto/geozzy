@@ -57,17 +57,19 @@ class geozzy extends Module
 
     fwrite(STDOUT, "Enter the superAdmin password:\n");
     $passwd = self::getPassword(true);
-/*
-    $roleData = array(
+
+    $userData = array(
       'login' => 'superAdmin',
       'name' => 'superAdmin',
-      'password' => SHA1($passwd),
       'email' => '',
       'role' => 10,
       'active' => 1
     );
     $user = new UserModel($userData);
-    $user->save();*/
+    $user->setPassword( $passwd );
+
+
+    $user->save();
   }
 
   /**

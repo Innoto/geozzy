@@ -14,10 +14,10 @@ class ResourceModel extends Model
       'primarykey' => true,
       'autoincrement' => true
     ),
-    'type' => array(
+/*    'type' => array(
       'type' => 'VARCHAR',
       'size' => '100'
-    ),
+    ),*/
     'user' => array(
       'type'=>'FOREIGN',
       'vo' => 'UserModel',
@@ -27,7 +27,9 @@ class ResourceModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'UserModel',
       'key'=> 'id'
-    ),
+    )
+/*
+    ,
     'published' => array(
       'type' => 'BOOLEAN'
     ),
@@ -85,8 +87,8 @@ class ResourceModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
       'key' => 'id'
-    )//,
-/*    'galery' => array(
+    ),
+    'galery' => array(
       'type'=>'FOREIGN',
       'vo' => 'FilegroupModel',
       'key' => 'groupId'
