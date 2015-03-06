@@ -5,9 +5,9 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class BlockModel extends Model
+class ColectionResourceModel extends Model
 {
-  static $tableName = 'geozzy_block';
+  static $tableName = 'geozzy_colection_resource';
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -20,14 +20,21 @@ class BlockModel extends Model
     ),
     'description' => array(
       'type' => 'TEXT'
-    ),
+    ),    
     'weight' => array(
       'type' => 'VARCHAR',
       'size' => 45
     ),
-    'idicon' => array(
-      'type' => 'VARCHAR',
-      'size' => 45
+
+    'colection' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'ColectionModel',
+      'key' => 'id'
+    ),
+    'resource' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'ResourceModel',
+      'key' => 'id'
     )
   );
 
