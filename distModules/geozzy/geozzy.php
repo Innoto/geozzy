@@ -47,8 +47,6 @@ class geozzy extends Module
     $userData = array(
       'login' => 'superAdmin',
       'name' => 'superAdmin',
-      'email' => '',
-      'role' => 10,
       'active' => 1
     );
     $user = new UserModel($userData);
