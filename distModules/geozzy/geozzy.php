@@ -25,7 +25,9 @@ class geozzy extends Module
     user::load("model/UserModel.php");
     user::load("model/RoleModel.php");
 
-
+    /**
+    Creacion de Roles de Geozzy
+    */
     $roleData = array(
       'name' => 'administrador',
       'description' => 'Role Usuario'
@@ -40,20 +42,32 @@ class geozzy extends Module
     $role = new RoleModel($roleData);
     $role->save();
 
-
+    /**
+    Crea un usuario superAdmin para Geozzy
+    */
     fwrite(STDOUT, "Enter the superAdmin password:\n");
     $passwd = self::getPassword(true);
-
     $userData = array(
       'login' => 'superAdmin',
       'name' => 'superAdmin',
       'active' => 1
     );
-    $user = new UserModel($userData);
+    $user = new UserModel( $userData );
     $user->setPassword( $passwd );
-
-
     $user->save();
+
+    /**
+    Crea la relacion Usuario/Role de superAdmin asignadole un role superAdmin
+    */
+    $roleModel = new RoleModel();
+    $role = $roleModel->listItems( array('filters' => array('name' => 'superAdmin') ))->fetch();
+    $userRole = new UserRoleModel();
+    if( $role ){
+      $userRole->setterDependence( $role );
+    }
+    $userRole->setterDependence( $user );
+    $userRole->save(array( 'affectsDependences' => true ));
+
   }
 
   /**
