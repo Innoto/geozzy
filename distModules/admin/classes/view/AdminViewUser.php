@@ -114,7 +114,14 @@ class AdminViewUser extends AdminViewMaster
     $formChange->setSuccess( 'redirect', '/admin/user/list' );
     $changePasswordHtml = $userView->userChangePasswordFormGet( $formChange );
     $this->template->assign('changePasswordHtml', $changePasswordHtml);
+    /*--------------------*/
 
+    /*FORM ASSIGN ROLES*/
+    $userRolesForm = $userView->userRolesFormDefine($request);
+    $userRolesForm->setAction('/admin/user/assignroles');
+    $userRolesForm->setSuccess( 'redirect', '/admin/user/list' );
+    $userRolesFormHtml = $userView->userRolesFormGet( $userRolesForm );
+    $this->template->assign('userRolesFormHtml', $userRolesFormHtml);
     /*--------------------*/
 
     $this->template->setTpl('editUser.tpl', 'admin');
@@ -152,6 +159,23 @@ class AdminViewUser extends AdminViewMaster
     }
     else {
       $userView->changeUserPasswordFormOk( $form );
+      echo $form->getJsonOk();
+    }
+  }
+
+  /**
+   Action assign formRoles()
+  */
+  function assignaUserRolesForm() {
+
+    $userView = new UserView();
+
+    $form = $userView->actionUserRolesForm();
+    if( $form->existErrors() ) {
+      echo $form->getJsonError();
+    }
+    else {
+      $userView->userRolesFormOk( $form );
       echo $form->getJsonOk();
     }
   }

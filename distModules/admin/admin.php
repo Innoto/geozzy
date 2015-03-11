@@ -80,6 +80,8 @@ class admin extends Module
 
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/senduser$#', 'view:AdminViewUser::sendUserForm' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/changepassword$#', 'view:AdminViewUser::changeUserPasswordForm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/assignroles$#', 'view:AdminViewUser::assignaUserRolesForm' );
+
   }
 
 

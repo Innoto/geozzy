@@ -63,9 +63,9 @@ class geozzy extends Module
     $role = $roleModel->listItems( array('filters' => array('name' => 'superAdmin') ))->fetch();
     $userRole = new UserRoleModel();
     if( $role ){
-      $userRole->setterDependence( $role );
+      $userRole->setterDependence( 'role', $role );
     }
-    $userRole->setterDependence( $user );
+    $userRole->setterDependence( 'user', $user );
     $userRole->save(array( 'affectsDependences' => true ));
 
   }
