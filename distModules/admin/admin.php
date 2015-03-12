@@ -82,6 +82,12 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/changepassword$#', 'view:AdminViewUser::changeUserPasswordForm' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/assignroles$#', 'view:AdminViewUser::assignaUserRolesForm' );
 
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/edit/(.*)$#', 'view:AdminViewRole::editRole' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/create$#', 'view:AdminViewRole::createRole' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/list$#', 'view:AdminViewRole::listRoles' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/table$#', 'view:AdminViewRole::listRolesTable' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/sendrole$#', 'view:AdminViewRole::sendRoleForm' );
+
   }
 
 

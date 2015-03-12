@@ -101,10 +101,7 @@
                           <a href="/admin/user/list"><i class="fa fa-user fa-fw"></i> User</a>
                         </li>
                         <li>
-                          <a href="/admin/addcontent"><i class="fa fa-unlock-alt fa-fw"></i> Permissions</a>
-                        </li>
-                        <li>
-                          <a href="/admin/addcontent"><i class="fa fa-tag fa-fw"></i> Roles</a>
+                          <a href="/admin/role/list"><i class="fa fa-tag fa-fw"></i> Roles</a>
                         </li>
 
                       </ul>
