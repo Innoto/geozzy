@@ -5,9 +5,9 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class TaxonomytermResourceModel extends Model
+class ResourceTaxonomytermModel extends Model
 {
-  static $tableName = 'geozzy_taxonomyterm_resource';
+  static $tableName = 'geozzy_resource_taxonomyterm';
   static $cols = array(
     'id' => array(
       'type' => 'INT',

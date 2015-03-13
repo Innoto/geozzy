@@ -14,11 +14,25 @@ class TaxonomytermModel extends Model
       'primarykey' => true,
       'autoincrement' => true
     ),
-    'taxonomygroup' => array(
+    'parent' => array(
+      'type' => 'INT',
+    ),
+    'text' => array(
+      'type' => 'VARCHAR',
+      'size' => 100
+    ),
+    'parent' => array(
+      'type' => 'INT',
+    ),
+    'weight' => array(
+      'type' => 'INT',
+    ),
+    'group' => array(
       'type'=>'FOREIGN',
       'vo' => 'TaxonomygroupModel',
       'key' => 'id'
     )
+
   );
 
   var $filters = array( );
