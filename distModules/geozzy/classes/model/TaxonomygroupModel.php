@@ -13,8 +13,13 @@ class TaxonomygroupModel extends Model
       'type' => 'INT',
       'primarykey' => true,
       'autoincrement' => true
+    ),
+    'idname' => array(
+      'type' => 'VARCHAR',
+      'size' => 100,      
+      'primarykey' => true,
+      'autoincrement' => true
     )
-
   );
 
   var $filters = array( );
