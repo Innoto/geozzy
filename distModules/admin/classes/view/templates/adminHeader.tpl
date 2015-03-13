@@ -80,8 +80,29 @@
           <li>
               <a class="active" href="/admin"><i class="fa fa-line-chart fa-fw"></i> Charts</a>
           </li>
+
           <li>
               <a href="/admin"><i class="fa fa-files-o fa-fw"></i> Pages</a>
+          </li>
+
+          <!-- Labels -->
+          <li>
+              <a href="#"><i class="fa fa-tags fa-fw"></i> Categories <span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level">
+                <li>
+                    <a href="/admin/alltables"><i class="fa fa-tag fa-fw"></i> Cat 1</a>
+                </li>
+                <li>
+                    <a href="/admin/alltables"><i class="fa fa-tag fa-fw"></i> Cat 2</a>
+                </li>
+                <li>
+                    <a href="/admin/alltables"><i class="fa fa-tag fa-fw"></i> Cat 3</a>
+                </li>
+              </ul>
+              <!-- /.nav-second-level -->
+          </li>
+          <li>
+              <a href="/admin"><i class="fa fa-star fa-fw"></i> Destacados</a>
           </li>
 
           <!-- Settings -->
@@ -106,9 +127,6 @@
 
                       </ul>
                       <!-- /.nav-third-level -->
-                  </li>
-                  <li>
-                      <a href="/admin"><i class="fa fa-inbox fa-fw"></i> Categories</a>
                   </li>
               </ul>
               <!-- /.nav-second-level -->
