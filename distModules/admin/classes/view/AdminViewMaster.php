@@ -31,6 +31,10 @@ class AdminViewMaster extends View
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
     $this->template->assign( 'user' , $user);
+
+    $taxgroupModel = new TaxonomygroupModel(  );
+
+
     $this->template->exec();
   }
 

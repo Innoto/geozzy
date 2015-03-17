@@ -14,11 +14,10 @@ class TaxonomygroupModel extends Model
       'primarykey' => true,
       'autoincrement' => true
     ),
-    'idname' => array(
+    'idName' => array(
       'type' => 'VARCHAR',
-      'size' => 100,      
-      'primarykey' => true,
-      'autoincrement' => true
+      'size' => 100,
+      'unique' => true
     )
   );
 

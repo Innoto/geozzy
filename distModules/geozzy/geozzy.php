@@ -68,6 +68,22 @@ class geozzy extends Module
     $userRole->setterDependence( 'user', $user );
     $userRole->save(array( 'affectsDependences' => true ));
 
+
+    /**
+    Crea Taxonomias necesarias para iniciar Geozzy
+    */
+
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Destacado' ) );
+    $taxgroup->save();
+
+    /*TMP*/
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Tipo de Hotel' ) );
+    $taxgroup->save();
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Eventos' ) );
+    $taxgroup->save();
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Categorias' ) );
+    $taxgroup->save();
+
   }
 
   /**
