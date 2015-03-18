@@ -32,7 +32,17 @@ class AdminViewMaster extends View
     $user = $useraccesscontrol->getSessiondata();
     $this->template->assign( 'user' , $user);
 
-    $taxgroupModel = new TaxonomygroupModel(  );
+    $taxgroupModel = new TaxonomygroupModel( );
+    $taxs = $taxgroupModel->listItems()->fetchAll();
+    $taxDestacado = "";
+
+    foreach ($taxs as $key => $tax) {
+      if($tax->getter('idName') == "Destacado"){
+        $taxDestacado = $tax;
+      }
+    }
+    $this->template->assign( 'taxs' , $taxs);
+    $this->template->assign( 'taxDestacado' , $taxDestacado);
 
 
     $this->template->exec();

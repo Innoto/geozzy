@@ -68,7 +68,6 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/addcontent$#', 'view:AdminViewStatic::addContent' );
 
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/logout$#', 'view:AdminViewMaster::sendLogout' );
-
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/login$#', 'view:AdminViewLogin::main' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/senduserlogin$#', 'view:AdminViewLogin::sendLoginForm' );
 
@@ -77,7 +76,6 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/list$#', 'view:AdminViewUser::listUsers' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/table$#', 'view:AdminViewUser::listUsersTable' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/create$#', 'view:AdminViewUser::createUser' );
-
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/senduser$#', 'view:AdminViewUser::sendUserForm' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/changepassword$#', 'view:AdminViewUser::changeUserPasswordForm' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/assignroles$#', 'view:AdminViewUser::assignaUserRolesForm' );
@@ -87,6 +85,11 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/list$#', 'view:AdminViewRole::listRoles' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/table$#', 'view:AdminViewRole::listRolesTable' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/sendrole$#', 'view:AdminViewRole::sendRoleForm' );
+
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)$#', 'view:AdminViewTaxonomy::listTaxTerm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)/table$#', 'view:AdminViewTaxonomy::listTaxTermTable' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)/term/edit(\d+)$#', 'view:AdminViewTaxonomy::editTaxTerm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)/term/create$#', 'view:AdminViewTaxonomy::createTaxTerm' );
 
   }
 

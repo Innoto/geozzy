@@ -14,10 +14,7 @@ class TaxonomytermModel extends Model
       'primarykey' => true,
       'autoincrement' => true
     ),
-    'parent' => array(
-      'type' => 'INT',
-    ),
-    'text' => array(
+    'idName' => array(
       'type' => 'VARCHAR',
       'size' => 100
     ),

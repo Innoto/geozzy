@@ -89,20 +89,18 @@
           <li>
               <a href="#"><i class="fa fa-tags fa-fw"></i> Categories <span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
-                <li>
-                    <a href="/admin/alltables"><i class="fa fa-tag fa-fw"></i> Cat 1</a>
-                </li>
-                <li>
-                    <a href="/admin/alltables"><i class="fa fa-tag fa-fw"></i> Cat 2</a>
-                </li>
-                <li>
-                    <a href="/admin/alltables"><i class="fa fa-tag fa-fw"></i> Cat 3</a>
-                </li>
+                {foreach from=$taxs item=tax}
+                {if $tax->getter('idName') != "Destacado" }
+                  <li>
+                      <a href="/admin/taxonomygroup/{$tax->getter('id')}"><i class="fa fa-tag fa-fw"></i> {$tax->getter('idName')} </a>
+                  </li>
+                {/if}
+                {/foreach}
               </ul>
               <!-- /.nav-second-level -->
           </li>
           <li>
-              <a href="/admin"><i class="fa fa-star fa-fw"></i> Destacados</a>
+              <a href="/admin/taxonomygroup/{$taxDestacado->getter('id')}"><i class="fa fa-star fa-fw"></i> {$taxDestacado->getter('idName')} </a>
           </li>
 
           <!-- Settings -->
