@@ -25,17 +25,10 @@ class AdminViewTaxonomy extends AdminViewMaster
 
   function listTaxTermTable( $request ){
 
-    //$filter = array( 'group' => $request[1]);
-    Cogumelo::console($request);
-
-
     table::autoIncludes();
     $taxtermModel =  new TaxonomytermModel();
 
     $tabla = new TableController( $taxtermModel );
-
-    //Temporal mientras sea obligatorio.
-    $tabla->setTabs('idName', array( '*'=> 'Todos' ), '*');
 
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
@@ -44,9 +37,10 @@ class AdminViewTaxonomy extends AdminViewMaster
     $tabla->setListMethodAlias('listItems');
     $tabla->setCountMethodAlias('listCount');
 
+    $tabla->setInternalFilters( array( 'taxgroup' => $request[1]) );
     // set Urls
-    $tabla->setEachRowUrl('"/admin/taxonomygroup/term/edit/".$rowId');
-    $tabla->setNewItemUrl('/admin/taxonomygroup/term/create');
+    $tabla->setEachRowUrl('"/admin/taxonomygroup/'.$request[1].'/term/edit/".$rowId');
+    $tabla->setNewItemUrl('/admin/taxonomygroup/'.$request[1].'/term/create');
 
     // Nome das columnas
     $tabla->setCol('id', 'Id');

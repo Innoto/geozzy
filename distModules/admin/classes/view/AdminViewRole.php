@@ -29,9 +29,6 @@ class AdminViewRole extends AdminViewMaster
 
     $tabla = new TableController( $roleModel );
 
-    //Temporal mientras sea obligatorio.
-    $tabla->setTabs('name', array( '*'=> 'Todos' ), '*');
-
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
 

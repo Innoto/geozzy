@@ -24,7 +24,7 @@ class TaxonomytermModel extends Model
     'weight' => array(
       'type' => 'INT',
     ),
-    'group' => array(
+    'taxgroup' => array(
       'type'=>'FOREIGN',
       'vo' => 'TaxonomygroupModel',
       'key' => 'id'
