@@ -16,14 +16,19 @@ class AdminViewTaxonomy extends AdminViewMaster
 
   function listTaxTerm( $request ) {
 
-    table::autoIncludes();
-    $this->template->assign('taxTermTable', table::getTableHtml('AdminViewTaxonomy', '/admin/taxonomygroup/'.$request[1].'/table') );
+    //table::autoIncludes();
+    //$this->template->assign('taxTermTable', table::getTableHtml('AdminViewTaxonomy', '/admin/taxonomygroup/'.$request[1].'/table') );
+    $taxtermModel =  new TaxonomytermModel();
+    $taxTerms = $taxtermModel->listItems( array( 'filters' => array( 'taxgroup' => $request[1] ) ) )->fetchAll();
+    $this->template->assign( 'taxId', $request[1] );
+    $this->template->assign( 'taxTerms', $taxTerms );
+
     $this->template->setTpl('listTaxTerm.tpl', 'admin');
     $this->commonAdminInterface();
 
   }
 
-  function listTaxTermTable( $request ){
+  /*function listTaxTermTable( $request ){
 
     table::autoIncludes();
     $taxtermModel =  new TaxonomytermModel();
@@ -49,7 +54,7 @@ class AdminViewTaxonomy extends AdminViewMaster
 
     // imprimimos o JSON da taboa
     $tabla->exec();
-  }
+  }*/
 
   /**
   * Section create role
