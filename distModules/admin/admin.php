@@ -57,7 +57,8 @@ class admin extends Module
   public $includesCommon = array(
     'styles/adminBase.less',
     'styles/admin.less',
-    'js/adminBase.js'
+    'js/adminBase.js',
+    'js/adminTaxonomy.js'
   );
 
   function __construct() {
@@ -87,8 +88,8 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/sendrole$#', 'view:AdminViewRole::sendRoleForm' );
 
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)$#', 'view:AdminViewTaxonomy::listTaxTerm' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)/table$#', 'view:AdminViewTaxonomy::listTaxTermTable' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)/term/edit/(\d+)$#', 'view:AdminViewTaxonomy::editTaxTerm' );
+    //$this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)/table$#', 'view:AdminViewTaxonomy::listTaxTermTable' );
+    //$this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)/term/edit/(\d+)$#', 'view:AdminViewTaxonomy::editTaxTerm' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)/term/create$#', 'view:AdminViewTaxonomy::createTaxTerm' );
 
 
