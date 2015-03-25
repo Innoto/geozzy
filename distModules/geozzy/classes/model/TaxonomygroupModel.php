@@ -18,7 +18,11 @@ class TaxonomygroupModel extends Model
       'type' => 'VARCHAR',
       'size' => 100,
       'unique' => true
+    ),
+    'editable' => array(
+      'type' => 'BOOLEAN'
     )
+
   );
 
   var $filters = array( );

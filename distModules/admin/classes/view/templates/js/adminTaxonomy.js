@@ -23,7 +23,7 @@ function saveTerm( idName, taxGroup ){
   else {
     $.ajax({
       method: "POST",
-      url: "/admin/taxonomygroup/"+taxGroup+"/term/create",
+      url: "/admin/taxonomygroup/term/send",
       data: { idName: idName, taxGroup: taxGroup }
     }).done(function( msg ) {
       alert( "Data Saved: " + msg );

@@ -27,20 +27,33 @@ class AdminViewTaxonomy extends AdminViewMaster
   }
 
 
-  /**
-  * Section create role
-  **/
+  function sendTaxTerm() {
+    $res = true;
 
-  function createTaxTerm() {
+    if( isset($_POST['id']) && !is_int($_POST['id']) ){
+      $res = false;
+    }
+    if( !isset($_POST['idName']) ){
+      $res = false;
+    }
+    if( !isset($_POST['group']) || !is_int($_POST['group']) ){
+      $res = false;
+    }
 
-  }
+    $taxGroupModel =  new TaxonomygroupModel();
+    $taxGroup = $taxGroupModel->listItems( array('filters' => array('id' => $_POST['group']) ) )->fetch();
 
-  /**
-  * Section edit role
-  **/
+    if(!$taxGroup->getter('editable')){
+      $res = false;
+    }
 
-  function editTaxTerm($request) {
+    if($res){
+      $taxTerm =  new TaxonomytermModel($_POST);
+      $taxTerm->save();
+      $res = $taxTerm;
+    }
 
+    return $res;
   }
 
 
