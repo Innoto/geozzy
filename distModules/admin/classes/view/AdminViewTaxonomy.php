@@ -33,26 +33,33 @@ class AdminViewTaxonomy extends AdminViewMaster
     if( isset($_POST['id']) && !is_int($_POST['id']) ){
       $res = false;
     }
+    var_dump($res." 1");
     if( !isset($_POST['idName']) ){
       $res = false;
     }
-    if( !isset($_POST['group']) || !is_int($_POST['group']) ){
+    var_dump($res." 2");
+    var_dump($_POST['group']);
+    if( !isset($_POST['group']) || !is_numeric($_POST['group']) ){
       $res = false;
     }
-
-    $taxGroupModel =  new TaxonomygroupModel();
-    $taxGroup = $taxGroupModel->listItems( array('filters' => array('id' => $_POST['group']) ) )->fetch();
-
-    if(!$taxGroup->getter('editable')){
-      $res = false;
+    var_dump($res." 3");
+    if($res){
+      $taxGroupModel =  new TaxonomygroupModel();
+      $taxGroup = $taxGroupModel->listItems( array('filters' => array('id' => $_POST['group']) ) )->fetch();
+      if(!$taxGroup->getter('editable')){
+        $res = false;
+      }
     }
+    var_dump($res." 4");
+
 
     if($res){
+      var_dump($res." 5");
       $taxTerm =  new TaxonomytermModel($_POST);
       $taxTerm->save();
       $res = $taxTerm;
     }
-
+    var_dump($res." final");
     return $res;
   }
 
