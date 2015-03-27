@@ -73,15 +73,15 @@ class geozzy extends Module
     Crea Taxonomias necesarias para iniciar Geozzy
     */
 
-    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Destacado' ) );
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Destacado', 'editable' => 0 ) );
     $taxgroup->save();
 
     /*TMP*/
-    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Tipo de Hotel' ) );
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Tipo de Hotel', 'editable' => 1 ) );
     $taxgroup->save();
-    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Eventos' ) );
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Eventos', 'editable' => 1 ) );
     $taxgroup->save();
-    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Categorias' ) );
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Categorias', 'editable' => 1 ) );
     $taxgroup->save();
 
   }

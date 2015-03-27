@@ -28,21 +28,19 @@ class AdminViewTaxonomy extends AdminViewMaster
 
 
   function sendTaxTerm() {
+
     $res = true;
 
     if( isset($_POST['id']) && !is_int($_POST['id']) ){
       $res = false;
     }
-    var_dump($res." 1");
     if( !isset($_POST['idName']) ){
       $res = false;
     }
-    var_dump($res." 2");
-    var_dump($_POST['group']);
     if( !isset($_POST['group']) || !is_numeric($_POST['group']) ){
       $res = false;
     }
-    var_dump($res." 3");
+
     if($res){
       $taxGroupModel =  new TaxonomygroupModel();
       $taxGroup = $taxGroupModel->listItems( array('filters' => array('id' => $_POST['group']) ) )->fetch();
@@ -50,17 +48,15 @@ class AdminViewTaxonomy extends AdminViewMaster
         $res = false;
       }
     }
-    var_dump($res." 4");
-
 
     if($res){
-      var_dump($res." 5");
       $taxTerm =  new TaxonomytermModel($_POST);
       $taxTerm->save();
       $res = $taxTerm;
     }
-    var_dump($res." final");
-    return $res;
+
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($res->data);
   }
 
 

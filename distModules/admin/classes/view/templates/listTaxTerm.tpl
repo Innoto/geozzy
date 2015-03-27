@@ -9,33 +9,51 @@
     <div class="col-lg-4">
 
       <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>
+            <h4>
+              <i class="fa fa-tag fa-fw"></i>
+              Listado de terminos
+            </h4>
+          </strong>
+        </div>
+        <div class="panel-body">
+          <ul id="listTerms" class="list-group">
+            {foreach from=$taxTerms item=taxterm}
+            <li class="list-group-item">
+              <i class="fa fa-tag"></i>{$taxterm->getter('idName')}
+              <a class="btn btn-default btn-success" href="/admin/taxonomygroup/{$taxId}/term/edit/{$taxterm->getter('id')}" role="button"><i class="fa fa-pencil"></i></a>
+              <a class="btn btn-default btn-danger" href="/admin/taxonomygroup/{$taxId}/term/delete/{$taxterm->getter('id')}" role="button"><i class="fa fa-close"></i></a>
+            </li>
+            {/foreach}
+          </ul>
+        </div> <!-- end panel-body -->
+      </div> <!-- end panel -->
+
+    </div> <!-- end col -->
+    <div class="col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>
+            <h4>
+              <i class="fa fa-tag fa-fw"></i>
+              Añadir termino
+            </h4>
+          </strong>
+        </div>
         <div class="panel-body">
           <!--<div class="rolesTable">{$taxTermTable}<div>-->
           <div>
-
-            <ul class="list-group">
               <button id="newTaxTermShow" type="button" class="btn btn-default"> <i class="fa fa-plus"></i>Añadir Term</button>
               <div class="newTaxTermContainer" style="display:none;">
                 <input id="newTaxTermName" type="text">
                 <button id="newTaxTermSave" type="button" class="btn btn-default">Guardar</button>
               </div>
-
-
-              {foreach from=$taxTerms item=taxterm}
-              <li class="list-group-item">
-                <i class="fa fa-tag"></i>{$taxterm->getter('idName')}
-                <a class="btn btn-default btn-success" href="/admin/taxonomygroup/{$taxId}/term/edit/{$taxterm->getter('id')}" role="button"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-default btn-danger" href="/admin/taxonomygroup/{$taxId}/term/delete/{$taxterm->getter('id')}" role="button"><i class="fa fa-close"></i></a>
-              </li>
-              {/foreach}
-
-            </ul>
           </div>
-
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
-
     </div> <!-- end col -->
+
   </div> <!-- end row -->
 
 {/block}
