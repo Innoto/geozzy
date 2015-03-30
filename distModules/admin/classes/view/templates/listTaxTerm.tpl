@@ -21,9 +21,16 @@
           <ul id="listTerms" class="list-group">
             {foreach from=$taxTerms item=taxterm}
             <li class="list-group-item">
-              <i class="fa fa-tag"></i>{$taxterm->getter('idName')}
-              <a class="btn btn-default btn-success" href="/admin/taxonomygroup/{$taxId}/term/edit/{$taxterm->getter('id')}" role="button"><i class="fa fa-pencil"></i></a>
-              <a class="btn btn-default btn-danger" href="/admin/taxonomygroup/{$taxId}/term/delete/{$taxterm->getter('id')}" role="button"><i class="fa fa-close"></i></a>
+
+              <div class="row">
+                <div class="col-md-8">{$taxterm->getter('idName')}</div>
+                <div class="col-md-4">
+                  <button class="btn btn-default btn-info"><i class="fa fa-floppy-o"></i></button>
+                  <button class="btn btn-default btn-success"><i class="fa fa-pencil"></i></button>
+                  <button class="btn btn-default btn-danger"><i class="fa fa-close"></i></button>
+                </div>
+              </div>
+
             </li>
             {/foreach}
           </ul>

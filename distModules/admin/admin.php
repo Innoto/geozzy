@@ -89,6 +89,7 @@ class admin extends Module
 
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)$#', 'view:AdminViewTaxonomy::listTaxTerm' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/term/send$#', 'view:AdminViewTaxonomy::sendTaxTerm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/term/dlt$#', 'view:AdminViewTaxonomy::deleteTaxTerm' );
 
 
   }

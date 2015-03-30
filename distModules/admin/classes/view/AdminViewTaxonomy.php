@@ -52,14 +52,35 @@ class AdminViewTaxonomy extends AdminViewMaster
     if($res){
       $taxTerm =  new TaxonomytermModel($_POST);
       $taxTerm->save();
-      $res = $taxTerm;
+      $res = $taxTerm->data;
     }
 
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($res->data);
+    echo json_encode($res);
   }
 
+  function deleteTaxTerm() {
+    $res = true;
 
+    if( !isset($_POST['id']) || !is_int($_POST['id']) ){
+      $res = false;
+    }
+    if($res){
+      $taxGroupModel =  new TaxonomygroupModel();
+      $taxGroup = $taxGroupModel->listItems( array('filters' => array('id' => $_POST['group']) ) )->fetch();
+      if(!$taxGroup->getter('editable')){
+        $res = false;
+      }
+    }
+    if($res){
+      $taxTermModel =  new TaxonomytermModel();
+      $taxTerm = $taxTermModel->listItems( array('filters' => array('id' => $_POST['id']) ) )->fetch();
+      $res = $taxTerm->delete();
+    }
+
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($res);
+  }
 
 }
 
