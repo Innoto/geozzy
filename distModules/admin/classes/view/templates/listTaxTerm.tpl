@@ -20,14 +20,20 @@
         <div class="panel-body">
           <ul id="listTerms" class="list-group">
             {foreach from=$taxTerms item=taxterm}
-            <li class="list-group-item">
+            <li class="list-group-item" termId="{$taxterm->getter('id')}">
 
               <div class="row">
-                <div class="col-md-8">{$taxterm->getter('idName')}</div>
-                <div class="col-md-4">
-                  <button class="btn btn-default btn-info"><i class="fa fa-floppy-o"></i></button>
-                  <button class="btn btn-default btn-success"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-default btn-danger"><i class="fa fa-close"></i></button>
+                <div class="col-md-9">
+                  <div class="infoTerm">{$taxterm->getter('idName')}</div>
+                  <div class="editTermContainer">
+                      <input type="text" class="editTermInput" value="{$taxterm->getter('idName')}" />
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <button class="btnSaveTerm btn btn-default btn-success"><i class="fa fa-check"></i></button>
+                  <button class="btnEditTerm btn btn-default btn-info"><i class="fa fa-pencil"></i></button>
+                  <button class="btnDeleteTerm btn btn-default btn-danger"><i class="fa fa-trash"></i></button>
+                  <button class="btnCancelTerm btn btn-default btn-danger"><i class="fa fa-close"></i></button>
                 </div>
               </div>
 
@@ -38,6 +44,7 @@
       </div> <!-- end panel -->
 
     </div> <!-- end col -->
+    {if $taxEditable}
     <div class="col-lg-4">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -60,7 +67,7 @@
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
     </div> <!-- end col -->
-
+    {/if}
   </div> <!-- end row -->
 
 {/block}

@@ -16,6 +16,10 @@ class AdminViewTaxonomy extends AdminViewMaster
 
   function listTaxTerm( $request ) {
 
+    $taxgroupModel = new TaxonomygroupModel();
+    $taxGroup = $taxgroupModel->listItems( array( 'filters' => array( 'id' => $request[1] ) ) )->fetch();
+    $this->template->assign( 'taxEditable', $taxGroup->getter('editable') );
+
     $taxtermModel =  new TaxonomytermModel();
     $taxTerms = $taxtermModel->listItems( array( 'filters' => array( 'taxgroup' => $request[1] ) ) )->fetchAll();
     $this->template->assign( 'taxId', $request[1] );
@@ -30,31 +34,30 @@ class AdminViewTaxonomy extends AdminViewMaster
   function sendTaxTerm() {
 
     $res = true;
+    $dataTerm = $_POST;
 
-    if( isset($_POST['id']) && !is_int($_POST['id']) ){
+    if( isset($dataTerm['id']) && !is_int($dataTerm['id']) ){
       $res = false;
     }
-    if( !isset($_POST['idName']) ){
+    if( !isset($dataTerm['idName']) ){
       $res = false;
     }
-    if( !isset($_POST['group']) || !is_numeric($_POST['group']) ){
+    if( !isset($dataTerm['taxgroup']) || !is_numeric($dataTerm['taxgroup']) ){
       $res = false;
     }
-
     if($res){
       $taxGroupModel =  new TaxonomygroupModel();
-      $taxGroup = $taxGroupModel->listItems( array('filters' => array('id' => $_POST['group']) ) )->fetch();
+      $taxGroup = $taxGroupModel->listItems( array('filters' => array('id' => $dataTerm['taxgroup']) ) )->fetch();
       if(!$taxGroup->getter('editable')){
         $res = false;
       }
     }
 
     if($res){
-      $taxTerm =  new TaxonomytermModel($_POST);
+      $taxTerm =  new TaxonomytermModel($dataTerm);
       $taxTerm->save();
       $res = $taxTerm->data;
     }
-
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($res);
   }
@@ -62,12 +65,12 @@ class AdminViewTaxonomy extends AdminViewMaster
   function deleteTaxTerm() {
     $res = true;
 
-    if( !isset($_POST['id']) || !is_int($_POST['id']) ){
+    if( !isset($_POST['id']) || !is_numeric($_POST['id']) ){
       $res = false;
     }
     if($res){
       $taxGroupModel =  new TaxonomygroupModel();
-      $taxGroup = $taxGroupModel->listItems( array('filters' => array('id' => $_POST['group']) ) )->fetch();
+      $taxGroup = $taxGroupModel->listItems( array('filters' => array('id' => $_POST['taxgroup']) ) )->fetch();
       if(!$taxGroup->getter('editable')){
         $res = false;
       }
@@ -77,7 +80,6 @@ class AdminViewTaxonomy extends AdminViewMaster
       $taxTerm = $taxTermModel->listItems( array('filters' => array('id' => $_POST['id']) ) )->fetch();
       $res = $taxTerm->delete();
     }
-
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($res);
   }
