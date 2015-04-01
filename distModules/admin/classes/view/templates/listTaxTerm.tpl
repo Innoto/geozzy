@@ -29,7 +29,7 @@
                       <input type="text" class="editTermInput" value="{$taxterm->getter('idName')}" />
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" style="background:red;">
                   <button class="btnSaveTerm btn btn-default btn-success"><i class="fa fa-check"></i></button>
                   <button class="btnEditTerm btn btn-default btn-info"><i class="fa fa-pencil"></i></button>
                   <button class="btnDeleteTerm btn btn-default btn-danger"><i class="fa fa-trash"></i></button>
