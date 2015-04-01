@@ -29,13 +29,14 @@ class AdminViewTaxonomy extends AdminViewMaster
 Cogumelo::console($taxGroup->getAllData());
 
 
-  /* $this->template->assign( 'taxEditable', $taxGroup->getter('editable') );
 
-    $taxtermModel =  new TaxonomytermModel();
-    $taxTerms = $taxtermModel->listItems( array( 'filters' => array( 'idName' => 'ddd' ) ) )->fetchAll();
+    $this->template->assign( 'taxEditable', $taxGroup->getter('editable') );
+
+    /*$taxtermModel =  new TaxonomytermModel();
+    $taxTerms = $taxtermModel->listItems( array( 'filters' => array( 'idName' => 'ddd' ) ) )->fetchAll();*/
     $this->template->assign( 'taxId', $request[1] );
     $this->template->assign( 'taxTerms', $taxTerms );
-*/
+
 
     $this->template->setTpl('listTaxTerm.tpl', 'admin');
     $this->commonAdminInterface();
