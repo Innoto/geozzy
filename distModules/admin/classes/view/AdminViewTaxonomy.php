@@ -45,7 +45,7 @@ class AdminViewTaxonomy extends AdminViewMaster
     $res = true;
     $dataTerm = $_POST;
 
-    if( isset($dataTerm['id']) && !is_int($dataTerm['id']) ){
+    if( isset($dataTerm['id']) && !is_numeric($dataTerm['id']) ){
       $res = false;
     }
     if( !isset($dataTerm['idName']) ){

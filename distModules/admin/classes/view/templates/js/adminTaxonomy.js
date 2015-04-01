@@ -10,7 +10,7 @@ function bindsTerm(){
   });
   $('#newTaxTermSave').on( "click", function() {
     var idName = $('#newTaxTermName').val();
-    saveTerm( idName, idTax );
+    saveTerm({ idName: idName, taxgroup: idTax });
   });
 
   $('.btnDeleteTerm').on("click", function(){
@@ -30,6 +30,8 @@ function bindsTerm(){
     var termId = termContainer.attr('termId');
     if( confirm("¿Estas seguro que quieres guardar este término?") ){
       statusTerm( 'save' , termContainer );
+      var idName = termContainer.find('.editTermInput').val();
+      saveTerm({ id: termId, idName: idName, taxgroup: idTax });
     }else{
       statusTerm( 'list' , termContainer );
     }
@@ -83,19 +85,22 @@ function statusTerm( status, termO ){
 
 }
 
-function saveTerm( idName, taxGroup ){
-  if( !idName || idName === ""){
+function saveTerm( data ){
+  if( !data.idName || data.idName === ""){
     res = false;
   }
   else {
     $.ajax({
       method: "POST",
       url: "/admin/taxonomygroup/term/send",
-      data: { idName: idName, taxgroup: taxGroup }
+      data: data
     }).done(function( res ) {
       if( typeof(res) == 'object' ){
-        $('#listTerms').append( htmlToList(res) );
-        showAddTerm();
+        if(!data.id){
+          $('#listTerms').append( htmlToList(res) );
+          showAddTerm();
+        }
+
       }
     });
   }
