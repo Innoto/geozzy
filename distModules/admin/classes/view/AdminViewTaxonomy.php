@@ -20,22 +20,17 @@ class AdminViewTaxonomy extends AdminViewMaster
     $taxgroupModel = new TaxonomygroupModel();
     $taxGroup = $taxgroupModel->listItems(
       array(
-        'filters' => array( 'id' => $request[1] ),
-        'affectsDependences' => array( 'TaxonomytermModel' )
+        'filters' => array( 'id' => $request[1] )
       )
     )->fetch();
 
-
-Cogumelo::console($taxGroup->getAllData());
-
-
-  /* $this->template->assign( 'taxEditable', $taxGroup->getter('editable') );
+    $this->template->assign( 'taxEditable', $taxGroup->getter('editable') ) ;
 
     $taxtermModel =  new TaxonomytermModel();
-    $taxTerms = $taxtermModel->listItems( array( 'filters' => array( 'idName' => 'ddd' ) ) )->fetchAll();
+    $taxTerms = $taxtermModel->listItems( array( 'filters' => array( 'taxgroup'=>$request[1]) ) )->fetchAll();
     $this->template->assign( 'taxId', $request[1] );
     $this->template->assign( 'taxTerms', $taxTerms );
-*/
+
 
     $this->template->setTpl('listTaxTerm.tpl', 'admin');
     $this->commonAdminInterface();
