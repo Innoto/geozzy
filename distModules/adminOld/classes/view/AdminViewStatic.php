@@ -1,5 +1,5 @@
 <?php
-admin::load('view/AdminViewMaster.php');
+adminOld::load('view/AdminViewMaster.php');
 
 
 class AdminViewStatic extends AdminViewMaster
@@ -11,12 +11,12 @@ class AdminViewStatic extends AdminViewMaster
 
 
   function allTables() {
-    $this->template->setTpl('alltable.tpl', 'admin');
+    $this->template->setTpl('alltable.tpl', 'adminOld');
     $this->commonAdminInterface();
   }
 
   function addContent() {
-    $this->template->setTpl('addcontent.tpl', 'admin');
+    $this->template->setTpl('addcontent.tpl', 'adminOld');
     $this->commonAdminInterface();
   }
 }

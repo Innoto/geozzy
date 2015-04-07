@@ -1,5 +1,5 @@
 <?php
-admin::load('view/AdminViewMaster.php');
+adminOld::load('view/AdminViewMaster.php');
 
 
 class AdminViewTaxonomy extends AdminViewMaster
@@ -34,7 +34,7 @@ class AdminViewTaxonomy extends AdminViewMaster
     $this->template->assign( 'taxTerms', $taxTerms );
 
 
-    $this->template->setTpl('listTaxTerm.tpl', 'admin');
+    $this->template->setTpl('listTaxTerm.tpl', 'adminOld');
     $this->commonAdminInterface();
 
   }

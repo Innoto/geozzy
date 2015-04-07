@@ -1,5 +1,5 @@
 <?php
-admin::load('view/AdminViewMaster.php');
+adminOld::load('view/AdminViewMaster.php');
 
 
 class AdminViewRole extends AdminViewMaster
@@ -17,8 +17,8 @@ class AdminViewRole extends AdminViewMaster
   function listRoles() {
 
     table::autoIncludes();
-    $this->template->assign('roleTable', table::getTableHtml('AdminViewRole', '/admin/role/table') );
-    $this->template->setTpl('listRole.tpl', 'admin');
+    $this->template->assign('roleTable', table::getTableHtml('AdminViewRole', '/adminOld/role/table') );
+    $this->template->setTpl('listRole.tpl', 'adminOld');
     $this->commonAdminInterface();
   }
 
@@ -37,8 +37,8 @@ class AdminViewRole extends AdminViewMaster
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin/role/edit/".$rowId');
-    $tabla->setNewItemUrl('/admin/role/create');
+    $tabla->setEachRowUrl('"/adminOld/role/edit/".$rowId');
+    $tabla->setNewItemUrl('/adminOld/role/create');
 
     // Nome das columnas
     $tabla->setCol('id', 'Id');
@@ -58,12 +58,12 @@ class AdminViewRole extends AdminViewMaster
     $roleView = new RoleView();
 
     $form = $roleView->roleFormDefine();
-    $form->setAction('/admin/role/sendrole');
-    $form->setSuccess( 'redirect', '/admin/role/list' );
+    $form->setAction('/adminOld/role/sendrole');
+    $form->setSuccess( 'redirect', '/adminOld/role/list' );
 
     $createRoleHtml = $roleView->roleFormGet( $form );
     $this->template->assign('createRoleHtml', $createRoleHtml);
-    $this->template->setTpl('createRole.tpl', 'admin');
+    $this->template->setTpl('createRole.tpl', 'adminOld');
 
     $this->commonAdminInterface();
 
@@ -79,13 +79,13 @@ class AdminViewRole extends AdminViewMaster
 
     /*FORM EDIT*/
     $form = $roleView->roleUpdateFormDefine($request);
-    $form->setAction('/admin/role/sendrole');
-    $form->setSuccess( 'redirect', '/admin/role/list' );
+    $form->setAction('/adminOld/role/sendrole');
+    $form->setSuccess( 'redirect', '/adminOld/role/list' );
     $editRoleHtml = $roleView->roleFormGet( $form );
     $this->template->assign('editRoleHtml', $editRoleHtml);
     /*--------------------*/
 
-    $this->template->setTpl('editRole.tpl', 'admin');
+    $this->template->setTpl('editRole.tpl', 'adminOld');
     $this->commonAdminInterface();
 
   }

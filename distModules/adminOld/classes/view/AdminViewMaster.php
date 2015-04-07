@@ -2,7 +2,7 @@
 Cogumelo::load('coreView/View.php');
 
 common::autoIncludes();
-admin::autoIncludes();
+adminOld::autoIncludes();
 form::autoIncludes();
 user::autoIncludes();
 
@@ -22,6 +22,7 @@ class AdminViewMaster extends View
     $useraccesscontrol = new UserAccessController();
     $res = true;
     if(!$useraccesscontrol->isLogged()){
+      print('hh');
       Cogumelo::redirect('/adminOld/login');
       $res = false;
     }
@@ -52,7 +53,7 @@ class AdminViewMaster extends View
   function sendLogout() {
     $useraccesscontrol = new UserAccessController();
     $useraccesscontrol->userLogout();
-    Cogumelo::redirect('/admin');
+    Cogumelo::redirect('/adminOld');
   }
 }
 

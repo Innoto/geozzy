@@ -32,7 +32,7 @@
 
       <!-- Navigation -->
       <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        {include file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/adminHeader.tpl"}
+        {include file="/home/proxectos/geozzy/distModules/adminOld/classes/view/templates/adminHeader.tpl"}
       </nav>
 
       <div id="page-wrapper">

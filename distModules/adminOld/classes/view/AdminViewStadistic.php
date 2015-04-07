@@ -1,5 +1,5 @@
 <?php
-admin::load('view/AdminViewMaster.php');
+adminOld::load('view/AdminViewMaster.php');
 
 
 class AdminViewStadistic extends AdminViewMaster
@@ -11,8 +11,8 @@ class AdminViewStadistic extends AdminViewMaster
 
   function main(){
 
-    $this->template->addClientScript('js/exampleMorrisData.js' , 'admin');
-    $this->template->setTpl('stadisticPage.tpl', 'admin');
+    $this->template->addClientScript('js/exampleMorrisData.js' , 'adminOld');
+    $this->template->setTpl('stadisticPage.tpl', 'adminOld');
     $this->commonAdminInterface();
 
   }

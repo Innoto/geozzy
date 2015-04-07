@@ -1,5 +1,5 @@
 <?php
-admin::load('view/AdminViewMaster.php');
+adminOld::load('view/AdminViewMaster.php');
 
 
 class AdminViewLogin extends AdminViewMaster
@@ -17,7 +17,7 @@ class AdminViewLogin extends AdminViewMaster
     $useraccesscontrol = new UserAccessController();
     $res = true;
     if($useraccesscontrol->isLogged()){
-      Cogumelo::redirect('/admin');
+      Cogumelo::redirect('/adminOld');
       $res = false;
     }
     return $res;
@@ -28,13 +28,13 @@ class AdminViewLogin extends AdminViewMaster
     $userView = new UserView();
 
     $form = $userView->loginFormDefine();
-    $form->setAction('/admin/senduserlogin');
-    $form->setSuccess( 'redirect', '/admin' );
+    $form->setAction('/adminOld/senduserlogin');
+    $form->setSuccess( 'redirect', '/adminOld' );
 
     $loginHtml = $userView->loginFormGet( $form );
     $this->template->assign('loginHtml', $loginHtml);
 
-    $this->template->setTpl('loginForm.tpl', 'admin');
+    $this->template->setTpl('loginForm.tpl', 'adminOld');
     $this->template->exec();
   }
 

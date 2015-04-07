@@ -1,4 +1,4 @@
-{extends file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/masterAdmin.tpl"}
+{extends file="/home/proxectos/geozzy/distModules/adminOld/classes/view/templates/masterAdmin.tpl"}
 {block name="masterContent"}
 
 addcontent.tpl

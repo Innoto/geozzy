@@ -57,7 +57,8 @@ class adminOld extends Module
   public $includesCommon = array(
     'styles/adminBase.less',
     'styles/admin.less',
-    'js/adminBase.js'
+    'js/adminBase.js',
+    'js/adminTaxonomy.js'
   );
 
   function __construct() {

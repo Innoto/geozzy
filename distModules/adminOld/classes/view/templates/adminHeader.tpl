@@ -5,7 +5,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Geozzy admin</a>
+    <a class="navbar-brand" href="#">Geozzy adminOld</a>
 </div>
 <!-- /.navbar-header -->
 
@@ -48,10 +48,10 @@
           <i class="fa fa-user fa-fw"></i>  {$user->getter('login')} <i class="fa fa-caret-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-user">
-          <li><a href="/admin/user/show"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-          <li><a href="/admin/user/edit/{$user->getter('id')}"><i class="fa fa-edit fa-fw"></i> Edit Profile</a></li>
+          <li><a href="/adminOld/user/show"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+          <li><a href="/adminOld/user/edit/{$user->getter('id')}"><i class="fa fa-edit fa-fw"></i> Edit Profile</a></li>
           <li class="divider"></li>
-          <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+          <li><a href="/adminOld/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
       </ul>
       <!-- /.dropdown-user -->
   </li>
@@ -65,24 +65,24 @@
 
           <!-- TOPIC -->
           <li class="topics">
-              <a href="/admin"><i class="fa fa-map-marker fa-fw fa-2x"></i>Topic 1</a>
+              <a href="/adminOld"><i class="fa fa-map-marker fa-fw fa-2x"></i>Topic 1</a>
           </li>
 
           <li class="topics">
-              <a href="/admin"><i class="fa fa-compass fa-fw fa-2x"></i>Topic 2</a>
+              <a href="/adminOld"><i class="fa fa-compass fa-fw fa-2x"></i>Topic 2</a>
           </li>
 
           <li class="topics">
-              <a href="/admin"><i class="fa fa-tree fa-fw fa-2x"></i>Topic 3</a>
+              <a href="/adminOld"><i class="fa fa-tree fa-fw fa-2x"></i>Topic 3</a>
           </li>
           <!-- END TOPICS -->
 
           <li>
-              <a class="active" href="/admin"><i class="fa fa-line-chart fa-fw"></i> Charts</a>
+              <a class="active" href="/adminOld"><i class="fa fa-line-chart fa-fw"></i> Charts</a>
           </li>
 
           <li>
-              <a href="/admin"><i class="fa fa-files-o fa-fw"></i> Pages</a>
+              <a href="/adminOld"><i class="fa fa-files-o fa-fw"></i> Pages</a>
           </li>
 
           <!-- Labels -->
@@ -92,7 +92,7 @@
                 {foreach from=$taxs item=tax}
                 {if $tax->getter('idName') != "Destacado" }
                   <li>
-                      <a href="/admin/taxonomygroup/{$tax->getter('id')}"><i class="fa fa-tag fa-fw"></i> {$tax->getter('idName')} </a>
+                      <a href="/adminOld/taxonomygroup/{$tax->getter('id')}"><i class="fa fa-tag fa-fw"></i> {$tax->getter('idName')} </a>
                   </li>
                 {/if}
                 {/foreach}
@@ -100,7 +100,7 @@
               <!-- /.nav-second-level -->
           </li>
           <li>
-              <a href="/admin/taxonomygroup/{$taxDestacado->getter('id')}"><i class="fa fa-star fa-fw"></i> {$taxDestacado->getter('idName')} </a>
+              <a href="/adminOld/taxonomygroup/{$taxDestacado->getter('id')}"><i class="fa fa-star fa-fw"></i> {$taxDestacado->getter('idName')} </a>
           </li>
 
           <!-- Settings -->
@@ -108,19 +108,19 @@
               <a href="#"><i class="fa fa-cog fa-fw"></i> Settings <span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                   <li>
-                      <a href="/admin/alltables"><i class="fa fa-table fa-fw"></i> Tables</a>
+                      <a href="/adminOld/alltables"><i class="fa fa-table fa-fw"></i> Tables</a>
                   </li>
                   <li>
-                      <a href="/admin/addcontent"><i class="fa fa-edit fa-fw"></i> Add Content</a>
+                      <a href="/adminOld/addcontent"><i class="fa fa-edit fa-fw"></i> Add Content</a>
                   </li>
                   <li>
                       <a href="#"><i class="fa fa-users fa-fw"></i> Users <span class="fa arrow"></span></a>
                       <ul class="nav nav-third-level">
                         <li>
-                          <a href="/admin/user/list"><i class="fa fa-user fa-fw"></i> User</a>
+                          <a href="/adminOld/user/list"><i class="fa fa-user fa-fw"></i> User</a>
                         </li>
                         <li>
-                          <a href="/admin/role/list"><i class="fa fa-tag fa-fw"></i> Roles</a>
+                          <a href="/adminOld/role/list"><i class="fa fa-tag fa-fw"></i> Roles</a>
                         </li>
 
                       </ul>
