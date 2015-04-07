@@ -9,6 +9,7 @@ var AdminRouter = Backbone.Router.extend({
     "user/list" : "userList",
     "user/create" : "userCreate",    
     "user/edit/:id" : "userEdit",
+    "user/show" : "userShow",
     "role/list" : "roleList", 
     "role/create" : "roleCreate",    
     "role/edit/:id" : "roleEdit"
@@ -31,6 +32,10 @@ var AdminRouter = Backbone.Router.extend({
 
   userEdit: function( id ) {
     app.mainView.loadAjaxContent( '/admin/user/edit/' + id );    
+  },
+
+  userShow: function() {
+    app.mainView.loadAjaxContent( '/admin/user/show' );   
   },
 
   // Roles
