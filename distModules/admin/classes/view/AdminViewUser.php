@@ -14,6 +14,10 @@ class AdminViewUser extends AdminViewMaster
   * Section user profile
   **/
   public function showUser() {
+    $useraccesscontrol = new UserAccessController();
+    $user = $useraccesscontrol->getSessiondata();
+    $this->template->assign( 'user' , $user);
+
     $this->template->setTpl('showUser.tpl', 'admin');
     $this->template->exec();
 
