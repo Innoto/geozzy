@@ -1,5 +1,3 @@
-{extends file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/masterAdmin.tpl"}
-{block name="masterContent"}
 
   <script>
     var idTax = {$taxId};
@@ -69,8 +67,6 @@
     </div> <!-- end col -->
     {/if}
   </div> <!-- end row -->
-
-{/block}
 
 
 <!--href="/admin/taxonomygroup/{$taxId}/term/create"-->

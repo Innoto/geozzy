@@ -16,10 +16,10 @@ class AdminViewRole extends AdminViewMaster
 
   function listRoles() {
 
-    table::autoIncludes();
+
     $this->template->assign('roleTable', table::getTableHtml('AdminViewRole', '/admin/role/table') );
     $this->template->setTpl('listRole.tpl', 'admin');
-    $this->commonAdminInterface();
+    $this->template->exec();
   }
 
   function listRolesTable(){
@@ -37,8 +37,8 @@ class AdminViewRole extends AdminViewMaster
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin/role/edit/".$rowId');
-    $tabla->setNewItemUrl('/admin/role/create');
+    $tabla->setEachRowUrl('"/admin#role/edit/".$rowId');
+    $tabla->setNewItemUrl('/admin#role/create');
 
     // Nome das columnas
     $tabla->setCol('id', 'Id');
@@ -59,13 +59,13 @@ class AdminViewRole extends AdminViewMaster
 
     $form = $roleView->roleFormDefine();
     $form->setAction('/admin/role/sendrole');
-    $form->setSuccess( 'redirect', '/admin/role/list' );
+    $form->setSuccess( 'redirect', '/admin#role/list' );
 
     $createRoleHtml = $roleView->roleFormGet( $form );
     $this->template->assign('createRoleHtml', $createRoleHtml);
     $this->template->setTpl('createRole.tpl', 'admin');
 
-    $this->commonAdminInterface();
+    $this->template->exec();
 
   }
 
@@ -80,13 +80,13 @@ class AdminViewRole extends AdminViewMaster
     /*FORM EDIT*/
     $form = $roleView->roleUpdateFormDefine($request);
     $form->setAction('/admin/role/sendrole');
-    $form->setSuccess( 'redirect', '/admin/role/list' );
+    $form->setSuccess( 'redirect', '/admin#role/list' );
     $editRoleHtml = $roleView->roleFormGet( $form );
     $this->template->assign('editRoleHtml', $editRoleHtml);
     /*--------------------*/
 
     $this->template->setTpl('editRole.tpl', 'admin');
-    $this->commonAdminInterface();
+    $this->template->exec();
 
   }
 
