@@ -50,6 +50,18 @@ class admin extends Module
      "params" => array("morris.js-0.5.1"),
      "installer" => "manual",
      "includes" => array("morris.js", "morris.css")
+    ),
+    array(
+     "id" =>"underscore",
+     "params" => array("underscore-1.8.3"),
+     "installer" => "manual",
+     "includes" => array("underscore-min.js")
+    ),
+    array(
+     "id" =>"backbonejs",
+     "params" => array("backbone-1.1.2"),
+     "installer" => "manual",
+     "includes" => array("backbone-min.js")
     )
 
   );
@@ -57,7 +69,10 @@ class admin extends Module
   public $includesCommon = array(
     'styles/adminBase.less',
     'styles/admin.less',
-    'js/adminBase.js'
+    'js/app.js',
+    'js/delete_adminBase.js',
+    'js/delete_adminTaxonomy.js'
+
   );
 
   public function __construct() {
