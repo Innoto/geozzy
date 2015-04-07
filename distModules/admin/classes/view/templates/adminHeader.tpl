@@ -48,10 +48,10 @@
           <i class="fa fa-user fa-fw"></i>  {$user->getter('login')} <i class="fa fa-caret-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-user">
-          <li><a href="/admin/user/show"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-          <li><a href="/admin/user/edit/{$user->getter('id')}"><i class="fa fa-edit fa-fw"></i> Edit Profile</a></li>
+          <li><a href="/admin#user/show"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+          <li><a href="/admin#user/edit/{$user->getter('id')}"><i class="fa fa-edit fa-fw"></i> Edit Profile</a></li>
           <li class="divider"></li>
-          <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+          <li><a href="/admin#logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
       </ul>
       <!-- /.dropdown-user -->
   </li>
@@ -100,7 +100,7 @@
               <!-- /.nav-second-level -->
           </li>
           <li>
-              <a href="/admin/taxonomygroup/{$taxDestacado->getter('id')}"><i class="fa fa-star fa-fw"></i> {$taxDestacado->getter('idName')} </a>
+              <a href="/admin#taxonomygroup/{$taxDestacado->getter('id')}"><i class="fa fa-star fa-fw"></i> {$taxDestacado->getter('idName')} </a>
           </li>
 
           <!-- Settings -->
@@ -108,10 +108,10 @@
               <a href="#"><i class="fa fa-cog fa-fw"></i> Settings <span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                   <li>
-                      <a href="/admin/alltables"><i class="fa fa-table fa-fw"></i> Tables</a>
+                      <a href="/admin#alltables"><i class="fa fa-table fa-fw"></i> Tables</a>
                   </li>
                   <li>
-                      <a href="/admin/addcontent"><i class="fa fa-edit fa-fw"></i> Add Content</a>
+                      <a href="/admin#addcontent"><i class="fa fa-edit fa-fw"></i> Add Content</a>
                   </li>
                   <li>
                       <a href="#"><i class="fa fa-users fa-fw"></i> Users <span class="fa arrow"></span></a>
