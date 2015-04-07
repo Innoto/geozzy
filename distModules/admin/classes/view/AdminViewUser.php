@@ -50,7 +50,7 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin#user/edit/".$rowId');/
+    $tabla->setEachRowUrl('"/admin#user/edit/".$rowId');
     $tabla->setNewItemUrl('/admin#user/create');
 
     // Nome das columnas
