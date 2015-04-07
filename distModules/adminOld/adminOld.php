@@ -2,7 +2,7 @@
 
 Cogumelo::load("coreController/Module.php");
 
-define('MOD_ADMINOLD_URL_DIR', 'admin');
+define('MOD_ADMINOLD_URL_DIR', 'adminOld');
 
 class adminOld extends Module
 {

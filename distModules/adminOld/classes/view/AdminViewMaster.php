@@ -22,7 +22,7 @@ class AdminViewMaster extends View
     $useraccesscontrol = new UserAccessController();
     $res = true;
     if(!$useraccesscontrol->isLogged()){
-      Cogumelo::redirect('/admin/login');
+      Cogumelo::redirect('/adminOld/login');
       $res = false;
     }
     return $res;
