@@ -5,7 +5,7 @@ common::autoIncludes();
 admin::autoIncludes();
 form::autoIncludes();
 user::autoIncludes();
-
+table::autoIncludes();
 
 class AdminViewMaster extends View
 {
@@ -28,6 +28,7 @@ class AdminViewMaster extends View
     return $res;
   }
   function commonAdminInterface(){
+    $this->template->setTpl('masterAdmin.tpl', 'admin');
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
     $this->template->assign( 'user' , $user);

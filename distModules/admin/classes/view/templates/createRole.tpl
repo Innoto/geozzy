@@ -1,7 +1,3 @@
-{extends file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/masterAdmin.tpl"}
-{block name="masterContent"}
-
-
 <div>
   <div class="row">
     <div class="col-lg-6">
@@ -27,6 +23,3 @@
     </div> <!-- end col -->
   </div> <!-- end row -->
 </div>
-
-
-{/block}

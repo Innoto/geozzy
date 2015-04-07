@@ -16,7 +16,7 @@ class AdminViewUser extends AdminViewMaster
 
   function showUser() {
     $this->template->setTpl('showUser.tpl', 'admin');
-    $this->commonAdminInterface();
+    $this->template->exec();
 
   }
 
@@ -25,11 +25,9 @@ class AdminViewUser extends AdminViewMaster
   **/
 
   function listUsers() {
-
-    table::autoIncludes();
     $this->template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
     $this->template->setTpl('listUser.tpl', 'admin');
-    $this->commonAdminInterface();
+    $this->template->exec();
   }
 
   function listUsersTable(){
@@ -53,8 +51,8 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin/user/edit/".$rowId');
-    $tabla->setNewItemUrl('/admin/user/create');
+    $tabla->setEachRowUrl('"/admin#user/edit/".$rowId');/
+    $tabla->setNewItemUrl('/admin#user/create');
 
     // Nome das columnas
     $tabla->setCol('id', 'Id');
@@ -82,13 +80,13 @@ class AdminViewUser extends AdminViewMaster
 
     $form = $userView->userFormDefine();
     $form->setAction('/admin/user/senduser');
-    $form->setSuccess( 'redirect', '/admin/user/list' );
+    $form->setSuccess( 'redirect', '/admin#user/list' );
 
     $createUserHtml = $userView->userFormGet( $form );
     $this->template->assign('createUserHtml', $createUserHtml);
     $this->template->setTpl('createUser.tpl', 'admin');
 
-    $this->commonAdminInterface();
+    $this->template->exec();
 
   }
 
@@ -103,7 +101,7 @@ class AdminViewUser extends AdminViewMaster
     /*FORM EDIT*/
     $form = $userView->userUpdateFormDefine($request);
     $form->setAction('/admin/user/senduser');
-    $form->setSuccess( 'redirect', '/admin/user/list' );
+    $form->setSuccess( 'redirect', '/admin#user/list' );
     $editUserHtml = $userView->userFormGet( $form );
     $this->template->assign('editUserHtml', $editUserHtml);
     /*--------------------*/
@@ -111,7 +109,7 @@ class AdminViewUser extends AdminViewMaster
     /*FORM CHANGE PASSWORD*/
     $formChange = $userView->userChangePasswordFormDefine($request);
     $formChange->setAction('/admin/user/changepassword');
-    $formChange->setSuccess( 'redirect', '/admin/user/list' );
+    $formChange->setSuccess( 'redirect', '/admin#user/list' );
     $changePasswordHtml = $userView->userChangePasswordFormGet( $formChange );
     $this->template->assign('changePasswordHtml', $changePasswordHtml);
     /*--------------------*/
@@ -119,13 +117,13 @@ class AdminViewUser extends AdminViewMaster
     /*FORM ASSIGN ROLES*/
     $userRolesForm = $userView->userRolesFormDefine($request);
     $userRolesForm->setAction('/admin/user/assignroles');
-    $userRolesForm->setSuccess( 'redirect', '/admin/user/list' );
+    $userRolesForm->setSuccess( 'redirect', '/admin#user/list' );
     $userRolesFormHtml = $userView->userRolesFormGet( $userRolesForm );
     $this->template->assign('userRolesFormHtml', $userRolesFormHtml);
     /*--------------------*/
 
     $this->template->setTpl('editUser.tpl', 'admin');
-    $this->commonAdminInterface();
+    $this->template->exec();
 
   }
 

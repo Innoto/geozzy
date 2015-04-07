@@ -35,7 +35,7 @@ class AdminViewTaxonomy extends AdminViewMaster
 
 
     $this->template->setTpl('listTaxTerm.tpl', 'admin');
-    $this->commonAdminInterface();
+    $this->template->exec();
 
   }
 

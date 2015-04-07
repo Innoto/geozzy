@@ -1,4 +1,4 @@
-/*$(document).ready(function(){
+$(document).ready(function(){
     setTimeout(function(){
         createExampleDataMorris();
     }, 500);
@@ -120,4 +120,4 @@ function createExampleDataMorris(){
         hideHover: 'auto',
         resize: true
     });
-}*/
+}

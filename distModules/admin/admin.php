@@ -70,12 +70,15 @@ class admin extends Module
     'styles/adminBase.less',
     'styles/admin.less',
     'js/app.js',
+    'js/views/AdminView.js',
+    'js/routers/AdminRouter.js',    
     'js/delete_adminBase.js',
-    'js/delete_adminTaxonomy.js'
+    'js/delete_adminTaxonomy.js',
+    'js/exampleMorrisData.js'
   );
 
   function __construct() {
-    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'$#', 'view:AdminViewMaster::commonAdminInterface' );
     $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/charts$#', 'view:AdminViewStadistic::main' );
 
     $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/alltables$#', 'view:AdminViewStatic::allTables' );
