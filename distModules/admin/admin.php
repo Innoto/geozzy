@@ -76,14 +76,13 @@ class admin extends Module
   );
 
   public function __construct() {
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'$#', 'view:AdminViewMaster::commonAdminInterface' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/charts$#', 'view:AdminViewStadistic::main' );
 
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/alltables$#', 'view:AdminViewStatic::allTables' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/addcontent$#', 'view:AdminViewStatic::addContent' );
 
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/logout$#', 'view:AdminViewMaster::sendLogout' );
-
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/login$#', 'view:AdminViewLogin::main' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/senduserlogin$#', 'view:AdminViewLogin::sendLoginForm' );
 
@@ -92,9 +91,19 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/list$#', 'view:AdminViewUser::listUsers' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/table$#', 'view:AdminViewUser::listUsersTable' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/create$#', 'view:AdminViewUser::createUser' );
-
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/senduser$#', 'view:AdminViewUser::sendUserForm' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/changepassword$#', 'view:AdminViewUser::changeUserPasswordForm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/assignroles$#', 'view:AdminViewUser::assignaUserRolesForm' );
+
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/edit/(.*)$#', 'view:AdminViewRole::editRole' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/create$#', 'view:AdminViewRole::createRole' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/list$#', 'view:AdminViewRole::listRoles' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/table$#', 'view:AdminViewRole::listRolesTable' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/sendrole$#', 'view:AdminViewRole::sendRoleForm' );
+
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)$#', 'view:AdminViewTaxonomy::listTaxTerm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/term/send$#', 'view:AdminViewTaxonomy::sendTaxTerm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/term/dlt$#', 'view:AdminViewTaxonomy::deleteTaxTerm' );
   }
 
 

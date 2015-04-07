@@ -4,7 +4,7 @@ Cogumelo::load("coreController/Module.php");
 
 define('MOD_ADMINOLD_URL_DIR', 'admin');
 
-class admin extends Module
+class adminOld extends Module
 {
   public $name = "admin";
   public $version = "";
