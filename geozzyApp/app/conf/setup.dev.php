@@ -55,6 +55,9 @@ define( 'DB_PASSWORD', 'q7w8e9r');
 define( 'DB_NAME', 'geozzyapp');
 
 
+define( 'DB_MYSQL_GROUPCONCAT_MAX_LEN', 1844674407370954751); //max 	4294967295 (in 32 bits) , 18446744073709547520 (in 64 bits)
+
+
 // allow cache with memcached
 define( 'DB_ALLOW_CACHE', true );
 require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
@@ -105,8 +108,8 @@ define( 'SMARTY_CACHE', APP_TMP_PATH.'/cache' );
 global $MEDIASERVER_LESS_CONSTANTS;
 global $MEDIASERVER_JAVASCRIPT_CONSTANTS;
 
-$MEDIASERVER_LESS_CONSTANTS = array('variable1' =>1,  'variable2'=>'red', 'variable3'=>'blue;' );
-$MEDIASERVER_JAVASCRIPT_CONSTANTS = array('variable1' =>5,  'variable2'=>'red', 'variable3'=>'blue;' );
+$MEDIASERVER_LESS_CONSTANTS = array('variable1' =>1,  'variable2'=>'red', 'variable3'=>'blue' );
+$MEDIASERVER_JAVASCRIPT_CONSTANTS = array('variable1' =>5,  'variable2'=>'red', 'variable3'=>'blue' );
 define( 'MEDIASERVER_REFRESH_CACHE', true ); // false for best performance in final server
 define( 'MEDIASERVER_HOST', '/' );
 define( 'MEDIASERVER_MINIMIFY_FILES', false ); // minimify js and css files
@@ -123,9 +126,30 @@ define( 'MEDIASERVER_COMPILE_LESS', false );
 global $C_ENABLED_MODULES;
 global $C_INDEX_MODULES;
 
-$C_ENABLED_MODULES = array( 'mediaserver', 'i18nGetLang', 'common', 'devel', 'user', 'filedata', 'geozzy', 'admin', 'form', 'table' );
+$C_ENABLED_MODULES = array(
+  'mediaserver',
+  'i18nGetLang',
+  'common',
+  'devel',
+  'user',
+  'filedata',
+  'geozzy',
+  'admin',
+  'adminOld',
+  'form',
+  'table'
+);
 // before app/Cogumelo.php execution
-$C_INDEX_MODULES  = array( 'mediaserver', 'i18nGetLang', 'user', 'geozzy', 'form', 'admin', 'devel' ); // DEVEL SIEMPRE DE ULTIMO!!!
+$C_INDEX_MODULES  = array(
+  'mediaserver',
+  'i18nGetLang',
+  'user',
+  'geozzy',
+  'form',
+  'admin',
+  'adminOld',
+  'devel'
+); // DEVEL SIEMPRE DE ULTIMO!!!
 
 
 //

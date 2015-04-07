@@ -1,5 +1,5 @@
 
-<div class="gzzAdShowUser">
+<div>
   <div class="row">
     <div class="col-lg-6">
 
@@ -7,20 +7,21 @@
         <div class="panel-heading">
           <strong>
             <h4 class="nickname">
-              <i class="fa fa-user fa-fw"></i>
-              New User
+              <i class="fa fa-unlock-alt fa-fw"></i>
+              Edit role
             </h4>
           </strong>
         </div>
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-12" >
-              {$createUserHtml}
+              {$editRoleHtml}
             </div>
           </div>
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
 
     </div> <!-- end col -->
+
   </div> <!-- end row -->
 </div>

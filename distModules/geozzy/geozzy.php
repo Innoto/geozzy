@@ -23,16 +23,11 @@ class geozzy extends Module
   static function moduleRc() {
 
     user::load("model/UserModel.php");
-    /*user::load("model/RoleModel.php");
+    user::load("model/RoleModel.php");
 
-
-    $roleData = array(
-      'name' => 'superAdmin',
-      'description' => 'Role superAdmin'
-    );
-    $role = new RoleModel($roleData);
-    $role->save();
-
+    /**
+    Creacion de Roles de Geozzy
+    */
     $roleData = array(
       'name' => 'administrador',
       'description' => 'Role Usuario'
@@ -47,29 +42,48 @@ class geozzy extends Module
     $role = new RoleModel($roleData);
     $role->save();
 
-    $roleData = array(
-      'name' => 'usuario',
-      'description' => 'Role Usuario'
-    );
-    $role = new UserModel($roleData);
-    $role->save();
-  */
-
+    /**
+    Crea un usuario superAdmin para Geozzy
+    */
     fwrite(STDOUT, "Enter the superAdmin password:\n");
     $passwd = self::getPassword(true);
-
     $userData = array(
       'login' => 'superAdmin',
       'name' => 'superAdmin',
-      'email' => '',
-      'role' => 10,
       'active' => 1
     );
-    $user = new UserModel($userData);
+    $user = new UserModel( $userData );
     $user->setPassword( $passwd );
-
-
     $user->save();
+
+    /**
+    Crea la relacion Usuario/Role de superAdmin asignadole un role superAdmin
+    */
+    $roleModel = new RoleModel();
+    $role = $roleModel->listItems( array('filters' => array('name' => 'superAdmin') ))->fetch();
+    $userRole = new UserRoleModel();
+    if( $role ){
+      $userRole->setterDependence( 'role', $role );
+    }
+    $userRole->setterDependence( 'user', $user );
+    $userRole->save(array( 'affectsDependences' => true ));
+
+
+    /**
+    Crea Taxonomias necesarias para iniciar Geozzy
+    */
+
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Destacado', 'editable' => 0 ) );
+    $taxgroup->save();
+
+    /*TMP*/
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Tipo de Hotel', 'editable' => 1 ) );
+    $taxgroup->save();
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Eventos', 'editable' => 1 ) );
+    $taxgroup->save();
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Categorias', 'editable' => 1 ) );
+    $taxgroup->save();
+
   }
 
   /**

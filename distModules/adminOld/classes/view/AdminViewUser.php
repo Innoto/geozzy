@@ -5,31 +5,34 @@ admin::load('view/AdminViewMaster.php');
 class AdminViewUser extends AdminViewMaster
 {
 
-  public function __construct( $base_dir ) {
-    parent::__construct( $base_dir );
+  function __construct($base_dir){
+    parent::__construct($base_dir);
   }
 
 
   /**
   * Section user profile
   **/
-  public function showUser() {
+
+  function showUser() {
     $this->template->setTpl('showUser.tpl', 'admin');
-    $this->template->exec();
+    $this->commonAdminInterface();
 
   }
 
   /**
   * Section list user
   **/
-  public function listUsers() {
+
+  function listUsers() {
+
+    table::autoIncludes();
     $this->template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
     $this->template->setTpl('listUser.tpl', 'admin');
-    $this->template->exec();
+    $this->commonAdminInterface();
   }
 
-
-  public function listUsersTable() {
+  function listUsersTable(){
 
     table::autoIncludes();
     $user =  new UserModel();
@@ -50,8 +53,8 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin#user/edit/".$rowId');/
-    $tabla->setNewItemUrl('/admin#user/create');
+    $tabla->setEachRowUrl('"/admin/user/edit/".$rowId');
+    $tabla->setNewItemUrl('/admin/user/create');
 
     // Nome das columnas
     $tabla->setCol('id', 'Id');
@@ -73,33 +76,34 @@ class AdminViewUser extends AdminViewMaster
   * Section create user
   **/
 
-  public function createUser() {
+  function createUser() {
 
     $userView = new UserView();
 
     $form = $userView->userFormDefine();
     $form->setAction('/admin/user/senduser');
-    $form->setSuccess( 'redirect', '/admin#user/list' );
+    $form->setSuccess( 'redirect', '/admin/user/list' );
 
     $createUserHtml = $userView->userFormGet( $form );
     $this->template->assign('createUserHtml', $createUserHtml);
     $this->template->setTpl('createUser.tpl', 'admin');
 
-    $this->template->exec();
+    $this->commonAdminInterface();
 
   }
 
   /**
   * Section edit user
   **/
-  public function editUser( $request ) {
+
+  function editUser($request) {
 
     $userView = new UserView();
 
     /*FORM EDIT*/
     $form = $userView->userUpdateFormDefine($request);
     $form->setAction('/admin/user/senduser');
-    $form->setSuccess( 'redirect', '/admin#user/list' );
+    $form->setSuccess( 'redirect', '/admin/user/list' );
     $editUserHtml = $userView->userFormGet( $form );
     $this->template->assign('editUserHtml', $editUserHtml);
     /*--------------------*/
@@ -107,7 +111,7 @@ class AdminViewUser extends AdminViewMaster
     /*FORM CHANGE PASSWORD*/
     $formChange = $userView->userChangePasswordFormDefine($request);
     $formChange->setAction('/admin/user/changepassword');
-    $formChange->setSuccess( 'redirect', '/admin#user/list' );
+    $formChange->setSuccess( 'redirect', '/admin/user/list' );
     $changePasswordHtml = $userView->userChangePasswordFormGet( $formChange );
     $this->template->assign('changePasswordHtml', $changePasswordHtml);
     /*--------------------*/
@@ -115,25 +119,21 @@ class AdminViewUser extends AdminViewMaster
     /*FORM ASSIGN ROLES*/
     $userRolesForm = $userView->userRolesFormDefine($request);
     $userRolesForm->setAction('/admin/user/assignroles');
-    $userRolesForm->setSuccess( 'redirect', '/admin#user/list' );
+    $userRolesForm->setSuccess( 'redirect', '/admin/user/list' );
     $userRolesFormHtml = $userView->userRolesFormGet( $userRolesForm );
     $this->template->assign('userRolesFormHtml', $userRolesFormHtml);
     /*--------------------*/
 
     $this->template->setTpl('editUser.tpl', 'admin');
-<<<<<<< HEAD
     $this->commonAdminInterface();
-=======
-    $this->template->exec();
 
->>>>>>> f2ef8e7debbe4b99202400ed6e1abbbf3a182e23
   }
 
 
   /**
    Action userForm
   */
-  public function sendUserForm() {
+  function sendUserForm() {
 
     $userView = new UserView();
 
@@ -146,11 +146,10 @@ class AdminViewUser extends AdminViewMaster
       echo $form->getJsonOk();
     }
   }
-
   /**
    Action changeUserPassword()
   */
-  public function changeUserPasswordForm() {
+  function changeUserPasswordForm() {
 
     $userView = new UserView();
 

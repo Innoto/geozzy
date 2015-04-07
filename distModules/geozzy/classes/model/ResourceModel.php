@@ -14,10 +14,10 @@ class ResourceModel extends Model
       'primarykey' => true,
       'autoincrement' => true
     ),
-/*    'type' => array(
+    'type' => array(
       'type' => 'VARCHAR',
       'size' => '100'
-    ),*/
+    ),
     'user' => array(
       'type'=>'FOREIGN',
       'vo' => 'UserModel',
@@ -28,7 +28,7 @@ class ResourceModel extends Model
       'vo' => 'UserModel',
       'key'=> 'id'
     )
-/*
+
     ,
     'published' => array(
       'type' => 'BOOLEAN'
@@ -91,8 +91,8 @@ class ResourceModel extends Model
     'galery' => array(
       'type'=>'FOREIGN',
       'vo' => 'FilegroupModel',
-      'key' => 'groupId'
-    )*/
+      'key' => 'idGroup'
+    )
   );
 
   var $filters = array( );

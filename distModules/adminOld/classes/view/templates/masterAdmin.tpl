@@ -36,6 +36,7 @@
       </nav>
 
       <div id="page-wrapper">
+        {block name="masterContent"}{/block}
       </div>
         <!-- /#page-wrapper -->
     </div>

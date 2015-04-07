@@ -78,7 +78,7 @@
           <!-- END TOPICS -->
 
           <li>
-              <a class="active" href="/admin#charts"><i class="fa fa-line-chart fa-fw"></i> Charts</a>
+              <a class="active" href="/admin"><i class="fa fa-line-chart fa-fw"></i> Charts</a>
           </li>
 
           <li>
@@ -92,7 +92,7 @@
                 {foreach from=$taxs item=tax}
                 {if $tax->getter('idName') != "Destacado" }
                   <li>
-                      <a href="/admin#taxonomygroup/{$tax->getter('id')}"><i class="fa fa-tag fa-fw"></i> {$tax->getter('idName')} </a>
+                      <a href="/admin/taxonomygroup/{$tax->getter('id')}"><i class="fa fa-tag fa-fw"></i> {$tax->getter('idName')} </a>
                   </li>
                 {/if}
                 {/foreach}
@@ -117,10 +117,10 @@
                       <a href="#"><i class="fa fa-users fa-fw"></i> Users <span class="fa arrow"></span></a>
                       <ul class="nav nav-third-level">
                         <li>
-                          <a href="/admin#user/list"><i class="fa fa-user fa-fw"></i> User</a>
+                          <a href="/admin/user/list"><i class="fa fa-user fa-fw"></i> User</a>
                         </li>
                         <li>
-                          <a href="/admin#role/list"><i class="fa fa-tag fa-fw"></i> Roles</a>
+                          <a href="/admin/role/list"><i class="fa fa-tag fa-fw"></i> Roles</a>
                         </li>
 
                       </ul>

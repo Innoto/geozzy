@@ -1,3 +1,6 @@
+{extends file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/masterAdmin.tpl"}
+{block name="masterContent"}
+
 
 <div class="gzzAdShowUser">
   <div class="row">
@@ -66,3 +69,6 @@
     </div> <!-- end col -->
   </div> <!-- end row -->
 </div>
+
+
+{/block}

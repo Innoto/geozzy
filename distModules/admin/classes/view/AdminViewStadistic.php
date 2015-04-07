@@ -12,9 +12,9 @@ class AdminViewStadistic extends AdminViewMaster
 
   public function main() {
 
-    $this->template->addClientScript('js/exampleMorrisData.js' , 'admin');
     $this->template->setTpl('stadisticPage.tpl', 'admin');
-    $this->commonAdminInterface();
+    // $this->commonAdminInterface();
+    $this->template->exec();
   }
 
 }
