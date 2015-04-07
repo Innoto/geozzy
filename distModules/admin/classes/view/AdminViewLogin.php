@@ -5,7 +5,7 @@ admin::load('view/AdminViewMaster.php');
 class AdminViewLogin extends AdminViewMaster
 {
 
-  function __construct($base_dir){
+  public function __construct( $base_dir ) {
     parent::__construct($base_dir);
   }
 
@@ -13,7 +13,7 @@ class AdminViewLogin extends AdminViewMaster
   * Evaluate the access conditions and report if can continue
   * @return bool : true -> Access allowed
   */
-  function accessCheck() {
+  public function accessCheck() {
     $useraccesscontrol = new UserAccessController();
     $res = true;
     if($useraccesscontrol->isLogged()){
@@ -23,7 +23,8 @@ class AdminViewLogin extends AdminViewMaster
     return $res;
   }
 
-  function main(){
+
+  public function main() {
 
     $userView = new UserView();
 
@@ -38,12 +39,14 @@ class AdminViewLogin extends AdminViewMaster
     $this->template->exec();
   }
 
-  function sendLoginForm() {
+
+  public function sendLoginForm() {
 
     $userView = new UserView();
 
     $form = $userView->actionLoginForm();
     $form->sendJsonResponse();
   }
+
 }
 

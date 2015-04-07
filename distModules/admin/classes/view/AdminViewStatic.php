@@ -5,19 +5,21 @@ admin::load('view/AdminViewMaster.php');
 class AdminViewStatic extends AdminViewMaster
 {
 
-  function __construct($base_dir){
-    parent::__construct($base_dir);
+  public function __construct( $base_dir ){
+    parent::__construct( $base_dir );
   }
 
 
-  function allTables() {
+  public function allTables() {
     $this->template->setTpl('alltable.tpl', 'admin');
     $this->template->exec();
   }
 
-  function addContent() {
+
+  public function addContent() {
     $this->template->setTpl('addcontent.tpl', 'admin');
     $this->template->exec();
   }
+
 }
 

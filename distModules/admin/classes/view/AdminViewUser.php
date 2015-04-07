@@ -5,16 +5,15 @@ admin::load('view/AdminViewMaster.php');
 class AdminViewUser extends AdminViewMaster
 {
 
-  function __construct($base_dir){
-    parent::__construct($base_dir);
+  public function __construct( $base_dir ) {
+    parent::__construct( $base_dir );
   }
 
 
   /**
   * Section user profile
   **/
-
-  function showUser() {
+  public function showUser() {
     $this->template->setTpl('showUser.tpl', 'admin');
     $this->template->exec();
 
@@ -23,14 +22,14 @@ class AdminViewUser extends AdminViewMaster
   /**
   * Section list user
   **/
-
-  function listUsers() {
+  public function listUsers() {
     $this->template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
     $this->template->setTpl('listUser.tpl', 'admin');
     $this->template->exec();
   }
 
-  function listUsersTable(){
+
+  public function listUsersTable() {
 
     table::autoIncludes();
     $user =  new UserModel();
@@ -74,7 +73,7 @@ class AdminViewUser extends AdminViewMaster
   * Section create user
   **/
 
-  function createUser() {
+  public function createUser() {
 
     $userView = new UserView();
 
@@ -93,8 +92,7 @@ class AdminViewUser extends AdminViewMaster
   /**
   * Section edit user
   **/
-
-  function editUser($request) {
+  public function editUser( $request ) {
 
     $userView = new UserView();
 
@@ -123,15 +121,19 @@ class AdminViewUser extends AdminViewMaster
     /*--------------------*/
 
     $this->template->setTpl('editUser.tpl', 'admin');
+<<<<<<< HEAD
+    $this->commonAdminInterface();
+=======
     $this->template->exec();
 
+>>>>>>> f2ef8e7debbe4b99202400ed6e1abbbf3a182e23
   }
 
 
   /**
    Action userForm
   */
-  function sendUserForm() {
+  public function sendUserForm() {
 
     $userView = new UserView();
 
@@ -144,10 +146,11 @@ class AdminViewUser extends AdminViewMaster
       echo $form->getJsonOk();
     }
   }
+
   /**
    Action changeUserPassword()
   */
-  function changeUserPasswordForm() {
+  public function changeUserPasswordForm() {
 
     $userView = new UserView();
 
