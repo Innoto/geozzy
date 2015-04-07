@@ -2,9 +2,9 @@
 
 Cogumelo::load("coreController/Module.php");
 
-define('MOD_ADMIN_URL_DIR', 'adminOld');
+define('MOD_ADMINOLD_URL_DIR', 'admin');
 
-class adminOld extends Module
+class admin extends Module
 {
   public $name = "admin";
   public $version = "";
@@ -50,6 +50,18 @@ class adminOld extends Module
      "params" => array("morris.js-0.5.1"),
      "installer" => "manual",
      "includes" => array("morris.js", "morris.css")
+    ),
+    array(
+     "id" =>"underscore",
+     "params" => array("underscore-1.8.3"),
+     "installer" => "manual",
+     "includes" => array("underscore-min.js")
+    ),
+    array(
+     "id" =>"backbonejs",
+     "params" => array("backbone-1.1.2"),
+     "installer" => "manual",
+     "includes" => array("backbone-min.js")
     )
 
   );
@@ -57,39 +69,40 @@ class adminOld extends Module
   public $includesCommon = array(
     'styles/adminBase.less',
     'styles/admin.less',
-    'js/adminBase.js',
-    'js/adminTaxonomy.js'
+    'js/app.js',
+    'js/delete_adminBase.js',
+    'js/delete_adminTaxonomy.js'
   );
 
   function __construct() {
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/charts$#', 'view:AdminViewStadistic::main' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/charts$#', 'view:AdminViewStadistic::main' );
 
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/alltables$#', 'view:AdminViewStatic::allTables' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/addcontent$#', 'view:AdminViewStatic::addContent' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/alltables$#', 'view:AdminViewStatic::allTables' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/addcontent$#', 'view:AdminViewStatic::addContent' );
 
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/logout$#', 'view:AdminViewMaster::sendLogout' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/login$#', 'view:AdminViewLogin::main' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/senduserlogin$#', 'view:AdminViewLogin::sendLoginForm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/logout$#', 'view:AdminViewMaster::sendLogout' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/login$#', 'view:AdminViewLogin::main' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/senduserlogin$#', 'view:AdminViewLogin::sendLoginForm' );
 
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/edit/(.*)$#', 'view:AdminViewUser::editUser' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/show$#', 'view:AdminViewUser::showUser' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/list$#', 'view:AdminViewUser::listUsers' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/table$#', 'view:AdminViewUser::listUsersTable' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/create$#', 'view:AdminViewUser::createUser' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/senduser$#', 'view:AdminViewUser::sendUserForm' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/changepassword$#', 'view:AdminViewUser::changeUserPasswordForm' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/user/assignroles$#', 'view:AdminViewUser::assignaUserRolesForm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/user/edit/(.*)$#', 'view:AdminViewUser::editUser' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/user/show$#', 'view:AdminViewUser::showUser' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/user/list$#', 'view:AdminViewUser::listUsers' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/user/table$#', 'view:AdminViewUser::listUsersTable' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/user/create$#', 'view:AdminViewUser::createUser' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/user/senduser$#', 'view:AdminViewUser::sendUserForm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/user/changepassword$#', 'view:AdminViewUser::changeUserPasswordForm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/user/assignroles$#', 'view:AdminViewUser::assignaUserRolesForm' );
 
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/edit/(.*)$#', 'view:AdminViewRole::editRole' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/create$#', 'view:AdminViewRole::createRole' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/list$#', 'view:AdminViewRole::listRoles' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/table$#', 'view:AdminViewRole::listRolesTable' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/sendrole$#', 'view:AdminViewRole::sendRoleForm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/role/edit/(.*)$#', 'view:AdminViewRole::editRole' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/role/create$#', 'view:AdminViewRole::createRole' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/role/list$#', 'view:AdminViewRole::listRoles' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/role/table$#', 'view:AdminViewRole::listRolesTable' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/role/sendrole$#', 'view:AdminViewRole::sendRoleForm' );
 
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)$#', 'view:AdminViewTaxonomy::listTaxTerm' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/term/send$#', 'view:AdminViewTaxonomy::sendTaxTerm' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/term/dlt$#', 'view:AdminViewTaxonomy::deleteTaxTerm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/taxonomygroup/(\d+)$#', 'view:AdminViewTaxonomy::listTaxTerm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/taxonomygroup/term/send$#', 'view:AdminViewTaxonomy::sendTaxTerm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMINOLD_URL_DIR.'/taxonomygroup/term/dlt$#', 'view:AdminViewTaxonomy::deleteTaxTerm' );
 
 
   }
