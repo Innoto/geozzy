@@ -121,12 +121,9 @@ class AdminViewUser extends AdminViewMaster
     /*--------------------*/
 
     $this->template->setTpl('editUser.tpl', 'admin');
-<<<<<<< HEAD
-    $this->commonAdminInterface();
-=======
+
     $this->template->exec();
 
->>>>>>> f2ef8e7debbe4b99202400ed6e1abbbf3a182e23
   }
 
 

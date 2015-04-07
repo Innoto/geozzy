@@ -70,8 +70,11 @@ class admin extends Module
     'styles/adminBase.less',
     'styles/admin.less',
     'js/app.js',
+    'js/views/AdminView.js',
+    'js/routers/AdminRouter.js',    
     'js/delete_adminBase.js',
-    'js/delete_adminTaxonomy.js'
+    'js/delete_adminTaxonomy.js',
+    'js/exampleMorrisData.js'
 
   );
 
