@@ -16,6 +16,11 @@ class TaxonomytermModel extends Model
     ),
     'idName' => array(
       'type' => 'VARCHAR',
+      'size' => 100,
+      'unique' => true
+    ),
+    'name' => array(
+      'type' => 'VARCHAR',
       'size' => 100
     ),
     'parent' => array(
