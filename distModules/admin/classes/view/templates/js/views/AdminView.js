@@ -12,19 +12,25 @@ var AdminView = Backbone.View.extend({
   },
 
   renderMenu: function(  ) {
-    var cateogories = new CategoryCollection();
-/*
-    var menuTpl =  _.template($("#adminMenuTemplate").html());
+    var categories = new CategoryCollection();
+
+    var menuCategoryElement =  _.template($("#menuCategoryElement").html());
     //var eachCategoryTpl = _.Template()
-    var menuDiv = $('#wrapper .navbar .navbar-default.sidebar');
+    var menuCategoriesDiv = $('#wrapper .navbar .navbar-default.sidebar .categoriesList');
 
-    menuDiv.html( menuTpl() );
+    //categories.add( {id:123, idName:'bla'} )
+    //alert(categories.size())
 
-    cateogories.fetch({
+
+
+    categories.fetch({
       success: function() {
-        
+
+    //console.log( categories.toJSON()  );
+    menuCategoriesDiv.html( menuCategoryElement( { categories:  categories.toJSON()  } ) );
+
       }
-    });*/
+    });
 
 
   },

@@ -11,14 +11,8 @@ class AdminViewTaxonomy extends AdminViewMaster
 
 
   function categoryTermsSync() {
-    echo "TaxonomytermSync";
-  }
-
-  function categoriesSync() {
-    $taxgroupModel = new TaxonomygroupModel();
-
-    $taxGroupList = $taxgroupModel->listItems();
-
+    $taxtermModel = new TaxonomygroupModel();
+    $taxtermList = $taxgroupModel->listItems();
 
     header('Content-type: application/json');
 
@@ -28,12 +22,26 @@ class AdminViewTaxonomy extends AdminViewMaster
     while ($taxGroup = $taxGroupList->fetch() )
     {
       echo $c.json_encode( $taxGroup->getAllData()['data'] );
-
       if($c === ''){$c=',';}
-
-
     }
+    echo ']';
+  
+  }
 
+  function categoriesSync() {
+    $taxgroupModel = new TaxonomygroupModel();
+    $taxGroupList = $taxgroupModel->listItems();
+
+    header('Content-type: application/json');
+
+    echo '[';
+
+    $c = '';
+    while ($taxGroup = $taxGroupList->fetch() )
+    {
+      echo $c.json_encode( $taxGroup->getAllData()['data'] );
+      if($c === ''){$c=',';}
+    }
     echo ']';
   
   }

@@ -30,7 +30,6 @@
 
   <!-- Client templates -->    
   {include file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl"}
-  {include file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenuElements.tpl"}  
 
   <div id="wrapper">
 
@@ -66,19 +65,21 @@
                 <!-- Labels -->
                 <li>
                     <a href="#"><i class="fa fa-tags fa-fw"></i> Categories <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                      {foreach from=$taxs item=tax}
-                      {if $tax->getter('idName') != "Destacado" }
-                        <li>
-                            <a href="/admin#taxonomygroup/{$tax->getter('id')}"><i class="fa fa-tag fa-fw"></i> {$tax->getter('idName')} </a>
-                        </li>
-                      {/if}
-                      {/foreach}
+                    <ul class="nav nav-second-level categoriesList">
+                      <script type="text/template" id="menuCategoryElement">
+
+                        <% for(var categoryK in categories) { %>
+                          <li>
+                              <a href="/admin#category/<%- categories[categoryK].id %>"><i class="fa fa-tag fa-fw"></i> <%- categories[categoryK].name %> </a>
+                          </li>
+                        <% } %>
+
+                      </script>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="/admin#taxonomygroup/{$taxDestacado->getter('id')}"><i class="fa fa-star fa-fw"></i> {$taxDestacado->getter('idName')} </a>
+                    <a href="/admin#starred/"><i class="fa fa-star fa-fw"></i> Destacados </a>
                 </li>
 
                 <!-- Settings -->
