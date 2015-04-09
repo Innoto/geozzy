@@ -19,6 +19,10 @@ class TaxonomygroupModel extends Model
       'size' => 100,
       'unique' => true
     ),
+    'name' => array(
+      'type' => 'VARCHAR',
+      'size' => 100
+    ),
     'editable' => array(
       'type' => 'BOOLEAN'
     )

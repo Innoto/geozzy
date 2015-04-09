@@ -84,6 +84,11 @@ class geozzy extends Module
     $taxgroup = new TaxonomygroupModel( array( 'idName' => 'Categorias', 'editable' => 1 ) );
     $taxgroup->save();
 
+
+    /**
+    Crea Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
+    */
+
   }
 
   /**
