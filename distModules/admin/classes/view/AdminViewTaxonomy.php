@@ -10,10 +10,39 @@ class AdminViewTaxonomy extends AdminViewMaster
   }
 
 
+  function categoryTermsSync() {
+    echo "TaxonomytermSync";
+  }
+
+  function categoriesSync() {
+    $taxgroupModel = new TaxonomygroupModel();
+
+    $taxGroupList = $taxgroupModel->listItems();
+
+
+    header('Content-type: application/json');
+
+    echo '[';
+
+    $c = '';
+    while ($taxGroup = $taxGroupList->fetch() )
+    {
+      echo $c.json_encode( $taxGroup->getAllData()['data'] );
+
+      if($c === ''){$c=',';}
+
+
+    }
+
+    echo ']';
+  
+  }
+
+
   /**
   * Section list user
   **/
-
+/*
   function listTaxTerm( $request ) {
 
 
@@ -92,6 +121,6 @@ class AdminViewTaxonomy extends AdminViewMaster
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($res);
   }
-
+*/
 }
 

@@ -28,18 +28,98 @@
 
 <body>
 
-    <div id="wrapper">
+  <!-- Client templates -->    
+  {include file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl"}
+  {include file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenuElements.tpl"}  
 
-      <!-- Navigation -->
-      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        {include file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/adminHeader.tpl"}
-      </nav>
+  <div id="wrapper">
 
-      <div id="page-wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+      {include file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/adminHeader.tpl"}
+      <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+
+                <!-- TOPIC -->
+                <li class="topics">
+                    <a href="/admin"><i class="fa fa-map-marker fa-fw fa-2x"></i>Topic 1</a>
+                </li>
+
+                <li class="topics">
+                    <a href="/admin"><i class="fa fa-compass fa-fw fa-2x"></i>Topic 2</a>
+                </li>
+
+                <li class="topics">
+                    <a href="/admin"><i class="fa fa-tree fa-fw fa-2x"></i>Topic 3</a>
+                </li>
+                <!-- END TOPICS -->
+
+                <li>
+                    <a class="active" href="/admin#charts"><i class="fa fa-line-chart fa-fw"></i> Charts</a>
+                </li>
+
+                <li>
+                    <a href="/admin"><i class="fa fa-files-o fa-fw"></i> Pages</a>
+                </li>
+
+                <!-- Labels -->
+                <li>
+                    <a href="#"><i class="fa fa-tags fa-fw"></i> Categories <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                      {foreach from=$taxs item=tax}
+                      {if $tax->getter('idName') != "Destacado" }
+                        <li>
+                            <a href="/admin#taxonomygroup/{$tax->getter('id')}"><i class="fa fa-tag fa-fw"></i> {$tax->getter('idName')} </a>
+                        </li>
+                      {/if}
+                      {/foreach}
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="/admin#taxonomygroup/{$taxDestacado->getter('id')}"><i class="fa fa-star fa-fw"></i> {$taxDestacado->getter('idName')} </a>
+                </li>
+
+                <!-- Settings -->
+                <li>
+                    <a href="#"><i class="fa fa-cog fa-fw"></i> Settings <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="/admin#alltables"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        </li>
+                        <li>
+                            <a href="/admin#addcontent"><i class="fa fa-edit fa-fw"></i> Add Content</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Users <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                              <li>
+                                <a href="/admin#user/list"><i class="fa fa-user fa-fw"></i> User</a>
+                              </li>
+                              <li>
+                                <a href="/admin#role/list"><i class="fa fa-tag fa-fw"></i> Roles</a>
+                              </li>
+
+                            </ul>
+                            <!-- /.nav-third-level -->
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
       </div>
-        <!-- /#page-wrapper -->
+      <!-- /.navbar-static-side -->
+
+    </nav>
+
+    <div id="page-wrapper">
     </div>
-    <!-- /#wrapper -->
+      <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
 
 
 </body>
