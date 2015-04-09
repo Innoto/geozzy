@@ -134,6 +134,7 @@ NEW TOPIC
 */
 
 $GEOZZY_TOPICS['AutenticaGastronomia'] = array(
+
   'name' => array(
     'es' => 'Auténtica gastronomía',
     'en' => 'Authentic cuisine',

@@ -22,7 +22,7 @@ class ResourcetypeTopicModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'ResourcetypeModel',
       'key' => 'id'
-    )
+    ),
     'topic' => array(
       'type'=>'FOREIGN',
       'vo' => 'TopicModel',
