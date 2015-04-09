@@ -3,40 +3,15 @@
 global $GEOZZY_TAXONOMIESGROUPS;
 
 /**
-NEW TOPIC
+NEW TAXGROUP
 */
-$GEOZZY_TAXGROUPS['PaisaxesEspectaculares'] = array(
-  'name' => array(
-    'es' => 'Paisajes espectaculares',
-    'en' => 'Spectacular scenery',
-    'gl' => 'Paisaxes espectaculares'
-  ),
-  'resourceTypes' => array(
-    array(
-      'resourceTypeIdName' => "rtypeRuta",
-      'form' => array(
-        'viewHtml' => 'modules/rtypeRuta/classes/view/example::viewHtml',
-        'update' => 'modules/rtypeRuta/classes/view/example::update',
-        'create' => 'modules/rtypeRuta/classes/view/example::create'
-      ),
-      'weight' => 1
-    ),
-    array(
-      'resourceTypeIdName' => "rtypeEspazoNatural",
-      'form' => array(
-        'viewHtml' => 'modules/rtypeEspazoNatural/classes/view/example::viewHtml',
-        'update' => 'modules/rtypeEspazoNatural/classes/view/example::update',
-        'create' => 'modules/rtypeEspazoNatural/classes/view/example::create'
-      ),
-      'weight' => 3
-    )
-  ),
-  'table' => array(
-    'actions' => array(
-      'viewHtml' => 'auto',
-      'action' => 'auto'
-    ),
-  ),
-  'taxGroupId' => 10,
-  'icon' => ''
+$GEOZZY_TAXONOMIESGROUPS['taxPruebaParaTematica'] = array(
+  'idName' => 'taxPruebaParaTematica',
+  'name' => 'Prueba de Tax'
+  'editable' => false,
+  'initialTerms' => array(
+    array( 'idName' => 'pruebaTaxTerm1', 'name' => 'Prueba creacion de termino 1' ),
+    array( 'idName' => 'pruebaTaxTerm2', 'name' => 'Prueba creacion de termino 2' ),
+    array( 'idName' => 'pruebaTaxTerm3', 'name' => 'Prueba creacion de termino 3' )
+  )
 );
