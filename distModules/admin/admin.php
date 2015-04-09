@@ -71,11 +71,12 @@ class admin extends Module
     'styles/admin.less',
     'js/app.js',
     'js/views/AdminView.js',
-    'js/routers/AdminRouter.js',    
-    'js/delete_adminBase.js',
-    'js/delete_adminTaxonomy.js',
+    'js/routers/AdminRouter.js',
+    'js/models/TaxonomygroupModel.js',
+    'js/models/TaxonomytermModel.js',
+    'js/collections/CategoryCollection.js',
+    'js/collections/CategorytermCollection.js',
     'js/exampleMorrisData.js'
-
   );
 
   public function __construct() {
@@ -104,9 +105,9 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/table$#', 'view:AdminViewRole::listRolesTable' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/sendrole$#', 'view:AdminViewRole::sendRoleForm' );
 
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/(\d+)$#', 'view:AdminViewTaxonomy::listTaxTerm' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/term/send$#', 'view:AdminViewTaxonomy::sendTaxTerm' );
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/taxonomygroup/term/dlt$#', 'view:AdminViewTaxonomy::deleteTaxTerm' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/categoryterms$#', 'view:AdminViewTaxonomy::categoryTermsSync' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/categories$#', 'view:AdminViewTaxonomy::categoriesSync' );
+
   }
 
 
