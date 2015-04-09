@@ -7,8 +7,8 @@ NEW TAXGROUP
 */
 $GEOZZY_TAXONOMIESGROUPS['taxPruebaParaTematica'] = array(
   'idName' => 'taxPruebaParaTematica',
-  'name' => 'Prueba de Tax'
-  'editable' => false,
+  'name' => 'Prueba de Tax',
+  'editable' => 0,
   'initialTerms' => array(
     array( 'idName' => 'pruebaTaxTerm1', 'name' => 'Prueba creacion de termino 1' ),
     array( 'idName' => 'pruebaTaxTerm2', 'name' => 'Prueba creacion de termino 2' ),
