@@ -32,7 +32,7 @@ class geozzy extends Module
     /**
     Creacion de Roles de Geozzy
     */
-/*
+
     $roleData = array(
       'name' => 'administrador',
       'description' => 'Role Usuario'
@@ -46,11 +46,11 @@ class geozzy extends Module
     );
     $role = new RoleModel($roleData);
     $role->save();
-*/
+
     /**
     Crea un usuario superAdmin para Geozzy
     */
-/*
+
     fwrite(STDOUT, "Enter the superAdmin password:\n");
     $passwd = self::getPassword(true);
     $userData = array(
@@ -61,11 +61,11 @@ class geozzy extends Module
     $user = new UserModel( $userData );
     $user->setPassword( $passwd );
     $user->save();
-*/
+
     /**
     Crea la relacion Usuario/Role de superAdmin asignadole un role superAdmin
     */
-/*
+
     $roleModel = new RoleModel();
     $role = $roleModel->listItems( array('filters' => array('name' => 'superAdmin') ))->fetch();
     $userRole = new UserRoleModel();
@@ -74,12 +74,12 @@ class geozzy extends Module
     }
     $userRole->setterDependence( 'user', $user );
     $userRole->save(array( 'affectsDependences' => true ));
-*/
+
 
     /**
     Crea Taxonomias necesarias para iniciar Geozzy
     */
-/*
+
     $taxgroup = new TaxonomygroupModel( array( 'idName' => 'prominent', 'name' => 'Destacado', 'editable' => 0 ) );
     $taxgroup->save();
 
@@ -89,12 +89,12 @@ class geozzy extends Module
     $taxgroup->save();
     $taxgroup = new TaxonomygroupModel( array( 'idName' => 'categories', 'name' => 'Categorias', 'editable' => 1 ) );
     $taxgroup->save();
-*/
+
 
     /**
     Crea Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
-    /*global $GEOZZY_TAXONOMIESGROUPS;
+   global $GEOZZY_TAXONOMIESGROUPS;
 
     if(sizeof($GEOZZY_TAXONOMIESGROUPS) > 0){
       foreach ($GEOZZY_TAXONOMIESGROUPS as $key => $tax) {
@@ -109,7 +109,7 @@ class geozzy extends Module
           }
         }
       }
-    }*/
+    }
 
     /**
     Crea los Topics definidas en el un archivo de Conf en GeozzyApp por el usuario
