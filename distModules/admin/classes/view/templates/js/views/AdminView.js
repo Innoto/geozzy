@@ -1,48 +1,37 @@
 var app = app || {};
-var tax = false;
+
 var AdminView = Backbone.View.extend({
   el : $("#wrapper"),
-
-  ajaxContentUrl: false,
-
-  taxonomyGroups: false,
 
   initialize: function(){
     this.renderMenu();
   },
 
-  renderMenu: function(  ) {
-    var categories = new CategoryCollection();
+  categoryEdit: function( id ) {
+    console.log(app.categories.get(id).toJSON());
+  },
+
+
+
+  renderMenu: function(  ){
 
     var menuCategoryElement =  _.template($("#menuCategoryElement").html());
-    //var eachCategoryTpl = _.Template()
     var menuCategoriesDiv = $('#wrapper .navbar .navbar-default.sidebar .categoriesList');
 
-    //categories.add( {id:123, idName:'bla'} )
-    //alert(categories.size())
-
-
-
-    categories.fetch({
-      success: function() {
-
-    //console.log( categories.toJSON()  );
-    menuCategoriesDiv.html( menuCategoryElement( { categories:  categories.toJSON()  } ) );
-
-      }
-    });
-
+    menuCategoriesDiv.html( menuCategoryElement( { categories:  app.categories.toJSON()  } ) );
 
   },
 
-  render: function(  ) {
-    $("#page-wrapper").load( this.ajaxContentUrl );
-  },
-
-  loadAjaxContent: function( url, menuSection ) {
-    this.ajaxContentUrl = url;
+  loadAjaxContent: function( url ) {
+    $("#page-wrapper").load( url );
     this.render();
-  }
+  },
+
+  render: function( content ) {
+    if( content ) {
+
+    }
+  },
 
 
 });
