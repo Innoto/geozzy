@@ -5,7 +5,7 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class ResourcetypeTopicModel extends Model
+class ResourceTopicModel extends Model
 {
   static $tableName = 'geozzy_resourcetype_topic';
   static $cols = array(
