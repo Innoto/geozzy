@@ -64,7 +64,6 @@
         </div>
         <div class="rowEdit" style="display:none;">
           <div class="col-md-9">
-            <div class="infoTerm"><%- terms[termK].name %></div>
             <div class="editTermContainer">
                 <input type="text" class="editTermInput" value="<%- terms[termK].name %>" />
             </div>

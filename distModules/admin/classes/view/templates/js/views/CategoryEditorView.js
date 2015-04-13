@@ -5,6 +5,9 @@ var CategoryEditorView = Backbone.View.extend({
 
   events: {
     "click .newTaxTerm": "addCategory" ,
+    "click .list-group-item .btnEditTerm" : "editCategory",
+    "click .list-group-item .btnCancelTerm" : "cancelEditCategory",    
+    "click .list-group-item .btnSaveTerm" : "saveEditCategory",
     "click .list-group-item .btnDeleteTerm" : "removeCategory" ,
   },
 
@@ -19,7 +22,6 @@ var CategoryEditorView = Backbone.View.extend({
 
     that.category = category;
 
-    console.log( that.category.get('id') )
 
     that.categoryTerms.fetch(
       {
@@ -44,7 +46,6 @@ var CategoryEditorView = Backbone.View.extend({
   removeCategory: function( el ) {
     var that = this;
 
-    //console.log( $(el.currentTarget).attr('termId') );
     var c = that.categoryTerms.get( $(el.currentTarget).attr('termId') )
     c.destroy();
     that.updateList();
@@ -61,6 +62,38 @@ var CategoryEditorView = Backbone.View.extend({
       that.categoryTerms.add({ name:newTerm, taxgroup:  that.category.get('id') });
       that.categoryTerms.last().save().done( function(){that.updateList()} );
     }
+  },
+
+  editCategory: function( el ) {
+    var that = this;
+    
+    var termId =  $(el.currentTarget).attr('termId');
+    var catRow = that.$el.find('.list-group-item[termId="' + termId + '"]' );
+
+    catRow.find('.rowShow').hide();
+    catRow.find('.rowEdit').show();
+  },
+
+  saveEditCategory: function( el ) {
+    var that = this;
+    
+    var termId =  $(el.currentTarget).attr('termId');
+    var catRow = that.$el.find('.list-group-item[termId="' + termId + '"]' );
+
+    that.updateList();
+
+  },
+
+
+  cancelEditCategory: function( el ) {
+    var that = this;
+   
+    var termId =  $(el.currentTarget).attr('termId');
+    var catRow = that.$el.find('.list-group-item[termId="' + termId + '"]' );
+    that.updateList();
+
   }
+
+
 
 });
