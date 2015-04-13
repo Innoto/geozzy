@@ -106,7 +106,7 @@ class admin extends Module
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/table$#', 'view:AdminViewRole::listRolesTable' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/role/sendrole$#', 'view:AdminViewRole::sendRoleForm' );
 
-    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/categoryterms$#', 'view:AdminViewTaxonomy::categoryTermsSync' );
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/categoryterms(.*)$#', 'view:AdminViewTaxonomy::categoryTermsSync' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/categories$#', 'view:AdminViewTaxonomy::categoriesSync' );
 
   }

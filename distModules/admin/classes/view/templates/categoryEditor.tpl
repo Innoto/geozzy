@@ -14,7 +14,7 @@
           </strong>
         </div>
         <div class="panel-body">
-          <ul id="listTerms" class="list-group">
+          <ul class="listTerms" class="list-group">
        
 
           </ul>
@@ -48,23 +48,35 @@
 </script>
 
 
-<script type="text/template" id="taxTermEditorItem">
+<script type="text/template" id="taxTermEditorItems">
+  <% for(var termK in terms) { %>        
+  	<li class="list-group-item" termId="<%- terms[termK].id %>">
+  	  <div class="row">
+      
+        <div class="rowShow">
+    	    <div class="col-md-9">
+    	      <div class="infoTerm"><%- terms[termK].name %></div>
+    	    </div>
+    	    <div class="col-md-3">
+    	      <button class="btnEditTerm btn btn-default btn-info"><i class="fa fa-pencil"></i></button>
+    	      <button class="btnDeleteTerm btn btn-default btn-danger"><i class="fa fa-trash"></i></button>
+    	    </div>
+        </div>
+        <div class="rowEdit" style="display:none;">
+          <div class="col-md-9">
+            <div class="infoTerm"><%- terms[termK].name %></div>
+            <div class="editTermContainer">
+                <input type="text" class="editTermInput" value="<%- terms[termK].name %>" />
+            </div>
+          </div>
 
-	<li class="list-group-item" termId="<% id %>">
-	  <div class="row">
-	    <div class="col-md-9">
-	      <div class="infoTerm"><% name %></div>
-	      <div class="editTermContainer">
-	          <input type="text" class="editTermInput" value="<% name %>" />
-	      </div>
-	    </div>
-	    <div class="col-md-3">
-	      <button class="btnSaveTerm btn btn-default btn-success"><i class="fa fa-check"></i></button>
-	      <button class="btnEditTerm btn btn-default btn-info"><i class="fa fa-pencil"></i></button>
-	      <button class="btnDeleteTerm btn btn-default btn-danger"><i class="fa fa-trash"></i></button>
-	      <button class="btnCancelTerm btn btn-default btn-danger"><i class="fa fa-close"></i></button>
-	    </div>
-	  </div>
-	</li>
+          <div class="col-md-3">
+            <button class="btnSaveTerm btn btn-default btn-success"><i class="fa fa-check"></i></button>
+            <button class="btnCancelTerm btn btn-default btn-danger"><i class="fa fa-close"></i></button>
+          </div>
 
+        </div>  
+  	  </div>
+  	</li>
+  <% } %>
 </script>

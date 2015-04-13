@@ -2,7 +2,8 @@ var TaxonomytermModel = Backbone.Model.extend({
   defaults: {
     id: false,
     idName: '',
-    editable: false
+    parent: false,
+    taxgroup: false
   }
 
 });

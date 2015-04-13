@@ -10,9 +10,8 @@ var AdminView = Backbone.View.extend({
   },
 
   categoryEdit: function( id ) {
-    //console.log(app.categories.get(id).toJSON());
-    this.childView = new CategoryEditorView();
-    this.render();
+    this.childView = new CategoryEditorView( app.categories.get(id) );
+    this.render(  );
   },
 
 
