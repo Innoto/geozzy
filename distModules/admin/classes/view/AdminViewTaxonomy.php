@@ -12,6 +12,8 @@ class AdminViewTaxonomy extends AdminViewMaster
 
   function categoryTermsSync( $request ) {
 
+
+    $id = substr($request[1], 1);
     
     header('Content-type: application/json');
 
@@ -19,11 +21,19 @@ class AdminViewTaxonomy extends AdminViewMaster
       case 'PUT':
 
         $putData = json_decode(file_get_contents('php://input'), true);
-         
-        $taxTerm = new TaxonomytermModel( array('name'=> $putData['name'], 'parent'=> null, 'taxgroup'=> $putData['taxgroup']) );
-        $taxTerm->save();
+
+        if( is_numeric( $id )) {  // update
+          $taxtermModel = new TaxonomytermModel();
+          $taxTerm = $taxtermModel->listItems(  array( 'filters' => array( 'id'=>$id ) ))->fetch();
+          $taxTerm->setter('name', $putData['name']);
+          $taxTerm->save();
+        }
+        else { // create
+          $taxTerm = new TaxonomytermModel( array('name'=> $putData['name'], 'parent'=> null, 'taxgroup'=> $putData['taxgroup']) );
+          $taxTerm->save();
+
+        }      
         echo json_encode( $taxTerm->getAllData()['data'] );
-      
 
         break;
       case 'GET':
@@ -40,9 +50,7 @@ class AdminViewTaxonomy extends AdminViewMaster
 
         break;
 
-      case 'DELETE':        
-        $id = substr($request[1], 1);
-
+      case 'DELETE':
         $taxTerm = new TaxonomytermModel( array( 'id'=> $id ) );
         $taxTerm->delete();
 

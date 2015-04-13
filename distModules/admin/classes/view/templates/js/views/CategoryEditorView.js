@@ -80,6 +80,14 @@ var CategoryEditorView = Backbone.View.extend({
     var termId =  $(el.currentTarget).attr('termId');
     var catRow = that.$el.find('.list-group-item[termId="' + termId + '"]' );
 
+    var catTermName = catRow.find('.rowEdit .editTermInput').val();
+
+    var term = this.categoryTerms.get( termId );
+    term.set( { name:catTermName } );
+
+    term.save();
+
+
     that.updateList();
 
   },
