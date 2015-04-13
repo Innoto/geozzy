@@ -34,8 +34,10 @@ var CategoryEditorView = Backbone.View.extend({
   },
 
   render: function() {
+    var that = this;
+
     this.baseTemplate = _.template( $('#taxTermEditor').html() );
-    this.$el.html( this.baseTemplate() );
+    this.$el.html( this.baseTemplate(that.category.toJSON() ) );
   },
 
   updateList: function() {

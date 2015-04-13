@@ -9,7 +9,7 @@
           <strong>
             <h4>
               <i class="fa fa-tag fa-fw"></i>
-              Listado de terminos
+              Listado de terminos para ( <%- name %> )
             </h4>
           </strong>
         </div>
