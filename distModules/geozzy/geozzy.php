@@ -3,6 +3,7 @@
 Cogumelo::load("coreController/Module.php");
 require_once APP_BASE_PATH."/conf/geozzyTopics.php";
 require_once APP_BASE_PATH."/conf/geozzyTaxonomiesGroups.php";
+require_once APP_BASE_PATH."/conf/geozzyResourcetype.php";
 
 define('MOD_GEOZZY_URL_DIR', 'geozzy');
 
@@ -29,11 +30,14 @@ class geozzy extends Module
     geozzy::load("model/TaxonomygroupModel.php");
     geozzy::load("model/TaxonomytermModel.php");
     geozzy::load("model/TopicModel.php");
+    geozzy::load("model/ResourcetypeModel.php");
+    geozzy::load("model/ResourcetypeTopicModel.php");
+
 
     /**
     Creacion de Roles de Geozzy
     */
-/*
+
     $roleData = array(
       'name' => 'administrador',
       'description' => 'Role Usuario'
@@ -47,11 +51,11 @@ class geozzy extends Module
     );
     $role = new RoleModel($roleData);
     $role->save();
-*/
+
     /**
     Crea un usuario superAdmin para Geozzy
     */
-/*
+
     fwrite(STDOUT, "Enter the superAdmin password:\n");
     $passwd = self::getPassword(true);
     $userData = array(
@@ -62,11 +66,11 @@ class geozzy extends Module
     $user = new UserModel( $userData );
     $user->setPassword( $passwd );
     $user->save();
-*/
+
     /**
     Crea la relacion Usuario/Role de superAdmin asignadole un role superAdmin
     */
-/*
+
     $roleModel = new RoleModel();
     $role = $roleModel->listItems( array('filters' => array('name' => 'superAdmin') ))->fetch();
     $userRole = new UserRoleModel();
@@ -75,12 +79,12 @@ class geozzy extends Module
     }
     $userRole->setterDependence( 'user', $user );
     $userRole->save(array( 'affectsDependences' => true ));
-*/
+
 
     /**
     Crea Taxonomias necesarias para iniciar Geozzy
     */
-/*
+
     $taxgroup = new TaxonomygroupModel( array( 'idName' => 'prominent', 'name' => 'Destacado', 'editable' => 0 ) );
     $taxgroup->save();
 
@@ -90,12 +94,12 @@ class geozzy extends Module
     $taxgroup->save();
     $taxgroup = new TaxonomygroupModel( array( 'idName' => 'categories', 'name' => 'Categorias', 'editable' => 1 ) );
     $taxgroup->save();
-*/
+
 
     /**
     Crea Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
-/*
+
    global $GEOZZY_TAXONOMIESGROUPS;
 
     if(sizeof($GEOZZY_TAXONOMIESGROUPS) > 0){
@@ -112,7 +116,87 @@ class geozzy extends Module
         }
       }
     }
-*/
+
+    /**
+    Crea los resourcetype definidas en el un archivo de Conf en GeozzyApp por el usuario y los establecidos por defecto
+    */
+
+    $GEOZZY_DEFAULT_RESOURCETYPE['base'] = array(
+      'idName' => 'base',
+      'name' => array(
+        'es' => 'base',
+        'en' => 'base',
+        'gl' => 'base'
+      )
+    );
+
+    $GEOZZY_DEFAULT_RESOURCETYPE['page'] = array(
+      'idName' => 'page',
+      'name' => array(
+        'es' => 'Page',
+        'en' => 'Page',
+        'gl' => 'Page'
+      )
+    );
+
+    $GEOZZY_DEFAULT_RESOURCETYPE['menu'] = array(
+      'idName' => 'menu',
+      'name' => array(
+        'es' => 'menu',
+        'en' => 'menu',
+        'gl' => 'menu'
+      )
+    );
+
+    $GEOZZY_DEFAULT_RESOURCETYPE['micro'] = array(
+      'idName' => 'micro',
+      'name' => array(
+        'es' => 'micro',
+        'en' => 'micro',
+        'gl' => 'micro'
+      )
+    );
+
+    $GEOZZY_DEFAULT_RESOURCETYPE['image'] = array(
+      'idName' => 'image',
+      'name' => array(
+        'es' => 'image',
+        'en' => 'image',
+        'gl' => 'image'
+      )
+    );
+
+    $GEOZZY_DEFAULT_RESOURCETYPE['url'] = array(
+      'idName' => 'url',
+      'name' => array(
+        'es' => 'url',
+        'en' => 'url',
+        'gl' => 'url'
+      )
+    );
+
+    $GEOZZY_DEFAULT_RESOURCETYPE['file'] = array(
+      'idName' => 'file',
+      'name' => array(
+        'es' => 'file',
+        'en' => 'file',
+        'gl' => 'file'
+      )
+    );
+    $GEOZZY_DEFAULT_RESOURCETYPE;
+
+    global $GEOZZY_RESOURCETYPE;
+
+    $GEOZZY_RESOURCETYPE_ALL = array_merge( $GEOZZY_DEFAULT_RESOURCETYPE, $GEOZZY_RESOURCETYPE );
+
+    if(sizeof($GEOZZY_RESOURCETYPE_ALL) > 0){
+      foreach ($GEOZZY_RESOURCETYPE_ALL as $key => $rt) {
+        $rt['name'] = $rt['name']['es'];
+        $rtO = new ResourcetypeModel( $rt );
+        $rtO->save();
+      }
+    }
+
     /**
     Crea los Topics definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
@@ -124,8 +208,28 @@ class geozzy extends Module
         $topic['idName'] = $key;
         $topicD = new TopicModel( $topic );
         $topicD->save();
+
+        if( sizeof($topic['resourceTypes']) > 0){
+          foreach ($topic['resourceTypes'] as $key => $rt) {
+
+            $reTypeModel = new ResourcetypeModel( );
+            $reType = $reTypeModel->listItems( array('filters' => array('idName' => $rt['resourceTypeIdName']) ) )->fetch();
+            if($reType){
+              $rtypeTopicParams = array(
+                'topic' => $topicD->getter('id'),
+                'resourceType' => $reType->getter('id'),
+                'weight' => $rt['weight']
+              );
+
+              $rtt = new ResourcetypeTopicModel( $rtypeTopicParams );
+              $rtt->save();
+            }
+          }
+        }
       }
     }
+
+
 
 
   }
