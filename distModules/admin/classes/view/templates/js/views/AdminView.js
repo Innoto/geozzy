@@ -32,8 +32,9 @@ var AdminView = Backbone.View.extend({
 
   render: function( ) {
     if( this.childView != false ) {
+      $("#page-wrapper").undelegate();
       this.childView.$el = $('#page-wrapper');
-      this.childView.render();
+      this.childView.render();      
       this.childView.delegateEvents();
     }
   }

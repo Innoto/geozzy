@@ -10,7 +10,7 @@ class AdminViewTaxonomy extends AdminViewMaster
   }
 
 
-  function categoryTermsSync() {
+  function categoryTermsSync( $request ) {
 
     
     header('Content-type: application/json');
@@ -37,6 +37,14 @@ class AdminViewTaxonomy extends AdminViewMaster
           if($c === ''){$c=',';}
         }
         echo ']';     
+
+        break;
+
+      case 'DELETE':        
+        $id = substr($request[1], 1);
+
+        $taxTerm = new TaxonomytermModel( array( 'id'=> $id ) );
+        $taxTerm->delete();
 
         break;
     }

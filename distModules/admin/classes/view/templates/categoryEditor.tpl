@@ -52,14 +52,14 @@
   <% for(var termK in terms) { %>        
   	<li class="list-group-item" termId="<%- terms[termK].id %>">
   	  <div class="row">
-      
+
         <div class="rowShow">
     	    <div class="col-md-9">
     	      <div class="infoTerm"><%- terms[termK].name %></div>
     	    </div>
     	    <div class="col-md-3">
-    	      <button class="btnEditTerm btn btn-default btn-info"><i class="fa fa-pencil"></i></button>
-    	      <button class="btnDeleteTerm btn btn-default btn-danger"><i class="fa fa-trash"></i></button>
+    	      <button class="btnEditTerm btn btn-default btn-info" termId="<%- terms[termK].id %>" ><i class="fa fa-pencil"></i></button>
+    	      <button class="btnDeleteTerm btn btn-default btn-danger" termId="<%- terms[termK].id %>" ><i class="fa fa-trash"></i></button>
     	    </div>
         </div>
         <div class="rowEdit" style="display:none;">
@@ -71,8 +71,8 @@
           </div>
 
           <div class="col-md-3">
-            <button class="btnSaveTerm btn btn-default btn-success"><i class="fa fa-check"></i></button>
-            <button class="btnCancelTerm btn btn-default btn-danger"><i class="fa fa-close"></i></button>
+            <button class="btnSaveTerm btn btn-default btn-success" termId="<%- terms[termK].id %>"><i class="fa fa-check"></i></button>
+            <button class="btnCancelTerm btn btn-default btn-danger" termId="<%- terms[termK].id %>"><i class="fa fa-close"></i></button>
           </div>
 
         </div>  
