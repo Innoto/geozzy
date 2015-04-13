@@ -71,6 +71,7 @@ class admin extends Module
     'styles/admin.less',
     'js/app.js',
     'js/views/AdminView.js',
+    'js/views/CategoryEditorView.js',
     'js/routers/AdminRouter.js',
     'js/models/TaxonomygroupModel.js',
     'js/models/TaxonomytermModel.js',
