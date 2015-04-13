@@ -25,7 +25,7 @@ class TopicModel extends Model
       'size' => 45
     ),
     'weight' => array(
-      'type' => 'INT',
+      'type' => 'INT'
     ),
     'taxgroup' => array(
       'type'=>'FOREIGN',

@@ -28,6 +28,7 @@ class geozzy extends Module
     user::load("model/RoleModel.php");
     geozzy::load("model/TaxonomygroupModel.php");
     geozzy::load("model/TaxonomytermModel.php");
+    geozzy::load("model/TopicModel.php");
 
     /**
     Creacion de Roles de Geozzy
@@ -94,7 +95,8 @@ class geozzy extends Module
     /**
     Crea Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
-    /*global $GEOZZY_TAXONOMIESGROUPS;
+/*
+   global $GEOZZY_TAXONOMIESGROUPS;
 
     if(sizeof($GEOZZY_TAXONOMIESGROUPS) > 0){
       foreach ($GEOZZY_TAXONOMIESGROUPS as $key => $tax) {
@@ -109,8 +111,8 @@ class geozzy extends Module
           }
         }
       }
-    }*/
-
+    }
+*/
     /**
     Crea los Topics definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
@@ -118,11 +120,10 @@ class geozzy extends Module
 
     if(sizeof($GEOZZY_TOPICS) > 0){
       foreach ($GEOZZY_TOPICS as $key => $topic) {
-
-
-
-
-
+        $topic['name'] = $topic['name']['es'];
+        $topic['idName'] = $key;
+        $topicD = new TopicModel( $topic );
+        $topicD->save();
       }
     }
 

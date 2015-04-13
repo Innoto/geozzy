@@ -5,6 +5,7 @@ global $GEOZZY_TOPICS;
 /**
 NEW TOPIC
 */
+
 $GEOZZY_TOPICS['PaisaxesEspectaculares'] = array(
   'name' => array(
     'es' => 'Paisajes espectaculares',
@@ -37,8 +38,9 @@ $GEOZZY_TOPICS['PaisaxesEspectaculares'] = array(
       'action' => 'auto'
     ),
   ),
-  'taxGroupId' => 10,
-  'icon' => ''
+  'taxgroup' => 12,
+  'icon' => '',
+  'weight' => 1
 );
 
 /**
@@ -77,9 +79,11 @@ $GEOZZY_TOPICS['PraiasDeEnsono'] = array(
       'action' => 'auto'
     ),
   ),
-  'taxGroupId' => 10,
-  'icon' => ''
+  'taxgroup' => 12,
+  'icon' => '',
+  'weight' => 1
 );
+
 /**
 NEW TOPIC
 */
@@ -125,8 +129,9 @@ $GEOZZY_TOPICS['RecantosConEstilo'] = array(
       'action' => 'auto'
     ),
   ),
-  'taxGroupId' => 10,
-  'icon' => ''
+  'taxgroup' => 12,
+  'icon' => '',
+  'weight' => 1
 );
 
 /**
@@ -175,8 +180,9 @@ $GEOZZY_TOPICS['AutenticaGastronomia'] = array(
       'action' => 'auto'
     ),
   ),
-  'taxGroupId' => 10,
-  'icon' => ''
+  'taxgroup' => 12,
+  'icon' => '',
+  'weight' => 1
 );
 
 
@@ -216,8 +222,9 @@ $GEOZZY_TOPICS['AloxamentoConEncanto'] = array(
       'action' => 'auto'
     ),
   ),
-  'taxGroupId' => 10,
-  'icon' => ''
+  'taxgroup' => 12,
+  'icon' => '',
+  'weight' => 1
 );
 
 
@@ -248,6 +255,7 @@ $GEOZZY_TOPICS['FestaRachada'] = array(
       'action' => 'auto'
     ),
   ),
-  'taxGroupId' => 10,
-  'icon' => ''
+  'taxgroup' => 12,
+  'icon' => '',
+  'weight' => 1
 );
