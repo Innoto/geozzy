@@ -5,8 +5,8 @@ admin::load('view/AdminViewMaster.php');
 class AdminViewUser extends AdminViewMaster
 {
 
-  public function __construct( $base_dir ) {
-    parent::__construct( $base_dir );
+  public function __construct( $baseDir ) {
+    parent::__construct( $baseDir );
   }
 
 
@@ -30,6 +30,19 @@ class AdminViewUser extends AdminViewMaster
     $this->template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
     $this->template->setTpl('listUser.tpl', 'admin');
     $this->template->exec();
+  }
+
+
+  /**
+  * Section list user
+  **/
+  public function listUsersBlock() {
+    $template = new Template( $this->baseDir );
+
+    $template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
+    $template->setTpl('listUser.tpl', 'admin');
+
+    return $template;
   }
 
 
