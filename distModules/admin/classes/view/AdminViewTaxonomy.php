@@ -43,7 +43,8 @@ class AdminViewTaxonomy extends AdminViewMaster
         $c = '';
         while ($taxTerm = $taxtermList->fetch() )
         {
-          echo $c.json_encode( $taxTerm->getAllData()['data'] );
+          $taxData = $taxTerm->getAllData();
+          echo $c.json_encode( $taxData['data'] );
           if($c === ''){$c=',';}
         }
         echo ']';     
