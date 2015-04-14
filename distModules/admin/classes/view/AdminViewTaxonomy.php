@@ -33,7 +33,9 @@ class AdminViewTaxonomy extends AdminViewMaster
           $taxTerm->save();
 
         }      
-        echo json_encode( $taxTerm->getAllData()['data'] );
+
+        $termData = $taxTerm->getAllData();
+        echo json_encode( $termData['data'] );
 
         break;
       case 'GET':
@@ -43,7 +45,8 @@ class AdminViewTaxonomy extends AdminViewMaster
         $c = '';
         while ($taxTerm = $taxtermList->fetch() )
         {
-          echo $c.json_encode( $taxTerm->getAllData()['data'] );
+          $termData = $taxTerm->getAllData();
+          echo $c.json_encode( $termData['data'] );
           if($c === ''){$c=',';}
         }
         echo ']';     
@@ -72,7 +75,8 @@ class AdminViewTaxonomy extends AdminViewMaster
     $c = '';
     while ($taxGroup = $taxGroupList->fetch() )
     {
-      echo $c.json_encode( $taxGroup->getAllData()['data'] );
+      $taxData = $taxGroup->getAllData();
+      echo $c.json_encode( $taxData['data'] );
       if($c === ''){$c=',';}
     }
     echo ']';
