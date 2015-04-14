@@ -137,6 +137,7 @@ $C_ENABLED_MODULES = array(
   'admin',
   'adminOld',
   'form',
+  'Blocks',
   'table'
 );
 // before app/Cogumelo.php execution
@@ -148,6 +149,7 @@ $C_INDEX_MODULES  = array(
   'form',
   'admin',
   'adminOld',
+  'Blocks',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 

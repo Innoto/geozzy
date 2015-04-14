@@ -13,6 +13,9 @@ class Cogumelo extends CogumeloClass
   function __construct() {
     parent::__construct();
 
+    /* Probando Bloques */
+    $this->addUrlPatterns( '#^probandoBloques1#', 'view:BloquesTestView::exemplo1' );
+
 
     /*MasterView*/
     $this->addUrlPatterns( '#^$#', 'view:MasterView::main' );
