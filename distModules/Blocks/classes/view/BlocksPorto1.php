@@ -4,9 +4,9 @@ Cogumelo::load('coreView/View.php');
 common::autoIncludes();
 Cogumelo::autoIncludes();
 
+
 class BlocksPorto1 extends View
 {
-  //var $baseDir = null;
 
   /**
    * Inicializacion por defecto

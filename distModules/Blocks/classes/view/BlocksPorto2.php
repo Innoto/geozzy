@@ -3,11 +3,9 @@
 Cogumelo::load('coreView/View.php');
 common::autoIncludes();
 Cogumelo::autoIncludes();
+form::autoIncludes();
 
-/**
-* Clase Master to extend other application methods
-*/
-class MasterView extends View
+class BlocksPorto2 extends View
 {
 
   /**
@@ -28,22 +26,17 @@ class MasterView extends View
     return true;
   }
 
-  public function getBlock() {
+  public function getFormBlock() {
+    $template = new Template( $this->baseDir );
+
     $formBasura = new FormController( 'probaBasura', '/form-group-action' );
     $formBasura->setField( 'input2', array( 'id' => 'meu2', 'label' => 'Meu Bloque 2', 'value' => 'valor678' ) );
     $formBasura->setField( 'submit', array( 'type' => 'submit', 'label' => 'Pulsa para enviar', 'value' => 'Manda' ) );
     $formBasura->saveToSession();
-    $this->template->assign( 'formBasura', $formBasura->getHtmlForm() );
-    $this->template->setTpl( 'bloquePorto2.tpl', 'blocks' );
+    $template->assign( 'formBasura', $formBasura->getHtmlForm() );
+    $template->setTpl( 'bloquePorto2.tpl', 'Blocks' );
 
-    return $this->template;
-  }
-
-  public function getBlockTitulo( $titulo ) {
-    $this->template->assign( 'titulo', $titulo );
-    $this->template->setTpl( 'bloquePorto1.tpl', 'blocks' );
-
-    return $this->template;
+    return $template;
   }
 
 }

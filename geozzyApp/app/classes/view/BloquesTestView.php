@@ -4,13 +4,18 @@ Cogumelo::load( 'coreView/View.php' );
 
 // Blocks::autoIncludes();
 Blocks::load( 'view/BlocksPorto1.php' );
+Blocks::load( 'view/BlocksPorto2.php' );
+user::autoIncludes();
+//admin::autoIncludes();
+admin::load( 'view/AdminViewUser.php' );
+
 
 class BloquesTestView extends View
 {
 
-  public function __construct( $base_dir ) {
+  public function __construct( $baseDir ) {
 
-    parent::__construct( $base_dir );
+    parent::__construct( $baseDir );
   }
 
 
@@ -32,7 +37,20 @@ class BloquesTestView extends View
 
     $bp1 = new BlocksPorto1( null );
     $this->template->setBlock( 'bloque1', $bp1->getBlock() );
-    $this->template->setBlock( 'bloque2', $bp1->getBlockTitulo( 'Segundo' ) );
+    $this->template->addToBlock( 'bloque1', $bp1->getBlockTitulo( 'Segunda parte do bloque' ) );
+
+
+    $bp2 = new BlocksPorto2( null );
+    $this->template->setBlock( 'bloque2', $bp2->getFormBlock() );
+
+
+    $bp3 = new UserView( $this->baseDir );
+    $this->template->setBlock( 'bloque3', $bp3->loginFormBlock() );
+
+
+    $bp4 = new AdminViewUser( $this->baseDir );
+    $this->template->setBlock( 'bloque4', $bp4->listUsersBlock() );
+
 
     $this->template->setTpl( 'probandoBloques1.tpl' );
     $this->template->exec();
