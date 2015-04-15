@@ -15,8 +15,9 @@ class ResourceModel extends Model
       'autoincrement' => true
     ),
     'type' => array(
-      'type' => 'VARCHAR',
-      'size' => '100'
+      'type'=>'FOREIGN',
+      'vo' => 'ResourceTypeModel',
+      'key'=> 'id'
     ),
     'user' => array(
       'type'=>'FOREIGN',
@@ -27,9 +28,7 @@ class ResourceModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'UserModel',
       'key'=> 'id'
-    )
-
-    ,
+    ),
     'published' => array(
       'type' => 'BOOLEAN'
     ),
@@ -42,37 +41,42 @@ class ResourceModel extends Model
     'timeLastPublish' => array(
       'type' => 'TIMESTAMP'
     ),
-
     'headKeywords' => array(
       'type' => 'VARCHAR',
       'size' => 150
     ),
     'headDescription' => array(
       'type' => 'VARCHAR',
-      'size' => 150
+      'size' => 150,
+      'multilang' => true
     ),
-    'titleHead' => array(
+    'headTitle' => array(
       'type' => 'VARCHAR',
       'size' => 100,
-      'translate' => true      
-    ),    
+      'multilang' => true
+    ),
     'title' => array(
       'type' => 'VARCHAR',
       'size' => 100,
-      'translate' => true
+      'multilang' => true
     ),
     'shortDescription' => array(
       'type' => 'VARCHAR',
       'size' => 100,
-      'translate' => true
+      'multilang' => true
     ),
     'mediumDescription' => array(
       'type' => 'TEXT',
-      'translate' => true
+      'multilang' => true
     ),
     'content' => array(
       'type' => 'TEXT',
-      'translate' => true
+      'multilang' => true
+    ),
+    'image' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'FiledataModel',
+      'key' => 'id'
     ),
     'loc' => array(
       'type' => 'GEOMETRY'
@@ -80,19 +84,13 @@ class ResourceModel extends Model
     'defaultZoom' => array(
       'type' => 'INT'
     ),
-    'asociatedBlock' => array(
+    'countVisits' => array(
       'type' => 'INT'
     ),
-    'image' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'FiledataModel',
-      'key' => 'id'
-    ),
-    'galery' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'FilegroupModel',
-      'key' => 'idGroup'
+    'averageVotes' => array(
+      'type' => 'FLOAT'
     )
+
   );
 
   var $filters = array( );
