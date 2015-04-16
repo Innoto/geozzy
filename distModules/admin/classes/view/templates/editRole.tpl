@@ -6,10 +6,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-            <h4 class="nickname">
               <i class="fa fa-unlock-alt fa-fw"></i>
               Edit role
-            </h4>
           </strong>
         </div>
         <div class="panel-body">

@@ -6,10 +6,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-            <h4 class="nickname">
-              <i class="fa fa-user fa-fw"></i>
-              Edit user
-            </h4>
+            <i class="fa fa-user fa-fw"></i>
+            Edit user
           </strong>
         </div>
         <div class="panel-body">
@@ -27,10 +25,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-            <h4 class="nickname">
-              <i class="fa fa-key fa-fw"></i>
-              Change password
-            </h4>
+            <i class="fa fa-key fa-fw"></i>
+            Change password
           </strong>
         </div>
         <div class="panel-body">
@@ -48,10 +44,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-            <h4 class="nickname">
-              <i class="fa fa-unlock-alt"></i>
-              Roles
-            </h4>
+            <i class="fa fa-unlock-alt"></i>
+            Roles
           </strong>
         </div>
         <div class="panel-body">

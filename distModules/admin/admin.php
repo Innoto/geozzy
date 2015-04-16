@@ -77,7 +77,7 @@ class admin extends Module
     'js/models/TaxonomytermModel.js',
     'js/models/TopicModel.js',
     'js/collections/CategoryCollection.js',
-    'js/collections/CategoryCollection.js',
+    'js/collections/CategorytermCollection.js',
     'js/collections/TopicCollection.js',
     'js/exampleMorrisData.js'
   );

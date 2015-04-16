@@ -6,10 +6,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-            <h4 class="nickname">
-              <i class="fa fa-user fa-fw"></i>
-              New User
-            </h4>
+            <i class="fa fa-user fa-fw"></i>
+            New User
           </strong>
         </div>
         <div class="panel-body">
