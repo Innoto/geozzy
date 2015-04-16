@@ -11,11 +11,11 @@ class Cogumelo extends CogumeloClass
     parent::__construct();
 
     /* Probando Bloques */
-    $this->addUrlPatterns( '#^probandoBloques1#', 'view:BloquesTestView::exemplo1' );
+    $this->addUrlPatterns( '#^probandoBloques1$#', 'view:BloquesTestView::exemplo1' );
 
     /* Probando Recursos */
-    $this->addUrlPatterns( '#^recurso#', 'view:RecursoView::showRecurso' );
-    $this->addUrlPatterns( '#^recursoForm#', 'view:RecursoView::loadForm' );
+    $this->addUrlPatterns( '#^recurso$#', 'view:RecursoView::showRecurso' );
+    $this->addUrlPatterns( '#^recursoForm$#', 'view:RecursoView::loadForm' );
 
 
     /*MasterView*/
