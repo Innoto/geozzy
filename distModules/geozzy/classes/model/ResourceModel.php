@@ -93,7 +93,7 @@ class ResourceModel extends Model
 
   );
 
-  var $filters = array( );
+  var $extraFilters = array( );
 
 
   function __construct( $datarray= array(), $otherRelObj = false ) {

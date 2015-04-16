@@ -4,6 +4,7 @@ Cogumelo::load( 'coreView/View.php' );
 
 common::autoIncludes();
 geozzy::autoIncludes();
+
 form::autoIncludes();
 filedata::autoIncludes();
 
@@ -33,7 +34,92 @@ class RecursoView extends View
     Defino y muestro un formulario
   */
   public function loadForm() {
-    print "RecursoView: loadForm()\n\n";
+    error_log( "RecursoView: loadForm()" );
+
+
+    $form = new FormController( 'probaPorto', '/form-group-action' );
+
+    $form->setSuccess( 'accept', 'Gracias por participar' );
+
+    /*
+    'headKeywords'      'size' => 150
+    'headDescription'      'size' => 150, 'multilang' => true
+    'headTitle'      'size' => 100,      'multilang' => true
+    'title'      'size' => 100,      'multilang' => true
+    'shortDescription'      'size' => 100,     'multilang' => true
+    'mediumDescription'      'type' => 'TEXT',      'multilang' => true
+    'content'      'type' => 'TEXT',      'multilang' => true
+    'image'    
+    'loc'      'type' => 'GEOMETRY'
+    'defaultZoom'      'type' => 'INT'
+    'countVisits'      'type' => 'INT'
+    'averageVotes'      'type' => 'FLOAT'
+    */
+
+    $campo = 'headKeywords';
+    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+    $form->setValidationRule( $campo, 'maxlength', '150' );
+
+    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
+      $campo = 'headDescription_'.$lang;
+      $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+      $form->setValidationRule( $campo, 'maxlength', '150' );
+    }
+
+    $campo = 'headTitle';
+    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+    $form->setValidationRule( $campo, 'maxlength', '100' );
+
+    $campo = 'title';
+    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+    $form->setValidationRule( $campo, 'maxlength', '100' );
+
+    $campo = 'shortDescription';
+    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+    $form->setValidationRule( $campo, 'maxlength', '100' );
+
+    $campo = 'mediumDescription';
+    $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea' ) );
+    $form->setValidationRule( $campo, 'maxlength', '100' );
+
+    $campo = 'content';
+    $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea' ) );
+    $form->setValidationRule( $campo, 'maxlength', '100' );
+
+    //$form->setField( 'image', array( 'type' => 'file', 'id' => 'inputFicheiro', 'placeholder' => 'Escolle un ficheiro JPG', 'label' => 'Colle un ficheiro JPG', 'destDir' => '/porto' ) );
+
+    //$form->setField( 'loc', array( 'label' => 'Label de '.$campo ) );
+
+    $campo = 'defaultZoom';
+    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+    $form->setValidationRule( $campo, 'maxlength', '100' );
+
+    $campo = 'countVisits';
+    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+    $form->setValidationRule( $campo, 'maxlength', '100' );
+
+    $campo = 'averageVotes';
+    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+    $form->setValidationRule( $campo, 'maxlength', '100' );
+
+    /*
+    $form->setFieldGroup( 'inputGa', 'grupoMeu' );
+    $form->setFieldGroup( 'inputGb', 'grupoMeu' );
+    */
+
+    $form->setField( 'submit', array( 'type' => 'submit', 'label' => 'Pulsa para enviar', 'value' => 'Manda' ) );
+
+    // Una vez que hemos definido all, guardamos el form en sesion
+    $form->saveToSession();
+
+    $this->template->assign( 'formOpen', $form->getHtmpOpen() );
+    $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
+    $this->template->assign( 'formClose', $form->getHtmlClose() );
+    $this->template->assign( 'formValidations', $form->getScriptCode() );
+
+    $this->template->setTpl( 'recursoForm.tpl' );
+    $this->template->exec();
+
 
     // $recurso = new ResourceModel();
 
@@ -69,6 +155,13 @@ class RecursoView extends View
   */
   public function showRecurso() {
     print "RecursoView: showRecurso()\n\n";
+
+    $recObj = new ResourceModel();
+    $recurso = $recObj->listItems()->fetch();
+
+    //cogumelo::console( $recurso );
+    print("<pre>\n");
+    print_r( $recurso );
 
     /*
     $newRec = array(
@@ -112,11 +205,6 @@ class RecursoView extends View
     $recurso->save();
     */
 
-
-    $recObj = new ResourceModel();
-    $recurso = $recObj->listItems()->fetch();
-    print("<pre>\n");
-    print_r( $recurso );
 
     /*
     [data] => Array
