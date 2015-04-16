@@ -36,6 +36,15 @@ class RecursoView extends View
   public function loadForm() {
     error_log( "RecursoView: loadForm()" );
 
+    $langAvailable = false;
+    $this->template->assign( 'JsLangAvailable', 'false' );
+    $this->template->assign( 'JsLangDefault', 'false' );
+    if( defined( 'LANG_AVAILABLE' ) ) {
+      $langAvailable = explode( ',', LANG_AVAILABLE );
+      $tmp = implode( "', '", $langAvailable );
+      $this->template->assign( 'JsLangAvailable', "['".$tmp."']" );
+      $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
+    }
 
     $form = new FormController( 'probaPorto', '/form-group-action' );
 
@@ -60,15 +69,21 @@ class RecursoView extends View
     $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
     $form->setValidationRule( $campo, 'maxlength', '150' );
 
+    $grupo = 'headDescription';
     foreach( array( 'gl', 'es', 'en' ) as $lang ) {
-      $campo = 'headDescription_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+      $campo = $grupo.'_'.$lang;
+      $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'class' => 'translField' ) );
       $form->setValidationRule( $campo, 'maxlength', '150' );
+      $form->setFieldGroup( $campo, $grupo );
     }
 
-    $campo = 'headTitle';
-    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
-    $form->setValidationRule( $campo, 'maxlength', '100' );
+    $grupo = 'headTitle';
+    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
+      $campo = $grupo.'_'.$lang;
+      $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'class' => 'translField' ) );
+      $form->setValidationRule( $campo, 'maxlength', '100' );
+      $form->setFieldGroup( $campo, $grupo );
+    }
 
     $campo = 'title';
     $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
@@ -78,9 +93,13 @@ class RecursoView extends View
     $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
     $form->setValidationRule( $campo, 'maxlength', '100' );
 
-    $campo = 'mediumDescription';
-    $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea' ) );
-    $form->setValidationRule( $campo, 'maxlength', '100' );
+    $grupo = 'mediumDescription';
+    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
+      $campo = $grupo.'_'.$lang;
+      $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea', 'class' => 'translField' ) );
+      $form->setValidationRule( $campo, 'maxlength', '100' );
+      $form->setFieldGroup( $campo, $grupo );
+    }
 
     $campo = 'content';
     $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea' ) );
@@ -102,15 +121,12 @@ class RecursoView extends View
     $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
     $form->setValidationRule( $campo, 'maxlength', '100' );
 
-    /*
-    $form->setFieldGroup( 'inputGa', 'grupoMeu' );
-    $form->setFieldGroup( 'inputGb', 'grupoMeu' );
-    */
 
     $form->setField( 'submit', array( 'type' => 'submit', 'label' => 'Pulsa para enviar', 'value' => 'Manda' ) );
 
     // Una vez que hemos definido all, guardamos el form en sesion
     $form->saveToSession();
+
 
     $this->template->assign( 'formOpen', $form->getHtmpOpen() );
     $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
