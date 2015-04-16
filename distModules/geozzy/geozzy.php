@@ -16,14 +16,15 @@ class geozzy extends Module
 
   );
   public $includesCommon = array(
-
+    'model/ResourceModel.php'
   );
 
-  function __construct() {
+
+  public function __construct() {
     $this->addUrlPatterns( '#^'.MOD_GEOZZY_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
   }
 
-  static function moduleRc() {
+  static public function moduleRc() {
 
     user::load("model/UserModel.php");
     user::load("model/RoleModel.php");
@@ -100,14 +101,14 @@ class geozzy extends Module
     Crea Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
 
-   global $GEOZZY_TAXONOMIESGROUPS;
+    global $GEOZZY_TAXONOMIESGROUPS;
 
-    if(sizeof($GEOZZY_TAXONOMIESGROUPS) > 0){
-      foreach ($GEOZZY_TAXONOMIESGROUPS as $key => $tax) {
+    if( count( $GEOZZY_TAXONOMIESGROUPS ) > 0 ) {
+      foreach( $GEOZZY_TAXONOMIESGROUPS as $key => $tax ) {
         $taxgroup = new TaxonomygroupModel( $tax );
         $taxgroup->save();
-        if(sizeof($tax['initialTerms']) > 0){
-          foreach ($tax['initialTerms'] as $key => $term) {
+        if( count( $tax['initialTerms']) > 0 ) {
+          foreach( $tax['initialTerms'] as $key => $term ) {
           # code...
             $term['taxgroup'] = $taxgroup->getter('id');
             $taxterm = new TaxonomytermModel( $term );
@@ -189,8 +190,8 @@ class geozzy extends Module
 
     $GEOZZY_RESOURCETYPE_ALL = array_merge( $GEOZZY_DEFAULT_RESOURCETYPE, $GEOZZY_RESOURCETYPE );
 
-    if(sizeof($GEOZZY_RESOURCETYPE_ALL) > 0){
-      foreach ($GEOZZY_RESOURCETYPE_ALL as $key => $rt) {
+    if( count( $GEOZZY_RESOURCETYPE_ALL ) > 0 ) {
+      foreach( $GEOZZY_RESOURCETYPE_ALL as $key => $rt ) {
         $rt['name'] = $rt['name']['es'];
         $rtO = new ResourcetypeModel( $rt );
         $rtO->save();
@@ -202,16 +203,15 @@ class geozzy extends Module
     */
     global $GEOZZY_TOPICS;
 
-    if(sizeof($GEOZZY_TOPICS) > 0){
-      foreach ($GEOZZY_TOPICS as $key => $topic) {
+    if( count( $GEOZZY_TOPICS ) > 0 ) {
+      foreach( $GEOZZY_TOPICS as $key => $topic ) {
         $topic['name'] = $topic['name']['es'];
         $topic['idName'] = $key;
         $topicD = new TopicModel( $topic );
         $topicD->save();
 
-        if( sizeof($topic['resourceTypes']) > 0){
-          foreach ($topic['resourceTypes'] as $key => $rt) {
-
+        if( count( $topic['resourceTypes'] ) > 0 ) {
+          foreach( $topic['resourceTypes'] as $key => $rt ) {
             $reTypeModel = new ResourcetypeModel( );
             $reType = $reTypeModel->listItems( array('filters' => array('idName' => $rt['resourceTypeIdName']) ) )->fetch();
             if($reType){
@@ -238,42 +238,46 @@ class geozzy extends Module
    * Get a password from the shell.
    * This function works on *nix systems only and requires shell_exec and stty.
    *
-   * @param  boolean $stars Wether or not to output stars for given characters
+   * @param boolean $stars Wether or not to output stars for given characters
+   *
    * @return string
    */
-  static function getPassword($stars = false)
+  static public function getPassword( $stars = false )
   {
-      // Get current style
-      $oldStyle = shell_exec('stty -g');
+    // Get current style
+    $oldStyle = shell_exec('stty -g');
 
-      if ($stars === false) {
-          shell_exec('stty -echo');
-          $password = rtrim(fgets(STDIN), "\n");
-      } else {
-          shell_exec('stty -icanon -echo min 1 time 0');
+    if( $stars === false ) {
+      shell_exec('stty -echo');
+      $password = rtrim(fgets(STDIN), "\n");
+    }
+    else {
+      shell_exec('stty -icanon -echo min 1 time 0');
 
-          $password = '';
-          while (true) {
-              $char = fgetc(STDIN);
+      $password = '';
+      while (true) {
+        $char = fgetc(STDIN);
 
-              if ($char === "\n") {
-                  break;
-              } else if (ord($char) === 127) {
-                  if (strlen($password) > 0) {
-                      fwrite(STDOUT, "\x08 \x08");
-                      $password = substr($password, 0, -1);
-                  }
-              } else {
-                  fwrite(STDOUT, "*");
-                  $password .= $char;
-              }
+        if ($char === "\n") {
+          break;
+        }
+        else if (ord($char) === 127) {
+          if( strlen($password) > 0 ) {
+            fwrite(STDOUT, "\x08 \x08");
+            $password = substr($password, 0, -1);
           }
+        }
+        else {
+          fwrite(STDOUT, "*");
+          $password .= $char;
+        }
       }
+    }
 
-      // Reset old style
-      shell_exec('stty ' . $oldStyle);
+    // Reset old style
+    shell_exec('stty ' . $oldStyle);
 
-      // Return the password
-      return $password;
+    // Return the password
+    return $password;
   }
 }

@@ -99,6 +99,7 @@ define( 'SYS_MAIL_FROM_EMAIL', 'cogumelo@cogumelo.org' );
 define( 'SMARTY_CONFIG', APP_BASE_PATH.'/conf/smarty' );
 define( 'SMARTY_COMPILE', APP_TMP_PATH.'/templates_c' );
 define( 'SMARTY_CACHE', APP_TMP_PATH.'/cache' );
+define( 'TPL_TMP', APP_TMP_PATH.'/tpl' );
 
 
 //
@@ -137,6 +138,7 @@ $C_ENABLED_MODULES = array(
   'admin',
   'adminOld',
   'form',
+  'Blocks',
   'table'
 );
 // before app/Cogumelo.php execution
@@ -148,6 +150,7 @@ $C_INDEX_MODULES  = array(
   'form',
   'admin',
   'adminOld',
+  'Blocks',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 

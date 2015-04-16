@@ -3,15 +3,19 @@
 
 class Cogumelo extends CogumeloClass
 {
-
-  public $dependences = array(
-
-  );
+  public $dependences = array();
   public $includesCommon = array();
 
 
-  function __construct() {
+  public function __construct() {
     parent::__construct();
+
+    /* Probando Bloques */
+    $this->addUrlPatterns( '#^probandoBloques1#', 'view:BloquesTestView::exemplo1' );
+
+    /* Probando Recursos */
+    $this->addUrlPatterns( '#^recurso#', 'view:RecursoView::showRecurso' );
+    $this->addUrlPatterns( '#^recursoForm#', 'view:RecursoView::loadForm' );
 
 
     /*MasterView*/
