@@ -28,7 +28,7 @@
 
 <body>
 
-  <!-- Client templates -->    
+  <!-- Client templates -->
   {include file="/home/proxectos/geozzy/distModules/admin/classes/view/templates/categoryEditor.tpl"}
 
   <div id="wrapper">
@@ -41,17 +41,16 @@
             <ul class="nav" id="side-menu">
 
                 <!-- TOPIC -->
-                <li class="topics">
-                    <a href="/admin"><i class="fa fa-map-marker fa-fw fa-2x"></i>Topic 1</a>
-                </li>
 
-                <li class="topics">
-                    <a href="/admin"><i class="fa fa-compass fa-fw fa-2x"></i>Topic 2</a>
-                </li>
+                <script type="text/template" id="menuTopics">
 
-                <li class="topics">
-                    <a href="/admin"><i class="fa fa-tree fa-fw fa-2x"></i>Topic 3</a>
-                </li>
+                <% _.each(topics, function(topic) { %>
+                      <li class="topics">
+                        <a href="/admin#topic/<%- topic.id %>"><i class="fa fa-star fa-fw"></i> <%- topic.name %> </a>
+                     </li>
+                <% }); %>
+
+                </script>
                 <!-- END TOPICS -->
 
                 <li>
