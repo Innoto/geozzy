@@ -30,7 +30,7 @@ class ResourceColectionModel extends Model
     )    
   );
 
-  var $filters = array( );
+  static $extraFilters = array();
 
 
   function __construct( $datarray= array(), $otherRelObj = false ) {
