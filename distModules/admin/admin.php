@@ -75,8 +75,10 @@ class admin extends Module
     'js/routers/AdminRouter.js',
     'js/models/TaxonomygroupModel.js',
     'js/models/TaxonomytermModel.js',
+    'js/models/TopicModel.js',
     'js/collections/CategoryCollection.js',
-    'js/collections/CategorytermCollection.js',
+    'js/collections/CategoryCollection.js',
+    'js/collections/TopicCollection.js',
     'js/exampleMorrisData.js'
   );
 
@@ -108,6 +110,8 @@ class admin extends Module
 
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/categoryterms(.*)$#', 'view:AdminViewTaxonomy::categoryTermsSync' );
     $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/categories$#', 'view:AdminViewTaxonomy::categoriesSync' );
+
+    $this->addUrlPatterns( '#^'.MOD_ADMIN_URL_DIR.'/topics$#', 'view:AdminViewTopic::topicsSync' );
 
   }
 
