@@ -6,10 +6,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-            <h4 class="nickname">
               <i class="fa fa-user fa-fw"></i>
               {$user->getter('login')}
-            </h4>
           </strong>
         </div>
         <div class="panel-body">
