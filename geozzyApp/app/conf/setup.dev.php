@@ -132,6 +132,7 @@ $C_ENABLED_MODULES = array(
   'i18nGetLang',
   'common',
   'devel',
+  'geozzyAPI',
   'user',
   'filedata',
   'geozzy',
@@ -151,6 +152,7 @@ $C_INDEX_MODULES  = array(
   'admin',
   'adminOld',
   'Blocks',
+  'geozzyAPI',  
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 
