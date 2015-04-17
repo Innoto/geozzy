@@ -72,7 +72,7 @@ class RecursoView extends View
     $grupo = 'headDescription';
     foreach( array( 'gl', 'es', 'en' ) as $lang ) {
       $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+      $form->setField( $campo, array( 'label' => 'Label de '.$grupo ) );
       $form->setValidationRule( $campo, 'maxlength', '150' );
       $form->setFieldGroup( $campo, $grupo );
     }
@@ -80,7 +80,7 @@ class RecursoView extends View
     $grupo = 'headTitle';
     foreach( array( 'gl', 'es', 'en' ) as $lang ) {
       $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+      $form->setField( $campo, array( 'label' => 'Label de '.$grupo ) );
       $form->setValidationRule( $campo, 'maxlength', '100' );
       $form->setFieldGroup( $campo, $grupo );
     }
@@ -88,7 +88,7 @@ class RecursoView extends View
     $grupo = 'title';
     foreach( array( 'gl', 'es', 'en' ) as $lang ) {
       $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+      $form->setField( $campo, array( 'label' => 'Label de '.$grupo ) );
       $form->setValidationRule( $campo, 'maxlength', '100' );
       $form->setFieldGroup( $campo, $grupo );
     }
@@ -96,7 +96,7 @@ class RecursoView extends View
     $grupo = 'shortDescription';
     foreach( array( 'gl', 'es', 'en' ) as $lang ) {
       $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+      $form->setField( $campo, array( 'label' => 'Label de '.$grupo ) );
       $form->setValidationRule( $campo, 'maxlength', '100' );
       $form->setFieldGroup( $campo, $grupo );
     }
@@ -104,14 +104,14 @@ class RecursoView extends View
     $grupo = 'mediumDescription';
     foreach( array( 'gl', 'es', 'en' ) as $lang ) {
       $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea' ) );
+      $form->setField( $campo, array( 'label' => 'Label de '.$grupo, 'type' => 'textarea' ) );
       $form->setFieldGroup( $campo, $grupo );
     }
 
     $grupo = 'content';
     foreach( array( 'gl', 'es', 'en' ) as $lang ) {
       $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea' ) );
+      $form->setField( $campo, array( 'label' => 'Label de '.$grupo, 'type' => 'textarea' ) );
       $form->setFieldGroup( $campo, $grupo );
     }
 
