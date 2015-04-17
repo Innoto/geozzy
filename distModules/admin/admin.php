@@ -64,10 +64,10 @@ class admin extends Module
      "includes" => array("backbone-min.js")
     ),
     array(
-     "id" =>"backbonejs",
-     "params" => array("backbone-1.1.2"),
-     "installer" => "manual",
-     "includes" => array("backbone-min.js")
+     "id" =>"jqtree",
+     "params" => array("jqtree"),
+     "installer" => "bower",
+     "includes" => array("jqtree-min.js")
     )
 
   );
