@@ -58,7 +58,7 @@ class RecursoView extends View
     'shortDescription'      'size' => 100,     'multilang' => true
     'mediumDescription'      'type' => 'TEXT',      'multilang' => true
     'content'      'type' => 'TEXT',      'multilang' => true
-    'image'    
+    'image'
     'loc'      'type' => 'GEOMETRY'
     'defaultZoom'      'type' => 'INT'
     'countVisits'      'type' => 'INT'
@@ -72,7 +72,7 @@ class RecursoView extends View
     $grupo = 'headDescription';
     foreach( array( 'gl', 'es', 'en' ) as $lang ) {
       $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'class' => 'translField' ) );
+      $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
       $form->setValidationRule( $campo, 'maxlength', '150' );
       $form->setFieldGroup( $campo, $grupo );
     }
@@ -80,30 +80,40 @@ class RecursoView extends View
     $grupo = 'headTitle';
     foreach( array( 'gl', 'es', 'en' ) as $lang ) {
       $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'class' => 'translField' ) );
+      $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
       $form->setValidationRule( $campo, 'maxlength', '100' );
       $form->setFieldGroup( $campo, $grupo );
     }
 
-    $campo = 'title';
-    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
-    $form->setValidationRule( $campo, 'maxlength', '100' );
+    $grupo = 'title';
+    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
+      $campo = $grupo.'_'.$lang;
+      $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+      $form->setValidationRule( $campo, 'maxlength', '100' );
+      $form->setFieldGroup( $campo, $grupo );
+    }
 
-    $campo = 'shortDescription';
-    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
-    $form->setValidationRule( $campo, 'maxlength', '100' );
+    $grupo = 'shortDescription';
+    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
+      $campo = $grupo.'_'.$lang;
+      $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
+      $form->setValidationRule( $campo, 'maxlength', '100' );
+      $form->setFieldGroup( $campo, $grupo );
+    }
 
     $grupo = 'mediumDescription';
     foreach( array( 'gl', 'es', 'en' ) as $lang ) {
       $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea', 'class' => 'translField' ) );
-      $form->setValidationRule( $campo, 'maxlength', '100' );
+      $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea' ) );
       $form->setFieldGroup( $campo, $grupo );
     }
 
-    $campo = 'content';
-    $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea' ) );
-    $form->setValidationRule( $campo, 'maxlength', '100' );
+    $grupo = 'content';
+    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
+      $campo = $grupo.'_'.$lang;
+      $form->setField( $campo, array( 'label' => 'Label de '.$campo, 'type' => 'textarea' ) );
+      $form->setFieldGroup( $campo, $grupo );
+    }
 
     //$form->setField( 'image', array( 'type' => 'file', 'id' => 'inputFicheiro', 'placeholder' => 'Escolle un ficheiro JPG', 'label' => 'Colle un ficheiro JPG', 'destDir' => '/porto' ) );
 
