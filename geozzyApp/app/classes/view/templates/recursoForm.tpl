@@ -1,4 +1,4 @@
-{extends "default.tpl"} 
+{extends "default.tpl"}
 
 
 {block "headTitle" append} - Form de Recurso{/block}
@@ -21,7 +21,8 @@
     */
     .cgmMForm-group-wrap > label { display: none; }
     .cgmMForm-group-wrap .langSwitch { margin:0; }
-    .cgmMForm-group-wrap .langSwitch li { display: inline; padding: 0 0.5em; border:1px dotted pink; }
+    .cgmMForm-group-wrap .langSwitch li { display: inline; padding: 0 0.5em; border:1px dotted pink; background-color: grey; }
+    .cgmMForm-group-wrap .langSwitch li.langActive { font-weight: bold; background-color: green; color: yellow; }
   </style>
 {/block}
 
@@ -42,19 +43,21 @@ $( document ).ready( function() {
   var langDefault = {$JsLangDefault};
   var langForm = false;
 
+  function switchFormLang( lang ) {
+    console.log( 'switchFormLang: '+lang );
+    langForm = lang;
+    $( '.cgmMForm-groupElem > div' ).hide();
+    $( '.cgmMForm-groupElem > div[class$="_'+lang+'"]' ).show();
+    $( '.cgmMForm-group-wrap ul.langSwitch li' ).removeClass( 'langActive' );
+    $( '.cgmMForm-group-wrap ul.langSwitch li.langSwitch-'+lang ).addClass( 'langActive' );
+  }
+
   if( langAvailable ) {
     var htmlLangSwitch = '<ul class="langSwitch">';
-    $.each( langAvailable, function( index, value ) {
-      htmlLangSwitch += '<li class="langSwitch-'+value+'" data-lang-value="'+value+'">'+value;
+    $.each( langAvailable, function( index, lang ) {
+      htmlLangSwitch += '<li class="langSwitch-'+lang+'" data-lang-value="'+lang+'">'+lang;
     });
     $( '.cgmMForm-group-wrap' ).prepend( htmlLangSwitch );
-
-    function switchFormLang( lang ) {
-      console.log( 'switchFormLang: '+lang );
-      langForm = lang;
-      $( '.cgmMForm-groupElem > div' ).hide();
-      $( '.cgmMForm-groupElem > div[class$="_'+lang+'"]' ).show();
-    }
 
     switchFormLang( langDefault );
 
