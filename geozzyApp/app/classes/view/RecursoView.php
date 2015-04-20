@@ -65,7 +65,78 @@ class RecursoView extends View
     'averageVotes'      'type' => 'FLOAT'
     */
 
+
+
+
+    $campos = array(
+      'headKeywords' => array(
+        'params' => array( 'label' => 'Label de headKeywords' ),
+        'rules' => array( 'maxlength' => '150' )
+      ),
+      'headDescription' => array(
+        'translate' => true,
+        'params' => array( 'label' => 'Label de headDescription' ),
+        'rules' => array( 'maxlength' => '150' )
+      ),
+      'headTitle' => array(
+        'translate' => true,
+        'params' => array( 'label' => 'Label de headTitle' ),
+        'rules' => array( 'maxlength' => '100' )
+      ),
+      'title' => array(
+        'translate' => true,
+        'params' => array( 'label' => 'Label de title' ),
+        'rules' => array( 'required' => true, 'maxlength' => '100' )
+      ),
+      'shortDescription' => array(
+        'translate' => true,
+        'params' => array( 'label' => 'Label de shortDescription' ),
+        'rules' => array( 'maxlength' => '100' )
+      ),
+      'mediumDescription' => array(
+        'translate' => true,
+        'params' => array( 'label' => 'Label de mediumDescription', 'type' => 'textarea' )
+      ),
+      'content' => array(
+        'translate' => true,
+        'params' => array( 'label' => 'Label de content', 'type' => 'textarea' )
+      ),
+      'defaultZoom' => array(
+        'params' => array( 'label' => 'Label de defaultZoom' ),
+        'rules' => array( 'required' => true, 'max' => '20', 'min' => '0' )
+      )
+    );
+
+
+    foreach( $campos as $fieldName => $definition ) {
+      if( !isset( $definition['params'] ) ) {
+        $definition['params'] = false;
+      }
+      if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
+        foreach( $langAvailable as $lang ) {
+          $form->setField( $fieldName.'_'.$lang, $definition['params'] );
+          if( isset( $definition['rules'] ) ) {
+            foreach( $definition['rules'] as $ruleName => $ruleParams ) {
+              $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
+            }
+          }
+          $form->setFieldGroup( $fieldName.'_'.$lang, $fieldName.'_translate' );
+        }
+      }
+      else {
+        $form->setField( $fieldName, $definition['params'] );
+        if( isset( $definition['rules'] ) ) {
+          foreach( $definition['rules'] as $ruleName => $ruleParams ) {
+            $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
+          }
+        }
+      }
+    }
+
+/*
     $campo = 'headKeywords';
+    //public function setField( $fieldName, $params = false ) {
+    //public function setValidationRule( $fieldName, $ruleName, $ruleParams = true ) {
     $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
     $form->setValidationRule( $campo, 'maxlength', '150' );
 
@@ -130,7 +201,7 @@ class RecursoView extends View
     $campo = 'averageVotes';
     $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
     $form->setValidationRule( $campo, 'maxlength', '100' );
-
+*/
 
     $form->setField( 'submit', array( 'type' => 'submit', 'label' => 'Pulsa para enviar', 'value' => 'Manda' ) );
 
