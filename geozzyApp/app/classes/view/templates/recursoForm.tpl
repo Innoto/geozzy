@@ -21,8 +21,8 @@
     */
     .cgmMForm-group-wrap > label { display: none; }
     .cgmMForm-group-wrap .langSwitch { margin:0; }
-    .cgmMForm-group-wrap .langSwitch li { display: inline; padding: 0 0.5em; border:1px dotted pink; background-color: grey; }
-    .cgmMForm-group-wrap .langSwitch li.langActive { font-weight: bold; background-color: green; color: yellow; }
+    .cgmMForm-group-wrap .langSwitch li { display: inline; padding: 0 0.5em; border:1px dotted pink; background-color: grey; cursor: pointer }
+    .cgmMForm-group-wrap .langSwitch li.langActive { font-weight: bold; background-color: green; color: yellow; cursor: no-drop; }
   </style>
 {/block}
 
