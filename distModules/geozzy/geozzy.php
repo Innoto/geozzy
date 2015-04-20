@@ -13,6 +13,24 @@ class geozzy extends Module
   public $version = "";
   public $dependences = array(
 
+    array(
+     "id" =>"underscore",
+     "params" => array("underscore#1.8.3"),
+     "installer" => "bower",
+     "includes" => array("underscore-min.js")
+    ),
+    array(
+     "id" =>"backbonejs",
+     "params" => array("backbone#1.1.2"),
+     "installer" => "bower",
+     "includes" => array("backbone.js")
+    ),
+    array(
+     "id" =>"swagger-ui",
+     "params" => array("swagger-ui#v2.0.24"),
+     "installer" => "bower",
+     "includes" => array("backbone.js")
+    )
 
   );
   public $includesCommon = array(

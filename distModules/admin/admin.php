@@ -52,22 +52,10 @@ class admin extends Module
      "includes" => array("morris.js", "morris.css")
     ),
     array(
-     "id" =>"underscore",
-     "params" => array("underscore-1.8.3"),
-     "installer" => "manual",
-     "includes" => array("underscore-min.js")
-    ),
-    array(
-     "id" =>"backbonejs",
-     "params" => array("backbone-1.1.2"),
-     "installer" => "manual",
-     "includes" => array("backbone-min.js")
-    ),
-    array(
      "id" =>"jqtree",
-     "params" => array("jqtree"),
+     "params" => array("jqtree#1.1.0"),
      "installer" => "bower",
-     "includes" => array("jqtree-min.js")
+     "includes" => array("tree.jquery.js", "jqtree.css")
     )
 
   );

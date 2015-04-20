@@ -2,6 +2,7 @@
 Cogumelo::load('coreView/View.php');
 
 common::autoIncludes();
+geozzy::autoIncludes();
 admin::autoIncludes();
 form::autoIncludes();
 user::autoIncludes();
