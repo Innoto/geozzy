@@ -6,7 +6,7 @@ var CategoryEditorView = Backbone.View.extend({
   events: {
     "click .newTaxTerm": "addCategory" ,
     "click .list-group-item .btnEditTerm" : "editCategory",
-    "click .list-group-item .btnCancelTerm" : "cancelEditCategory",    
+    "click .list-group-item .btnCancelTerm" : "cancelEditCategory",
     "click .list-group-item .btnSaveTerm" : "saveEditCategory",
     "click .list-group-item .btnDeleteTerm" : "removeCategory" ,
   },
@@ -38,11 +38,14 @@ var CategoryEditorView = Backbone.View.extend({
 
     this.baseTemplate = _.template( $('#taxTermEditor').html() );
     this.$el.html( this.baseTemplate(that.category.toJSON() ) );
+    this.$el.find('.dd').nestable(  );
   },
 
   updateList: function() {
     this.listTemplate = _.template( $('#taxTermEditorItems').html() );
     this.$el.find('.listTerms').html( this.listTemplate({ terms: this.categoryTerms.toJSON() }) );
+
+
   },
 
   removeCategory: function( el ) {
@@ -59,7 +62,7 @@ var CategoryEditorView = Backbone.View.extend({
 
     var newTerm = that.$el.find('.newTaxTermName').val();
     that.$el.find('.newTaxTermName').val('');
-  
+
     if(newTerm != ''){
       that.categoryTerms.add({ name:newTerm, taxgroup:  that.category.get('id') });
       that.categoryTerms.last().save().done( function(){that.updateList()} );
@@ -68,7 +71,7 @@ var CategoryEditorView = Backbone.View.extend({
 
   editCategory: function( el ) {
     var that = this;
-    
+
     var termId =  $(el.currentTarget).attr('termId');
     var catRow = that.$el.find('.list-group-item[termId="' + termId + '"]' );
 
@@ -78,7 +81,7 @@ var CategoryEditorView = Backbone.View.extend({
 
   saveEditCategory: function( el ) {
     var that = this;
-    
+
     var termId =  $(el.currentTarget).attr('termId');
     var catRow = that.$el.find('.list-group-item[termId="' + termId + '"]' );
 
@@ -97,7 +100,7 @@ var CategoryEditorView = Backbone.View.extend({
 
   cancelEditCategory: function( el ) {
     var that = this;
-   
+
     var termId =  $(el.currentTarget).attr('termId');
     var catRow = that.$el.find('.list-group-item[termId="' + termId + '"]' );
     that.updateList();
