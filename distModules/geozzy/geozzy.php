@@ -2,7 +2,7 @@
 
 Cogumelo::load("coreController/Module.php");
 require_once APP_BASE_PATH."/conf/geozzyTopics.php";
-require_once APP_BASE_PATH."/conf/geozzyTaxonomiesGroups.php";
+require_once APP_BASE_PATH."/conf/geozzyTaxonomyGroups.php";
 require_once APP_BASE_PATH."/conf/geozzyResourcetype.php";
 
 define('MOD_GEOZZY_URL_DIR', 'geozzy');
@@ -119,10 +119,10 @@ class geozzy extends Module
     Crea Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
 
-    global $GEOZZY_TAXONOMIESGROUPS;
+    global $GEOZZY_TAXONOMYGROUPS;
 
-    if( count( $GEOZZY_TAXONOMIESGROUPS ) > 0 ) {
-      foreach( $GEOZZY_TAXONOMIESGROUPS as $key => $tax ) {
+    if( count( $GEOZZY_TAXONOMYGROUPS ) > 0 ) {
+      foreach( $GEOZZY_TAXONOMYGROUPS as $key => $tax ) {
         $taxgroup = new TaxonomygroupModel( $tax );
         $taxgroup->save();
         if( count( $tax['initialTerms']) > 0 ) {

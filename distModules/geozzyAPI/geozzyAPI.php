@@ -21,8 +21,8 @@ class geozzyAPI extends Module
   );
 
   function __construct() {
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'$#', 'view:DocAPIView::doc' );
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy/$#', 'view:MainAPIView::main' );
+    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'$#', 'view:DocAPIView::main' );
+    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy$#', 'view:MainAPIView::main' );
     $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/explorer$#', 'view:explorerView::main' );
     //$this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/views$#', 'view:ResourceAPIView::main' );
   }
