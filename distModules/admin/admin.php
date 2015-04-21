@@ -56,7 +56,14 @@ class admin extends Module
      "params" => array("jqtree#1.1.0"),
      "installer" => "bower",
      "includes" => array("tree.jquery.js", "jqtree.css")
+    ),
+    array(
+     "id" =>"jqtree",
+     "params" => array("nestable"),
+     "installer" => "bower",
+     "includes" => array("jquery.nestable.js")
     )
+
 
   );
 

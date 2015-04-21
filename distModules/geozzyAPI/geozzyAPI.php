@@ -12,12 +12,14 @@ class geozzyAPI extends Module
 
 
   public $dependences = array(
+
     array(
-      "id" => "swagger-ui-2",
-      "params" => array("swagger-ui-2.0.24"),
-      "installer" => "manual",
-      "includes" => array("")
+     "id" =>"swagger-ui",
+     "params" => array("swagger-ui#v2.0.24"),
+     "installer" => "bower",
+     "includes" => array("")
     )
+
   );
 
   function __construct() {
@@ -28,4 +30,3 @@ class geozzyAPI extends Module
   }
 
 }
- 
