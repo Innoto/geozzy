@@ -41,6 +41,7 @@ class RecursoView extends View
     $this->template->assign( 'JsLangDefault', 'false' );
     if( defined( 'LANG_AVAILABLE' ) ) {
       $langAvailable = explode( ',', LANG_AVAILABLE );
+      $langDefault = LANG_DEFAULT;
       $tmp = implode( "', '", $langAvailable );
       $this->template->assign( 'JsLangAvailable', "['".$tmp."']" );
       $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
@@ -70,7 +71,7 @@ class RecursoView extends View
       'title' => array(
         'translate' => true,
         'params' => array( 'label' => 'Label de title' ),
-        'rules' => array( 'required' => true, 'maxlength' => '100' )
+        'rules' => array( 'maxlength' => '100' )
       ),
       'shortDescription' => array(
         'translate' => true,
@@ -79,11 +80,12 @@ class RecursoView extends View
       ),
       'mediumDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Label de mediumDescription', 'type' => 'textarea' )
+        'params' => array( 'label' => 'Label de mediumDescription', 'type' => 'textarea', 'htmlEditor' => 'true' )
       ),
       'content' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Label de content', 'type' => 'textarea', 'data-htmlfield' => 'true' )
+        'params' => array( 'label' => 'Label de content', 'type' => 'textarea',
+          'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
       ),
       'image' => array(
         'params' => array( 'label' => 'Label de image', 'type' => 'file', 'id' => 'imgResource',
@@ -121,7 +123,7 @@ class RecursoView extends View
       }
     }
 
-    $form->setValidationRule( 'title', 'required' );
+    $form->setValidationRule( 'title_'.$langDefault, 'required' );
 
 
     $form->setField( 'submit', array( 'type' => 'submit', 'label' => 'Pulsa para enviar', 'value' => 'Manda' ) );
@@ -401,7 +403,6 @@ class RecursoView extends View
     if( !$dataVO ) {
       Cogumelo::redirect( SITE_URL.'404' );
     }
-
 */
 
 
