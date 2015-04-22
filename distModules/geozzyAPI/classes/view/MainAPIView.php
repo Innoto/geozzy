@@ -33,8 +33,6 @@ class MainAPIView extends View
     if( $resource = $resources->fetch() ) {
       syncModel( $recource );
     }
-
-    syncModel( $ );
   }
 
   function resourceList() {
@@ -44,7 +42,9 @@ class MainAPIView extends View
   }
 
   function resourceTypes() {
-
+    $resourcetypeModel = new ResourcetypeModel( );
+    $resourcetypeList = $resourcetypeModel->listItems( ) );
+    $this->syncModelList( $resourcetypeList );
   }
 
   // Categories
