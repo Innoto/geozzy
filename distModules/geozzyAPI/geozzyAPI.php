@@ -1,8 +1,8 @@
 <?php
 
+require_once APP_BASE_PATH."/conf/geozzyAPI.php";
 Cogumelo::load("coreController/Module.php");
 
-define('GEOZZY_API_URL_DIR', 'api');
 
 class geozzyAPI extends Module
 {
