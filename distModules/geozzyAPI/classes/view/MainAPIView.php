@@ -22,6 +22,15 @@ class MainAPIView extends View
   }
 
   function main(){
+    geozzy::load('model/ResourceModel.php');
+
+    $recObj = new ResourceModel();
+    $recursosList = $recObj->listItems( array( 'affectsDependences' => array('FiledataModel') , 'order' => array( 'id' => -1 ) ) );
+    //var_dump( $recursosList->fetch()->getAllData() );
+  }
+
+
+  function resource() {
 
   }
 
