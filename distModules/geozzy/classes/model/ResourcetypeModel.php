@@ -22,7 +22,8 @@ class ResourcetypeModel extends Model
     ),
     'name' => array(
       'type' => 'VARCHAR',
-      'size' => 45
+      'size' => 45,
+      'multilang' => true
     )
 
   );

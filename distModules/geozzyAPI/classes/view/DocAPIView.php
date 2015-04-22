@@ -21,7 +21,7 @@ class DocAPIView extends View
     return true;
   }
 
-  function doc(){
+  function main(){
     $this->template->setTpl('doc.tpl', 'geozzyAPI');
     $this->template->assign('swaggerLocation', '/vendor/manual/swagger-ui-2.0.24/');    
     $this->template->exec();

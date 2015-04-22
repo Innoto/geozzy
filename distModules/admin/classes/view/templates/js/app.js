@@ -5,8 +5,6 @@ var app = app || {};
 
 $( document ).ready(function() {
 
-
-
   app = {
     // data
     categories: new CategoryCollection(),
@@ -22,6 +20,7 @@ $( document ).ready(function() {
     app.router = new AdminRouter();
     app.mainView = new AdminView();
     Backbone.history.start();
+
   });
 
 

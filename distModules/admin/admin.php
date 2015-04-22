@@ -52,17 +52,24 @@ class admin extends Module
      "includes" => array("morris.js", "morris.css")
     ),
     array(
-     "id" =>"underscore",
-     "params" => array("underscore-1.8.3"),
-     "installer" => "manual",
-     "includes" => array("underscore-min.js")
+     "id" =>"jqtree",
+     "params" => array("jqtree#1.1.0"),
+     "installer" => "bower",
+     "includes" => array("tree.jquery.js", "jqtree.css")
     ),
+    /*array(
+     "id" =>"nestable",
+     "params" => array("nestable"),
+     "installer" => "bower",
+     "includes" => array("jquery.nestable.js")
+    ),*/
     array(
-     "id" =>"backbonejs",
-     "params" => array("backbone-1.1.2"),
-     "installer" => "manual",
-     "includes" => array("backbone-min.js")
+     "id" =>"nestable2",
+     "params" => array("nestable2"),
+     "installer" => "bower",
+     "includes" => array("jquery.nestable.js", "jquery.nestable.css")
     )
+
 
   );
 
