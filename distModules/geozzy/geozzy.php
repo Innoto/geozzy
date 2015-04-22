@@ -3,7 +3,7 @@
 Cogumelo::load("coreController/Module.php");
 require_once APP_BASE_PATH."/conf/geozzyTopics.php";
 require_once APP_BASE_PATH."/conf/geozzyTaxonomyGroups.php";
-require_once APP_BASE_PATH."/conf/geozzyResourcetype.php";
+require_once APP_BASE_PATH."/conf/geozzyResourceType.php";
 
 define('MOD_GEOZZY_URL_DIR', 'geozzy');
 
@@ -24,7 +24,14 @@ class geozzy extends Module
      "params" => array("backbone#1.1.2"),
      "installer" => "bower",
      "includes" => array("backbone.js")
+    ),
+    array(
+     "id" =>"swagger-ui",
+     "params" => array("swagger-ui#v2.0.24"),
+     "installer" => "bower",
+     "includes" => array("backbone.js")
     )
+
   );
   public $includesCommon = array(
     'model/ResourceModel.php'
@@ -112,10 +119,10 @@ class geozzy extends Module
     Crea Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
 
-    global $GEOZZY_TAXONOMYGROUPS;
+    global $GEOZZY_TAXONOMIESGROUPS;
 
-    if( count( $GEOZZY_TAXONOMYGROUPS ) > 0 ) {
-      foreach( $GEOZZY_TAXONOMYGROUPS as $key => $tax ) {
+    if( count( $GEOZZY_TAXONOMIESGROUPS ) > 0 ) {
+      foreach( $GEOZZY_TAXONOMIESGROUPS as $key => $tax ) {
         $taxgroup = new TaxonomygroupModel( $tax );
         $taxgroup->save();
         if( count( $tax['initialTerms']) > 0 ) {
@@ -133,14 +140,6 @@ class geozzy extends Module
     Crea los resourcetype definidas en el un archivo de Conf en GeozzyApp por el usuario y los establecidos por defecto
     */
 
-    $GEOZZY_DEFAULT_RESOURCETYPE['base'] = array(
-      'idName' => 'base',
-      'name' => array(
-        'es' => 'base',
-        'en' => 'base',
-        'gl' => 'base'
-      )
-    );
 
     $GEOZZY_DEFAULT_RESOURCETYPE['page'] = array(
       'idName' => 'page',
@@ -195,7 +194,7 @@ class geozzy extends Module
         'gl' => 'file'
       )
     );
-    $GEOZZY_DEFAULT_RESOURCETYPE;
+
 
     global $GEOZZY_RESOURCETYPE;
 
