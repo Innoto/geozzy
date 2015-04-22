@@ -24,14 +24,14 @@
         <div class="panel-heading">
           <strong>
             <i class="fa fa-tag fa-fw"></i>
-            Añadir termino
+            Añadir  <%- name %>
           </strong>
         </div>
         <div class="panel-body">
           <!--<div class="rolesTable"> <div>-->
           <div>
               <input class="newTaxTermName" type="text">
-              <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir Term</button>
+              <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir <%- name %></button>
           </div>
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
@@ -41,7 +41,7 @@
 
 </script>
 
-
+<!--
 <script type="text/template" id="taxTermEditorItems">
   <% for(var termK in terms) { %>
   	<li class="dd-item" termId="<%- terms[termK].id %>" data-id="<%- terms[termK].id %>">
@@ -68,6 +68,31 @@
   	</li>
   <% } %>
 </script>
+-->
 
 
 
+<script type="text/template" id="taxTermEditorItem">
+  <li class="dd-item" termId="<%- term.id %>" data-id="<%- term.id %>">
+    <div class="row dd-handle">
+
+      <div class="rowShow">
+          <div class="infoTerm"><%- term.name %></div>
+          <div class="taxTermActions">
+            <button class="btnEditTerm btn btn-default btn-info" termId="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
+            <button class="btnDeleteTerm btn btn-default btn-danger" termId="<%- term.id %>" ><i class="fa fa-trash"></i></button>
+          </div>
+      </div>
+      <div class="rowEdit" style="display:none;">
+        <div class="editTermContainer">
+            <input type="text" class="editTermInput" value="<%- term.name %>" />
+        </div>
+        <div class="taxTermActions">
+          <button class="btnSaveTerm btn btn-default btn-success" termId="<%- term.id %>"><i class="fa fa-check"></i></button>
+          <button class="btnCancelTerm btn btn-default btn-danger" termId="<%- term.id %>"><i class="fa fa-close"></i></button>
+        </div>
+
+      </div>
+    </div>
+  </li>
+</script>

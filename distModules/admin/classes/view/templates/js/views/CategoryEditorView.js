@@ -42,12 +42,16 @@ var CategoryEditorView = Backbone.View.extend({
   },
 
   updateList: function() {
-    this.listTemplate = _.template( $('#taxTermEditorItems').html() );
-    this.$el.find('.listTerms').html( this.listTemplate({ terms: this.categoryTerms.toJSON() }) );
+    //this.listTemplate = _.template( $('#taxTermEditorItems').html() );
+    //this.$el.find('.listTerms').html( this.listTemplate({ terms: this.categoryTerms.toJSON() }) );
 
+    this.listTemplate = _.template( $('#taxTermEditorItem').html() );
+    this.$el.find('.listTerms').html();
+    var categoryParents = this.categoryTerms.search({parent:false}).toJSON();
 
-//Probando subida
-
+    _.each( categoryParents , function(item){
+      this.$el.find('.listTerms').append( this.listTemplate({ term: item.toJSON() }) );
+    });
 
   },
 
@@ -76,7 +80,7 @@ var CategoryEditorView = Backbone.View.extend({
     var that = this;
 
     var termId =  $(el.currentTarget).attr('termId');
-    var catRow = that.$el.find('.list-group-item[termId="' + termId + '"]' );
+    var catRow = that.$el.find('[termId="' + termId + '"]' );
 
     catRow.find('.rowShow').hide();
     catRow.find('.rowEdit').show();
@@ -86,7 +90,7 @@ var CategoryEditorView = Backbone.View.extend({
     var that = this;
 
     var termId =  $(el.currentTarget).attr('termId');
-    var catRow = that.$el.find('.list-group-item[termId="' + termId + '"]' );
+    var catRow = that.$el.find('[termId="' + termId + '"]' );
 
     var catTermName = catRow.find('.rowEdit .editTermInput').val();
 
@@ -105,7 +109,7 @@ var CategoryEditorView = Backbone.View.extend({
     var that = this;
 
     var termId =  $(el.currentTarget).attr('termId');
-    var catRow = that.$el.find('.list-group-item[termId="' + termId + '"]' );
+    var catRow = that.$el.find('[termId="' + termId + '"]' );
     that.updateList();
 
   }
