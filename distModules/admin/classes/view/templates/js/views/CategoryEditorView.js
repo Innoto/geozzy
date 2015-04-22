@@ -46,6 +46,9 @@ var CategoryEditorView = Backbone.View.extend({
     this.$el.find('.listTerms').html( this.listTemplate({ terms: this.categoryTerms.toJSON() }) );
 
 
+//Probando subida
+
+
   },
 
   removeCategory: function( el ) {
