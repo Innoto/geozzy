@@ -41,33 +41,18 @@ class RecursoView extends View
     $this->template->assign( 'JsLangDefault', 'false' );
     if( defined( 'LANG_AVAILABLE' ) ) {
       $langAvailable = explode( ',', LANG_AVAILABLE );
+      $langDefault = LANG_DEFAULT;
       $tmp = implode( "', '", $langAvailable );
       $this->template->assign( 'JsLangAvailable', "['".$tmp."']" );
       $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
     }
 
-    $form = new FormController( 'probaPorto', '/form-group-action' );
+    $form = new FormController( 'recursoForm', '/recurso-form-action' );
 
     $form->setSuccess( 'accept', 'Gracias por participar' );
 
-    /*
-    'headKeywords'      'size' => 150
-    'headDescription'      'size' => 150, 'multilang' => true
-    'headTitle'      'size' => 100,      'multilang' => true
-    'title'      'size' => 100,      'multilang' => true
-    'shortDescription'      'size' => 100,     'multilang' => true
-    'mediumDescription'      'type' => 'TEXT',      'multilang' => true
-    'content'      'type' => 'TEXT',      'multilang' => true
-    'image'
-    'loc'      'type' => 'GEOMETRY'
-    'defaultZoom'      'type' => 'INT'
-    'countVisits'      'type' => 'INT'
-    'averageVotes'      'type' => 'FLOAT'
-    */
-
-
-
-
+    // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
+    // 'loc'   'type' => 'GEOMETRY'
     $campos = array(
       'headKeywords' => array(
         'params' => array( 'label' => 'Label de headKeywords' ),
@@ -86,7 +71,7 @@ class RecursoView extends View
       'title' => array(
         'translate' => true,
         'params' => array( 'label' => 'Label de title' ),
-        'rules' => array( 'required' => true, 'maxlength' => '100' )
+        'rules' => array( 'maxlength' => '100' )
       ),
       'shortDescription' => array(
         'translate' => true,
@@ -95,15 +80,20 @@ class RecursoView extends View
       ),
       'mediumDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Label de mediumDescription', 'type' => 'textarea' )
+        'params' => array( 'label' => 'Label de mediumDescription', 'type' => 'textarea', 'htmlEditor' => 'true' )
       ),
       'content' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Label de content', 'type' => 'textarea' )
+        'params' => array( 'label' => 'Label de content', 'type' => 'textarea',
+          'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
+      ),
+      'image' => array(
+        'params' => array( 'label' => 'Label de image', 'type' => 'file', 'id' => 'imgResource',
+          'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' )
       ),
       'defaultZoom' => array(
         'params' => array( 'label' => 'Label de defaultZoom' ),
-        'rules' => array( 'required' => true, 'max' => '20', 'min' => '0' )
+        'rules' => array( 'required' => true, 'max' => '20' )
       )
     );
 
@@ -132,6 +122,133 @@ class RecursoView extends View
         }
       }
     }
+
+    $form->setValidationRule( 'title_'.$langDefault, 'required' );
+
+
+    $form->setField( 'submit', array( 'type' => 'submit', 'label' => 'Pulsa para enviar', 'value' => 'Manda' ) );
+
+    // Una vez que lo tenemos definido, guardamos el form en sesion
+    $form->saveToSession();
+
+
+    $this->template->assign( 'formOpen', $form->getHtmpOpen() );
+    $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
+    $this->template->assign( 'formClose', $form->getHtmlClose() );
+    $this->template->assign( 'formValidations', $form->getScriptCode() );
+
+    $this->template->setTpl( 'recursoForm.tpl' );
+    $this->template->exec();
+  } // function loadForm()
+
+
+
+  /**
+    Proceso formulario
+  */
+  public function actionForm() {
+    error_log( "RecursoView: actionForm()" );
+
+    $form = new FormController();
+    if( $form->loadPostInput() ) {
+      $form->validateForm();
+    }
+    else {
+      $form->addFormError( 'El servidor no considera válidos los datos recibidos.', 'formError' );
+    }
+
+    if( !$form->existErrors() ) {
+      if( !$form->processFileFields() ) {
+        $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea '.
+          'necesario subirlos otra vez.', 'formError' );
+      }
+    }
+
+    if( !$form->existErrors() ) {
+      $valuesArray = $form->getValuesArray();
+
+      print_r( $valuesArray );
+
+      $recurso = new ResourceModel( $valuesArray );
+
+      if($valuesArray['image']['values']){
+        $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
+        $recurso->save( array( 'affectsDependences' => true ));
+      }
+      else {
+        $recurso->save();
+      }
+
+      print_r( $recurso->getAllData() );
+
+      echo $form->jsonFormOk();
+    }
+    else {
+      $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
+      echo $form->jsonFormError();
+    }
+
+
+
+
+  } // function actionForm()
+
+
+
+  /**
+    Visualizamos el Recurso
+  */
+  public function showRecurso() {
+    print "RecursoView: showRecurso()\n\n";
+
+    $recObj = new ResourceModel();
+    $recursosList = $recObj->listItems( array( 'affectsDependences' => array( 'FiledataModel' ), 'order' => array( 'id' => -1 ) ) );
+    $recurso = $recursosList->fetch();
+
+    //cogumelo::console( $recurso );
+    print("<pre>\n");
+    print_r( $recurso->getAllData() );
+  } // function showRecurso()
+
+
+} // class BloquesTest extends View
+
+
+
+
+/*
+  function userFormOk( $form ) {
+    $asignRole = false;
+
+    if( !$form->processFileFields() ) {
+      $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario subirlos otra vez.', 'formError' );
+    }
+
+    if( !$form->existErrors() ){
+      $valuesArray = $form->getValuesArray();
+
+      $user = new UserModel( $valuesArray );
+
+      if($valuesArray['avatar']['values']){
+        $user->setterDependence( 'avatar', new FiledataModel( $valuesArray['avatar']['values'] ) );
+      }
+      $user->save( array( 'affectsDependences' => true ));
+
+      if($asignRole){
+        $roleModel = new RoleModel();
+        $role = $roleModel->listItems( array('filters' => array('name' => 'user') ))->fetch();
+        $userRole = new UserRoleModel();
+        if( $role ){
+          $userRole->setterDependence( 'role', $role );
+        }
+        $userRole->setterDependence( 'user', $user );
+        $userRole->save(array( 'affectsDependences' => true ));
+      }
+    }
+    return $user;
+  }
+*/
+
 
 /*
     $campo = 'headKeywords';
@@ -203,64 +320,8 @@ class RecursoView extends View
     $form->setValidationRule( $campo, 'maxlength', '100' );
 */
 
-    $form->setField( 'submit', array( 'type' => 'submit', 'label' => 'Pulsa para enviar', 'value' => 'Manda' ) );
 
-    // Una vez que hemos definido all, guardamos el form en sesion
-    $form->saveToSession();
-
-
-    $this->template->assign( 'formOpen', $form->getHtmpOpen() );
-    $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
-    $this->template->assign( 'formClose', $form->getHtmlClose() );
-    $this->template->assign( 'formValidations', $form->getScriptCode() );
-
-    $this->template->setTpl( 'recursoForm.tpl' );
-    $this->template->exec();
-
-
-    // $recurso = new ResourceModel();
-
-    /*
-    $user = new UserModel( $valuesArray );
-
-    if( isset($password) ){
-      $recurso->setPassword( $password );
-    }
-    if( $valuesArray['avatar']['values'] ){
-      $recurso->setterDependence( 'avatar', new FiledataModel( $valuesArray['avatar']['values'] ) );
-    }
-    $recurso->save( array( 'affectsDependences' => true ));
-
-    // Asignacion de ROLE user
-    if($asignRole){
-      $roleModel = new RoleModel();
-      $role = $roleModel->listItems( array('filters' => array('name' => 'user') ))->fetch();
-      $recursoRole = new UserRoleModel();
-      if( $role ){
-        $recursoRole->setterDependence( 'role', $role );
-      }
-      $recursoRole->setterDependence( 'user', $recurso );
-      $recursoRole->save(array( 'affectsDependences' => true ));
-    }
-    */
-
-  } // function loadForm()
-
-
-  /**
-    Visualizamos el Recurso
-  */
-  public function showRecurso() {
-    print "RecursoView: showRecurso()\n\n";
-
-    $recObj = new ResourceModel();
-    $recurso = $recObj->listItems()->fetch();
-
-    //cogumelo::console( $recurso );
-    print("<pre>\n");
-    print_r( $recurso );
-
-    /*
+/*
     $newRec = array(
       //'id' => '',
       //'type' => '',
@@ -300,10 +361,10 @@ class RecursoView extends View
     print_r( $newRec );
     print_r( $recurso );
     $recurso->save();
-    */
+*/
 
 
-    /*
+/*
     [data] => Array
     (
       [id] => 10
@@ -334,16 +395,38 @@ class RecursoView extends View
       [countVisits] => 5678
       [averageVotes] => 0
     )
-    */
+*/
 
-    /*
+
+/*
     $dataVO = $recurso->listItems( array('filters' => array('id' => $request[1] )))->fetch();
     if( !$dataVO ) {
       Cogumelo::redirect( SITE_URL.'404' );
     }
-
-    */
-  } // function loadForm()
+*/
 
 
-} // class BloquesTest extends View
+/*
+    $user = new UserModel( $valuesArray );
+
+    if( isset($password) ){
+      $recurso->setPassword( $password );
+    }
+    if( $valuesArray['avatar']['values'] ){
+      $recurso->setterDependence( 'avatar', new FiledataModel( $valuesArray['avatar']['values'] ) );
+    }
+    $recurso->save( array( 'affectsDependences' => true ));
+
+    // Asignacion de ROLE user
+    if($asignRole){
+      $roleModel = new RoleModel();
+      $role = $roleModel->listItems( array('filters' => array('name' => 'user') ))->fetch();
+      $recursoRole = new UserRoleModel();
+      if( $role ){
+        $recursoRole->setterDependence( 'role', $role );
+      }
+      $recursoRole->setterDependence( 'user', $recurso );
+      $recursoRole->save(array( 'affectsDependences' => true ));
+    }
+*/
+

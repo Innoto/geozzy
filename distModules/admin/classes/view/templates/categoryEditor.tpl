@@ -27,14 +27,14 @@
         <div class="panel-heading">
           <strong>
             <i class="fa fa-tag fa-fw"></i>
-            Añadir termino
+            Añadir  <%- name %>
           </strong>
         </div>
         <div class="panel-body">
           <!--<div class="rolesTable"> <div>-->
           <div>
               <input class="newTaxTermName" type="text">
-              <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir Term</button>
+              <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir <%- name %></button>
           </div>
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
@@ -71,6 +71,3 @@
   	</li>
 
 </script>
-
-
-
