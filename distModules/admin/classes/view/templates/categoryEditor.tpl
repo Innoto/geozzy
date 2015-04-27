@@ -11,9 +11,12 @@
             Listado de terminos para ( <%- name %> )
           </strong>
         </div>
-        <div id="taxTermListContainer" class="panel-body dd">
-          <ul class="listTerms dd-list" class="list-group">
-          </ul>
+        <div class="panel-body">
+          <div id="taxTermListContainer" class="dd">
+            <ul class="listTerms dd-list" class="list-group">
+            </ul>
+          </div>
+
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
 
@@ -42,8 +45,8 @@
 </script>
 
 
-<script type="text/template" id="taxTermEditorItems">
-  <% for(var termK in terms) { %>
+<script type="text/template" id="taxTermEditorItem">
+
   	<li class="dd-item" termId="<%- terms[termK].id %>" data-id="<%- terms[termK].id %>">
   	  <div class="row dd-handle">
 
@@ -66,7 +69,7 @@
         </div>
   	  </div>
   	</li>
-  <% } %>
+
 </script>
 
 
