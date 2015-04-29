@@ -5,10 +5,10 @@ var CategoryEditorView = Backbone.View.extend({
 
   events: {
     "click .newTaxTerm": "addCategory" ,
-    "click .list-group-item .btnEditTerm" : "editCategory",
-    "click .list-group-item .btnCancelTerm" : "cancelEditCategory",
-    "click .list-group-item .btnSaveTerm" : "saveEditCategory",
-    "click .list-group-item .btnDeleteTerm" : "removeCategory" ,
+    "click .btnEditTerm" : "editCategory",
+    "click .btnCancelTerm" : "cancelEditCategory",
+    "click .btnSaveTerm" : "saveEditCategory",
+    "click .btnDeleteTerm" : "removeCategory" ,
   },
 
   category: false,
@@ -38,20 +38,42 @@ var CategoryEditorView = Backbone.View.extend({
 
     this.baseTemplate = _.template( $('#taxTermEditor').html() );
     this.$el.html( this.baseTemplate(that.category.toJSON() ) );
-    this.$el.find('.dd').nestable(  );
+    //this.$el.find('.dd').nestable( { 'maxDepth':2 } );
   },
 
   updateList: function() {
-    //this.listTemplate = _.template( $('#taxTermEditorItems').html() );
-    //this.$el.find('.listTerms').html( this.listTemplate({ terms: this.categoryTerms.toJSON() }) );
+    var that = this;
+//this.listTemplate = _.template( $('#taxTermEditorItems').html() );
+//this.$el.find('.listTerms').html( this.listTemplate({ terms: this.categoryTerms.toJSON() }) );
+//var categoryParents = this.categoryTerms.search({parent:false}).toJSON();
 
     this.listTemplate = _.template( $('#taxTermEditorItem').html() );
     this.$el.find('.listTerms').html();
-    var categoryParents = this.categoryTerms.search({parent:false}).toJSON();
+    var categories = this.categoryTerms.toJSON();
 
-    _.each( categoryParents , function(item){
-      this.$el.find('.listTerms').append( this.listTemplate({ term: item.toJSON() }) );
+
+    _.each( categories , function(item){
+      that.$el.find('.listTerms').append( that.listTemplate({ term: item }) );
     });
+
+    var categoriesParents = this.categoryTerms.search({parent:false}).toJSON();
+    var jsonCategories = [];
+    _.each( categoriesParents , function(item){
+        var parent = item;
+        var children = that.categoryTerms.search({parent:item.id}).pluck("id");
+        var childrenJson = [];
+        if(children.length > 0){
+          _.each( children, function( chil ){
+            childrenJson.push({ "id": chil });
+          });
+          var jsonC = { "id": item.id , "children": childrenJson }
+        }else{
+          var jsonC = { "id": item.id }
+        }
+        jsonCategories.push(jsonC);
+    });
+    console.log(jsonCategories);
+    this.$el.find('.dd').nestable('serialize', { 'json': jsonCategories, 'maxDepth':2 } );
 
   },
 
