@@ -25,6 +25,114 @@ class MainAPIView extends View
   }
 
 
+  function main() {
+    header('Content-type: application/json');
+    echo '
+{
+    "resourcePath": "/geozzy",
+    "apiVersion": "4.0",
+    "swaggerVersion": "1.0",
+    "basePath": "/api",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "errorResponses": [
+                        {
+                            "reason": "Invalid ID supplied",
+                            "code": 400
+                        },
+                        {
+                            "reason": "Not Authorized to access WordList",
+                            "code": 403
+                        },
+                        {
+                            "reason": "WordList not found",
+                            "code": 404
+                        }
+                    ],
+                    "responseClass": "List[wordListWord]",
+                    "httpMethod": "GET",
+                    "nickname": "getWordListWords",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "dataType": "string",
+                            "name": "permalink",
+                            "paramType": "path",
+                            "allowMultiple": false,
+                            "description": "ID of WordList to use"
+                        },
+                        {
+                            "required": false,
+                            "dataType": "string",
+                            "name": "sortBy",
+                            "defaultValue": "createDate",
+                            "allowableValues": {
+                                "values": [
+                                    "createDate",
+                                    "alpha"
+                                ],
+                                "valueType": "LIST"
+                            },
+                            "paramType": "query",
+                            "allowMultiple": false,
+                            "description": "Field to sort by"
+                        },
+                        {
+                            "required": false,
+                            "dataType": "string",
+                            "name": "sortOrder",
+                            "defaultValue": "desc",
+                            "allowableValues": {
+                                "values": [
+                                    "asc",
+                                    "desc"
+                                ],
+                                "valueType": "LIST"
+                            },
+                            "paramType": "query",
+                            "allowMultiple": false,
+                            "description": "Direction to sort"
+                        },
+                        {
+                            "required": false,
+                            "dataType": "int",
+                            "name": "skip",
+                            "defaultValue": "0",
+                            "paramType": "query",
+                            "allowMultiple": false,
+                            "description": "Results to skip"
+                        },
+                        {
+                            "required": false,
+                            "dataType": "int",
+                            "name": "limit",
+                            "defaultValue": "100",
+                            "paramType": "query",
+                            "allowMultiple": false,
+                            "description": "Maximum number of results to return"
+                        },
+                        {
+                            "required": true,
+                            "dataType": "string",
+                            "name": "auth_token",
+                            "paramType": "header",
+                            "allowMultiple": false,
+                            "description": "The auth token of the logged-in user, obtained by calling /account.{format}/authenticate/{username} (described above)"
+                        }
+                    ],
+                    "summary": "Fetches words in a WordList"
+                }
+            ],
+            "path": "/wordList/{permalink}/words",
+            "description": ""
+        }
+    ]
+}
+';
+  }
+
   // resources
   function resource() {
     geozzy::load('model/ResourceModel.php');
@@ -75,13 +183,6 @@ class MainAPIView extends View
     $topicList = $topicModel->listItems( );
     $this->syncModelList( $topicList );
   }
-
-  // explorers
-
-  function explorers()  {
-
-  }
-
 
 
   function syncModelList( $result ) {

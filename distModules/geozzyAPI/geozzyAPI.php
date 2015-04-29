@@ -23,9 +23,14 @@ class geozzyAPI extends Module
   );
 
   function __construct() {
-    // API DOC
+    // API DOC GENERATOR
     $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'$#', 'view:DocAPIView::main' );
+    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/apidoc.json#', 'view:DocAPIView::apidocJson' );
+  
     
+    // geozzy core api doc
+    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy$#', 'view:MainAPIView::main' );
+
     // resources
     $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy/resource$#', 'view:MainAPIView::resource' );
     $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy/resourcelist$#', 'view:MainAPIView::resourceList' );    
@@ -38,8 +43,7 @@ class geozzyAPI extends Module
     // Topics
     $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy/topiclist$#', 'view:MainAPIView::topicList' );
 
-    // Explorer
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/explorers$#', 'view:MainAPIView::explorers' );
+
   }
 
 }
