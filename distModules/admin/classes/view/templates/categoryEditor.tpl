@@ -49,7 +49,8 @@
 
   	<li class="dd-item" termId="<%- term.id %>" data-id="<%- term.id %>">
   	  <div class="row dd-handle">
-
+        <ul class="dd-list"></ul>
+        
         <div class="rowShow">
     	      <div class="infoTerm"><%- term.name %></div>
             <div class="taxTermActions">
@@ -57,6 +58,7 @@
     	        <button class="btnDeleteTerm btn btn-default btn-danger" termId="<%- term.id %>" ><i class="fa fa-trash"></i></button>
     	      </div>
         </div>
+
         <div class="rowEdit" style="display:none;">
           <div class="editTermContainer">
               <input type="text" class="editTermInput" value="<%- term.name %>" />
@@ -65,8 +67,8 @@
             <button class="btnSaveTerm btn btn-default btn-success" termId="<%- term.id %>"><i class="fa fa-check"></i></button>
             <button class="btnCancelTerm btn btn-default btn-danger" termId="<%- term.id %>"><i class="fa fa-close"></i></button>
           </div>
-
         </div>
+
   	  </div>
   	</li>
 

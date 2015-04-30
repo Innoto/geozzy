@@ -43,10 +43,31 @@ var CategoryEditorView = Backbone.View.extend({
 
   updateList: function() {
     var that = this;
+
+    this.listTemplate = _.template( $('#taxTermEditorItem').html() );
+    this.$el.find('.listTerms').html();
+    var categoriesParents = this.categoryTerms.search({parent:false}).toJSON();
+
+    _.each( categoriesParents , function(item){
+      that.$el.find('.listTerms').append( that.listTemplate({ term: item }) );
+
+      var categoriesChildren = that.categoryTerms.search({parent:item.id}).toJSON();
+      if( categoriesChildren ){
+        _.each( categoriesChildren ), function(itemchildren){
+          that.$el.find('.listTerms [data-id="'+itemchildren.parent+'"] .dd-list').append(
+            that.listTemplate({ term: itemchildren })
+          );
+        });
+      }
+console.log(item);
+    });
+
+
+//OPCION PABLO
 //this.listTemplate = _.template( $('#taxTermEditorItems').html() );
 //this.$el.find('.listTerms').html( this.listTemplate({ terms: this.categoryTerms.toJSON() }) );
-//var categoryParents = this.categoryTerms.search({parent:false}).toJSON();
 
+/* OPCION A FAIL
     this.listTemplate = _.template( $('#taxTermEditorItem').html() );
     this.$el.find('.listTerms').html();
     var categories = this.categoryTerms.toJSON();
@@ -74,7 +95,7 @@ var CategoryEditorView = Backbone.View.extend({
     });
     console.log(jsonCategories);
     this.$el.find('.dd').nestable('serialize', { 'json': jsonCategories, 'maxDepth':2 } );
-
+*/
   },
 
   removeCategory: function( el ) {
