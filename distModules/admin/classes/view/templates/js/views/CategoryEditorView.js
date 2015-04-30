@@ -46,12 +46,16 @@ var CategoryEditorView = Backbone.View.extend({
 
     this.listTemplate = _.template( $('#taxTermEditorItem').html() );
     this.$el.find('.listTerms').html();
+
+    that.categoryTerms.sortByField('weight');
     var categoriesParents = this.categoryTerms.search({parent:false}).toJSON();
 
     _.each( categoriesParents , function(item){
       that.$el.find('.listTerms').append( that.listTemplate({ term: item }) );
 
+      that.categoryTerms.sortByField('weight');
       var categoriesChildren = that.categoryTerms.search({parent:item.id}).toJSON();
+
 
       if( categoriesChildren.length > 0 ){
         that.$el.find('.listTerms li[data-id="'+item.id+'"]').append('<ol class="dd-list"></ol>');

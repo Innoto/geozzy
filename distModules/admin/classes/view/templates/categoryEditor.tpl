@@ -39,7 +39,6 @@
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
     </div> <!-- end col -->
-
   </div> <!-- end row -->
 
 </script>
@@ -67,7 +66,7 @@
           </div>
         </div>
 
-  	  </div>      
+  	  </div>
   	</li>
 
 </script>
