@@ -49,8 +49,6 @@
 
   	<li class="dd-item" termId="<%- term.id %>" data-id="<%- term.id %>">
   	  <div class="row dd-handle">
-        <ul class="dd-list"></ul>
-        
         <div class="rowShow">
     	      <div class="infoTerm"><%- term.name %></div>
             <div class="taxTermActions">
@@ -69,7 +67,7 @@
           </div>
         </div>
 
-  	  </div>
+  	  </div>      
   	</li>
 
 </script>

@@ -52,50 +52,19 @@ var CategoryEditorView = Backbone.View.extend({
       that.$el.find('.listTerms').append( that.listTemplate({ term: item }) );
 
       var categoriesChildren = that.categoryTerms.search({parent:item.id}).toJSON();
-      if( categoriesChildren ){
-        _.each( categoriesChildren ), function(itemchildren){
-          that.$el.find('.listTerms [data-id="'+itemchildren.parent+'"] .dd-list').append(
+
+      if( categoriesChildren.length > 0 ){
+        that.$el.find('.listTerms li[data-id="'+item.id+'"]').append('<ol class="dd-list"></ol>');
+        _.each( categoriesChildren , function(itemchildren){
+          that.$el.find('.listTerms li[data-id="'+itemchildren.parent+'"]  .dd-list').append(
             that.listTemplate({ term: itemchildren })
           );
         });
       }
-console.log(item);
     });
 
+    this.$el.find('.dd').nestable({ 'maxDepth': 1 });
 
-//OPCION PABLO
-//this.listTemplate = _.template( $('#taxTermEditorItems').html() );
-//this.$el.find('.listTerms').html( this.listTemplate({ terms: this.categoryTerms.toJSON() }) );
-
-/* OPCION A FAIL
-    this.listTemplate = _.template( $('#taxTermEditorItem').html() );
-    this.$el.find('.listTerms').html();
-    var categories = this.categoryTerms.toJSON();
-
-
-    _.each( categories , function(item){
-      that.$el.find('.listTerms').append( that.listTemplate({ term: item }) );
-    });
-
-    var categoriesParents = this.categoryTerms.search({parent:false}).toJSON();
-    var jsonCategories = [];
-    _.each( categoriesParents , function(item){
-        var parent = item;
-        var children = that.categoryTerms.search({parent:item.id}).pluck("id");
-        var childrenJson = [];
-        if(children.length > 0){
-          _.each( children, function( chil ){
-            childrenJson.push({ "id": chil });
-          });
-          var jsonC = { "id": item.id , "children": childrenJson }
-        }else{
-          var jsonC = { "id": item.id }
-        }
-        jsonCategories.push(jsonC);
-    });
-    console.log(jsonCategories);
-    this.$el.find('.dd').nestable('serialize', { 'json': jsonCategories, 'maxDepth':2 } );
-*/
   },
 
   removeCategory: function( el ) {
