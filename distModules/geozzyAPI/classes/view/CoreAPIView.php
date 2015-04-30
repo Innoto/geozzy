@@ -2,12 +2,11 @@
 
 require_once APP_BASE_PATH."/conf/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
-Cogumelo::autoIncludes();
 
 /**
 * Clase Master to extend other application methods
 */
-class MainAPIView extends View
+class CoreAPIView extends View
 {
 
   function __construct($baseDir){
@@ -53,16 +52,9 @@ class MainAPIView extends View
                     ],
                     "responseClass": "List[wordListWord]",
                     "httpMethod": "GET",
-                    "nickname": "getWordListWords",
+                    "nickname": "resource",
                     "parameters": [
-                        {
-                            "required": true,
-                            "dataType": "string",
-                            "name": "permalink",
-                            "paramType": "path",
-                            "allowMultiple": false,
-                            "description": "ID of WordList to use"
-                        },
+   
                         {
                             "required": false,
                             "dataType": "string",
@@ -112,20 +104,13 @@ class MainAPIView extends View
                             "paramType": "query",
                             "allowMultiple": false,
                             "description": "Maximum number of results to return"
-                        },
-                        {
-                            "required": true,
-                            "dataType": "string",
-                            "name": "auth_token",
-                            "paramType": "header",
-                            "allowMultiple": false,
-                            "description": "The auth token of the logged-in user, obtained by calling /account.{format}/authenticate/{username} (described above)"
                         }
+
                     ],
                     "summary": "Fetches words in a WordList"
                 }
             ],
-            "path": "/wordList/{permalink}/words",
+            "path": "/geozzy/resource",
             "description": ""
         }
     ]
@@ -137,10 +122,10 @@ class MainAPIView extends View
   function resource() {
     geozzy::load('model/ResourceModel.php');
     $resourceModel = new ResourceModel();
-    $resources = $resourceModel->listItems( array('filters'=> array( 'id'=> $_GET['id'] ) ) );
+    $resources = $resourceModel->listItems( array('filters'=> array( 'id'=> 10 ) ) );
 
     if( $resource = $resources->fetch() ) {
-      $this->syncModel( $recource );
+      $this->syncModel( $resource );
     }
   }
 
@@ -203,7 +188,7 @@ class MainAPIView extends View
   function syncModel( $model ) {
     header('Content-type: application/json');
     $data = $model->getAllData();
-    echo $c.json_encode( $data['data'] );
+    echo json_encode( $data['data'] );
   }
 
 

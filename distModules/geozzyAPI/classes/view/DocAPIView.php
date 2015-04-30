@@ -37,10 +37,10 @@ class DocAPIView extends View
     header('Content-type: application/json');
     echo '
       {
-          "apiVersion": "1.0",
-          "swaggerVersion": "2.0",
-          "basePath": "/'.GEOZZY_API_URL_DIR.'",
-          "apis": '.$apis.'
+        "apiVersion": "1.0",
+        "swaggerVersion": "2.0",
+        "basePath": "'.SITE_HOST.'/'.GEOZZY_API_URL_DIR.'",
+        "apis": '.$apis.'
       }
     ';
 
