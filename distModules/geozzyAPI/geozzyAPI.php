@@ -23,23 +23,27 @@ class geozzyAPI extends Module
   );
 
   function __construct() {
-    // API DOC
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'$#', 'view:DocAPIView::main' );
+    // API DOC GENERATOR
+    $this->addUrlPatterns( '#^api$#', 'view:DocAPIView::main' );
+    $this->addUrlPatterns( '#^api/apidoc.json#', 'view:DocAPIView::apidocJson' );
+  
     
+    // geozzy core api doc
+    $this->addUrlPatterns( '#^api/core$#', 'view:CoreAPIView::main' );
+
     // resources
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy/resource$#', 'view:MainAPIView::resource' );
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy/resourcelist$#', 'view:MainAPIView::resourceList' );    
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy/resourcetypes$#', 'view:MainAPIView::resourceTypes' );
+    $this->addUrlPatterns( '#^api/core/resource(.*)$#', 'view:CoreAPIView::resource' );
+    $this->addUrlPatterns( '#^api/core/resourcelist$#', 'view:CoreAPIView::resourceList' );    
+    $this->addUrlPatterns( '#^api/core/resourcetypes$#', 'view:CoreAPIView::resourceTypes' );
     
     // Categories
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy/categorylist$#', 'view:MainAPIView::categoryList' );
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy/categoryTerms$#', 'view:MainAPIView::categoryTerms' );
+    $this->addUrlPatterns( '#^api/core/categorylist$#', 'view:CoreAPIView::categoryList' );
+    $this->addUrlPatterns( '#^api/core/categoryTerms$#', 'view:CoreAPIView::categoryTerms' );
 
     // Topics
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/geozzy/topiclist$#', 'view:MainAPIView::topicList' );
+    $this->addUrlPatterns( '#^api/core/topiclist$#', 'view:CoreAPIView::topicList' );
 
-    // Explorer
-    $this->addUrlPatterns( '#^'.GEOZZY_API_URL_DIR.'/explorers$#', 'view:MainAPIView::explorers' );
+
   }
 
 }

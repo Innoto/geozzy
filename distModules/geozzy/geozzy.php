@@ -24,13 +24,8 @@ class geozzy extends Module
      "params" => array("backbone#1.1.2"),
      "installer" => "bower",
      "includes" => array("backbone.js")
-    ),
-    array(
-     "id" =>"swagger-ui",
-     "params" => array("swagger-ui#v2.0.24"),
-     "installer" => "bower",
-     "includes" => array("backbone.js")
     )
+
 
   );
   public $includesCommon = array(

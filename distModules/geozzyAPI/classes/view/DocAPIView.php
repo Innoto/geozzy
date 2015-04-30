@@ -23,10 +23,30 @@ class DocAPIView extends View
 
   function main(){
     $this->template->setTpl('doc.tpl', 'geozzyAPI');
-    $this->template->assign('swaggerLocation', '/vendor/manual/swagger-ui-2.0.24/');    
+    $this->template->assign('swaggerLocation', '/vendor/bower/swagger-ui/');    
     $this->template->exec();
   }
 
+
+  function apidocJson() {
+
+    global $GEOZZY_API_DOC_URLS;
+    
+    $apis = json_encode( $GEOZZY_API_DOC_URLS );
+
+    header('Content-type: application/json');
+    echo '
+      {
+        "apiVersion": "1.0",
+        "swaggerVersion": "2.0",
+        "basePath": "'.SITE_HOST.'/'.GEOZZY_API_URL_DIR.'",
+        "apis": '.$apis.'
+      }
+    ';
+
+
+
+  }
 }
 
 
