@@ -26,96 +26,92 @@ class CoreAPIView extends View
 
   function main() {
     header('Content-type: application/json');
-    echo '
-{
-    "resourcePath": "/geozzy",
-    "apiVersion": "4.0",
-    "swaggerVersion": "1.0",
-    "basePath": "/api",
-    "apis": [
-        {
-            "operations": [
-                {
-                    "errorResponses": [
-                        {
-                            "reason": "Invalid ID supplied",
-                            "code": 400
-                        },
-                        {
-                            "reason": "Not Authorized to access WordList",
-                            "code": 403
-                        },
-                        {
-                            "reason": "WordList not found",
-                            "code": 404
-                        }
-                    ],
-                    "responseClass": "List[wordListWord]",
-                    "httpMethod": "GET",
-                    "nickname": "resource",
-                    "parameters": [
-   
-                        {
-                            "required": false,
-                            "dataType": "string",
-                            "name": "sortBy",
-                            "defaultValue": "createDate",
-                            "allowableValues": {
-                                "values": [
-                                    "createDate",
-                                    "alpha"
-                                ],
-                                "valueType": "LIST"
-                            },
-                            "paramType": "query",
-                            "allowMultiple": false,
-                            "description": "Field to sort by"
-                        },
-                        {
-                            "required": false,
-                            "dataType": "string",
-                            "name": "sortOrder",
-                            "defaultValue": "desc",
-                            "allowableValues": {
-                                "values": [
-                                    "asc",
-                                    "desc"
-                                ],
-                                "valueType": "LIST"
-                            },
-                            "paramType": "query",
-                            "allowMultiple": false,
-                            "description": "Direction to sort"
-                        },
-                        {
-                            "required": false,
-                            "dataType": "int",
-                            "name": "skip",
-                            "defaultValue": "0",
-                            "paramType": "query",
-                            "allowMultiple": false,
-                            "description": "Results to skip"
-                        },
-                        {
-                            "required": false,
-                            "dataType": "int",
-                            "name": "limit",
-                            "defaultValue": "100",
-                            "paramType": "query",
-                            "allowMultiple": false,
-                            "description": "Maximum number of results to return"
-                        }
 
-                    ],
-                    "summary": "Fetches words in a WordList"
-                }
-            ],
-            "path": "/geozzy/resource",
-            "description": ""
-        }
-    ]
-}
-';
+
+    ?>
+          {
+              "resourcePath": "/core",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "The resource",
+                                      "code": 200
+                                  },
+                                  {
+                                      "reason": "Resource not found",
+                                      "code": 404
+                                  }
+                              ],
+
+                              "httpMethod": "GET",
+                              "nickname": "resource",
+                              "parameters": [
+             
+                                  {
+                                      "required": false,
+                                      "dataType": "string",
+                                      "name": "sortBy",
+                                      "defaultValue": "createDate",
+                                      "allowableValues": {
+                                          "values": [
+                                              "createDate",
+                                              "alpha"
+                                          ],
+                                          "valueType": "LIST"
+                                      },
+                                      "paramType": "query",
+                                      "allowMultiple": false,
+                                      "description": "Field to sort by"
+                                  },
+                                  {
+                                      "required": false,
+                                      "dataType": "string",
+                                      "name": "sortOrder",
+                                      "defaultValue": "desc",
+                                      "allowableValues": {
+                                          "values": [
+                                              "asc",
+                                              "desc"
+                                          ],
+                                          "valueType": "LIST"
+                                      },
+                                      "paramType": "query",
+                                      "allowMultiple": false,
+                                      "description": "Direction to sort"
+                                  },
+                                  {
+                                      "required": false,
+                                      "dataType": "int",
+                                      "name": "skip",
+                                      "defaultValue": "0",
+                                      "paramType": "query",
+                                      "allowMultiple": false,
+                                      "description": "Results to skip"
+                                  },
+                                  {
+                                      "required": false,
+                                      "dataType": "int",
+                                      "name": "limit",
+                                      "defaultValue": "100",
+                                      "paramType": "query",
+                                      "allowMultiple": false,
+                                      "description": "Maximum number of results to return"
+                                  }
+
+                              ],
+                              "summary": "Fetches words in a WordList"
+                          }
+                      ],
+                      "path": "/core/resource",
+                      "description": ""
+                  }
+              ]
+          }
+        <?php
   }
 
   // resources
