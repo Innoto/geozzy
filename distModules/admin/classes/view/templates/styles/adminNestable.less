@@ -31,37 +31,8 @@
 }
 
 
-.dd-handle {
-  float:left;
-  display: block;
-  height: 30px;
-  margin: 5px 0;
-  padding: 5px 10px;
-  color: #333;
-  text-decoration: none;
-  font-weight: bold;
-  background: #ccc;
-  border-radius: 3px;
-  box-sizing: border-box;
-}
-.dd-handle:hover {
-  color: #2ea8e5;
-  background: #fff;
-}
 
-.dd-content {
-  float:left;
-  display: block;
-  height: 30px;
-  color: #333;
-  text-decoration: none;
-  font-weight: bold;
-  background: #fafafa;
-  border-radius: 3px;
-  box-sizing: border-box;
-}
-
-.dd-item {
+.dd-item-container{
   width:100%;
   border: 1px solid #ccc;
   background: #fafafa;
@@ -69,10 +40,58 @@
   box-sizing: border-box;
   display: block;
   margin: 5px 0;
-  padding: 5px 10px;
   color: #333;
   text-decoration: none;
   font-weight: bold;
+}
+
+.dd-item-container .dd-handle {
+  float:left;
+  display: block;
+  height: 30px;
+  line-height:30px;
+  width: 30px;
+  vertical-align:middle;
+  text-align: center;
+  margin: 5px;
+  color: #333;
+  text-decoration: none;
+  background: #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.dd-item-container .dd-handle:hover {
+  color: #2ea8e5;
+}
+
+.dd-item-container .dd-content {
+  display: block;
+  margin: 5px;
+  height: 30px;
+  line-height:30px;
+  vertical-align:middle;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  background: #fafafa;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.dd-item-container .dd-content .infoTerm{ float: left; }
+.dd-item-container .dd-content .taxTermActions{ float: right; max-width: 80px;}
+.dd-item-container .dd-content .taxTermActions button{
+  width: 30px;
+  height: 30px;
+  line-height:30px;
+  vertical-align:middle;
+  padding: 0px;
+  font-size: 16px;
+}
+
+
+
+.dd-item {
+
 }
 
 .dd-item > button {
