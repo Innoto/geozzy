@@ -137,7 +137,6 @@ $C_ENABLED_MODULES = array(
   'filedata',
   'geozzy',
   'admin',
-  'adminOld',
   'form',
   'Blocks',
   'table'
@@ -150,9 +149,8 @@ $C_INDEX_MODULES  = array(
   'geozzy',
   'form',
   'admin',
-  'adminOld',
   'Blocks',
-  'geozzyAPI',  
+  'geozzyAPI',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 
