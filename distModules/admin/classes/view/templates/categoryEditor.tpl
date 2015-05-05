@@ -16,7 +16,7 @@
             <ol class="listTerms dd-list">
             </ol>
           </div>
-
+          <button class="btn btn-primary">Save</button>
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
 
@@ -46,8 +46,9 @@
 
 <script type="text/template" id="taxTermEditorItem">
 
-  	<li class="dd-item" data-id="<%- term.id %>">
-  	  <div class="row dd-handle">
+  	<li class="dd-item clearfix" data-id="<%- term.id %>">
+  	  <div class="dd-handle"><i class="fa fa-arrows"></i></div>
+      <div class="dd-content row">
         <div class="rowShow">
     	      <div class="infoTerm"><%- term.name %></div>
             <div class="taxTermActions">

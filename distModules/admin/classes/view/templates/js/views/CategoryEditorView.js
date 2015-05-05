@@ -38,6 +38,11 @@ var CategoryEditorView = Backbone.View.extend({
 
     this.baseTemplate = _.template( $('#taxTermEditor').html() );
     this.$el.html( this.baseTemplate(that.category.toJSON() ) );
+
+
+
+
+
   },
 
   updateList: function() {
@@ -116,7 +121,7 @@ var CategoryEditorView = Backbone.View.extend({
 
   editCategory: function( el ) {
     var that = this;
-
+alert("oals");
     var termId =  $(el.currentTarget).attr('data-id');
     var catRow = that.$el.find('li[data-id="' + termId + '"]' );
 
