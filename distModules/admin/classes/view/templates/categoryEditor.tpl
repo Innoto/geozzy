@@ -16,7 +16,7 @@
             <ol class="listTerms dd-list">
             </ol>
           </div>
-
+          <button class="btn btn-primary">Save</button>
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
 
@@ -47,26 +47,28 @@
 <script type="text/template" id="taxTermEditorItem">
 
   	<li class="dd-item" data-id="<%- term.id %>">
-  	  <div class="row dd-handle">
-        <div class="rowShow">
-    	      <div class="infoTerm"><%- term.name %></div>
+      <div class="dd-item-container clearfix">
+  	    <div class="dd-handle"><i class="fa fa-arrows"></i></div>
+        <div class="dd-content">
+          <div class="rowShow">
+      	      <div class="infoTerm"><%- term.name %></div>
+              <div class="taxTermActions">
+      	        <button class="btnEditTerm btn btn-default btn-info" termId="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
+      	        <button class="btnDeleteTerm btn btn-default btn-danger" termId="<%- term.id %>" ><i class="fa fa-trash"></i></button>
+      	      </div>
+          </div>
+
+          <div class="rowEdit" style="display:none;">
+            <div class="editTermContainer">
+                <input type="text" class="editTermInput" value="<%- term.name %>" />
+            </div>
             <div class="taxTermActions">
-    	        <button class="btnEditTerm btn btn-default btn-info" termId="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
-    	        <button class="btnDeleteTerm btn btn-default btn-danger" termId="<%- term.id %>" ><i class="fa fa-trash"></i></button>
-    	      </div>
-        </div>
-
-        <div class="rowEdit" style="display:none;">
-          <div class="editTermContainer">
-              <input type="text" class="editTermInput" value="<%- term.name %>" />
+              <button class="btnSaveTerm btn btn-default btn-success" termId="<%- term.id %>"><i class="fa fa-check"></i></button>
+              <button class="btnCancelTerm btn btn-default btn-danger" termId="<%- term.id %>"><i class="fa fa-close"></i></button>
+            </div>
           </div>
-          <div class="taxTermActions">
-            <button class="btnSaveTerm btn btn-default btn-success" termId="<%- term.id %>"><i class="fa fa-check"></i></button>
-            <button class="btnCancelTerm btn btn-default btn-danger" termId="<%- term.id %>"><i class="fa fa-close"></i></button>
-          </div>
-        </div>
-
-  	  </div>
-  	</li>
+    	  </div>
+      </div>
+    </li>
 
 </script>

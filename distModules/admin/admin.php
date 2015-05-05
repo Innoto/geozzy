@@ -9,6 +9,18 @@ class admin extends Module
   public $version = "";
   public $dependences = array(
     array(
+     "id" =>"underscore",
+     "params" => array("underscore#1.8.3"),
+     "installer" => "bower",
+     "includes" => array("underscore-min.js")
+    ),
+    array(
+     "id" =>"backbonejs",
+     "params" => array("backbone#1.1.2"),
+     "installer" => "bower",
+     "includes" => array("backbone.js")
+   ),
+    array(
      "id" => "bootstrap",
      "params" => array("bootstrap"),
      "installer" => "bower",
@@ -51,22 +63,10 @@ class admin extends Module
      "includes" => array("morris.js", "morris.css")
     ),
     array(
-     "id" =>"jqtree",
-     "params" => array("jqtree#1.1.0"),
-     "installer" => "bower",
-     "includes" => array("tree.jquery.js", "jqtree.css")
-    ),
-    /*array(
-     "id" =>"nestable",
-     "params" => array("nestable"),
-     "installer" => "bower",
-     "includes" => array("jquery.nestable.js")
-    ),*/
-    array(
      "id" =>"nestable2",
      "params" => array("nestable2"),
      "installer" => "bower",
-     "includes" => array("jquery.nestable.js", "jquery.nestable.css")
+     "includes" => array("jquery.nestable.js")
     )
 
 
@@ -75,6 +75,7 @@ class admin extends Module
   public $includesCommon = array(
     'styles/adminBase.less',
     'styles/admin.less',
+    'styles/adminNestable.less',
     'js/app.js',
     'js/views/AdminView.js',
     'js/views/CategoryEditorView.js',
