@@ -34,7 +34,7 @@
           <!--<div class="rolesTable"> <div>-->
           <div>
               <input class="newTaxTermName" type="text">
-              <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir <%- name %></button>
+              <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir a <%- name %></button>
           </div>
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
@@ -48,26 +48,36 @@
 
   	<li class="dd-item" data-id="<%- term.id %>">
       <div class="dd-item-container clearfix">
-  	    <div class="dd-handle"><i class="fa fa-arrows"></i></div>
+
         <div class="dd-content">
           <div class="rowShow">
-      	      <div class="infoTerm"><%- term.name %></div>
               <div class="taxTermActions">
-      	        <button class="btnEditTerm btn btn-default btn-info" termId="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
-      	        <button class="btnDeleteTerm btn btn-default btn-danger" termId="<%- term.id %>" ><i class="fa fa-trash"></i></button>
+      	        <button class="btnEditTerm btn btn-default btn-info" data-id="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
+      	        <button class="btnDeleteTerm btn btn-default btn-danger" data-id="<%- term.id %>" ><i class="fa fa-trash"></i></button>
       	      </div>
           </div>
 
           <div class="rowEdit" style="display:none;">
-            <div class="editTermContainer">
-                <input type="text" class="editTermInput" value="<%- term.name %>" />
-            </div>
             <div class="taxTermActions">
-              <button class="btnSaveTerm btn btn-default btn-success" termId="<%- term.id %>"><i class="fa fa-check"></i></button>
-              <button class="btnCancelTerm btn btn-default btn-danger" termId="<%- term.id %>"><i class="fa fa-close"></i></button>
+              <button class="btnSaveTerm btn btn-default btn-success" data-id="<%- term.id %>"><i class="fa fa-check"></i></button>
+              <button class="btnCancelTerm btn btn-default btn-danger" data-id="<%- term.id %>"><i class="fa fa-close"></i></button>
             </div>
           </div>
     	  </div>
+
+        <div class="dd-handle">
+          <div class="icon-handle"><i class="fa fa-arrows"></i></div>
+
+          <div class="rowShow">
+            <div class="infoTerm"><%- term.name %></div>
+          </div>
+          <div class="rowEdit" style="display:none;">
+            <div class="editTermContainer">
+                <input type="text" class="editTermInput" value="<%- term.name %>" />
+            </div>
+          </div>
+        </div>
+
       </div>
     </li>
 
