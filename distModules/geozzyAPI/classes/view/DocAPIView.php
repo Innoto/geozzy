@@ -39,7 +39,7 @@ class DocAPIView extends View
       {
         "apiVersion": "1.0",
         "swaggerVersion": "2.0",
-        "basePath": "'.SITE_HOST.'/'.GEOZZY_API_URL_DIR.'",
+        "basePath": "'.SITE_HOST.'/api",
         "apis": '.$apis.'
       }
     ';

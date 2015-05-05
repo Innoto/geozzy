@@ -115,13 +115,16 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/role/table$#', 'view:AdminViewRole::listRolesTable' );
     $this->addUrlPatterns( '#^admin/role/sendrole$#', 'view:AdminViewRole::sendRoleForm' );
 
-    $this->addUrlPatterns( '#^admin/categoryterms(.*)$#', 'view:AdminViewTaxonomy::categoryTermsSync' );
-    $this->addUrlPatterns( '#^admin/categories$#', 'view:AdminViewTaxonomy::categoriesSync' );
+    $this->addUrlPatterns( '#^admin/categoryterms(.*)$#', 'view:AdminViewTaxonomy::categoryTermsSync' ); // BORRAR enc ambio de API
+    $this->addUrlPatterns( '#^admin/categories$#', 'view:AdminViewTaxonomy::categoriesSync' ); //BORRAR en cambio de API
 
     $this->addUrlPatterns( '#^admin/topics$#', 'view:AdminViewTopic::topicsSync' );
 
-    $this->addUrlPatterns( '#^api/admin$#', 'view:AdminAPIView::main' );
 
+    // API Admin
+    $this->addUrlPatterns( '#^api/admin$#', 'view:AdminAPIView::main' );
+    $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminAPIView::categoryTermsSync' );
+    $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminAPIView::categoriesSync' );
   }
 
 
