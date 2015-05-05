@@ -10,12 +10,18 @@ $GEOZZY_API_DOC_URLS = array(
 	// Geozzy Core
   array(
     'path' => '/core',
-    'description' => 'Geozzy Core'
+    'description' => 'Core Resource'
   ),
   array(
-    'path' => '/admin',
-    'description' => 'Geozzy Admin'
-  )//,  
+    'path' => '/admin/categories.json',
+    'description' => 'Admin Categories'
+  ),
+  array(
+    'path' => '/admin/categoryterms.json',
+    'description' => 'Admin CategoryTerms'
+  )
+
+  //,  
   /*array(
     'path' => '/core',
     'description' => 'Geozzy explorer'
