@@ -24,11 +24,12 @@ class AdminAPIView extends View
     $useraccesscontrol = new UserAccessController();
     $res = true;
 
-    if( !GEOZZY_API_ACTIVE ){
+    if( !GEOZZY_API_ACTIVE || !$useraccesscontrol->isLogged() ){
      $res = false;
     }
-    else 
-    if( !$useraccesscontrol->isLogged() ) {
+
+
+    if( $res == false ) {
       header("HTTP/1.0 303");
       header('Content-type: application/json');
       echo '{}';
@@ -40,13 +41,13 @@ class AdminAPIView extends View
   }
 
 
-  function main() {
+  function categoryTermsJson() {
     header('Content-type: application/json');
 
 
     ?>
           {
-              "resourcePath": "/admin",
+              "resourcePath": "/admin/categoryterms",
               "basePath": "/api",
               "apis": [
                   {
@@ -72,7 +73,7 @@ class AdminAPIView extends View
                               "parameters": [
   
                                   {
-                                      "required": false,
+                                      "required": true,
                                       "dataType": "int",
                                       "name": "group",
                                       "defaultValue": "",
@@ -81,7 +82,41 @@ class AdminAPIView extends View
                                       "description": "Category group id"
                                   }
 
-                              ]
+                              ],
+                              "summary": "Get Category terms"
+                          },
+                          {
+                            "errorResponses": [
+                                  {
+                                      "reason": "Permission denied",
+                                      "code": 303
+                                  },                                        
+                                  {
+                                      "reason": "Category term Deleted",
+                                      "code": 200
+                                  },
+                                  {
+                                      "reason": "Category not found",
+                                      "code": 404
+                                  }
+                              ],
+
+                              "httpMethod": "PUT",
+                              "nickname": "id",
+                              "parameters": [
+  
+                                  {
+                                      "required": true,
+                                      "dataType": "int",
+                                      "name": "id",
+                                      "defaultValue": "",
+                                      "paramType": "path",
+                                      "allowMultiple": false,
+                                      "description": "term id"
+                                  }
+
+                              ],
+                              "summary": "Insert or Update category terms"
                           },
                           {
                             "errorResponses": [
@@ -104,7 +139,7 @@ class AdminAPIView extends View
                               "parameters": [
   
                                   {
-                                      "required": false,
+                                      "required": true,
                                       "dataType": "int",
                                       "name": "id",
                                       "defaultValue": "",
@@ -113,7 +148,8 @@ class AdminAPIView extends View
                                       "description": "term id"
                                   }
 
-                              ]
+                              ],
+                              "summary": "Delete category terms"
                           }                          
                       ],
                       "path": "/admin/categoryterms/{id}",
@@ -124,9 +160,54 @@ class AdminAPIView extends View
         <?php
   }
 
+  function categoriesJson() {
+    header('Content-type: application/json');
 
 
-  function categoryTermsSync( $request ) {
+    ?>
+          {
+              "resourcePath": "/admin/categories",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "Permission denied",
+                                      "code": 303
+                                  },                              
+                                  {
+                                      "reason": "Category term list",
+                                      "code": 200
+                                  },
+                                  {
+                                      "reason": "Category not found",
+                                      "code": 404
+                                  }
+                              ],
+
+                              "httpMethod": "GET",
+                              "nickname": "group",
+                              "parameters": [
+  
+                    
+
+                              ],
+                              "summary": "Get Category terms"
+                          }
+                      ],
+                      "path": "/admin/categories",
+                      "description": ""
+                  }
+              ]
+          }
+    <?php
+  }
+
+
+
+  function categoryTerms( $request ) {
 
 
     $id = substr($request[1], 1);
@@ -193,6 +274,8 @@ class AdminAPIView extends View
         }
         else {
           header("HTTP/1.0 404 Not Found");
+          header('Content-type: application/json');
+          echo '{}';          
         }
 
         break;
@@ -202,7 +285,7 @@ class AdminAPIView extends View
 
   }
 
-  function categoriesSync() {
+  function categories() {
     $taxgroupModel = new TaxonomygroupModel();
     $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
 
