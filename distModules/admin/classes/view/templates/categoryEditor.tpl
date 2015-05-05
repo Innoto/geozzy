@@ -13,8 +13,8 @@
         </div>
         <div class="panel-body">
           <div id="taxTermListContainer" class="dd">
-            <ul class="listTerms dd-list" class="list-group">
-            </ul>
+            <ol class="listTerms dd-list">
+            </ol>
           </div>
 
         </div> <!-- end panel-body -->
@@ -46,7 +46,7 @@
 
 <script type="text/template" id="taxTermEditorItem">
 
-  	<li class="dd-item" termId="<%- term.id %>" data-id="<%- term.id %>">
+  	<li class="dd-item" data-id="<%- term.id %>">
   	  <div class="row dd-handle">
         <div class="rowShow">
     	      <div class="infoTerm"><%- term.name %></div>

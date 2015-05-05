@@ -38,7 +38,6 @@ var CategoryEditorView = Backbone.View.extend({
 
     this.baseTemplate = _.template( $('#taxTermEditor').html() );
     this.$el.html( this.baseTemplate(that.category.toJSON() ) );
-    //this.$el.find('.dd').nestable( { 'maxDepth':2 } );
   },
 
   updateList: function() {
@@ -48,7 +47,7 @@ var CategoryEditorView = Backbone.View.extend({
     this.$el.find('.listTerms').html();
 
     that.categoryTerms.sortByField('weight');
-    var categoriesParents = this.categoryTerms.search({parent:false}).toJSON();
+    var categoriesParents = that.categoryTerms.search({parent:false}).toJSON();
 
     _.each( categoriesParents , function(item){
       that.$el.find('.listTerms').append( that.listTemplate({ term: item }) );
@@ -60,16 +59,39 @@ var CategoryEditorView = Backbone.View.extend({
       if( categoriesChildren.length > 0 ){
         that.$el.find('.listTerms li[data-id="'+item.id+'"]').append('<ol class="dd-list"></ol>');
         _.each( categoriesChildren , function(itemchildren){
-          that.$el.find('.listTerms li[data-id="'+itemchildren.parent+'"]  .dd-list').append(
+          that.$el.find('.listTerms li[data-id="'+itemchildren.parent+'"] .dd-list').append(
             that.listTemplate({ term: itemchildren })
           );
         });
       }
     });
 
-    this.$el.find('.dd').nestable({ 'maxDepth': 1 });
+    this.$el.find('.dd').nestable({ 'maxDepth': 2 , callback: function(l, e) {
+      that.saveList();
+    } });
 
   },
+
+  saveList: function(){
+    var that = this;
+    var jsonCategories = $('#taxTermListContainer').nestable('serialize');
+    var itemWeight = 0;
+    _.each( jsonCategories , function( e , i ){
+
+      var element = that.categoryTerms.get(e.id);
+      element.set({ weight: itemWeight });
+      if(e.children){
+        _.each( e.children , function( eCh , iCh ){
+          itemWeight++;
+          element.set({ weight: itemWeight, parent:e.id });
+        });
+      }
+      itemWeight++;
+    });
+  },
+
+
+/*Edición de un categoria*/
 
   removeCategory: function( el ) {
     var that = this;
@@ -95,8 +117,8 @@ var CategoryEditorView = Backbone.View.extend({
   editCategory: function( el ) {
     var that = this;
 
-    var termId =  $(el.currentTarget).attr('termId');
-    var catRow = that.$el.find('[termId="' + termId + '"]' );
+    var termId =  $(el.currentTarget).attr('data-id');
+    var catRow = that.$el.find('li[data-id="' + termId + '"]' );
 
     catRow.find('.rowShow').hide();
     catRow.find('.rowEdit').show();
@@ -105,27 +127,22 @@ var CategoryEditorView = Backbone.View.extend({
   saveEditCategory: function( el ) {
     var that = this;
 
-    var termId =  $(el.currentTarget).attr('termId');
-    var catRow = that.$el.find('[termId="' + termId + '"]' );
-
+    var termId =  $(el.currentTarget).attr('data-id');
+    var catRow = that.$el.find('li[data-id="' + termId + '"]' );
     var catTermName = catRow.find('.rowEdit .editTermInput').val();
-
     var term = this.categoryTerms.get( termId );
     term.set( { name:catTermName } );
-
-    term.save();
-
+    //term.save();
 
     that.updateList();
-
   },
 
 
   cancelEditCategory: function( el ) {
     var that = this;
 
-    var termId =  $(el.currentTarget).attr('termId');
-    var catRow = that.$el.find('[termId="' + termId + '"]' );
+    var termId =  $(el.currentTarget).attr('data-id');
+    var catRow = that.$el.find('li[data-id="' + termId + '"]' );
     that.updateList();
 
   }
