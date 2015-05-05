@@ -3,6 +3,7 @@ require_once APP_BASE_PATH."/conf/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
 geozzy::autoIncludes();
 admin::autoIncludes();
+user::autoIncludes();
 
 /**
 * Clase Master to extend other application methods
@@ -19,9 +20,23 @@ class AdminAPIView extends View
   * @return bool : true -> Access allowed
   */
   function accessCheck() {
-    if( GEOZZY_API_ACTIVE ){
-     return true;
+    
+    $useraccesscontrol = new UserAccessController();
+    $res = true;
+
+    if( !GEOZZY_API_ACTIVE ){
+     $res = false;
     }
+    else 
+    if( !$useraccesscontrol->isLogged() ) {
+      header("HTTP/1.0 303");
+      header('Content-type: application/json');
+      echo '{}';
+      exit;        
+    }
+
+    return $res;    
+
   }
 
 
@@ -38,6 +53,10 @@ class AdminAPIView extends View
                       "operations": [
                           {
                               "errorResponses": [
+                                  {
+                                      "reason": "Permission denied",
+                                      "code": 303
+                                  },                              
                                   {
                                       "reason": "Category term list",
                                       "code": 200
@@ -66,6 +85,10 @@ class AdminAPIView extends View
                           },
                           {
                             "errorResponses": [
+                                  {
+                                      "reason": "Permission denied",
+                                      "code": 303
+                                  },                                        
                                   {
                                       "reason": "Category term Deleted",
                                       "code": 200
@@ -107,7 +130,7 @@ class AdminAPIView extends View
 
 
     $id = substr($request[1], 1);
-    var_dump($id);
+
     header('Content-type: application/json');
 
     switch( $_SERVER['REQUEST_METHOD'] ) {
@@ -155,17 +178,21 @@ class AdminAPIView extends View
         break;
 
       case 'DELETE':
-        $taxTerm = new TaxonomytermModel( 
-                                        array('id'=> $id)
-                                          
-                                        );
-
-        var_dump($taxTerm->getAllData() );
-        if( $taxTerm && $taxTerm->getter('') ) {
-          //$taxTerm->delete();
+        $taxM = new TaxonomytermModel();
+        $taxTerm = $taxM->listItems(
+                                    array( 
+                                            'filters' => array('id'=> $id, 'TaxonomygroupModel.editable'=>1),
+                                            'affectsDependences' => array('TaxonomygroupModel'),
+                                            'joinType' => 'INNER'
+                                        ) 
+                                    );
+        if( $taxTerm && $t = $taxTerm->fetch() ) {
+          $t->delete();
+          header('Content-type: application/json');
+          echo '{}';
         }
         else {
-          header("HTTP/1.0 404 Not Found");        
+          header("HTTP/1.0 404 Not Found");
         }
 
         break;
