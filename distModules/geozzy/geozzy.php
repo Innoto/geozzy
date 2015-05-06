@@ -14,18 +14,12 @@ class geozzy extends Module
   public $dependences = array(
 
     array(
-     "id" =>"underscore",
-     "params" => array("underscore#1.8.3"),
+     "id" =>"ckeditor",
+     "params" => array("ckeditor#standard/stable"),
      "installer" => "bower",
-     "includes" => array("underscore-min.js")
-    ),
-    array(
-     "id" =>"backbonejs",
-     "params" => array("backbone#1.1.2"),
-     "installer" => "bower",
-     "includes" => array("backbone.js")
+     "includes" => array("ckeditor.js"),
+     "autoinclude" => false
     )
-
 
   );
   public $includesCommon = array(
@@ -35,6 +29,13 @@ class geozzy extends Module
 
   public function __construct() {
     $this->addUrlPatterns( '#^'.MOD_GEOZZY_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
+
+
+    /* Probando Recursos */
+    //$this->addUrlPatterns( '#^recurso$#', 'view:GeozzyResourceView::showRecurso' );
+    //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
+    $this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
+
   }
 
   static public function moduleRc() {

@@ -5,6 +5,7 @@
 
 
 {block "headCssIncludes" append}
+<!-- recursoForm.tpl en app de Geozzy - block "headCssIncludes" append -->
   <style>
     body { font-size: 12px; }
     .cgmMForm-wrap { border:1px dashed violet; margin:1px; padding:1px 5px; }
@@ -26,10 +27,12 @@
 
     .cgmMForm .cke_editable_inline { border:2px dotted green; background-color: white; cursor: pointer; }
   </style>
+<!-- /recursoForm.tpl en app de Geozzy - block "headCssIncludes" append -->
 {/block}
 
 
 {block "bodyContent"}
+<!-- recursoForm.tpl en app de Geozzy - block "bodyContent" -->
 
   {$formOpen}
 
@@ -39,42 +42,42 @@
 
   {$formValidations}
 
+  <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 
-<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+  <script>
+  $( document ).ready( function() {
+    var langAvailable = {$JsLangAvailable};
+    var langDefault = {$JsLangDefault};
+    var langForm = false;
 
-<script>
-$( document ).ready( function() {
-  var langAvailable = {$JsLangAvailable};
-  var langDefault = {$JsLangDefault};
-  var langForm = false;
+    function switchFormLang( lang ) {
+      console.log( 'switchFormLang: '+lang );
+      langForm = lang;
+      $( '.cgmMForm-groupElem > div' ).hide();
+      $( '.cgmMForm-groupElem > div[class$="_'+lang+'"]' ).show();
+      $( '.cgmMForm-group-wrap ul.langSwitch li' ).removeClass( 'langActive' );
+      $( '.cgmMForm-group-wrap ul.langSwitch li.langSwitch-'+lang ).addClass( 'langActive' );
+    }
 
-  function switchFormLang( lang ) {
-    console.log( 'switchFormLang: '+lang );
-    langForm = lang;
-    $( '.cgmMForm-groupElem > div' ).hide();
-    $( '.cgmMForm-groupElem > div[class$="_'+lang+'"]' ).show();
-    $( '.cgmMForm-group-wrap ul.langSwitch li' ).removeClass( 'langActive' );
-    $( '.cgmMForm-group-wrap ul.langSwitch li.langSwitch-'+lang ).addClass( 'langActive' );
-  }
+    if( langAvailable ) {
+      var htmlLangSwitch = '<ul class="langSwitch">';
+      $.each( langAvailable, function( index, lang ) {
+        htmlLangSwitch += '<li class="langSwitch-'+lang+'" data-lang-value="'+lang+'">'+lang;
+      });
+      $( '.cgmMForm-group-wrap' ).prepend( htmlLangSwitch );
 
-  if( langAvailable ) {
-    var htmlLangSwitch = '<ul class="langSwitch">';
-    $.each( langAvailable, function( index, lang ) {
-      htmlLangSwitch += '<li class="langSwitch-'+lang+'" data-lang-value="'+lang+'">'+lang;
-    });
-    $( '.cgmMForm-group-wrap' ).prepend( htmlLangSwitch );
+      switchFormLang( langDefault );
 
-    switchFormLang( langDefault );
+      $( '.cgmMForm-group-wrap ul.langSwitch li' ).on( "click", function() {
+        newLang = $( this ).data( 'lang-value' );
+        if( newLang != langForm ) {
+          switchFormLang( newLang );
+        }
+      });
+    }
+  });
+  </script>
 
-    $( '.cgmMForm-group-wrap ul.langSwitch li' ).on( "click", function() {
-      newLang = $( this ).data( 'lang-value' );
-      if( newLang != langForm ) {
-        switchFormLang( newLang );
-      }
-    });
-  }
-});
-</script>
-
+<!-- /recursoForm.tpl en app de Geozzy - block "bodyContent" -->
 {/block}
 

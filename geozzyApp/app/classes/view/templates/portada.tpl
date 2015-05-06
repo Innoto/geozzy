@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- portada.tpl en app de Geozzy -->
 <html>
 
 <head>
@@ -17,3 +18,4 @@
 
 </body>
 </html>
+<!-- /portada.tpl en app de Geozzy -->

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- defaultConHeader.tpl en app de Geozzy -->
+<!-- default.tpl en geozzy module -->
 <html>
 <head>
   <meta charset="utf-8">
@@ -8,14 +8,11 @@
   <title>{block name="headTitle"}Geozzy app{/block}</title>
 
   {block name="headCssIncludes"}{$css_includes}{/block}
+
   {block name="headJsIncludes"}{$js_includes}{/block}
 
 </head>
 <body style="background:#BFE3E9;">
-
-  <div class="headContent">
-    {block name="headContent"}Este é o espacio da cabeceira...{/block}
-  </div>
 
   <div class="bodyContent">
     {block name="bodyContent"}{/block}
@@ -23,5 +20,4 @@
 
 </body>
 </html>
-
-<!-- /defaultConHeader.tpl en app de Geozzy -->
+<!-- /default.tpl en geozzy module -->
