@@ -121,7 +121,7 @@ var CategoryEditorView = Backbone.View.extend({
 
   editCategory: function( el ) {
     var that = this;
-
+alert("oals");
     var termId =  $(el.currentTarget).attr('data-id');
     var catRow = that.$el.find('li[data-id="' + termId + '"]' );
 
@@ -137,7 +137,7 @@ var CategoryEditorView = Backbone.View.extend({
     var catTermName = catRow.find('.rowEdit .editTermInput').val();
     var term = this.categoryTerms.get( termId );
     term.set( { name:catTermName } );
-    term.save();
+    //term.save();
 
     that.updateList();
   },
