@@ -38,13 +38,18 @@ var CategoryEditorView = Backbone.View.extend({
 
     this.baseTemplate = _.template( $('#taxTermEditor').html() );
     this.$el.html( this.baseTemplate(that.category.toJSON() ) );
+
+
+
+
+
   },
 
   updateList: function() {
     var that = this;
 
     this.listTemplate = _.template( $('#taxTermEditorItem').html() );
-    this.$el.find('.listTerms').html();
+    this.$el.find('.listTerms').html('');
 
     that.categoryTerms.sortByField('weight');
     var categoriesParents = that.categoryTerms.search({parent:false}).toJSON();
@@ -96,7 +101,7 @@ var CategoryEditorView = Backbone.View.extend({
   removeCategory: function( el ) {
     var that = this;
 
-    var c = that.categoryTerms.get( $(el.currentTarget).attr('termId') )
+    var c = that.categoryTerms.get( $(el.currentTarget).attr('data-id') )
     c.destroy();
     that.updateList();
 
@@ -132,7 +137,7 @@ var CategoryEditorView = Backbone.View.extend({
     var catTermName = catRow.find('.rowEdit .editTermInput').val();
     var term = this.categoryTerms.get( termId );
     term.set( { name:catTermName } );
-    //term.save();
+    term.save();
 
     that.updateList();
   },
