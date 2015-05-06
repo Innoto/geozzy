@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- default.tpl en app de Geozzy -->
 <html>
 <head>
   <meta charset="utf-8">
@@ -19,3 +20,5 @@
 
 </body>
 </html>
+
+<!-- /default.tpl en app de Geozzy -->

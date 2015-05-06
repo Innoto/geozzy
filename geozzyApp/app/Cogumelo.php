@@ -16,7 +16,7 @@ class Cogumelo extends CogumeloClass
     /* Probando Recursos */
     $this->addUrlPatterns( '#^recurso$#', 'view:RecursoView::showRecurso' );
     $this->addUrlPatterns( '#^recursoForm$#', 'view:RecursoView::loadForm' );
-    $this->addUrlPatterns( '#^recurso-form-action$#', 'view:RecursoView::actionForm' );
+    //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:RecursoView::actionForm' );
 
 
     /*MasterView*/

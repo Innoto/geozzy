@@ -27,7 +27,7 @@
         <div class="panel-heading">
           <strong>
             <i class="fa fa-tag fa-fw"></i>
-            Añadir  <%- name %>
+            Añadir a <%- name %>
           </strong>
         </div>
         <div class="panel-body">
@@ -50,32 +50,15 @@
       <div class="dd-item-container clearfix">
 
         <div class="dd-content">
-          <div class="rowShow">
-              <div class="taxTermActions">
-      	        <button class="btnEditTerm btn btn-default btn-info" data-id="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
-      	        <button class="btnDeleteTerm btn btn-default btn-danger" data-id="<%- term.id %>" ><i class="fa fa-trash"></i></button>
-      	      </div>
-          </div>
-
-          <div class="rowEdit" style="display:none;">
-            <div class="taxTermActions">
-              <button class="btnSaveTerm btn btn-default btn-success" data-id="<%- term.id %>"><i class="fa fa-check"></i></button>
-              <button class="btnCancelTerm btn btn-default btn-danger" data-id="<%- term.id %>"><i class="fa fa-close"></i></button>
-            </div>
-          </div>
+          <div class="taxTermActions">
+  	        <button class="btnEditTerm btn btn-default btn-info" data-id="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
+  	        <button class="btnDeleteTerm btn btn-default btn-danger" data-id="<%- term.id %>" ><i class="fa fa-trash"></i></button>
+  	      </div>
     	  </div>
 
         <div class="dd-handle">
           <div class="icon-handle"><i class="fa fa-arrows"></i></div>
-
-          <div class="rowShow">
-            <div class="infoTerm"><%- term.name %></div>
-          </div>
-          <div class="rowEdit" style="display:none;">
-            <div class="editTermContainer">
-                <input type="text" class="editTermInput" value="<%- term.name %>" />
-            </div>
-          </div>
+          <div class="infoTerm"><%- term.name %></div>          
         </div>
 
       </div>

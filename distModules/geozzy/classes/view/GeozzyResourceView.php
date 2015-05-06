@@ -1,24 +1,23 @@
 <?php
-Cogumelo::load( 'coreView/View.php' );
-//Cogumelo::load( 'coreModel/ResourceModel.php' );
-geozzy::load( 'view/GeozzyResourceView.php' );
-
-common::autoIncludes();
-geozzy::autoIncludes();
-
-//form::autoIncludes();
-//filedata::autoIncludes();
+Cogumelo::load('coreView/View.php');
 
 
 
-class RecursoView extends View
+class GeozzyResourceView extends View
 {
 
-  public function __construct( $baseDir ) {
 
+  public function __construct( $baseDir = false ){
     parent::__construct( $baseDir );
-  }
 
+    common::autoIncludes();
+
+    form::autoIncludes();
+    filedata::autoIncludes();
+    //user::autoIncludes();
+
+    // geozzy::autoIncludes();
+  }
 
   /**
     Evaluate the access conditions and report if can continue
@@ -31,21 +30,15 @@ class RecursoView extends View
   }
 
 
+
   /**
-    Defino y muestro un formulario
+    Defino un formulario con su TPL como Bloque
   */
-  public function loadForm() {
-    error_log( "RecursoView: loadForm()" );
+  public function formCreateBlock( $formName = 'resourceCreate', $urlAction = '/recurso-form-action' ) {
+    error_log( "RecursoView: formCreateBlock()" );
 
-    $resourceView = new GeozzyResourceView();
-    $formBlock = $resourceView->formCreateBlock();
-    $this->template->setBlock( 'formNewResourceBlock', $formBlock );
+    geozzy::loadDependence( 'ckeditor' );
 
-    $this->template->setTpl( 'probandoFormRecurso.tpl' );
-    $this->template->exec();
-
-
-    /*
     $langAvailable = false;
     $this->template->assign( 'JsLangAvailable', 'false' );
     $this->template->assign( 'JsLangDefault', 'false' );
@@ -57,7 +50,7 @@ class RecursoView extends View
       $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
     }
 
-    $form = new FormController( 'recursoForm', '/recurso-form-action' );
+    $form = new FormController( $formName, $urlAction );
 
     $form->setSuccess( 'accept', 'Gracias por participar' );
 
@@ -147,21 +140,18 @@ class RecursoView extends View
     $this->template->assign( 'formClose', $form->getHtmlClose() );
     $this->template->assign( 'formValidations', $form->getScriptCode() );
 
-    $this->template->setTpl( 'recursoForm.tpl' );
+    $this->template->setTpl( 'newRecursoFormBlock.tpl', 'geozzy' );
 
-    $this->template->exec();
-
-    */
-  } // function loadForm()
+    return( $this->template );
+  } // function formCreateBlock()
 
 
 
   /**
     Proceso formulario
   */
-  /*
-  public function actionForm() {
-    error_log( "RecursoView: actionForm()" );
+  public function actionCreate() {
+    error_log( "RecursoView: actionCreate()" );
 
     $form = new FormController();
     if( $form->loadPostInput() ) {
@@ -205,8 +195,8 @@ class RecursoView extends View
 
 
 
-  } // function actionForm()
-  */
+  } // function actionCreate()
+
 
 
   /**
@@ -225,7 +215,7 @@ class RecursoView extends View
   } // function showRecurso()
 
 
-} // class BloquesTest extends View
+} // class ResourceView extends View
 
 
 
