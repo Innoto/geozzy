@@ -57,8 +57,8 @@
     	  </div>
 
         <div class="dd-handle">
-          <div class="icon-handle"><i class="fa fa-arrows"></i></div>
-          <div class="infoTerm"><%- term.name %></div>          
+          <i class="fa fa-arrows icon-handle"></i>
+          <%- term.name %>
         </div>
 
       </div>
