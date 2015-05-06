@@ -27,7 +27,7 @@
         <div class="panel-heading">
           <strong>
             <i class="fa fa-tag fa-fw"></i>
-            Añadir  <%- name %>
+            Añadir a <%- name %>
           </strong>
         </div>
         <div class="panel-body">
