@@ -1,7 +1,7 @@
 var CategorytermCollection = Backbone.Collection.extend({
   url: '/api/admin/categoryterms',
   model: TaxonomytermModel,
-  sortKey: 'id',
+  sortKey: 'weight',
 
   search: function( opts ){
 

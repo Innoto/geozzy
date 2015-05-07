@@ -16,7 +16,7 @@
             <ol class="listTerms dd-list">
             </ol>
           </div>
-          <div>
+          <div class="saveChanges">
             <button class="btn btn-danger cancelTerms">Cancel</button>          
             <button class="btn btn-primary saveTerms">Save</button>
           </div>
