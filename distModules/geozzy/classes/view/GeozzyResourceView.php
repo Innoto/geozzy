@@ -121,6 +121,7 @@ class GeozzyResourceView extends View
       }
     }
 
+
     $form->setValidationRule( 'title_'.$langDefault, 'required' );
 
 
@@ -186,9 +187,6 @@ class GeozzyResourceView extends View
       $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
       echo $form->jsonFormError();
     }
-
-
-
 
   } // function actionCreate()
 

@@ -1,13 +1,9 @@
 <?php
 Cogumelo::load( 'coreView/View.php' );
-//Cogumelo::load( 'coreModel/ResourceModel.php' );
 geozzy::load( 'view/GeozzyResourceView.php' );
 
 common::autoIncludes();
 geozzy::autoIncludes();
-
-//form::autoIncludes();
-//filedata::autoIncludes();
 
 
 
@@ -32,10 +28,10 @@ class RecursoView extends View
 
 
   /**
-    Defino y muestro un formulario
+    Defino y muestro un formulario de creacion
   */
-  public function loadForm() {
-    error_log( "RecursoView: loadForm()" );
+  public function crearForm() {
+    error_log( "RecursoView: crearForm()" );
 
     $resourceView = new GeozzyResourceView();
     $formBlock = $resourceView->formCreateBlock();
@@ -43,296 +39,55 @@ class RecursoView extends View
 
     $this->template->setTpl( 'probandoFormRecurso.tpl' );
     $this->template->exec();
-
-
-    /*
-    $langAvailable = false;
-    $this->template->assign( 'JsLangAvailable', 'false' );
-    $this->template->assign( 'JsLangDefault', 'false' );
-    if( defined( 'LANG_AVAILABLE' ) ) {
-      $langAvailable = explode( ',', LANG_AVAILABLE );
-      $langDefault = LANG_DEFAULT;
-      $tmp = implode( "', '", $langAvailable );
-      $this->template->assign( 'JsLangAvailable', "['".$tmp."']" );
-      $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
-    }
-
-    $form = new FormController( 'recursoForm', '/recurso-form-action' );
-
-    $form->setSuccess( 'accept', 'Gracias por participar' );
-
-    // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
-    // 'loc'   'type' => 'GEOMETRY'
-    $campos = array(
-      'headKeywords' => array(
-        'params' => array( 'label' => 'Label de headKeywords' ),
-        'rules' => array( 'maxlength' => '150' )
-      ),
-      'headDescription' => array(
-        'translate' => true,
-        'params' => array( 'label' => 'Label de headDescription' ),
-        'rules' => array( 'maxlength' => '150' )
-      ),
-      'headTitle' => array(
-        'translate' => true,
-        'params' => array( 'label' => 'Label de headTitle' ),
-        'rules' => array( 'maxlength' => '100' )
-      ),
-      'title' => array(
-        'translate' => true,
-        'params' => array( 'label' => 'Label de title' ),
-        'rules' => array( 'maxlength' => '100' )
-      ),
-      'shortDescription' => array(
-        'translate' => true,
-        'params' => array( 'label' => 'Label de shortDescription' ),
-        'rules' => array( 'maxlength' => '100' )
-      ),
-      'mediumDescription' => array(
-        'translate' => true,
-        'params' => array( 'label' => 'Label de mediumDescription', 'type' => 'textarea', 'htmlEditor' => 'true' )
-      ),
-      'content' => array(
-        'translate' => true,
-        'params' => array( 'label' => 'Label de content', 'type' => 'textarea',
-          'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
-      ),
-      'image' => array(
-        'params' => array( 'label' => 'Label de image', 'type' => 'file', 'id' => 'imgResource',
-          'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' )
-      ),
-      'defaultZoom' => array(
-        'params' => array( 'label' => 'Label de defaultZoom' ),
-        'rules' => array( 'required' => true, 'max' => '20' )
-      )
-    );
-
-
-    foreach( $campos as $fieldName => $definition ) {
-      if( !isset( $definition['params'] ) ) {
-        $definition['params'] = false;
-      }
-      if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
-        foreach( $langAvailable as $lang ) {
-          $form->setField( $fieldName.'_'.$lang, $definition['params'] );
-          if( isset( $definition['rules'] ) ) {
-            foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-              $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
-            }
-          }
-          $form->setFieldGroup( $fieldName.'_'.$lang, $fieldName.'_translate' );
-        }
-      }
-      else {
-        $form->setField( $fieldName, $definition['params'] );
-        if( isset( $definition['rules'] ) ) {
-          foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-            $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
-          }
-        }
-      }
-    }
-
-    $form->setValidationRule( 'title_'.$langDefault, 'required' );
-
-
-    $form->setField( 'submit', array( 'type' => 'submit', 'label' => 'Pulsa para enviar', 'value' => 'Manda' ) );
-
-    // Una vez que lo tenemos definido, guardamos el form en sesion
-    $form->saveToSession();
-
-
-    $this->template->assign( 'formOpen', $form->getHtmpOpen() );
-    $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
-    $this->template->assign( 'formClose', $form->getHtmlClose() );
-    $this->template->assign( 'formValidations', $form->getScriptCode() );
-
-    $this->template->setTpl( 'recursoForm.tpl' );
-
-    $this->template->exec();
-
-    */
-  } // function loadForm()
+  } // function crearForm()
 
 
 
   /**
-    Proceso formulario
+    Defino y muestro un formulario de edicion
   */
-  /*
-  public function actionForm() {
-    error_log( "RecursoView: actionForm()" );
+  public function editarForm() {
+    error_log( "RecursoView: editarForm()" );
 
-    $form = new FormController();
-    if( $form->loadPostInput() ) {
-      $form->validateForm();
-    }
-    else {
-      $form->addFormError( 'El servidor no considera válidos los datos recibidos.', 'formError' );
-    }
+    $resourceView = new GeozzyResourceView();
+    $formBlock = $resourceView->formCreateBlock();
+    $this->template->setBlock( 'formNewResourceBlock', $formBlock );
 
-    if( !$form->existErrors() ) {
-      if( !$form->processFileFields() ) {
-        $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea '.
-          'necesario subirlos otra vez.', 'formError' );
-      }
-    }
+    $this->template->setTpl( 'probandoFormRecurso.tpl' );
+    $this->template->exec();
+  } // function editarForm()
 
-    if( !$form->existErrors() ) {
-      $valuesArray = $form->getValuesArray();
-
-      print_r( $valuesArray );
-
-      $recurso = new ResourceModel( $valuesArray );
-
-      if($valuesArray['image']['values']){
-        $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
-        $recurso->save( array( 'affectsDependences' => true ));
-      }
-      else {
-        $recurso->save();
-      }
-
-      print_r( $recurso->getAllData() );
-
-      echo $form->jsonFormOk();
-    }
-    else {
-      $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
-      echo $form->jsonFormError();
-    }
-
-
-
-
-  } // function actionForm()
-  */
 
 
   /**
     Visualizamos el Recurso
   */
-  public function showRecurso() {
-    print "RecursoView: showRecurso()\n\n";
+  public function verRecurso() {
+    error_log( "RecursoView: showRecurso()" );
 
     $recObj = new ResourceModel();
     $recursosList = $recObj->listItems( array( 'affectsDependences' => array( 'FiledataModel' ), 'order' => array( 'id' => -1 ) ) );
     $recurso = $recursosList->fetch();
 
     //cogumelo::console( $recurso );
-    print("<pre>\n");
-    print_r( $recurso->getAllData() );
+    $allData = $recurso->getAllData();
+    $htmlRecurso = "\n<pre>\n" . print_r( $allData, true ) . "\n</pre>\n";
+
+    foreach( $recurso->getCols() as $key => $value ) {
+      $this->template->assign( $key, $recurso->getter( $key ) );
+    }
+
+    // htmlspecialchars({$output}, ENT_QUOTES, SMARTY_RESOURCE_CHAR_SET);
+
+    $this->template->assign( 'resourceHtml', $htmlRecurso );
+
+    $this->template->setTpl( 'verRecurso.tpl' );
+    $this->template->exec();
   } // function showRecurso()
 
 
-} // class BloquesTest extends View
+} // class showRecurso
 
-
-
-
-/*
-  function userFormOk( $form ) {
-    $asignRole = false;
-
-    if( !$form->processFileFields() ) {
-      $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario subirlos otra vez.', 'formError' );
-    }
-
-    if( !$form->existErrors() ){
-      $valuesArray = $form->getValuesArray();
-
-      $user = new UserModel( $valuesArray );
-
-      if($valuesArray['avatar']['values']){
-        $user->setterDependence( 'avatar', new FiledataModel( $valuesArray['avatar']['values'] ) );
-      }
-      $user->save( array( 'affectsDependences' => true ));
-
-      if($asignRole){
-        $roleModel = new RoleModel();
-        $role = $roleModel->listItems( array('filters' => array('name' => 'user') ))->fetch();
-        $userRole = new UserRoleModel();
-        if( $role ){
-          $userRole->setterDependence( 'role', $role );
-        }
-        $userRole->setterDependence( 'user', $user );
-        $userRole->save(array( 'affectsDependences' => true ));
-      }
-    }
-    return $user;
-  }
-*/
-
-
-/*
-    $campo = 'headKeywords';
-    //public function setField( $fieldName, $params = false ) {
-    //public function setValidationRule( $fieldName, $ruleName, $ruleParams = true ) {
-    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
-    $form->setValidationRule( $campo, 'maxlength', '150' );
-
-    $grupo = 'headDescription';
-    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
-      $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$grupo ) );
-      $form->setValidationRule( $campo, 'maxlength', '150' );
-      $form->setFieldGroup( $campo, $grupo );
-    }
-
-    $grupo = 'headTitle';
-    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
-      $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$grupo ) );
-      $form->setValidationRule( $campo, 'maxlength', '100' );
-      $form->setFieldGroup( $campo, $grupo );
-    }
-
-    $grupo = 'title';
-    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
-      $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$grupo ) );
-      $form->setValidationRule( $campo, 'maxlength', '100' );
-      $form->setFieldGroup( $campo, $grupo );
-    }
-
-    $grupo = 'shortDescription';
-    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
-      $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$grupo ) );
-      $form->setValidationRule( $campo, 'maxlength', '100' );
-      $form->setFieldGroup( $campo, $grupo );
-    }
-
-    $grupo = 'mediumDescription';
-    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
-      $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$grupo, 'type' => 'textarea' ) );
-      $form->setFieldGroup( $campo, $grupo );
-    }
-
-    $grupo = 'content';
-    foreach( array( 'gl', 'es', 'en' ) as $lang ) {
-      $campo = $grupo.'_'.$lang;
-      $form->setField( $campo, array( 'label' => 'Label de '.$grupo, 'type' => 'textarea' ) );
-      $form->setFieldGroup( $campo, $grupo );
-    }
-
-    //$form->setField( 'image', array( 'type' => 'file', 'id' => 'inputFicheiro', 'placeholder' => 'Escolle un ficheiro JPG', 'label' => 'Colle un ficheiro JPG', 'destDir' => '/porto' ) );
-
-    //$form->setField( 'loc', array( 'label' => 'Label de '.$campo ) );
-
-    $campo = 'defaultZoom';
-    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
-    $form->setValidationRule( $campo, 'maxlength', '100' );
-
-    $campo = 'countVisits';
-    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
-    $form->setValidationRule( $campo, 'maxlength', '100' );
-
-    $campo = 'averageVotes';
-    $form->setField( $campo, array( 'label' => 'Label de '.$campo ) );
-    $form->setValidationRule( $campo, 'maxlength', '100' );
-*/
 
 
 /*
