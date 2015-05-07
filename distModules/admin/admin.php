@@ -124,8 +124,12 @@ class admin extends Module
     // API Admin
     $this->addUrlPatterns( '#^api/admin/categoryterms.json$#', 'view:AdminAPIView::categoryTermsJson' );
     $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminAPIView::categoryTerms' );
-    $this->addUrlPatterns( '#^api/admin/categories.json$#', 'view:AdminAPIView::categoriesJson' );    
+    $this->addUrlPatterns( '#^api/admin/categories.json$#', 'view:AdminAPIView::categoriesJson' );
     $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminAPIView::categories' );
+
+    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/create$#', 'view:AdminAPIView::categoryForm' );
+    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/edit/(\d+)$#', 'view:AdminAPIView::categoryForm' );
+    $this->addUrlPatterns( '#^api/admin/category/term/sendcategoryterm$#', 'view:AdminAPIView::sendCategoryForm' );
   }
 
 

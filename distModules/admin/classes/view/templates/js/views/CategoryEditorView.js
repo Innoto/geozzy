@@ -120,13 +120,15 @@ var CategoryEditorView = Backbone.View.extend({
   },
 
   editCategory: function( el ) {
+    /*
     var that = this;
-alert("oals");
+
     var termId =  $(el.currentTarget).attr('data-id');
     var catRow = that.$el.find('li[data-id="' + termId + '"]' );
 
     catRow.find('.rowShow').hide();
     catRow.find('.rowEdit').show();
+    */
   },
 
   saveEditCategory: function( el ) {
@@ -137,7 +139,7 @@ alert("oals");
     var catTermName = catRow.find('.rowEdit .editTermInput').val();
     var term = this.categoryTerms.get( termId );
     term.set( { name:catTermName } );
-    //term.save();
+    term.save();
 
     that.updateList();
   },
