@@ -54,14 +54,15 @@ var CategoryEditorView = Backbone.View.extend({
 
     var notDeletedCategoryTerms = that.categoryTerms.search( { deleted:0 } );
 
-    that.categoryTerms.sortByField('weight');
-    var categoriesParents = notDeletedCategoryTerms.search({parent:0, }).toJSON();
+    notDeletedCategoryTerms.sortByField('weight');
+
+    var categoriesParents = notDeletedCategoryTerms.search({parent:0 }).toJSON();
 
     _.each( categoriesParents , function(item){
       that.$el.find('.listTerms').append( that.listTemplate({ term: item }) );
 
-      that.categoryTerms.sortByField('weight');
       var categoriesChildren = notDeletedCategoryTerms.search({parent:item.id}).toJSON();
+
 
 
       if( categoriesChildren.length > 0 ){
@@ -87,6 +88,7 @@ var CategoryEditorView = Backbone.View.extend({
     _.each( jsonCategories , function( e , i ){
 
       var element = that.categoryTerms.get(e.id);
+      element.set({parent:0});
       element.set({ weight: itemWeight });
       if(e.children){
         _.each( e.children , function( eCh , iCh ){
@@ -126,8 +128,13 @@ var CategoryEditorView = Backbone.View.extend({
     that.$el.find('.newTaxTermName').val('');
 
     if(newTerm != ''){
-      that.categoryTerms.add({ name:newTerm, taxgroup:  that.category.get('id') });
-      that.categoryTerms.last().save().done( function(){that.updateList()} );
+      //that.categoryTerms.sortByField('weight').last().get('weight') ;
+      that.categoryTerms.sortByField('weight');
+
+      var maxWeight = that.categoryTerms.last().get('weight');
+
+      that.categoryTerms.add({ name:newTerm, taxgroup:  that.category.get('id'), weight:maxWeight+1 }).save().done( function(){that.updateList()} );
+      //that.categoryTerms.last();
     }
   },
 

@@ -11,7 +11,7 @@ var CategorytermCollection = Backbone.Collection.extend({
     return resultCollection;
   },
   comparator: function(item){
-    return !item.get(this.sortKey);
+    return item.get(this.sortKey);
   },
   sortByField: function(fieldName) {
     this.sortKey = fieldName;
