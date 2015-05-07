@@ -9,6 +9,8 @@ var CategoryEditorView = Backbone.View.extend({
     "click .btnCancelTerm" : "cancelEditCategory",
     "click .btnSaveTerm" : "saveEditCategory",
     "click .btnDeleteTerm" : "removeCategory" ,
+    "click .cancelTerms" : "cancelTerms" ,
+    "click .saveTerms" : "saveTerms" 
   },
 
   category: false,
@@ -21,7 +23,6 @@ var CategoryEditorView = Backbone.View.extend({
     that.categoryTerms = new CategorytermCollection();
 
     that.category = category;
-
 
     that.categoryTerms.fetch(
       {
@@ -51,14 +52,16 @@ var CategoryEditorView = Backbone.View.extend({
     this.listTemplate = _.template( $('#taxTermEditorItem').html() );
     this.$el.find('.listTerms').html('');
 
+    var notDeletedCategoryTerms = that.categoryTerms.search( { deleted:0 } );
+
     that.categoryTerms.sortByField('weight');
-    var categoriesParents = that.categoryTerms.search({parent:false}).toJSON();
+    var categoriesParents = notDeletedCategoryTerms.search({parent:0, }).toJSON();
 
     _.each( categoriesParents , function(item){
       that.$el.find('.listTerms').append( that.listTemplate({ term: item }) );
 
       that.categoryTerms.sortByField('weight');
-      var categoriesChildren = that.categoryTerms.search({parent:item.id}).toJSON();
+      var categoriesChildren = notDeletedCategoryTerms.search({parent:item.id}).toJSON();
 
 
       if( categoriesChildren.length > 0 ){
@@ -88,7 +91,8 @@ var CategoryEditorView = Backbone.View.extend({
       if(e.children){
         _.each( e.children , function( eCh , iCh ){
           itemWeight++;
-          element.set({ weight: itemWeight, parent:e.id });
+          var elementSon = that.categoryTerms.get(eCh.id);
+          elementSon.set({ weight: itemWeight, parent:e.id });
         });
       }
       itemWeight++;
@@ -101,8 +105,16 @@ var CategoryEditorView = Backbone.View.extend({
   removeCategory: function( el ) {
     var that = this;
 
-    var c = that.categoryTerms.get( $(el.currentTarget).attr('data-id') )
-    c.destroy();
+    var tId = $(el.currentTarget).attr('data-id');
+
+    var c = that.categoryTerms.get( tId )
+    c.set({deleted:1})
+    
+    _.each( that.categoryTerms.search({ parent: tId }).toJSON(), function( e, i ) {
+      console.log(e);
+    });
+
+    //c.destroy();
     that.updateList();
 
    },
@@ -121,7 +133,7 @@ var CategoryEditorView = Backbone.View.extend({
 
   editCategory: function( el ) {
     var that = this;
-alert("oals");
+
     var termId =  $(el.currentTarget).attr('data-id');
     var catRow = that.$el.find('li[data-id="' + termId + '"]' );
 
@@ -149,8 +161,22 @@ alert("oals");
     var termId =  $(el.currentTarget).attr('data-id');
     var catRow = that.$el.find('li[data-id="' + termId + '"]' );
     that.updateList();
+  },
 
+  saveTerms: function() {
+    var that = this;
+that.categoryTerms.save();
+    _.each( that.categoryTerms.search({ deleted:false }).toJSON() , function( e , i ){ 
+      //console.log(e );
+    });
+  },
+
+  cancelTerms: function() {
+    var that = this;
+    that.initialize( that.category );
   }
+
+
 
 
 
