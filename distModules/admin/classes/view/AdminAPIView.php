@@ -218,18 +218,32 @@ class AdminAPIView extends View
       case 'PUT':
 
         $putData = json_decode(file_get_contents('php://input'), true);
+        $taxtermModel = new TaxonomytermModel();
 
-        if( is_numeric( $id )) {  // update
-          $taxtermModel = new TaxonomytermModel();
+        if( is_numeric( $id )) {  // UPDATE
           $taxTerm = $taxtermModel->listItems(  array( 'filters' => array( 'id'=>$id ) ))->fetch();
-          $taxTerm->setter('name', $putData['name']);
-          $taxTerm->save();
         }
-        else { // create
-          $taxTerm = new TaxonomytermModel( array('name'=> $putData['name'], 'parent'=> null, 'taxgroup'=> $putData['taxgroup']) );
-          $taxTerm->save();
+        else { // CREATE
+          $taxTerm = $taxtermModel;
+        }   
 
-        }      
+        if( isset( $putData['name'] ) ) {
+          $taxTerm->setter('name', $putData['name'] );
+        }
+        
+        if( isset( $putData['parent'] ) ) {
+          $taxTerm->setter('parent', $putData['parent'] );
+        }
+
+        if( isset( $putData['weight'] ) ) {
+          $taxTerm->setter('weight', $putData['weight'] );
+        }
+
+        if( isset( $putData['taxgroup'] ) ) {
+          $taxTerm->setter('taxgroup', $putData['taxgroup'] );
+        }
+
+        $taxTerm->save();
 
         $termData = $taxTerm->getAllData();
         echo json_encode( $termData['data'] );
