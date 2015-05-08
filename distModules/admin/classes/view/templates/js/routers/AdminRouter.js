@@ -7,6 +7,8 @@ var AdminRouter = Backbone.Router.extend({
     "" : "charts",
     "charts" : "charts",
     "category/:id" : "categoryEdit",
+    "category/:category/term/create" : "categoryNewTerm",
+    "category/:category/term/edit/:term" : "categoryEditTerm",    
     "user/list" : "userList",
     "user/create" : "userCreate",    
     "user/edit/:id" : "userEdit",
@@ -27,6 +29,14 @@ var AdminRouter = Backbone.Router.extend({
     app.mainView.categoryEdit( id );
   },
 
+  categoryNewTerm: function( category ){
+    app.mainView.loadAjaxContent( '/api/admin/category/'+category+'/term/create');    
+  },
+
+  categoryEditTerm: function( category, term ){
+    app.mainView.loadAjaxContent( '/api/admin/category/'+category+'/term/edit/'+term);    
+  },
+  
   // User
   userList: function(){
     app.mainView.loadAjaxContent( '/admin/user/list' );

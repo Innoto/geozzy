@@ -128,6 +128,9 @@ var CategoryEditorView = Backbone.View.extend({
 
   addCategory: function() {
     var that = this;
+    Backbone.history.navigate('category/'+that.category.id+'/term/create', {trigger:true});
+
+/*    var that = this;
 
     var newTerm = that.$el.find('.newTaxTermName').val();
     that.$el.find('.newTaxTermName').val('');
@@ -143,10 +146,15 @@ var CategoryEditorView = Backbone.View.extend({
       
       that.categoryTerms.add({ name:newTerm, taxgroup:  that.category.get('id'), weight:maxWeight }).save().done( function(){that.updateList()} );
       //that.categoryTerms.last();
-    }
+    }*/
   },
 
   editCategory: function( el ) {
+    var that = this;
+
+
+    Backbone.history.navigate('category/'+that.category.id+'/term/edit/'+$(el.currentTarget).attr('data-id'), {trigger:true});
+
     /*
     var that = this;
 
