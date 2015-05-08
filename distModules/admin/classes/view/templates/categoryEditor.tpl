@@ -2,7 +2,7 @@
 <script type="text/template" id="taxTermEditor">
 
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-8">
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -17,7 +17,7 @@
             </ol>
           </div>
           <div class="saveChanges">
-            <button class="btn btn-danger cancelTerms">Cancel</button>          
+            <button class="btn btn-danger cancelTerms">Cancel</button>
             <button class="btn btn-primary saveTerms">Save</button>
           </div>
         </div> <!-- end panel-body -->
