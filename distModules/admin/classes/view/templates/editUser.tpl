@@ -1,7 +1,7 @@
 
 <div class="gzzAdShowUser">
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-8">
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -20,7 +20,7 @@
       </div> <!-- end panel -->
 
     </div> <!-- end col -->
-    <div class="col-lg-3">
+    <div class="col-lg-4">
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -39,7 +39,7 @@
       </div> <!-- end panel -->
 
     </div> <!-- end col -->
-    <div class="col-lg-3">
+    <div class="col-lg-4">
 
       <div class="panel panel-default">
         <div class="panel-heading">
