@@ -11,12 +11,9 @@ class GeozzyResourceView extends View
     parent::__construct( $baseDir );
 
     common::autoIncludes();
-
     form::autoIncludes();
     filedata::autoIncludes();
     //user::autoIncludes();
-
-    // geozzy::autoIncludes();
   }
 
   /**
@@ -36,8 +33,6 @@ class GeozzyResourceView extends View
   */
   public function formCreateBlock( $formName = 'resourceCreate', $urlAction = '/recurso-form-action' ) {
     error_log( "RecursoView: formCreateBlock()" );
-
-    geozzy::loadDependence( 'ckeditor' );
 
     $langAvailable = false;
     $this->template->assign( 'JsLangAvailable', 'false' );
@@ -126,6 +121,7 @@ class GeozzyResourceView extends View
       }
     }
 
+
     $form->setValidationRule( 'title_'.$langDefault, 'required' );
 
 
@@ -191,9 +187,6 @@ class GeozzyResourceView extends View
       $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
       echo $form->jsonFormError();
     }
-
-
-
 
   } // function actionCreate()
 

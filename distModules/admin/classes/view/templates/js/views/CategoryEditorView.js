@@ -8,7 +8,9 @@ var CategoryEditorView = Backbone.View.extend({
     "click .btnEditTerm" : "editCategory",
     "click .btnCancelTerm" : "cancelEditCategory",
     "click .btnSaveTerm" : "saveEditCategory",
-    "click .btnDeleteTerm" : "removeCategory" ,
+    "click .btnDeleteTerm" : "removeCategoryterm" ,
+    "click .cancelTerms" : "cancelTerms" ,
+    "click .saveTerms" : "saveTerms" 
   },
 
   category: false,
@@ -23,6 +25,7 @@ var CategoryEditorView = Backbone.View.extend({
     that.category = category;
 
 
+
     that.categoryTerms.fetch(
       {
         data: { group: that.category.get('id') },
@@ -31,6 +34,7 @@ var CategoryEditorView = Backbone.View.extend({
         }
       }
     );
+
   },
 
   render: function() {
@@ -39,6 +43,7 @@ var CategoryEditorView = Backbone.View.extend({
     this.baseTemplate = _.template( $('#taxTermEditor').html() );
     this.$el.html( this.baseTemplate(that.category.toJSON() ) );
 
+    that.saveChangesVisible(false); 
 
 
 
@@ -51,14 +56,16 @@ var CategoryEditorView = Backbone.View.extend({
     this.listTemplate = _.template( $('#taxTermEditorItem').html() );
     this.$el.find('.listTerms').html('');
 
-    that.categoryTerms.sortByField('weight');
-    var categoriesParents = that.categoryTerms.search({parent:false}).toJSON();
+    var notDeletedCategoryTerms = that.categoryTerms.search( { deleted:0 } );
+
+
+    var categoriesParents = notDeletedCategoryTerms.search({parent:0 }).toJSON();
 
     _.each( categoriesParents , function(item){
       that.$el.find('.listTerms').append( that.listTemplate({ term: item }) );
 
-      that.categoryTerms.sortByField('weight');
-      var categoriesChildren = that.categoryTerms.search({parent:item.id}).toJSON();
+      var categoriesChildren = notDeletedCategoryTerms.search({parent:item.id}).toJSON();
+
 
 
       if( categoriesChildren.length > 0 ){
@@ -78,33 +85,45 @@ var CategoryEditorView = Backbone.View.extend({
   },
 
   saveList: function(){
+
     var that = this;
     var jsonCategories = $('#taxTermListContainer').nestable('serialize');
     var itemWeight = 0;
     _.each( jsonCategories , function( e , i ){
 
       var element = that.categoryTerms.get(e.id);
+      element.set({parent:0});
       element.set({ weight: itemWeight });
       if(e.children){
         _.each( e.children , function( eCh , iCh ){
           itemWeight++;
-          element.set({ weight: itemWeight, parent:e.id });
+          var elementSon = that.categoryTerms.get(eCh.id);
+          elementSon.set({ weight: itemWeight, parent:e.id });
         });
       }
       itemWeight++;
     });
+
+    that.saveChangesVisible(true); 
   },
 
 
 /*Edición de un categoria*/
 
-  removeCategory: function( el ) {
+  removeCategoryterm: function( el ) {
     var that = this;
 
-    var c = that.categoryTerms.get( $(el.currentTarget).attr('data-id') )
-    c.destroy();
-    that.updateList();
+    var tId = parseInt($(el.currentTarget).attr('data-id'));
 
+    var c = that.categoryTerms.get( tId )
+    c.set({deleted:1})
+
+    that.categoryTerms.search({ parent: tId }).each( function( e,i  ) {
+      e.set({deleted:1});
+    });
+
+    that.updateList();
+    that.saveChangesVisible(true)
    },
 
   addCategory: function() {
@@ -114,8 +133,16 @@ var CategoryEditorView = Backbone.View.extend({
     that.$el.find('.newTaxTermName').val('');
 
     if(newTerm != ''){
-      that.categoryTerms.add({ name:newTerm, taxgroup:  that.category.get('id') });
-      that.categoryTerms.last().save().done( function(){that.updateList()} );
+
+      if( !that.categoryTerms.last() ){
+        var maxWeight = 0;
+      }
+      else {
+        var maxWeight = that.categoryTerms.last().get('weight');  
+      }
+      
+      that.categoryTerms.add({ name:newTerm, taxgroup:  that.category.get('id'), weight:maxWeight }).save().done( function(){that.updateList()} );
+      //that.categoryTerms.last();
     }
   },
 
@@ -151,6 +178,28 @@ var CategoryEditorView = Backbone.View.extend({
     var termId =  $(el.currentTarget).attr('data-id');
     var catRow = that.$el.find('li[data-id="' + termId + '"]' );
     that.updateList();
+  },
+
+  saveTerms: function() {
+    var that = this;
+    that.categoryTerms.save();
+    that.saveChangesVisible(false); 
+  },
+
+  cancelTerms: function() {
+    var that = this;
+    that.saveChangesVisible(false);
+    that.initialize( that.category );
+  },
+
+  saveChangesVisible: function( visible ) {
+
+    if( visible ) {
+      this.$el.find('.saveChanges').show();
+    }
+    else{
+      this.$el.find('.saveChanges').hide();
+    }
 
   }
 

@@ -16,7 +16,10 @@
             <ol class="listTerms dd-list">
             </ol>
           </div>
-          <button class="btn btn-primary">Save</button>
+          <div class="saveChanges">
+            <button class="btn btn-danger cancelTerms">Cancel</button>          
+            <button class="btn btn-primary saveTerms">Save</button>
+          </div>
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
 
