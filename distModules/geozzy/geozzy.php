@@ -234,11 +234,9 @@ class geozzy extends Module
         }
       }
     }
-
-
-
-
   }
+
+
 
   /**
    * Get a password from the shell.

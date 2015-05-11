@@ -38,8 +38,8 @@
     <div class="content"><label for="content" class="cgmMForm">content</label>
     {$content}</div>
 
-    <div class="image cgmMForm-fileField "><label for="imgResource" class="cgmMForm">image</label>
-    {$image}</div>
+    <!-- div class="image cgmMForm-fileField "><label for="imgResource" class="cgmMForm">image</label>
+    {* $image *}</div -->
 
     <div class="defaultZoom"><label class="cgmMForm">defaultZoom</label>
     {$defaultZoom}</div>

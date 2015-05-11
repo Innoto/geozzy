@@ -85,10 +85,12 @@ class GeozzyResourceView extends View
         'params' => array( 'label' => 'Label de content', 'type' => 'textarea',
           'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
       ),
+      /*
       'image' => array(
         'params' => array( 'label' => 'Label de image', 'type' => 'file', 'id' => 'imgResource',
           'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' )
       ),
+      */
       'defaultZoom' => array(
         'params' => array( 'label' => 'Label de defaultZoom' ),
         'rules' => array( 'required' => true, 'max' => '20' )
@@ -157,20 +159,21 @@ class GeozzyResourceView extends View
       $form->addFormError( 'El servidor no considera válidos los datos recibidos.', 'formError' );
     }
 
+    /*
     if( !$form->existErrors() ) {
       if( !$form->processFileFields() ) {
         $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea '.
           'necesario subirlos otra vez.', 'formError' );
       }
     }
+    */
 
     if( !$form->existErrors() ) {
       $valuesArray = $form->getValuesArray();
-
-      print_r( $valuesArray );
-
+      // print_r( $valuesArray );
       $recurso = new ResourceModel( $valuesArray );
-
+      $recurso->save();
+      /*
       if($valuesArray['image']['values']){
         $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
         $recurso->save( array( 'affectsDependences' => true ));
@@ -178,9 +181,7 @@ class GeozzyResourceView extends View
       else {
         $recurso->save();
       }
-
-      print_r( $recurso->getAllData() );
-
+      */
       echo $form->jsonFormOk();
     }
     else {
@@ -190,27 +191,23 @@ class GeozzyResourceView extends View
 
   } // function actionCreate()
 
+} // class ResourceView extends View
 
 
-  /**
-    Visualizamos el Recurso
-  */
+
+/*
   public function showRecurso() {
     print "RecursoView: showRecurso()\n\n";
 
-    $recObj = new ResourceModel();
-    $recursosList = $recObj->listItems( array( 'affectsDependences' => array( 'FiledataModel' ), 'order' => array( 'id' => -1 ) ) );
+    $recModel = new ResourceModel();
+    $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ), 'order' => array( 'id' => -1 ) ) );
     $recurso = $recursosList->fetch();
 
     //cogumelo::console( $recurso );
     print("<pre>\n");
     print_r( $recurso->getAllData() );
   } // function showRecurso()
-
-
-} // class ResourceView extends View
-
-
+*/
 
 
 /*
