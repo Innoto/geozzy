@@ -8,7 +8,7 @@ user::autoIncludes();
 /**
 * Clase Master to extend other application methods
 */
-class AdminAPIView extends View
+class AdminDataAPIView extends View
 {
 
   function __construct($baseDir){
@@ -297,46 +297,6 @@ class AdminAPIView extends View
 
 
 
-  }
-
-  function categories() {
-    $taxgroupModel = new TaxonomygroupModel();
-    $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
-
-    header('Content-type: application/json');
-
-    echo '[';
-
-    $c = '';
-    while ($taxGroup = $taxGroupList->fetch() )
-    {
-      $taxData = $taxGroup->getAllData();
-      echo $c.json_encode( $taxData['data'] );
-      if($c === ''){$c=',';}
-    }
-    echo ']';
-
-  }
-
-
-  public function categoryForm( $request ){
-    $geozzyTaxtermView = new GeozzyTaxonomytermView();
-
-    $form = $geozzyTaxtermView->taxtermFormDefine( $request );
-    $form->setAction('/api/admin/category/term/sendcategoryterm');
-    //$form->setSuccess( 'redirect', '/api/admin/categories' );
-
-    $taxtermFormHtml = $geozzyTaxtermView->taxtermFormGet( $form );
-
-    $this->template->assign('taxtermFormHtml', $taxtermFormHtml);
-    $this->template->setTpl('taxtermForm.tpl', 'admin');
-
-    $this->template->exec();
-  }
-
-  public function sendCategoryForm(){
-    $geozzyTaxtermView = new GeozzyTaxonomytermView();
-    $geozzyTaxtermView->sendTaxtermForm();
   }
 
 }
