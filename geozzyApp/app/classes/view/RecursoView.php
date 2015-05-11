@@ -41,6 +41,7 @@ class RecursoView extends View
     $this->template->setBlock( 'formNewResourceBlock', $formBlock );
 
     $this->template->setTpl( 'probandoFormRecurso.tpl' );
+    //$this->template->setTpl( 'string:{$css_includes}{$js_includes}{$formNewResourceBlock}' );
     $this->template->exec();
   } // function crearForm()
 
