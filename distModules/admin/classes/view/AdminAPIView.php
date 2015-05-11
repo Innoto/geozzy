@@ -20,7 +20,7 @@ class AdminAPIView extends View
   * @return bool : true -> Access allowed
   */
   function accessCheck() {
-    
+
     $useraccesscontrol = new UserAccessController();
     $res = true;
 
@@ -33,10 +33,10 @@ class AdminAPIView extends View
       header("HTTP/1.0 303");
       header('Content-type: application/json');
       echo '{}';
-      exit;        
+      exit;
     }
 
-    return $res;    
+    return $res;
 
   }
 
@@ -57,7 +57,7 @@ class AdminAPIView extends View
                                   {
                                       "reason": "Permission denied",
                                       "code": 303
-                                  },                              
+                                  },
                                   {
                                       "reason": "Category term list",
                                       "code": 200
@@ -71,7 +71,7 @@ class AdminAPIView extends View
                               "httpMethod": "GET",
                               "nickname": "group",
                               "parameters": [
-  
+
                                   {
                                       "required": true,
                                       "dataType": "int",
@@ -90,7 +90,7 @@ class AdminAPIView extends View
                                   {
                                       "reason": "Permission denied",
                                       "code": 303
-                                  },                                        
+                                  },
                                   {
                                       "reason": "Category term Deleted",
                                       "code": 200
@@ -104,7 +104,7 @@ class AdminAPIView extends View
                               "httpMethod": "PUT",
                               "nickname": "id",
                               "parameters": [
-  
+
                                   {
                                       "required": true,
                                       "dataType": "int",
@@ -123,7 +123,7 @@ class AdminAPIView extends View
                                   {
                                       "reason": "Permission denied",
                                       "code": 303
-                                  },                                        
+                                  },
                                   {
                                       "reason": "Category term Deleted",
                                       "code": 200
@@ -137,7 +137,7 @@ class AdminAPIView extends View
                               "httpMethod": "DELETE",
                               "nickname": "id",
                               "parameters": [
-  
+
                                   {
                                       "required": true,
                                       "dataType": "int",
@@ -150,7 +150,7 @@ class AdminAPIView extends View
 
                               ],
                               "summary": "Delete category terms"
-                          }                          
+                          }
                       ],
                       "path": "/admin/categoryterms/{id}",
                       "description": ""
@@ -176,7 +176,7 @@ class AdminAPIView extends View
                                   {
                                       "reason": "Permission denied",
                                       "code": 303
-                                  },                              
+                                  },
                                   {
                                       "reason": "Category term list",
                                       "code": 200
@@ -190,8 +190,8 @@ class AdminAPIView extends View
                               "httpMethod": "GET",
                               "nickname": "group",
                               "parameters": [
-  
-                    
+
+
 
                               ],
                               "summary": "Get Category terms"
@@ -225,12 +225,12 @@ class AdminAPIView extends View
         }
         else { // CREATE
           $taxTerm = $taxtermModel;
-        }   
+        }
 
         if( isset( $putData['name'] ) ) {
           $taxTerm->setter('name', $putData['name'] );
         }
-        
+
         if( isset( $putData['parent'] ) ) {
           $taxTerm->setter('parent', $putData['parent'] );
         }
@@ -244,7 +244,7 @@ class AdminAPIView extends View
         }
 
         $taxTerm->save();
-
+      
         $termData = $taxTerm->getAllData();
         echo json_encode( $termData['data'] );
 
@@ -263,7 +263,7 @@ class AdminAPIView extends View
             echo $c.json_encode( $termData['data'] );
             if($c === ''){$c=',';}
           }
-          echo ']';     
+          echo ']';
 
         }
         else{
@@ -275,11 +275,11 @@ class AdminAPIView extends View
       case 'DELETE':
         $taxM = new TaxonomytermModel();
         $taxTerm = $taxM->listItems(
-                                    array( 
+                                    array(
                                             'filters' => array('id'=> $id, 'TaxonomygroupModel.editable'=>1),
                                             'affectsDependences' => array('TaxonomygroupModel'),
                                             'joinType' => 'INNER'
-                                        ) 
+                                        )
                                     );
         if( $taxTerm && $t = $taxTerm->fetch() ) {
           $t->delete();
@@ -289,13 +289,13 @@ class AdminAPIView extends View
         else {
           header("HTTP/1.0 404 Not Found");
           header('Content-type: application/json');
-          echo '{}';          
+          echo '{}';
         }
 
         break;
     }
 
-  
+
 
   }
 
@@ -315,8 +315,28 @@ class AdminAPIView extends View
       if($c === ''){$c=',';}
     }
     echo ']';
-  
+
   }
 
+
+  public function categoryForm( $request ){
+    $geozzyTaxtermView = new GeozzyTaxonomytermView();
+
+    $form = $geozzyTaxtermView->taxtermFormDefine( $request );
+    $form->setAction('/api/admin/category/term/sendcategoryterm');
+    //$form->setSuccess( 'redirect', '/api/admin/categories' );
+
+    $taxtermFormHtml = $geozzyTaxtermView->taxtermFormGet( $form );
+
+    $this->template->assign('taxtermFormHtml', $taxtermFormHtml);
+    $this->template->setTpl('taxtermForm.tpl', 'admin');
+
+    $this->template->exec();
+  }
+
+  public function sendCategoryForm(){
+    $geozzyTaxtermView = new GeozzyTaxonomytermView();
+    $geozzyTaxtermView->sendTaxtermForm();
+  }
 
 }

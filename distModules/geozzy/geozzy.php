@@ -23,7 +23,8 @@ class geozzy extends Module
 
   );
   public $includesCommon = array(
-    'model/ResourceModel.php'
+    'model/ResourceModel.php',
+    'view/GeozzyTaxonomytermView.php'
   );
 
 

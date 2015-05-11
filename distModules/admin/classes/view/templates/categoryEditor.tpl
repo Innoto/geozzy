@@ -2,7 +2,7 @@
 <script type="text/template" id="taxTermEditor">
 
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-8">
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -16,8 +16,8 @@
             <ol class="listTerms dd-list">
             </ol>
           </div>
-          <div>
-            <button class="btn btn-danger cancelTerms">Cancel</button>          
+          <div class="saveChanges">
+            <button class="btn btn-danger cancelTerms">Cancel</button>
             <button class="btn btn-primary saveTerms">Save</button>
           </div>
         </div> <!-- end panel-body -->
@@ -60,8 +60,8 @@
     	  </div>
 
         <div class="dd-handle">
-          <div class="icon-handle"><i class="fa fa-arrows"></i></div>
-          <div class="infoTerm"><%- term.name %></div>          
+          <i class="fa fa-arrows icon-handle"></i>
+          <%- term.name %>
         </div>
 
       </div>

@@ -8,7 +8,7 @@ var CategoryEditorView = Backbone.View.extend({
     "click .btnEditTerm" : "editCategory",
     "click .btnCancelTerm" : "cancelEditCategory",
     "click .btnSaveTerm" : "saveEditCategory",
-    "click .btnDeleteTerm" : "removeCategory" ,
+    "click .btnDeleteTerm" : "removeCategoryterm" ,
     "click .cancelTerms" : "cancelTerms" ,
     "click .saveTerms" : "saveTerms" 
   },
@@ -24,6 +24,8 @@ var CategoryEditorView = Backbone.View.extend({
 
     that.category = category;
 
+
+
     that.categoryTerms.fetch(
       {
         data: { group: that.category.get('id') },
@@ -32,6 +34,7 @@ var CategoryEditorView = Backbone.View.extend({
         }
       }
     );
+
   },
 
   render: function() {
@@ -40,6 +43,7 @@ var CategoryEditorView = Backbone.View.extend({
     this.baseTemplate = _.template( $('#taxTermEditor').html() );
     this.$el.html( this.baseTemplate(that.category.toJSON() ) );
 
+    that.saveChangesVisible(false); 
 
 
 
@@ -54,7 +58,6 @@ var CategoryEditorView = Backbone.View.extend({
 
     var notDeletedCategoryTerms = that.categoryTerms.search( { deleted:0 } );
 
-    notDeletedCategoryTerms.sortByField('weight');
 
     var categoriesParents = notDeletedCategoryTerms.search({parent:0 }).toJSON();
 
@@ -82,6 +85,7 @@ var CategoryEditorView = Backbone.View.extend({
   },
 
   saveList: function(){
+
     var that = this;
     var jsonCategories = $('#taxTermListContainer').nestable('serialize');
     var itemWeight = 0;
@@ -99,46 +103,59 @@ var CategoryEditorView = Backbone.View.extend({
       }
       itemWeight++;
     });
+
+    that.saveChangesVisible(true); 
   },
 
 
 /*Edición de un categoria*/
 
-  removeCategory: function( el ) {
+  removeCategoryterm: function( el ) {
     var that = this;
 
-    var tId = $(el.currentTarget).attr('data-id');
+    var tId = parseInt($(el.currentTarget).attr('data-id'));
 
     var c = that.categoryTerms.get( tId )
     c.set({deleted:1})
-    
-    _.each( that.categoryTerms.search({ parent: tId }).toJSON(), function( e, i ) {
-      console.log(e);
+
+    that.categoryTerms.search({ parent: tId }).each( function( e,i  ) {
+      e.set({deleted:1});
     });
 
-    //c.destroy();
     that.updateList();
-
+    that.saveChangesVisible(true)
    },
 
   addCategory: function() {
     var that = this;
+    Backbone.history.navigate('category/'+that.category.id+'/term/create', {trigger:true});
+
+/*    var that = this;
 
     var newTerm = that.$el.find('.newTaxTermName').val();
     that.$el.find('.newTaxTermName').val('');
 
     if(newTerm != ''){
-      //that.categoryTerms.sortByField('weight').last().get('weight') ;
-      that.categoryTerms.sortByField('weight');
 
-      var maxWeight = that.categoryTerms.last().get('weight');
-
-      that.categoryTerms.add({ name:newTerm, taxgroup:  that.category.get('id'), weight:maxWeight+1 }).save().done( function(){that.updateList()} );
+      if( !that.categoryTerms.last() ){
+        var maxWeight = 0;
+      }
+      else {
+        var maxWeight = that.categoryTerms.last().get('weight');  
+      }
+      
+      that.categoryTerms.add({ name:newTerm, taxgroup:  that.category.get('id'), weight:maxWeight }).save().done( function(){that.updateList()} );
       //that.categoryTerms.last();
-    }
+    }*/
   },
 
   editCategory: function( el ) {
+    var that = this;
+
+
+    Backbone.history.navigate('category/'+that.category.id+'/term/edit/'+$(el.currentTarget).attr('data-id'), {trigger:true});
+
+    /*
     var that = this;
 
     var termId =  $(el.currentTarget).attr('data-id');
@@ -146,6 +163,7 @@ var CategoryEditorView = Backbone.View.extend({
 
     catRow.find('.rowShow').hide();
     catRow.find('.rowEdit').show();
+    */
   },
 
   saveEditCategory: function( el ) {
@@ -156,7 +174,7 @@ var CategoryEditorView = Backbone.View.extend({
     var catTermName = catRow.find('.rowEdit .editTermInput').val();
     var term = this.categoryTerms.get( termId );
     term.set( { name:catTermName } );
-    //term.save();
+    term.save();
 
     that.updateList();
   },
@@ -172,18 +190,26 @@ var CategoryEditorView = Backbone.View.extend({
 
   saveTerms: function() {
     var that = this;
-that.categoryTerms.save();
-    _.each( that.categoryTerms.search({ deleted:false }).toJSON() , function( e , i ){ 
-      //console.log(e );
-    });
+    that.categoryTerms.save();
+    that.saveChangesVisible(false); 
   },
 
   cancelTerms: function() {
     var that = this;
+    that.saveChangesVisible(false);
     that.initialize( that.category );
+  },
+
+  saveChangesVisible: function( visible ) {
+
+    if( visible ) {
+      this.$el.find('.saveChanges').show();
+    }
+    else{
+      this.$el.find('.saveChanges').hide();
+    }
+
   }
-
-
 
 
 
