@@ -10,6 +10,9 @@ geozzy::autoIncludes();
 class RecursoView extends View
 {
 
+  private $formName = 'resourceCreate';
+  private $formUrl = '/recurso-form-action';
+
   public function __construct( $baseDir ) {
 
     parent::__construct( $baseDir );
@@ -34,7 +37,7 @@ class RecursoView extends View
     error_log( "RecursoView: crearForm()" );
 
     $resourceView = new GeozzyResourceView();
-    $formBlock = $resourceView->formCreateBlock();
+    $formBlock = $resourceView->getFormBlock( $this->formName,  $this->formUrl, false );
     $this->template->setBlock( 'formNewResourceBlock', $formBlock );
 
     $this->template->setTpl( 'probandoFormRecurso.tpl' );
@@ -63,7 +66,7 @@ class RecursoView extends View
       $recursoData = $recurso->getAllData();
 
       $resourceView = new GeozzyResourceView();
-      $formBlock = $resourceView->formCreateBlock( $recursoData[ 'data' ] );
+      $formBlock = $resourceView->getFormBlock( $this->formName,  $this->formUrl, $recursoData[ 'data' ] );
       $this->template->setBlock( 'formNewResourceBlock', $formBlock );
 
       $this->template->setTpl( 'probandoFormRecurso.tpl' );
@@ -118,6 +121,18 @@ class RecursoView extends View
     $this->template->setTpl( 'verRecurso.tpl' );
     $this->template->exec();
   } // function showRecurso()
+
+
+
+  /**
+    Proceso formulario crear/editar Recurso
+  */
+  public function actionResourceForm() {
+    error_log( "RecursoView: actionResourceForm()" );
+
+    $resourceView = new GeozzyResourceView();
+    $resourceView->actionResourceForm();
+  } // actionResourceForm()
 
 
 } // class showRecurso

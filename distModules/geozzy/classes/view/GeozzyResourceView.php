@@ -31,8 +31,8 @@ class GeozzyResourceView extends View
   /**
     Defino un formulario con su TPL como Bloque
   */
-  public function formCreateBlock( $valuesArray = false, $formName = 'resourceCreate', $urlAction = '/recurso-form-action' ) {
-    error_log( "RecursoView: formCreateBlock()" );
+  public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
+    error_log( "GeozzyResourceView: getFormBlock()" );
 
     $langAvailable = false;
     $this->template->assign( 'JsLangAvailable', 'false' );
@@ -147,15 +147,15 @@ class GeozzyResourceView extends View
     $this->template->setTpl( 'newRecursoFormBlock.tpl', 'geozzy' );
 
     return( $this->template );
-  } // function formCreateBlock()
+  } // function getFormBlock()
 
 
 
   /**
     Proceso formulario
   */
-  public function actionCreate() {
-    error_log( "RecursoView: actionCreate()" );
+  public function actionResourceForm() {
+    error_log( "GeozzyResourceView: actionResourceForm()" );
 
     $form = new FormController();
     if( $form->loadPostInput() ) {
@@ -202,7 +202,7 @@ class GeozzyResourceView extends View
       echo $form->jsonFormError();
     }
 
-  } // function actionCreate()
+  } // function actionResourceForm()
 
 } // class ResourceView extends View
 
