@@ -46,15 +46,32 @@ class RecursoView extends View
   /**
     Defino y muestro un formulario de edicion
   */
-  public function editarForm() {
-    error_log( "RecursoView: editarForm()" );
+  public function editarForm( $urlParams = false ) {
+    error_log( "RecursoView: editarForm()". print_r( $urlParams, true ) );
 
-    $resourceView = new GeozzyResourceView();
-    $formBlock = $resourceView->formCreateBlock();
-    $this->template->setBlock( 'formNewResourceBlock', $formBlock );
+    $recurso = false;
 
-    $this->template->setTpl( 'probandoFormRecurso.tpl' );
-    $this->template->exec();
+    if( isset( $urlParams['1'] ) ) {
+      $idResource = $urlParams['1'];
+      $recModel = new ResourceModel();
+      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
+        'filters' => array( 'id' => $idResource ) ) );
+      $recurso = $recursosList->fetch();
+    }
+
+    if( $recurso ) {
+      $recursoData = $recurso->getAllData();
+
+      $resourceView = new GeozzyResourceView();
+      $formBlock = $resourceView->formCreateBlock( $recursoData[ 'data' ] );
+      $this->template->setBlock( 'formNewResourceBlock', $formBlock );
+
+      $this->template->setTpl( 'probandoFormRecurso.tpl' );
+      $this->template->exec();
+    }
+    else {
+      cogumelo::error( 'Imposible acceder al recurso indicado.' );
+    }
   } // function editarForm()
 
 

@@ -31,7 +31,7 @@ class GeozzyResourceView extends View
   /**
     Defino un formulario con su TPL como Bloque
   */
-  public function formCreateBlock( $formName = 'resourceCreate', $urlAction = '/recurso-form-action' ) {
+  public function formCreateBlock( $valuesArray = false, $formName = 'resourceCreate', $urlAction = '/recurso-form-action' ) {
     error_log( "RecursoView: formCreateBlock()" );
 
     $langAvailable = false;
@@ -127,6 +127,12 @@ class GeozzyResourceView extends View
     $form->setValidationRule( 'title_'.$langDefault, 'required' );
 
 
+    //Si es una edicion, añadimos el ID y cargamos los datos
+    if( $valuesArray !== false ){
+      $form->setField( 'id', array( 'type' => 'reserved', 'value' => null ) );
+      $form->loadArrayValues( $valuesArray );
+    }
+
     $form->setField( 'submit', array( 'type' => 'submit', 'label' => 'Pulsa para enviar', 'value' => 'Manda' ) );
 
     // Una vez que lo tenemos definido, guardamos el form en sesion
@@ -170,9 +176,16 @@ class GeozzyResourceView extends View
 
     if( !$form->existErrors() ) {
       $valuesArray = $form->getValuesArray();
-      // print_r( $valuesArray );
+
+      if( $form->isFieldDefined( 'id' ) ) {
+        $valuesArray['timeLastUpdate'] = date( "Y-m-d H:i:s", time() );
+      }
+
+      error_log( print_r( $valuesArray, true ) );
+
       $recurso = new ResourceModel( $valuesArray );
       $recurso->save();
+
       /*
       if($valuesArray['image']['values']){
         $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
