@@ -18,6 +18,7 @@ var AdminRouter = Backbone.Router.extend({
     "role/edit/:id" : "roleEdit",
     "resource/create" : "resourceCreate",
     "resource/edit/:id" : "resourceEdit"
+    
   },
 
   // charts
