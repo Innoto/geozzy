@@ -1,4 +1,3 @@
-
 <?php
 
   global  $GEOZZY_RESOURCETYPE;

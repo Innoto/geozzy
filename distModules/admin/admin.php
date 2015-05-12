@@ -121,22 +121,24 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/topics$#', 'view:AdminViewTopic::topicsSync' );
 
 
-    // API Admin
-    $this->addUrlPatterns( '#^api/admin/categoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' );
+    // data Admin API
+    $this->addUrlPatterns( '#^api/admin/categoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminDataAPIView::categoryTerms' );
-    $this->addUrlPatterns( '#^api/admin/categories.json$#', 'view:AdminDataAPIView::categoriesJson' );
+    $this->addUrlPatterns( '#^api/admin/categories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
 
 
-    // forms Category
+    // forms Admin API
+    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/create.json$#', 'view:AdminFormsAPIView::categoryFormJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/create$#', 'view:AdminFormsAPIView::categoryForm' );
+    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/edit.json$#', 'view:AdminFormsAPIView::categoryFormJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/edit/(\d+)$#', 'view:AdminFormsAPIView::categoryForm' );
+
     $this->addUrlPatterns( '#^api/admin/category/term/sendcategoryterm$#', 'view:AdminFormsAPIView::sendCategoryForm' );
 
-    // forms Resource
-//    $this->addUrlPatterns( '#^recurso/?$#', 'view:RecursoView::verRecurso' );
-//    $this->addUrlPatterns( '#^api/admin/resource/(\d+)$#', 'view:RecursoView::verRecurso' );
+    $this->addUrlPatterns( '#^api/admin/resource/create.json$#', 'view:AdminFormsAPIView::resourceFormJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/resource/create$#', 'view:AdminFormsAPIView::resourceForm' );
+    $this->addUrlPatterns( '#^api/admin/resource/edit.json$#', 'view:AdminFormsAPIView::resourceEditFormJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/resource/edit/(\d+)$#', 'view:AdminFormsAPIView::resourceEditForm' );
     $this->addUrlPatterns( '#^api/admin/resource/sendresource$#', 'view:AdminFormsAPIView::sendResourceForm' );
 
