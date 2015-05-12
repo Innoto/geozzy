@@ -14,7 +14,7 @@ common::autoIncludes();
 class AdminFormsAPIView extends View
 {
 
-  function __construct($baseDir){
+  public function __construct( $baseDir ){
     parent::__construct($baseDir);
   }
 
@@ -22,13 +22,13 @@ class AdminFormsAPIView extends View
   * Evaluate the access conditions and report if can continue
   * @return bool : true -> Access allowed
   */
-  function accessCheck() {
+  public function accessCheck() {
 
     $useraccesscontrol = new UserAccessController();
     $res = true;
 
     if( !GEOZZY_API_ACTIVE || !$useraccesscontrol->isLogged() ){
-     $res = false;
+      $res = false;
     }
 
 
@@ -44,7 +44,7 @@ class AdminFormsAPIView extends View
   }
 
 
-  function categories() {
+  public function categories() {
     $taxgroupModel = new TaxonomygroupModel();
     $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
 
@@ -53,11 +53,12 @@ class AdminFormsAPIView extends View
     echo '[';
 
     $c = '';
-    while ($taxGroup = $taxGroupList->fetch() )
-    {
+    while ($taxGroup = $taxGroupList->fetch() ) {
       $taxData = $taxGroup->getAllData();
       echo $c.json_encode( $taxData['data'] );
-      if($c === ''){$c=',';}
+      if( $c === '' ) {
+        $c = ',';
+      }
     }
     echo ']';
 
@@ -86,30 +87,41 @@ class AdminFormsAPIView extends View
 
 
 
+  /**
+    Creacion/Edicion de Recursos
+  */
 
   public function resourceForm() {
+    error_log( "AdminFormsAPIView: resourceForm()" );
 
     $formName = 'resourceCreate';
     $formUrl = '/api/admin/resource/sendresource';
 
-    error_log( "RecursoView: crearForm()" );
-
     $resourceView = new GeozzyResourceView();
     $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, false );
-    $this->template->setBlock( 'formNewResourceBlock', $formBlock );
-    $this->template->setTpl( 'string:{$css_includes}{$js_includes}{$formNewResourceBlock}' );
+
+    //$this->template->setBlock( 'formNewResourceBlock', $formBlock );
+    //$this->template->setTpl( 'string:{$css_includes}{$js_includes}{$formNewResourceBlock}' );
+
+    $this->template->setBlock( 'col1Content', $formBlock );
+    $this->template->assign( 'col1Icon', 'fa-user' );
+    $this->template->assign( 'col1Title', 'New Resource' );
+
+    $this->template->assign( 'col2Content', '' );
+    $this->template->assign( 'col2Icon', '' );
+    $this->template->assign( 'col2Title', '' );
+
+    $this->template->setTpl( 'cols-8-4.tpl', 'admin' );
+
     $this->template->exec();
   } // function resourceForm()
 
 
   public function resourceEditForm( $urlParams = false ) {
-
+    error_log( "AdminFormsAPIView: resourceEditForm()". print_r( $urlParams, true ) );
 
     $formName = 'resourceCreate';
     $formUrl = '/api/admin/resource/sendresource';
-
-
-    error_log( "RecursoView: editarForm()". print_r( $urlParams, true ) );
 
     $recurso = false;
 
@@ -137,12 +149,15 @@ class AdminFormsAPIView extends View
 
 
   public function sendResourceForm() {
-    error_log( "RecursoView: actionResourceForm()" );
+    error_log( "AdminFormsAPIView: sendResourceForm()" );
 
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();
-  } // actionResourceForm()
+  } // sendResourceForm()
 
+  /**
+    Creacion/Edicion de Recursos - FIN
+  */
 
 
 
