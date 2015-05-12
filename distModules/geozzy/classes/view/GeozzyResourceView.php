@@ -52,48 +52,48 @@ class GeozzyResourceView extends View
     // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
     // 'loc'   'type' => 'GEOMETRY'
     $campos = array(
-      'headKeywords' => array(
-        'params' => array( 'label' => 'Label de headKeywords' ),
-        'rules' => array( 'maxlength' => '150' )
-      ),
-      'headDescription' => array(
-        'translate' => true,
-        'params' => array( 'label' => 'Label de headDescription' ),
-        'rules' => array( 'maxlength' => '150' )
-      ),
-      'headTitle' => array(
-        'translate' => true,
-        'params' => array( 'label' => 'Label de headTitle' ),
-        'rules' => array( 'maxlength' => '100' )
-      ),
       'title' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Label de title' ),
+        'params' => array( 'label' => 'Título' ),
         'rules' => array( 'maxlength' => '100' )
       ),
       'shortDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Label de shortDescription' ),
+        'params' => array( 'label' => 'Descripción corta' ),
         'rules' => array( 'maxlength' => '100' )
       ),
       'mediumDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Label de mediumDescription', 'type' => 'textarea', 'htmlEditor' => 'true' )
+        'params' => array( 'label' => 'Descripción media', 'type' => 'textarea', 'htmlEditor' => 'true' )
       ),
       'content' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Label de content', 'type' => 'textarea',
+        'params' => array( 'label' => 'Contenido principal', 'type' => 'textarea',
           'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
       ),
       /*
       'image' => array(
-        'params' => array( 'label' => 'Label de image', 'type' => 'file', 'id' => 'imgResource',
+        'params' => array( 'label' => 'image', 'type' => 'file', 'id' => 'imgResource',
           'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' )
       ),
       */
       'defaultZoom' => array(
-        'params' => array( 'label' => 'Label de defaultZoom' ),
+        'params' => array( 'label' => 'Mapas: Zoom inicial' ),
         'rules' => array( 'required' => true, 'max' => '20' )
+      ),
+      'headKeywords' => array(
+        'params' => array( 'label' => 'SEO: headKeywords' ),
+        'rules' => array( 'maxlength' => '150' )
+      ),
+      'headDescription' => array(
+        'translate' => true,
+        'params' => array( 'label' => 'SEO: headDescription' ),
+        'rules' => array( 'maxlength' => '150' )
+      ),
+      'headTitle' => array(
+        'translate' => true,
+        'params' => array( 'label' => 'SEO: headTitle' ),
+        'rules' => array( 'maxlength' => '100' )
       )
     );
 

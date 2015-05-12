@@ -104,12 +104,12 @@ class AdminFormsAPIView extends View
     //$this->template->setTpl( 'string:{$css_includes}{$js_includes}{$formNewResourceBlock}' );
 
     $this->template->setBlock( 'col1Content', $formBlock );
-    $this->template->assign( 'col1Icon', 'fa-user' );
+    $this->template->assign( 'col1Icon', 'fa-archive' );
     $this->template->assign( 'col1Title', 'New Resource' );
 
-    $this->template->assign( 'col2Content', '' );
-    $this->template->assign( 'col2Icon', '' );
-    $this->template->assign( 'col2Title', '' );
+    $this->template->assign( 'col2Content', 'Recuerda que en algunos campos existe versión en varios idiomas.' );
+    $this->template->assign( 'col2Icon', 'fa-info' );
+    $this->template->assign( 'col2Title', 'Information' );
 
     $this->template->setTpl( 'cols-8-4.tpl', 'admin' );
 
@@ -138,8 +138,25 @@ class AdminFormsAPIView extends View
 
       $resourceView = new GeozzyResourceView();
       $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData[ 'data' ] );
-      $this->template->setBlock( 'formNewResourceBlock', $formBlock );
-      $this->template->setTpl( 'string:{$css_includes}{$js_includes}{$formNewResourceBlock}' );
+
+      $this->template->setBlock( 'col1Content', $formBlock );
+      $this->template->assign( 'col1Icon', 'fa-archive' );
+      $this->template->assign( 'col1Title', 'New Resource' );
+
+      $this->template->assign( 'col2Content', 'Recurso asociado con:<br>'.
+        ' <i class="fa fa-times"></i> Playas<br>'.
+        ' <i class="fa fa-times"></i> Lugares<br>'.
+        ' <i class="fa fa-times"></i> Fiesta<br>'.
+        '<br>'.
+        ' <i class="fa fa-times"></i> Desvincular de TODAS<br>'.
+        '<br>'.
+        ' <i class="fa fa-times"></i> Eliminar Recurso<br>'.
+        '');
+      $this->template->assign( 'col2Icon', 'fa-info' );
+      $this->template->assign( 'col2Title', 'Information' );
+
+      $this->template->setTpl( 'cols-8-4.tpl', 'admin' );
+
       $this->template->exec();
     }
     else {
