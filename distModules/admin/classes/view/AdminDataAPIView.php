@@ -244,7 +244,7 @@ class AdminDataAPIView extends View
         }
 
         $taxTerm->save();
-      
+
         $termData = $taxTerm->getAllData();
         echo json_encode( $termData['data'] );
 

@@ -45,7 +45,7 @@ class AdminFormsAPIView extends View
   }
 
 
-  public function categories() {
+  function categories() {
     $taxgroupModel = new TaxonomygroupModel();
     $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
 
@@ -54,12 +54,11 @@ class AdminFormsAPIView extends View
     echo '[';
 
     $c = '';
-    while ($taxGroup = $taxGroupList->fetch() ) {
+    while ($taxGroup = $taxGroupList->fetch() )
+    {
       $taxData = $taxGroup->getAllData();
       echo $c.json_encode( $taxData['data'] );
-      if( $c === '' ) {
-        $c = ',';
-      }
+      if($c === ''){$c=',';}
     }
     echo ']';
 
@@ -71,7 +70,7 @@ class AdminFormsAPIView extends View
 
     $form = $geozzyTaxtermView->taxtermFormDefine( $request );
     $form->setAction('/api/admin/category/term/sendcategoryterm');
-    //$form->setSuccess( 'redirect', '/api/admin/categories' );
+    $form->setSuccess( 'redirect', '/admin#category/'.$request[1] );
 
     $taxtermFormHtml = $geozzyTaxtermView->taxtermFormGet( $form );
 

@@ -99,7 +99,8 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/logout$#', 'view:AdminViewMaster::sendLogout' );
     $this->addUrlPatterns( '#^admin/login$#', 'view:AdminViewLogin::main' );
     $this->addUrlPatterns( '#^admin/senduserlogin$#', 'view:AdminViewLogin::sendLoginForm' );
-
+    $this->addUrlPatterns( '#^admin/resource/list$#', 'view:AdminViewResource::listResources' );
+    $this->addUrlPatterns( '#^admin/resource/table$#', 'view:AdminViewResource::listResourcesTable' );
     $this->addUrlPatterns( '#^admin/user/edit/(.*)$#', 'view:AdminViewUser::editUser' );
     $this->addUrlPatterns( '#^admin/user/show$#', 'view:AdminViewUser::showUser' );
     $this->addUrlPatterns( '#^admin/user/list$#', 'view:AdminViewUser::listUsers' );
@@ -108,6 +109,9 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/user/senduser$#', 'view:AdminViewUser::sendUserForm' );
     $this->addUrlPatterns( '#^admin/user/changepassword$#', 'view:AdminViewUser::changeUserPasswordForm' );
     $this->addUrlPatterns( '#^admin/user/assignroles$#', 'view:AdminViewUser::assignaUserRolesForm' );
+
+    $this->addUrlPatterns( '#^admin/resource/list$#', 'view:AdminViewResource::listResources' );
+    $this->addUrlPatterns( '#^admin/resource/table$#', 'view:AdminViewResource::listResourcesTable' );
 
     $this->addUrlPatterns( '#^admin/role/edit/(.*)$#', 'view:AdminViewRole::editRole' );
     $this->addUrlPatterns( '#^admin/role/create$#', 'view:AdminViewRole::createRole' );
