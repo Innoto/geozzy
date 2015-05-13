@@ -31,7 +31,7 @@ class AdminViewMaster extends View
 
 
   public function commonAdminInterface(){
-    $this->template->setTpl('masterAdmin.tpl', 'admin');
+    $this->template->setTpl('adminMaster.tpl', 'admin');
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
     $this->template->assign( 'user' , $user);

@@ -102,23 +102,6 @@ define( 'SMARTY_CACHE', APP_TMP_PATH.'/cache' );
 define( 'TPL_TMP', APP_TMP_PATH.'/tpl' );
 
 
-//
-//	Media server
-//
-
-global $MEDIASERVER_LESS_CONSTANTS;
-global $MEDIASERVER_JAVASCRIPT_CONSTANTS;
-
-$MEDIASERVER_LESS_CONSTANTS = array('variable1' =>1,  'variable2'=>'red', 'variable3'=>'blue' );
-$MEDIASERVER_JAVASCRIPT_CONSTANTS = array('variable1' =>5,  'variable2'=>'red', 'variable3'=>'blue' );
-define( 'MEDIASERVER_REFRESH_CACHE', true ); // false for best performance in final server
-define( 'MEDIASERVER_HOST', '/' );
-define( 'MEDIASERVER_MINIMIFY_FILES', false ); // minimify js and css files
-define( 'MEDIASERVER_TMP_CACHE_PATH', APP_TMP_PATH.'/mediaCache' );
-define( 'MEDIASERVER_FINAL_CACHE_PATH', 'mediaCache' );
-define( 'MEDIASERVER_COMPILE_LESS', false );
-
-
 
 //
 //  Module load
@@ -210,3 +193,21 @@ define( 'DEPEN_BOWER_PATH', WEB_BASE_PATH.'/vendor/bower' );
 define( 'DEPEN_MANUAL_PATH', WEB_BASE_PATH.'/vendor/manual' );
 
 define( 'DEPEN_MANUAL_REPOSITORY', COGUMELO_LOCATION.'/packages/vendorPackages' );
+
+//
+//	Media server
+//
+define( 'MEDIASERVER_REFRESH_CACHE', true ); // false for best performance in final server
+define( 'MEDIASERVER_HOST', '/' );
+define( 'MEDIASERVER_MINIMIFY_FILES', false ); // minimify js and css files
+define( 'MEDIASERVER_TMP_CACHE_PATH', APP_TMP_PATH.'/mediaCache' );
+define( 'MEDIASERVER_FINAL_CACHE_PATH', 'mediaCache' );
+define( 'MEDIASERVER_COMPILE_LESS', false );
+
+global $MEDIASERVER_LESS_CONSTANTS;
+global $MEDIASERVER_JAVASCRIPT_CONSTANTS;
+global $MEDIASERVER_SMARTY_CONSTANTS;
+
+$MEDIASERVER_LESS_CONSTANTS = array('variable1' =>1,  'variable2'=>'red', 'variable3'=>'blue' );
+$MEDIASERVER_JAVASCRIPT_CONSTANTS = array('variable1' =>5,  'variable2'=>'red', 'variable3'=>'blue' );
+$MEDIASERVER_SMARTY_CONSTANTS = array('lang_default' => LANG_DEFAULT, 'lang_available' => LANG_AVAILABLE );

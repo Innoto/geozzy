@@ -21,7 +21,8 @@ class TaxonomytermModel extends Model
     ),
     'name' => array(
       'type' => 'VARCHAR',
-      'size' => 100
+      'size' => 100,
+      'multilang' => true
     ),
     'parent' => array(
       'type' => 'INT',
