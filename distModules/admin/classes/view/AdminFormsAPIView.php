@@ -99,19 +99,14 @@ class AdminFormsAPIView extends View
 
     $resourceView = new GeozzyResourceView();
     $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, false );
+    $panel = $this->getPanelBlock( $formBlock, 'New Resource', 'fa-archive' );
+    $this->template->addToBlock( 'col8', $panel );
 
-    //$this->template->setBlock( 'formNewResourceBlock', $formBlock );
-    //$this->template->setTpl( 'string:{$css_includes}{$js_includes}{$formNewResourceBlock}' );
 
-    $this->template->setBlock( 'col1Content', $formBlock );
-    $this->template->assign( 'col1Icon', 'fa-archive' );
-    $this->template->assign( 'col1Title', 'New Resource' );
+    $panel = $this->getPanelBlock( 'Recuerda que en algunos campos existe versión en varios idiomas.' );
+    $this->template->addToBlock( 'col4', $panel );
 
-    $this->template->assign( 'col2Content', 'Recuerda que en algunos campos existe versión en varios idiomas.' );
-    $this->template->assign( 'col2Icon', 'fa-info' );
-    $this->template->assign( 'col2Title', 'Information' );
-
-    $this->template->setTpl( 'cols-8-4.tpl', 'admin' );
+    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
     $this->template->exec();
   } // function resourceForm()
