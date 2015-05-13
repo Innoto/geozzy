@@ -7,6 +7,11 @@
 </style>
 {/block}
 
+{block name="headKeywords"}{$headKeywords}{/block}
+
+{block name="headDescription"}{$headDescription}{/block}
+
+{block name="headTitle" prepend}{$headTitle|default:$title} - {/block}
 
 {block name="bodyContent"}
 <!-- probandoFormRecurso.tpl en app de Geozzy -->
@@ -16,15 +21,6 @@
   <h3>Resource</h3>
 
   <div class="resource">
-
-    <div class="headKeywords"><label class="cgmMForm">headKeywords</label>
-    {$headKeywords}</div>
-
-    <div class="headDescription"><label class="cgmMForm">headDescription</label>
-    {$headDescription}</div>
-
-    <div class="headTitle"><label class="cgmMForm">headTitle</label>
-    {$headTitle}</div>
 
     <div class="title"><label class="cgmMForm">title</label>
     {$title}</div>
@@ -39,14 +35,16 @@
     {$content}</div>
 
     <!-- div class="image cgmMForm-fileField "><label for="imgResource" class="cgmMForm">image</label>
-    {* $image *}</div -->
+    {$image}</div -->
 
-    <div class="defaultZoom"><label class="cgmMForm">defaultZoom</label>
-    {$defaultZoom}</div>
+    <!-- div class="defaultZoom"><label class="cgmMForm">defaultZoom</label>
+    {$defaultZoom}</div -->
 
   </div>
 
-  {$resourceHtml}
+<!--
+{$resourceHtml}
+-->
 
   <hr>
 
