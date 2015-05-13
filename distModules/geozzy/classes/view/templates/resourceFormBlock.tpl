@@ -6,7 +6,10 @@
   .cgmMForm-wrap { margin-bottom: 10px; }
 </style>
 
-
+<script>
+  var langAvailable = {$JsLangAvailable};
+  var langDefault = {$JsLangDefault};
+</script>
 
 {$formOpen}
 
@@ -16,11 +19,5 @@
 
 {$formValidations}
 
-
-
-<script>
-  var langAvailable = {$JsLangAvailable};
-  var langDefault = {$JsLangDefault};
-</script>
 
 <!-- /newRecursoFormBlock.tpl en geozzy module -->
