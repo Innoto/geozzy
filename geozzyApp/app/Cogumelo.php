@@ -14,11 +14,11 @@ class Cogumelo extends CogumeloClass
     $this->addUrlPatterns( '#^probandoBloques1$#', 'view:BloquesTestView::exemplo1' );
 
     /* Probando Recursos */
-    $this->addUrlPatterns( '#^recurso$#', 'view:RecursoView::verRecurso' );
-    $this->addUrlPatterns( '#^recurso-ver$#', 'view:RecursoView::verRecurso' );
+    $this->addUrlPatterns( '#^recurso/?$#', 'view:RecursoView::verRecurso' );
+    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:RecursoView::verRecurso' );
     $this->addUrlPatterns( '#^recurso-crear$#', 'view:RecursoView::crearForm' );
-    $this->addUrlPatterns( '#^recurso-editar$#', 'view:RecursoView::editarForm' );
-    //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:RecursoView::actionForm' );
+    $this->addUrlPatterns( '#^recurso-editar/(\d+)$#', 'view:RecursoView::editarForm' );
+    $this->addUrlPatterns( '#^recurso-form-action$#', 'view:RecursoView::actionResourceForm' );
 
 
     /*MasterView*/

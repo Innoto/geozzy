@@ -35,7 +35,7 @@ class geozzy extends Module
     /* Probando Recursos */
     //$this->addUrlPatterns( '#^recurso$#', 'view:GeozzyResourceView::showRecurso' );
     //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
-    $this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
+    //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
 
   }
 
@@ -235,11 +235,9 @@ class geozzy extends Module
         }
       }
     }
-
-
-
-
   }
+
+
 
   /**
    * Get a password from the shell.

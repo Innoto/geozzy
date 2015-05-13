@@ -10,6 +10,9 @@ geozzy::autoIncludes();
 class RecursoView extends View
 {
 
+  private $formName = 'resourceCreate';
+  private $formUrl = '/recurso-form-action';
+
   public function __construct( $baseDir ) {
 
     parent::__construct( $baseDir );
@@ -34,10 +37,11 @@ class RecursoView extends View
     error_log( "RecursoView: crearForm()" );
 
     $resourceView = new GeozzyResourceView();
-    $formBlock = $resourceView->formCreateBlock();
+    $formBlock = $resourceView->getFormBlock( $this->formName,  $this->formUrl, false );
     $this->template->setBlock( 'formNewResourceBlock', $formBlock );
 
     $this->template->setTpl( 'probandoFormRecurso.tpl' );
+    //$this->template->setTpl( 'string:{$css_includes}{$js_includes}{$formNewResourceBlock}' );
     $this->template->exec();
   } // function crearForm()
 
@@ -46,15 +50,32 @@ class RecursoView extends View
   /**
     Defino y muestro un formulario de edicion
   */
-  public function editarForm() {
-    error_log( "RecursoView: editarForm()" );
+  public function editarForm( $urlParams = false ) {
+    error_log( "RecursoView: editarForm()". print_r( $urlParams, true ) );
 
-    $resourceView = new GeozzyResourceView();
-    $formBlock = $resourceView->formCreateBlock();
-    $this->template->setBlock( 'formNewResourceBlock', $formBlock );
+    $recurso = false;
 
-    $this->template->setTpl( 'probandoFormRecurso.tpl' );
-    $this->template->exec();
+    if( isset( $urlParams['1'] ) ) {
+      $idResource = $urlParams['1'];
+      $recModel = new ResourceModel();
+      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
+        'filters' => array( 'id' => $idResource ) ) );
+      $recurso = $recursosList->fetch();
+    }
+
+    if( $recurso ) {
+      $recursoData = $recurso->getAllData();
+
+      $resourceView = new GeozzyResourceView();
+      $formBlock = $resourceView->getFormBlock( $this->formName,  $this->formUrl, $recursoData[ 'data' ] );
+      $this->template->setBlock( 'formNewResourceBlock', $formBlock );
+
+      $this->template->setTpl( 'probandoFormRecurso.tpl' );
+      $this->template->exec();
+    }
+    else {
+      cogumelo::error( 'Imposible acceder al recurso indicado.' );
+    }
   } // function editarForm()
 
 
@@ -62,11 +83,21 @@ class RecursoView extends View
   /**
     Visualizamos el Recurso
   */
-  public function verRecurso() {
-    error_log( "RecursoView: showRecurso()" );
+  public function verRecurso( $urlParams = false ) {
+    error_log( "RecursoView: showRecurso()" . print_r( $urlParams, true ) );
 
-    $recObj = new ResourceModel();
-    $recursosList = $recObj->listItems( array( 'affectsDependences' => array( 'FiledataModel' ), 'order' => array( 'id' => -1 ) ) );
+    $idResource = false;
+
+    $recModel = new ResourceModel();
+    if( isset( $urlParams['1'] ) ) {
+      $idResource = $urlParams['1'];
+      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
+        'filters' => array( 'id' => $idResource ) ) );
+    }
+    else {
+      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
+        'order' => array( 'id' => -1 ) ) );
+    }
     $recurso = $recursosList->fetch();
 
     //cogumelo::console( $recurso );
@@ -75,7 +106,14 @@ class RecursoView extends View
 
     foreach( $recurso->getCols() as $key => $value ) {
       $this->template->assign( $key, $recurso->getter( $key ) );
+      // error_log( $key . ' === ' . print_r( $recurso->getter( $key ), true ) );
     }
+
+    /*
+    if( isset( $allData['relationship']['0']['data']['absLocation'] ) ) {
+      $this->template->assign( 'image', '<img src="/cgmlformfilews/' . $allData['relationship']['0']['data']['id'] . '"></img>' );
+    }
+    */
 
     // htmlspecialchars({$output}, ENT_QUOTES, SMARTY_RESOURCE_CHAR_SET);
 
@@ -84,6 +122,18 @@ class RecursoView extends View
     $this->template->setTpl( 'verRecurso.tpl' );
     $this->template->exec();
   } // function showRecurso()
+
+
+
+  /**
+    Proceso formulario crear/editar Recurso
+  */
+  public function actionResourceForm() {
+    error_log( "RecursoView: actionResourceForm()" );
+
+    $resourceView = new GeozzyResourceView();
+    $resourceView->actionResourceForm();
+  } // actionResourceForm()
 
 
 } // class showRecurso

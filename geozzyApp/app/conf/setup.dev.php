@@ -146,6 +146,7 @@ $C_INDEX_MODULES  = array(
   'mediaserver',
   'i18nGetLang',
   'user',
+  'filedata',
   'geozzy',
   'form',
   'admin',

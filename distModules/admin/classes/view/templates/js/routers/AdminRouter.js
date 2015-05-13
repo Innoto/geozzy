@@ -15,8 +15,10 @@ var AdminRouter = Backbone.Router.extend({
     "user/show" : "userShow",
     "role/list" : "roleList",     
     "role/create" : "roleCreate",    
-    "role/edit/:id" : "roleEdit"
-
+    "role/edit/:id" : "roleEdit",
+    "resource/create" : "resourceCreate",
+    "resource/edit/:id" : "resourceEdit"
+    
   },
 
   // charts
@@ -65,5 +67,14 @@ var AdminRouter = Backbone.Router.extend({
 
   roleEdit: function( id ) {
     app.mainView.loadAjaxContent( '/admin/role/edit/' + id );    
-  }
+  },
+
+  // resources
+  resourceCreate:function()   {
+    app.mainView.loadAjaxContent( '/api/admin/resource/create');    
+  },
+
+  resourceEdit:function( id )   {
+    app.mainView.loadAjaxContent( '/api/admin/resource/edit/' + id);    
+  }  
 });

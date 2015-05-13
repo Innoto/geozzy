@@ -121,15 +121,34 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/topics$#', 'view:AdminViewTopic::topicsSync' );
 
 
-    // API Admin
-    $this->addUrlPatterns( '#^api/admin/categoryterms.json$#', 'view:AdminAPIView::categoryTermsJson' );
-    $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminAPIView::categoryTerms' );
-    $this->addUrlPatterns( '#^api/admin/categories.json$#', 'view:AdminAPIView::categoriesJson' );
-    $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminAPIView::categories' );
+    // data Admin API
+    $this->addUrlPatterns( '#^api/admin/categoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminDataAPIView::categoryTerms' );
+    $this->addUrlPatterns( '#^api/admin/categories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
 
-    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/create$#', 'view:AdminAPIView::categoryForm' );
-    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/edit/(\d+)$#', 'view:AdminAPIView::categoryForm' );
-    $this->addUrlPatterns( '#^api/admin/category/term/sendcategoryterm$#', 'view:AdminAPIView::sendCategoryForm' );
+
+    // forms Admin API
+    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/create.json$#', 'view:AdminFormsAPIView::categoryFormJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/create$#', 'view:AdminFormsAPIView::categoryForm' );
+    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/edit.json$#', 'view:AdminFormsAPIView::categoryFormJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/edit/(\d+)$#', 'view:AdminFormsAPIView::categoryForm' );
+
+    $this->addUrlPatterns( '#^api/admin/category/term/sendcategoryterm$#', 'view:AdminFormsAPIView::sendCategoryForm' );
+
+    $this->addUrlPatterns( '#^api/admin/resource/create.json$#', 'view:AdminFormsAPIView::resourceFormJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/admin/resource/create$#', 'view:AdminFormsAPIView::resourceForm' );
+    $this->addUrlPatterns( '#^api/admin/resource/edit.json$#', 'view:AdminFormsAPIView::resourceEditFormJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/admin/resource/edit/(\d+)$#', 'view:AdminFormsAPIView::resourceEditForm' );
+    $this->addUrlPatterns( '#^api/admin/resource/sendresource$#', 'view:AdminFormsAPIView::sendResourceForm' );
+
+/*
+    $this->addUrlPatterns( '#^recurso/?$#', 'view:RecursoView::verRecurso' );
+    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:RecursoView::verRecurso' );
+    $this->addUrlPatterns( '#^recurso-crear$#', 'view:RecursoView::crearForm' );
+    $this->addUrlPatterns( '#^recurso-editar/(\d+)$#', 'view:RecursoView::editarForm' );
+*/
+
   }
 
 
