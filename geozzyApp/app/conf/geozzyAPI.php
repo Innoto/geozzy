@@ -9,7 +9,7 @@ global $GEOZZY_API_DOC_URLS;
 $GEOZZY_API_DOC_URLS = array(
 	// Geozzy Core
   array(
-    'path' => '/core',
+    'path' => '/resources.json',
     'description' => 'Core Resource'
   ),
   array(
@@ -20,14 +20,6 @@ $GEOZZY_API_DOC_URLS = array(
     'path' => '/admin/categoryterms.json',
     'description' => 'Admin CategoryTerms'
   )
+  
 
-  //,  
-  /*array(
-    'path' => '/core',
-    'description' => 'Geozzy explorer'
-  ),
-  array(
-    'path' => '/core',
-    'description' => 'Participation module'
-  )*/
 );
