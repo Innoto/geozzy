@@ -33,18 +33,68 @@ class GeozzyTaxonomytermView extends View
    **/
   public function taxtermFormDefine( $request ) {
 
+
+    $langAvailable = false;
+    $this->template->assign( 'JsLangAvailable', 'false' );
+    $this->template->assign( 'JsLangDefault', 'false' );
+    if( defined( 'LANG_AVAILABLE' ) ) {
+      $langAvailable = explode( ',', LANG_AVAILABLE );
+      $langDefault = LANG_DEFAULT;
+      $tmp = implode( "', '", $langAvailable );
+      $this->template->assign( 'JsLangAvailable', "['".$tmp."']" );
+      $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
+    }
+
+
     $form = new FormController( 'taxtermForm', '/categories/sendcategoriesform' ); //actionform
 
     $form->setSuccess( 'redirect', '/' );
-    $form->setField( 'id', array( 'type' => 'reserved', 'value' => null ) );
-    $form->setField( 'idName', array( 'type' => 'reserved', 'value' => null ) );
-    $form->setField( 'taxgroup', array( 'type' => 'reserved', 'value' => $request[1] ) );
-    $form->setField( 'name', array( 'placeholder' => 'Name' ) );
+
+    $campos = array(
+      'id' => array(
+        'params' => array( 'type' => 'reserved', 'value' => null )
+      ),
+      'idName' => array(
+        'params' => array( 'type' => 'reserved', 'value' => null )
+      ),
+      'taxgroup' => array(
+        'params' => array( 'type' => 'reserved', 'value' => $request[1] )
+      ),
+      'name' => array(
+        'translate' => true,
+        'params' => array( 'placeholder' => 'Name' )
+      )
+    );
+
+    foreach( $campos as $fieldName => $definition ) {
+      if( !isset( $definition['params'] ) ) {
+        $definition['params'] = false;
+      }
+      if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
+        foreach( $langAvailable as $lang ) {
+          $form->setField( $fieldName.'_'.$lang, $definition['params'] );
+          if( isset( $definition['rules'] ) ) {
+            foreach( $definition['rules'] as $ruleName => $ruleParams ) {
+              $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
+            }
+          }
+          $form->setFieldGroup( $fieldName.'_'.$lang, $fieldName.'_translate' );
+        }
+      }
+      else {
+        $form->setField( $fieldName, $definition['params'] );
+        if( isset( $definition['rules'] ) ) {
+          foreach( $definition['rules'] as $ruleName => $ruleParams ) {
+            $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
+          }
+        }
+      }
+    }
 
     $form->setField( 'submit', array( 'type' => 'submit', 'value' => 'Save' ) );
 
     /***************************************************************************** VALIDATIONS */
-    $form->setValidationRule( 'name', 'required' );
+    $form->setValidationRule( 'name_'.$langDefault, 'required' );
 
 
     if(isset($request[2])){
@@ -71,7 +121,7 @@ class GeozzyTaxonomytermView extends View
     $form->saveToSession();
 
     $this->template->assign("taxtermFormOpen", $form->getHtmpOpen());
-    $this->template->assign("taxtermFormFields", $form->getHtmlFieldsArray());
+    $this->template->assign("taxtermFormFields", $form->getHtmlFieldsAndGroups());
     $this->template->assign("taxtermFormClose", $form->getHtmlClose());
     $this->template->assign("taxtermFormValidations", $form->getScriptCode());
 
@@ -126,6 +176,7 @@ class GeozzyTaxonomytermView extends View
    * @return $taxterm
    **/
   public function taxtermOk( $form ) {
+    $langDefault = LANG_DEFAULT;
 
     //Si tod0 esta OK!
     if( !$form->processFileFields() ) {
@@ -136,7 +187,8 @@ class GeozzyTaxonomytermView extends View
       $valuesArray = $form->getValuesArray();
       // Donde diferenciamos si es un update o un create
       if( !isset($valuesArray['id']) || !$valuesArray['id'] ){
-        $valuesArray['idName'] = str_replace(' ','',$valuesArray['name']);
+
+        $valuesArray['idName'] = str_replace(' ','',$valuesArray['name_'.$langDefault]);
         $valuesArray['idName'] .= '-'.$valuesArray['id'];
       }
 
