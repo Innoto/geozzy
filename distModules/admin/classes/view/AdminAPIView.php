@@ -244,7 +244,7 @@ class AdminAPIView extends View
         }
 
         $taxTerm->save();
-      
+
         $termData = $taxTerm->getAllData();
         echo json_encode( $termData['data'] );
 
@@ -324,7 +324,7 @@ class AdminAPIView extends View
 
     $form = $geozzyTaxtermView->taxtermFormDefine( $request );
     $form->setAction('/api/admin/category/term/sendcategoryterm');
-    //$form->setSuccess( 'redirect', '/api/admin/categories' );
+    $form->setSuccess( 'redirect', '/admin#category/'.$request[1] );
 
     $taxtermFormHtml = $geozzyTaxtermView->taxtermFormGet( $form );
 
