@@ -15,7 +15,8 @@ class AdminFormsAPIView extends View
 {
 
   public function __construct( $baseDir ){
-    parent::__construct($baseDir);
+    parent::__construct( $baseDir );
+    $this->baseDir = $baseDir;
   }
 
   /**
@@ -138,12 +139,10 @@ class AdminFormsAPIView extends View
 
       $resourceView = new GeozzyResourceView();
       $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData[ 'data' ] );
+      $panel = $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' );
+      $this->template->addToBlock( 'col8', $panel );
 
-      $this->template->setBlock( 'col1Content', $formBlock );
-      $this->template->assign( 'col1Icon', 'fa-archive' );
-      $this->template->assign( 'col1Title', 'New Resource' );
-
-      $this->template->assign( 'col2Content', 'Recurso asociado con:<br>'.
+      $html = 'Recurso asociado con:<br>'.
         ' <i class="fa fa-times"></i> Playas<br>'.
         ' <i class="fa fa-times"></i> Lugares<br>'.
         ' <i class="fa fa-times"></i> Fiesta<br>'.
@@ -151,11 +150,13 @@ class AdminFormsAPIView extends View
         ' <i class="fa fa-times"></i> Desvincular de TODAS<br>'.
         '<br>'.
         ' <i class="fa fa-times"></i> Eliminar Recurso<br>'.
-        '');
-      $this->template->assign( 'col2Icon', 'fa-info' );
-      $this->template->assign( 'col2Title', 'Information' );
+        '';
+      $panel = $this->getPanelBlock( $html, 'Information' );
+      $this->template->addToBlock( 'col4', $panel );
 
-      $this->template->setTpl( 'cols-8-4.tpl', 'admin' );
+      $this->template->addToBlock( 'col4', $this->getPanelBlock( 'Esto é un segundo panel' ) );
+
+      $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
       $this->template->exec();
     }
@@ -177,5 +178,20 @@ class AdminFormsAPIView extends View
   */
 
 
+  public function getPanelBlock( $content, $title = '', $icon = 'fa-info' ) {
+    $template = new Template( $this->baseDir );
+
+    if( is_string( $content ) ) {
+      $template->assign( 'content', $content );
+    }
+    else {
+      $template->setBlock( 'content', $content );
+    }
+    $template->assign( 'title', $title );
+    $template->assign( 'icon', $icon );
+    $template->setTpl( 'adminPanel.tpl', 'admin' );
+
+    return $template;
+  }
 
 }
