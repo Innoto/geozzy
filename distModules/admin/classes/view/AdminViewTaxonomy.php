@@ -87,7 +87,7 @@ class AdminViewTaxonomy extends AdminViewMaster
     $geozzyTaxtermView = new GeozzyTaxonomytermView();
 
     $form = $geozzyTaxtermView->taxtermFormDefine( $request );
-    $form->setAction('/api/admin/category/term/sendcategoryterm');
+    $form->setAction('/admin/category/term/sendcategoryterm');
     $form->setSuccess( 'redirect', '/admin#category/'.$request[1] );
 
     $taxtermFormHtml = $geozzyTaxtermView->taxtermFormGet( $form );
