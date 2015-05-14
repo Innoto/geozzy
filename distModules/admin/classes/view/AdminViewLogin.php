@@ -25,7 +25,7 @@ class AdminViewLogin extends AdminViewMaster
 
 
   public function main() {
-
+    header("HTTP/1.0 401");
     $userView = new UserView();
 
     $form = $userView->loginFormDefine();

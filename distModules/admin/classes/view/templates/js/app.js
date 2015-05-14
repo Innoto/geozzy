@@ -2,6 +2,17 @@
 
 var app = app || {};
 
+ if( window.location.pathname != '/admin/login') {
+  // Catch all ajax denied
+  $.ajaxSetup({
+      statusCode: {
+          401: function() {
+              window.location.replace('/admin/login');
+          }
+      }
+  });
+ }
+
 
 $( document ).ready(function() {
 
@@ -22,8 +33,6 @@ $( document ).ready(function() {
     Backbone.history.start();
 
   });
-
-
 
 });
 

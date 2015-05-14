@@ -30,7 +30,7 @@ class AdminDataAPIView extends View
 
 
     if( $res == false ) {
-      header("HTTP/1.0 303");
+      header("HTTP/1.0 401");
       header('Content-type: application/json');
       echo '{}';
       exit;
@@ -56,7 +56,7 @@ class AdminDataAPIView extends View
                               "errorResponses": [
                                   {
                                       "reason": "Permission denied",
-                                      "code": 303
+                                      "code": 401
                                   },
                                   {
                                       "reason": "Category term list",
@@ -89,7 +89,7 @@ class AdminDataAPIView extends View
                             "errorResponses": [
                                   {
                                       "reason": "Permission denied",
-                                      "code": 303
+                                      "code": 401
                                   },
                                   {
                                       "reason": "Category term Deleted",
@@ -122,7 +122,7 @@ class AdminDataAPIView extends View
                             "errorResponses": [
                                   {
                                       "reason": "Permission denied",
-                                      "code": 303
+                                      "code": 401
                                   },
                                   {
                                       "reason": "Category term Deleted",
@@ -175,7 +175,7 @@ class AdminDataAPIView extends View
                               "errorResponses": [
                                   {
                                       "reason": "Permission denied",
-                                      "code": 303
+                                      "code": 401
                                   },
                                   {
                                       "reason": "Category term list",
