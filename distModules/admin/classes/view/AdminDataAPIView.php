@@ -75,9 +75,9 @@ class AdminDataAPIView extends View
                                   {
                                       "required": true,
                                       "dataType": "int",
-                                      "name": "group",
+                                      "name": "id",
                                       "defaultValue": "",
-                                      "paramType": "query",
+                                      "paramType": "path",
                                       "allowMultiple": false,
                                       "description": "Category group id"
                                   }
@@ -296,6 +296,26 @@ class AdminDataAPIView extends View
     }
 
 
+
+  }
+
+
+  function categories() {
+    $taxgroupModel = new TaxonomygroupModel();
+    $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
+
+    header('Content-type: application/json');
+
+    echo '[';
+
+    $c = '';
+    while ($taxGroup = $taxGroupList->fetch() )
+    {
+      $taxData = $taxGroup->getAllData();
+      echo $c.json_encode( $taxData['data'] );
+      if($c === ''){$c=',';}
+    }
+    echo ']';
 
   }
 

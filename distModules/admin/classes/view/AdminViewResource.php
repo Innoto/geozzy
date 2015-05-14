@@ -41,14 +41,15 @@ class AdminViewResource extends AdminViewMaster
 
     $tabla = new TableController( $resource );
 
-    $tabla->setTabs('active', array('1'=>'Activos', '0'=>'Bloqueados', '*'=> 'Todos' ), '*');
+    $tabla->setTabs(__('published'), array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
 
     // set table Actions
-    $tabla->setActionMethod('Activar', 'changeStatusActive', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=>1 ))');
-    $tabla->setActionMethod('Bloquear', 'changeStatusLock', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=> 0 ))');
+    $tabla->setActionMethod(__('Publish'), 'changeStatusPublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>1 ))');
+    $tabla->setActionMethod(__('Unpublish'), 'changeStatusUnpublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "unpublished", "changeValue"=>0 ))');
+    $tabla->setActionMethod(__('Delete'), 'changeStatusDeleted', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "delete", "changeValue"=>1 ))');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
@@ -60,7 +61,12 @@ class AdminViewResource extends AdminViewMaster
 
     // Nome das columnas
     $tabla->setCol('id', 'Id');
-    $tabla->setCol('title', 'Title');
+    $tabla->setCol('type', __('Type'));
+    $tabla->setCol('title', __('Title'));
+    $tabla->setCol('user', __('User'));
+    $tabla->setCol('timeCreation', __('Time Creation'));
+    $tabla->setCol('timeLastUpdate', __('Time Update'));
+    $tabla->setCol('published', __('Published'));
 
     // imprimimos o JSON da taboa
     $tabla->exec();
