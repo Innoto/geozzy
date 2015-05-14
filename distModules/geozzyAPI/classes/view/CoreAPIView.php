@@ -51,56 +51,13 @@ class CoreAPIView extends View
                               "nickname": "resource",
                               "parameters": [
              
-                                  {
-                                      "required": false,
-                                      "dataType": "string",
-                                      "name": "sortBy",
-                                      "defaultValue": "createDate",
-                                      "allowableValues": {
-                                          "values": [
-                                              "createDate",
-                                              "alpha"
-                                          ],
-                                          "valueType": "LIST"
-                                      },
-                                      "paramType": "query",
-                                      "allowMultiple": false,
-                                      "description": "Field to sort by"
-                                  },
-                                  {
-                                      "required": false,
-                                      "dataType": "string",
-                                      "name": "sortOrder",
-                                      "defaultValue": "desc",
-                                      "allowableValues": {
-                                          "values": [
-                                              "asc",
-                                              "desc"
-                                          ],
-                                          "valueType": "LIST"
-                                      },
-                                      "paramType": "query",
-                                      "allowMultiple": false,
-                                      "description": "Direction to sort"
-                                  },
-                                  {
-                                      "required": false,
-                                      "dataType": "int",
-                                      "name": "skip",
-                                      "defaultValue": "0",
-                                      "paramType": "query",
-                                      "allowMultiple": false,
-                                      "description": "Results to skip"
-                                  },
-                                  {
-                                      "required": false,
-                                      "dataType": "int",
-                                      "name": "limit",
-                                      "defaultValue": "100",
-                                      "paramType": "query",
-                                      "allowMultiple": false,
-                                      "description": "Maximum number of results to return"
-                                  }
+                                {
+                                  "name": "changes",
+                                  "description": "Comparison changes to update (accept or reject)",
+                                  "dataType": "Opts",
+                                  "multiple": true,
+                                  "paramType": "body"
+                                }
 
                               ],
                               "summary": "Fetches words in a WordList"
@@ -109,8 +66,40 @@ class CoreAPIView extends View
                       "path": "/core/resource",
                       "description": ""
                   }
-              ]
+              ],
+
+              "models": {
+                "Opts": {
+                  "id": "Opts",
+                  "properties": {
+                    "keys": {
+                      "type": "[string]"
+                    },
+                    "filters": {
+                      "type": "[String]"
+                    },
+                    "cached": {
+                      "type": "Boolean"
+                    }
+                  }
+                }
+             
+            }
+
+
+
+
           }
+
+
+
+
+
+
+
+
+
+
         <?php
   }
 
