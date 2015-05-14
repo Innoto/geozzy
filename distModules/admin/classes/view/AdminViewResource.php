@@ -1,6 +1,6 @@
 <?php
 admin::load('view/AdminViewMaster.php');
-
+geozzy::load( 'view/GeozzyResourceView.php' );
 
 class AdminViewResource extends AdminViewMaster
 {
@@ -72,64 +72,85 @@ class AdminViewResource extends AdminViewMaster
     $tabla->exec();
   }
 
-  /**
-  * Section create resource
-  **/
-
-  public function createResource() {
-
-    $resourceView = new ResourceView();
-
-    $form = $resourceView->resourceFormDefine();
-    $form->setAction('/admin/resource/sendresource');
-    $form->setSuccess( 'redirect', '/admin#resource/list' );
-
-    $createResourceHtml = $userView->resourceFormGet( $form );
-    $this->template->assign('createResourceHtml', $createResourceHtml);
-    $this->template->setTpl('createResource.tpl', 'admin');
-
-    $this->template->exec();
-
-  }
 
   /**
-  * Section edit resource
-  **/
-  public function editResource( $request ) {
-
-    $resourceView = new ResourceView();
-
-    /*FORM EDIT*/
-    $form = $resourceView->userUpdateFormDefine($request);
-    $form->setAction('/admin/resource/sendresource');
-    $form->setSuccess( 'redirect', '/admin#resource/list' );
-    $editResourceHtml = $resourceView->resourceFormGet( $form );
-    $this->template->assign('editResourceHtml', $editResourceHtml);
-    /*--------------------*/
-
-    $this->template->setTpl('editResourcetpl', 'admin');
-
-    $this->template->exec();
-
-  }
-
-
-  /**
-   Action resourceForm
+    Creacion/Edicion de Recursos
   */
-  public function sendResourceForm() {
 
-    $resourceView = new ResourceView();
+  public function resourceForm() {
+    error_log( "AdminFormsAPIView: resourceForm()" );
 
-    $form = $resourceView->actionResourceForm();
-    if( $form->existErrors() ) {
-      echo $form->getJsonError();
+    $formName = 'resourceCreate';
+    $formUrl = '/api/admin/resource/sendresource';
+
+    $resourceView = new GeozzyResourceView();
+    $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, false );
+    $panel = $this->getPanelBlock( $formBlock, 'New Resource', 'fa-archive' );
+    $this->template->addToBlock( 'col8', $panel );
+
+
+    $panel = $this->getPanelBlock( 'Recuerda que en algunos campos existe versión en varios idiomas.' );
+    $this->template->addToBlock( 'col4', $panel );
+
+    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
+
+    $this->template->exec();
+  } // function resourceForm()
+
+
+  public function resourceEditForm( $urlParams = false ) {
+    error_log( "AdminFormsAPIView: resourceEditForm()". print_r( $urlParams, true ) );
+
+    $formName = 'resourceCreate';
+    $formUrl = '/api/admin/resource/sendresource';
+
+    $recurso = false;
+
+    if( isset( $urlParams['1'] ) ) {
+      $idResource = $urlParams['1'];
+      $recModel = new ResourceModel();
+      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
+        'filters' => array( 'id' => $idResource ) ) );
+      $recurso = $recursosList->fetch();
+    }
+
+    if( $recurso ) {
+      $recursoData = $recurso->getAllData();
+
+      $resourceView = new GeozzyResourceView();
+      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData[ 'data' ] );
+      $panel = $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' );
+      $this->template->addToBlock( 'col8', $panel );
+
+      $html = 'Recurso asociado con:<br>'.
+        ' <i class="fa fa-times"></i> Playas<br>'.
+        ' <i class="fa fa-times"></i> Lugares<br>'.
+        ' <i class="fa fa-times"></i> Fiesta<br>'.
+        '<br>'.
+        ' <i class="fa fa-times"></i> Desvincular de TODAS<br>'.
+        '<br>'.
+        ' <i class="fa fa-times"></i> Eliminar Recurso<br>'.
+        '';
+      $panel = $this->getPanelBlock( $html, 'Information' );
+      $this->template->addToBlock( 'col4', $panel );
+
+      $this->template->addToBlock( 'col4', $this->getPanelBlock( 'Esto é un segundo panel' ) );
+
+      $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
+
+      $this->template->exec();
     }
     else {
-      $userView->resourceFormOk( $form );
-      echo $form->getJsonOk();
+      cogumelo::error( 'Imposible acceder al recurso indicado.' );
     }
-  }
+  } // function resourceEditForm()
+
+
+  public function sendResourceForm() {
+    error_log( "AdminFormsAPIView: sendResourceForm()" );
+
+    $resourceView = new GeozzyResourceView();
+    $resourceView->actionResourceForm();
+  } // sendResourceForm()
 
 }
-

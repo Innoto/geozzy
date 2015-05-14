@@ -8,13 +8,13 @@ var AdminRouter = Backbone.Router.extend({
     "charts" : "charts",
     "category/:id" : "categoryEdit",
     "category/:category/term/create" : "categoryNewTerm",
-    "category/:category/term/edit/:term" : "categoryEditTerm",    
+    "category/:category/term/edit/:term" : "categoryEditTerm",
     "user/list" : "userList",
-    "user/create" : "userCreate",    
+    "user/create" : "userCreate",
     "user/edit/:id" : "userEdit",
     "user/show" : "userShow",
-    "role/list" : "roleList",     
-    "role/create" : "roleCreate",    
+    "role/list" : "roleList",
+    "role/create" : "roleCreate",
     "role/edit/:id" : "roleEdit",
     "resource/list": "resourceList",
     "resource/create" : "resourceCreate",
@@ -33,28 +33,28 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   categoryNewTerm: function( category ){
-    app.mainView.loadAjaxContent( '/api/admin/category/'+category+'/term/create');    
+    app.mainView.loadAjaxContent( '/admin/category/'+category+'/term/create');
   },
 
   categoryEditTerm: function( category, term ){
-    app.mainView.loadAjaxContent( '/api/admin/category/'+category+'/term/edit/'+term);    
+    app.mainView.loadAjaxContent( '/admin/category/'+category+'/term/edit/'+term);
   },
-  
+
   // User
   userList: function(){
     app.mainView.loadAjaxContent( '/admin/user/list' );
   },
 
   userCreate: function( ) {
-    app.mainView.loadAjaxContent( '/admin/user/create');    
+    app.mainView.loadAjaxContent( '/admin/user/create');
   },
 
   userEdit: function( id ) {
-    app.mainView.loadAjaxContent( '/admin/user/edit/' + id );    
+    app.mainView.loadAjaxContent( '/admin/user/edit/' + id );
   },
 
   userShow: function() {
-    app.mainView.loadAjaxContent( '/admin/user/show' );   
+    app.mainView.loadAjaxContent( '/admin/user/show' );
   },
 
   // Roles
@@ -63,24 +63,24 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   roleCreate: function( ) {
-    app.mainView.loadAjaxContent( '/admin/role/create');    
+    app.mainView.loadAjaxContent( '/admin/role/create');
   },
 
   roleEdit: function( id ) {
-    app.mainView.loadAjaxContent( '/admin/role/edit/' + id );    
+    app.mainView.loadAjaxContent( '/admin/role/edit/' + id );
   },
 
   // resources
   resourceList: function() {
-    app.mainView.loadAjaxContent( '/admin/resource/list');   
+    app.mainView.loadAjaxContent( '/admin/resource/list');
   },
 
 
   resourceCreate:function()   {
-    app.mainView.loadAjaxContent( '/api/admin/resource/create');    
+    app.mainView.loadAjaxContent( '/admin/resource/create');
   },
 
   resourceEdit:function( id )   {
-    app.mainView.loadAjaxContent( '/api/admin/resource/edit/' + id);    
-  }  
+    app.mainView.loadAjaxContent( '/admin/resource/edit/' + id);
+  }
 });

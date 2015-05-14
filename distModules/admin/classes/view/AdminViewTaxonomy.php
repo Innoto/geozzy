@@ -14,7 +14,7 @@ class AdminViewTaxonomy extends AdminViewMaster
 
 
     $id = substr($request[1], 1);
-    
+
     header('Content-type: application/json');
 
     switch( $_SERVER['REQUEST_METHOD'] ) {
@@ -32,7 +32,7 @@ class AdminViewTaxonomy extends AdminViewMaster
           $taxTerm = new TaxonomytermModel( array('name'=> $putData['name'], 'parent'=> null, 'taxgroup'=> $putData['taxgroup']) );
           $taxTerm->save();
 
-        }      
+        }
 
         $termData = $taxTerm->getAllData();
         echo json_encode( $termData['data'] );
@@ -49,7 +49,7 @@ class AdminViewTaxonomy extends AdminViewMaster
           echo $c.json_encode( $termData['data'] );
           if($c === ''){$c=',';}
         }
-        echo ']';     
+        echo ']';
 
         break;
 
@@ -60,7 +60,7 @@ class AdminViewTaxonomy extends AdminViewMaster
         break;
     }
 
-  
+
 
   }
 
@@ -80,9 +80,29 @@ class AdminViewTaxonomy extends AdminViewMaster
       if($c === ''){$c=',';}
     }
     echo ']';
-  
+
+  }
+
+  public function categoryForm( $request ){
+    $geozzyTaxtermView = new GeozzyTaxonomytermView();
+
+    $form = $geozzyTaxtermView->taxtermFormDefine( $request );
+    $form->setAction('/api/admin/category/term/sendcategoryterm');
+    $form->setSuccess( 'redirect', '/admin#category/'.$request[1] );
+
+    $taxtermFormHtml = $geozzyTaxtermView->taxtermFormGet( $form );
+
+    $this->template->assign('taxtermFormHtml', $taxtermFormHtml);
+    $this->template->setTpl('taxtermForm.tpl', 'admin');
+
+    $this->template->exec();
+  }
+
+  public function sendCategoryForm(){
+    $geozzyTaxtermView = new GeozzyTaxonomytermView();
+    $geozzyTaxtermView->sendTaxtermForm();
   }
 
 
-}
 
+}
