@@ -24,13 +24,13 @@ class CoreAPIView extends View
   }
 
 
-  function main() {
+  function resourcesJson() {
     header('Content-type: application/json');
 
 
     ?>
           {
-              "resourcePath": "/core",
+              "resourcePath": "/resources.json",
               "basePath": "/api",
               "apis": [
                   {

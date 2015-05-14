@@ -61,7 +61,7 @@
 
         <div class="dd-handle">
           <i class="fa fa-arrows icon-handle"></i>
-          <%- term.name %>
+          <%- term.name_gl %>
         </div>
 
       </div>
