@@ -5,7 +5,7 @@
 
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="resourcestopicTable">{$resourcetopicTable}<div>
+          <div class="resourcestopicTable">{$resourceouttopicTable}<div>
         </div> <!-- end panel-body -->
       </div> <!-- end panel -->
 
