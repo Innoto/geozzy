@@ -48,52 +48,52 @@ class GeozzyResourceView extends View
 
     $form = new FormController( $formName, $urlAction );
 
-    $form->setSuccess( 'accept', 'Gracias por participar' );
+    $form->setSuccess( 'accept', _( 'Thank you' ) );
 
     // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
     // 'loc'   'type' => 'GEOMETRY'
     $campos = array(
       'title' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Título' ),
+        'params' => array( 'label' => _( 'Title' ) ),
         'rules' => array( 'maxlength' => '100' )
       ),
       'shortDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Descripción corta' ),
+        'params' => array( 'label' => _( 'Short description' ) ),
         'rules' => array( 'maxlength' => '100' )
       ),
       'mediumDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Descripción media', 'type' => 'textarea', 'htmlEditor' => 'true' )
+        'params' => array( 'label' => _( 'Medium description' ), 'type' => 'textarea', 'htmlEditor' => 'true' )
       ),
       'content' => array(
         'translate' => true,
-        'params' => array( 'label' => 'Contenido principal', 'type' => 'textarea',
+        'params' => array( 'label' => _( 'Content' ), 'type' => 'textarea',
           'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
       ),
       /*
       'image' => array(
-        'params' => array( 'label' => 'image', 'type' => 'file', 'id' => 'imgResource',
+        'params' => array( 'label' => _( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
           'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' )
       ),
       */
       'defaultZoom' => array(
-        'params' => array( 'label' => 'Mapas: Zoom inicial' ),
+        'params' => array( 'label' => _( 'Map: Default zoom' ) ),
         'rules' => array( 'required' => true, 'max' => '20' )
       ),
       'headKeywords' => array(
-        'params' => array( 'label' => 'SEO: headKeywords' ),
+        'params' => array( 'label' => _( 'SEO: Head Keywords' ) ),
         'rules' => array( 'maxlength' => '150' )
       ),
       'headDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => 'SEO: headDescription' ),
+        'params' => array( 'label' => _( 'SEO: Head Description' ) ),
         'rules' => array( 'maxlength' => '150' )
       ),
       'headTitle' => array(
         'translate' => true,
-        'params' => array( 'label' => 'SEO: headTitle' ),
+        'params' => array( 'label' => _( 'SEO: Head Title' ) ),
         'rules' => array( 'maxlength' => '100' )
       )
     );
@@ -134,7 +134,7 @@ class GeozzyResourceView extends View
       $form->loadArrayValues( $valuesArray );
     }
 
-    $form->setField( 'submit', array( 'type' => 'submit', 'label' => 'Pulsa para enviar', 'value' => 'Manda' ) );
+    $form->setField( 'submit', array( 'type' => 'submit', 'value' => _( 'Send' ) ) );
 
     // Una vez que lo tenemos definido, guardamos el form en sesion
     $form->saveToSession();
