@@ -11,7 +11,7 @@
 
 {block name="headDescription"}{$headDescription}{/block}
 
-{block name="headTitle" prepend}{$headTitle|default:$title} - {/block}
+{block name="headTitle" prepend}{$headTitle|default:$title|escape:'htmlall'} - {/block}
 
 {block name="bodyContent"}
 <!-- probandoFormRecurso.tpl en app de Geozzy -->
@@ -23,10 +23,10 @@
   <div class="resource">
 
     <div class="title"><label class="cgmMForm">title</label>
-    {$title}</div>
+    {$title|escape:'htmlall'}</div>
 
     <div class="shortDescription"><label class="cgmMForm">shortDescription</label>
-    {$shortDescription}</div>
+    {$shortDescription|escape:'htmlall'}</div>
 
     <div class="mediumDescription"><label for="mediumDescription" class="cgmMForm">mediumDescription</label>
     {$mediumDescription}</div>
