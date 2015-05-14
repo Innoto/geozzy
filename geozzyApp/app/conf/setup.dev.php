@@ -189,8 +189,12 @@ define ('I18N', SITE_PATH.'conf/i18n/');
 define ('I18N_LOCALE', SITE_PATH.'conf/i18n/locale/');
 define( 'GETTEXT_UPDATE', true ); // update gettext files when working in localhost
 define( 'LANG_DEFAULT', 'gl' );
-define( 'LANG_AVAILABLE', 'gl,es,en' );
+global $LANG_AVAILABLE;
 
+$LANG_AVAILABLE = array('es' => array('i18n' => 'es_ES'), 
+                        'gl' => array('i18n' => 'gl_ES'), 
+                        'en' => array('i18n' => 'en_US')
+                        );
 
 //
 //  Form Mod
