@@ -1,5 +1,6 @@
 
 <div class="panel panel-default">
+
   <div class="panel-heading">
     <strong>
       <i class="fa {$icon} fa-fw"></i>

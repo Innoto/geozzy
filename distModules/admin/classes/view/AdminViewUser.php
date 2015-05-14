@@ -27,15 +27,16 @@ class AdminViewUser extends AdminViewMaster
   * Section list user
   **/
   public function listUsers() {
-    $this->template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
-    $this->template->setTpl('listUser.tpl', 'admin');
+    $listUsersBlock = $this->listUsersBlock();
+
+    $panel = $this->getPanelBlock( $listUsersBlock, 'Users Table', 'fa-user' );
+    $this->template->addToBlock( 'col12', $panel );
+    $this->template->assign('titleHeader', "Users List");
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
+
     $this->template->exec();
   }
 
-
-  /**
-  * Section list user
-  **/
   public function listUsersBlock() {
     $template = new Template( $this->baseDir );
 
@@ -196,4 +197,3 @@ class AdminViewUser extends AdminViewMaster
   }
 
 }
-
