@@ -81,7 +81,7 @@ var AdminRouter = Backbone.Router.extend({
   },
 
 
-  resourceCreate:function()   {
+  resourceCreate:function() {
     app.mainView.loadAjaxContent( '/admin/resource/create');
   },
 
