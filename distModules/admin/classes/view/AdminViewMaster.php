@@ -8,6 +8,7 @@ form::autoIncludes();
 user::autoIncludes();
 table::autoIncludes();
 
+
 class AdminViewMaster extends View
 {
 
@@ -35,7 +36,6 @@ class AdminViewMaster extends View
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
     $this->template->assign( 'user' , $user);
-
     $this->template->exec();
   }
 
@@ -44,6 +44,22 @@ class AdminViewMaster extends View
     $useraccesscontrol = new UserAccessController();
     $useraccesscontrol->userLogout();
     Cogumelo::redirect('/admin');
+  }
+
+  public function getPanelBlock( $content, $title = '', $icon = 'fa-info' ) {
+    $template = new Template( $this->baseDir );
+
+    if( is_string( $content ) ) {
+      $template->assign( 'content', $content );
+    }
+    else {
+      $template->setBlock( 'content', $content );
+    }
+    $template->assign( 'title', $title );
+    $template->assign( 'icon', $icon );
+    $template->setTpl( 'adminPanel.tpl', 'admin' );
+
+    return $template;
   }
 
 }

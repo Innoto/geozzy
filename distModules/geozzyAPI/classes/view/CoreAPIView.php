@@ -63,7 +63,7 @@ class CoreAPIView extends View
                               "summary": "Fetches words in a WordList"
                           }
                       ],
-                      "path": "/core/resource",
+                      "path": "/core/resourcelist",
                       "description": ""
                   }
               ],
@@ -104,15 +104,7 @@ class CoreAPIView extends View
   }
 
   // resources
-  function resource() {
-    geozzy::load('model/ResourceModel.php');
-    $resourceModel = new ResourceModel();
-    $resources = $resourceModel->listItems( array('filters'=> array( 'id'=> 10 ) ) );
 
-    if( $resource = $resources->fetch() ) {
-      $this->syncModel( $resource );
-    }
-  }
 
   function resourceList() {
     geozzy::load('model/ResourceModel.php');

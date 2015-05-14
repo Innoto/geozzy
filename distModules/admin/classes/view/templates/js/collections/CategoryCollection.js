@@ -1,4 +1,4 @@
 var CategoryCollection = Backbone.Collection.extend({
-  url: '/admin/categories',
+  url: '/api/admin/categories',
   model: TaxonomygroupModel
 });

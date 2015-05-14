@@ -112,10 +112,16 @@ class admin extends Module
 
     $this->addUrlPatterns( '#^admin/resource/list$#', 'view:AdminViewResource::listResources' );
     $this->addUrlPatterns( '#^admin/resource/table$#', 'view:AdminViewResource::listResourcesTable' );
+
     $this->addUrlPatterns( '#^admin/resourceintopic/list$#', 'view:AdminViewResourceInTopic::listResourcesInTopic' );
     $this->addUrlPatterns( '#^admin/resourceintopic/table$#', 'view:AdminViewResourceInTopic::listResourcesInTopicTable' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/list$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopic' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/table$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );    
+
+    $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
+    $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
+    $this->addUrlPatterns( '#^admin/resource/sendresource$#', 'view:AdminViewResource::sendResourceForm' );
+
 
     $this->addUrlPatterns( '#^admin/role/edit/(.*)$#', 'view:AdminViewRole::editRole' );
     $this->addUrlPatterns( '#^admin/role/create$#', 'view:AdminViewRole::createRole' );
@@ -123,8 +129,9 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/role/table$#', 'view:AdminViewRole::listRolesTable' );
     $this->addUrlPatterns( '#^admin/role/sendrole$#', 'view:AdminViewRole::sendRoleForm' );
 
-    $this->addUrlPatterns( '#^admin/categoryterms(.*)$#', 'view:AdminViewTaxonomy::categoryTermsSync' ); // BORRAR enc ambio de API
-    $this->addUrlPatterns( '#^admin/categories$#', 'view:AdminViewTaxonomy::categoriesSync' ); //BORRAR en cambio de API
+    $this->addUrlPatterns( '#^admin/category/(\d+)/term/create$#', 'view:AdminViewTaxonomy::categoryForm' );
+    $this->addUrlPatterns( '#^admin/category/(\d+)/term/edit/(\d+)$#', 'view:AdminViewTaxonomy::categoryForm' );
+    $this->addUrlPatterns( '#^admin/category/term/sendcategoryterm$#', 'view:AdminViewTaxonomy::sendCategoryForm' );
 
     $this->addUrlPatterns( '#^admin/topics$#', 'view:AdminViewTopic::topicsSync' );
 
@@ -135,16 +142,6 @@ class admin extends Module
     $this->addUrlPatterns( '#^api/admin/categories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
 
-
-    // forms Admin API
-    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/create$#', 'view:AdminFormsAPIView::categoryForm' );
-    $this->addUrlPatterns( '#^api/admin/category/(\d+)/term/edit/(\d+)$#', 'view:AdminFormsAPIView::categoryForm' );
-
-    $this->addUrlPatterns( '#^api/admin/category/term/sendcategoryterm$#', 'view:AdminFormsAPIView::sendCategoryForm' );
-
-    $this->addUrlPatterns( '#^api/admin/resource/create$#', 'view:AdminFormsAPIView::resourceForm' );
-    $this->addUrlPatterns( '#^api/admin/resource/edit/(\d+)$#', 'view:AdminFormsAPIView::resourceEditForm' );
-    $this->addUrlPatterns( '#^api/admin/resource/sendresource$#', 'view:AdminFormsAPIView::sendResourceForm' );
 
 /*
     $this->addUrlPatterns( '#^recurso/?$#', 'view:RecursoView::verRecurso' );
