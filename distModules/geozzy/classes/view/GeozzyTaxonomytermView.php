@@ -34,11 +34,13 @@ class GeozzyTaxonomytermView extends View
   public function taxtermFormDefine( $request ) {
 
 
+
     $langAvailable = false;
     $this->template->assign( 'JsLangAvailable', 'false' );
     $this->template->assign( 'JsLangDefault', 'false' );
-    if( defined( 'LANG_AVAILABLE' ) ) {
-      $langAvailable = explode( ',', LANG_AVAILABLE );
+    global $LANG_AVAILABLE;
+    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
+      $langAvailable = array_keys( $LANG_AVAILABLE );
       $langDefault = LANG_DEFAULT;
       $tmp = implode( "', '", $langAvailable );
       $this->template->assign( 'JsLangAvailable', "['".$tmp."']" );
