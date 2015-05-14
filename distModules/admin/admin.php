@@ -112,9 +112,14 @@ class admin extends Module
 
     $this->addUrlPatterns( '#^admin/resource/list$#', 'view:AdminViewResource::listResources' );
     $this->addUrlPatterns( '#^admin/resource/table$#', 'view:AdminViewResource::listResourcesTable' );
+
+    $this->addUrlPatterns( '#^admin/resourcetopic/list$#', 'view:AdminViewResourceTopic::listResourcesTopic' );
+    $this->addUrlPatterns( '#^admin/resourcetopic/table$#', 'view:AdminViewResourceTopic::listResourcesTopicTable' );
+
     $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
     $this->addUrlPatterns( '#^admin/resource/sendresource$#', 'view:AdminViewResource::sendResourceForm' );
+
 
     $this->addUrlPatterns( '#^admin/role/edit/(.*)$#', 'view:AdminViewRole::editRole' );
     $this->addUrlPatterns( '#^admin/role/create$#', 'view:AdminViewRole::createRole' );
