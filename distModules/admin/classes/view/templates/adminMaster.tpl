@@ -23,6 +23,8 @@
 
   <!-- Client templates -->
   {include file="admin///categoryEditor.tpl"}
+
+  
   <div id="wrapper">
     <div id="menu-wrapper">
       {include file="admin///adminMenu.tpl"}
