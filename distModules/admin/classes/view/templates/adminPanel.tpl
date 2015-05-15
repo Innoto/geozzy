@@ -4,7 +4,9 @@
 {block "header"}
   {if !isset($icon)}{assign var='icon' value=''}{/if}
   {if !isset($title)}{assign var='title' value=''}{/if}
-  {if $icon eq '' && $title eq '' }
+
+
+  {if $icon ne '' or $title ne ''}
   <div class="panel-heading">
     <strong><i class="fa {$icon} fa-fw"></i>{$title}</strong>
   </div>
