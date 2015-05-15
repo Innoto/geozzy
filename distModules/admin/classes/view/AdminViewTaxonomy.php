@@ -92,9 +92,12 @@ class AdminViewTaxonomy extends AdminViewMaster
 
     $taxtermFormHtml = $geozzyTaxtermView->taxtermFormGet( $form );
 
-    $this->template->assign('taxtermFormHtml', $taxtermFormHtml);
-    $this->template->setTpl('taxtermForm.tpl', 'admin');
+    $template = new Template( $this->baseDir );
+    $template->assign('taxtermFormHtml', $taxtermFormHtml );
+    $template->setTpl('taxtermForm.tpl', 'admin');
 
+    $this->template->addToBlock( 'col8', $template );
+    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
   }
 

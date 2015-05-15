@@ -115,10 +115,15 @@ class AdminViewUser extends AdminViewMaster
     $form->setSuccess( 'redirect', '/admin#user/list' );
 
     $createUserHtml = $userView->userFormGet( $form );
-    $this->template->assign('createUserHtml', $createUserHtml);
-    $this->template->setTpl('createUser.tpl', 'admin');
 
+    $template = new Template( $this->baseDir );
+    $template->assign('createUserHtml', $createUserHtml );
+    $template->setTpl('createUser.tpl', 'admin');
+
+    $this->template->addToBlock( 'col8', $template );
+    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
+
 
   }
 
@@ -134,7 +139,11 @@ class AdminViewUser extends AdminViewMaster
     $form->setAction('/admin/user/senduser');
     $form->setSuccess( 'redirect', '/admin#user/list' );
     $editUserHtml = $userView->userFormGet( $form );
-    $this->template->assign('editUserHtml', $editUserHtml);
+
+    $template = new Template( $this->baseDir );
+    $template->assign('editUserHtml', $editUserHtml );
+    $template->setTpl('editUser.tpl', 'admin');
+    $this->template->addToBlock( 'col8', $template );
     /*--------------------*/
 
     /*FORM CHANGE PASSWORD*/
@@ -142,7 +151,12 @@ class AdminViewUser extends AdminViewMaster
     $formChange->setAction('/admin/user/changepassword');
     $formChange->setSuccess( 'redirect', '/admin#user/list' );
     $changePasswordHtml = $userView->userChangePasswordFormGet( $formChange );
-    $this->template->assign('changePasswordHtml', $changePasswordHtml);
+
+    $template = new Template( $this->baseDir );
+    $template->assign('changePasswordHtml', $changePasswordHtml );
+    $template->setTpl('changePassword.tpl', 'admin');
+    $this->template->addToBlock( 'col4', $template );
+
     /*--------------------*/
 
     /*FORM ASSIGN ROLES*/
@@ -150,10 +164,14 @@ class AdminViewUser extends AdminViewMaster
     $userRolesForm->setAction('/admin/user/assignroles');
     $userRolesForm->setSuccess( 'redirect', '/admin#user/list' );
     $userRolesFormHtml = $userView->userRolesFormGet( $userRolesForm );
-    $this->template->assign('userRolesFormHtml', $userRolesFormHtml);
+
+    $template = new Template( $this->baseDir );
+    $template->assign('userRolesFormHtml', $userRolesFormHtml );
+    $template->setTpl('assignRoles.tpl', 'admin');
+    $this->template->addToBlock( 'col4', $template );
     /*--------------------*/
 
-    $this->template->setTpl('editUser.tpl', 'admin');
+    $this->template->setTpl('adminContent-8-4.tpl', 'admin');
 
     $this->template->exec();
 

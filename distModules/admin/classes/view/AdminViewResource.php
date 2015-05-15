@@ -15,22 +15,13 @@ class AdminViewResource extends AdminViewMaster
   **/
   public function listResources() {
 
-    $this->template->assign('resourceTable', table::getTableHtml('AdminViewResource', '/admin/resource/table') );
-    $this->template->setTpl('listResource.tpl', 'admin');
-    $this->template->exec();
-  }
-
-
-  /**
-  * Section list resource
-  **/
-  public function listResourcesBlock() {
     $template = new Template( $this->baseDir );
-
     $template->assign('resourceTable', table::getTableHtml('AdminViewResource', '/admin/resource/table') );
     $template->setTpl('listResource.tpl', 'admin');
 
-    return $template;
+    $this->template->addToBlock( 'col12', $template );
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
+    $this->template->exec();
   }
 
 
