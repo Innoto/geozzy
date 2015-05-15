@@ -60,7 +60,7 @@ class CoreAPIView extends View
                                 }
 
                               ],
-                              "summary": "Fetches words in a WordList"
+                              "summary": "Fetches resource list"
                           }
                       ],
                       "path": "/core/resourcelist",
@@ -86,22 +86,174 @@ class CoreAPIView extends View
              
             }
 
+          }
 
+        <?php
+  }
+
+
+
+  function resourceTypesJson() {
+    header('Content-type: application/json');
+
+
+    ?>
+          {
+              "resourcePath": "/resourceTypes.json",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "Not found",
+                                      "code": 404
+                                  }
+                              ],
+                              "httpMethod": "GET",
+                              "nickname": "resource",
+                              "parameters": [
+
+                              ],
+                              "summary": "Fetches resource type list"
+                          }
+                      ],
+                      "path": "/core/resourcetypes",
+                      "description": ""
+                  }
+              ]
 
 
           }
 
+        <?php
+  }
 
 
 
+  function categoryListJson() {
+    header('Content-type: application/json');
 
 
+    ?>
+          {
+              "resourcePath": "/categoryList.json",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "Not found",
+                                      "code": 404
+                                  }
+                              ],
+                              "httpMethod": "GET",
+                              "nickname": "resource",
+                              "parameters": [
+                              ],
+                              "summary": "Fetches all category groups"
+                          }
+                      ],
+                      "path": "/core/categorylist",
+                      "description": ""
+                  }
+              ]
 
 
-
+          }
 
         <?php
   }
+
+  function categoryTermsJson() {
+    header('Content-type: application/json');
+
+
+    ?>
+          {
+              "resourcePath": "/categoryTerms.json",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "Not found",
+                                      "code": 404
+                                  }
+                              ],
+                              "httpMethod": "GET",
+                              "nickname": "resource",
+                              "parameters": [
+                                {
+                                  "required": true,
+                                  "dataType": "int",
+                                  "name": "id",
+                                  "paramType": "path",
+                                  "allowMultiple": false,
+                                  "description": "group id"
+                                }
+                              ],
+                              "summary": "Fetches category terms"
+                          }
+                      ],
+                      "path": "/core/categoryterms/{id}",
+                      "description": ""
+                  }
+              ]
+
+
+          }
+
+        <?php
+  }
+
+
+
+  function topicListJson() {
+    header('Content-type: application/json');
+
+
+    ?>
+          {
+              "resourcePath": "/topicList.json",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "Not found",
+                                      "code": 404
+                                  }
+                              ],
+                              "httpMethod": "GET",
+                              "nickname": "resource",
+                              "parameters": [
+ 
+                              ],
+                              "summary": "Fetches topics"
+                          }
+                      ],
+                      "path": "/core/topiclist",
+                      "description": ""
+                  }
+              ]
+
+
+          }
+
+        <?php
+  }
+
+
+
+
 
   // resources
 
@@ -130,15 +282,23 @@ class CoreAPIView extends View
 
   }
   
-  function categoryTerms() {
-    geozzy::load('model/TaxonomytermModel.php');    
-    $taxtermModel = new TaxonomytermModel();
-    $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$_GET['group']) ) );
-    $this->syncModelList( $taxtermList );
+  function categoryTerms( $path ) {
+
+
+    if( isset( $path[1] ) && is_numeric( $path[1] ) ) { 
+      geozzy::load('model/TaxonomytermModel.php');    
+      $taxtermModel = new TaxonomytermModel();
+      $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$path[1]) ) );
+      $this->syncModelList( $taxtermList );
+    }
+    else {
+      header("HTTP/1.0 404 Not Found");
+      header('Content-type: application/json');
+      echo '{}';
+    }
   }
 
   // Topics
-
   function topicList() {
     geozzy::load('model/TopicModel.php');    
     $topicModel = new TopicModel();

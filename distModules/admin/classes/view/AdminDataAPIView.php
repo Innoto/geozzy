@@ -47,7 +47,7 @@ class AdminDataAPIView extends View
 
     ?>
           {
-              "resourcePath": "/admin/categoryterms",
+              "resourcePath": "/admin/adminCategoryterms.json",
               "basePath": "/api",
               "apis": [
                   {
@@ -166,7 +166,7 @@ class AdminDataAPIView extends View
 
     ?>
           {
-              "resourcePath": "/admin/categories",
+              "resourcePath": "/admin/adminCategories.json",
               "basePath": "/api",
               "apis": [
                   {

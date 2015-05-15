@@ -137,18 +137,12 @@ class admin extends Module
 
 
     // data Admin API
-    $this->addUrlPatterns( '#^api/admin/categoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/admin/adminCategoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminDataAPIView::categoryTerms' );
-    $this->addUrlPatterns( '#^api/admin/categories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
 
 
-/*
-    $this->addUrlPatterns( '#^recurso/?$#', 'view:RecursoView::verRecurso' );
-    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:RecursoView::verRecurso' );
-    $this->addUrlPatterns( '#^recurso-crear$#', 'view:RecursoView::crearForm' );
-    $this->addUrlPatterns( '#^recurso-editar/(\d+)$#', 'view:RecursoView::editarForm' );
-*/
 
   }
 
