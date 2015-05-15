@@ -16,6 +16,12 @@
 {block name="bodyContent"}
 <!-- probandoFormRecurso.tpl en app de Geozzy -->
 
+<pre>
+GLOBALES SMARTY
+langDefault:{$langDefault}
+langAvailable:{$langAvailable.$langDefault.i18n}
+</pre>
+
   <h2 style="color:#30494E;">GEOZZY APP - View Resource</h2>
 
   <h3>Resource</h3>
