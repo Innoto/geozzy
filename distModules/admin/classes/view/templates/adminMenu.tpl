@@ -21,10 +21,10 @@
           <a href="/admin"><i class="fa fa-files-o fa-fw"></i> {t}Pages{/t} </a>
         </li>
         <li>
-          <a href="/admin#starred/"><i class="fa fa-star fa-fw"></i> {t}Starred{/t} </a>
+          <a href="/admin#starred"><i class="fa fa-star fa-fw"></i> {t}Starred{/t} </a>
         </li>
         <li>
-          <a href="/admin#resource/list/"><i class="fa fa-indent fa-fw"></i> {t}Contents{/t} </a>
+          <a href="/admin#resource/list"><i class="fa fa-indent fa-fw"></i> {t}Contents{/t} </a>
         </li>
 
         <!-- Settings -->

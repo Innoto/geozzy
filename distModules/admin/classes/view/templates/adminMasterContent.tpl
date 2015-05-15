@@ -27,5 +27,7 @@
 
 
 <div class="footerSection">
-{block name="footerSection"}{/block}
+  <div class="headerActionsContainer">
+    {block name="footerActions"}{/block}
+  </div>
 </div><!-- /footerSection -->
