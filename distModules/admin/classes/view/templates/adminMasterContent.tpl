@@ -1,6 +1,23 @@
 
 <div class="headSection">
-{block name="headSection"}{/block}
+  <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+  </div>
+  <div class="headerTitleContainer">
+    {block name="headTitle"}{/block}
+  </div>
+  <div class="headerActionsContainer">
+    {block name="headActions"}{/block}
+  </div>
+
+  <!-- /.navbar-header -->
+
+
 </div><!-- /headSection -->
 
 
