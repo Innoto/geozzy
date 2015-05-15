@@ -21,19 +21,6 @@ class AdminViewResource extends AdminViewMaster
   }
 
 
-  /**
-  * Section list resource
-  **/
-  public function listResourcesBlock() {
-    $template = new Template( $this->baseDir );
-
-    $template->assign('resourceTable', table::getTableHtml('AdminViewResource', '/admin/resource/table') );
-    $template->setTpl('listResource.tpl', 'admin');
-
-    return $template;
-  }
-
-
   public function listResourcesTable() {
 
     table::autoIncludes();
@@ -48,8 +35,9 @@ class AdminViewResource extends AdminViewMaster
 
     // set table Actions
     $tabla->setActionMethod(__('Publish'), 'changeStatusPublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>1 ))');
-    $tabla->setActionMethod(__('Unpublish'), 'changeStatusUnpublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "unpublished", "changeValue"=>0 ))');
-    $tabla->setActionMethod(__('Delete'), 'changeStatusDeleted', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "delete", "changeValue"=>1 ))');
+    $tabla->setActionMethod(__('Unpublish'), 'changeStatusUnpublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
+    $tabla->setActionMethod(__('Delete'), 'delete', 'delete()');
+
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
@@ -67,6 +55,10 @@ class AdminViewResource extends AdminViewMaster
     $tabla->setCol('timeCreation', __('Time Creation'));
     $tabla->setCol('timeLastUpdate', __('Time Update'));
     $tabla->setCol('published', __('Published'));
+
+    // Contido especial
+    $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
+    $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
 
     // imprimimos o JSON da taboa
     $tabla->exec();

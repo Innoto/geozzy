@@ -93,7 +93,10 @@ class ResourceModel extends Model
 
   );
 
-  var $extraFilters = array( );
+  static $extraFilters = array(
+      'find' => "UPPER(title)  LIKE CONCAT('%',UPPER(?),'%')"
+      //'topic' => "topic = JOIN "
+    );
 
 
   function __construct( $datarray= array(), $otherRelObj = false ) {

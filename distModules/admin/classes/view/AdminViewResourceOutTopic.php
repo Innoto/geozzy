@@ -34,16 +34,10 @@ class AdminViewResourceOutTopic extends AdminViewMaster
 
     // set table Actions
     $tabla->setActionMethod(__('Asign'), 'changeStatusAsigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "asigned", "changeValue"=>1 ))');
-    $tabla->setActionMethod(__('Unasign'), 'changeStatusUnasigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "unasigned", "changeValue"=>0 ))');
-    $tabla->setActionMethod(__('Delete'), 'changeStatusDeleted', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "delete", "changeValue"=>1 ))');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
     $tabla->setCountMethodAlias('listCount');
-
-    // set Urls
-    $tabla->setEachRowUrl('"/admin#resource/edit/".$rowId');
-    $tabla->setNewItemUrl('/admin#resource/create');
 
     // Nome das columnas
     $tabla->setCol('id', 'Id');
