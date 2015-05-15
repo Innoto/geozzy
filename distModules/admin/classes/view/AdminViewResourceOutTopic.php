@@ -15,8 +15,12 @@ class AdminViewResourceOutTopic extends AdminViewMaster
   **/
   public function listResourcesOutTopic() {
 
-    $this->template->assign('resourceouttopicTable', table::getTableHtml('AdminViewResourceOutTopic', '/admin/resourceouttopic/table') );
-    $this->template->setTpl('listResourceOutTopic.tpl', 'admin');
+    $template = new Template( $this->baseDir );
+    $template->assign('resourceouttopicTable', table::getTableHtml('AdminViewResourceOutTopic', '/admin/resourceouttopic/table') );
+    $template->setTpl('listResourceOutTopic.tpl', 'admin');
+
+    $this->template->addToBlock( 'col12', $template );
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
 

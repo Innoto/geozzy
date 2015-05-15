@@ -15,8 +15,12 @@ class AdminViewResourceInTopic extends AdminViewMaster
   **/
   public function listResourcesInTopic() {
 
-    $this->template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table') );
-    $this->template->setTpl('listResourceInTopic.tpl', 'admin');
+    $template = new Template( $this->baseDir );
+    $template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table') );
+    $template->setTpl('listResourceInTopic.tpl', 'admin');
+
+    $this->template->addToBlock( 'col12', $template );
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
 
@@ -31,7 +35,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     // set query filters
     //$internalFilters['topic'] = $resourceintopic::$extraFilters['topic'];
-    $tabla->setInternalFilters($internalFilters);
+    //$tabla->setInternalFilters($internalFilters);
 
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
