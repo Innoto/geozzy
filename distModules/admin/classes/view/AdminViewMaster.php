@@ -5,6 +5,7 @@ common::autoIncludes();
 geozzy::autoIncludes();
 admin::autoIncludes();
 form::autoIncludes();
+form::loadDependence( 'ckeditor' );
 user::autoIncludes();
 table::autoIncludes();
 
