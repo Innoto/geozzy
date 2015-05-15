@@ -1,48 +1,64 @@
 
+
+
 <script type="text/template" id="taxTermEditor">
 
-  <div class="row">
-    <div class="col-lg-8">
+  <div class="headSection">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="headerTitleContainer">
+      <h2>Listado de terminos para  <%- name %> </h2>
+    </div>
+    <div class="headerActionsContainer">
+      <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir a <%- name %></button>
+    </div>
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong>
-            <i class="fa fa-tag fa-fw"></i>
-            Listado de terminos para ( <%- name %> )
-          </strong>
-        </div>
-        <div class="panel-body">
-          <div id="taxTermListContainer" class="dd">
-            <ol class="listTerms dd-list">
-            </ol>
-          </div>
-          <div class="saveChanges">
-            <button class="btn btn-danger cancelTerms">Cancel</button>
-            <button class="btn btn-primary saveTerms">Save</button>
-          </div>
-        </div> <!-- end panel-body -->
-      </div> <!-- end panel -->
+    <!-- /.navbar-header -->
 
-    </div> <!-- end col -->
 
-    <div class="col-lg-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong>
-            <i class="fa fa-tag fa-fw"></i>
-            Añadir a <%- name %>
-          </strong>
-        </div>
-        <div class="panel-body">
-          <!--<div class="rolesTable"> <div>-->
-          <div>
-              <input class="newTaxTermName" type="text">
-              <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir a <%- name %></button>
-          </div>
-        </div> <!-- end panel-body -->
-      </div> <!-- end panel -->
-    </div> <!-- end col -->
-  </div> <!-- end row -->
+  </div><!-- /headSection -->
+
+
+  <div class="contentSection">
+    <div class="admin-cols-8-4">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <strong>
+                <i class="fa fa-tag fa-fw"></i>
+                Listado de terminos para ( <%- name %> )
+              </strong>
+            </div>
+            <div class="panel-body">
+              <div id="taxTermListContainer" class="dd">
+                <ol class="listTerms dd-list">
+                </ol>
+              </div>
+              <div class="saveChanges">
+                <button class="btn btn-danger cancelTerms">Cancel</button>
+                <button class="btn btn-primary saveTerms">Save</button>
+              </div>
+            </div> <!-- end panel-body -->
+          </div> <!-- end panel -->
+        </div> <!-- end col -->
+      </div> <!-- end row -->
+    </div>
+
+  </div><!-- /contentSection -->
+
+
+  <div class="footerSection">
+    <div class="headerActionsContainer">
+      <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir a <%- name %></button>
+    </div>
+  </div><!-- /footerSection -->
 
 </script>
 

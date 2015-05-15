@@ -10,7 +10,7 @@ var CategoryEditorView = Backbone.View.extend({
     "click .btnSaveTerm" : "saveEditCategory",
     "click .btnDeleteTerm" : "removeCategoryterm" ,
     "click .cancelTerms" : "cancelTerms" ,
-    "click .saveTerms" : "saveTerms" 
+    "click .saveTerms" : "saveTerms"
   },
 
   category: false,
@@ -23,8 +23,6 @@ var CategoryEditorView = Backbone.View.extend({
     that.categoryTerms = new CategorytermCollection();
 
     that.category = category;
-
-
 
     that.categoryTerms.fetch(
       {
@@ -43,10 +41,7 @@ var CategoryEditorView = Backbone.View.extend({
     this.baseTemplate = _.template( $('#taxTermEditor').html() );
     this.$el.html( this.baseTemplate(that.category.toJSON() ) );
 
-    that.saveChangesVisible(false); 
-
-
-
+    that.saveChangesVisible(false);
 
   },
 
@@ -104,7 +99,7 @@ var CategoryEditorView = Backbone.View.extend({
       itemWeight++;
     });
 
-    that.saveChangesVisible(true); 
+    that.saveChangesVisible(true);
   },
 
 
@@ -141,9 +136,9 @@ var CategoryEditorView = Backbone.View.extend({
         var maxWeight = 0;
       }
       else {
-        var maxWeight = that.categoryTerms.last().get('weight');  
+        var maxWeight = that.categoryTerms.last().get('weight');
       }
-      
+
       that.categoryTerms.add({ name:newTerm, taxgroup:  that.category.get('id'), weight:maxWeight }).save().done( function(){that.updateList()} );
       //that.categoryTerms.last();
     }*/
@@ -191,7 +186,7 @@ var CategoryEditorView = Backbone.View.extend({
   saveTerms: function() {
     var that = this;
     that.categoryTerms.save();
-    that.saveChangesVisible(false); 
+    that.saveChangesVisible(false);
   },
 
   cancelTerms: function() {
