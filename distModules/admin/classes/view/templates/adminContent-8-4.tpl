@@ -11,13 +11,15 @@ Esta é a miña cabeceira...
 
     <div class="col-lg-8">
 
-      {$col8|default:''}
+      {if !isset($col8)}{assign var='col8' value=''}{/if}
+      {$col8}
+
 
     </div> <!-- end col-lg-8 -->
 
     <div class="col-lg-4">
-
-      {$col4|default:''}
+      {if !isset($col4)}{assign var='col4' value=''}{/if}
+      {$col4}
 
     </div> <!-- end col-lg-4 -->
 
