@@ -31,7 +31,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $tabla = new TableController( $resourceintopic );
 
-    $tabla->setTabs(__('asigned'), array('1'=>__('Asigned'), '0'=>__('Unasigned'), '*'=> __('All') ), '*');
+    $tabla->setTabs(__('published'), array('1'=>__('published'), '0'=>__('unpublished'), '*'=> __('All') ), '*');
 
     // set query filters
     //$internalFilters['topic'] = $resourceintopic::$extraFilters['topic'];
@@ -41,7 +41,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setSearchRefId('tableSearch');
 
     // set table Actions
-    $tabla->setActionMethod(__('Unasign'), 'changeStatusUnasigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "asigned", "changeValue"=>0 ))');
+    $tabla->setActionMethod(__('Unasign'), 'changeStatusUnasigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
