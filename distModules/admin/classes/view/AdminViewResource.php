@@ -23,6 +23,8 @@ class AdminViewResource extends AdminViewMaster
 
   public function listResourcesTable() {
 
+    global $C_LANG;
+
     table::autoIncludes();
     $resource =  new ResourceModel();
 
@@ -50,7 +52,7 @@ class AdminViewResource extends AdminViewMaster
     // Nome das columnas
     $tabla->setCol('id', 'Id');
     $tabla->setCol('type', __('Type'));
-    $tabla->setCol('title', __('Title'));
+    $tabla->setCol('title_'.$C_LANG, __('Title'));
     $tabla->setCol('user', __('User'));
     $tabla->setCol('timeCreation', __('Time Creation'));
     $tabla->setCol('timeLastUpdate', __('Time Update'));
