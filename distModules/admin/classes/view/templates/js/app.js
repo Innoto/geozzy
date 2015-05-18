@@ -47,3 +47,7 @@ function calculateHeightMenu(){
   var windowHeight = $(window).height();
   $('#side-menu').height(windowHeight - menuInfoHeight);
 }
+
+function calculateHeightPageWrapper(){
+  
+}

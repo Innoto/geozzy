@@ -15,15 +15,17 @@ class AdminViewResource extends AdminViewMaster
   **/
   public function listResources() {
 
-    $this->template->assign('resourceTable', table::getTableHtml('AdminViewResource', '/admin/resource/table') );
-    $this->template->setTpl('listResource.tpl', 'admin');
+    $template = new Template( $this->baseDir );
+    $template->assign('resourceTable', table::getTableHtml('AdminViewResource', '/admin/resource/table') );
+    $template->setTpl('listResource.tpl', 'admin');
+
+    $this->template->addToBlock( 'col12', $template );
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
 
 
   public function listResourcesTable() {
-
-    global $C_LANG;
 
     table::autoIncludes();
     $resource =  new ResourceModel();
@@ -37,9 +39,8 @@ class AdminViewResource extends AdminViewMaster
 
     // set table Actions
     $tabla->setActionMethod(__('Publish'), 'changeStatusPublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>1 ))');
-    $tabla->setActionMethod(__('Unpublish'), 'changeStatusUnpublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
-    //$tabla->setActionMethod(__('Unasign'), 'unasign', 'unasign(array("resourceId" => $rowId, "topicId" => ))');
-    $tabla->setActionMethod(__('Delete'), 'delete', 'listItems(array("filters" => array("id" => $rowId)))->fetch()->delete()');
+    $tabla->setActionMethod(__('Unpublish'), 'changeStatusUnpublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "unpublished", "changeValue"=>0 ))');
+    $tabla->setActionMethod(__('Delete'), 'changeStatusDeleted', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "delete", "changeValue"=>1 ))');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
@@ -52,15 +53,11 @@ class AdminViewResource extends AdminViewMaster
     // Nome das columnas
     $tabla->setCol('id', 'Id');
     $tabla->setCol('type', __('Type'));
-    $tabla->setCol('title_'.$C_LANG, __('Title'));
+    $tabla->setCol('title', __('Title'));
     $tabla->setCol('user', __('User'));
     $tabla->setCol('timeCreation', __('Time Creation'));
     $tabla->setCol('timeLastUpdate', __('Time Update'));
     $tabla->setCol('published', __('Published'));
-
-    // Contido especial
-    $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
-    $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
 
     // imprimimos o JSON da taboa
     $tabla->exec();
