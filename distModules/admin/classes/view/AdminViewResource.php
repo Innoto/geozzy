@@ -36,7 +36,8 @@ class AdminViewResource extends AdminViewMaster
     // set table Actions
     $tabla->setActionMethod(__('Publish'), 'changeStatusPublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>1 ))');
     $tabla->setActionMethod(__('Unpublish'), 'changeStatusUnpublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
-    $tabla->setActionMethod(__('Delete'), 'delete', 'delete()');
+    //$tabla->setActionMethod(__('Unasign'), 'unasign', 'unasign(array("resourceId" => $rowId, "topicId" => ))');
+    $tabla->setActionMethod(__('Delete'), 'delete', 'listItems(array("filters" => array("id" => $rowId)))->fetch()->delete()');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');

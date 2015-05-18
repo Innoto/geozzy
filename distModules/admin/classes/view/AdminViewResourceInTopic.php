@@ -41,7 +41,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setSearchRefId('tableSearch');
 
     // set table Actions
-    $tabla->setActionMethod(__('Unasign'), 'changeStatusUnasigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
+    //$tabla->setActionMethod(__('Unasign'), 'changeStatusUnasigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
@@ -51,11 +51,6 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setCol('id', 'Id');
     $tabla->setCol('type', __('Type'));
     $tabla->setCol('title', __('Title'));
-    $tabla->setCol('user', __('User'));
-
-        // Contido especial: falta saber se imos ter a clave de temática no recurso ou imos ter q ir buscala a táboa da relación
-    $tabla->colRule('asigned', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
-    $tabla->colRule('asigned', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
 
     // imprimimos o JSON da taboa
     $tabla->exec();
