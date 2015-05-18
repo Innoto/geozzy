@@ -72,7 +72,7 @@ class AdminViewResource extends AdminViewMaster
     error_log( "AdminFormsAPIView: resourceForm()" );
 
     $formName = 'resourceCreate';
-    $formUrl = '/api/admin/resource/sendresource';
+    $formUrl = '/admin/resource/sendresource';
 
     $resourceView = new GeozzyResourceView();
     $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, false );
@@ -93,7 +93,7 @@ class AdminViewResource extends AdminViewMaster
     error_log( "AdminFormsAPIView: resourceEditForm()". print_r( $urlParams, true ) );
 
     $formName = 'resourceCreate';
-    $formUrl = '/api/admin/resource/sendresource';
+    $formUrl = '/admin/resource/sendresource';
 
     $recurso = false;
 
