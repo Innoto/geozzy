@@ -51,12 +51,10 @@ class AdminViewResource extends AdminViewMaster
     $tabla->setNewItemUrl('/admin#resource/create');
 
     // Nome das columnas
-    $tabla->setCol('id', 'Id');
+    $tabla->setCol('id', 'ID');
     $tabla->setCol('type', __('Type'));
-    $tabla->setCol('title', __('Title'));
-    $tabla->setCol('user', __('User'));
-    $tabla->setCol('timeCreation', __('Time Creation'));
-    $tabla->setCol('timeLastUpdate', __('Time Update'));
+
+    $tabla->setCol('title_'.$C_LANG, __('Title'));
     $tabla->setCol('published', __('Published'));
 
     // imprimimos o JSON da taboa
