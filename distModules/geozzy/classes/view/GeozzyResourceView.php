@@ -49,6 +49,7 @@ class GeozzyResourceView extends View
     $form = new FormController( $formName, $urlAction );
 
     $form->setSuccess( 'accept', _( 'Thank you' ) );
+    $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
 
     // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
     // 'loc'   'type' => 'GEOMETRY'
@@ -80,7 +81,7 @@ class GeozzyResourceView extends View
       */
       'defaultZoom' => array(
         'params' => array( 'label' => _( 'Map: Default zoom' ) ),
-        'rules' => array( 'required' => true, 'max' => '20' )
+        'rules' => array( 'max' => '20' )
       ),
       'headKeywords' => array(
         'params' => array( 'label' => _( 'SEO: Head Keywords' ) ),
