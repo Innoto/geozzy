@@ -85,8 +85,7 @@ class admin extends Module
     'js/models/TopicModel.js',
     'js/collections/CategoryCollection.js',
     'js/collections/CategorytermCollection.js',
-    'js/collections/TopicCollection.js',
-    'js/exampleMorrisData.js'
+    'js/collections/TopicCollection.js'
   );
 
   public function __construct() {
@@ -116,7 +115,7 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/resourceintopic/list$#', 'view:AdminViewResourceInTopic::listResourcesInTopic' );
     $this->addUrlPatterns( '#^admin/resourceintopic/table$#', 'view:AdminViewResourceInTopic::listResourcesInTopicTable' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/list$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopic' );
-    $this->addUrlPatterns( '#^admin/resourceouttopic/table$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );    
+    $this->addUrlPatterns( '#^admin/resourceouttopic/table$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );
 
     $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );

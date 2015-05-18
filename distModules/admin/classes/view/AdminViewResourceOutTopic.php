@@ -15,8 +15,12 @@ class AdminViewResourceOutTopic extends AdminViewMaster
   **/
   public function listResourcesOutTopic() {
 
-    $this->template->assign('resourceouttopicTable', table::getTableHtml('AdminViewResourceOutTopic', '/admin/resourceouttopic/table') );
-    $this->template->setTpl('listResourceOutTopic.tpl', 'admin');
+    $template = new Template( $this->baseDir );
+    $template->assign('resourceouttopicTable', table::getTableHtml('AdminViewResourceOutTopic', '/admin/resourceouttopic/table') );
+    $template->setTpl('listResourceOutTopic.tpl', 'admin');
+
+    $this->template->addToBlock( 'col12', $template );
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
 
@@ -34,16 +38,10 @@ class AdminViewResourceOutTopic extends AdminViewMaster
 
     // set table Actions
     $tabla->setActionMethod(__('Asign'), 'changeStatusAsigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "asigned", "changeValue"=>1 ))');
-    $tabla->setActionMethod(__('Unasign'), 'changeStatusUnasigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "unasigned", "changeValue"=>0 ))');
-    $tabla->setActionMethod(__('Delete'), 'changeStatusDeleted', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "delete", "changeValue"=>1 ))');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
     $tabla->setCountMethodAlias('listCount');
-
-    // set Urls
-    $tabla->setEachRowUrl('"/admin#resource/edit/".$rowId');
-    $tabla->setNewItemUrl('/admin#resource/create');
 
     // Nome das columnas
     $tabla->setCol('id', 'Id');

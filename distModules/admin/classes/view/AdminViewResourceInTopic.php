@@ -15,8 +15,12 @@ class AdminViewResourceInTopic extends AdminViewMaster
   **/
   public function listResourcesInTopic() {
 
-    $this->template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table') );
-    $this->template->setTpl('listResourceInTopic.tpl', 'admin');
+    $template = new Template( $this->baseDir );
+    $template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table') );
+    $template->setTpl('listResourceInTopic.tpl', 'admin');
+
+    $this->template->addToBlock( 'col12', $template );
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
 
@@ -27,29 +31,26 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $tabla = new TableController( $resourceintopic );
 
-    $tabla->setTabs(__('asigned'), array('1'=>__('Asigned'), '0'=>__('Unasigned'), '*'=> __('All') ), '*');
+    $tabla->setTabs(__('published'), array('1'=>__('published'), '0'=>__('unpublished'), '*'=> __('All') ), '*');
+
+    // set query filters
+    //$internalFilters['topic'] = $resourceintopic::$extraFilters['topic'];
+    //$tabla->setInternalFilters($internalFilters);
 
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
 
     // set table Actions
-    $tabla->setActionMethod(__('Asign'), 'changeStatusAsigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "asigned", "changeValue"=>1 ))');
-    $tabla->setActionMethod(__('Unasign'), 'changeStatusUnasigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "unasigned", "changeValue"=>0 ))');
-    $tabla->setActionMethod(__('Delete'), 'changeStatusDeleted', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "delete", "changeValue"=>1 ))');
+    //$tabla->setActionMethod(__('Unasign'), 'changeStatusUnasigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
     $tabla->setCountMethodAlias('listCount');
 
-    // set Urls
-    $tabla->setEachRowUrl('"/admin#resource/edit/".$rowId');
-    $tabla->setNewItemUrl('/admin#resource/create');
-
     // Nome das columnas
     $tabla->setCol('id', 'Id');
     $tabla->setCol('type', __('Type'));
     $tabla->setCol('title', __('Title'));
-    $tabla->setCol('user', __('User'));
 
     // imprimimos o JSON da taboa
     $tabla->exec();

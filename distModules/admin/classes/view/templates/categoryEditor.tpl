@@ -3,7 +3,7 @@
 
 <script type="text/template" id="taxTermEditor">
 
-  <div class="headSection">
+  <div class="headSection clearfix">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -12,20 +12,23 @@
             <span class="icon-bar"></span>
         </button>
     </div>
-    <div class="headerTitleContainer">
-      <h2>Listado de terminos para  <%- name %> </h2>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="headerTitleContainer">
+          <h2>Listado de terminos para  <%- name %> </h2>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="headerActionsContainer">
+          <button type="button" class="newTaxTerm btn btn-default"> Añadir a <%- name %></button>
+        </div>
+      </div>
     </div>
-    <div class="headerActionsContainer">
-      <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir a <%- name %></button>
-    </div>
-
     <!-- /.navbar-header -->
-
-
   </div><!-- /headSection -->
 
 
-  <div class="contentSection">
+  <div class="contentSection clearfix">
     <div class="admin-cols-8-4">
       <div class="row">
         <div class="col-lg-8">
@@ -54,9 +57,9 @@
   </div><!-- /contentSection -->
 
 
-  <div class="footerSection">
+  <div class="footerSection clearfix">
     <div class="headerActionsContainer">
-      <button type="button" class="newTaxTerm btn btn-default"> <i class="fa fa-plus"></i>Añadir a <%- name %></button>
+      <button type="button" class="newTaxTerm btn btn-default">Añadir a <%- name %></button>
     </div>
   </div><!-- /footerSection -->
 
