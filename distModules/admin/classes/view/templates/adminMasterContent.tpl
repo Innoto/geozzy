@@ -9,12 +9,16 @@
       </button>
   </div>
   <div class="row">
-    <div class="headerTitleContainer col-md-8">
-      {block name="headTitle"}{/block}
+    <div class="col-md-8">
+      <div class="headerTitleContainer">
+        {block name="headTitle"}{/block}
+      </div>
     </div>
-    <div class="headerActionsContainer col-md-4">
-      {block name="headActions"}{/block}
-    </div>
+    <div class="col-md-4">
+      <div class="headerActionsContainer col-md-4">
+        {block name="headActions"}{/block}
+      </div>
+    </div>    
   </div>
 
 
