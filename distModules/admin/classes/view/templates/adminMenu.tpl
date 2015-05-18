@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
-      <ul class="nav" id="side-menu">
+      <ul class="nav clearfix" id="side-menu">
         <!-- TOPIC -->
         <script type="text/template" id="menuTopics">
         <% _.each(topics, function(topic) { %>
