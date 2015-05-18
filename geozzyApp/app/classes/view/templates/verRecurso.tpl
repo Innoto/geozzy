@@ -18,8 +18,16 @@
 
 <pre>
 GLOBALES SMARTY
+
 langDefault:{$langDefault}
-langAvailable:{$langAvailable.$langDefault.i18n}
+langDefault i18n:{$langAvailable.$langDefault.i18n}
+langAvailable:
+{foreach $langAvailable as $idLang=>$arrLang}
+  lang: {$idLang}
+  {foreach $arrLang as $langKey=>$langValue}
+    {$langKey} => {$langValue}
+  {/foreach}
+{/foreach}
 </pre>
 
   <h2 style="color:#30494E;">GEOZZY APP - View Resource</h2>

@@ -24,9 +24,12 @@
   <!-- Client templates -->
   {include file="admin///categoryEditor.tpl"}
 
-  
+
   <div id="wrapper">
     <div id="menu-wrapper">
+      <div class="menuInfo">
+        <img src="media/module/geozzy/img/logo.png" class="img-responsive">
+      </div>
       {include file="admin///adminMenu.tpl"}
     </div>
     <div id="page-wrapper"><!--Content -->
