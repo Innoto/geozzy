@@ -78,8 +78,8 @@ var AdminRouter = Backbone.Router.extend({
     app.mainView.loadAjaxContent( '/admin/resource/list');
   },
 
-  resourceintopicList: function() {
-    app.mainView.loadAjaxContent( '/admin/resourceintopic/'+id+'/list');   
+  resourceintopicList: function(id) {
+    app.mainView.loadAjaxContent( '/admin/resourceintopic/list/'+id);   
   },
 
   resourceouttopicList: function() {

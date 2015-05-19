@@ -13,13 +13,10 @@ class AdminViewResourceInTopic extends AdminViewMaster
   /**
   * Section list resources in topic
   **/
-  public function listResourcesInTopic() {
-
-    print("entra");
-    print_r($_GET);
+  public function listResourcesInTopic($request) {
 
     $template = new Template( $this->baseDir );
-    $template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table') );
+    $template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table/'.$request['1']) );
     $template->setTpl('listResourceInTopic.tpl', 'admin');
 
     $this->template->addToBlock( 'col12', $template );
@@ -27,14 +24,12 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $this->template->exec();
   }
 
-  public function listResourcesInTopicTable() {
+  public function listResourcesInTopicTable($topic) {
 
     table::autoIncludes();
     $resource =  new ResourceModel();
 
     $tabla = new TableController( $resource );
-
-    $tabla->setTabs(__('published'), array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
@@ -43,6 +38,9 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setListMethodAlias('listItems');
     $tabla->setCountMethodAlias('listCount');
 
+    // set Urls
+    $tabla->setEachRowUrl('"/admin#resource/edit/".$rowId');
+    $tabla->setNewItemUrl('/admin#resource/create');
 
     // Nome das columnas
     $tabla->setCol('id', 'ID');
@@ -50,14 +48,9 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
 
     // Filtrar por temática
-    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> 15 ) );
+    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> $topic[1] ) );
     $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
     $tabla->setJoinType('INNER');
-
-
-    // Contido especial
-    $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
-    $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
 
     // imprimimos o JSON da taboa
     $tabla->exec();
