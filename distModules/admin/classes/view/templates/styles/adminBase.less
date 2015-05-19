@@ -143,6 +143,24 @@ body {
 
 
 // Buttons
+.btn-default,
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger{
+  border: none;
+}
+
+.btn-default {
+  color: @gzz-color;
+}
+.btn-primary {
+  background-color: @gzz-color;
+  &:hover {
+    background-color: @gzz-color - #111111;
+  }
+}
 
 .btn-outline {
     color: inherit;
@@ -151,29 +169,23 @@ body {
 }
 
 .btn-primary.btn-outline {
-    color: @brand-primary;
+    color: @gzz-color;
+    border: 1px solid @gzz-color;
 }
-
-.btn-success.btn-outline {
-    color: @brand-success;
-}
-
-.btn-info.btn-outline {
-    color: @brand-info;
-}
-
-.btn-warning.btn-outline {
-    color: @brand-warning;
+.btn-default.btn-outline {
+    color: #fff;
+    border: 1px solid #fff;
+    &:hover {
+      color: @gzz-color;
+    }
 }
 
 .btn-danger.btn-outline {
     color: @brand-danger;
+    border: 1px solid @brand-danger;
 }
 
 .btn-primary.btn-outline:hover,
-.btn-success.btn-outline:hover,
-.btn-info.btn-outline:hover,
-.btn-warning.btn-outline:hover,
 .btn-danger.btn-outline:hover {
     color: white;
 }
