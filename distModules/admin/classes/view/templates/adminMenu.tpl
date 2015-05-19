@@ -8,24 +8,24 @@
         <!-- TOPIC -->
         <script type="text/template" id="menuTopics">
         <% _.each(topics, function(topic) { %>
-              <li class="topics">
-                <a href="/admin#topic/<%- topic.id %>"><i class="fa fa-star fa-fw"></i> <%- topic.name %> </a>
+             <li class="topics topic_<%- topic.id %>">
+                <a href="/admin#topic/<%- topic.id %>"><i class="fa fa-star fa-fw"></i> <%- topic.name_{$langDefault} %> </a>
              </li>
         <% }); %>
         </script>
         <!-- END TOPICS -->
 
 
-        <li>
-          <a class="active" href="/admin#charts"><i class="fa fa-line-chart fa-fw"></i> {t}Charts{/t}</a>
+        <li class="pages">
+          <a  href="/admin#charts"><i class="fa fa-line-chart fa-fw"></i> {t}Charts{/t}</a>
         </li>
-        <li>
+        <li class="pages">
           <a href="/admin"><i class="fa fa-files-o fa-fw"></i> {t}Pages{/t} </a>
         </li>
-        <li>
+        <li class="starred">
           <a href="/admin#starred"><i class="fa fa-star fa-fw"></i> {t}Starred{/t} </a>
         </li>
-        <li>
+        <li class="contents">
           <a href="/admin#resource/list"><i class="fa fa-indent fa-fw"></i> {t}Contents{/t} </a>
         </li>
 
@@ -33,7 +33,7 @@
         <li>
           <a href="#"><i class="fa fa-cog fa-fw"></i> {t}Settings{/t} <span class="fa arrow"></span></a>
           <ul class="nav nav-second-level">
-            <li>
+            <li class="menu">
               <a href="/admin#"><i class="fa fa-bars fa-fw"></i> {t}Menu{/t} </a>
             </li>
             <li>
@@ -42,7 +42,7 @@
                   <script type="text/template" id="menuCategoryElement">
 
                     <% for(var categoryK in categories) { %>
-                      <li>
+                      <li class="category_<%- categories[categoryK].id %>">
                         <a href="/admin#category/<%- categories[categoryK].id %>"><i class="fa fa-tag fa-fw"></i> <%- categories[categoryK].name %> </a>
                       </li>
                     <% } %>
@@ -55,10 +55,10 @@
             <li>
               <a href="#"><i class="fa fa-users fa-fw"></i> {t}Users{/t} <span class="fa arrow"></span></a>
                 <ul class="nav nav-third-level">
-                  <li>
+                  <li class="user">
                     <a href="/admin#user/list"><i class="fa fa-user fa-fw"></i> {t}User{/t} </a>
                   </li>
-                  <li>
+                  <li class="roles">
                     <a href="/admin#role/list"><i class="fa fa-tag fa-fw"></i> {t}Roles{/t}</a>
                   </li>
 
