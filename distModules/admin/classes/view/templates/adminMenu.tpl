@@ -1,9 +1,7 @@
 <!-- Navigation -->
 
-<nav class="navbar navbar-default" role="navigation">
-  <div class="navbar-default sidebar" role="navigation">
-    <div class="sidebar-nav navbar-collapse">
 
+<div class="sidebar">
       <ul class="nav clearfix" id="side-menu">
         <!-- TOPIC -->
         <script type="text/template" id="menuTopics">
@@ -69,7 +67,4 @@
           <!-- /.nav-second-level -->
         </li>
       </ul>
-  
-    </div>
-  </div>
-</nav>
+</div>

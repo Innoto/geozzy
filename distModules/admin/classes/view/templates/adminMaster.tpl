@@ -27,6 +27,11 @@
 
   <div id="wrapper">
     <div id="menu-wrapper">
+
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-default sidebar" role="navigation">
+          <div class="sidebar-nav collapse navbar-collapse navbar-ex1-collapse">
+
       <div id="menuInfo">
         <div class="menuLogo">
           <img src="media/module/geozzy/img/logo.png" class="img-responsive">
@@ -48,6 +53,12 @@
         </ul>
       </div>
       {include file="admin///adminMenu.tpl"}
+      
+          </div>
+        </div>
+      </nav>
+
+
     </div>
     <div id="page-wrapper"><!--Content -->
     </div><!-- /#page-wrapper -->
