@@ -9,13 +9,6 @@ var AdminView = Backbone.View.extend({
     this.renderMenu();
   },
 
-  categoryEdit: function( id ) {
-    this.childView = new CategoryEditorView( app.categories.get(id) );
-    this.render(  );
-  },
-
-
-
   renderMenu: function(  ){
     //Categories
     var menuCategoryElement =  _.template($("#menuCategoryElement").html());
@@ -25,8 +18,11 @@ var AdminView = Backbone.View.extend({
     var menuTopics =  _.template($("#menuTopics").html());
     var menuTopicsContainer = $('#wrapper #side-menu');
     menuTopicsContainer.prepend( menuTopics( { topics:  app.topics.toJSON()  } ) );
+  },
 
-
+  categoryEdit: function( id ) {
+    this.childView = new CategoryEditorView( app.categories.get(id) );
+    this.render(  );
   },
 
   loadAjaxContent: function( url ) {
@@ -42,7 +38,13 @@ var AdminView = Backbone.View.extend({
       this.childView.render();
       this.childView.delegateEvents();
     }
-  }
+  },
 
+  // effects
+  menuSelect: function( menuClass ) {
+    $('#side-menu *').removeClass('active');
+    $('#side-menu .'+menuClass+' a').addClass('active');
+
+  }
 
 });
