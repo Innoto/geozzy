@@ -55,6 +55,12 @@ class AdminViewResource extends AdminViewMaster
     $tabla->setCol('title_'.$C_LANG, __('Title'));
     $tabla->setCol('published', __('Published'));
 
+    // Filtrar por temática
+/*    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> 15 ) );
+    $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
+    $tabla->setJoinType('INNER');
+*/
+
     // Contido especial
     $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
     $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');

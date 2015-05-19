@@ -15,6 +15,9 @@ class AdminViewResourceInTopic extends AdminViewMaster
   **/
   public function listResourcesInTopic() {
 
+    print("entra");
+    print_r($_GET);
+
     $template = new Template( $this->baseDir );
     $template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table') );
     $template->setTpl('listResourceInTopic.tpl', 'admin');
@@ -26,31 +29,37 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
   public function listResourcesInTopicTable() {
 
+    global $C_LANG;
+
     table::autoIncludes();
-    $resourceintopic =  new ResourceModel();
+    $resource =  new ResourceModel();
 
-    $tabla = new TableController( $resourceintopic );
+    $tabla = new TableController( $resource );
 
-    $tabla->setTabs(__('published'), array('1'=>__('published'), '0'=>__('unpublished'), '*'=> __('All') ), '*');
-
-    // set query filters
-    //$internalFilters['topic'] = $resourceintopic::$extraFilters['topic'];
-    //$tabla->setInternalFilters($internalFilters);
+    $tabla->setTabs(__('published'), array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
-
-    // set table Actions
-    //$tabla->setActionMethod(__('Unasign'), 'changeStatusUnasigned', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
     $tabla->setCountMethodAlias('listCount');
 
+
     // Nome das columnas
-    $tabla->setCol('id', 'Id');
+    $tabla->setCol('id', 'ID');
     $tabla->setCol('type', __('Type'));
-    $tabla->setCol('title', __('Title'));
+    $tabla->setCol('title_'.$C_LANG, __('Title'));
+
+    // Filtrar por temática
+    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> 15 ) );
+    $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
+    $tabla->setJoinType('INNER');
+
+
+    // Contido especial
+    $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
+    $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
 
     // imprimimos o JSON da taboa
     $tabla->exec();
