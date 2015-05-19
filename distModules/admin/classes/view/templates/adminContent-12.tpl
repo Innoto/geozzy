@@ -1,9 +1,5 @@
 {extends file="adminMasterContent.tpl"}
 
-{block name="headSection"}
-  {$titleHeader}
-{/block}
-
 {block name="contentSection"}
 
 <div class="admin-cols-12">

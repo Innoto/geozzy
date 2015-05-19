@@ -13,14 +13,14 @@
         </button>
     </div>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 col-sm-6">
         <div class="headerTitleContainer">
-          <h2>Listado de terminos para  <%- name %> </h2>
+          <h2>{t}Category management for{/t} <%- name %> </h2>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6 clearfix">
         <div class="headerActionsContainer">
-          <button type="button" class="newTaxTerm btn btn-default"> Añadir a <%- name %></button>
+          <button type="button" class="newTaxTerm btn btn-default"> {t}Add to {/t}<%- name %></button>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
             <div class="panel-heading">
               <strong>
                 <i class="fa fa-tag fa-fw"></i>
-                Listado de terminos para ( <%- name %> )
+                {t}List of terms for{/t} ( <%- name %> )
               </strong>
             </div>
             <div class="panel-body">
@@ -45,8 +45,8 @@
                 </ol>
               </div>
               <div class="saveChanges">
-                <button class="btn btn-danger cancelTerms">Cancel</button>
-                <button class="btn btn-primary saveTerms">Save</button>
+                <button class="btn btn-danger cancelTerms">{t}Cancel{/t}</button>
+                <button class="btn btn-primary saveTerms">{t}Save{/t}</button>
               </div>
             </div> <!-- end panel-body -->
           </div> <!-- end panel -->
@@ -59,7 +59,7 @@
 
   <div class="footerSection clearfix">
     <div class="headerActionsContainer">
-      <button type="button" class="newTaxTerm btn btn-default">Añadir a <%- name %></button>
+      <button type="button" class="newTaxTerm btn btn-default">{t}Add to {/t}<%- name %></button>
     </div>
   </div><!-- /footerSection -->
 

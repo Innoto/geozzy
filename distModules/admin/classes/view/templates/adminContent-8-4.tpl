@@ -1,8 +1,5 @@
 {extends file="adminMasterContent.tpl"}
 
-{block name="headSection"}
-Esta é a miña cabeceira...
-{/block}
 
 {block name="contentSection"}
 

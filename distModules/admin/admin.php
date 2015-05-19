@@ -103,11 +103,11 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/user/changepassword$#', 'view:AdminViewUser::changeUserPasswordForm' );
     $this->addUrlPatterns( '#^admin/user/assignroles$#', 'view:AdminViewUser::assignaUserRolesForm' );
 
-    $this->addUrlPatterns( '#^admin/resource/list$#', 'view:AdminViewResource::listResources' );
-    $this->addUrlPatterns( '#^admin/resource/table$#', 'view:AdminViewResource::listResourcesTable' );
+    $this->addUrlPatterns( '#^admin/resource/list/(.*)$#', 'view:AdminViewResource::listResources' );
+    $this->addUrlPatterns( '#^admin/resource/table/(\d+)$#', 'view:AdminViewResource::listResourcesTable' );
 
-    $this->addUrlPatterns( '#^admin/resourceintopic/(\d+)/list$#', 'view:AdminViewResourceInTopic::listResourcesInTopic' );
-    $this->addUrlPatterns( '#^admin/resourceintopic/table$#', 'view:AdminViewResourceInTopic::listResourcesInTopicTable' );
+    $this->addUrlPatterns( '#^admin/resourceintopic/list/(.*)$#', 'view:AdminViewResourceInTopic::listResourcesInTopic' );
+    $this->addUrlPatterns( '#^admin/resourceintopic/table/(\d+)$#', 'view:AdminViewResourceInTopic::listResourcesInTopicTable' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/list$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopic' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/table$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );
 
