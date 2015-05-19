@@ -25,6 +25,8 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $this->template->addToBlock( 'col12', $template );
     $this->template->assign( 'headTitle', $name );
+    $this->template->assign( 'headActions', '<button type="button" class="newTaxTerm btn btn-default btn-outline"> '.__('Add resource').'</button>' );
+    $this->template->assign( 'footerActions', '<button class="btn btn-primary saveTerms"> '.__('Add resource').'</button>' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
