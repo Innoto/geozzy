@@ -46,7 +46,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     // Nome das columnas
     $tabla->setCol('id', 'Id');
     $tabla->setCol('type', __('Type'));
-    $tabla->setCol('title', __('Title'));
+    $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
     $tabla->setCol('user', __('User'));
 
     // imprimimos o JSON da taboa

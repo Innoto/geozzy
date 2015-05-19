@@ -29,8 +29,6 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
   public function listResourcesInTopicTable() {
 
-    global $C_LANG;
-
     table::autoIncludes();
     $resource =  new ResourceModel();
 
@@ -49,7 +47,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     // Nome das columnas
     $tabla->setCol('id', 'ID');
     $tabla->setCol('type', __('Type'));
-    $tabla->setCol('title_'.$C_LANG, __('Title'));
+    $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
 
     // Filtrar por temática
     $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> 15 ) );
