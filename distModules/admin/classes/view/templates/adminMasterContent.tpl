@@ -14,8 +14,8 @@
         {block name="headTitle"}{/block}
       </div>
     </div>
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="headerActionsContainer col-md-4">
+    <div class="col-md-4 col-sm-6 col-xs-12 clearfix">
+      <div class="headerActionsContainer">
         {block name="headActions"}{/block}
       </div>
     </div>
