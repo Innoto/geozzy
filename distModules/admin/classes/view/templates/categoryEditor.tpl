@@ -13,12 +13,12 @@
         </button>
     </div>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 col-sm-6">
         <div class="headerTitleContainer">
           <h2>Listado de terminos para  <%- name %> </h2>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6 clearfix">
         <div class="headerActionsContainer">
           <button type="button" class="newTaxTerm btn btn-default"> Añadir a <%- name %></button>
         </div>
