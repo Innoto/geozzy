@@ -35,6 +35,7 @@ class AdminViewUser extends AdminViewMaster
     $template->setTpl('listUser.tpl', 'admin');
 
     $this->template->addToBlock( 'col12', $template );
+    $this->template->assign( 'headTitle', __('User Management') );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
@@ -121,6 +122,7 @@ class AdminViewUser extends AdminViewMaster
     $template->setTpl('createUser.tpl', 'admin');
 
     $this->template->addToBlock( 'col8', $template );
+    $this->template->assign( 'headTitle', __('Create user') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
 
@@ -171,6 +173,7 @@ class AdminViewUser extends AdminViewMaster
     $this->template->addToBlock( 'col4', $template );
     /*--------------------*/
 
+    $this->template->assign( 'headTitle', __('Edit user') );
     $this->template->setTpl('adminContent-8-4.tpl', 'admin');
 
     $this->template->exec();
