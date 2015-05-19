@@ -7,7 +7,7 @@
         <script type="text/template" id="menuTopics">
         <% _.each(topics, function(topic) { %>
               <li class="topics">
-                <a href="/admin#topic/<%- topic.id %>"><i class="fa fa-star fa-fw"></i> <%- topic.name %> </a>
+                <a href="/admin#topic/<%- topic.id %>"><i class="fa fa-star fa-fw"></i> <%- topic.name_{$langDefault} %> </a>
              </li>
         <% }); %>
         </script>

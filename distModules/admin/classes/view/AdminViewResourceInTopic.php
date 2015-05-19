@@ -19,12 +19,17 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table/'.$request['1']) );
     $template->setTpl('listResourceInTopic.tpl', 'admin');
 
+    $topicmodel =  new TopicModel();
+    $topic = $topicmodel->listItems(array("filters" => array("id" => $request['1'])));
+    $name = $topic->fetch()->getter('name', LANG_DEFAULT);
+
     $this->template->addToBlock( 'col12', $template );
+    $this->template->assign( 'headTitle', $name );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
 
-  public function listResourcesInTopicTable($topic) {
+  public function listResourcesInTopicTable($topicId) {
 
     table::autoIncludes();
     $resource =  new ResourceModel();
@@ -54,7 +59,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setCol('published', __('Published'));
 
     // Filtrar por temática
-    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> $topic[1] ) );
+    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> $topicId[1] ) );
     $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
     $tabla->setJoinType('INNER');
 
