@@ -15,8 +15,6 @@ class AdminViewResourceInTopic extends AdminViewMaster
   **/
   public function listResourcesInTopic($request) {
 
-    print('ENTRA');
-
     $template = new Template( $this->baseDir );
     $template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table/'.$request['1']) );
     $template->setTpl('listResourceInTopic.tpl', 'admin');
