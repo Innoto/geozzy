@@ -13,10 +13,10 @@ class AdminViewResource extends AdminViewMaster
   /**
   * Section list user
   **/
-  public function listResources() {
+  public function listResources($request) {
 
     $template = new Template( $this->baseDir );
-    $template->assign('resourceTable', table::getTableHtml('AdminViewResource', '/admin/resource/table') );
+    $template->assign('resourceTable', table::getTableHtml('AdminViewResource', '/admin/resource/table/'.$request['1']) );
     $template->setTpl('listResource.tpl', 'admin');
 
     $this->template->addToBlock( 'col12', $template );
@@ -25,7 +25,7 @@ class AdminViewResource extends AdminViewMaster
   }
 
 
-  public function listResourcesTable() {
+  public function listResourcesTable($topic) {
 
     table::autoIncludes();
     $resource =  new ResourceModel();
@@ -56,11 +56,9 @@ class AdminViewResource extends AdminViewMaster
     $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
     $tabla->setCol('published', __('Published'));
 
-    // Filtrar por temática
-/*    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> 15 ) );
+    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> $topic[1] ) );
     $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
     $tabla->setJoinType('INNER');
-*/
 
     // Contido especial
     $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
