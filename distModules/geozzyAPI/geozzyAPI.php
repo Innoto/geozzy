@@ -1,6 +1,6 @@
 <?php
 
-require_once APP_BASE_PATH."/conf/geozzyAPI.php";
+
 Cogumelo::load("coreController/Module.php");
 
 
@@ -23,6 +23,9 @@ class geozzyAPI extends Module
   );
 
   function __construct() {
+    
+    require_once APP_BASE_PATH."/conf/geozzyAPI.php";
+
     // API DOC GENERATOR
     $this->addUrlPatterns( '#^api$#', 'view:DocAPIView::main' );
     $this->addUrlPatterns( '#^api/apidoc.json#', 'view:DocAPIView::apidocJson' ); // Main swagger JSON
