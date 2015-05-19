@@ -33,7 +33,9 @@ class ResourceTopicModel extends Model
 
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'nottopic' => "NOT topic = ?"
+    );
 
 
   function __construct( $datarray= array(), $otherRelObj = false ) {
