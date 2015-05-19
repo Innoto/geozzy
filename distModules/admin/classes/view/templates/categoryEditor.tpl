@@ -20,7 +20,7 @@
       </div>
       <div class="col-md-4 col-sm-6 clearfix">
         <div class="headerActionsContainer">
-          <button type="button" class="newTaxTerm btn btn-default"> {t}Add to {/t}<%- name %></button>
+          <button type="button" class="newTaxTerm btn btn-default"> {t}Add{/t} <%- name %></button>
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
 
   <div class="footerSection clearfix">
     <div class="headerActionsContainer">
-      <button type="button" class="newTaxTerm btn btn-default">{t}Add to {/t}<%- name %></button>
+      <button type="button" class="newTaxTerm btn btn-default">{t}Add{/t} <%- name %></button>
     </div>
   </div><!-- /footerSection -->
 
