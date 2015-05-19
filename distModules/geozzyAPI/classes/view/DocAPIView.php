@@ -1,5 +1,5 @@
 <?php
-
+require_once APP_BASE_PATH."/conf/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
 Cogumelo::autoIncludes();
 
