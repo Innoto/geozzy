@@ -39,7 +39,7 @@ class geozzyAPI extends Module
     $this->addUrlPatterns( '#^api/topicList.json$#', 'view:CoreAPIView::topicListJson' );
 
     // resources
-    $this->addUrlPatterns( '#^api/core/resourcelist$#', 'view:CoreAPIView::resourceList' );    
+    $this->addUrlPatterns( '#^api/core/resourcelist(.*)$#', 'view:CoreAPIView::resourceList' );    
     $this->addUrlPatterns( '#^api/core/resourcetypes$#', 'view:CoreAPIView::resourceTypes' );
     
     // Categories

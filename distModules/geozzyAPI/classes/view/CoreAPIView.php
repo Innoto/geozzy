@@ -52,39 +52,38 @@ class CoreAPIView extends View
                               "parameters": [
              
                                 {
-                                  "name": "changes",
-                                  "description": "Comparison changes to update (accept or reject)",
-                                  "dataType": "Opts",
-                                  "multiple": true,
-                                  "paramType": "body"
+                                  "name": "fields",
+                                  "description": "fields (separed by comma)",
+                                  "dataType": "string",
+                                  "paramType": "path",
+                                  "defaultValue": "false",
+                                  "required": false
+                                },
+                                {
+                                  "name": "filters",
+                                  "description": "filters (separed by comma)",
+                                  "dataType": "string",
+                                  "paramType": "path",
+                                  "defaultValue": "false",
+                                  "required": false
+                                },
+                                {
+                                  "name": "filtervalues",
+                                  "description": "filtervalues (separed by comma)",
+                                  "dataType": "string",
+                                  "paramType": "path",
+                                  "defaultValue": "false",
+                                  "required": false
                                 }
 
                               ],
                               "summary": "Fetches resource list"
                           }
                       ],
-                      "path": "/core/resourcelist",
+                      "path": "/core/resourcelist/fields/{fields}/filters/{filters}",
                       "description": ""
                   }
-              ],
-
-              "models": {
-                "Opts": {
-                  "id": "Opts",
-                  "properties": {
-                    "keys": {
-                      "type": "[string]"
-                    },
-                    "filters": {
-                      "type": "[String]"
-                    },
-                    "cached": {
-                      "type": "Boolean"
-                    }
-                  }
-                }
-             
-            }
+              ]
 
           }
 
@@ -257,11 +256,13 @@ class CoreAPIView extends View
 
   // resources
 
-
-  function resourceList() {
+  function resourceList( $param ) {
+    
     geozzy::load('model/ResourceModel.php');
+    geozzyAPI::load('controller/apiFiltersController.php');
+
     $resourceModel = new ResourceModel();
-    $resourceList = $resourceModel->listItems(  array( 'filters' => array( ) ) );
+    $resourceList = $resourceModel->listItems( apiFiltersController::resourceListOptions($param) );
     $this->syncModelList( $resourceList );
   }
 
