@@ -2,17 +2,12 @@
 <div class="headSection clearfix">
   {block name="headSection"}
 
-  <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-      </button>
-  </div>
-
   <div class="row">
-    <div class="col-md-8 col-sm-6">
+    <div class="col-md-8 col-sm-12">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars"></i>
+      </button>
       <div class="headerTitleContainer">
         <h2>
         {block name="headTitle"}
@@ -22,7 +17,7 @@
         </h2>
       </div>
     </div>
-    <div class="col-md-4 col-sm-6 clearfix">
+    <div class="col-md-4 col-sm-12 clearfix">
       <div class="headerActionsContainer">
         {block name="headActions"}
           {if !isset($headActions)}{assign var='headActions' value=''}{/if}

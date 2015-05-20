@@ -43,7 +43,9 @@ $( document ).ready(function() {
 
 
 function calculateHeightMenu(){
-  var menuInfoHeight = $('#menuInfo').height();
-  var windowHeight = $(window).height();
-  $('#side-menu').height(windowHeight - menuInfoHeight);
+  if($(window).width() > 991){
+    var menuInfoHeight = $('#menuInfo').height();
+    var windowHeight = $(window).height();
+    $('#side-menu').height(windowHeight - menuInfoHeight);
+  }
 }
