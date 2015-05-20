@@ -45,6 +45,8 @@ var AdminView = Backbone.View.extend({
     $('#side-menu *').removeClass('active');
     $('#side-menu .'+menuClass+' a').addClass('active');
 
+    $('.navbar-collapse').collapse('hide');
+
   }
 
 });

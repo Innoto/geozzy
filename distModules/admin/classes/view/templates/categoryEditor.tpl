@@ -4,7 +4,6 @@
 <script type="text/template" id="taxTermEditor">
 
   <div class="headSection clearfix">
-    >
     <div class="row">
       <div class="col-md-8 col-sm-12">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
