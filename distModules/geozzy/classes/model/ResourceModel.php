@@ -94,13 +94,34 @@ class ResourceModel extends Model
   );
 
   static $extraFilters = array(
-      'find' => "UPPER(title)  LIKE CONCAT('%',UPPER(?),'%')"
-      //'topic' => "topic = JOIN "
+      'find' => "UPPER(title)  LIKE CONCAT('%',UPPER(?),'%')",
+      'nottopic' => "id NOT IN (select resource from geozzy_resource_topic where topic=12)"
     );
 
 
   function __construct( $datarray= array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
+
+
+  /**
+  * create item
+  *
+  * @return boolean
+  */
+  function createRelation($topicId, $resourceId) {
+
+    $this->dataFacade->transactionStart();
+
+    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    $resourcetopic =  new ResourceTopicModel(array("resource" => $resourceId, "topic" => $topicId));
+    $resourcetopic->save();
+
+
+    $this->dataFacade->transactionEnd();
+
+    return true;
+  }
+
 
 }
