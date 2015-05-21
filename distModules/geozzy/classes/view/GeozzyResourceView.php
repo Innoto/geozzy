@@ -121,7 +121,7 @@ class GeozzyResourceView extends View
           foreach( $definition['rules'] as $ruleName => $ruleParams ) {
             $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
           }
-        }
+        }'class' => 'gzzAdminToMove'
       }
     }
 
@@ -135,7 +135,7 @@ class GeozzyResourceView extends View
       $form->loadArrayValues( $valuesArray );
     }
 
-    $form->setField( 'submit', array( 'type' => 'submit', 'value' => _( 'Send' ) ) );
+    $form->setField( 'submit', array( 'type' => 'submit', 'value' => _( 'Send' ), 'class' => 'gzzAdminToMove' ) );
 
     // Una vez que lo tenemos definido, guardamos el form en sesion
     $form->saveToSession();
