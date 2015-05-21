@@ -121,7 +121,7 @@ class GeozzyResourceView extends View
           foreach( $definition['rules'] as $ruleName => $ruleParams ) {
             $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
           }
-        }'class' => 'gzzAdminToMove'
+        }
       }
     }
 
