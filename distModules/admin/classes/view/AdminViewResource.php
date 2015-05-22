@@ -57,6 +57,13 @@ class AdminViewResource extends AdminViewMaster
     $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
     $tabla->setCol('published', __('Published'));
 
+    // Filtrar por temática
+    /*
+    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> 15 ) );
+    $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
+    $tabla->setJoinType('INNER');
+    */
+
     // Contido especial
     $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
     $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
@@ -104,11 +111,19 @@ class AdminViewResource extends AdminViewMaster
       $recModel = new ResourceModel();
       $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
         'filters' => array( 'id' => $idResource ) ) );
+      /*
+      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel', 'UrlAliasModel' ),
+          'filters' => array( 'id' => $idResource ) ) );
+      */
       $recurso = $recursosList->fetch();
     }
 
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
+
+      error_log( 'recursoData: ' . print_r( $recursoData, true ) );
+
+      error_log( 'recursoData: ' . print_r( $recursoData, true ) );
 
       $resourceView = new GeozzyResourceView();
       $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData[ 'data' ] );
