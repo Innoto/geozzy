@@ -93,7 +93,7 @@ class GeozzyTaxonomytermView extends View
       }
     }
 
-    $form->setField( 'submit', array( 'type' => 'submit', 'value' => 'Save' ) );
+    $form->setField( 'submit', array( 'type' => 'submit', 'value' => 'Save', 'class' => 'gzzAdminToMove' ) );
 
     /***************************************************************************** VALIDATIONS */
     $form->setValidationRule( 'name_'.$langDefault, 'required' );

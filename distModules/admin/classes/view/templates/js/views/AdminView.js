@@ -26,18 +26,24 @@ var AdminView = Backbone.View.extend({
   },
 
   loadAjaxContent: function( url ) {
-    this.childView = false;
-    $("#page-wrapper").load( url );
-    this.render();
+    var that=this;
+    that.childView = false;
+    $("#page-wrapper").load( url, {}, function(){ that.render(); } );
+
   },
 
   render: function( ) {
-    if( this.childView != false ) {
+    var that = this;
+
+    console.log(that.childView)
+
+    if( that.childView != false ) {
       $("#page-wrapper").undelegate();
-      this.childView.$el = $('#page-wrapper');
-      this.childView.render();
-      this.childView.delegateEvents();
+      that.childView.$el = $('#page-wrapper');
+      that.childView.render();
+      that.childView.delegateEvents();
     }
+
   },
 
   // effects
