@@ -42,7 +42,7 @@
 
 <div class="footerSection clearfix">
   {block name="footerSection"}
-  <div class="headerActionsContainer">
+  <div class="footerActionsContainer">
     {block name="footerActions"}
       {if !isset($footerActions)}{assign var='footerActions' value=''}{/if}
       {$footerActions}
