@@ -109,21 +109,29 @@ class AdminViewResource extends AdminViewMaster
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];
       $recModel = new ResourceModel();
-      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
-        'filters' => array( 'id' => $idResource ) ) );
-      /*
+
       $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel', 'UrlAliasModel' ),
-          'filters' => array( 'id' => $idResource ) ) );
-      */
+          'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
+
       $recurso = $recursosList->fetch();
     }
 
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
+      //error_log( 'recursoData: ' . print_r( $recursoData, true ) );
 
-      error_log( 'recursoData: ' . print_r( $recursoData, true ) );
+      // Cargo los datos de urlAlias dentro de los del recurso
+      $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
+      if( $urlAliasDep !== false ) {
+        foreach( $urlAliasDep as $urlAlias ) {
+          $urlLang = $urlAlias->getter('lang');
+          if( $urlLang ) {
+            $recursoData[ 'data' ][ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
+          }
+        }
+      }
 
-      error_log( 'recursoData: ' . print_r( $recursoData, true ) );
+      error_log( 'getterDependence: ' . print_r( $recurso->getterDependence( 'id', 'UrlAliasModel' ), true ) );
 
       $resourceView = new GeozzyResourceView();
       $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData[ 'data' ] );
