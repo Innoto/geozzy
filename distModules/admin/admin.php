@@ -72,6 +72,7 @@ class admin extends Module
     'styles/adminNestable.less',
     'js/app.js',
     'js/views/AdminView.js',
+    'js/views/ResourceView.js',
     'js/views/CategoryEditorView.js',
     'js/routers/AdminRouter.js',
     'js/models/TaxonomygroupModel.js',

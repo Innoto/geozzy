@@ -33,7 +33,8 @@ class AdminViewResourceOutTopic extends AdminViewMaster
                                                 <li><a href="#">Separated link</a></li>
                                               </ul>
                                             </div>
-                                             <button type="button" class="btn btn-primary assignResource"> '.__('Assign selected').'</button>' );
+                                             <div id="topAssign" class="btn btn-primary assignResource"> '.__('Assign selected').'</div>' );
+                                            
     $this->template->assign( 'footerActions', '<button type="button" class="btn btn-default"> '.__('Return').'</button>
                                              <div class="btn-group assignResource">
                                               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
