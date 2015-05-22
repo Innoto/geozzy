@@ -37,8 +37,6 @@ class geozzy extends Module
     //$this->addUrlPatterns( '#^recurso$#', 'view:GeozzyResourceView::showRecurso' );
     //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
     //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
-
-    $this->addUrlPatterns( '#^meu404$#', 'view:UrlAliasController::notUrlApp' );
   }
 
   static public function moduleRc() {

@@ -78,10 +78,15 @@ class GeozzyResourceView extends View
         'params' => array( 'label' => _( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
           'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' )
       ),
-      */
       'defaultZoom' => array(
         'params' => array( 'label' => _( 'Map: Default zoom' ) ),
         'rules' => array( 'max' => '20' )
+      ),
+      */
+      'urlAlias' => array(
+        'translate' => true,
+        'params' => array( 'label' => _( 'SEO: URL' ) ),
+        'rules' => array( 'maxlength' => '2000' )
       ),
       'headKeywords' => array(
         'params' => array( 'label' => _( 'SEO: Head Keywords' ) ),
@@ -176,27 +181,72 @@ class GeozzyResourceView extends View
     }
     */
 
+    $urlAlias = array();
     if( !$form->existErrors() ) {
+      global $LANG_AVAILABLE;
+      $elemIdForm = false;
+
       $valuesArray = $form->getValuesArray();
 
       if( $form->isFieldDefined( 'id' ) ) {
-        $valuesArray['timeLastUpdate'] = date( "Y-m-d H:i:s", time() );
+        $elemIdForm = $valuesArray[ 'id' ];
+        $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
       }
 
+      // Validar URLs
+      foreach( $LANG_AVAILABLE as $langId => $langValues ) {
+        if( $valuesArray[ 'urlAlias_'.$langId ] !== '' ) {
+          if( $urlError = $this->urlErrors( $elemIdForm, $langId, $valuesArray[ 'urlAlias_'.$langId ] ) ) {
+            $form->addFieldRuleError( 'urlAlias_'.$langId, false, $urlError );
+          }
+          else {
+            $urlAlias[ $langId ] = $valuesArray[ 'urlAlias_'.$langId ];
+          }
+        }
+        else {
+          $urlAlias[ $langId ] = null;
+        }
+      }
+    }
+
+    if( !$form->existErrors() ) {
       error_log( print_r( $valuesArray, true ) );
 
       $recurso = new ResourceModel( $valuesArray );
-      $recurso->save();
+      if( $recurso === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+      }
+    }
 
-      /*
-      if($valuesArray['image']['values']){
+    /*
+    if( !$form->existErrors() && $valuesArray['image']['values'] ){
         $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
         $recurso->save( array( 'affectsDependences' => true ));
       }
       else {
         $recurso->save();
       }
-      */
+    }
+    */
+    if( !$form->existErrors() ) {
+      if( $recurso->save() === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+      }
+    }
+
+    if( !$form->existErrors() ) {
+      $elemId = $recurso->getter( 'id' );
+
+      foreach( $urlAlias as $langId => $url ) {
+        if( $this->setUrl( $elemId, $langId, $url ) === false ) {
+          $form->addFieldRuleError( 'urlAlias_'.$langId, false, _( 'Error setting URL alias' ) );
+          break;
+        }
+      }
+
+    }
+
+    if( !$form->existErrors() ) {
       echo $form->jsonFormOk();
     }
     else {
@@ -206,4 +256,54 @@ class GeozzyResourceView extends View
 
   } // function actionResourceForm()
 
-} // class ResourceView extends View
+
+  private function urlErrors( $resId, $langId, $urlAlias ) {
+    error_log( "urlErrors( $resId, $langId, $urlAlias )" );
+    $error = false;
+
+    //$error = 'URL Alias incompleto';
+
+    return $error;
+  }
+
+
+  private function setUrl( $resId, $langId, $urlAlias ) {
+    error_log( "setUrl( $resId, $langId, $urlAlias )" );
+    $result = true;
+
+    if( !isset( $urlAlias ) || $urlAlias === false || $urlAlias === '' ) {
+      $urlAlias = '/recurso/'.$resId;
+    }
+
+    $aliasArray = array(
+      'http' => 0,
+      'canonical' => 1,
+      'lang' => $langId,
+      'urlFrom' => $urlAlias,
+      'urlTo' => null,
+      'resource' => $resId
+    );
+
+    $elemModel = new UrlAliasModel();
+    $elemsList = $elemModel->listItems( array( 'filters' => array( 'canonical' => 1, 'resource' => $resId,
+      'lang' => $langId ) ) );
+    if( $elem = $elemsList->fetch() ) {
+      error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
+      $aliasArray[ 'id' ] = $elem->getter( 'id' );
+    }
+
+    $elemModel = new UrlAliasModel( $aliasArray );
+    if( $elemModel->save() === false ) {
+      $result = false;
+      error_log( 'setUrl: ERROR gardando a url' );
+    }
+    else {
+      $result = $elemModel->getter( 'id' );
+      error_log( 'setUrl: Creada/Actualizada - '.$result );
+    }
+
+    return $result;
+  }
+
+
+} // class ResourceView extends Vie
