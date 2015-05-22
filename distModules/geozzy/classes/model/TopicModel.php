@@ -22,6 +22,7 @@ class TopicModel extends Model
     ),
     'name' => array(
       'type' => 'VARCHAR',
+      'multilang' => true,
       'size' => 45
     ),
     'weight' => array(

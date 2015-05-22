@@ -212,7 +212,10 @@ class geozzy extends Module
 
     if( count( $GEOZZY_TOPICS ) > 0 ) {
       foreach( $GEOZZY_TOPICS as $key => $topic ) {
-        $topic['name'] = $topic['name']['es'];
+        foreach ($topic['name'] as $langKey => $name){
+           $topic['name_'.$langKey] = $name;
+        }
+
         $topic['idName'] = $key;
         $topicD = new TopicModel( $topic );
         $topicD->save();

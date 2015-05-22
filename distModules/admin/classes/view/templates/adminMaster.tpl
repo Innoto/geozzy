@@ -4,7 +4,7 @@
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=no">
   <title>Geozzy Admin</title>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -26,29 +26,7 @@
 
 
   <div id="wrapper">
-    <div id="menu-wrapper">
-      <div id="menuInfo">
-        <div class="menuLogo">
-          <img src="media/module/geozzy/img/logo.png" class="img-responsive">
-        </div>
-        <ul class="userInfo nav">
-          <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                {$user->getter('login')}
-                <i class="fa fa-caret-down"></i>
-              </a>
-              <ul class="dropdown-menu dropdown-user">
-                  <li><a href="/admin#user/show"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-                  <li><a href="/admin#user/edit/{$user->getter('id')}"><i class="fa fa-edit fa-fw"></i> Edit Profile</a></li>
-                  <li class="divider"></li>
-                  <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
-              </ul>
-              <!-- /.dropdown-user -->
-          </li>
-        </ul>
-      </div>
-      {include file="admin///adminMenu.tpl"}
-    </div>
+    {include file="admin///adminMenu.tpl"} <!--menu-wrapper -->
     <div id="page-wrapper"><!--Content -->
     </div><!-- /#page-wrapper -->
   </div><!-- /#wrapper -->

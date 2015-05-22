@@ -20,6 +20,7 @@ class AdminViewResource extends AdminViewMaster
     $template->setTpl('listResource.tpl', 'admin');
 
     $this->template->addToBlock( 'col12', $template );
+    $this->template->assign( 'headTitle', __('Resource Management') );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
@@ -90,7 +91,7 @@ class AdminViewResource extends AdminViewMaster
 
     $panel = $this->getPanelBlock( 'Recuerda que en algunos campos existe versión en varios idiomas.' );
     $this->template->addToBlock( 'col4', $panel );
-
+    $this->template->assign( 'headTitle', __('Create Resource') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
     $this->template->exec();
@@ -142,7 +143,7 @@ class AdminViewResource extends AdminViewMaster
       $this->template->addToBlock( 'col4', $panel );
 
       $this->template->addToBlock( 'col4', $this->getPanelBlock( 'Esto é un segundo panel' ) );
-
+      $this->template->assign( 'headTitle', __('Edit Resource') );
       $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
       $this->template->exec();

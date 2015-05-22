@@ -1,25 +1,32 @@
 
 <div class="headSection clearfix">
-  <div class="navbar-header">
+  {block name="headSection"}
+
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+          <i class="fa fa-bars"></i>
       </button>
-  </div>
-  <div class="row">
-    <div class="col-md-8 col-sm-6 col-xs-0">
       <div class="headerTitleContainer">
-        {block name="headTitle"}{/block}
+        <h2>
+        {block name="headTitle"}
+          {if !isset($headTitle)}{assign var='headTitle' value=''}{/if}
+          {$headTitle}
+        {/block}
+        </h2>
       </div>
     </div>
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="headerActionsContainer col-md-4">
-        {block name="headActions"}{/block}
+    <div class="col-md-4 col-sm-12 clearfix">
+      <div class="headerActionsContainer">
+        {block name="headActions"}
+          {if !isset($headActions)}{assign var='headActions' value=''}{/if}
+          {$headActions}
+        {/block}
       </div>
     </div>
   </div>
+  {/block}
 
 
   <!-- /.navbar-header -->
@@ -34,7 +41,12 @@
 
 
 <div class="footerSection clearfix">
+  {block name="footerSection"}
   <div class="headerActionsContainer">
-    {block name="footerActions"}{/block}
+    {block name="footerActions"}
+      {if !isset($footerActions)}{assign var='footerActions' value=''}{/if}
+      {$footerActions}
+    {/block}
   </div>
+  {/block}
 </div><!-- /footerSection -->

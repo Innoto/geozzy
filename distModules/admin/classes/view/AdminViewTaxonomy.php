@@ -97,6 +97,7 @@ class AdminViewTaxonomy extends AdminViewMaster
     $template->setTpl('taxtermForm.tpl', 'admin');
 
     $this->template->addToBlock( 'col8', $template );
+    $this->template->assign( 'headTitle', __('Category form') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
   }

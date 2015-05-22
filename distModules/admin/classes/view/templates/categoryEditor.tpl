@@ -4,23 +4,23 @@
 <script type="text/template" id="taxTermEditor">
 
   <div class="headSection clearfix">
-    <div class="navbar-header">
+    <div class="row">
+      <div class="col-md-8 col-sm-12">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <i class="fa fa-bars"></i>
         </button>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
         <div class="headerTitleContainer">
-          <h2>Listado de terminos para  <%- name %> </h2>
+          <h2>{t}Category management for{/t} <%- name %> </h2>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-12 clearfix">
         <div class="headerActionsContainer">
-          <button type="button" class="newTaxTerm btn btn-default"> Añadir a <%- name %></button>
+          <button type="button" class="newTaxTerm btn btn-default btn-outline"> {t}Add{/t} <%- name %></button>
+          <span class="saveChanges">
+            <button class="btn btn-danger cancelTerms">{t}Cancel{/t}</button>
+            <button class="btn btn-primary saveTerms">{t}Save{/t}</button>
+          </span>
         </div>
       </div>
     </div>
@@ -36,17 +36,13 @@
             <div class="panel-heading">
               <strong>
                 <i class="fa fa-tag fa-fw"></i>
-                Listado de terminos para ( <%- name %> )
+                {t}List of terms for{/t} ( <%- name %> )
               </strong>
             </div>
             <div class="panel-body">
               <div id="taxTermListContainer" class="dd">
                 <ol class="listTerms dd-list">
                 </ol>
-              </div>
-              <div class="saveChanges">
-                <button class="btn btn-danger cancelTerms">Cancel</button>
-                <button class="btn btn-primary saveTerms">Save</button>
               </div>
             </div> <!-- end panel-body -->
           </div> <!-- end panel -->
@@ -59,7 +55,11 @@
 
   <div class="footerSection clearfix">
     <div class="headerActionsContainer">
-      <button type="button" class="newTaxTerm btn btn-default">Añadir a <%- name %></button>
+      <button type="button" class="newTaxTerm btn btn-default">{t}Add{/t} <%- name %></button>
+      <span class="saveChanges">
+        <button class="btn btn-danger cancelTerms">{t}Cancel{/t}</button>
+        <button class="btn btn-primary saveTerms">{t}Save{/t}</button>
+      </span>
     </div>
   </div><!-- /footerSection -->
 

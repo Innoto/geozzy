@@ -1,35 +1,51 @@
 <?php
 global $GEOZZY_API_DOC_URLS;
 define( 'GEOZZY_API_ACTIVE', true);
+user::autoIncludes();
 
-$GEOZZY_API_DOC_URLS = array(
-	// Geozzy Core
+$useraccesscontrol = new UserAccessController();
+
+if( $useraccesscontrol->isLogged()){
+  $GEOZZY_API_DOC_URLS_ADMIN = array(
+    array(
+      'path' => '/admin/adminCategories.json',
+      'description' => 'Admin Categories'
+    ),
+    array(
+      'path' => '/admin/adminCategoryterms.json',
+      'description' => 'Admin CategoryTerms'
+    )
+  );
+}
+else {
+  $GEOZZY_API_DOC_URLS_ADMIN = array();
+}
+
+
+
+
+$GEOZZY_API_DOC_URLS =  array_merge( 
+  $GEOZZY_API_DOC_URLS_ADMIN,
   array(
-    'path' => '/admin/adminCategories.json',
-    'description' => 'Admin Categories'
-  ),
-  array(
-    'path' => '/admin/adminCategoryterms.json',
-    'description' => 'Admin CategoryTerms'
-  ),
-  array(
-    'path' => '/resources.json',
-    'description' => 'Core Resource'
-  ),
-  array(
-    'path' => '/resourceTypes.json',
-    'description' => 'Resource Types'
-  ), 
-  array(
-    'path' => '/categoryList.json',
-    'description' => 'Category List'
-  ),
-  array(
-    'path' => '/categoryTerms.json',
-    'description' => 'CategoryTerms by category'
-  ),
-  array(
-    'path' => '/topicList.json',
-    'description' => 'Topics'
-  )  
+    array(
+      'path' => '/resources.json',
+      'description' => 'Core Resource'
+    ),
+    array(
+      'path' => '/resourceTypes.json',
+      'description' => 'Resource Types'
+    ), 
+    array(
+      'path' => '/categoryList.json',
+      'description' => 'Category List'
+    ),
+    array(
+      'path' => '/categoryTerms.json',
+      'description' => 'CategoryTerms by category'
+    ),
+    array(
+      'path' => '/topicList.json',
+      'description' => 'Topics'
+    )  
+  )
 );
