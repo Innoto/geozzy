@@ -35,13 +35,32 @@ var AdminView = Backbone.View.extend({
   render: function( ) {
     var that = this;
 
-    console.log(that.childView)
-
     if( that.childView != false ) {
       $("#page-wrapper").undelegate();
       that.childView.$el = $('#page-wrapper');
       that.childView.render();
       that.childView.delegateEvents();
+    }
+
+    /* Busca los botones de los formularios externos por la class "gzzAdminToMove" los clona y los bindea en el interface de admin.*/
+    var buttonsToMove = $('.gzzAdminToMove');
+    if( buttonsToMove.size() > 0 ){
+      buttonsToMove.each( function() {
+        var that = this;
+        var cloneButtonTop = $(this).clone();
+        var cloneButtonBottom = $(this).clone();
+        if(!$(this).is('.btn, .btn-primary')){
+          cloneButtonTop.addClass('btn  btn-primary');
+          cloneButtonBottom.addClass('btn  btn-primary');
+        }
+        cloneButtonTop.appendTo( ".headSection .headerActionsContainer" ).on( 'click', function (){
+          $(that).closest('form').submit();
+        });
+        cloneButtonBottom.appendTo( ".footerSection .footerActionsContainer" ).on( 'click', function (){
+          $(that).closest('form').submit();
+        });
+        $(this).hide();
+      });
     }
 
   },

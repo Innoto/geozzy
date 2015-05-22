@@ -21,6 +21,12 @@ class Cogumelo extends CogumeloClass
     $this->addUrlPatterns( '#^recurso-form-action$#', 'view:RecursoView::actionResourceForm' );
 
 
+    /* Probando Alias */
+    $this->addUrlPatterns( '#^alias/?$#', 'view:AliasView::mostrar' );
+    $this->addUrlPatterns( '#^alias-crear$#', 'view:AliasView::crearForm' );
+    $this->addUrlPatterns( '#^alias-form-action$#', 'view:AliasView::actionForm' );
+
+
     /*MasterView*/
     $this->addUrlPatterns( '#^$#', 'view:MasterView::main' );
     //$this->addUrlPatterns( '#^404$#', 'view:MasterView::page404' );
