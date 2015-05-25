@@ -57,6 +57,12 @@ class admin extends Module
      "includes" => array("raphael-min.js")
     ),
     array(
+     "id" =>"chosen",
+     "params" => array("chosen"),
+     "installer" => "bower",
+     "includes" => array("jquery.nestable.js")
+   ),
+    array(
      "id" =>"nestable2",
      "params" => array("nestable2"),
      "installer" => "bower",
