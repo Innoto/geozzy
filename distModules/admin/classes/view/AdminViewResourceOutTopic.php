@@ -23,10 +23,10 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $this->template->assign( 'headActions', '<button type="button" class="btn btn-default btn-outline"> '.__('Return').'</button>
                                              <div class="btn-group assignResource">
                                               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                Action <span class="caret"></span>
+                                                Crear <span class="caret"></span>
                                               </button>
                                               <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Create</a></li>
                                                 <li><a href="#">Another action</a></li>
                                                 <li><a href="#">Something else here</a></li>
                                                 <li class="divider"></li>
@@ -38,10 +38,10 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $this->template->assign( 'footerActions', '<button type="button" class="btn btn-default"> '.__('Return').'</button>
                                              <div class="btn-group assignResource">
                                               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                Action <span class="caret"></span>
+                                                Crear <span class="caret"></span>
                                               </button>
                                               <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Create</a></li>
                                                 <li><a href="#">Another action</a></li>
                                                 <li><a href="#">Something else here</a></li>
                                                 <li class="divider"></li>
@@ -49,8 +49,9 @@ class AdminViewResourceOutTopic extends AdminViewMaster
                                               </ul>
                                             </div>
                                              <button type="button" class="btn btn-primary assignResource"> '.__('Assign selected').'</button>' );    
-    $this->template->addToBlock( 'col12', $template );
-    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
+    $this->template->addToBlock( 'col8', $template );
+    
+    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
   }
 
