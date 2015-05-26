@@ -88,6 +88,8 @@ class RecursoView extends View
 
     $idResource = false;
 
+    $this->template->assign( 'langCogumelo', $GLOBALS['C_LANG'] );
+
     $recModel = new ResourceModel();
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];

@@ -16,23 +16,11 @@
 {block name="bodyContent"}
 <!-- probandoFormRecurso.tpl en app de Geozzy -->
 
-<pre>
-GLOBALES SMARTY
+<p>GLOBAL LANG: {$langCogumelo}</p>
 
-langDefault:{$langDefault}
-langDefault i18n:{$langAvailable.$langDefault.i18n}
-langAvailable:
-{foreach $langAvailable as $idLang=>$arrLang}
-  lang: {$idLang}
-  {foreach $arrLang as $langKey=>$langValue}
-    {$langKey} => {$langValue}
-  {/foreach}
-{/foreach}
-</pre>
+  <h2 style="color:#30494E;">GEOZZY APP - {t}View Resource{/t}</h2>
 
-  <h2 style="color:#30494E;">GEOZZY APP - View Resource</h2>
-
-  <h3>Resource</h3>
+  <h3>{t}Resource{/t}</h3>
 
   <div class="resource">
 
@@ -61,6 +49,22 @@ langAvailable:
 -->
 
   <hr>
+
+
+<pre>
+GLOBALES SMARTY
+
+langDefault:{$langDefault}
+langDefault i18n:{$langAvailable.$langDefault.i18n}
+langAvailable:
+{foreach $langAvailable as $idLang=>$arrLang}
+  lang: {$idLang}
+  {foreach $arrLang as $langKey=>$langValue}
+    {$langKey} => {$langValue}
+  {/foreach}
+{/foreach}
+</pre>
+
 
 <!-- /probandoFormRecurso.tpl en app de Geozzy -->
 {/block}
