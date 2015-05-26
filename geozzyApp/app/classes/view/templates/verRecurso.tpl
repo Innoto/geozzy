@@ -50,7 +50,7 @@
 
   <hr>
 
-
+<!--
 <pre>
 GLOBALES SMARTY
 
@@ -64,7 +64,7 @@ langAvailable:
   {/foreach}
 {/foreach}
 </pre>
-
+-->
 
 <!-- /probandoFormRecurso.tpl en app de Geozzy -->
 {/block}
