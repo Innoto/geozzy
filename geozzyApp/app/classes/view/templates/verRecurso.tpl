@@ -24,19 +24,19 @@
 
   <div class="resource">
 
-    <div class="title"><label class="cgmMForm">{t}title{/t}</label>
+    <div class="title"><label class="cgmMForm">{t}Title{/t}</label>
     {$title|escape:'htmlall'}</div>
 
-    <div class="shortDescription"><label class="cgmMForm">{t}shortDescription{/t}</label>
+    <div class="shortDescription"><label class="cgmMForm">{t}Short description{/t}</label>
     {$shortDescription|escape:'htmlall'}</div>
 
-    <div class="mediumDescription"><label for="mediumDescription" class="cgmMForm">{t}mediumDescription{/t}</label>
+    <div class="mediumDescription"><label for="mediumDescription" class="cgmMForm">{t}Medium description{/t}</label>
     {$mediumDescription}</div>
 
-    <div class="content"><label for="content" class="cgmMForm">{t}content{/t}</label>
+    <div class="content"><label for="content" class="cgmMForm">{t}Content{/t}</label>
     {$content}</div>
 
-    <div class="image cgmMForm-fileField "><label for="imgResource" class="cgmMForm">{t}image{/t}</label>
+    <div class="image cgmMForm-fileField "><label for="imgResource" class="cgmMForm">{t}Image{/t}</label>
     {$image}</div>
 
     <!-- div class="defaultZoom"><label class="cgmMForm">defaultZoom</label>
