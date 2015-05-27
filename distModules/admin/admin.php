@@ -61,7 +61,13 @@ class admin extends Module
      "params" => array("chosen"),
      "installer" => "bower",
      "includes" => array("chosen.jquery.min.js", "chosen.min.css")
-   ),
+    ),
+    array(
+     "id" =>"chosen",
+     "params" => array("chosen"),
+     "installer" => "bower",
+     "includes" => array("chosen.jquery.min.js", "chosen.min.css")
+    ),
     array(
      "id" =>"nestable2",
      "params" => array("nestable2"),
