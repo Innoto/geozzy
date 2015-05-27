@@ -73,11 +73,11 @@ class GeozzyResourceView extends View
         'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
           'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
       ),
-      /*
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
           'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' )
       ),
+      /*
       'defaultZoom' => array(
         'params' => array( 'label' => __( 'Map: Default zoom' ) ),
         'rules' => array( 'max' => '20' )
@@ -172,14 +172,12 @@ class GeozzyResourceView extends View
       $form->addFormError( 'El servidor no considera válidos los datos recibidos.', 'formError' );
     }
 
-    /*
     if( !$form->existErrors() ) {
       if( !$form->processFileFields() ) {
         $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea '.
           'necesario subirlos otra vez.', 'formError' );
       }
     }
-    */
 
     $urlAlias = array();
     if( !$form->existErrors() ) {
@@ -218,20 +216,17 @@ class GeozzyResourceView extends View
       }
     }
 
-    /*
+    $saveResult = false;
     if( !$form->existErrors() && $valuesArray['image']['values'] ){
-        $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
-        $recurso->save( array( 'affectsDependences' => true ));
-      }
-      else {
-        $recurso->save();
-      }
+      $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
+      $saveResult = $recurso->save( array( 'affectsDependences' => true ));
     }
-    */
-    if( !$form->existErrors() ) {
-      if( $recurso->save() === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
-      }
+    else {
+      $saveResult = $recurso->save();
+    }
+
+    if( !$form->existErrors() && $saveResult === false ) {
+      $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
     }
 
     if( !$form->existErrors() ) {
