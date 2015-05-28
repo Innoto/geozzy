@@ -63,10 +63,46 @@ class admin extends Module
      "includes" => array("chosen.jquery.min.js", "chosen.min.css")
     ),
     array(
-     "id" =>"chosen",
-     "params" => array("chosen"),
+     "id" =>"select2",
+     "params" => array("select2"),
      "installer" => "bower",
-     "includes" => array("chosen.jquery.min.js", "chosen.min.css")
+     "includes" => array()
+    ),
+    array(
+     "id" =>"select2.sortable",
+     "params" => array("select2.sortable"),
+     "installer" => "bower",
+     "includes" => array()
+    ),
+    array(
+     "id" =>"uikit",
+     "params" => array("uikit"),
+     "installer" => "bower",
+     "includes" => array()
+    ),
+    array(
+     "id" =>"jquery-ui-sortable",
+     "params" => array("jquery-ui-sortable"),
+     "installer" => "bower",
+     "includes" => array()
+    ),
+    array(
+     "id" =>"html5-sortable",
+     "params" => array("html5-sortable"),
+     "installer" => "bower",
+     "includes" => array()
+    ),
+    array(
+     "id" =>"jquery-sortable",
+     "params" => array("jquery-sortable"),
+     "installer" => "bower",
+     "includes" => array()
+    ),
+    array(
+     "id" =>"jqueryui-touch-punch",
+     "params" => array("jqueryui-touch-punch"),
+     "installer" => "bower",
+     "includes" => array()
     ),
     array(
      "id" =>"nestable2",
