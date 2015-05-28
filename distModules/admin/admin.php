@@ -55,63 +55,45 @@ class admin extends Module
      "params" => array("raphael"),
      "installer" => "bower",
      "includes" => array("raphael-min.js")
-   ),/*
+    ),
+/*
+    array(
+     "id" =>"jquery-ui",
+     "params" => array("jquery-ui"),
+     "installer" => "bower",
+     "includes" => array("jquery-ui.js")
+    ),
+*/
+/*
     array(
      "id" =>"jquery-ui-sortable",
      "params" => array("jquery-ui-sortable"),
      "installer" => "bower",
      "includes" => array("jquery-ui-sortable.js")
     ),
-    array(
-     "id" =>"html.sortable",
-     "params" => array("html.sortable"),
-     "installer" => "bower",
-     "includes" => array("dist/html.sortable.js")
-   ),*/
-    /*array(
-     "id" =>"html5-sortable",
-     "params" => array("html5-sortable"),
-     "installer" => "bower",
-     "includes" => array("sortable.js")
-   ),*/
-   /*
-    array(
-     "id" =>"chosen",
-     "params" => array("chosen"),
-     "installer" => "bower",
-     "includes" => array("chosen.jquery.min.js", "chosen.min.css")
-    ),
+*/
     array(
      "id" =>"select2",
      "params" => array("select2"),
      "installer" => "bower",
      "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
     ),
+/*
     array(
-     "id" =>"select2.sortable",
-     "params" => array("select2.sortable"),
-     "installer" => "bower",
-     "includes" => array("select2.sortable.js", "select2.sortable.css")
-   ),*/
-    /*array(
-     "id" =>"uikit",
-     "params" => array("uikit"),
-     "installer" => "bower",
-     "includes" => array()
-   ),*/
-
-   /*array(
      "id" =>"jquery-sortable",
      "params" => array("jquery-sortable"),
      "installer" => "bower",
      "includes" => array("source/js/jquery-sortable.js")
-   ),*/
-    /*array(
+    ),
+*/
+/*
+    array(
      "id" =>"jqueryui-touch-punch",
      "params" => array("jqueryui-touch-punch"),
      "installer" => "bower",
      "includes" => array("jquery.ui.touch-puch.js")
-   ),*/
+    ),
+*/
     array(
      "id" =>"nestable2",
      "params" => array("nestable2"),
