@@ -23,7 +23,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $this->template->assign( 'headActions', '<button type="button" class="btn btn-default btn-outline"> '.__('Return').'</button>
                                              <div class="btn-group assignResource">
                                               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                Crear <span class="caret"></span>
+                                                '.__('Crear').' <span class="caret"></span>
                                               </button>
                                               <ul class="dropdown-menu" role="menu">
                                                 <li><a href="#">Create</a></li>
@@ -38,7 +38,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $this->template->assign( 'footerActions', '<button type="button" class="btn btn-default"> '.__('Return').'</button>
                                              <div class="btn-group assignResource">
                                               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                Crear <span class="caret"></span>
+                                                '.__('Crear').' <span class="caret"></span>
                                               </button>
                                               <ul class="dropdown-menu" role="menu">
                                                 <li><a href="#">Create</a></li>
