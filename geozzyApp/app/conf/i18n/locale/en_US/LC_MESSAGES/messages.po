@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2015-05-27T10:19:14+02:00\n"
-"PO-Revision-Date: 2015-05-27T10:19:18+02:00\n"
+"POT-Creation-Date: 2015-05-27T16:54:05+02:00\n"
+"PO-Revision-Date: 2015-05-27T16:54:05+02:00\n"
 "Language: \n"
 
 #: /home/proxectos/cogumelo/packages/sampleApp/app/classes/view/I18nView.php:22
@@ -23,70 +23,55 @@ msgstr ""
 msgid "aquenometraduces"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:100
-msgid "Category form"
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:51
+msgid "Thank you"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:23
-msgid "Resource Management"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
-msgid "published"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:58
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:63
-msgid "Published"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
-msgid "Unpublished"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:65
-msgid "All"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:42
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:47
-msgid "Publish"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:43
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:48
-msgid "Unpublish"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:44
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:49
-msgid "Delete"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:56
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:61
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:80
-msgid "Type"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:57
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:59
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:62
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:81
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:57
 msgid "Title"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:94
-msgid "Create Resource"
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:64
+msgid "Short description"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:154
-msgid "Edit Resource"
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:69
+msgid "Medium description"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:73
+msgid "Content"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:77
+msgid "Image"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:88
+msgid "SEO: URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:92
+msgid "SEO: Head Keywords"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:97
+msgid "SEO: Head Description"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:102
+msgid "SEO: Head Title"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:143
+msgid "Send"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:237
+msgid "Error setting URL alias"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:28
@@ -94,16 +79,48 @@ msgstr ""
 msgid "Add resource"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:38
-msgid "User Management"
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
+msgid "published"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:125
-msgid "Create user"
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:63
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:58
+msgid "Published"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:176
-msgid "Edit user"
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
+msgid "Unpublished"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:65
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
+msgid "All"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:47
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:42
+msgid "Publish"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:48
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:43
+msgid "Unpublish"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:49
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:44
+msgid "Delete"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:61
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:80
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:56
+msgid "Type"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:24
@@ -116,6 +133,10 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:100
 msgid "Edit role"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:100
+msgid "Category form"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:22
@@ -138,6 +159,30 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:83
 msgid "Assign"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:38
+msgid "User Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:125
+msgid "Create user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:176
+msgid "Edit user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:23
+msgid "Resource Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:94
+msgid "Create Resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:154
+msgid "Edit Resource"
 msgstr ""
 
 #: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/listResourceOutTopic.tpl:4
@@ -218,4 +263,12 @@ msgstr ""
 
 #: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/categoryEditor.tpl:39
 msgid "List of terms for"
+msgstr ""
+
+#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/verRecurso.tpl:21
+msgid "View Resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/verRecurso.tpl:23
+msgid "Resource"
 msgstr ""
