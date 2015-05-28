@@ -12,14 +12,26 @@
   {/foreach}
   </select>
 
+  <select id="asigned_terms2" multiple style="width:250px;">
+  {foreach key=key item=item from=$termArray}
+    <option value="{$item->getter('id')}">{$item->getter('name')}</option>
+  {/foreach}
+  </select>
+
+  <select id="asigned_terms3" multiple style="width:250px;">
+  {foreach key=key item=item from=$termArray}
+    <option value="{$item->getter('id')}">{$item->getter('name')}</option>
+  {/foreach}
+  </select>
+
   <script>
     $( document ).ready(function() {
       alert('hola');
       $('#asigned_terms').chosen();
-      $('#asigned_terms_chosen ul').nestable({ 'maxDepth': 1 , callback: function(l, e) {
 
-      } });
-
+      $('#asigned_terms2').select2();
+      
+      $('#asigned_terms3').select2().select2Sortable();
     });
   </script>
 

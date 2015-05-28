@@ -57,6 +57,25 @@ class admin extends Module
      "includes" => array("raphael-min.js")
     ),
     array(
+     "id" =>"jquery-ui-sortable",
+     "params" => array("jquery-ui-sortable"),
+     "installer" => "bower",
+     "includes" => array("jquery-ui-sortable.js")
+    ),
+    array(
+     "id" =>"html.sortable",
+     "params" => array("html.sortable"),
+     "installer" => "bower",
+     "includes" => array("dist/html.sortable.js")
+    ),
+    /*array(
+     "id" =>"html5-sortable",
+     "params" => array("html5-sortable"),
+     "installer" => "bower",
+     "includes" => array("sortable.js")
+   ),*/
+
+    array(
      "id" =>"chosen",
      "params" => array("chosen"),
      "installer" => "bower",
@@ -66,44 +85,33 @@ class admin extends Module
      "id" =>"select2",
      "params" => array("select2"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
     ),
     array(
      "id" =>"select2.sortable",
      "params" => array("select2.sortable"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array("select2.sortable.js", "select2.sortable.css")
     ),
-    array(
+    /*array(
      "id" =>"uikit",
      "params" => array("uikit"),
      "installer" => "bower",
      "includes" => array()
-    ),
-    array(
-     "id" =>"jquery-ui-sortable",
-     "params" => array("jquery-ui-sortable"),
-     "installer" => "bower",
-     "includes" => array()
-    ),
-    array(
-     "id" =>"html5-sortable",
-     "params" => array("html5-sortable"),
-     "installer" => "bower",
-     "includes" => array()
-    ),
-    array(
+   ),*/
+
+   /*array(
      "id" =>"jquery-sortable",
      "params" => array("jquery-sortable"),
      "installer" => "bower",
-     "includes" => array()
-    ),
-    array(
+     "includes" => array("source/js/jquery-sortable.js")
+   ),*/
+    /*array(
      "id" =>"jqueryui-touch-punch",
      "params" => array("jqueryui-touch-punch"),
      "installer" => "bower",
-     "includes" => array()
-    ),
+     "includes" => array("jquery.ui.touch-puch.js")
+   ),*/
     array(
      "id" =>"nestable2",
      "params" => array("nestable2"),
