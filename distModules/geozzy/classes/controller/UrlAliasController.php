@@ -16,31 +16,44 @@ class UrlAliasController {
   }
 
 
-
   public function evaluateAlternative() {
     error_log( 'UrlAliasController::evaluateAlternative' );
 
     $alternative = false;
 
-
     $urlAliasModel = new UrlAliasModel();
-    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'urlFrom' => $this->urlFrom ) ) );
+    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'urlFrom' => '/'.$this->urlFrom ) ) );
     $urlAlias = $urlAliasList->fetch();
-    error_log( 'urlAlias: '.$urlAlias );
 
     if( $urlAlias ) {
       $allData = $urlAlias->getAllData();
-      echo "\n<pre>\n" . print_r( $allData, true ) . "\n</pre>\n";
+      error_log( "Alias: " . print_r( $allData, true ) );
+
+      $baseUrl = '/recurso/' . $allData[ 'data' ][ 'resource' ];
+      $langUrl = '';
+
+      if( isset( $allData[ 'data' ][ 'lang' ] ) && $allData[ 'data' ][ 'lang' ] !== '' ) {
+        $langUrl = '/' . $allData[ 'data' ][ 'lang' ];
+      }
+
+      if( !isset( $allData[ 'data' ][ 'http' ] ) || $allData[ 'data' ][ 'http' ] <= 200 ) {
+        // Es un alias
+        error_log( "Alias-viewUrl: " . $baseUrl );
+        global $_C;
+        $_C->viewUrl( $baseUrl );
+        /**
+        TODO: NO USA LANG PORQUE FALLA viewUrl
+        $_C->viewUrl( $langUrl . $baseUrl );
+        */
+      }
+      else {
+        // Es un Redirect
+        error_log( "Redirect: " . $langUrl . $baseUrl );
+        Cogumelo::redirect( $langUrl . $baseUrl );
+      }
     }
-
-
-
-
-
-    if( $this->urlFrom === 'rrr' ) {
-      $this->urlTo = SITE_URL . 'recurso';
-      $this->httpCode = '301';
-      $alternative = true;
+    else {
+      echo "<p>Non hai Alias</p><br>\n";
     }
 
     return $alternative;

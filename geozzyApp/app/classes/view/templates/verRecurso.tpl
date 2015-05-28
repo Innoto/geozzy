@@ -16,6 +16,41 @@
 {block name="bodyContent"}
 <!-- probandoFormRecurso.tpl en app de Geozzy -->
 
+<p>GLOBAL LANG: {$langCogumelo}</p>
+
+  <h2 style="color:#30494E;">GEOZZY APP - {t}View Resource{/t}</h2>
+
+  <h3>{t}Resource{/t}</h3>
+
+  <div class="resource">
+
+    <div class="title"><label class="cgmMForm">{t}Title{/t}</label>
+    {$title|escape:'htmlall'}</div>
+
+    <div class="shortDescription"><label class="cgmMForm">{t}Short description{/t}</label>
+    {$shortDescription|escape:'htmlall'}</div>
+
+    <div class="mediumDescription"><label for="mediumDescription" class="cgmMForm">{t}Medium description{/t}</label>
+    {$mediumDescription}</div>
+
+    <div class="content"><label for="content" class="cgmMForm">{t}Content{/t}</label>
+    {$content}</div>
+
+    <div class="image cgmMForm-fileField "><label for="imgResource" class="cgmMForm">{t}Image{/t}</label>
+    {$image}</div>
+
+    <!-- div class="defaultZoom"><label class="cgmMForm">defaultZoom</label>
+    {$defaultZoom}</div -->
+
+  </div>
+
+<!--
+{$resourceHtml}
+-->
+
+  <hr>
+
+<!--
 <pre>
 GLOBALES SMARTY
 
@@ -29,38 +64,7 @@ langAvailable:
   {/foreach}
 {/foreach}
 </pre>
-
-  <h2 style="color:#30494E;">GEOZZY APP - View Resource</h2>
-
-  <h3>Resource</h3>
-
-  <div class="resource">
-
-    <div class="title"><label class="cgmMForm">title</label>
-    {$title|escape:'htmlall'}</div>
-
-    <div class="shortDescription"><label class="cgmMForm">shortDescription</label>
-    {$shortDescription|escape:'htmlall'}</div>
-
-    <div class="mediumDescription"><label for="mediumDescription" class="cgmMForm">mediumDescription</label>
-    {$mediumDescription}</div>
-
-    <div class="content"><label for="content" class="cgmMForm">content</label>
-    {$content}</div>
-
-    <!-- div class="image cgmMForm-fileField "><label for="imgResource" class="cgmMForm">image</label>
-    {$image}</div -->
-
-    <!-- div class="defaultZoom"><label class="cgmMForm">defaultZoom</label>
-    {$defaultZoom}</div -->
-
-  </div>
-
-<!--
-{$resourceHtml}
 -->
-
-  <hr>
 
 <!-- /probandoFormRecurso.tpl en app de Geozzy -->
 {/block}

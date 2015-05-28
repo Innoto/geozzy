@@ -118,12 +118,14 @@ class AdminViewResource extends AdminViewMaster
 
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
-      //error_log( 'recursoData: ' . print_r( $recursoData, true ) );
+      error_log( 'recursoData: ' . print_r( $recursoData, true ) );
 
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
       if( $urlAliasDep !== false ) {
+        error_log( 'getterDependence UrlAliasModel' );
         foreach( $urlAliasDep as $urlAlias ) {
+          error_log( 'getterDependence UrlAliasModel: ' . $urlAlias->getter('lang') );
           $urlLang = $urlAlias->getter('lang');
           if( $urlLang ) {
             $recursoData[ 'data' ][ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
@@ -131,7 +133,21 @@ class AdminViewResource extends AdminViewMaster
         }
       }
 
-      error_log( 'getterDependence: ' . print_r( $recurso->getterDependence( 'id', 'UrlAliasModel' ), true ) );
+      // Cargo los datos de image dentro de los del recurso
+      $fileDep = $recurso->getterDependence( 'image' );
+      if( $fileDep !== false ) {
+        foreach( $fileDep as $fileModel ) {
+          $fileData = $fileModel->getAllData();
+          error_log( 'getterDependence fileData: ' . print_r( $fileData, true ) );
+          /*
+          $urlLang = $fileModel->getter('lang');
+          if( $urlLang ) {
+            $recursoData[ 'data' ][ 'image' ] = $urlAlias->getter('urlFrom');
+          }
+          */
+        }
+      }
+
 
       $resourceView = new GeozzyResourceView();
       $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData[ 'data' ] );

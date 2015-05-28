@@ -66,6 +66,8 @@ class RecursoView extends View
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
 
+      //error_log( $recursoData );
+
       $resourceView = new GeozzyResourceView();
       $formBlock = $resourceView->getFormBlock( $this->formName,  $this->formUrl, $recursoData[ 'data' ] );
       $this->template->setBlock( 'formNewResourceBlock', $formBlock );
@@ -88,6 +90,8 @@ class RecursoView extends View
 
     $idResource = false;
 
+    $this->template->assign( 'langCogumelo', $GLOBALS['C_LANG'] );
+
     $recModel = new ResourceModel();
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];
@@ -109,11 +113,9 @@ class RecursoView extends View
       // error_log( $key . ' === ' . print_r( $recurso->getter( $key ), true ) );
     }
 
-    /*
     if( isset( $allData['relationship']['0']['data']['absLocation'] ) ) {
       $this->template->assign( 'image', '<img src="/cgmlformfilews/' . $allData['relationship']['0']['data']['id'] . '"></img>' );
     }
-    */
 
     // htmlspecialchars({$output}, ENT_QUOTES, SMARTY_RESOURCE_CHAR_SET);
 

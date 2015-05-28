@@ -48,7 +48,7 @@ class GeozzyResourceView extends View
 
     $form = new FormController( $formName, $urlAction );
 
-    $form->setSuccess( 'accept', _( 'Thank you' ) );
+    $form->setSuccess( 'accept', __( 'Thank you' ) );
     $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
 
     // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
@@ -56,50 +56,50 @@ class GeozzyResourceView extends View
     $campos = array(
       'title' => array(
         'translate' => true,
-        'params' => array( 'label' => _( 'Title' ) ),
+        'params' => array( 'label' => __( 'Title' ) ),
         'rules' => array( 'maxlength' => '100' )
       ),
       'shortDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => _( 'Short description' ) ),
+        'params' => array( 'label' => __( 'Short description' ) ),
         'rules' => array( 'maxlength' => '100' )
       ),
       'mediumDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => _( 'Medium description' ), 'type' => 'textarea', 'htmlEditor' => 'true' )
+        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea', 'htmlEditor' => 'true' )
       ),
       'content' => array(
         'translate' => true,
-        'params' => array( 'label' => _( 'Content' ), 'type' => 'textarea',
+        'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
           'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
       ),
-      /*
       'image' => array(
-        'params' => array( 'label' => _( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
+        'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
           'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' )
       ),
+      /*
       'defaultZoom' => array(
-        'params' => array( 'label' => _( 'Map: Default zoom' ) ),
+        'params' => array( 'label' => __( 'Map: Default zoom' ) ),
         'rules' => array( 'max' => '20' )
       ),
       */
       'urlAlias' => array(
         'translate' => true,
-        'params' => array( 'label' => _( 'SEO: URL' ) ),
+        'params' => array( 'label' => __( 'SEO: URL' ) ),
         'rules' => array( 'maxlength' => '2000' )
       ),
       'headKeywords' => array(
-        'params' => array( 'label' => _( 'SEO: Head Keywords' ) ),
+        'params' => array( 'label' => __( 'SEO: Head Keywords' ) ),
         'rules' => array( 'maxlength' => '150' )
       ),
       'headDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => _( 'SEO: Head Description' ) ),
+        'params' => array( 'label' => __( 'SEO: Head Description' ) ),
         'rules' => array( 'maxlength' => '150' )
       ),
       'headTitle' => array(
         'translate' => true,
-        'params' => array( 'label' => _( 'SEO: Head Title' ) ),
+        'params' => array( 'label' => __( 'SEO: Head Title' ) ),
         'rules' => array( 'maxlength' => '100' )
       )
     );
@@ -140,7 +140,7 @@ class GeozzyResourceView extends View
       $form->loadArrayValues( $valuesArray );
     }
 
-    $form->setField( 'submit', array( 'type' => 'submit', 'value' => _( 'Send' ), 'class' => 'gzzAdminToMove' ) );
+    $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Send' ), 'class' => 'gzzAdminToMove' ) );
 
     // Una vez que lo tenemos definido, guardamos el form en sesion
     $form->saveToSession();
@@ -172,14 +172,12 @@ class GeozzyResourceView extends View
       $form->addFormError( 'El servidor no considera válidos los datos recibidos.', 'formError' );
     }
 
-    /*
     if( !$form->existErrors() ) {
       if( !$form->processFileFields() ) {
         $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea '.
           'necesario subirlos otra vez.', 'formError' );
       }
     }
-    */
 
     $urlAlias = array();
     if( !$form->existErrors() ) {
@@ -218,20 +216,17 @@ class GeozzyResourceView extends View
       }
     }
 
-    /*
+    $saveResult = false;
     if( !$form->existErrors() && $valuesArray['image']['values'] ){
-        $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
-        $recurso->save( array( 'affectsDependences' => true ));
-      }
-      else {
-        $recurso->save();
-      }
+      $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
+      $saveResult = $recurso->save( array( 'affectsDependences' => true ));
     }
-    */
-    if( !$form->existErrors() ) {
-      if( $recurso->save() === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
-      }
+    else {
+      $saveResult = $recurso->save();
+    }
+
+    if( !$form->existErrors() && $saveResult === false ) {
+      $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
     }
 
     if( !$form->existErrors() ) {
@@ -239,7 +234,7 @@ class GeozzyResourceView extends View
 
       foreach( $urlAlias as $langId => $url ) {
         if( $this->setUrl( $elemId, $langId, $url ) === false ) {
-          $form->addFieldRuleError( 'urlAlias_'.$langId, false, _( 'Error setting URL alias' ) );
+          $form->addFieldRuleError( 'urlAlias_'.$langId, false, __( 'Error setting URL alias' ) );
           break;
         }
       }

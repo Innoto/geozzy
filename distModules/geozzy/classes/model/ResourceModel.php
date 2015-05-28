@@ -95,7 +95,7 @@ class ResourceModel extends Model
 
   static $extraFilters = array(
       'find' => "UPPER(title)  LIKE CONCAT('%',UPPER(?),'%')",
-      'nottopic' => "id NOT IN (select resource from geozzy_resource_topic where topic=12)"
+      'nottopic' => "id NOT IN (select resource from geozzy_resource_topic where topic=?)"
     );
 
 

@@ -20,10 +20,10 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $template->setTpl('listResourceOutTopic.tpl', 'admin');
 
     $this->template->assign( 'headTitle', __('Create and add resources') );
-    $this->template->assign( 'headActions', '<button type="button" class="btn btn-default btn-outline"> '.__('Return').'</button>
+    $this->template->assign( 'headActions', '<a href="/admin#resourceintopic/list/'.$request['1'].'" class="btn btn-default btn-outline"> '.__('Return').'</a>
                                              <div class="btn-group assignResource">
-                                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                Crear <span class="caret"></span>
+                                              <button id="topCreate" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                '.__('Crear').' <span class="caret"></span>
                                               </button>
                                               <ul class="dropdown-menu" role="menu">
                                                 <li><a href="#">Create</a></li>
@@ -32,13 +32,13 @@ class AdminViewResourceOutTopic extends AdminViewMaster
                                                 <li class="divider"></li>
                                                 <li><a href="#">Separated link</a></li>
                                               </ul>
-                                            </div>
+                                             </div>
                                              <div id="topAssign" class="btn btn-primary assignResource"> '.__('Assign selected').'</div>' );
                                             
-    $this->template->assign( 'footerActions', '<button type="button" class="btn btn-default"> '.__('Return').'</button>
+    $this->template->assign( 'footerActions', '<a href="/admin#resourceintopic/list/'.$request['1'].'" class="btn btn-default"> '.__('Return').'</a>
                                              <div class="btn-group assignResource">
-                                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                Crear <span class="caret"></span>
+                                              <button id="topCreate" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                '.__('Crear').' <span class="caret"></span>
                                               </button>
                                               <ul class="dropdown-menu" role="menu">
                                                 <li><a href="#">Create</a></li>
@@ -47,8 +47,8 @@ class AdminViewResourceOutTopic extends AdminViewMaster
                                                 <li class="divider"></li>
                                                 <li><a href="#">Separated link</a></li>
                                               </ul>
-                                            </div>
-                                             <button type="button" class="btn btn-primary assignResource"> '.__('Assign selected').'</button>' );    
+                                             </div>
+                                             <div id="topAssign" class="btn btn-primary assignResource"> '.__('Assign selected').'</div>' );    
     $this->template->addToBlock( 'col8', $template );
     
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
