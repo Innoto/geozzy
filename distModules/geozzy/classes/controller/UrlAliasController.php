@@ -53,7 +53,9 @@ class UrlAliasController {
       }
     }
     else {
-      echo "<p>Non hai Alias</p><br>\n";
+      header( $_SERVER[ 'SERVER_PROTOCOL' ].' 404 Not Found' );
+      echo __( 'URL not found: /'.$this->urlFrom );
+      exit();
     }
 
     return $alternative;

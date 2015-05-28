@@ -25,14 +25,14 @@
   </select>
 
   <script>
-    $( document ).ready(function() {
+    /*$( document ).ready(function() {
       alert('hola');
       $('#asigned_terms').chosen();
 
       $('#asigned_terms2').select2();
-      
-      $('#asigned_terms3').select2().select2Sortable();
-    });
+
+      $('#asigned_terms3').select2Sortable();
+    });*/
   </script>
 
 {/block}
