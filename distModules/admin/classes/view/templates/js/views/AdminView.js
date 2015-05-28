@@ -67,13 +67,17 @@ var AdminView = Backbone.View.extend({
     var pathname = window.location.href;
     parts1 = pathname.split('admin#');
     parts2 = parts1[1].split('/');
-
+    
     if (parts2[0] == 'resourceouttopic'){ //estamos na táboa de asignación intermedia
+      // Assign
       $('#topAssign').bind('click', function(){
         cogumeloTables.AdminViewResourceOutTopic.actionOnSelectedRows('assign', function(){window.location = 'admin#resourceintopic/list/'+parts2[2]});
       });
+      // Create
+      $('#topCreate').bind('click', function(){
+        console.debug($(this));
+      });
     }
-
   },
 
   // effects

@@ -26,7 +26,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $this->template->addToBlock( 'col12', $template );
     $this->template->assign( 'headTitle', $name );
     $this->template->assign( 'headActions', '<a href="/admin#resourceouttopic/list/'.$request['1'].'" class="btn btn-default btn-outline"> '.__('Add resource').'</a>' );
-    $this->template->assign( 'footerActions', '<button class="btn btn-primary"> '.__('Add resource').'</button>' );
+    $this->template->assign( 'footerActions', '<a href="/admin#resourceouttopic/list/'.$request['1'].'" class="btn btn-primary"> '.__('Add resource').'</a>' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
