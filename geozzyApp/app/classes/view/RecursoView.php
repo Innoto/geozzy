@@ -66,6 +66,8 @@ class RecursoView extends View
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
 
+      //error_log( $recursoData );
+
       $resourceView = new GeozzyResourceView();
       $formBlock = $resourceView->getFormBlock( $this->formName,  $this->formUrl, $recursoData[ 'data' ] );
       $this->template->setBlock( 'formNewResourceBlock', $formBlock );
