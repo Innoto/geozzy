@@ -261,7 +261,7 @@ class CoreAPIView extends View
     geozzy::load('model/ResourceModel.php');
     geozzyAPI::load('controller/apiFiltersController.php');
 
-    $resourceModel = new ResourceModel();
+    $resourceModel = new ResourceModel( array('affectsDependences'=>array('UrlAliasModel') ) );
     $resourceList = $resourceModel->listItems( apiFiltersController::resourceListOptions($param) );
     $this->syncModelList( $resourceList );
   }
@@ -316,7 +316,7 @@ class CoreAPIView extends View
     while ($valueobject = $result->fetch() )
     {
       $allData = $valueobject->getAllData();
-      echo $c.json_encode( $allData['data'] );
+      echo $c.json_encode( $allData);
       if($c === ''){$c=',';}
     }
     echo ']';

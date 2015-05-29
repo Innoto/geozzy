@@ -32,7 +32,6 @@ class geozzy extends Module
   public function __construct() {
     $this->addUrlPatterns( '#^'.MOD_GEOZZY_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
 
-
     /* Probando Recursos */
     //$this->addUrlPatterns( '#^recurso$#', 'view:GeozzyResourceView::showRecurso' );
     //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
@@ -193,17 +192,13 @@ class geozzy extends Module
     );
 
 
+
     global $GEOZZY_RESOURCETYPE;
 
-    $GEOZZY_RESOURCETYPE_ALL = array_merge( $GEOZZY_DEFAULT_RESOURCETYPE, $GEOZZY_RESOURCETYPE );
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::addResourceTypes( $GEOZZY_DEFAULT_RESOURCETYPE );
+    ResourcetypeController::addResourceTypes( $GEOZZY_RESOURCETYPE );
 
-    if( count( $GEOZZY_RESOURCETYPE_ALL ) > 0 ) {
-      foreach( $GEOZZY_RESOURCETYPE_ALL as $key => $rt ) {
-        $rt['name'] = $rt['name']['es'];
-        $rtO = new ResourcetypeModel( $rt );
-        $rtO->save();
-      }
-    }
 
     /**
     Crea los Topics definidas en el un archivo de Conf en GeozzyApp por el usuario
