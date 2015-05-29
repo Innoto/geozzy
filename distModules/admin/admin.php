@@ -78,6 +78,24 @@ class admin extends Module
      "installer" => "bower",
      "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
     ),
+
+    array(
+     "id" =>"select2-2",
+     "params" => array("select2#3.5.2"),
+     "installer" => "bower",
+     "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
+    ),
+
+
+    array(
+     "id" =>"chosen",
+     "params" => array("chosen"),
+     "installer" => "bower",
+     "includes" => array("chosen.jquery.min.js", "chosen.min.css")
+    ),
+
+
+
 /*
     array(
      "id" =>"jquery-sortable",

@@ -24,15 +24,34 @@
   {/foreach}
   </select>
 
-  <script>
-    /*$( document ).ready(function() {
+
+  <script type="text/javascript">
+    $( document ).ready(function() {
       alert('hola');
-      $('#asigned_terms').chosen();
-
+      $('#asigned_terms').select2();
       $('#asigned_terms2').select2();
+      $('#asigned_terms3').select2();
 
-      $('#asigned_terms3').select2Sortable();
-    });*/
+
+
+
+
+      $("#asigned_terms3").select2("container").find("ul.select2-choices").sortable({
+          containment: 'parent',
+          start: function() { $("#asigned_terms3").select2("onSortStart"); },
+          update: function() { $("#asigned_terms3").select2("onSortEnd"); }
+      });
+
+
+  //    $("#e15").on("change", function() { $("#e15_val").html($("#e15").val());});
+
+      $("#e15").select2("container").find("ul.select2-choices").sortable({
+          containment: 'parent',
+          start: function() { $("#e15").select2("onSortStart"); },
+          update: function() { $("#e15").select2("onSortEnd"); }
+      });
+
+
+    });
   </script>
-
 {/block}
