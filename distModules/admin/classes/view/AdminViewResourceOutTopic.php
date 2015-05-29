@@ -19,19 +19,26 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $template->assign('resourceouttopicTable', table::getTableHtml('AdminViewResourceOutTopic', '/admin/resourceouttopic/table/'.$request['1']) );
     $template->setTpl('listResourceOutTopic.tpl', 'admin');
 
+    $resourcetype =  new ResourcetypeModel();
+    $resourcetypelist = $resourcetype->listItems(array("filters" => array("intopic" => $request['1'])))->fetchAll();
+
+    $part = '<ul class="dropdown-menu" role="menu">';
+    foreach ($resourcetypelist as $i => $res){
+      $typeList[$i] = $res->getter('name_es');
+      $part = $part.'<a id="'.$res->getter('idName').'" href="">'.$res->getter('name_es').'</a><br>';
+    }
+    $part = $part.'</ul>';
+
+    $this->template->assign('typelist', $typeList);
+    $foreachType = '<ul class="dropdown-menu" role="menu">{foreach from=$typeList item=type}<li><a href="#">{$type}</a></li>{/foreach}</ul>';
+
     $this->template->assign( 'headTitle', __('Create and add resources') );
     $this->template->assign( 'headActions', '<a href="/admin#resourceintopic/list/'.$request['1'].'" class="btn btn-default btn-outline"> '.__('Return').'</a>
                                              <div class="btn-group assignResource">
                                               <button id="topCreate" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                 '.__('Crear').' <span class="caret"></span>
                                               </button>
-                                              <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Create</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                              </ul>
+                                              '.$part.'
                                              </div>
                                              <div id="topAssign" class="btn btn-primary assignResource"> '.__('Assign selected').'</div>' );
                                             
@@ -40,13 +47,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster
                                               <button id="topCreate" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                 '.__('Crear').' <span class="caret"></span>
                                               </button>
-                                              <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Create</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                              </ul>
+                                              '.$part.'
                                              </div>
                                              <div id="topAssign" class="btn btn-primary assignResource"> '.__('Assign selected').'</div>' );    
     $this->template->addToBlock( 'col8', $template );

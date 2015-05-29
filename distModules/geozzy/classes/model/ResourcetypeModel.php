@@ -28,7 +28,9 @@ class ResourcetypeModel extends Model
 
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+      'intopic' => "id IN (select resourceType from geozzy_resourcetype_topic where topic=?)"
+    );
 
 
   function __construct( $datarray= array(), $otherRelObj = false ) {

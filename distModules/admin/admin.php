@@ -55,7 +55,7 @@ class admin extends Module
      "params" => array("raphael"),
      "installer" => "bower",
      "includes" => array("raphael-min.js")
-    ),
+   ),/*
     array(
      "id" =>"jquery-ui-sortable",
      "params" => array("jquery-ui-sortable"),
@@ -67,14 +67,14 @@ class admin extends Module
      "params" => array("html.sortable"),
      "installer" => "bower",
      "includes" => array("dist/html.sortable.js")
-    ),
+   ),*/
     /*array(
      "id" =>"html5-sortable",
      "params" => array("html5-sortable"),
      "installer" => "bower",
      "includes" => array("sortable.js")
    ),*/
-
+   /*
     array(
      "id" =>"chosen",
      "params" => array("chosen"),
@@ -92,7 +92,7 @@ class admin extends Module
      "params" => array("select2.sortable"),
      "installer" => "bower",
      "includes" => array("select2.sortable.js", "select2.sortable.css")
-    ),
+   ),*/
     /*array(
      "id" =>"uikit",
      "params" => array("uikit"),
@@ -128,7 +128,6 @@ class admin extends Module
     'styles/adminNestable.less',
     'js/app.js',
     'js/views/AdminView.js',
-    'js/views/ResourceView.js',
     'js/views/CategoryEditorView.js',
     'js/routers/AdminRouter.js',
     'js/models/TaxonomygroupModel.js',
