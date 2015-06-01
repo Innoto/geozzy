@@ -168,6 +168,8 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/resourceouttopic/table/(\d+)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/assign/(\d+)/(.*)$#', 'view:AdminViewResourceOutTopic::addResourceTopic' );
 
+    
+    $this->addUrlPatterns( '#^admin/resource/create/(\d+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
     $this->addUrlPatterns( '#^admin/resource/sendresource$#', 'view:AdminViewResource::sendResourceForm' );

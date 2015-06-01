@@ -74,10 +74,6 @@ var AdminView = Backbone.View.extend({
         $('#topAssign').bind('click', function(){
           cogumeloTables.AdminViewResourceOutTopic.actionOnSelectedRows('assign', function(){window.location = 'admin#resourceintopic/list/'+parts2[2]});
         });
-        // Create
-        $('#topCreate').bind('click', function(){
-          console.debug($(this));
-        });
       }
     }
   },
