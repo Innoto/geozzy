@@ -56,14 +56,20 @@ class admin extends Module
      "installer" => "bower",
      "includes" => array("raphael-min.js")
     ),
-/*
+
+
+
+
+
+
+
     array(
      "id" =>"jquery-ui",
      "params" => array("jquery-ui"),
      "installer" => "bower",
      "includes" => array("jquery-ui.js")
     ),
-*/
+
 /*
     array(
      "id" =>"jquery-ui-sortable",
@@ -72,18 +78,19 @@ class admin extends Module
      "includes" => array("jquery-ui-sortable.js")
     ),
 */
+/*
     array(
      "id" =>"select2",
      "params" => array("select2"),
      "installer" => "bower",
      "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
     ),
-
+*/
     array(
      "id" =>"select2-2",
      "params" => array("select2#3.5.2"),
      "installer" => "bower",
-     "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
+     "includes" => array("select2.js", "select2.css")
     ),
 
 
@@ -93,9 +100,12 @@ class admin extends Module
      "installer" => "bower",
      "includes" => array("chosen.jquery.min.js", "chosen.min.css")
     ),
-
-
-
+    array(
+     "id" =>"jquery-chosen-sortable",
+     "params" => array("jquery-chosen-sortable"),
+     "installer" => "manual",
+     "includes" => array("jquery-chosen-sortable.js")
+    ),
 /*
     array(
      "id" =>"jquery-sortable",
@@ -104,14 +114,22 @@ class admin extends Module
      "includes" => array("source/js/jquery-sortable.js")
     ),
 */
-/*
     array(
      "id" =>"jqueryui-touch-punch",
      "params" => array("jqueryui-touch-punch"),
      "installer" => "bower",
-     "includes" => array("jquery.ui.touch-puch.js")
+     "includes" => array("jquery.ui.touch-punch.js")
     ),
-*/
+
+
+
+
+
+
+
+
+
+
     array(
      "id" =>"nestable2",
      "params" => array("nestable2"),
