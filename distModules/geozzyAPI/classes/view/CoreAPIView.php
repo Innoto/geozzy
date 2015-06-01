@@ -259,6 +259,44 @@ class CoreAPIView extends View
   }
 
 
+  function uiEventListJson() {
+    header('Content-type: application/json');
+
+
+    ?>
+          {
+              "resourcePath": "/uieventList.json",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "Not found",
+                                      "code": 404
+                                  }
+                              ],
+                              "httpMethod": "GET",
+                              "nickname": "resource",
+                              "parameters": [
+ 
+                              ],
+                              "summary": "Event type list"
+                          }
+                      ],
+                      "path": "/core/uieventlist",
+                      "description": ""
+                  }
+              ]
+
+
+          }
+
+        <?php
+  }
+
+
 
 
 
@@ -316,6 +354,16 @@ class CoreAPIView extends View
   }
 
 
+  // UI events
+  function uiEventList() {
+    require_once APP_BASE_PATH."/conf/geozzyUIEvents.php";
+    global  $GEOZZY_UI_EVENTS;
+
+    header('Content-type: application/json');
+    echo json_encode( $GEOZZY_UI_EVENTS );
+  }
+
+
   function syncModelList( $result ) {
 
     header('Content-type: application/json');
@@ -336,6 +384,8 @@ class CoreAPIView extends View
     $data = $model->getAllData();
     echo json_encode( $data['data'] );
   }
+
+
 
 
 }
