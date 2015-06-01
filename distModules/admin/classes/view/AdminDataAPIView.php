@@ -321,8 +321,8 @@ class AdminDataAPIView extends View
 
   function starred() {
     $taxtermModel = new TaxonomytermModel();
-    //$starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
-    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'taxgroup' => 10 )));
+    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+    //$starredList = $taxtermModel->listItems(array( 'filters' => array( 'taxgroup' => 10 )));
 
     header('Content-type: application/json');
 
