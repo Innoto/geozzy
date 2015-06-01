@@ -4,6 +4,7 @@ Cogumelo::load("coreController/Module.php");
 require_once APP_BASE_PATH."/conf/geozzyTopics.php";
 require_once APP_BASE_PATH."/conf/geozzyTaxonomyGroups.php";
 require_once APP_BASE_PATH."/conf/geozzyResourceType.php";
+require_once APP_BASE_PATH."/conf/geozzyStarred.php";
 
 define('MOD_GEOZZY_URL_DIR', 'geozzy');
 
@@ -100,8 +101,22 @@ class geozzy extends Module
     Crea Taxonomias necesarias para iniciar Geozzy
     */
 
-    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'prominent', 'name' => 'Destacado', 'editable' => 0 ) );
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'starred', 'name' => 'Destacado', 'editable' => 0 ) );
     $taxgroup->save();
+
+    global $GEOZZY_STARRED;
+
+    if( count( $GEOZZY_STARRED ) > 0 ) {
+      foreach( $GEOZZY_STARRED as $key => $term ) {
+        foreach ($term['name'] as $langKey => $name){
+           $term['name_'.$langKey] = $name;
+        }
+        $taxterm = new TaxonomytermModel( $term );
+
+        $taxterm->setter('taxgroup', $taxgroup->getter('id'));
+        $taxterm->save();
+      }
+    }
 
     $taxgroup = new TaxonomygroupModel( array( 'idName' => 'hoteltype', 'name' => 'Tipo de Hotel', 'editable' => 1 ) );
     $taxgroup->save();

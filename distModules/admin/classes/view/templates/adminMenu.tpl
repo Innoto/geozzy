@@ -43,7 +43,18 @@
             <a href="/admin"><i class="fa fa-files-o fa-fw"></i> {t}Pages{/t} </a>
           </li>
           <li class="starred">
-            <a href="/admin#starred"><i class="fa fa-star fa-fw"></i> {t}Starred{/t} </a>
+            <a href="/admin#starred"><i class="fa fa-star fa-fw"></i> {t}Starred{/t} <span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level starredList">
+                 <!-- TOPIC -->
+                <script type="text/template" id="menuStarred">
+                <% _.each(starred, function(star) { %>
+                     <li class="starred star_<%- star.id %>">
+                        <a href="/admin#starred/<%- star.id %>"><i class="fa fa-star fa-fw"></i> <%- star.name_{$langDefault} %> </a>
+                     </li>
+                <% }); %>
+                </script>
+                <!-- END TOPICS -->
+              </ul>
           </li>
           <li class="contents">
             <a href="/admin#resource/list"><i class="fa fa-indent fa-fw"></i> {t}Contents{/t} </a>

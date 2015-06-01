@@ -18,6 +18,10 @@ var AdminView = Backbone.View.extend({
     var menuTopics =  _.template($("#menuTopics").html());
     var menuTopicsContainer = $('#wrapper #side-menu');
     menuTopicsContainer.prepend( menuTopics( { topics:  app.topics.toJSON()  } ) );
+    //Starred
+    var menuStarred =  _.template($("#menuStarred").html());
+    var menuStarredContainer = $('#wrapper .navbar .navbar-default.sidebar .starredList');
+    menuStarredContainer.prepend( menuStarred( { starred:  app.starred.toJSON()  } ) );
   },
 
   categoryEdit: function( id ) {

@@ -135,7 +135,8 @@ class admin extends Module
     'js/models/TopicModel.js',
     'js/collections/CategoryCollection.js',
     'js/collections/CategorytermCollection.js',
-    'js/collections/TopicCollection.js'
+    'js/collections/TopicCollection.js',
+    'js/collections/StarredCollection.js'
   );
 
   public function __construct() {
@@ -193,6 +194,7 @@ class admin extends Module
     $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminDataAPIView::categoryTerms' );
     $this->addUrlPatterns( '#^api/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
+    $this->addUrlPatterns( '#^api/admin/starred$#', 'view:AdminDataAPIView::starred' );
 
 
 
