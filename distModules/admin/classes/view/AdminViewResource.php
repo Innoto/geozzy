@@ -83,14 +83,40 @@ class AdminViewResource extends AdminViewMaster
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
 
+    /**
+    Bloque de 8
+    */
     $resourceView = new GeozzyResourceView();
     $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, false );
+
+    // Manipulamos el contenido del bloque
+    $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
+
+    $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
+    $formSeparate[ 'image' ] = $formFieldsArray[ 'image' ];
+    unset( $formFieldsArray[ 'image' ] );
+    $formBlock->assign( 'formFieldsArray', $formFieldsArray );
+
     $panel = $this->getPanelBlock( $formBlock, 'New Resource', 'fa-archive' );
     $this->template->addToBlock( 'col8', $panel );
 
 
+    /**
+    Bloque de 4
+    */
     $panel = $this->getPanelBlock( 'Recuerda que en algunos campos existe versión en varios idiomas.' );
     $this->template->addToBlock( 'col4', $panel );
+
+
+    /**
+    Bloque de 4 (outro)
+    */
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'image' ], __( 'Selecciona una imagen' ) ) );
+
+
+    /**
+    Admin 8-4
+    */
     $this->template->assign( 'headTitle', __('Create Resource') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
@@ -133,27 +159,40 @@ class AdminViewResource extends AdminViewMaster
         }
       }
 
+
       // Cargo los datos de image dentro de los del recurso
       $fileDep = $recurso->getterDependence( 'image' );
       if( $fileDep !== false ) {
         foreach( $fileDep as $fileModel ) {
           $fileData = $fileModel->getAllData();
           error_log( 'getterDependence fileData: ' . print_r( $fileData, true ) );
-          /*
-          $urlLang = $fileModel->getter('lang');
-          if( $urlLang ) {
-            $recursoData[ 'data' ][ 'image' ] = $urlAlias->getter('urlFrom');
-          }
-          */
+
+          $recursoData[ 'data' ][ 'image' ] = $fileData['data']['absLocation'];
         }
       }
 
-
+      /**
+      Bloque de 8
+      */
       $resourceView = new GeozzyResourceView();
       $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData[ 'data' ] );
+
+      // Manipulamos el contenido del bloque
+      $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
+
+      $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
+      $formSeparate[ 'image' ] = $formFieldsArray[ 'image' ];
+      unset( $formFieldsArray[ 'image' ] );
+      $formBlock->assign( 'formFieldsArray', $formFieldsArray );
+
       $panel = $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' );
       $this->template->addToBlock( 'col8', $panel );
 
+
+
+      /**
+      Bloque de 4
+      */
       $html = 'Recurso asociado con:<br>'.
         ' <i class="fa fa-times"></i> Playas<br>'.
         ' <i class="fa fa-times"></i> Lugares<br>'.
@@ -166,7 +205,15 @@ class AdminViewResource extends AdminViewMaster
       $panel = $this->getPanelBlock( $html, 'Information' );
       $this->template->addToBlock( 'col4', $panel );
 
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( 'Esto é un segundo panel' ) );
+      /**
+      Bloque de 4 (outro)
+      */
+      $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'image' ], __( 'Selecciona una imagen' ) ) );
+
+
+      /**
+      Admin 8-4
+      */
       $this->template->assign( 'headTitle', __('Edit Resource') );
       $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 

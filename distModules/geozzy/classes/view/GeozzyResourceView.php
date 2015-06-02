@@ -29,21 +29,17 @@ class GeozzyResourceView extends View
 
 
   /**
-    Defino un formulario con su TPL como Bloque
+    Defino un formulario
   */
-  public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "GeozzyResourceView: getFormBlock()" );
+  public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
+    error_log( "GeozzyResourceView: getFormObj()" );
 
     $langAvailable = false;
-    $this->template->assign( 'JsLangAvailable', 'false' );
-    $this->template->assign( 'JsLangDefault', 'false' );
     global $LANG_AVAILABLE;
     if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
       $langAvailable = array_keys( $LANG_AVAILABLE );
       $langDefault = LANG_DEFAULT;
       $tmp = implode( "', '", $langAvailable );
-      $this->template->assign( 'JsLangAvailable', "['".$tmp."']" );
-      $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
     }
 
     $form = new FormController( $formName, $urlAction );
@@ -53,7 +49,7 @@ class GeozzyResourceView extends View
 
     // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
     // 'loc'   'type' => 'GEOMETRY'
-    $campos = array(
+    $fieldsInfo = array(
       'title' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Title' ) ),
@@ -75,7 +71,8 @@ class GeozzyResourceView extends View
       ),
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
-          'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' )
+          'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
+        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '150000', 'accept' => 'image/jpeg' )
       ),
       /*
       'defaultZoom' => array(
@@ -104,32 +101,7 @@ class GeozzyResourceView extends View
       )
     );
 
-
-    foreach( $campos as $fieldName => $definition ) {
-      if( !isset( $definition['params'] ) ) {
-        $definition['params'] = false;
-      }
-      if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
-        foreach( $langAvailable as $lang ) {
-          $form->setField( $fieldName.'_'.$lang, $definition['params'] );
-          if( isset( $definition['rules'] ) ) {
-            foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-              $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
-            }
-          }
-          $form->setFieldGroup( $fieldName.'_'.$lang, $fieldName.'_translate' );
-        }
-      }
-      else {
-        $form->setField( $fieldName, $definition['params'] );
-        if( isset( $definition['rules'] ) ) {
-          foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-            $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
-          }
-        }
-      }
-    }
-
+    $this->arrayToForm( $form, $fieldsInfo, $langAvailable );
 
     $form->setValidationRule( 'title_'.$langDefault, 'required' );
 
@@ -145,9 +117,76 @@ class GeozzyResourceView extends View
     // Una vez que lo tenemos definido, guardamos el form en sesion
     $form->saveToSession();
 
+    return( $form );
+  } // function getFormObj()
+
+
+  /**
+   * Crea los campos y les asigna las reglas en form
+   *
+   * @param $form
+   * @param $form
+   * @param $form
+  **/
+  public function arrayToForm( $form, $fieldsInfo, $langAvailable ) {
+    foreach( $fieldsInfo as $fieldName => $definition ) {
+      if( !isset( $definition['params'] ) ) {
+        $definition['params'] = false;
+      }
+      if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
+        $baseClass = '';
+        if( isset( $definition['params']['class'] ) &&  $definition['params']['class'] !== '' ) {
+          $baseClass = $definition['params']['class'];
+        }
+        foreach( $langAvailable as $lang ) {
+          $definition['params']['class'] = $baseClass . ' js-tr js-tr-'.$lang;
+          $form->setField( $fieldName.'_'.$lang, $definition['params'] );
+          if( isset( $definition['rules'] ) ) {
+            foreach( $definition['rules'] as $ruleName => $ruleParams ) {
+              $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
+            }
+          }
+        }
+      }
+      else {
+        $form->setField( $fieldName, $definition['params'] );
+        if( isset( $definition['rules'] ) ) {
+          foreach( $definition['rules'] as $ruleName => $ruleParams ) {
+            $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
+          }
+        }
+      }
+    }
+  }
+
+
+
+  /**
+    Defino un formulario con su TPL como Bloque
+  */
+  public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
+    error_log( "GeozzyResourceView: getFormBlock()" );
+
+    $langAvailable = false;
+    $this->template->assign( 'JsLangAvailable', 'false' );
+    $this->template->assign( 'JsLangDefault', 'false' );
+    global $LANG_AVAILABLE;
+    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
+      $langAvailable = array_keys( $LANG_AVAILABLE );
+      $langDefault = LANG_DEFAULT;
+      $tmp = implode( "', '", $langAvailable );
+      $this->template->assign( 'JsLangAvailable', "['".$tmp."']" );
+      $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
+    }
+
+    $form = $this->getFormObj( $formName, $urlAction, $valuesArray = false );
 
     $this->template->assign( 'formOpen', $form->getHtmpOpen() );
+
+    $this->template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
+
     $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
+
     $this->template->assign( 'formClose', $form->getHtmlClose() );
     $this->template->assign( 'formValidations', $form->getScriptCode() );
 
