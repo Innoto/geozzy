@@ -113,9 +113,17 @@ class RecursoView extends View
       // error_log( $key . ' === ' . print_r( $recurso->getter( $key ), true ) );
     }
 
-    if( isset( $allData['relationship']['0']['data']['absLocation'] ) ) {
-      $this->template->assign( 'image', '<img src="/cgmlformfilews/' . $allData['relationship']['0']['data']['id'] . '"></img>' );
+
+    // Cargo los datos de image dentro de los del recurso
+    $fileDep = $recurso->getterDependence( 'image' );
+    if( $fileDep !== false ) {
+      $this->template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"></img>' );
+      error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
     }
+    else {
+      $this->template->assign( 'image', '<p>'.__('None').'</p>' );
+    }
+
 
     // htmlspecialchars({$output}, ENT_QUOTES, SMARTY_RESOURCE_CHAR_SET);
 

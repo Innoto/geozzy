@@ -46,6 +46,10 @@ $GEOZZY_API_DOC_URLS =  array_merge(
     array(
       'path' => '/topicList.json',
       'description' => 'Topics'
-    )  
+    ),
+    array(
+      'path' => '/uiEventList.json',
+      'description' => 'UI Events'
+    )
   )
 );

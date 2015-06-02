@@ -39,30 +39,26 @@ var AdminView = Backbone.View.extend({
   render: function( ) {
     var that = this;
 
-    if( that.childView != false ) {
+    if( that.childView !== false ) {
       $("#page-wrapper").undelegate();
       that.childView.$el = $('#page-wrapper');
       that.childView.render();
       that.childView.delegateEvents();
     }
 
-    /* Busca los botones de los formularios externos por la class "gzzAdminToMove" los clona y los bindea en el interface de admin.*/
+    /* Busca los botones de los formularios externos por la class "gzzAdminToMove" los clona en el interface de admin.*/
     var buttonsToMove = $('.gzzAdminToMove');
     if( buttonsToMove.size() > 0 ){
       buttonsToMove.each( function() {
         var that = this;
         var cloneButtonTop = $(this).clone();
         var cloneButtonBottom = $(this).clone();
-        if(!$(this).is('.btn, .btn-primary')){
-          cloneButtonTop.addClass('btn  btn-primary');
-          cloneButtonBottom.addClass('btn  btn-primary');
+        if( !$(this).is('.btn, .btn-primary') ){
+          cloneButtonTop.addClass( 'btn btn-primary' );
+          cloneButtonBottom.addClass( 'btn btn-primary' );
         }
-        cloneButtonTop.appendTo( ".headSection .headerActionsContainer" ).on( 'click', function (){
-          $(that).closest('form').submit();
-        });
-        cloneButtonBottom.appendTo( ".footerSection .footerActionsContainer" ).on( 'click', function (){
-          $(that).closest('form').submit();
-        });
+        cloneButtonTop.appendTo( ".headSection .headerActionsContainer" );
+        cloneButtonBottom.appendTo( ".footerSection .footerActionsContainer" );
         $(this).hide();
       });
     }
@@ -75,7 +71,9 @@ var AdminView = Backbone.View.extend({
       if (parts2[0] == 'resourceouttopic'){ //táboa de asignación intermedia recursos-temáticas
         // Assign
         $('#topAssign').bind('click', function(){
-          cogumeloTables.AdminViewResourceOutTopic.actionOnSelectedRows('assign', function(){window.location = 'admin#resourceintopic/list/'+parts2[2]});
+          cogumeloTables.AdminViewResourceOutTopic.actionOnSelectedRows('assign', function() {
+            window.location = 'admin#resourceintopic/list/'+parts2[2];
+          });
         });
       }
       if (parts2[0] == 'starred' && parts2[2] == 'assign'){ //táboa de asignación intermedia recursos-temáticas
@@ -87,13 +85,13 @@ var AdminView = Backbone.View.extend({
     }
   },
 
+
   // effects
   menuSelect: function( menuClass ) {
     $('#side-menu *').removeClass('active');
     $('#side-menu .'+menuClass+' a').addClass('active');
 
     $('.navbar-collapse').collapse('hide');
-
   }
 
 });
