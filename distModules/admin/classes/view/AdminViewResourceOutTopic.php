@@ -25,12 +25,10 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $part = '<ul class="dropdown-menu" role="menu">';
     foreach ($resourcetypelist as $i => $res){
       $typeList[$i] = $res->getter('name_es');
-      $part = $part.'<a id="'.$res->getter('idName').'" href="">'.$res->getter('name_es').'</a><br>';
+      //$part = $part.'<a id="'.$res->getter('idName').'" href="/admin#resource/create">'.$res->getter('name_es').'</a><br>';
+      $part = $part.'<a id="'.$res->getter('idName').'" href="/admin#resource/create/'.$request['1'].'/'.$res->getter('id').'">'.$res->getter('name_es').'</a><br>';
     }
     $part = $part.'</ul>';
-
-    $this->template->assign('typelist', $typeList);
-    $foreachType = '<ul class="dropdown-menu" role="menu">{foreach from=$typeList item=type}<li><a href="#">{$type}</a></li>{/foreach}</ul>';
 
     $this->template->assign( 'headTitle', __('Create and add resources') );
     $this->template->assign( 'headActions', '<a href="/admin#resourceintopic/list/'.$request['1'].'" class="btn btn-default btn-outline"> '.__('Return').'</a>
@@ -53,6 +51,9 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $this->template->addToBlock( 'col8', $template );
     
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
+
+    $panel = $this->getPanelBlock( __('<ul style="list-style:none;"><li>Create a new resource)</li><li>Working with resource types)</li><li>Assign to this topic)</li></ul>'), __('Assign resources: howto') );
+    $this->template->addToBlock( 'col4', $panel );
     $this->template->exec();
   }
 

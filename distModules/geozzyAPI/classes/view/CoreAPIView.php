@@ -74,13 +74,21 @@ class CoreAPIView extends View
                                   "paramType": "path",
                                   "defaultValue": "false",
                                   "required": false
+                                },
+                                {
+                                  "name": "rtype",
+                                  "description": "Resource Type",
+                                  "dataType": "string",
+                                  "paramType": "path",
+                                  "defaultValue": "false",
+                                  "required": false
                                 }
 
                               ],
                               "summary": "Fetches resource list"
                           }
                       ],
-                      "path": "/core/resourcelist/fields/{fields}/filters/{filters}",
+                      "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}",
                       "description": ""
                   }
               ]
@@ -251,6 +259,44 @@ class CoreAPIView extends View
   }
 
 
+  function uiEventListJson() {
+    header('Content-type: application/json');
+
+
+    ?>
+          {
+              "resourcePath": "/uieventList.json",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "Not found",
+                                      "code": 404
+                                  }
+                              ],
+                              "httpMethod": "GET",
+                              "nickname": "resource",
+                              "parameters": [
+ 
+                              ],
+                              "summary": "Event type list"
+                          }
+                      ],
+                      "path": "/core/uieventlist",
+                      "description": ""
+                  }
+              ]
+
+
+          }
+
+        <?php
+  }
+
+
 
 
 
@@ -261,7 +307,7 @@ class CoreAPIView extends View
     geozzy::load('model/ResourceModel.php');
     geozzyAPI::load('controller/apiFiltersController.php');
 
-    $resourceModel = new ResourceModel();
+    $resourceModel = new ResourceModel( array('affectsDependences'=>array('UrlAliasModel') ) );
     $resourceList = $resourceModel->listItems( apiFiltersController::resourceListOptions($param) );
     $this->syncModelList( $resourceList );
   }
@@ -308,6 +354,16 @@ class CoreAPIView extends View
   }
 
 
+  // UI events
+  function uiEventList() {
+    require_once APP_BASE_PATH."/conf/geozzyUIEvents.php";
+    global  $GEOZZY_UI_EVENTS;
+
+    header('Content-type: application/json');
+    echo json_encode( $GEOZZY_UI_EVENTS );
+  }
+
+
   function syncModelList( $result ) {
 
     header('Content-type: application/json');
@@ -316,7 +372,7 @@ class CoreAPIView extends View
     while ($valueobject = $result->fetch() )
     {
       $allData = $valueobject->getAllData();
-      echo $c.json_encode( $allData['data'] );
+      echo $c.json_encode( $allData);
       if($c === ''){$c=',';}
     }
     echo ']';
@@ -328,6 +384,8 @@ class CoreAPIView extends View
     $data = $model->getAllData();
     echo json_encode( $data['data'] );
   }
+
+
 
 
 }

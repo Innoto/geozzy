@@ -111,7 +111,14 @@ $C_ENABLED_MODULES = array(
   'admin',
   'form',
   'Blocks',
-  'table'
+  'table',
+  
+  // resource Types
+  'rtypeHotel',
+
+  // resource Extenssions
+  'rextAccommodation'
+
 );
 // before app/Cogumelo.php execution
 $C_INDEX_MODULES  = array(

@@ -2,6 +2,7 @@
 
   global  $GEOZZY_RESOURCETYPE;
 
+
   $GEOZZY_RESOURCETYPE['rtypeRuta'] = array(
     'idName' => 'rtypeRuta',
     'name' => array(
