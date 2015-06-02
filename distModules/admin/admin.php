@@ -56,64 +56,40 @@ class admin extends Module
      "installer" => "bower",
      "includes" => array("raphael-min.js")
     ),
-
-
-
-
-
-
+/*
 
     array(
      "id" =>"jquery-ui",
      "params" => array("jquery-ui"),
      "installer" => "bower",
-     "includes" => array("jquery-ui.js")
+     "includes" => array("jquery-ui.js", "jquery-ui.css")
     ),
+*/
 
-/*
     array(
      "id" =>"jquery-ui-sortable",
      "params" => array("jquery-ui-sortable"),
      "installer" => "bower",
      "includes" => array("jquery-ui-sortable.js")
     ),
-*/
+
 /*
     array(
      "id" =>"select2",
      "params" => array("select2"),
      "installer" => "bower",
-     "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
+     "includes" => array("dist/js/select2.full.js", "dist/css/select2.css", "dist/js/select2.sortable.js")
     ),
 */
+
     array(
      "id" =>"select2-2",
      "params" => array("select2#3.5.2"),
      "installer" => "bower",
-     "includes" => array("select2.js", "select2.css")
+     "includes" => array("select2.js", "select2.css", "select2.sortable.js")
     ),
 
 
-    array(
-     "id" =>"chosen",
-     "params" => array("chosen"),
-     "installer" => "bower",
-     "includes" => array("chosen.jquery.min.js", "chosen.min.css")
-    ),
-    array(
-     "id" =>"jquery-chosen-sortable",
-     "params" => array("jquery-chosen-sortable"),
-     "installer" => "manual",
-     "includes" => array("jquery-chosen-sortable.js")
-    ),
-/*
-    array(
-     "id" =>"jquery-sortable",
-     "params" => array("jquery-sortable"),
-     "installer" => "bower",
-     "includes" => array("source/js/jquery-sortable.js")
-    ),
-*/
     array(
      "id" =>"jqueryui-touch-punch",
      "params" => array("jqueryui-touch-punch"),
