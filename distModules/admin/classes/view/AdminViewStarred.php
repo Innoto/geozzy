@@ -2,7 +2,7 @@
 admin::load('view/AdminViewMaster.php');
 
 
-class AdminViewResourceOutTopic extends AdminViewMaster
+class AdminViewStarred extends AdminViewMaster
 {
 
   public function __construct( $baseDir ) {
@@ -11,16 +11,16 @@ class AdminViewResourceOutTopic extends AdminViewMaster
 
 
   /**
-  * Section list resource
+  * Section list resources in topic
   **/
-  public function listResourcesOutTopic($request) {
+  public function listAssignStarred($request) {
 
     $template = new Template( $this->baseDir );
-    $template->assign('resourceouttopicTable', table::getTableHtml('AdminViewResourceOutTopic', '/admin/resourceouttopic/table/'.$request['1']) );
-    $template->setTpl('listResourceOutTopic.tpl', 'admin');
+    $template->assign('starredTable', table::getTableHtml('AdminViewStarred', '/admin/starred/table/'.$request[1]) );
+    $template->setTpl('listAsignStarred.tpl', 'admin');
 
-    $resourcetype =  new ResourcetypeModel();
-    $resourcetypelist = $resourcetype->listItems(array("filters" => array("intopic" => $request['1'])))->fetchAll();
+      $resourcetype =  new ResourcetypeModel();
+    $resourcetypelist = $resourcetype->listItems(array("filters" => array("notintaxonomyterm" => $request['1'])))->fetchAll();
 
     $part = '<ul class="dropdown-menu" role="menu">';
     foreach ($resourcetypelist as $i => $res){
@@ -30,7 +30,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $part = $part.'</ul>';
 
     $this->template->assign( 'headTitle', __('Create and add resources') );
-    $this->template->assign( 'headActions', '<a href="/admin#resourceintopic/list/'.$request['1'].'" class="btn btn-default btn-outline"> '.__('Return').'</a>
+    $this->template->assign( 'headActions', '<a href="/admin#starred/list/'.$request['1'].'" class="btn btn-default btn-outline"> '.__('Return').'</a>
                                              <div class="btn-group assignResource">
                                               <button id="topCreate" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                 '.__('Crear').' <span class="caret"></span>
@@ -39,24 +39,25 @@ class AdminViewResourceOutTopic extends AdminViewMaster
                                              </div>
                                              <div id="topAssign" class="btn btn-primary assignResource"> '.__('Assign selected').'</div>' );
                                             
-    $this->template->assign( 'footerActions', '<a href="/admin#resourceintopic/list/'.$request['1'].'" class="btn btn-default"> '.__('Return').'</a>
+    $this->template->assign( 'footerActions', '<a href="/admin#starred/list/'.$request['1'].'" class="btn btn-default"> '.__('Return').'</a>
                                              <div class="btn-group assignResource">
                                               <button id="topCreate" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                 '.__('Crear').' <span class="caret"></span>
                                               </button>
                                               '.$part.'
                                              </div>
-                                             <div id="topAssign" class="btn btn-primary assignResource"> '.__('Assign selected').'</div>' );    
+                                             <div id="topAssign" class="btn btn-primary assignResource"> '.__('Assign selected').'</div>' ); 
+    
     $this->template->addToBlock( 'col8', $template );
     
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
-    $panel = $this->getPanelBlock( __('<ul style="list-style:none;"><li>Create a new resource)</li><li>Working with resource types)</li><li>Assign to this topic)</li></ul>'), __('Assign resources: howto') );
+    $panel = $this->getPanelBlock( __('<ul style="list-style:none;"><li>Create a new resource</li><li>Working with resource types)</li><li>Assign to this starred)</li></ul>'), __('Assign resources: howto') );
     $this->template->addToBlock( 'col4', $panel );
     $this->template->exec();
   }
 
-  public function listResourcesOutTopicTable($topicId) {
+  public function listStarredTable($starredId) {
 
     table::autoIncludes();
     $resource =  new ResourceModel();
@@ -68,7 +69,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
 
-    // set list Count methods in controller
+     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
     $tabla->setCountMethodAlias('listCount');
 
@@ -81,15 +82,14 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $tabla->setCol('type', __('Type'));
     $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
 
-    $tabla->setActionMethod(__('Assign'), 'assign', 'createTopicRelation('.$topicId[1].',$rowId)');
+    $tabla->setActionMethod(__('Assign'), 'assign', 'createTaxonomytermRelation('.$starredId[1].',$rowId)');
 
     // Filtrar por temática
-    $tabla->setDefaultFilters( array('nottopic'=> $topicId[1] ) );
+    $tabla->setDefaultFilters( array('notintaxonomyterm'=> $starredId[1] ) );
 
     // imprimimos o JSON da taboa
     $tabla->exec();
   }
-
 
 }
 

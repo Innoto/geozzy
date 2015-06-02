@@ -95,7 +95,8 @@ class ResourceModel extends Model
 
   static $extraFilters = array(
       'find' => "UPPER(title)  LIKE CONCAT('%',UPPER(?),'%')",
-      'nottopic' => "id NOT IN (select resource from geozzy_resource_topic where topic=?)"
+      'nottopic' => "id NOT IN (select resource from geozzy_resource_topic where topic=?)",
+      'notintaxonomyterm' => "id NOT IN (select resource from geozzy_resource_taxonomyterm where taxonomyterm=?)"
     );
 
 
@@ -105,16 +106,35 @@ class ResourceModel extends Model
 
 
   /**
-  * create item
+  * create relation between resource and topic
   *
   * @return boolean
   */
-  function createRelation($topicId, $resourceId) {
+  function createTopicRelation($topicId, $resourceId) {
 
     $this->dataFacade->transactionStart();
 
     //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $resourcetopic =  new ResourceTopicModel(array("resource" => $resourceId, "topic" => $topicId));
+    $resourcetopic->save();
+
+
+    $this->dataFacade->transactionEnd();
+
+    return true;
+  }
+
+   /**
+  * create relation between resource and starred taxonomy
+  *
+  * @return boolean
+  */
+  function createTaxonomytermRelation($starredId, $resourceId) {
+
+    $this->dataFacade->transactionStart();
+
+    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    $resourcetopic =  new ResourceTaxonomytermModel(array("resource" => $resourceId, "taxonomyterm" => $starredId));
     $resourcetopic->save();
 
 
