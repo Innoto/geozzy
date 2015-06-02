@@ -129,7 +129,8 @@ class admin extends Module
     'js/models/TopicModel.js',
     'js/collections/CategoryCollection.js',
     'js/collections/CategorytermCollection.js',
-    'js/collections/TopicCollection.js'
+    'js/collections/TopicCollection.js',
+    'js/collections/StarredCollection.js'
   );
 
   public function __construct() {
@@ -162,6 +163,10 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/resourceouttopic/table/(\d+)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/assign/(\d+)/(.*)$#', 'view:AdminViewResourceOutTopic::addResourceTopic' );
 
+    $this->addUrlPatterns( '#^admin/starred/(.*)/assign$#', 'view:AdminViewStarred::listAssignStarred' );
+    $this->addUrlPatterns( '#^admin/starred/table/(\d+)$#', 'view:AdminViewStarred::listStarredTable' );
+    
+    $this->addUrlPatterns( '#^admin/resource/create/(\d+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
     $this->addUrlPatterns( '#^admin/resource/sendresource$#', 'view:AdminViewResource::sendResourceForm' );
@@ -185,6 +190,7 @@ class admin extends Module
     $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminDataAPIView::categoryTerms' );
     $this->addUrlPatterns( '#^api/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
+    $this->addUrlPatterns( '#^api/admin/starred$#', 'view:AdminDataAPIView::starred' );
 
 
 

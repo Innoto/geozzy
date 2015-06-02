@@ -319,4 +319,23 @@ class AdminDataAPIView extends View
 
   }
 
+  function starred() {
+    $taxtermModel = new TaxonomytermModel();
+    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+
+    header('Content-type: application/json');
+
+    echo '[';
+
+    $c = '';
+    while ($starred = $starredList->fetch() )
+    {
+      $starData = $starred->getAllData();
+      echo $c.json_encode( $starData['data'] );
+      if($c === ''){$c=',';}
+    }
+    echo ']';
+
+  }
+
 }

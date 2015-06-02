@@ -37,6 +37,8 @@ class geozzyAPI extends Module
     $this->addUrlPatterns( '#^api/categoryList.json$#', 'view:CoreAPIView::categoryListJson' );
     $this->addUrlPatterns( '#^api/categoryTerms.json$#', 'view:CoreAPIView::categoryTermsJson' );
     $this->addUrlPatterns( '#^api/topicList.json$#', 'view:CoreAPIView::topicListJson' );
+    $this->addUrlPatterns( '#^api/uiEventList.json$#', 'view:CoreAPIView::uiEventListJson' );    
+    
 
     // resources
     $this->addUrlPatterns( '#^api/core/resourcelist(.*)$#', 'view:CoreAPIView::resourceList' );    
@@ -48,6 +50,9 @@ class geozzyAPI extends Module
 
     // Topics
     $this->addUrlPatterns( '#^api/core/topiclist$#', 'view:CoreAPIView::topicList' );
+
+    // UI events
+    $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:CoreAPIView::uiEventList' );
 
 
   }
