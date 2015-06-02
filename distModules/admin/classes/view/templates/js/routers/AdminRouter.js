@@ -20,7 +20,7 @@ var AdminRouter = Backbone.Router.extend({
     "resource/list": "resourceList",
     "resourceintopic/list/:id": "resourceintopicList",
     "resourceouttopic/list/:id": "resourceouttopicList",
-    "starred/list/:id": "starredList",
+    "starred/:id/assign": "starredAssign",
     "resource/create" : "resourceCreate",
     "resource/create/:topic/:resourcetype" : "resourceCreateinTopic",
     "resource/edit/:id" : "resourceEdit"
@@ -94,8 +94,8 @@ var AdminRouter = Backbone.Router.extend({
     app.mainView.loadAjaxContent( '/admin/resourceouttopic/list/'+id);   
   },
 
-  starredList: function(id) {
-    app.mainView.loadAjaxContent( '/admin/starred/list/'+id);   
+  starredAssign: function(id) {
+    app.mainView.loadAjaxContent( '/admin/starred/'+id+'/assign');   
   },
 
 

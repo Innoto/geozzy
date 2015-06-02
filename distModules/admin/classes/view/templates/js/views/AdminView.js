@@ -72,11 +72,16 @@ var AdminView = Backbone.View.extend({
     parts1 = pathname.split('admin#');
     if (parts1[1]){
       parts2 = parts1[1].split('/');
-      
-      if (parts2[0] == 'resourceouttopic'){ //estamos na táboa de asignación intermedia
+      if (parts2[0] == 'resourceouttopic'){ //táboa de asignación intermedia recursos-temáticas
         // Assign
         $('#topAssign').bind('click', function(){
           cogumeloTables.AdminViewResourceOutTopic.actionOnSelectedRows('assign', function(){window.location = 'admin#resourceintopic/list/'+parts2[2]});
+        });
+      }
+      if (parts2[0] == 'starred' && parts2[2] == 'assign'){ //táboa de asignación intermedia recursos-temáticas
+        // Assign
+        $('#topAssign').bind('click', function(){
+          cogumeloTables.AdminViewStarred.actionOnSelectedRows('assign', function(){window.location = 'admin#starred/'+parts2[1]+'/assign';});
         });
       }
     }

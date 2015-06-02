@@ -25,7 +25,6 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $part = '<ul class="dropdown-menu" role="menu">';
     foreach ($resourcetypelist as $i => $res){
       $typeList[$i] = $res->getter('name_es');
-      //$part = $part.'<a id="'.$res->getter('idName').'" href="/admin#resource/create">'.$res->getter('name_es').'</a><br>';
       $part = $part.'<a id="'.$res->getter('idName').'" href="/admin#resource/create/'.$request['1'].'/'.$res->getter('id').'">'.$res->getter('name_es').'</a><br>';
     }
     $part = $part.'</ul>';
@@ -82,7 +81,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster
     $tabla->setCol('type', __('Type'));
     $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
 
-    $tabla->setActionMethod(__('Assign'), 'assign', 'createRelation('.$topicId[1].',$rowId)');
+    $tabla->setActionMethod(__('Assign'), 'assign', 'createTopicRelation('.$topicId[1].',$rowId)');
 
     // Filtrar por temática
     $tabla->setDefaultFilters( array('nottopic'=> $topicId[1] ) );
