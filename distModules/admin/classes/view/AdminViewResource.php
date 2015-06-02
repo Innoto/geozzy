@@ -97,14 +97,14 @@ class AdminViewResource extends AdminViewMaster
     unset( $formFieldsArray[ 'image' ] );
     $formBlock->assign( 'formFieldsArray', $formFieldsArray );
 
-    $panel = $this->getPanelBlock( $formBlock, 'New Resource', 'fa-archive' );
+    $panel = $this->getPanelBlock( $formBlock, __( 'New Resource' ), 'fa-archive' );
     $this->template->addToBlock( 'col8', $panel );
 
 
     /**
     Bloque de 4
     */
-    $panel = $this->getPanelBlock( 'Recuerda que en algunos campos existe versión en varios idiomas.' );
+    $panel = $this->getPanelBlock( __( 'Recuerda que en algunos campos existe versión en varios idiomas.' ) );
     $this->template->addToBlock( 'col4', $panel );
 
 
@@ -135,16 +135,13 @@ class AdminViewResource extends AdminViewMaster
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];
       $recModel = new ResourceModel();
-
       $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel', 'UrlAliasModel' ),
-          'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
-
+        'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
       $recurso = $recursosList->fetch();
     }
 
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
-      error_log( 'recursoData: ' . print_r( $recursoData, true ) );
 
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
@@ -167,9 +164,10 @@ class AdminViewResource extends AdminViewMaster
           $fileData = $fileModel->getAllData();
           error_log( 'getterDependence fileData: ' . print_r( $fileData, true ) );
 
-          $recursoData[ 'data' ][ 'image' ] = $fileData['data']['absLocation'];
+          $recursoData[ 'data' ][ 'image' ] = $fileData['data'];
         }
       }
+      error_log( 'recursoData: ' . print_r( $recursoData[ 'data' ], true ) );
 
       /**
       Bloque de 8
@@ -202,7 +200,7 @@ class AdminViewResource extends AdminViewMaster
         '<br>'.
         ' <i class="fa fa-times"></i> Eliminar Recurso<br>'.
         '';
-      $panel = $this->getPanelBlock( $html, 'Information' );
+      $panel = $this->getPanelBlock( $html, __( 'Information' ) );
       $this->template->addToBlock( 'col4', $panel );
 
       /**
