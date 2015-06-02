@@ -76,7 +76,7 @@ var AdminView = Backbone.View.extend({
           });
         });
       }
-      if (parts2[0] == 'starred' && parts2[2] == 'assign'){ //táboa de asignación intermedia recursos-temáticas
+      if (parts2[0] == 'starred' && parts2[2] == 'assign'){ //táboa de asignación intermedia recursos-destacados
         // Assign
         $('#topAssign').bind('click', function(){
           cogumeloTables.AdminViewStarred.actionOnSelectedRows('assign', function(){window.location = 'admin#starred/'+parts2[1]+'/assign';});
