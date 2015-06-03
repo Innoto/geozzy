@@ -73,22 +73,22 @@ class admin extends Module
      "includes" => array("jquery-ui-sortable.js")
     ),
 
-/*
+
     array(
      "id" =>"select2",
      "params" => array("select2"),
      "installer" => "bower",
-     "includes" => array("dist/js/select2.full.js", "dist/css/select2.css", "dist/js/select2.sortable.js")
+     "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
     ),
-*/
 
+/*
     array(
      "id" =>"select2-2",
      "params" => array("select2#3.5.2"),
      "installer" => "bower",
      "includes" => array("select2.js", "select2.css", "select2.sortable.js")
     ),
-
+*/
 
     array(
      "id" =>"jqueryui-touch-punch",
@@ -165,7 +165,7 @@ class admin extends Module
 
     $this->addUrlPatterns( '#^admin/starred/(.*)/assign$#', 'view:AdminViewStarred::listAssignStarred' );
     $this->addUrlPatterns( '#^admin/starred/table/(\d+)$#', 'view:AdminViewStarred::listStarredTable' );
-    
+
     $this->addUrlPatterns( '#^admin/resource/create/(\d+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
