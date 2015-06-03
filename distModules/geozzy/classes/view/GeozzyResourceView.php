@@ -32,7 +32,7 @@ class GeozzyResourceView extends View
     Defino un formulario
   */
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "GeozzyResourceView: getFormObj()" );
+    // error_log( "GeozzyResourceView: getFormObj()" );
 
     $langAvailable = false;
     global $LANG_AVAILABLE;
@@ -101,7 +101,7 @@ class GeozzyResourceView extends View
 
 
     //Si es una edicion, añadimos el ID y cargamos los datos
-    error_log( 'getFormObj: ' . print_r( $valuesArray, true ) );
+    // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
     if( $valuesArray !== false ){
       $form->setField( 'id', array( 'type' => 'reserved', 'value' => null ) );
       $form->loadArrayValues( $valuesArray );
@@ -160,7 +160,7 @@ class GeozzyResourceView extends View
     Defino un formulario con su TPL como Bloque
   */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "GeozzyResourceView: getFormBlock()" );
+    // error_log( "GeozzyResourceView: getFormBlock()" );
 
     $langAvailable = false;
     $this->template->assign( 'JsLangAvailable', 'false' );
@@ -316,18 +316,18 @@ class GeozzyResourceView extends View
     $elemsList = $elemModel->listItems( array( 'filters' => array( 'canonical' => 1, 'resource' => $resId,
       'lang' => $langId ) ) );
     if( $elem = $elemsList->fetch() ) {
-      error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
+      // error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
       $aliasArray[ 'id' ] = $elem->getter( 'id' );
     }
 
     $elemModel = new UrlAliasModel( $aliasArray );
     if( $elemModel->save() === false ) {
       $result = false;
-      error_log( 'setUrl: ERROR gardando a url' );
+      // error_log( 'setUrl: ERROR gardando a url' );
     }
     else {
       $result = $elemModel->getter( 'id' );
-      error_log( 'setUrl: Creada/Actualizada - '.$result );
+      // error_log( 'setUrl: Creada/Actualizada - '.$result );
     }
 
     return $result;

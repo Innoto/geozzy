@@ -78,7 +78,7 @@ class AdminViewResource extends AdminViewMaster
   */
 
   public function resourceForm() {
-    error_log( "AdminFormsAPIView: resourceForm()" );
+    error_log( "AdminViewResource: resourceForm()" );
 
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
@@ -125,7 +125,7 @@ class AdminViewResource extends AdminViewMaster
 
 
   public function resourceEditForm( $urlParams = false ) {
-    error_log( "AdminFormsAPIView: resourceEditForm()". print_r( $urlParams, true ) );
+    error_log( "AdminViewResource: resourceEditForm()". print_r( $urlParams, true ) );
 
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
@@ -146,9 +146,7 @@ class AdminViewResource extends AdminViewMaster
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
       if( $urlAliasDep !== false ) {
-        error_log( 'getterDependence UrlAliasModel' );
         foreach( $urlAliasDep as $urlAlias ) {
-          error_log( 'getterDependence UrlAliasModel: ' . $urlAlias->getter('lang') );
           $urlLang = $urlAlias->getter('lang');
           if( $urlLang ) {
             $recursoData[ 'data' ][ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
@@ -162,8 +160,6 @@ class AdminViewResource extends AdminViewMaster
       if( $fileDep !== false ) {
         foreach( $fileDep as $fileModel ) {
           $fileData = $fileModel->getAllData();
-          error_log( 'getterDependence fileData: ' . print_r( $fileData, true ) );
-
           $recursoData[ 'data' ][ 'image' ] = $fileData['data'];
         }
       }
@@ -224,7 +220,7 @@ class AdminViewResource extends AdminViewMaster
 
 
   public function sendResourceForm() {
-    error_log( "AdminFormsAPIView: sendResourceForm()" );
+    error_log( "AdminViewResource: sendResourceForm()" );
 
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();
