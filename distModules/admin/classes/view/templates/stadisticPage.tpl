@@ -42,33 +42,13 @@
   <h3>Select 3.5.2 (Input)</h3>
   <input id="e15" type="hidden" style="width:250px;"></input>
 {literal}
-  <script type="text/javascript">
-    $( document ).ready(function() {
 
-var dataSelected = [];
-var selector = $('#asigned_terms2);
-var selectedOptions = $('#asigned_terms2 option:selected');
-var nestableContainer = $('.asign2selected');
+<script type="text/javascript">
 
 
+$( document ).ready(function() {
 
-selectedOptions.each(function( index ) {
-  dataSelected.push({
-    id: $( this ).val(),
-    value: $( this ).val(),
-    weight: $( this ).attr('data-multilist-weight')
-  });
-});
-
-
-nestableContainer.nestable({
-  maxDepth: 1
-});
-selector.select2({
-  tags: "true",
-  placeholder: "Select an option"
-});
-
+  $('#asigned_terms2').multiList();
 
 
 
@@ -115,7 +95,9 @@ selector.select2({
           update: function() { $("#e15").select2("onSortEnd"); }
       });
 */
-    });
-  </script>
+});
+
+
+</script>
 {/literal}
 {/block}

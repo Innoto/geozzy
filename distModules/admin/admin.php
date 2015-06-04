@@ -120,6 +120,7 @@ class admin extends Module
     'styles/adminBase.less',
     'styles/admin.less',
     'styles/adminNestable.less',
+    'js/multiList.js',
     'js/app.js',
     'js/views/AdminView.js',
     'js/views/CategoryEditorView.js',
