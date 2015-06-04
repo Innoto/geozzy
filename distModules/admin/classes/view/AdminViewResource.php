@@ -142,6 +142,7 @@ class AdminViewResource extends AdminViewMaster
 
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
+      $recursoData = $recursoData[ 'data' ];
 
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
@@ -149,27 +150,27 @@ class AdminViewResource extends AdminViewMaster
         foreach( $urlAliasDep as $urlAlias ) {
           $urlLang = $urlAlias->getter('lang');
           if( $urlLang ) {
-            $recursoData[ 'data' ][ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
+            $recursoData[ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
           }
         }
       }
 
 
-      // Cargo los datos de image dentro de los del recurso
+      // Cargo los datos previos de image dentro de los del recurso
       $fileDep = $recurso->getterDependence( 'image' );
       if( $fileDep !== false ) {
         foreach( $fileDep as $fileModel ) {
           $fileData = $fileModel->getAllData();
-          $recursoData[ 'data' ][ 'image' ] = $fileData['data'];
+          $recursoData[ 'image' ] = $fileData[ 'data' ];
         }
       }
-      error_log( 'recursoData: ' . print_r( $recursoData[ 'data' ], true ) );
+      error_log( 'recursoData: ' . print_r( $recursoData, true ) );
 
       /**
       Bloque de 8
       */
       $resourceView = new GeozzyResourceView();
-      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData[ 'data' ] );
+      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData );
 
       // Manipulamos el contenido del bloque
       $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );

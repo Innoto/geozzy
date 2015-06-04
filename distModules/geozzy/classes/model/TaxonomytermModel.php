@@ -34,8 +34,12 @@ class TaxonomytermModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'TaxonomygroupModel',
       'key' => 'id'
+    ),
+    'icon' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'FiledataModel',
+      'key' => 'id'
     )
-
   );
 
   static $extraFilters = array();

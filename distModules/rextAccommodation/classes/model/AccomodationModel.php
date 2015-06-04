@@ -18,7 +18,39 @@ class AccomodationModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'ResourceModel',
       'key' => 'id'
-    )   
+    ),
+
+
+    'reservationURL' => array(
+      'type' => 'VARCHAR',
+      'size' => 2000
+    ),
+
+    'reservationPhone' => array(
+      'type' => 'VARCHAR',
+      'size' => 20
+    ),
+
+    'singleRooms' => array(
+      'type' => 'INT'
+    ),
+
+    'doubleRooms' => array(
+      'type' => 'INT'
+    ),
+
+    'familyRooms' => array(
+      'type' => 'INT'
+    ),
+
+    'beds' => array(
+      'type' => 'INT'
+    ),
+
+
+    'averagePrice' => array(
+      'type' => 'FLOAT'
+    ),
   );
 
   static $extraFilters = array();

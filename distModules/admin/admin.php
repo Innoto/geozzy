@@ -55,63 +55,57 @@ class admin extends Module
      "params" => array("raphael"),
      "installer" => "bower",
      "includes" => array("raphael-min.js")
-   ),/*
+    ),
+/*
+
+    array(
+     "id" =>"jquery-ui",
+     "params" => array("jquery-ui"),
+     "installer" => "bower",
+     "includes" => array("jquery-ui.js", "jquery-ui.css")
+    ),
+*/
+
     array(
      "id" =>"jquery-ui-sortable",
      "params" => array("jquery-ui-sortable"),
      "installer" => "bower",
      "includes" => array("jquery-ui-sortable.js")
     ),
-    array(
-     "id" =>"html.sortable",
-     "params" => array("html.sortable"),
-     "installer" => "bower",
-     "includes" => array("dist/html.sortable.js")
-   ),*/
-    /*array(
-     "id" =>"html5-sortable",
-     "params" => array("html5-sortable"),
-     "installer" => "bower",
-     "includes" => array("sortable.js")
-   ),*/
-   /*
-    array(
-     "id" =>"chosen",
-     "params" => array("chosen"),
-     "installer" => "bower",
-     "includes" => array("chosen.jquery.min.js", "chosen.min.css")
-    ),
+
+
     array(
      "id" =>"select2",
      "params" => array("select2"),
      "installer" => "bower",
      "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
     ),
-    array(
-     "id" =>"select2.sortable",
-     "params" => array("select2.sortable"),
-     "installer" => "bower",
-     "includes" => array("select2.sortable.js", "select2.sortable.css")
-   ),*/
-    /*array(
-     "id" =>"uikit",
-     "params" => array("uikit"),
-     "installer" => "bower",
-     "includes" => array()
-   ),*/
 
-   /*array(
-     "id" =>"jquery-sortable",
-     "params" => array("jquery-sortable"),
+/*
+    array(
+     "id" =>"select2-2",
+     "params" => array("select2#3.5.2"),
      "installer" => "bower",
-     "includes" => array("source/js/jquery-sortable.js")
-   ),*/
-    /*array(
+     "includes" => array("select2.js", "select2.css", "select2.sortable.js")
+    ),
+*/
+
+    array(
      "id" =>"jqueryui-touch-punch",
      "params" => array("jqueryui-touch-punch"),
      "installer" => "bower",
-     "includes" => array("jquery.ui.touch-puch.js")
-   ),*/
+     "includes" => array("jquery.ui.touch-punch.js")
+    ),
+
+
+
+
+
+
+
+
+
+
     array(
      "id" =>"nestable2",
      "params" => array("nestable2"),
@@ -126,6 +120,7 @@ class admin extends Module
     'styles/adminBase.less',
     'styles/admin.less',
     'styles/adminNestable.less',
+    'js/multiList.js',
     'js/app.js',
     'js/views/AdminView.js',
     'js/views/CategoryEditorView.js',
@@ -171,7 +166,7 @@ class admin extends Module
 
     $this->addUrlPatterns( '#^admin/starred/(.*)/assign$#', 'view:AdminViewStarred::listAssignStarred' );
     $this->addUrlPatterns( '#^admin/starred/table/(\d+)$#', 'view:AdminViewStarred::listStarredTable' );
-    
+
     $this->addUrlPatterns( '#^admin/resource/create/(\d+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );

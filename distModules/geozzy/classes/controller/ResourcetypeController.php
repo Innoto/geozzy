@@ -51,4 +51,56 @@ class ResourcetypeController {
 
     return $retModels;
   }
+
+
+
+  static function getAllCategories( $rtArray ) {
+
+    $returnCategories = array();
+
+    if( count( $rtArray ) > 0 ) {
+      foreach( $rtArray as $key => $rt ) {
+        $returnCategories = array_merge( $returnCategories, self::getRtCategories( $rt['idName'] ) );
+      }
+    }
+
+    return $returnCategories;
+  }
+
+
+
+
+  static function getRtCategories( $rtClass ) {
+    $retModels = array();
+
+    if( class_exists( $rtClass )  && property_exists($rtClass, 'rext' ) ) {
+      $rtObj = new $rtClass();
+      if( is_array( $rtObj->rext ) && sizeof($rtObj->rext)>0 ) {
+        foreach ( $rtObj->rext as $rext) {
+          $retModels = array_merge( $retModels,  self::getRextCategories( $rext )  );
+        }
+      }
+    }
+
+    return $retModels;
+  }
+
+
+
+  static function getRextCategories( $rextClass ) {
+
+    $retModels = array();
+
+    if( class_exists( $rextClass )  && property_exists($rextClass, 'taxonomies' ) ) {
+      $rextObj = new $rextClass();
+
+      if( is_array( $rextObj->taxonomies ) && sizeof($rextObj->taxonomies)>0 ) {
+        $retModels = $rextObj->taxonomies ;
+      }
+
+    }
+
+    return $retModels;
+  }
+
 }
