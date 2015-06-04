@@ -98,56 +98,6 @@ class geozzy extends Module
 
 
     /**
-    Crea Taxonomias necesarias para iniciar Geozzy
-    */
-
-    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'starred', 'name' => 'Destacado', 'editable' => 0 ) );
-    $taxgroup->save();
-
-    global $GEOZZY_STARRED;
-
-    if( count( $GEOZZY_STARRED ) > 0 ) {
-      foreach( $GEOZZY_STARRED as $key => $term ) {
-        foreach ($term['name'] as $langKey => $name){
-           $term['name_'.$langKey] = $name;
-        }
-        $taxterm = new TaxonomytermModel( $term );
-
-        $taxterm->setter('taxgroup', $taxgroup->getter('id'));
-        $taxterm->save();
-      }
-    }
-
-    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'hoteltype', 'name' => 'Tipo de Hotel', 'editable' => 1 ) );
-    $taxgroup->save();
-    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'events', 'name' => 'Eventos', 'editable' => 1 ) );
-    $taxgroup->save();
-    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'categories', 'name' => 'Categorias', 'editable' => 1 ) );
-    $taxgroup->save();
-
-
-    /**
-    Crea Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
-    */
-
-    global $GEOZZY_TAXONOMIESGROUPS;
-
-    if( count( $GEOZZY_TAXONOMIESGROUPS ) > 0 ) {
-      foreach( $GEOZZY_TAXONOMIESGROUPS as $key => $tax ) {
-        $taxgroup = new TaxonomygroupModel( $tax );
-        $taxgroup->save();
-        if( count( $tax['initialTerms']) > 0 ) {
-          foreach( $tax['initialTerms'] as $key => $term ) {
-          # code...
-            $term['taxgroup'] = $taxgroup->getter('id');
-            $taxterm = new TaxonomytermModel( $term );
-            $taxterm->save();
-          }
-        }
-      }
-    }
-
-    /**
     Crea los resourcetype definidas en el un archivo de Conf en GeozzyApp por el usuario y los establecidos por defecto
     */
 
@@ -213,6 +163,65 @@ class geozzy extends Module
     geozzy::load('controller/ResourcetypeController.php');
     ResourcetypeController::addResourceTypes( $GEOZZY_DEFAULT_RESOURCETYPE );
     ResourcetypeController::addResourceTypes( $GEOZZY_RESOURCETYPE );
+
+
+
+
+    /**
+    Crea Taxonomias necesarias para iniciar Geozzy
+    */
+
+    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'starred', 'name' => 'Destacado', 'editable' => 0 ) );
+    $taxgroup->save();
+
+    global $GEOZZY_STARRED;
+
+    if( count( $GEOZZY_STARRED ) > 0 ) {
+      foreach( $GEOZZY_STARRED as $key => $term ) {
+        foreach ($term['name'] as $langKey => $name){
+           $term['name_'.$langKey] = $name;
+        }
+        $taxterm = new TaxonomytermModel( $term );
+
+        $taxterm->setter('taxgroup', $taxgroup->getter('id'));
+        $taxterm->save();
+      }
+    }
+
+
+
+    /**
+    Crea Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
+    */
+
+    global $GEOZZY_TAXONOMYGROUPS;
+
+    // Add all categoryes from active resource types
+    $GEOZZY_TAXONOMYGROUPS = array_merge( 
+      ResourcetypeController::getAllCategories( $GEOZZY_RESOURCETYPE ),
+      $GEOZZY_TAXONOMYGROUPS
+    );
+
+/*
+var_dump($GEOZZY_RESOURCETYPE);
+
+echo "-------------------------------\n";
+var_dump(      ResourcetypeController::getAllCategories( $GEOZZY_RESOURCETYPE ) );
+*/
+
+    if( count( $GEOZZY_TAXONOMYGROUPS ) > 0 ) {
+      foreach( $GEOZZY_TAXONOMYGROUPS as $key => $tax ) {
+        $taxgroup = new TaxonomygroupModel( $tax );
+        $taxgroup->save();
+        if( count( $tax['initialTerms']) > 0 ) {
+          foreach( $tax['initialTerms'] as $key => $term ) {
+            $term['taxgroup'] = $taxgroup->getter('id');
+            $taxterm = new TaxonomytermModel( $term );
+            $taxterm->save();
+          }
+        }
+      }
+    }
 
 
     /**

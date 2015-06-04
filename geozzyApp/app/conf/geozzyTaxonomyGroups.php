@@ -5,6 +5,7 @@ global $GEOZZY_TAXONOMYGROUPS;
 /**
 NEW TAXGROUP
 */
+
 $GEOZZY_TAXONOMYGROUPS['taxPruebaParaTematica'] = array(
   'idName' => 'taxPruebaParaTematica',
   'name' => 'Prueba de Tax',
