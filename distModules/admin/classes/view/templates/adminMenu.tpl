@@ -1,5 +1,5 @@
 <nav id="menu-wrapper" class="navbar clearfix" role="navigation">
-  <div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar" role="navigation">
     <div class="sidebar-nav collapse navbar-collapse ">
 
         <div id="menuInfo">
