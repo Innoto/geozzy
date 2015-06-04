@@ -21,10 +21,16 @@ class TaxonomygroupModel extends Model
     ),
     'name' => array(
       'type' => 'VARCHAR',
-      'size' => 100
+      'size' => 100,
+      'multilang' => 'true'
     ),
     'editable' => array(
       'type' => 'BOOLEAN'
+    ),
+    'icon' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'FiledataModel',
+      'key' => 'id'
     )
 
   );
