@@ -52,7 +52,7 @@ class GeozzyTaxonomytermView extends View
 
     $form->setSuccess( 'redirect', '/' );
 
-    $campos = array(
+    $fieldsInfo = array(
       'id' => array(
         'params' => array( 'type' => 'reserved', 'value' => null )
       ),
@@ -60,7 +60,7 @@ class GeozzyTaxonomytermView extends View
         'params' => array( 'type' => 'reserved', 'value' => null )
       ),
       'taxgroup' => array(
-        'params' => array( 'type' => 'reserved', 'value' => $request[1] )
+        'params' => array( 'type' => 'reserved', 'value' => $request['1'] )
       ),
       'name' => array(
         'translate' => true,
@@ -68,19 +68,52 @@ class GeozzyTaxonomytermView extends View
       )
     );
 
-    foreach( $campos as $fieldName => $definition ) {
+    $this->arrayToForm( $form, $fieldsInfo, $langAvailable );
+
+    $form->setField( 'submit', array( 'type' => 'submit', 'value' => 'Save', 'class' => 'gzzAdminToMove' ) );
+
+    /* VALIDATIONS */
+    $form->setValidationRule( 'name_'.$langDefault, 'required' );
+
+
+    if(isset($request[2])){
+      $taxtermModel = new TaxonomytermModel();
+      $dataVO = $taxtermModel->listItems( array('filters' => array('id' => $request[2] )))->fetch();
+      if( $dataVO ){
+        $form->loadVOValues( $dataVO );
+      }
+    }
+
+
+    return $form;
+  }
+
+
+  /**
+   * Crea los campos y les asigna las reglas en form
+   *
+   * @param $form
+   * @param $form
+   * @param $form
+  **/
+  public function arrayToForm( $form, $fieldsInfo, $langAvailable ) {
+    foreach( $fieldsInfo as $fieldName => $definition ) {
       if( !isset( $definition['params'] ) ) {
         $definition['params'] = false;
       }
       if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
+        $baseClass = '';
+        if( isset( $definition['params']['class'] ) &&  $definition['params']['class'] !== '' ) {
+          $baseClass = $definition['params']['class'];
+        }
         foreach( $langAvailable as $lang ) {
+          $definition['params']['class'] = $baseClass . ' js-tr js-tr-'.$lang;
           $form->setField( $fieldName.'_'.$lang, $definition['params'] );
           if( isset( $definition['rules'] ) ) {
             foreach( $definition['rules'] as $ruleName => $ruleParams ) {
               $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
             }
           }
-          $form->setFieldGroup( $fieldName.'_'.$lang, $fieldName.'_translate' );
         }
       }
       else {
@@ -92,24 +125,8 @@ class GeozzyTaxonomytermView extends View
         }
       }
     }
-
-    $form->setField( 'submit', array( 'type' => 'submit', 'value' => 'Save', 'class' => 'gzzAdminToMove' ) );
-
-    /***************************************************************************** VALIDATIONS */
-    $form->setValidationRule( 'name_'.$langDefault, 'required' );
-
-
-    if(isset($request[2])){
-      $taxtermModel = new TaxonomytermModel();
-      $dataVO = $taxtermModel->listItems( array('filters' => array('id' => $request[2] )))->fetch();
-      if($dataVO){
-        $form->loadVOValues( $dataVO );
-      }
-    }
-
-
-    return $form;
   }
+
 
 
   /**
