@@ -12,7 +12,7 @@
 </script>
 
 {$taxtermFormOpen}
-  {foreach from=$taxtermFormFields key=key item=field}
+  {foreach from=$taxtermFormFieldsArray item=field}
     {$field}
   {/foreach}
 {$taxtermFormClose}
