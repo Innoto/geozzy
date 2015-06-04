@@ -78,7 +78,7 @@ class AdminViewResource extends AdminViewMaster
   */
 
   public function resourceForm() {
-    error_log( "AdminFormsAPIView: resourceForm()" );
+    error_log( "AdminViewResource: resourceForm()" );
 
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
@@ -97,14 +97,14 @@ class AdminViewResource extends AdminViewMaster
     unset( $formFieldsArray[ 'image' ] );
     $formBlock->assign( 'formFieldsArray', $formFieldsArray );
 
-    $panel = $this->getPanelBlock( $formBlock, 'New Resource', 'fa-archive' );
+    $panel = $this->getPanelBlock( $formBlock, __( 'New Resource' ), 'fa-archive' );
     $this->template->addToBlock( 'col8', $panel );
 
 
     /**
     Bloque de 4
     */
-    $panel = $this->getPanelBlock( 'Recuerda que en algunos campos existe versión en varios idiomas.' );
+    $panel = $this->getPanelBlock( __( 'Recuerda que en algunos campos existe versión en varios idiomas.' ) );
     $this->template->addToBlock( 'col4', $panel );
 
 
@@ -125,7 +125,7 @@ class AdminViewResource extends AdminViewMaster
 
 
   public function resourceEditForm( $urlParams = false ) {
-    error_log( "AdminFormsAPIView: resourceEditForm()". print_r( $urlParams, true ) );
+    error_log( "AdminViewResource: resourceEditForm()". print_r( $urlParams, true ) );
 
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
@@ -135,47 +135,42 @@ class AdminViewResource extends AdminViewMaster
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];
       $recModel = new ResourceModel();
-
       $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel', 'UrlAliasModel' ),
-          'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
-
+        'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
       $recurso = $recursosList->fetch();
     }
 
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
-      error_log( 'recursoData: ' . print_r( $recursoData, true ) );
+      $recursoData = $recursoData[ 'data' ];
 
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
       if( $urlAliasDep !== false ) {
-        error_log( 'getterDependence UrlAliasModel' );
         foreach( $urlAliasDep as $urlAlias ) {
-          error_log( 'getterDependence UrlAliasModel: ' . $urlAlias->getter('lang') );
           $urlLang = $urlAlias->getter('lang');
           if( $urlLang ) {
-            $recursoData[ 'data' ][ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
+            $recursoData[ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
           }
         }
       }
 
 
-      // Cargo los datos de image dentro de los del recurso
+      // Cargo los datos previos de image dentro de los del recurso
       $fileDep = $recurso->getterDependence( 'image' );
       if( $fileDep !== false ) {
         foreach( $fileDep as $fileModel ) {
           $fileData = $fileModel->getAllData();
-          error_log( 'getterDependence fileData: ' . print_r( $fileData, true ) );
-
-          $recursoData[ 'data' ][ 'image' ] = $fileData['data']['absLocation'];
+          $recursoData[ 'image' ] = $fileData[ 'data' ];
         }
       }
+      error_log( 'recursoData: ' . print_r( $recursoData, true ) );
 
       /**
       Bloque de 8
       */
       $resourceView = new GeozzyResourceView();
-      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData[ 'data' ] );
+      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData );
 
       // Manipulamos el contenido del bloque
       $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
@@ -202,7 +197,7 @@ class AdminViewResource extends AdminViewMaster
         '<br>'.
         ' <i class="fa fa-times"></i> Eliminar Recurso<br>'.
         '';
-      $panel = $this->getPanelBlock( $html, 'Information' );
+      $panel = $this->getPanelBlock( $html, __( 'Information' ) );
       $this->template->addToBlock( 'col4', $panel );
 
       /**
@@ -226,7 +221,7 @@ class AdminViewResource extends AdminViewMaster
 
 
   public function sendResourceForm() {
-    error_log( "AdminFormsAPIView: sendResourceForm()" );
+    error_log( "AdminViewResource: sendResourceForm()" );
 
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();

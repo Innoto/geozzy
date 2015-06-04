@@ -32,7 +32,7 @@ class GeozzyResourceView extends View
     Defino un formulario
   */
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "GeozzyResourceView: getFormObj()" );
+    // error_log( "GeozzyResourceView: getFormObj()" );
 
     $langAvailable = false;
     global $LANG_AVAILABLE;
@@ -74,12 +74,6 @@ class GeozzyResourceView extends View
           'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
         'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '150000', 'accept' => 'image/jpeg' )
       ),
-      /*
-      'defaultZoom' => array(
-        'params' => array( 'label' => __( 'Map: Default zoom' ) ),
-        'rules' => array( 'max' => '20' )
-      ),
-      */
       'urlAlias' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'SEO: URL' ) ),
@@ -107,6 +101,7 @@ class GeozzyResourceView extends View
 
 
     //Si es una edicion, añadimos el ID y cargamos los datos
+    // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
     if( $valuesArray !== false ){
       $form->setField( 'id', array( 'type' => 'reserved', 'value' => null ) );
       $form->loadArrayValues( $valuesArray );
@@ -124,9 +119,9 @@ class GeozzyResourceView extends View
   /**
    * Crea los campos y les asigna las reglas en form
    *
-   * @param $form
-   * @param $form
-   * @param $form
+   * @param $form Object Form
+   * @param $fieldsInfo Array fields info
+   * @param $langAvailable Array langs
   **/
   public function arrayToForm( $form, $fieldsInfo, $langAvailable ) {
     foreach( $fieldsInfo as $fieldName => $definition ) {
@@ -165,7 +160,7 @@ class GeozzyResourceView extends View
     Defino un formulario con su TPL como Bloque
   */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "GeozzyResourceView: getFormBlock()" );
+    // error_log( "GeozzyResourceView: getFormBlock()" );
 
     $langAvailable = false;
     $this->template->assign( 'JsLangAvailable', 'false' );
@@ -179,7 +174,7 @@ class GeozzyResourceView extends View
       $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
     }
 
-    $form = $this->getFormObj( $formName, $urlAction, $valuesArray = false );
+    $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
 
     $this->template->assign( 'formOpen', $form->getHtmpOpen() );
 
@@ -287,7 +282,6 @@ class GeozzyResourceView extends View
       $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
       echo $form->jsonFormError();
     }
-
   } // function actionResourceForm()
 
 
@@ -322,18 +316,18 @@ class GeozzyResourceView extends View
     $elemsList = $elemModel->listItems( array( 'filters' => array( 'canonical' => 1, 'resource' => $resId,
       'lang' => $langId ) ) );
     if( $elem = $elemsList->fetch() ) {
-      error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
+      // error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
       $aliasArray[ 'id' ] = $elem->getter( 'id' );
     }
 
     $elemModel = new UrlAliasModel( $aliasArray );
     if( $elemModel->save() === false ) {
       $result = false;
-      error_log( 'setUrl: ERROR gardando a url' );
+      // error_log( 'setUrl: ERROR gardando a url' );
     }
     else {
       $result = $elemModel->getter( 'id' );
-      error_log( 'setUrl: Creada/Actualizada - '.$result );
+      // error_log( 'setUrl: Creada/Actualizada - '.$result );
     }
 
     return $result;
