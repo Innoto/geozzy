@@ -33,6 +33,7 @@
     },
 
     that.getSelectedValues = function( ){
+      dataSelected = [];
       selector.find('option:selected').each(function( index ) {
         dataSelected.push({
           id: $( this ).val(),
@@ -47,7 +48,6 @@
     that.execNestable = function( ){
 console.log(dataSelected);
       if( dataSelected.length > 0 ){
-        alert('dataSI');
         $.each( dataSelected, function( key, elem ) {
           var nestableItem = '<li class="dd-item" data-id="'+elem.id+'">';
           nestableItem += '<div class="unselectNestable">X</div>';
