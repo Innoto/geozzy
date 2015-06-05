@@ -20,7 +20,7 @@
     that.createInterface = function (){
       var multiListHtml = "";
       multiListHtml+= '<div class="multiListContainer">';
-        multiListHtml+= '<div class="multiListNestable dd"><ol class="dd-list"></ol></div>';
+        multiListHtml+= '<div class="multiListNestable dd"><ol class="dd-list clearfix"></ol></div>';
         multiListHtml+= '<div class="multiListSelect2"></div>';
       multiListHtml+= '</div>';
 
@@ -37,7 +37,7 @@
       selector.find('option:selected').each(function( index ) {
         dataSelected.push({
           id: $( this ).val(),
-          name: $( this ).val(),
+          name: $( this ).text(),
           weight: $( this ).attr('data-multilist-weight')
         });
       });
@@ -46,6 +46,7 @@
     }
 
     that.execNestable = function( ){
+      multiListNestable.find('.dd-list').html('');
 console.log(dataSelected);
       if( dataSelected.length > 0 ){
         $.each( dataSelected, function( key, elem ) {
@@ -53,7 +54,8 @@ console.log(dataSelected);
           nestableItem += '<div class="unselectNestable">X</div>';
           nestableItem += '<div class="dd-handle">'+elem.name+'</div>';
           nestableItem += '</li>';
-          console.log(multiListNestable);
+console.log(multiListNestable);
+
           multiListNestable.find('.dd-list').append(nestableItem);
         });
       }

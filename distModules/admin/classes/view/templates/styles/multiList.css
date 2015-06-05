@@ -1,0 +1,20 @@
+.multiListNestable{
+  border: 1px solid black;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.multiListNestable .dd-item{
+  float: left;
+  padding: 5px;
+  margin: 5px;
+  background: #e4e4e4;
+  border :1px solid #CECECE;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.multiListNestable .dd-item .unselectNestable {
+  float: left;
+}
