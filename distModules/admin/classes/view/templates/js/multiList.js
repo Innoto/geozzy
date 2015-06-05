@@ -51,7 +51,7 @@ console.log(dataSelected);
       if( dataSelected.length > 0 ){
         $.each( dataSelected, function( key, elem ) {
           var nestableItem = '<li class="dd-item" data-id="'+elem.id+'">';
-          nestableItem += '<div class="unselectNestable">X</div>';
+          nestableItem += '<span class="unselectNestable">X</span>';
           nestableItem += '<div class="dd-handle">'+elem.name+'</div>';
           nestableItem += '</li>';
 console.log(multiListNestable);

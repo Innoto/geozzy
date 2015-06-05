@@ -16,5 +16,15 @@
   border-radius: 5px;
 }
 .multiListNestable .dd-item .unselectNestable {
-  float: left;
+  margin-right: 5px;
+  color: #999;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 2px;
 }
+.multiListNestable .dd-item .dd-handle{
+  float:right;
+}
+
+.multiListNestable .dd-placeholder{ width:100px; float:left; }
