@@ -7,21 +7,7 @@
 
 {block name="content"}
   <h3>Select 4.0.0</h3>
-
-  <div class="asign2selected dd">
-    <ol class="dd-list">
-        <li class="dd-item" data-id="1">
-            <div class="dd-handle">Item 1</div>
-        </li>
-        <li class="dd-item" data-id="2">
-            <div class="dd-handle">Item 2</div>
-        </li>
-        <li class="dd-item" data-id="3">
-            <div class="dd-handle">Item 3</div>
-        </li>
-    </ol>
-  </div>
-
+  
   <select id="asigned_terms2" multiple style="width:250px;">
   {foreach key=key item=item from=$termArray}
     <optgroup label="OptG">
