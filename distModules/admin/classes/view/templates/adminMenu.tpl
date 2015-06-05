@@ -74,7 +74,7 @@
 
                       <% for(var categoryK in categories) { %>
                         <li class="category_<%- categories[categoryK].id %>">
-                          <a href="/admin#category/<%- categories[categoryK].id %>"><i class="fa fa-tag fa-fw"></i> <%- categories[categoryK].name %> </a>
+                          <a href="/admin#category/<%- categories[categoryK].id %>"><i class="fa fa-tag fa-fw"></i> <%- categories[categoryK].name_{$langDefault} %> </a>
                         </li>
                       <% } %>
 

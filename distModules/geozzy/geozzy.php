@@ -168,54 +168,55 @@ class geozzy extends Module
 
 
     /**
-    Crea Taxonomias necesarias para iniciar Geozzy
-    */
-
-    $taxgroup = new TaxonomygroupModel( array( 'idName' => 'starred', 'name' => 'Destacado', 'editable' => 0 ) );
-    $taxgroup->save();
-
-    global $GEOZZY_STARRED;
-
-    if( count( $GEOZZY_STARRED ) > 0 ) {
-      foreach( $GEOZZY_STARRED as $key => $term ) {
-        foreach ($term['name'] as $langKey => $name){
-           $term['name_'.$langKey] = $name;
-        }
-        $taxterm = new TaxonomytermModel( $term );
-
-        $taxterm->setter('taxgroup', $taxgroup->getter('id'));
-        $taxterm->save();
-      }
-    }
-
-
-
-    /**
-    Crea Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
+    Añade taxonomías destacadas
     */
 
     global $GEOZZY_TAXONOMYGROUPS;
+    global $GEOZZY_STARRED;
 
-    // Add all categoryes from active resource types
+    $GEOZZY_TAXONOMYGROUPS['starred'] = array(
+      'idName' => 'starred',
+      'name' => array(
+        'es' => 'Starred',
+        'en' => 'Destacado',
+        'gl' => 'Destacado'
+      ),
+      'editable' => 0,
+      'initialTerms' => $GEOZZY_STARRED
+    );
+
+    /**
+    Añade Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
+    */
+
+
     $GEOZZY_TAXONOMYGROUPS = array_merge( 
       ResourcetypeController::getAllCategories( $GEOZZY_RESOURCETYPE ),
       $GEOZZY_TAXONOMYGROUPS
     );
 
-/*
-var_dump($GEOZZY_RESOURCETYPE);
+    /**
+    Crea todas as taxonomías
+    */
 
-echo "-------------------------------\n";
-var_dump(      ResourcetypeController::getAllCategories( $GEOZZY_RESOURCETYPE ) );
-*/
+
 
     if( count( $GEOZZY_TAXONOMYGROUPS ) > 0 ) {
       foreach( $GEOZZY_TAXONOMYGROUPS as $key => $tax ) {
+        foreach ($tax['name'] as $langKey => $name){
+           $tax['name_'.$langKey] = $name;
+        }
+        unset($tax['name']);
         $taxgroup = new TaxonomygroupModel( $tax );
         $taxgroup->save();
-        if( count( $tax['initialTerms']) > 0 ) {
+        if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
           foreach( $tax['initialTerms'] as $key => $term ) {
             $term['taxgroup'] = $taxgroup->getter('id');
+
+            foreach ($term['name'] as $langKey => $name){
+               $term['name_'.$langKey] = $name;
+            }
+            unset($term['name']);
             $taxterm = new TaxonomytermModel( $term );
             $taxterm->save();
           }
