@@ -12,7 +12,8 @@ var AdminView = Backbone.View.extend({
   renderMenu: function(  ){
     //Categories
     var menuCategoryElement =  _.template($("#menuCategoryElement").html());
-    var menuCategoriesDiv = $('#wrapper .navbar .navbar-default.sidebar .categoriesList');
+    var menuCategoriesDiv = $('#wrapper .navbar  .sidebar .categoriesList');
+    
     menuCategoriesDiv.html( menuCategoryElement( { categories:  app.categories.toJSON()  } ) );
     //Topics
     var menuTopics =  _.template($("#menuTopics").html());
@@ -20,7 +21,7 @@ var AdminView = Backbone.View.extend({
     menuTopicsContainer.prepend( menuTopics( { topics:  app.topics.toJSON()  } ) );
     //Starred
     var menuStarred =  _.template($("#menuStarred").html());
-    var menuStarredContainer = $('#wrapper .navbar .navbar-default.sidebar .starredList');
+    var menuStarredContainer = $('#wrapper .navbar .sidebar .starredList');
     menuStarredContainer.prepend( menuStarred( { starred:  app.starred.toJSON()  } ) );
   },
 
