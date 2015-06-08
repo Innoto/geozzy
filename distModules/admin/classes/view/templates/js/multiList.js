@@ -6,6 +6,7 @@
   $.fn.multiList = function( options ){
     var that = this;
 
+
     var multiListContainer;
     var multiListNestable;
     var multiListSelect2;
@@ -13,14 +14,15 @@
     var selector = this;
 
     var defaults = {
-
+      orientation: 'vertical'
     };
     var settings = $.extend( {}, defaults, options );
+    settings.orientation = settings.orientation.charAt(0).toUpperCase();
 
     that.createInterface = function (){
       var multiListHtml = "";
       multiListHtml+= '<div class="multiListContainer">';
-        multiListHtml+= '<div class="multiListNestable dd"><ol class="dd-list clearfix"></ol></div>';
+        multiListHtml+= '<div class="multiListNestable multiList'+settings.orientation+' dd"><ol class="dd-list clearfix"></ol></div>';
         multiListHtml+= '<div class="multiListSelect2"></div>';
       multiListHtml+= '</div>';
 
@@ -47,19 +49,18 @@
 
     that.execNestable = function( ){
       multiListNestable.find('.dd-list').html('');
-console.log(dataSelected);
       if( dataSelected.length > 0 ){
         $.each( dataSelected, function( key, elem ) {
           var nestableItem = '<li class="dd-item" data-id="'+elem.id+'">';
           nestableItem += '<span class="unselectNestable">X</span>';
           nestableItem += '<div class="dd-handle">'+elem.name+'</div>';
           nestableItem += '</li>';
-console.log(multiListNestable);
 
           multiListNestable.find('.dd-list').append(nestableItem);
         });
       }
       multiListNestable.nestable({
+        dragClass: "multiListDragel",
         maxDepth: 1
       });
     }
@@ -76,6 +77,14 @@ console.log(multiListNestable);
       });
     }
     that.init = function(){
+
+      if(typeof(multiListCount)!=="undefined"){
+        multiListCount++;
+      }else{
+        multiListCount = 1;
+      }
+
+console.log("Count"+ multiListCount);
       that.getSelectedValues();
       that.createInterface();
       that.execSelect2();

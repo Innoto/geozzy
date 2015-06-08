@@ -6,8 +6,8 @@
 {/block}
 
 {block name="content"}
-  <h3>Select 4.0.0</h3>
-  
+  <h3>MultiList Horizontal</h3>
+
   <select id="asigned_terms2" multiple style="width:250px;">
   {foreach key=key item=item from=$termArray}
     <optgroup label="OptG">
@@ -16,7 +16,7 @@
   {/foreach}
   </select>
 
-  <h3>Select 3.5.2 (Select)</h3>
+  <h3>MultiList Vertical</h3>
   <select id="asigned_terms3" multiple style="width:250px;">
   {foreach key=key item=item from=$termArray}
       <optgroup label="OptG">
@@ -25,8 +25,6 @@
   {/foreach}
   </select>
 
-  <h3>Select 3.5.2 (Input)</h3>
-  <input id="e15" type="hidden" style="width:250px;"></input>
 {literal}
 
 <script type="text/javascript">
@@ -34,7 +32,10 @@
 
 $( document ).ready(function() {
 
-  $('#asigned_terms2').multiList();
+  $('#asigned_terms2, #asigned_terms3').multiList();
+  /*$('#asigned_terms3').multiList({
+    orientation: 'horizontal'
+  });*/
 
 
 
