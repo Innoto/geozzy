@@ -72,7 +72,7 @@ class GeozzyResourceView extends View
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
           'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
-        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '150000', 'accept' => 'image/jpeg' )
+        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '100000', 'accept' => 'image/jpeg' )
       ),
       'urlAlias' => array(
         'translate' => true,
@@ -223,6 +223,7 @@ class GeozzyResourceView extends View
       if( $form->isFieldDefined( 'id' ) ) {
         $elemIdForm = $valuesArray[ 'id' ];
         $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
+        unset( $valuesArray[ 'image' ] );
       }
 
       // Validar URLs
@@ -251,13 +252,63 @@ class GeozzyResourceView extends View
     }
 
     $saveResult = false;
-    if( !$form->existErrors() && $valuesArray['image']['values'] ){
-      $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
-      $saveResult = $recurso->save( array( 'affectsDependences' => true ));
+    $affectsDependences = false;
+    $imageFile = $form->getFieldValue( 'image' );
+    if( !$form->existErrors() && isset( $imageFile['status'] ) ) {
+      switch( $imageFile['status'] ) {
+        case 'LOAD':
+          error_log( 'To Model: '.$imageFile['status'] );
+          break;
+        case 'LOADED':
+          error_log( 'To Model: '.$imageFile['status'] );
+          $fileInfo = $imageFile[ 'values' ];
+          error_log( 'To Model - fileInfo: '. print_r( $fileInfo, true ) );
+          $affectsDependences = true;
+          $recurso->setterDependence( 'image', new FiledataModel( $fileInfo ) );
+          break;
+        case 'REPLACE':
+          error_log( 'To Model: '.$imageFile['status'] );
+          $fileInfoPrev = $imageFile[ 'prev' ];
+          $fileInfoNew = $imageFile[ 'values' ];
+          error_log( 'To Model - fileInfoPrev: '. print_r( $fileInfoPrev, true ) );
+          error_log( 'To Model - fileInfoNew: '. print_r( $fileInfoNew, true ) );
+          $affectsDependences = true;
+
+          // TODO: Falta eliminar o ficheiro anterior
+          $recurso->setterDependence( 'image', new FiledataModel( $fileInfoNew ) );
+          break;
+        case 'DELETE':
+          error_log( 'To Model: '.$imageFile['status'] );
+          $fileInfo = $imageFile[ 'prev' ];
+          error_log( 'To Model - fileInfo: '. print_r( $fileInfo, true ) );
+
+          // Apaño
+          $recurso->setter( 'image', null );
+
+          /* PENDIENTE
+          $affectsDependences = true;
+          $recurso->setterDependence( 'image', new FiledataModel( $imageFile['values'] ) );
+          */
+          break;
+        case 'EXIST':
+          error_log( 'To Model: '.$imageFile['status'] );
+          break;
+        default:
+          error_log( 'To Model: DEFAULT='.$imageFile['status'] );
+          break;
+      }
     }
-    else {
-      $saveResult = $recurso->save();
-    }
+
+    $TESTrecursoData = $recurso->getAllData();
+    error_log( 'TESTrecursoData pre: ' . print_r( $TESTrecursoData['data'], true ) );
+
+    $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
+
+    $TESTrecursoData = $recurso->getAllData();
+    error_log( 'TESTrecursoData pos: ' . print_r( $TESTrecursoData['data'], true ) );
+
+
+
 
     if( !$form->existErrors() && $saveResult === false ) {
       $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
