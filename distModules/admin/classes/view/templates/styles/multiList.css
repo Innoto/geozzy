@@ -1,0 +1,30 @@
+.multiListNestable{
+  border: 1px solid black;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.multiListNestable .dd-item{
+  float: left;
+  padding: 5px;
+  margin: 5px;
+  background: #e4e4e4;
+  border :1px solid #CECECE;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.multiListNestable .dd-item .unselectNestable {
+  margin-right: 5px;
+  color: #999;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 2px;
+}
+.multiListNestable .dd-item .dd-handle{
+  float:right;
+}
+
+.multiListNestable .dd-placeholder{ width:100px; float:left; }

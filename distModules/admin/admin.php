@@ -65,15 +65,14 @@ class admin extends Module
      "includes" => array("jquery-ui.js", "jquery-ui.css")
     ),
 */
-
+/*
     array(
      "id" =>"jquery-ui-sortable",
      "params" => array("jquery-ui-sortable"),
      "installer" => "bower",
      "includes" => array("jquery-ui-sortable.js")
     ),
-
-
+*/
     array(
      "id" =>"select2",
      "params" => array("select2"),
@@ -97,15 +96,6 @@ class admin extends Module
      "includes" => array("jquery.ui.touch-punch.js")
     ),
 
-
-
-
-
-
-
-
-
-
     array(
      "id" =>"nestable2",
      "params" => array("nestable2"),
@@ -120,6 +110,7 @@ class admin extends Module
     'styles/adminBase.less',
     'styles/admin.less',
     'styles/adminNestable.less',
+    'styles/multiList.css',
     'js/multiList.js',
     'js/app.js',
     'js/views/AdminView.js',

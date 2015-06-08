@@ -13,66 +13,188 @@ class rextAccommodation extends Module
   public $models = array(
   	'AccommodationModel'
   );
-  
+
   public $taxonomies = array(
   
     'accommodationType' => array(
       'idName' => 'accommodationType',
-      'name_en' => 'Type',
+      'name' => array(
+        'en' => 'Type',
+        'es' => 'Tipo',
+        'gl' => 'Tipo'
+      ),
       'editable' => 1,
       'initialTerms' => array(
-        array( 'idName' => 'hotel', 'name_en' => 'Hotel' ),
-        array( 'idName' => 'hostel', 'name_en' => 'Hostel' ),
-        array( 'idName' => 'camping', 'name_en' => 'Camping' )
+        array( 
+          'idName' => 'hotel', 
+          'name' => array(
+            'en' => 'Hotel',
+            'es' => 'Hotel',
+            'gl' => 'Hotel'
+          )
+        ),
+        array( 
+          'idName' => 'hostel', 
+          'name' => array(
+            'en' => 'Hostel',
+            'es' => 'Hostel',
+            'gl' => 'Hostel'
+          )
+        ),
+        array( 
+          'idName' => 'camping', 
+          'name' => array(
+            'en' => 'Camping',
+            'es' => 'Camping',
+            'gl' => 'Camping'
+          )
+        )
       )
     ),
 
   	'accommodationCategory' => array(
       'idName' => 'accommodationCategory',
-      'name_en' => 'Category',
+      'name' => array(
+        'en' => 'Category',
+        'es' => 'Categoría',
+        'gl' => 'Categoría'
+      ),      
       'editable' => 1,
       'initialTerms' => array(
-        array( 'idName' => '1star', 'name_en' => '1 Star' ),
-        array( 'idName' => '2stars', 'name_en' => '2 Stars' ),
-        array( 'idName' => '3stars', 'name_en' => '3 Stars' ),
-        array( 'idName' => '4stars', 'name_en' => '4 Stars' ),
-        array( 'idName' => '5stars', 'name_en' => '5 Stars' )
+        array( 
+          'idName' => '1star', 
+          'name' => array(
+            'en' => '1 Star',
+            'es' => '1 Estrella',
+            'gl' => '1 Estrela'
+          )
+        ),
+        array( 
+          'idName' => '2stars', 
+          'name' => array(
+            'en' => '2 Stars',
+            'es' => '2 Estrellas',
+            'gl' => '2 Estrelas'
+          )
+        ),
+        array( 
+          'idName' => '3stars', 
+          'name' => array(
+            'en' => '3 Stars',
+            'es' => '3 Estrellas',
+            'gl' => '3 Estrelas'
+          )
+        ),
+        array( 
+          'idName' => '4stars', 
+          'name' => array(
+            'en' => '4 Stars',
+            'es' => '4 Estrellas',
+            'gl' => '4 Estrelas'
+          )
+        ),
+        array( 
+          'idName' => '5stars', 
+          'name' => array(
+            'en' => '5 Stars',
+            'es' => '5 Estrellas',
+            'gl' => '5 Estrelas'
+          )
+        )
       )
     ),
 
     'accommodationServices' => array(
       'idName' => 'accommodationServices',
-      'name_en' => 'Services',
+      'name' => array(
+        'en' => 'Services',
+        'es' => 'Servicios',
+        'gl' => 'Servizos'
+      ),
       'editable' => 1,
       'initialTerms' => array(
-        array( 'idName' => 'telephone', 'name_en' => 'Telephone' ),
-        array( 'idName' => 'roomservice', 'name_en' => 'Room service' )
+        array( 
+          'idName' => 'telephone', 
+          'name' => array(
+            'en' => 'Telephone',
+            'es' => 'Teléfono',
+            'gl' => 'Teléfono'
+          )
+        ),
+        array( 
+          'idName' => 'roomservice', 
+          'name' => array(
+            'en' => 'Room service',
+            'es' => 'Servicio de habitaciones',
+            'gl' => 'Servicio de habitacións'
+          )
+        )
       )
     ),
 
     'accommodationFacilities' => array(
       'idName' => 'accommodationFacilities',
-      'name_en' => 'Facilities',
+      'name' => array(
+        'en' => 'Facilities',
+        'es' => 'Instalaciones',
+        'gl' => 'Instalacións'
+      ),
       'editable' => 1,
       'initialTerms' => array(
-        array( 'idName' => 'bar', 'name_en' => 'Bar' ),
-        array( 'idName' => 'parking', 'name_en' => 'Parking' )
+        array( 
+          'idName' => 'bar', 
+          'name' => array(
+            'en' => 'Bar',
+            'es' => 'Bar',
+            'gl' => 'Bar'
+          )
+        ),
+        array( 
+          'idName' => 'parking', 
+          'name' => array(
+            'en' => 'Parking',
+            'es' => 'Aparcamiento',
+            'gl' => 'Aparcamento'
+          )
+        )
       )
     ),
 
     'accommodationBrand' => array(
       'idName' => 'accommodationBrand',
-      'name_en' => 'Brand',
+      'name' => array(
+        'en' => 'Brand',
+        'es' => 'Cadena',
+        'gl' => 'Cadea'
+      ),
       'editable' => 1,
       'initialTerms' => array(
-        array( 'idName' => 'nh', 'name_en' => 'NH Hotels' ),
-        array( 'idName' => 'melia', 'name_en' => 'Meliá' )
+        array( 
+          'idName' => 'nh', 
+          'name' => array(
+            'en' => 'NH Hotels',
+            'es' => 'NH Hoteles',
+            'gl' => 'NH Hoteles'
+          )
+        ),
+        array( 
+          'idName' => 'melia', 
+          'name' => array(
+            'en' => 'Meliá',
+            'es' => 'Meliá',
+            'gl' => 'Meliá'
+          )
+        )
       )
     ),
 
     'accommodationUsers' => array(
       'idName' => 'accommodationUsers',
-      'name_en' => 'Users',
+      'name' => array(
+        'en' => 'Users',
+        'es' => 'Usuarios',
+        'gl' => 'Usuarios'
+      ),
       'editable' => 1,
       'initialTerms' => array(
       )
