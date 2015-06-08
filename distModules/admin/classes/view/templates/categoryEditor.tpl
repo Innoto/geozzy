@@ -11,7 +11,7 @@
             <i class="fa fa-bars"></i>
         </button>
         <div class="headerTitleContainer">
-          <h2>{t}Category management for{/t} <%- name %> </h2>
+          <h2>{t}Category management for{/t} <%- name_{$langDefault} %> </h2>
         </div>
       </div>
       <div class="col-md-4 col-sm-12 clearfix">
@@ -36,7 +36,7 @@
             <div class="panel-heading">
               <strong>
                 <i class="fa fa-tag fa-fw"></i>
-                {t}List of terms for{/t} ( <%- name %> )
+                {t}List of terms for{/t} ( <%- name_{$langDefault} %> )
               </strong>
             </div>
             <div class="panel-body">
@@ -55,7 +55,7 @@
 
   <div class="footerSection clearfix">
     <div class="headerActionsContainer">
-      <button type="button" class="newTaxTerm btn btn-default">{t}Add{/t} <%- name %></button>
+      <button type="button" class="newTaxTerm btn btn-default">{t}Add{/t} <%- name_{$langDefault} %></button>
       <span class="saveChanges">
         <button class="btn btn-danger cancelTerms">{t}Cancel{/t}</button>
         <button class="btn btn-primary saveTerms">{t}Save{/t}</button>
