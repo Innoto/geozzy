@@ -103,25 +103,10 @@ class AdminViewTaxonomy extends AdminViewMaster
 
     $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'icon' ], __( 'Selecciona un icono' ) ) );
 
-     $this->template->assign( 'headTitle', __('Category form') );
+    $this->template->assign( 'headTitle', __('Category form') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
     $this->template->exec();
-
-/*
-
-
-    // Manipulamos el contenido del bloque
-      $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
-
-      $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
-      $formSeparate[ 'image' ] = $formFieldsArray[ 'image' ];
-      unset( $formFieldsArray[ 'image' ] );
-      $formBlock->assign( 'formFieldsArray', $formFieldsArray );
-
-      $panel = $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' );
-      $this->template->addToBlock( 'col8', $panel );
-*/
 
   }
 
