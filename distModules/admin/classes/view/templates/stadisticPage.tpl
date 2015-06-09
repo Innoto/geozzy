@@ -6,27 +6,25 @@
 {/block}
 
 {block name="content"}
-  <h3>Select 4.0.0</h3>
-  
+  <h3>MultiList Horizontal</h3>
+
   <select id="asigned_terms2" multiple style="width:250px;">
   {foreach key=key item=item from=$termArray}
     <optgroup label="OptG">
-      <option data-multilist-id="{$item->getter('id')}" data-multilist-order="{$item->getter('weight')}" value="{$item->getter('id')}">{$item->getter('name')}</option>
+      <option data-order="{$item->getter('weight')}" value="{$item->getter('id')}">{$item->getter('name')}</option>
     </optgroup>
   {/foreach}
   </select>
 
-  <h3>Select 3.5.2 (Select)</h3>
+  <h3>MultiList Vertical</h3>
   <select id="asigned_terms3" multiple style="width:250px;">
   {foreach key=key item=item from=$termArray}
-      <optgroup label="OptG">
-        <option value="{$item->getter('id')}">{$item->getter('name')}</option>
-      </optgroup>
+    <option data-order="{$item->getter('weight')}" value="{$item->getter('id')}">{$item->getter('name')}</option>
   {/foreach}
+    <option value="99">a99</option>
+    <option value="99">a99</option>
   </select>
 
-  <h3>Select 3.5.2 (Input)</h3>
-  <input id="e15" type="hidden" style="width:250px;"></input>
 {literal}
 
 <script type="text/javascript">
@@ -35,6 +33,9 @@
 $( document ).ready(function() {
 
   $('#asigned_terms2').multiList();
+  $('#asigned_terms3').multiList({
+    orientation: 'horizontal'
+  });
 
 
 
