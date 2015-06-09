@@ -77,6 +77,7 @@ var AdminView = Backbone.View.extend({
           });
         });
       }
+      
       if (parts2[0] == 'starred' && parts2[2] == 'assign'){ //táboa de asignación intermedia recursos-destacados
         // Assign
         $('.btnAssign').bind('click', function(){

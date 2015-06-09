@@ -32,21 +32,21 @@ class AdminViewStarred extends AdminViewMaster
     $this->template->assign( 'headTitle', __('Create and add resources') );
     $this->template->assign( 'headActions', '<a href="/admin#starred/list/'.$request['1'].'" class="btn btn-default btn-outline"> '.__('Return').'</a>
                                              <div class="btn-group assignResource">
-                                              <button id="topCreate" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                              <button type="button" class="btn btn-primary dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
                                                 '.__('Crear').' <span class="caret"></span>
                                               </button>
                                               '.$part.'
                                              </div>
-                                             <div id="topAssign" class="btn btn-primary assignResource"> '.__('Assign selected').'</div>' );
+                                             <div class="btn btn-primary assignResource btnAssign"> '.__('Assign selected').'</div>' );
                                             
     $this->template->assign( 'footerActions', '<a href="/admin#starred/list/'.$request['1'].'" class="btn btn-default"> '.__('Return').'</a>
                                              <div class="btn-group assignResource">
-                                              <button id="topCreate" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                              <button type="button" class="btn btn-primary dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
                                                 '.__('Crear').' <span class="caret"></span>
                                               </button>
                                               '.$part.'
                                              </div>
-                                             <div id="topAssign" class="btn btn-primary assignResource"> '.__('Assign selected').'</div>' ); 
+                                             <div class="btn btn-primary assignResource btnAssign"> '.__('Assign selected').'</div>' ); 
     
     $this->template->addToBlock( 'col8', $template );
     
