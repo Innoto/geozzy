@@ -144,4 +144,29 @@ class ResourceModel extends Model
   }
 
 
+  public function dependencesByResourcetype( $rtypeName ) {
+
+    $dependences = false;
+
+    geozzy::load('model/ResourcetypeModel.php');
+    $rtypeModel = new ResourcetypeModel();
+
+
+    $rtypeList = $rtypeModel->listItems( array('filters'=>array('idName'=> $rtypeName) ) );
+
+    if( $rtype = $rtypeList->fetch() ) {
+
+      $dep = json_decode( $rtype->getter('relatedModels') );
+
+      if( sizeof($dep) > 0 ) {
+        $dependences = $dep;
+      }
+
+    }
+
+
+    return $dependences;
+  }
+
+
 }

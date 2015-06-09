@@ -5,7 +5,7 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class AccomodationModel extends Model
+class AccommodationModel extends Model
 {
   static $tableName = 'geozzy_resource_rext_accommodation';
   static $cols = array(

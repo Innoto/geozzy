@@ -4,39 +4,42 @@
 class apiFiltersController {
 
 	static function resourceListOptions( $param ) {
+		geozzy::load('model/ResourceModel.php');
+		$rModel = new ResourceModel();
 
-	    // extract parameters
-	    $params = explode('/', $param[1]);
+    // extract parameters
+    $params = explode('/', $param[1]);
 
 
-	    $options = array( );
+    $options = array( );
 
-	    //
-      // Resource type
-      //$options['affectsDependences'] = false;
+    //
+    // Resource type
+    //$options['affectsDependences'] = false;
 
-      if( $params[5] == 'rtype' && $params[6] != 'false') {
-        $options['affectsDependences'] = self::dependencesByResourcetype( $params[6] ) ;
-      }
+    if( $params[5] == 'rtype' && $params[6] != 'false') {
+      $options['affectsDependences'] = $rModel->dependencesByResourcetype( $params[6] ) ;
 
-	    //
-	    // fields
-	    if( $params[1] == 'fields' && $params[2] != 'false' ) {
+    }
 
-	      $options['fields'] = self::clearFields( explode(',', urldecode( $params[2] ) ) );
-	    }
+    //
+    // fields
+    if( $params[1] == 'fields' && $params[2] != 'false' ) {
 
-	    //
-	    // fields and fieldvalues
-	    if( 
-	      ( $params[3] == 'filters' && $params[4] != 'false' ) &&
-	      ( $params[3] == 'filtervalues' && $params[4] != 'false' )
-	    ) {
-	      $options['filters'] = array('id' => 10);
-	    }
+      $options['fields'] = self::clearFields( explode(',', urldecode( $params[2] ) ) );
+    }
 
-	    // filters
-	    return $options;
+    //
+    // fields and fieldvalues
+    if(
+      ( $params[3] == 'filters' && $params[4] != 'false' ) &&
+      ( $params[3] == 'filtervalues' && $params[4] != 'false' )
+    ) {
+      $options['filters'] = array('id' => 10);
+    }
+
+    // filters
+    return $options;
 	}
 
 
@@ -63,29 +66,5 @@ class apiFiltersController {
   }
 
 
-
-  static function dependencesByResourcetype( $rtypeName ) {
-
-    $dependences = false;
-
-    geozzy::load('model/ResourcetypeModel.php');
-    $rtypeModel = new ResourcetypeModel();
-
-
-    $rtypeList = $rtypeModel->listItems( array('filters'=>array('idName'=> $rtypeName) ) );
-
-    if( $rtype = $rtypeList->fetch() ) {
-
-      $dep = json_decode( $rtype->getter('relatedModels') );
-
-      if( sizeof($dep) > 0 ) {
-        $dependences = $dep;
-      }
-
-    }
-
-
-    return $dependences;
-  }
 
 }
