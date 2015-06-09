@@ -62,6 +62,9 @@ class GeozzyTaxonomytermView extends View
       'taxgroup' => array(
         'params' => array( 'type' => 'reserved', 'value' => $request['1'] )
       ),
+      'icon' => array(
+        'params' => array( 'type' => 'file', 'placeholder' => 'Sube unha imaxe', 'label' => 'Sube unha imaxe', 'destDir' => '/')
+      ),
       'name' => array(
         'translate' => true,
         'params' => array( 'placeholder' => 'Name' )
@@ -73,58 +76,51 @@ class GeozzyTaxonomytermView extends View
     $form->setField( 'submit', array( 'type' => 'submit', 'value' => 'Save', 'class' => 'gzzAdminToMove' ) );
 
     /* VALIDATIONS */
+    $form->setValidationRule( 'icon', 'minfilesize', 1024 );
+    $form->setValidationRule( 'icon', 'accept', 'image/jpeg' );
+    //$form->setValidationRule( 'icon', 'required' );
     $form->setValidationRule( 'name_'.$langDefault, 'required' );
-
 
     if(isset($request[2])){
       $taxtermModel = new TaxonomytermModel();
-      $dataVO = $taxtermModel->listItems( array('filters' => array('id' => $request[2] )))->fetch();
-      if( $dataVO ){
-        $form->loadVOValues( $dataVO );
+      $dataVO = $taxtermModel->listItems( array('filters' => array('id' => $request[2] ), 'affectsDependences' => array( 'FiledataModel')))->fetch();
+
+      $taxtermData = $dataVO->getAllData();
+      $taxtermData = $taxtermData['data'];
+
+      $fileDep = $dataVO->getterDependence( 'icon' );
+
+      if( $fileDep !== false ) {
+        foreach( $fileDep as $fileModel ) {
+            $fileData = $fileModel->getAllData();
+            $taxtermData[ 'icon' ] = $fileData[ 'data' ];
+          }
       }
+      $form->loadArrayValues($taxtermData);
     }
-
-
     return $form;
   }
 
 
   /**
-   * Crea los campos y les asigna las reglas en form
+   * Returns necessary block form
    *
    * @param $form
-   * @param $form
-   * @param $form
-  **/
-  public function arrayToForm( $form, $fieldsInfo, $langAvailable ) {
-    foreach( $fieldsInfo as $fieldName => $definition ) {
-      if( !isset( $definition['params'] ) ) {
-        $definition['params'] = false;
-      }
-      if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
-        $baseClass = '';
-        if( isset( $definition['params']['class'] ) &&  $definition['params']['class'] !== '' ) {
-          $baseClass = $definition['params']['class'];
-        }
-        foreach( $langAvailable as $lang ) {
-          $definition['params']['class'] = $baseClass . ' js-tr js-tr-'.$lang;
-          $form->setField( $fieldName.'_'.$lang, $definition['params'] );
-          if( isset( $definition['rules'] ) ) {
-            foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-              $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
-            }
-          }
-        }
-      }
-      else {
-        $form->setField( $fieldName, $definition['params'] );
-        if( isset( $definition['rules'] ) ) {
-          foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-            $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
-          }
-        }
-      }
-    }
+   *
+   * @return string
+   **/
+  public function taxtermGetFormBlock( $form ) {
+    $form->saveToSession();
+
+    $this->template->assign("taxtermFormOpen", $form->getHtmpOpen());
+    $this->template->assign("taxtermFormFieldsArray", $form->getHtmlFieldsArray() );
+    $this->template->assign("taxtermFormFields", $form->getHtmlFieldsAndGroups());
+    $this->template->assign("taxtermFormClose", $form->getHtmlClose());
+    $this->template->assign("taxtermFormValidations", $form->getScriptCode());
+
+    $this->template->setTpl('taxtermForm.tpl', 'geozzy');
+
+    return $this->template;
   }
 
 
@@ -137,16 +133,9 @@ class GeozzyTaxonomytermView extends View
    * @return string
    **/
   public function taxtermFormGet( $form ) {
-    $form->saveToSession();
 
-    $this->template->assign("taxtermFormOpen", $form->getHtmpOpen());
-    $this->template->assign("taxtermFormFields", $form->getHtmlFieldsAndGroups());
-    $this->template->assign("taxtermFormClose", $form->getHtmlClose());
-    $this->template->assign("taxtermFormValidations", $form->getScriptCode());
-
-    $this->template->setTpl('taxtermForm.tpl', 'geozzy');
-
-    return $this->template->execToString();
+    $templateBlock = $this->taxtermGetFormBlock( $form );
+    return $templateBlock->execToString();
   }
 
 
@@ -212,11 +201,97 @@ class GeozzyTaxonomytermView extends View
       }
 
       $taxterm = new TaxonomytermModel( $valuesArray );
-      $taxterm->save();
 
-      $res = $taxterm;
+    $saveResult = false;
+    $affectsDependences = false;
+    $imageFile = $form->getFieldValue( 'icon' );
+    if( !$form->existErrors() && isset( $imageFile['status'] ) ) {
+      switch( $imageFile['status'] ) {
+        case 'LOADED':
+          error_log( 'To Model: '.$imageFile['status'] );
+          $fileInfo = $imageFile[ 'values' ];
+          error_log( 'To Model - fileInfo: '. print_r( $fileInfo, true ) );
+          $affectsDependences = true;
+          $taxterm->setterDependence( 'icon', new FiledataModel( $fileInfo ) );
+          break;
+        case 'REPLACE':
+          error_log( 'To Model: '.$imageFile['status'] );
+          $fileInfoPrev = $imageFile[ 'prev' ];
+          $fileInfoNew = $imageFile[ 'values' ];
+          error_log( 'To Model - fileInfoPrev: '. print_r( $fileInfoPrev, true ) );
+          error_log( 'To Model - fileInfoNew: '. print_r( $fileInfoNew, true ) );
+          $affectsDependences = true;
+
+          // TODO: Falta eliminar o ficheiro anterior
+          $taxterm->setterDependence( 'icon', new FiledataModel( $fileInfoNew ) );
+          break;
+        case 'DELETE':
+          error_log( 'To Model: '.$imageFile['status'] );
+          $fileInfo = $imageFile[ 'prev' ];
+          error_log( 'To Model - fileInfo: '. print_r( $fileInfo, true ) );
+
+          // Apaño
+          $taxterm->setter( 'icon', null );
+          
+
+
+
+          /* PENDIENTE
+          $affectsDependences = true;
+          $taxterm->setterDependence( 'icon', new FiledataModel( $imageFile['values'] ) );
+          */
+          break;
+        case 'EXIST':
+          error_log( 'To Model: '.$imageFile['status'] );
+          break;
+        default:
+          error_log( 'To Model: DEFAULT='.$imageFile['status'] );
+          break;
+      }
+    }
+
+    $res = $taxterm->save( array( 'affectsDependences' => $affectsDependences ) );
     }
     return $res;
+  }
+
+
+  /**
+   * Crea los campos y les asigna las reglas en form
+   *
+   * @param $form
+   * @param $form
+   * @param $form
+  **/
+  public function arrayToForm( $form, $fieldsInfo, $langAvailable ) {
+    foreach( $fieldsInfo as $fieldName => $definition ) {
+      if( !isset( $definition['params'] ) ) {
+        $definition['params'] = false;
+      }
+      if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
+        $baseClass = '';
+        if( isset( $definition['params']['class'] ) &&  $definition['params']['class'] !== '' ) {
+          $baseClass = $definition['params']['class'];
+        }
+        foreach( $langAvailable as $lang ) {
+          $definition['params']['class'] = $baseClass . ' js-tr js-tr-'.$lang;
+          $form->setField( $fieldName.'_'.$lang, $definition['params'] );
+          if( isset( $definition['rules'] ) ) {
+            foreach( $definition['rules'] as $ruleName => $ruleParams ) {
+              $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
+            }
+          }
+        }
+      }
+      else {
+        $form->setField( $fieldName, $definition['params'] );
+        if( isset( $definition['rules'] ) ) {
+          foreach( $definition['rules'] as $ruleName => $ruleParams ) {
+            $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
+          }
+        }
+      }
+    }
   }
 
 
