@@ -1,8 +1,6 @@
 
 (function($) {
 
-
-
   $.fn.multiList = function( options ){
     var that = this;
     var multiListContainer;
@@ -58,7 +56,7 @@
           weight: $( this ).attr('data-order')
         });
       });
-
+      selector.find('option').not('option:selected').attr('data-order', parseInt(dataSelected.length+1));
       dataSelected.sort(function(a,b) { return parseInt(a.weight) - parseInt(b.weight) } );
     }
     /*
@@ -74,10 +72,15 @@
           nestableItem += '</li>';
 
           multiListNestable.find('.dd-list').append(nestableItem);
+          selector.find('option[data-multiList-id="'+elem.id+'"]').attr("data-order", key);
+          selector.find('option[data-multiList-id="'+elem.id+'"]').prop("disabled", true);
+console.log(selector.find('option[data-multiList-id="'+elem.id+'"]').prop("disabled", true));
         });
         multiListNestable.find('.unselectNestable').on("click", function(e){
           var idUnelect = $(this).parent().attr('data-id');
           selector.find('option[data-multiList-id="'+idUnelect+'"]').attr("selected", false);
+          selector.find('option[data-multiList-id="'+idUnelect+'"]').prop("disabled", false);
+console.log(selector.find('option[data-multiList-id="'+idUnelect+'"]').prop("disabled", false));
           $(this).parent().remove();
           e.stopPropagation();
         });
@@ -91,7 +94,17 @@
       }
       multiListNestable.nestable({
         dragClass: draggClass,
-        maxDepth: 1
+        maxDepth: 1,
+        group: multiListId,
+        callback: function(l,e){
+        // l is the main container
+        // e is the element that was moved
+          var dataNestableOrder = multiListNestable.nestable('serialize');
+          console.log(dataNestableOrder);
+          $.each( dataNestableOrder, function( key, elem ) {
+            selector.find('option[data-multiList-id="'+elem.id+'"]').attr("data-order", key);
+          });
+        }
       });
     }
     /*
