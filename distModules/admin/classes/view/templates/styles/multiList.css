@@ -80,18 +80,24 @@
 .multiListDragel.multiListH .dd-item,
 .multiListNestable.multiListH .dd-item{
   float: left;
+  width: auto !important;
 }
 
 .multiListDragel .dd-item .unselectNestable,
 .multiListNestable .dd-item .unselectNestable {
-  margin-right: 5px;
+  margin-left: 5px;
   color: #999;
   cursor: pointer;
   display: inline-block;
   float:right;
   font-weight: bold;
-  margin-right: 2px;
 }
+
+.multiListDragel.multiListH .dd-item .dd-handle,
+.multiListNestable.multiListH .dd-item .dd-handle {
+  float:left;
+}
+
 .multiListNestable .dd-placeholder{
   width:100%;
   margin: 2px;
