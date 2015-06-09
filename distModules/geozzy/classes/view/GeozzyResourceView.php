@@ -72,7 +72,7 @@ class GeozzyResourceView extends View
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
           'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
-        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '150000', 'accept' => 'image/jpeg' )
+        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '100000', 'accept' => 'image/jpeg' )
       ),
       'urlAlias' => array(
         'translate' => true,
@@ -223,6 +223,7 @@ class GeozzyResourceView extends View
       if( $form->isFieldDefined( 'id' ) ) {
         $elemIdForm = $valuesArray[ 'id' ];
         $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
+        unset( $valuesArray[ 'image' ] );
       }
 
       // Validar URLs
@@ -242,7 +243,7 @@ class GeozzyResourceView extends View
     }
 
     if( !$form->existErrors() ) {
-      error_log( print_r( $valuesArray, true ) );
+      // error_log( print_r( $valuesArray, true ) );
 
       $recurso = new ResourceModel( $valuesArray );
       if( $recurso === false ) {
@@ -251,13 +252,51 @@ class GeozzyResourceView extends View
     }
 
     $saveResult = false;
-    if( !$form->existErrors() && $valuesArray['image']['values'] ){
-      $recurso->setterDependence( 'image', new FiledataModel( $valuesArray['image']['values'] ) );
-      $saveResult = $recurso->save( array( 'affectsDependences' => true ));
+    $affectsDependences = false;
+    $imageFile = $form->getFieldValue( 'image' );
+    if( !$form->existErrors() && isset( $imageFile['status'] ) ) {
+      switch( $imageFile['status'] ) {
+
+        case 'LOADED':
+          error_log( 'To Model: '.$imageFile['status'] );
+          // error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
+          $affectsDependences = true;
+          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+          break;
+        case 'REPLACE':
+          error_log( 'To Model: '.$imageFile['status'] );
+          // error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
+          // error_log( 'To Model - fileInfoPrev: '. print_r( $imageFile[ 'prev' ], true ) );
+          $affectsDependences = true;
+
+          // TODO: Falta eliminar o ficheiro anterior
+          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+          break;
+        case 'DELETE':
+          error_log( 'To Model: '.$imageFile['status'] );
+          // error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
+
+          // Apaño
+          $recurso->setter( 'image', null );
+
+          /* PENDIENTE
+          $affectsDependences = true;
+          $recurso->setterDependence( 'image', new FiledataModel( $imageFile['values'] ) );
+          */
+          break;
+        case 'EXIST':
+          error_log( 'To Model: '.$imageFile['status'] );
+          // En principio, si se mantiene la misma, no se hace nada
+          break;
+        default:
+          error_log( 'To Model: DEFAULT='.$imageFile['status'] );
+          break;
+      }
     }
-    else {
-      $saveResult = $recurso->save();
-    }
+
+    $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
+
+
 
     if( !$form->existErrors() && $saveResult === false ) {
       $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
@@ -286,7 +325,7 @@ class GeozzyResourceView extends View
 
 
   private function urlErrors( $resId, $langId, $urlAlias ) {
-    error_log( "urlErrors( $resId, $langId, $urlAlias )" );
+    // error_log( "urlErrors( $resId, $langId, $urlAlias )" );
     $error = false;
 
     //$error = 'URL Alias incompleto';
@@ -296,7 +335,7 @@ class GeozzyResourceView extends View
 
 
   private function setUrl( $resId, $langId, $urlAlias ) {
-    error_log( "setUrl( $resId, $langId, $urlAlias )" );
+    // error_log( "setUrl( $resId, $langId, $urlAlias )" );
     $result = true;
 
     if( !isset( $urlAlias ) || $urlAlias === false || $urlAlias === '' ) {

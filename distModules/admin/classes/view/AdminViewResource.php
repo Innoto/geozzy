@@ -164,7 +164,8 @@ class AdminViewResource extends AdminViewMaster
           $recursoData[ 'image' ] = $fileData[ 'data' ];
         }
       }
-      error_log( 'recursoData: ' . print_r( $recursoData, true ) );
+
+      //error_log( 'recursoData Final: ' . print_r( $recursoData, true ) );
 
       /**
       Bloque de 8
