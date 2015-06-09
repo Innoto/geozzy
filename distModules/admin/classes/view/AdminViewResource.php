@@ -144,8 +144,6 @@ class AdminViewResource extends AdminViewMaster
       $recursoData = $recurso->getAllData();
       $recursoData = $recursoData[ 'data' ];
 
-      error_log( 'recursoData 0: ' . print_r( $recursoData, true ) );
-
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
       if( $urlAliasDep !== false ) {
@@ -166,7 +164,8 @@ class AdminViewResource extends AdminViewMaster
           $recursoData[ 'image' ] = $fileData[ 'data' ];
         }
       }
-      error_log( 'recursoData Final: ' . print_r( $recursoData, true ) );
+
+      //error_log( 'recursoData Final: ' . print_r( $recursoData, true ) );
 
       /**
       Bloque de 8

@@ -243,7 +243,7 @@ class GeozzyResourceView extends View
     }
 
     if( !$form->existErrors() ) {
-      error_log( print_r( $valuesArray, true ) );
+      // error_log( print_r( $valuesArray, true ) );
 
       $recurso = new ResourceModel( $valuesArray );
       if( $recurso === false ) {
@@ -259,14 +259,14 @@ class GeozzyResourceView extends View
 
         case 'LOADED':
           error_log( 'To Model: '.$imageFile['status'] );
-          error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
+          // error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
           $affectsDependences = true;
           $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
           break;
         case 'REPLACE':
           error_log( 'To Model: '.$imageFile['status'] );
-          error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
-          error_log( 'To Model - fileInfoPrev: '. print_r( $imageFile[ 'prev' ], true ) );
+          // error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
+          // error_log( 'To Model - fileInfoPrev: '. print_r( $imageFile[ 'prev' ], true ) );
           $affectsDependences = true;
 
           // TODO: Falta eliminar o ficheiro anterior
@@ -274,7 +274,7 @@ class GeozzyResourceView extends View
           break;
         case 'DELETE':
           error_log( 'To Model: '.$imageFile['status'] );
-          error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
+          // error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
 
           // Apaño
           $recurso->setter( 'image', null );
@@ -325,7 +325,7 @@ class GeozzyResourceView extends View
 
 
   private function urlErrors( $resId, $langId, $urlAlias ) {
-    error_log( "urlErrors( $resId, $langId, $urlAlias )" );
+    // error_log( "urlErrors( $resId, $langId, $urlAlias )" );
     $error = false;
 
     //$error = 'URL Alias incompleto';
@@ -335,7 +335,7 @@ class GeozzyResourceView extends View
 
 
   private function setUrl( $resId, $langId, $urlAlias ) {
-    error_log( "setUrl( $resId, $langId, $urlAlias )" );
+    // error_log( "setUrl( $resId, $langId, $urlAlias )" );
     $result = true;
 
     if( !isset( $urlAlias ) || $urlAlias === false || $urlAlias === '' ) {
