@@ -256,31 +256,25 @@ class GeozzyResourceView extends View
     $imageFile = $form->getFieldValue( 'image' );
     if( !$form->existErrors() && isset( $imageFile['status'] ) ) {
       switch( $imageFile['status'] ) {
-        case 'LOAD':
-          error_log( 'To Model: '.$imageFile['status'] );
-          break;
+
         case 'LOADED':
           error_log( 'To Model: '.$imageFile['status'] );
-          $fileInfo = $imageFile[ 'values' ];
-          error_log( 'To Model - fileInfo: '. print_r( $fileInfo, true ) );
+          error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
           $affectsDependences = true;
-          $recurso->setterDependence( 'image', new FiledataModel( $fileInfo ) );
+          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
           break;
         case 'REPLACE':
           error_log( 'To Model: '.$imageFile['status'] );
-          $fileInfoPrev = $imageFile[ 'prev' ];
-          $fileInfoNew = $imageFile[ 'values' ];
-          error_log( 'To Model - fileInfoPrev: '. print_r( $fileInfoPrev, true ) );
-          error_log( 'To Model - fileInfoNew: '. print_r( $fileInfoNew, true ) );
+          error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
+          error_log( 'To Model - fileInfoPrev: '. print_r( $imageFile[ 'prev' ], true ) );
           $affectsDependences = true;
 
           // TODO: Falta eliminar o ficheiro anterior
-          $recurso->setterDependence( 'image', new FiledataModel( $fileInfoNew ) );
+          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
           break;
         case 'DELETE':
           error_log( 'To Model: '.$imageFile['status'] );
-          $fileInfo = $imageFile[ 'prev' ];
-          error_log( 'To Model - fileInfo: '. print_r( $fileInfo, true ) );
+          error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
 
           // Apaño
           $recurso->setter( 'image', null );
@@ -292,6 +286,7 @@ class GeozzyResourceView extends View
           break;
         case 'EXIST':
           error_log( 'To Model: '.$imageFile['status'] );
+          // En principio, si se mantiene la misma, no se hace nada
           break;
         default:
           error_log( 'To Model: DEFAULT='.$imageFile['status'] );
@@ -299,14 +294,7 @@ class GeozzyResourceView extends View
       }
     }
 
-    $TESTrecursoData = $recurso->getAllData();
-    error_log( 'TESTrecursoData pre: ' . print_r( $TESTrecursoData['data'], true ) );
-
     $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
-
-    $TESTrecursoData = $recurso->getAllData();
-    error_log( 'TESTrecursoData pos: ' . print_r( $TESTrecursoData['data'], true ) );
-
 
 
 
