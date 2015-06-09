@@ -50,7 +50,7 @@ class CoreAPIView extends View
                               "httpMethod": "GET",
                               "nickname": "resource",
                               "parameters": [
-             
+
                                 {
                                   "name": "fields",
                                   "description": "fields (separed by comma)",
@@ -242,7 +242,7 @@ class CoreAPIView extends View
                               "httpMethod": "GET",
                               "nickname": "resource",
                               "parameters": [
- 
+
                               ],
                               "summary": "Fetches topics"
                           }
@@ -280,7 +280,7 @@ class CoreAPIView extends View
                               "httpMethod": "GET",
                               "nickname": "resource",
                               "parameters": [
- 
+
                               ],
                               "summary": "Event type list"
                           }
@@ -303,7 +303,7 @@ class CoreAPIView extends View
   // resources
 
   function resourceList( $param ) {
-    
+
     geozzy::load('model/ResourceModel.php');
     geozzyAPI::load('controller/apiFiltersController.php');
 
@@ -313,7 +313,7 @@ class CoreAPIView extends View
   }
 
   function resourceTypes() {
-    geozzy::load('model/ResourcetypeModel.php');    
+    geozzy::load('model/ResourcetypeModel.php');
     $resourcetypeModel = new ResourcetypeModel( );
     $resourcetypeList = $resourcetypeModel->listItems( ) ;
     $this->syncModelList( $resourcetypeList );
@@ -322,18 +322,18 @@ class CoreAPIView extends View
   // Categories
 
   function categoryList() {
-    geozzy::load('model/TaxonomygroupModel.php');    
+    geozzy::load('model/TaxonomygroupModel.php');
     $taxgroupModel = new TaxonomygroupModel();
     $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
     $this->syncModelList( $taxGroupList );
 
   }
-  
+
   function categoryTerms( $path ) {
 
 
-    if( isset( $path[1] ) && is_numeric( $path[1] ) ) { 
-      geozzy::load('model/TaxonomytermModel.php');    
+    if( isset( $path[1] ) && is_numeric( $path[1] ) ) {
+      geozzy::load('model/TaxonomytermModel.php');
       $taxtermModel = new TaxonomytermModel();
       $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$path[1]) ) );
       $this->syncModelList( $taxtermList );
@@ -347,7 +347,7 @@ class CoreAPIView extends View
 
   // Topics
   function topicList() {
-    geozzy::load('model/TopicModel.php');    
+    geozzy::load('model/TopicModel.php');
     $topicModel = new TopicModel();
     $topicList = $topicModel->listItems( );
     $this->syncModelList( $topicList );
@@ -383,6 +383,8 @@ class CoreAPIView extends View
     header('Content-type: application/json');
     $data = $model->getAllData();
     echo json_encode( $data['data'] );
+
+
   }
 
 

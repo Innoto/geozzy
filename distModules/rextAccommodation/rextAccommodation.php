@@ -5,7 +5,7 @@ Cogumelo::load("coreController/Module.php");
 class rextAccommodation extends Module
 {
 
-  public $name = "rextAccomodation";
+  public $name = "rextAccommodation";
   public $version = "1.0";
   public $dependences = array();
   public $includesCommon = array();
@@ -15,7 +15,7 @@ class rextAccommodation extends Module
   );
 
   public $taxonomies = array(
-  
+
     'accommodationType' => array(
       'idName' => 'accommodationType',
       'name' => array(
@@ -25,24 +25,24 @@ class rextAccommodation extends Module
       ),
       'editable' => 1,
       'initialTerms' => array(
-        array( 
-          'idName' => 'hotel', 
+        array(
+          'idName' => 'hotel',
           'name' => array(
             'en' => 'Hotel',
             'es' => 'Hotel',
             'gl' => 'Hotel'
           )
         ),
-        array( 
-          'idName' => 'hostel', 
+        array(
+          'idName' => 'hostel',
           'name' => array(
             'en' => 'Hostel',
             'es' => 'Hostel',
             'gl' => 'Hostel'
           )
         ),
-        array( 
-          'idName' => 'camping', 
+        array(
+          'idName' => 'camping',
           'name' => array(
             'en' => 'Camping',
             'es' => 'Camping',
@@ -58,43 +58,43 @@ class rextAccommodation extends Module
         'en' => 'Category',
         'es' => 'Categoría',
         'gl' => 'Categoría'
-      ),      
+      ),
       'editable' => 1,
       'initialTerms' => array(
-        array( 
-          'idName' => '1star', 
+        array(
+          'idName' => '1star',
           'name' => array(
             'en' => '1 Star',
             'es' => '1 Estrella',
             'gl' => '1 Estrela'
           )
         ),
-        array( 
-          'idName' => '2stars', 
+        array(
+          'idName' => '2stars',
           'name' => array(
             'en' => '2 Stars',
             'es' => '2 Estrellas',
             'gl' => '2 Estrelas'
           )
         ),
-        array( 
-          'idName' => '3stars', 
+        array(
+          'idName' => '3stars',
           'name' => array(
             'en' => '3 Stars',
             'es' => '3 Estrellas',
             'gl' => '3 Estrelas'
           )
         ),
-        array( 
-          'idName' => '4stars', 
+        array(
+          'idName' => '4stars',
           'name' => array(
             'en' => '4 Stars',
             'es' => '4 Estrellas',
             'gl' => '4 Estrelas'
           )
         ),
-        array( 
-          'idName' => '5stars', 
+        array(
+          'idName' => '5stars',
           'name' => array(
             'en' => '5 Stars',
             'es' => '5 Estrellas',
@@ -113,16 +113,16 @@ class rextAccommodation extends Module
       ),
       'editable' => 1,
       'initialTerms' => array(
-        array( 
-          'idName' => 'telephone', 
+        array(
+          'idName' => 'telephone',
           'name' => array(
             'en' => 'Telephone',
             'es' => 'Teléfono',
             'gl' => 'Teléfono'
           )
         ),
-        array( 
-          'idName' => 'roomservice', 
+        array(
+          'idName' => 'roomservice',
           'name' => array(
             'en' => 'Room service',
             'es' => 'Servicio de habitaciones',
@@ -141,16 +141,16 @@ class rextAccommodation extends Module
       ),
       'editable' => 1,
       'initialTerms' => array(
-        array( 
-          'idName' => 'bar', 
+        array(
+          'idName' => 'bar',
           'name' => array(
             'en' => 'Bar',
             'es' => 'Bar',
             'gl' => 'Bar'
           )
         ),
-        array( 
-          'idName' => 'parking', 
+        array(
+          'idName' => 'parking',
           'name' => array(
             'en' => 'Parking',
             'es' => 'Aparcamiento',
@@ -169,16 +169,16 @@ class rextAccommodation extends Module
       ),
       'editable' => 1,
       'initialTerms' => array(
-        array( 
-          'idName' => 'nh', 
+        array(
+          'idName' => 'nh',
           'name' => array(
             'en' => 'NH Hotels',
             'es' => 'NH Hoteles',
             'gl' => 'NH Hoteles'
           )
         ),
-        array( 
-          'idName' => 'melia', 
+        array(
+          'idName' => 'melia',
           'name' => array(
             'en' => 'Meliá',
             'es' => 'Meliá',
