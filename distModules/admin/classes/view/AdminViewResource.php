@@ -135,14 +135,22 @@ class AdminViewResource extends AdminViewMaster
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];
       $recModel = new ResourceModel();
-      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomyTermModel' ),
+      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel' ),
         'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1) ) );
       $recurso = $recursosList->fetch();
     }
 
+
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
       $recursoData = $recursoData[ 'data' ];
+
+      /*echo "<pre>";
+      $deps = $recurso->getterDependence('id', 'ResourceTaxonomytermModel');
+      foreach ($deps as $dep) {
+        var_dump($dep->getAllData() );
+      }
+      exit();*/
 
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
@@ -154,6 +162,7 @@ class AdminViewResource extends AdminViewMaster
           }
         }
       }
+
 
       // Cargo los datos previos de image dentro de los del recurso
       $fileDep = $recurso->getterDependence( 'image' );
@@ -175,13 +184,13 @@ class AdminViewResource extends AdminViewMaster
       }
 
       // Cargo los datos previos del listado de destacados con los que está asociado el recurso
-      $taxTermDep = $recurso->getterDependence( 'id', 'ResourceTaxonomyTermModel');
+      $taxTermDep = $recurso->getterDependence( 'id', 'ResourceTaxonomytermModel');
 
       if( $taxTermDep !== false ) {
         foreach( $taxTermDep as $taxTerm ) {
           $taxTermArray[$taxTerm->getter('id')] = $taxTerm->getter('taxonomyterm');
         }
-        $recursoData[ 'topics' ] = $taxTermArray;
+        $recursoData[ 'starred' ] = $taxTermArray;
       }
 
       //error_log( 'recursoData Final: ' . print_r( $recursoData, true ) );
