@@ -31,14 +31,15 @@
 
 
 $( document ).ready(function() {
-/*
+
   $('#asigned_terms2').multiList();
   $('#asigned_terms3').multiList({
     orientation: 'horizontal'
   });
-*/
-  $('select').multiMultiList();
 
+/*
+  $('select').multiMultiList();
+*/
 });
 
 

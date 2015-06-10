@@ -56,53 +56,25 @@ class admin extends Module
      "installer" => "bower",
      "includes" => array("raphael-min.js")
     ),
-/*
 
-    array(
-     "id" =>"jquery-ui",
-     "params" => array("jquery-ui"),
-     "installer" => "bower",
-     "includes" => array("jquery-ui.js", "jquery-ui.css")
-    ),
-*/
-/*
-    array(
-     "id" =>"jquery-ui-sortable",
-     "params" => array("jquery-ui-sortable"),
-     "installer" => "bower",
-     "includes" => array("jquery-ui-sortable.js")
-    ),
-*/
     array(
      "id" =>"select2",
      "params" => array("select2"),
      "installer" => "bower",
      "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
     ),
-
-/*
     array(
-     "id" =>"select2-2",
-     "params" => array("select2#3.5.2"),
-     "installer" => "bower",
-     "includes" => array("select2.js", "select2.css", "select2.sortable.js")
+      "id" =>"nestable2",
+      "params" => array("nestable2"),
+      "installer" => "bower",
+      "includes" => array("jquery.nestable.js")
     ),
-*/
-
     array(
-     "id" =>"jqueryui-touch-punch",
-     "params" => array("jqueryui-touch-punch"),
-     "installer" => "bower",
-     "includes" => array("jquery.ui.touch-punch.js")
-    ),
-
-    array(
-     "id" =>"nestable2",
-     "params" => array("nestable2"),
-     "installer" => "bower",
-     "includes" => array("jquery.nestable.js")
+      "id" =>"multiList",
+      "params" => array("multiList"),
+      "installer" => "bower",
+      "includes" => array("multiList.min.js", "multiList.css")
     )
-
 
   );
 
@@ -110,8 +82,6 @@ class admin extends Module
     'styles/adminBase.less',
     'styles/admin.less',
     'styles/adminNestable.less',
-    'styles/multiList.css',
-    'js/multiList.js',
     'js/app.js',
     'js/views/AdminView.js',
     'js/views/CategoryEditorView.js',
