@@ -40,7 +40,7 @@
               </strong>
             </div>
             <div class="panel-body">
-              <div id="taxTermListContainer" class="dd">
+              <div id="taxTermListContainer" class="gzznestable dd">
                 <ol class="listTerms dd-list">
                 </ol>
               </div>
