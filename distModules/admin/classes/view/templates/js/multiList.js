@@ -73,14 +73,10 @@
 
           multiListNestable.find('.dd-list').append(nestableItem);
           selector.find('option[data-multiList-id="'+elem.id+'"]').attr("data-order", key);
-          selector.find('option[data-multiList-id="'+elem.id+'"]').prop("disabled", true);
-console.log(selector.find('option[data-multiList-id="'+elem.id+'"]').prop("disabled", true));
         });
         multiListNestable.find('.unselectNestable').on("click", function(e){
           var idUnelect = $(this).parent().attr('data-id');
           selector.find('option[data-multiList-id="'+idUnelect+'"]').attr("selected", false);
-          selector.find('option[data-multiList-id="'+idUnelect+'"]').prop("disabled", false);
-console.log(selector.find('option[data-multiList-id="'+idUnelect+'"]').prop("disabled", false));
           $(this).parent().remove();
           e.stopPropagation();
         });
@@ -100,7 +96,6 @@ console.log(selector.find('option[data-multiList-id="'+idUnelect+'"]').prop("dis
         // l is the main container
         // e is the element that was moved
           var dataNestableOrder = multiListNestable.nestable('serialize');
-          console.log(dataNestableOrder);
           $.each( dataNestableOrder, function( key, elem ) {
             selector.find('option[data-multiList-id="'+elem.id+'"]').attr("data-order", key);
           });
@@ -140,7 +135,6 @@ console.log(selector.find('option[data-multiList-id="'+idUnelect+'"]').prop("dis
       }
 
       multiListId = 'multiListId-'+multiListCount;
-console.log("Count"+ multiListCount);
 
       that.initOptionsValues();
       that.getSelectedValues();
@@ -153,4 +147,9 @@ console.log("Count"+ multiListCount);
     that.init();
   };
 
+  $.fn.multiMultiList = function( options ){
+    $(this).each(function( index ) {
+      $(this).multiList(options);
+    });
+  }
 }( jQuery ));

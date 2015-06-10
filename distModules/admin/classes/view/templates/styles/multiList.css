@@ -51,6 +51,7 @@
 
 .multiListNestable{
   border: 1px solid #CECECE;
+  background: #F5F5F5;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -109,5 +110,12 @@
 }
 
 .multiListSelect2 .select2-selection__choice{
+  display: none;
+}
+
+.multiListSelect2 .select2-results__option[aria-selected="true"]{
+  display: none;
+}
+.select2-container--default .select2-results__option[aria-selected="true"] {
   display: none;
 }
