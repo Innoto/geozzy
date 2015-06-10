@@ -73,9 +73,8 @@ class admin extends Module
       "id" =>"multiList",
       "params" => array("multiList"),
       "installer" => "bower",
-      "includes" => array("multiList.js", "multiList.css")
-    ),
-
+      "includes" => array("multiList.min.js", "multiList.css")
+    )
 
   );
 
@@ -83,8 +82,6 @@ class admin extends Module
     'styles/adminBase.less',
     'styles/admin.less',
     'styles/adminNestable.less',
-    'styles/multiList.css',
-    'js/multiList.js',
     'js/app.js',
     'js/views/AdminView.js',
     'js/views/CategoryEditorView.js',
