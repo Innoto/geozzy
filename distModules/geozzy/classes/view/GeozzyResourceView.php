@@ -79,10 +79,6 @@ class GeozzyResourceView extends View
         'params' => array( 'label' => __( 'SEO: URL' ) ),
         'rules' => array( 'maxlength' => '2000' )
       ),
-/*      'topics' => array(
-        'params' => array( 'label' => __( 'Temáticas asociadas' ), 'type' => 'checkbox', 'options'=> array( '0' => 'Zero', '1' => 'Opcion 1', '2' => 'Posto 2', 'asdf' => 'asdf' )),
-        'rules' => array( 'required' => true)
-      ),*/
       'headKeywords' => array(
         'params' => array( 'label' => __( 'SEO: Head Keywords' ) ),
         'rules' => array( 'maxlength' => '150' )
@@ -103,20 +99,29 @@ class GeozzyResourceView extends View
 
     $form->setValidationRule( 'title_'.$langDefault, 'required' );
 
-
-    $topicmodel =  new TopicModel();
-    $topic = $topicmodel->listItems();
+    // Temáticas asociadas
+    $topicModel =  new TopicModel();
+    $topic = $topicModel->listItems();
 
     $name = $topic->fetchAll();
     $topics = '';
-    $i = 0;
     foreach ($name as $n){
       $topics[$n->getter('id')] = $n->getter('name', LANG_DEFAULT);
-      $i = $i +1;
     }
-
     $form->setField( 'topics', array( 'type' => 'checkbox', 'options'=> $topics) );
     $form->setValidationRule( 'topics', 'required' );
+
+    // Destacados asociados
+    $taxTermModel =  new TaxonomyTermModel();
+    $taxTerm = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+
+    $starredList = $taxTerm->fetchAll();
+    $starred = '';
+    foreach ($starredList as $star){
+      $starred[$star->getter('id')] = $star->getter('name', LANG_DEFAULT);
+    }
+    $form->setField( 'starred', array( 'type' => 'checkbox', 'options'=> $starred) );
+    $form->setValidationRule( 'starred', 'required' );
 
 
     //Si es una edicion, añadimos el ID y cargamos los datos
@@ -315,7 +320,7 @@ class GeozzyResourceView extends View
 
     $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
 
-
+    // Procesamos o listado de temáticas asociadas
     if( !$form->existErrors()) {
       $elemId = $recurso->getter( 'id' );
       $newTopics = $form->getFieldValue( 'topics' );
@@ -338,6 +343,35 @@ class GeozzyResourceView extends View
       foreach($newTopics as $topic){
         if (!in_array($topic,$oldTopics)){ //asignar
              $recurso->setterDependence( 'id', new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
+        }
+      }
+
+      $affectsDependences = true;
+      $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
+    }
+
+    // Procesamos o listado de destacados asociados
+    if( !$form->existErrors()) {
+      $newStarred = $form->getFieldValue( 'starred' );
+
+      if (!is_array($newStarred))
+        $newStarred = array($newStarred); 
+
+      $resourceTaxonomytermModel = new ResourceTaxonomytermModel();
+      $starredList = $resourceTaxonomytermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'resource' => $elemId ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ))->fetchAll();;
+
+      // estaban asignados antes 
+      foreach ($starredList as $oldStar){
+        $oldStarred[$oldStar->getter('taxonomyterm')] = $oldStar->getter('taxonomyterm');
+        if (!in_array($oldStar->getter('taxonomyterm'),$newStarred) ){ // desasignar
+          $oldStar->delete();
+        }
+      }
+
+      // non estaban asignados antes
+      foreach($newStarred as $star){
+        if (!in_array($star,$oldStarred)){ //asignar
+             $recurso->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $elemId, 'taxonomyterm' => $star)) );
         }
       }
 
