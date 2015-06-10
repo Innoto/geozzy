@@ -158,7 +158,6 @@ class AdminViewResource extends AdminViewMaster
       }
 
 
-
       // Cargo los datos previos de image dentro de los del recurso
       $fileDep = $recurso->getterDependence( 'image' );
       if( $fileDep !== false ) {
@@ -168,19 +167,15 @@ class AdminViewResource extends AdminViewMaster
         }
       }
 
-
       // Cargo los datos previos del listado de temáticas con las que está asociado el recurso
-
-      //print_r($recurso->getAllData());
       $topicsDep = $recurso->getterDependence( 'id', 'ResourceTopicModel');
 
       if( $topicsDep !== false ) {
         foreach( $topicsDep as $fileModel ) {
-          $topicsData = $fileModel->getAllData();
-          $recursoData[ 'topics' ] = $topicsData[ 'data' ];
+          $topicsArray[$fileModel->getter('id')] = $fileModel->getter('topic');
         }
+        $recursoData[ 'topics' ] = $topicsArray;
       }
-//print_r($recursoData);
       //error_log( 'recursoData Final: ' . print_r( $recursoData, true ) );
 
       /**
@@ -195,7 +190,6 @@ class AdminViewResource extends AdminViewMaster
       $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
       $formSeparate[ 'image' ] = $formFieldsArray[ 'image' ];
       unset( $formFieldsArray[ 'image' ] );
-      $formBlock->assign( 'formFieldsArray', $formFieldsArray );
       $formSeparate[ 'topics' ] = $formFieldsArray[ 'topics' ];
       unset( $formFieldsArray[ 'topics' ] );
       $formBlock->assign( 'formFieldsArray', $formFieldsArray );
@@ -203,29 +197,9 @@ class AdminViewResource extends AdminViewMaster
       $panel = $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' );
       $this->template->addToBlock( 'col8', $panel );
 
-
-
       /**
       Bloque de 4
       */
-
-      $topicmodel =  new TopicModel();
-      $topic = $topicmodel->listItems(array("filters" => array("inresource" => $idResource)));
-
-     $name = $topic->fetchAll();
-     $html = 'Recurso asociado con:<br>';
-     foreach ($name as $n){
-      //$html = $html.' <i class="fa fa-times"></i> '.$n->getter('name', LANG_DEFAULT).'<br>';
-      $html = $html.' <i class="fa fa-times"></i> '.$n->getter('name', LANG_DEFAULT).'<br>';
-     }
-
-     $html = $html.' <i class="fa fa-times"></i> Desvincular de TODAS<br>'.
-        '<br>'.
-        ' <i class="fa fa-times"></i> Eliminar Recurso<br>'.
-        '';
-
-      $panel = $this->getPanelBlock( $html, __( 'Information' ) );
-      //$this->template->addToBlock( 'col4', $panel );
       $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'topics' ], __( 'Recurso asociado con:' ) ) );
       /**
       Bloque de 4 (outro)
