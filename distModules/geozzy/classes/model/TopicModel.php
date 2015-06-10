@@ -36,7 +36,9 @@ class TopicModel extends Model
 
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+      'inresource' => "id IN (select topic from geozzy_resource_topic where resource=?)"
+    );
 
 
   function __construct( $datarray= array(), $otherRelObj = false ) {

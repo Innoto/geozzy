@@ -135,14 +135,16 @@ class AdminViewResource extends AdminViewMaster
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];
       $recModel = new ResourceModel();
-      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel', 'UrlAliasModel' ),
-        'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
+      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel' ),
+        'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1) ) );
       $recurso = $recursosList->fetch();
+      
     }
 
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
       $recursoData = $recursoData[ 'data' ];
+
 
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
@@ -156,6 +158,7 @@ class AdminViewResource extends AdminViewMaster
       }
 
 
+
       // Cargo los datos previos de image dentro de los del recurso
       $fileDep = $recurso->getterDependence( 'image' );
       if( $fileDep !== false ) {
@@ -165,6 +168,19 @@ class AdminViewResource extends AdminViewMaster
         }
       }
 
+
+      // Cargo los datos previos del listado de temáticas con las que está asociado el recurso
+
+      //print_r($recurso->getAllData());
+      $topicsDep = $recurso->getterDependence( 'id', 'ResourceTopicModel');
+
+      if( $topicsDep !== false ) {
+        foreach( $topicsDep as $fileModel ) {
+          $topicsData = $fileModel->getAllData();
+          $recursoData[ 'topics' ] = $topicsData[ 'data' ];
+        }
+      }
+//print_r($recursoData);
       //error_log( 'recursoData Final: ' . print_r( $recursoData, true ) );
 
       /**
@@ -180,6 +196,9 @@ class AdminViewResource extends AdminViewMaster
       $formSeparate[ 'image' ] = $formFieldsArray[ 'image' ];
       unset( $formFieldsArray[ 'image' ] );
       $formBlock->assign( 'formFieldsArray', $formFieldsArray );
+      $formSeparate[ 'topics' ] = $formFieldsArray[ 'topics' ];
+      unset( $formFieldsArray[ 'topics' ] );
+      $formBlock->assign( 'formFieldsArray', $formFieldsArray );
 
       $panel = $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' );
       $this->template->addToBlock( 'col8', $panel );
@@ -189,18 +208,25 @@ class AdminViewResource extends AdminViewMaster
       /**
       Bloque de 4
       */
-      $html = 'Recurso asociado con:<br>'.
-        ' <i class="fa fa-times"></i> Playas<br>'.
-        ' <i class="fa fa-times"></i> Lugares<br>'.
-        ' <i class="fa fa-times"></i> Fiesta<br>'.
-        '<br>'.
-        ' <i class="fa fa-times"></i> Desvincular de TODAS<br>'.
+
+      $topicmodel =  new TopicModel();
+      $topic = $topicmodel->listItems(array("filters" => array("inresource" => $idResource)));
+
+     $name = $topic->fetchAll();
+     $html = 'Recurso asociado con:<br>';
+     foreach ($name as $n){
+      //$html = $html.' <i class="fa fa-times"></i> '.$n->getter('name', LANG_DEFAULT).'<br>';
+      $html = $html.' <i class="fa fa-times"></i> '.$n->getter('name', LANG_DEFAULT).'<br>';
+     }
+
+     $html = $html.' <i class="fa fa-times"></i> Desvincular de TODAS<br>'.
         '<br>'.
         ' <i class="fa fa-times"></i> Eliminar Recurso<br>'.
         '';
-      $panel = $this->getPanelBlock( $html, __( 'Information' ) );
-      $this->template->addToBlock( 'col4', $panel );
 
+      $panel = $this->getPanelBlock( $html, __( 'Information' ) );
+      //$this->template->addToBlock( 'col4', $panel );
+      $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'topics' ], __( 'Recurso asociado con:' ) ) );
       /**
       Bloque de 4 (outro)
       */
