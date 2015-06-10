@@ -71,7 +71,7 @@ class GeozzyResourceView extends View
       ),
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
-          'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
+        'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
         'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '100000', 'accept' => 'image/jpeg' )
       ),
       'urlAlias' => array(
@@ -79,6 +79,10 @@ class GeozzyResourceView extends View
         'params' => array( 'label' => __( 'SEO: URL' ) ),
         'rules' => array( 'maxlength' => '2000' )
       ),
+/*      'topics' => array(
+        'params' => array( 'label' => __( 'Temáticas asociadas' ), 'type' => 'checkbox', 'options'=> array( '0' => 'Zero', '1' => 'Opcion 1', '2' => 'Posto 2', 'asdf' => 'asdf' )),
+        'rules' => array( 'required' => true)
+      ),*/
       'headKeywords' => array(
         'params' => array( 'label' => __( 'SEO: Head Keywords' ) ),
         'rules' => array( 'maxlength' => '150' )
@@ -98,6 +102,21 @@ class GeozzyResourceView extends View
     $this->arrayToForm( $form, $fieldsInfo, $langAvailable );
 
     $form->setValidationRule( 'title_'.$langDefault, 'required' );
+
+
+    $topicmodel =  new TopicModel();
+    $topic = $topicmodel->listItems();
+
+    $name = $topic->fetchAll();
+    $topics = '';
+    $i = 0;
+    foreach ($name as $n){
+      $topics[$n->getter('id')] = $n->getter('name', LANG_DEFAULT);
+      $i = $i +1;
+    }
+
+    $form->setField( 'topics', array( 'type' => 'checkbox', 'options'=> $topics) );
+    $form->setValidationRule( 'topics', 'required' );
 
 
     //Si es una edicion, añadimos el ID y cargamos los datos
@@ -297,13 +316,41 @@ class GeozzyResourceView extends View
     $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
 
 
+    if( !$form->existErrors()) {
+      $elemId = $recurso->getter( 'id' );
+      $newTopics = $form->getFieldValue( 'topics' );
+
+      if (!is_array($newTopics))
+        $newTopics = array($newTopics); 
+
+      $resourceTopicModel = new ResourceTopicModel();
+      $resourceTopicList = $resourceTopicModel->listItems(array('parameters' => array('resource', $elemId)))->fetchAll();
+
+      // estaban asignados antes 
+      foreach ($resourceTopicList as $oldTopic){
+        $oldTopics[$oldTopic->getter('topic')] = $oldTopic->getter('topic');
+        if (!in_array($oldTopic->getter('topic'),$newTopics) ){ // desasignar
+          $oldTopic->delete();
+        }
+      }
+
+      // non estaban asignados antes
+      foreach($newTopics as $topic){
+        if (!in_array($topic,$oldTopics)){ //asignar
+             $recurso->setterDependence( 'id', new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
+        }
+      }
+
+      $affectsDependences = true;
+      $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
+    }
+
 
     if( !$form->existErrors() && $saveResult === false ) {
       $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
     }
 
     if( !$form->existErrors() ) {
-      $elemId = $recurso->getter( 'id' );
 
       foreach( $urlAlias as $langId => $url ) {
         if( $this->setUrl( $elemId, $langId, $url ) === false ) {
