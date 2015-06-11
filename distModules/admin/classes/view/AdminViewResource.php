@@ -95,24 +95,28 @@ class AdminViewResource extends AdminViewMaster
     $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
     $formSeparate[ 'image' ] = $formFieldsArray[ 'image' ];
     unset( $formFieldsArray[ 'image' ] );
+    $formSeparate[ 'topics' ] = $formFieldsArray[ 'topics' ];
+    unset( $formFieldsArray[ 'topics' ] );
+    $formSeparate[ 'starred' ] = $formFieldsArray[ 'starred' ];
+    unset( $formFieldsArray[ 'starred' ] );
     $formBlock->assign( 'formFieldsArray', $formFieldsArray );
 
     $panel = $this->getPanelBlock( $formBlock, __( 'New Resource' ), 'fa-archive' );
     $this->template->addToBlock( 'col8', $panel );
 
 
-    /**
-    Bloque de 4
-    */
-    $panel = $this->getPanelBlock( __( 'Recuerda que en algunos campos existe versión en varios idiomas.' ) );
-    $this->template->addToBlock( 'col4', $panel );
-
-
-    /**
-    Bloque de 4 (outro)
-    */
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'image' ], __( 'Selecciona una imagen' ) ) );
-
+      /**
+      Bloque de 4
+      */
+      $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'topics' ], __( 'Temáticas asociadas al recurso:' ) ) );
+      /**
+      Bloque de 4 (outro)
+      */
+      $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'starred' ], __( 'Destacados asociados al recurso:' ) ) );
+      /**
+      Bloque de 4 (outro)
+      */
+      $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'image' ], __( 'Selecciona una imagen' ) ) );
 
     /**
     Admin 8-4

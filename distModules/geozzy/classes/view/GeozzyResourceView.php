@@ -109,7 +109,6 @@ class GeozzyResourceView extends View
       $topics[$n->getter('id')] = $n->getter('name', LANG_DEFAULT);
     }
     $form->setField( 'topics', array( 'type' => 'checkbox', 'options'=> $topics) );
-    $form->setValidationRule( 'topics', 'required' );
 
     // Destacados asociados
     $taxTermModel =  new TaxonomyTermModel();
@@ -121,8 +120,6 @@ class GeozzyResourceView extends View
       $starred[$star->getter('id')] = $star->getter('name', LANG_DEFAULT);
     }
     $form->setField( 'starred', array( 'type' => 'checkbox', 'options'=> $starred) );
-    $form->setValidationRule( 'starred', 'required' );
-
 
     //Si es una edicion, añadimos el ID y cargamos los datos
     // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
@@ -317,9 +314,7 @@ class GeozzyResourceView extends View
           break;
       }
     }
-
-    $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
-
+    
     // Procesamos o listado de temáticas asociadas
     if( !$form->existErrors()) {
       $elemId = $recurso->getter( 'id' );
@@ -331,23 +326,30 @@ class GeozzyResourceView extends View
       $resourceTopicModel = new ResourceTopicModel();
       $resourceTopicList = $resourceTopicModel->listItems(array('parameters' => array('resource', $elemId)))->fetchAll();
 
-      // estaban asignados antes 
-      foreach ($resourceTopicList as $oldTopic){
-        $oldTopics[$oldTopic->getter('topic')] = $oldTopic->getter('topic');
-        if (!in_array($oldTopic->getter('topic'),$newTopics) ){ // desasignar
-          $oldTopic->delete();
+      if ($resourceTopicList){
+        // estaban asignados antes 
+        foreach ($resourceTopicList as $oldTopic){
+          $oldTopics[$oldTopic->getter('topic')] = $oldTopic->getter('topic');
+          if (!in_array($oldTopic->getter('topic'),$newTopics) ){ // desasignar
+            $oldTopic->delete();
+          }
         }
       }
 
-      // non estaban asignados antes
-      foreach($newTopics as $topic){
-        if (!in_array($topic,$oldTopics)){ //asignar
-             $recurso->setterDependence( 'id', new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
+      if (!isset($oldTopics)){
+        foreach($newTopics as $topic){
+          $recurso->setterDependence( 'id', new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
         }
       }
-
+      else{
+        // non estaban asignados antes
+        foreach($newTopics as $topic){
+          if (!in_array($topic,$oldTopics)){ //asignar
+               $recurso->setterDependence( 'id', new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
+          }
+        }
+      }
       $affectsDependences = true;
-      $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
     }
 
     // Procesamos o listado de destacados asociados
@@ -368,21 +370,30 @@ class GeozzyResourceView extends View
         }
       }
 
-      // non estaban asignados antes
-      foreach($newStarred as $star){
-        if (!in_array($star,$oldStarred)){ //asignar
-             $recurso->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $elemId, 'taxonomyterm' => $star)) );
+      if (!isset($oldStarred)){
+        foreach($newStarred as $star){
+          $recurso->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $elemId, 'taxonomyterm' => $star)) );
+        }
+      }
+      else{
+        // non estaban asignados antes
+        foreach($newStarred as $star){
+          if (!in_array($star,$oldStarred)){ //asignar
+               $recurso->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $elemId, 'taxonomyterm' => $star)) );
+          }
         }
       }
 
       $affectsDependences = true;
+    }
+
+    if( !$form->existErrors()) {
       $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
+      if( $saveResult === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+      }
     }
-
-
-    if( !$form->existErrors() && $saveResult === false ) {
-      $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
-    }
+    
 
     if( !$form->existErrors() ) {
 
