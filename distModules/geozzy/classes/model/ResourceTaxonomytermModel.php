@@ -23,6 +23,9 @@ class ResourceTaxonomytermModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'ResourceModel',
       'key' => 'id'
+    ),
+    'weight' => array(
+      'type' => 'INT'
     )
   );
 

@@ -20,6 +20,7 @@ var AdminRouter = Backbone.Router.extend({
     "resource/list": "resourceList",
     "resourceintopic/list/:id": "resourceintopicList",
     "resourceouttopic/list/:id": "resourceouttopicList",
+    "starred/:id": "starredList",
     "starred/:id/assign": "starredAssign",
     "resource/create" : "resourceCreate",
     "resource/create/:topic/:resourcetype" : "resourceCreateinTopic",
@@ -35,8 +36,8 @@ var AdminRouter = Backbone.Router.extend({
 
   categoryEdit: function( id ){
     app.mainView.categoryEdit( id );
-    app.mainView.menuSelect('category_'+id);    
-        
+    app.mainView.menuSelect('category_'+id);
+
   },
 
   categoryNewTerm: function( category ){
@@ -50,7 +51,7 @@ var AdminRouter = Backbone.Router.extend({
   // User
   userList: function(){
     app.mainView.loadAjaxContent( '/admin/user/list' );
-    app.mainView.menuSelect('user');    
+    app.mainView.menuSelect('user');
   },
 
   userCreate: function( ) {
@@ -68,7 +69,7 @@ var AdminRouter = Backbone.Router.extend({
   // Roles
   roleList: function(){
     app.mainView.loadAjaxContent( '/admin/role/list' );
-    app.mainView.menuSelect('roles');        
+    app.mainView.menuSelect('roles');
   },
 
   roleCreate: function( ) {
@@ -86,16 +87,21 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   resourceintopicList: function(id) {
-    app.mainView.loadAjaxContent( '/admin/resourceintopic/list/'+id);   
+    app.mainView.loadAjaxContent( '/admin/resourceintopic/list/'+id);
     app.mainView.menuSelect('topic_'+id);
   },
 
   resourceouttopicList: function(id) {
-    app.mainView.loadAjaxContent( '/admin/resourceouttopic/list/'+id);   
+    app.mainView.loadAjaxContent( '/admin/resourceouttopic/list/'+id);
   },
 
+  starredList: function( id ){
+    app.mainView.starredList( id );
+    app.mainView.menuSelect('star_'+id);
+
+  },
   starredAssign: function(id) {
-    app.mainView.loadAjaxContent( '/admin/starred/'+id+'/assign');   
+    app.mainView.loadAjaxContent( '/admin/starred/'+id+'/assign');
   },
 
 

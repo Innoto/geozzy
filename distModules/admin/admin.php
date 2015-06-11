@@ -152,7 +152,10 @@ class admin extends Module
     $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminDataAPIView::categoryTerms' );
     $this->addUrlPatterns( '#^api/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
+    $this->addUrlPatterns( '#^api/admin/resourcesTerm/(.*)$#', 'view:AdminDataAPIView::resourcesTerm' );
+    $this->addUrlPatterns( '#^api/admin/resourcesTerm.json$#', 'view:AdminDataAPIView::resourcesTermJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/starred$#', 'view:AdminDataAPIView::starred' );
+    $this->addUrlPatterns( '#^api/admin/starred.json$#', 'view:AdminDataAPIView::starredJson' ); // Swagger
 
 
 

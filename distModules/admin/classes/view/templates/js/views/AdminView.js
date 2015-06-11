@@ -13,7 +13,7 @@ var AdminView = Backbone.View.extend({
     //Categories
     var menuCategoryElement =  _.template($("#menuCategoryElement").html());
     var menuCategoriesDiv = $('#wrapper .navbar  .sidebar .categoriesList');
-    
+
     menuCategoriesDiv.html( menuCategoryElement( { categories:  app.categories.toJSON()  } ) );
     //Topics
     var menuTopics =  _.template($("#menuTopics").html());
@@ -27,6 +27,11 @@ var AdminView = Backbone.View.extend({
 
   categoryEdit: function( id ) {
     this.childView = new CategoryEditorView( app.categories.get(id) );
+    this.render(  );
+  },
+
+  starredList: function( id ){
+    this.childView = new StarredListView( app.starred.get(id) );
     this.render(  );
   },
 
@@ -77,7 +82,7 @@ var AdminView = Backbone.View.extend({
           });
         });
       }
-      
+
       if (parts2[0] == 'starred' && parts2[2] == 'assign'){ //táboa de asignación intermedia recursos-destacados
         // Assign
         $('.btnAssign').bind('click', function(){
