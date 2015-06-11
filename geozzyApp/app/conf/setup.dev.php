@@ -23,7 +23,11 @@
 
 
 
-
+//
+//  SESSION
+//
+ini_set( 'session.cookie_lifetime', 86400 );
+ini_set( 'session.gc_maxlifetime', 86400 );
 
 
 
@@ -112,7 +116,7 @@ $C_ENABLED_MODULES = array(
   'form',
   'Blocks',
   'table',
-  
+
   // resource Types
   'rtypeHotel',
 
