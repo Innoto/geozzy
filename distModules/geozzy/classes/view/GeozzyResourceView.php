@@ -99,27 +99,28 @@ class GeozzyResourceView extends View
 
     $form->setValidationRule( 'title_'.$langDefault, 'required' );
 
+
     // Temáticas asociadas
     $topicModel =  new TopicModel();
     $topic = $topicModel->listItems();
-
     $name = $topic->fetchAll();
-    $topics = '';
-    foreach ($name as $n){
-      $topics[$n->getter('id')] = $n->getter('name', LANG_DEFAULT);
+    $topics = array();
+    foreach( $name as $n ){
+      $topics[ $n->getter('id') ] = $n->getter('name', LANG_DEFAULT);
     }
     $form->setField( 'topics', array( 'type' => 'checkbox', 'options'=> $topics) );
+
 
     // Destacados asociados
     $taxTermModel =  new TaxonomyTermModel();
     $taxTerm = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
-
     $starredList = $taxTerm->fetchAll();
-    $starred = '';
-    foreach ($starredList as $star){
-      $starred[$star->getter('id')] = $star->getter('name', LANG_DEFAULT);
+    $starred = array();
+    foreach( $starredList as $star ){
+      $starred[ $star->getter('id') ] = $star->getter('name', LANG_DEFAULT);
     }
     $form->setField( 'starred', array( 'type' => 'checkbox', 'options'=> $starred) );
+
 
     //Si es una edicion, añadimos el ID y cargamos los datos
     // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
@@ -314,20 +315,20 @@ class GeozzyResourceView extends View
           break;
       }
     }
-    
+
     // Procesamos o listado de temáticas asociadas
     if( !$form->existErrors()) {
       $elemId = $recurso->getter( 'id' );
       $newTopics = $form->getFieldValue( 'topics' );
 
       if (!is_array($newTopics))
-        $newTopics = array($newTopics); 
+        $newTopics = array($newTopics);
 
       $resourceTopicModel = new ResourceTopicModel();
       $resourceTopicList = $resourceTopicModel->listItems(array('parameters' => array('resource', $elemId)))->fetchAll();
 
       if ($resourceTopicList){
-        // estaban asignados antes 
+        // estaban asignados antes
         foreach ($resourceTopicList as $oldTopic){
           $oldTopics[$oldTopic->getter('topic')] = $oldTopic->getter('topic');
           if (!in_array($oldTopic->getter('topic'),$newTopics) ){ // desasignar
@@ -357,12 +358,12 @@ class GeozzyResourceView extends View
       $newStarred = $form->getFieldValue( 'starred' );
 
       if (!is_array($newStarred))
-        $newStarred = array($newStarred); 
+        $newStarred = array($newStarred);
 
       $resourceTaxonomytermModel = new ResourceTaxonomytermModel();
       $starredList = $resourceTaxonomytermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'resource' => $elemId ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ))->fetchAll();;
 
-      // estaban asignados antes 
+      // estaban asignados antes
       foreach ($starredList as $oldStar){
         $oldStarred[$oldStar->getter('taxonomyterm')] = $oldStar->getter('taxonomyterm');
         if (!in_array($oldStar->getter('taxonomyterm'),$newStarred) ){ // desasignar
@@ -393,7 +394,7 @@ class GeozzyResourceView extends View
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
       }
     }
-    
+
 
     if( !$form->existErrors() ) {
 
