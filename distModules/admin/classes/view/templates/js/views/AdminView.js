@@ -31,7 +31,7 @@ var AdminView = Backbone.View.extend({
   },
 
   starredList: function( id ){
-    this.childView = new StarredListView( app.starred.get(id) );
+    this.childView = new ResourcesStarredListView( app.starred.get(id) );
     this.render(  );
   },
 

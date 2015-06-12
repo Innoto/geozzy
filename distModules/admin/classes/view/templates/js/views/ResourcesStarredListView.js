@@ -1,7 +1,7 @@
 
 var app = app || {};
 
-var CategoryEditorView = Backbone.View.extend({
+var ResourcesStarredListView = Backbone.View.extend({
 
   events: {
     "click .newTaxTerm": "addCategory" ,

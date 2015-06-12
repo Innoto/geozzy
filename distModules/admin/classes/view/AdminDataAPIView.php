@@ -341,10 +341,18 @@ class AdminDataAPIView extends View
 
         if( array_key_exists( 'taxonomyterm', $_GET ) && is_numeric( $_GET['taxonomyterm'] ) ){
           $resourceModel = new ResourceModel();
-          $resourceStarred = $resourceModel->listItems( array(
-            'filters' => array(
-              'ResourceTaxonomyTermModel.taxonomyterm' => $_GET['taxonomyterm'] ),
-              'affectsDependences' => array('ResourceTaxonomyTermModel')
+          $resourceStarred = $resourceModel->listItems(
+            array(
+              'filters' => array(
+                'ResourceTaxonomyTermModel.taxonomyterm' => $_GET['taxonomyterm'],
+                'affectsDependences' => array('ResourceTaxonomyTermModel')
+              ),
+              'fields' => array(
+                'id',
+                'type',
+                'published',
+                'title'
+              )
             )
           );
           echo '[';

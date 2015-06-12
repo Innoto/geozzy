@@ -85,14 +85,17 @@ class admin extends Module
     'js/app.js',
     'js/views/AdminView.js',
     'js/views/CategoryEditorView.js',
+    'js/views/ResourcesStarredListView.js',
     'js/routers/AdminRouter.js',
     'js/models/TaxonomygroupModel.js',
     'js/models/TaxonomytermModel.js',
     'js/models/TopicModel.js',
+    'js/models/ResourceModel.js',
     'js/collections/CategoryCollection.js',
     'js/collections/CategorytermCollection.js',
     'js/collections/TopicCollection.js',
-    'js/collections/StarredCollection.js'
+    'js/collections/StarredCollection.js',
+    'js/collections/ResourcesStarredCollection.js'
   );
 
   public function __construct() {
@@ -148,10 +151,10 @@ class admin extends Module
 
 
     // data Admin API
-    $this->addUrlPatterns( '#^api/admin/adminCategoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminDataAPIView::categoryTerms' );
-    $this->addUrlPatterns( '#^api/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/admin/adminCategoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
+    $this->addUrlPatterns( '#^api/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/resourcesTerm/(.*)$#', 'view:AdminDataAPIView::resourcesTerm' );
     $this->addUrlPatterns( '#^api/admin/resourcesTerm.json$#', 'view:AdminDataAPIView::resourcesTermJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/starred$#', 'view:AdminDataAPIView::starred' );
