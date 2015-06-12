@@ -321,71 +321,88 @@ class GeozzyResourceView extends View
       $elemId = $recurso->getter( 'id' );
       $newTopics = $form->getFieldValue( 'topics' );
 
-      if (!is_array($newTopics))
+      if( $newTopics !== false && !is_array($newTopics) ) {
         $newTopics = array($newTopics);
+      }
 
       $resourceTopicModel = new ResourceTopicModel();
-      $resourceTopicList = $resourceTopicModel->listItems(array('parameters' => array('resource', $elemId)))->fetchAll();
+      $resourceTopicList = $resourceTopicModel->listItems(
+        array('parameters' => array('resource', $elemId)) )->fetchAll();
 
-      if ($resourceTopicList){
+      if( $resourceTopicList ) {
         // estaban asignados antes
-        foreach ($resourceTopicList as $oldTopic){
+        foreach( $resourceTopicList as $oldTopic ) {
           $oldTopics[$oldTopic->getter('topic')] = $oldTopic->getter('topic');
-          if (!in_array($oldTopic->getter('topic'),$newTopics) ){ // desasignar
+          if( $newTopics === false || !in_array( $oldTopic->getter('topic'), $newTopics ) ) {
+            // desasignar
             $oldTopic->delete();
           }
         }
       }
 
-      if (!isset($oldTopics)){
-        foreach($newTopics as $topic){
-          $recurso->setterDependence( 'id', new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
+      if( $newTopics !== false ) {
+        if( !isset($oldTopics) ) {
+          foreach( $newTopics as $topic ) {
+            $recurso->setterDependence( 'id',
+              new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
+            $affectsDependences = true;
+          }
         }
-      }
-      else{
-        // non estaban asignados antes
-        foreach($newTopics as $topic){
-          if (!in_array($topic,$oldTopics)){ //asignar
-               $recurso->setterDependence( 'id', new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
+        else {
+          // non estaban asignados antes
+          foreach( $newTopics as $topic ) {
+            if( !in_array($topic,$oldTopics) ) { //asignar
+              $recurso->setterDependence( 'id',
+                new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
+              $affectsDependences = true;
+            }
           }
         }
       }
-      $affectsDependences = true;
     }
 
     // Procesamos o listado de destacados asociados
     if( !$form->existErrors()) {
       $newStarred = $form->getFieldValue( 'starred' );
 
-      if (!is_array($newStarred))
+      if( $newStarred !== false && !is_array($newStarred) ) {
         $newStarred = array($newStarred);
+      }
 
       $resourceTaxonomytermModel = new ResourceTaxonomytermModel();
-      $starredList = $resourceTaxonomytermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'resource' => $elemId ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ))->fetchAll();;
+      $starredList = $resourceTaxonomytermModel->listItems( array(
+        'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'resource' => $elemId ),
+        'affectsDependences' => array('TaxonomygroupModel'),
+        'joinType' => 'RIGHT' ))->fetchAll();
 
       // estaban asignados antes
-      foreach ($starredList as $oldStar){
+      foreach( $starredList as $oldStar ){
         $oldStarred[$oldStar->getter('taxonomyterm')] = $oldStar->getter('taxonomyterm');
-        if (!in_array($oldStar->getter('taxonomyterm'),$newStarred) ){ // desasignar
+        if( $newStarred === false || !in_array( $oldStar->getter('taxonomyterm'), $newStarred ) ){ // desasignar
           $oldStar->delete();
         }
       }
 
-      if (!isset($oldStarred)){
-        foreach($newStarred as $star){
-          $recurso->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $elemId, 'taxonomyterm' => $star)) );
+      if( $newStarred !== false ) {
+        if( !isset($oldStarred) ){
+          foreach( $newStarred as $star ) {
+            $recurso->setterDependence( 'id',
+              new ResourceTaxonomytermModel( array('resource' => $elemId, 'taxonomyterm' => $star)) );
+            $affectsDependences = true;
+          }
         }
-      }
-      else{
-        // non estaban asignados antes
-        foreach($newStarred as $star){
-          if (!in_array($star,$oldStarred)){ //asignar
-               $recurso->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $elemId, 'taxonomyterm' => $star)) );
+        else {
+          // non estaban asignados antes
+          foreach( $newStarred as $star ) {
+            if( !in_array($star,$oldStarred) ) { //asignar
+              $recurso->setterDependence( 'id',
+                new ResourceTaxonomytermModel( array('resource' => $elemId, 'taxonomyterm' => $star)) );
+              $affectsDependences = true;
+            }
           }
         }
       }
 
-      $affectsDependences = true;
     }
 
     if( !$form->existErrors()) {
