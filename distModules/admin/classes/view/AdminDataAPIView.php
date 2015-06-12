@@ -272,43 +272,43 @@ class AdminDataAPIView extends View
 
 
     ?>
-          {
-              "resourcePath": "/admin/adminCategories.json",
-              "basePath": "/api",
-              "apis": [
-                  {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "Permission denied",
-                                      "code": 401
-                                  },
-                                  {
-                                      "reason": "Category term list",
-                                      "code": 200
-                                  },
-                                  {
-                                      "reason": "Category not found",
-                                      "code": 404
-                                  }
-                              ],
+    {
+      "resourcePath": "/admin/adminCategories.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
+            {
+              "errorResponses": [
+                {
+                  "reason": "Permission denied",
+                  "code": 401
+                },
+                {
+                  "reason": "Category term list",
+                  "code": 200
+                },
+                {
+                  "reason": "Category not found",
+                  "code": 404
+                }
+              ],
 
-                              "httpMethod": "GET",
-                              "nickname": "group",
-                              "parameters": [
+              "httpMethod": "GET",
+              "nickname": "group",
+              "parameters": [
 
 
 
-                              ],
-                              "summary": "Get Category terms"
-                          }
-                      ],
-                      "path": "/admin/categories",
-                      "description": ""
-                  }
-              ]
-          }
+              ],
+              "summary": "Get Category terms"
+            }
+          ],
+          "path": "/admin/categories",
+          "description": ""
+        }
+      ]
+    }
     <?php
   }
 
@@ -537,46 +537,40 @@ class AdminDataAPIView extends View
 
   function starredJson() {
     header('Content-type: application/json');
-
-
     ?>
-          {
-              "resourcePath": "/admin/starred.json",
-              "basePath": "/api",
-              "apis": [
-                  {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "Permission denied",
-                                      "code": 401
-                                  },
-                                  {
-                                      "reason": "Starred term list",
-                                      "code": 200
-                                  },
-                                  {
-                                      "reason": "Starred not found",
-                                      "code": 404
-                                  }
-                              ],
+    {
+      "resourcePath": "/admin/starred.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
+            {
+              "errorResponses": [
+                {
+                  "reason": "Permission denied",
+                  "code": 401
+                },
+                {
+                  "reason": "Starred term list",
+                  "code": 200
+                },
+                {
+                  "reason": "Starred not found",
+                  "code": 404
+                }
+              ],
 
-                              "httpMethod": "GET",
-                              "nickname": "group",
-                              "parameters": [
-
-
-
-                              ],
-                              "summary": "Get Starred terms"
-                          }
-                      ],
-                      "path": "/admin/starred",
-                      "description": ""
-                  }
-              ]
-          }
+              "httpMethod": "GET",
+              "nickname": "group",
+              "parameters": [],
+              "summary": "Get Starred terms"
+            }
+          ],
+          "path": "/admin/starred",
+          "description": ""
+        }
+      ]
+    }
     <?php
   }
 
