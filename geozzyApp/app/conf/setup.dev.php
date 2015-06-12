@@ -121,7 +121,10 @@ $C_ENABLED_MODULES = array(
   'rtypeHotel',
 
   // resource Extenssions
-  'rextAccommodation'
+  'rextAccommodation',
+
+  // testing module
+  'testData'
 
 );
 // before app/Cogumelo.php execution
@@ -135,6 +138,7 @@ $C_INDEX_MODULES  = array(
   'admin',
   'Blocks',
   'geozzyAPI',
+  'testData',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 
