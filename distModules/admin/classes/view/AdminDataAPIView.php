@@ -41,6 +41,93 @@ class AdminDataAPIView extends View
   }
 
 
+  function categoryTerms( $request ) {
+
+    $id = substr($request[1], 1);
+
+    header('Content-type: application/json');
+
+    switch( $_SERVER['REQUEST_METHOD'] ) {
+      case 'PUT':
+
+        $putData = json_decode(file_get_contents('php://input'), true);
+        $taxtermModel = new TaxonomytermModel();
+
+        if( is_numeric( $id )) {  // UPDATE
+          $taxTerm = $taxtermModel->listItems(  array( 'filters' => array( 'id'=>$id ) ))->fetch();
+        }
+        else { // CREATE
+          $taxTerm = $taxtermModel;
+        }
+
+        if( isset( $putData['name'] ) ) {
+          $taxTerm->setter('name', $putData['name'] );
+        }
+
+        if( isset( $putData['parent'] ) ) {
+          $taxTerm->setter('parent', $putData['parent'] );
+        }
+
+        if( isset( $putData['weight'] ) ) {
+          $taxTerm->setter('weight', $putData['weight'] );
+        }
+
+        if( isset( $putData['taxgroup'] ) ) {
+          $taxTerm->setter('taxgroup', $putData['taxgroup'] );
+        }
+
+        $taxTerm->save();
+
+        $termData = $taxTerm->getAllData();
+        echo json_encode( $termData['data'] );
+
+        break;
+      case 'GET':
+
+        if( array_key_exists( 'group', $_GET ) && is_numeric( $_GET['group'] ) ){
+
+          $taxtermModel = new TaxonomytermModel();
+          $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$_GET['group']) ) );
+          echo '[';
+          $c = '';
+          while ($taxTerm = $taxtermList->fetch() )
+          {
+            $termData = $taxTerm->getAllData();
+            echo $c.json_encode( $termData['data'] );
+            if($c === ''){$c=',';}
+          }
+          echo ']';
+
+        }
+        else{
+          header("HTTP/1.0 404 Not Found");
+        }
+
+        break;
+
+      case 'DELETE':
+        $taxM = new TaxonomytermModel();
+        $taxTerm = $taxM->listItems(
+                                    array(
+                                            'filters' => array('id'=> $id, 'TaxonomygroupModel.editable'=>1),
+                                            'affectsDependences' => array('TaxonomygroupModel'),
+                                            'joinType' => 'INNER'
+                                        )
+                                    );
+        if( $taxTerm && $t = $taxTerm->fetch() ) {
+          $t->delete();
+          header('Content-type: application/json');
+          echo '{}';
+        }
+        else {
+          header("HTTP/1.0 404 Not Found");
+          header('Content-type: application/json');
+          echo '{}';
+        }
+
+        break;
+    }
+  }
   function categoryTermsJson() {
     header('Content-type: application/json');
 
@@ -160,145 +247,6 @@ class AdminDataAPIView extends View
         <?php
   }
 
-  function categoriesJson() {
-    header('Content-type: application/json');
-
-
-    ?>
-          {
-              "resourcePath": "/admin/adminCategories.json",
-              "basePath": "/api",
-              "apis": [
-                  {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "Permission denied",
-                                      "code": 401
-                                  },
-                                  {
-                                      "reason": "Category term list",
-                                      "code": 200
-                                  },
-                                  {
-                                      "reason": "Category not found",
-                                      "code": 404
-                                  }
-                              ],
-
-                              "httpMethod": "GET",
-                              "nickname": "group",
-                              "parameters": [
-
-
-
-                              ],
-                              "summary": "Get Category terms"
-                          }
-                      ],
-                      "path": "/admin/categories",
-                      "description": ""
-                  }
-              ]
-          }
-    <?php
-  }
-
-
-
-  function categoryTerms( $request ) {
-
-
-    $id = substr($request[1], 1);
-
-    header('Content-type: application/json');
-
-    switch( $_SERVER['REQUEST_METHOD'] ) {
-      case 'PUT':
-
-        $putData = json_decode(file_get_contents('php://input'), true);
-        $taxtermModel = new TaxonomytermModel();
-
-        if( is_numeric( $id )) {  // UPDATE
-          $taxTerm = $taxtermModel->listItems(  array( 'filters' => array( 'id'=>$id ) ))->fetch();
-        }
-        else { // CREATE
-          $taxTerm = $taxtermModel;
-        }
-
-        if( isset( $putData['name'] ) ) {
-          $taxTerm->setter('name', $putData['name'] );
-        }
-
-        if( isset( $putData['parent'] ) ) {
-          $taxTerm->setter('parent', $putData['parent'] );
-        }
-
-        if( isset( $putData['weight'] ) ) {
-          $taxTerm->setter('weight', $putData['weight'] );
-        }
-
-        if( isset( $putData['taxgroup'] ) ) {
-          $taxTerm->setter('taxgroup', $putData['taxgroup'] );
-        }
-
-        $taxTerm->save();
-
-        $termData = $taxTerm->getAllData();
-        echo json_encode( $termData['data'] );
-
-        break;
-      case 'GET':
-
-        if( array_key_exists( 'group', $_GET ) && is_numeric( $_GET['group'] ) ){
-
-          $taxtermModel = new TaxonomytermModel();
-          $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$_GET['group']) ) );
-          echo '[';
-          $c = '';
-          while ($taxTerm = $taxtermList->fetch() )
-          {
-            $termData = $taxTerm->getAllData();
-            echo $c.json_encode( $termData['data'] );
-            if($c === ''){$c=',';}
-          }
-          echo ']';
-
-        }
-        else{
-          header("HTTP/1.0 404 Not Found");
-        }
-
-        break;
-
-      case 'DELETE':
-        $taxM = new TaxonomytermModel();
-        $taxTerm = $taxM->listItems(
-                                    array(
-                                            'filters' => array('id'=> $id, 'TaxonomygroupModel.editable'=>1),
-                                            'affectsDependences' => array('TaxonomygroupModel'),
-                                            'joinType' => 'INNER'
-                                        )
-                                    );
-        if( $taxTerm && $t = $taxTerm->fetch() ) {
-          $t->delete();
-          header('Content-type: application/json');
-          echo '{}';
-        }
-        else {
-          header("HTTP/1.0 404 Not Found");
-          header('Content-type: application/json');
-          echo '{}';
-        }
-
-        break;
-    }
-
-
-
-  }
-
 
   function categories() {
     $taxgroupModel = new TaxonomygroupModel();
@@ -319,6 +267,263 @@ class AdminDataAPIView extends View
 
   }
 
+  function categoriesJson() {
+    header('Content-type: application/json');
+
+
+    ?>
+    {
+      "resourcePath": "/admin/adminCategories.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
+            {
+              "errorResponses": [
+                {
+                  "reason": "Permission denied",
+                  "code": 401
+                },
+                {
+                  "reason": "Category term list",
+                  "code": 200
+                },
+                {
+                  "reason": "Category not found",
+                  "code": 404
+                }
+              ],
+
+              "httpMethod": "GET",
+              "nickname": "group",
+              "parameters": [
+
+
+
+              ],
+              "summary": "Get Category terms"
+            }
+          ],
+          "path": "/admin/categories",
+          "description": ""
+        }
+      ]
+    }
+    <?php
+  }
+
+  function resourcesTerm( $request ) {
+
+    $id = substr($request[1], 1);
+    $idR = substr($request[3], 1);
+
+    header('Content-type: application/json');
+
+    switch( $_SERVER['REQUEST_METHOD'] ) {
+      case 'PUT':
+        $putData = json_decode(file_get_contents('php://input'), true);
+        $resourceTaxtermModel = new ResourceTaxonomytermModel();
+
+        if( is_numeric( $id ) && is_numeric( $idR ) ) {  // UPDATE
+          $rterm = $resourceTaxtermModel->listItems( array( 'filters' => array( 'taxonomyterm' => $id, 'resource' => $idR )))->fetch();
+        }
+        if( isset( $putData['weight'] ) ) {
+          $rterm->setter('weight', $putData['weight'] );
+        }
+
+        $rterm->save();
+
+        $rtData = $rterm->getAllData();
+        echo json_encode( $rtData['data'] );
+      break;
+
+      case 'GET':
+
+        if( array_key_exists( 'taxonomyterm', $_GET ) && is_numeric( $_GET['taxonomyterm'] ) ){
+          $resourceModel = new ResourceModel();
+          $resourceStarred = $resourceModel->listItems(
+            array(
+              'filters' => array(
+                'ResourceTaxonomyTermModel.taxonomyterm' => $_GET['taxonomyterm'],
+                'affectsDependences' => array('ResourceTaxonomyTermModel')
+              ),
+              'fields' => array(
+                'id',
+                'type',
+                'published',
+                'title'
+              )
+            )
+          );
+          echo '[';
+          $c = '';
+          while ($rs = $resourceStarred->fetch() )
+          {
+            $rsData = $rs->getAllData();
+            echo $c.json_encode( $rsData['data'] );
+            if($c === ''){$c=',';}
+          }
+          echo ']';
+        }
+        else{
+          header("HTTP/1.0 404 Not Found");
+        }
+      break;
+
+      case 'DELETE':
+        $resourceTermModel = new ResourceTaxonomytermModel();
+        $rTerm = $resourceTermModel->listItems(
+          array(
+            'filters' => array(
+              'taxonomyterm'=> $id,
+              'resource'=> $idR
+            )
+          )
+        );
+        if( $rTerm && $rt = $rTerm->fetch() ) {
+          $rt->delete();
+          header('Content-type: application/json');
+          echo '{}';
+        }
+        else {
+          header("HTTP/1.0 404 Not Found");
+          header('Content-type: application/json');
+          echo '{}';
+        }
+      break;
+    }
+
+  }
+
+  function resourcesTermJson(){
+    header('Content-type: application/json');
+    ?>
+    {
+      "resourcePath": "/admin/resourcesTerm.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
+            {
+              "errorResponses": [
+                {
+                  "reason": "Permission denied",
+                  "code": 401
+                },
+                {
+                  "reason": "Resources term list",
+                  "code": 200
+                },
+                {
+                  "reason": "Resources not found",
+                  "code": 404
+                }
+              ],
+              "httpMethod": "GET",
+              "nickname": "taxonomyterm",
+              "parameters": [
+                {
+                  "required": true,
+                  "dataType": "int",
+                  "name": "taxonomyterm",
+                  "defaultValue": "",
+                  "paramType": "path",
+                  "allowMultiple": false,
+                  "description": "Taxonomyterm id"
+                }
+              ],
+              "summary": "Get Resources term"
+            },
+            {
+              "errorResponses": [
+                  {
+                    "reason": "Permission denied",
+                    "code": 401
+                  },
+                  {
+                    "reason": "Resources term list",
+                    "code": 200
+                  },
+                  {
+                    "reason": "Resources not found",
+                    "code": 404
+                  }
+                ],
+
+                "httpMethod": "PUT",
+                "nickname": "id",
+                "parameters": [
+                  {
+                    "required": true,
+                    "dataType": "int",
+                    "name": "taxonomyterm",
+                    "defaultValue": "",
+                    "paramType": "path",
+                    "allowMultiple": false,
+                    "description": "term id"
+                  },
+                  {
+                    "required": true,
+                    "dataType": "int",
+                    "name": "resource",
+                    "defaultValue": "",
+                    "paramType": "path",
+                    "allowMultiple": false,
+                    "description": "resource id"
+                  }
+                ],
+                "summary": "Update resourceTerm"
+            },
+            {
+              "errorResponses": [
+                  {
+                    "reason": "Permission denied",
+                    "code": 401
+                  },
+                  {
+                    "reason": "Resources term list",
+                    "code": 200
+                  },
+                  {
+                    "reason": "Resources not found",
+                    "code": 404
+                  }
+                ],
+
+                "httpMethod": "DELETE",
+                "nickname": "id",
+                "parameters": [
+                  {
+                    "required": true,
+                    "dataType": "int",
+                    "name": "taxonomyterm",
+                    "defaultValue": "",
+                    "paramType": "path",
+                    "allowMultiple": false,
+                    "description": "term id"
+                  },
+                  {
+                    "required": true,
+                    "dataType": "int",
+                    "name": "resource",
+                    "defaultValue": "",
+                    "paramType": "path",
+                    "allowMultiple": false,
+                    "description": "resource id"
+                  }
+                ],
+                "summary": "Delete resourceTerm"
+            }
+          ],
+          "path": "/admin/starred/{taxonomyterm}/resource/{resource}",
+          "description": ""
+        }
+      ]
+    }
+    <?php
+  }
+
+
   function starred() {
     $taxtermModel = new TaxonomytermModel();
     $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
@@ -336,6 +541,45 @@ class AdminDataAPIView extends View
     }
     echo ']';
 
+  }
+
+  function starredJson() {
+    header('Content-type: application/json');
+    ?>
+    {
+      "resourcePath": "/admin/starred.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
+            {
+              "errorResponses": [
+                {
+                  "reason": "Permission denied",
+                  "code": 401
+                },
+                {
+                  "reason": "Starred term list",
+                  "code": 200
+                },
+                {
+                  "reason": "Starred not found",
+                  "code": 404
+                }
+              ],
+
+              "httpMethod": "GET",
+              "nickname": "group",
+              "parameters": [],
+              "summary": "Get Starred terms"
+            }
+          ],
+          "path": "/admin/starred",
+          "description": ""
+        }
+      ]
+    }
+    <?php
   }
 
 }

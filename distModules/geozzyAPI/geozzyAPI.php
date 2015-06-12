@@ -23,27 +23,27 @@ class geozzyAPI extends Module
   );
 
   function __construct() {
-    
+
 
 
     // API DOC GENERATOR
     $this->addUrlPatterns( '#^api$#', 'view:DocAPIView::main' );
     $this->addUrlPatterns( '#^api/apidoc.json#', 'view:DocAPIView::apidocJson' ); // Main swagger JSON
-  
-    
+
+
     // geozzy core api doc
     $this->addUrlPatterns( '#^api/resources.json$#', 'view:CoreAPIView::resourcesJson' );
     $this->addUrlPatterns( '#^api/resourceTypes.json$#', 'view:CoreAPIView::resourceTypesJson' );
     $this->addUrlPatterns( '#^api/categoryList.json$#', 'view:CoreAPIView::categoryListJson' );
     $this->addUrlPatterns( '#^api/categoryTerms.json$#', 'view:CoreAPIView::categoryTermsJson' );
     $this->addUrlPatterns( '#^api/topicList.json$#', 'view:CoreAPIView::topicListJson' );
-    $this->addUrlPatterns( '#^api/uiEventList.json$#', 'view:CoreAPIView::uiEventListJson' );    
-    
+    $this->addUrlPatterns( '#^api/uiEventList.json$#', 'view:CoreAPIView::uiEventListJson' );
+
 
     // resources
-    $this->addUrlPatterns( '#^api/core/resourcelist(.*)$#', 'view:CoreAPIView::resourceList' );    
+    $this->addUrlPatterns( '#^api/core/resourcelist(.*)$#', 'view:CoreAPIView::resourceList' );
     $this->addUrlPatterns( '#^api/core/resourcetypes$#', 'view:CoreAPIView::resourceTypes' );
-    
+
     // Categories
     $this->addUrlPatterns( '#^api/core/categorylist$#', 'view:CoreAPIView::categoryList' );
     $this->addUrlPatterns( '#^api/core/categoryterms/(.*)$#', 'view:CoreAPIView::categoryTerms' );
