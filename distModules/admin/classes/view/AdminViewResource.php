@@ -78,7 +78,7 @@ class AdminViewResource extends AdminViewMaster
   */
 
   public function resourceForm() {
-    error_log( "AdminViewResource: resourceForm()" );
+    // error_log( "AdminViewResource: resourceForm()" );
 
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
@@ -249,7 +249,7 @@ class AdminViewResource extends AdminViewMaster
 
 
   public function sendResourceForm() {
-    error_log( "AdminViewResource: sendResourceForm()" );
+    // error_log( "AdminViewResource: sendResourceForm()" );
 
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();
