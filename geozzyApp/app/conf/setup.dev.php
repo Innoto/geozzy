@@ -23,7 +23,11 @@
 
 
 
-
+//
+//  SESSION
+//
+ini_set( 'session.cookie_lifetime', 86400 );
+ini_set( 'session.gc_maxlifetime', 86400 );
 
 
 
@@ -112,12 +116,15 @@ $C_ENABLED_MODULES = array(
   'form',
   'Blocks',
   'table',
-  
+
   // resource Types
   'rtypeHotel',
 
   // resource Extenssions
-  'rextAccommodation'
+  'rextAccommodation',
+
+  // testing module
+  'testData'
 
 );
 // before app/Cogumelo.php execution
@@ -131,6 +138,7 @@ $C_INDEX_MODULES  = array(
   'admin',
   'Blocks',
   'geozzyAPI',
+  'testData',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 

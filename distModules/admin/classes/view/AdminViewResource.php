@@ -78,7 +78,7 @@ class AdminViewResource extends AdminViewMaster
   */
 
   public function resourceForm() {
-    error_log( "AdminViewResource: resourceForm()" );
+    // error_log( "AdminViewResource: resourceForm()" );
 
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
@@ -95,6 +95,10 @@ class AdminViewResource extends AdminViewMaster
     $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
     $formSeparate[ 'image' ] = $formFieldsArray[ 'image' ];
     unset( $formFieldsArray[ 'image' ] );
+    $formSeparate[ 'topics' ] = $formFieldsArray[ 'topics' ];
+    unset( $formFieldsArray[ 'topics' ] );
+    $formSeparate[ 'starred' ] = $formFieldsArray[ 'starred' ];
+    unset( $formFieldsArray[ 'starred' ] );
     $formBlock->assign( 'formFieldsArray', $formFieldsArray );
 
     $panel = $this->getPanelBlock( $formBlock, __( 'New Resource' ), 'fa-archive' );
@@ -104,15 +108,15 @@ class AdminViewResource extends AdminViewMaster
     /**
     Bloque de 4
     */
-    $panel = $this->getPanelBlock( __( 'Recuerda que en algunos campos existe versión en varios idiomas.' ) );
-    $this->template->addToBlock( 'col4', $panel );
-
-
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'topics' ], __( 'Temáticas asociadas al recurso:' ) ) );
+    /**
+    Bloque de 4 (outro)
+    */
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'starred' ], __( 'Destacados asociados al recurso:' ) ) );
     /**
     Bloque de 4 (outro)
     */
     $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'image' ], __( 'Selecciona una imagen' ) ) );
-
 
     /**
     Admin 8-4
@@ -125,7 +129,7 @@ class AdminViewResource extends AdminViewMaster
 
 
   public function resourceEditForm( $urlParams = false ) {
-    error_log( "AdminViewResource: resourceEditForm()". print_r( $urlParams, true ) );
+    // error_log( "AdminViewResource: resourceEditForm()". print_r( $urlParams, true ) );
 
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
@@ -164,7 +168,7 @@ class AdminViewResource extends AdminViewMaster
       }
 
 
-      // Cargo los datos previos de image dentro de los del recurso
+      // Cargo los datos de image dentro de los del recurso
       $fileDep = $recurso->getterDependence( 'image' );
       if( $fileDep !== false ) {
         foreach( $fileDep as $fileModel ) {
@@ -173,9 +177,8 @@ class AdminViewResource extends AdminViewMaster
         }
       }
 
-      // Cargo los datos previos del listado de temáticas con las que está asociado el recurso
+      // Cargo los datos de temáticas con las que está asociado el recurso
       $topicsDep = $recurso->getterDependence( 'id', 'ResourceTopicModel');
-
       if( $topicsDep !== false ) {
         foreach( $topicsDep as $topicRel ) {
           $topicsArray[$topicRel->getter('id')] = $topicRel->getter('topic');
@@ -183,9 +186,8 @@ class AdminViewResource extends AdminViewMaster
         $recursoData[ 'topics' ] = $topicsArray;
       }
 
-      // Cargo los datos previos del listado de destacados con los que está asociado el recurso
+      // Cargo los datos de destacados con los que está asociado el recurso
       $taxTermDep = $recurso->getterDependence( 'id', 'ResourceTaxonomytermModel');
-
       if( $taxTermDep !== false ) {
         foreach( $taxTermDep as $taxTerm ) {
           $taxTermArray[$taxTerm->getter('id')] = $taxTerm->getter('taxonomyterm');
@@ -193,12 +195,13 @@ class AdminViewResource extends AdminViewMaster
         $recursoData[ 'starred' ] = $taxTermArray;
       }
 
-      //error_log( 'recursoData Final: ' . print_r( $recursoData, true ) );
+
 
       /**
       Bloque de 8
       */
       $resourceView = new GeozzyResourceView();
+      error_log( 'recursoData para FORM: ' . print_r( $recursoData, true ) );
       $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData );
 
       // Manipulamos el contenido del bloque
@@ -246,7 +249,7 @@ class AdminViewResource extends AdminViewMaster
 
 
   public function sendResourceForm() {
-    error_log( "AdminViewResource: sendResourceForm()" );
+    // error_log( "AdminViewResource: sendResourceForm()" );
 
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();
