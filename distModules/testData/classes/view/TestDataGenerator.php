@@ -55,7 +55,7 @@ class TestDataGenerator extends View
 
     // Miramos se existen as carpetas, e se non existen as creamos
     if (!is_dir(MOD_FORM_FILES_APP_PATH.'/testData/')){
-      exec('mkdir '.MOD_FORM_FILES_APP_PATH.'/testData/');
+      mkdir(MOD_FORM_FILES_APP_PATH.'/testData/');
     }
 
 
