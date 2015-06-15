@@ -68,9 +68,9 @@ class TestDataGenerator extends View
     $filedataArray[2] = array('name' => 'hotel-inglaterra_1.jpg', 'originalName' => 'hotel-inglaterra_1.jpg',
                                    'absLocation' => '/testData/hotel-inglaterra_1.jpg',
                                    'type' => 'image/jpeg', 'size' => '22370');
-    $filedataArray[3] = array('name' => 'Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4.jpg',
-                                   'originalName' => 'Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4.jpg',
-                                   'absLocation' => '/testData/Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4',
+    $filedataArray[3] = array('name' => 'Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
+                                   'originalName' => 'Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
+                                   'absLocation' => '/testData/Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
                                    'type' => 'image/jpeg', 'size' => '22370');
 
 
