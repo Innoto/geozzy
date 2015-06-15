@@ -79,6 +79,8 @@ class TestDataGenerator extends View
     $urlAlias[2] = 'resourcealias2';
     $urlAlias[3] = 'resourcealias3';
 
+    define( 'ENABLE_LOGS', false);
+
     for ($i = 1; $i <= $request[1]; $i++){
 
       include 'randomText.php';
@@ -164,10 +166,10 @@ class TestDataGenerator extends View
         'resource' => $resource->getter('id')
       );
       $elemModel = new UrlAliasModel( $aliasArray ); 
-      $elemModel->save();   
+      $elemModel->save(array(), false);   
 
       // Grabamos las dependencias
-      $res = $resource->save(array('affectsDependences' => true));
+      $res = $resource->save(array('affectsDependences' => true), false);
     }
     echo "Recursos creados!";
   }
