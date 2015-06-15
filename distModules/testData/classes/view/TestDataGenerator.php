@@ -166,10 +166,10 @@ class TestDataGenerator extends View
         'resource' => $resource->getter('id')
       );
       $elemModel = new UrlAliasModel( $aliasArray );
-      $elemModel->save(array(), false);
+      $elemModel->save(array());
 
       // Grabamos las dependencias
-      $res = $resource->save(array('affectsDependences' => true), false);
+      $res = $resource->save(array('affectsDependences' => true));
     }
     echo "Recursos creados!";
   }
