@@ -52,18 +52,25 @@ class TestDataGenerator extends View
       }
     }
 
+
+    // Miramos se existen as carpetas, e se non existen as creamos
+    if (!is_dir(MOD_FORM_FILES_APP_PATH.'/testData/')){
+      exec('mkdir '.MOD_FORM_FILES_APP_PATH.'/testData/');
+    }
+
+
     // Cargamos unhas imaxes
-    exec('cp '.COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/* '.MOD_FORM_FILES_APP_PATH.'/imgResource/testData/');
+    exec('cp '.COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/* '.MOD_FORM_FILES_APP_PATH.'/testData/');
 
     $filedataArray[1] = array('name' => '14420258.jpg', 'originalName' => '14420258.jpg', 
-                                   'absLocation' => '/imgResource/testData/14420258.jpg', 
+                                   'absLocation' => '/testData/14420258.jpg', 
                                    'type' => 'image/jpeg', 'size' => '38080');
     $filedataArray[2] = array('name' => 'hotel-inglaterra_1.jpg', 'originalName' => 'hotel-inglaterra_1.jpg', 
-                                   'absLocation' => '/imgResource/testData/hotel-inglaterra_1.jpg', 
+                                   'absLocation' => '/testData/hotel-inglaterra_1.jpg', 
                                    'type' => 'image/jpeg', 'size' => '22370');
     $filedataArray[3] = array('name' => 'Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4.jpg', 
                                    'originalName' => 'Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4.jpg', 
-                                   'absLocation' => '/imgResource/testData/Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4', 
+                                   'absLocation' => '/testData/Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4', 
                                    'type' => 'image/jpeg', 'size' => '22370');
 
 
