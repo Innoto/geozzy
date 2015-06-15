@@ -1,7 +1,7 @@
 
 
 
-<script type="text/template" id="taxTermEditor">
+<script type="text/template" id="resourcesStarredList">
 
   <div class="headSection clearfix">
     <div class="row">
@@ -11,15 +11,15 @@
             <i class="fa fa-bars"></i>
         </button>
         <div class="headerTitleContainer">
-          <h2>{t}Category management for{/t} <%- name_{$langDefault} %> </h2>
+          <h2>{t}Resources Starred in{/t} <%- name_{$langDefault} %> </h2>
         </div>
       </div>
       <div class="col-md-4 col-sm-12 clearfix">
         <div class="headerActionsContainer">
-          <button type="button" class="newTaxTerm btn btn-default btn-outline"> {t}Add{/t} <%- name %></button>
+          <button type="button" class="assignResourceStarred btn btn-default btn-outline"> {t}Assign to{/t} <%- name_{$langDefault} %></button>
           <span class="saveChanges">
-            <button class="btn btn-danger cancelTerms">{t}Cancel{/t}</button>
-            <button class="btn btn-primary saveTerms">{t}Save{/t}</button>
+            <button class="btn btn-danger cancel">{t}Cancel{/t}</button>
+            <button class="btn btn-primary save">{t}Save{/t}</button>
           </span>
         </div>
       </div>
@@ -36,12 +36,12 @@
             <div class="panel-heading">
               <strong>
                 <i class="fa fa-tag fa-fw"></i>
-                {t}List of terms for{/t} ( <%- name_{$langDefault} %> )
+                {t}List of resources for{/t} ( <%- name_{$langDefault} %> )
               </strong>
             </div>
             <div class="panel-body">
-              <div id="taxTermListContainer" class="gzznestable dd">
-                <ol class="listTerms dd-list">
+              <div id="resourcesStarredListContainer" class="gzznestable dd">
+                <ol class="listResources dd-list">
                 </ol>
               </div>
             </div> <!-- end panel-body -->
@@ -55,10 +55,10 @@
 
   <div class="footerSection clearfix">
     <div class="headerActionsContainer">
-      <button type="button" class="newTaxTerm btn btn-default">{t}Add{/t} <%- name_{$langDefault} %></button>
+      <button type="button" class="asignResourceStarred btn btn-default"> {t}Assign to{/t} <%- name_{$langDefault}  %></button>
       <span class="saveChanges">
-        <button class="btn btn-danger cancelTerms">{t}Cancel{/t}</button>
-        <button class="btn btn-primary saveTerms">{t}Save{/t}</button>
+        <button class="btn btn-danger cancel">{t}Cancel{/t}</button>
+        <button class="btn btn-primary save">{t}Save{/t}</button>
       </span>
     </div>
   </div><!-- /footerSection -->
@@ -66,21 +66,20 @@
 </script>
 
 
-<script type="text/template" id="taxTermEditorItem">
+<script type="text/template" id="resourcesStarredItem">
 
-  	<li class="dd-item" data-id="<%- term.id %>">
+  	<li class="dd-item" data-id="<%- resource.id %>">
       <div class="dd-item-container clearfix">
 
         <div class="dd-content">
           <div class="nestableActions">
-  	        <button class="btnEditTerm btn btn-default btn-info" data-id="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
-  	        <button class="btnDeleteTerm btn btn-default btn-danger" data-id="<%- term.id %>" ><i class="fa fa-trash"></i></button>
+  	        <button class="btnDelete btn btn-default btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-trash"></i></button>
   	      </div>
     	  </div>
 
         <div class="dd-handle">
           <i class="fa fa-arrows icon-handle"></i>
-          <%- term.name_{$langDefault} %>
+          <%- resource.title_{$langDefault} %>
         </div>
 
       </div>
