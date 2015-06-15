@@ -52,20 +52,7 @@ class TestDataGenerator extends View
       }
     }
 
-    // Cargamos as imaxes
-    /*$filedataModel = new FiledataModel();
-    $filedataList  = $filedataModel->listItems()->fetchAll();
-
-    $filedataArray = '';
-    $n = 1;
-    if ($filedataList){
-      foreach ($filedataList as $filedata){
-        $filedataArray[$n] = array('name' => $filedata->getter('name'), 'originalName' => $filedata->getter('originalName'), 
-                                   'absLocation' => $filedata->getter('absLocation'), 'type' => $filedata->getter('type'), 
-                                   'size' => $filedata->getter('size'));
-        $n = $n+1;
-      }
-    }*/
+    // Cargamos unhas imaxes
     exec('cp '.COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/* '.MOD_FORM_FILES_APP_PATH.'/imgResource/testData/');
 
     $filedataArray[1] = array('name' => '14420258.jpg', 'originalName' => '14420258.jpg', 

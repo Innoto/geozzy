@@ -370,16 +370,24 @@ class GeozzyResourceView extends View
       }
 
       $resourceTaxonomytermModel = new ResourceTaxonomytermModel();
-      $starredList = $resourceTaxonomytermModel->listItems( array(
+
+      $starredList_prev = $resourceTaxonomytermModel->listItems( array(
         'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'resource' => $elemId ),
         'affectsDependences' => array('TaxonomygroupModel'),
-        'joinType' => 'RIGHT' ))->fetchAll();
+        'joinType' => 'RIGHT' ));
+      if (is_array($starredList_prev)) 
+        $starredList = $starredList_prev->fetchAll();
+      else
+        $starredList = false;
+
 
       // estaban asignados antes
-      foreach( $starredList as $oldStar ){
-        $oldStarred[$oldStar->getter('taxonomyterm')] = $oldStar->getter('taxonomyterm');
-        if( $newStarred === false || !in_array( $oldStar->getter('taxonomyterm'), $newStarred ) ){ // desasignar
-          $oldStar->delete();
+      if ($starredList){
+        foreach( $starredList as $oldStar ){
+          $oldStarred[$oldStar->getter('taxonomyterm')] = $oldStar->getter('taxonomyterm');
+          if( $newStarred === false || !in_array( $oldStar->getter('taxonomyterm'), $newStarred ) ){ // desasignar
+            $oldStar->delete();
+          }
         }
       }
 
