@@ -62,15 +62,15 @@ class TestDataGenerator extends View
     // Cargamos unhas imaxes
     exec('cp '.COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/* '.MOD_FORM_FILES_APP_PATH.'/testData/');
 
-    $filedataArray[1] = array('name' => '14420258.jpg', 'originalName' => '14420258.jpg', 
-                                   'absLocation' => '/testData/14420258.jpg', 
+    $filedataArray[1] = array('name' => '14420258.jpg', 'originalName' => '14420258.jpg',
+                                   'absLocation' => '/testData/14420258.jpg',
                                    'type' => 'image/jpeg', 'size' => '38080');
-    $filedataArray[2] = array('name' => 'hotel-inglaterra_1.jpg', 'originalName' => 'hotel-inglaterra_1.jpg', 
-                                   'absLocation' => '/testData/hotel-inglaterra_1.jpg', 
+    $filedataArray[2] = array('name' => 'hotel-inglaterra_1.jpg', 'originalName' => 'hotel-inglaterra_1.jpg',
+                                   'absLocation' => '/testData/hotel-inglaterra_1.jpg',
                                    'type' => 'image/jpeg', 'size' => '22370');
-    $filedataArray[3] = array('name' => 'Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4.jpg', 
-                                   'originalName' => 'Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4.jpg', 
-                                   'absLocation' => '/testData/Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4', 
+    $filedataArray[3] = array('name' => 'Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4.jpg',
+                                   'originalName' => 'Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4.jpg',
+                                   'absLocation' => '/testData/Torre-Hercules-ilumina-conmemorar-Irlanda_EDIIMA20130316_0250_4',
                                    'type' => 'image/jpeg', 'size' => '22370');
 
 
@@ -79,7 +79,7 @@ class TestDataGenerator extends View
     $urlAlias[2] = 'resourcealias2';
     $urlAlias[3] = 'resourcealias3';
 
-    define( 'ENABLE_LOGS', false);
+    Cogumelo::disableLogs();
 
     for ($i = 1; $i <= $request[1]; $i++){
 
@@ -90,7 +90,7 @@ class TestDataGenerator extends View
       $titleIni = rand(0,200);
       $titleRandom = substr($randomText, $titleIni, $titleLength);
 
-      // título traducido 
+      // título traducido
       $titleEnLength = rand(1,250);
       $titleEnIni = rand(0,200);
       // traducido?
@@ -99,7 +99,7 @@ class TestDataGenerator extends View
           $titleEnRandom = substr($randomText, $titleEnIni, $titleEnLength);
         else
           $titleEnRandom = NULL;
-      }      
+      }
 
       // descripcion en idioma por defecto
       $descLength = rand(1,150);
@@ -152,7 +152,7 @@ class TestDataGenerator extends View
       if ($filedataArray){
         $filedataNum = rand(1,3);
         $resource->setterDependence( 'image', new FiledataModel( $filedataArray[$filedataNum] ) );
-      }   
+      }
 
       // asignamos url
       $urlNum = rand(1,3);
@@ -165,8 +165,8 @@ class TestDataGenerator extends View
         'urlTo' => null,
         'resource' => $resource->getter('id')
       );
-      $elemModel = new UrlAliasModel( $aliasArray ); 
-      $elemModel->save(array(), false);   
+      $elemModel = new UrlAliasModel( $aliasArray );
+      $elemModel->save(array(), false);
 
       // Grabamos las dependencias
       $res = $resource->save(array('affectsDependences' => true), false);
