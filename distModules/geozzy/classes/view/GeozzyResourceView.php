@@ -93,9 +93,14 @@ class GeozzyResourceView extends View
         'params' => array( 'label' => __( 'SEO: Head Title' ) ),
         'rules' => array( 'maxlength' => '100' )
       ),
-      'value' => array(
+      'datoExtra1' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Extra information' ) ),
+        'params' => array( 'label' => __( 'Extra information 1' ) ),
+        'rules' => array( 'maxlength' => '1000' )
+      ),
+      'datoExtra2' => array(
+        'translate' => true,
+        'params' => array( 'label' => __( 'Extra information 2' ) ),
         'rules' => array( 'maxlength' => '1000' )
       )
     );
@@ -408,13 +413,19 @@ class GeozzyResourceView extends View
     }
 
     if( !$form->existErrors()) {
-      $extraDataArray = array('resource' => $elemId, 'name' => 'value');
+      $extraDataArray1 = array('resource' => $elemId, 'name' => 'datoExtra1');
       foreach ($LANG_AVAILABLE as $key => $lang){
-        $extraDataArray['value_'.$key ] = $form->getFieldValue( 'value_'.$key );
+        $extraDataArray1['value_'.$key ] = $form->getFieldValue( 'datoExtra1_'.$key );
       }     
-      $recurso->setterDependence( 'id',
-          new extraDataModel( $extraDataArray ) );
-          $affectsDependences = true;
+      $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray1 ) );
+      $affectsDependences = true;
+
+      $extraDataArray2 = array('resource' => $elemId, 'name' => 'datoExtra2');
+      foreach ($LANG_AVAILABLE as $key => $lang){
+        $extraDataArray2['value_'.$key ] = $form->getFieldValue( 'datoExtra2_'.$key );
+      }     
+      $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray2 ) );
+      $affectsDependences = true;    
     }
 
 
