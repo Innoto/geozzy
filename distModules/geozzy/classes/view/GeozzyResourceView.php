@@ -207,7 +207,7 @@ class GeozzyResourceView extends View
       }
 
       // Validar URLs
-      foreach( $LANG_AVAILABLE as $langId => $langValues ) {
+      foreach( $form->langAvailable as $langId) {
         if( $valuesArray[ 'urlAlias_'.$langId ] !== '' ) {
           if( $urlError = $this->urlErrors( $elemIdForm, $langId, $valuesArray[ 'urlAlias_'.$langId ] ) ) {
             $form->addFieldRuleError( 'urlAlias_'.$langId, false, $urlError );
@@ -366,15 +366,15 @@ class GeozzyResourceView extends View
 
     if( !$form->existErrors()) {
       $extraDataArray1 = array('resource' => $elemId, 'name' => 'datoExtra1');
-      foreach ($LANG_AVAILABLE as $key => $lang){
-        $extraDataArray1['value_'.$key ] = $form->getFieldValue( 'datoExtra1_'.$key );
+      foreach ($form->langAvailable as $langId){
+        $extraDataArray1['value_'.$langId ] = $form->getFieldValue( 'datoExtra1_'.$langId );
       }     
       $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray1 ) );
       $affectsDependences = true;
 
       $extraDataArray2 = array('resource' => $elemId, 'name' => 'datoExtra2');
-      foreach ($LANG_AVAILABLE as $key => $lang){
-        $extraDataArray2['value_'.$key ] = $form->getFieldValue( 'datoExtra2_'.$key );
+      foreach ($form->langAvailable as $langId){
+        $extraDataArray2['value_'.$langId ] = $form->getFieldValue( 'datoExtra2_'.$langId );
       }     
       $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray2 ) );
       $affectsDependences = true;    
