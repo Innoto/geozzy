@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-4 col-sm-12 clearfix">
         <div class="headerActionsContainer">
-          <button type="button" class="assignResourceStarred btn btn-default btn-outline"> {t}Assign to{/t} <%- name_{$langDefault} %></button>
+          <button type="button" class="assignResourceTerm btn btn-default btn-outline"> {t}Assign to{/t} <%- name_{$langDefault} %></button>
           <span class="saveChanges">
             <button class="btn btn-danger cancel">{t}Cancel{/t}</button>
             <button class="btn btn-primary save">{t}Save{/t}</button>
@@ -55,7 +55,7 @@
 
   <div class="footerSection clearfix">
     <div class="headerActionsContainer">
-      <button type="button" class="asignResourceStarred btn btn-default"> {t}Assign to{/t} <%- name_{$langDefault}  %></button>
+      <button type="button" class="assignResourceTerm btn btn-default"> {t}Assign to{/t} <%- name_{$langDefault}  %></button>
       <span class="saveChanges">
         <button class="btn btn-danger cancel">{t}Cancel{/t}</button>
         <button class="btn btn-primary save">{t}Save{/t}</button>

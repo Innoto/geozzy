@@ -4,7 +4,8 @@ var ResourceModel = Backbone.Model.extend({
     type: false,
     published: false,
     title: '',
-    deleted: 0
+    deleted: 0,
+    weight: false
   },
   destroyResourceTerm: function (options) {
     var opts = _.extend({
@@ -12,5 +13,10 @@ var ResourceModel = Backbone.Model.extend({
       },
       options || {});
     return Backbone.Model.prototype.destroy.call(this, opts);
+  },
+
+  saveResourceTerm: function (options) {
+    return Backbone.sync('update', this, {url: '/api/admin/resourcesTerm/'+options+ '/resource/' +this.id});
   }
+
 });
