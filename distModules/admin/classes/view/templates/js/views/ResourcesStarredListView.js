@@ -4,6 +4,7 @@ var app = app || {};
 var ResourcesStarredListView = Backbone.View.extend({
 
   events: {
+    "click .assignResourceTerm": "assignResourceTerm" ,
     "click .btnDelete" : "removeResourceStarred" ,
     "click .cancel" : "cancelResourceStarred" ,
     "click .save" : "saveResourceStarred"
@@ -89,9 +90,9 @@ var ResourcesStarredListView = Backbone.View.extend({
     that.saveChangesVisible(true);
    },
 
-  addCategory: function() {
+  assignResourceTerm: function() {
     var that = this;
-    Backbone.history.navigate('category/'+that.starredTerm.id+'/term/create', {trigger:true});
+    Backbone.history.navigate('starred/'+that.starredTerm.id+'/assign', {trigger:true});
   },
 
   saveResourceStarred: function() {
