@@ -127,26 +127,30 @@ class TestDataGenerator extends View
       $resource =  new ResourceModel($data);
 
       // asignamos taxonomías ao recurso
+      $usedTaxterm = array();
       if ($taxtermArray){
         $taxtermTimes = rand(1,$m-1);
         for ($c=1; $c<=$taxtermTimes; $c++){
             $taxtermNum = rand(1,$m-1);
-            $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxtermArray[$taxtermNum])) );
+            if (!in_array($taxtermArray[$taxtermNum],$usedTaxterm)){
+              $usedTaxterm[$c] = $taxtermArray[$taxtermNum]; 
+              $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxtermArray[$taxtermNum])) );
+            }
         }
       }
 
       // asignamos temáticas ao recurso
+      $usedTopic = array();
       if ($topicArray){
         $topicTimes = rand(1,$l-1);
         for ($a=1; $a<=$topicTimes; $a++){
             $topicNum = rand(1,$l-1);
-            $resource->setterDependence( 'id', new ResourceTopicModel( array('resource' => $resource->getter('id'), 'topic' => $topicArray[$topicNum])) );
+            if (!in_array($topicArray[$topicNum],$usedTopic)){
+              $usedTopic[$a] = $topicArray[$topicNum]; 
+              $resource->setterDependence( 'id', new ResourceTopicModel( array('resource' => $resource->getter('id'), 'topic' => $topicArray[$topicNum])) );
+            }
         }
       }
-
-      $topicNum = rand(1,$l-1);
-      $resource->setterDependence( 'id', new ResourceTopicModel( array('resource' => $resource->getter('id'), 'topic' => $topicArray[$topicNum])) );
-
 
       // asignamos unha imaxe ao recurso
       if ($filedataArray){

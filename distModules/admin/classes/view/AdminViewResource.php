@@ -77,7 +77,7 @@ class AdminViewResource extends AdminViewMaster
     Creacion/Edicion de Recursos
   */
 
-  public function resourceForm() {
+  public function resourceForm($urlParams) {
     // error_log( "AdminViewResource: resourceForm()" );
 
     $formName = 'resourceCreate';
@@ -87,12 +87,15 @@ class AdminViewResource extends AdminViewMaster
     Bloque de 8
     */
     $resourceView = new GeozzyResourceView();
-    $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, false );
+
+    $recursoData['topics'] = array($urlParams[1]);
+    $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData );
 
     // Manipulamos el contenido del bloque
     $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
 
     $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
+
     $formSeparate[ 'image' ] = $formFieldsArray[ 'image' ];
     unset( $formFieldsArray[ 'image' ] );
     $formSeparate[ 'topics' ] = $formFieldsArray[ 'topics' ];
@@ -100,6 +103,7 @@ class AdminViewResource extends AdminViewMaster
     $formSeparate[ 'starred' ] = $formFieldsArray[ 'starred' ];
     unset( $formFieldsArray[ 'starred' ] );
     $formBlock->assign( 'formFieldsArray', $formFieldsArray );
+
 
     $panel = $this->getPanelBlock( $formBlock, __( 'New Resource' ), 'fa-archive' );
     $this->template->addToBlock( 'col8', $panel );
@@ -195,7 +199,6 @@ class AdminViewResource extends AdminViewMaster
         $recursoData[ 'starred' ] = $taxTermArray;
       }
 
-      global $LANG_AVAILABLE;
       // Cargo los datos del campo batiburrillo
       $extraDataDep = $recurso->getterDependence( 'id', 'ExtraDataModel');
       if( $extraDataDep !== false ) {
