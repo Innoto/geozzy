@@ -92,6 +92,11 @@ class GeozzyResourceView extends View
         'translate' => true,
         'params' => array( 'label' => __( 'SEO: Head Title' ) ),
         'rules' => array( 'maxlength' => '100' )
+      ),
+      'value' => array(
+        'translate' => true,
+        'params' => array( 'label' => __( 'Extra information' ) ),
+        'rules' => array( 'maxlength' => '1000' )
       )
     );
 
@@ -103,24 +108,20 @@ class GeozzyResourceView extends View
     // Temáticas asociadas
     $topicModel =  new TopicModel();
     $topic = $topicModel->listItems();
-    $name = $topic->fetchAll();
     $topics = array();
-    foreach( $name as $n ){
+    while($n = $topic->fetch()){
       $topics[ $n->getter('id') ] = $n->getter('name', LANG_DEFAULT);
     }
     $form->setField( 'topics', array( 'type' => 'checkbox', 'options'=> $topics) );
 
-
     // Destacados asociados
     $taxTermModel =  new TaxonomyTermModel();
-    $taxTerm = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
-    $starredList = $taxTerm->fetchAll();
+    $starredList = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
     $starred = array();
-    foreach( $starredList as $star ){
+    while($star = $starredList->fetch()){
       $starred[ $star->getter('id') ] = $star->getter('name', LANG_DEFAULT);
     }
     $form->setField( 'starred', array( 'type' => 'checkbox', 'options'=> $starred) );
-
 
     //Si es una edicion, añadimos el ID y cargamos los datos
     // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
@@ -327,15 +328,14 @@ class GeozzyResourceView extends View
 
       $resourceTopicModel = new ResourceTopicModel();
       $resourceTopicList = $resourceTopicModel->listItems(
-        array('parameters' => array('resource', $elemId)) )->fetchAll();
+        array('filters' => array('resource' => $elemId)) );  
 
       if( $resourceTopicList ) {
         // estaban asignados antes
-        foreach( $resourceTopicList as $oldTopic ) {
+        while($oldTopic = $resourceTopicList->fetch()){
           $oldTopics[$oldTopic->getter('topic')] = $oldTopic->getter('topic');
           if( $newTopics === false || !in_array( $oldTopic->getter('topic'), $newTopics ) ) {
-            // desasignar
-            $oldTopic->delete();
+            $oldTopic->delete(); // desasignar
           }
         }
       }
@@ -371,19 +371,14 @@ class GeozzyResourceView extends View
 
       $resourceTaxonomytermModel = new ResourceTaxonomytermModel();
 
-      $starredList_prev = $resourceTaxonomytermModel->listItems( array(
+      $starredListPrev = $resourceTaxonomytermModel->listItems( array(
         'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'resource' => $elemId ),
         'affectsDependences' => array('TaxonomygroupModel'),
         'joinType' => 'RIGHT' ));
-      if (is_array($starredList_prev)) 
-        $starredList = $starredList_prev->fetchAll();
-      else
-        $starredList = false;
-
 
       // estaban asignados antes
-      if ($starredList){
-        foreach( $starredList as $oldStar ){
+      if ($starredListPrev){
+        while($oldStar = $starredListPrev->fetch()){
           $oldStarred[$oldStar->getter('taxonomyterm')] = $oldStar->getter('taxonomyterm');
           if( $newStarred === false || !in_array( $oldStar->getter('taxonomyterm'), $newStarred ) ){ // desasignar
             $oldStar->delete();
@@ -410,8 +405,18 @@ class GeozzyResourceView extends View
           }
         }
       }
-
     }
+
+    if( !$form->existErrors()) {
+      $extraDataArray = array('resource' => $elemId, 'name' => 'value');
+      foreach ($LANG_AVAILABLE as $key => $lang){
+        $extraDataArray['value_'.$key ] = $form->getFieldValue( 'value_'.$key );
+      }     
+      $recurso->setterDependence( 'id',
+          new extraDataModel( $extraDataArray ) );
+          $affectsDependences = true;
+    }
+
 
     if( !$form->existErrors()) {
       $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
