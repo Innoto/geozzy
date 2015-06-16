@@ -34,14 +34,6 @@ class GeozzyResourceView extends View
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
     // error_log( "GeozzyResourceView: getFormObj()" );
 
-    $langAvailable = false;
-    global $LANG_AVAILABLE;
-    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
-      $langAvailable = array_keys( $LANG_AVAILABLE );
-      $langDefault = LANG_DEFAULT;
-      $tmp = implode( "', '", $langAvailable );
-    }
-
     $form = new FormController( $formName, $urlAction );
 
     $form->setSuccess( 'accept', __( 'Thank you' ) );
@@ -92,35 +84,41 @@ class GeozzyResourceView extends View
         'translate' => true,
         'params' => array( 'label' => __( 'SEO: Head Title' ) ),
         'rules' => array( 'maxlength' => '100' )
+      ),
+      'datoExtra1' => array(
+        'translate' => true,
+        'params' => array( 'label' => __( 'Extra information 1' ) ),
+        'rules' => array( 'maxlength' => '1000' )
+      ),
+      'datoExtra2' => array(
+        'translate' => true,
+        'params' => array( 'label' => __( 'Extra information 2' ) ),
+        'rules' => array( 'maxlength' => '1000' )
       )
     );
 
-    $this->arrayToForm( $form, $fieldsInfo, $langAvailable );
+    //$this->arrayToForm( $form, $fieldsInfo, $form->langAvailable );
+    $form->definitionsToForm( $fieldsInfo );
 
-    $form->setValidationRule( 'title_'.$langDefault, 'required' );
-
+    $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
 
     // Temáticas asociadas
     $topicModel =  new TopicModel();
     $topic = $topicModel->listItems();
-    $name = $topic->fetchAll();
     $topics = array();
-    foreach( $name as $n ){
+    while($n = $topic->fetch()){
       $topics[ $n->getter('id') ] = $n->getter('name', LANG_DEFAULT);
     }
     $form->setField( 'topics', array( 'type' => 'checkbox', 'options'=> $topics) );
 
-
     // Destacados asociados
     $taxTermModel =  new TaxonomyTermModel();
-    $taxTerm = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
-    $starredList = $taxTerm->fetchAll();
+    $starredList = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
     $starred = array();
-    foreach( $starredList as $star ){
+    while($star = $starredList->fetch()){
       $starred[ $star->getter('id') ] = $star->getter('name', LANG_DEFAULT);
     }
     $form->setField( 'starred', array( 'type' => 'checkbox', 'options'=> $starred) );
-
 
     //Si es una edicion, añadimos el ID y cargamos los datos
     // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
@@ -136,46 +134,6 @@ class GeozzyResourceView extends View
 
     return( $form );
   } // function getFormObj()
-
-
-  /**
-   * Crea los campos y les asigna las reglas en form
-   *
-   * @param $form Object Form
-   * @param $fieldsInfo Array fields info
-   * @param $langAvailable Array langs
-  **/
-  public function arrayToForm( $form, $fieldsInfo, $langAvailable ) {
-    foreach( $fieldsInfo as $fieldName => $definition ) {
-      if( !isset( $definition['params'] ) ) {
-        $definition['params'] = false;
-      }
-      if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
-        $baseClass = '';
-        if( isset( $definition['params']['class'] ) &&  $definition['params']['class'] !== '' ) {
-          $baseClass = $definition['params']['class'];
-        }
-        foreach( $langAvailable as $lang ) {
-          $definition['params']['class'] = $baseClass . ' js-tr js-tr-'.$lang;
-          $form->setField( $fieldName.'_'.$lang, $definition['params'] );
-          if( isset( $definition['rules'] ) ) {
-            foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-              $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
-            }
-          }
-        }
-      }
-      else {
-        $form->setField( $fieldName, $definition['params'] );
-        if( isset( $definition['rules'] ) ) {
-          foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-            $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
-          }
-        }
-      }
-    }
-  }
-
 
 
   /**
@@ -327,15 +285,14 @@ class GeozzyResourceView extends View
 
       $resourceTopicModel = new ResourceTopicModel();
       $resourceTopicList = $resourceTopicModel->listItems(
-        array('parameters' => array('resource', $elemId)) )->fetchAll();
+        array('filters' => array('resource' => $elemId)) );
 
       if( $resourceTopicList ) {
         // estaban asignados antes
-        foreach( $resourceTopicList as $oldTopic ) {
+        while($oldTopic = $resourceTopicList->fetch()){
           $oldTopics[$oldTopic->getter('topic')] = $oldTopic->getter('topic');
           if( $newTopics === false || !in_array( $oldTopic->getter('topic'), $newTopics ) ) {
-            // desasignar
-            $oldTopic->delete();
+            $oldTopic->delete(); // desasignar
           }
         }
       }
@@ -371,19 +328,14 @@ class GeozzyResourceView extends View
 
       $resourceTaxonomytermModel = new ResourceTaxonomytermModel();
 
-      $starredList_prev = $resourceTaxonomytermModel->listItems( array(
+      $starredListPrev = $resourceTaxonomytermModel->listItems( array(
         'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'resource' => $elemId ),
         'affectsDependences' => array('TaxonomygroupModel'),
         'joinType' => 'RIGHT' ));
-      if (is_array($starredList_prev)) 
-        $starredList = $starredList_prev->fetchAll();
-      else
-        $starredList = false;
-
 
       // estaban asignados antes
-      if ($starredList){
-        foreach( $starredList as $oldStar ){
+      if ($starredListPrev){
+        while($oldStar = $starredListPrev->fetch()){
           $oldStarred[$oldStar->getter('taxonomyterm')] = $oldStar->getter('taxonomyterm');
           if( $newStarred === false || !in_array( $oldStar->getter('taxonomyterm'), $newStarred ) ){ // desasignar
             $oldStar->delete();
@@ -410,8 +362,24 @@ class GeozzyResourceView extends View
           }
         }
       }
-
     }
+
+    if( !$form->existErrors()) {
+      $extraDataArray1 = array('resource' => $elemId, 'name' => 'datoExtra1');
+      foreach ($LANG_AVAILABLE as $key => $lang){
+        $extraDataArray1['value_'.$key ] = $form->getFieldValue( 'datoExtra1_'.$key );
+      }     
+      $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray1 ) );
+      $affectsDependences = true;
+
+      $extraDataArray2 = array('resource' => $elemId, 'name' => 'datoExtra2');
+      foreach ($LANG_AVAILABLE as $key => $lang){
+        $extraDataArray2['value_'.$key ] = $form->getFieldValue( 'datoExtra2_'.$key );
+      }     
+      $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray2 ) );
+      $affectsDependences = true;    
+    }
+
 
     if( !$form->existErrors()) {
       $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );

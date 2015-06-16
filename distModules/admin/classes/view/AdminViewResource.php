@@ -139,7 +139,8 @@ class AdminViewResource extends AdminViewMaster
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];
       $recModel = new ResourceModel();
-      $recursosList = $recModel->listItems( array( 'affectsDependences' => array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel' ),
+      $recursosList = $recModel->listItems( array( 'affectsDependences' => 
+        array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
         'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1) ) );
       $recurso = $recursosList->fetch();
     }
@@ -166,7 +167,6 @@ class AdminViewResource extends AdminViewMaster
           }
         }
       }
-
 
       // Cargo los datos de image dentro de los del recurso
       $fileDep = $recurso->getterDependence( 'image' );
@@ -195,7 +195,16 @@ class AdminViewResource extends AdminViewMaster
         $recursoData[ 'starred' ] = $taxTermArray;
       }
 
-
+      global $LANG_AVAILABLE;
+      // Cargo los datos del campo batiburrillo
+      $extraDataDep = $recurso->getterDependence( 'id', 'ExtraDataModel');
+      if( $extraDataDep !== false ) {
+        foreach( $extraDataDep as $extraData ) {
+          foreach ($LANG_AVAILABLE as $key => $lang){
+            $recursoData[ $extraData->getter('name').'_'.$key ] = $extraData->getter( 'value_'.$key );
+          } 
+        }        
+      }
 
       /**
       Bloque de 8
