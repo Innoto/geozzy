@@ -32,7 +32,7 @@ var ResourcesStarredCollection = Backbone.Collection.extend({
         m2.destroyResourceTerm(taxonomyterm);
       }
       else {
-        m2.save();
+        m2.saveResourceTerm(taxonomyterm);
       }
     });
   }

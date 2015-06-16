@@ -365,7 +365,12 @@ class AdminDataAPIView extends View
           $c = '';
           while ($rs = $resourceStarred->fetch() )
           {
+            $dataDep = $rs->getterDependence('id', 'ResourceTaxonomytermModel');
+            $weight = $dataDep[0]->getter('weight');
+
             $rsData = $rs->getAllData();
+            $rsData['data']['weight'] = intval($weight);
+
             echo $c.json_encode( $rsData['data'] );
             if($c === ''){$c=',';}
           }

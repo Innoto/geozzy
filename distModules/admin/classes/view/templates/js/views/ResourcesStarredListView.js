@@ -47,6 +47,7 @@ var ResourcesStarredListView = Backbone.View.extend({
     this.listTemplate = _.template( $('#resourcesStarredItem').html() );
     this.$el.find('.listResources').html('');
     var rs = that.resourcesStarred.search({deleted:0});
+    rs.sortByField('weight');
     _.each( rs.toJSON() , function(item){
       that.$el.find('.listResources').append( that.listTemplate({ resource: item }) );
     });
@@ -64,20 +65,11 @@ var ResourcesStarredListView = Backbone.View.extend({
   saveList: function(){
 
     var that = this;
-    var jsonCategories = $('#taxTermListContainer').nestable('serialize');
+    var jsonNestableResult = $('#resourcesStarredListContainer').nestable('serialize');
     var itemWeight = 0;
-    _.each( jsonCategories , function( e , i ){
-
-      var element = that.categoryTerms.get(e.id);
-      element.set({parent:0});
+    _.each( jsonNestableResult , function( e , i ){
+      var element = that.resourcesStarred.get(e.id);
       element.set({ weight: itemWeight });
-      if(e.children){
-        _.each( e.children , function( eCh , iCh ){
-          itemWeight++;
-          var elementSon = that.categoryTerms.get(eCh.id);
-          elementSon.set({ weight: itemWeight, parent:e.id });
-        });
-      }
       itemWeight++;
     });
 
