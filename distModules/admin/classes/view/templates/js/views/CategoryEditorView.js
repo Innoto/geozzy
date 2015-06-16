@@ -74,7 +74,7 @@ var CategoryEditorView = Backbone.View.extend({
     });
 
     this.$el.find('.dd').nestable({
-      'maxDepth': 2 ,
+      'maxDepth': 2,
       'dragClass': "gzznestable dd-dragel",
       callback: function(l, e) {
         that.saveList();

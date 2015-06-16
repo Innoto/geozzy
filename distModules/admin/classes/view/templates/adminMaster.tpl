@@ -23,6 +23,7 @@
 
   <!-- Client templates -->
   {include file="admin///categoryEditor.tpl"}
+  {include file="admin///resourcesStarredList.tpl"}
 
 
   <div id="wrapper">

@@ -314,13 +314,16 @@ class AdminDataAPIView extends View
 
   function resourcesTerm( $request ) {
 
-    $id = substr($request[1], 1);
-    $idR = substr($request[3], 1);
+    $dataRequest = explode("/", $request[1]);
+
+    $id = $dataRequest[0];
+
 
     header('Content-type: application/json');
 
     switch( $_SERVER['REQUEST_METHOD'] ) {
       case 'PUT':
+        $idR = $dataRequest[2];
         $putData = json_decode(file_get_contents('php://input'), true);
         $resourceTaxtermModel = new ResourceTaxonomytermModel();
 
@@ -341,18 +344,21 @@ class AdminDataAPIView extends View
 
         if( array_key_exists( 'taxonomyterm', $_GET ) && is_numeric( $_GET['taxonomyterm'] ) ){
           $resourceModel = new ResourceModel();
+          $fields = array(
+            'id',
+            'type',
+            'published',
+            'title_'.LANG_DEFAULT
+          );
+
           $resourceStarred = $resourceModel->listItems(
             array(
               'filters' => array(
-                'ResourceTaxonomyTermModel.taxonomyterm' => $_GET['taxonomyterm'],
-                'affectsDependences' => array('ResourceTaxonomyTermModel')
+                'ResourceTaxonomytermModel.taxonomyterm' => $_GET['taxonomyterm']
               ),
-              'fields' => array(
-                'id',
-                'type',
-                'published',
-                'title'
-              )
+              'affectsDependences' => array('ResourceTaxonomytermModel'),
+              'joinType' => 'RIGHT',
+              'fields' => $fields
             )
           );
           echo '[';
@@ -371,6 +377,7 @@ class AdminDataAPIView extends View
       break;
 
       case 'DELETE':
+        $idR = $dataRequest[2];
         $resourceTermModel = new ResourceTaxonomytermModel();
         $rTerm = $resourceTermModel->listItems(
           array(
@@ -515,7 +522,7 @@ class AdminDataAPIView extends View
                 "summary": "Delete resourceTerm"
             }
           ],
-          "path": "/admin/starred/{taxonomyterm}/resource/{resource}",
+          "path": "/admin/resourcesTerm/{taxonomyterm}/resource/{resource}",
           "description": ""
         }
       ]
