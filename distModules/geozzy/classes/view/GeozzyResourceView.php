@@ -34,14 +34,6 @@ class GeozzyResourceView extends View
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
     // error_log( "GeozzyResourceView: getFormObj()" );
 
-    $langAvailable = false;
-    global $LANG_AVAILABLE;
-    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
-      $langAvailable = array_keys( $LANG_AVAILABLE );
-      $langDefault = LANG_DEFAULT;
-      $tmp = implode( "', '", $langAvailable );
-    }
-
     $form = new FormController( $formName, $urlAction );
 
     $form->setSuccess( 'accept', __( 'Thank you' ) );
@@ -105,10 +97,10 @@ class GeozzyResourceView extends View
       )
     );
 
-    $this->arrayToForm( $form, $fieldsInfo, $langAvailable );
+    //$this->arrayToForm( $form, $fieldsInfo, $form->langAvailable );
+    $form->definitionsToForm( $fieldsInfo );
 
-    $form->setValidationRule( 'title_'.$langDefault, 'required' );
-
+    $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
 
     // Temáticas asociadas
     $topicModel =  new TopicModel();
@@ -142,46 +134,6 @@ class GeozzyResourceView extends View
 
     return( $form );
   } // function getFormObj()
-
-
-  /**
-   * Crea los campos y les asigna las reglas en form
-   *
-   * @param $form Object Form
-   * @param $fieldsInfo Array fields info
-   * @param $langAvailable Array langs
-  **/
-  public function arrayToForm( $form, $fieldsInfo, $langAvailable ) {
-    foreach( $fieldsInfo as $fieldName => $definition ) {
-      if( !isset( $definition['params'] ) ) {
-        $definition['params'] = false;
-      }
-      if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
-        $baseClass = '';
-        if( isset( $definition['params']['class'] ) &&  $definition['params']['class'] !== '' ) {
-          $baseClass = $definition['params']['class'];
-        }
-        foreach( $langAvailable as $lang ) {
-          $definition['params']['class'] = $baseClass . ' js-tr js-tr-'.$lang;
-          $form->setField( $fieldName.'_'.$lang, $definition['params'] );
-          if( isset( $definition['rules'] ) ) {
-            foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-              $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
-            }
-          }
-        }
-      }
-      else {
-        $form->setField( $fieldName, $definition['params'] );
-        if( isset( $definition['rules'] ) ) {
-          foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-            $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
-          }
-        }
-      }
-    }
-  }
-
 
 
   /**
@@ -333,7 +285,7 @@ class GeozzyResourceView extends View
 
       $resourceTopicModel = new ResourceTopicModel();
       $resourceTopicList = $resourceTopicModel->listItems(
-        array('filters' => array('resource' => $elemId)) );  
+        array('filters' => array('resource' => $elemId)) );
 
       if( $resourceTopicList ) {
         // estaban asignados antes
