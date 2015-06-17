@@ -94,6 +94,12 @@ class GeozzyResourceView extends View
         'translate' => true,
         'params' => array( 'label' => __( 'Extra information 2' ) ),
         'rules' => array( 'maxlength' => '1000' )
+      ),
+      'typeResource' => array(
+        'params' => array( 'type' => 'reserved' )
+      ),
+      'published' => array(
+        'params' => array( 'type' => 'checkbox', 'options'=> array( '1' => 'Publicado' ))
       )
     );
 

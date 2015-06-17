@@ -77,7 +77,7 @@ class AdminViewResource extends AdminViewMaster
     Creacion/Edicion de Recursos
   */
 
-  public function resourceForm($urlParams) {
+  public function resourceForm($urlParams = false) {
     // error_log( "AdminViewResource: resourceForm()" );
 
     $formName = 'resourceCreate';
@@ -88,9 +88,14 @@ class AdminViewResource extends AdminViewMaster
     */
     $resourceView = new GeozzyResourceView();
 
-    $recursoData['topics'] = array($urlParams[1]);
-    $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData );
-
+    if ($urlParams){
+      $recursoData['topics'] = array($urlParams[1]);
+      $recursoData['typeResource'] = $urlParams[2];
+      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData );
+    }
+    else{
+      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, false );
+    }
     // Manipulamos el contenido del bloque
     $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
 
@@ -102,13 +107,18 @@ class AdminViewResource extends AdminViewMaster
     unset( $formFieldsArray[ 'topics' ] );
     $formSeparate[ 'starred' ] = $formFieldsArray[ 'starred' ];
     unset( $formFieldsArray[ 'starred' ] );
+    $formSeparate[ 'published' ] = $formFieldsArray[ 'published' ];
+    unset( $formFieldsArray[ 'published' ] );
     $formBlock->assign( 'formFieldsArray', $formFieldsArray );
 
 
     $panel = $this->getPanelBlock( $formBlock, __( 'New Resource' ), 'fa-archive' );
     $this->template->addToBlock( 'col8', $panel );
 
-
+    /**
+    Bloque de 4
+    */
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'published' ], __( 'Publicación:' ) ) );
     /**
     Bloque de 4
     */
@@ -199,6 +209,7 @@ class AdminViewResource extends AdminViewMaster
         $recursoData[ 'starred' ] = $taxTermArray;
       }
 
+      global $LANG_AVAILABLE;
       // Cargo los datos del campo batiburrillo
       $extraDataDep = $recurso->getterDependence( 'id', 'ExtraDataModel');
       if( $extraDataDep !== false ) {
@@ -226,12 +237,18 @@ class AdminViewResource extends AdminViewMaster
       unset( $formFieldsArray[ 'topics' ] );
       $formSeparate[ 'starred' ] = $formFieldsArray[ 'starred' ];
       unset( $formFieldsArray[ 'starred' ] );
+      $formSeparate[ 'published' ] = $formFieldsArray[ 'published' ];
+      unset( $formFieldsArray[ 'published' ] );
       $formBlock->assign( 'formFieldsArray', $formFieldsArray );
 
 
       $panel = $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' );
       $this->template->addToBlock( 'col8', $panel );
 
+      /**
+      Bloque de 4
+      */
+      $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'published' ], __( 'Publicación:' ) ) );
       /**
       Bloque de 4
       */
