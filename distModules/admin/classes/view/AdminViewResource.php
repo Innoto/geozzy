@@ -77,68 +77,27 @@ class AdminViewResource extends AdminViewMaster
     Creacion/Edicion de Recursos
   */
 
-  public function resourceForm($urlParams = false) {
+  public function resourceForm( $urlParams = false ) {
     // error_log( "AdminViewResource: resourceForm()" );
 
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
 
-    /**
-    Bloque de 8
-    */
     $resourceView = new GeozzyResourceView();
 
-    if ($urlParams){
-      $recursoData['topics'] = array($urlParams[1]);
-      $recursoData['typeResource'] = $urlParams[2];
-      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData );
+    if( $urlParams ) {
+      $recursoData['topics'] = array( $urlParams['1'] );
+      $recursoData['typeResource'] = $urlParams['2'];
+      $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
     }
     else{
-      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, false );
+      $formBlock = $resourceView->getFormBlock( $formName, $formUrl, false );
     }
-    // Manipulamos el contenido del bloque
+
+    // Cambiamos el template del formulario
     $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
 
-    $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
-
-    $formSeparate[ 'image' ] = $formFieldsArray[ 'image' ];
-    unset( $formFieldsArray[ 'image' ] );
-    $formSeparate[ 'topics' ] = $formFieldsArray[ 'topics' ];
-    unset( $formFieldsArray[ 'topics' ] );
-    $formSeparate[ 'starred' ] = $formFieldsArray[ 'starred' ];
-    unset( $formFieldsArray[ 'starred' ] );
-    $formSeparate[ 'published' ] = $formFieldsArray[ 'published' ];
-    unset( $formFieldsArray[ 'published' ] );
-    $formBlock->assign( 'formFieldsArray', $formFieldsArray );
-
-
-    $panel = $this->getPanelBlock( $formBlock, __( 'New Resource' ), 'fa-archive' );
-    $this->template->addToBlock( 'col8', $panel );
-
-    /**
-    Bloque de 4
-    */
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'published' ], __( 'Publicación:' ) ) );
-    /**
-    Bloque de 4
-    */
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'topics' ], __( 'Temáticas asociadas al recurso:' ) ) );
-    /**
-    Bloque de 4 (outro)
-    */
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'starred' ], __( 'Destacados asociados al recurso:' ) ) );
-    /**
-    Bloque de 4 (outro)
-    */
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'image' ], __( 'Selecciona una imagen' ) ) );
-
-    /**
-    Admin 8-4
-    */
-    $this->template->assign( 'headTitle', __('Create Resource') );
-    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
-
-    $this->template->exec();
+    $this->showFormBlocks( $formBlock );
   } // function resourceForm()
 
 
@@ -153,7 +112,7 @@ class AdminViewResource extends AdminViewMaster
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];
       $recModel = new ResourceModel();
-      $recursosList = $recModel->listItems( array( 'affectsDependences' => 
+      $recursosList = $recModel->listItems( array( 'affectsDependences' =>
         array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
         'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1) ) );
       $recurso = $recursosList->fetch();
@@ -163,13 +122,6 @@ class AdminViewResource extends AdminViewMaster
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
       $recursoData = $recursoData[ 'data' ];
-
-      /*echo "<pre>";
-      $deps = $recurso->getterDependence('id', 'ResourceTaxonomytermModel');
-      foreach ($deps as $dep) {
-        var_dump($dep->getAllData() );
-      }
-      exit();*/
 
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
@@ -209,72 +161,78 @@ class AdminViewResource extends AdminViewMaster
         $recursoData[ 'starred' ] = $taxTermArray;
       }
 
-      global $LANG_AVAILABLE;
       // Cargo los datos del campo batiburrillo
       $extraDataDep = $recurso->getterDependence( 'id', 'ExtraDataModel');
       if( $extraDataDep !== false ) {
         foreach( $extraDataDep as $extraData ) {
-          foreach ($LANG_AVAILABLE as $key => $lang){
-            $recursoData[ $extraData->getter('name').'_'.$key ] = $extraData->getter( 'value_'.$key );
-          } 
-        }        
+          foreach( $this->langAvailable as $lang ){
+            $recursoData[ $extraData->getter('name').'_'.$lang ] = $extraData->getter( 'value_'.$lang );
+          }
+        }
       }
 
-      /**
-      Bloque de 8
-      */
       $resourceView = new GeozzyResourceView();
       error_log( 'recursoData para FORM: ' . print_r( $recursoData, true ) );
       $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData );
 
-      // Manipulamos el contenido del bloque
+      // Cambiamos el template del formulario
       $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
 
-      $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
-      $formSeparate[ 'image' ] = $formFieldsArray[ 'image' ];
-      unset( $formFieldsArray[ 'image' ] );
-      $formSeparate[ 'topics' ] = $formFieldsArray[ 'topics' ];
-      unset( $formFieldsArray[ 'topics' ] );
-      $formSeparate[ 'starred' ] = $formFieldsArray[ 'starred' ];
-      unset( $formFieldsArray[ 'starred' ] );
-      $formSeparate[ 'published' ] = $formFieldsArray[ 'published' ];
-      unset( $formFieldsArray[ 'published' ] );
-      $formBlock->assign( 'formFieldsArray', $formFieldsArray );
-
-
-      $panel = $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' );
-      $this->template->addToBlock( 'col8', $panel );
-
-      /**
-      Bloque de 4
-      */
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'published' ], __( 'Publicación:' ) ) );
-      /**
-      Bloque de 4
-      */
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'topics' ], __( 'Temáticas asociadas al recurso:' ) ) );
-      /**
-      Bloque de 4 (outro)
-      */
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'starred' ], __( 'Destacados asociados al recurso:' ) ) );
-      /**
-      Bloque de 4 (outro)
-      */
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'image' ], __( 'Selecciona una imagen' ) ) );
-
-
-      /**
-      Admin 8-4
-      */
-      $this->template->assign( 'headTitle', __('Edit Resource') );
-      $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
-
-      $this->template->exec();
+      $this->showFormBlocks( $formBlock );
     }
     else {
       cogumelo::error( 'Imposible acceder al recurso indicado.' );
     }
   } // function resourceEditForm()
+
+
+  private function showFormBlocks( $formBlock ) {
+    // Fragmentamos el formulario generado
+    $formImage = $this->extractFormBlockFields( $formBlock, array( 'image' ) );
+    $formPublished = $this->extractFormBlockFields( $formBlock, array( 'published' ) );
+    $formStatus = $this->extractFormBlockFields( $formBlock, array( 'topics', 'starred' ) );
+    $formSeo = $this->extractFormBlockFields( $formBlock,
+      array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
+    $formContacto = $this->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
+
+
+    /**
+    Bloque de 8 principal (contiene la estructura del form)
+    */
+    $this->template->addToBlock( 'col8', $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' ) );
+
+    /**
+    Bloque de 8
+    */
+    $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formContacto ), 'Contacto', 'fa-archive' ) );
+
+
+    /**
+    Bloque de 4
+    */
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formPublished ), __( 'Publicación' ), 'fa-adjust' ) );
+    /**
+    Bloque de 4
+    */
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formImage ), __( 'Selecciona una imagen' ), 'fa-file-image-o' ) );
+    /**
+    Bloque de 4
+    */
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formStatus ), __( 'Status' ) ) );
+    /**
+    Bloque de 4
+    */
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' ) );
+
+
+    /**
+    Admin 8-4
+    */
+    $this->template->assign( 'headTitle', __('Edit Resource') );
+    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
+
+    $this->template->exec();
+  }
 
 
   public function sendResourceForm() {
