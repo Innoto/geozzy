@@ -54,7 +54,7 @@ class GeozzyResourceView extends View
       ),
       'mediumDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea', 'htmlEditor' => 'true' )
+        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea' )
       ),
       'content' => array(
         'translate' => true,
@@ -115,16 +115,17 @@ class GeozzyResourceView extends View
     while($n = $topic->fetch()){
       $topics[ $n->getter('id') ] = $n->getter('name', LANG_DEFAULT);
     }
-    $form->setField( 'topics', array( 'type' => 'checkbox', 'options'=> $topics) );
+    $form->setField( 'topics', array( 'type' => 'checkbox', 'label' => __( 'Topics' ), 'options'=> $topics) );
 
     // Destacados asociados
     $taxTermModel =  new TaxonomyTermModel();
-    $starredList = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+    $starredList = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
+      'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
     $starred = array();
     while($star = $starredList->fetch()){
       $starred[ $star->getter('id') ] = $star->getter('name', LANG_DEFAULT);
     }
-    $form->setField( 'starred', array( 'type' => 'checkbox', 'options'=> $starred) );
+    $form->setField( 'starred', array( 'type' => 'checkbox', 'label' => __( 'Starred' ), 'options'=> $starred) );
 
     //Si es una edicion, añadimos el ID y cargamos los datos
     // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
@@ -374,16 +375,16 @@ class GeozzyResourceView extends View
       $extraDataArray1 = array('resource' => $elemId, 'name' => 'datoExtra1');
       foreach ($form->langAvailable as $langId){
         $extraDataArray1['value_'.$langId ] = $form->getFieldValue( 'datoExtra1_'.$langId );
-      }     
+      }
       $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray1 ) );
       $affectsDependences = true;
 
       $extraDataArray2 = array('resource' => $elemId, 'name' => 'datoExtra2');
       foreach ($form->langAvailable as $langId){
         $extraDataArray2['value_'.$langId ] = $form->getFieldValue( 'datoExtra2_'.$langId );
-      }     
+      }
       $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray2 ) );
-      $affectsDependences = true;    
+      $affectsDependences = true;
     }
 
 
