@@ -182,6 +182,8 @@ class geozzy extends Module
         'gl' => 'Destacado'
       ),
       'editable' => 0,
+      'nestable' => 0,
+      'sortable' => 1,
       'initialTerms' => $GEOZZY_STARRED
     );
 
@@ -190,7 +192,7 @@ class geozzy extends Module
     */
 
 
-    $GEOZZY_TAXONOMYGROUPS = array_merge( 
+    $GEOZZY_TAXONOMYGROUPS = array_merge(
       ResourcetypeController::getAllCategories( $GEOZZY_RESOURCETYPE ),
       $GEOZZY_TAXONOMYGROUPS
     );

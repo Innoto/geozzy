@@ -99,7 +99,7 @@ class GeozzyResourceView extends View
         'params' => array( 'type' => 'reserved' )
       ),
       'published' => array(
-        'params' => array( 'type' => 'checkbox', 'options'=> array( '1' => 'Publicado' ))
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Publicado' ))
       )
     );
 

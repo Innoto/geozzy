@@ -20,29 +20,31 @@ $GEOZZY_TAXONOMYGROUPS['taxPruebaParaTematica'] = array(
     'gl' => 'Test taxonomy'
   ),
   'editable' => 0,
+  'nestable' => 1,
+  'sortable' => 1,
   'initialTerms' => array(
-    array( 
-    	'idName' => 'pruebaTaxTerm1', 
+    array(
+    	'idName' => 'pruebaTaxTerm1',
     	'name' => array(
         'en'=>'Term creation test 1',
         'es'=>'Prueba creacion de termino 1',
-        'gl'=>'Proba creacion de termo 1' 
+        'gl'=>'Proba creacion de termo 1'
       )
     ),
-    array( 
-      'idName' => 'pruebaTaxTerm2', 
+    array(
+      'idName' => 'pruebaTaxTerm2',
       'name' => array(
         'en'=>'Term creation test 2' ,
         'es'=>'Prueba creacion de termino 2',
-        'gl'=>'Proba creacion de termo 2' 
+        'gl'=>'Proba creacion de termo 2'
       )
     ),
-    array( 
-      'idName' => 'pruebaTaxTerm3', 
+    array(
+      'idName' => 'pruebaTaxTerm3',
       'name' => array(
-        'en'=>'Term creation test 3', 
+        'en'=>'Term creation test 3',
         'es'=>'Prueba creacion de termino 3',
-        'gl'=>'Proba creacion de termo 3' 
+        'gl'=>'Proba creacion de termo 3'
       )
     )
   )

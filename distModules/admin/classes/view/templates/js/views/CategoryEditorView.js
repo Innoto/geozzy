@@ -73,13 +73,18 @@ var CategoryEditorView = Backbone.View.extend({
       }
     });
 
-    this.$el.find('.dd').nestable({
-      'maxDepth': 2,
+    var nestableParams = {
+      'maxDepth': that.category.get('nestable')+1,
+      'handleClass': 'dd-handle',
       'dragClass': "gzznestable dd-dragel",
       callback: function(l, e) {
         that.saveList();
       }
-    });
+    }
+    if(that.category.get('sortable') === 0){
+      nestableParams.handleClass = "no-handle-gzz";
+    }
+    this.$el.find('.dd').nestable(nestableParams);
 
   },
 

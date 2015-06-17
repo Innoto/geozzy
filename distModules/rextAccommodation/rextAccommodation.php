@@ -24,6 +24,8 @@ class rextAccommodation extends Module
         'gl' => 'Tipo'
       ),
       'editable' => 1,
+      'nestable' => 1,
+      'sortable' => 1,
       'initialTerms' => array(
         array(
           'idName' => 'hotel',
@@ -60,6 +62,8 @@ class rextAccommodation extends Module
         'gl' => 'Categoría'
       ),
       'editable' => 1,
+      'nestable' => 0,
+      'sortable' => 0,
       'initialTerms' => array(
         array(
           'idName' => '1star',
@@ -112,6 +116,8 @@ class rextAccommodation extends Module
         'gl' => 'Servizos'
       ),
       'editable' => 1,
+      'nestable' => 1,
+      'sortable' => 1,
       'initialTerms' => array(
         array(
           'idName' => 'telephone',
@@ -140,6 +146,8 @@ class rextAccommodation extends Module
         'gl' => 'Instalacións'
       ),
       'editable' => 1,
+      'nestable' => 1,
+      'sortable' => 1,
       'initialTerms' => array(
         array(
           'idName' => 'bar',
@@ -168,6 +176,8 @@ class rextAccommodation extends Module
         'gl' => 'Cadea'
       ),
       'editable' => 1,
+      'nestable' => 0,
+      'sortable' => 1,
       'initialTerms' => array(
         array(
           'idName' => 'nh',
@@ -196,6 +206,8 @@ class rextAccommodation extends Module
         'gl' => 'Usuarios'
       ),
       'editable' => 1,
+      'nestable' => 0,
+      'sortable' => 1,
       'initialTerms' => array(
       )
     )

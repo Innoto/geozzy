@@ -40,7 +40,7 @@
               </strong>
             </div>
             <div class="panel-body">
-              <div id="taxTermListContainer" class="gzznestable dd">
+              <div id="taxTermListContainer" class="gzznestable <% if (!sortable) { %> no-sortable <% } %> dd">
                 <ol class="listTerms dd-list">
                 </ol>
               </div>
@@ -68,7 +68,7 @@
 
 <script type="text/template" id="taxTermEditorItem">
 
-  	<li class="dd-item" data-id="<%- term.id %>">
+  	<li class="dd-item " data-id="<%- term.id %>">
       <div class="dd-item-container clearfix">
 
         <div class="dd-content">

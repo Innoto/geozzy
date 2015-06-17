@@ -78,8 +78,6 @@ class AdminViewResource extends AdminViewMaster
   */
 
   public function resourceForm( $urlParams = false ) {
-    // error_log( "AdminViewResource: resourceForm()" );
-
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
 
@@ -97,13 +95,17 @@ class AdminViewResource extends AdminViewMaster
     // Cambiamos el template del formulario
     $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
 
+    /**
+      Template base: Admin 8-4
+    */
+    $this->template->assign( 'headTitle', __('Create Resource') );
+    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
+
     $this->showFormBlocks( $formBlock );
   } // function resourceForm()
 
 
   public function resourceEditForm( $urlParams = false ) {
-    // error_log( "AdminViewResource: resourceEditForm()". print_r( $urlParams, true ) );
-
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
 
@@ -117,7 +119,6 @@ class AdminViewResource extends AdminViewMaster
         'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1) ) );
       $recurso = $recursosList->fetch();
     }
-
 
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
@@ -178,6 +179,12 @@ class AdminViewResource extends AdminViewMaster
       // Cambiamos el template del formulario
       $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
 
+      /**
+      Template base: Admin 8-4
+      */
+      $this->template->assign( 'headTitle', __('Edit Resource') );
+      $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
+
       $this->showFormBlocks( $formBlock );
     }
     else {
@@ -223,13 +230,6 @@ class AdminViewResource extends AdminViewMaster
     Bloque de 4
     */
     $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' ) );
-
-
-    /**
-    Admin 8-4
-    */
-    $this->template->assign( 'headTitle', __('Edit Resource') );
-    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
     $this->template->exec();
   }
