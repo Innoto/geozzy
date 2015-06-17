@@ -33,5 +33,3 @@ class MasterView extends View
   }
 
 }
-
-
