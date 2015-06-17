@@ -99,7 +99,7 @@ class GeozzyResourceView extends View
         'params' => array( 'type' => 'reserved' )
       ),
       'published' => array(
-        'params' => array( 'type' => 'checkbox', 'options'=> array( '1' => 'Publicado' ))
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Publicado' ))
       )
     );
 
@@ -374,16 +374,16 @@ class GeozzyResourceView extends View
       $extraDataArray1 = array('resource' => $elemId, 'name' => 'datoExtra1');
       foreach ($form->langAvailable as $langId){
         $extraDataArray1['value_'.$langId ] = $form->getFieldValue( 'datoExtra1_'.$langId );
-      }     
+      }
       $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray1 ) );
       $affectsDependences = true;
 
       $extraDataArray2 = array('resource' => $elemId, 'name' => 'datoExtra2');
       foreach ($form->langAvailable as $langId){
         $extraDataArray2['value_'.$langId ] = $form->getFieldValue( 'datoExtra2_'.$langId );
-      }     
+      }
       $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray2 ) );
-      $affectsDependences = true;    
+      $affectsDependences = true;
     }
 
 

@@ -80,6 +80,7 @@ class AdminViewResource extends AdminViewMaster
   public function resourceForm($urlParams = false) {
     // error_log( "AdminViewResource: resourceForm()" );
 
+
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
 
@@ -137,12 +138,12 @@ class AdminViewResource extends AdminViewMaster
     */
     $this->template->assign( 'headTitle', __('Create Resource') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
-
     $this->template->exec();
   } // function resourceForm()
 
 
   public function resourceEditForm( $urlParams = false ) {
+
     // error_log( "AdminViewResource: resourceEditForm()". print_r( $urlParams, true ) );
 
     $formName = 'resourceCreate';
@@ -153,7 +154,7 @@ class AdminViewResource extends AdminViewMaster
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];
       $recModel = new ResourceModel();
-      $recursosList = $recModel->listItems( array( 'affectsDependences' => 
+      $recursosList = $recModel->listItems( array( 'affectsDependences' =>
         array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
         'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1) ) );
       $recurso = $recursosList->fetch();
@@ -216,8 +217,8 @@ class AdminViewResource extends AdminViewMaster
         foreach( $extraDataDep as $extraData ) {
           foreach ($LANG_AVAILABLE as $key => $lang){
             $recursoData[ $extraData->getter('name').'_'.$key ] = $extraData->getter( 'value_'.$key );
-          } 
-        }        
+          }
+        }
       }
 
       /**
@@ -268,7 +269,6 @@ class AdminViewResource extends AdminViewMaster
       */
       $this->template->assign( 'headTitle', __('Edit Resource') );
       $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
-
       $this->template->exec();
     }
     else {
