@@ -27,6 +27,13 @@ class TaxonomygroupModel extends Model
     'editable' => array(
       'type' => 'BOOLEAN'
     ),
+    'nestable' => array(
+      'type' => 'INT',
+      'size' => 1
+    ),
+    'sortable' => array(
+      'type' => 'BOOLEAN'
+    ),
     'icon' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
