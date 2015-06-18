@@ -307,7 +307,7 @@ class CoreAPIView extends View
     geozzy::load('model/ResourceModel.php');
     geozzyAPI::load('controller/apiFiltersController.php');
 
-    $resourceModel = new ResourceModel( array('affectsDependences'=>array('UrlAliasModel') ) );
+    $resourceModel = new ResourceModel();
     $resourceList = $resourceModel->listItems( apiFiltersController::resourceListOptions($param) );
     $this->syncModelList( $resourceList );
   }

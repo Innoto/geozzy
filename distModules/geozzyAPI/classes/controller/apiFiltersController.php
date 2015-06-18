@@ -37,6 +37,8 @@ class apiFiltersController {
     ) {
       $options['filters'] = array('id' => 10);
     }
+		$options['filters']['published'] = true;
+
 
     // filters
     return $options;
