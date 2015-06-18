@@ -95,9 +95,7 @@ class AdminViewResource extends AdminViewMaster
     // Cambiamos el template del formulario
     $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
 
-    /**
-      Template base: Admin 8-4
-    */
+    // Template base: Admin 8-4
     $this->template->assign( 'headTitle', __('Create Resource') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
@@ -179,9 +177,7 @@ class AdminViewResource extends AdminViewMaster
       // Cambiamos el template del formulario
       $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
 
-      /**
-      Template base: Admin 8-4
-      */
+      // Template base: Admin 8-4
       $this->template->assign( 'headTitle', __('Edit Resource') );
       $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
@@ -202,33 +198,16 @@ class AdminViewResource extends AdminViewMaster
       array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
     $formContacto = $this->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
 
+    // El bloque que usa $formBlock contiene la estructura del form
 
-    /**
-    Bloque de 8 principal (contiene la estructura del form)
-    */
+    // Bloques de 8
     $this->template->addToBlock( 'col8', $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' ) );
-
-    /**
-    Bloque de 8
-    */
     $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formContacto ), 'Contacto', 'fa-archive' ) );
 
-
-    /**
-    Bloque de 4
-    */
+    // Bloques de 4
     $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formPublished ), __( 'Publicación' ), 'fa-adjust' ) );
-    /**
-    Bloque de 4
-    */
     $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formImage ), __( 'Selecciona una imagen' ), 'fa-file-image-o' ) );
-    /**
-    Bloque de 4
-    */
     $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formStatus ), __( 'Status' ) ) );
-    /**
-    Bloque de 4
-    */
     $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' ) );
 
     $this->template->exec();
@@ -236,8 +215,6 @@ class AdminViewResource extends AdminViewMaster
 
 
   public function sendResourceForm() {
-    // error_log( "AdminViewResource: sendResourceForm()" );
-
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();
   } // sendResourceForm()

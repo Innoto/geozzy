@@ -214,7 +214,7 @@ class GeozzyResourceView extends View
       }
 
       // Validar URLs
-      foreach( $form->langAvailable as $langId) {
+      foreach( $form->langAvailable as $langId ) {
         if( $valuesArray[ 'urlAlias_'.$langId ] !== '' ) {
           if( $urlError = $this->urlErrors( $elemIdForm, $langId, $valuesArray[ 'urlAlias_'.$langId ] ) ) {
             $form->addFieldRuleError( 'urlAlias_'.$langId, false, $urlError );
@@ -242,17 +242,18 @@ class GeozzyResourceView extends View
     $affectsDependences = false;
     $imageFile = $form->getFieldValue( 'image' );
     if( !$form->existErrors() && isset( $imageFile['status'] ) ) {
+
+      error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
+
       switch( $imageFile['status'] ) {
 
         case 'LOADED':
           error_log( 'To Model: '.$imageFile['status'] );
-          // error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
           $affectsDependences = true;
           $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
           break;
         case 'REPLACE':
           error_log( 'To Model: '.$imageFile['status'] );
-          // error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
           // error_log( 'To Model - fileInfoPrev: '. print_r( $imageFile[ 'prev' ], true ) );
           $affectsDependences = true;
 
@@ -261,7 +262,6 @@ class GeozzyResourceView extends View
           break;
         case 'DELETE':
           error_log( 'To Model: '.$imageFile['status'] );
-          // error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
 
           // Apaño
           $recurso->setter( 'image', null );
@@ -273,7 +273,8 @@ class GeozzyResourceView extends View
           break;
         case 'EXIST':
           error_log( 'To Model: '.$imageFile['status'] );
-          // En principio, si se mantiene la misma, no se hace nada
+          $affectsDependences = true;
+          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
           break;
         default:
           error_log( 'To Model: DEFAULT='.$imageFile['status'] );
