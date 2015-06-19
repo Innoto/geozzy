@@ -171,7 +171,7 @@ class AdminViewResource extends AdminViewMaster
       }
 
       $resourceView = new GeozzyResourceView();
-      error_log( 'recursoData para FORM: ' . print_r( $recursoData, true ) );
+      // error_log( 'recursoData para FORM: ' . print_r( $recursoData, true ) );
       $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData );
 
       // Cambiamos el template del formulario

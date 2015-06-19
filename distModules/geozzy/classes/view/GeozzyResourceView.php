@@ -12,6 +12,7 @@ class GeozzyResourceView extends View
 
     common::autoIncludes();
     form::autoIncludes();
+    user::autoIncludes();
     filedata::autoIncludes();
     //user::autoIncludes();
   }
@@ -205,12 +206,20 @@ class GeozzyResourceView extends View
       global $LANG_AVAILABLE;
       $elemIdForm = false;
 
+      $useraccesscontrol = new UserAccessController();
+      $user = $useraccesscontrol->getSessiondata();
+
       $valuesArray = $form->getValuesArray();
 
       if( $form->isFieldDefined( 'id' ) ) {
         $elemIdForm = $valuesArray[ 'id' ];
+        $valuesArray[ 'userUpdate' ] = $user->getter( 'id' );
         $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
         unset( $valuesArray[ 'image' ] );
+      }
+      else {
+        $valuesArray[ 'user' ] = $user->getter( 'id' );
+        $valuesArray[ 'timeCreation' ] = date( "Y-m-d H:i:s", time() );
       }
 
       // Validar URLs
@@ -230,8 +239,7 @@ class GeozzyResourceView extends View
     }
 
     if( !$form->existErrors() ) {
-      // error_log( print_r( $valuesArray, true ) );
-
+      // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
       $recurso = new ResourceModel( $valuesArray );
       if( $recurso === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
