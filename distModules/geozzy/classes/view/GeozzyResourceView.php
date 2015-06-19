@@ -266,7 +266,7 @@ class GeozzyResourceView extends View
           // Apaño
           $recurso->setter( 'image', null );
 
-          /* PENDIENTE
+          /* TODO
           $affectsDependences = true;
           $recurso->setterDependence( 'image', new FiledataModel( $imageFile['values'] ) );
           */
