@@ -3,11 +3,10 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-
-
 class ResourceTaxonomytermModel extends Model
 {
   static $tableName = 'geozzy_resource_taxonomyterm';
+
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -25,15 +24,14 @@ class ResourceTaxonomytermModel extends Model
       'key' => 'id'
     ),
     'weight' => array(
-      'type' => 'INT'
+      'type' => 'SMALLINT'
     )
   );
 
   static $extraFilters = array();
 
 
-  function __construct( $datarray= array(), $otherRelObj = false ) {
+  public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
-
 }

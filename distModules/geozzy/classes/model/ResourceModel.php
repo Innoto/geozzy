@@ -3,11 +3,10 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-
-
 class ResourceModel extends Model
 {
   static $tableName = 'geozzy_resource';
+
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -90,7 +89,6 @@ class ResourceModel extends Model
     'averageVotes' => array(
       'type' => 'FLOAT'
     )
-
   );
 
   static $extraFilters = array(
@@ -153,5 +151,4 @@ class ResourceModel extends Model
 
     return $dependences;
   }
-
 }

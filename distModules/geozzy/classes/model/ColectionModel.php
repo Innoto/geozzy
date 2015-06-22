@@ -3,39 +3,51 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-
-
 class ColectionModel extends Model
 {
   static $tableName = 'geozzy_colection';
+
   static $cols = array(
     'id' => array(
       'type' => 'INT',
       'primarykey' => true,
       'autoincrement' => true
     ),
+    'name' => array(
+      'type' => 'VARCHAR',
+      'size' => 240
+    ),
     'title' => array(
       'type' => 'VARCHAR',
-      'size' => 100
+      'size' => 240,
+      'multilang' => true
+    ),
+    'shortDescription' => array(
+      'type' => 'VARCHAR',
+      'size' => 240,
+      'multilang' => true
     ),
     'description' => array(
-      'type' => 'TEXT'
+      'type' => 'TEXT',
+      'multilang' => true
+    ),
+    'image' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'FiledataModel',
+      'key' => 'id'
+    ),
+    'share' => array(
+      'type' => 'TINYINT'
     ),
     'weight' => array(
-      'type' => 'VARCHAR',
-      'size' => 45
-    ),
-    'idicon' => array(
-      'type' => 'VARCHAR',
-      'size' => 45
+      'type' => 'SMALLINT'
     )
   );
 
   static $extraFilters = array();
 
 
-  function __construct( $datarray= array(), $otherRelObj = false ) {
+  public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
-
 }
