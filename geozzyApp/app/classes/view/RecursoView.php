@@ -117,7 +117,9 @@ class RecursoView extends View
     // Cargo los datos de image dentro de los del recurso
     $fileDep = $recurso->getterDependence( 'image' );
     if( $fileDep !== false ) {
-      $this->template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"></img>' );
+      $titleImage = $fileDep['0']->getter('title');
+      $this->template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"
+        alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
       error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
     }
     else {
