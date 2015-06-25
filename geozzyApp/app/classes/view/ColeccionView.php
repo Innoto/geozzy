@@ -53,30 +53,42 @@ class ColeccionView extends View
   public function editarForm( $urlParams = false ) {
     error_log( "ColeccionView: editarForm()". print_r( $urlParams, true ) );
 
-    $recurso = false;
+    $collection = false;
 
     if( isset( $urlParams['1'] ) ) {
-      $idCollection = $urlParams['1'];
+      $elemId = $urlParams['1'];
       $elemModel = new CollectionModel();
-      $elemList = $elemModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
-        'filters' => array( 'id' => $idCollection ) ) );
-      $recurso = $recursosList->fetch();
+      $elemList = $elemModel->listItems( array( 'affectsDependences' =>
+        array( 'FiledataModel', 'CollectionResourceModel' ),
+        'filters' => array( 'id' => $elemId ) ) );
+      $collection = $elemList->fetch();
     }
 
-    if( $recurso ) {
-      $recursoData = $recurso->getAllData();
+    if( $collection ) {
+      $collectionData = $collection->getAllData();
+      $collectionData = $collectionData[ 'data' ];
 
-      //error_log( $recursoData );
+      // Cargo los datos de recurso asociados a la collection
+      $resourcesDep = $collection->getterDependence( 'id', 'CollectionResourceModel');
+      if( $resourcesDep !== false ) {
+        foreach( $resourcesDep as $resourceRel ) {
+          $resourcesArray[] = $resourceRel->getter('resource');
+        }
+        $collectionData[ 'resources' ] = $resourcesArray;
+        error_log( 'resourcesArray: '.print_r( $resourcesArray, true ) );
+      }
+
+      error_log( 'collectionData: '.print_r( $collectionData, true ) );
 
       $collectionView = new GeozzyCollectionView();
-      $formBlock = $collectionView->getFormBlock( $this->formName,  $this->formUrl, $recursoData[ 'data' ] );
+      $formBlock = $collectionView->getFormBlock( $this->formName,  $this->formUrl, $collectionData );
       $this->template->setBlock( 'formNewCollectionBlock', $formBlock );
 
-      $this->template->setTpl( 'probandoFormRecurso.tpl' );
+      $this->template->setTpl( 'probandoFormColeccion.tpl' );
       $this->template->exec();
     }
     else {
-      cogumelo::error( 'Imposible acceder al recurso indicado.' );
+      cogumelo::error( 'Imposible acceder a la coleccion indicada.' );
     }
   } // function editarForm()
 
@@ -141,10 +153,10 @@ class ColeccionView extends View
     Proceso formulario crear/editar Recurso
   */
   public function actionForm() {
-    error_log( "ColeccionView: actionCollectionForm()" );
+    error_log( "ColeccionView: actionForm()" );
 
     $collectionView = new GeozzyCollectionView();
-    $collectionView->actionCollectionForm();
+    $collectionView->actionForm();
   } // actionCollectionForm()
 
 

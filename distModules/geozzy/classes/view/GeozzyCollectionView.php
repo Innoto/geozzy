@@ -37,6 +37,14 @@ class GeozzyCollectionView extends View
     $form->setSuccess( 'accept', __( 'Thank you' ) );
     // $form->setSuccess( 'redirect', SITE_URL . 'admin#collection/list' );
 
+    // Recursos disponibles
+    $resourceModel =  new ResourceModel();
+    $elemList = $resourceModel->listItems();
+    $resOptions = array();
+    while( $res = $elemList->fetch() ){
+      $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
+    }
+
     $fieldsInfo = array(
       'title' => array(
         'translate' => true,
@@ -57,6 +65,11 @@ class GeozzyCollectionView extends View
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgCollection',
         'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgCollection' ),
         'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '100000', 'accept' => 'image/jpeg' )
+      ),
+      'resources' => array(
+        'params' => array( 'label' => __( 'Resources' ), 'type' => 'select', 'id' => 'collResources',
+        'multiple' => true, 'options'=> $resOptions ),
+        'rules' => array( 'required' => true )
       )
     );
 
@@ -64,16 +77,6 @@ class GeozzyCollectionView extends View
     $form->definitionsToForm( $fieldsInfo );
 
     $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
-
-    // Recursos asociados
-    $resourceModel =  new ResourceModel();
-    $elemList = $resourceModel->listItems();
-    $resOptions = array();
-    while( $res = $elemList->fetch() ){
-      $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
-    }
-    $form->setField( 'resources', array( 'type' => 'select', 'multiple' => true,
-      'label' => __( 'Resources' ), 'options'=> $resOptions ) );
 
     //Si es una edicion, añadimos el ID y cargamos los datos
     // error_log( 'GeozzyCollectionView getFormObj: ' . print_r( $valuesArray, true ) );
@@ -201,49 +204,46 @@ class GeozzyCollectionView extends View
       }
     }
 
-    // Procesamos o listado de temáticas asociadas
+    // Procesamos o listado de recursos asociados
     if( !$form->existErrors()) {
       $elemId = $collection->getter( 'id' );
-      $newTopics = $form->getFieldValue( 'topics' );
+      $newResources = $form->getFieldValue( 'resources' );
+      $oldResources = false;
 
-      if( $newTopics !== false && !is_array($newTopics) ) {
-        $newTopics = array($newTopics);
+      if( $newResources !== false && !is_array($newResources) ) {
+        $newResources = array($newResources);
       }
 
-      $collectionTopicModel = new CollectionTopicModel();
-      $collectionTopicList = $collectionTopicModel->listItems(
-        array('filters' => array('collection' => $elemId)) );
+      // Si estamos editando, repasamos y borramos recursos sobrantes
+      if( $elemId ) {
+        $collectionResourceModel = new CollectionResourceModel();
+        $collectionResourceList = $collectionResourceModel->listItems(
+          array('filters' => array('collection' => $elemId)) );
 
-      if( $collectionTopicList ) {
-        // estaban asignados antes
-        while($oldTopic = $collectionTopicList->fetch()){
-          $oldTopics[$oldTopic->getter('topic')] = $oldTopic->getter('topic');
-          if( $newTopics === false || !in_array( $oldTopic->getter('topic'), $newTopics ) ) {
-            $oldTopic->delete(); // desasignar
-          }
-        }
-      }
-
-      if( $newTopics !== false ) {
-        if( !isset($oldTopics) ) {
-          foreach( $newTopics as $topic ) {
-            $collection->setterDependence( 'id',
-              new CollectionTopicModel( array('collection' => $elemId, 'topic' => $topic)) );
-            $affectsDependences = true;
-          }
-        }
-        else {
-          // non estaban asignados antes
-          foreach( $newTopics as $topic ) {
-            if( !in_array($topic,$oldTopics) ) { //asignar
-              $collection->setterDependence( 'id',
-                new CollectionTopicModel( array('collection' => $elemId, 'topic' => $topic)) );
-              $affectsDependences = true;
+        if( $collectionResourceList ) {
+          // estaban asignados antes
+          $oldResources = array();
+          while($oldResource = $collectionResourceList->fetch()){
+            $oldResources[$oldResource->getter('resource')] = $oldResource->getter('resource');
+            if( $newResources === false || !in_array( $oldResource->getter('resource'), $newResources ) ) {
+              $oldResource->delete(); // desasignar
             }
           }
         }
       }
+
+      // Añadimos los nuevos recursos
+      if( $newResources !== false ) {
+        foreach( $newResources as $resource ) {
+          if( $oldResources === false || !in_array( $resource, $oldResources ) ) {
+            $collection->setterDependence( 'id',
+              new CollectionResourceModel( array('collection' => $elemId, 'resource' => $resource)) );
+            $affectsDependences = true;
+          }
+        }
+      }
     }
+
 
     /*
     if( !$form->existErrors()) {
