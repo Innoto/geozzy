@@ -21,6 +21,14 @@ class Cogumelo extends CogumeloClass
     $this->addUrlPatterns( '#^recurso-form-action$#', 'view:RecursoView::actionResourceForm' );
 
 
+    /* Probando Collections */
+    $this->addUrlPatterns( '#^coleccion/?$#', 'view:ColeccionView::mostrar' );
+    $this->addUrlPatterns( '#^coleccion/(\d+)$#', 'view:ColeccionView::mostrar' );
+    $this->addUrlPatterns( '#^coleccion-crear$#', 'view:ColeccionView::crearForm' );
+    $this->addUrlPatterns( '#^coleccion-editar/(\d+)$#', 'view:ColeccionView::editarForm' );
+    $this->addUrlPatterns( '#^coleccion-form-action$#', 'view:ColeccionView::actionResourceForm' );
+
+
     /* Probando Alias */
     $this->addUrlPatterns( '#^alias/?$#', 'view:AliasView::mostrar' );
     $this->addUrlPatterns( '#^alias-crear$#', 'view:AliasView::crearForm' );
