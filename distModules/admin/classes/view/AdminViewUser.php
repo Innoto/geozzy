@@ -115,13 +115,11 @@ class AdminViewUser extends AdminViewMaster
     $form->setAction('/admin/user/senduser');
     $form->setSuccess( 'redirect', '/admin#user/list' );
 
-    $createUserHtml = $userView->userFormGet( $form );
+    $createUserBlock = $userView->userFormGetBlock( $form );
+    $createUserBlock->setTpl('createUser.tpl', 'admin');
 
-    $template = new Template( $this->baseDir );
-    $template->assign('createUserHtml', $createUserHtml );
-    $template->setTpl('createUser.tpl', 'admin');
 
-    $this->template->addToBlock( 'col8', $template );
+    $this->template->addToBlock( 'col8', $createUserBlock );
     $this->template->assign( 'headTitle', __('Create user') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
@@ -140,24 +138,17 @@ class AdminViewUser extends AdminViewMaster
     $form = $userView->userUpdateFormDefine($request);
     $form->setAction('/admin/user/senduser');
     $form->setSuccess( 'redirect', '/admin#user/list' );
-    $editUserHtml = $userView->userFormGet( $form );
-
-    $template = new Template( $this->baseDir );
-    $template->assign('editUserHtml', $editUserHtml );
-    $template->setTpl('editUser.tpl', 'admin');
-    $this->template->addToBlock( 'col8', $template );
+    $editUserBlock = $userView->userFormGetBlock( $form );
+    $editUserBlock->setTpl('editUser.tpl', 'admin');
+    $this->template->addToBlock( 'col8', $editUserBlock );
     /*--------------------*/
 
     /*FORM CHANGE PASSWORD*/
     $formChange = $userView->userChangePasswordFormDefine($request);
     $formChange->setAction('/admin/user/changepassword');
     $formChange->setSuccess( 'redirect', '/admin#user/list' );
-    $changePasswordHtml = $userView->userChangePasswordFormGet( $formChange );
-
-    $template = new Template( $this->baseDir );
-    $template->assign('changePasswordHtml', $changePasswordHtml );
-    $template->setTpl('changePassword.tpl', 'admin');
-    $this->template->addToBlock( 'col4', $template );
+    $changePasswordBlock = $userView->userChangePasswordFormGetBlock( $formChange );
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( $changePasswordBlock, 'Change Password', 'fa-key' ) );
 
     /*--------------------*/
 
@@ -165,12 +156,8 @@ class AdminViewUser extends AdminViewMaster
     $userRolesForm = $userView->userRolesFormDefine($request);
     $userRolesForm->setAction('/admin/user/assignroles');
     $userRolesForm->setSuccess( 'redirect', '/admin#user/list' );
-    $userRolesFormHtml = $userView->userRolesFormGet( $userRolesForm );
-
-    $template = new Template( $this->baseDir );
-    $template->assign('userRolesFormHtml', $userRolesFormHtml );
-    $template->setTpl('assignRoles.tpl', 'admin');
-    $this->template->addToBlock( 'col4', $template );
+    $userRolesFormBlock = $userView->userRolesFormGetBlock( $userRolesForm );
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( $userRolesFormBlock, 'Edit Roles', 'fa-unlock-alt' ) );
     /*--------------------*/
 
     $this->template->assign( 'headTitle', __('Edit user') );

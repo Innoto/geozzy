@@ -5,6 +5,26 @@
   {if !isset($title)}{assign var='title' value='Data User'}{/if}
 {/block}
 
+
 {block name="content"}
-  {$editUserHtml}
+
+<div class="row">
+  <div class="col-md-6">
+
+    {$userFormFields.login}
+    {$userFormFields.name}
+    {$userFormFields.surname}
+    {$userFormFields.email}
+
+
+  </div>
+  <div class="col-md-6">
+    {$userFormFields.avatar}
+  </div>
+</div>
+{$userFormFields.description}
+{$userFormFields.submit}
+
+{$userFormValidations}
+
 {/block}
