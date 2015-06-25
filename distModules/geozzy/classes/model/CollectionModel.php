@@ -3,9 +3,9 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-class ColectionModel extends Model
+class CollectionModel extends Model
 {
-  static $tableName = 'geozzy_colection';
+  static $tableName = 'geozzy_collection';
 
   static $cols = array(
     'id' => array(

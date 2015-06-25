@@ -38,10 +38,10 @@ class ColeccionView extends View
 
     $collectionView = new GeozzyCollectionView();
     $formBlock = $collectionView->getFormBlock( $this->formName,  $this->formUrl, false );
+
     $this->template->setBlock( 'formNewCollectionBlock', $formBlock );
 
-    $this->template->setTpl( 'probandoFormRecurso.tpl' );
-    //$this->template->setTpl( 'string:{$css_includes}{$js_includes}{$formNewCollectionBlock}' );
+    $this->template->setTpl( 'probandoFormColeccion.tpl' );
     $this->template->exec();
   } // function crearForm()
 
@@ -140,7 +140,7 @@ class ColeccionView extends View
   /**
     Proceso formulario crear/editar Recurso
   */
-  public function actionCollectionForm() {
+  public function actionForm() {
     error_log( "ColeccionView: actionCollectionForm()" );
 
     $collectionView = new GeozzyCollectionView();

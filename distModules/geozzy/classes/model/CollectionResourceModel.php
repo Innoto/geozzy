@@ -3,9 +3,9 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-class ResourceColectionModel extends Model
+class CollectionResourceModel extends Model
 {
-  static $tableName = 'geozzy_resource_colection';
+  static $tableName = 'geozzy_collection_resource';
 
   static $cols = array(
     'id' => array(
@@ -13,14 +13,14 @@ class ResourceColectionModel extends Model
       'primarykey' => true,
       'autoincrement' => true
     ),
+    'collection' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'CollectionModel',
+      'key' => 'id'
+    ),
     'resource' => array(
       'type'=>'FOREIGN',
       'vo' => 'ResourceModel',
-      'key' => 'id'
-    ),
-    'colection' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'ColectionModel',
       'key' => 'id'
     ),
     'weight' => array(
