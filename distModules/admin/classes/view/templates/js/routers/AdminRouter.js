@@ -16,15 +16,19 @@ var AdminRouter = Backbone.Router.extend({
     "role/list" : "roleList",
     "role/create" : "roleCreate",
     "role/edit/:id" : "roleEdit",
-    "topic/:id" : "resourceintopicList",
+
     "resource/list": "resourceList",
+    "topic/:id" : "resourceintopicList",
     "resourceintopic/list/:id": "resourceintopicList",
     "resourceouttopic/list/:id": "resourceouttopicList",
     "starred/:id": "starredList",
     "starred/:id/assign": "starredAssign",
     "resource/create" : "resourceCreate",
     "resource/create/:topic/:resourcetype" : "resourceCreateinTopic",
-    "resource/edit/:id" : "resourceEdit"
+    "resource/edit/:id" : "resourceEdit",
+
+    "collection/create" : "collectionCreate",
+    "collection/edit/:id" : "collectionEdit"
 
   },
 
@@ -108,12 +112,18 @@ var AdminRouter = Backbone.Router.extend({
   resourceCreate:function() {
     app.mainView.loadAjaxContent( '/admin/resource/create');
   },
-
   resourceCreateinTopic:function( topic, resourcetype) {
     app.mainView.loadAjaxContent( '/admin/resource/create/'+topic+'/'+resourcetype);
   },
-
   resourceEdit:function( id )   {
     app.mainView.loadAjaxContent( '/admin/resource/edit/' + id);
+  },
+
+  collectionCreate:function() {
+    app.mainView.loadAjaxContent( '/admin/collection/create');
+  },
+  collectionEdit:function( id )   {
+    app.mainView.loadAjaxContent( '/admin/collection/edit/' + id);
   }
+
 });
