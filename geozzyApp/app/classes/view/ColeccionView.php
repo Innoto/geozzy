@@ -68,6 +68,15 @@ class ColeccionView extends View
       $collectionData = $collection->getAllData();
       $collectionData = $collectionData[ 'data' ];
 
+      // Cargo los datos de image
+      $fileDep = $collection->getterDependence( 'image' );
+      if( $fileDep !== false ) {
+        foreach( $fileDep as $fileModel ) {
+          $fileData = $fileModel->getAllData();
+          $collectionData[ 'image' ] = $fileData[ 'data' ];
+        }
+      }
+
       // Cargo los datos de recurso asociados a la collection
       $resourcesDep = $collection->getterDependence( 'id', 'CollectionResourceModel');
       if( $resourcesDep !== false ) {
