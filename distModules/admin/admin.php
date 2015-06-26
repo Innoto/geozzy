@@ -85,9 +85,7 @@ class admin extends Module
   );
 
   public $includesCommon = array(
-    'styles/adminBase.less',
     'styles/admin.less',
-    'styles/adminNestable.less',
     'js/app.js',
     'js/views/AdminView.js',
     'js/views/CategoryEditorView.js',
