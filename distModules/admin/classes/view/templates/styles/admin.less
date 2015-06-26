@@ -1,34 +1,5 @@
+@import "/vendor/bower/bootstrap/less/bootstrap.less";
 @import "/admin/classes/view/templates/styles/adminVars.less";
-
-.nav li.topics{
-  background: @gzz-color;
-
-  a{ color: #fff; }
-
-  &:hover a{ color: @gzz-color; }
-
-}
-
-//Color Admin
-strong,
-a{ color: @gzz-color; }
-
-/*****************/
-/*     tabla     */
-/*****************/
-.rowMark{
-	font-size:25px;
-	margin-left:25px;
-}
-.rowNo{color: @gzz-color-opposite; }
-.rowOk{color: @gzz-color; }
-
-.assignResource{margin-left:10px;}
-
-// tablas recursos
-.resourcesintopicTable .AdminViewResourceInTopic .tableActions .addElem{display:none;}
-.resourcesouttopicTable .AdminViewResourceOutTopic .tableSearchFilters .tableFilters select,
-.starredTable .AdminViewStarred .tableSearchFilters .tableFilters select{display:none;}
-.resourcesouttopicTable .AdminViewResourceOutTopic .tableActions,
-.starredTable .AdminViewStarred .tableActions{display:none;}
-.assignResource ul.dropdown-menu a{margin-left:8px;}
+@import "/admin/classes/view/templates/styles/adminBase.less";
+@import "/admin/classes/view/templates/styles/adminNestable.less";
+@import "/admin/classes/view/templates/styles/adminContents.less";

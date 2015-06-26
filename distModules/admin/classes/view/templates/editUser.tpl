@@ -7,7 +7,9 @@
 
 
 {block name="content"}
+{$userFormOpen}
 
+{$userFormFields.cgIntFrmId}
 <div class="row">
   <div class="col-md-6">
 
@@ -25,6 +27,8 @@
 {$userFormFields.description}
 {$userFormFields.submit}
 
+{$userFormClose}
 {$userFormValidations}
+
 
 {/block}
