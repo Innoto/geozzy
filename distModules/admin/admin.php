@@ -19,7 +19,7 @@ class admin extends Module
      "params" => array("backbone#1.1.2"),
      "installer" => "bower",
      "includes" => array("backbone.js")
-   ),
+    ),
     array(
      "id" => "bootstrap",
      "params" => array("bootstrap"),
@@ -142,6 +142,9 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
     $this->addUrlPatterns( '#^admin/resource/sendresource$#', 'view:AdminViewResource::sendResourceForm' );
 
+    $this->addUrlPatterns( '#^admin/collection/create$#', 'view:AdminViewCollection::createForm' );
+    $this->addUrlPatterns( '#^admin/collection/edit/(\d+)$#', 'view:AdminViewCollection::editForm' );
+    $this->addUrlPatterns( '#^admin/collection/sendcollection$#', 'view:AdminViewCollection::sendCollectionForm' );
 
     $this->addUrlPatterns( '#^admin/role/edit/(.*)$#', 'view:AdminViewRole::editRole' );
     $this->addUrlPatterns( '#^admin/role/create$#', 'view:AdminViewRole::createRole' );
