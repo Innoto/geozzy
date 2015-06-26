@@ -37,26 +37,28 @@ class GeozzyCollectionView extends View
     $form->setSuccess( 'accept', __( 'Thank you' ) );
     // $form->setSuccess( 'redirect', SITE_URL . 'admin#collection/list' );
 
-    // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
-    // 'loc'   'type' => 'GEOMETRY'
+    // Recursos disponibles
+    $resourceModel =  new ResourceModel();
+    $elemList = $resourceModel->listItems();
+    $resOptions = array();
+    while( $res = $elemList->fetch() ){
+      $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
+    }
+
     $fieldsInfo = array(
       'title' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Title' ) ),
-        'rules' => array( 'maxlength' => '100' )
+        'rules' => array( 'maxlength' => '240' )
       ),
       'shortDescription' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Short description' ) ),
-        'rules' => array( 'maxlength' => '100' )
+        'rules' => array( 'maxlength' => '240' )
       ),
-      'mediumDescription' => array(
+      'description' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea' )
-      ),
-      'content' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
+        'params' => array( 'label' => __( 'Description' ), 'type' => 'textarea',
           'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
       ),
       'image' => array(
@@ -64,40 +66,10 @@ class GeozzyCollectionView extends View
         'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgCollection' ),
         'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '100000', 'accept' => 'image/jpeg' )
       ),
-      'urlAlias' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'SEO: URL' ) ),
-        'rules' => array( 'maxlength' => '2000' )
-      ),
-      'headKeywords' => array(
-        'params' => array( 'label' => __( 'SEO: Head Keywords' ) ),
-        'rules' => array( 'maxlength' => '150' )
-      ),
-      'headDescription' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'SEO: Head Description' ) ),
-        'rules' => array( 'maxlength' => '150' )
-      ),
-      'headTitle' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'SEO: Head Title' ) ),
-        'rules' => array( 'maxlength' => '100' )
-      ),
-      'datoExtra1' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Extra information 1' ) ),
-        'rules' => array( 'maxlength' => '1000' )
-      ),
-      'datoExtra2' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Extra information 2' ) ),
-        'rules' => array( 'maxlength' => '1000' )
-      ),
-      'typeCollection' => array(
-        'params' => array( 'type' => 'reserved' )
-      ),
-      'published' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Publicado' ))
+      'resources' => array(
+        'params' => array( 'label' => __( 'Resources' ), 'type' => 'select', 'id' => 'collResources',
+        'multiple' => true, 'options'=> $resOptions ),
+        'rules' => array( 'required' => true )
       )
     );
 
@@ -105,15 +77,6 @@ class GeozzyCollectionView extends View
     $form->definitionsToForm( $fieldsInfo );
 
     $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
-
-    // Temáticas asociadas
-    $topicModel =  new TopicModel();
-    $topic = $topicModel->listItems();
-    $topics = array();
-    while( $n = $topic->fetch() ){
-      $topics[ $n->getter('id') ] = $n->getter('name', LANG_DEFAULT);
-    }
-    $form->setField( 'topics', array( 'type' => 'checkbox', 'label' => __( 'Topics' ), 'options'=> $topics) );
 
     //Si es una edicion, añadimos el ID y cargamos los datos
     // error_log( 'GeozzyCollectionView getFormObj: ' . print_r( $valuesArray, true ) );
@@ -158,8 +121,8 @@ class GeozzyCollectionView extends View
   /**
     Proceso formulario
   */
-  public function actionCollectionForm() {
-    error_log( "GeozzyCollectionView: actionCollectionForm()" );
+  public function actionForm() {
+    error_log( "GeozzyCollectionView: actionForm()" );
 
     $form = new FormController();
     if( $form->loadPostInput() ) {
@@ -180,33 +143,25 @@ class GeozzyCollectionView extends View
       global $LANG_AVAILABLE;
       $elemIdForm = false;
 
-      $useraccesscontrol = new UserAccessController();
-      $user = $useraccesscontrol->getSessiondata();
-
       $valuesArray = $form->getValuesArray();
 
       if( $form->isFieldDefined( 'id' ) ) {
         $elemIdForm = $valuesArray[ 'id' ];
-        $valuesArray[ 'userUpdate' ] = $user->getter( 'id' );
-        $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
         unset( $valuesArray[ 'image' ] );
-      }
-      else {
-        $valuesArray[ 'user' ] = $user->getter( 'id' );
-        $valuesArray[ 'timeCreation' ] = date( "Y-m-d H:i:s", time() );
       }
     }
 
     if( !$form->existErrors() ) {
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
-      $recurso = new CollectionModel( $valuesArray );
-      if( $recurso === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+      $collection = new CollectionModel( $valuesArray );
+      if( $collection === false ) {
+        $form->addFormError( 'No se ha podido guardar el collection.','formError' );
       }
     }
 
     $saveResult = false;
     $affectsDependences = false;
+
     $imageFile = $form->getFieldValue( 'image' );
     if( !$form->existErrors() && isset( $imageFile['status'] ) ) {
 
@@ -217,7 +172,7 @@ class GeozzyCollectionView extends View
         case 'LOADED':
           error_log( 'To Model: '.$imageFile['status'] );
           $affectsDependences = true;
-          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+          $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
           break;
         case 'REPLACE':
           error_log( 'To Model: '.$imageFile['status'] );
@@ -225,23 +180,23 @@ class GeozzyCollectionView extends View
           $affectsDependences = true;
 
           // TODO: Falta eliminar o ficheiro anterior
-          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+          $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
           break;
         case 'DELETE':
           error_log( 'To Model: '.$imageFile['status'] );
 
           // Apaño
-          $recurso->setter( 'image', null );
+          $collection->setter( 'image', null );
 
           /* TODO
           $affectsDependences = true;
-          $recurso->setterDependence( 'image', new FiledataModel( $imageFile['values'] ) );
+          $collection->setterDependence( 'image', new FiledataModel( $imageFile['values'] ) );
           */
           break;
         case 'EXIST':
           error_log( 'To Model: '.$imageFile['status'] );
           $affectsDependences = true;
-          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+          $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
           break;
         default:
           error_log( 'To Model: DEFAULT='.$imageFile['status'] );
@@ -249,128 +204,75 @@ class GeozzyCollectionView extends View
       }
     }
 
-    // Procesamos o listado de temáticas asociadas
+    // Procesamos o listado de recursos asociados
     if( !$form->existErrors()) {
-      $elemId = $recurso->getter( 'id' );
-      $newTopics = $form->getFieldValue( 'topics' );
+      $elemId = $collection->getter( 'id' );
+      $newResources = $form->getFieldValue( 'resources' );
+      $oldResources = false;
 
-      if( $newTopics !== false && !is_array($newTopics) ) {
-        $newTopics = array($newTopics);
+      if( $newResources !== false && !is_array($newResources) ) {
+        $newResources = array($newResources);
       }
 
-      $collectionTopicModel = new CollectionTopicModel();
-      $collectionTopicList = $collectionTopicModel->listItems(
-        array('filters' => array('collection' => $elemId)) );
+      // Si estamos editando, repasamos y borramos recursos sobrantes
+      if( $elemId ) {
+        $collectionResourceModel = new CollectionResourceModel();
+        $collectionResourceList = $collectionResourceModel->listItems(
+          array('filters' => array('collection' => $elemId)) );
 
-      if( $collectionTopicList ) {
-        // estaban asignados antes
-        while($oldTopic = $collectionTopicList->fetch()){
-          $oldTopics[$oldTopic->getter('topic')] = $oldTopic->getter('topic');
-          if( $newTopics === false || !in_array( $oldTopic->getter('topic'), $newTopics ) ) {
-            $oldTopic->delete(); // desasignar
-          }
-        }
-      }
-
-      if( $newTopics !== false ) {
-        if( !isset($oldTopics) ) {
-          foreach( $newTopics as $topic ) {
-            $recurso->setterDependence( 'id',
-              new CollectionTopicModel( array('collection' => $elemId, 'topic' => $topic)) );
-            $affectsDependences = true;
-          }
-        }
-        else {
-          // non estaban asignados antes
-          foreach( $newTopics as $topic ) {
-            if( !in_array($topic,$oldTopics) ) { //asignar
-              $recurso->setterDependence( 'id',
-                new CollectionTopicModel( array('collection' => $elemId, 'topic' => $topic)) );
-              $affectsDependences = true;
+        if( $collectionResourceList ) {
+          // estaban asignados antes
+          $oldResources = array();
+          while($oldResource = $collectionResourceList->fetch()){
+            $oldResources[$oldResource->getter('resource')] = $oldResource->getter('resource');
+            if( $newResources === false || !in_array( $oldResource->getter('resource'), $newResources ) ) {
+              $oldResource->delete(); // desasignar
             }
+          }
+        }
+      }
+
+      // Añadimos los nuevos recursos
+      if( $newResources !== false ) {
+        foreach( $newResources as $resource ) {
+          if( $oldResources === false || !in_array( $resource, $oldResources ) ) {
+            $collection->setterDependence( 'id',
+              new CollectionResourceModel( array('collection' => $elemId, 'resource' => $resource)) );
+            $affectsDependences = true;
           }
         }
       }
     }
 
-    // Procesamos o listado de destacados asociados
-    if( !$form->existErrors()) {
-      $newStarred = $form->getFieldValue( 'starred' );
 
-      if( $newStarred !== false && !is_array($newStarred) ) {
-        $newStarred = array($newStarred);
-      }
-
-      $collectionTaxonomytermModel = new CollectionTaxonomytermModel();
-
-      $starredListPrev = $collectionTaxonomytermModel->listItems( array(
-        'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'collection' => $elemId ),
-        'affectsDependences' => array('TaxonomygroupModel'),
-        'joinType' => 'RIGHT' ));
-
-      // estaban asignados antes
-      if ($starredListPrev){
-        while($oldStar = $starredListPrev->fetch()){
-          $oldStarred[$oldStar->getter('taxonomyterm')] = $oldStar->getter('taxonomyterm');
-          if( $newStarred === false || !in_array( $oldStar->getter('taxonomyterm'), $newStarred ) ){ // desasignar
-            $oldStar->delete();
-          }
-        }
-      }
-
-      if( $newStarred !== false ) {
-        if( !isset($oldStarred) ){
-          foreach( $newStarred as $star ) {
-            $recurso->setterDependence( 'id',
-              new CollectionTaxonomytermModel( array('collection' => $elemId, 'taxonomyterm' => $star)) );
-            $affectsDependences = true;
-          }
-        }
-        else {
-          // non estaban asignados antes
-          foreach( $newStarred as $star ) {
-            if( !in_array($star,$oldStarred) ) { //asignar
-              $recurso->setterDependence( 'id',
-                new CollectionTaxonomytermModel( array('collection' => $elemId, 'taxonomyterm' => $star)) );
-              $affectsDependences = true;
-            }
-          }
-        }
-      }
-    }
-
+    /*
     if( !$form->existErrors()) {
       $extraDataArray1 = array('collection' => $elemId, 'name' => 'datoExtra1');
       foreach( $form->langAvailable as $langId ) {
         $extraDataArray1['value_'.$langId ] = $form->getFieldValue( 'datoExtra1_'.$langId );
       }
-      $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray1 ) );
+      $collection->setterDependence( 'id', new extraDataModel( $extraDataArray1 ) );
       $affectsDependences = true;
 
       $extraDataArray2 = array('collection' => $elemId, 'name' => 'datoExtra2');
       foreach( $form->langAvailable as $langId ) {
         $extraDataArray2['value_'.$langId ] = $form->getFieldValue( 'datoExtra2_'.$langId );
       }
-      $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray2 ) );
+      $collection->setterDependence( 'id', new extraDataModel( $extraDataArray2 ) );
       $affectsDependences = true;
     }
+    */
 
 
     if( !$form->existErrors()) {
-      $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
+      $saveResult = $collection->save( array( 'affectsDependences' => $affectsDependences ) );
       if( $saveResult === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+        $form->addFormError( 'No se ha podido guardar el collection.','formError' );
       }
     }
 
+    $form->sendJsonResponse();
 
-    if( !$form->existErrors() ) {
-      echo $form->jsonFormOk();
-    }
-    else {
-      $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
-      echo $form->jsonFormError();
-    }
   } // function actionCollectionForm()
 
 } // class CollectionView extends Vie

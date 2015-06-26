@@ -31,29 +31,6 @@ class ResourceModel extends Model
     'published' => array(
       'type' => 'BOOLEAN'
     ),
-    'timeCreation' => array(
-      'type' => 'DATETIME'
-    ),
-    'timeLastUpdate' => array(
-      'type' => 'DATETIME'
-    ),
-    'timeLastPublish' => array(
-      'type' => 'DATETIME'
-    ),
-    'headKeywords' => array(
-      'type' => 'VARCHAR',
-      'size' => 150
-    ),
-    'headDescription' => array(
-      'type' => 'VARCHAR',
-      'size' => 150,
-      'multilang' => true
-    ),
-    'headTitle' => array(
-      'type' => 'VARCHAR',
-      'size' => 100,
-      'multilang' => true
-    ),
     'title' => array(
       'type' => 'VARCHAR',
       'size' => 100,
@@ -82,6 +59,29 @@ class ResourceModel extends Model
     ),
     'defaultZoom' => array(
       'type' => 'INT'
+    ),
+    'headKeywords' => array(
+      'type' => 'VARCHAR',
+      'size' => 150
+    ),
+    'headDescription' => array(
+      'type' => 'VARCHAR',
+      'size' => 150,
+      'multilang' => true
+    ),
+    'headTitle' => array(
+      'type' => 'VARCHAR',
+      'size' => 100,
+      'multilang' => true
+    ),
+    'timeCreation' => array(
+      'type' => 'DATETIME'
+    ),
+    'timeLastUpdate' => array(
+      'type' => 'DATETIME'
+    ),
+    'timeLastPublish' => array(
+      'type' => 'DATETIME'
     ),
     'countVisits' => array(
       'type' => 'INT'
