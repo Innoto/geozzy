@@ -2,6 +2,8 @@
 
 {block name="content"}
 
+{$userFormOpen}
+{$userFormFields.cgIntFrmId}
 <div class="row">
   <div class="col-md-6">
 
@@ -9,9 +11,8 @@
     {$userFormFields.password}
     {$userFormFields.password2}
     {$userFormFields.name}
-    {$userFormFields.surname}    
+    {$userFormFields.surname}
     {$userFormFields.email}
-
 
   </div>
   <div class="col-md-6">
@@ -23,6 +24,7 @@
 {$userFormFields.description}
 {$userFormFields.submit}
 
+{$userFormClose}
 {$userFormValidations}
 
 {/block}

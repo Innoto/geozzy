@@ -24,7 +24,7 @@ class admin extends Module
      "id" => "bootstrap",
      "params" => array("bootstrap"),
      "installer" => "bower",
-     "includes" => array("dist/css/bootstrap.min.css", "dist/js/bootstrap.min.js")
+     "includes" => array("dist/js/bootstrap.min.js")
     ),
     array(
      "id" => "font-awesome",
