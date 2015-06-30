@@ -59,7 +59,7 @@ class ColeccionView extends View
       $elemId = $urlParams['1'];
       $elemModel = new CollectionModel();
       $elemList = $elemModel->listItems( array( 'affectsDependences' =>
-        array( 'FiledataModel', 'CollectionResourceModel' ),
+        array( 'FiledataModel', 'CollectionResourcesModel' ),
         'filters' => array( 'id' => $elemId ) ) );
       $collection = $elemList->fetch();
     }
@@ -78,7 +78,7 @@ class ColeccionView extends View
       }
 
       // Cargo los datos de recurso asociados a la collection
-      $resourcesDep = $collection->getterDependence( 'id', 'CollectionResourceModel');
+      $resourcesDep = $collection->getterDependence( 'id', 'CollectionResourcesModel');
       if( $resourcesDep !== false ) {
         foreach( $resourcesDep as $resourceRel ) {
           $resourcesArray[] = $resourceRel->getter('resource');

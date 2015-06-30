@@ -41,6 +41,21 @@ var AdminView = Backbone.View.extend({
     $("#page-wrapper").load( url, {}, function(){ that.render(); } );
 
   },
+  loadAjaxContentModal: function( url, modalId ) {
+/*
+    htmlModal = '<div id="'+modalId+'" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">'+
+      '<div class="modal-dialog modal-lg">'+
+        '<div class="modal-content"></div>'+
+      '</div>'+
+    '</div>';
+
+    $('body').html(htmlModal);
+
+    var that=this;
+    that.childView = false;
+    $("#page-wrapper").load( url, {}, function(){ that.render(); } );
+*/
+  },
 
   render: function( ) {
     var that = this;
