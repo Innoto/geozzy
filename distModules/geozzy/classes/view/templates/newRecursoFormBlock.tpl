@@ -38,8 +38,6 @@
 
 <script>
 $( document ).ready( function() {
-  var langAvailable = {$JsLangAvailable};
-  var langDefault = {$JsLangDefault};
   var langForm = false;
 
   function switchFormLang( lang ) {
@@ -51,9 +49,9 @@ $( document ).ready( function() {
     $( '.cgmMForm-group-wrap ul.langSwitch li.langSwitch-'+lang ).addClass( 'langActive' );
   }
 
-  if( langAvailable ) {
+  if( langAvailableIds ) {
     var htmlLangSwitch = '<ul class="langSwitch">';
-    $.each( langAvailable, function( index, lang ) {
+    $.each( langAvailableIds, function( index, lang ) {
       htmlLangSwitch += '<li class="langSwitch-'+lang+'" data-lang-value="'+lang+'">'+lang;
     });
     $( '.cgmMForm-group-wrap' ).prepend( htmlLangSwitch );

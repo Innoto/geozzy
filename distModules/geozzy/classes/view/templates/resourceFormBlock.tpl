@@ -1,15 +1,10 @@
-<!-- newRecursoFormBlock.tpl en geozzy module -->
+<!-- resourceFormBlock.tpl en geozzy module -->
 
 <style>
   label { display: block; }
   .cgmMForm-field { max-width: none !important; }
   .cgmMForm-wrap { margin-bottom: 10px; }
 </style>
-
-<script>
-  var langAvailable = {$JsLangAvailable};
-  var langDefault = {$JsLangDefault};
-</script>
 
 {$formOpen}
 
@@ -20,4 +15,4 @@
 {$formValidations}
 
 
-<!-- /newRecursoFormBlock.tpl en geozzy module -->
+<!-- /resourceFormBlock.tpl en geozzy module -->
