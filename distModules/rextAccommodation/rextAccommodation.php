@@ -1,17 +1,17 @@
 <?php
+Cogumelo::load( 'coreController/Module.php' );
 
-Cogumelo::load("coreController/Module.php");
+
 
 class rextAccommodation extends Module
 {
-
-  public $name = "rextAccommodation";
-  public $version = "1.0";
+  public $name = 'rextAccommodation';
+  public $version = '1.0';
   public $dependences = array();
   public $includesCommon = array();
 
   public $models = array(
-  	'AccommodationModel'
+    'AccommodationModel'
   );
 
   public $taxonomies = array(
@@ -54,7 +54,7 @@ class rextAccommodation extends Module
       )
     ),
 
-  	'accommodationCategory' => array(
+    'accommodationCategory' => array(
       'idName' => 'accommodationCategory',
       'name' => array(
         'en' => 'Category',
@@ -213,5 +213,10 @@ class rextAccommodation extends Module
     )
 
   );
-  public function __construct() {}
+
+
+  public function __construct() {
+
+  }
+
 }
