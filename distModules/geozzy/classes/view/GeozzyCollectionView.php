@@ -68,6 +68,7 @@ class GeozzyCollectionView extends View
       ),
       'resources' => array(
         'params' => array( 'label' => __( 'Resources' ), 'type' => 'select', 'id' => 'collResources',
+        // 'class' => 'cgmMForm-order',
         'multiple' => true, 'options'=> $resOptions ),
         'rules' => array( 'required' => true )
       )
@@ -223,8 +224,8 @@ class GeozzyCollectionView extends View
         if( $collectionResourceList ) {
           // estaban asignados antes
           $oldResources = array();
-          while($oldResource = $collectionResourceList->fetch()){
-            $oldResources[$oldResource->getter('resource')] = $oldResource->getter('resource');
+          while( $oldResource = $collectionResourceList->fetch() ){
+            $oldResources[ $oldResource->getter('resource') ] = $oldResource->getter('id');
             if( $newResources === false || !in_array( $oldResource->getter('resource'), $newResources ) ) {
               $oldResource->delete(); // desasignar
             }
@@ -232,13 +233,22 @@ class GeozzyCollectionView extends View
         }
       }
 
-      // Añadimos los nuevos recursos
+      // Creamos-Editamos todas las relaciones con los recursos
       if( $newResources !== false ) {
+        $affectsDependences = true;
+        $weight = 0;
         foreach( $newResources as $resource ) {
-          if( $oldResources === false || !in_array( $resource, $oldResources ) ) {
+          $weight++;
+          if( $oldResources === false || !isset( $oldResources[ $resource ] ) ) {
             $collection->setterDependence( 'id',
-              new CollectionResourcesModel( array('collection' => $elemId, 'resource' => $resource)) );
-            $affectsDependences = true;
+              new CollectionResourcesModel( array( 'weight' => $weight,
+                'collection' => $elemId, 'resource' => $resource)) );
+          }
+          else {
+            $collection->setterDependence( 'id',
+              new CollectionResourcesModel( array( 'id' => $oldResources[ $resource ],
+                'weight' => $weight, 'collection' => $elemId, 'resource' => $resource))
+            );
           }
         }
       }

@@ -1,17 +1,17 @@
 <?php
-Cogumelo::load( 'coreController/Module.php' );
 
+Cogumelo::load("coreController/Module.php");
 
-
-class rextAccommodation extends Module
+class rextEatAndDrink extends Module
 {
-  public $name = 'rextAccommodation';
-  public $version = '1.0';
+
+  public $name = "rextEatAndDrink";
+  public $version = "1.0";
   public $dependences = array();
   public $includesCommon = array();
 
   public $models = array(
-    'AccommodationModel'
+  	'EatanddrinkModel'
   );
 
   public $taxonomies = array(
@@ -54,7 +54,7 @@ class rextAccommodation extends Module
       )
     ),
 
-    'accommodationCategory' => array(
+  	'accommodationCategory' => array(
       'idName' => 'accommodationCategory',
       'name' => array(
         'en' => 'Category',
@@ -180,18 +180,18 @@ class rextAccommodation extends Module
       'sortable' => 1,
       'initialTerms' => array(
         array(
-          'idName' => 'nh',
+          'idName' => 'starbucks',
           'name' => array(
-            'en' => 'NH Hotels',
-            'es' => 'NH Hoteles',
-            'gl' => 'NH Hoteles'
+            'en' => 'Starbucks',
+            'es' => 'Starbucks',
+            'gl' => 'Starbucks'
           )
         ),
         array(
-          'idName' => 'melia',
+          'idName' => 'vips',
           'name' => array(
-            'en' => 'Meliá',
-            'es' => 'Meliá',
+            'en' => 'VIPS',
+            'es' => 'VIPS',
             'gl' => 'Meliá'
           )
         )
@@ -213,10 +213,5 @@ class rextAccommodation extends Module
     )
 
   );
-
-
-  public function __construct() {
-
-  }
-
+  public function __construct() {}
 }
