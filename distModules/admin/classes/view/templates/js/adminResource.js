@@ -3,4 +3,12 @@ $(window).ready(function(){
   els.each(function( index )  {
     var switchery = new Switchery( this, { color : '#58ba81', secondaryColor : '#FF6A4B'} );
   });
+
+  bindResourceForm();
 });
+
+function bindResourceForm(){
+  $('#resourceAddCollection').on('click', function(){
+    alert("hola");
+  });
+}

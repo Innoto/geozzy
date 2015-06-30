@@ -217,8 +217,8 @@ class GeozzyCollectionView extends View
 
       // Si estamos editando, repasamos y borramos recursos sobrantes
       if( $elemId ) {
-        $collectionResourceModel = new CollectionResourceModel();
-        $collectionResourceList = $collectionResourceModel->listItems(
+        $CollectionResourcesModel = new CollectionResourcesModel();
+        $collectionResourceList = $CollectionResourcesModel->listItems(
           array('filters' => array('collection' => $elemId)) );
 
         if( $collectionResourceList ) {
@@ -241,12 +241,12 @@ class GeozzyCollectionView extends View
           $weight++;
           if( $oldResources === false || !isset( $oldResources[ $resource ] ) ) {
             $collection->setterDependence( 'id',
-              new CollectionResourceModel( array( 'weight' => $weight,
+              new CollectionResourcesModel( array( 'weight' => $weight,
                 'collection' => $elemId, 'resource' => $resource)) );
           }
           else {
             $collection->setterDependence( 'id',
-              new CollectionResourceModel( array( 'id' => $oldResources[ $resource ],
+              new CollectionResourcesModel( array( 'id' => $oldResources[ $resource ],
                 'weight' => $weight, 'collection' => $elemId, 'resource' => $resource))
             );
           }

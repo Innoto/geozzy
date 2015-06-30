@@ -41,7 +41,7 @@ class AdminViewCollection extends AdminViewMaster
       $idCollection = $urlParams['1'];
       $collectionsModel = new CollectionModel();
       $collectionsList = $collectionsModel->listItems( array( 'affectsDependences' =>
-        array( 'FiledataModel', 'CollectionResourceModel' ),
+        array( 'FiledataModel', 'CollectionResourcesModel' ),
         'filters' => array( 'id' => $idCollection ) ) );
       $collection = $collectionsList->fetch();
     }
@@ -60,7 +60,7 @@ class AdminViewCollection extends AdminViewMaster
       }
 
       // Cargo los datos de recursos asociados a la collection
-      $resourcesDep = $collection->getterDependence( 'id', 'CollectionResourceModel');
+      $resourcesDep = $collection->getterDependence( 'id', 'CollectionResourcesModel');
       if( $resourcesDep !== false ) {
         foreach( $resourcesDep as $resourceRel ) {
           $resourcesArray[] = $resourceRel->getter('resource');
