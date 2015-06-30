@@ -31,8 +31,12 @@ class AdminViewMaster extends View
     $useraccesscontrol = new UserAccessController();
     $res = true;
     if(!$useraccesscontrol->isLogged()){
-      header("HTTP/1.0 401");
-      Cogumelo::redirect('/admin/login');
+      if( $_SERVER['HTTP_X_REQUESTED_WITH'] ){
+        header("HTTP/1.0 401");
+      }
+      else {
+        Cogumelo::redirect('/admin/login');
+      }
       $res = false;
     }
     return $res;
