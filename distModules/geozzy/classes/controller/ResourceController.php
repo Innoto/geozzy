@@ -155,32 +155,6 @@ class ResourceController {
 
 
   /**
-    Defino un formulario con su TPL como Bloque
-  */
-  public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "ResourceController: getFormBlock()" );
-
-    $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
-
-    $template = new template();
-
-    $template->assign( 'formOpen', $form->getHtmpOpen() );
-
-    $template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
-
-    $template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
-
-    $template->assign( 'formClose', $form->getHtmlClose() );
-    $template->assign( 'formValidations', $form->getScriptCode() );
-
-    $template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
-
-    return( $template );
-  } // function getFormBlock()
-
-
-
-  /**
     Proceso formulario
   */
   public function actionResourceForm() {
@@ -230,6 +204,10 @@ class ResourceController {
     }
 
     if( !$form->existErrors()) {
+
+      // TRANSACTION START
+      $recurso->transactionStart();
+
       $saveResult = $recurso->save();
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
@@ -239,26 +217,26 @@ class ResourceController {
     /**
       DEPENDENCIAS / RELACIONES
     */
-    if( !$form->existErrors() ) {
+    if( !$form->existErrors() && $form->isFieldDefined( 'image' ) ) {
       $this->setFormFiledata( $form, 'image', 'image', $recurso );
     }
 
-    if( !$form->existErrors() ) {
+    if( !$form->existErrors() && $form->isFieldDefined( 'topics' ) ) {
       $this->setFormTopic( $form, 'topics', $recurso );
     }
 
-    if( !$form->existErrors() ) {
+    if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
       $this->setFormTaxStarred( $form, 'starred', $recurso );
     }
 
-    if( !$form->existErrors() ) {
+    if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra1' ) ) {
       $this->setFormExtraData( $form, 'datoExtra1', 'datoExtra1', $recurso );
     }
-    if( !$form->existErrors() ) {
+    if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra2' ) ) {
       $this->setFormExtraData( $form, 'datoExtra2', 'datoExtra2', $recurso );
     }
 
-    if( !$form->existErrors() ) {
+    if( !$form->existErrors() && $form->isFieldDefined( 'urlAlias' ) ) {
       $this->setFormUrlAlias( $form, 'urlAlias', $recurso );
     }
 
@@ -269,6 +247,7 @@ class ResourceController {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
       }
     }
+
     /**
       DEPENDENCIAS (END)
     */
@@ -276,9 +255,17 @@ class ResourceController {
 
 
     if( !$form->existErrors() ) {
+
+      // TRANSACTION COMMIT
+      $recurso->transactionCommit();
+
       echo $form->jsonFormOk();
     }
     else {
+
+      // TRANSACTION ROLLBACK
+      $recurso->transactionRollback();
+
       $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
       echo $form->jsonFormError();
     }

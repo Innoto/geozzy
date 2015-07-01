@@ -33,11 +33,35 @@ class GeozzyResourceView extends View
 
 
   /**
+    Defino un formulario
+  */
+  public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
+    error_log( "GeozzyResourceView: getFormObj()" );
+
+    $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
+  } // function getFormObj()
+
+
+  /**
     Defino un formulario con su TPL como Bloque
   */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
+    error_log( "GeozzyResourceView: getFormBlock()" );
 
-    return( $this->defResCtrl->getFormBlock( $formName, $urlAction, $valuesArray ) );
+    $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
+
+    $this->template->assign( 'formOpen', $form->getHtmpOpen() );
+
+    $this->template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
+
+    $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
+
+    $this->template->assign( 'formClose', $form->getHtmlClose() );
+    $this->template->assign( 'formValidations', $form->getScriptCode() );
+
+    $this->template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
+
+    return( $this->template );
   } // function getFormBlock()
 
 
