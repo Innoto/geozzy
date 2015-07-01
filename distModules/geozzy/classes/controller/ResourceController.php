@@ -154,13 +154,8 @@ class ResourceController {
   } // function getFormObj()
 
 
-  /**
-    Proceso formulario
-  */
-  public function actionResourceForm() {
-    error_log( "GeozzyResourceView: actionResourceForm()" );
-    $resId = false;
 
+  public function resFormLoad() {
     $form = new FormController();
     if( $form->loadPostInput() ) {
       $form->validateForm();
@@ -175,6 +170,20 @@ class ResourceController {
           'necesario subirlos otra vez.', 'formError' );
       }
     }
+
+    return $form;
+  }
+
+
+
+  public function resFormRevalidate( $form ) {
+
+    $this->evalFormUrlAlias( $form, 'urlAlias' );
+  }
+
+
+
+  public function resFormProcess( $form ) {
 
     if( !$form->existErrors() ) {
       $useraccesscontrol = new UserAccessController();
@@ -192,13 +201,12 @@ class ResourceController {
         $valuesArray[ 'timeCreation' ] = date( "Y-m-d H:i:s", time() );
       }
 
-      $this->evalFormUrlAlias( $form, 'urlAlias' );
     }
 
     if( !$form->existErrors() ) {
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
-      $recurso = new ResourceModel( $valuesArray );
-      if( $recurso === false ) {
+      $resource = new ResourceModel( $valuesArray );
+      if( $resource === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
       }
     }
@@ -206,9 +214,9 @@ class ResourceController {
     if( !$form->existErrors()) {
 
       // TRANSACTION START
-      $recurso->transactionStart();
+      $resource->transactionStart();
 
-      $saveResult = $recurso->save();
+      $saveResult = $resource->save();
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
       }
@@ -218,57 +226,77 @@ class ResourceController {
       DEPENDENCIAS / RELACIONES
     */
     if( !$form->existErrors() && $form->isFieldDefined( 'image' ) ) {
-      $this->setFormFiledata( $form, 'image', 'image', $recurso );
+      $this->setFormFiledata( $form, 'image', 'image', $resource );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'topics' ) ) {
-      $this->setFormTopic( $form, 'topics', $recurso );
+      $this->setFormTopic( $form, 'topics', $resource );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
-      $this->setFormTaxStarred( $form, 'starred', $recurso );
+      $this->setFormTaxStarred( $form, 'starred', $resource );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra1' ) ) {
-      $this->setFormExtraData( $form, 'datoExtra1', 'datoExtra1', $recurso );
+      $this->setFormExtraData( $form, 'datoExtra1', 'datoExtra1', $resource );
     }
     if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra2' ) ) {
-      $this->setFormExtraData( $form, 'datoExtra2', 'datoExtra2', $recurso );
+      $this->setFormExtraData( $form, 'datoExtra2', 'datoExtra2', $resource );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'urlAlias' ) ) {
-      $this->setFormUrlAlias( $form, 'urlAlias', $recurso );
+      $this->setFormUrlAlias( $form, 'urlAlias', $resource );
     }
+    /**
+      DEPENDENCIAS (END)
+    */
+  }
 
 
+
+  public function resFormSucess( $form, $resource ) {
     if( !$form->existErrors()) {
-      $saveResult = $recurso->save();
+      $saveResult = $resource->save();
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
       }
     }
 
-    /**
-      DEPENDENCIAS (END)
-    */
-
-
-
     if( !$form->existErrors() ) {
 
       // TRANSACTION COMMIT
-      $recurso->transactionCommit();
+      $resource->transactionCommit();
 
       echo $form->jsonFormOk();
     }
     else {
 
       // TRANSACTION ROLLBACK
-      $recurso->transactionRollback();
+      $resource->transactionRollback();
 
       $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
       echo $form->jsonFormError();
     }
+  }
+
+
+  /**
+    Proceso formulario
+  */
+  public function actionResourceForm() {
+    error_log( "GeozzyResourceView: actionResourceForm()" );
+
+    $form = $this->resFormLoad();
+
+    if( !$form->existErrors() ) {
+      $this->resFormRevalidate( $form );
+    }
+
+    if( !$form->existErrors() ) {
+      $resource = $this->resFormProcess( $form );
+    }
+
+    $this->resFormSucess( $form, $resource );
   } // function actionResourceForm()
 
 

@@ -39,7 +39,6 @@ class GeozzyResourceView extends View
     error_log( "GeozzyResourceView: getFormObj()" );
 
     return $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
-
   } // function getFormObj()
 
 
