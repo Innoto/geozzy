@@ -1,3 +1,7 @@
+
+var app = app || {};
+
+
 $(window).ready(function(){
   var els = $('.switchery');
   els.each(function( index )  {
@@ -9,6 +13,7 @@ $(window).ready(function(){
 
 function bindResourceForm(){
   $('#resourceAddCollection').on('click', function(){
-    alert("hola");
+    //PARAMS( URL - ID - TITLE )
+    app.mainView.loadAjaxContentModal('/admin/collection/create', 'resourceCollectionsModal', 'Create Collection');
   });
 }

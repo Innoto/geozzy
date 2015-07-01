@@ -24,9 +24,8 @@ class AdminViewCollection extends AdminViewMaster
     $formBlock->setTpl( 'collectionFormBlockBase.tpl', 'admin' );
 
     // Template base
-    $this->template->assign( 'headTitle', __('Create Collection') );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
-    $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, 'Edit Collection', 'fa-archive' ) );
+    $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, 'Create Collection', 'fa-archive' ) );
     $this->template->exec();
   } // function createForm()
 
@@ -79,7 +78,6 @@ class AdminViewCollection extends AdminViewMaster
       $formBlock->setTpl( 'collectionFormBlockBase.tpl', 'admin' );
 
       // Template base
-      $this->template->assign( 'headTitle', __('Edit Collection') );
       $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
       $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, 'Edit Collection', 'fa-archive' ) );
       $this->template->exec();
@@ -95,6 +93,8 @@ class AdminViewCollection extends AdminViewMaster
   public function sendCollectionForm() {
     $collectionView = new GeozzyCollectionView();
     $collectionView->actionForm();
+
+    
   } // sendCollectionForm()
 
 }

@@ -41,20 +41,34 @@ var AdminView = Backbone.View.extend({
     $("#page-wrapper").load( url, {}, function(){ that.render(); } );
 
   },
-  loadAjaxContentModal: function( url, modalId ) {
-/*
+  loadAjaxContentModal: function( url, modalId, title ) {
+
     htmlModal = '<div id="'+modalId+'" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">'+
       '<div class="modal-dialog modal-lg">'+
-        '<div class="modal-content"></div>'+
+        '<div class="modal-content">'+
+          '<div class="modal-header">'+
+            '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+            '<h3 class="modal-title">'+title+'</h3>'+
+          '</div>'+
+          '<div class="modal-body"></div>'+
+          '<div class="modal-footer">'+
+            '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
+          '</div>'+
+        '</div>'+
       '</div>'+
     '</div>';
+    $('body').append(htmlModal);
+    $("#"+modalId+" .modal-body").load( url );
+    $("#"+modalId).modal({
+      'show' : true
+    });
 
-    $('body').html(htmlModal);
 
-    var that=this;
-    that.childView = false;
-    $("#page-wrapper").load( url, {}, function(){ that.render(); } );
-*/
+    //$("#"+modalId).on('shown.bs.modal', function (e) {alert('carga');});
+    $("#"+modalId).on('hidden.bs.modal', function (e) {
+      e.target.remove();
+    });
+
   },
 
   render: function( ) {

@@ -225,7 +225,25 @@ body {
 }
 
 
+.modal{
+  .modal-header{
+    background: @gzz-bck-dark-1;
+    color: #fff;
+    text-transform: uppercase;
+    .close{
+      color: #fff;
+      &:hover{
+        color: @gzz-bck-light-2;
+      }
+    }
+  }
+  .modal-body{ background: @gzz-bck-light-3 }
+  .modal-footer{ background: @gzz-bck-dark-1 }
 
+}
+.modal-backdrop {
+    opacity: 0.7;
+}
 
 @media screen and (min-width: 1200px) {
 
