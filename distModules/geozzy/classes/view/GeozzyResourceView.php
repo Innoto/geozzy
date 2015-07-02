@@ -72,7 +72,33 @@ class GeozzyResourceView extends View
   public function actionResourceForm() {
     error_log( "GeozzyResourceView: actionResourceForm()" );
 
-    $this->defResCtrl->actionResourceForm();
+    // Se construye el formulario con sus datos y se realizan las validaciones que contiene
+    $form = $this->defResCtrl->resFormLoad();
+
+    if( !$form->existErrors() ) {
+      // Validaciones extra previas a usar los datos del recurso base
+      $this->defResCtrl->resFormRevalidate( $form );
+    }
+
+    // Opcional: Validaciones extra previas de elementos externos al recurso base
+
+    if( !$form->existErrors() ) {
+      // Creación-Edición-Borrado de los elementos del recurso base
+      $resource = $this->defResCtrl->resFormProcess( $form );
+    }
+
+    // Opcional: Creación-Edición-Borrado de los elementos externos al recurso base
+
+    if( !$form->existErrors()) {
+      // Volvemos a guardar el recurso por si ha sido alterado por alguno de los procesos previos
+      $saveResult = $resource->save();
+      if( $saveResult === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+      }
+    }
+
+    // Enviamos el OK-ERROR a la BBDD y al formulario
+    $this->defResCtrl->resFormSucess( $form, $resource );
   } // function actionResourceForm()
 
 
