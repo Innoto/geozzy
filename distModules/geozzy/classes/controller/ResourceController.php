@@ -273,7 +273,7 @@ class ResourceController {
     Enviamos el OK-ERROR a la BBDD y al formulario
     Finalizar transaction
   */
-  public function resFormSucess( $form, $resource ) {
+  public function resFormSuccess( $form, $resource ) {
 
     if( !$form->existErrors() ) {
 

@@ -98,7 +98,7 @@ class GeozzyResourceView extends View
     }
 
     // Enviamos el OK-ERROR a la BBDD y al formulario
-    $this->defResCtrl->resFormSucess( $form, $resource );
+    $this->defResCtrl->resFormSuccess( $form, $resource );
   } // function actionResourceForm()
 
 
