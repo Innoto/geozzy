@@ -184,6 +184,7 @@ class ResourceController {
 
 
   public function resFormProcess( $form ) {
+    $resource = false;
 
     if( !$form->existErrors() ) {
       $useraccesscontrol = new UserAccessController();
@@ -250,17 +251,13 @@ class ResourceController {
     /**
       DEPENDENCIAS (END)
     */
+
+    return $resource;
   }
 
 
 
   public function resFormSucess( $form, $resource ) {
-    if( !$form->existErrors()) {
-      $saveResult = $resource->save();
-      if( $saveResult === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
-      }
-    }
 
     if( !$form->existErrors() ) {
 
@@ -272,9 +269,11 @@ class ResourceController {
     else {
 
       // TRANSACTION ROLLBACK
-      $resource->transactionRollback();
+      if( $resource ) {
+        $resource->transactionRollback();
+      }
 
-      $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
+      // $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
       echo $form->jsonFormError();
     }
   }
@@ -286,16 +285,32 @@ class ResourceController {
   public function actionResourceForm() {
     error_log( "GeozzyResourceView: actionResourceForm()" );
 
+    // Se construye el formulario con sus datos y se realizan las validaciones que contiene
     $form = $this->resFormLoad();
 
     if( !$form->existErrors() ) {
+      // Validaciones extra previas a usar los datos del recurso base
       $this->resFormRevalidate( $form );
     }
 
+    // Opcional: Validaciones extra previas de elementos externos al recurso base
+
     if( !$form->existErrors() ) {
+      // Creación-Edición-Borrado de los elementos del recurso base
       $resource = $this->resFormProcess( $form );
     }
 
+    // Opcional: Creación-Edición-Borrado de los elementos externos al recurso base
+
+    if( !$form->existErrors()) {
+      // Volvemos a guardar el recurso por si ha sido alterado por alguno de los procesos previos
+      $saveResult = $resource->save();
+      if( $saveResult === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+      }
+    }
+
+    // Enviamos el OK-ERROR a la BBDD y al formulario
     $this->resFormSucess( $form, $resource );
   } // function actionResourceForm()
 
