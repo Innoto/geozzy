@@ -29,17 +29,17 @@ class ResourceController {
     $resTopics = array();
     $topicModel =  new TopicModel();
     $topicList = $topicModel->listItems();
-    while($n = $topicList->fetch()){
-      $resTopics[ $n->getter('id') ] = $n->getter('name', LANG_DEFAULT);
+    while( $topic = $topicList->fetch() ){
+      $resTopics[ $topic->getter( 'id' ) ] = $topic->getter( 'name', LANG_DEFAULT );
     }
 
     // Destacados
     $resStarred = array();
     $taxTermModel =  new TaxonomyTermModel();
-    $starredList = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
-      'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+    $starredList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
+      'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
     while( $star = $starredList->fetch() ){
-      $resStarred[ $star->getter('id') ] = $star->getter('name', LANG_DEFAULT);
+      $resStarred[ $star->getter( 'id' ) ] = $star->getter( 'name', LANG_DEFAULT );
     }
 
     // Collections
