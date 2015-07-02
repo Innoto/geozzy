@@ -37,11 +37,11 @@ class ExplorerAPIView extends View
                     {
                         "errorResponses": [
                             {
-                                "reason": "The resource",
+                                "reason": "The explorer",
                                 "code": 200
                             },
                             {
-                                "reason": "Resource not found",
+                                "reason": "Explorer not found",
                                 "code": 404
                             }
                         ],
@@ -57,13 +57,21 @@ class ExplorerAPIView extends View
                             "paramType": "path",
                             "defaultValue": "false",
                             "required": false
+                          },
+                          {
+                            "name": "request",
+                            "description": "request type ( initial or current )",
+                            "dataType": "string",
+                            "paramType": "path",
+                            "defaultValue": "initial",
+                            "required": true
                           }
 
                         ],
                         "summary": "Fetches explorer data"
                     }
                 ],
-                "path": "/explorer/{explorer}",
+                "path": "/explorer/{explorer}/{request}",
                 "description": ""
             }
         ]
@@ -81,10 +89,41 @@ class ExplorerAPIView extends View
 
   function explorer( $param ) {
 
-    header('Content-type: application/json');
+    require_once APP_BASE_PATH."/conf/geozzyExplorers.php";
+    global $GEOZZY_EXPLORERS;
+
+    $params = explode('/', $param[1]);
 
 
-    var_dump( $param);
+    if( isset( $GEOZZY_EXPLORERS[ $params[0] ] ) ) {
+      $explorerConf = $GEOZZY_EXPLORERS[ $params[0] ];
+      header('Content-type: application/json');
+
+
+      // Include controller
+      eval( $explorerConf['module'].'::load("'.$explorerConf['controllerFile'].'");' );
+
+      // constructor;
+      $explorer = new $explorerConf['controllerName']();
+
+
+      if( $params[1] == 'initial' ) {
+        $explorer->serveInitialData();
+      }
+      else
+      if( $params[1] == 'current' ) {
+        $explorer->serveCurrentData();
+      }
+
+
+
+
+
+    }
+    else {
+      header("HTTP/1.0 404 Not Found");
+    }
+
 
   }
 

@@ -1,14 +1,14 @@
 <?php
 
-explorer::load('controller/Explorer.php');
+explorer::load('controller/ExplorerController.php');
 
-class SampleExplorer extends Explorer {
+class SampleExplorer extends ExplorerController {
 
-  function setInitialData( $parameters ) {
+  function serveInitialData( ) {
 
   }
 
-  function setCurrentData( $parameters ) {
+  function serveCurrentData( ) {
 
   }
 }
