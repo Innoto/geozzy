@@ -17,3 +17,8 @@ function bindResourceForm(){
     app.mainView.loadAjaxContentModal('/admin/collection/create', 'resourceCollectionsModal', 'Create Collection');
   });
 }
+
+function successCollectionForm( data ){
+  $('#resourceCollections').append('<option selected="selected" value="'+data.id+'">'+data.title+'</option>');
+  $('#resourceCollectionsModal').modal('hide');
+}
