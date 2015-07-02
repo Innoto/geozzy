@@ -24,9 +24,8 @@ class AdminViewCollection extends AdminViewMaster
     $formBlock->setTpl( 'collectionFormBlockBase.tpl', 'admin' );
 
     // Template base
-    $this->template->assign( 'headTitle', __('Create Collection') );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
-    $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, 'Edit Collection', 'fa-archive' ) );
+    $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, 'Create Collection', 'fa-archive' ) );
     $this->template->exec();
   } // function createForm()
 
@@ -41,7 +40,7 @@ class AdminViewCollection extends AdminViewMaster
       $idCollection = $urlParams['1'];
       $collectionsModel = new CollectionModel();
       $collectionsList = $collectionsModel->listItems( array( 'affectsDependences' =>
-        array( 'FiledataModel', 'CollectionResourceModel' ),
+        array( 'FiledataModel', 'CollectionResourcesModel' ),
         'filters' => array( 'id' => $idCollection ) ) );
       $collection = $collectionsList->fetch();
     }
@@ -60,7 +59,7 @@ class AdminViewCollection extends AdminViewMaster
       }
 
       // Cargo los datos de recursos asociados a la collection
-      $resourcesDep = $collection->getterDependence( 'id', 'CollectionResourceModel');
+      $resourcesDep = $collection->getterDependence( 'id', 'CollectionResourcesModel');
       if( $resourcesDep !== false ) {
         foreach( $resourcesDep as $resourceRel ) {
           $resourcesArray[] = $resourceRel->getter('resource');
@@ -79,7 +78,6 @@ class AdminViewCollection extends AdminViewMaster
       $formBlock->setTpl( 'collectionFormBlockBase.tpl', 'admin' );
 
       // Template base
-      $this->template->assign( 'headTitle', __('Edit Collection') );
       $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
       $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, 'Edit Collection', 'fa-archive' ) );
       $this->template->exec();
@@ -95,6 +93,8 @@ class AdminViewCollection extends AdminViewMaster
   public function sendCollectionForm() {
     $collectionView = new GeozzyCollectionView();
     $collectionView->actionForm();
+
+    
   } // sendCollectionForm()
 
 }

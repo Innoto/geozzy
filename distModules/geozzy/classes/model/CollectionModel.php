@@ -13,7 +13,7 @@ class CollectionModel extends Model
       'primarykey' => true,
       'autoincrement' => true
     ),
-    'name' => array(
+    'idName' => array(
       'type' => 'VARCHAR',
       'size' => 240
     ),

@@ -1,11 +1,13 @@
 <?php
 Cogumelo::load('coreView/View.php');
+geozzy::load('controller/ResourceController.php');
 
 
 
 class GeozzyResourceView extends View
 {
 
+  private $defResCtrl = null;
 
   public function __construct( $baseDir = false ){
     parent::__construct( $baseDir );
@@ -14,7 +16,8 @@ class GeozzyResourceView extends View
     form::autoIncludes();
     user::autoIncludes();
     filedata::autoIncludes();
-    //user::autoIncludes();
+
+    $this->defResCtrl = new ResourceController();
   }
 
   /**
@@ -33,114 +36,9 @@ class GeozzyResourceView extends View
     Defino un formulario
   */
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "GeozzyResourceView: getFormObj()" );
+    error_log( "GeozzyResourceView: getFormObj()" );
 
-    $form = new FormController( $formName, $urlAction );
-
-    $form->setSuccess( 'accept', __( 'Thank you' ) );
-    $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
-
-    // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
-    // 'loc'   'type' => 'GEOMETRY'
-    $fieldsInfo = array(
-      'title' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Title' ) ),
-        'rules' => array( 'maxlength' => '100' )
-      ),
-      'shortDescription' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Short description' ) ),
-        'rules' => array( 'maxlength' => '100' )
-      ),
-      'mediumDescription' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea' )
-      ),
-      'content' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
-          'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
-      ),
-      'image' => array(
-        'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
-        'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
-        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '100000', 'accept' => 'image/jpeg' )
-      ),
-      'urlAlias' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'SEO: URL' ) ),
-        'rules' => array( 'maxlength' => '2000' )
-      ),
-      'headKeywords' => array(
-        'params' => array( 'label' => __( 'SEO: Head Keywords' ) ),
-        'rules' => array( 'maxlength' => '150' )
-      ),
-      'headDescription' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'SEO: Head Description' ) ),
-        'rules' => array( 'maxlength' => '150' )
-      ),
-      'headTitle' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'SEO: Head Title' ) ),
-        'rules' => array( 'maxlength' => '100' )
-      ),
-      'datoExtra1' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Extra information 1' ) ),
-        'rules' => array( 'maxlength' => '1000' )
-      ),
-      'datoExtra2' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Extra information 2' ) ),
-        'rules' => array( 'maxlength' => '1000' )
-      ),
-      'typeResource' => array(
-        'params' => array( 'type' => 'reserved' )
-      ),
-      'published' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Publicado' ))
-      )
-    );
-
-    //$this->arrayToForm( $form, $fieldsInfo, $form->langAvailable );
-    $form->definitionsToForm( $fieldsInfo );
-
-    $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
-
-    // Temáticas asociadas
-    $topicModel =  new TopicModel();
-    $topic = $topicModel->listItems();
-    $topics = array();
-    while($n = $topic->fetch()){
-      $topics[ $n->getter('id') ] = $n->getter('name', LANG_DEFAULT);
-    }
-    $form->setField( 'topics', array( 'type' => 'checkbox', 'label' => __( 'Topics' ), 'options'=> $topics) );
-
-    // Destacados asociados
-    $taxTermModel =  new TaxonomyTermModel();
-    $starredList = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
-      'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
-    $starred = array();
-    while($star = $starredList->fetch()){
-      $starred[ $star->getter('id') ] = $star->getter('name', LANG_DEFAULT);
-    }
-    $form->setField( 'starred', array( 'type' => 'checkbox', 'label' => __( 'Starred' ), 'options'=> $starred) );
-
-    //Si es una edicion, añadimos el ID y cargamos los datos
-    // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
-    if( $valuesArray !== false ){
-      $form->setField( 'id', array( 'type' => 'reserved', 'value' => null ) );
-      $form->loadArrayValues( $valuesArray );
-    }
-
-    $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Send' ), 'class' => 'gzzAdminToMove' ) );
-
-    // Una vez que lo tenemos definido, guardamos el form en sesion
-    $form->saveToSession();
-
-    return( $form );
+    return $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
   } // function getFormObj()
 
 
@@ -148,19 +46,7 @@ class GeozzyResourceView extends View
     Defino un formulario con su TPL como Bloque
   */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "GeozzyResourceView: getFormBlock()" );
-
-    $langAvailable = false;
-    $this->template->assign( 'JsLangAvailable', 'false' );
-    $this->template->assign( 'JsLangDefault', 'false' );
-    global $LANG_AVAILABLE;
-    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
-      $langAvailable = array_keys( $LANG_AVAILABLE );
-      $langDefault = LANG_DEFAULT;
-      $tmp = implode( "', '", $langAvailable );
-      $this->template->assign( 'JsLangAvailable', "['".$tmp."']" );
-      $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
-    }
+    error_log( "GeozzyResourceView: getFormBlock()" );
 
     $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -186,293 +72,34 @@ class GeozzyResourceView extends View
   public function actionResourceForm() {
     error_log( "GeozzyResourceView: actionResourceForm()" );
 
-    $form = new FormController();
-    if( $form->loadPostInput() ) {
-      $form->validateForm();
-    }
-    else {
-      $form->addFormError( 'El servidor no considera válidos los datos recibidos.', 'formError' );
-    }
+    // Se construye el formulario con sus datos y se realizan las validaciones que contiene
+    $form = $this->defResCtrl->resFormLoad();
 
     if( !$form->existErrors() ) {
-      if( !$form->processFileFields() ) {
-        $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea '.
-          'necesario subirlos otra vez.', 'formError' );
-      }
+      // Validaciones extra previas a usar los datos del recurso base
+      $this->defResCtrl->resFormRevalidate( $form );
     }
 
-    $urlAlias = array();
-    if( !$form->existErrors() ) {
-      global $LANG_AVAILABLE;
-      $elemIdForm = false;
-
-      $useraccesscontrol = new UserAccessController();
-      $user = $useraccesscontrol->getSessiondata();
-
-      $valuesArray = $form->getValuesArray();
-
-      if( $form->isFieldDefined( 'id' ) ) {
-        $elemIdForm = $valuesArray[ 'id' ];
-        $valuesArray[ 'userUpdate' ] = $user->getter( 'id' );
-        $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
-        unset( $valuesArray[ 'image' ] );
-      }
-      else {
-        $valuesArray[ 'user' ] = $user->getter( 'id' );
-        $valuesArray[ 'timeCreation' ] = date( "Y-m-d H:i:s", time() );
-      }
-
-      // Validar URLs
-      foreach( $form->langAvailable as $langId ) {
-        if( $valuesArray[ 'urlAlias_'.$langId ] !== '' ) {
-          if( $urlError = $this->urlErrors( $elemIdForm, $langId, $valuesArray[ 'urlAlias_'.$langId ] ) ) {
-            $form->addFieldRuleError( 'urlAlias_'.$langId, false, $urlError );
-          }
-          else {
-            $urlAlias[ $langId ] = $valuesArray[ 'urlAlias_'.$langId ];
-          }
-        }
-        else {
-          $urlAlias[ $langId ] = null;
-        }
-      }
-    }
+    // Opcional: Validaciones extra previas de elementos externos al recurso base
 
     if( !$form->existErrors() ) {
-      // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
-      $recurso = new ResourceModel( $valuesArray );
-      if( $recurso === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
-      }
+      // Creación-Edición-Borrado de los elementos del recurso base
+      $resource = $this->defResCtrl->resFormProcess( $form );
     }
 
-    $saveResult = false;
-    $affectsDependences = false;
-    $imageFile = $form->getFieldValue( 'image' );
-    if( !$form->existErrors() && isset( $imageFile['status'] ) ) {
-
-      error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
-
-      switch( $imageFile['status'] ) {
-
-        case 'LOADED':
-          error_log( 'To Model: '.$imageFile['status'] );
-          $affectsDependences = true;
-          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
-          break;
-        case 'REPLACE':
-          error_log( 'To Model: '.$imageFile['status'] );
-          // error_log( 'To Model - fileInfoPrev: '. print_r( $imageFile[ 'prev' ], true ) );
-          $affectsDependences = true;
-
-          // TODO: Falta eliminar o ficheiro anterior
-          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
-          break;
-        case 'DELETE':
-          error_log( 'To Model: '.$imageFile['status'] );
-
-          // Apaño
-          $recurso->setter( 'image', null );
-
-          /* TODO
-          $affectsDependences = true;
-          $recurso->setterDependence( 'image', new FiledataModel( $imageFile['values'] ) );
-          */
-          break;
-        case 'EXIST':
-          error_log( 'To Model: '.$imageFile['status'] );
-          $affectsDependences = true;
-          $recurso->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
-          break;
-        default:
-          error_log( 'To Model: DEFAULT='.$imageFile['status'] );
-          break;
-      }
-    }
-
-    // Procesamos o listado de temáticas asociadas
-    if( !$form->existErrors()) {
-      $elemId = $recurso->getter( 'id' );
-      $newTopics = $form->getFieldValue( 'topics' );
-
-      if( $newTopics !== false && !is_array($newTopics) ) {
-        $newTopics = array($newTopics);
-      }
-
-      $resourceTopicModel = new ResourceTopicModel();
-      $resourceTopicList = $resourceTopicModel->listItems(
-        array('filters' => array('resource' => $elemId)) );
-
-      if( $resourceTopicList ) {
-        // estaban asignados antes
-        while($oldTopic = $resourceTopicList->fetch()){
-          $oldTopics[$oldTopic->getter('topic')] = $oldTopic->getter('topic');
-          if( $newTopics === false || !in_array( $oldTopic->getter('topic'), $newTopics ) ) {
-            $oldTopic->delete(); // desasignar
-          }
-        }
-      }
-
-      if( $newTopics !== false ) {
-        if( !isset($oldTopics) ) {
-          foreach( $newTopics as $topic ) {
-            $recurso->setterDependence( 'id',
-              new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
-            $affectsDependences = true;
-          }
-        }
-        else {
-          // non estaban asignados antes
-          foreach( $newTopics as $topic ) {
-            if( !in_array($topic,$oldTopics) ) { //asignar
-              $recurso->setterDependence( 'id',
-                new ResourceTopicModel( array('resource' => $elemId, 'topic' => $topic)) );
-              $affectsDependences = true;
-            }
-          }
-        }
-      }
-    }
-
-    // Procesamos o listado de destacados asociados
-    if( !$form->existErrors()) {
-      $newStarred = $form->getFieldValue( 'starred' );
-
-      if( $newStarred !== false && !is_array($newStarred) ) {
-        $newStarred = array($newStarred);
-      }
-
-      $resourceTaxonomytermModel = new ResourceTaxonomytermModel();
-
-      $starredListPrev = $resourceTaxonomytermModel->listItems( array(
-        'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'resource' => $elemId ),
-        'affectsDependences' => array('TaxonomygroupModel'),
-        'joinType' => 'RIGHT' ));
-
-      // estaban asignados antes
-      if ($starredListPrev){
-        while($oldStar = $starredListPrev->fetch()){
-          $oldStarred[$oldStar->getter('taxonomyterm')] = $oldStar->getter('taxonomyterm');
-          if( $newStarred === false || !in_array( $oldStar->getter('taxonomyterm'), $newStarred ) ){ // desasignar
-            $oldStar->delete();
-          }
-        }
-      }
-
-      if( $newStarred !== false ) {
-        if( !isset($oldStarred) ){
-          foreach( $newStarred as $star ) {
-            $recurso->setterDependence( 'id',
-              new ResourceTaxonomytermModel( array('resource' => $elemId, 'taxonomyterm' => $star)) );
-            $affectsDependences = true;
-          }
-        }
-        else {
-          // non estaban asignados antes
-          foreach( $newStarred as $star ) {
-            if( !in_array($star,$oldStarred) ) { //asignar
-              $recurso->setterDependence( 'id',
-                new ResourceTaxonomytermModel( array('resource' => $elemId, 'taxonomyterm' => $star)) );
-              $affectsDependences = true;
-            }
-          }
-        }
-      }
-    }
+    // Opcional: Creación-Edición-Borrado de los elementos externos al recurso base
 
     if( !$form->existErrors()) {
-      $extraDataArray1 = array('resource' => $elemId, 'name' => 'datoExtra1');
-      foreach ($form->langAvailable as $langId){
-        $extraDataArray1['value_'.$langId ] = $form->getFieldValue( 'datoExtra1_'.$langId );
-      }
-      $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray1 ) );
-      $affectsDependences = true;
-
-      $extraDataArray2 = array('resource' => $elemId, 'name' => 'datoExtra2');
-      foreach ($form->langAvailable as $langId){
-        $extraDataArray2['value_'.$langId ] = $form->getFieldValue( 'datoExtra2_'.$langId );
-      }
-      $recurso->setterDependence( 'id', new extraDataModel( $extraDataArray2 ) );
-      $affectsDependences = true;
-    }
-
-
-    if( !$form->existErrors()) {
-      $saveResult = $recurso->save( array( 'affectsDependences' => $affectsDependences ) );
+      // Volvemos a guardar el recurso por si ha sido alterado por alguno de los procesos previos
+      $saveResult = $resource->save();
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
       }
     }
 
-
-    if( !$form->existErrors() ) {
-
-      foreach( $urlAlias as $langId => $url ) {
-        if( $this->setUrl( $elemId, $langId, $url ) === false ) {
-          $form->addFieldRuleError( 'urlAlias_'.$langId, false, __( 'Error setting URL alias' ) );
-          break;
-        }
-      }
-
-    }
-
-    if( !$form->existErrors() ) {
-      echo $form->jsonFormOk();
-    }
-    else {
-      $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
-      echo $form->jsonFormError();
-    }
+    // Enviamos el OK-ERROR a la BBDD y al formulario
+    $this->defResCtrl->resFormSucess( $form, $resource );
   } // function actionResourceForm()
-
-
-  private function urlErrors( $resId, $langId, $urlAlias ) {
-    // error_log( "urlErrors( $resId, $langId, $urlAlias )" );
-    $error = false;
-
-    //$error = 'URL Alias incompleto';
-
-    return $error;
-  }
-
-
-  private function setUrl( $resId, $langId, $urlAlias ) {
-    // error_log( "setUrl( $resId, $langId, $urlAlias )" );
-    $result = true;
-
-    if( !isset( $urlAlias ) || $urlAlias === false || $urlAlias === '' ) {
-      $urlAlias = '/recurso/'.$resId;
-    }
-
-    $aliasArray = array(
-      'http' => 0,
-      'canonical' => 1,
-      'lang' => $langId,
-      'urlFrom' => $urlAlias,
-      'urlTo' => null,
-      'resource' => $resId
-    );
-
-    $elemModel = new UrlAliasModel();
-    $elemsList = $elemModel->listItems( array( 'filters' => array( 'canonical' => 1, 'resource' => $resId,
-      'lang' => $langId ) ) );
-    if( $elem = $elemsList->fetch() ) {
-      // error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
-      $aliasArray[ 'id' ] = $elem->getter( 'id' );
-    }
-
-    $elemModel = new UrlAliasModel( $aliasArray );
-    if( $elemModel->save() === false ) {
-      $result = false;
-      // error_log( 'setUrl: ERROR gardando a url' );
-    }
-    else {
-      $result = $elemModel->getter( 'id' );
-      // error_log( 'setUrl: Creada/Actualizada - '.$result );
-    }
-
-    return $result;
-  }
 
 
 } // class ResourceView extends Vie
