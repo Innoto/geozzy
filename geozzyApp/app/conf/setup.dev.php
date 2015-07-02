@@ -116,6 +116,7 @@ $C_ENABLED_MODULES = array(
   'form',
   'Blocks',
   'table',
+  'explorer',
 
   // resource Types
   'rtypeHotel',
@@ -141,7 +142,9 @@ $C_INDEX_MODULES  = array(
   'Blocks',
   'geozzyAPI',
   'testData',
+  'explorer',
   'devel'
+
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 
 
