@@ -14,7 +14,7 @@ class ResourceController {
 
 
   /**
-    Defino un formulario
+    Defino el formulario
   */
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
     // error_log( "GeozzyResourceView: getFormObj()" );
@@ -25,15 +25,32 @@ class ResourceController {
     $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
 
 
-    // Collections disponibles
+    // Temáticas
+    $resTopics = array();
+    $topicModel =  new TopicModel();
+    $topicList = $topicModel->listItems();
+    while($n = $topicList->fetch()){
+      $resTopics[ $n->getter('id') ] = $n->getter('name', LANG_DEFAULT);
+    }
+
+    // Destacados
+    $resStarred = array();
+    $taxTermModel =  new TaxonomyTermModel();
+    $starredList = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
+      'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+    while( $star = $starredList->fetch() ){
+      $resStarred[ $star->getter('id') ] = $star->getter('name', LANG_DEFAULT);
+    }
+
+    // Collections
     $resOptions = array();
     $resValues = array();
     $collectionModel =  new CollectionModel();
-    if($valuesArray['id']){
+    if( isset( $valuesArray[ 'id' ] ) ) {
       $collectionList = $collectionModel->listItems(
         array( 'filters' => array(
-          'ResourceCollectionsModel.resource' => $valuesArray['id'] ),
-          'affectsDependences' => array('ResourceCollectionsModel'),
+          'ResourceCollectionsModel.resource' => $valuesArray[ 'id' ] ),
+          'affectsDependences' => array( 'ResourceCollectionsModel' ),
           'joinType' => 'RIGHT'
         )
       );
@@ -41,8 +58,11 @@ class ResourceController {
         $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
         $resValues[] = $res->getter( 'id' );
       }
-      $valuesArray['collections'] = $resValues;
+      if( count( $resValues ) > 0 ) {
+        $valuesArray['collections'] = $resValues;
+      }
     }
+
 
     // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
     // 'loc'   'type' => 'GEOMETRY'
@@ -112,37 +132,25 @@ class ResourceController {
       ),
       'published' => array(
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Publicado' ))
+      ),
+      'topics' => array(
+        'params' => array( 'label' => __( 'Topics' ), 'type' => 'checkbox', 'options'=> $resTopics )
+      ),
+      'starred' => array(
+        'params' => array( 'label' => __( 'Starred' ), 'type' => 'checkbox', 'options'=> $resStarred )
       )
     );
 
     $form->definitionsToForm( $fieldsInfo );
 
+    // Valadaciones extra
     $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
 
-    // Temáticas asociadas
-    $topicModel =  new TopicModel();
-    $topic = $topicModel->listItems();
-    $topics = array();
-    while($n = $topic->fetch()){
-      $topics[ $n->getter('id') ] = $n->getter('name', LANG_DEFAULT);
-    }
-    $form->setField( 'topics', array( 'type' => 'checkbox', 'label' => __( 'Topics' ), 'options'=> $topics) );
-
-    // Destacados asociados
-    $taxTermModel =  new TaxonomyTermModel();
-    $starredList = $taxTermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
-      'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
-    $starred = array();
-    while($star = $starredList->fetch()){
-      $starred[ $star->getter('id') ] = $star->getter('name', LANG_DEFAULT);
-    }
-    $form->setField( 'starred', array( 'type' => 'checkbox', 'label' => __( 'Starred' ), 'options'=> $starred) );
-
-    //Si es una edicion, añadimos el ID y cargamos los datos
-    // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
+    // Si es una edicion, añadimos el ID y cargamos los datos
     if( $valuesArray !== false ){
       $form->setField( 'id', array( 'type' => 'reserved', 'value' => null ) );
       $form->loadArrayValues( $valuesArray );
+      // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
     }
 
     $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Send' ), 'class' => 'gzzAdminToMove' ) );
@@ -156,7 +164,7 @@ class ResourceController {
 
 
   /**
-    Se construye el formulario con sus datos y se realizan las validaciones que contiene
+    Se reconstruye el formulario con sus datos y se realizan las validaciones que contiene
   */
   public function resFormLoad() {
     $form = new FormController();
@@ -287,6 +295,10 @@ class ResourceController {
   }
 
 
+  /**
+   * Métodos para facilitar y organizar la verificación de los distintos elementos del recurso
+   */
+
 
   /**
     Filedata methods
@@ -382,7 +394,7 @@ class ResourceController {
   }
 
   /**
-    Taxonomy methods
+    Taxonomy/Topic methods
   */
   private function setFormTopic( $form, $fieldName, $baseObj ) {
     $baseId = $baseObj->getter( 'id' );
