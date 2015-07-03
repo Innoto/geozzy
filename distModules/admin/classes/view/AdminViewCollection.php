@@ -94,7 +94,7 @@ class AdminViewCollection extends AdminViewMaster
     $collectionView = new GeozzyCollectionView();
     $collectionView->actionForm();
 
-    
+
   } // sendCollectionForm()
 
 }

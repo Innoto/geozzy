@@ -149,6 +149,7 @@ class ResourceController {
 
     // Valadaciones extra
     $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
+    $form->removeValidationRule( 'collections', 'inArray' );
 
     // Si es una edicion, añadimos el ID y cargamos los datos
     if( $valuesArray !== false ){
@@ -250,6 +251,10 @@ class ResourceController {
 
     if( !$form->existErrors() && $form->isFieldDefined( 'topics' ) ) {
       $this->setFormTopic( $form, 'topics', $resource );
+    }
+
+    if( !$form->existErrors() && $form->isFieldDefined( 'collections' ) ) {
+      $this->setFormCollection( $form, 'collections', $resource );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
@@ -488,6 +493,49 @@ class ResourceController {
           $info[ 'id' ] = $relPrevInfo[ $value ];
         }
         $relObj = new ResourceTaxonomytermModel( $info );
+        if( !$relObj->save() ) {
+          $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );
+          break;
+        }
+      }
+    }
+  }
+
+  private function setFormCollection( $form, $fieldName, $baseObj ) {
+    $baseId = $baseObj->getter( 'id' );
+    $formValues = $form->getFieldValue( $fieldName );
+    $relPrevInfo = false;
+
+    if( $formValues !== false && !is_array( $formValues ) ) {
+      $formValues = array( $formValues );
+    }
+
+    // Si estamos editando, repasamos y borramos relaciones sobrantes
+    if( $baseId ) {
+      $relModel = new ResourceCollectionsModel();
+      $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
+      if( $relPrevList ) {
+        // estaban asignados antes
+        $relPrevInfo = array();
+        while( $relPrev = $relPrevList->fetch() ){
+          $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
+          if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
+            $relPrev->delete();
+          }
+        }
+      }
+    }
+
+    // Creamos-Editamos todas las relaciones
+    if( $formValues !== false ) {
+      $weight = 0;
+      foreach( $formValues as $value ) {
+        $weight++;
+        $info = array( 'resource' => $baseId, 'collection' => $value, 'weight' => $weight );
+        if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
+          $info[ 'id' ] = $relPrevInfo[ $value ];
+        }
+        $relObj = new ResourceCollectionsModel( $info );
         if( !$relObj->save() ) {
           $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );
           break;

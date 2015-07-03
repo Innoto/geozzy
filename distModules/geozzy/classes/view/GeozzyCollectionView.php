@@ -278,6 +278,8 @@ class GeozzyCollectionView extends View
       $saveResult = $collection->save( array( 'affectsDependences' => $affectsDependences ) );
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el collection.','formError' );
+      }else{
+        $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'" });' ); 
       }
     }
 
