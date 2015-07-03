@@ -70,9 +70,10 @@ class ResourceController {
     }
 
 
-    // 'image' 'type'=>'FOREIGN','vo' => 'FiledataModel','key' => 'id'
-    // 'loc'   'type' => 'GEOMETRY'
     $fieldsInfo = array(
+      'typeResource' => array(
+        'params' => array( 'type' => 'reserved' )
+      ),
       'title' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Title' ) ),
@@ -126,9 +127,6 @@ class ResourceController {
         'params' => array( 'label' => __( 'Extra information 2' ) ),
         'rules' => array( 'maxlength' => '1000' )
       ),
-      'typeResource' => array(
-        'params' => array( 'type' => 'reserved' )
-      ),
       'collections' => array(
         'params' => array( 'label' => __( 'Collections' ), 'type' => 'select', 'id' => 'resourceCollections',
         'multiple' => true, 'options'=> $resOptions )
@@ -171,7 +169,7 @@ class ResourceController {
 
   /**
     Se reconstruye el formulario con sus datos y se realizan las validaciones que contiene
-  */
+   */
   public function resFormLoad() {
     $form = new FormController();
     if( $form->loadPostInput() ) {
@@ -193,7 +191,7 @@ class ResourceController {
 
   /**
     Validaciones extra previas a usar los datos del recurso base
-  */
+   */
   public function resFormRevalidate( $form ) {
 
     $this->evalFormUrlAlias( $form, 'urlAlias' );
@@ -202,7 +200,7 @@ class ResourceController {
   /**
     Creación-Edición-Borrado de los elementos del recurso base
     Iniciar transaction
-  */
+   */
   public function resFormProcess( $form ) {
     $resource = false;
 
@@ -255,7 +253,7 @@ class ResourceController {
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
-      $this->setFormTaxStarred( $form, 'starred', $resource );
+      $this->setFormTax( $form, 'starred', 'starred', $resource );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra1' ) ) {
@@ -278,7 +276,7 @@ class ResourceController {
   /**
     Enviamos el OK-ERROR a la BBDD y al formulario
     Finalizar transaction
-  */
+   */
   public function resFormSuccess( $form, $resource ) {
 
     if( !$form->existErrors() ) {
@@ -308,7 +306,7 @@ class ResourceController {
 
   /**
     Filedata methods
-  */
+   */
   private function setFormFiledata( $form, $fieldName, $colName, $resObj ) {
     $fileField = $form->getFieldValue( $fieldName );
     $fileFieldValues = false;
@@ -377,7 +375,7 @@ class ResourceController {
 
   /**
     ExtraData methods
-  */
+   */
   private function setFormExtraData( $form, $fieldName, $colName, $baseObj ) {
     $baseId = $baseObj->getter( 'id' );
 
@@ -401,7 +399,7 @@ class ResourceController {
 
   /**
     Taxonomy/Topic methods
-  */
+   */
   private function setFormTopic( $form, $fieldName, $baseObj ) {
     $baseId = $baseObj->getter( 'id' );
     $formValues = $form->getFieldValue( $fieldName );
@@ -445,7 +443,7 @@ class ResourceController {
     }
   }
 
-  private function setFormTaxStarred( $form, $fieldName, $baseObj ) {
+  private function setFormTax( $form, $fieldName, $taxId, $baseObj ) {
     $baseId = $baseObj->getter( 'id' );
     $formValues = $form->getFieldValue( $fieldName );
     $relPrevInfo = false;
@@ -457,8 +455,15 @@ class ResourceController {
     // Si estamos editando, repasamos y borramos relaciones sobrantes
     if( $baseId ) {
       $relModel = new ResourceTaxonomytermModel();
+      $relFilter = array( 'resource' => $baseId );
+      if( is_numeric( $taxId ) ) {
+        $relFilter[ 'TaxonomygroupModel.id' ] = $taxId;
+      }
+      else {
+        $relFilter[ 'TaxonomygroupModel.idName' ] = $taxId;
+      }
       $relPrevList = $relModel->listItems( array(
-        'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'resource' => $baseId ),
+        'filters' => $relFilter,
         'affectsDependences' => array( 'TaxonomygroupModel' ),
         'joinType' => 'RIGHT' ));
       if( $relPrevList ) {
@@ -494,7 +499,7 @@ class ResourceController {
 
   /**
     UrlAlias methods
-  */
+   */
 
   private function evalFormUrlAlias( $form, $fieldName ) {
     foreach( $form->multilangFieldNames( $fieldName ) as $fieldNameLang ) {
