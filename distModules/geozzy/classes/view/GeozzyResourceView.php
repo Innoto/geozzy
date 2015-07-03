@@ -21,7 +21,7 @@ class GeozzyResourceView extends View
   }
 
   /**
-    Evaluate the access conditions and report if can continue
+     Evaluate the access conditions and report if can continue
    *
    * @return bool : true -> Access allowed
    **/
@@ -33,8 +33,14 @@ class GeozzyResourceView extends View
 
 
   /**
-    Defino un formulario
-  */
+     Defino el formulario
+   *
+   * @param $formName string Nombre del form
+   * @param $urlAction string URL del action
+   * @param $valuesArray array Opcional: Valores de los campos del form
+   *
+   * @return Obj-Form
+   **/
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
     error_log( "GeozzyResourceView: getFormObj()" );
 
@@ -43,8 +49,14 @@ class GeozzyResourceView extends View
 
 
   /**
-    Defino un formulario con su TPL como Bloque
-  */
+     Defino el formulario y creo su Bloque con su TPL
+   *
+   * @param $formName string Nombre del form
+   * @param $urlAction string URL del action
+   * @param $valuesArray array Opcional: Valores de los campos del form
+   *
+   * @return Obj-Template
+   **/
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
     error_log( "GeozzyResourceView: getFormBlock()" );
 
@@ -65,10 +77,9 @@ class GeozzyResourceView extends View
   } // function getFormBlock()
 
 
-
   /**
-    Proceso formulario
-  */
+     Action del formulario
+   **/
   public function actionResourceForm() {
     error_log( "GeozzyResourceView: actionResourceForm()" );
 
@@ -98,7 +109,7 @@ class GeozzyResourceView extends View
     }
 
     // Enviamos el OK-ERROR a la BBDD y al formulario
-    $this->defResCtrl->resFormSucess( $form, $resource );
+    $this->defResCtrl->resFormSuccess( $form, $resource );
   } // function actionResourceForm()
 
 
