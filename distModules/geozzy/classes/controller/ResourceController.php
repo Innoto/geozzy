@@ -14,8 +14,14 @@ class ResourceController {
 
 
   /**
-    Defino el formulario
-  */
+     Defino el formulario
+   *
+   * @param $formName string Nombre del form
+   * @param $urlAction string URL del action
+   * @param $valuesArray array Opcional: Valores de los campos del form
+   *
+   * @return Obj-Form
+   **/
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
     // error_log( "GeozzyResourceView: getFormObj()" );
 
