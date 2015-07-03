@@ -5,7 +5,7 @@ Cogumelo::load('coreModel/Model.php');
 
 class CollectionResourcesModel extends Model
 {
-  static $tableName = 'geozzy_collection_resource';
+  static $tableName = 'geozzy_collection_resources';
 
   static $cols = array(
     'id' => array(

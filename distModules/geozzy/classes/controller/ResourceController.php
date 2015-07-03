@@ -145,6 +145,7 @@ class ResourceController {
 
     // Valadaciones extra
     $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
+    $form->removeValidationRule( 'collections', 'inArray' );
 
     // Si es una edicion, añadimos el ID y cargamos los datos
     if( $valuesArray !== false ){
@@ -247,7 +248,7 @@ class ResourceController {
     if( !$form->existErrors() && $form->isFieldDefined( 'topics' ) ) {
       $this->setFormTopic( $form, 'topics', $resource );
     }
-    
+
     if( !$form->existErrors() && $form->isFieldDefined( 'collections' ) ) {
       $this->setFormCollection( $form, 'collections', $resource );
     }
