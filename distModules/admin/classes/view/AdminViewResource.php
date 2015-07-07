@@ -197,16 +197,19 @@ class AdminViewResource extends AdminViewMaster
     $formSeo = $this->extractFormBlockFields( $formBlock,
       array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
     $formContacto = $this->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
+    $formCollections = $this->extractFormBlockFields( $formBlock, array( 'collections', 'addCollections' ) );
+
 
     // El bloque que usa $formBlock contiene la estructura del form
 
     // Bloques de 8
-    $this->template->addToBlock( 'col8', $this->getPanelBlock( $formBlock, 'Edit Resource', 'fa-archive' ) );
-    $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formContacto ), 'Contacto', 'fa-archive' ) );
+    $this->template->addToBlock( 'col8', $this->getPanelBlock( $formBlock, __('Edit Resource'), 'fa-archive' ) );
+    $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formCollections ), __('Collections of related resources'), 'fa-th-large' ) );
+    $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formContacto ), __('Contact'), 'fa-archive' ) );
 
     // Bloques de 4
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formPublished ), __( 'Publicación' ), 'fa-adjust' ) );
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formImage ), __( 'Selecciona una imagen' ), 'fa-file-image-o' ) );
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formPublished ), __( 'Publication' ), 'fa-adjust' ) );
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formImage ), __( 'Select a image' ), 'fa-file-image-o' ) );
     $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formStatus ), __( 'Status' ) ) );
     $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' ) );
 
