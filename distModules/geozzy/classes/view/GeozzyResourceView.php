@@ -8,6 +8,7 @@ class GeozzyResourceView extends View
 {
 
   private $defResCtrl = null;
+  private $rTypeCtrl = null;
 
   public function __construct( $baseDir = false ){
     parent::__construct( $baseDir );
@@ -44,7 +45,19 @@ class GeozzyResourceView extends View
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
     error_log( "GeozzyResourceView: getFormObj()" );
 
-    return $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
+    $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
+
+    $this->loadRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
+
+    if( $this->rTypeCtrl ) {
+      $rTypeFieldNames = $this->rTypeCtrl->manipulateForm( $form );
+      error_log( 'rTypeFieldNames: '.print_r( $rTypeFieldNames, true ) );
+    }
+
+    // Una vez que lo tenemos completamente definido, guardamos el form en sesion
+    $form->saveToSession();
+
+    return $form;
   } // function getFormObj()
 
 
@@ -60,6 +73,8 @@ class GeozzyResourceView extends View
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
     error_log( "GeozzyResourceView: getFormBlock()" );
 
+    $rTypeFieldNames = array();
+
     $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
 
     $this->template->assign( 'formOpen', $form->getHtmpOpen() );
@@ -67,6 +82,9 @@ class GeozzyResourceView extends View
     $this->template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
 
     $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
+
+    $this->template->assign( 'rTypeName', $form->getFieldValue( 'rTypeName' ) );
+    $this->template->assign( 'rTypeFieldNames', $form->getFieldValue( 'rTypeFieldNames' ) );
 
     $this->template->assign( 'formClose', $form->getHtmlClose() );
     $this->template->assign( 'formValidations', $form->getScriptCode() );
@@ -112,5 +130,26 @@ class GeozzyResourceView extends View
     $this->defResCtrl->resFormSuccess( $form, $resource );
   } // function actionResourceForm()
 
+
+  /**
+     Cargando controlador del RType
+   **/
+  public function loadRTypeCtrl( $rTypeId ) {
+    error_log( "GeozzyResourceView: loadRTypeCtrl( $rTypeId )" );
+
+    switch( $rTypeId ) {
+      case 20: // 'rtypeHotel'
+        rtypeHotel::autoIncludes();
+        $this->rTypeCtrl = new RTypeHotelController( $this->defResCtrl );
+        break;
+      case 'rtypeRestaurant':
+        rtypeHotel::autoIncludes();
+        $this->rTypeCtrl = new RTypeHotelController( $this->defResCtrl );
+        break;
+      default:
+        $this->rTypeCtrl = false;
+        break;
+    }
+  }
 
 } // class ResourceView extends Vie

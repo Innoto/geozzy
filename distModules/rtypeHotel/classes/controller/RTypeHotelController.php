@@ -1,187 +1,84 @@
 <?php
 
 
-class ResourceController {
+class RTypeHotelController {
 
-  public function __construct() {
-    error_log( 'ResourceController::__construct' );
+  private $defResCtrl = null;
 
-    common::autoIncludes();
-    form::autoIncludes();
-    user::autoIncludes();
-    filedata::autoIncludes();
+  public function __construct( $defResCtrl = null ){
+    error_log( 'RTypeHotelController::__construct' );
+
+    $this->defResCtrl = $defResCtrl;
+  }
+
+  public function getRTypeValues( $resId ) {
+    error_log( "RTypeHotelController: getRTypeValues()" );
+    $valuesArray = false;
+
+    if( $resId && is_integer( $resId ) ) {
+      $valuesArray = false;
+    }
+
+    return $valuesArray;
   }
 
 
   /**
-     Defino el formulario
-   *
-   * @param $formName string Nombre del form
-   * @param $urlAction string URL del action
-   * @param $valuesArray array Opcional: Valores de los campos del form
-   *
-   * @return Obj-Form
-   **/
-  public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "GeozzyResourceView: getFormObj()" );
+    Defino el formulario
+  */
+  public function manipulateForm( $form ) {
+    error_log( "RTypeHotelController: manipulateForm()" );
 
-    $form = new FormController( $formName, $urlAction );
-
-    $form->setSuccess( 'accept', __( 'Thank you' ) );
-    $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
-
-
-    // Temáticas
-    $resTopics = array();
-    $topicModel =  new TopicModel();
-    $topicList = $topicModel->listItems();
-    while( $topic = $topicList->fetch() ){
-      $resTopics[ $topic->getter( 'id' ) ] = $topic->getter( 'name', LANG_DEFAULT );
-    }
-
-    // Destacados
-    $resStarred = array();
-    $taxTermModel =  new TaxonomyTermModel();
-    $starredList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
-      'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
-    while( $star = $starredList->fetch() ){
-      $resStarred[ $star->getter( 'id' ) ] = $star->getter( 'name', LANG_DEFAULT );
-    }
-
-    // Collections
-    $resOptions = array();
-    $resValues = array();
-    $collectionModel =  new CollectionModel();
-    if( isset( $valuesArray[ 'id' ] ) ) {
-      $collectionList = $collectionModel->listItems(
-        array( 'filters' => array(
-          'ResourceCollectionsModel.resource' => $valuesArray[ 'id' ] ),
-          'affectsDependences' => array( 'ResourceCollectionsModel' ),
-          'joinType' => 'RIGHT'
-        )
-      );
-      if( $collectionList ) {
-        while( $res = $collectionList->fetch() ){
-          $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
-          $resValues[] = $res->getter( 'id' );
-        }
-        if( count( $resValues ) > 0 ) {
-          $valuesArray['collections'] = $resValues;
-        }
-      }
-    }
-
-
-
-
-
-//$valuesArray['rTypeId'] = 'rtypeHotel';
-
-
-
-
+    $rTypeFieldNames = array();
 
     $fieldsInfo = array(
-      'rTypeId' => array(
-        'params' => array( 'type' => 'reserved' )
-      ),
-      'title' => array(
+      'hotelName' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Title' ) ),
+        'params' => array( 'label' => __( 'Hotel title' ) ),
         'rules' => array( 'maxlength' => '100' )
       ),
-      'shortDescription' => array(
+      'hotelShortDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Short description' ) ),
+        'params' => array( 'label' => __( 'Hotel short description' ) ),
         'rules' => array( 'maxlength' => '100' )
-      ),
-      'mediumDescription' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea' )
-      ),
-      'content' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
-          'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
-      ),
-      'image' => array(
-        'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
-        'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
-        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '100000', 'accept' => 'image/jpeg' )
-      ),
-      'urlAlias' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'SEO: URL' ) ),
-        'rules' => array( 'maxlength' => '2000' )
-      ),
-      'headKeywords' => array(
-        'params' => array( 'label' => __( 'SEO: Head Keywords' ) ),
-        'rules' => array( 'maxlength' => '150' )
-      ),
-      'headDescription' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'SEO: Head Description' ) ),
-        'rules' => array( 'maxlength' => '150' )
-      ),
-      'headTitle' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'SEO: Head Title' ) ),
-        'rules' => array( 'maxlength' => '100' )
-      ),
-      'datoExtra1' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Extra information 1' ) ),
-        'rules' => array( 'maxlength' => '1000' )
-      ),
-      'datoExtra2' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Extra information 2' ) ),
-        'rules' => array( 'maxlength' => '1000' )
-      ),
-      'collections' => array(
-        'params' => array( 'label' => __( 'Collections' ), 'type' => 'select', 'id' => 'resourceCollections',
-        'multiple' => true, 'options'=> $resOptions )
-      ),
-      'addCollections' => array(
-        'params' => array( 'id' => 'resourceAddCollection', 'type' => 'button', 'value' => __( 'Add Collection' ))
-      ),
-      'published' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Publicado' ))
-      ),
-      'topics' => array(
-        'params' => array( 'label' => __( 'Topics' ), 'type' => 'checkbox', 'options'=> $resTopics )
-      ),
-      'starred' => array(
-        'params' => array( 'label' => __( 'Starred' ), 'type' => 'checkbox', 'options'=> $resStarred )
       )
     );
 
     $form->definitionsToForm( $fieldsInfo );
 
     // Valadaciones extra
-    $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
-    $form->removeValidationRule( 'collections', 'inArray' );
+    $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
 
     // Si es una edicion, añadimos el ID y cargamos los datos
-    if( $valuesArray !== false ){
-      $form->setField( 'id', array( 'type' => 'reserved', 'value' => null ) );
+    $valuesArray = $this->getRTypeValues( $form->getFieldValue( 'id' ) );
+    if( $valuesArray ) {
+      $form->setField( 'idHotel', array( 'type' => 'reserved', 'value' => null ) );
       $form->loadArrayValues( $valuesArray );
-      // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
+      // error_log( 'RTypeHotelController getFormObj: ' . print_r( $valuesArray, true ) );
     }
 
-    $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Send' ), 'class' => 'gzzAdminToMove' ) );
-
-    // Una vez que lo tenemos definido, guardamos el form en sesion
+    // Add RType info to form
+    foreach( $fieldsInfo as $fieldName => $info ) {
+      if( isset( $info[ 'translate' ] ) && $info[ 'translate' ] ) {
+        $rTypeFieldNames = array_merge( $rTypeFieldNames, $form->multilangFieldNames( $fieldName ) );
+      }
+      else {
+        $rTypeFieldNames[] = $fieldName;
+      }
+    }
+    // rTypeId ya existe
+    $form->setField( 'rTypeName', array( 'type' => 'reserved', 'value' => 'rtypeHotel' ) );
+    $form->setField( 'rTypeFieldNames', array( 'type' => 'reserved', 'value' => $rTypeFieldNames ) );
     $form->saveToSession();
 
-    return( $form );
-  } // function getFormObj()
+    return( $rTypeFieldNames );
+  } // function manipulateForm()
 
 
 
   /**
     Se reconstruye el formulario con sus datos y se realizan las validaciones que contiene
-   */
+  */
   public function resFormLoad() {
     $form = new FormController();
     if( $form->loadPostInput() ) {
@@ -203,7 +100,7 @@ class ResourceController {
 
   /**
     Validaciones extra previas a usar los datos del recurso base
-   */
+  */
   public function resFormRevalidate( $form ) {
 
     $this->evalFormUrlAlias( $form, 'urlAlias' );
@@ -212,7 +109,7 @@ class ResourceController {
   /**
     Creación-Edición-Borrado de los elementos del recurso base
     Iniciar transaction
-   */
+  */
   public function resFormProcess( $form ) {
     $resource = false;
 
@@ -264,12 +161,8 @@ class ResourceController {
       $this->setFormTopic( $form, 'topics', $resource );
     }
 
-    if( !$form->existErrors() && $form->isFieldDefined( 'collections' ) ) {
-      $this->setFormCollection( $form, 'collections', $resource );
-    }
-
     if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
-      $this->setFormTax( $form, 'starred', 'starred', $resource );
+      $this->setFormTaxStarred( $form, 'starred', $resource );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra1' ) ) {
@@ -292,7 +185,7 @@ class ResourceController {
   /**
     Enviamos el OK-ERROR a la BBDD y al formulario
     Finalizar transaction
-   */
+  */
   public function resFormSuccess( $form, $resource ) {
 
     if( !$form->existErrors() ) {
@@ -322,7 +215,7 @@ class ResourceController {
 
   /**
     Filedata methods
-   */
+  */
   private function setFormFiledata( $form, $fieldName, $colName, $resObj ) {
     $fileField = $form->getFieldValue( $fieldName );
     $fileFieldValues = false;
@@ -391,7 +284,7 @@ class ResourceController {
 
   /**
     ExtraData methods
-   */
+  */
   private function setFormExtraData( $form, $fieldName, $colName, $baseObj ) {
     $baseId = $baseObj->getter( 'id' );
 
@@ -415,7 +308,7 @@ class ResourceController {
 
   /**
     Taxonomy/Topic methods
-   */
+  */
   private function setFormTopic( $form, $fieldName, $baseObj ) {
     $baseId = $baseObj->getter( 'id' );
     $formValues = $form->getFieldValue( $fieldName );
@@ -459,7 +352,7 @@ class ResourceController {
     }
   }
 
-  private function setFormTax( $form, $fieldName, $taxId, $baseObj ) {
+  private function setFormTaxStarred( $form, $fieldName, $baseObj ) {
     $baseId = $baseObj->getter( 'id' );
     $formValues = $form->getFieldValue( $fieldName );
     $relPrevInfo = false;
@@ -471,15 +364,8 @@ class ResourceController {
     // Si estamos editando, repasamos y borramos relaciones sobrantes
     if( $baseId ) {
       $relModel = new ResourceTaxonomytermModel();
-      $relFilter = array( 'resource' => $baseId );
-      if( is_numeric( $taxId ) ) {
-        $relFilter[ 'TaxonomygroupModel.id' ] = $taxId;
-      }
-      else {
-        $relFilter[ 'TaxonomygroupModel.idName' ] = $taxId;
-      }
       $relPrevList = $relModel->listItems( array(
-        'filters' => $relFilter,
+        'filters' => array( 'TaxonomygroupModel.idName' => 'starred', 'resource' => $baseId ),
         'affectsDependences' => array( 'TaxonomygroupModel' ),
         'joinType' => 'RIGHT' ));
       if( $relPrevList ) {
@@ -512,53 +398,10 @@ class ResourceController {
     }
   }
 
-  private function setFormCollection( $form, $fieldName, $baseObj ) {
-    $baseId = $baseObj->getter( 'id' );
-    $formValues = $form->getFieldValue( $fieldName );
-    $relPrevInfo = false;
-
-    if( $formValues !== false && !is_array( $formValues ) ) {
-      $formValues = array( $formValues );
-    }
-
-    // Si estamos editando, repasamos y borramos relaciones sobrantes
-    if( $baseId ) {
-      $relModel = new ResourceCollectionsModel();
-      $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
-      if( $relPrevList ) {
-        // estaban asignados antes
-        $relPrevInfo = array();
-        while( $relPrev = $relPrevList->fetch() ){
-          $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
-          if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
-            $relPrev->delete();
-          }
-        }
-      }
-    }
-
-    // Creamos-Editamos todas las relaciones
-    if( $formValues !== false ) {
-      $weight = 0;
-      foreach( $formValues as $value ) {
-        $weight++;
-        $info = array( 'resource' => $baseId, 'collection' => $value, 'weight' => $weight );
-        if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
-          $info[ 'id' ] = $relPrevInfo[ $value ];
-        }
-        $relObj = new ResourceCollectionsModel( $info );
-        if( !$relObj->save() ) {
-          $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );
-          break;
-        }
-      }
-    }
-  }
-
 
   /**
     UrlAlias methods
-   */
+  */
 
   private function evalFormUrlAlias( $form, $fieldName ) {
     foreach( $form->multilangFieldNames( $fieldName ) as $fieldNameLang ) {
@@ -624,4 +467,4 @@ class ResourceController {
 
 
 
-} // class ResourceController
+} // class RTypeHotelController
