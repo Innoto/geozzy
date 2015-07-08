@@ -100,6 +100,7 @@ class GeozzyResourceView extends View
    **/
   public function actionResourceForm() {
     error_log( "GeozzyResourceView: actionResourceForm()" );
+    $resource = null;
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
     $form = $this->defResCtrl->resFormLoad();
