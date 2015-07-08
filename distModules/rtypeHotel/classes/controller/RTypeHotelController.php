@@ -4,11 +4,20 @@
 class RTypeHotelController {
 
   public $defResCtrl = null;
+  public $rTypeModule = null;
+  public $rExts = false;
 
   public function __construct( $defResCtrl = null ){
     error_log( 'RTypeHotelController::__construct' );
 
     $this->defResCtrl = $defResCtrl;
+
+    $this->rTypeModule = new rtypeHotel();
+    if( property_exists( $this->rTypeModule, 'rext' ) && is_array( $this->rTypeModule->rext )
+      && count( $this->rTypeModule->rext ) > 0 )
+    {
+      $this->rExts = $this->rTypeModule->rext;
+    }
   }
 
   public function getRTypeValues( $resId ) {
@@ -25,7 +34,7 @@ class RTypeHotelController {
 
   /**
     Defino el formulario
-  */
+   **/
   public function manipulateForm( $form ) {
     error_log( "RTypeHotelController: manipulateForm()" );
 

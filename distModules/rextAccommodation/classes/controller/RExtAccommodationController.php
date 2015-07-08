@@ -3,7 +3,9 @@
 
 class RExtAccommodationController {
 
-  private $prefix = 'rExtAccommodation_';
+  public $prefix = 'rExtAccommodation_';
+  public $rExtModule = null;
+  public $taxonomies = false;
   private $defResCtrl = null;
   private $defRTypeCtrl = null;
 
@@ -12,6 +14,13 @@ class RExtAccommodationController {
 
     $this->defRTypeCtrl = $defRTypeCtrl;
     $this->defResCtrl = $defRTypeCtrl->defResCtrl;
+
+    $this->rExtModule = new rextAccommodation();
+    if( property_exists( $this->rExtModule, 'taxonomies' ) && is_array( $this->rExtModule->taxonomies )
+      && count( $this->rExtModule->taxonomies ) > 0 )
+    {
+      $this->taxonomies = $this->rExtModule->taxonomies;
+    }
   }
 
 
@@ -54,10 +63,29 @@ class RExtAccommodationController {
       'averagePrice' => array(
         'params' => array( 'label' => __( 'Hotel average price' ) ),
         'rules' => array( 'maxlength' => '100' )
+      ),
+      'accommodationType' => array(
+        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select' )
+      ),
+      'accommodationCategory' => array(
+        'params' => array( 'label' => __( 'Accommodation category' ), 'type' => 'select' )
+      ),
+      'accommodationServices' => array(
+        'params' => array( 'label' => __( 'Accommodation services' ), 'type' => 'select' )
+      ),
+      'accommodationFacilities' => array(
+        'params' => array( 'label' => __( 'Accommodation facilities' ), 'type' => 'select' )
+      ),
+      'accommodationBrand' => array(
+        'params' => array( 'label' => __( 'Accommodation brand' ), 'type' => 'select' )
+      ),
+      'accommodationUsers' => array(
+        'params' => array( 'label' => __( 'Accommodation users profile' ), 'type' => 'select' )
       )
     );
-    $fieldsInfo = $this->prefixArrayKeys( $fieldsInfo );
 
+
+    $fieldsInfo = $this->prefixArrayKeys( $fieldsInfo );
     $form->definitionsToForm( $fieldsInfo );
 
     // Valadaciones extra

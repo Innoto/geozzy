@@ -93,7 +93,8 @@ class ResourceController {
       'content' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
-          'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
+          //'htmlEditor' => 'true',
+          'value' => '<p>ola mundo<br />...probando ;-)</p>' )
       ),
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
