@@ -53,62 +53,61 @@ class ResourceController {
     $resValues = array();
 
 
-        $resourceCollectionModel =  new ResourceCollectionsModel();
-
-        if( isset( $valuesArray[ 'id' ] ) ) {
-          $resCollectionList = $resourceCollectionModel->listItems(
-            array(
-              'filters' => array(
-                'resource' => $valuesArray[ 'id' ]
-              ),
-              'order' => array(
-                'weight' => 1
-              ),
-              'affectsDependences' => array( 'CollectionModel' )
-            )
-          );
-
-          while( $res = $resCollectionList->fetch() ){
-
-            $collections = $res->getterDependence('collection', 'CollectionModel');
-
-            $resOptions[ $res->getter( 'collection' ) ] = $collections[0]->getter('title');
-            $resValues[] = $res->getter( 'collection' );
-
-          }
-
-          if( count( $resValues ) > 0 ) {
-            $valuesArray['collections'] = $resValues;
-          }
-        }
-
-
-
-// $collections[0]->getter( 'title', LANG_DEFAULT )
-/*
-    $collectionModel =  new CollectionModel();
+    $resourceCollectionModel =  new ResourceCollectionsModel();
 
     if( isset( $valuesArray[ 'id' ] ) ) {
-      $collectionList = $collectionModel->listItems(
+      $resCollectionList = $resourceCollectionModel->listItems(
         array(
           'filters' => array(
-            'ResourceCollectionsModel.resource' => $valuesArray[ 'id' ]
+            'resource' => $valuesArray[ 'id' ]
           ),
-          'affectsDependences' => array( 'ResourceCollectionsModel' ),
-          'joinType' => 'RIGHT'
+          'order' => array(
+            'weight' => 1
+          ),
+          'affectsDependences' => array( 'CollectionModel' )
         )
       );
-      if( $collectionList ) {
-        while( $res = $collectionList->fetch() ){
-          $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
-          $resValues[] = $res->getter( 'id' );
-        }
-        if( count( $resValues ) > 0 ) {
-          $valuesArray['collections'] = $resValues;
-        }
+
+      while( $res = $resCollectionList->fetch() ){
+
+        $collections = $res->getterDependence('collection', 'CollectionModel');
+        $resOptions[ $res->getter( 'collection' ) ] = $collections[0]->getter('title');
+        $resValues[] = $res->getter( 'collection' );
+
+      }
+
+      if( count( $resValues ) > 0 ) {
+        $valuesArray['collections'] = $resValues;
       }
     }
-*/
+
+
+
+    // $collections[0]->getter( 'title', LANG_DEFAULT )
+    /*
+        $collectionModel =  new CollectionModel();
+
+        if( isset( $valuesArray[ 'id' ] ) ) {
+          $collectionList = $collectionModel->listItems(
+            array(
+              'filters' => array(
+                'ResourceCollectionsModel.resource' => $valuesArray[ 'id' ]
+              ),
+              'affectsDependences' => array( 'ResourceCollectionsModel' ),
+              'joinType' => 'RIGHT'
+            )
+          );
+          if( $collectionList ) {
+            while( $res = $collectionList->fetch() ){
+              $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
+              $resValues[] = $res->getter( 'id' );
+            }
+            if( count( $resValues ) > 0 ) {
+              $valuesArray['collections'] = $resValues;
+            }
+          }
+        }
+    */
 
     $fieldsInfo = array(
       'rTypeId' => array(
