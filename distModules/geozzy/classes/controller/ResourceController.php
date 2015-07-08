@@ -97,18 +97,20 @@ class ResourceController {
           'joinType' => 'RIGHT'
         )
       );
-      while( $res = $collectionList->fetch() ){
-        $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
-        $resValues[] = $res->getter( 'id' );
-      }
-      if( count( $resValues ) > 0 ) {
-        $valuesArray['collections'] = $resValues;
+      if( $collectionList ) {
+        while( $res = $collectionList->fetch() ){
+          $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
+          $resValues[] = $res->getter( 'id' );
+        }
+        if( count( $resValues ) > 0 ) {
+          $valuesArray['collections'] = $resValues;
+        }
       }
     }
 */
 
     $fieldsInfo = array(
-      'typeResource' => array(
+      'rTypeId' => array(
         'params' => array( 'type' => 'reserved' )
       ),
       'title' => array(
@@ -128,7 +130,8 @@ class ResourceController {
       'content' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
-          'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
+          //'htmlEditor' => 'true',
+          'value' => '<p>ola mundo<br />...probando ;-)</p>' )
       ),
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',

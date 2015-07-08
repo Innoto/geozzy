@@ -75,7 +75,7 @@ class AdminViewResource extends AdminViewMaster
 
   /**
     Creacion/Edicion de Recursos
-  */
+   */
 
   public function resourceForm( $urlParams = false ) {
     $formName = 'resourceCreate';
@@ -85,7 +85,7 @@ class AdminViewResource extends AdminViewMaster
 
     if( $urlParams ) {
       $recursoData['topics'] = array( $urlParams['1'] );
-      $recursoData['typeResource'] = $urlParams['2'];
+      $recursoData['rTypeId'] = $urlParams['2'];
       $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
     }
     else{
@@ -121,6 +121,10 @@ class AdminViewResource extends AdminViewMaster
     if( $recurso ) {
       $recursoData = $recurso->getAllData();
       $recursoData = $recursoData[ 'data' ];
+
+      // Adapto el campo recursoTipo para mayor claridad
+      $recursoData['rTypeId'] = $recursoData['type'];
+      unset( $recursoData['type'] );
 
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );

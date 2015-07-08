@@ -7,8 +7,7 @@ class rextAccommodation extends Module
 {
   public $name = 'rextAccommodation';
   public $version = '1.0';
-  public $dependences = array();
-  public $includesCommon = array();
+
 
   public $models = array(
     'AccommodationModel'
@@ -211,7 +210,12 @@ class rextAccommodation extends Module
       'initialTerms' => array(
       )
     )
+  );
 
+  public $dependences = array();
+
+  public $includesCommon = array(
+    'controller/RExtAccommodationController.php'
   );
 
 
