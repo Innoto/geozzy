@@ -73,7 +73,7 @@ class admin extends Module
       "id" =>"multiList",
       "params" => array("multiList"),
       "installer" => "bower",
-      "includes" => array("multiList.min.js", "multiList.css")
+      "includes" => array("multiList.js", "multiList.css")
     ),
     array(
       "id" =>"switchery",
