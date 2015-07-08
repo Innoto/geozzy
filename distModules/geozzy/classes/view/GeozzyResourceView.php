@@ -109,14 +109,22 @@ class GeozzyResourceView extends View
       $this->defResCtrl->resFormRevalidate( $form );
     }
 
-    // Opcional: Validaciones extra previas de elementos externos al recurso base
+    $this->loadRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
+
+    // Validaciones extra previas de elementos externos al recurso base
+    if( $this->rTypeCtrl && !$form->existErrors() ) {
+      $this->rTypeCtrl->resFormRevalidate( $form );
+    }
 
     if( !$form->existErrors() ) {
       // Creación-Edición-Borrado de los elementos del recurso base
       $resource = $this->defResCtrl->resFormProcess( $form );
     }
 
-    // Opcional: Creación-Edición-Borrado de los elementos externos al recurso base
+    // Creación-Edición-Borrado de los elementos externos al recurso base
+    if( $this->rTypeCtrl && !$form->existErrors() ) {
+      $this->rTypeCtrl->resFormProcess( $form, $resource );
+    }
 
     if( !$form->existErrors()) {
       // Volvemos a guardar el recurso por si ha sido alterado por alguno de los procesos previos
@@ -126,9 +134,17 @@ class GeozzyResourceView extends View
       }
     }
 
+    // Preparaciones del Success de los elementos externos al recurso base
+    if( $this->rTypeCtrl && !$form->existErrors() ) {
+      $this->rTypeCtrl->resFormSuccess( $form, $resource );
+    }
+
     // Enviamos el OK-ERROR a la BBDD y al formulario
     $this->defResCtrl->resFormSuccess( $form, $resource );
   } // function actionResourceForm()
+
+
+
 
 
   /**
@@ -142,10 +158,12 @@ class GeozzyResourceView extends View
         rtypeHotel::autoIncludes();
         $this->rTypeCtrl = new RTypeHotelController( $this->defResCtrl );
         break;
+      /*
       case 'rtypeRestaurant':
         rtypeHotel::autoIncludes();
-        $this->rTypeCtrl = new RTypeHotelController( $this->defResCtrl );
+        $this->rTypeCtrl = new RTypeRestaurantController( $this->defResCtrl );
         break;
+      */
       default:
         $this->rTypeCtrl = false;
         break;

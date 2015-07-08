@@ -72,15 +72,6 @@ class ResourceController {
     }
 
 
-
-
-
-//$valuesArray['rTypeId'] = 'rtypeHotel';
-
-
-
-
-
     $fieldsInfo = array(
       'rTypeId' => array(
         'params' => array( 'type' => 'reserved' )

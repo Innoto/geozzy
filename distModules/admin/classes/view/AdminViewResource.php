@@ -75,7 +75,7 @@ class AdminViewResource extends AdminViewMaster
 
   /**
     Creacion/Edicion de Recursos
-  */
+   */
 
   public function resourceForm( $urlParams = false ) {
     $formName = 'resourceCreate';
