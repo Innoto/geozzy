@@ -496,8 +496,8 @@ class ResourceController {
       );
 
       while( $res = $resCollectionList->fetch() ){
-        $collections = $res->getterDependence('collection', 'CollectionModel');
-        $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[0]->getter('title');
+        $collections = $res->getterDependence( 'collection', 'CollectionModel' );
+        $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
         $colInfo[ 'values' ][] = $res->getter( 'collection' );
       }
     }
