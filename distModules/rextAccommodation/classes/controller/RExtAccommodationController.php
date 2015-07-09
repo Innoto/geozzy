@@ -4,12 +4,13 @@
 class RExtAccommodationController {
 
   public $prefix = 'rExtAccommodation_';
+
+  public $defRTypeCtrl = null;
+  public $defResCtrl = null;
   public $rExtModule = null;
   public $taxonomies = false;
-  private $defResCtrl = null;
-  private $defRTypeCtrl = null;
 
-  public function __construct( $defRTypeCtrl = null ){
+  public function __construct( $defRTypeCtrl ){
     error_log( 'RExtAccommodationController::__construct' );
 
     $this->defRTypeCtrl = $defRTypeCtrl;
@@ -65,28 +66,39 @@ class RExtAccommodationController {
         'rules' => array( 'maxlength' => '100' )
       ),
       'accommodationType' => array(
-        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select' )
+        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select',
+          'options' => $this->defResCtrl->getOptionsTax( 'accommodationType' )
+        )
       ),
       'accommodationCategory' => array(
-        'params' => array( 'label' => __( 'Accommodation category' ), 'type' => 'select' )
+        'params' => array( 'label' => __( 'Accommodation category' ), 'type' => 'select',
+          'options' => $this->defResCtrl->getOptionsTax( 'accommodationCategory' )
+        )
       ),
       'accommodationServices' => array(
-        'params' => array( 'label' => __( 'Accommodation services' ), 'type' => 'select' )
+        'params' => array( 'label' => __( 'Accommodation services' ), 'type' => 'select',
+          'options' => $this->defResCtrl->getOptionsTax( 'accommodationServices' )
+        )
       ),
       'accommodationFacilities' => array(
-        'params' => array( 'label' => __( 'Accommodation facilities' ), 'type' => 'select' )
+        'params' => array( 'label' => __( 'Accommodation facilities' ), 'type' => 'select',
+          'options' => $this->defResCtrl->getOptionsTax( 'accommodationFacilities' )
+        )
       ),
       'accommodationBrand' => array(
-        'params' => array( 'label' => __( 'Accommodation brand' ), 'type' => 'select' )
+        'params' => array( 'label' => __( 'Accommodation brand' ), 'type' => 'select',
+          'options' => $this->defResCtrl->getOptionsTax( 'accommodationBrand' )
+        )
       ),
       'accommodationUsers' => array(
-        'params' => array( 'label' => __( 'Accommodation users profile' ), 'type' => 'select' )
+        'params' => array( 'label' => __( 'Accommodation users profile' ), 'type' => 'select',
+          'options' => $this->defResCtrl->getOptionsTax( 'accommodationUsers' )
+        )
       )
     );
 
 
-    $fieldsInfo = $this->prefixArrayKeys( $fieldsInfo );
-    $form->definitionsToForm( $fieldsInfo );
+    $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
     // Valadaciones extra
     // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );

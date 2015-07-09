@@ -2,7 +2,7 @@
 
 explorer::load('controller/ExplorerController.php');
 
-class SampleExplorer extends ExplorerController {
+class DefaultExplorerController extends ExplorerController {
 
   function serveInitialData( ) {
 
@@ -11,4 +11,5 @@ class SampleExplorer extends ExplorerController {
   function serveCurrentData( ) {
 
   }
+
 }

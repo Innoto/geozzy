@@ -12,7 +12,18 @@ class explorer extends Module
 
 
   public $dependences = array(
-
+    array(
+     "id" =>"backbonejs",
+     "params" => array("backbone#1.1.2"),
+     "installer" => "bower",
+     "includes" => array("backbone.js")
+    ),
+    array(
+     "id" =>"backbone-localstorage",
+     "params" => array("backbone-localstorage#0.3.2"),
+     "installer" => "bower",
+     "includes" => array("backbone-localstorage.min.js")
+    )
   );
 
   function __construct() {

@@ -7,8 +7,8 @@ geozzy::load('controller/ResourceController.php');
 class GeozzyResourceView extends View
 {
 
-  private $defResCtrl = null;
-  private $rTypeCtrl = null;
+  public $defResCtrl = null;
+  public $rTypeCtrl = null;
 
   public function __construct( $baseDir = false ){
     parent::__construct( $baseDir );
@@ -19,6 +19,7 @@ class GeozzyResourceView extends View
     filedata::autoIncludes();
 
     $this->defResCtrl = new ResourceController();
+    error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
   }
 
   /**

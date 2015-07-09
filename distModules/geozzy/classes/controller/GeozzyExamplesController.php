@@ -5,7 +5,9 @@ class GeozzyExamplesController {
 
 
   static function newResource() {
+
     
+
   }
-    
+
 }

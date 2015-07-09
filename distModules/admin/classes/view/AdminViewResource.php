@@ -107,76 +107,18 @@ class AdminViewResource extends AdminViewMaster
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
 
-    $recurso = false;
+    $valuesArray = false;
 
     if( isset( $urlParams['1'] ) ) {
-      $idResource = $urlParams['1'];
-      $recModel = new ResourceModel();
-      $recursosList = $recModel->listItems( array( 'affectsDependences' =>
-        array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
-        'filters' => array( 'id' => $idResource, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1) ) );
-      $recurso = $recursosList->fetch();
+      $resCtrl = new ResourceController();
+      $valuesArray = $resCtrl->getResourceData( $urlParams['1'] );
     }
 
-    if( $recurso ) {
-      $recursoData = $recurso->getAllData();
-      $recursoData = $recursoData[ 'data' ];
-
-      // Adapto el campo recursoTipo para mayor claridad
-      $recursoData['rTypeId'] = $recursoData['type'];
-      unset( $recursoData['type'] );
-
-      // Cargo los datos de urlAlias dentro de los del recurso
-      $urlAliasDep = $recurso->getterDependence( 'id', 'UrlAliasModel' );
-      if( $urlAliasDep !== false ) {
-        foreach( $urlAliasDep as $urlAlias ) {
-          $urlLang = $urlAlias->getter('lang');
-          if( $urlLang ) {
-            $recursoData[ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
-          }
-        }
-      }
-
-      // Cargo los datos de image dentro de los del recurso
-      $fileDep = $recurso->getterDependence( 'image' );
-      if( $fileDep !== false ) {
-        foreach( $fileDep as $fileModel ) {
-          $fileData = $fileModel->getAllData();
-          $recursoData[ 'image' ] = $fileData[ 'data' ];
-        }
-      }
-
-      // Cargo los datos de temáticas con las que está asociado el recurso
-      $topicsDep = $recurso->getterDependence( 'id', 'ResourceTopicModel');
-      if( $topicsDep !== false ) {
-        foreach( $topicsDep as $topicRel ) {
-          $topicsArray[$topicRel->getter('id')] = $topicRel->getter('topic');
-        }
-        $recursoData[ 'topics' ] = $topicsArray;
-      }
-
-      // Cargo los datos de destacados con los que está asociado el recurso
-      $taxTermDep = $recurso->getterDependence( 'id', 'ResourceTaxonomytermModel');
-      if( $taxTermDep !== false ) {
-        foreach( $taxTermDep as $taxTerm ) {
-          $taxTermArray[$taxTerm->getter('id')] = $taxTerm->getter('taxonomyterm');
-        }
-        $recursoData[ 'starred' ] = $taxTermArray;
-      }
-
-      // Cargo los datos del campo batiburrillo
-      $extraDataDep = $recurso->getterDependence( 'id', 'ExtraDataModel');
-      if( $extraDataDep !== false ) {
-        foreach( $extraDataDep as $extraData ) {
-          foreach( $this->langAvailable as $lang ){
-            $recursoData[ $extraData->getter('name').'_'.$lang ] = $extraData->getter( 'value_'.$lang );
-          }
-        }
-      }
-
+    if( $valuesArray ) {
       $resourceView = new GeozzyResourceView();
-      // error_log( 'recursoData para FORM: ' . print_r( $recursoData, true ) );
-      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $recursoData );
+
+      // error_log( 'recursoData para FORM: ' . print_r( $valuesArray, true ) );
+      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $valuesArray );
 
       // Cambiamos el template del formulario
       $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
