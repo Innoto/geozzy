@@ -14,6 +14,84 @@ class ResourceController {
 
 
   /**
+     Load basic data values
+   *
+   * @param $resourceId integer
+   *
+   * @return array OR false
+   **/
+  public function getResourceData( $resourceId ) {
+    error_log( "ResourceController: getResourceData()" );
+    $resourceData = false;
+
+    $recModel = new ResourceModel();
+    $recList = $recModel->listItems( array( 'affectsDependences' =>
+      array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
+      'filters' => array( 'id' => $resourceId, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
+    $recObj = $recList->fetch();
+
+    if( $recObj ) {
+      $resourceData = $recObj->getAllData();
+      $resourceData = $resourceData[ 'data' ];
+
+      // Adapto el campo recursoTipo para mayor claridad
+      $resourceData['rTypeId'] = $resourceData['type'];
+      unset( $resourceData['type'] );
+
+      // Cargo los datos de urlAlias dentro de los del recurso
+      $urlAliasDep = $recObj->getterDependence( 'id', 'UrlAliasModel' );
+      if( $urlAliasDep !== false ) {
+        foreach( $urlAliasDep as $urlAlias ) {
+          $urlLang = $urlAlias->getter('lang');
+          if( $urlLang ) {
+            $resourceData[ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
+          }
+        }
+      }
+
+      // Cargo los datos de image dentro de los del recurso
+      $fileDep = $recObj->getterDependence( 'image' );
+      if( $fileDep !== false ) {
+        foreach( $fileDep as $fileModel ) {
+          $fileData = $fileModel->getAllData();
+          $resourceData[ 'image' ] = $fileData[ 'data' ];
+        }
+      }
+
+      // Cargo los datos de temáticas con las que está asociado el recurso
+      $topicsDep = $recObj->getterDependence( 'id', 'ResourceTopicModel');
+      if( $topicsDep !== false ) {
+        foreach( $topicsDep as $topicRel ) {
+          $topicsArray[$topicRel->getter('id')] = $topicRel->getter('topic');
+        }
+        $resourceData[ 'topics' ] = $topicsArray;
+      }
+
+      // Cargo los datos de destacados con los que está asociado el recurso
+      $taxTermDep = $recObj->getterDependence( 'id', 'ResourceTaxonomytermModel');
+      if( $taxTermDep !== false ) {
+        foreach( $taxTermDep as $taxTerm ) {
+          $taxTermArray[$taxTerm->getter('id')] = $taxTerm->getter('taxonomyterm');
+        }
+        $resourceData[ 'starred' ] = $taxTermArray;
+      }
+
+      // Cargo los datos del campo batiburrillo
+      $extraDataDep = $recObj->getterDependence( 'id', 'ExtraDataModel');
+      if( $extraDataDep !== false ) {
+        foreach( $extraDataDep as $extraData ) {
+          foreach( $this->langAvailable as $lang ){
+            $resourceData[ $extraData->getter('name').'_'.$lang ] = $extraData->getter( 'value_'.$lang );
+          }
+        }
+      }
+    }
+
+    return $resourceData;
+  }
+
+
+  /**
      Defino el formulario
    *
    * @param $formName string Nombre del form
@@ -23,7 +101,7 @@ class ResourceController {
    * @return Obj-Form
    **/
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "GeozzyResourceView: getFormObj()" );
+    // error_log( "ResourceController: getFormObj()" );
 
     $form = new FormController( $formName, $urlAction );
 
