@@ -448,6 +448,18 @@ class ResourceController {
   /**
     Taxonomy/Topic methods
    */
+  public function getOptionsTax( $taxIdName ) {
+    $options = array();
+    $taxTermModel =  new TaxonomyTermModel();
+    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ),
+      'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
+    while( $taxTerm = $taxTermList->fetch() ){
+      $options[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'name', LANG_DEFAULT );
+    }
+
+    return $options;
+  }
+
   private function setFormTopic( $form, $fieldName, $baseObj ) {
     $baseId = $baseObj->getter( 'id' );
     $formValues = $form->getFieldValue( $fieldName );
@@ -654,18 +666,6 @@ class ResourceController {
     return $result;
   }
 
-
-  public function getOptionsTax( $taxIdName ) {
-    $options = array();
-    $taxTermModel =  new TaxonomyTermModel();
-    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ),
-      'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
-    while( $taxTerm = $taxTermList->fetch() ){
-      $options[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'name', LANG_DEFAULT );
-    }
-
-    return $options;
-  }
 
 
 } // class ResourceController
