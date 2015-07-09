@@ -109,86 +109,14 @@ class ResourceController {
     $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
 
 
-    // Temáticas
-    $resTopics = array();
-    $topicModel =  new TopicModel();
-    $topicList = $topicModel->listItems();
-    while( $topic = $topicList->fetch() ){
-      $resTopics[ $topic->getter( 'id' ) ] = $topic->getter( 'name', LANG_DEFAULT );
-    }
-
-    /*
-    // Destacados
-    $resStarred = array();
-    $taxTermModel =  new TaxonomyTermModel();
-    $starredList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
-      'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
-    while( $star = $starredList->fetch() ){
-      $resStarred[ $star->getter( 'id' ) ] = $star->getter( 'name', LANG_DEFAULT );
-    }
-    */
-
-
-    // Collections
-    $resOptions = array();
-    $resValues = array();
-
-
-    $resourceCollectionModel =  new ResourceCollectionsModel();
-
+    $resCollections = array();
     if( isset( $valuesArray[ 'id' ] ) ) {
-      $resCollectionList = $resourceCollectionModel->listItems(
-        array(
-          'filters' => array(
-            'resource' => $valuesArray[ 'id' ]
-          ),
-          'order' => array(
-            'weight' => 1
-          ),
-          'affectsDependences' => array( 'CollectionModel' )
-        )
-      );
-
-      while( $res = $resCollectionList->fetch() ){
-
-        $collections = $res->getterDependence('collection', 'CollectionModel');
-        $resOptions[ $res->getter( 'collection' ) ] = $collections[0]->getter('title');
-        $resValues[] = $res->getter( 'collection' );
-
-      }
-
-      if( count( $resValues ) > 0 ) {
-        $valuesArray['collections'] = $resValues;
+      $colInfo = $this->getCollectionsInfo( $valuesArray[ 'id' ] );
+      if( $colInfo ) {
+        $resCollections = $colInfo['options'];
+        $valuesArray[ 'collections' ] = $colInfo['values'];
       }
     }
-
-
-
-    // $collections[0]->getter( 'title', LANG_DEFAULT )
-    /*
-        $collectionModel =  new CollectionModel();
-
-        if( isset( $valuesArray[ 'id' ] ) ) {
-          $collectionList = $collectionModel->listItems(
-            array(
-              'filters' => array(
-                'ResourceCollectionsModel.resource' => $valuesArray[ 'id' ]
-              ),
-              'affectsDependences' => array( 'ResourceCollectionsModel' ),
-              'joinType' => 'RIGHT'
-            )
-          );
-          if( $collectionList ) {
-            while( $res = $collectionList->fetch() ){
-              $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
-              $resValues[] = $res->getter( 'id' );
-            }
-            if( count( $resValues ) > 0 ) {
-              $valuesArray['collections'] = $resValues;
-            }
-          }
-        }
-    */
 
     $fieldsInfo = array(
       'rTypeId' => array(
@@ -249,8 +177,8 @@ class ResourceController {
         'rules' => array( 'maxlength' => '1000' )
       ),
       'collections' => array(
-        'params' => array( 'label' => __( 'Collections' ), 'type' => 'select', 'id' => 'resourceCollections', 'class' => 'cgmMForm-order',
-        'multiple' => true, 'options'=> $resOptions )
+        'params' => array( 'label' => __( 'Collections' ), 'type' => 'select', 'class' => 'cgmMForm-order',
+        'multiple' => true, 'options'=> $resCollections, 'id' => 'resourceCollections' )
       ),
       'addCollections' => array(
         'params' => array( 'id' => 'resourceAddCollection', 'type' => 'button', 'value' => __( 'Add Collection' ))
@@ -259,7 +187,7 @@ class ResourceController {
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Publicado' ))
       ),
       'topics' => array(
-        'params' => array( 'label' => __( 'Topics' ), 'type' => 'checkbox', 'options'=> $resTopics )
+        'params' => array( 'label' => __( 'Topics' ), 'type' => 'checkbox', 'options'=> $this->getOptionsTopic() )
       ),
       'starred' => array(
         'params' => array( 'label' => __( 'Starred' ), 'type' => 'checkbox', 'options'=> $this->getOptionsTax( 'starred' ) )
@@ -526,6 +454,18 @@ class ResourceController {
   /**
     Taxonomy/Topic methods
    */
+
+  public function getOptionsTopic() {
+    $topics = array();
+    $topicModel =  new TopicModel();
+    $topicList = $topicModel->listItems();
+    while( $topic = $topicList->fetch() ){
+      $topics[ $topic->getter( 'id' ) ] = $topic->getter( 'name', LANG_DEFAULT );
+    }
+
+    return $topics;
+  }
+
   public function getOptionsTax( $taxIdName ) {
     $options = array();
     $taxTermModel =  new TaxonomyTermModel();
@@ -537,6 +477,38 @@ class ResourceController {
 
     return $options;
   }
+
+  public function getCollectionsInfo( $resId ) {
+    $colInfo = array(
+      'options' => array(),
+      'values' => array()
+    );
+
+    $resourceCollectionModel =  new ResourceCollectionsModel();
+
+    if( isset( $resId ) ) {
+      $resCollectionList = $resourceCollectionModel->listItems(
+        array(
+          'filters' => array( 'resource' => $resId ),
+          'order' => array( 'weight' => 1 ),
+          'affectsDependences' => array( 'CollectionModel' )
+        )
+      );
+
+      while( $res = $resCollectionList->fetch() ){
+        $collections = $res->getterDependence('collection', 'CollectionModel');
+        $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[0]->getter('title');
+        $colInfo[ 'values' ][] = $res->getter( 'collection' );
+      }
+    }
+
+    if( count( $colInfo['values'] ) < 1 ) {
+      $colInfo = false;
+    }
+
+    return $colInfo;
+  }
+
 
   private function setFormTopic( $form, $fieldName, $baseObj ) {
     $baseId = $baseObj->getter( 'id' );
