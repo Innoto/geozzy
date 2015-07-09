@@ -7,10 +7,11 @@ class RTypeHotelController {
   public $rTypeModule = null;
   public $rExts = false;
 
-  public function __construct( $defResCtrl = null ){
+  public function __construct( $defResCtrl ){
     error_log( 'RTypeHotelController::__construct' );
 
     $this->defResCtrl = $defResCtrl;
+    //error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
 
     $this->rTypeModule = new rtypeHotel();
     if( property_exists( $this->rTypeModule, 'rext' ) && is_array( $this->rTypeModule->rext )

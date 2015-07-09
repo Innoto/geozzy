@@ -39,6 +39,7 @@ class ResourceController {
       $resTopics[ $topic->getter( 'id' ) ] = $topic->getter( 'name', LANG_DEFAULT );
     }
 
+    /*
     // Destacados
     $resStarred = array();
     $taxTermModel =  new TaxonomyTermModel();
@@ -47,6 +48,8 @@ class ResourceController {
     while( $star = $starredList->fetch() ){
       $resStarred[ $star->getter( 'id' ) ] = $star->getter( 'name', LANG_DEFAULT );
     }
+    */
+
 
     // Collections
     $resOptions = array();
@@ -181,7 +184,7 @@ class ResourceController {
         'params' => array( 'label' => __( 'Topics' ), 'type' => 'checkbox', 'options'=> $resTopics )
       ),
       'starred' => array(
-        'params' => array( 'label' => __( 'Starred' ), 'type' => 'checkbox', 'options'=> $resStarred )
+        'params' => array( 'label' => __( 'Starred' ), 'type' => 'checkbox', 'options'=> $this->getOptionsTax( 'starred' ) )
       )
     );
 
@@ -651,6 +654,18 @@ class ResourceController {
     return $result;
   }
 
+
+  public function getOptionsTax( $taxIdName ) {
+    $options = array();
+    $taxTermModel =  new TaxonomyTermModel();
+    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ),
+      'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
+    while( $taxTerm = $taxTermList->fetch() ){
+      $options[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'name', LANG_DEFAULT );
+    }
+
+    return $options;
+  }
 
 
 } // class ResourceController
