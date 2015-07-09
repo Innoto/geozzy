@@ -63,17 +63,17 @@ class ResourceController {
           ),
           'order' => array(
             'weight' => 1
-          )
-          // ,'affectsDependences' => array( 'CollectionModel' )
+          ),
+          'affectsDependences' => array( 'CollectionModel' )
         )
       );
 
       while( $res = $resCollectionList->fetch() ){
-        /*
+
         $collections = $res->getterDependence('collection', 'CollectionModel');
-        $resOptions[ $res->getter( 'collection' ) ] = $collections[0]->getter('title');;
+        $resOptions[ $res->getter( 'collection' ) ] = $collections[0]->getter('title', LANG_DEFAULT);;
         $resValues[] = $res->getter( 'collection' );
-        */
+
       }
 
       if( count( $resValues ) > 0 ) {
