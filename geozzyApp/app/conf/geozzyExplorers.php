@@ -3,8 +3,8 @@
 global $GEOZZY_EXPLORERS;
 
 
-$GEOZZY_EXPLORERS['sample'] = array(
+$GEOZZY_EXPLORERS['default'] = array(
   'module' => 'explorer',
-  'controllerFile' => 'controller/SampleExplorerController.php',
-  'controllerName' => 'SampleExplorer'
+  'controllerFile' => 'controller/DefaultExplorerController.php',
+  'controllerName' => 'DefaultExplorerController'
 );
