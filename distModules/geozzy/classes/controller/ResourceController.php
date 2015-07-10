@@ -4,7 +4,7 @@
 class ResourceController {
 
   public function __construct() {
-    error_log( 'ResourceController::__construct' );
+    // error_log( 'ResourceController::__construct' );
 
     common::autoIncludes();
     form::autoIncludes();
@@ -16,27 +16,26 @@ class ResourceController {
   /**
      Load basic data values
    *
-   * @param $resourceId integer
+   * @param $resId integer
    *
    * @return array OR false
    **/
-  public function getResourceData( $resourceId ) {
-    error_log( "ResourceController: getResourceData()" );
+  public function getResourceData( $resId ) {
+    // error_log( "ResourceController: getResourceData()" );
     $resourceData = false;
 
     $recModel = new ResourceModel();
     $recList = $recModel->listItems( array( 'affectsDependences' =>
       array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
-      'filters' => array( 'id' => $resourceId, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
+      'filters' => array( 'id' => $resId, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
     $recObj = $recList->fetch();
 
     if( $recObj ) {
-      $resourceData = $recObj->getAllData();
-      $resourceData = $resourceData[ 'data' ];
+      $resourceData = $recObj->getAllData( 'onlydata' );
 
       // Adapto el campo recursoTipo para mayor claridad
       $resourceData['rTypeId'] = $resourceData['type'];
-      unset( $resourceData['type'] );
+      //unset( $resourceData['type'] );
 
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recObj->getterDependence( 'id', 'UrlAliasModel' );
@@ -53,8 +52,7 @@ class ResourceController {
       $fileDep = $recObj->getterDependence( 'image' );
       if( $fileDep !== false ) {
         foreach( $fileDep as $fileModel ) {
-          $fileData = $fileModel->getAllData();
-          $resourceData[ 'image' ] = $fileData[ 'data' ];
+          $resourceData[ 'image' ] = $fileModel->getAllData( 'onlydata' );
         }
       }
 
@@ -68,6 +66,7 @@ class ResourceController {
       }
 
       // Cargo los datos de destacados con los que está asociado el recurso
+      // $resourceData[ 'starred' ] = $this->getResTerms( $resId );
       $taxTermDep = $recObj->getterDependence( 'id', 'ResourceTaxonomytermModel');
       if( $taxTermDep !== false ) {
         foreach( $taxTermDep as $taxTerm ) {
@@ -260,7 +259,7 @@ class ResourceController {
 
       $valuesArray = $form->getValuesArray();
 
-      if( $form->isFieldDefined( 'id' ) ) {
+      if( $form->isFieldDefined( 'id' ) && is_numeric( $form->getFieldValue( 'id' ) ) ) {
         $valuesArray[ 'userUpdate' ] = $user->getter( 'id' );
         $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
         unset( $valuesArray[ 'image' ] );
@@ -307,7 +306,7 @@ class ResourceController {
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
-      $this->setFormTax( $form, 'starred', 'starred', $resource );
+      $this->setFormTax( $form, 'starred', 'starred', $form->getFieldValue( 'starred' ), $resource );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra1' ) ) {
@@ -363,35 +362,36 @@ class ResourceController {
    */
   private function setFormFiledata( $form, $fieldName, $colName, $resObj ) {
     $fileField = $form->getFieldValue( $fieldName );
+    error_log( 'fileInfo: '. print_r( $fileField, true ) );
     $fileFieldValues = false;
     $error = false;
 
     if( isset( $fileField['status'] ) ) {
 
-      error_log( 'To Model - fileInfo: '. print_r( $fileField[ 'values' ], true ) );
+      // error_log( 'To Model - fileInfo: '. print_r( $fileField[ 'values' ], true ) );
 
       switch( $fileField['status'] ) {
         case 'LOADED':
-          error_log( 'To Model: '.$fileField['status'] );
+          // error_log( 'To Model: '.$fileField['status'] );
           $fileFieldValues = $fileField[ 'values' ];
           break;
         case 'REPLACE':
-          error_log( 'To Model: '.$fileField['status'] );
-          // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField[ 'prev' ], true ) );
+          // error_log( 'To Model: '.$fileField['status'] );
+          // // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField[ 'prev' ], true ) );
           /**
             TODO: Falta eliminar o ficheiro anterior
           */
           $fileFieldValues = $fileField[ 'values' ];
           break;
         case 'DELETE':
-          error_log( 'To Model: '.$fileField['status'] );
+          // error_log( 'To Model: '.$fileField['status'] );
           $fileFieldValues = null;
           /**
             TODO: Falta eliminar o ficheiro anterior
           */
           break;
         case 'EXIST':
-          error_log( 'To Model: '.$fileField['status'] );
+          // error_log( 'To Model: '.$fileField['status'] );
           $fileFieldValues = $fileField[ 'values' ];
           break;
         default:
@@ -414,11 +414,8 @@ class ResourceController {
         }
       }
       else {
-        $error = 'File status desconocido';
+        $error = 'Not file value';
       }
-    }
-    else {
-      $error = 'File status desconocido';
     }
 
     if( $error ) {
@@ -476,6 +473,31 @@ class ResourceController {
     }
 
     return $options;
+  }
+
+  public function getResTerms( $resId ) {
+    $taxTerms = array();
+    $taxTermModel =  new ResourceTaxonomytermModel();
+    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    while( $taxTerm = $taxTermList->fetch() ){
+      $taxTerms[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'taxonomyterm' );
+    }
+
+    return( count( $taxTerms ) > 0 ? $taxTerms : false );
+  }
+
+  public function getTermsGrouped( $termIds ) {
+    $taxGroups = array();
+    /*
+    TODO:
+
+    $taxGroupModel =  new TaxonomygroupModel();
+    $taxGroupList = $taxGroupModel->listItems( array( 'filters' => array( 'idInCSV' => implode( ',', $termIds ) ) ) );
+    while( $taxGroup = $taxGroupList->fetch() ){
+      $taxGroups[ $taxGroup->getter( 'id' ) ] = $taxGroup->getter( 'taxonomyterm' );
+    }
+    */
+    return( count( $taxGroups ) > 0 ? $taxGroups : false );
   }
 
   public function getCollectionsInfo( $resId ) {
@@ -553,35 +575,38 @@ class ResourceController {
     }
   }
 
-  private function setFormTax( $form, $fieldName, $taxId, $baseObj ) {
-    $baseId = $baseObj->getter( 'id' );
-    $formValues = $form->getFieldValue( $fieldName );
+  public function setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj ) {
+    // error_log( "ResourceController: setFormTax $fieldName, $taxGroup, ".$baseObj->getter( 'id' ) );
     $relPrevInfo = false;
+    $baseId = $baseObj->getter( 'id' );
+    // $taxTermIds = $form->getFieldValue( $fieldName );
 
-    if( $formValues !== false && !is_array( $formValues ) ) {
-      $formValues = array( $formValues );
+
+    if( $taxTermIds !== false && !is_array( $taxTermIds ) ) {
+      $taxTermIds = ( $taxTermIds !== '' &&  is_numeric( $taxTermIds ) ) ? array( $taxTermIds ) : false;
     }
 
     // Si estamos editando, repasamos y borramos relaciones sobrantes
     if( $baseId ) {
       $relModel = new ResourceTaxonomytermModel();
       $relFilter = array( 'resource' => $baseId );
-      if( is_numeric( $taxId ) ) {
-        $relFilter[ 'TaxonomygroupModel.id' ] = $taxId;
+      if( is_numeric( $taxGroup ) ) {
+        $relFilter[ 'TaxonomygroupModel.id' ] = $taxGroup;
       }
       else {
-        $relFilter[ 'TaxonomygroupModel.idName' ] = $taxId;
+        $relFilter[ 'TaxonomygroupModel.idName' ] = $taxGroup;
       }
       $relPrevList = $relModel->listItems( array(
         'filters' => $relFilter,
-        'affectsDependences' => array( 'TaxonomygroupModel' ),
-        'joinType' => 'RIGHT' ));
+        'affectsDependences' => array( 'TaxonomytermModel' ,'TaxonomygroupModel' ),
+        'joinType' => 'RIGHT'
+      ));
       if( $relPrevList ) {
         // estaban asignados antes
         $relPrevInfo = array();
         while( $relPrev = $relPrevList->fetch() ){
           $relPrevInfo[ $relPrev->getter( 'taxonomyterm' ) ] = $relPrev->getter( 'id' );
-          if( $formValues === false || !in_array( $relPrev->getter( 'taxonomyterm' ), $formValues ) ){ // desasignar
+          if( $taxTermIds === false || !in_array( $relPrev->getter( 'taxonomyterm' ), $taxTermIds ) ){ // desasignar
             $relPrev->delete();
           }
         }
@@ -589,9 +614,9 @@ class ResourceController {
     }
 
     // Creamos-Editamos todas las relaciones
-    if( $formValues !== false ) {
+    if( $taxTermIds !== false ) {
       $weight = 0;
-      foreach( $formValues as $value ) {
+      foreach( $taxTermIds as $value ) {
         $weight++;
         $info = array( 'resource' => $baseId, 'taxonomyterm' => $value, 'weight' => $weight );
         if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
@@ -604,7 +629,7 @@ class ResourceController {
         }
       }
     }
-  }
+  } // setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj )
 
   private function setFormCollection( $form, $fieldName, $baseObj ) {
     $baseId = $baseObj->getter( 'id' );

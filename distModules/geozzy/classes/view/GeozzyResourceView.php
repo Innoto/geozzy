@@ -19,7 +19,7 @@ class GeozzyResourceView extends View
     filedata::autoIncludes();
 
     $this->defResCtrl = new ResourceController();
-    error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
+    // error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
   }
 
   /**
@@ -52,7 +52,7 @@ class GeozzyResourceView extends View
 
     if( $this->rTypeCtrl ) {
       $rTypeFieldNames = $this->rTypeCtrl->manipulateForm( $form );
-      error_log( 'rTypeFieldNames: '.print_r( $rTypeFieldNames, true ) );
+      // error_log( 'rTypeFieldNames: '.print_r( $rTypeFieldNames, true ) );
     }
 
     // Una vez que lo tenemos completamente definido, guardamos el form en sesion
@@ -153,7 +153,7 @@ class GeozzyResourceView extends View
      Cargando controlador del RType
    **/
   public function loadRTypeCtrl( $rTypeId ) {
-    error_log( "GeozzyResourceView: loadRTypeCtrl( $rTypeId )" );
+    // error_log( "GeozzyResourceView: loadRTypeCtrl( $rTypeId )" );
 
     switch( $rTypeId ) {
       case 20: // 'rtypeHotel'

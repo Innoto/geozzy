@@ -1,4 +1,5 @@
 <?php
+rextAccommodation::autoIncludes();
 
 
 class RTypeHotelController {
@@ -8,7 +9,7 @@ class RTypeHotelController {
   public $rExts = false;
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeHotelController::__construct' );
+    // error_log( 'RTypeHotelController::__construct' );
 
     $this->defResCtrl = $defResCtrl;
     //error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
@@ -43,16 +44,12 @@ class RTypeHotelController {
     $rTypeFieldNames = array();
 
     $rTypeExtNames[] = 'rextAccommodation';
-    rextAccommodation::autoIncludes();
     $this->accomCtrl = new RExtAccommodationController( $this );
     $rExtFieldNames = $this->accomCtrl->manipulateForm( $form );
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-    error_log( 'rextAccommodation FieldNames: '.print_r( $rExtFieldNames, true ) );
-
 
     // Valadaciones extra
     // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
-
 
     return( $rTypeFieldNames );
   } // function manipulateForm()
@@ -65,6 +62,11 @@ class RTypeHotelController {
   public function resFormRevalidate( $form ) {
     error_log( "RTypeHotelController: resFormRevalidate()" );
 
+    if( !$form->existErrors() ) {
+      $this->accomCtrl = new RExtAccommodationController( $this );
+      $this->accomCtrl->resFormRevalidate( $form );
+    }
+
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
   }
 
@@ -75,38 +77,10 @@ class RTypeHotelController {
   public function resFormProcess( $form, $resource ) {
     error_log( "RTypeHotelController: resFormProcess()" );
 
-    /*
     if( !$form->existErrors() ) {
-      $valuesArray = $form->getValuesArray();
-      $resId = $form->getFieldValue( 'id' );
-
-      if( $resId && is_integer( $resId ) ) {
-        $recModel = new ResourceModel();
-        $recursosList = $recModel->listItems( array( 'affectsDependences' =>
-          array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
-          'filters' => array( 'id' => $resId, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1) ) );
-        $recurso = $recursosList->fetch();
-        $rTypeFilters = array( );
-      }
-
+      $this->accomCtrl = new RExtAccommodationController( $this );
+      $this->accomCtrl->resFormProcess( $form, $resource );
     }
-
-    if( !$form->existErrors() ) {
-      // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
-      $resource = new ResourceModel( $valuesArray );
-      if( $resource === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
-      }
-    }
-
-    if( !$form->existErrors()) {
-      $saveResult = $resource->save();
-      if( $saveResult === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
-      }
-    }
-    */
-
   }
 
   /**
@@ -116,6 +90,8 @@ class RTypeHotelController {
   public function resFormSuccess( $form, $resource ) {
     error_log( "RTypeHotelController: resFormSuccess()" );
 
+    $this->accomCtrl = new RExtAccommodationController( $this );
+    $this->accomCtrl->resFormSuccess( $form, $resource );
   }
 
 

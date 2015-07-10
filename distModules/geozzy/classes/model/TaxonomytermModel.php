@@ -42,10 +42,13 @@ class TaxonomytermModel extends Model
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'idInCSV' => ' id IN ( ? ) ',
+    'idNameInCSV' => ' idName IN ( ? ) '
+  );
 
 
-  function __construct( $datarray= array(), $otherRelObj = false ) {
+  function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
 

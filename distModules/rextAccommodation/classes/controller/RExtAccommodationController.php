@@ -1,4 +1,5 @@
 <?php
+//rextAccommodation::load('model/AccommodationModel.php');
 
 
 class RExtAccommodationController {
@@ -11,7 +12,7 @@ class RExtAccommodationController {
   public $taxonomies = false;
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtAccommodationController::__construct' );
+    // error_log( 'RExtAccommodationController::__construct' );
 
     $this->defRTypeCtrl = $defRTypeCtrl;
     $this->defResCtrl = $defRTypeCtrl->defResCtrl;
@@ -25,14 +26,55 @@ class RExtAccommodationController {
   }
 
 
-  public function getRExtValues( $resId ) {
-    error_log( "RExtAccommodationController: getRExtValues()" );
-    $valuesArray = false;
+  public function getRExtData( $resId ) {
+    // error_log( "ResourceController: getRExtData()" );
+    $rExtData = false;
 
-    if( $resId && is_integer( $resId ) ) {
+    $rExtModel = new AccommodationModel();
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'id' => $resId ) ) );
+    $rExtObj = $rExtList->fetch();
+
+    if( $rExtObj ) {
+      $rExtData = $rExtObj->getAllData( 'onlydata' );
+
+      // Cargo los datos de destacados con los que está asociado el recurso
+      $taxTerms = $this->defResCtrl->getResTerms( $resId );
+      if( $taxTerms ) {
+        foreach( $this->taxonomies as $tax ) {
+          // TODO: Separar los terms por taxonomia
+          $rExtData[ $tax['idName'] ] = $taxTerms;
+        }
+      }
+
+    }
+
+    return $rExtData;
+  }
+
+
+  public function getRExtFormValues( $formValuesArray ) {
+    error_log( "RExtAccommodationController: getRExtFormValues()" );
+    $valuesArray = array();
+
+    $numericFields = array( 'singleRooms', 'doubleRooms', 'familyRooms', 'beds', 'averagePrice' );
+
+    foreach( $formValuesArray as $key => $value ) {
+      $newKey = $this->delPrefix( $key );
+      if( $newKey !== $key ) {
+        if( $formValuesArray[ $key ] === '' && in_array( $newKey, $numericFields ) ) {
+          $valuesArray[ $newKey ] = null;
+        }
+        else {
+          $valuesArray[ $newKey ] = $formValuesArray[ $key ];
+        }
+      }
+    }
+
+    if( count( $valuesArray ) < 1 ) {
       $valuesArray = false;
     }
 
+    error_log( 'RExtAccommodationController: '.print_r( $valuesArray, true ) );
     return $valuesArray;
   }
 
@@ -40,30 +82,63 @@ class RExtAccommodationController {
     $prefixArray = array();
 
     foreach( $valuesArray as $key => $value ) {
-      $prefixArray[ $this->prefix . $key ] = $value;
+      $prefixArray[ $this->addPrefix( $key ) ] = $value;
     }
 
     return $prefixArray;
+  }
+
+  public function addPrefix( $text ) {
+
+    return $this->prefix . $text;
+  }
+
+  public function delPrefix( $text ) {
+    if( strpos( $text, $this->prefix ) === 0 ) {
+      $text = substr( $text, strlen( $this->prefix ) );
+    }
+
+    return $text;
   }
 
 
 
   /**
     Defino el formulario
-  */
+   */
   public function manipulateForm( $form ) {
     error_log( "RExtAccommodationController: manipulateForm()" );
 
     $rExtFieldNames = array();
 
     $fieldsInfo = array(
+      'reservationURL' => array(
+        'params' => array( 'label' => __( 'Hotel reservation URL' ) ),
+        'rules' => array( 'maxlength' => 2000 )
+      ),
+      'reservationPhone' => array(
+        'params' => array( 'label' => __( 'Hotel reservation phone' ) ),
+        'rules' => array( 'maxlength' => 200 )
+      ),
+      'singleRooms' => array(
+        'params' => array( 'label' => __( 'Hotel single rooms' ) ),
+        'rules' => array( 'digits' => true )
+      ),
+      'doubleRooms' => array(
+        'params' => array( 'label' => __( 'Hotel double rooms' ) ),
+        'rules' => array( 'digits' => true )
+      ),
+      'familyRooms' => array(
+        'params' => array( 'label' => __( 'Hotel family rooms' ) ),
+        'rules' => array( 'digits' => true )
+      ),
       'beds' => array(
         'params' => array( 'label' => __( 'Hotel beds' ) ),
-        'rules' => array( 'maxlength' => '100' )
+        'rules' => array( 'digits' => true )
       ),
       'averagePrice' => array(
         'params' => array( 'label' => __( 'Hotel average price' ) ),
-        'rules' => array( 'maxlength' => '100' )
+        'rules' => array( 'digits' => true )
       ),
       'accommodationType' => array(
         'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select',
@@ -104,10 +179,10 @@ class RExtAccommodationController {
     // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
 
     // Si es una edicion, añadimos el ID y cargamos los datos
-    $valuesArray = $this->getRExtValues( $form->getFieldValue( 'id' ) );
+    $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
     if( $valuesArray ) {
       $valuesArray = $this->prefixArrayKeys( $valuesArray );
-      $form->setField( $this->prefix.'id', array( 'type' => 'reserved', 'value' => null ) );
+      $form->setField( $this->addPrefix( 'id' ), array( 'type' => 'reserved', 'value' => null ) );
       $form->loadArrayValues( $valuesArray );
     }
 
@@ -131,7 +206,7 @@ class RExtAccommodationController {
 
   /**
     Validaciones extra previas a usar los datos del recurso base
-  */
+   */
   public function resFormRevalidate( $form ) {
     error_log( "RExtAccommodationController: resFormRevalidate()" );
 
@@ -141,39 +216,33 @@ class RExtAccommodationController {
   /**
     Creación-Edición-Borrado de los elementos del recurso base
     Iniciar transaction
-  */
+   */
   public function resFormProcess( $form, $resource ) {
     error_log( "RExtAccommodationController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
-      $valuesArray = $form->getValuesArray();
-      $resId = $form->getFieldValue( 'id' );
+      $valuesArray = $this->getRExtFormValues( $form->getValuesArray() );
 
-      if( $resId && is_integer( $resId ) ) {
-        $recModel = new ResourceModel();
-        $recursosList = $recModel->listItems( array( 'affectsDependences' =>
-          array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
-          'filters' => array( 'id' => $resId, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1) ) );
-        $recurso = $recursosList->fetch();
+      $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-        $rTypeFilters = array( );
+      // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
+      $rExtModel = new AccommodationModel( $valuesArray );
+      if( $rExtModel === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
-
     }
 
-    if( !$form->existErrors() ) {
-      // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
-      $resource = new ResourceModel( $valuesArray );
-      if( $resource === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+    foreach( $this->taxonomies as $tax ) {
+      $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+      if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
+        $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
       }
     }
 
     if( !$form->existErrors()) {
-
-      $saveResult = $resource->save();
+      $saveResult = $rExtModel->save();
       if( $saveResult === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
     }
 
@@ -182,7 +251,7 @@ class RExtAccommodationController {
   /**
     Enviamos el OK-ERROR a la BBDD y al formulario
     Finalizar transaction
-  */
+   */
   public function resFormSuccess( $form, $resource ) {
     error_log( "RExtAccommodationController: resFormSuccess()" );
 

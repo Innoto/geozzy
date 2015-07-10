@@ -28,7 +28,11 @@ class ResourceTaxonomytermModel extends Model
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'idInCSV' => ' id IN ( ? ) ',
+    'idTermInCSV' => ' idName IN ( ? ) '
+  );
+
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {
