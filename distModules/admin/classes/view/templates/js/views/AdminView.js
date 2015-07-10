@@ -5,6 +5,8 @@ var AdminView = Backbone.View.extend({
 
   childView: false,
 
+  bodyClass: false,
+
   initialize: function(){
     this.renderMenu();
   },
@@ -117,6 +119,16 @@ var AdminView = Backbone.View.extend({
     $('#side-menu .'+menuClass+' a').addClass('active');
 
     $('.navbar-collapse').collapse('hide');
+  },
+
+  setBodyClass: function( name ) {
+    if( this.bodyClass ) {
+      $('body').removeClass( this.bodyClass );
+    }
+
+    $('body').addClass( name );
+    this.bodyClass = name;
+
   }
 
 });

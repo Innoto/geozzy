@@ -36,94 +36,114 @@ var AdminRouter = Backbone.Router.extend({
 
   charts: function() {
     app.mainView.loadAjaxContent( '/admin/charts' );
+    app.mainView.setBodyClass('charts');
   },
 
   categoryEdit: function( id ){
     app.mainView.categoryEdit( id );
     app.mainView.menuSelect('category_'+id);
-
+    app.mainView.setBodyClass('categoryEdit');
   },
 
   categoryNewTerm: function( category ){
     app.mainView.loadAjaxContent( '/admin/category/'+category+'/term/create');
+    app.mainView.setBodyClass('categoryNewTerm');
   },
 
   categoryEditTerm: function( category, term ){
     app.mainView.loadAjaxContent( '/admin/category/'+category+'/term/edit/'+term);
+    app.mainView.setBodyClass('categoryEditTerm');
   },
 
   // User
   userList: function(){
     app.mainView.loadAjaxContent( '/admin/user/list' );
     app.mainView.menuSelect('user');
+    app.mainView.setBodyClass('userList');
   },
 
   userCreate: function( ) {
     app.mainView.loadAjaxContent( '/admin/user/create');
+    app.mainView.setBodyClass('userCreate');
   },
 
   userEdit: function( id ) {
     app.mainView.loadAjaxContent( '/admin/user/edit/' + id );
+    app.mainView.setBodyClass('userEdit');
   },
 
   userShow: function() {
     app.mainView.loadAjaxContent( '/admin/user/show' );
+    app.mainView.setBodyClass('userShow');
   },
 
   // Roles
   roleList: function(){
     app.mainView.loadAjaxContent( '/admin/role/list' );
     app.mainView.menuSelect('roles');
+    app.mainView.setBodyClass('roleList');
   },
 
   roleCreate: function( ) {
     app.mainView.loadAjaxContent( '/admin/role/create');
+    app.mainView.setBodyClass('roleCreate');
   },
 
   roleEdit: function( id ) {
     app.mainView.loadAjaxContent( '/admin/role/edit/' + id );
+    app.mainView.setBodyClass('roleEdit');
   },
 
   // resources
   resourceList: function() {
     app.mainView.loadAjaxContent( '/admin/resource/list');
     app.mainView.menuSelect('contents');
+    app.mainView.setBodyClass('resourceList');
   },
 
   resourceintopicList: function(id) {
     app.mainView.loadAjaxContent( '/admin/resourceintopic/list/'+id);
     app.mainView.menuSelect('topic_'+id);
+    app.mainView.setBodyClass('resourceintopicList');
   },
 
   resourceouttopicList: function(id) {
     app.mainView.loadAjaxContent( '/admin/resourceouttopic/list/'+id);
+    app.mainView.setBodyClass('resourceouttopicList');
   },
 
   starredList: function( id ){
     app.mainView.starredList( id );
     app.mainView.menuSelect('star_'+id);
+    app.mainView.setBodyClass('starredList');
 
   },
   starredAssign: function(id) {
     app.mainView.loadAjaxContent( '/admin/starred/'+id+'/assign');
+    app.mainView.setBodyClass('starredAssign');
   },
 
 
   resourceCreate:function() {
     app.mainView.loadAjaxContent( '/admin/resource/create');
+    app.mainView.setBodyClass('resourceCreate');
   },
   resourceCreateinTopic:function( topic, resourcetype) {
     app.mainView.loadAjaxContent( '/admin/resource/create/'+topic+'/'+resourcetype);
+    app.mainView.setBodyClass('resourceCreateinTopic');
   },
   resourceEdit:function( id )   {
     app.mainView.loadAjaxContent( '/admin/resource/edit/' + id);
+    app.mainView.setBodyClass('resourceEdit');
   },
 
   collectionCreate:function() {
     app.mainView.loadAjaxContent( '/admin/collection/create');
+    app.mainView.setBodyClass('collectionCreate');
   },
   collectionEdit:function( id )   {
     app.mainView.loadAjaxContent( '/admin/collection/edit/' + id);
+    app.mainView.setBodyClass('collectionEdit');       
   }
 
 });
