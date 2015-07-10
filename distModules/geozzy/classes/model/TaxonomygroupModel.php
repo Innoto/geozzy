@@ -39,10 +39,12 @@ class TaxonomygroupModel extends Model
       'vo' => 'FiledataModel',
       'key' => 'id'
     )
-
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'idInCSV' => ' id IN ( ? ) ',
+    'idNameInCSV' => ' idName IN ( ? ) '
+  );
 
 
   function __construct( $datarray= array(), $otherRelObj = false ) {

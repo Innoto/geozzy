@@ -215,7 +215,8 @@ class rextAccommodation extends Module
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RExtAccommodationController.php'
+    'controller/RExtAccommodationController.php',
+    'model/AccommodationModel.php'
   );
 
 

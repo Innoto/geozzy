@@ -55,15 +55,15 @@ class ExplorerAPIView extends View
                             "description": "explorer name",
                             "dataType": "string",
                             "paramType": "path",
-                            "defaultValue": "false",
+                            "defaultValue": "default",
                             "required": false
                           },
                           {
                             "name": "request",
-                            "description": "request type ( initial or current )",
+                            "description": "request type ( index | data | filter )",
                             "dataType": "string",
                             "paramType": "path",
-                            "defaultValue": "initial",
+                            "defaultValue": "index",
                             "required": true
                           }
 
@@ -107,12 +107,16 @@ class ExplorerAPIView extends View
       $explorer = new $explorerConf['controllerName']();
 
 
-      if( $params[1] == 'initial' ) {
-        $explorer->serveInitialData();
+      if( $params[1] == 'index' ) {
+        $explorer->serveIndexData();
       }
       else
-      if( $params[1] == 'current' ) {
-        $explorer->serveCurrentData();
+      if( $params[1] == 'data' ) {
+        $explorer->serveData();
+      }
+      else
+      if( $params[1] == 'filter' ) {
+        $explorer->serveFilter();
       }
 
 
