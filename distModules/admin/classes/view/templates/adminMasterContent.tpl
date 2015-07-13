@@ -1,5 +1,5 @@
 
-<div class="headSection clearfix">
+<div class="headSection container-fluid clearfix">
   {block name="headSection"}
 
   <div class="row">

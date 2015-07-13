@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-  background-color: @gzz-bck-light-3;
+  background-color: @gzzColor-bck-2;
   position:relative;
 }
 
@@ -17,7 +17,7 @@ body {
   min-height: 100%;
 }
 #menu-wrapper {
-  background-color: @gzz-bck-dark-1;
+  background-color: @gzzColor-bck-7;
   height: 100%;
   width: 240px;
   position:fixed;
@@ -38,10 +38,10 @@ body {
     float: right;
   }
   .headSection {
-    border-bottom: 3px solid @gzz-color;
+    border-bottom: 3px solid @gzzColor-positive;
     padding: 20px ;
     padding-left: 260px;
-    background-color: @gzz-bck-dark-1;
+    background-color: @gzzColor-bck-7;
     height: 75px;
     width: 100%;
     position:fixed;
@@ -50,12 +50,12 @@ body {
 
     h2 {
       margin: 0;
-      color: @gzz-color;
+      color: @gzzColor-text-light;
       text-transform: uppercase;
       font-size: 28px;
     }
     .navbar-toggle {
-      background-color: @gzz-color;
+      background-color: @gzzColor-positive;
       color: #fff;
       margin: 0px;
       padding: 0px 10px;
@@ -63,7 +63,7 @@ body {
       height: 25px;
 
       &:hover{
-        background-color: @gzz-color - #111;
+        background-color: @gzzColor-positive-hover;
       }
     }
   }
@@ -71,7 +71,6 @@ body {
     padding: 95px 20px 20px 20px;
   }
   .footerSection {
-    border-top: 3px solid @gzz-bck-light-2;
     padding: 20px;
   }
 
@@ -94,17 +93,17 @@ body {
   }
   .userInfo{
     .dropdown-toggle:hover{
-      color: @gzz-color;
+      color: @gzzColor-positive;
     }
     .dropdown-menu{
       margin:0;
-      background-color: @gray-lighter;
+      background-color: @gzzColor-bck-2;
       width:100%;
       a{
-        color: @gzz-color;
+        color: @gzzColor-positive;
         &:hover{
-          color: white;
-          background-color: @gzz-color;
+          color: @gzzColor-text-light;
+          background-color: @gzzColor-positive;
 
         }
       }
@@ -115,19 +114,19 @@ body {
       padding-left: 0;
       padding-right: 0;
       .menuLogo{
-        background: white;
+        background: @gzzColor-bck-1;
       }
     }
     ul li {
       a {
-        color: white;
+        color: @gzzColor-text-light;
         &.active {
-          background-color: @gzz-bck-light-3;
-          color: @gzz-color;
+          background-color: @gzzColor-bck-2;
+          color: @gzzColor-positive;
         }
         &:hover{
-          background-color: @gzz-bck-light-3;
-          color: @gzz-color;
+          background-color: @gzzColor-bck-2;
+          color: @gzzColor-positive;
         }
       }
     }
@@ -162,30 +161,32 @@ body {
 
 
 // Buttons
-.btn-default,
-.btn-primary,
-.btn-success,
-.btn-info,
-.btn-warning,
-.btn-danger{
-  border: none;
-}
-
-.btn-default {
-  color: @gzz-color;
-}
-.btn-primary {
-  background-color: @gzz-color;
+.btn-default, .btn-info {
   &:hover {
-    background-color: @gzz-color - #111111;
+    background-color: @gzzColor-rest-hover;
+  }
+  &.btn-outline{
+    color: @gzzColor-rest;
+    border: 1px solid @gzzColor-rest;
   }
 }
-.btn-danger {
-  background-color: @gzz-color-opposite;
+.btn-primary, .btn-success {
   &:hover {
-    background-color: @gzz-color-opposite - #111111;
+    background-color: @gzzColor-positive-hover;
   }
-
+  &.btn-outline{
+    color: @gzzColor-positive;
+    border: 1px solid @gzzColor-positive;
+  }
+}
+.btn-danger, .btn-warning {
+  &:hover {
+    background-color: @gzzColor-negative-hover;
+  }
+  &.btn-outline{
+    color: @gzzColor-negative;
+    border: 1px solid @gzzColor-negative;
+  }
 }
 
 .btn-outline {
@@ -194,53 +195,32 @@ body {
     transition: all .5s;
 }
 
-.btn-primary.btn-outline {
-    color: @gzz-color;
-    border: 1px solid @gzz-color;
-}
-.btn-default.btn-outline {
-    color: #fff;
-    border: 1px solid #fff;
-    &:hover {
-      color: @gzz-color;
-    }
-}
-
-.btn-danger.btn-outline {
-    color: @brand-danger;
-    border: 1px solid @brand-danger;
-}
-
-.btn-primary.btn-outline:hover,
-.btn-danger.btn-outline:hover {
-    color: white;
-}
-
 .panel{
   border:0px;
   .panel-heading{
     border:0px;
-    background-color: @gzz-bck-light-2;
+    background-color: @gzzColor-bck-2;
   }
 }
 
 
 .modal{
   .modal-header{
-    background: @gzz-bck-dark-1;
-    color: #fff;
+    background: @gzzColor-bck-7;
+    color: @gzzColor-text-light;
     text-transform: uppercase;
     .close{
-      color: #fff;
+      color: @gzzColor-text-light;
       &:hover{
-        color: @gzz-bck-light-2;
+        color: @gzzColor-bck-2;
       }
     }
   }
-  .modal-body{ background: @gzz-bck-light-3 }
-  .modal-footer{ background: @gzz-bck-dark-1 }
+  .modal-body{ background: @gzzColor-bck-2 }
+  .modal-footer{ background: @gzzColor-bck-7 }
 
 }
+
 .modal-backdrop {
     opacity: 0.7;
 }
@@ -260,7 +240,7 @@ body {
     height: auto;
     z-index: 9;
     top: 85px;
-    border-bottom: 2px solid @gzz-color;
+    border-bottom: 2px solid @gzzColor-positive;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
 
     .menuLogo{

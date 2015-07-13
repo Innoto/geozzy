@@ -2,7 +2,7 @@
 
 {block name="contentSection"}
 
-<div class="admin-cols-12">
+<div class="admin-cols-12 container-fluid">
   <div class="row">
 
     <div class="col-lg-12">

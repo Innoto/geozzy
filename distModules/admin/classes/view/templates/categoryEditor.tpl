@@ -29,7 +29,7 @@
 
 
   <div class="contentSection clearfix">
-    <div class="admin-cols-8-4">
+    <div class="admin-cols-8-4 container-fluid">
       <div class="row">
         <div class="col-lg-8">
           <div class="panel panel-default">
