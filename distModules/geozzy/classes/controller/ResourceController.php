@@ -3,6 +3,8 @@
 
 class ResourceController {
 
+  public $rTypeCtrl = null;
+
   public function __construct() {
     // error_log( 'ResourceController::__construct' );
 
@@ -10,6 +12,33 @@ class ResourceController {
     form::autoIncludes();
     user::autoIncludes();
     filedata::autoIncludes();
+  }
+
+  /**
+     Cargando controlador del RType
+   **/
+  public function getRTypeCtrl( $rTypeId ) {
+    // error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
+
+    if( !$this->rTypeCtrl ) {
+      switch( $rTypeId ) {
+        case 20: // 'rtypeHotel'
+          rtypeHotel::autoIncludes();
+          $this->rTypeCtrl = new RTypeHotelController( $this );
+          break;
+        /*
+        case 'rtypeRestaurant':
+          rtypeHotel::autoIncludes();
+          $this->rTypeCtrl = new RTypeRestaurantController( $this );
+          break;
+        */
+        default:
+          $this->rTypeCtrl = false;
+          break;
+      }
+    }
+
+    return $this->rTypeCtrl;
   }
 
 
@@ -741,6 +770,60 @@ class ResourceController {
     return $result;
   }
 
+
+
+
+
+  /**
+    Visualizamos el Recurso
+  */
+  public function getViewBlock( $resObj ) {
+    error_log( "GeozzyResourceView: getViewBlock()" );
+
+    $resBlock = $this->getResourceBlock( $resObj );
+
+    $this->getRTypeCtrl( $resObj->getter( 'type' ) ); // TODO: Usar rTypeId
+
+    if( $this->rTypeCtrl ) {
+      $rTypeBlock = $this->rTypeCtrl->getViewBlock( $resObj, $resBlock );
+
+      if( $rTypeBlock ) {
+        $resBlock = $rTypeBlock;
+      }
+    }
+
+    return( $resBlock );
+  } // function getViewBlock( $resObj )
+
+
+  public function getResourceBlock( $resObj ) {
+    error_log( "GeozzyResourceView: getResourceBlock()" );
+
+    $template = new Template();
+
+    // DEBUG
+    $htmlMsg = "\n<pre>\n" . print_r( $resObj->getAllData( '' ), true ) . "\n</pre>\n";
+
+    foreach( $resObj->getCols() as $key => $value ) {
+      $template->assign( $key, $resObj->getter( $key ) );
+      // error_log( $key . ' === ' . print_r( $resObj->getter( $key ), true ) );
+    }
+
+    // Cargo los datos de image dentro de los del recurso
+    $fileDep = $resObj->getterDependence( 'image' );
+    if( $fileDep !== false ) {
+      $titleImage = $fileDep['0']->getter('title');
+      $template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"
+        alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
+      // error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
+    }
+    else {
+      $template->assign( 'image', '<p>'.__('None').'</p>' );
+    }
+    $template->setTpl( 'resourceViewBlock.tpl', 'geozzy' );
+
+    return( $template );
+  } // function getResourceBlock( $resObj )
 
 
 } // class ResourceController

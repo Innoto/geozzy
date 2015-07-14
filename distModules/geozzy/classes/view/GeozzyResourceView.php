@@ -33,7 +33,6 @@ class GeozzyResourceView extends View
   }
 
 
-
   /**
      Defino el formulario
    *
@@ -48,8 +47,7 @@ class GeozzyResourceView extends View
 
     $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
-    $this->loadRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
-
+    $this->rTypeCtrl = $this->defResCtrl->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
     if( $this->rTypeCtrl ) {
       $rTypeFieldNames = $this->rTypeCtrl->manipulateForm( $form );
       // error_log( 'rTypeFieldNames: '.print_r( $rTypeFieldNames, true ) );
@@ -111,7 +109,7 @@ class GeozzyResourceView extends View
       $this->defResCtrl->resFormRevalidate( $form );
     }
 
-    $this->loadRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
+    $this->rTypeCtrl = $this->defResCtrl->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
 
     // Validaciones extra previas de elementos externos al recurso base
     if( $this->rTypeCtrl && !$form->existErrors() ) {
@@ -149,27 +147,48 @@ class GeozzyResourceView extends View
 
 
 
-  /**
-     Cargando controlador del RType
-   **/
-  public function loadRTypeCtrl( $rTypeId ) {
-    // error_log( "GeozzyResourceView: loadRTypeCtrl( $rTypeId )" );
 
-    switch( $rTypeId ) {
-      case 20: // 'rtypeHotel'
-        rtypeHotel::autoIncludes();
-        $this->rTypeCtrl = new RTypeHotelController( $this->defResCtrl );
-        break;
-      /*
-      case 'rtypeRestaurant':
-        rtypeHotel::autoIncludes();
-        $this->rTypeCtrl = new RTypeRestaurantController( $this->defResCtrl );
-        break;
-      */
-      default:
-        $this->rTypeCtrl = false;
-        break;
+  /**
+    Visualizamos el Recurso
+  */
+  public function showResource( $resId = false ) {
+    error_log( "GeozzyResourceView: showResource()" );
+
+    $resObj = false;
+    $resBlock = false;
+    $htmlMsg = '';
+
+    $resModel = new ResourceModel();
+    if( $resId ) {
+      $resList = $resModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
+        'filters' => array( 'id' => $resId ) ) );
     }
-  }
+    else {
+      $resList = $resModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
+        'order' => array( 'id' => -1 ) ) );
+    }
+
+    $resObj = $resList ? $resList->fetch() : false;
+
+    if( $resObj ) {
+
+      $loadFields = array( 'headKeywords', 'headDescription', 'headTitle', 'title' );
+      foreach( $loadFields as $field ) {
+        $this->template->assign( $field, $resObj->getter( $field ) );
+      }
+
+      $resBlock = $this->defResCtrl->getViewBlock( $resObj );
+      $this->template->setBlock( 'resourceBlock', $resBlock );
+      error_log( 'Hai Recurso - Hai Template' );
+    }
+    else {
+      $htmlMsg = '<span class="error">' . __('Error: Imposible mostrar el recurso ') . $resId . '</span>';
+      $this->template->assign( 'htmlMsg', $htmlMsg );
+      error_log( 'NON hai Recurso: ' . $htmlMsg );
+    }
+
+    $this->template->setTpl( 'resourceViewPage.tpl', 'geozzy' );
+    $this->template->exec();
+  } // function showResource( $resId = false )
 
 } // class ResourceView extends Vie

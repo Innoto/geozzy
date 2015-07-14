@@ -81,11 +81,19 @@ class RecursoView extends View
   } // function editarForm()
 
 
-
   /**
     Visualizamos el Recurso
   */
   public function verRecurso( $urlParams = false ) {
+    error_log( "RecursoView: showRecurso()" . print_r( $urlParams, true ) );
+
+    $resourceView = new GeozzyResourceView();
+    $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;
+    $resourceView->showResource( $resId );
+  } // function verRecurso()
+
+
+  public function verRecurso2( $urlParams = false ) {
     error_log( "RecursoView: showRecurso()" . print_r( $urlParams, true ) );
 
     $idResource = false;
@@ -133,7 +141,7 @@ class RecursoView extends View
 
     $this->template->setTpl( 'verRecurso.tpl' );
     $this->template->exec();
-  } // function showRecurso()
+  } // function verRecurso2()
 
 
 
