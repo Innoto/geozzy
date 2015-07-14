@@ -371,7 +371,7 @@ class CoreAPIView extends View
     $c = '';
     while ($valueobject = $result->fetch() )
     {
-      $allData = $valueobject->getAllData();
+      $allData = $valueobject->getAllData('onlydata');
       echo $c.json_encode( $allData);
       if($c === ''){$c=',';}
     }

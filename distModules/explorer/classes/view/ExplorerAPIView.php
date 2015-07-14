@@ -23,7 +23,7 @@ class ExplorerAPIView extends View
   }
 
 
-  function docJson() {
+  function explorerJson() {
     header('Content-type: application/json');
 
 
@@ -47,7 +47,7 @@ class ExplorerAPIView extends View
                         ],
 
                         "httpMethod": "GET",
-                        "nickname": "resource",
+                        "nickname": "explorer",
                         "parameters": [
 
                           {
@@ -81,11 +81,50 @@ class ExplorerAPIView extends View
     <?php
   }
 
+  function explorerListJson() {
+    header('Content-type: application/json');
+
+
+    ?>
+    {
+        "resourcePath": "/explorerList.json",
+        "basePath": "/api",
+        "apis": [
+            {
+                "operations": [
+                    {
+                        "errorResponses": [
+                            {
+                                "reason": "The explorer list",
+                                "code": 200
+                            },
+                            {
+                                "reason": "Explorer list not found",
+                                "code": 404
+                            }
+                        ],
+
+                        "httpMethod": "GET",
+                        "nickname": "explorerlist",
+                        "parameters": [
+                        ],
+                        "summary": "Fetches explorer list"
+                    }
+                ],
+                "path": "/explorerList",
+                "description": ""
+            }
+        ]
+
+    }
+
+    <?php
+  }
 
 
 
 
-  // resources
+  // explorer
 
   function explorer( $param ) {
 
@@ -130,5 +169,28 @@ class ExplorerAPIView extends View
 
 
   }
+
+
+  // explorer list
+
+  function explorerList(  ) {
+
+    require_once APP_BASE_PATH."/conf/geozzyExplorers.php";
+    global $GEOZZY_EXPLORERS;
+
+
+
+
+    if( sizeof( $GEOZZY_EXPLORERS ) > 0 ) {
+      header('Content-type: application/json');
+      echo json_encode($GEOZZY_EXPLORERS);
+    }
+    else {
+      header("HTTP/1.0 404 Not Found");
+    }
+
+
+  }
+
 
 }
