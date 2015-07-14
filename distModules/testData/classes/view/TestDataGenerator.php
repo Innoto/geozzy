@@ -123,7 +123,7 @@ class TestDataGenerator extends View
       $typeNum = rand(1,$k-1);
 
       // creación del recurso
-      $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'type' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom);
+      $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom);
       $resource =  new ResourceModel($data);
 
       // asignamos taxonomías ao recurso
@@ -133,7 +133,7 @@ class TestDataGenerator extends View
         for ($c=1; $c<=$taxtermTimes; $c++){
             $taxtermNum = rand(1,$m-1);
             if (!in_array($taxtermArray[$taxtermNum],$usedTaxterm)){
-              $usedTaxterm[$c] = $taxtermArray[$taxtermNum]; 
+              $usedTaxterm[$c] = $taxtermArray[$taxtermNum];
               $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxtermArray[$taxtermNum])) );
             }
         }
@@ -146,7 +146,7 @@ class TestDataGenerator extends View
         for ($a=1; $a<=$topicTimes; $a++){
             $topicNum = rand(1,$l-1);
             if (!in_array($topicArray[$topicNum],$usedTopic)){
-              $usedTopic[$a] = $topicArray[$topicNum]; 
+              $usedTopic[$a] = $topicArray[$topicNum];
               $resource->setterDependence( 'id', new ResourceTopicModel( array('resource' => $resource->getter('id'), 'topic' => $topicArray[$topicNum])) );
             }
         }
