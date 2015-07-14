@@ -123,7 +123,7 @@ class TestDataGenerator extends View
       $typeNum = rand(1,$k-1);
 
       // creación del recurso
-      $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'type' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom);
+      $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom);
       $resource =  new ResourceModel($data);
 
       // asignamos taxonomías ao recurso
