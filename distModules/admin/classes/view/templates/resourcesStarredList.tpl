@@ -11,12 +11,12 @@
             <i class="fa fa-bars"></i>
         </button>
         <div class="headerTitleContainer">
-          <h2>{t}Resources Starred in{/t} <%- name_{$langDefault} %> </h2>
+          <h3>{t}Resources Starred in{/t} <%- name_{$langDefault} %> </h3>
         </div>
       </div>
       <div class="col-md-4 col-sm-12 clearfix">
         <div class="headerActionsContainer">
-          <button type="button" class="assignResourceTerm btn btn-default btn-outline"> {t}Assign to{/t} <%- name_{$langDefault} %></button>
+          <button type="button" class="assignResourceTerm btn btn-default"> {t}Assign to{/t} <%- name_{$langDefault} %></button>
           <span class="saveChanges">
             <button class="btn btn-danger cancel">{t}Cancel{/t}</button>
             <button class="btn btn-primary save">{t}Save{/t}</button>
@@ -29,7 +29,7 @@
 
 
   <div class="contentSection clearfix">
-    <div class="admin-cols-8-4 container-fluid">
+    <div class="admin-cols-8-4">
       <div class="row">
         <div class="col-lg-8">
           <div class="panel panel-default">

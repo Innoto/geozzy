@@ -1,5 +1,5 @@
 
-<div class="headSection container-fluid clearfix">
+<div class="headSection clearfix">
   {block name="headSection"}
 
   <div class="row">
@@ -9,12 +9,12 @@
           <i class="fa fa-bars"></i>
       </button>
       <div class="headerTitleContainer">
-        <h2>
+        <h3>
         {block name="headTitle"}
           {if !isset($headTitle)}{assign var='headTitle' value=''}{/if}
           {$headTitle}
         {/block}
-        </h2>
+        </h3>
       </div>
     </div>
     <div class="col-md-4 col-sm-12 clearfix">

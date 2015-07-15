@@ -3,7 +3,7 @@
 
 {block name="contentSection"}
 
-<div class="admin-cols-8-4 container-fluid">
+<div class="admin-cols-8-4">
   <div class="row">
 
     <div class="col-lg-8">

@@ -8,7 +8,8 @@
 
   {if $icon ne '' or $title ne ''}
   <div class="panel-heading">
-    <strong><i class="fa {$icon} fa-fw"></i>{$title}</strong>
+    <!--<i class="fa {$icon} fa-fw"></i>-->
+    {$title}
   </div>
   {/if}
 {/block}

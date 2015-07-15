@@ -3,7 +3,6 @@
 <style>
   label { display: block; }
   .cgmMForm-field { max-width: none !important; }
-  .cgmMForm-wrap { margin-bottom: 10px; }
 </style>
 <script type="text/javascript" src="/media/module/admin/js/adminResource.js"></script>
 
