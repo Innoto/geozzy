@@ -173,11 +173,13 @@ body {
 /*BUTTON BASE*/
 .btn{
   .btn-gzz(30);
+  text-transform: uppercase;
+  /*letter-spacing: 1px;*/
 }
 
 .btn-gzz(@h){
-  padding: @h/5px @h/2px;
-  margin: 0 0 0 @h/2px;
+  padding: @h/6px @h/2px;
+  /*margin: 0 0 0 @h/2px;*/
 }
 
 
@@ -187,7 +189,7 @@ body {
   }
   &.btn-outline{
     color: @gzzColor-rest;
-    border: 1px solid @gzzColor-rest;
+    border: 2px solid @gzzColor-rest;
   }
 }
 .btn-primary, .btn-success {
@@ -196,7 +198,7 @@ body {
   }
   &.btn-outline{
     color: @gzzColor-positive;
-    border: 1px solid @gzzColor-positive;
+    border: 2px solid @gzzColor-positive;
   }
 }
 .btn-danger, .btn-warning {
@@ -205,7 +207,7 @@ body {
   }
   &.btn-outline{
     color: @gzzColor-negative;
-    border: 1px solid @gzzColor-negative;
+    border: 2px solid @gzzColor-negative;
   }
 }
 
@@ -214,6 +216,22 @@ body {
     background-color: transparent;
     transition: all .5s;
 }
+
+
+input[type="button"],
+button{
+  .btn;
+  .btn-info;
+  .btn-outline;
+  background-color: transparent;
+}
+
+input[type="submit"],
+button[type="submit"]{
+  .btn;
+  .btn-primary;
+}
+
 
 /*PANEL BASE*/
 .panel{

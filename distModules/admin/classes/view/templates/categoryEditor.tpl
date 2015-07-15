@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-4 col-sm-12 clearfix">
         <div class="headerActionsContainer">
-          <button type="button" class="newTaxTerm btn btn-default btn-outline"> {t}Add{/t} <%- name %></button>
+          <button type="button" class="newTaxTerm btn btn-default"> {t}Add{/t} <%- name %></button>
           <span class="saveChanges">
             <button class="btn btn-danger cancelTerms">{t}Cancel{/t}</button>
             <button class="btn btn-primary saveTerms">{t}Save{/t}</button>
