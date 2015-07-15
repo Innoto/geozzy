@@ -34,10 +34,9 @@
         <div class="col-lg-8">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <strong>
-                <i class="fa fa-tag fa-fw"></i>
+
                 {t}List of terms for{/t} ( <%- name_{$langDefault} %> )
-              </strong>
+            
             </div>
             <div class="panel-body">
               <div id="taxTermListContainer" class="gzznestable <% if (!sortable) { %> no-sortable <% } %> dd">
