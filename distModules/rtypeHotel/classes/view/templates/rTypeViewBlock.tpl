@@ -1,6 +1,6 @@
-<!-- resourceViewBlock.tpl en geozzy module -->
+<!-- rTypeViewBlock.tpl en geozzy module -->
 
-<p> --- resourceViewBlock.tpl en geozzy module --- </p>
+<p> --- rTypeViewBlock.tpl en geozzy module --- </p>
 
 <div class="resViewBlock">
 
@@ -26,12 +26,21 @@
     {$content}
   </div>
 
-  <div class="image cgmMForm-fileField">
+  <div class="image cgmMForm-fileField ">
     <label for="imgResource" class="cgmMForm">{t}Image{/t}</label>
     <style type="text/css">.cgmMForm-fileField img { height: 100px }</style>
     {$image}
   </div>
 
+  <div class="rTypeHotel">
+    <p> --- rTypeHotel Ext --- </p>
+    <div class="rTypeHotel accommodation">
+      {$rextAccommodation}
+    </div>
+  </div>
+
 </div>
 
-<!-- /resourceViewBlock.tpl en geozzy module -->
+<!-- /rTypeViewBlock.tpl en geozzy module -->
+
+

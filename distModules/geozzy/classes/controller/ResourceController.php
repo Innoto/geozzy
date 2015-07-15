@@ -18,11 +18,12 @@ class ResourceController {
      Cargando controlador del RType
    **/
   public function getRTypeCtrl( $rTypeId ) {
-    // error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
+    error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
 
     if( !$this->rTypeCtrl ) {
       switch( $rTypeId ) {
         case 20: // 'rtypeHotel'
+          error_log( "GeozzyResourceView: getRTypeCtrl = rtypeHotel" );
           rtypeHotel::autoIncludes();
           $this->rTypeCtrl = new RTypeHotelController( $this );
           break;
@@ -785,9 +786,10 @@ class ResourceController {
     $this->getRTypeCtrl( $resObj->getter( 'rTypeId' ) ); // TODO: Usar rTypeId
 
     if( $this->rTypeCtrl ) {
+      error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlock' );
       $rTypeBlock = $this->rTypeCtrl->getViewBlock( $resObj, $resBlock );
-
       if( $rTypeBlock ) {
+        error_log( 'GeozzyResourceView: resBlock = rTypeBlock' );
         $resBlock = $rTypeBlock;
       }
     }

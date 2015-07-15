@@ -12,10 +12,10 @@
 {if $headTitle or $title}{$headTitle|default:$title|escape:'htmlall'} - {/if}
 {/block}
 
-{block name="headKeywords" append}{if $headKeywords} {$headKeywords}{/if}{/block}
+{block name="headKeywords" append}{if isset($headKeywords) and $headKeywords} {$headKeywords}{/if}{/block}
 
 {block name="headDescription"}
-{if $headDescription}{$headDescription}
+{if isset($headDescription) and $headDescription}{$headDescription}
 {else}{$smarty.block.parent}{/if}
 {/block}
 
@@ -23,15 +23,16 @@
 
 {block name="bodyContent"}
 <!-- resourceViewPage.tpl en geozzy module -->
-<p>resourceViewPage.tpl en geozzy module</p>
+<p> --- resourceViewPage.tpl en geozzy module --- </p>
 
-  {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
-
+  {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>
+  {else}
   <h2 style="color:#30494E;">GEOZZY APP - {t}View Resource{/t}</h2>
   <h3>{t}Resource{/t}</h3>
   <div class="resource">
     {$resourceBlock}
   </div>
+  {/if}
 
 <!-- /resourceViewPage.tpl en geozzy module -->
 {/block}

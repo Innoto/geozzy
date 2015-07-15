@@ -110,11 +110,22 @@ class RTypeHotelController {
   */
   public function getViewBlock( $resObj, $resBlock ) {
     error_log( "RTypeHotelController: getViewBlock()" );
+    $template = false;
 
     $this->accomCtrl = new RExtAccommodationController( $this );
     $accomBlock = $this->accomCtrl->getViewBlock( $resObj, $resBlock );
 
-    return false;
+    if( $accomBlock ) {
+      $template = $resBlock;
+      $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeHotel' );
+
+      $template->addToBlock( 'rextAccommodation', $accomBlock );
+
+      $template->assign( 'rExtBlockNames', array( 'rextAccommodation' ) );
+      $template->assign( 'rExtFieldNames', false );
+    }
+
+    return $template;
   } // function getViewBlock( $resObj )
 
 } // class RTypeHotelController
