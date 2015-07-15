@@ -232,6 +232,37 @@ button[type="submit"]{
   .btn-primary;
 }
 
+.btn-icon{
+  background-color: transparent;
+
+  &.btn-danger,
+  &.btn-warning{
+    color: @gzzColor-negative;
+
+    &:hover{
+      color: @gzzColor-text-light;
+    }
+  }
+
+  &.btn-default,
+  &.btn-info{
+    color: @gzzColor-rest;
+
+    &:hover{
+      color: @gzzColor-text-light;
+    }
+  }
+
+  &.btn-primary,
+  &.btn-success{
+    color: @gzzColor-positive;
+
+    &:hover{
+      color: @gzzColor-text-light;
+    }
+  }
+}
+
 
 /*PANEL BASE*/
 .panel{
@@ -248,9 +279,13 @@ button[type="submit"]{
 /*MODAL BASE*/
 .modal{
   .modal-header{
-    background: @gzzColor-bck-7;
+    background: @gzzColor-bck-8;
     color: @gzzColor-text-light;
     text-transform: uppercase;
+    h3 {
+      margin: 0;
+      font-size: 22px;
+    }
     .close{
       color: @gzzColor-text-light;
       &:hover{
@@ -259,7 +294,7 @@ button[type="submit"]{
     }
   }
   .modal-body{ background: @gzzColor-bck-3 }
-  .modal-footer{ background: @gzzColor-bck-7 }
+  .modal-footer{ background: @gzzColor-bck-8 }
 
 }
 
