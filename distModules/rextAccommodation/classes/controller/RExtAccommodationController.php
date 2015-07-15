@@ -27,7 +27,7 @@ class RExtAccommodationController {
 
 
   public function getRExtData( $resId ) {
-    // error_log( "ResourceController: getRExtData()" );
+    error_log( "ResourceController: getRExtData( $resId )" );
     $rExtData = false;
 
     $rExtModel = new AccommodationModel();
@@ -36,6 +36,8 @@ class RExtAccommodationController {
 
     if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
+
+      error_log( 'ResourceController: getRExtData = '.print_r( $rExtData, true ) );
 
       // Cargo los datos de destacados con los que está asociado el recurso
       $taxTerms = $this->defResCtrl->getResTerms( $resId );
@@ -79,10 +81,14 @@ class RExtAccommodationController {
   }
 
   public function prefixArrayKeys( $valuesArray ) {
-    $prefixArray = array();
-
-    foreach( $valuesArray as $key => $value ) {
-      $prefixArray[ $this->addPrefix( $key ) ] = $value;
+    if( is_array( $valuesArray ) ) {
+      $prefixArray = array();
+      foreach( $valuesArray as $key => $value ) {
+        $prefixArray[ $this->addPrefix( $key ) ] = $value;
+      }
+    }
+    else {
+      $prefixArray = $valuesArray;
     }
 
     return $prefixArray;
@@ -272,43 +278,23 @@ class RExtAccommodationController {
   */
   public function getViewBlock( $resObj, $resBlock ) {
     error_log( "RExtAccommodationController: getViewBlock()" );
+    $template = false;
 
-    $rExtData = $this->prefixArrayKeys( $this->getRExtData( $resObj->getter('id') ) );
-    foreach( $rExtData as $key => $value ) {
-      $resBlock->assign( $key, $rExtData[ $key ] );
-      error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
+    $rExtData = $this->getRExtData( $resObj->getter('id') );
+    if( $rExtData ) {
+      $template = new Template();
+
+      $rExtData = $this->prefixArrayKeys( $rExtData );
+      foreach( $rExtData as $key => $value ) {
+        $template->assign( $key, $rExtData[ $key ] );
+        error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
+      }
+
+      $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextAccommodation' );
     }
 
-
-    /*
-    $template = new Template();
-
-    // DEBUG
-    $htmlMsg = "\n<pre>\n" . print_r( $resObj->getAllData( '' ), true ) . "\n</pre>\n";
-
-    foreach( $resObj->getCols() as $key => $value ) {
-      $template->assign( $key, $resObj->getter( $key ) );
-      // error_log( $key . ' === ' . print_r( $resObj->getter( $key ), true ) );
-    }
-
-
-    // Cargo los datos de image dentro de los del recurso
-    $fileDep = $resObj->getterDependence( 'image' );
-    if( $fileDep !== false ) {
-      $titleImage = $fileDep['0']->getter('title');
-      $template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"
-        alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
-      // error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
-    }
-    else {
-      $template->assign( 'image', '<p>'.__('None').'</p>' );
-    }
-    $template->setTpl( 'resourceViewBlock.tpl', 'geozzy' );
-
-    return( $template );
-    */
-
-    return false;
+    return $template;
   } // function getViewBlock( $resObj )
 
 } // class RExtAccommodationController

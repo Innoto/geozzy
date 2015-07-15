@@ -183,6 +183,7 @@ class GeozzyResourceView extends View
     }
     else {
       $htmlMsg = '<span class="error">' . __('Error: Imposible mostrar el recurso ') . $resId . '</span>';
+      $this->template->assign( 'headTitle', __('Unknown Resource') );
       $this->template->assign( 'htmlMsg', $htmlMsg );
       error_log( 'NON hai Recurso: ' . $htmlMsg );
     }
