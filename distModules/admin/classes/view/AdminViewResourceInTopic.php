@@ -58,7 +58,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     // Nome das columnas
     $tabla->setCol('id', 'ID');
-    $tabla->setCol('type', __('Type'));
+    $tabla->setCol('rTypeId', __('Type'));
     $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
     $tabla->setCol('published', __('Published'));
 

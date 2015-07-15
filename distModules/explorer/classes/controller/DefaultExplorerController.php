@@ -5,19 +5,32 @@ explorer::load('controller/ExplorerController.php');
 class DefaultExplorerController extends ExplorerController {
 
   public function serveIndexData( ) {
-    geozzy::load('model/ResourceModel.php');
-    $resourceModel = new ResourceModel();
+    explorer::load('model/GenericExplorerModel.php');
+    $resourceModel = new GenericExplorerModel();
 
-    $resources = $resourceModel->listItems(
-                                      array(
-                                        'filters' => array('published' => 1),
-                                        'fields' => array('id', 'type', 'latlng')
+    $resources = $resourceModel->listItems( );
 
-                                      )
-                                    );
+    $coma = '';
+
+    echo '[';
+
+    while( $resource = $resources->fetch() ){
+        echo $coma;
 
 
-    echo json_encode( $resources->fetch()->getAllData('onlydata') ) ;
+
+
+        $resourceDataArray = $resource->getAllData('onlydata');
+
+        $resourceDataArray['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
+
+        echo json_encode( $resourceDataArray );
+
+      $coma=',';
+    }
+
+    echo ']';
+
   }
 
   public function serveCurrentData( ) {

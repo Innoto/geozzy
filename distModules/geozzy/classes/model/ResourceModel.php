@@ -13,7 +13,7 @@ class ResourceModel extends Model
       'primarykey' => true,
       'autoincrement' => true
     ),
-    'type' => array(
+    'rTypeId' => array(
       'type'=>'FOREIGN',
       'vo' => 'ResourceTypeModel',
       'key'=> 'id'

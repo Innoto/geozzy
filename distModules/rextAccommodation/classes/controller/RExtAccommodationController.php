@@ -264,4 +264,51 @@ class RExtAccommodationController {
 
 
 
+
+
+
+  /**
+    Visualizamos el Recurso
+  */
+  public function getViewBlock( $resObj, $resBlock ) {
+    error_log( "RExtAccommodationController: getViewBlock()" );
+
+    $rExtData = $this->prefixArrayKeys( $this->getRExtData( $resObj->getter('id') ) );
+    foreach( $rExtData as $key => $value ) {
+      $resBlock->assign( $key, $rExtData[ $key ] );
+      error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
+    }
+
+
+    /*
+    $template = new Template();
+
+    // DEBUG
+    $htmlMsg = "\n<pre>\n" . print_r( $resObj->getAllData( '' ), true ) . "\n</pre>\n";
+
+    foreach( $resObj->getCols() as $key => $value ) {
+      $template->assign( $key, $resObj->getter( $key ) );
+      // error_log( $key . ' === ' . print_r( $resObj->getter( $key ), true ) );
+    }
+
+
+    // Cargo los datos de image dentro de los del recurso
+    $fileDep = $resObj->getterDependence( 'image' );
+    if( $fileDep !== false ) {
+      $titleImage = $fileDep['0']->getter('title');
+      $template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"
+        alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
+      // error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
+    }
+    else {
+      $template->assign( 'image', '<p>'.__('None').'</p>' );
+    }
+    $template->setTpl( 'resourceViewBlock.tpl', 'geozzy' );
+
+    return( $template );
+    */
+
+    return false;
+  } // function getViewBlock( $resObj )
+
 } // class RExtAccommodationController

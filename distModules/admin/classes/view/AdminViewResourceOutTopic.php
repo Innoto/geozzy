@@ -78,7 +78,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster
 
     // Nome das columnas
     $tabla->setCol('id', 'ID');
-    $tabla->setCol('type', __('Type'));
+    $tabla->setCol('rTypeId', __('Type'));
     $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
 
     $tabla->setActionMethod(__('Assign'), 'assign', 'createTopicRelation('.$topicId[1].',$rowId)');

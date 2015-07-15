@@ -101,4 +101,20 @@ class RTypeHotelController {
 
 
 
+
+
+
+
+  /**
+    Visualizamos el Recurso
+  */
+  public function getViewBlock( $resObj, $resBlock ) {
+    error_log( "RTypeHotelController: getViewBlock()" );
+
+    $this->accomCtrl = new RExtAccommodationController( $this );
+    $accomBlock = $this->accomCtrl->getViewBlock( $resObj, $resBlock );
+
+    return false;
+  } // function getViewBlock( $resObj )
+
 } // class RTypeHotelController
