@@ -63,8 +63,8 @@ class ResourceController {
       $resourceData = $recObj->getAllData( 'onlydata' );
 
       // Adapto el campo recursoTipo para mayor claridad
-      $resourceData['rTypeId'] = $resourceData['type'];
-      //unset( $resourceData['type'] );
+      // $resourceData['rTypeId'] = $resourceData['type'];
+      // unset( $resourceData['type'] );
 
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $recObj->getterDependence( 'id', 'UrlAliasModel' );
@@ -782,7 +782,7 @@ class ResourceController {
 
     $resBlock = $this->getResourceBlock( $resObj );
 
-    $this->getRTypeCtrl( $resObj->getter( 'type' ) ); // TODO: Usar rTypeId
+    $this->getRTypeCtrl( $resObj->getter( 'rTypeId' ) ); // TODO: Usar rTypeId
 
     if( $this->rTypeCtrl ) {
       $rTypeBlock = $this->rTypeCtrl->getViewBlock( $resObj, $resBlock );
