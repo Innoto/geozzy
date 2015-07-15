@@ -11,7 +11,7 @@
             <i class="fa fa-bars"></i>
         </button>
         <div class="headerTitleContainer">
-          <h2>{t}Category management for{/t} <%- name_{$langDefault} %> </h2>
+          <h3>{t}Category management for{/t} <%- name_{$langDefault} %> </h3>
         </div>
       </div>
       <div class="col-md-4 col-sm-12 clearfix">

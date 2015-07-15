@@ -7,9 +7,10 @@ html, body {
 }
 
 body {
-  background-color: @gzz-bck-light-3;
+  background-color: @gzzColor-bck-3;
   position:relative;
 }
+
 
 // Wrappers
 #wrapper {
@@ -17,7 +18,7 @@ body {
   min-height: 100%;
 }
 #menu-wrapper {
-  background-color: @gzz-bck-dark-1;
+  background-color: @gzzColor-bck-8;
   height: 100%;
   width: 240px;
   position:fixed;
@@ -38,24 +39,26 @@ body {
     float: right;
   }
   .headSection {
-    border-bottom: 3px solid @gzz-color;
-    padding: 20px ;
-    padding-left: 260px;
-    background-color: @gzz-bck-dark-1;
-    height: 75px;
+    padding: 40px 30px 15px 30px ;
+    padding-left: 270px;
+    background-color: @gzzColor-bck-8;
+    height: 90px;
     width: 100%;
     position:fixed;
     left:0;
     z-index: 10;
 
-    h2 {
+    h3 {
       margin: 0;
-      color: @gzz-color;
+      color: @gzzColor-text-light;
       text-transform: uppercase;
-      font-size: 28px;
+      font-size: 22px;
+
+      height: 33px;
+      line-height: 50px;
     }
     .navbar-toggle {
-      background-color: @gzz-color;
+      background-color: @gzzColor-positive;
       color: #fff;
       margin: 0px;
       padding: 0px 10px;
@@ -63,16 +66,15 @@ body {
       height: 25px;
 
       &:hover{
-        background-color: @gzz-color - #111;
+        background-color: @gzzColor-positive-hover;
       }
     }
   }
   .contentSection {
-    padding: 95px 20px 20px 20px;
+    padding: 120px 30px 20px 30px;
   }
   .footerSection {
-    border-top: 3px solid @gzz-bck-light-2;
-    padding: 20px;
+    padding: 30px;
   }
 
 }
@@ -94,17 +96,17 @@ body {
   }
   .userInfo{
     .dropdown-toggle:hover{
-      color: @gzz-color;
+      color: @gzzColor-positive;
     }
     .dropdown-menu{
       margin:0;
-      background-color: @gray-lighter;
+      background-color: @gzzColor-bck-3;
       width:100%;
       a{
-        color: @gzz-color;
+        color: @gzzColor-positive;
         &:hover{
-          color: white;
-          background-color: @gzz-color;
+          color: @gzzColor-text-light;
+          background-color: @gzzColor-positive;
 
         }
       }
@@ -115,19 +117,26 @@ body {
       padding-left: 0;
       padding-right: 0;
       .menuLogo{
-        background: white;
+        background: @gzzColor-bck-1;
+        height: 90px;
+        img{
+          height: 90px;
+          margin: 0 auto;
+        }
       }
+
     }
     ul li {
       a {
-        color: white;
+        background:transparent;
+        color: @gzzColor-text-light;
         &.active {
-          background-color: @gzz-bck-light-3;
-          color: @gzz-color;
+          background-color: @gzzColor-rest;
+          color: @gzzColor-text-light;
         }
         &:hover{
-          background-color: @gzz-bck-light-3;
-          color: @gzz-color;
+          background-color: @gzzColor-rest-hover;
+          color: @gzzColor-text-light;
         }
       }
     }
@@ -161,31 +170,43 @@ body {
 
 
 
-// Buttons
-.btn-default,
-.btn-primary,
-.btn-success,
-.btn-info,
-.btn-warning,
-.btn-danger{
-  border: none;
+/*BUTTON BASE*/
+.btn{
+  .btn-gzz(30);
 }
 
-.btn-default {
-  color: @gzz-color;
+.btn-gzz(@h){
+  padding: @h/5px @h/2px;
+  margin: 0 0 0 @h/2px;
 }
-.btn-primary {
-  background-color: @gzz-color;
-  &:hover {
-    background-color: @gzz-color - #111111;
-  }
-}
-.btn-danger {
-  background-color: @gzz-color-opposite;
-  &:hover {
-    background-color: @gzz-color-opposite - #111111;
-  }
 
+
+.btn-default, .btn-info {
+  &:hover {
+    background-color: @gzzColor-rest-hover;
+  }
+  &.btn-outline{
+    color: @gzzColor-rest;
+    border: 1px solid @gzzColor-rest;
+  }
+}
+.btn-primary, .btn-success {
+  &:hover {
+    background-color: @gzzColor-positive-hover;
+  }
+  &.btn-outline{
+    color: @gzzColor-positive;
+    border: 1px solid @gzzColor-positive;
+  }
+}
+.btn-danger, .btn-warning {
+  &:hover {
+    background-color: @gzzColor-negative-hover;
+  }
+  &.btn-outline{
+    color: @gzzColor-negative;
+    border: 1px solid @gzzColor-negative;
+  }
 }
 
 .btn-outline {
@@ -194,56 +215,46 @@ body {
     transition: all .5s;
 }
 
-.btn-primary.btn-outline {
-    color: @gzz-color;
-    border: 1px solid @gzz-color;
-}
-.btn-default.btn-outline {
-    color: #fff;
-    border: 1px solid #fff;
-    &:hover {
-      color: @gzz-color;
-    }
-}
-
-.btn-danger.btn-outline {
-    color: @brand-danger;
-    border: 1px solid @brand-danger;
-}
-
-.btn-primary.btn-outline:hover,
-.btn-danger.btn-outline:hover {
-    color: white;
-}
-
+/*PANEL BASE*/
 .panel{
   border:0px;
+  margin-bottom: 30px;
+
   .panel-heading{
     border:0px;
-    background-color: @gzz-bck-light-2;
+    background-color: @gzzColor-bck-2;
+    font-size: 18px;
   }
 }
 
-
+/*MODAL BASE*/
 .modal{
   .modal-header{
-    background: @gzz-bck-dark-1;
-    color: #fff;
+    background: @gzzColor-bck-7;
+    color: @gzzColor-text-light;
     text-transform: uppercase;
     .close{
-      color: #fff;
+      color: @gzzColor-text-light;
       &:hover{
-        color: @gzz-bck-light-2;
+        color: @gzzColor-bck-3;
       }
     }
   }
-  .modal-body{ background: @gzz-bck-light-3 }
-  .modal-footer{ background: @gzz-bck-dark-1 }
+  .modal-body{ background: @gzzColor-bck-3 }
+  .modal-footer{ background: @gzzColor-bck-7 }
 
 }
+
 .modal-backdrop {
     opacity: 0.7;
 }
+
+/*FORM BASE*/
+.cgmMForm-wrap{
+  margin-bottom: 25px;
+}
+
+
 
 @media screen and (min-width: 1200px) {
 
@@ -260,7 +271,7 @@ body {
     height: auto;
     z-index: 9;
     top: 85px;
-    border-bottom: 2px solid @gzz-color;
+    border-bottom: 2px solid @gzzColor-positive;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
 
     .menuLogo{

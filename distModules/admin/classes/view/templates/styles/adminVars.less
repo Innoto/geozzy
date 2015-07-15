@@ -1,24 +1,98 @@
-// Variables
 
-@gzz-color: #58ba81;
-@gzz-color-opposite: #FF6A4B;
+/* **** GEOZZY ADMIN VARS  **** */
 
-@gzz-bck-light-1: #ffffff;
-@gzz-bck-light-2: #f5f5f5;
-@gzz-bck-light-3: #E3E3E3;
-@gzz-bck-dark-1: #3A3838;
-@gzz-bck-dark-2: #31373D;
+/*Typography*/
+@font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-base: @font-family-sans-serif;
+@font-size-base: 14px;
 
-/*Extra*/
-@gray-darker: lighten(#000, 13.5%);
-@gray-dark: lighten(#000, 20%);
-@gray: lighten(#000, 33.5%);
-@gray-light: lighten(#000, 60%);
-@gray-lighter: lighten(#000, 93.5%);
-@gray-lightest: lighten(#000, 97.25%);
+/*Color Text*/
 
-@brand-primary: @gzz-color;
-@brand-success: #5cb85c;
-@brand-info: #5bc0de;
-@brand-warning: #f0ad4e;
-@brand-danger: @gzz-color-opposite;
+@gzzColor-text-light: #ffffff;
+@gzzColor-text-dark: #333333;
+@gzzColor-text-dest: @gzzColor-positive;
+@text-color: @gzzColor-text-dark;
+@link-color: @gzzColor-positive;
+@link-hover-color: @gzzColor-positive-hover;
+
+
+/*Color Background*/
+
+@gzzColor-bck-8: #333333;
+@gzzColor-bck-7: #777777;
+@gzzColor-bck-6: #999999;
+@gzzColor-bck-5: #BABABA;
+@gzzColor-bck-4: #d3d3d3;
+@gzzColor-bck-3: #e5e5e5;
+@gzzColor-bck-2: #f1f1f1;
+@gzzColor-bck-1: #ffffff;
+
+
+/*Color Buttons*/
+
+@gzzColor-positive: #5AB780;
+@gzzColor-positive-hover: #3F9864;
+@gzzColor-positive-alt: #84D4A4;
+
+@gzzColor-negative: #E16A4E;
+@gzzColor-negative-hover: #C44527;
+@gzzColor-negative-alt: #ff9279;
+
+@gzzColor-rest: #7fb1c7;
+@gzzColor-rest-hover: #528Ba4;
+@gzzColor-rest-alt: #b5d6e4;
+
+
+@btn-default-color: @gzzColor-rest;
+
+@btn-default-color: @gzzColor-text-light;
+@btn-default-bg: @gzzColor-rest;
+@btn-default-border: @gzzColor-rest;
+
+@btn-primary-color: @gzzColor-text-light;
+@btn-primary-bg: @gzzColor-positive;
+@btn-primary-border :@gzzColor-positive;
+
+@btn-success-color: @gzzColor-text-light;
+@btn-success-bg: @gzzColor-positive;
+@btn-success-border: @gzzColor-positive;
+
+@btn-info-color: @gzzColor-text-light;
+@btn-info-bg: @gzzColor-rest;
+@btn-info-border: @gzzColor-rest;
+
+@btn-warning-color: @gzzColor-text-light;
+@btn-warning-bg: @gzzColor-negative;
+@btn-warning-border: @gzzColor-negative;
+
+@btn-danger-color: @gzzColor-text-light;
+@btn-danger-bg: @gzzColor-negative;
+@btn-danger-border: @gzzColor-negative;
+
+@btn-border-radius-base: 2px;
+@btn-border-radius-large: 2px;
+@btn-border-radius-small: 2px;
+
+/*Form*/
+@input-color: @gzzColor-text-dark;
+@input-border-radius: 0px;
+//@input-color-placeholder
+@form-group-margin-bottom: 25px;
+@label-default-bg: @gzzColor-text-dark;
+
+/*Panel*/
+@panel-heading-padding: 15px 25px;
+@panel-body-padding: 25px;
+
+/*Modal*/
+@modal-backdrop-opacity: .7;
+
+/*Other*/
+@border-radius-base: 2px;
+@brand-primary: @gzzColor-positive;
+@brand-success: @gzzColor-positive;
+
+@brand-warning: @gzzColor-negative;
+@brand-danger: @gzzColor-negative;
+
+@brand-info: @gzzColor-rest;
