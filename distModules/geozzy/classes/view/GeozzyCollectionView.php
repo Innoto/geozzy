@@ -51,7 +51,6 @@ class GeozzyCollectionView extends View
       );
       $resOptions[ $res->getter( 'id' ) ] = $elOpt;
     }
-    Cogumelo::console($resOptions);
 
     $fieldsInfo = array(
       'title' => array(
