@@ -40,10 +40,18 @@ class GeozzyCollectionView extends View
     // Recursos disponibles
     $resourceModel =  new ResourceModel();
     $elemList = $resourceModel->listItems();
+
     $resOptions = array();
     while( $res = $elemList->fetch() ){
-      $resOptions[ $res->getter( 'id' ) ] = $res->getter( 'title', LANG_DEFAULT );
+
+      $elOpt = array(
+        'value' => $res->getter( 'id' ),
+        'text' => $res->getter( 'title', LANG_DEFAULT ),
+        'data-image' => '/cgmlformfilews/'.$res->getter( 'image' )
+      );
+      $resOptions[ $res->getter( 'id' ) ] = $elOpt;
     }
+    Cogumelo::console($resOptions);
 
     $fieldsInfo = array(
       'title' => array(
@@ -76,7 +84,6 @@ class GeozzyCollectionView extends View
 
     //$this->arrayToForm( $form, $fieldsInfo, $form->langAvailable );
     $form->definitionsToForm( $fieldsInfo );
-
     $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
 
     //Si es una edicion, añadimos el ID y cargamos los datos
@@ -279,7 +286,7 @@ class GeozzyCollectionView extends View
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el collection.','formError' );
       }else{
-        $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'" });' ); 
+        $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'" });' );
       }
     }
 
