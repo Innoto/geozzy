@@ -27,12 +27,11 @@ class ResourceController {
           rtypeHotel::autoIncludes();
           $this->rTypeCtrl = new RTypeHotelController( $this );
           break;
-        /*
-        case 'rtypeRestaurant':
-          rtypeHotel::autoIncludes();
+        case 21:
+          error_log( "GeozzyResourceView: getRTypeCtrl = RTypeRestaurantController " );
+          rtypeRestaurant::autoIncludes();
           $this->rTypeCtrl = new RTypeRestaurantController( $this );
           break;
-        */
         default:
           $this->rTypeCtrl = false;
           break;
@@ -53,6 +52,12 @@ class ResourceController {
   public function getResourceData( $resId ) {
     // error_log( "ResourceController: getResourceData()" );
     $resourceData = false;
+
+    $langDefault = LANG_DEFAULT;
+    global $LANG_AVAILABLE;
+    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
+      $langAvailable = array_keys( $LANG_AVAILABLE );
+    }
 
     $recModel = new ResourceModel();
     $recList = $recModel->listItems( array( 'affectsDependences' =>
@@ -109,7 +114,7 @@ class ResourceController {
       $extraDataDep = $recObj->getterDependence( 'id', 'ExtraDataModel');
       if( $extraDataDep !== false ) {
         foreach( $extraDataDep as $extraData ) {
-          foreach( $this->langAvailable as $lang ){
+          foreach( $langAvailable as $lang ) {
             $resourceData[ $extraData->getter('name').'_'.$lang ] = $extraData->getter( 'value_'.$lang );
           }
         }
@@ -168,7 +173,7 @@ class ResourceController {
       'content' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
-          //'htmlEditor' => 'true',
+          'htmlEditor' => 'true',
           'value' => '<p>ola mundo<br />...probando ;-)</p>' )
       ),
       'image' => array(
@@ -339,19 +344,25 @@ class ResourceController {
       $this->setFormTax( $form, 'starred', 'starred', $form->getFieldValue( 'starred' ), $resource );
     }
 
-    if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra1' ) ) {
+    if( !$form->existErrors() ) {
       $this->setFormExtraData( $form, 'datoExtra1', 'datoExtra1', $resource );
     }
-    if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra2' ) ) {
+    if( !$form->existErrors() ) {
       $this->setFormExtraData( $form, 'datoExtra2', 'datoExtra2', $resource );
     }
 
-    if( !$form->existErrors() && $form->isFieldDefined( 'urlAlias' ) ) {
+    if( !$form->existErrors() ) {
       $this->setFormUrlAlias( $form, 'urlAlias', $resource );
     }
     /**
       DEPENDENCIAS (END)
     */
+    if( !$form->existErrors()) {
+      $saveResult = $resource->save();
+      if( $saveResult === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+      }
+    }
 
     return $resource;
   }
@@ -458,22 +469,24 @@ class ResourceController {
     ExtraData methods
    */
   private function setFormExtraData( $form, $fieldName, $colName, $baseObj ) {
-    $baseId = $baseObj->getter( 'id' );
+    if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
+      $baseId = $baseObj->getter( 'id' );
 
-    $extraData = array( 'resource' => $baseId, 'name' => $colName );
-    if( count( $form->langAvailable ) > 1 ) {
-      foreach( $form->langAvailable as $langId ) {
-        $extraData[ 'value_'.$langId ] = $form->getFieldValue( $fieldName.'_'.$langId );
+      $extraData = array( 'resource' => $baseId, 'name' => $colName );
+      if( count( $form->langAvailable ) > 1 ) {
+        foreach( $form->langAvailable as $langId ) {
+          $extraData[ 'value_'.$langId ] = $form->getFieldValue( $fieldName.'_'.$langId );
+        }
       }
-    }
-    else {
-      $extraData[ 'value' ] = $form->getFieldValue( $fieldName );
-    }
+      else {
+        $extraData[ 'value' ] = $form->getFieldValue( $fieldName );
+      }
 
-    $relObj = new extraDataModel( $extraData );
-    if( !$relObj->save() ) {
-      foreach( $form->multilangFieldNames( $fieldName ) as $fieldNameLang ) {
-        $form->addFieldRuleError( $fieldNameLang, false, __( 'Error setting values' ) );
+      $relObj = new extraDataModel( $extraData );
+      if( !$relObj->save() ) {
+        foreach( $form->multilangFieldNames( $fieldName ) as $fieldNameLang ) {
+          $form->addFieldRuleError( $fieldNameLang, false, __( 'Error setting values' ) );
+        }
       }
     }
   }
@@ -531,6 +544,7 @@ class ResourceController {
   }
 
   public function getCollectionsInfo( $resId ) {
+    error_log( "ResourceController: getCollectionsInfo( $resId )" );
     $colInfo = array(
       'options' => array(),
       'values' => array()
@@ -554,11 +568,8 @@ class ResourceController {
       }
     }
 
-    if( count( $colInfo['values'] ) < 1 ) {
-      $colInfo = false;
-    }
-
-    return $colInfo;
+    // error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
+    return ( count( $colInfo['values'] ) > 0 ) ? $colInfo : false;
   }
 
 
@@ -728,18 +739,21 @@ class ResourceController {
   }
 
   private function setFormUrlAlias( $form, $fieldName, $resObj ) {
-    $resId = $resObj->getter('id');
-    foreach( $form->langAvailable as $langId ) {
-      $url = $form->getFieldValue( $fieldName.'_'.$langId );
-      if( $this->setUrl( $resId, $langId, $url ) === false ) {
-        $form->addFieldRuleError( $fieldName.'_'.$langId, false, __( 'Error setting URL alias' ) );
-        break;
+    error_log( "setFormUrlAlias( form, $fieldName, resObj )" );
+    if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
+      $resId = $resObj->getter('id');
+      foreach( $form->langAvailable as $langId ) {
+        $url = $form->getFieldValue( $fieldName.'_'.$langId );
+        if( $this->setUrl( $resId, $langId, $url ) === false ) {
+          $form->addFieldRuleError( $fieldName.'_'.$langId, false, __( 'Error setting URL alias' ) );
+          break;
+        }
       }
     }
   }
 
   private function setUrl( $resId, $langId, $urlAlias ) {
-    // error_log( "setUrl( $resId, $langId, $urlAlias )" );
+    error_log( "setUrl( $resId, $langId, $urlAlias )" );
     $result = true;
 
     if( !isset( $urlAlias ) || $urlAlias === false || $urlAlias === '' ) {
@@ -754,18 +768,18 @@ class ResourceController {
     $elemsList = $elemModel->listItems( array( 'filters' => array( 'canonical' => 1, 'resource' => $resId,
       'lang' => $langId ) ) );
     if( $elem = $elemsList->fetch() ) {
-      // error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
+      error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
       $aliasArray[ 'id' ] = $elem->getter( 'id' );
     }
 
     $elemModel = new UrlAliasModel( $aliasArray );
     if( $elemModel->save() === false ) {
       $result = false;
-      // error_log( 'setUrl: ERROR gardando a url' );
+      error_log( 'setUrl: ERROR gardando a url' );
     }
     else {
       $result = $elemModel->getter( 'id' );
-      // error_log( 'setUrl: Creada/Actualizada - '.$result );
+      error_log( 'setUrl: Creada/Actualizada - '.$result );
     }
 
     return $result;
@@ -822,10 +836,92 @@ class ResourceController {
     else {
       $template->assign( 'image', '<p>'.__('None').'</p>' );
     }
+
+    $collections = $this->getCollectionsInfo( $resObj->getter('id') );
+    error_log( "collections = ". print_r( $collections, true ) );
+
+    if( $collections ) {
+      foreach( $collections[ 'values' ] as $collectionId ) {
+        $collectionBlock = $this->getCollectionBlock( $collectionId );
+        if( $collectionBlock ) {
+          $template->addToBlock( 'collections', $collectionBlock );
+        }
+      }
+    }
+
     $template->setTpl( 'resourceViewBlock.tpl', 'geozzy' );
 
     return( $template );
   } // function getResourceBlock( $resObj )
+
+
+  public function getCollectionBlock( $collectionId ) {
+    error_log( "GeozzyResourceView: getCollectionBlock()" );
+
+    $template = false;
+
+    /**
+      Cargamos os datos da collection e metemolos no tpl para crear un bloque
+      Empezado e parado...
+      */
+
+    /*
+      $collectionModel =  new CollectionModel();
+
+      $collectionList = $collectionModel->listItems(
+        array(
+          'filters' => array( 'id' => $collectionId ),
+          'order' => array( 'weight' => 1 ),
+          'affectsDependences' => array( 'FiledataModel', 'CollectionResourcesModel', 'ResourceModel' )
+        )
+      );
+
+      while( $res = $resCollectionList->fetch() ){
+        $collections = $res->getterDependence( 'collection', 'ResourceModel' );
+        $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
+        $colInfo[ 'values' ][] = $res->getter( 'collection' );
+      }
+
+      $template = new Template();
+
+      // DEBUG
+      $htmlMsg = "\n<pre>\n" . print_r( $resObj->getAllData( '' ), true ) . "\n</pre>\n";
+
+      foreach( $resObj->getCols() as $key => $value ) {
+        $template->assign( $key, $resObj->getter( $key ) );
+        // error_log( $key . ' === ' . print_r( $resObj->getter( $key ), true ) );
+      }
+
+      // Cargo los datos de image dentro de los del recurso
+      $fileDep = $resObj->getterDependence( 'image' );
+      if( $fileDep !== false ) {
+        $titleImage = $fileDep['0']->getter('title');
+        $template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"
+          alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
+        // error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
+      }
+      else {
+        $template->assign( 'image', '<p>'.__('None').'</p>' );
+      }
+
+    */
+
+    /**
+      PROBANDO (INI)
+      */
+    $template = new Template();
+    $template->assign( 'title', 'Colección Num. '.$collectionId );
+    $template->assign( 'shortDescription', 'Colección Num. '.$collectionId );
+    $template->assign( 'image', '<p>'.__('None').'</p>' );
+    $template->assign( 'collectionResources', 'Listado dos recursos da colección Num. '.$collectionId );
+    /**
+      PROBANDO (FIN)
+      */
+
+    $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
+
+    return( $template );
+  } // function getCollectionBlock( $resObj )
 
 
 } // class ResourceController

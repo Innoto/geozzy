@@ -31,13 +31,11 @@ class RExtAccommodationController {
     $rExtData = false;
 
     $rExtModel = new AccommodationModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'id' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
-
-      error_log( 'ResourceController: getRExtData = '.print_r( $rExtData, true ) );
 
       // Cargo los datos de destacados con los que está asociado el recurso
       $taxTerms = $this->defResCtrl->getResTerms( $resId );
@@ -50,6 +48,7 @@ class RExtAccommodationController {
 
     }
 
+    // error_log( 'ResourceController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
@@ -76,7 +75,7 @@ class RExtAccommodationController {
       $valuesArray = false;
     }
 
-    error_log( 'RExtAccommodationController: '.print_r( $valuesArray, true ) );
+    // error_log( 'RExtAccommodationController: '.print_r( $valuesArray, true ) );
     return $valuesArray;
   }
 
@@ -231,7 +230,7 @@ class RExtAccommodationController {
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
+      error_log( 'NEW rExtAccommodation: ' . print_r( $valuesArray, true ) );
       $rExtModel = new AccommodationModel( $valuesArray );
       if( $rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );

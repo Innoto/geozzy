@@ -1,5 +1,10 @@
 <?php
 
+require_once('setup.dev.php');
+
+
+
+/*
 if( develEnviroment() ) {
   //error_log( 'CONFIGURACION: setup.dev.php' );
   define( 'IS_DEVEL_ENV', true );
@@ -10,7 +15,7 @@ else {
   define( 'IS_DEVEL_ENV', false );
   require_once('setup.final.php');
 }
-
+*/
 
 
 /**
