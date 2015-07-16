@@ -27,12 +27,10 @@ class ResourceController {
           rtypeHotel::autoIncludes();
           $this->rTypeCtrl = new RTypeHotelController( $this );
           break;
-        /*
-        case 'rtypeRestaurant':
-          rtypeHotel::autoIncludes();
+        case 21:
+          rtypeRestaurant::autoIncludes();
           $this->rTypeCtrl = new RTypeRestaurantController( $this );
           break;
-        */
         default:
           $this->rTypeCtrl = false;
           break;

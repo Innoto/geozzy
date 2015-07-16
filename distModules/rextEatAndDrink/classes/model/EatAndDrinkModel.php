@@ -5,7 +5,7 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class EatanddrinkModel extends Model
+class EatAndDrinkModel extends Model
 {
   static $tableName = 'geozzy_resource_rext_eatanddrink';
   static $cols = array(
@@ -14,12 +14,12 @@ class EatanddrinkModel extends Model
       'primarykey' => true,
       'autoincrement' => true
     ),
+    
     'resource' => array(
       'type'=>'FOREIGN',
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
-
 
     'reservationURL' => array(
       'type' => 'VARCHAR',

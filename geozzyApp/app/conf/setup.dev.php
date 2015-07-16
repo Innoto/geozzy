@@ -124,7 +124,7 @@ $C_ENABLED_MODULES = array(
 
   // resource Extenssions
   'rextAccommodation',
-  'rextEatanddrink',
+  'rextEatAndDrink',
 
   // testing module
   'testData'
