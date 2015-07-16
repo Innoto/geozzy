@@ -54,6 +54,12 @@ class ResourceController {
     // error_log( "ResourceController: getResourceData()" );
     $resourceData = false;
 
+    $langDefault = LANG_DEFAULT;
+    global $LANG_AVAILABLE;
+    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
+      $langAvailable = array_keys( $LANG_AVAILABLE );
+    }
+
     $recModel = new ResourceModel();
     $recList = $recModel->listItems( array( 'affectsDependences' =>
       array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
@@ -109,7 +115,7 @@ class ResourceController {
       $extraDataDep = $recObj->getterDependence( 'id', 'ExtraDataModel');
       if( $extraDataDep !== false ) {
         foreach( $extraDataDep as $extraData ) {
-          foreach( $this->langAvailable as $lang ){
+          foreach( $langAvailable as $lang ) {
             $resourceData[ $extraData->getter('name').'_'.$lang ] = $extraData->getter( 'value_'.$lang );
           }
         }
@@ -339,19 +345,25 @@ class ResourceController {
       $this->setFormTax( $form, 'starred', 'starred', $form->getFieldValue( 'starred' ), $resource );
     }
 
-    if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra1' ) ) {
+    if( !$form->existErrors() ) {
       $this->setFormExtraData( $form, 'datoExtra1', 'datoExtra1', $resource );
     }
-    if( !$form->existErrors() && $form->isFieldDefined( 'datoExtra2' ) ) {
+    if( !$form->existErrors() ) {
       $this->setFormExtraData( $form, 'datoExtra2', 'datoExtra2', $resource );
     }
 
-    if( !$form->existErrors() && $form->isFieldDefined( 'urlAlias' ) ) {
+    if( !$form->existErrors() ) {
       $this->setFormUrlAlias( $form, 'urlAlias', $resource );
     }
     /**
       DEPENDENCIAS (END)
     */
+    if( !$form->existErrors()) {
+      $saveResult = $resource->save();
+      if( $saveResult === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+      }
+    }
 
     return $resource;
   }
@@ -458,22 +470,24 @@ class ResourceController {
     ExtraData methods
    */
   private function setFormExtraData( $form, $fieldName, $colName, $baseObj ) {
-    $baseId = $baseObj->getter( 'id' );
+    if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
+      $baseId = $baseObj->getter( 'id' );
 
-    $extraData = array( 'resource' => $baseId, 'name' => $colName );
-    if( count( $form->langAvailable ) > 1 ) {
-      foreach( $form->langAvailable as $langId ) {
-        $extraData[ 'value_'.$langId ] = $form->getFieldValue( $fieldName.'_'.$langId );
+      $extraData = array( 'resource' => $baseId, 'name' => $colName );
+      if( count( $form->langAvailable ) > 1 ) {
+        foreach( $form->langAvailable as $langId ) {
+          $extraData[ 'value_'.$langId ] = $form->getFieldValue( $fieldName.'_'.$langId );
+        }
       }
-    }
-    else {
-      $extraData[ 'value' ] = $form->getFieldValue( $fieldName );
-    }
+      else {
+        $extraData[ 'value' ] = $form->getFieldValue( $fieldName );
+      }
 
-    $relObj = new extraDataModel( $extraData );
-    if( !$relObj->save() ) {
-      foreach( $form->multilangFieldNames( $fieldName ) as $fieldNameLang ) {
-        $form->addFieldRuleError( $fieldNameLang, false, __( 'Error setting values' ) );
+      $relObj = new extraDataModel( $extraData );
+      if( !$relObj->save() ) {
+        foreach( $form->multilangFieldNames( $fieldName ) as $fieldNameLang ) {
+          $form->addFieldRuleError( $fieldNameLang, false, __( 'Error setting values' ) );
+        }
       }
     }
   }
@@ -728,18 +742,21 @@ class ResourceController {
   }
 
   private function setFormUrlAlias( $form, $fieldName, $resObj ) {
-    $resId = $resObj->getter('id');
-    foreach( $form->langAvailable as $langId ) {
-      $url = $form->getFieldValue( $fieldName.'_'.$langId );
-      if( $this->setUrl( $resId, $langId, $url ) === false ) {
-        $form->addFieldRuleError( $fieldName.'_'.$langId, false, __( 'Error setting URL alias' ) );
-        break;
+    error_log( "setFormUrlAlias( form, $fieldName, resObj )" );
+    if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
+      $resId = $resObj->getter('id');
+      foreach( $form->langAvailable as $langId ) {
+        $url = $form->getFieldValue( $fieldName.'_'.$langId );
+        if( $this->setUrl( $resId, $langId, $url ) === false ) {
+          $form->addFieldRuleError( $fieldName.'_'.$langId, false, __( 'Error setting URL alias' ) );
+          break;
+        }
       }
     }
   }
 
   private function setUrl( $resId, $langId, $urlAlias ) {
-    // error_log( "setUrl( $resId, $langId, $urlAlias )" );
+    error_log( "setUrl( $resId, $langId, $urlAlias )" );
     $result = true;
 
     if( !isset( $urlAlias ) || $urlAlias === false || $urlAlias === '' ) {
@@ -754,18 +771,18 @@ class ResourceController {
     $elemsList = $elemModel->listItems( array( 'filters' => array( 'canonical' => 1, 'resource' => $resId,
       'lang' => $langId ) ) );
     if( $elem = $elemsList->fetch() ) {
-      // error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
+      error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
       $aliasArray[ 'id' ] = $elem->getter( 'id' );
     }
 
     $elemModel = new UrlAliasModel( $aliasArray );
     if( $elemModel->save() === false ) {
       $result = false;
-      // error_log( 'setUrl: ERROR gardando a url' );
+      error_log( 'setUrl: ERROR gardando a url' );
     }
     else {
       $result = $elemModel->getter( 'id' );
-      // error_log( 'setUrl: Creada/Actualizada - '.$result );
+      error_log( 'setUrl: Creada/Actualizada - '.$result );
     }
 
     return $result;
