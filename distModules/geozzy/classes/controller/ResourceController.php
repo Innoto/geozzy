@@ -168,7 +168,7 @@ class ResourceController {
       'content' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
-          //'htmlEditor' => 'true',
+          'htmlEditor' => 'true',
           'value' => '<p>ola mundo<br />...probando ;-)</p>' )
       ),
       'image' => array(

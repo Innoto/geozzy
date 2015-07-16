@@ -28,19 +28,6 @@ class MasterView extends View
   }
 
   function main(){
-
-    echo "AGARRALO BIEN BROTHER";
-    Cogumelo::load('model/Explorer1Model.php');
-
-    $explorador = new Explorer1Model();
-
-    $li = $explorador->listItems();
-    while( $f = $li->fetch() ) {
-      echo "<br>";
-      var_dump( $f->getAllData() );
-    }
-
-
     $this->template->setTpl('portada.tpl');
     $this->template->exec();
   }
