@@ -28,6 +28,7 @@ class ResourceController {
           $this->rTypeCtrl = new RTypeHotelController( $this );
           break;
         case 21:
+          error_log( "GeozzyResourceView: getRTypeCtrl = RTypeRestaurantController " );
           rtypeRestaurant::autoIncludes();
           $this->rTypeCtrl = new RTypeRestaurantController( $this );
           break;
@@ -543,6 +544,7 @@ class ResourceController {
   }
 
   public function getCollectionsInfo( $resId ) {
+    error_log( "ResourceController: getCollectionsInfo( $resId )" );
     $colInfo = array(
       'options' => array(),
       'values' => array()
@@ -566,11 +568,8 @@ class ResourceController {
       }
     }
 
-    if( count( $colInfo['values'] ) < 1 ) {
-      $colInfo = false;
-    }
-
-    return $colInfo;
+    // error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
+    return ( count( $colInfo['values'] ) > 0 ) ? $colInfo : false;
   }
 
 
@@ -837,10 +836,92 @@ class ResourceController {
     else {
       $template->assign( 'image', '<p>'.__('None').'</p>' );
     }
+
+    $collections = $this->getCollectionsInfo( $resObj->getter('id') );
+    error_log( "collections = ". print_r( $collections, true ) );
+
+    if( $collections ) {
+      foreach( $collections[ 'values' ] as $collectionId ) {
+        $collectionBlock = $this->getCollectionBlock( $collectionId );
+        if( $collectionBlock ) {
+          $template->addToBlock( 'collections', $collectionBlock );
+        }
+      }
+    }
+
     $template->setTpl( 'resourceViewBlock.tpl', 'geozzy' );
 
     return( $template );
   } // function getResourceBlock( $resObj )
+
+
+  public function getCollectionBlock( $collectionId ) {
+    error_log( "GeozzyResourceView: getCollectionBlock()" );
+
+    $template = false;
+
+    /**
+      Cargamos os datos da collection e metemolos no tpl para crear un bloque
+      Empezado e parado...
+      */
+
+    /*
+      $collectionModel =  new CollectionModel();
+
+      $collectionList = $collectionModel->listItems(
+        array(
+          'filters' => array( 'id' => $collectionId ),
+          'order' => array( 'weight' => 1 ),
+          'affectsDependences' => array( 'FiledataModel', 'CollectionResourcesModel', 'ResourceModel' )
+        )
+      );
+
+      while( $res = $resCollectionList->fetch() ){
+        $collections = $res->getterDependence( 'collection', 'ResourceModel' );
+        $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
+        $colInfo[ 'values' ][] = $res->getter( 'collection' );
+      }
+
+      $template = new Template();
+
+      // DEBUG
+      $htmlMsg = "\n<pre>\n" . print_r( $resObj->getAllData( '' ), true ) . "\n</pre>\n";
+
+      foreach( $resObj->getCols() as $key => $value ) {
+        $template->assign( $key, $resObj->getter( $key ) );
+        // error_log( $key . ' === ' . print_r( $resObj->getter( $key ), true ) );
+      }
+
+      // Cargo los datos de image dentro de los del recurso
+      $fileDep = $resObj->getterDependence( 'image' );
+      if( $fileDep !== false ) {
+        $titleImage = $fileDep['0']->getter('title');
+        $template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"
+          alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
+        // error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
+      }
+      else {
+        $template->assign( 'image', '<p>'.__('None').'</p>' );
+      }
+
+    */
+
+    /**
+      PROBANDO (INI)
+      */
+    $template = new Template();
+    $template->assign( 'title', 'Colección Num. '.$collectionId );
+    $template->assign( 'shortDescription', 'Colección Num. '.$collectionId );
+    $template->assign( 'image', '<p>'.__('None').'</p>' );
+    $template->assign( 'collectionResources', 'Listado dos recursos da colección Num. '.$collectionId );
+    /**
+      PROBANDO (FIN)
+      */
+
+    $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
+
+    return( $template );
+  } // function getCollectionBlock( $resObj )
 
 
 } // class ResourceController

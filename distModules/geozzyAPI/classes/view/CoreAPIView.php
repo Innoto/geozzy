@@ -100,6 +100,48 @@ class CoreAPIView extends View
 
 
 
+    function resourceIndexJson() {
+      header('Content-type: application/json');
+
+
+      ?>
+            {
+                "resourcePath": "/resources.json",
+                "basePath": "/api",
+                "apis": [
+                    {
+                        "operations": [
+                            {
+                                "errorResponses": [
+                                    {
+                                        "reason": "The resource index",
+                                        "code": 200
+                                    }
+                                ],
+
+                                "httpMethod": "GET",
+                                "nickname": "resource",
+                                "parameters": [
+
+
+
+                                ],
+                                "summary": "Fetches resource list"
+                            }
+                        ],
+                        "path": "/core/resourceIndex",
+                        "description": ""
+                    }
+                ]
+
+            }
+
+          <?php
+    }
+
+
+
+
   function resourceTypesJson() {
     header('Content-type: application/json');
 
@@ -312,6 +354,22 @@ class CoreAPIView extends View
     $this->syncModelList( $resourceList );
   }
 
+  function resourceIndex( ) {
+    geozzyAPI::load('model/ResourceIndexModel.php');
+
+    $resourceModel = new ResourceIndexModel();
+    $resourceList = $resourceModel->listItems( array('groupBy'=>'id') );
+    header('Content-type: application/json');
+    echo '[';
+    $c = '';
+    while ($valueobject = $resourceList->fetch() )
+    {
+      echo $c.$valueobject->getter('id');
+      if($c === ''){$c=',';}
+    }
+    echo ']';
+  }
+
   function resourceTypes() {
     geozzy::load('model/ResourcetypeModel.php');
     $resourcetypeModel = new ResourcetypeModel( );
@@ -381,8 +439,8 @@ class CoreAPIView extends View
 
   function syncModel( $model ) {
     header('Content-type: application/json');
-    $data = $model->getAllData();
-    echo json_encode( $data['data'] );
+    $data = $model->getAllData('onlydata');
+    echo json_encode( $data );
 
 
   }
