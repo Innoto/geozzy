@@ -32,6 +32,14 @@
     {$image}
   </div>
 
+  {if isset($collections)}
+  <div class="collections">
+    <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
+    {$collections}
+  </div>
+  {/if}
+
+
 </div>
 
 <!-- /resourceViewBlock.tpl en geozzy module -->

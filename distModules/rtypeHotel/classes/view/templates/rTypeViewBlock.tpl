@@ -26,11 +26,18 @@
     {$content}
   </div>
 
-  <div class="image cgmMForm-fileField ">
+  <div class="image cgmMForm-fileField">
     <label for="imgResource" class="cgmMForm">{t}Image{/t}</label>
     <style type="text/css">.cgmMForm-fileField img { height: 100px }</style>
     {$image}
   </div>
+
+  {if isset($collections)}
+  <div class="collections">
+    <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
+    {$collections}
+  </div>
+  {/if}
 
   <div class="rTypeHotel">
     <p> --- rTypeHotel Ext --- </p>
