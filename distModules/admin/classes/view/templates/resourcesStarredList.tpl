@@ -34,10 +34,9 @@
         <div class="col-lg-8">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <strong>
-                <i class="fa fa-tag fa-fw"></i>
+
                 {t}List of resources for{/t} ( <%- name_{$langDefault} %> )
-              </strong>
+
             </div>
             <div class="panel-body">
               <div id="resourcesStarredListContainer" class="gzznestable dd">
@@ -73,7 +72,7 @@
 
         <div class="dd-content">
           <div class="nestableActions">
-  	        <button class="btnDelete btn btn-default btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-trash"></i></button>
+  	        <button class="btnDelete btn-icon btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-trash"></i></button>
   	      </div>
     	  </div>
 

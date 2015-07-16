@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-4 col-sm-12 clearfix">
         <div class="headerActionsContainer">
-          <button type="button" class="newTaxTerm btn btn-default btn-outline"> {t}Add{/t} <%- name %></button>
+          <button type="button" class="newTaxTerm btn btn-default"> {t}Add{/t} <%- name %></button>
           <span class="saveChanges">
             <button class="btn btn-danger cancelTerms">{t}Cancel{/t}</button>
             <button class="btn btn-primary saveTerms">{t}Save{/t}</button>
@@ -34,10 +34,9 @@
         <div class="col-lg-8">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <strong>
-                <i class="fa fa-tag fa-fw"></i>
+
                 {t}List of terms for{/t} ( <%- name_{$langDefault} %> )
-              </strong>
+
             </div>
             <div class="panel-body">
               <div id="taxTermListContainer" class="gzznestable <% if (!sortable) { %> no-sortable <% } %> dd">
@@ -73,8 +72,8 @@
 
         <div class="dd-content">
           <div class="nestableActions">
-  	        <button class="btnEditTerm btn btn-default btn-info" data-id="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
-  	        <button class="btnDeleteTerm btn btn-default btn-danger" data-id="<%- term.id %>" ><i class="fa fa-trash"></i></button>
+  	        <button class="btnEditTerm btn-icon btn-info" data-id="<%- term.id %>" ><i class="fa fa-pencil"></i></button>
+  	        <button class="btnDeleteTerm btn-icon btn-danger" data-id="<%- term.id %>" ><i class="fa fa-trash"></i></button>
   	      </div>
     	  </div>
 

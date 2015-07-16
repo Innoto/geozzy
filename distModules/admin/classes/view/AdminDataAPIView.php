@@ -346,7 +346,7 @@ class AdminDataAPIView extends View
           $resourceModel = new ResourceModel();
           $fields = array(
             'id',
-            'type',
+            'rTypeId',
             'published',
             'title_'.LANG_DEFAULT
           );
