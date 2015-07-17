@@ -389,14 +389,19 @@ class CoreAPIView extends View
 
   function resourceIndex( $param ) {
     geozzyAPI::load('model/ResourceIndexModel.php');
+    $resourceModel = new ResourceIndexModel();
     $filters = explode( '/',$param[1] );
+    $queryFilters = array();
 
     if( $filters[1] == 'taxonomyTerms' && $filters[3] == 'types' && $filters[5] == 'topics' && $filters[7] == 'bounds' ) {
 
+      // types
+      if( $filters[4] != 'false' ) {
+        $types = implode(',', array_map('intval', explode(',',$filters[4]) ) );
+      }
 
 
-      $resourceModel = new ResourceIndexModel();
-      $resourceList = $resourceModel->listItems( array('groupBy'=>'id') );
+      $resourceList = $resourceModel->listItems( array('filters' => $queryFilters, 'groupBy'=>'id') );
       header('Content-type: application/json');
       echo '[';
       $c = '';
