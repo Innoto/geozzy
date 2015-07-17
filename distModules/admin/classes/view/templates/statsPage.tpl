@@ -2,7 +2,7 @@
 
 {block "header" prepend}
   {if !isset($icon)}{assign var='icon' value='fa-unlock-alt'}{/if}
-  {if !isset($title)}{assign var='title' value='Stadistic'}{/if}
+  {if !isset($title)}{assign var='title' value='Stats'}{/if}
 {/block}
 
 {block name="content"}

@@ -104,7 +104,7 @@ class admin extends Module
 
   public function __construct() {
     $this->addUrlPatterns( '#^admin$#', 'view:AdminViewMaster::commonAdminInterface' );
-    $this->addUrlPatterns( '#^admin/charts$#', 'view:AdminViewStadistic::main' );
+    $this->addUrlPatterns( '#^admin/charts$#', 'view:AdminViewStats::main' );
 
     $this->addUrlPatterns( '#^admin/alltables$#', 'view:AdminViewStatic::allTables' );
     $this->addUrlPatterns( '#^admin/addcontent$#', 'view:AdminViewStatic::addContent' );

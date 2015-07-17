@@ -2,7 +2,7 @@
 admin::load('view/AdminViewMaster.php');
 
 
-class AdminViewStadistic extends AdminViewMaster
+class AdminViewStats extends AdminViewMaster
 {
 
   public function __construct( $base_dir ) {
@@ -21,10 +21,10 @@ class AdminViewStadistic extends AdminViewMaster
     $taxtermModel = new TaxonomytermModel();
 
     $template->assign('termArray', $taxtermModel->listItems()->fetchAll() );
-    $template->setTpl('stadisticPage.tpl', 'admin');
+    $template->setTpl('statsPage.tpl', 'admin');
 
     $this->template->addToBlock( 'col8', $template );
-    $this->template->assign( 'headTitle', __('Stadistic Page') );
+    $this->template->assign( 'headTitle', __('Stats Page') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
 
