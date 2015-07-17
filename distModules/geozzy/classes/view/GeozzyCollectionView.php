@@ -37,7 +37,40 @@ class GeozzyCollectionView extends View
     $form->setSuccess( 'accept', __( 'Thank you' ) );
     // $form->setSuccess( 'redirect', SITE_URL . 'admin#collection/list' );
 
+
+
+/*    $collectionResourcesModel =  new CollectionResourcesModel();
+
+    if( isset( $valuesArray[ 'id' ] ) ) {
+      $colResourcesList = $collectionResourcesModel->listItems(
+        array(
+          'filters' => array( 'collection' => $valuesArray[ 'id' ] ),
+          'order' => array( 'weight' => 1 ),
+          'affectsDependences' => array( 'ResourceModel' )
+        )
+      );
+
+      while( $res = $colResourcesList->fetch() ){
+        $resources = $res->getterDependence( 'resource', 'ResourceModel' );
+        //$colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
+        ///$colInfo[ 'values' ][] = $res->getter( 'collection' );
+
+
+        $elOpt = array(
+          'value' => $res->getter( 'resource' ),
+          'text' => $resources[ 0 ]->getter( 'title', LANG_DEFAULT ),
+          'data-image' => '/cgmlformfilews/'. $resources[ 0 ]->getter( 'image' )
+        );
+        $resOptions[ $res->getter( 'resource' ) ] = $elOpt;
+
+      }
+    }
+*/
+
+
+
     // Recursos disponibles
+
     $resourceModel =  new ResourceModel();
     $elemList = $resourceModel->listItems();
 
@@ -75,7 +108,7 @@ class GeozzyCollectionView extends View
       ),
       'resources' => array(
         'params' => array( 'label' => __( 'Resources' ), 'type' => 'select', 'id' => 'collResources',
-        // 'class' => 'cgmMForm-order',
+        'class' => 'cgmMForm-order',
         'multiple' => true, 'options'=> $resOptions ),
         'rules' => array( 'required' => true )
       )
