@@ -393,6 +393,8 @@ class CoreAPIView extends View
 
     if( $filters[1] == 'taxonomyTerms' && $filters[3] == 'types' && $filters[5] == 'topics' && $filters[7] == 'bounds' ) {
 
+
+
       $resourceModel = new ResourceIndexModel();
       $resourceList = $resourceModel->listItems( array('groupBy'=>'id') );
       header('Content-type: application/json');
