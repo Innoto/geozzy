@@ -120,16 +120,49 @@ class CoreAPIView extends View
                                 ],
 
                                 "httpMethod": "GET",
-                                "nickname": "resource",
+                                "nickname": "resourceIndex",
                                 "parameters": [
 
+
+                                    {
+                                      "name": "taxonomyTerms",
+                                      "description": "ids (separed by comma)",
+                                      "dataType": "string",
+                                      "paramType": "path",
+                                      "defaultValue": "false",
+                                      "required": false
+                                    },
+                                    {
+                                      "name": "types",
+                                      "description": "ids (separed by comma)",
+                                      "dataType": "string",
+                                      "paramType": "path",
+                                      "defaultValue": "false",
+                                      "required": false
+                                    },
+                                    {
+                                      "name": "topics",
+                                      "description": "ids (separed by comma)",
+                                      "dataType": "string",
+                                      "paramType": "path",
+                                      "defaultValue": "false",
+                                      "required": false
+                                    },
+                                    {
+                                      "name": "bounds",
+                                      "description": "lat,lng",
+                                      "dataType": "string",
+                                      "paramType": "path",
+                                      "defaultValue": "false",
+                                      "required": false
+                                    }
 
 
                                 ],
                                 "summary": "Fetches resource list"
                             }
                         ],
-                        "path": "/core/resourceIndex",
+                        "path": "/core/resourceIndex/taxonomyTerms/{taxonomyTerms}/types/{types}/topics/{topics}/bounds/{bounds}",
                         "description": ""
                     }
                 ]
@@ -354,20 +387,26 @@ class CoreAPIView extends View
     $this->syncModelList( $resourceList );
   }
 
-  function resourceIndex( ) {
+  function resourceIndex( $param ) {
     geozzyAPI::load('model/ResourceIndexModel.php');
+    $filters = explode( '/',$param[1] );
 
-    $resourceModel = new ResourceIndexModel();
-    $resourceList = $resourceModel->listItems( array('groupBy'=>'id') );
-    header('Content-type: application/json');
-    echo '[';
-    $c = '';
-    while ($valueobject = $resourceList->fetch() )
-    {
-      echo $c.$valueobject->getter('id');
-      if($c === ''){$c=',';}
+    if( $filters[1] == 'taxonomyTerms' && $filters[3] == 'types' && $filters[5] == 'topics' && $filters[7] == 'bounds' ) {
+
+      $resourceModel = new ResourceIndexModel();
+      $resourceList = $resourceModel->listItems( array('groupBy'=>'id') );
+      header('Content-type: application/json');
+      echo '[';
+      $c = '';
+      while ($valueobject = $resourceList->fetch() )
+      {
+        echo $c.$valueobject->getter('id');
+        if($c === ''){$c=',';}
+      }
+      echo ']';
     }
-    echo ']';
+
+
   }
 
   function resourceTypes() {
