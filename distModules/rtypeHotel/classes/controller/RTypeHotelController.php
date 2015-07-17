@@ -46,6 +46,7 @@ class RTypeHotelController {
     $rTypeExtNames[] = 'rextAccommodation';
     $this->accomCtrl = new RExtAccommodationController( $this );
     $rExtFieldNames = $this->accomCtrl->manipulateForm( $form );
+
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // Valadaciones extra

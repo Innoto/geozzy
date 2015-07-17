@@ -17,7 +17,7 @@ class RExtEatAndDrinkController {
     $this->defRTypeCtrl = $defRTypeCtrl;
     $this->defResCtrl = $defRTypeCtrl->defResCtrl;
 
-    $this->rExtModule = new rextEatanddrink();
+    $this->rExtModule = new rextEatAndDrink();
     if( property_exists( $this->rExtModule, 'taxonomies' ) && is_array( $this->rExtModule->taxonomies )
       && count( $this->rExtModule->taxonomies ) > 0 )
     {
@@ -30,8 +30,8 @@ class RExtEatAndDrinkController {
     error_log( "ResourceController: getRExtData( $resId )" );
     $rExtData = false;
 
-    $rExtModel = new EatanddrinkModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'id' => $resId ) ) );
+    $rExtModel = new EatAndDrinkModel();
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {
@@ -165,7 +165,6 @@ class RExtEatAndDrinkController {
         )
       )
     );
-
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 

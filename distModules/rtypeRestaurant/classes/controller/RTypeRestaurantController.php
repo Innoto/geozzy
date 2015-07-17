@@ -46,6 +46,9 @@ class RTypeRestaurantController {
     $rTypeExtNames[] = 'rextEatAndDrink';
     $this->accomCtrl = new RExtEatAndDrinkController( $this );
     $rExtFieldNames = $this->accomCtrl->manipulateForm( $form );
+/*    print('REST');
+    print_r($rExtFieldNames);*/
+
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // Valadaciones extra
@@ -76,9 +79,9 @@ class RTypeRestaurantController {
    **/
   public function resFormProcess( $form, $resource ) {
     error_log( "RTypeRestaurantController: resFormProcess()" );
-
     if( !$form->existErrors() ) {
       $this->accomCtrl = new RExtEatAndDrinkController( $this );
+
       $this->accomCtrl->resFormProcess( $form, $resource );
     }
   }

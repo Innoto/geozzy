@@ -72,6 +72,7 @@ class GeozzyResourceView extends View
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
     error_log( "GeozzyResourceView: getFormBlock()" );
 
+
     $rTypeFieldNames = array();
 
     $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
