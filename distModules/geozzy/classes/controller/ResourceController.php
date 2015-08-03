@@ -530,16 +530,22 @@ class ResourceController {
   }
 
   public function getTermsGrouped( $termIds ) {
-    $taxGroups = array();
     /*
-    TODO:
+
+    NON FUNCIONA: Falta preparar os filtros para que acepten múltiples valores (Juan)
+
+    */
+    $taxGroups = array();
 
     $taxGroupModel =  new TaxonomygroupModel();
-    $taxGroupList = $taxGroupModel->listItems( array( 'filters' => array( 'idInCSV' => implode( ',', $termIds ) ) ) );
+
+    $termsList = implode( ',', $termIds );
+    $taxGroupList = $taxGroupModel->listItems( array( 'filters' => array( 'idinCSV' => $termsList ) ) );
+
     while( $taxGroup = $taxGroupList->fetch() ){
       $taxGroups[ $taxGroup->getter( 'id' ) ] = $taxGroup->getter( 'taxonomyterm' );
     }
-    */
+
     return( count( $taxGroups ) > 0 ? $taxGroups : false );
   }
 

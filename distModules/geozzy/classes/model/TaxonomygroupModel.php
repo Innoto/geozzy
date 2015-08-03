@@ -42,7 +42,7 @@ class TaxonomygroupModel extends Model
   );
 
   static $extraFilters = array(
-    'idInCSV' => ' id IN ( ? ) ',
+    'idInCSV' => ' id IN (select taxgroup from geozzy_taxonomyterm where id IN (?))',
     'idNameInCSV' => ' idName IN ( ? ) '
   );
 

@@ -109,12 +109,12 @@ class ResourceModel extends Model
   * @return boolean
   */
   public function createTopicRelation( $topicId, $resourceId ) {
-    $this->dataFacade->transactionStart();
+    //$this->dataFacade->transactionStart();
 
     //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $resourcetopic =  new ResourceTopicModel(array("resource" => $resourceId, "topic" => $topicId));
     $resourcetopic->save();
-    $this->dataFacade->transactionEnd();
+    //$this->dataFacade->transactionEnd();
 
     return true;
   }
@@ -125,12 +125,12 @@ class ResourceModel extends Model
   * @return boolean
   */
   public function createTaxonomytermRelation( $starredId, $resourceId ) {
-    $this->dataFacade->transactionStart();
+    //$this->dataFacade->transactionStart();
 
     //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $resourcetopic =  new ResourceTaxonomytermModel(array("resource" => $resourceId, "taxonomyterm" => $starredId));
     $resourcetopic->save();
-    $this->dataFacade->transactionEnd();
+    //$this->dataFacade->transactionEnd();
 
     return true;
   }

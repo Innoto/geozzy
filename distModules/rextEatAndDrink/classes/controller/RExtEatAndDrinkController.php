@@ -266,22 +266,33 @@ class RExtEatAndDrinkController {
   public function getViewBlock( $resObj, $resBlock ) {
     error_log( "RExtEatanddrinkController: getViewBlock()" );
     $template = false;
-
+    $resCtrl = new ResourceController();
     $rExtData = $this->getRExtData( $resObj->getter('id') );
     if( $rExtData ) {
       $template = new Template();
 
       $rExtData = $this->prefixArrayKeys( $rExtData );
       foreach( $rExtData as $key => $value ) {
+        
+        if ($key == 'rextEatAndDrink_eatanddrinkType'){
+          $taxList = $resCtrl->getTermsGrouped( $value );
+          echo '<pre>';
+          print_r($taxList);
+          echo '<pre>';
+        }
+      
+
         $template->assign( $key, $rExtData[ $key ] );
         error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
       }
 
+      
+
       $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextAccommodation' );
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextEatAndDrink' );
     }
 
     return $template;
   } // function getViewBlock( $resObj )
 
-} // class RExtAccommodationController
+} // class RExtEatAndDrinkController

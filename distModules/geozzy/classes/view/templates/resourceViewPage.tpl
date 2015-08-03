@@ -32,6 +32,7 @@
   <div class="resource">
     {$resourceBlock}
   </div>
+
   {/if}
 
 <!-- /resourceViewPage.tpl en geozzy module -->

@@ -35,7 +35,7 @@
   <div class="rTypeRestaurant">
     <p> --- rTypeRestaurant Ext --- </p>
     <div class="rTypeRestaurant accommodation">
-      {$rextAccommodation}
+      {$rextEatAndDrink}
     </div>
   </div>
 

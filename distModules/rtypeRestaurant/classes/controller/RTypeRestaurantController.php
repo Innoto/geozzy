@@ -44,10 +44,9 @@ class RTypeRestaurantController {
     $rTypeFieldNames = array();
 
     $rTypeExtNames[] = 'rextEatAndDrink';
-    $this->accomCtrl = new RExtEatAndDrinkController( $this );
-    $rExtFieldNames = $this->accomCtrl->manipulateForm( $form );
-/*    print('REST');
-    print_r($rExtFieldNames);*/
+    $this->eatCtrl = new RExtEatAndDrinkController( $this );
+    $rExtFieldNames = $this->eatCtrl->manipulateForm( $form );
+
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
@@ -66,8 +65,8 @@ class RTypeRestaurantController {
     error_log( "RTypeRestaurantController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
-      $this->accomCtrl = new RExtEatAndDrinkController( $this );
-      $this->accomCtrl->resFormRevalidate( $form );
+      $this->eatCtrl = new RExtEatAndDrinkController( $this );
+      $this->eatCtrl->resFormRevalidate( $form );
     }
 
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
@@ -80,9 +79,9 @@ class RTypeRestaurantController {
   public function resFormProcess( $form, $resource ) {
     error_log( "RTypeRestaurantController: resFormProcess()" );
     if( !$form->existErrors() ) {
-      $this->accomCtrl = new RExtEatAndDrinkController( $this );
+      $this->eatCtrl = new RExtEatAndDrinkController( $this );
 
-      $this->accomCtrl->resFormProcess( $form, $resource );
+      $this->eatCtrl->resFormProcess( $form, $resource );
     }
   }
 
@@ -93,8 +92,8 @@ class RTypeRestaurantController {
   public function resFormSuccess( $form, $resource ) {
     error_log( "RTypeRestaurantController: resFormSuccess()" );
 
-    $this->accomCtrl = new RExtEatAndDrinkController( $this );
-    $this->accomCtrl->resFormSuccess( $form, $resource );
+    $this->eatCtrl = new RExtEatAndDrinkController( $this );
+    $this->eatCtrl->resFormSuccess( $form, $resource );
   }
 
 
@@ -115,8 +114,8 @@ class RTypeRestaurantController {
     error_log( "RTypeRestaurantController: getViewBlock()" );
     $template = false;
 
-    $this->accomCtrl = new RExtEatAndDrinkController( $this );
-    $accomBlock = $this->accomCtrl->getViewBlock( $resObj, $resBlock );
+    $this->eatCtrl = new RExtEatAndDrinkController( $this );
+    $accomBlock = $this->eatCtrl->getViewBlock( $resObj, $resBlock );
 
     if( $accomBlock ) {
       $template = $resBlock;
