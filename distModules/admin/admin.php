@@ -80,8 +80,13 @@ class admin extends Module
       "params" => array("switchery"),
       "installer" => "bower",
       "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
+    ),
+    array(
+      "id" =>"raleway",
+      "params" => array("raleway"),
+      "installer" => "bower",
+      "includes" => array("raleway.css")
     )
-
   );
 
   public $includesCommon = array(
