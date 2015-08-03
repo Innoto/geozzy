@@ -23,7 +23,7 @@
     <label>{t}Average Price{/t}</label>
     {$rextEatAndDrink_averagePrice|escape:'htmlall'}
   </div> 
-
+<!-- 
   <div class="eatanddrinkType">
     <label>{t}eatanddrinkTypeType{/t}</label>
     {$rextEatAndDrink_eatanddrinkType|escape:'htmlall'}
@@ -52,7 +52,7 @@
   <div class="eatanddrinkUsers">
     <label>{t}Users{/t}</label>
     {$rextEatAndDrink_eatanddrinkUsers|escape:'htmlall'}
-  </div>       
+  </div>    -->    
 
 </div>
 
