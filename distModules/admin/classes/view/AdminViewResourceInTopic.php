@@ -71,6 +71,12 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
     $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
 
+    $typeModel =  new ResourcetypeModel();
+    $typeList = $typeModel->listItems()->fetchAll();
+    foreach ($typeList as $id => $type){
+      $tabla->colRule('rTypeId', '#'.$id.'#', $type->getter('name'));
+    }
+
     // imprimimos o JSON da taboa
     $tabla->exec();
   }

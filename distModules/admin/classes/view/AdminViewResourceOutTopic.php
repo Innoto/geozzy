@@ -83,6 +83,13 @@ class AdminViewResourceOutTopic extends AdminViewMaster
 
     $tabla->setActionMethod(__('Assign'), 'assign', 'createTopicRelation('.$topicId[1].',$rowId)');
 
+    // Contido especial
+    $typeModel =  new ResourcetypeModel();
+    $typeList = $typeModel->listItems()->fetchAll();
+    foreach ($typeList as $id => $type){
+      $tabla->colRule('rTypeId', '#'.$id.'#', $type->getter('name'));
+    }
+
     // Filtrar por temática
     $tabla->setDefaultFilters( array('nottopic'=> $topicId[1] ) );
 
