@@ -275,18 +275,13 @@ class RExtEatAndDrinkController {
       foreach( $rExtData as $key => $value ) {
         
         if ($key == 'rextEatAndDrink_eatanddrinkType'){
+          /* Pendiente de filtros con valores múltiples */
           $taxList = $resCtrl->getTermsGrouped( $value );
-          echo '<pre>';
-          print_r($taxList);
-          echo '<pre>';
         }
-      
 
         $template->assign( $key, $rExtData[ $key ] );
         error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
       }
-
-      
 
       $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
       $template->setTpl( 'rExtViewBlock.tpl', 'rextEatAndDrink' );
