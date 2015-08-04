@@ -416,6 +416,35 @@ class CoreAPIView extends View
 
 
 
+
+      if(
+        $filters[8] != 'false' &&
+        preg_match(
+          '#(.*)\ (.*)\,(.*)\ (.*)#',
+          urldecode($filters[8]),
+          $bounds
+        )
+      ) {
+
+          if( is_numeric($bounds[1]) && is_numeric($bounds[2]) &&
+              is_numeric($bounds[3]) && is_numeric($bounds[4])
+          ) {
+
+            $queryFilters['bounds']=  $bounds[1].' '.$bounds[2].','.
+                                      $bounds[1].' '.$bounds[4].','.
+                                      $bounds[3].' '.$bounds[4].','.
+                                      $bounds[3].' '.$bounds[2].','.
+                                      $bounds[1].' '.$bounds[2];
+          }
+
+      }
+
+
+
+
+
+
+
       $resourceList = $resourceModel->listItems( array('filters' => $queryFilters, 'groupBy'=>'id') );
       header('Content-type: application/json');
       echo '[';

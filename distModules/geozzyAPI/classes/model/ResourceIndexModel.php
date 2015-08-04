@@ -27,7 +27,8 @@ class ResourceIndexModel extends Model
 //    'topic' => 'topic in (?)'
       'taxonomyterms' => 'geozzy_resource_index.taxonomyterm IN( ? )',
       'types' => 'geozzy_resource_index.rTypeId IN( ? )',
-      'topics' => 'geozzy_resource_index.topic IN( ? )'
+      'topics' => 'geozzy_resource_index.topic IN( ? )',
+      'bounds' => "MBRContains(PolygonFromText( CONCAT('Polygon((',?,'))') ), loc)"
   );
 
 
