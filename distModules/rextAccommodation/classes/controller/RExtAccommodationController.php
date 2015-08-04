@@ -76,7 +76,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
         'rules' => array( 'digits' => true )
       ),
       'accommodationType' => array(
-        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select',  'multiple' => true,
           'options' => $this->defResCtrl->getOptionsTax( 'accommodationType' )
         )
       ),
@@ -86,12 +86,12 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
         )
       ),
       'accommodationServices' => array(
-        'params' => array( 'label' => __( 'Accommodation services' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'Accommodation services' ), 'type' => 'select', 'multiple' => true,
           'options' => $this->defResCtrl->getOptionsTax( 'accommodationServices' )
         )
       ),
       'accommodationFacilities' => array(
-        'params' => array( 'label' => __( 'Accommodation facilities' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'Accommodation facilities' ), 'type' => 'select', 'multiple' => true,
           'options' => $this->defResCtrl->getOptionsTax( 'accommodationFacilities' )
         )
       ),

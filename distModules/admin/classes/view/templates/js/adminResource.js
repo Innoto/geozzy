@@ -19,6 +19,19 @@ function bindResourceForm(){
     icon: '<i class="fa fa-arrows"></i>'
   });
 
+
+  $('select.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
+    orientation: 'horizontal'
+  });
+  $('select.cgmMForm-field-rExtAccommodation_accommodationServices').multiList({
+    orientation: 'horizontal'
+  });
+  $('select.cgmMForm-field-rExtAccommodation_accommodationFacilities').multiList({
+    orientation: 'horizontal'
+  });
+
+  $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').select2();
+
   $('#resourceAddCollection').on('click', function(){
     //PARAMS( URL - ID - TITLE )
     app.mainView.loadAjaxContentModal('/admin/collection/create', 'createCollectionsModal', 'Create Collection');

@@ -18,9 +18,9 @@ class rextAccommodation extends Module
     'accommodationType' => array(
       'idName' => 'accommodationType',
       'name' => array(
-        'en' => 'Type',
-        'es' => 'Tipo',
-        'gl' => 'Tipo'
+        'en' => 'Acommodation yype',
+        'es' => 'Tipo de alojamiento',
+        'gl' => 'Tipo de aloxamento'
       ),
       'editable' => 1,
       'nestable' => 1,
@@ -208,6 +208,22 @@ class rextAccommodation extends Module
       'nestable' => 0,
       'sortable' => 1,
       'initialTerms' => array(
+        array(
+          'idName' => 'family',
+          'name' => array(
+            'en' => 'Family',
+            'es' => 'Familia',
+            'gl' => 'Familia'
+          )
+        ),
+        array(
+          'idName' => 'youth',
+          'name' => array(
+            'en' => 'Youth',
+            'es' => 'Jóvenes',
+            'gl' => 'Xoves'
+          )
+        )
       )
     )
   );
