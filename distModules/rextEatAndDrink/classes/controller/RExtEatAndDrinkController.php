@@ -48,6 +48,8 @@ class RExtEatAndDrinkController {
         }
       }
 
+
+
     }
 
     return $rExtData;
@@ -131,13 +133,13 @@ class RExtEatAndDrinkController {
         'rules' => array( 'digits' => true )
       ),
       'eatanddrinkType' => array(
-        'params' => array( 'label' => __( 'EatAndDrink Type' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'EatAndDrink type' ), 'type' => 'select',
           'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkType' )
         )
       ),
       'eatanddrinkSpecialities' => array(
         'params' => array( 'label' => __( 'EatAndDrink specialities' ), 'type' => 'select', 'multiple' => true,
-          'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkSpcialities' )
+          'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkSpecialities' )
         )
       )
     );
@@ -248,11 +250,12 @@ class RExtEatAndDrinkController {
       $template = new Template();
 
       $rExtData = $this->prefixArrayKeys( $rExtData );
-      foreach( $rExtData as $key => $value ) {
 
+      foreach( $rExtData as $key => $value ) {
+        // FALTA CAMBHIAR CONSULTA Y CONSTRUIR RESPUESTA
         if ($key == 'rextEatAndDrink_eatanddrinkType'){
-          /* Pendiente de filtros con valores múltiples */
-          $taxList = $resCtrl->getTermsGrouped( $value );
+          $taxList[$key] = $resCtrl->getTermsGrouped( $value );
+          print_r($taxList);
         }
 
         $template->assign( $key, $rExtData[ $key ] );
