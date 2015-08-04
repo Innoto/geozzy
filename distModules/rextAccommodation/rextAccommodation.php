@@ -208,6 +208,22 @@ class rextAccommodation extends Module
       'nestable' => 0,
       'sortable' => 1,
       'initialTerms' => array(
+        array(
+          'idName' => 'family',
+          'name' => array(
+            'en' => 'Family',
+            'es' => 'Familia',
+            'gl' => 'Familia'
+          )
+        ),
+        array(
+          'idName' => 'youth',
+          'name' => array(
+            'en' => 'Youth',
+            'es' => 'Jóvenes',
+            'gl' => 'Xoves'
+          )
+        )
       )
     )
   );

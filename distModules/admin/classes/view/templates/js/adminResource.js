@@ -19,6 +19,16 @@ function bindResourceForm(){
     icon: '<i class="fa fa-arrows"></i>'
   });
 
+  $('.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
+    orientation: 'horizontal'
+  });
+  $('.cgmMForm-field-rExtAccommodation_accommodationServices').multiList({
+    orientation: 'horizontal'
+  });
+  $('.cgmMForm-field-rExtAccommodation_accommodationFacilities').multiList({
+    orientation: 'horizontal'
+  });
+
   $('#resourceAddCollection').on('click', function(){
     //PARAMS( URL - ID - TITLE )
     app.mainView.loadAjaxContentModal('/admin/collection/create', 'createCollectionsModal', 'Create Collection');

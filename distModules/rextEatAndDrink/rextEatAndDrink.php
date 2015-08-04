@@ -28,7 +28,7 @@ class rextEatAndDrink extends Module
         'gl' => 'Tipo'
       ),
       'editable' => 1,
-      'nestable' => 1,
+      'nestable' => 0,
       'sortable' => 1,
       'initialTerms' => array(
         array(
@@ -235,6 +235,44 @@ class rextEatAndDrink extends Module
             'en' => 'Youth',
             'es' => 'Jóvenes',
             'gl' => 'Xoves'
+          )
+        )
+      )
+    ),
+
+    'eatanddrinkSpecialties' => array(
+      'idName' => 'eatanddrinkSpecialties',
+      'name' => array(
+        'en' => 'Brand',
+        'es' => 'Cadena',
+        'gl' => 'Cadea'
+      ),
+      'editable' => 1,
+      'nestable' => 0,
+      'sortable' => 1,
+      'initialTerms' => array(
+        array(
+          'idName' => 'tortilla',
+          'name' => array(
+            'en' => 'Omelette',
+            'es' => 'Tortilla',
+            'gl' => 'Tortilla'
+          )
+        ),
+        array(
+          'idName' => 'pulpo',
+          'name' => array(
+            'en' => 'Octopus',
+            'es' => 'Pulpo',
+            'gl' => 'Polbo'
+          )
+        ),
+        array(
+          'idName' => 'empanada',
+          'name' => array(
+            'en' => 'Pie',
+            'es' => 'Empanada',
+            'gl' => 'Empanada'
           )
         )
       )
