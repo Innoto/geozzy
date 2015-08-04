@@ -28,6 +28,9 @@ function bindResourceForm(){
   $('.cgmMForm-field-rExtAccommodation_accommodationFacilities').multiList({
     orientation: 'horizontal'
   });
+  $('.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').multiList({
+    orientation: 'horizontal'
+  });
 
   $('#resourceAddCollection').on('click', function(){
     //PARAMS( URL - ID - TITLE )

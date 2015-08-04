@@ -23,9 +23,9 @@ class rextEatAndDrink extends Module
     'eatanddrinkType' => array(
       'idName' => 'eatanddrinkType',
       'name' => array(
-        'en' => 'Type',
-        'es' => 'Tipo',
-        'gl' => 'Tipo'
+        'en' => 'Restaurant type',
+        'es' => 'Tipo de local',
+        'gl' => 'Tipo de local'
       ),
       'editable' => 1,
       'nestable' => 0,
@@ -58,194 +58,12 @@ class rextEatAndDrink extends Module
       )
     ),
 
-  	'eatanddrinkCategory' => array(
-      'idName' => 'eatanddrinkCategory',
+    'eatanddrinkSpecialities' => array(
+      'idName' => 'eatanddrinkSpecialities',
       'name' => array(
-        'en' => 'Category',
-        'es' => 'Categoría',
-        'gl' => 'Categoría'
-      ),
-      'editable' => 1,
-      'nestable' => 0,
-      'sortable' => 0,
-      'initialTerms' => array(
-        array(
-          'idName' => '1Fork',
-          'name' => array(
-            'en' => '1 Fork',
-            'es' => '1 Tenedores',
-            'gl' => '1 Garfo'
-          )
-        ),
-        array(
-          'idName' => '2Forks',
-          'name' => array(
-            'en' => '2 Forks',
-            'es' => '2 Tenedores',
-            'gl' => '2 Garfos'
-          )
-        ),
-        array(
-          'idName' => '3Forks',
-          'name' => array(
-            'en' => '3 Forks',
-            'es' => '3 Tenedores',
-            'gl' => '3 Garfos'
-          )
-        ),
-        array(
-          'idName' => '4Forks',
-          'name' => array(
-            'en' => '4 Forks',
-            'es' => '4 Tenedores',
-            'gl' => '4 Garfos'
-          )
-        ),
-        array(
-          'idName' => '5Forks',
-          'name' => array(
-            'en' => '5 Forks',
-            'es' => '5 Tenedores',
-            'gl' => '5 Garfos'
-          )
-        )
-      )
-    ),
-
-    'eatanddrinkServices' => array(
-      'idName' => 'eatanddrinkServices',
-      'name' => array(
-        'en' => 'Services',
-        'es' => 'Servicios',
-        'gl' => 'Servizos'
-      ),
-      'editable' => 1,
-      'nestable' => 1,
-      'sortable' => 1,
-      'initialTerms' => array(
-        array(
-          'idName' => 'concerts',
-          'name' => array(
-            'en' => 'Concerts',
-            'es' => 'Conciertos',
-            'gl' => 'Concertos'
-          )
-        ),
-        array(
-          'idName' => 'accessible',
-          'name' => array(
-            'en' => 'Accessible bathroom',
-            'es' => 'Baño adaptado',
-            'gl' => 'Baño adaptado'
-          )
-        )
-      )
-    ),
-
-    'eatanddrinkFacilities' => array(
-      'idName' => 'eatanddrinkFacilities',
-      'name' => array(
-        'en' => 'Facilities',
-        'es' => 'Instalaciones',
-        'gl' => 'Instalacións'
-      ),
-      'editable' => 1,
-      'nestable' => 1,
-      'sortable' => 1,
-      'initialTerms' => array(
-        array(
-          'idName' => 'childarea',
-          'name' => array(
-            'en' => 'Child area',
-            'es' => 'Zona de niños',
-            'gl' => 'Zona de crianzas'
-          )
-        ),
-        array(
-          'idName' => 'eatanddrinkparking',
-          'name' => array(
-            'en' => 'Parking',
-            'es' => 'Aparcamiento',
-            'gl' => 'Aparcamento'
-          )
-        )
-      )
-    ),
-
-    'eatanddrinkBrand' => array(
-      'idName' => 'eatanddrinkBrand',
-      'name' => array(
-        'en' => 'Brand',
-        'es' => 'Cadena',
-        'gl' => 'Cadea'
-      ),
-      'editable' => 1,
-      'nestable' => 0,
-      'sortable' => 1,
-      'initialTerms' => array(
-        array(
-          'idName' => 'cambalache',
-          'name' => array(
-            'en' => 'Cambalache',
-            'es' => 'Cambalache',
-            'gl' => 'Cambalache'
-          )
-        ),
-        array(
-          'idName' => 'manteleria',
-          'name' => array(
-            'en' => 'Mantelería',
-            'es' => 'Mantelería',
-            'gl' => 'Mantelería'
-          )
-        ),
-        array(
-          'idName' => 'casaponte',
-          'name' => array(
-            'en' => 'Casa Ponte',
-            'es' => 'Casa Ponte',
-            'gl' => 'Casa Ponte'
-          )
-        )
-      )
-    ),
-
-    'eatanddrinkUsers' => array(
-      'idName' => 'eatanddrinkUsers',
-      'name' => array(
-        'en' => 'Users',
-        'es' => 'Usuarios',
-        'gl' => 'Usuarios'
-      ),
-      'editable' => 1,
-      'nestable' => 0,
-      'sortable' => 1,
-      'initialTerms' => array(
-        array(
-          'idName' => 'family',
-          'name' => array(
-            'en' => 'Family',
-            'es' => 'Familia',
-            'gl' => 'Familia'
-          )
-        ),
-        array(
-          'idName' => 'youth',
-          'name' => array(
-            'en' => 'Youth',
-            'es' => 'Jóvenes',
-            'gl' => 'Xoves'
-          )
-        )
-      )
-    ),
-
-    'eatanddrinkSpecialties' => array(
-      'idName' => 'eatanddrinkSpecialties',
-      'name' => array(
-        'en' => 'Brand',
-        'es' => 'Cadena',
-        'gl' => 'Cadea'
+        'en' => 'Specialities',
+        'es' => 'Especialidades',
+        'gl' => 'Especialidades'
       ),
       'editable' => 1,
       'nestable' => 0,

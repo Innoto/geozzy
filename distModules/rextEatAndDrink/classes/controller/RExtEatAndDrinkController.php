@@ -126,10 +126,6 @@ class RExtEatAndDrinkController {
         'params' => array( 'label' => __( 'Restaurant reservation phone' ) ),
         'rules' => array( 'maxlength' => 200 )
       ),
-/*      'capacity' => array(
-        'params' => array( 'label' => __( 'Restaurant capacity' ) ),
-        'rules' => array( 'digits' => true )
-      ),*/
       'averagePrice' => array(
         'params' => array( 'label' => __( 'Restaurant average price' ) ),
         'rules' => array( 'digits' => true )
@@ -139,37 +135,11 @@ class RExtEatAndDrinkController {
           'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkType' )
         )
       ),
-/*      'eatanddrinkCategory' => array(
-        'params' => array( 'label' => __( 'EatAndDrink Category' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkCategory' )
-        )
-      ),
-      'eatanddrinkServices' => array(
-        'params' => array( 'label' => __( 'EatAndDrink Services' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkServices' )
-        )
-      ),
-*/
-      'eatanddrinkFacilities' => array(
-        'params' => array( 'label' => __( 'EatAndDrink facilities' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkFacilities' )
-        )
-      ),
       'eatanddrinkSpecialities' => array(
         'params' => array( 'label' => __( 'EatAndDrink specialities' ), 'type' => 'select', 'multiple' => true,
           'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkSpcialities' )
         )
-      )/*,
-      'eatanddrinkBrand' => array(
-        'params' => array( 'label' => __( 'EatAndDrink brand' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkBrand' )
-        )
-      ),
-      'eatanddrinkusers' => array(
-        'params' => array( 'label' => __( 'EatAndDrink users profile' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkUsers' )
-        )
-      )*/
+      )
     );
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );

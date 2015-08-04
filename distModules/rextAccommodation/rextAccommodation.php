@@ -18,9 +18,9 @@ class rextAccommodation extends Module
     'accommodationType' => array(
       'idName' => 'accommodationType',
       'name' => array(
-        'en' => 'Type',
-        'es' => 'Tipo',
-        'gl' => 'Tipo'
+        'en' => 'Acommodation yype',
+        'es' => 'Tipo de alojamiento',
+        'gl' => 'Tipo de aloxamento'
       ),
       'editable' => 1,
       'nestable' => 1,
