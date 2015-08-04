@@ -181,7 +181,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
     }
-
   }
 
   /**
@@ -194,9 +193,10 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
   }
 
 
+
   /**
     Visualizamos el Recurso
-  */
+   */
   public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
     error_log( "RExtAccommodationController: getViewBlock()" );
     $template = false;

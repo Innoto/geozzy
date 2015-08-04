@@ -1,28 +1,13 @@
 <?php
-//rextAccommodation::load('model/AccommodationModel.php');
 
 
-class RExtEatAndDrinkController {
+class RExtEatAndDrinkController extends RExtController implements RExtInterface {
 
-  public $prefix = 'rextEatAndDrink_';
-
-  public $defRTypeCtrl = null;
-  public $defResCtrl = null;
-  public $rExtModule = null;
-  public $taxonomies = false;
 
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtEatanddrinkController::__construct' );
+    error_log( 'RExtEatanddrinkController::__construct' );
 
-    $this->defRTypeCtrl = $defRTypeCtrl;
-    $this->defResCtrl = $defRTypeCtrl->defResCtrl;
-
-    $this->rExtModule = new rextEatAndDrink();
-    if( property_exists( $this->rExtModule, 'taxonomies' ) && is_array( $this->rExtModule->taxonomies )
-      && count( $this->rExtModule->taxonomies ) > 0 )
-    {
-      $this->taxonomies = $this->rExtModule->taxonomies;
-    }
+    parent::__construct( $defRTypeCtrl, new rextEatAndDrink(), 'rextEatAndDrink_' );
   }
 
 
@@ -56,65 +41,10 @@ class RExtEatAndDrinkController {
   }
 
 
-  public function getRExtFormValues( $formValuesArray ) {
-    error_log( "RExtEatAndDrinkController: getRExtFormValues()" );
-    $valuesArray = array();
-
-    $numericFields = array( 'capacity' );
-
-    foreach( $formValuesArray as $key => $value ) {
-      $newKey = $this->delPrefix( $key );
-      if( $newKey !== $key ) {
-        if( $formValuesArray[ $key ] === '' && in_array( $newKey, $numericFields ) ) {
-          $valuesArray[ $newKey ] = null;
-        }
-        else {
-          $valuesArray[ $newKey ] = $formValuesArray[ $key ];
-        }
-      }
-    }
-
-    if( count( $valuesArray ) < 1 ) {
-      $valuesArray = false;
-    }
-
-    error_log( 'RExtEatAndDrinkController: '.print_r( $valuesArray, true ) );
-    return $valuesArray;
-  }
-
-  public function prefixArrayKeys( $valuesArray ) {
-    if( is_array( $valuesArray ) ) {
-      $prefixArray = array();
-      foreach( $valuesArray as $key => $value ) {
-        $prefixArray[ $this->addPrefix( $key ) ] = $value;
-      }
-    }
-    else {
-      $prefixArray = $valuesArray;
-    }
-
-    return $prefixArray;
-  }
-
-  public function addPrefix( $text ) {
-
-    return $this->prefix . $text;
-  }
-
-  public function delPrefix( $text ) {
-    if( strpos( $text, $this->prefix ) === 0 ) {
-      $text = substr( $text, strlen( $this->prefix ) );
-    }
-
-    return $text;
-  }
-
-
-
   /**
     Defino el formulario
    */
-  public function manipulateForm( $form ) {
+  public function manipulateForm( FormController $form ) {
     error_log( "RExtEatAndDrinkController: manipulateForm()" );
 
     $rExtFieldNames = array();
@@ -178,7 +108,7 @@ class RExtEatAndDrinkController {
   /**
     Validaciones extra previas a usar los datos del recurso base
    */
-  public function resFormRevalidate( $form ) {
+  public function resFormRevalidate( FormController $form ) {
     error_log( "RExtEatAndDrinkController: resFormRevalidate()" );
 
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
@@ -188,11 +118,12 @@ class RExtEatAndDrinkController {
     Creación-Edición-Borrado de los elementos del recurso base
     Iniciar transaction
    */
-  public function resFormProcess( $form, $resource ) {
+  public function resFormProcess( FormController $form, ResourceModel $resource ) {
     error_log( "RExtEatAndDrinkController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
-      $valuesArray = $this->getRExtFormValues( $form->getValuesArray() );
+      $numericFields = array( 'capacity' );
+      $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $numericFields );
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
@@ -216,36 +147,27 @@ class RExtEatAndDrinkController {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
     }
-
   }
 
   /**
     Enviamos el OK-ERROR a la BBDD y al formulario
     Finalizar transaction
    */
-  public function resFormSuccess( $form, $resource ) {
+  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
     error_log( "RExtEatAndDrinkController: resFormSuccess()" );
 
   }
 
 
-  /**
-   * Métodos para facilitar y organizar la verificación de los distintos elementos del recurso
-   */
-
-
-
-
-
 
   /**
     Visualizamos el Recurso
-  */
-  public function getViewBlock( $resObj, $resBlock ) {
+   */
+  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
     error_log( "RExtEatanddrinkController: getViewBlock()" );
     $template = false;
     $resCtrl = new ResourceController();
-    $rExtData = $this->getRExtData( $resObj->getter('id') );
+    $rExtData = $this->getRExtData( $resource->getter('id') );
     if( $rExtData ) {
       $template = new Template();
 
@@ -267,6 +189,6 @@ class RExtEatAndDrinkController {
     }
 
     return $template;
-  } // function getViewBlock( $resObj )
+  }
 
 } // class RExtEatAndDrinkController
