@@ -387,18 +387,33 @@ class CoreAPIView extends View
     $this->syncModelList( $resourceList );
   }
 
+
+
   function resourceIndex( $param ) {
     geozzyAPI::load('model/ResourceIndexModel.php');
     $resourceModel = new ResourceIndexModel();
     $filters = explode( '/',$param[1] );
     $queryFilters = array();
 
+    // check parameter integrity
     if( $filters[1] == 'taxonomyTerms' && $filters[3] == 'types' && $filters[5] == 'topics' && $filters[7] == 'bounds' ) {
+
+
+      // taxonomy terms
+      if( $filters[2] != 'false' ) {
+        $queryFilters['taxonomyterms'] = implode(',', array_map('intval', explode(',',$filters[2] ) ) );
+      }
 
       // types
       if( $filters[4] != 'false' ) {
-        $types = implode(',', array_map('intval', explode(',',$filters[4]) ) );
+        $queryFilters['types'] = array_map('intval', explode(',',$filters[4]) );
       }
+
+      // topics
+      if( $filters[6] != 'false' ) {
+        $queryFilters['topics'] = array_map('intval', explode(',',$filters[6]) );
+      }
+
 
 
       $resourceList = $resourceModel->listItems( array('filters' => $queryFilters, 'groupBy'=>'id') );
