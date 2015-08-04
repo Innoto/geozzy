@@ -8,7 +8,7 @@
 {block name="content"}
   <h3>MultiList Vertical</h3>
 
-  <select id="asigned_terms2" multiple style="width:250px;">
+  <select class="asigned_terms2" multiple style="width:250px;">
   {foreach key=key item=item from=$termArray}
     <optgroup label="OptG">
       <option data-order="{$item->getter('weight')}" value="{$item->getter('id')}">{$item->getter('name')}</option>
@@ -17,7 +17,7 @@
   </select>
 
   <h3>MultiList Horizontal</h3>
-  <select id="asigned_terms3" multiple style="width:250px;">
+  <select class="asigned_terms3" multiple style="width:250px;">
   {foreach key=key item=item from=$termArray}
     <option data-order="{$item->getter('weight')}" value="{$item->getter('id')}">{$item->getter('name')}</option>
   {/foreach}
@@ -52,8 +52,8 @@
 
 $( document ).ready(function() {
 
-  $('#asigned_terms2').multiList();
-  $('#asigned_terms3').multiList({
+  $('.asigned_terms2').multiList();
+  $('.asigned_terms3').multiList({
     orientation: 'horizontal'
   });
 

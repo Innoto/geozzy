@@ -77,7 +77,7 @@ class GeozzyTaxonomytermView extends View
 
     /* VALIDATIONS */
     $form->setValidationRule( 'icon', 'minfilesize', 1024 );
-    $form->setValidationRule( 'icon', 'accept', 'image/jpeg' );
+    $form->setValidationRule( 'icon', 'accept', 'image/png' );
     //$form->setValidationRule( 'icon', 'required' );
     $form->setValidationRule( 'name_'.$langDefault, 'required' );
 
@@ -232,7 +232,7 @@ class GeozzyTaxonomytermView extends View
 
           // Apaño
           $taxterm->setter( 'icon', null );
-          
+
 
 
 
