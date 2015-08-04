@@ -1,5 +1,8 @@
 <?php
 
+geozzy::load( 'controller/RTypeController.php' );
+geozzy::load( 'controller/RExtController.php' );
+
 
 class ResourceController {
 

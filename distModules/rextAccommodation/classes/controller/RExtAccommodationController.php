@@ -1,28 +1,13 @@
 <?php
-//rextAccommodation::load('model/AccommodationModel.php');
 
 
-class RExtAccommodationController {
+class RExtAccommodationController extends RExtController implements RExtInterface {
 
-  public $prefix = 'rExtAccommodation_';
-
-  public $defRTypeCtrl = null;
-  public $defResCtrl = null;
-  public $rExtModule = null;
-  public $taxonomies = false;
 
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtAccommodationController::__construct' );
+    error_log( 'RExtAccommodationController::__construct' );
 
-    $this->defRTypeCtrl = $defRTypeCtrl;
-    $this->defResCtrl = $defRTypeCtrl->defResCtrl;
-
-    $this->rExtModule = new rextAccommodation();
-    if( property_exists( $this->rExtModule, 'taxonomies' ) && is_array( $this->rExtModule->taxonomies )
-      && count( $this->rExtModule->taxonomies ) > 0 )
-    {
-      $this->taxonomies = $this->rExtModule->taxonomies;
-    }
+    parent::__construct( $defRTypeCtrl, new rextAccommodation(), 'rExtAccommodation_' );
   }
 
 
@@ -53,65 +38,10 @@ class RExtAccommodationController {
   }
 
 
-  public function getRExtFormValues( $formValuesArray ) {
-    error_log( "RExtAccommodationController: getRExtFormValues()" );
-    $valuesArray = array();
-
-    $numericFields = array( 'singleRooms', 'doubleRooms', 'familyRooms', 'beds', 'averagePrice' );
-
-    foreach( $formValuesArray as $key => $value ) {
-      $newKey = $this->delPrefix( $key );
-      if( $newKey !== $key ) {
-        if( $formValuesArray[ $key ] === '' && in_array( $newKey, $numericFields ) ) {
-          $valuesArray[ $newKey ] = null;
-        }
-        else {
-          $valuesArray[ $newKey ] = $formValuesArray[ $key ];
-        }
-      }
-    }
-
-    if( count( $valuesArray ) < 1 ) {
-      $valuesArray = false;
-    }
-
-    // error_log( 'RExtAccommodationController: '.print_r( $valuesArray, true ) );
-    return $valuesArray;
-  }
-
-  public function prefixArrayKeys( $valuesArray ) {
-    if( is_array( $valuesArray ) ) {
-      $prefixArray = array();
-      foreach( $valuesArray as $key => $value ) {
-        $prefixArray[ $this->addPrefix( $key ) ] = $value;
-      }
-    }
-    else {
-      $prefixArray = $valuesArray;
-    }
-
-    return $prefixArray;
-  }
-
-  public function addPrefix( $text ) {
-
-    return $this->prefix . $text;
-  }
-
-  public function delPrefix( $text ) {
-    if( strpos( $text, $this->prefix ) === 0 ) {
-      $text = substr( $text, strlen( $this->prefix ) );
-    }
-
-    return $text;
-  }
-
-
-
   /**
     Defino el formulario
    */
-  public function manipulateForm( $form ) {
+  public function manipulateForm( FormController $form ) {
     error_log( "RExtAccommodationController: manipulateForm()" );
 
     $rExtFieldNames = array();
@@ -212,7 +142,7 @@ class RExtAccommodationController {
   /**
     Validaciones extra previas a usar los datos del recurso base
    */
-  public function resFormRevalidate( $form ) {
+  public function resFormRevalidate( FormController $form ) {
     error_log( "RExtAccommodationController: resFormRevalidate()" );
 
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
@@ -222,11 +152,12 @@ class RExtAccommodationController {
     Creación-Edición-Borrado de los elementos del recurso base
     Iniciar transaction
    */
-  public function resFormProcess( $form, $resource ) {
+  public function resFormProcess( FormController $form, ResourceModel $resource ) {
     error_log( "RExtAccommodationController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
-      $valuesArray = $this->getRExtFormValues( $form->getValuesArray() );
+      $numericFields = array( 'singleRooms', 'doubleRooms', 'familyRooms', 'beds', 'averagePrice' );
+      $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $numericFields );
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
@@ -257,29 +188,20 @@ class RExtAccommodationController {
     Enviamos el OK-ERROR a la BBDD y al formulario
     Finalizar transaction
    */
-  public function resFormSuccess( $form, $resource ) {
+  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
     error_log( "RExtAccommodationController: resFormSuccess()" );
 
   }
 
 
   /**
-   * Métodos para facilitar y organizar la verificación de los distintos elementos del recurso
-   */
-
-
-
-
-
-
-  /**
     Visualizamos el Recurso
   */
-  public function getViewBlock( $resObj, $resBlock ) {
+  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
     error_log( "RExtAccommodationController: getViewBlock()" );
     $template = false;
 
-    $rExtData = $this->getRExtData( $resObj->getter('id') );
+    $rExtData = $this->getRExtData( $resource->getter('id') );
     if( $rExtData ) {
       $template = new Template();
 
@@ -294,6 +216,6 @@ class RExtAccommodationController {
     }
 
     return $template;
-  } // function getViewBlock( $resObj )
+  }
 
 } // class RExtAccommodationController

@@ -2,42 +2,20 @@
 rextAccommodation::autoIncludes();
 
 
-class RTypeHotelController {
-
-  public $defResCtrl = null;
-  public $rTypeModule = null;
-  public $rExts = false;
+class RTypeHotelController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeHotelController::__construct' );
+    error_log( 'RTypeHotelController::__construct' );
 
-    $this->defResCtrl = $defResCtrl;
-    //error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
-
-    $this->rTypeModule = new rtypeHotel();
-    if( property_exists( $this->rTypeModule, 'rext' ) && is_array( $this->rTypeModule->rext )
-      && count( $this->rTypeModule->rext ) > 0 )
-    {
-      $this->rExts = $this->rTypeModule->rext;
-    }
+    parent::__construct( $defResCtrl, new rtypeHotel() );
   }
 
-  public function getRTypeValues( $resId ) {
-    error_log( "RTypeHotelController: getRTypeValues()" );
-    $valuesArray = false;
-
-    if( $resId && is_integer( $resId ) ) {
-      $valuesArray = false;
-    }
-
-    return $valuesArray;
-  }
 
 
   /**
     Defino el formulario
    **/
-  public function manipulateForm( $form ) {
+  public function manipulateForm( FormController $form ) {
     error_log( "RTypeHotelController: manipulateForm()" );
 
     $rTypeExtNames = array();
@@ -60,7 +38,7 @@ class RTypeHotelController {
   /**
     Validaciones extra previas a usar los datos del recurso base
    **/
-  public function resFormRevalidate( $form ) {
+  public function resFormRevalidate( FormController $form ) {
     error_log( "RTypeHotelController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
@@ -75,7 +53,7 @@ class RTypeHotelController {
     Creación-Edición-Borrado de los elementos del recurso base
     Iniciar transaction
    **/
-  public function resFormProcess( $form, $resource ) {
+  public function resFormProcess( FormController $form, ResourceModel $resource ) {
     error_log( "RTypeHotelController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
@@ -88,7 +66,7 @@ class RTypeHotelController {
     Enviamos el OK-ERROR a la BBDD y al formulario
     Finalizar transaction
    **/
-  public function resFormSuccess( $form, $resource ) {
+  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
     error_log( "RTypeHotelController: resFormSuccess()" );
 
     $this->accomCtrl = new RExtAccommodationController( $this );
@@ -96,25 +74,16 @@ class RTypeHotelController {
   }
 
 
-  /**
-   * Métodos para facilitar y organizar la verificación de los distintos elementos del recurso
-   */
-
-
-
-
-
-
 
   /**
     Visualizamos el Recurso
-  */
-  public function getViewBlock( $resObj, $resBlock ) {
+   **/
+  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
     error_log( "RTypeHotelController: getViewBlock()" );
     $template = false;
 
     $this->accomCtrl = new RExtAccommodationController( $this );
-    $accomBlock = $this->accomCtrl->getViewBlock( $resObj, $resBlock );
+    $accomBlock = $this->accomCtrl->getViewBlock( $resource, $resBlock );
 
     if( $accomBlock ) {
       $template = $resBlock;
@@ -127,6 +96,6 @@ class RTypeHotelController {
     }
 
     return $template;
-  } // function getViewBlock( $resObj )
+  }
 
 } // class RTypeHotelController
