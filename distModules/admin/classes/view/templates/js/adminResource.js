@@ -19,16 +19,18 @@ function bindResourceForm(){
     icon: '<i class="fa fa-arrows"></i>'
   });
 
-  $('.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
+
+  $('select.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
     orientation: 'horizontal'
   });
-  $('.cgmMForm-field-rExtAccommodation_accommodationServices').multiList({
+  $('select.cgmMForm-field-rExtAccommodation_accommodationServices').multiList({
     orientation: 'horizontal'
   });
-  $('.cgmMForm-field-rExtAccommodation_accommodationFacilities').multiList({
+  $('select.cgmMForm-field-rExtAccommodation_accommodationFacilities').multiList({
     orientation: 'horizontal'
   });
-  $('.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').select2();
+
+  $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').select2();
 
   $('#resourceAddCollection').on('click', function(){
     //PARAMS( URL - ID - TITLE )
