@@ -16,7 +16,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    error_log( "RTypeHotelController: manipulateForm()" );
+    // error_log( "RTypeHotelController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
@@ -39,7 +39,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    error_log( "RTypeHotelController: resFormRevalidate()" );
+    // error_log( "RTypeHotelController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
       $this->accomCtrl = new RExtAccommodationController( $this );
@@ -54,7 +54,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    error_log( "RTypeHotelController: resFormProcess()" );
+    // error_log( "RTypeHotelController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
       $this->accomCtrl = new RExtAccommodationController( $this );
@@ -67,7 +67,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    error_log( "RTypeHotelController: resFormSuccess()" );
+    // error_log( "RTypeHotelController: resFormSuccess()" );
 
     $this->accomCtrl = new RExtAccommodationController( $this );
     $this->accomCtrl->resFormSuccess( $form, $resource );
@@ -79,7 +79,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Visualizamos el Recurso
    **/
   public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
-    error_log( "RTypeHotelController: getViewBlock()" );
+    // error_log( "RTypeHotelController: getViewBlock()" );
     $template = false;
 
     $this->accomCtrl = new RExtAccommodationController( $this );

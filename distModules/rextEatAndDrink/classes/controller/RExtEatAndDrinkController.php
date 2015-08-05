@@ -12,7 +12,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
 
 
   public function getRExtData( $resId ) {
-    error_log( "ResourceController: getRExtData( $resId )" );
+    // error_log( "RExtEatanddrinkController: getRExtData( $resId )" );
     $rExtData = false;
 
     $rExtModel = new EatAndDrinkModel();
@@ -22,7 +22,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
 
-      error_log( 'ResourceController: getRExtData = '.print_r( $rExtData, true ) );
+      // error_log( 'RExtEatanddrinkController: getRExtData = '.print_r( $rExtData, true ) );
 
       // Cargo los datos de destacados con los que está asociado el recurso
       $taxTerms = $this->defResCtrl->getResTerms( $resId );
@@ -33,10 +33,9 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
         }
       }
 
-
-
     }
 
+    // error_log( 'RExtEatAndDrinkController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
@@ -45,7 +44,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     Defino el formulario
    */
   public function manipulateForm( FormController $form ) {
-    error_log( "RExtEatAndDrinkController: manipulateForm()" );
+    // error_log( "RExtEatAndDrinkController: manipulateForm()" );
 
     $rExtFieldNames = array();
 
@@ -109,7 +108,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( FormController $form ) {
-    error_log( "RExtEatAndDrinkController: resFormRevalidate()" );
+    // error_log( "RExtEatAndDrinkController: resFormRevalidate()" );
 
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
   }
@@ -119,7 +118,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     Iniciar transaction
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    error_log( "RExtEatAndDrinkController: resFormProcess()" );
+    // error_log( "RExtEatAndDrinkController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
       $numericFields = array( 'capacity' );
@@ -154,7 +153,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     Finalizar transaction
    */
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    error_log( "RExtEatAndDrinkController: resFormSuccess()" );
+    // error_log( "RExtEatAndDrinkController: resFormSuccess()" );
 
   }
 
@@ -164,7 +163,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     Visualizamos el Recurso
    */
   public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
-    error_log( "RExtEatanddrinkController: getViewBlock()" );
+    // error_log( "RExtEatanddrinkController: getViewBlock()" );
     $template = false;
     $resCtrl = new ResourceController();
     $rExtData = $this->getRExtData( $resource->getter('id') );

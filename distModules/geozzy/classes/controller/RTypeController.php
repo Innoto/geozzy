@@ -31,7 +31,7 @@ class RTypeController {
     error_log( 'RTypeController::__construct' );
 
     $this->defResCtrl = $defResCtrl;
-    error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
+    // error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
 
     $this->rTypeModule = $rTypeModule;
     if( property_exists( $this->rTypeModule, 'rext' ) && is_array( $this->rTypeModule->rext )
