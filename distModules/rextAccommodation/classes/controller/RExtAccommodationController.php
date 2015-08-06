@@ -76,7 +76,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
         'rules' => array( 'digits' => true )
       ),
       'accommodationType' => array(
-        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select',  'multiple' => true,
+        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order',
           'options' => $this->defResCtrl->getOptionsTax( 'accommodationType' )
         )
       ),
@@ -195,18 +195,29 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
 
 
   /**
-    Visualizamos el Recurso
+    Visualizamos el Recurso (extensión Accommodation)
    */
   public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
     error_log( "RExtAccommodationController: getViewBlock()" );
     $template = false;
 
     $rExtData = $this->getRExtData( $resource->getter('id') );
+    /* Cargamos as taxonomías asociadas */
+    $resCtrl = new ResourceController();
+    $taxList = $resCtrl->getTaxonomyAll( $resource->getter('id') );
+
     if( $rExtData ) {
       $template = new Template();
-
       $rExtData = $this->prefixArrayKeys( $rExtData );
       foreach( $rExtData as $key => $value ) {
+
+        /* TODO: Revisar eficiencia!! */
+        foreach($taxList as $tax){
+          if ($key == 'rExtAccommodation_'.$tax['data']['idNameTaxgroup']){
+            $rExtData[ $key ] = $tax['data']['nameTaxterm_'.LANG_DEFAULT];
+          }
+        }
+
         $template->assign( $key, $rExtData[ $key ] );
         error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
       }

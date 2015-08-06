@@ -174,10 +174,12 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
       $rExtData = $this->prefixArrayKeys( $rExtData );
 
       foreach( $rExtData as $key => $value ) {
-        // FALTA CAMBHIAR CONSULTA Y CONSTRUIR RESPUESTA
+        // FALTA CAMBIAR CONSULTA Y CONSTRUIR RESPUESTA
         if ($key == 'rextEatAndDrink_eatanddrinkType'){
           $taxList[$key] = $resCtrl->getTermsGrouped( $value );
+          echo '<pre>';
           print_r($taxList);
+          echo '<pre>';
         }
 
         $template->assign( $key, $rExtData[ $key ] );
