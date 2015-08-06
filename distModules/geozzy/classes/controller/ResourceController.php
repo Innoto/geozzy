@@ -552,24 +552,32 @@ error_log( '$this->taxTermArray = ' . print_r( $this->taxTermArray, true ) );
     return $this->taxTermArray;
   }
 
+  /* Devolve as taxonomías asociadas cun listado de términos*/
   public function getTermsGrouped( $termIds ) {
-    /*
 
-    NON FUNCIONA: cambiar consulta e filtro contra tabla taxonomyterm
+    $taxTermModel =  new TaxonomytermModel();
+    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'idInCSV' => $termIds ) ) );
 
-    */
-    $taxGroups = array();
-
-    $taxGroupModel =  new TaxonomygroupModel();
-
-    $taxGroupList = $taxGroupModel->listItems( array( 'filters' => array( 'idInCSV' => $termIds ) ) );
-
-
-    while( $taxGroup = $taxGroupList->fetch() ){
-      $taxGroups[ $taxGroup->getter( 'id' ) ] = $taxGroup->getter( 'name_'.LANG_DEFAULT );
+    $taxTerms = array();
+    while( $taxTerm = $taxTermList->fetch() ){
+      $taxTerms[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter('taxgroup');
     }
 
-    return( count( $taxGroups ) > 0 ? $taxGroups : false );
+    return( count( $taxTerms ) > 0 ? $taxTerms : false );
+  }
+
+  /* Devolve un listado de arrays cos taxterm asociados ao recurso dado e a info da taxonomía a maiores*/
+  public function getTaxonomyAll( $termId ) {
+
+    $resourceTaxAllModel =  new ResourceTaxonomyAllModel();
+    $taxAllList = $resourceTaxAllModel->listItems(array( 'filters' => array( 'id' => $termId ) ));
+
+    $taxTerms = array();
+    while( $taxTerm = $taxAllList->fetch() ){
+      $taxTerms[$taxTerm->getter('idTaxterm')] = $taxTerm->getAllData();
+    }
+
+    return( count( $taxTerms ) > 0 ? $taxTerms : false );
   }
 
   public function getCollectionsInfo( $resId ) {
