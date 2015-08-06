@@ -177,7 +177,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
       foreach( $rExtData as $key => $value ) {
         /* TODO: Revisar eficiencia!! */
         foreach($taxList as $tax){
-          if ($key == 'rExtAccommodation_'.$tax['data']['idNameTaxgroup']){
+          if ($key == 'rextEatAndDrink_'.$tax['data']['idNameTaxgroup']){
             $rExtData[ $key ] = $tax['data']['nameTaxterm_'.LANG_DEFAULT];
           }
         }
