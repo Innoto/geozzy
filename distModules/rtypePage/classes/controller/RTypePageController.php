@@ -2,21 +2,46 @@
 rextAccommodation::autoIncludes();
 
 
-class RTypeHotelController extends RTypeController implements RTypeInterface {
+class RTypePageController {
+
+  public $defResCtrl = null;
+  public $rTypeModule = null;
+  public $rExts = false;
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeHotelController::__construct' );
+    // error_log( 'RTypeHotelController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeHotel() );
+    $this->defResCtrl = $defResCtrl;
+    //error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
+
+/*
+    $this->rTypeModule = new rtypePage();
+    if( property_exists( $this->rTypeModule, 'rext' ) && is_array( $this->rTypeModule->rext )
+      && count( $this->rTypeModule->rext ) > 0 )
+    {
+      $this->rExts = $this->rTypeModule->rext;
+    }
+*/
   }
+/*
+  public function getRTypeValues( $resId ) {
+    error_log( "RTypeHotelController: getRTypeValues()" );
+    $valuesArray = false;
 
+    if( $resId && is_integer( $resId ) ) {
+      $valuesArray = false;
+    }
 
+    return $valuesArray;
+  }
+*/
 
   /**
     Defino el formulario
    **/
-  public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeHotelController: manipulateForm()" );
+/*
+  public function manipulateForm( $form ) {
+    error_log( "RTypeHotelController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
@@ -32,14 +57,15 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     return( $rTypeFieldNames );
   } // function manipulateForm()
-
+*/
 
 
   /**
     Validaciones extra previas a usar los datos del recurso base
    **/
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeHotelController: resFormRevalidate()" );
+/*
+  public function resFormRevalidate( $form ) {
+    error_log( "RTypeHotelController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
       $this->accomCtrl = new RExtAccommodationController( $this );
@@ -48,42 +74,54 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
   }
-
+*/
   /**
     Creación-Edición-Borrado de los elementos del recurso base
     Iniciar transaction
    **/
-  public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeHotelController: resFormProcess()" );
+/*
+  public function resFormProcess( $form, $resource ) {
+    error_log( "RTypeHotelController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
       $this->accomCtrl = new RExtAccommodationController( $this );
       $this->accomCtrl->resFormProcess( $form, $resource );
     }
   }
-
+*/
   /**
     Enviamos el OK-ERROR a la BBDD y al formulario
     Finalizar transaction
    **/
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeHotelController: resFormSuccess()" );
+/*
+  public function resFormSuccess( $form, $resource ) {
+    error_log( "RTypeHotelController: resFormSuccess()" );
 
     $this->accomCtrl = new RExtAccommodationController( $this );
     $this->accomCtrl->resFormSuccess( $form, $resource );
   }
+*/
+
+  /**
+   * Métodos para facilitar y organizar la verificación de los distintos elementos del recurso
+   */
+
+
+
+
 
 
 
   /**
     Visualizamos el Recurso
-   **/
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
-    // error_log( "RTypeHotelController: getViewBlock()" );
+  */
+/*
+  public function getViewBlock( $resObj, $resBlock ) {
+    error_log( "RTypeHotelController: getViewBlock()" );
     $template = false;
 
     $this->accomCtrl = new RExtAccommodationController( $this );
-    $accomBlock = $this->accomCtrl->getViewBlock( $resource, $resBlock );
+    $accomBlock = $this->accomCtrl->getViewBlock( $resObj, $resBlock );
 
     if( $accomBlock ) {
       $template = $resBlock;
@@ -96,6 +134,6 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     }
 
     return $template;
-  }
-
+  } // function getViewBlock( $resObj )
+*/
 } // class RTypeHotelController
