@@ -27,6 +27,8 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
+    $form->setFieldParam( 'externalUrl', 'label', __( 'Hotel home URL' ) );
+
     // Valadaciones extra
     // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
 

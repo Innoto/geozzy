@@ -21,7 +21,7 @@
       'en' => 'Espazo Natural',
       'gl' => 'Espazo Natural'
     ),
-    
+
   );
 
 
@@ -62,5 +62,15 @@
       'es' => 'Restaurante',
       'en' => 'Restaurante',
       'gl' => 'Restaurante'
+    )
+  );
+
+
+  $GEOZZY_RESOURCETYPE['rtypeUrl'] = array(
+    'idName' => 'rtypeUrl',
+    'name' => array(
+      'es' => 'URL - rType',
+      'en' => 'URL - rType',
+      'gl' => 'URL - rType'
     )
   );

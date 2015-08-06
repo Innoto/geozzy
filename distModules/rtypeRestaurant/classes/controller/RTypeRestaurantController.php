@@ -25,8 +25,9 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $this->eatCtrl = new RExtEatAndDrinkController( $this );
     $rExtFieldNames = $this->eatCtrl->manipulateForm( $form );
 
-
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    $form->setFieldParam( 'externalUrl', 'label', __( 'Restaurant home URL' ) );
 
     // Valadaciones extra
     // $form->setValidationRule( 'restaurantName_'.$form->langDefault, 'required' );
