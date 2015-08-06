@@ -212,7 +212,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
       $template = new Template();
       $rExtData = $this->prefixArrayKeys( $rExtData );
       foreach( $rExtData as $key => $value ) {
-
         /* TODO: Revisar eficiencia!! */
         foreach($taxList as $tax){
           if ($key == 'rExtAccommodation_'.$tax['data']['idNameTaxgroup']){

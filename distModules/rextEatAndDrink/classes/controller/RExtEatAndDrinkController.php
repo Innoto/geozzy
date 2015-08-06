@@ -165,20 +165,21 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
   public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
     // error_log( "RExtEatanddrinkController: getViewBlock()" );
     $template = false;
-    $resCtrl = new ResourceController();
+
     $rExtData = $this->getRExtData( $resource->getter('id') );
+    /* Cargamos as taxonomías asociadas */
+    $resCtrl = new ResourceController();
+    $taxList = $resCtrl->getTaxonomyAll( $resource->getter('id') );
+
     if( $rExtData ) {
       $template = new Template();
-
       $rExtData = $this->prefixArrayKeys( $rExtData );
-
       foreach( $rExtData as $key => $value ) {
-        // FALTA CAMBIAR CONSULTA Y CONSTRUIR RESPUESTA
-        if ($key == 'rextEatAndDrink_eatanddrinkType'){
-          $taxList[$key] = $resCtrl->getTermsGrouped( $value );
-          echo '<pre>';
-          print_r($taxList);
-          echo '<pre>';
+        /* TODO: Revisar eficiencia!! */
+        foreach($taxList as $tax){
+          if ($key == 'rExtAccommodation_'.$tax['data']['idNameTaxgroup']){
+            $rExtData[ $key ] = $tax['data']['nameTaxterm_'.LANG_DEFAULT];
+          }
         }
 
         $template->assign( $key, $rExtData[ $key ] );
