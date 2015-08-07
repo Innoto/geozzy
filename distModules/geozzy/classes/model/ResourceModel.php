@@ -3,8 +3,8 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-class ResourceModel extends Model
-{
+class ResourceModel extends Model {
+
   static $tableName = 'geozzy_resource';
 
   static $cols = array(
@@ -60,6 +60,10 @@ class ResourceModel extends Model
     'defaultZoom' => array(
       'type' => 'INT'
     ),
+    'externalUrl' => array(
+      'type' => 'VARCHAR',
+      'size' => 2000
+    ),
     'headKeywords' => array(
       'type' => 'VARCHAR',
       'size' => 150
@@ -104,10 +108,10 @@ class ResourceModel extends Model
 
 
   /**
-  * Create relation between resource and topic
-  *
-  * @return boolean
-  */
+   * Create relation between resource and topic
+   *
+   * @return boolean
+   */
   public function createTopicRelation( $topicId, $resourceId ) {
     //$this->dataFacade->transactionStart();
 
@@ -120,10 +124,10 @@ class ResourceModel extends Model
   }
 
   /**
-  * Create relation between resource and starred taxonomy
-  *
-  * @return boolean
-  */
+   * Create relation between resource and starred taxonomy
+   *
+   * @return boolean
+   */
   public function createTaxonomytermRelation( $starredId, $resourceId ) {
     //$this->dataFacade->transactionStart();
 
