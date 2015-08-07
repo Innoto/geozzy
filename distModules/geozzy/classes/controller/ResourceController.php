@@ -155,6 +155,15 @@ class ResourceController {
       }
     }
 
+    $resMultimedia = array();
+    if( isset( $valuesArray[ 'id' ] ) ) {
+      $multimediaInfo = $this->getMultimediaInfo( $valuesArray[ 'id' ] );
+      if( $multimediaInfo ) {
+        $resMultimedia = $multimediaInfo['options'];
+        $valuesArray[ 'collections' ] = $multimediaInfo['values'];
+      }
+    }
+
     $fieldsInfo = array(
       'rTypeId' => array(
         'params' => array( 'type' => 'reserved' )
@@ -219,6 +228,13 @@ class ResourceController {
       ),
       'addCollections' => array(
         'params' => array( 'id' => 'resourceAddCollection', 'type' => 'button', 'value' => __( 'Add Collection' ))
+      ),
+      'multimediaGalleries' => array(
+        'params' => array( 'label' => __( 'Collections' ), 'type' => 'select', 'class' => 'cgmMForm-order',
+        'multiple' => true, 'options'=> $resMultimedia, 'id' => 'resourceMultimediaGalleries' )
+      ),
+      'addMultimediaGalleries' => array(
+        'params' => array( 'id' => 'resourceAddMultimediaGallery', 'type' => 'button', 'value' => __( 'Add Multimedia Gallery' ))
       ),
       'published' => array(
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Publicado' ))
@@ -559,12 +575,12 @@ class ResourceController {
       'values' => array()
     );
 
-    $resourceCollectionModel =  new ResourceCollectionsModel();
+    $resourceCollectionsModel =  new ResourceCollectionsModel();
 
     if( isset( $resId ) ) {
-      $resCollectionList = $resourceCollectionModel->listItems(
+      $resCollectionList = $resourceCollectionsModel->listItems(
         array(
-          'filters' => array( 'resource' => $resId ),
+          'filters' => array( 'resource' => $resId, 'CollectionModel.multimedia' => 0 ),
           'order' => array( 'weight' => 1 ),
           'affectsDependences' => array( 'CollectionModel' )
         )
@@ -579,6 +595,36 @@ class ResourceController {
 
     // error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
     return ( count( $colInfo['values'] ) > 0 ) ? $colInfo : false;
+  }
+
+
+  public function getMultimediaInfo( $resId ) {
+    error_log( "ResourceController: getMultimediaInfo( $resId )" );
+    $multimediaInfo = array(
+      'options' => array(),
+      'values' => array()
+    );
+
+    $resourceCollectionsModel =  new ResourceCollectionsModel();
+
+    if( isset( $resId ) ) {
+      $resMultimediaList = $resourceCollectionsModel->listItems(
+        array(
+          'filters' => array( 'resource' => $resId, 'CollectionModel.multimedia' => 1 ),
+          'order' => array( 'weight' => 1 ),
+          'affectsDependences' => array( 'CollectionModel' )
+        )
+      );
+
+      while( $res = $resMultimediaList->fetch() ){
+        $multimediaGalleries = $res->getterDependence( 'collection', 'CollectionModel' );
+        $multimediaInfo[ 'options' ][ $res->getter( 'collection' ) ] = $multimediaGalleries[ 0 ]->getter( 'title', LANG_DEFAULT );
+        $multimediaInfo[ 'values' ][] = $res->getter( 'collection' );
+      }
+    }
+
+    // error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
+    return ( count( $multimediaInfo['values'] ) > 0 ) ? $multimediaInfo : false;
   }
 
 
