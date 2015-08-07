@@ -39,13 +39,15 @@
   </div>
   {/if}
 
-  <div class="rTypeHotel">
-    <p> --- rTypeHotel Ext --- </p>
-    <div class="rTypeHotel accommodation">
-      {$rextAccommodation}
+  <div class="rExtView">
+    <p> --- rExtView Ext --- </p>
+    <div class="rTypePage rExtView">
+      {$rextView}
     </div>
   </div>
 
 </div>
 
 <!-- /rTypeViewBlock.tpl en geozzy module -->
+
+

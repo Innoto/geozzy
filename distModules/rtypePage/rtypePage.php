@@ -2,11 +2,11 @@
 
 Cogumelo::load( 'coreController/Module.php' );
 
-class rtypePage extends Module
-{
+class rtypePage extends Module {
+
   public $name = 'rtypePage';
   public $version = '1.0';
-  public $rext = array(  );
+  public $rext = array( 'rextView' );
 
   public $dependences = array();
 
@@ -15,7 +15,8 @@ class rtypePage extends Module
     'view/RTypePageView.php'
   );
 
-  public function __construct() {
 
+  public function __construct() {
   }
+
 }

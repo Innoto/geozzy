@@ -41,6 +41,11 @@ class ResourceController {
           rtypeUrl::autoIncludes();
           $this->rTypeCtrl = new RTypeUrlController( $this );
           break;
+        case 23:
+          error_log( "GeozzyResourceView: getRTypeCtrl = RTypePageController " );
+          rtypePage::autoIncludes();
+          $this->rTypeCtrl = new RTypePageController( $this );
+          break;
         default:
           $this->rTypeCtrl = false;
           break;
