@@ -1,139 +1,104 @@
 <?php
-rextAccommodation::autoIncludes();
+rextView::autoIncludes();
 
 
-class RTypePageController {
-
-  public $defResCtrl = null;
-  public $rTypeModule = null;
-  public $rExts = false;
+class RTypePageController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeHotelController::__construct' );
+    error_log( 'RTypePageController::__construct' );
 
-    $this->defResCtrl = $defResCtrl;
-    //error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
-
-/*
-    $this->rTypeModule = new rtypePage();
-    if( property_exists( $this->rTypeModule, 'rext' ) && is_array( $this->rTypeModule->rext )
-      && count( $this->rTypeModule->rext ) > 0 )
-    {
-      $this->rExts = $this->rTypeModule->rext;
-    }
-*/
+    parent::__construct( $defResCtrl, new rtypePage() );
   }
-/*
-  public function getRTypeValues( $resId ) {
-    error_log( "RTypeHotelController: getRTypeValues()" );
-    $valuesArray = false;
 
-    if( $resId && is_integer( $resId ) ) {
-      $valuesArray = false;
-    }
 
-    return $valuesArray;
+  private function newRExtContr() {
+
+    return new RExtViewController( $this );
   }
-*/
 
   /**
     Defino el formulario
    **/
-/*
-  public function manipulateForm( $form ) {
-    error_log( "RTypeHotelController: manipulateForm()" );
+  public function manipulateForm( FormController $form ) {
+    // error_log( "RTypePageController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
-    $rTypeExtNames[] = 'rextAccommodation';
-    $this->accomCtrl = new RExtAccommodationController( $this );
-    $rExtFieldNames = $this->accomCtrl->manipulateForm( $form );
+    $rTypeExtNames[] = 'rextView';
+    $this->rExtCtrl = $this->newRExtContr();
+    $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // Valadaciones extra
-    // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
 
     return( $rTypeFieldNames );
   } // function manipulateForm()
-*/
+
 
 
   /**
     Validaciones extra previas a usar los datos del recurso base
    **/
-/*
-  public function resFormRevalidate( $form ) {
-    error_log( "RTypeHotelController: resFormRevalidate()" );
+  public function resFormRevalidate( FormController $form ) {
+    // error_log( "RTypePageController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
-      $this->accomCtrl = new RExtAccommodationController( $this );
-      $this->accomCtrl->resFormRevalidate( $form );
+      $this->rExtCtrl = $this->newRExtContr();
+      $this->rExtCtrl->resFormRevalidate( $form );
     }
 
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
   }
-*/
+
   /**
     Creación-Edición-Borrado de los elementos del recurso base
     Iniciar transaction
    **/
-/*
-  public function resFormProcess( $form, $resource ) {
-    error_log( "RTypeHotelController: resFormProcess()" );
+  public function resFormProcess( FormController $form, ResourceModel $resource ) {
+    // error_log( "RTypePageController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
-      $this->accomCtrl = new RExtAccommodationController( $this );
-      $this->accomCtrl->resFormProcess( $form, $resource );
+      $this->rExtCtrl = $this->newRExtContr();
+      $this->rExtCtrl->resFormProcess( $form, $resource );
     }
   }
-*/
+
   /**
     Enviamos el OK-ERROR a la BBDD y al formulario
     Finalizar transaction
    **/
-/*
-  public function resFormSuccess( $form, $resource ) {
-    error_log( "RTypeHotelController: resFormSuccess()" );
+  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
+    // error_log( "RTypePageController: resFormSuccess()" );
 
-    $this->accomCtrl = new RExtAccommodationController( $this );
-    $this->accomCtrl->resFormSuccess( $form, $resource );
+    $this->rExtCtrl = $this->newRExtContr();
+    $this->rExtCtrl->resFormSuccess( $form, $resource );
   }
-*/
-
-  /**
-   * Métodos para facilitar y organizar la verificación de los distintos elementos del recurso
-   */
-
-
-
-
 
 
 
   /**
     Visualizamos el Recurso
-  */
-/*
-  public function getViewBlock( $resObj, $resBlock ) {
-    error_log( "RTypeHotelController: getViewBlock()" );
+   **/
+  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+    // error_log( "RTypePageController: getViewBlock()" );
     $template = false;
 
-    $this->accomCtrl = new RExtAccommodationController( $this );
-    $accomBlock = $this->accomCtrl->getViewBlock( $resObj, $resBlock );
+    $this->rExtCtrl = $this->newRExtContr();
+    $viewBlock = $this->rExtCtrl->getViewBlock( $resource, $resBlock );
 
-    if( $accomBlock ) {
+    if( $viewBlock ) {
       $template = $resBlock;
-      $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeHotel' );
+      $template->setTpl( 'rTypeViewBlock.tpl', 'rtypePage' );
 
-      $template->addToBlock( 'rextAccommodation', $accomBlock );
+      $template->addToBlock( 'rextView', $viewBlock );
 
-      $template->assign( 'rExtBlockNames', array( 'rextAccommodation' ) );
+      $template->assign( 'rExtBlockNames', array( 'rextView' ) );
       $template->assign( 'rExtFieldNames', false );
     }
 
     return $template;
-  } // function getViewBlock( $resObj )
-*/
-} // class RTypeHotelController
+  }
+
+} // class RTypePageController

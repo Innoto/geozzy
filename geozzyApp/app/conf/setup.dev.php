@@ -122,11 +122,13 @@ $C_ENABLED_MODULES = array(
   'rtypeHotel',
   'rtypeRestaurant',
   'rtypeUrl',
+  'rtypePage',
 
   // resource Extenssions
   'rextAccommodation',
   'rextEatAndDrink',
   'rextUrl',
+  'rextView',
 
   // testing module
   'testData'

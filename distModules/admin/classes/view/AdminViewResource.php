@@ -168,6 +168,7 @@ class AdminViewResource extends AdminViewMaster
       array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
     $formContacto = $this->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
     $formCollections = $this->extractFormBlockFields( $formBlock, array( 'collections', 'addCollections' ) );
+    $formMultimediaGalleries = $this->extractFormBlockFields( $formBlock, array( 'multimediaGalleries', 'addMultimediaGalleries' ) );
 
 
     // El bloque que usa $formBlock contiene la estructura del form
@@ -175,6 +176,7 @@ class AdminViewResource extends AdminViewMaster
     // Bloques de 8
     $this->template->addToBlock( 'col8', $this->getPanelBlock( $formBlock, __('Edit Resource'), 'fa-archive' ) );
     $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formCollections ), __('Collections of related resources'), 'fa-th-large' ) );
+    $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formMultimediaGalleries ), __('Multimedia galleries'), 'fa-th-large' ) );
     $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formContacto ), __('Contact'), 'fa-archive' ) );
 
     // Bloques de 4

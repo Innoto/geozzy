@@ -41,6 +41,9 @@ class CollectionModel extends Model
     ),
     'weight' => array(
       'type' => 'SMALLINT'
+    ),
+    'multimedia' => array(
+      'type' => 'BOOLEAN'
     )
   );
 
