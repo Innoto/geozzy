@@ -106,7 +106,9 @@ class AdminViewResource extends AdminViewMaster
     $resourceView = new GeozzyResourceView();
 
     if( $urlParams ) {
-      $recursoData['topics'] = array( $urlParams['1'] );
+      if ($urlParams['1'] != 'all'){
+        $recursoData['topics'] = array( $urlParams['1'] );
+      }
       $recursoData['rTypeId'] = $urlParams['2'];
       $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
     }

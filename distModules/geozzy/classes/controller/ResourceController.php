@@ -26,18 +26,25 @@ class ResourceController {
     if( !$this->rTypeCtrl ) {
 
       $rType = new ResourcetypeModel();
-      $rTypeIdname = $rType->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
+      $rTypeList = $rType->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
 
-      print($rTypeIdname);
+      while ($rTypeName = $rTypeList->fetch()){
+        $rTypeIdname = $rTypeName->getter('idName');
+      }
 
-      switch( $rTypeId ) {
-        case 20: // 'rtypeHotel'
+      switch( $rTypeIdname ) {
+        case 'rtypeHotel': // 'rtypeHotel'
           error_log( "GeozzyResourceView: getRTypeCtrl = rtypeHotel" );
           rtypeHotel::autoIncludes();
           $this->rTypeCtrl = new RTypeHotelController( $this );
           break;
-        case 21:
+        case 'rtypeRestaurant':
           error_log( "GeozzyResourceView: getRTypeCtrl = RTypeRestaurantController " );
+          rtypeRestaurant::autoIncludes();
+          $this->rTypeCtrl = new RTypeRestaurantController( $this );
+          break;
+        case 'rtypeUrl':
+          error_log( "GeozzyResourceView: getRTypeCtrl = RTypeUrlController " );
           rtypeRestaurant::autoIncludes();
           $this->rTypeCtrl = new RTypeRestaurantController( $this );
           break;

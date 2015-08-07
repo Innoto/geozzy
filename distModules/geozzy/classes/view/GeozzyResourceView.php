@@ -47,8 +47,6 @@ class GeozzyResourceView extends View
 
     $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
-    print_r($form);
-
     $this->rTypeCtrl = $this->defResCtrl->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
     if( $this->rTypeCtrl ) {
       $rTypeFieldNames = $this->rTypeCtrl->manipulateForm( $form );
