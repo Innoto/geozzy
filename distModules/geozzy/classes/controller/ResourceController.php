@@ -182,6 +182,13 @@ class ResourceController {
       }
     }
 
+    // Geograpic Location
+    Cogumelo::load('coreModel/DBUtils.php');
+    $geoLocation = DBUtils::decodeGeometry($valuesArray['loc']);
+    $valuesArray['locLat'] = $geoLocation['data'][0];
+    $valuesArray['locLon'] = $geoLocation['data'][1];
+
+
     $fieldsInfo = array(
       'rTypeId' => array(
         'params' => array( 'type' => 'reserved' )
@@ -262,6 +269,14 @@ class ResourceController {
       ),
       'starred' => array(
         'params' => array( 'label' => __( 'Starred' ), 'type' => 'checkbox', 'options'=> $this->getOptionsTax( 'starred' ) )
+      ),
+      'locLat' => array(
+        'params' => array( 'label' => __( 'Latitude' ) ),
+        'rules' => array( 'digits' => true )
+      ),
+      'locLon' => array(
+        'params' => array( 'label' => __( 'Longitude' ) ),
+        'rules' => array( 'digits' => true )
       )
     );
 
@@ -331,6 +346,19 @@ class ResourceController {
 
       $valuesArray = $form->getValuesArray();
 
+
+      // Resource LOCATION
+      Cogumelo::load('coreModel/DBUtils.php');
+      $valuesArray['loc'] = DBUtils::encodeGeometry(
+                                array(
+                                  'type' => 'POINT',
+                                  'data'=> array($valuesArray[ 'locLat' ], $valuesArray[ 'locLon' ])
+                                )
+                            );
+
+
+
+
       if( $form->isFieldDefined( 'id' ) && is_numeric( $form->getFieldValue( 'id' ) ) ) {
         $valuesArray[ 'userUpdate' ] = $user->getter( 'id' );
         $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
@@ -342,6 +370,7 @@ class ResourceController {
       }
 
     }
+
 
     if( !$form->existErrors() ) {
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
