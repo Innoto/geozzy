@@ -606,7 +606,7 @@ class ResourceController {
     if( isset( $resId ) ) {
       $resCollectionList = $resourceCollectionsModel->listItems(
         array(
-          'filters' => array( 'resource' => $resId, 'CollectionModel.multimedia' => 0 ),
+          'filters' => array( 'resource' => $resId, 'CollectionModel.multimedia' => 1 ),
           'order' => array( 'weight' => 1 ),
           'affectsDependences' => array( 'CollectionModel' )
         )
@@ -614,10 +614,15 @@ class ResourceController {
 
       while( $res = $resCollectionList->fetch() ){
 
+        var_dump($res->getter( 'multimedia' ) );
+
         $collections = $res->getterDependence( 'collection', 'CollectionModel' );
-        var_dump($collections);
-        $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
-        $colInfo[ 'values' ][] = $res->getter( 'collection' );
+        if( $collections ){
+          $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
+          $colInfo[ 'values' ][] = $res->getter( 'collection' );
+        }
+        var_dump( $collections );
+
       }
     }
 
@@ -627,6 +632,7 @@ class ResourceController {
 
 
   public function getMultimediaInfo( $resId ) {
+    print('hola');
     error_log( "ResourceController: getMultimediaInfo( $resId )" );
     $multimediaInfo = array(
       'options' => array(),
