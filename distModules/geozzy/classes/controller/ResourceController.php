@@ -620,7 +620,9 @@ error_log( '$this->taxTermArray = ' . print_r( $this->taxTermArray, true ) );
       );
 
       while( $res = $resCollectionList->fetch() ){
+
         $collections = $res->getterDependence( 'collection', 'CollectionModel' );
+        var_dump($collections);
         $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
         $colInfo[ 'values' ][] = $res->getter( 'collection' );
       }

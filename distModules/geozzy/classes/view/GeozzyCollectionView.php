@@ -111,6 +111,9 @@ class GeozzyCollectionView extends View
         'class' => 'cgmMForm-order',
         'multiple' => true, 'options'=> $resOptions ),
         'rules' => array( 'required' => true )
+      ),
+      'multimedia' => array(
+        'params' => array(' type' => 'reserved', 'value' => 0 )
       )
     );
 
