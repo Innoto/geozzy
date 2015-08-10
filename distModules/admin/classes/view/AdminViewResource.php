@@ -169,7 +169,7 @@ class AdminViewResource extends AdminViewMaster
     $formContacto = $this->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
     $formCollections = $this->extractFormBlockFields( $formBlock, array( 'collections', 'addCollections' ) );
     $formMultimediaGalleries = $this->extractFormBlockFields( $formBlock, array( 'multimediaGalleries', 'addMultimediaGalleries' ) );
-    $formLatLon = $this->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon' ) );
+    $formLatLon = $this->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom' ) );
 
 
     // El bloque que usa $formBlock contiene la estructura del form

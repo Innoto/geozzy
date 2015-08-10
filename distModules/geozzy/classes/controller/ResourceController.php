@@ -279,6 +279,10 @@ class ResourceController {
       'locLon' => array(
         'params' => array( 'label' => __( 'Longitude' ) ),
         'rules' => array( 'number' => true )
+      ),
+      'defaultZoom' => array(
+        'params' => array( 'label' => __( 'Zoom' ) ),
+        'rules' => array( 'number' => true )
       )
     );
 

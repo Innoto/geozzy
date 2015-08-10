@@ -41,21 +41,23 @@ function bindResourceForm(){
   if(  $("input[name='locLat']").length &&  $("input[name='locLon']").length ) {
     var latInput = $("input[name='locLat']");
     var lonInput = $("input[name='locLon']");
+    var defaultZoom = $("input[name='defaultZoom']");
     var locationContainer = latInput.parent().parent();
 
     latInput.parent().hide();
     lonInput.parent().hide();
+    defaultZoom.parent().hide();
 
     locationContainer.append('<div id="resourceLocationMap"></div>');
 
     var latValue = 0;
     var lonValue = 0;
-    var zoom = 2;
+    var zoom = 1;
 
     if( latInput.val() != '' && latInput.val() != '') {
-      latValue = parseFloat(latInput.val());
-      lonValue = parseFloat(lonInput.val());
-      zoom = 10;
+      latValue = parseFloat( latInput.val() );
+      lonValue = parseFloat( lonInput.val() );
+      zoom = parseInt( defaultZoom.val() );
     }
 
     // gmaps init
@@ -87,7 +89,15 @@ function bindResourceForm(){
 
       latInput.val( resourceMarker.position.lat() );
       lonInput.val( resourceMarker.position.lng() );
+
+      defaultZoom.val( resourceMap.getZoom() );
     });
+
+    // map zoom changed
+    google.maps.event.addListener(resourceMap, 'zoom_changed', function(e) {
+      defaultZoom.val( resourceMap.getZoom() );
+    });
+
 
     if( latInput.val() != '') {
       resourceMarker.setMap( resourceMap);
