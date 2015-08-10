@@ -69,23 +69,29 @@ function bindResourceForm(){
     var resourceMarker = new google.maps.Marker({
       position: new google.maps.LatLng( latValue, lonValue ),
       map: false,
-      title: 'Resource'
+      title: 'Resource location',
+      draggable: true
+
     });
 
-    if( latValue != 0 && lonValue != 0 ) {
-      resourceMarker.map = resourceMap;
+    // Draggend event
+    google.maps.event.addListener( resourceMarker,'dragend',function(e) {
+      latInput.val( resourceMarker.position.lat() );
+      lonInput.val( resourceMarker.position.lng() );
+    });
+
+    // Click map event
+    google.maps.event.addListener(resourceMap, 'click', function(e) {
+      resourceMarker.setPosition( e.latLng )
+      resourceMarker.setMap( resourceMap );
+
+      latInput.val( resourceMarker.position.lat() );
+      lonInput.val( resourceMarker.position.lng() );
+    });
+
+    if( latInput.val() != '') {
+      resourceMarker.setMap( resourceMap);
     }
-    else {
-      console.log('fai click');
-      google.maps.event.addListener(resourceMap, 'click', function(e) {
-        alert('click')
-        resourceMarker.position = e.latLng,
-        //resourceMarker.map = resourceMap;
-      });
-    }
-
-
-
 
   }
 

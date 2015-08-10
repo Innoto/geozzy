@@ -274,11 +274,11 @@ class ResourceController {
       ),
       'locLat' => array(
         'params' => array( 'label' => __( 'Latitude' ) ),
-        'rules' => array( 'digits' => true )
+        'rules' => array( 'number' => true )
       ),
       'locLon' => array(
         'params' => array( 'label' => __( 'Longitude' ) ),
-        'rules' => array( 'digits' => true )
+        'rules' => array( 'number' => true )
       )
     );
 
