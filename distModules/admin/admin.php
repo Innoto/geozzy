@@ -140,7 +140,7 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/starred/(.*)/assign$#', 'view:AdminViewStarred::listAssignStarred' );
     $this->addUrlPatterns( '#^admin/starred/table/(\d+)$#', 'view:AdminViewStarred::listStarredTable' );
 
-    $this->addUrlPatterns( '#^admin/resource/create/(\d+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
+    $this->addUrlPatterns( '#^admin/resource/create/(\D+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
     $this->addUrlPatterns( '#^admin/resource/sendresource$#', 'view:AdminViewResource::sendResourceForm' );

@@ -23,7 +23,7 @@ var AdminRouter = Backbone.Router.extend({
     "resourceouttopic/list/:id": "resourceouttopicList",
     "starred/:id": "starredList",
     "starred/:id/assign": "starredAssign",
-    "resource/create" : "resourceCreate",
+    "resource/create/all/:resourcetype" : "resourceCreate",
     "resource/create/:topic/:resourcetype" : "resourceCreateinTopic",
     "resource/edit/:id" : "resourceEdit",
 
@@ -124,8 +124,8 @@ var AdminRouter = Backbone.Router.extend({
   },
 
 
-  resourceCreate:function() {
-    app.mainView.loadAjaxContent( '/admin/resource/create');
+  resourceCreate:function(resourcetype) {
+    app.mainView.loadAjaxContent( '/admin/resource/create/all/'+resourcetype);
     app.mainView.setBodyClass('resourceCreate');
   },
   resourceCreateinTopic:function( topic, resourcetype) {
@@ -143,7 +143,7 @@ var AdminRouter = Backbone.Router.extend({
   },
   collectionEdit:function( id )   {
     app.mainView.loadAjaxContent( '/admin/collection/edit/' + id);
-    app.mainView.setBodyClass('collectionEdit');       
+    app.mainView.setBodyClass('collectionEdit');
   }
 
 });

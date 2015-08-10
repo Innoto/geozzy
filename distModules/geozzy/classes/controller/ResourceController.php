@@ -7,7 +7,6 @@ geozzy::load( 'controller/RExtController.php' );
 class ResourceController {
 
   public $rTypeCtrl = null;
-  public $taxTermArray = null;
 
   public function __construct() {
     // error_log( 'ResourceController::__construct' );
@@ -25,21 +24,29 @@ class ResourceController {
     error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
 
     if( !$this->rTypeCtrl ) {
-      switch( $rTypeId ) {
-        case 20: // 'rtypeHotel'
+
+      $rType = new ResourcetypeModel();
+      $rTypeList = $rType->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
+
+      while ($rTypeName = $rTypeList->fetch()){
+        $rTypeIdname = $rTypeName->getter('idName');
+      }
+
+      switch( $rTypeIdname ) {
+        case 'rtypeHotel': // 'rtypeHotel'
           error_log( "GeozzyResourceView: getRTypeCtrl = rtypeHotel" );
           rtypeHotel::autoIncludes();
           $this->rTypeCtrl = new RTypeHotelController( $this );
           break;
-        case 21:
+        case 'rtypeRestaurant':
           error_log( "GeozzyResourceView: getRTypeCtrl = RTypeRestaurantController " );
           rtypeRestaurant::autoIncludes();
           $this->rTypeCtrl = new RTypeRestaurantController( $this );
           break;
-        case 22:
+        case 'rtypeUrl':
           error_log( "GeozzyResourceView: getRTypeCtrl = RTypeUrlController " );
-          rtypeUrl::autoIncludes();
-          $this->rTypeCtrl = new RTypeUrlController( $this );
+          rtypeRestaurant::autoIncludes();
+          $this->rTypeCtrl = new RTypeRestaurantController( $this );
           break;
         case 23:
           error_log( "GeozzyResourceView: getRTypeCtrl = RTypePageController " );
@@ -119,10 +126,8 @@ class ResourceController {
       $taxTermDep = $recObj->getterDependence( 'id', 'ResourceTaxonomytermModel');
       if( $taxTermDep !== false ) {
         foreach( $taxTermDep as $taxTerm ) {
-          $taxTermArray[ $taxTerm->getter('id') ] = $taxTerm->getter( 'taxonomyterm' );
+          $taxTermArray[$taxTerm->getter('id')] = $taxTerm->getter('taxonomyterm');
         }
-
-        // TODO: Separar por TAX
         $resourceData[ 'starred' ] = $taxTermArray;
       }
 
@@ -205,10 +210,6 @@ class ResourceController {
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
         'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
         'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '100000', 'accept' => 'image/jpeg' )
-      ),
-      'externalUrl' => array(
-        'params' => array( 'label' => __( 'External URL' ) ),
-        'rules' => array( 'maxlength' => '2000' )
       ),
       'urlAlias' => array(
         'translate' => true,
@@ -555,22 +556,14 @@ class ResourceController {
   }
 
   public function getResTerms( $resId ) {
-    error_log( "ResourceController: getResTerms" );
-
-    if( $this->taxTermArray === null ) {
-      $taxTerms = array();
-      $taxTermModel =  new ResourceTaxonomytermModel();
-      $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
-      while( $taxTerm = $taxTermList->fetch() ){
-        $taxTerms[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'taxonomyterm' );
-      }
-
-      $this->taxTermArray = count( $taxTerms ) > 0 ? $taxTerms : false;
+    $taxTerms = array();
+    $taxTermModel =  new ResourceTaxonomytermModel();
+    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    while( $taxTerm = $taxTermList->fetch() ){
+      $taxTerms[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'taxonomyterm' );
     }
 
-error_log( '$this->taxTermArray = ' . print_r( $this->taxTermArray, true ) );
-
-    return $this->taxTermArray;
+    return( count( $taxTerms ) > 0 ? $taxTerms : false );
   }
 
   /* Devolve as taxonomías asociadas cun listado de términos*/
