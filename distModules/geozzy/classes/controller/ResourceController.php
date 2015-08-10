@@ -613,16 +613,19 @@ class ResourceController {
       );
 
       while( $res = $resCollectionList->fetch() ){
-        $collections = $res->getterDependence( 'collection', 'CollectionModel' );
-        $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
-        $colInfo[ 'values' ][] = $res->getter( 'collection' );
+        $collectionModel = new collectionModel();
+        $collection = $collectionModel->listItems(array(
+          'filters' => array( 'id' => $res->getter('id'))
+        ));
+        while ($col = $collection->fetch()){
+          $colInfo[ 'options' ][ $col->getter('id')] = $col->getter( 'title', LANG_DEFAULT );
+          $colInfo[ 'values' ][] = $col->getAllData();
+        }
       }
     }
-
     // error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
     return ( count( $colInfo['values'] ) > 0 ) ? $colInfo : false;
   }
-
 
   public function getMultimediaInfo( $resId ) {
     error_log( "ResourceController: getMultimediaInfo( $resId )" );
@@ -923,7 +926,8 @@ class ResourceController {
 
     if( $collections ) {
       foreach( $collections[ 'values' ] as $collectionId ) {
-        $collectionBlock = $this->getCollectionBlock( $collectionId );
+        //$collectionBlock = $this->getCollectionBlock( $collectionId );
+        $collectionBlock = $this->getCollectionBlock($collections[ 'values' ][0]['data']);
         if( $collectionBlock ) {
           $template->addToBlock( 'collections', $collectionBlock );
         }
@@ -936,15 +940,26 @@ class ResourceController {
   } // function getResourceBlock( $resObj )
 
 
-  public function getCollectionBlock( $collectionId ) {
+  public function getCollectionBlock( $collection ) {
     error_log( "GeozzyResourceView: getCollectionBlock()" );
 
     $template = false;
 
     /**
       Cargamos os datos da collection e metemolos no tpl para crear un bloque
-      Empezado e parado...
+      Parece que funciona, falta cargar a imaxe e a colección de recursos asociados pq teño dúbidas
       */
+
+      $template = new Template();
+      $template->assign( 'title', $collection['title_'.LANG_DEFAULT] );
+      $template->assign( 'shortDescription', $collection['shortDescription_'.LANG_DEFAULT] );
+      $template->assign( 'image', '<p>'.__('None').'</p>' );
+      $template->assign( 'collectionResources', 'Listado dos recursos da colección Num. '.$collection['id'] );
+
+
+      $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
+
+      return( $template );
 
     /*
       $collectionModel =  new CollectionModel();
@@ -987,21 +1002,7 @@ class ResourceController {
 
     */
 
-    /**
-      PROBANDO (INI)
-      */
-    $template = new Template();
-    $template->assign( 'title', 'Colección Num. '.$collectionId );
-    $template->assign( 'shortDescription', 'Colección Num. '.$collectionId );
-    $template->assign( 'image', '<p>'.__('None').'</p>' );
-    $template->assign( 'collectionResources', 'Listado dos recursos da colección Num. '.$collectionId );
-    /**
-      PROBANDO (FIN)
-      */
 
-    $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
-
-    return( $template );
   } // function getCollectionBlock( $resObj )
 
 
