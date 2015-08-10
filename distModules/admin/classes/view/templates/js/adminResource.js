@@ -46,7 +46,7 @@ function bindResourceForm(){
     latInput.parent().hide();
     lonInput.parent().hide();
 
-    locationContainer.append('<div id="resourceLocationMap" style="width:100%;height:300px;"></div>');
+    locationContainer.append('<div id="resourceLocationMap"></div>');
 
     var latValue = 0;
     var lonValue = 0;
