@@ -184,9 +184,11 @@ class ResourceController {
 
     // Geograpic Location
     Cogumelo::load('coreModel/DBUtils.php');
-    $geoLocation = DBUtils::decodeGeometry($valuesArray['loc']);
-    $valuesArray['locLat'] = $geoLocation['data'][0];
-    $valuesArray['locLon'] = $geoLocation['data'][1];
+    if( isset($valuesArray['loc']) ) {
+      $geoLocation = DBUtils::decodeGeometry($valuesArray['loc']);
+      $valuesArray['locLat'] = $geoLocation['data'][0];
+      $valuesArray['locLon'] = $geoLocation['data'][1];
+    }
 
 
     $fieldsInfo = array(

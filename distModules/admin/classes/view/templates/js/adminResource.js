@@ -63,7 +63,29 @@ function bindResourceForm(){
       center: { lat: latValue, lng: lonValue },
       zoom: zoom
     };
-    var map = new google.maps.Map(document.getElementById('resourceLocationMap'), mapOptions);
+    var resourceMap = new google.maps.Map(document.getElementById('resourceLocationMap'), mapOptions);
+
+    // add marker
+    var resourceMarker = new google.maps.Marker({
+      position: new google.maps.LatLng( latValue, lonValue ),
+      map: false,
+      title: 'Resource'
+    });
+
+    if( latValue != 0 && lonValue != 0 ) {
+      resourceMarker.map = resourceMap;
+    }
+    else {
+      console.log('fai click');
+      google.maps.event.addListener(resourceMap, 'click', function(e) {
+        alert('click')
+        resourceMarker.position = e.latLng,
+        //resourceMarker.map = resourceMap;
+      });
+    }
+
+
+
 
   }
 
