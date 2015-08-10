@@ -15,6 +15,8 @@
   <![endif]-->
 
   {$css_includes}
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
   {$js_includes}
 
 </head>
