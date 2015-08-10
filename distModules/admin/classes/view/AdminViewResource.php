@@ -19,8 +19,24 @@ class AdminViewResource extends AdminViewMaster
     $template->assign('resourceTable', table::getTableHtml('AdminViewResource', '/admin/resource/table') );
     $template->setTpl('listResource.tpl', 'admin');
 
+    $resourcetype =  new ResourcetypeModel();
+    $resourcetypelist = $resourcetype->listItems()->fetchAll();
+
+    $part = '<ul class="dropdown-menu" role="menu">';
+    foreach ($resourcetypelist as $i => $res){
+      $typeList[$i] = $res->getter('name_es');
+      $part = $part.'<a id="'.$res->getter('idName').'" href="/admin#resource/create/all/'.$res->getter('id').'">'.$res->getter('name_es').'</a><br>';
+    }
+    $part = $part.'</ul>';
+
     $this->template->addToBlock( 'col12', $template );
     $this->template->assign( 'headTitle', __('Resource Management') );
+    $this->template->assign( 'headActions', '<div class="btn-group assignResource">
+                                              <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
+                                                '.__('Crear').' <span class="caret"></span>
+                                              </button>
+                                              '.$part.'
+                                             </div>' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
@@ -90,7 +106,9 @@ class AdminViewResource extends AdminViewMaster
     $resourceView = new GeozzyResourceView();
 
     if( $urlParams ) {
-      $recursoData['topics'] = array( $urlParams['1'] );
+      if ($urlParams['1'] != 'all'){
+        $recursoData['topics'] = array( $urlParams['1'] );
+      }
       $recursoData['rTypeId'] = $urlParams['2'];
       $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
     }
