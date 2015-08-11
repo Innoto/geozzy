@@ -161,7 +161,11 @@ class ResourceController {
     $form = new FormController( $formName, $urlAction );
 
     $form->setSuccess( 'accept', __( 'Thank you' ) );
-    $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
+    if (!isset($valuesArray['topics']))
+      $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
+    else{
+      $form->setSuccess( 'redirect', 'http://geozzyapp/admin#topic/'.$valuesArray['topics'][0]);
+    }
 
 
     $resCollections = array();
