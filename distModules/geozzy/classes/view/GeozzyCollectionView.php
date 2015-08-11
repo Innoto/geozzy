@@ -113,7 +113,7 @@ class GeozzyCollectionView extends View
         'rules' => array( 'required' => true )
       ),
       'multimedia' => array(
-        'params' => array(' type' => 'reserved', 'value' => 0 )
+        'params' => array('type' => 'reserved', 'value' => 0 )
       )
     );
 

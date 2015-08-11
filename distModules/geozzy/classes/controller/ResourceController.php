@@ -178,7 +178,7 @@ class ResourceController {
       $multimediaInfo = $this->getMultimediaInfo( $valuesArray[ 'id' ] );
       if( $multimediaInfo ) {
         $resMultimedia = $multimediaInfo['options'];
-        $valuesArray[ 'collections' ] = $multimediaInfo['values'];
+        $valuesArray[ 'multimediaGalleries' ] = $multimediaInfo['values'];
       }
     }
 
@@ -635,7 +635,7 @@ class ResourceController {
     if( isset( $resId ) ) {
       $resCollectionList = $resourceCollectionsModel->listItems(
         array(
-          'filters' => array( 'resource' => $resId, 'CollectionModel.multimedia' => 1 ),
+          'filters' => array( 'resource' => $resId, 'CollectionModel.multimedia' => 0 ),
           'order' => array( 'weight' => 1 ),
           'affectsDependences' => array( 'CollectionModel' )
         )
@@ -643,14 +643,11 @@ class ResourceController {
 
       while( $res = $resCollectionList->fetch() ){
 
-        var_dump($res->getter( 'multimedia' ) );
-
         $collections = $res->getterDependence( 'collection', 'CollectionModel' );
         if( $collections ){
           $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
           $colInfo[ 'values' ][] = $res->getter( 'collection' );
         }
-        var_dump( $collections );
 
       }
     }
@@ -661,7 +658,6 @@ class ResourceController {
 
 
   public function getMultimediaInfo( $resId ) {
-    print('hola');
     error_log( "ResourceController: getMultimediaInfo( $resId )" );
     $multimediaInfo = array(
       'options' => array(),
@@ -681,8 +677,10 @@ class ResourceController {
 
       while( $res = $resMultimediaList->fetch() ){
         $multimediaGalleries = $res->getterDependence( 'collection', 'CollectionModel' );
-        $multimediaInfo[ 'options' ][ $res->getter( 'collection' ) ] = $multimediaGalleries[ 0 ]->getter( 'title', LANG_DEFAULT );
-        $multimediaInfo[ 'values' ][] = $res->getter( 'collection' );
+        if( $multimediaGalleries ){
+          $multimediaInfo[ 'options' ][ $res->getter( 'collection' ) ] = $multimediaGalleries[ 0 ]->getter( 'title', LANG_DEFAULT );
+          $multimediaInfo[ 'values' ][] = $res->getter( 'collection' );
+        }
       }
     }
 
@@ -809,7 +807,8 @@ class ResourceController {
         while( $relPrev = $relPrevList->fetch() ){
           $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
           if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
-            $relPrev->delete();
+//----------------------------------------------------------------------------------------------------------------------------------------------
+            //$relPrev->delete();
           }
         }
       }
