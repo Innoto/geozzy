@@ -15,7 +15,14 @@
 <body style="background:#BFE3E9;">
 
 <h2 style="position:absolute; top:40%; left:40%; color:#30494E;">GEOZZY APP</h2>
+{literal}
+<script>
+  $( document ).ready(function() {
+    var timedbuger = new TimeDebuger({debug:true});
+  });
 
+</script>
+{/literal}
 </body>
 </html>
 <!-- /portada.tpl en app de Geozzy -->
