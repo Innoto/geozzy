@@ -31,7 +31,7 @@ function bindResourceForm(){
     icon: '<i class="fa fa-arrows"></i>'
   });
 
-  $('#resourceAddMultimediaGalleries').on('click', function(){
+  $('#resourceAddMultimediaGallery').on('click', function(){
     //PARAMS( URL - ID - TITLE )
     app.mainView.loadAjaxContentModal('/admin/multimedia/create', 'createMultimediaGalleryModal', 'Create Multimedia Gallery');
   });

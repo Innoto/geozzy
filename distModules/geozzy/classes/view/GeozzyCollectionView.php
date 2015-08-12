@@ -37,41 +37,16 @@ class GeozzyCollectionView extends View
     $form->setSuccess( 'accept', __( 'Thank you' ) );
     // $form->setSuccess( 'redirect', SITE_URL . 'admin#collection/list' );
 
-
-
-/*    $collectionResourcesModel =  new CollectionResourcesModel();
-
-    if( isset( $valuesArray[ 'id' ] ) ) {
-      $colResourcesList = $collectionResourcesModel->listItems(
-        array(
-          'filters' => array( 'collection' => $valuesArray[ 'id' ] ),
-          'order' => array( 'weight' => 1 ),
-          'affectsDependences' => array( 'ResourceModel' )
-        )
-      );
-
-      while( $res = $colResourcesList->fetch() ){
-        $resources = $res->getterDependence( 'resource', 'ResourceModel' );
-        //$colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
-        ///$colInfo[ 'values' ][] = $res->getter( 'collection' );
-
-
-        $elOpt = array(
-          'value' => $res->getter( 'resource' ),
-          'text' => $resources[ 0 ]->getter( 'title', LANG_DEFAULT ),
-          'data-image' => '/cgmlformfilews/'. $resources[ 0 ]->getter( 'image' )
-        );
-        $resOptions[ $res->getter( 'resource' ) ] = $elOpt;
-
-      }
-    }
-*/
-
-
-
     // Recursos disponibles
 
     $resourceModel =  new ResourceModel();
+
+    if($valuesArray['multimedia'] === 1){
+      $filter = array( "rtypeUrl", "" );
+    }else{
+      $filter = array( "rtypeRestaurant", "" );
+    }
+
     $elemList = $resourceModel->listItems();
 
     $resOptions = array();
@@ -116,6 +91,12 @@ class GeozzyCollectionView extends View
         'params' => array('type' => 'reserved', 'value' => 0 )
       )
     );
+
+    if( $valuesArray['multimedia'] === 1 ){
+      $fieldsInfo['addResourceMultimedia'] = array(
+        'params' => array( 'id' => 'addResourceMultimedia', 'type' => 'button', 'value' => __( 'Add Resource Multimedia' ))
+      );
+    }
 
     //$this->arrayToForm( $form, $fieldsInfo, $form->langAvailable );
     $form->definitionsToForm( $fieldsInfo );
