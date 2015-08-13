@@ -97,65 +97,6 @@ class geozzy extends Module
     $userRole->save(array( 'affectsDependences' => true ));
 
 
-    /**
-    Crea los resourcetype definidas en el un archivo de Conf en GeozzyApp por el usuario y los establecidos por defecto
-    */
-
-
-    $GEOZZY_DEFAULT_RESOURCETYPE['page'] = array(
-      'idName' => 'page',
-      'name' => array(
-        'es' => 'Page',
-        'en' => 'Page',
-        'gl' => 'Page'
-      )
-    );
-
-    $GEOZZY_DEFAULT_RESOURCETYPE['menu'] = array(
-      'idName' => 'menu',
-      'name' => array(
-        'es' => 'menu',
-        'en' => 'menu',
-        'gl' => 'menu'
-      )
-    );
-
-    $GEOZZY_DEFAULT_RESOURCETYPE['micro'] = array(
-      'idName' => 'micro',
-      'name' => array(
-        'es' => 'micro',
-        'en' => 'micro',
-        'gl' => 'micro'
-      )
-    );
-
-    $GEOZZY_DEFAULT_RESOURCETYPE['image'] = array(
-      'idName' => 'image',
-      'name' => array(
-        'es' => 'image',
-        'en' => 'image',
-        'gl' => 'image'
-      )
-    );
-
-    $GEOZZY_DEFAULT_RESOURCETYPE['url'] = array(
-      'idName' => 'url',
-      'name' => array(
-        'es' => 'url',
-        'en' => 'url',
-        'gl' => 'url'
-      )
-    );
-
-    $GEOZZY_DEFAULT_RESOURCETYPE['file'] = array(
-      'idName' => 'file',
-      'name' => array(
-        'es' => 'file',
-        'en' => 'file',
-        'gl' => 'file'
-      )
-    );
-
 
 
     global $GEOZZY_RESOURCETYPE;
