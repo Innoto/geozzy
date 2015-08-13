@@ -44,7 +44,7 @@ class GeozzyCollectionView extends View
     if($valuesArray['multimedia'] === 1){
       $filter = array( "rtypeUrl", "" );
     }else{
-      $filter = array( "rtypeRestaurant", "" );
+      $filter = array( "rtypeRestaurant", "rtypeHotel" );
     }
 
     $elemList = $resourceModel->listItems();
