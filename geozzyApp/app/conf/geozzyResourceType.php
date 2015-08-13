@@ -59,17 +59,26 @@
   $GEOZZY_RESOURCETYPE['rtypeUrl'] = array(
     'idName' => 'rtypeUrl',
     'name' => array(
-      'es' => 'URL - rType',
-      'en' => 'URL - rType',
-      'gl' => 'URL - rType'
+      'es' => 'URL',
+      'en' => 'URL',
+      'gl' => 'URL'
     )
   );
 
   $GEOZZY_RESOURCETYPE['rtypePage'] = array(
     'idName' => 'rtypePage',
     'name' => array(
-      'es' => 'Page - rType',
-      'en' => 'Page - rType',
-      'gl' => 'Page - rType'
+      'es' => 'Página',
+      'en' => 'Page',
+      'gl' => 'Páxina'
+    )
+  );
+
+  $GEOZZY_RESOURCETYPE['rtypeFile'] = array(
+    'idName' => 'rtypeFile',
+    'name' => array(
+      'es' => 'Fichero',
+      'en' => 'File',
+      'gl' => 'Ficheiro'
     )
   );
