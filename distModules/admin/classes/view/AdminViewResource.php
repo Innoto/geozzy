@@ -108,6 +108,7 @@ class AdminViewResource extends AdminViewMaster
     if( $urlParams ) {
       if ($urlParams['1'] != 'all'){
         $recursoData['topics'] = array( $urlParams['1'] );
+        $recursoData['tematica'] = array( $urlParams['1'] );
       }
       $recursoData['rTypeId'] = $urlParams['2'];
       $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
