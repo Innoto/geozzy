@@ -140,6 +140,8 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/starred/(.*)/assign$#', 'view:AdminViewStarred::listAssignStarred' );
     $this->addUrlPatterns( '#^admin/starred/table/(\d+)$#', 'view:AdminViewStarred::listStarredTable' );
 
+    /* Hai q revisar as url de creación de recurso! */
+    $this->addUrlPatterns( '#^admin/resource/create/(\d+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/create/(\D+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
@@ -148,6 +150,10 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/collection/create$#', 'view:AdminViewCollection::createForm' );
     $this->addUrlPatterns( '#^admin/collection/edit/(\d+)$#', 'view:AdminViewCollection::editForm' );
     $this->addUrlPatterns( '#^admin/collection/sendcollection$#', 'view:AdminViewCollection::sendCollectionForm' );
+
+    $this->addUrlPatterns( '#^admin/multimedia/create$#', 'view:AdminViewCollection::createMultimediaForm' );
+    $this->addUrlPatterns( '#^admin/multimedia/edit/(\d+)$#', 'view:AdminViewCollection::editMultimediaForm' );
+    $this->addUrlPatterns( '#^admin/multimedia/sendmultimedia$#', 'view:AdminViewCollection::sendMultimediaForm' );
 
     $this->addUrlPatterns( '#^admin/role/edit/(.*)$#', 'view:AdminViewRole::editRole' );
     $this->addUrlPatterns( '#^admin/role/create$#', 'view:AdminViewRole::createRole' );

@@ -28,6 +28,7 @@ class MasterView extends View
   }
 
   function main(){
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
     $this->template->setTpl('portada.tpl');
     $this->template->exec();
   }

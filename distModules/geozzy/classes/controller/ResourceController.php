@@ -168,7 +168,13 @@ class ResourceController {
     $form = new FormController( $formName, $urlAction );
 
     $form->setSuccess( 'accept', __( 'Thank you' ) );
-    $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
+
+
+    if (!isset($valuesArray['tematica'])){
+      $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
+    }else{
+      $form->setSuccess( 'redirect', 'http://geozzyapp/admin#topic/'.$valuesArray['tematica'][0]);
+    }
 
 
     $resCollections = array();
@@ -185,9 +191,18 @@ class ResourceController {
       $multimediaInfo = $this->getMultimediaInfo( $valuesArray[ 'id' ] );
       if( $multimediaInfo ) {
         $resMultimedia = $multimediaInfo['options'];
-        $valuesArray[ 'collections' ] = $multimediaInfo['values'];
+        $valuesArray[ 'multimediaGalleries' ] = $multimediaInfo['values'];
       }
     }
+
+    // Geograpic Location
+    Cogumelo::load('coreModel/DBUtils.php');
+    if( isset($valuesArray['loc']) ) {
+      $geoLocation = DBUtils::decodeGeometry($valuesArray['loc']);
+      $valuesArray['locLat'] = $geoLocation['data'][0];
+      $valuesArray['locLon'] = $geoLocation['data'][1];
+    }
+
 
     $fieldsInfo = array(
       'rTypeId' => array(
@@ -269,6 +284,18 @@ class ResourceController {
       ),
       'starred' => array(
         'params' => array( 'label' => __( 'Starred' ), 'type' => 'checkbox', 'options'=> $this->getOptionsTax( 'starred' ) )
+      ),
+      'locLat' => array(
+        'params' => array( 'label' => __( 'Latitude' ) ),
+        'rules' => array( 'number' => true )
+      ),
+      'locLon' => array(
+        'params' => array( 'label' => __( 'Longitude' ) ),
+        'rules' => array( 'number' => true )
+      ),
+      'defaultZoom' => array(
+        'params' => array( 'label' => __( 'Zoom' ) ),
+        'rules' => array( 'number' => true )
       )
     );
 
@@ -338,6 +365,19 @@ class ResourceController {
 
       $valuesArray = $form->getValuesArray();
 
+
+      // Resource LOCATION
+      Cogumelo::load('coreModel/DBUtils.php');
+      $valuesArray['loc'] = DBUtils::encodeGeometry(
+                                array(
+                                  'type' => 'POINT',
+                                  'data'=> array($valuesArray[ 'locLat' ], $valuesArray[ 'locLon' ])
+                                )
+                            );
+
+
+
+
       if( $form->isFieldDefined( 'id' ) && is_numeric( $form->getFieldValue( 'id' ) ) ) {
         $valuesArray[ 'userUpdate' ] = $user->getter( 'id' );
         $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
@@ -349,6 +389,7 @@ class ResourceController {
       }
 
     }
+
 
     if( !$form->existErrors() ) {
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
@@ -620,16 +661,17 @@ class ResourceController {
       );
 
       while( $res = $resCollectionList->fetch() ){
+
         $collections = $res->getterDependence( 'collection', 'CollectionModel' );
-        $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
-        $colInfo[ 'values' ][] = $res->getter( 'collection' );
+        if( $collections ){
+          $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
+          $colInfo[ 'values' ][] = $res->getter( 'collection' );
+        }
       }
     }
-
     // error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
     return ( count( $colInfo['values'] ) > 0 ) ? $colInfo : false;
   }
-
 
   public function getMultimediaInfo( $resId ) {
     error_log( "ResourceController: getMultimediaInfo( $resId )" );
@@ -651,8 +693,10 @@ class ResourceController {
 
       while( $res = $resMultimediaList->fetch() ){
         $multimediaGalleries = $res->getterDependence( 'collection', 'CollectionModel' );
-        $multimediaInfo[ 'options' ][ $res->getter( 'collection' ) ] = $multimediaGalleries[ 0 ]->getter( 'title', LANG_DEFAULT );
-        $multimediaInfo[ 'values' ][] = $res->getter( 'collection' );
+        if( $multimediaGalleries ){
+          $multimediaInfo[ 'options' ][ $res->getter( 'collection' ) ] = $multimediaGalleries[ 0 ]->getter( 'title', LANG_DEFAULT );
+          $multimediaInfo[ 'values' ][] = $res->getter( 'collection' );
+        }
       }
     }
 
@@ -779,7 +823,8 @@ class ResourceController {
         while( $relPrev = $relPrevList->fetch() ){
           $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
           if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
-            $relPrev->delete();
+//----------------------------------------------------------------------------------------------------------------------------------------------
+            //$relPrev->delete();
           }
         }
       }
@@ -930,7 +975,8 @@ class ResourceController {
 
     if( $collections ) {
       foreach( $collections[ 'values' ] as $collectionId ) {
-        $collectionBlock = $this->getCollectionBlock( $collectionId );
+        //$collectionBlock = $this->getCollectionBlock( $collectionId );
+        $collectionBlock = $this->getCollectionBlock($collections[ 'values' ][0]['data']);
         if( $collectionBlock ) {
           $template->addToBlock( 'collections', $collectionBlock );
         }
@@ -943,15 +989,26 @@ class ResourceController {
   } // function getResourceBlock( $resObj )
 
 
-  public function getCollectionBlock( $collectionId ) {
+  public function getCollectionBlock( $collection ) {
     error_log( "GeozzyResourceView: getCollectionBlock()" );
 
     $template = false;
 
     /**
       Cargamos os datos da collection e metemolos no tpl para crear un bloque
-      Empezado e parado...
+      Parece que funciona, falta cargar a imaxe e a colección de recursos asociados pq teño dúbidas
       */
+
+      $template = new Template();
+      $template->assign( 'title', $collection['title_'.LANG_DEFAULT] );
+      $template->assign( 'shortDescription', $collection['shortDescription_'.LANG_DEFAULT] );
+      $template->assign( 'image', '<p>'.__('None').'</p>' );
+      $template->assign( 'collectionResources', 'Listado dos recursos da colección Num. '.$collection['id'] );
+
+
+      $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
+
+      return( $template );
 
     /*
       $collectionModel =  new CollectionModel();
@@ -994,21 +1051,7 @@ class ResourceController {
 
     */
 
-    /**
-      PROBANDO (INI)
-      */
-    $template = new Template();
-    $template->assign( 'title', 'Colección Num. '.$collectionId );
-    $template->assign( 'shortDescription', 'Colección Num. '.$collectionId );
-    $template->assign( 'image', '<p>'.__('None').'</p>' );
-    $template->assign( 'collectionResources', 'Listado dos recursos da colección Num. '.$collectionId );
-    /**
-      PROBANDO (FIN)
-      */
 
-    $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
-
-    return( $template );
   } // function getCollectionBlock( $resObj )
 
 
