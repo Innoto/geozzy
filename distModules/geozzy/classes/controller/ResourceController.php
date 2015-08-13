@@ -27,33 +27,40 @@ class ResourceController {
 
       $rType = new ResourcetypeModel();
       $rTypeList = $rType->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
+      $rTypeIdname = false;
 
-      while ($rTypeName = $rTypeList->fetch()){
-        $rTypeIdname = $rTypeName->getter('idName');
+      if( $rTypeName = $rTypeList->fetch() ) {
+        $rTypeIdname = $rTypeName->getter( 'idName' );
       }
 
       switch( $rTypeIdname ) {
         case 'rtypeHotel': // 'rtypeHotel'
-          error_log( "GeozzyResourceView: getRTypeCtrl = rtypeHotel" );
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname" );
           rtypeHotel::autoIncludes();
           $this->rTypeCtrl = new RTypeHotelController( $this );
           break;
         case 'rtypeRestaurant':
-          error_log( "GeozzyResourceView: getRTypeCtrl = RTypeRestaurantController " );
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
           rtypeRestaurant::autoIncludes();
           $this->rTypeCtrl = new RTypeRestaurantController( $this );
           break;
         case 'rtypeUrl':
-          error_log( "GeozzyResourceView: getRTypeCtrl = RTypeUrlController " );
-          rtypeRestaurant::autoIncludes();
-          $this->rTypeCtrl = new RTypeRestaurantController( $this );
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeUrl::autoIncludes();
+          $this->rTypeCtrl = new RTypeUrlController( $this );
           break;
-        case 23:
-          error_log( "GeozzyResourceView: getRTypeCtrl = RTypePageController " );
+        case 'rtypePage':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
           rtypePage::autoIncludes();
           $this->rTypeCtrl = new RTypePageController( $this );
           break;
+        case 'rtypeFile':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeFile::autoIncludes();
+          $this->rTypeCtrl = new RTypeFileController( $this );
+          break;
         default:
+          error_log( "GeozzyResourceView: ERROR. rTypeIdname DESCONOCIDO: $rTypeIdname " );
           $this->rTypeCtrl = false;
           break;
       }

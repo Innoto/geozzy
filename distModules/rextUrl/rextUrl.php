@@ -42,11 +42,27 @@ class rextUrl extends Module {
           )
         ),
         array(
+          'idName' => 'media',
+          'name' => array(
+            'en' => 'Media',
+            'es' => 'Media',
+            'gl' => 'Media'
+          )
+        ),
+        array(
           'idName' => 'image',
           'name' => array(
             'en' => 'Image',
             'es' => 'Imagen',
             'gl' => 'Imaxe'
+          )
+        ),
+        array(
+          'idName' => 'audio',
+          'name' => array(
+            'en' => 'Audio',
+            'es' => 'Audio',
+            'gl' => 'Audio'
           )
         ),
         array(
