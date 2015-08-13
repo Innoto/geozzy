@@ -59,6 +59,26 @@ class ResourceController {
           rtypeFile::autoIncludes();
           $this->rTypeCtrl = new RTypeFileController( $this );
           break;
+        case 'rtypeRuta':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeRuta::autoIncludes();
+          $this->rTypeCtrl = new RTypeRutaController( $this );
+          break;
+        case 'rtypeLugar':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeLugar::autoIncludes();
+          $this->rTypeCtrl = new RTypeLugarController( $this );
+          break;
+        case 'rtypeEspazoNatural':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeEspazoNatural::autoIncludes();
+          $this->rTypeCtrl = new RTypeEspazoNaturalController( $this );
+          break;
+        case 'rtypeEspazoNatural':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeEspazoNatural::autoIncludes();
+          $this->rTypeCtrl = new RTypeEspazoNaturalController( $this );
+          break;
         default:
           error_log( "GeozzyResourceView: ERROR. rTypeIdname DESCONOCIDO: $rTypeIdname " );
           $this->rTypeCtrl = false;

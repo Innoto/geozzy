@@ -124,6 +124,10 @@ $C_ENABLED_MODULES = array(
   'rtypeUrl',
   'rtypePage',
   'rtypeFile',
+  'rtypeRuta',
+  'rtypeLugar',
+  'rtypeEspazoNatural',
+  'rtypeFestaPopular',
 
   // resource Extenssions
   'rextAccommodation',
