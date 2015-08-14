@@ -141,8 +141,8 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/starred/table/(\d+)$#', 'view:AdminViewStarred::listStarredTable' );
 
     /* Hai q revisar as url de creación de recurso! */
-    $this->addUrlPatterns( '#^admin/resource/create/(\d+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
-    $this->addUrlPatterns( '#^admin/resource/create/(\D+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
+    $this->addUrlPatterns( '#^admin/resource/create/(.+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
+    //$this->addUrlPatterns( '#^admin/resource/create/(\D+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
     $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
     $this->addUrlPatterns( '#^admin/resource/sendresource$#', 'view:AdminViewResource::sendResourceForm' );
