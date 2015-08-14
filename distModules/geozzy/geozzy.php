@@ -102,8 +102,12 @@ class geozzy extends Module
     global $GEOZZY_RESOURCETYPE;
 
     geozzy::load('controller/ResourcetypeController.php');
-    ResourcetypeController::addResourceTypes( $GEOZZY_DEFAULT_RESOURCETYPE );
-    ResourcetypeController::addResourceTypes( $GEOZZY_RESOURCETYPE );
+    if( isset( $GEOZZY_DEFAULT_RESOURCETYPE ) ) {
+      ResourcetypeController::addResourceTypes( $GEOZZY_DEFAULT_RESOURCETYPE );
+    }
+    if( isset( $GEOZZY_RESOURCETYPE ) ) {
+      ResourcetypeController::addResourceTypes( $GEOZZY_RESOURCETYPE );
+    }
 
 
 
