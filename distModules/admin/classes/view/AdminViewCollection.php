@@ -11,7 +11,7 @@ class AdminViewCollection extends AdminViewMaster
 
 
   /**
-    Creacion/Edicion de Recursos
+    Creacion/Edicion de Collection
   */
 
   public function createForm() {
@@ -96,5 +96,27 @@ class AdminViewCollection extends AdminViewMaster
 
 
   } // sendCollectionForm()
+
+
+  /**
+    Creacion/Edicion de Multimedia
+  */
+
+  public function createMultimediaForm() {
+    $formName = 'multimediaCreate';
+    $formUrl = '/admin/multimedia/sendmultimedia';
+
+    $collectionView = new GeozzyCollectionView();
+
+    $valuesArray['multimedia'] = 1;
+
+    $formBlock = $collectionView->getFormBlock( $formName, $formUrl, $valuesArray );
+    $formBlock->setTpl( 'collectionFormBlockBase.tpl', 'admin' );
+
+    // Template base
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
+    $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, 'Create Collection', 'fa-archive' ) );
+    $this->template->exec();
+  } // function createForm()
 
 }

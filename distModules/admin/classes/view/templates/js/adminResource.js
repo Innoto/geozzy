@@ -19,6 +19,25 @@ function bindResourceForm(){
     icon: '<i class="fa fa-arrows"></i>'
   });
 
+  $('#resourceAddCollection').on('click', function(){
+    //PARAMS( URL - ID - TITLE )
+    app.mainView.loadAjaxContentModal('/admin/collection/create', 'createCollectionsModal', 'Create Collection');
+  });
+
+  $('#resourceMultimediaGalleries').multiList({
+    itemActions : [
+      { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editMultiMediaGallery }
+    ],
+    icon: '<i class="fa fa-arrows"></i>'
+  });
+
+  $('#resourceAddMultimediaGallery').on('click', function(){
+    //PARAMS( URL - ID - TITLE )
+    app.mainView.loadAjaxContentModal('/admin/multimedia/create', 'createMultimediaGalleryModal', 'Create Multimedia Gallery');
+  });
+
+
+
 
   $('select.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
     orientation: 'horizontal'
@@ -32,10 +51,7 @@ function bindResourceForm(){
 
   $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').select2();
 
-  $('#resourceAddCollection').on('click', function(){
-    //PARAMS( URL - ID - TITLE )
-    app.mainView.loadAjaxContentModal('/admin/collection/create', 'createCollectionsModal', 'Create Collection');
-  });
+
 
   // Location Map
   if(  $("input[name='locLat']").length &&  $("input[name='locLon']").length ) {
@@ -121,4 +137,7 @@ function successCollectionForm( data ){
 
 function editCollection(e){
   app.mainView.loadAjaxContentModal('/admin/collection/edit/'+e.value, 'editCollectionsModal', 'Edit Collection');
+}
+function editMultiMediaGallery(e){
+  app.mainView.loadAjaxContentModal('/admin/multimedia/edit/'+e.value, 'editMultimediaModal', 'Edit Multimedia Gallery');
 }

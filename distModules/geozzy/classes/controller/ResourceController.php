@@ -27,33 +27,60 @@ class ResourceController {
 
       $rType = new ResourcetypeModel();
       $rTypeList = $rType->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
+      $rTypeIdname = false;
 
-      while ($rTypeName = $rTypeList->fetch()){
-        $rTypeIdname = $rTypeName->getter('idName');
+      if( $rTypeName = $rTypeList->fetch() ) {
+        $rTypeIdname = $rTypeName->getter( 'idName' );
       }
 
       switch( $rTypeIdname ) {
         case 'rtypeHotel': // 'rtypeHotel'
-          error_log( "GeozzyResourceView: getRTypeCtrl = rtypeHotel" );
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname" );
           rtypeHotel::autoIncludes();
           $this->rTypeCtrl = new RTypeHotelController( $this );
           break;
         case 'rtypeRestaurant':
-          error_log( "GeozzyResourceView: getRTypeCtrl = RTypeRestaurantController " );
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
           rtypeRestaurant::autoIncludes();
           $this->rTypeCtrl = new RTypeRestaurantController( $this );
           break;
         case 'rtypeUrl':
-          error_log( "GeozzyResourceView: getRTypeCtrl = RTypeUrlController " );
-          rtypeRestaurant::autoIncludes();
-          $this->rTypeCtrl = new RTypeRestaurantController( $this );
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeUrl::autoIncludes();
+          $this->rTypeCtrl = new RTypeUrlController( $this );
           break;
-        case 23:
-          error_log( "GeozzyResourceView: getRTypeCtrl = RTypePageController " );
+        case 'rtypePage':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
           rtypePage::autoIncludes();
           $this->rTypeCtrl = new RTypePageController( $this );
           break;
+        case 'rtypeFile':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeFile::autoIncludes();
+          $this->rTypeCtrl = new RTypeFileController( $this );
+          break;
+        case 'rtypeRuta':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeRuta::autoIncludes();
+          $this->rTypeCtrl = new RTypeRutaController( $this );
+          break;
+        case 'rtypeLugar':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeLugar::autoIncludes();
+          $this->rTypeCtrl = new RTypeLugarController( $this );
+          break;
+        case 'rtypeEspazoNatural':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeEspazoNatural::autoIncludes();
+          $this->rTypeCtrl = new RTypeEspazoNaturalController( $this );
+          break;
+        case 'rtypeEspazoNatural':
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
+          rtypeEspazoNatural::autoIncludes();
+          $this->rTypeCtrl = new RTypeEspazoNaturalController( $this );
+          break;
         default:
+          error_log( "GeozzyResourceView: ERROR. rTypeIdname DESCONOCIDO: $rTypeIdname " );
           $this->rTypeCtrl = false;
           break;
       }
@@ -161,10 +188,12 @@ class ResourceController {
     $form = new FormController( $formName, $urlAction );
 
     $form->setSuccess( 'accept', __( 'Thank you' ) );
-    if (!isset($valuesArray['topics']))
+
+
+    if (!isset($valuesArray['tematica'])){
       $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
-    else{
-      $form->setSuccess( 'redirect', 'http://geozzyapp/admin#topic/'.$valuesArray['topics'][0]);
+    }else{
+      $form->setSuccess( 'redirect', 'http://geozzyapp/admin#topic/'.$valuesArray['tematica'][0]);
     }
 
 
@@ -182,7 +211,7 @@ class ResourceController {
       $multimediaInfo = $this->getMultimediaInfo( $valuesArray[ 'id' ] );
       if( $multimediaInfo ) {
         $resMultimedia = $multimediaInfo['options'];
-        $valuesArray[ 'collections' ] = $multimediaInfo['values'];
+        $valuesArray[ 'multimediaGalleries' ] = $multimediaInfo['values'];
       }
     }
 
@@ -652,13 +681,11 @@ class ResourceController {
       );
 
       while( $res = $resCollectionList->fetch() ){
-        $collectionModel = new collectionModel();
-        $collection = $collectionModel->listItems(array(
-          'filters' => array( 'id' => $res->getter('id'))
-        ));
-        while ($col = $collection->fetch()){
-          $colInfo[ 'options' ][ $col->getter('id')] = $col->getter( 'title', LANG_DEFAULT );
-          $colInfo[ 'values' ][] = $col->getAllData();
+
+        $collections = $res->getterDependence( 'collection', 'CollectionModel' );
+        if( $collections ){
+          $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
+          $colInfo[ 'values' ][] = $res->getter( 'collection' );
         }
       }
     }
@@ -686,8 +713,10 @@ class ResourceController {
 
       while( $res = $resMultimediaList->fetch() ){
         $multimediaGalleries = $res->getterDependence( 'collection', 'CollectionModel' );
-        $multimediaInfo[ 'options' ][ $res->getter( 'collection' ) ] = $multimediaGalleries[ 0 ]->getter( 'title', LANG_DEFAULT );
-        $multimediaInfo[ 'values' ][] = $res->getter( 'collection' );
+        if( $multimediaGalleries ){
+          $multimediaInfo[ 'options' ][ $res->getter( 'collection' ) ] = $multimediaGalleries[ 0 ]->getter( 'title', LANG_DEFAULT );
+          $multimediaInfo[ 'values' ][] = $res->getter( 'collection' );
+        }
       }
     }
 
@@ -814,7 +843,8 @@ class ResourceController {
         while( $relPrev = $relPrevList->fetch() ){
           $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
           if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
-            $relPrev->delete();
+//----------------------------------------------------------------------------------------------------------------------------------------------
+            //$relPrev->delete();
           }
         }
       }

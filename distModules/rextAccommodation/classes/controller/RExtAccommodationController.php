@@ -17,12 +17,11 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
 
     $rExtModel = new AccommodationModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
-
-      // error_log( 'RExtAccommodationController: getRExtData = '.print_r( $rExtData, true ) );
 
       // Cargo los datos de destacados con los que está asociado el recurso
       $taxTerms = $this->defResCtrl->getResTerms( $resId );
