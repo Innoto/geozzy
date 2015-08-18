@@ -4,7 +4,7 @@ Cogumelo::load( 'coreController/Module.php' );
 
 class rtypeUrl extends Module {
 
-  public $name = 'rtypeUrl';
+  public $idName = 'rtypeUrl';
   public $version = '1.0';
   public $rext = array( 'rextUrl' );
 
@@ -15,8 +15,19 @@ class rtypeUrl extends Module {
     'view/RTypeUrlView.php'
   );
 
+  public $nameLocations = array(
+    'es' => 'URL',
+    'en' => 'URL',
+    'gl' => 'URL'
+  );
+
 
   public function __construct() {
   }
 
+
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rTypeModuleRc( __CLASS__ );
+  }
 }

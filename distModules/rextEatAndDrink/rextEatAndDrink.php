@@ -1,25 +1,18 @@
 <?php
+Cogumelo::load( 'coreController/Module.php' );
 
-Cogumelo::load("coreController/Module.php");
 
-class rextEatAndDrink extends Module
-{
+class rextEatAndDrink extends Module {
 
-  public $name = "rextEatAndDrink";
-  public $version = "1.0";
-  public $dependences = array();
+  public $name = 'rextEatAndDrink';
+  public $version = '1.0';
 
-  public $includesCommon = array(
-    'controller/RExtEatAndDrinkController.php',
-    'model/EatAndDrinkModel.php'
-  );
 
   public $models = array(
-  	'EatAndDrinkModel'
+    'EatAndDrinkModel'
   );
 
   public $taxonomies = array(
-
     'eatanddrinkType' => array(
       'idName' => 'eatanddrinkType',
       'name' => array(
@@ -95,8 +88,22 @@ class rextEatAndDrink extends Module
         )
       )
     )
-
   );
 
-  public function __construct() {}
+  public $dependences = array();
+
+  public $includesCommon = array(
+    'controller/RExtEatAndDrinkController.php',
+    'model/EatAndDrinkModel.php'
+  );
+
+
+  public function __construct() {
+  }
+
+
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rExtModuleRc( __CLASS__ );
+  }
 }

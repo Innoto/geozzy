@@ -102,7 +102,6 @@ define( 'TPL_TMP', APP_TMP_PATH.'/tpl' );
 //  Module load
 //
 global $C_ENABLED_MODULES;
-global $C_INDEX_MODULES;
 $C_ENABLED_MODULES = array(
   'mediaserver',
   'i18nGetLang',
@@ -118,7 +117,23 @@ $C_ENABLED_MODULES = array(
   'table',
   'explorer',
 
-  // resource Types
+  // testing module
+  'testData'
+);
+
+// resource Extenssions
+global $C_REXT_MODULES;
+$C_REXT_MODULES = array(
+  'rextAccommodation',
+  'rextEatAndDrink',
+  'rextUrl',
+  'rextView',
+  'rextFile'
+);
+
+// resource Types
+global $C_RTYPE_MODULES;
+$C_RTYPE_MODULES = array(
   'rtypeHotel',
   'rtypeRestaurant',
   'rtypeUrl',
@@ -127,20 +142,15 @@ $C_ENABLED_MODULES = array(
   'rtypeRuta',
   'rtypeLugar',
   'rtypeEspazoNatural',
-  'rtypeFestaPopular',
-
-  // resource Extenssions
-  'rextAccommodation',
-  'rextEatAndDrink',
-  'rextUrl',
-  'rextView',
-  'rextFile',
-
-  // testing module
-  'testData'
-
+  'rtypeFestaPopular'
 );
+
+// Merge all modules
+$C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_MODULES );
+
+
 // before app/Cogumelo.php execution
+global $C_INDEX_MODULES;
 $C_INDEX_MODULES  = array(
   'mediaserver',
   'i18nGetLang',

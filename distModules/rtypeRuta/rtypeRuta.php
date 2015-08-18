@@ -2,9 +2,9 @@
 
 Cogumelo::load( 'coreController/Module.php' );
 
-class rtypeRuta extends Module
-{
-  public $name = 'rtypeRuta';
+class rtypeRuta extends Module {
+
+  public $idName = 'rtypeRuta';
   public $version = '1.0';
   public $rext = array();
 
@@ -15,10 +15,19 @@ class rtypeRuta extends Module
     'view/RTypeRutaView.php'
   );
 
+  public $nameLocations = array(
+    'es' => 'Ruta',
+    'en' => 'Ruta',
+    'gl' => 'Ruta'
+  );
+
 
   public function __construct() {
-
   }
 
 
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rTypeModuleRc( __CLASS__ );
+  }
 }
