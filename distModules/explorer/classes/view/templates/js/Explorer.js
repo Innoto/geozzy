@@ -49,9 +49,9 @@ geozzy.explorer = function( opts ) {
         cache: true,
         expires: that.options.cacheTimeIndex ,
         success: function() {
+
+
           that.timeDebuger.log('Index - loaded '+ that.resourceIndex.length + ' resources');
-          //console.log(that.resources.toJSON() );
-          //console.log( that.resources.toJSON() );
 
 
           var proxy = new Backbone.Obscura(that.resourceIndex);
@@ -62,18 +62,22 @@ geozzy.explorer = function( opts ) {
 
             });
 
-          that.timeDebuger.log( 'Filtrado:' + proxy.length + ' Records' );
+          that.timeDebuger.log( 'Resultado filtrado:' + proxy.length + ' Records' );
 
           var proxy2 = new Backbone.Obscura(proxy);
 
           that.timeDebuger.log( 'segundo indexado' );
           proxy2.filterBy(function(model) {
-              return model.get('id') > 11000;
+
+              var terms =  model.get('terms');
+              var diff = $( terms ).not( [14,10,25]);
+
+              return (diff.length != terms.length );
 
             });
-          that.timeDebuger.log( 'Filtrado '+ proxy2.length + ' Records' );
+          that.timeDebuger.log( 'Resultado segundo filtrado '+ proxy2.length + ' Records' );
 
-          console.log(proxy2.pluck('id'));
+          //console.log(proxy2.pluck('id'));
 
 
           //console.log(proxy.toJSON() );
