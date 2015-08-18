@@ -4,7 +4,7 @@ Cogumelo::load( 'coreController/Module.php' );
 
 class rtypeRuta extends Module {
 
-  public $idName = 'rtypeRuta';
+  public $name = 'rtypeRuta';
   public $version = '1.0';
   public $rext = array();
 

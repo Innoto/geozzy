@@ -4,7 +4,7 @@ Cogumelo::load('coreController/Module.php');
 
 class rtypeRestaurant extends Module {
 
-  public $idName = 'rtypeRestaurant';
+  public $name = 'rtypeRestaurant';
   public $version = '1.0';
   public $rext = array( 'rextEatAndDrink' );
 

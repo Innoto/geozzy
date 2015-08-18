@@ -4,7 +4,7 @@ Cogumelo::load( 'coreController/Module.php' );
 
 class rtypePage extends Module {
 
-  public $idName = 'rtypePage';
+  public $name = 'rtypePage';
   public $version = '1.0';
   public $rext = array( 'rextView' );
 

@@ -4,7 +4,7 @@ Cogumelo::load( 'coreController/Module.php' );
 
 class rtypeLugar extends Module {
 
-  public $idName = 'rtypeLugar';
+  public $name = 'rtypeLugar';
   public $version = '1.0';
   public $rext = array();
 

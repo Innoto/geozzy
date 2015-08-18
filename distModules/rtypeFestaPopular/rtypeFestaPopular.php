@@ -4,7 +4,7 @@ Cogumelo::load( 'coreController/Module.php' );
 
 class rtypeFestaPopular extends Module {
 
-  public $idName = 'rtypeFestaPopular';
+  public $name = 'rtypeFestaPopular';
   public $version = '1.0';
   public $rext = array();
 

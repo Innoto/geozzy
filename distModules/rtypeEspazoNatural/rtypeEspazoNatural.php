@@ -4,7 +4,7 @@ Cogumelo::load( 'coreController/Module.php' );
 
 class rtypeEspazoNatural extends Module {
 
-  public $idName = 'rtypeEspazoNatural';
+  public $name = 'rtypeEspazoNatural';
   public $version = '1.0';
   public $rext = array();
 

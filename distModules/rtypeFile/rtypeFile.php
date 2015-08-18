@@ -4,7 +4,7 @@ Cogumelo::load( 'coreController/Module.php' );
 
 class rtypeFile extends Module {
 
-  public $idName = 'rtypeFile';
+  public $name = 'rtypeFile';
   public $version = '1.0';
   public $rext = array( 'rextFile' );
 

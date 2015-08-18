@@ -7,7 +7,7 @@ class ResourcetypeController {
 
   public function rTypeModuleRc( $rTypeClassName ) {
     $rTypeObj = new $rTypeClassName();
-    self::addRType( $rTypeObj->idName, $rTypeObj->nameLocations );
+    self::addRType( $rTypeObj->name, $rTypeObj->nameLocations );
   }
 
 

@@ -4,7 +4,7 @@ Cogumelo::load( 'coreController/Module.php' );
 
 class rtypeUrl extends Module {
 
-  public $idName = 'rtypeUrl';
+  public $name = 'rtypeUrl';
   public $version = '1.0';
   public $rext = array( 'rextUrl' );
 

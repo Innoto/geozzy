@@ -4,7 +4,7 @@ Cogumelo::load( 'coreController/Module.php' );
 
 class rtypeHotel extends Module {
 
-  public $idName = 'rtypeHotel';
+  public $name = 'rtypeHotel';
   public $version = '1.0';
   public $rext = array( 'rextAccommodation' );
 
