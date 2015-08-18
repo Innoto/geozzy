@@ -39,13 +39,24 @@ class RExtUrlController extends RExtController implements RExtInterface {
     $rExtFieldNames = array();
 
     $fieldsInfo = array(
+      'URL' => array(
+        'params' => array( 'label' => __( 'External URL' ) ),
+        'rules' => array( 'maxlength' => '2000' )
+      ),
       'urlContentType' => array(
-        'params' => array( 'label' => __( 'Url content type' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'URL content type' ), 'type' => 'select',
           'options' => $this->defResCtrl->getOptionsTax( 'urlContentType' )
         )
+      ),
+      'embed' => array(
+        'params' => array( 'label' => __( 'Embed HTML' ) ),
+        'rules' => array( 'maxlength' => '2000' )
+      ),
+      'author' => array(
+        'params' => array( 'label' => __( 'Author' ) ),
+        'rules' => array( 'maxlength' => '500' )
       )
     );
-
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
@@ -71,6 +82,7 @@ class RExtUrlController extends RExtController implements RExtInterface {
     }
 
     $form->setField( 'rExtUrlFieldNames', array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
+
     $form->saveToSession();
 
     return( $rExtFieldNames );

@@ -1,6 +1,6 @@
 <?php
-
 Cogumelo::load( 'coreController/Module.php' );
+
 
 class rtypeUrl extends Module {
 
