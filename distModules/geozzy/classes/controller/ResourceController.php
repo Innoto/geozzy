@@ -1,5 +1,4 @@
 <?php
-
 geozzy::load( 'controller/RTypeController.php' );
 geozzy::load( 'controller/RExtController.php' );
 
@@ -336,19 +335,6 @@ class ResourceController {
 
       $valuesArray = $form->getValuesArray();
 
-
-      // Resource LOCATION
-      Cogumelo::load('coreModel/DBUtils.php');
-      $valuesArray['loc'] = DBUtils::encodeGeometry(
-                                array(
-                                  'type' => 'POINT',
-                                  'data'=> array($valuesArray[ 'locLat' ], $valuesArray[ 'locLon' ])
-                                )
-                            );
-
-
-
-
       if( $form->isFieldDefined( 'id' ) && is_numeric( $form->getFieldValue( 'id' ) ) ) {
         $valuesArray[ 'userUpdate' ] = $user->getter( 'id' );
         $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
@@ -359,6 +345,18 @@ class ResourceController {
         $valuesArray[ 'timeCreation' ] = date( "Y-m-d H:i:s", time() );
       }
 
+      // Resource LOCATION
+      if( isset( $valuesArray[ 'locLat' ] ) && isset( $valuesArray[ 'locLon' ] ) ) {
+        Cogumelo::load( 'coreModel/DBUtils.php' );
+        $valuesArray[ 'loc' ] = DBUtils::encodeGeometry(
+          array(
+            'type' => 'POINT',
+            'data'=> array( $valuesArray[ 'locLat' ], $valuesArray[ 'locLon' ] )
+          )
+        );
+        unset( $valuesArray[ 'locLat' ] );
+        unset( $valuesArray[ 'locLon' ] );
+      }
     }
 
 
