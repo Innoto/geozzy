@@ -125,7 +125,7 @@ function bindResourceForm(){
 
 function successCollectionForm( data ){
 
-  if(data.multimedia === 1){
+  if(data.multimedia === '1'){
     //Multimedia galery
     if( $('#resourceMultimediaGalleries option[value='+data.id+']').length > 0 ){
       $('#resourceMultimediaGalleries option[value='+data.id+']').text(data.title);
@@ -134,7 +134,7 @@ function successCollectionForm( data ){
       $('#resourceMultimediaGalleries').append('<option selected="selected" value="'+data.id+'">'+data.title+'</option>');
       $('#createMultimediaGalleryModal').modal('hide');
     }
-    $('#resourceCollections').trigger('change');
+    $('#resourceMultimediaGalleries').trigger('change');
     //End multimedia
   }else{
     //Collection
