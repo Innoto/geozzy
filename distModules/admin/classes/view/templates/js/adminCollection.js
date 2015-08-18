@@ -1,8 +1,10 @@
 
-$(window).ready(function(){
+$(document).ready(function(){
+  colBinds();
+  moveHTML();
+});
 
-
-
+function colBinds(){
   $('#collResources').multiList({
     orientation: 'Horizontal',
     itemImage: true,
@@ -10,8 +12,18 @@ $(window).ready(function(){
   });
 
 
+  $('#addResourceLocal').on('click', function(){
+    //PARAMS( URL - ID - TITLE MD OR LG)
+    app.mainView.loadAjaxContentModal('/admin/resourcetypefile/create/', 'createResourceLocalModal', 'Create Local Resource', 'md');
+  });
+  $('#addResourceExternal').on('click', function(){
+    //PARAMS( URL - ID - TITLE - MD OR LG)
+    app.mainView.loadAjaxContentModal('/admin/resourcetypeurl/create/', 'createResourceExternalModal', 'Create External Resource', 'md');
+  });
+}
+
+function moveHTML(){
   var buttonsToMove = $('.modal .gzzAdminToMove');
-  console.log(buttonsToMove);
 
   if( buttonsToMove.size() > 0 ){
     buttonsToMove.each( function() {
@@ -21,4 +33,4 @@ $(window).ready(function(){
       $(this).hide();
     });
   }
-});
+}

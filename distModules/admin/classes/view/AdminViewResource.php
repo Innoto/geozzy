@@ -193,6 +193,115 @@ class AdminViewResource extends AdminViewMaster
   }
 
 
+
+
+
+
+
+  /**
+    Creacion/Edicion de Recursos type URL
+   */
+
+  public function resourceTypeUrlForm( $urlParams = false ) {
+    $formName = 'resourceUrlCreate';
+    $formUrl = '/admin/resourcetypeurl/sendresource';
+
+    $resourceView = new GeozzyResourceView();
+    $rtypeControl = new ResourcetypeModel();
+    $rtype = $rtypeControl->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
+
+    $recursoData['rTypeId'] = $rtype->getter('id');
+    $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
+
+    // Cambiamos el template del formulario
+    $formBlock->setTpl( 'resourceTypeFormBlockBase.tpl', 'admin' );
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
+
+    // Fragmentamos el formulario generado
+    $noFields = $this->extractFormBlockFields( $formBlock,
+      array(
+        'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
+        'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
+      )
+    );
+
+    $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
+    $this->template->exec();
+  } // function resourceForm()
+
+
+  /**
+    Creacion/Edicion de Recursos type FILE
+   */
+
+  public function resourceTypeFileForm( $urlParams = false ) {
+    $formName = 'resourceFileCreate';
+    $formUrl = '/admin/resourcetypefile/sendresource';
+
+    $resourceView = new GeozzyResourceView();
+    $rtypeControl = new ResourcetypeModel();
+    $rtype = $rtypeControl->listItems( array( 'filters' => array('idName' => 'rtypeFile') ) )->fetch();
+
+    $recursoData['rTypeId'] = $rtype->getter('id');
+    $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
+
+    // Cambiamos el template del formulario
+    $formBlock->setTpl( 'resourceTypeFormBlockBase.tpl', 'admin' );
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
+
+    // Fragmentamos el formulario generado
+    $noFields = $this->extractFormBlockFields( $formBlock,
+      array(
+        'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
+        'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
+      )
+    );
+
+    $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
+    $this->template->exec();
+  } // function resourceForm()
+
+
+
+
+/*
+  public function resourceEditForm( $urlParams = false ) {
+    $formName = 'resourceCreate';
+    $formUrl = '/admin/resource/sendresource';
+
+    $valuesArray = false;
+
+    if( isset( $urlParams['1'] ) ) {
+      $resCtrl = new ResourceController();
+      $valuesArray = $resCtrl->getResourceData( $urlParams['1'] );
+    }
+
+    if( $valuesArray ) {
+      $resourceView = new GeozzyResourceView();
+
+      // error_log( 'recursoData para FORM: ' . print_r( $valuesArray, true ) );
+      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $valuesArray );
+
+      // Cambiamos el template del formulario
+      $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
+
+      // Template base: Admin 8-4
+      $this->template->assign( 'headTitle', __('Edit Resource') );
+      $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
+
+      $this->showFormBlocks( $formBlock );
+    }
+    else {
+      cogumelo::error( 'Imposible acceder al recurso indicado.' );
+    }
+  } // function resourceEditForm()
+*/
+
+
+
+
+
+
   public function sendResourceForm() {
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();

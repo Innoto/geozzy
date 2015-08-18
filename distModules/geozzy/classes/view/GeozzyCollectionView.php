@@ -42,6 +42,7 @@ class GeozzyCollectionView extends View
     $resourceModel =  new ResourceModel();
 
     if($valuesArray['multimedia'] === 1){
+
       $filter = array( "rtypeUrl", "" );
     }else{
       $filter = array( "rtypeRestaurant", "rtypeHotel" );
@@ -93,8 +94,11 @@ class GeozzyCollectionView extends View
     );
 
     if( $valuesArray['multimedia'] === 1 ){
-      $fieldsInfo['addResourceMultimedia'] = array(
-        'params' => array( 'id' => 'addResourceMultimedia', 'type' => 'button', 'value' => __( 'Add Resource Multimedia' ))
+      $fieldsInfo['addResourceLocal'] = array(
+        'params' => array( 'id' => 'addResourceLocal', 'type' => 'button', 'value' => __( 'Add Local Resource ' ))
+      );
+      $fieldsInfo['addResourceExterno'] = array(
+        'params' => array( 'id' => 'addResourceExternal', 'type' => 'button', 'value' => __( 'Add External Resource' ))
       );
     }
 
