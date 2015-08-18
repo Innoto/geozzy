@@ -2,7 +2,6 @@
 Cogumelo::load( 'coreController/Module.php' );
 
 
-
 class rextFile extends Module {
 
   public $name = 'rextFile';
@@ -24,7 +23,11 @@ class rextFile extends Module {
 
 
   public function __construct() {
-
   }
 
+
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rExtModuleRc( __CLASS__ );
+  }
 }
