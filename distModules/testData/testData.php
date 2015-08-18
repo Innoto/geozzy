@@ -10,7 +10,7 @@ class testData extends Module
 
   public function __construct() {
     $this->addUrlPatterns( '#^testData$#', 'view:TestDataViewMaster::commonTestDataInterface' );
-    $this->addUrlPatterns( '#^testData/resources/(.*)$#', 'view:TestDataGenerator::generateResources' );
+    $this->addUrlPatterns( '#^testData/generate$#', 'view:TestDataGenerator::generateResources' );
   }
 
 
