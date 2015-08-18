@@ -4,6 +4,7 @@
   label { display: block; }
   .cgmMForm-field { max-width: none !important; }
 </style>
+<script type="text/javascript" src="/media/module/admin/js/adminResourceType.js"></script>
 
 
 {$formOpen}
