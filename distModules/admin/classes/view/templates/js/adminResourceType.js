@@ -1,15 +1,13 @@
 
 $(document).ready(function(){
-  rtypeBinds();
-  moveHTML();
+  
+  moveSubmitBtn('.modal .cgmMForm-form-resourceFileCreate .gzzAdminToMove');
+  moveSubmitBtn('.modal .cgmMForm-form-resourceUrlCreate .gzzAdminToMove');
 });
 
-function rtypeBinds(){
 
-}
-
-function moveHTML(){
-  var buttonsToMove = $('.modal .gzzAdminToMove');
+function moveSubmitBtn(query){
+  var buttonsToMove = $(query);
 
   if( buttonsToMove.size() > 0 ){
     buttonsToMove.each( function() {
