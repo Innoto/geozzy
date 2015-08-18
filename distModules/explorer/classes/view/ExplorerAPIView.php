@@ -60,7 +60,7 @@ class ExplorerAPIView extends View
                           },
                           {
                             "name": "request",
-                            "description": "request type ( index | data | filter )",
+                            "description": "( index | data | checksum )",
                             "dataType": "string",
                             "paramType": "path",
                             "defaultValue": "index",
@@ -147,15 +147,15 @@ class ExplorerAPIView extends View
 
 
       if( $params[1] == 'index' ) {
-        $explorer->serveIndexData();
+        $explorer->serveIndex();
       }
       else
       if( $params[1] == 'data' ) {
         $explorer->serveData();
       }
       else
-      if( $params[1] == 'filter' ) {
-        $explorer->serveFilter();
+      if( $params[1] == 'checksum' ) {
+        $explorer->serveChecksum();
       }
 
 

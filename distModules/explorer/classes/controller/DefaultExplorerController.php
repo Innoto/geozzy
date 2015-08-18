@@ -4,7 +4,8 @@ explorer::load('controller/ExplorerController.php');
 
 class DefaultExplorerController extends ExplorerController {
 
-  public function serveIndexData( ) {
+  public function serveIndex( ) {
+    Cogumelo::load('coreModel/DBUtils.php');
     explorer::load('model/GenericExplorerModel.php');
     $resourceModel = new GenericExplorerModel();
 
@@ -18,11 +19,22 @@ class DefaultExplorerController extends ExplorerController {
         echo $coma;
 
 
-
-
         $resourceDataArray = $resource->getAllData('onlydata');
 
-        $resourceDataArray['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
+        if( isset($resourceDataArray['loc']) ) {
+          $loc = DBUtils::decodeGeometry( $resourceDataArray['loc'] );
+          $resourceDataArray['lat'] = $loc['data'][0];
+          $resourceDataArray['lng'] = $loc['data'][1];
+        }
+        unset($resourceDataArray['loc']);
+
+        if( isset($resourceDataArray['terms']) ) {
+          $resourceDataArray['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
+        }
+        else {
+          $resourceDataArray['terms'] = "";
+        }
+
 
         echo json_encode( $resourceDataArray );
 
@@ -33,11 +45,11 @@ class DefaultExplorerController extends ExplorerController {
 
   }
 
-  public function serveCurrentData( ) {
+  public function serveData( ) {
 
   }
 
-  public function serveFilter() {
-
+  public function serveChecksum() {
+    echo "CHECKSYM";
   }
 }

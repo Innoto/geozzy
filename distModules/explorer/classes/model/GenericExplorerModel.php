@@ -8,8 +8,9 @@ Cogumelo::load('coreModel/Model.php');
 class GenericExplorerModel extends Model
 {
   var $notCreateDBTable = true;
-  var $rcSQL = "CREATE VIEW geozzy_generic_explorer_index AS
-                  SELECT geozzy_resource.id as id, group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
+  var $rcSQL = "
+                CREATE VIEW geozzy_generic_explorer_index AS
+                  SELECT geozzy_resource.id as id, geozzy_resource.loc as loc, group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
                   FROM geozzy_resource
                   LEFT JOIN geozzy_resource_taxonomyterm
                   ON geozzy_resource.id = geozzy_resource_taxonomyterm.resource
@@ -26,6 +27,9 @@ class GenericExplorerModel extends Model
     ),
     'terms' => array(
       'type'=>'VARCHAR'
+    ),
+    'loc' => array(
+      'type'=>'GEOMETRY'
     )
   );
 
