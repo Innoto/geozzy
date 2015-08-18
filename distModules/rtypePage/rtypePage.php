@@ -15,8 +15,19 @@ class rtypePage extends Module {
     'view/RTypePageView.php'
   );
 
+  public $nameLocations = array(
+    'es' => 'Página',
+    'en' => 'Page',
+    'gl' => 'Páxina'
+  );
+
 
   public function __construct() {
   }
 
+
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rTypeModuleRc( __CLASS__ );
+  }
 }

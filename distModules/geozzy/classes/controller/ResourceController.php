@@ -24,65 +24,16 @@ class ResourceController {
     error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
 
     if( !$this->rTypeCtrl ) {
-
-      $rType = new ResourcetypeModel();
-      $rTypeList = $rType->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
-      $rTypeIdname = false;
-
-      if( $rTypeName = $rTypeList->fetch() ) {
-        $rTypeIdname = $rTypeName->getter( 'idName' );
-      }
-
-      switch( $rTypeIdname ) {
-        case 'rtypeHotel': // 'rtypeHotel'
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname" );
-          rtypeHotel::autoIncludes();
-          $this->rTypeCtrl = new RTypeHotelController( $this );
-          break;
-        case 'rtypeRestaurant':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeRestaurant::autoIncludes();
-          $this->rTypeCtrl = new RTypeRestaurantController( $this );
-          break;
-        case 'rtypeUrl':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeUrl::autoIncludes();
-          $this->rTypeCtrl = new RTypeUrlController( $this );
-          break;
-        case 'rtypePage':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypePage::autoIncludes();
-          $this->rTypeCtrl = new RTypePageController( $this );
-          break;
-        case 'rtypeFile':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeFile::autoIncludes();
-          $this->rTypeCtrl = new RTypeFileController( $this );
-          break;
-        case 'rtypeRuta':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeRuta::autoIncludes();
-          $this->rTypeCtrl = new RTypeRutaController( $this );
-          break;
-        case 'rtypeLugar':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeLugar::autoIncludes();
-          $this->rTypeCtrl = new RTypeLugarController( $this );
-          break;
-        case 'rtypeEspazoNatural':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeEspazoNatural::autoIncludes();
-          $this->rTypeCtrl = new RTypeEspazoNaturalController( $this );
-          break;
-        case 'rtypeEspazoNatural':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeEspazoNatural::autoIncludes();
-          $this->rTypeCtrl = new RTypeEspazoNaturalController( $this );
-          break;
-        default:
-          error_log( "GeozzyResourceView: ERROR. rTypeIdname DESCONOCIDO: $rTypeIdname " );
-          $this->rTypeCtrl = false;
-          break;
+      $rTypeModel = new ResourcetypeModel();
+      $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
+      if( $rTypeInfo = $rTypeList->fetch() ) {
+        $rTypeIdName = $rTypeInfo->getter( 'idName' );
+        if( class_exists( $rTypeIdName ) ) {
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdName" );
+          $rTypeIdName::autoIncludes();
+          $rTypeCtrlClassName = $rTypeIdName.'Controller';
+          $this->rTypeCtrl = new $rTypeCtrlClassName( $this );
+        }
       }
     }
 

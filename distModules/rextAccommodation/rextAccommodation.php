@@ -2,9 +2,8 @@
 Cogumelo::load( 'coreController/Module.php' );
 
 
+class rextAccommodation extends Module {
 
-class rextAccommodation extends Module
-{
   public $name = 'rextAccommodation';
   public $version = '1.0';
 
@@ -14,11 +13,10 @@ class rextAccommodation extends Module
   );
 
   public $taxonomies = array(
-
     'accommodationType' => array(
       'idName' => 'accommodationType',
       'name' => array(
-        'en' => 'Acommodation yype',
+        'en' => 'Acommodation type',
         'es' => 'Tipo de alojamiento',
         'gl' => 'Tipo de aloxamento'
       ),
@@ -237,7 +235,11 @@ class rextAccommodation extends Module
 
 
   public function __construct() {
-
   }
 
+
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rExtModuleRc( __CLASS__ );
+  }
 }

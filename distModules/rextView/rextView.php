@@ -72,12 +72,15 @@ class rextView extends Module {
 
   public $includesCommon = array(
     'controller/RExtViewController.php'
-    //,'model/RExtViewModel.php'
   );
 
 
   public function __construct() {
-
   }
 
+
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rExtModuleRc( __CLASS__ );
+  }
 }
