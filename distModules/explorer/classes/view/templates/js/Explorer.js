@@ -25,17 +25,32 @@ geozzy.explorer = function( opts ) {
 
 
   that.timeDebuger = new TimeDebuger( {debug: that.options.debug} );
+  that.resourceIndex = new ExplorerResourceCollection();
+  that.resourceFullData =  new ExplorerResourceFullCollection();
 
-  that.explorerChecksum = false;
-  that.resourceIndex = new ExplorerResourceCollection() ;
-
-  that.filters = {};
 
   that.displays = {
     mapView: false,
     activeList: false,
     pasiveList: false
   };
+
+  that.addDisplay.map = function( obj ) {
+    that.displays.mapView = obj;
+    that.displays.mapView.parent = that;
+  }
+
+  that.addDisplay.activeList = function( obj ) {
+    that.displays.activeList = obj;
+    that.displays.activeList.parent = that;
+  }
+
+  that.addDisplay.pasiveList = function( obj ) {
+    that.displays.pasiveList = obj;
+    that.displays.pasiveList.parent = that;
+  }
+
+
 
 
 
@@ -50,7 +65,11 @@ geozzy.explorer = function( opts ) {
         expires: that.options.cacheTimeIndex ,
         success: function() {
 
-
+          ////////////////////////////////////////////////////////////////////////////////////////////
+          //////////////////////////////////////////////////////////////////////////////////////////
+          ////////////////////////////////////////////////////////////////////////////////////////////
+          //////////////////////////////////////////////////////////////////////////////////////////
+/*
           that.timeDebuger.log('Index - loaded '+ that.resourceIndex.length + ' resources');
 
 
@@ -81,6 +100,18 @@ geozzy.explorer = function( opts ) {
 
 
           //console.log(proxy.toJSON() );
+*/
+          ////////////////////////////////////////////////////////////////////////////////////////////
+          //////////////////////////////////////////////////////////////////////////////////////////
+          ////////////////////////////////////////////////////////////////////////////////////////////
+          //////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
         }
       }
 
