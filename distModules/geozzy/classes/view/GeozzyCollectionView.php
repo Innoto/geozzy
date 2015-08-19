@@ -306,7 +306,7 @@ class GeozzyCollectionView extends View
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el collection.','formError' );
       }else{
-        $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'" });' );
+        $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'", multimedia: "'.$collection->getter('multimedia').'" });' );
       }
     }
 

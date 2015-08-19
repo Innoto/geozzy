@@ -33,6 +33,17 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
 
     // Valadaciones extra
 
+    // Eliminamos campos del formulario de recurso que no deseamos
+    $removeFields = array_merge(
+      $form->multilangFieldNames( 'content' ),
+      $form->multilangFieldNames( 'datoExtra1' ),
+      $form->multilangFieldNames( 'datoExtra2' ),
+      array( 'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries',
+        'topics', 'starred', 'locLat', 'locLon', 'defaultZoom' )
+    );
+    $form->removeField( $removeFields );
+    $form->saveToSession();
+
     return( $rTypeFieldNames );
   } // function manipulateForm()
 

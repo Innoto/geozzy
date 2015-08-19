@@ -70,15 +70,17 @@ class AdminViewMaster extends View
       $langs = ( isset( $formFieldsArray[ $field ] ) ) ? array( '' ) : $this->langAvailable;
       foreach( $langs as $lang ) {
         $fieldLang = ( $lang !== '' ) ? $field.'_'.$lang : $field;
-        $formFragment[ $fieldLang ] = $formFieldsArray[ $fieldLang ];
-        unset( $formFieldsArray[ $fieldLang ] );
+        if( isset( $formFieldsArray[ $fieldLang ] ) ) {
+          $formFragment[ $fieldLang ] = $formFieldsArray[ $fieldLang ];
+          unset( $formFieldsArray[ $fieldLang ] );
+        }
       }
     }
 
     // Guardamos la variable del formulario principal sin los campos extraidos
     $formBlock->assign( 'formFieldsArray', $formFieldsArray );
 
-    return $formFragment;
+    return ( count( $formFragment ) > 0 ) ? $formFragment : false;
   }
 
 
