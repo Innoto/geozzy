@@ -1,4 +1,4 @@
-var ExplorerResourceModel = Backbone.Model.extend({
+var ExplorerResourceMinimalModel = Backbone.Model.extend({
   defaults: {
     id: false,
     type: false,

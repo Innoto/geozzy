@@ -5,11 +5,14 @@ geozzy.explorer = function( opts ) {
 
   var that = this;
 
+
+  //
+  //  Options
+  //
+
   that.options = {
     explorerAPIHost: '/api/explorer/',
     explorerName: 'default',
-    extraFilters: {},
-    explorerId: false,
 
     // cache times (in seconds)
     cacheTimeIndex: 120,
@@ -20,24 +23,43 @@ geozzy.explorer = function( opts ) {
     filterChangeEvent: function(){},
     filteringEndEvent: function(){},
     firstLoadEvent: function(){}
-  };
+  }
   $.extend(true, that.options, opts);
 
 
-  that.timeDebuger = new TimeDebuger( {debug: that.options.debug} );
-  that.resourceIndex = new ExplorerResourceCollection();
-  that.resourceFullData =  new ExplorerResourceFullCollection();
+  //
+  //  Debuger
+  //
 
+  that.timeDebuger = new TimeDebuger( {debug: that.options.debug} );
+
+
+  //
+  // Resource Collections and Indexes
+  //
+
+  that.resourceIndex = false;
+  that.resourceCurrentIndex = false;
+  that.resourceMinimalList = new ExplorerResourceMinimalCollection();
+  that.resourcePartialList =  new ExplorerResourcePartialCollection();
+
+
+
+  //
+  // Displays
+  //
 
   that.displays = {
-    mapView: false,
+    map: false,
     activeList: false,
     pasiveList: false
-  };
+  }
+
+  that.addDisplay = {};
 
   that.addDisplay.map = function( obj ) {
-    that.displays.mapView = obj;
-    that.displays.mapView.parent = that;
+    that.displays.map = obj;
+    that.displays.map.parent = that;
   }
 
   that.addDisplay.activeList = function( obj ) {
@@ -51,29 +73,142 @@ geozzy.explorer = function( opts ) {
   }
 
 
+  that.renderDisplays = function() {
+    var resourcesToLoad = [];
+
+    if(that.displays.map) {
+      that.displays.map.render();
+      resourcesToLoad = that.displays.getVisibleResources();
+    }
+
+    if(that.displays.activeList) {
+      that.displays.activeList.getVisibleResources();
+    }
+
+    if(that.displays.pasiveList) {
+      that.displays.pasiveList.getVisibleResources();
+    }
 
 
+    // Advanced Fetch
+    /*
+
+        if(that.displays.activeList) {
+          that.displays.activeList.render();
+        }
+
+        if(that.displays.pasiveList) {
+          that.displays.map.pasiveList();
+        }
+    */
+    that.resourcePartialList.fetchAndCache({
+        'url': that.options.explorerAPIHost + that.options.explorerName+ '/minimal',
+        'success': function() {
+          console.log( that.resourcePartialList.length );
+        }
+    });
+
+    console.log( that.resourceCurrentIndex.pluck('id')  )
+
+
+    that.timeDebuger.log( '---- Render displays concluido-----' );
+  }
+
+  //
+  // First Execution
+  //
 
   that.exec = function() {
 
     // set multiple fetches
-    that.resourceIndex.url = that.options.explorerAPIHost + that.options.explorerName+ '/index';
+    that.resourceMinimalList.url = that.options.explorerAPIHost + that.options.explorerName+ '/minimal';
 
-    that.resourceIndex.fetch(
+    that.resourceMinimalList.fetch(
       {
         cache: true,
         expires: that.options.cacheTimeIndex ,
         success: function() {
+
+
+
+          that.timeDebuger.log('Fetch first resource index with '+ that.resourceMinimalList.length + ' elements');
+
+          that.resourceIndex = new Backbone.Obscura(that.resourceMinimalList);
+          that.timeDebuger.log( 'Resources Indexed first time' );
+
+
+          // when map exist, set current index as map context
+          if( that.displays.map ) {
+
+          }
+          else {
+            that.resourceCurrentIndex = new Backbone.Obscura(that.resourceIndex);
+            that.timeDebuger.log( 'Clonado indice' );
+          }
+
+          that.timeDebuger.log( '---- Carga inicial concluida-----' );
+
+          that.applyFilters();
+
+        }
+      }
+
+    );
+
+  }
+
+
+  //
+  // Apply filters
+  //
+
+  that.applyFilters = function() {
+
+      // Set filters for current index
+      that.resourceCurrentIndex.filterBy( function(model) {
+          var terms =  model.get('terms');
+          var diff = $( terms ).not( [14,10,25,37,19,47,40,12]);
+          return (diff.length != terms.length );
+      });
+      that.timeDebuger.log( 'Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
+
+
+      that.renderDisplays();
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           ////////////////////////////////////////////////////////////////////////////////////////////
           //////////////////////////////////////////////////////////////////////////////////////////
           ////////////////////////////////////////////////////////////////////////////////////////////
           //////////////////////////////////////////////////////////////////////////////////////////
 /*
-          that.timeDebuger.log('Index - loaded '+ that.resourceIndex.length + ' resources');
+          that.timeDebuger.log('Index - loaded '+ that.resourceSimpleList.length + ' resources');
 
 
-          var proxy = new Backbone.Obscura(that.resourceIndex);
+          var proxy = new Backbone.Obscura(that.resourceSimpleList);
           that.timeDebuger.log( 'Pimeiro ndexado' );
           // Set the transformations on the original collection
           proxy.filterBy(function(model) {
@@ -105,19 +240,3 @@ geozzy.explorer = function( opts ) {
           //////////////////////////////////////////////////////////////////////////////////////////
           ////////////////////////////////////////////////////////////////////////////////////////////
           //////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-        }
-      }
-
-    );
-
-  }
-
-
-}

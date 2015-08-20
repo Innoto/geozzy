@@ -60,10 +60,10 @@ class ExplorerAPIView extends View
                           },
                           {
                             "name": "request",
-                            "description": "( index | data | checksum )",
+                            "description": "( ,minimal | partial | checksum )",
                             "dataType": "string",
                             "paramType": "path",
-                            "defaultValue": "index",
+                            "defaultValue": "minimal",
                             "required": true
                           }
 
@@ -146,12 +146,12 @@ class ExplorerAPIView extends View
       $explorer = new $explorerConf['controllerName']();
 
 
-      if( $params[1] == 'index' ) {
-        $explorer->serveIndex();
+      if( $params[1] == 'minimal' ) {
+        $explorer->serveMinimal();
       }
       else
-      if( $params[1] == 'data' ) {
-        $explorer->serveData();
+      if( $params[1] == 'partial' ) {
+        $explorer->servePartial();
       }
       else
       if( $params[1] == 'checksum' ) {

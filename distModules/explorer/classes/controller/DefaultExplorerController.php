@@ -4,7 +4,7 @@ explorer::load('controller/ExplorerController.php');
 
 class DefaultExplorerController extends ExplorerController {
 
-  public function serveIndex( ) {
+  public function serveMinimal( ) {
     Cogumelo::load('coreModel/DBUtils.php');
     explorer::load('model/GenericExplorerModel.php');
     $resourceModel = new GenericExplorerModel();
@@ -45,7 +45,7 @@ class DefaultExplorerController extends ExplorerController {
 
   }
 
-  public function serveData( ) {
+  public function servePartial( ) {
 
   }
 

@@ -48,8 +48,10 @@ class explorer extends Module
 
 
   public $includesCommon = array(
-    'js/models/ExplorerResourceModel.js',
-    'js/collections/ExplorerResourceCollection.js',
+    'js/models/ExplorerResourceMinimalModel.js',
+    'js/models/ExplorerResourcePartialModel.js',
+    'js/collections/ExplorerResourceMinimalCollection.js',
+    'js/collections/ExplorerResourcePartialCollection.js',
     'js/Explorer.js'
   );
 
