@@ -13,14 +13,10 @@
 
 </head>
 <body style="background:#E9B6B7;">
-
+  <div id="explorerList"></div>
 {literal}
 <script>
   $( document ).ready(function() {
-
-
-//    var timedbuger = new TimeDebuger({debug:true});
-
 
     var explorer = new geozzy.explorer({debug:true});
     explorer.exec();

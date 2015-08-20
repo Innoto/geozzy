@@ -102,16 +102,25 @@ geozzy.explorer = function( opts ) {
         }
     */
     that.resourcePartialList.fetchAndCache({
-        'url': that.options.explorerAPIHost + that.options.explorerName+ '/minimal',
+        'url': that.options.explorerAPIHost + that.options.explorerName+ '/partial',
         'success': function() {
+          that.timeDebuger.log( '&nbsp;- Fetch partial resource data' );
+
           console.log( that.resourcePartialList.length );
+
+
+          $.each( that.resourcePartialList.pluck('title'), function(i,e){
+            $('#explorerList').append('<div>'+ e +'</div><br>');
+          });
+
+
+          that.timeDebuger.log( '&nbsp;- Render lists' );
+
+          that.timeDebuger.log( '> Render displays concluido' );
         }
     });
 
-    console.log( that.resourceCurrentIndex.pluck('id')  )
 
-
-    that.timeDebuger.log( '---- Render displays concluido-----' );
   }
 
   //
@@ -131,10 +140,10 @@ geozzy.explorer = function( opts ) {
 
 
 
-          that.timeDebuger.log('Fetch first resource index with '+ that.resourceMinimalList.length + ' elements');
+          that.timeDebuger.log('&nbsp;- Fetch first resource index with '+ that.resourceMinimalList.length + ' elements');
 
           that.resourceIndex = new Backbone.Obscura(that.resourceMinimalList);
-          that.timeDebuger.log( 'Resources Indexed first time' );
+          that.timeDebuger.log( '&nbsp;- Resources Indexed first time' );
 
 
           // when map exist, set current index as map context
@@ -143,10 +152,10 @@ geozzy.explorer = function( opts ) {
           }
           else {
             that.resourceCurrentIndex = new Backbone.Obscura(that.resourceIndex);
-            that.timeDebuger.log( 'Clonado indice' );
+            that.timeDebuger.log( '&nbsp;- Clonado indice' );
           }
 
-          that.timeDebuger.log( '---- Carga inicial concluida-----' );
+          that.timeDebuger.log( '> Carga inicial concluida' );
 
           that.applyFilters();
 
@@ -170,7 +179,7 @@ geozzy.explorer = function( opts ) {
           var diff = $( terms ).not( [14,10,25,37,19,47,40,12]);
           return (diff.length != terms.length );
       });
-      that.timeDebuger.log( 'Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
+      that.timeDebuger.log( '&nbsp;- Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
 
 
       that.renderDisplays();
