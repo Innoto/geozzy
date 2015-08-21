@@ -101,22 +101,36 @@ geozzy.explorer = function( opts ) {
           that.displays.map.pasiveList();
         }
     */
+
+    // add markerssssSSSSSSSSSSSSSSSSSSSSSS
+    that.resourceCurrentIndex.setPerPage(600);
+    $.each( that.resourceCurrentIndex.toJSON(), function(i,e) {
+
+      new google.maps.Marker({
+        position: new google.maps.LatLng( e.lat, e.lng ),
+        map: resourceMap,
+        title: toString(e.id)
+
+      });
+    });
+    that.timeDebuger.log( '&nbsp;- Pintado Mapa '+that.resourceCurrentIndex.length+ 'recursos' );
+
     that.resourcePartialList.fetchAndCache({
         'url': that.options.explorerAPIHost + that.options.explorerName+ '/partial',
         'success': function() {
-          that.timeDebuger.log( '&nbsp;- Fetch partial resource data' );
+          //that.timeDebuger.log( '&nbsp;- Fetch partial resource data' );
 
-          console.log( that.resourcePartialList.length );
+          //that.resourceCurrentIndex.setPerPage(100);
 
-
-          $.each( that.resourcePartialList.pluck('title'), function(i,e){
-            $('#explorerList').append('<div>'+ e +'</div><br>');
+          //that.timeDebuger.log( '&nbsp;- pagination' );
+          $.each( that.resourceCurrentIndex.pluck('id'), function(i,e){
+            $('#explorerList').append('<div>'+ that.resourcePartialList.get( e ).get('title') +'</div><br>');
           });
 
 
-          that.timeDebuger.log( '&nbsp;- Render lists' );
+//          that.timeDebuger.log( '&nbsp;- Render lists' );
 
-          that.timeDebuger.log( '> Render displays concluido' );
+  //        that.timeDebuger.log( '> Render displays concluido' );
         }
     });
 
@@ -176,7 +190,7 @@ geozzy.explorer = function( opts ) {
       // Set filters for current index
       that.resourceCurrentIndex.filterBy( function(model) {
           var terms =  model.get('terms');
-          var diff = $( terms ).not( [14,10,25,37,19,47,40,12]);
+          var diff = $( terms ).not( [14,10,25,37,19,47]);
           return (diff.length != terms.length );
       });
       that.timeDebuger.log( '&nbsp;- Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
