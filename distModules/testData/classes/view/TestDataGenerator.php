@@ -134,7 +134,7 @@ class TestDataGenerator extends View
 
 
       $data['loc'] = DBUtils::encodeGeometry( array('type'=>'POINT', 'data'=> array($lat , $lng) ) );
-
+      $data['defaultZoom'] = 10;
 
 
       $resource =  new ResourceModel($data);
