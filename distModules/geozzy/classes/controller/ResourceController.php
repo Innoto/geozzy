@@ -150,6 +150,7 @@ class ResourceController {
     $resCollections = array();
     if( isset( $valuesArray[ 'id' ] ) ) {
       $colInfo = $this->getCollectionsInfo( $valuesArray[ 'id' ] );
+      cogumelo::console($colInfo);
       if( $colInfo ) {
         $resCollections = $colInfo['options'];
         $valuesArray[ 'collections' ] = $colInfo['values'];
@@ -159,6 +160,7 @@ class ResourceController {
     $resMultimedia = array();
     if( isset( $valuesArray[ 'id' ] ) ) {
       $multimediaInfo = $this->getMultimediaInfo( $valuesArray[ 'id' ] );
+      cogumelo::console($multimediaInfo);
       if( $multimediaInfo ) {
         $resMultimedia = $multimediaInfo['options'];
         $valuesArray[ 'multimediaGalleries' ] = $multimediaInfo['values'];
@@ -274,6 +276,7 @@ class ResourceController {
     // Valadaciones extra
     $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
     $form->removeValidationRule( 'collections', 'inArray' );
+    $form->removeValidationRule( 'multimediaGalleries', 'inArray' );
 
     // Si es una edicion, añadimos el ID y cargamos los datos
     if( $valuesArray !== false ){
@@ -390,8 +393,8 @@ class ResourceController {
       $this->setFormTopic( $form, 'topics', $resource );
     }
 
-    if( !$form->existErrors() && $form->isFieldDefined( 'collections' ) ) {
-      $this->setFormCollection( $form, 'collections', $resource );
+    if( !$form->existErrors() && ( $form->isFieldDefined( 'collections' ) || $form->isFieldDefined( 'multimediaGalleries' ) ) ) {
+      $this->setFormCollection( $form, $resource );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
@@ -773,9 +776,18 @@ class ResourceController {
     }
   } // setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj )
 
-  private function setFormCollection( $form, $fieldName, $baseObj ) {
+  private function setFormCollection( $form, $baseObj ) {
+
     $baseId = $baseObj->getter( 'id' );
-    $formValues = $form->getFieldValue( $fieldName );
+    $formValuesCol = $form->getFieldValue( 'collections' );
+    $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' );
+
+    var_dump( $formValuesCol );
+    var_dump( $formValuesMulti );
+
+    $formValues = array_merge( $formValuesCol, $formValuesMulti );
+    var_dump( $formValues );
+
     $relPrevInfo = false;
 
     if( $formValues !== false && !is_array( $formValues ) ) {
@@ -792,8 +804,7 @@ class ResourceController {
         while( $relPrev = $relPrevList->fetch() ){
           $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
           if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
-//----------------------------------------------------------------------------------------------------------------------------------------------
-            //$relPrev->delete();
+            $relPrev->delete();
           }
         }
       }
