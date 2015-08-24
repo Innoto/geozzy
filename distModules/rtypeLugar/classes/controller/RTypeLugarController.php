@@ -56,7 +56,7 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
   /**
     Visualizamos el Recurso
    **/
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+  public function getViewBlock( Template $resBlock ) {
     // error_log( "RTypeLugarController: getViewBlock()" );
     $template = false;
 

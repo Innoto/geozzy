@@ -56,7 +56,7 @@ class RTypeFestaPopularController extends RTypeController implements RTypeInterf
   /**
     Visualizamos el Recurso
    **/
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+  public function getViewBlock( Template $resBlock ) {
     // error_log( "RTypeFestaPopularController: getViewBlock()" );
     $template = false;
 
