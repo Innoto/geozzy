@@ -229,8 +229,17 @@ class RExtUrlController extends RExtController implements RExtInterface {
           case 'page':
             $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
             break;
+          case 'file':
+            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
+            break;
+          case 'media':
+            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
+            break;
           case 'image':
             $template->setTpl( 'rExtViewBlockImage.tpl', 'rextUrl' );
+            break;
+          case 'audio':
+            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
             break;
           case 'video':
             $template->setTpl( 'rExtViewBlockVideo.tpl', 'rextUrl' );
