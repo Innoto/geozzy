@@ -4,8 +4,7 @@ geozzy::load('controller/ResourceController.php');
 
 
 
-class GeozzyResourceView extends View
-{
+class GeozzyResourceView extends View {
 
   public $defResCtrl = null;
   public $rTypeCtrl = null;
@@ -23,7 +22,7 @@ class GeozzyResourceView extends View
   }
 
   /**
-     Evaluate the access conditions and report if can continue
+   * Evaluate the access conditions and report if can continue
    *
    * @return bool : true -> Access allowed
    **/
@@ -33,8 +32,11 @@ class GeozzyResourceView extends View
   }
 
 
+
+
+
   /**
-     Defino el formulario
+   * Defino el formulario
    *
    * @param $formName string Nombre del form
    * @param $urlAction string URL del action
@@ -61,7 +63,7 @@ class GeozzyResourceView extends View
 
 
   /**
-     Defino el formulario y creo su Bloque con su TPL
+   * Defino el formulario y creo su Bloque con su TPL
    *
    * @param $formName string Nombre del form
    * @param $urlAction string URL del action
@@ -95,9 +97,12 @@ class GeozzyResourceView extends View
   } // function getFormBlock()
 
 
+
+
+
   /**
-     Action del formulario
-   **/
+   * Action del formulario
+   */
   public function actionResourceForm() {
     error_log( "GeozzyResourceView: actionResourceForm()" );
     $resource = null;
@@ -148,10 +153,11 @@ class GeozzyResourceView extends View
 
 
 
-
   /**
-    Visualizamos el Recurso
-  */
+   * Visualizamos el Recurso
+   *
+   * @param $resId int ID del recurso
+   */
   public function showResource( $resId = false ) {
     error_log( "GeozzyResourceView: showResource()" );
 
@@ -159,26 +165,16 @@ class GeozzyResourceView extends View
     $resBlock = false;
     $htmlMsg = '';
 
-    $resModel = new ResourceModel();
-    if( $resId ) {
-      $resList = $resModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
-        'filters' => array( 'id' => $resId ) ) );
-    }
-    else {
-      $resList = $resModel->listItems( array( 'affectsDependences' => array( 'FiledataModel' ),
-        'order' => array( 'id' => -1 ) ) );
-    }
-
-    $resObj = $resList ? $resList->fetch() : false;
-
-    if( $resObj ) {
+    $resData = $this->defResCtrl->getResourceData( $resId, true ); // true -> translated version
+    if( $resData ) {
+      // error_log( '$resData === ' . print_r( $resData, true ) );
 
       $loadFields = array( 'headKeywords', 'headDescription', 'headTitle', 'title' );
       foreach( $loadFields as $field ) {
-        $this->template->assign( $field, $resObj->getter( $field ) );
+        $this->template->assign( $field, $resData[ $field ] );
       }
 
-      $resBlock = $this->defResCtrl->getViewBlock( $resObj );
+      $resBlock = $this->defResCtrl->getViewBlock( $resData );
       $this->template->setBlock( 'resourceBlock', $resBlock );
       error_log( 'Hai Recurso - Hai Template' );
     }
