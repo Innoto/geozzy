@@ -150,7 +150,6 @@ class ResourceController {
     $resCollections = array();
     if( isset( $valuesArray[ 'id' ] ) ) {
       $colInfo = $this->getCollectionsInfo( $valuesArray[ 'id' ] );
-      cogumelo::console($colInfo);
       if( $colInfo ) {
         $resCollections = $colInfo['options'];
         $valuesArray[ 'collections' ] = $colInfo['values'];
@@ -160,7 +159,6 @@ class ResourceController {
     $resMultimedia = array();
     if( isset( $valuesArray[ 'id' ] ) ) {
       $multimediaInfo = $this->getMultimediaInfo( $valuesArray[ 'id' ] );
-      cogumelo::console($multimediaInfo);
       if( $multimediaInfo ) {
         $resMultimedia = $multimediaInfo['options'];
         $valuesArray[ 'multimediaGalleries' ] = $multimediaInfo['values'];
@@ -782,11 +780,9 @@ class ResourceController {
     $formValuesCol = $form->getFieldValue( 'collections' );
     $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' );
 
-    var_dump( $formValuesCol );
-    var_dump( $formValuesMulti );
-
+    $formValuesCol = ( !is_array($formValuesCol) ) ? array() : $formValuesCol;
+    $formValuesMulti = ( !is_array($formValuesMulti) ) ? array() : $formValuesMulti;
     $formValues = array_merge( $formValuesCol, $formValuesMulti );
-    var_dump( $formValues );
 
     $relPrevInfo = false;
 
