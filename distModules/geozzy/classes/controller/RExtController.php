@@ -16,7 +16,7 @@ interface RExtInterface {
   public function resFormSuccess( FormController $form, ResourceModel $resource );
 
   // Visualizamos el Recurso
-  public function getViewBlock( ResourceModel $resource, Template $resBlock );
+  public function getViewBlock( Template $resBlock );
 
 } // interface RExtInterface
 
@@ -47,14 +47,14 @@ class RExtController {
   }
 
 
-  public function getRExtFormValues( $formValuesArray, $numericFields = array() ) {
+  public function getRExtFormValues( $formValuesArray, $numericFields = false ) {
     error_log( "RExtController: getRExtFormValues()" );
     $valuesArray = array();
 
     foreach( $formValuesArray as $key => $value ) {
       $newKey = $this->delPrefix( $key );
       if( $newKey !== $key ) {
-        if( $formValuesArray[ $key ] === '' && in_array( $newKey, $numericFields ) ) {
+        if( $numericFields && $formValuesArray[ $key ] === '' && in_array( $newKey, $numericFields ) ) {
           $valuesArray[ $newKey ] = null;
         }
         else {
