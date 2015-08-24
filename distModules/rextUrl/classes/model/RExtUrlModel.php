@@ -17,10 +17,6 @@ class RExtUrlModel extends Model {
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
-    'URL' => array(
-      'type' => 'VARCHAR',
-      'size' => 2000
-    ),
     'embed' => array(
       'type' => 'VARCHAR',
       'size' => 2000

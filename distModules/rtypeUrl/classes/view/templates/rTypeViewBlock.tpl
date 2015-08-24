@@ -32,13 +32,6 @@
     {$image}
   </div>
 
-  {if isset($collections)}
-  <div class="collections">
-    <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
-    {$collections}
-  </div>
-  {/if}
-
   <div class="rTypeUrl">
     <p> --- rTypeUrl Ext --- </p>
     <div class="rTypeUrl rExtUrl">
