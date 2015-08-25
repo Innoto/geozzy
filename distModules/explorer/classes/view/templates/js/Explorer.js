@@ -31,8 +31,8 @@ geozzy.explorer = function( opts ) {
   //  Debuger
   //
 
-  that.timeDebuger = new TimeDebuger( {debug: that.options.debug} );
-
+  that.timeDebugerMain = new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer main'} );
+  that.timeDebugerExtended =  new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer extended data'} );
 
   //
   // Resource Collections and Indexes
@@ -113,24 +113,25 @@ geozzy.explorer = function( opts ) {
 
       });
     });
-    that.timeDebuger.log( '&nbsp;- Pintado Mapa '+that.resourceCurrentIndex.length+ 'recursos' );
+    that.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.resourceCurrentIndex.length+ 'recursos' );
 
+
+    that.timeDebugerExtended.log('Starting second data fetch at')
     that.resourcePartialList.fetchAndCache({
+
         'url': that.options.explorerAPIHost + that.options.explorerName+ '/partial',
         'success': function() {
-          //that.timeDebuger.log( '&nbsp;- Fetch partial resource data' );
+          that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
 
-          //that.resourceCurrentIndex.setPerPage(100);
+          that.resourceCurrentIndex.setPerPage(100);
 
-          //that.timeDebuger.log( '&nbsp;- pagination' );
+          that.timeDebugerExtended.log( '&nbsp;- pagination' );
           $.each( that.resourceCurrentIndex.pluck('id'), function(i,e){
             $('#explorerList').append('<div>'+ that.resourcePartialList.get( e ).get('title') +'</div><br>');
           });
 
 
-//          that.timeDebuger.log( '&nbsp;- Render lists' );
-
-  //        that.timeDebuger.log( '> Render displays concluido' );
+          that.timeDebugerExtended.log( '&nbsp;- Render lists' );
         }
     });
 
@@ -154,10 +155,10 @@ geozzy.explorer = function( opts ) {
 
 
 
-          that.timeDebuger.log('&nbsp;- Fetch first resource index with '+ that.resourceMinimalList.length + ' elements');
+          that.timeDebugerMain.log('&nbsp;- Fetch first resource index with '+ that.resourceMinimalList.length + ' elements');
 
           that.resourceIndex = new Backbone.Obscura(that.resourceMinimalList);
-          that.timeDebuger.log( '&nbsp;- Resources Indexed first time' );
+          that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
 
 
           // when map exist, set current index as map context
@@ -166,10 +167,10 @@ geozzy.explorer = function( opts ) {
           }
           else {
             that.resourceCurrentIndex = new Backbone.Obscura(that.resourceIndex);
-            that.timeDebuger.log( '&nbsp;- Clonado indice' );
+            that.timeDebugerMain.log( '&nbsp;- Clonado indice' );
           }
 
-          that.timeDebuger.log( '> Carga inicial concluida' );
+          that.timeDebugerMain.log( '> Carga inicial concluida' );
 
           that.applyFilters();
 
@@ -193,7 +194,7 @@ geozzy.explorer = function( opts ) {
           var diff = $( terms ).not( [14,10,25,37,19,47]);
           return (diff.length != terms.length );
       });
-      that.timeDebuger.log( '&nbsp;- Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
+      that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
 
 
       that.renderDisplays();
