@@ -117,10 +117,12 @@ class RExtViewController extends RExtController implements RExtInterface {
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RExtViewController: resFormProcess()" );
 
-    foreach( $this->taxonomies as $tax ) {
-      $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-      if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
-        $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
+    if( !$form->existErrors() ) {
+      foreach( $this->taxonomies as $tax ) {
+        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+        if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
+          $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
+        }
       }
     }
   }
@@ -146,45 +148,36 @@ class RExtViewController extends RExtController implements RExtInterface {
     $resId = $this->defResCtrl->resObj->getter('id');
     $rExtData = $this->getRExtData( $resId );
 
-    if( $rExtData ) {
-      $template = new Template();
+    if( isset( $rExtData[ 'viewAlternativeMode' ] ) ) {
+      $term = array_pop( $rExtData[ 'viewAlternativeMode' ] );
+      $viewAlternativeMode = $term[ 'idName' ];
+      error_log( 'viewAlternativeMode: ' . $viewAlternativeMode );
 
-      $rExtData = $this->prefixArrayKeys( $rExtData );
-      foreach( $rExtData as $key => $value ) {
-        $template->assign( $key, $rExtData[ $key ] );
-        error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
-      }
-
-      // Vacio campos numericos NULL
-      if( $this->numericFields ) {
-        foreach( $this->numericFields as $fieldName ) {
-          $fieldName = $this->addPrefix( $fieldName );
-          if( !isset( $rExtData[ $fieldName ] ) || !$rExtData[ $fieldName ] ) {
-            $template->assign( $fieldName, '##NULL-VACIO##' );
-          }
+      if( strpos( $viewAlternativeMode, 'tpl' ) === 0 ) {
+        $tplFile = $viewAlternativeMode.'.tpl';
+        $module = 'rextView';
+        error_log( '$tplFile: '.$tplFile );
+        $existFile = ModuleController::getRealFilePath( 'classes/view/templates/'.$tplFile, $module );
+        if( $existFile ) {
+          $resBlock->setTpl( $tplFile, $module );
         }
       }
-
-      // Procesamos as taxonomías asociadas para mostralas en CSV
-      foreach( $this->taxonomies as $tax ) {
-        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-        $taxFieldValue = '';
-
-        if( isset( $rExtData[ $taxFieldName ] ) ) {
-          $terms = array();
-          foreach( $rExtData[ $taxFieldName ] as $termInfo ) {
-            $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
-          }
-          $taxFieldValue = implode( ', ', $terms );
+      elseif( strpos( $viewAlternativeMode, 'view' ) === 0 ) {
+        $altViewClass = 'RExtViewAlt'.substr( $viewAlternativeMode, 4 );
+        $altViewClassFile = $altViewClass.'.php';
+        $module = 'rextView';
+        error_log( '$altViewClassFile: '.$altViewClassFile );
+        $existFile = ModuleController::getRealFilePath( 'classes/view/'.$altViewClassFile, $module );
+        if( $existFile ) {
+          rextView::load( 'view/'.$altViewClassFile );
+          $altViewCtrl = new $altViewClass( $this->defRTypeCtrl );
+          $template = $altViewCtrl->getViewBlock( $resBlock );
         }
-        $template->assign( $taxFieldName, $taxFieldValue );
       }
-
-      $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextView' );
     }
 
     return $template;
   }
 
 } // class RExtViewController
+

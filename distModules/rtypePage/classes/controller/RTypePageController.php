@@ -89,11 +89,17 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypePage' );
 
     $this->rExtCtrl = $this->newRExtContr();
-    $viewBlock = $this->rExtCtrl->getViewBlock( $resource, $resBlock );
+    $viewBlock = $this->rExtCtrl->getViewBlock( $template );
+    // IMPORTANTE: rExtView seguramente cambie o .tpl de $template
+    // pasando de rTypeViewBlock.tpl de rtypePage
 
     if( $viewBlock ) {
       $template->addToBlock( 'rextView', $viewBlock );
       $template->assign( 'rExtBlockNames', array( 'rextView' ) );
+    }
+    else {
+      $template->assign( 'rextView', false );
+      $template->assign( 'rExtBlockNames', false );
     }
 
     return $template;
