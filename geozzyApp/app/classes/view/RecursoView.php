@@ -94,7 +94,7 @@ class RecursoView extends View
 
 
   public function verRecurso2( $urlParams = false ) {
-    error_log( "RecursoView: showRecurso()" . print_r( $urlParams, true ) );
+    error_log( "RecursoView: showRecurso2()" . print_r( $urlParams, true ) );
 
     $idResource = false;
 

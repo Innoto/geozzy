@@ -3,9 +3,13 @@
 
 class RExtAccommodationController extends RExtController implements RExtInterface {
 
+  public $numericFields = false;
+
 
   public function __construct( $defRTypeCtrl ){
     error_log( 'RExtAccommodationController::__construct' );
+
+    $this->numericFields = array( 'singleRooms', 'doubleRooms', 'familyRooms', 'beds', 'averagePrice' );
 
     parent::__construct( $defRTypeCtrl, new rextAccommodation(), 'rExtAccommodation_' );
   }
@@ -17,24 +21,23 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
 
     $rExtModel = new AccommodationModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
-
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
 
-      // Cargo los datos de destacados con los que está asociado el recurso
-      $taxTerms = $this->defResCtrl->getResTerms( $resId );
-      if( $taxTerms ) {
+      // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
+      $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
+      if( $termsGroupedIdName !== false ) {
         foreach( $this->taxonomies as $tax ) {
-          // TODO: Separar los terms por taxonomia
-          $rExtData[ $tax['idName'] ] = $taxTerms;
+          if( isset( $termsGroupedIdName[ $tax[ 'idName' ] ] ) ) {
+            $rExtData[ $tax['idName'] ] = $termsGroupedIdName[ $tax[ 'idName' ] ];
+          }
         }
       }
-
     }
 
-    // error_log( 'RExtAccommodationController: getRExtData = '.print_r( $rExtData, true ) );
+    error_log( 'RExtAccommodationController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
@@ -50,7 +53,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     $fieldsInfo = array(
       'reservationURL' => array(
         'params' => array( 'label' => __( 'Hotel reservation URL' ) ),
-        'rules' => array( 'maxlength' => 2000 )
+        'rules' => array( 'maxlength' => 2000, 'url' => true )
       ),
       'reservationPhone' => array(
         'params' => array( 'label' => __( 'Hotel reservation phone' ) ),
@@ -108,7 +111,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
       )
     );
 
-
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
     // Valadaciones extra
@@ -119,6 +121,21 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     if( $valuesArray ) {
       $valuesArray = $this->prefixArrayKeys( $valuesArray );
       $form->setField( $this->addPrefix( 'id' ), array( 'type' => 'reserved', 'value' => null ) );
+
+      // Limpiando la informacion de terms para el form
+      if( $this->taxonomies ) {
+        foreach( $this->taxonomies as $tax ) {
+          $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+          if( isset( $valuesArray[ $taxFieldName ] ) && is_array( $valuesArray[ $taxFieldName ] ) ) {
+            $taxFieldValues = array();
+            foreach( $valuesArray[ $taxFieldName ] as $value ) {
+              $taxFieldValues[] = ( is_array( $value ) ) ? $value[ 'id' ] : $value;
+            }
+            $valuesArray[ $taxFieldName ] = $taxFieldValues;
+          }
+        }
+      }
+
       $form->loadArrayValues( $valuesArray );
     }
 
@@ -133,6 +150,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     }
 
     $form->setField( 'rExtAccommodationFieldNames', array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
+
     $form->saveToSession();
 
     return( $rExtFieldNames );
@@ -157,8 +175,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     // error_log( "RExtAccommodationController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
-      $numericFields = array( 'singleRooms', 'doubleRooms', 'familyRooms', 'beds', 'averagePrice' );
-      $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $numericFields );
+      $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
@@ -169,14 +186,16 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
       }
     }
 
-    foreach( $this->taxonomies as $tax ) {
-      $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-      if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
-        $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
+    if( !$form->existErrors() ) {
+      foreach( $this->taxonomies as $tax ) {
+        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+        if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
+          $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
+        }
       }
     }
 
-    if( !$form->existErrors()) {
+    if( !$form->existErrors() ) {
       $saveResult = $rExtModel->save();
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
@@ -198,28 +217,44 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
   /**
     Visualizamos el Recurso (extensión Accommodation)
    */
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
-    // error_log( "RExtAccommodationController: getViewBlock()" );
+  public function getViewBlock( Template $resBlock ) {
+    error_log( "RExtAccommodationController: getViewBlock()" );
     $template = false;
 
-    $rExtData = $this->getRExtData( $resource->getter('id') );
-    /* Cargamos as taxonomías asociadas */
-    $resCtrl = new ResourceController();
-    $taxList = $resCtrl->getTaxonomyAll( $resource->getter('id') );
+    $resId = $this->defResCtrl->resObj->getter('id');
+    $rExtData = $this->getRExtData( $resId );
 
     if( $rExtData ) {
       $template = new Template();
       $rExtData = $this->prefixArrayKeys( $rExtData );
       foreach( $rExtData as $key => $value ) {
-        /* TODO: Revisar eficiencia!! */
-        foreach($taxList as $tax){
-          if ($key == 'rExtAccommodation_'.$tax['data']['idNameTaxgroup']){
-            $rExtData[ $key ] = $tax['data']['nameTaxterm_'.LANG_DEFAULT];
+        $template->assign( $key, ($value) ? $value : '' );
+        // error_log( $key . ' === ' . print_r( $value, true ) );
+      }
+
+      // Vacio campos numericos NULL
+      if( $this->numericFields ) {
+        foreach( $this->numericFields as $fieldName ) {
+          $fieldName = $this->addPrefix( $fieldName );
+          if( !isset( $rExtData[ $fieldName ] ) || !$rExtData[ $fieldName ] ) {
+            $template->assign( $fieldName, '##NULL-VACIO##' );
           }
         }
+      }
 
-        $template->assign( $key, $rExtData[ $key ] );
-        error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
+      // Procesamos as taxonomías asociadas para mostralas en CSV
+      foreach( $this->taxonomies as $tax ) {
+        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+        $taxFieldValue = '';
+
+        if( isset( $rExtData[ $taxFieldName ] ) ) {
+          $terms = array();
+          foreach( $rExtData[ $taxFieldName ] as $termInfo ) {
+            $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
+          }
+          $taxFieldValue = implode( ', ', $terms );
+        }
+        $template->assign( $taxFieldName, $taxFieldValue );
       }
 
       $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );

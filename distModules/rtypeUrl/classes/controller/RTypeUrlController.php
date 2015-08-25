@@ -16,6 +16,7 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     return new RExtUrlController( $this );
   }
 
+
   /**
     Defino el formulario
    **/
@@ -92,21 +93,19 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
   /**
     Visualizamos el Recurso
    **/
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+  public function getViewBlock( Template $resBlock ) {
     // error_log( "RTypeUrlController: getViewBlock()" );
     $template = false;
 
+    $template = $resBlock;
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
+
     $this->rExtCtrl = $this->newRExtContr();
-    $urlBlock = $this->rExtCtrl->getViewBlock( $resource, $resBlock );
+    $urlBlock = $this->rExtCtrl->getViewBlock( $resBlock );
 
     if( $urlBlock ) {
-      $template = $resBlock;
-      $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
-
       $template->addToBlock( 'rextUrl', $urlBlock );
-
       $template->assign( 'rExtBlockNames', array( 'rextUrl' ) );
-      $template->assign( 'rExtFieldNames', false );
     }
 
     return $template;

@@ -16,7 +16,7 @@ interface RTypeInterface {
   public function resFormSuccess( FormController $form, ResourceModel $resource );
 
   // Visualizamos el Recurso
-  public function getViewBlock( ResourceModel $resource, Template $resBlock );
+  public function getViewBlock( Template $resBlock );
 
 } // interface RTypeInterface
 

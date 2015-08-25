@@ -1,6 +1,6 @@
-<!-- rExtViewBlock.tpl en rExtUrl module -->
+<!-- rExtViewBlockImage.tpl en rExtUrl module -->
 
-<p> --- rExtViewBlock.tpl en rExtUrl module</p>
+<p> --- rExtViewBlockImage.tpl en rExtUrl module</p>
 
 <div class="rExtUrl">
 
@@ -10,8 +10,8 @@
   </div>
 
   <div class="urlContentType">
-    <label>{t}URL content type{/t}</label>
-    {$rExtUrl_urlContentType|escape:'htmlall'}
+    <label>{t}IMAGE{/t}</label>
+    <img src="{$externalUrl|escape:'htmlall'}"></img>
   </div>
 
   <div class="embed">
@@ -26,6 +26,6 @@
 
 </div>
 
-<!-- /rExtViewBlock.tpl en rExtUrl module -->
+<!-- /rExtViewBlockImage.tpl en rExtUrl module -->
 
 

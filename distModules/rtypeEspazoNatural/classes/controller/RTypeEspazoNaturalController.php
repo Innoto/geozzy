@@ -56,7 +56,7 @@ class RTypeEspazoNaturalController extends RTypeController implements RTypeInter
   /**
     Visualizamos el Recurso
    **/
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+  public function getViewBlock( Template $resBlock ) {
     // error_log( "RTypeEspazoNaturalController: getViewBlock()" );
     $template = false;
 
