@@ -154,7 +154,12 @@ class RExtViewController extends RExtController implements RExtInterface {
       error_log( 'viewAlternativeMode: ' . $viewAlternativeMode );
 
       if( strpos( $viewAlternativeMode, 'tpl' ) === 0 ) {
-        $tplFile = $viewAlternativeMode.'.tpl';
+        if( strpos( $viewAlternativeMode, 'tplApp' ) !== 0 ) {
+          $tplFile = $viewAlternativeMode.'.tpl';
+        }
+        else {
+          $tplFile = 'rExtViewAlt'.substr( $viewAlternativeMode, 3 ).'.tpl';
+        }
         $module = 'rextView';
         error_log( '$tplFile: '.$tplFile );
         $existFile = ModuleController::getRealFilePath( 'classes/view/templates/'.$tplFile, $module );

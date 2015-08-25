@@ -24,7 +24,7 @@ class rextView extends Module {
       'nestable' => 0,
       'sortable' => 0,
       'initialTerms' => array(
-        array(
+        'none' => array(
           'idName' => 'none',
           'name' => array(
             'en' => 'none',
@@ -32,7 +32,7 @@ class rextView extends Module {
             'gl' => 'none'
           )
         ),
-        array(
+        'tplSimplePage' => array(
           'idName' => 'tplSimplePage',
           'name' => array(
             'en' => 'tplSimplePage',
@@ -40,7 +40,7 @@ class rextView extends Module {
             'gl' => 'tplSimplePage'
           )
         ),
-        array(
+        'tplTwoColsPage' => array(
           'idName' => 'tplTwoColsPage',
           'name' => array(
             'en' => 'tplTwoColsPage',
@@ -48,7 +48,7 @@ class rextView extends Module {
             'gl' => 'tplTwoColsPage'
           )
         ),
-        array(
+        'viewLandingHotelCollections' => array(
           'idName' => 'viewLandingHotelCollections',
           'name' => array(
             'en' => 'viewLandingHotelCollections',
@@ -56,7 +56,7 @@ class rextView extends Module {
             'gl' => 'viewLandingHotelCollections'
           )
         ),
-        array(
+        'viewLandingExplorerFull' => array(
           'idName' => 'viewLandingExplorerFull',
           'name' => array(
             'en' => 'viewLandingExplorerFull',
@@ -76,10 +76,34 @@ class rextView extends Module {
 
 
   public function __construct() {
+    error_log( 'rextView::__construct' );
+    $this->loadViewAlternativeModeAppTerms();
+  }
+
+
+  public function loadViewAlternativeModeAppTerms() {
+    error_log( 'rextView::loadViewAlternativeModeAppTerms()' );
+    $confFileAppTerms = APP_BASE_PATH.'/conf/'.'geozzyRExtViewAppTerms.php';
+    if( file_exists( $confFileAppTerms ) ) {
+
+      include( $confFileAppTerms );
+      if( is_array( $rExtViewAppInitialTerms ) && count( $rExtViewAppInitialTerms ) > 0 ) {
+        foreach( $rExtViewAppInitialTerms as $termInfo ) {
+          if( strpos( $termInfo[ 'idName' ], 'tplApp' ) === 0 || strpos( $termInfo[ 'idName' ], 'viewApp' ) === 0 ) {
+            $this->taxonomies['viewAlternativeMode']['initialTerms'][ $termInfo['idName'] ] = $termInfo;
+          }
+          else {
+            Cogumelo::error( 'ERROR intentando usar un término ('.$termInfo[ 'idName' ].') como AlternativeModeAppTerm' );
+          }
+        }
+      }
+    }
+    // error_log( 'rextView $this->taxonomies: ' . print_r( $this->taxonomies ,true ) );
   }
 
 
   public function moduleRc() {
+
     geozzy::load('controller/ResourcetypeController.php');
     ResourcetypeController::rExtModuleRc( __CLASS__ );
   }
