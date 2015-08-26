@@ -238,6 +238,10 @@ class ResourceController {
         'params' => array( 'label' => __( 'SEO: URL' ) ),
         'rules' => array( 'maxlength' => '2000' )
       ),
+      'weight' => array(
+        'params' => array( 'label' => __( 'Priority' ), 'type' => 'select',
+          'options'=> array( '0' => __( 'Normal' ), '-20' => __( 'High' ), '20' => __( 'Low' ) ) )
+      ),
       'headKeywords' => array(
         'params' => array( 'label' => __( 'SEO: Head Keywords' ) ),
         'rules' => array( 'maxlength' => '150' )
