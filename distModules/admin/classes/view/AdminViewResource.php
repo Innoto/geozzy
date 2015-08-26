@@ -106,11 +106,36 @@ class AdminViewResource extends AdminViewMaster
     $resourceView = new GeozzyResourceView();
 
     if( $urlParams ) {
-      if ($urlParams['1'] != 'all'){
-        $recursoData['topics'] = array( $urlParams['1'] );
-        $recursoData['tematica'] = array( $urlParams['1'] );
+
+      $urlParamTopic = $urlParams['1'];
+      $urlParamRtype = $urlParams['2'];
+
+      if ( $urlParamTopic != 'all') {
+        $topicControl = new TopicModel();
+        $topicItem = $topicControl->ListItems( array( 'filters' => array( 'id' => $urlParamTopic ) ) )->fetch();
       }
-      $recursoData['rTypeId'] = $urlParams['2'];
+
+      $rtypeControl = new ResourcetypeModel();
+      $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $urlParamRtype ) ) )->fetch();
+
+      if( isset($topicItem) && $topicItem && $rTypeItem ){
+        $rtypeTopicControl = new ResourcetypeTopicModel();
+        $resourcetypeTopic = $rtypeTopicControl->ListItems( array( 'filters' => array( 'topic' => $urlParamTopic, 'resourceType' => $urlParamRtype ) ) )->fetch();
+
+        if( !$resourcetypeTopic ){
+          print('O.o para que tocas!!!');
+          exit();
+        }else{
+          $recursoData['topics'] = $topicItem->getter('id');
+          $recursoData['rTypeId'] = $rTypeItem->getter('id');
+          $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
+        }
+      }else{
+        if( $rTypeItem ){
+          $recursoData['rTypeId'] = $rTypeItem->getter('id');
+          $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
+        }
+      }
       $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
     }
     else{

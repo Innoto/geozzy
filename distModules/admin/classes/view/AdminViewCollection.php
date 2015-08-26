@@ -59,15 +59,18 @@ class AdminViewCollection extends AdminViewMaster
       }
 
       // Cargo los datos de recursos asociados a la collection
-      $resourcesDep = $collection->getterDependence( 'id', 'CollectionResourcesModel');
-      if( $resourcesDep !== false ) {
-        foreach( $resourcesDep as $resourceRel ) {
-          $resourcesArray[] = $resourceRel->getter('resource');
+      $collectionResourcesModel = new CollectionResourcesModel();
+      $colResList = $collectionResourcesModel->listItems(
+        array(
+          'filters' => array( 'collection' => $idCollection ),
+          'order' => array( 'weight' => 1 )
+        )
+      );
+      while( $res = $colResList->fetch() ){
+        if( $res ){
+          $collectionData[ 'resources' ][] = $res->getter( 'resource' );
         }
-        $collectionData[ 'resources' ] = $resourcesArray;
-        // error_log( 'resourcesArray: '.print_r( $resourcesArray, true ) );
       }
-
 
 
       $collectionView = new GeozzyCollectionView();
