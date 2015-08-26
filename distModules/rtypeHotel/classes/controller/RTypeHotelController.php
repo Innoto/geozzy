@@ -93,11 +93,11 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     if( $accomBlock ) {
       $template->addToBlock( 'rextAccommodation', $accomBlock );
-
       $template->assign( 'rExtBlockNames', array( 'rextAccommodation' ) );
     }
     else {
-      $template->assign( 'rextAccommodation', '' );
+      $template->assign( 'rextAccommodation', false );
+      $template->assign( 'rExtBlockNames', false );
     }
 
     return $template;

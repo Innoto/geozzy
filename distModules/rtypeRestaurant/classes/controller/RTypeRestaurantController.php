@@ -92,11 +92,11 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
     if( $eatBlock ) {
       $template->addToBlock( 'rextEatAndDrink', $eatBlock );
-
       $template->assign( 'rExtBlockNames', array( 'rextEatAndDrink' ) );
     }
     else {
-      $template->assign( 'rextEatAndDrink', '' );
+      $template->assign( 'rextEatAndDrink', false );
+      $template->assign( 'rExtBlockNames', false );
     }
 
     return $template;

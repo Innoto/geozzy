@@ -89,11 +89,15 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeFile' );
 
     $this->rExtCtrl = $this->newRExtContr();
-    $urlBlock = $this->rExtCtrl->getViewBlock( $resource, $resBlock );
+    $urlBlock = $this->rExtCtrl->getViewBlock( $resBlock );
 
     if( $urlBlock ) {
       $template->addToBlock( 'rextFile', $urlBlock );
       $template->assign( 'rExtBlockNames', array( 'rextFile' ) );
+    }
+    else {
+      $template->assign( 'rextFile', false );
+      $template->assign( 'rExtBlockNames', false );
     }
 
     return $template;

@@ -107,6 +107,10 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
       $template->addToBlock( 'rextUrl', $urlBlock );
       $template->assign( 'rExtBlockNames', array( 'rextUrl' ) );
     }
+    else {
+      $template->assign( 'rextUrl', false );
+      $template->assign( 'rExtBlockNames', false );
+    }
 
     return $template;
   }
