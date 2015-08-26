@@ -92,13 +92,17 @@ class ResourceModel extends Model {
     ),
     'averageVotes' => array(
       'type' => 'FLOAT'
+    ),
+    'weight' => array(
+      'type' => 'SMALLINT'
     )
   );
 
   static $extraFilters = array(
-    'find' => "UPPER(title)  LIKE CONCAT('%',UPPER(?),'%')",
-    'nottopic' => "id NOT IN (select resource from geozzy_resource_topic where topic=?)",
-    'notintaxonomyterm' => "id NOT IN (select resource from geozzy_resource_taxonomyterm where taxonomyterm=?)"
+    'find' => " UPPER(title)  LIKE CONCAT( '%', UPPER(?), '%' ) ",
+    'nottopic' => ' id NOT IN ( select resource from geozzy_resource_topic where topic=? ) ',
+    'notintaxonomyterm' => ' id NOT IN ( select resource from geozzy_resource_taxonomyterm where taxonomyterm=? )',
+    'inrtype' => ' rTypeId IN (?) '
   );
 
 
@@ -143,9 +147,9 @@ class ResourceModel extends Model {
   public function dependencesByResourcetype( $rtypeName ) {
     $dependences = false;
 
-    geozzy::load('model/ResourcetypeModel.php');
+    geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
-    $rtypeList = $rtypeModel->listItems( array('filters'=>array('idName'=> $rtypeName) ) );
+    $rtypeList = $rtypeModel->listItems( array( 'filters' => array( 'idName' => $rtypeName ) ) );
     if( $rtype = $rtypeList->fetch() ) {
       $dep = json_decode( $rtype->getter('relatedModels') );
       if( count( $dep ) > 0 ) {

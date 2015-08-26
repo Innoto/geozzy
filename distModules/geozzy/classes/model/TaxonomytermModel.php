@@ -3,11 +3,10 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
+class TaxonomytermModel extends Model {
 
-
-class TaxonomytermModel extends Model
-{
   static $tableName = 'geozzy_taxonomyterm';
+
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -27,9 +26,6 @@ class TaxonomytermModel extends Model
     'parent' => array(
       'type' => 'INT',
     ),
-    'weight' => array(
-      'type' => 'INT',
-    ),
     'taxgroup' => array(
       'type'=>'FOREIGN',
       'vo' => 'TaxonomygroupModel',
@@ -39,6 +35,9 @@ class TaxonomytermModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
       'key' => 'id'
+    ),
+    'weight' => array(
+      'type' => 'SMALLINT'
     )
   );
 
@@ -48,8 +47,7 @@ class TaxonomytermModel extends Model
   );
 
 
-  function __construct( $datarray = array(), $otherRelObj = false ) {
+  public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
-
 }

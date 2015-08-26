@@ -3,10 +3,10 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
+class UrlAliasModel extends Model {
 
-class UrlAliasModel extends Model
-{
   static $tableName = 'geozzy_url_alias';
+
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -36,6 +36,9 @@ class UrlAliasModel extends Model
     'urlTo' => array(
       'type' => 'VARCHAR',
       'size' => 2000
+    ),
+    'weight' => array(
+      'type' => 'SMALLINT'
     )
   );
 
@@ -45,5 +48,4 @@ class UrlAliasModel extends Model
   public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
-
 }

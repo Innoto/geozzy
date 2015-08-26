@@ -3,13 +3,11 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
+class TopicModel extends Model {
 
-
-class TopicModel extends Model
-{
   static $tableName = 'geozzy_topic';
-  static $cols = array(
 
+  static $cols = array(
     'id' => array(
       'type' => 'INT',
       'primarykey' => true,
@@ -25,24 +23,22 @@ class TopicModel extends Model
       'multilang' => true,
       'size' => 45
     ),
-    'weight' => array(
-      'type' => 'INT'
-    ),
     'taxgroup' => array(
       'type'=>'FOREIGN',
       'vo' => 'TaxonomygroupModel',
       'key' => 'id'
+    ),
+    'weight' => array(
+      'type' => 'SMALLINT'
     )
-
   );
 
   static $extraFilters = array(
-      'inresource' => "id IN (select topic from geozzy_resource_topic where resource=?)"
-    );
+    'inresource' => ' id IN ( select topic from geozzy_resource_topic where resource=? ) '
+  );
 
 
-  function __construct( $datarray= array(), $otherRelObj = false ) {
+  public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
-
 }

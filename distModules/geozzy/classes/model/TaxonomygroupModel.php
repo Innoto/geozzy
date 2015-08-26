@@ -3,11 +3,10 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
+class TaxonomygroupModel extends Model {
 
-
-class TaxonomygroupModel extends Model
-{
   static $tableName = 'geozzy_taxonomygroup';
+
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -38,17 +37,19 @@ class TaxonomygroupModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
       'key' => 'id'
+    ),
+    'weight' => array(
+      'type' => 'SMALLINT'
     )
   );
 
   static $extraFilters = array(
-    'idInCSV' => ' id IN (select taxgroup from geozzy_taxonomyterm where id IN (?))',
+    'idInCSV' => ' id IN ( select taxgroup from geozzy_taxonomyterm where id IN ( ? ) ) ',
     'idNameInCSV' => ' idName IN ( ? ) '
   );
 
 
-  function __construct( $datarray= array(), $otherRelObj = false ) {
+  public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
-
 }

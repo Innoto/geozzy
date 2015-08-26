@@ -3,11 +3,10 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
+class CommentModel extends Model {
 
-
-class CommentModel extends Model
-{
   static $tableName = 'geozzy_comment';
+
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -45,14 +44,16 @@ class CommentModel extends Model
     ),
     'timeDeletion' => array(
       'type' => 'TIMESTAMP'
+    ),
+    'weight' => array(
+      'type' => 'SMALLINT'
     )
   );
 
   static $extraFilters = array();
 
 
-  function __construct( $datarray= array(), $otherRelObj = false ) {
+  public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
-
 }
