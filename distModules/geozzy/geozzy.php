@@ -73,11 +73,8 @@ class geozzy extends Module {
     /**
     Crea un usuario superAdmin para Geozzy
     */
-    /*
     fwrite( STDOUT, "Enter the superAdmin password:\n" );
     $passwd = self::getPassword(true);
-    */
-    $passwd = 'innoto';
 
     $userData = array(
       'login' => 'superAdmin',
