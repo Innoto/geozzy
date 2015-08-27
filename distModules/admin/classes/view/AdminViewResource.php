@@ -120,20 +120,14 @@ class AdminViewResource extends AdminViewMaster {
       $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $urlParamRtype ) ) )->fetch();
 
       if( isset($topicItem) && $topicItem && $rTypeItem ){
-var_dump($topicItem->data);
-print("-------------------------------------------------------------- \n");
-var_dump($rTypeItem->data);
-print("-------------------------------------------------------------- \n");
-
         $rtypeTopicControl = new ResourcetypeTopicModel();
         $resourcetypeTopic = $rtypeTopicControl->ListItems( array( 'filters' => array( 'topic' => $urlParamTopic, 'resourceType' => $urlParamRtype ) ) )->fetch();
-
-var_dump($resourcetypeTopic->data);
 
         if( !$resourcetypeTopic ){
           print('O.o ERROR!!!');
           exit();
         }else{
+          $recursoData['topicReturn'] = $topicItem->getter('id');
           $recursoData['topics'] = $topicItem->getter('id');
           $recursoData['rTypeId'] = $rTypeItem->getter('id');
           $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
@@ -167,9 +161,11 @@ var_dump($resourcetypeTopic->data);
 
     $valuesArray = false;
 
-    if( isset( $urlParams['1'] ) ) {
+    $urlParamIdResource = $urlParams['1'];
+
+    if( isset( $urlParamIdResource ) ) {
       $resCtrl = new ResourceController();
-      $valuesArray = $resCtrl->getResourceData( $urlParams['1'] );
+      $valuesArray = $resCtrl->getResourceData( $urlParamIdResource );
     }
 
     if( $valuesArray ) {
