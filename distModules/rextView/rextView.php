@@ -76,13 +76,13 @@ class rextView extends Module {
 
 
   public function __construct() {
-    error_log( 'rextView::__construct' );
+    // error_log( 'rextView::__construct' );
     $this->loadViewAlternativeModeAppTerms();
   }
 
 
   public function loadViewAlternativeModeAppTerms() {
-    error_log( 'rextView::loadViewAlternativeModeAppTerms()' );
+    // error_log( 'rextView::loadViewAlternativeModeAppTerms()' );
     $confFileAppTerms = APP_BASE_PATH.'/conf/'.'geozzyRExtViewAppTerms.php';
     if( file_exists( $confFileAppTerms ) ) {
 
