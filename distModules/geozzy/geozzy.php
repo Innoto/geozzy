@@ -1,12 +1,13 @@
 <?php
 
 Cogumelo::load( 'coreController/Module.php' );
-require_once APP_BASE_PATH.'/conf/geozzyTopics.php';
+// require_once APP_BASE_PATH.'/conf/geozzyResourceType.php';
+// require_once APP_BASE_PATH.'/conf/geozzyTopics.php';
 require_once APP_BASE_PATH.'/conf/geozzyTaxonomyGroups.php';
-require_once APP_BASE_PATH.'/conf/geozzyResourceType.php';
 require_once APP_BASE_PATH.'/conf/geozzyStarred.php';
 
 define('MOD_GEOZZY_URL_DIR', 'geozzy');
+
 
 class geozzy extends Module {
 
@@ -72,9 +73,12 @@ class geozzy extends Module {
     /**
     Crea un usuario superAdmin para Geozzy
     */
-
+    /*
     fwrite( STDOUT, "Enter the superAdmin password:\n" );
     $passwd = self::getPassword(true);
+    */
+    $passwd = 'innoto';
+
     $userData = array(
       'login' => 'superAdmin',
       'name' => 'superAdmin',
@@ -160,6 +164,7 @@ class geozzy extends Module {
     /**
     Crea los Topics definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
+    /*
     global $GEOZZY_TOPICS;
 
     if( count( $GEOZZY_TOPICS ) > 0 ) {
@@ -175,7 +180,7 @@ class geozzy extends Module {
         if( count( $topic['resourceTypes'] ) > 0 ) {
           foreach( $topic['resourceTypes'] as $key => $rt ) {
             $reTypeModel = new ResourcetypeModel( );
-            $reType = $reTypeModel->listItems( array('filters' => array('idName' => $rt['resourceTypeIdName']) ) )->fetch();
+            $reType = $reTypeModel->listItems( array( 'filters' => array( 'idName' => $rt['resourceTypeIdName'] ) ) )->fetch();
             if($reType){
               $rtypeTopicParams = array(
                 'topic' => $topicD->getter('id'),
@@ -190,6 +195,8 @@ class geozzy extends Module {
         }
       }
     }
+    */
+
   }
 
 
@@ -202,8 +209,7 @@ class geozzy extends Module {
    *
    * @return string
    */
-  static public function getPassword( $stars = false )
-  {
+  static public function getPassword( $stars = false ) {
     // Get current style
     $oldStyle = shell_exec('stty -g');
 

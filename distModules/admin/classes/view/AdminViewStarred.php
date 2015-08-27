@@ -13,40 +13,43 @@ class AdminViewStarred extends AdminViewMaster
   /**
   * Section list resources in topic
   **/
-  public function listAssignStarred($request) {
+  public function listAssignStarred( $request ) {
+    $starredId = $request['1'];
 
     $template = new Template( $this->baseDir );
-    $template->assign('starredTable', table::getTableHtml('AdminViewStarred', '/admin/starred/table/'.$request[1]) );
+    $template->assign('starredTable', table::getTableHtml( 'AdminViewStarred', '/admin/starred/table/'.$starredId ) );
     $template->setTpl('listAsignStarred.tpl', 'admin');
 
-      $resourcetype =  new ResourcetypeModel();
-    $resourcetypelist = $resourcetype->listItems(array("filters" => array("notintaxonomyterm" => $request['1'])))->fetchAll();
+    $resourcetype =  new ResourcetypeModel();
+    $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'notintaxonomyterm' => $starredId ) ) )->fetchAll();
 
-    $part = '<ul class="dropdown-menu" role="menu">';
-    foreach ($resourcetypelist as $i => $res){
-      $typeList[$i] = $res->getter('name_es');
-      $part = $part.'<a id="'.$res->getter('idName').'" href="/admin#resource/create/'.$request['1'].'/'.$res->getter('id').'">'.$res->getter('name_es').'</a><br>';
+    $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
+    foreach( $resourcetypelist as $i => $rType ) {
+      $typeList[ $i ] = $rType->getter('name_es');
+      $resCreateByType .= '<li><a class="create-'.$rType->getter('idName').'" href="/admin#resource/create/'.$starredId.'/'.$rType->getter('id').'">'.$rType->getter('name_es').'</a></li>';
     }
-    $part = $part.'</ul>';
+    $resCreateByType .= '</ul>';
 
     $this->template->assign( 'headTitle', __('Create and add resources') );
-    $this->template->assign( 'headActions', '<a href="/admin#starred/'.$request['1'].'" class="btn btn-default"> '.__('Return').'</a>
-                                             <div class="btn-group assignResource">
-                                              <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
-                                                '.__('Crear').' <span class="caret"></span>
-                                              </button>
-                                              '.$part.'
-                                             </div>
-                                             <div class="btn btn-primary assignResource btnAssign"> '.__('Assign selected').'</div>' );
+    $this->template->assign( 'headActions', '<a href="/admin#starred/'.$starredId.'" class="btn btn-default"> '.__('Return').'</a>
+      <div class="btn-group assignResource AdminViewStarred">
+        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
+          '.__('Crear').' <span class="caret"></span>
+        </button>
+        '.$resCreateByType.'
+      </div>
+      <div class="btn btn-primary assignResource btnAssign"> '.__('Assign selected').'</div>'
+    );
 
-    $this->template->assign( 'footerActions', '<a href="/admin#starred/'.$request['1'].'" class="btn btn-default"> '.__('Return').'</a>
-                                             <div class="btn-group assignResource">
-                                              <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
-                                                '.__('Crear').' <span class="caret"></span>
-                                              </button>
-                                              '.$part.'
-                                             </div>
-                                             <div class="btn btn-primary assignResource btnAssign"> '.__('Assign selected').'</div>' );
+    $this->template->assign( 'footerActions', '<a href="/admin#starred/'.$starredId.'" class="btn btn-default"> '.__('Return').'</a>
+      <div class="btn-group assignResource">
+        <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
+          '.__('Crear').' <span class="caret"></span>
+        </button>
+        '.$resCreateByType.'
+      </div>
+      <div class="btn btn-primary assignResource btnAssign"> '.__('Assign selected').'</div>'
+    );
 
     $this->template->addToBlock( 'col8', $template );
 
@@ -57,7 +60,7 @@ class AdminViewStarred extends AdminViewMaster
     $this->template->exec();
   }
 
-  public function listStarredTable($starredId) {
+  public function listStarredTable( $starredId ) {
 
     table::autoIncludes();
     $resource =  new ResourceModel();

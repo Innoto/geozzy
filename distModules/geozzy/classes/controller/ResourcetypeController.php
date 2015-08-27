@@ -7,7 +7,11 @@ class ResourcetypeController {
 
   public function rTypeModuleRc( $rTypeClassName ) {
     $rTypeObj = new $rTypeClassName();
-    self::addRType( $rTypeObj->name, $rTypeObj->nameLocations );
+    $rTypeModel = self::addRType( $rTypeObj->name, $rTypeObj->nameLocations );
+
+    if( $rTypeModel ) {
+      self::addRTypeToTopics( $rTypeModel->getter( 'id' ), $rTypeModel->getter( 'idName' ) );
+    }
   }
 
 
@@ -17,18 +21,61 @@ class ResourcetypeController {
   }
 
 
-  public function addRType( $idName, $nameLocations ) {
+  public function addRType( $rTypeIdName, $nameLocations ) {
+    $rTypeModel = false;
+
     $rTypeData = array(
-      'idName' => $idName,
-      'relatedModels' => json_encode( self::getRtModels( $idName ) )
+      'idName' => $rTypeIdName,
+      'relatedModels' => json_encode( self::getRtModels( $rTypeIdName ) )
     );
 
     foreach( $nameLocations as $langKey => $name ) {
       $rTypeData[ 'name_'.$langKey ] = $name;
     }
 
-    $newRType = new ResourcetypeModel( $rTypeData );
-    $newRType->save();
+    $rTypeModel = new ResourcetypeModel( $rTypeData );
+    if( !$rTypeModel->save() ) {
+      $rTypeModel = false;
+    }
+
+    return $rTypeModel;
+  }
+
+
+  public function addRTypeToTopics( $rTypeId, $rTypeIdName ) {
+    include APP_BASE_PATH.'/conf/geozzyTopics.php';
+
+    if( is_array( $geozzyTopicsInfo ) && count( $geozzyTopicsInfo ) > 0 ) {
+      foreach( $geozzyTopicsInfo as $topicIdName => $topicInfo ) {
+
+        if( array_key_exists( $rTypeIdName, $topicInfo['resourceTypes'] ) ) {
+          error_log( 'addRTypeToTopics: Añadiendo '.$rTypeIdName.' a '.$topicIdName );
+
+          $topicModel = new TopicModel();
+          $topicList = $topicModel->listItems( array( 'filters' => array( 'idName' => $topicIdName ) ) );
+          $topicObj = false;
+          if( !$topicList || !($topicObj = $topicList->fetch()) ) {
+            // error_log( 'addRTypeToTopics: Creando '.$topicIdName );
+
+            $topic = array( 'idName' => $topicIdName );
+            foreach( $topicInfo['name'] as $langKey => $name ) {
+              $topic[ 'name_'.$langKey ] = $name;
+            }
+            $topicObj = new TopicModel( $topic );
+            $topicObj->save();
+          }
+
+          // Link Topic to RType
+          $rTypeTopicParams = array(
+            'topic' => $topicObj->getter('id'),
+            'resourceType' => $rTypeId,
+            'weight' => $topicInfo['weight']
+          );
+          $resourcetypeTopicModel = new ResourcetypeTopicModel( $rTypeTopicParams );
+          $resourcetypeTopicModel->save();
+        }
+      }
+    }
   }
 
 
