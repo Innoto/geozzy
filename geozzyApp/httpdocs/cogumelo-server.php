@@ -3,17 +3,18 @@
 if ($_SERVER['REMOTE_ADDR']=='127.0.0.1'){
 
   // Project location
-  define('SITE_PATH', getcwd().'/../c_app/');
+  define( 'WEB_BASE_PATH', getcwd() );
+  define( 'APP_BASE_PATH', getcwd().'/../app' );
+  define( 'SITE_PATH', APP_BASE_PATH.'/' );
 
   // Include cogumelo core Location
-  set_include_path('.:'.SITE_PATH);
+  set_include_path( '.:'.SITE_PATH );
 
-  require_once('conf/setup.php');
+  require_once( 'conf/setup.php' );
 
 
-
-  require_once(COGUMELO_LOCATION.'/c_classes/CogumeloClass.php');
-  require_once(COGUMELO_LOCATION.'/c_classes/c_controller/DependencesController.php');
+  require_once(COGUMELO_LOCATION.'/coreClasses/CogumeloClass.php');
+  require_once(COGUMELO_LOCATION.'/coreClasses/coreController/DependencesController.php');
   require_once(SITE_PATH.'/Cogumelo.php');
 
   $par = $_GET['q'];
@@ -44,11 +45,11 @@ if ($_SERVER['REMOTE_ADDR']=='127.0.0.1'){
       }
       break;
     case 'client_caches':
-      Cogumelo::load('c_controller/ModuleController.php');
+      Cogumelo::load('coreController/ModuleController.php');
       require_once( ModuleController::getRealFilePath( 'mediaserver.php',  'mediaserver') );
       mediaserver::autoIncludes();
       CacheUtilsController::generateAllCaches();
-      
+
   }
 }
 else{
