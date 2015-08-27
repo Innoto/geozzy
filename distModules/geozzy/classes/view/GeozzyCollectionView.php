@@ -40,14 +40,13 @@ class GeozzyCollectionView extends View
     // Recursos disponibles
 
     $resourceModel =  new ResourceModel();
-
+/*
     if($valuesArray['multimedia'] === 1){
-
-      $filter = array( "rtypeUrl", "" );
+      $filter = array( "rtypeUrl", "rtypeFile" );
     }else{
       $filter = array( "rtypeRestaurant", "rtypeHotel" );
     }
-
+*/
     $elemList = $resourceModel->listItems();
 
     $resOptions = array();

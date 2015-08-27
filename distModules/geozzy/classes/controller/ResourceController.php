@@ -166,11 +166,11 @@ class ResourceController {
 
     $form->setSuccess( 'accept', __( 'Thank you' ) );
 
-    if( !isset($valuesArray['tematica']) ) {
+    if( !isset($valuesArray['topicReturn']) ) {
       $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
     }
     else {
-      $form->setSuccess( 'redirect', SITE_URL . 'admin#topic/'.$valuesArray['tematica'][0]);
+      $form->setSuccess( 'redirect', SITE_URL . 'admin#topic/'.$valuesArray['topicReturn']);
     }
 
     $resCollections = array();
@@ -203,6 +203,9 @@ class ResourceController {
     $fieldsInfo = array(
       'rTypeId' => array(
         'params' => array( 'type' => 'reserved' )
+      ),
+      'rTypeIdName' => array(
+        'params' => array( 'type' => 'hidden' )
       ),
       'title' => array(
         'translate' => true,

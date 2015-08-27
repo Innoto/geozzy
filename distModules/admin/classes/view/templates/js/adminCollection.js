@@ -23,6 +23,7 @@ function colBinds(){
 }
 
 function moveHTML(){
+
   var buttonsToMove = $('.modal .gzzAdminToMove');
 
   if( buttonsToMove.size() > 0 ){

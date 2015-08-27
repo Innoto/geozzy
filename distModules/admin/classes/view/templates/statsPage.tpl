@@ -28,11 +28,12 @@
 
   <h3>MultiList Vertical Image</h3>
   <select id="asigned_terms4" multiple style="width:250px;">
+    <option data-order="1" selected data-image="/cgmlformfilews/10" value="98">a98</option>
   {foreach key=key item=item from=$termArray}
     <option data-image="/cgmlformfilews/10" data-order="{$item->getter('weight')}" value="{$item->getter('id')}">{$item->getter('name')}</option>
   {/foreach}
-    <option selected data-image="/cgmlformfilews/10" value="98">a98</option>
-    <option selected data-image="/cgmlformfilews/10" value="99">a99</option>
+
+    <option data-order="0" selected data-image="/cgmlformfilews/10" value="99">a99</option>
   </select>
 
 
