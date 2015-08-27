@@ -2,8 +2,8 @@
 
 Cogumelo::load( 'coreController/Module.php' );
 
-class rtypeLugar extends Module
-{
+class rtypeLugar extends Module {
+
   public $name = 'rtypeLugar';
   public $version = '1.0';
   public $rext = array();
@@ -15,10 +15,19 @@ class rtypeLugar extends Module
     'view/RTypeLugarView.php'
   );
 
+  public $nameLocations = array(
+    'es' => 'Lugar',
+    'en' => 'Lugar',
+    'gl' => 'Lugar'
+  );
+
 
   public function __construct() {
-
   }
 
 
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rTypeModuleRc( __CLASS__ );
+  }
 }

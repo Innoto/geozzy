@@ -1,5 +1,6 @@
 <?php
 Cogumelo::load('coreView/View.php');
+Cogumelo::load('coreModel/DBUtils.php');
 
 common::autoIncludes();
 geozzy::autoIncludes();
@@ -19,7 +20,8 @@ class TestDataGenerator extends View
     return true;
   }
 
-  public function generateResources($request){
+  public function generateResources(){
+
 
     // Cargamos os tipos de recurso
     $resourcetypeModel = new ResourcetypeModel();
@@ -81,7 +83,7 @@ class TestDataGenerator extends View
 
     Cogumelo::disableLogs();
 
-    for ($i = 1; $i <= $request[1]; $i++){
+    for ($i = 1; $i <= $_POST['resNum']; $i++){
 
       include 'randomText.php';
 
@@ -124,6 +126,17 @@ class TestDataGenerator extends View
 
       // creación del recurso
       $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom);
+
+      // Location
+
+      $lat = $this->randomCoord( $_POST['lat1'], $_POST['lat2'] );
+      $lng = $this->randomCoord( $_POST['lng1'], $_POST['lng2'] );
+
+
+      $data['loc'] = DBUtils::encodeGeometry( array('type'=>'POINT', 'data'=> array($lat , $lng) ) );
+      $data['defaultZoom'] = 10;
+
+
       $resource =  new ResourceModel($data);
 
       // asignamos taxonomías ao recurso
@@ -181,6 +194,17 @@ class TestDataGenerator extends View
   public function commonTestDataInterface(){
     $this->template->setTpl('testDataMaster.tpl', 'testData');
     $this->template->exec();
+  }
+
+
+  function randomCoord($min, $max)
+  {
+    $range = $max-$min;
+    $num = $min + $range * mt_rand(0, 32767)/32767;
+
+    $num = round($num, 4);
+
+    return str_replace( ',', '.' ,((string) $num) );
   }
 
 }

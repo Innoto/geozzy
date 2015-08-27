@@ -2,8 +2,8 @@
 
 Cogumelo::load( 'coreController/Module.php' );
 
-class rtypeFestaPopular extends Module
-{
+class rtypeFestaPopular extends Module {
+
   public $name = 'rtypeFestaPopular';
   public $version = '1.0';
   public $rext = array();
@@ -15,10 +15,19 @@ class rtypeFestaPopular extends Module
     'view/RTypeFestaPopularView.php'
   );
 
+  public $nameLocations = array(
+    'es' => 'Festa Popular',
+    'en' => 'Festa Popular',
+    'gl' => 'Festa Popular'
+  );
+
 
   public function __construct() {
-
   }
 
 
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rTypeModuleRc( __CLASS__ );
+  }
 }

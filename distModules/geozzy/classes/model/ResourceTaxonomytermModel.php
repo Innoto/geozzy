@@ -3,8 +3,8 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-class ResourceTaxonomytermModel extends Model
-{
+class ResourceTaxonomytermModel extends Model {
+
   static $tableName = 'geozzy_resource_taxonomyterm';
 
   static $cols = array(
@@ -32,7 +32,6 @@ class ResourceTaxonomytermModel extends Model
     'idInCSV' => ' id IN ( ? ) ',
     'idTermInCSV' => ' idName IN ( ? ) '
   );
-
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {

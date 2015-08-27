@@ -1,25 +1,26 @@
 <?php
 
-Cogumelo::load("coreController/Module.php");
-require_once APP_BASE_PATH."/conf/geozzyTopics.php";
-require_once APP_BASE_PATH."/conf/geozzyTaxonomyGroups.php";
-require_once APP_BASE_PATH."/conf/geozzyResourceType.php";
-require_once APP_BASE_PATH."/conf/geozzyStarred.php";
+Cogumelo::load( 'coreController/Module.php' );
+// require_once APP_BASE_PATH.'/conf/geozzyResourceType.php';
+// require_once APP_BASE_PATH.'/conf/geozzyTopics.php';
+require_once APP_BASE_PATH.'/conf/geozzyTaxonomyGroups.php';
+require_once APP_BASE_PATH.'/conf/geozzyStarred.php';
 
 define('MOD_GEOZZY_URL_DIR', 'geozzy');
 
-class geozzy extends Module
-{
-  public $name = "geozzy";
-  public $version = "";
+
+class geozzy extends Module {
+
+  public $name = 'geozzy';
+  public $version = '';
   public $dependences = array(
 
     array(
-     "id" =>"ckeditor",
-     "params" => array("ckeditor#standard/stable"),
-     "installer" => "bower",
-     "includes" => array("ckeditor.js"),
-     "autoinclude" => false
+     'id' =>'ckeditor',
+     'params' => array('ckeditor#standard/stable'),
+     'installer' => 'bower',
+     'includes' => array('ckeditor.js'),
+     'autoinclude' => false
     )
 
   );
@@ -39,15 +40,16 @@ class geozzy extends Module
     //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
   }
 
-  static public function moduleRc() {
 
-    user::load("model/UserModel.php");
-    user::load("model/RoleModel.php");
-    geozzy::load("model/TaxonomygroupModel.php");
-    geozzy::load("model/TaxonomytermModel.php");
-    geozzy::load("model/TopicModel.php");
-    geozzy::load("model/ResourcetypeModel.php");
-    geozzy::load("model/ResourcetypeTopicModel.php");
+
+  public function moduleRc() {
+    user::load('model/UserModel.php');
+    user::load('model/RoleModel.php');
+    geozzy::load('model/TaxonomygroupModel.php');
+    geozzy::load('model/TaxonomytermModel.php');
+    geozzy::load('model/TopicModel.php');
+    geozzy::load('model/ResourcetypeModel.php');
+    geozzy::load('model/ResourcetypeTopicModel.php');
 
 
     /**
@@ -71,9 +73,12 @@ class geozzy extends Module
     /**
     Crea un usuario superAdmin para Geozzy
     */
-
-    fwrite(STDOUT, "Enter the superAdmin password:\n");
+    /*
+    fwrite( STDOUT, "Enter the superAdmin password:\n" );
     $passwd = self::getPassword(true);
+    */
+    $passwd = 'innoto';
+
     $userData = array(
       'login' => 'superAdmin',
       'name' => 'superAdmin',
@@ -86,7 +91,6 @@ class geozzy extends Module
     /**
     Crea la relacion Usuario/Role de superAdmin asignadole un role superAdmin
     */
-
     $roleModel = new RoleModel();
     $role = $roleModel->listItems( array('filters' => array('name' => 'superAdmin') ))->fetch();
     $userRole = new UserRoleModel();
@@ -97,25 +101,9 @@ class geozzy extends Module
     $userRole->save(array( 'affectsDependences' => true ));
 
 
-
-
-    global $GEOZZY_RESOURCETYPE;
-
-    geozzy::load('controller/ResourcetypeController.php');
-    if( isset( $GEOZZY_DEFAULT_RESOURCETYPE ) ) {
-      ResourcetypeController::addResourceTypes( $GEOZZY_DEFAULT_RESOURCETYPE );
-    }
-    if( isset( $GEOZZY_RESOURCETYPE ) ) {
-      ResourcetypeController::addResourceTypes( $GEOZZY_RESOURCETYPE );
-    }
-
-
-
-
     /**
     Añade taxonomías destacadas
     */
-
     global $GEOZZY_TAXONOMYGROUPS;
     global $GEOZZY_STARRED;
 
@@ -132,35 +120,36 @@ class geozzy extends Module
       'initialTerms' => $GEOZZY_STARRED
     );
 
+
     /**
     Añade Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
-
-
+    /*
+    geozzy::load('controller/ResourcetypeController.php');
+    global $C_RTYPE_MODULES;
     $GEOZZY_TAXONOMYGROUPS = array_merge(
-      ResourcetypeController::getAllCategories( $GEOZZY_RESOURCETYPE ),
+      ResourcetypeController::getAllCategories( $C_RTYPE_MODULES ),
       $GEOZZY_TAXONOMYGROUPS
     );
-
-    /**
-    Crea todas as taxonomías
     */
 
 
-
+    /**
+    Crea las taxonomías
+    */
     if( count( $GEOZZY_TAXONOMYGROUPS ) > 0 ) {
-      foreach( $GEOZZY_TAXONOMYGROUPS as $key => $tax ) {
-        foreach ($tax['name'] as $langKey => $name){
-           $tax['name_'.$langKey] = $name;
+      foreach( $GEOZZY_TAXONOMYGROUPS as $tax ) {
+        foreach( $tax['name'] as $langKey => $name ) {
+          $tax['name_'.$langKey] = $name;
         }
         unset($tax['name']);
         $taxgroup = new TaxonomygroupModel( $tax );
         $taxgroup->save();
         if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
-          foreach( $tax['initialTerms'] as $key => $term ) {
+          foreach( $tax['initialTerms'] as $term ) {
             $term['taxgroup'] = $taxgroup->getter('id');
 
-            foreach ($term['name'] as $langKey => $name){
+            foreach( $term['name'] as $langKey => $name ) {
                $term['name_'.$langKey] = $name;
             }
             unset($term['name']);
@@ -175,11 +164,12 @@ class geozzy extends Module
     /**
     Crea los Topics definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
+    /*
     global $GEOZZY_TOPICS;
 
     if( count( $GEOZZY_TOPICS ) > 0 ) {
       foreach( $GEOZZY_TOPICS as $key => $topic ) {
-        foreach ($topic['name'] as $langKey => $name){
+        foreach( $topic['name'] as $langKey => $name ) {
            $topic['name_'.$langKey] = $name;
         }
 
@@ -190,7 +180,7 @@ class geozzy extends Module
         if( count( $topic['resourceTypes'] ) > 0 ) {
           foreach( $topic['resourceTypes'] as $key => $rt ) {
             $reTypeModel = new ResourcetypeModel( );
-            $reType = $reTypeModel->listItems( array('filters' => array('idName' => $rt['resourceTypeIdName']) ) )->fetch();
+            $reType = $reTypeModel->listItems( array( 'filters' => array( 'idName' => $rt['resourceTypeIdName'] ) ) )->fetch();
             if($reType){
               $rtypeTopicParams = array(
                 'topic' => $topicD->getter('id'),
@@ -205,6 +195,8 @@ class geozzy extends Module
         }
       }
     }
+    */
+
   }
 
 
@@ -217,8 +209,7 @@ class geozzy extends Module
    *
    * @return string
    */
-  static public function getPassword( $stars = false )
-  {
+  static public function getPassword( $stars = false ) {
     // Get current style
     $oldStyle = shell_exec('stty -g');
 

@@ -3,8 +3,8 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-class CollectionModel extends Model
-{
+class CollectionModel extends Model {
+
   static $tableName = 'geozzy_collection';
 
   static $cols = array(
@@ -39,11 +39,11 @@ class CollectionModel extends Model
     'share' => array(
       'type' => 'TINYINT'
     ),
-    'weight' => array(
-      'type' => 'SMALLINT'
-    ),
     'multimedia' => array(
       'type' => 'BOOLEAN'
+    ),
+    'weight' => array(
+      'type' => 'SMALLINT'
     )
   );
 

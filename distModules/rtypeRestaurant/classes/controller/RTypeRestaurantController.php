@@ -80,21 +80,23 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
   /**
     Visualizamos el Recurso
    **/
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+  public function getViewBlock( Template $resBlock ) {
     // error_log( "RTypeRestaurantController: getViewBlock()" );
     $template = false;
 
+    $template = $resBlock;
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeRestaurant' );
+
     $this->eatCtrl = new RExtEatAndDrinkController( $this );
-    $accomBlock = $this->eatCtrl->getViewBlock( $resource, $resBlock );
+    $eatBlock = $this->eatCtrl->getViewBlock( $resBlock );
 
-    if( $accomBlock ) {
-      $template = $resBlock;
-      $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeRestaurant' );
-
-      $template->addToBlock( 'rextEatAndDrink', $accomBlock );
-
+    if( $eatBlock ) {
+      $template->addToBlock( 'rextEatAndDrink', $eatBlock );
       $template->assign( 'rExtBlockNames', array( 'rextEatAndDrink' ) );
-      $template->assign( 'rExtFieldNames', false );
+    }
+    else {
+      $template->assign( 'rextEatAndDrink', false );
+      $template->assign( 'rExtBlockNames', false );
     }
 
     return $template;

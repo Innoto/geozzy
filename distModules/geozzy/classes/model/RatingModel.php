@@ -3,11 +3,10 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
+class RatingModel extends Model {
 
-
-class RatingModel extends Model
-{
   static $tableName = 'geozzy_rating';
+
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -32,15 +31,14 @@ class RatingModel extends Model
     ),
     'ipVote' => array(
       'type' => 'VARCHAR',
-      'size' => 15  
+      'size' => 15
     ),
   );
 
   static $extraFilters = array();
 
 
-  function __construct( $datarray= array(), $otherRelObj = false ) {
+  public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
-
 }

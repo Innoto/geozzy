@@ -3,9 +3,13 @@
 
 class RExtViewController extends RExtController implements RExtInterface {
 
+  public $numericFields = false;
+
 
   public function __construct( $defRTypeCtrl ){
     error_log( 'RExtViewController::__construct' );
+
+    // $this->numericFields = array( 'averagePrice' );
 
     parent::__construct( $defRTypeCtrl, new rextView(), 'rExtView_' );
   }
@@ -15,13 +19,17 @@ class RExtViewController extends RExtController implements RExtInterface {
     error_log( "RExtViewController: getRExtData( $resId )" );
     $rExtData = false;
 
-    // Cargo los datos de TAX con los que está asociado el recurso
-    $taxTerms = $this->defResCtrl->getResTerms( $resId );
-    if( $taxTerms ) {
+    if( $this->taxonomies && is_array( $this->taxonomies ) && count( $this->taxonomies ) > 0 ) {
       $rExtData = array();
-      foreach( $this->taxonomies as $tax ) {
-        // TODO: Separar los terms por taxonomia
-        $rExtData[ $tax['idName'] ] = $taxTerms;
+
+      // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
+      $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
+      if( $termsGroupedIdName !== false ) {
+        foreach( $this->taxonomies as $tax ) {
+          if( isset( $termsGroupedIdName[ $tax[ 'idName' ] ] ) ) {
+            $rExtData[ $tax['idName'] ] = $termsGroupedIdName[ $tax[ 'idName' ] ];
+          }
+        }
       }
     }
 
@@ -46,7 +54,6 @@ class RExtViewController extends RExtController implements RExtInterface {
       )
     );
 
-
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
     // Valadaciones extra
@@ -57,6 +64,21 @@ class RExtViewController extends RExtController implements RExtInterface {
     if( $valuesArray ) {
       $valuesArray = $this->prefixArrayKeys( $valuesArray );
       $form->setField( $this->addPrefix( 'id' ), array( 'type' => 'reserved', 'value' => null ) );
+
+      // Limpiando la informacion de terms para el form
+      if( $this->taxonomies ) {
+        foreach( $this->taxonomies as $tax ) {
+          $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+          if( isset( $valuesArray[ $taxFieldName ] ) && is_array( $valuesArray[ $taxFieldName ] ) ) {
+            $taxFieldValues = array();
+            foreach( $valuesArray[ $taxFieldName ] as $value ) {
+              $taxFieldValues[] = ( is_array( $value ) ) ? $value[ 'id' ] : $value;
+            }
+            $valuesArray[ $taxFieldName ] = $taxFieldValues;
+          }
+        }
+      }
+
       $form->loadArrayValues( $valuesArray );
     }
 
@@ -71,6 +93,7 @@ class RExtViewController extends RExtController implements RExtInterface {
     }
 
     $form->setField( 'rExtViewFieldNames', array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
+
     $form->saveToSession();
 
     return( $rExtFieldNames );
@@ -94,10 +117,12 @@ class RExtViewController extends RExtController implements RExtInterface {
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RExtViewController: resFormProcess()" );
 
-    foreach( $this->taxonomies as $tax ) {
-      $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-      if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
-        $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
+    if( !$form->existErrors() ) {
+      foreach( $this->taxonomies as $tax ) {
+        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+        if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
+          $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
+        }
       }
     }
   }
@@ -116,25 +141,48 @@ class RExtViewController extends RExtController implements RExtInterface {
   /**
     Visualizamos el Recurso
    */
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+  public function getViewBlock( Template $resBlock ) {
     // error_log( "RExtViewController: getViewBlock()" );
     $template = false;
 
-    $rExtData = $this->getRExtData( $resource->getter('id') );
-    if( $rExtData ) {
-      $template = new Template();
+    $resId = $this->defResCtrl->resObj->getter('id');
+    $rExtData = $this->getRExtData( $resId );
 
-      $rExtData = $this->prefixArrayKeys( $rExtData );
-      foreach( $rExtData as $key => $value ) {
-        $template->assign( $key, $rExtData[ $key ] );
-        error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
+    if( isset( $rExtData[ 'viewAlternativeMode' ] ) ) {
+      $term = array_pop( $rExtData[ 'viewAlternativeMode' ] );
+      $viewAlternativeMode = $term[ 'idName' ];
+      error_log( 'viewAlternativeMode: ' . $viewAlternativeMode );
+
+      if( strpos( $viewAlternativeMode, 'tpl' ) === 0 ) {
+        if( strpos( $viewAlternativeMode, 'tplApp' ) !== 0 ) {
+          $tplFile = $viewAlternativeMode.'.tpl';
+        }
+        else {
+          $tplFile = 'rExtViewAlt'.substr( $viewAlternativeMode, 3 ).'.tpl';
+        }
+        $module = 'rextView';
+        error_log( '$tplFile: '.$tplFile );
+        $existFile = ModuleController::getRealFilePath( 'classes/view/templates/'.$tplFile, $module );
+        if( $existFile ) {
+          $resBlock->setTpl( $tplFile, $module );
+        }
       }
-
-      $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextView' );
+      elseif( strpos( $viewAlternativeMode, 'view' ) === 0 ) {
+        $altViewClass = 'RExtViewAlt'.substr( $viewAlternativeMode, 4 );
+        $altViewClassFile = $altViewClass.'.php';
+        $module = 'rextView';
+        error_log( '$altViewClassFile: '.$altViewClassFile );
+        $existFile = ModuleController::getRealFilePath( 'classes/view/'.$altViewClassFile, $module );
+        if( $existFile ) {
+          rextView::load( 'view/'.$altViewClassFile );
+          $altViewCtrl = new $altViewClass( $this->defRTypeCtrl );
+          $template = $altViewCtrl->getViewBlock( $resBlock );
+        }
+      }
     }
 
     return $template;
   }
 
 } // class RExtViewController
+

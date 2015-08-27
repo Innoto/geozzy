@@ -3,13 +3,11 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
+class ExtraDataModel extends Model {
 
-
-class ExtraDataModel extends Model
-{
   static $tableName = 'geozzy_extradata';
-  static $cols = array(
 
+  static $cols = array(
     'id' => array(
       'type' => 'INT',
       'primarykey' => true,
@@ -28,18 +26,16 @@ class ExtraDataModel extends Model
       'type' => 'VARCHAR',
       'size' => 1000,
       'multilang' => true
+    ),
+    'weight' => array(
+      'type' => 'SMALLINT'
     )
-
-
   );
 
-  static $extraFilters = array(
-      
-    );
+  static $extraFilters = array();
 
 
-  function __construct( $datarray= array(), $otherRelObj = false ) {
+  public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
-
 }

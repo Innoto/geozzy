@@ -27,6 +27,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
+    // Altero campos del form del recurso "normal"
     $form->setFieldParam( 'externalUrl', 'label', __( 'Hotel home URL' ) );
 
     // Valadaciones extra
@@ -80,21 +81,23 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
   /**
     Visualizamos el Recurso
    **/
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+  public function getViewBlock( Template $resBlock ) {
     // error_log( "RTypeHotelController: getViewBlock()" );
     $template = false;
 
+    $template = $resBlock;
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeHotel' );
+
     $this->accomCtrl = new RExtAccommodationController( $this );
-    $accomBlock = $this->accomCtrl->getViewBlock( $resource, $resBlock );
+    $accomBlock = $this->accomCtrl->getViewBlock( $resBlock );
 
     if( $accomBlock ) {
-      $template = $resBlock;
-      $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeHotel' );
-
       $template->addToBlock( 'rextAccommodation', $accomBlock );
-
       $template->assign( 'rExtBlockNames', array( 'rextAccommodation' ) );
-      $template->assign( 'rExtFieldNames', false );
+    }
+    else {
+      $template->assign( 'rextAccommodation', false );
+      $template->assign( 'rExtBlockNames', false );
     }
 
     return $template;

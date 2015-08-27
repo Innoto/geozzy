@@ -14,27 +14,22 @@ class EatAndDrinkModel extends Model
       'primarykey' => true,
       'autoincrement' => true
     ),
-    
     'resource' => array(
       'type'=>'FOREIGN',
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
-
     'reservationURL' => array(
       'type' => 'VARCHAR',
       'size' => 2000
     ),
-
     'reservationPhone' => array(
       'type' => 'VARCHAR',
       'size' => 20
     ),
-
     'capacity' => array(
       'type' => 'INT'
     ),
-
     'averagePrice' => array(
       'type' => 'FLOAT'
     ),
@@ -43,7 +38,7 @@ class EatAndDrinkModel extends Model
   static $extraFilters = array();
 
 
-  function __construct( $datarray= array(), $otherRelObj = false ) {
+  public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
 

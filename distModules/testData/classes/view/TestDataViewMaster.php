@@ -38,7 +38,7 @@ class TestDataViewMaster extends View
     $template->assign( 'title', $title );
     $template->assign( 'icon', $icon );
     $template->setTpl( 'testDataPanel.tpl', 'testData' );
-
+    xdebug_var_dump(xdebug.var_display_max_data);
     return $template;
   }
 

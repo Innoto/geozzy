@@ -3,9 +3,13 @@
 
 class RExtFileController extends RExtController implements RExtInterface {
 
+  public $numericFields = false;
+
 
   public function __construct( $defRTypeCtrl ){
     error_log( 'RExtFileController::__construct' );
+
+    // $this->numericFields = array( 'averagePrice' );
 
     parent::__construct( $defRTypeCtrl, new rextFile(), 'rExtFile_' );
   }
@@ -16,18 +20,19 @@ class RExtFileController extends RExtController implements RExtInterface {
     $rExtData = false;
 
     $rExtModel = new RExtFileModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'id' => $resId ),
-      'affectsDependences' => array( 'RExtFileModel' ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'id' => $resId ), 'affectsDependences' => array( 'RExtFileModel' ) ) );
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
 
-      if( $this->taxonomies ) {
-        $taxTerms = $this->defResCtrl->getResTerms( $resId );
+      // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
+      $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
+      if( $termsGroupedIdName !== false ) {
         foreach( $this->taxonomies as $tax ) {
-          // TODO: Separar los terms por taxonomia
-          $rExtData[ $tax['idName'] ] = $taxTerms;
+          if( isset( $termsGroupedIdName[ $tax[ 'idName' ] ] ) ) {
+            $rExtData[ $tax['idName'] ] = $termsGroupedIdName[ $tax[ 'idName' ] ];
+          }
         }
       }
 
@@ -71,6 +76,21 @@ class RExtFileController extends RExtController implements RExtInterface {
     if( $valuesArray ) {
       $valuesArray = $this->prefixArrayKeys( $valuesArray );
       $form->setField( $this->addPrefix( 'id' ), array( 'type' => 'reserved', 'value' => null ) );
+
+      // Limpiando la informacion de terms para el form
+      if( $this->taxonomies ) {
+        foreach( $this->taxonomies as $tax ) {
+          $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+          if( isset( $valuesArray[ $taxFieldName ] ) && is_array( $valuesArray[ $taxFieldName ] ) ) {
+            $taxFieldValues = array();
+            foreach( $valuesArray[ $taxFieldName ] as $value ) {
+              $taxFieldValues[] = ( is_array( $value ) ) ? $value[ 'id' ] : $value;
+            }
+            $valuesArray[ $taxFieldName ] = $taxFieldValues;
+          }
+        }
+      }
+
       $form->loadArrayValues( $valuesArray );
     }
 
@@ -85,6 +105,7 @@ class RExtFileController extends RExtController implements RExtInterface {
     }
 
     $form->setField( 'rExtFileFieldNames', array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
+
     $form->saveToSession();
 
     return( $rExtFieldNames );
@@ -135,7 +156,8 @@ class RExtFileController extends RExtController implements RExtInterface {
     Finalizar transaction
    */
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    error_log( "RExtFileController: resFormSuccess()" );
+    // error_log( "RExtFileController: resFormSuccess()" );
+
   }
 
 
@@ -143,11 +165,13 @@ class RExtFileController extends RExtController implements RExtInterface {
   /**
     Visualizamos el Recurso
    */
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+  public function getViewBlock( Template $resBlock ) {
     // error_log( "RExtFileController: getViewBlock()" );
     $template = false;
 
-    $rExtData = $this->getRExtData( $resource->getter('id') );
+    $resId = $this->defResCtrl->resObj->getter('id');
+    $rExtData = $this->getRExtData( $resId );
+
     if( $rExtData ) {
       $template = new Template();
 
@@ -155,6 +179,31 @@ class RExtFileController extends RExtController implements RExtInterface {
       foreach( $rExtData as $key => $value ) {
         $template->assign( $key, $rExtData[ $key ] );
         error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
+      }
+
+      // Vacio campos numericos NULL
+      if( $this->numericFields ) {
+        foreach( $this->numericFields as $fieldName ) {
+          $fieldName = $this->addPrefix( $fieldName );
+          if( !isset( $rExtData[ $fieldName ] ) || !$rExtData[ $fieldName ] ) {
+            $template->assign( $fieldName, '##NULL-VACIO##' );
+          }
+        }
+      }
+
+      // Procesamos as taxonomías asociadas para mostralas en CSV
+      foreach( $this->taxonomies as $tax ) {
+        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+        $taxFieldValue = '';
+
+        if( isset( $rExtData[ $taxFieldName ] ) ) {
+          $terms = array();
+          foreach( $rExtData[ $taxFieldName ] as $termInfo ) {
+            $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
+          }
+          $taxFieldValue = implode( ', ', $terms );
+        }
+        $template->assign( $taxFieldName, $taxFieldValue );
       }
 
       $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );

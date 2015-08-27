@@ -3,8 +3,8 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-class ResourceCollectionsModel extends Model
-{
+class ResourceCollectionsModel extends Model {
+
   static $tableName = 'geozzy_resource_collections';
 
   static $cols = array(

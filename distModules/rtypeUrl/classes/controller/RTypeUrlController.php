@@ -16,6 +16,7 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     return new RExtUrlController( $this );
   }
 
+
   /**
     Defino el formulario
    **/
@@ -32,6 +33,17 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // Valadaciones extra
+
+    // Eliminamos campos del formulario de recurso que no deseamos
+    $removeFields = array_merge(
+      $form->multilangFieldNames( 'content' ),
+      $form->multilangFieldNames( 'datoExtra1' ),
+      $form->multilangFieldNames( 'datoExtra2' ),
+      array( 'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries',
+        'topics', 'starred', 'locLat', 'locLon', 'defaultZoom' )
+    );
+    $form->removeField( $removeFields );
+    $form->saveToSession();
 
     return( $rTypeFieldNames );
   } // function manipulateForm()
@@ -81,21 +93,23 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
   /**
     Visualizamos el Recurso
    **/
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+  public function getViewBlock( Template $resBlock ) {
     // error_log( "RTypeUrlController: getViewBlock()" );
     $template = false;
 
+    $template = $resBlock;
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
+
     $this->rExtCtrl = $this->newRExtContr();
-    $urlBlock = $this->rExtCtrl->getViewBlock( $resource, $resBlock );
+    $urlBlock = $this->rExtCtrl->getViewBlock( $resBlock );
 
     if( $urlBlock ) {
-      $template = $resBlock;
-      $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
-
       $template->addToBlock( 'rextUrl', $urlBlock );
-
       $template->assign( 'rExtBlockNames', array( 'rextUrl' ) );
-      $template->assign( 'rExtFieldNames', false );
+    }
+    else {
+      $template->assign( 'rextUrl', false );
+      $template->assign( 'rExtBlockNames', false );
     }
 
     return $template;

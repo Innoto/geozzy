@@ -32,6 +32,13 @@
     {$image}
   </div>
 
+  {if isset($externalUrl)}
+  <div class="externalUrl">
+    <label for="externalUrl" class="cgmMForm">{t}External Url{/t}</label>
+    {$externalUrl|escape:'htmlall'}
+  </div>
+  {/if}
+
   {if isset($collections)}
   <div class="collections">
     <label for="collections" class="cgmMForm">{t}Collections{/t}</label>

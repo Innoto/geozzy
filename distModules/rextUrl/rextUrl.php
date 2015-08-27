@@ -2,7 +2,6 @@
 Cogumelo::load( 'coreController/Module.php' );
 
 
-
 class rextUrl extends Module {
 
   public $name = 'rextUrl';
@@ -10,7 +9,7 @@ class rextUrl extends Module {
 
 
   public $models = array(
-    // 'RExtUrlModel'
+    'RExtUrlModel'
   );
 
   public $taxonomies = array(
@@ -86,7 +85,11 @@ class rextUrl extends Module {
 
 
   public function __construct() {
-
   }
 
+
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rExtModuleRc( __CLASS__ );
+  }
 }

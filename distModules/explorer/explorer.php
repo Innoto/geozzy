@@ -13,18 +13,48 @@ class explorer extends Module
 
   public $dependences = array(
     array(
+     "id" =>"underscore",
+     "params" => array("underscore#1.8.3"),
+     "installer" => "bower",
+     "includes" => array("underscore-min.js")
+   ),
+    array(
      "id" =>"backbonejs",
      "params" => array("backbone#1.1.2"),
      "installer" => "bower",
      "includes" => array("backbone.js")
     ),
     array(
-     "id" =>"backbone-localstorage",
-     "params" => array("backbone-localstorage#0.3.2"),
+     "id" =>"backbone-fetch-cache",
+     "params" => array("backbone-fetch-cache#1.3.0"),
      "installer" => "bower",
-     "includes" => array("backbone-localstorage.min.js")
-    )
+     "includes" => array("backbone.fetch-cache.min.js")
+    ),
+    array(
+     "id" =>"Backbone.localStorage",
+     "params" => array("Backbone.localStorage"),
+     "installer" => "bower",
+     "includes" => array("backbone.localStorage-min.js")
+    ),
+     array(
+      "id" =>"backbone.obscura",
+      "params" => array("backbone.obscura#1.0.1"),
+      "installer" => "bower",
+      "includes" => array("backbone.obscura.js")
+     )
+
   );
+
+
+
+  public $includesCommon = array(
+    'js/models/ExplorerResourceMinimalModel.js',
+    'js/models/ExplorerResourcePartialModel.js',
+    'js/collections/ExplorerResourceMinimalCollection.js',
+    'js/collections/ExplorerResourcePartialCollection.js',
+    'js/Explorer.js'
+  );
+
 
   function __construct() {
     $this->addUrlPatterns( '#^api/explorer/(.*)#', 'view:ExplorerAPIView::explorer' );

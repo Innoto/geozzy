@@ -1,5 +1,4 @@
 <?php
-
 geozzy::load( 'controller/RTypeController.php' );
 geozzy::load( 'controller/RExtController.php' );
 
@@ -7,6 +6,9 @@ geozzy::load( 'controller/RExtController.php' );
 class ResourceController {
 
   public $rTypeCtrl = null;
+  public $resObj = null;
+  public $resData = null;
+  private $taxonomyAll = null;
 
   public function __construct() {
     // error_log( 'ResourceController::__construct' );
@@ -24,65 +26,16 @@ class ResourceController {
     error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
 
     if( !$this->rTypeCtrl ) {
-
-      $rType = new ResourcetypeModel();
-      $rTypeList = $rType->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
-      $rTypeIdname = false;
-
-      if( $rTypeName = $rTypeList->fetch() ) {
-        $rTypeIdname = $rTypeName->getter( 'idName' );
-      }
-
-      switch( $rTypeIdname ) {
-        case 'rtypeHotel': // 'rtypeHotel'
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname" );
-          rtypeHotel::autoIncludes();
-          $this->rTypeCtrl = new RTypeHotelController( $this );
-          break;
-        case 'rtypeRestaurant':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeRestaurant::autoIncludes();
-          $this->rTypeCtrl = new RTypeRestaurantController( $this );
-          break;
-        case 'rtypeUrl':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeUrl::autoIncludes();
-          $this->rTypeCtrl = new RTypeUrlController( $this );
-          break;
-        case 'rtypePage':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypePage::autoIncludes();
-          $this->rTypeCtrl = new RTypePageController( $this );
-          break;
-        case 'rtypeFile':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeFile::autoIncludes();
-          $this->rTypeCtrl = new RTypeFileController( $this );
-          break;
-        case 'rtypeRuta':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeRuta::autoIncludes();
-          $this->rTypeCtrl = new RTypeRutaController( $this );
-          break;
-        case 'rtypeLugar':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeLugar::autoIncludes();
-          $this->rTypeCtrl = new RTypeLugarController( $this );
-          break;
-        case 'rtypeEspazoNatural':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeEspazoNatural::autoIncludes();
-          $this->rTypeCtrl = new RTypeEspazoNaturalController( $this );
-          break;
-        case 'rtypeEspazoNatural':
-          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdname " );
-          rtypeEspazoNatural::autoIncludes();
-          $this->rTypeCtrl = new RTypeEspazoNaturalController( $this );
-          break;
-        default:
-          error_log( "GeozzyResourceView: ERROR. rTypeIdname DESCONOCIDO: $rTypeIdname " );
-          $this->rTypeCtrl = false;
-          break;
+      $rTypeModel = new ResourcetypeModel();
+      $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
+      if( $rTypeInfo = $rTypeList->fetch() ) {
+        $rTypeIdName = $rTypeInfo->getter( 'idName' );
+        if( class_exists( $rTypeIdName ) ) {
+          error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdName" );
+          $rTypeIdName::autoIncludes();
+          $rTypeCtrlClassName = $rTypeIdName.'Controller';
+          $this->rTypeCtrl = new $rTypeCtrlClassName( $this );
+        }
       }
     }
 
@@ -91,37 +44,56 @@ class ResourceController {
 
 
   /**
+     Load resource object
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   **/
+  public function loadResourceObject( $resId ) {
+    if( $this->resObj === null ) {
+      $resModel = new ResourceModel();
+      $resList = $resModel->listItems( array( 'affectsDependences' =>
+        array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ),
+        // array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
+        'filters' => array( 'id' => $resId, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
+      $this->resObj = ( $resList ) ? $resList->fetch() : null;
+    }
+
+    return( $this->resObj != null &&  $this->resObj != false );
+  }
+
+  /**
      Load basic data values
    *
    * @param $resId integer
    *
    * @return array OR false
    **/
-  public function getResourceData( $resId ) {
+  public function getResourceData( $resId, $translate = false ) {
     // error_log( "ResourceController: getResourceData()" );
-    $resourceData = false;
 
-    $langDefault = LANG_DEFAULT;
-    global $LANG_AVAILABLE;
-    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
-      $langAvailable = array_keys( $LANG_AVAILABLE );
-    }
+    if( !$this->resData && $this->loadResourceObject( $resId ) ) {
+      $resourceData = false;
 
-    $recModel = new ResourceModel();
-    $recList = $recModel->listItems( array( 'affectsDependences' =>
-      array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
-      'filters' => array( 'id' => $resId, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
-    $recObj = $recList->fetch();
+      $langDefault = LANG_DEFAULT;
+      global $LANG_AVAILABLE;
+      if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
+        $langAvailable = array_keys( $LANG_AVAILABLE );
+      }
 
-    if( $recObj ) {
-      $resourceData = $recObj->getAllData( 'onlydata' );
-
-      // Adapto el campo recursoTipo para mayor claridad
-      // $resourceData['rTypeId'] = $resourceData['type'];
-      // unset( $resourceData['type'] );
+      if( $translate ) {
+        $resourceData = array();
+        foreach( $this->resObj->getCols() as $key => $value ) {
+          $resourceData[ $key ] = $this->resObj->getter( $key );
+        }
+      }
+      else {
+        $resourceData = $this->resObj->getAllData( 'onlydata' );
+      }
 
       // Cargo los datos de urlAlias dentro de los del recurso
-      $urlAliasDep = $recObj->getterDependence( 'id', 'UrlAliasModel' );
+      $urlAliasDep = $this->resObj->getterDependence( 'id', 'UrlAliasModel' );
       if( $urlAliasDep !== false ) {
         foreach( $urlAliasDep as $urlAlias ) {
           $urlLang = $urlAlias->getter('lang');
@@ -132,7 +104,7 @@ class ResourceController {
       }
 
       // Cargo los datos de image dentro de los del recurso
-      $fileDep = $recObj->getterDependence( 'image' );
+      $fileDep = $this->resObj->getterDependence( 'image' );
       if( $fileDep !== false ) {
         foreach( $fileDep as $fileModel ) {
           $resourceData[ 'image' ] = $fileModel->getAllData( 'onlydata' );
@@ -140,7 +112,7 @@ class ResourceController {
       }
 
       // Cargo los datos de temáticas con las que está asociado el recurso
-      $topicsDep = $recObj->getterDependence( 'id', 'ResourceTopicModel');
+      $topicsDep = $this->resObj->getterDependence( 'id', 'ResourceTopicModel');
       if( $topicsDep !== false ) {
         foreach( $topicsDep as $topicRel ) {
           $topicsArray[$topicRel->getter('id')] = $topicRel->getter('topic');
@@ -148,18 +120,17 @@ class ResourceController {
         $resourceData[ 'topics' ] = $topicsArray;
       }
 
-      // Cargo los datos de destacados con los que está asociado el recurso
-      // $resourceData[ 'starred' ] = $this->getResTerms( $resId );
-      $taxTermDep = $recObj->getterDependence( 'id', 'ResourceTaxonomytermModel');
-      if( $taxTermDep !== false ) {
-        foreach( $taxTermDep as $taxTerm ) {
-          $taxTermArray[$taxTerm->getter('id')] = $taxTerm->getter('taxonomyterm');
+      // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
+      $termsGroupedIdName = $this->getTermsInfoByGroupIdName( $resId );
+      if( $termsGroupedIdName !== false ) {
+        foreach( $termsGroupedIdName as $idNameTaxgroup => $taxTermArray ) {
+          $resourceData[ $idNameTaxgroup ] = $taxTermArray;
+          // error_log( '$resourceData[ '.$idNameTaxgroup.' ] = : '.print_r( $taxTermArray, true ) );
         }
-        $resourceData[ 'starred' ] = $taxTermArray;
       }
 
       // Cargo los datos del campo batiburrillo
-      $extraDataDep = $recObj->getterDependence( 'id', 'ExtraDataModel');
+      $extraDataDep = $this->resObj->getterDependence( 'id', 'ExtraDataModel');
       if( $extraDataDep !== false ) {
         foreach( $extraDataDep as $extraData ) {
           foreach( $langAvailable as $lang ) {
@@ -167,9 +138,14 @@ class ResourceController {
           }
         }
       }
+
+
+      if( $resourceData ) {
+        $this->resData = $resourceData;
+      }
     }
 
-    return $resourceData;
+    return $this->resData;
   }
 
 
@@ -183,19 +159,19 @@ class ResourceController {
    * @return Obj-Form
    **/
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "ResourceController: getFormObj()" );
+    error_log( "ResourceController: getFormObj()" );
+    // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
 
     $form = new FormController( $formName, $urlAction );
 
     $form->setSuccess( 'accept', __( 'Thank you' ) );
 
-
-    if (!isset($valuesArray['tematica'])){
+    if( !isset($valuesArray['tematica']) ) {
       $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
-    }else{
-      $form->setSuccess( 'redirect', 'http://geozzyapp/admin#topic/'.$valuesArray['tematica'][0]);
     }
-
+    else {
+      $form->setSuccess( 'redirect', SITE_URL . 'admin#topic/'.$valuesArray['tematica'][0]);
+    }
 
     $resCollections = array();
     if( isset( $valuesArray[ 'id' ] ) ) {
@@ -248,6 +224,10 @@ class ResourceController {
           'htmlEditor' => 'true',
           'value' => '<p>ola mundo<br />...probando ;-)</p>' )
       ),
+      'externalUrl' => array(
+        'params' => array( 'label' => __( 'External URL' ) ),
+        'rules' => array( 'maxlength' => '2000', 'url' => true )
+      ),
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
         'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
@@ -257,6 +237,10 @@ class ResourceController {
         'translate' => true,
         'params' => array( 'label' => __( 'SEO: URL' ) ),
         'rules' => array( 'maxlength' => '2000' )
+      ),
+      'weight' => array(
+        'params' => array( 'label' => __( 'Priority' ), 'type' => 'select',
+          'options'=> array( '0' => __( 'Normal' ), '-20' => __( 'High' ), '20' => __( 'Low' ) ) )
       ),
       'headKeywords' => array(
         'params' => array( 'label' => __( 'SEO: Head Keywords' ) ),
@@ -324,10 +308,23 @@ class ResourceController {
     // Valadaciones extra
     $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
     $form->removeValidationRule( 'collections', 'inArray' );
+    $form->removeValidationRule( 'multimediaGalleries', 'inArray' );
 
     // Si es una edicion, añadimos el ID y cargamos los datos
     if( $valuesArray !== false ){
       $form->setField( 'id', array( 'type' => 'reserved', 'value' => null ) );
+
+      // Limpiando la informacion de terms para el form
+      foreach( array( 'starred' ) as $taxFieldName ) {
+        if( isset( $valuesArray[ $taxFieldName ] ) && is_array( $valuesArray[ $taxFieldName ] ) ) {
+          $taxFieldValues = array();
+          foreach( $valuesArray[ $taxFieldName ] as $value ) {
+            $taxFieldValues[] = ( is_array( $value ) ) ? $value[ 'id' ] : $value;
+          }
+          $valuesArray[ $taxFieldName ] = $taxFieldValues;
+        }
+      }
+
       $form->loadArrayValues( $valuesArray );
       // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
     }
@@ -385,19 +382,6 @@ class ResourceController {
 
       $valuesArray = $form->getValuesArray();
 
-
-      // Resource LOCATION
-      Cogumelo::load('coreModel/DBUtils.php');
-      $valuesArray['loc'] = DBUtils::encodeGeometry(
-                                array(
-                                  'type' => 'POINT',
-                                  'data'=> array($valuesArray[ 'locLat' ], $valuesArray[ 'locLon' ])
-                                )
-                            );
-
-
-
-
       if( $form->isFieldDefined( 'id' ) && is_numeric( $form->getFieldValue( 'id' ) ) ) {
         $valuesArray[ 'userUpdate' ] = $user->getter( 'id' );
         $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
@@ -408,6 +392,18 @@ class ResourceController {
         $valuesArray[ 'timeCreation' ] = date( "Y-m-d H:i:s", time() );
       }
 
+      // Resource LOCATION
+      if( isset( $valuesArray[ 'locLat' ] ) && isset( $valuesArray[ 'locLon' ] ) ) {
+        Cogumelo::load( 'coreModel/DBUtils.php' );
+        $valuesArray[ 'loc' ] = DBUtils::encodeGeometry(
+          array(
+            'type' => 'POINT',
+            'data'=> array( $valuesArray[ 'locLat' ], $valuesArray[ 'locLon' ] )
+          )
+        );
+        unset( $valuesArray[ 'locLat' ] );
+        unset( $valuesArray[ 'locLon' ] );
+      }
     }
 
 
@@ -441,8 +437,8 @@ class ResourceController {
       $this->setFormTopic( $form, 'topics', $resource );
     }
 
-    if( !$form->existErrors() && $form->isFieldDefined( 'collections' ) ) {
-      $this->setFormCollection( $form, 'collections', $resource );
+    if( !$form->existErrors() && ( $form->isFieldDefined( 'collections' ) || $form->isFieldDefined( 'multimediaGalleries' ) ) ) {
+      $this->setFormCollection( $form, $resource );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
@@ -623,44 +619,93 @@ class ResourceController {
     return $options;
   }
 
+
+
   public function getResTerms( $resId ) {
     $taxTerms = array();
+
     $taxTermModel =  new ResourceTaxonomytermModel();
     $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
-    while( $taxTerm = $taxTermList->fetch() ){
+
+    while( $taxTerm = $taxTermList->fetch() ) {
       $taxTerms[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'taxonomyterm' );
     }
 
+    error_log( "getResTerms( $resId ): ".print_r( $taxTerms, true ) );
     return( count( $taxTerms ) > 0 ? $taxTerms : false );
   }
 
-  /* Devolve as taxonomías asociadas cun listado de términos*/
-  public function getTermsGrouped( $termIds ) {
+  /**
+   * Devolve os taxterm asociados ao recurso dado e a info da taxonomía a maiores
+   */
+  public function getTaxonomyAll( $resId ) {
 
-    $taxTermModel =  new TaxonomytermModel();
-    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'idInCSV' => $termIds ) ) );
+    if( !$this->taxonomyAll ) {
+      $taxTerms = array();
 
-    $taxTerms = array();
-    while( $taxTerm = $taxTermList->fetch() ){
-      $taxTerms[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter('taxgroup');
+      $resourceTaxAllModel = new ResourceTaxonomyAllModel();
+      $taxAllList = $resourceTaxAllModel->listItems(array( 'filters' => array( 'resource' => $resId ) ));
+      if( $taxAllList ) {
+        while( $taxTerm = $taxAllList->fetch() ) {
+          $taxTerms[ $taxTerm->getter('id') ] = $taxTerm->getAllData( 'onlydata' );
+        }
+      }
+
+      if( count( $taxTerms ) > 0 ) {
+        $this->taxonomyAll = $taxTerms;
+      }
     }
 
-    return( count( $taxTerms ) > 0 ? $taxTerms : false );
+    // error_log( "getTaxonomyAll( $resId ): ".print_r( $this->taxonomyAll, true ) );
+    return $this->taxonomyAll;
   }
 
-  /* Devolve un listado de arrays cos taxterm asociados ao recurso dado e a info da taxonomía a maiores*/
-  public function getTaxonomyAll( $termId ) {
 
-    $resourceTaxAllModel =  new ResourceTaxonomyAllModel();
-    $taxAllList = $resourceTaxAllModel->listItems(array( 'filters' => array( 'id' => $termId ) ));
 
-    $taxTerms = array();
-    while( $taxTerm = $taxAllList->fetch() ){
-      $taxTerms[$taxTerm->getter('idTaxterm')] = $taxTerm->getAllData();
+  /**
+   * Devolve en grupos os taxterm asociados ao recurso dado e a info da taxonomía a maiores
+   */
+  public function getTermsInfoByGroupId( $resId ) {
+    $taxGrouped = array();
+
+    $taxTerms = $this->getTaxonomyAll( $resId );
+    if( $taxTerms ) {
+      foreach( $taxTerms as $infoTerm ) {
+        $idTaxGroup = $infoTerm[ 'taxgroup' ];
+        if( !isset( $taxGrouped[ $idTaxGroup ] ) ) {
+          $taxGrouped[ $idTaxGroup ] = array();
+        }
+        $taxGrouped[ $idTaxGroup ][ $infoTerm[ 'id' ] ] = $infoTerm;
+      }
     }
 
-    return( count( $taxTerms ) > 0 ? $taxTerms : false );
+    // error_log( "getTermsGroupedId( $resId ): ".print_r( $taxGrouped, true ) );
+    return( count( $taxGrouped ) > 0 ? $taxGrouped : false );
   }
+
+
+  /**
+   * Devolve en grupos os taxterm asociados ao recurso dado e a info da taxonomía a maiores
+   */
+  public function getTermsInfoByGroupIdName( $resId ) {
+    $taxGrouped = array();
+
+    $taxTerms = $this->getTaxonomyAll( $resId );
+    if( $taxTerms ) {
+      foreach( $taxTerms as $infoTerm ) {
+        $idNameTaxGroup = $infoTerm[ 'idNameTaxgroup' ];
+        if( !isset( $taxGrouped[ $idNameTaxGroup ] ) ) {
+          $taxGrouped[ $idNameTaxGroup ] = array();
+        }
+        $taxGrouped[ $idNameTaxGroup ][ $infoTerm[ 'id' ] ] = $infoTerm;
+      }
+    }
+
+    // error_log( "getTermsInfoByGroupIdName( $resId ): ".print_r( $taxGrouped, true ) );
+    return( count( $taxGrouped ) > 0 ? $taxGrouped : false );
+  }
+
+
 
   public function getCollectionsInfo( $resId ) {
     error_log( "ResourceController: getCollectionsInfo( $resId )" );
@@ -824,9 +869,16 @@ class ResourceController {
     }
   } // setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj )
 
-  private function setFormCollection( $form, $fieldName, $baseObj ) {
+  private function setFormCollection( $form, $baseObj ) {
+
     $baseId = $baseObj->getter( 'id' );
-    $formValues = $form->getFieldValue( $fieldName );
+    $formValuesCol = $form->getFieldValue( 'collections' );
+    $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' );
+
+    $formValuesCol = ( !is_array($formValuesCol) ) ? array() : $formValuesCol;
+    $formValuesMulti = ( !is_array($formValuesMulti) ) ? array() : $formValuesMulti;
+    $formValues = array_merge( $formValuesCol, $formValuesMulti );
+
     $relPrevInfo = false;
 
     if( $formValues !== false && !is_array( $formValues ) ) {
@@ -843,8 +895,7 @@ class ResourceController {
         while( $relPrev = $relPrevList->fetch() ){
           $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
           if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
-//----------------------------------------------------------------------------------------------------------------------------------------------
-            //$relPrev->delete();
+            $relPrev->delete();
           }
         }
       }
@@ -944,17 +995,17 @@ class ResourceController {
 
   /**
     Visualizamos el Recurso
-  */
-  public function getViewBlock( $resObj ) {
+   */
+  public function getViewBlock( $resData ) {
     error_log( "GeozzyResourceView: getViewBlock()" );
 
-    $resBlock = $this->getResourceBlock( $resObj );
+    $resBlock = $this->getResourceBlock( $resData );
 
-    $this->getRTypeCtrl( $resObj->getter( 'rTypeId' ) ); // TODO: Usar rTypeId
+    $this->getRTypeCtrl( $resData[ 'rTypeId' ] );
 
     if( $this->rTypeCtrl ) {
       error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlock' );
-      $rTypeBlock = $this->rTypeCtrl->getViewBlock( $resObj, $resBlock );
+      $rTypeBlock = $this->rTypeCtrl->getViewBlock( $resBlock );
       if( $rTypeBlock ) {
         error_log( 'GeozzyResourceView: resBlock = rTypeBlock' );
         $resBlock = $rTypeBlock;
@@ -962,41 +1013,41 @@ class ResourceController {
     }
 
     return( $resBlock );
-  } // function getViewBlock( $resObj )
+  } // function getViewBlock( $resData )
 
 
-  public function getResourceBlock( $resObj ) {
+  public function getResourceBlock( $resData ) {
     error_log( "GeozzyResourceView: getResourceBlock()" );
 
     $template = new Template();
 
     // DEBUG
-    $htmlMsg = "\n<pre>\n" . print_r( $resObj->getAllData( '' ), true ) . "\n</pre>\n";
+    $htmlMsg = "\n<pre>\n" . print_r( $resData, true ) . "\n</pre>\n";
 
-    foreach( $resObj->getCols() as $key => $value ) {
-      $template->assign( $key, $resObj->getter( $key ) );
-      // error_log( $key . ' === ' . print_r( $resObj->getter( $key ), true ) );
+    foreach( $resData as $key => $value ) {
+      $template->assign( $key, $value );
+      // error_log( $key . ' === ' . print_r( $value, true ) );
     }
 
     // Cargo los datos de image dentro de los del recurso
-    $fileDep = $resObj->getterDependence( 'image' );
-    if( $fileDep !== false ) {
-      $titleImage = $fileDep['0']->getter('title');
-      $template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"
+    if( $resData[ 'image' ] !== false ) {
+      error_log( "" . print_r( $resData[ 'image' ], true ) );
+      $titleImage = isset( $resData[ 'image' ][ 'title' ] ) ? $resData[ 'image' ][ 'title' ] : '';
+      $template->assign( 'image', '<img src="/cgmlformfilews/' . $resData[ 'image' ][ 'id' ] . '"
         alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
-      // error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
+      error_log( 'getterDependence fileData: ' . print_r( $resData[ 'image' ], true ) );
     }
     else {
       $template->assign( 'image', '<p>'.__('None').'</p>' );
     }
 
-    $collections = $this->getCollectionsInfo( $resObj->getter('id') );
+    $collections = $this->getCollectionsInfo( $resData[ 'id' ] );
     error_log( "collections = ". print_r( $collections, true ) );
 
     if( $collections ) {
       foreach( $collections[ 'values' ] as $collectionId ) {
         //$collectionBlock = $this->getCollectionBlock( $collectionId );
-        $collectionBlock = $this->getCollectionBlock($collections[ 'values' ][0]['data']);
+        $collectionBlock = $this->getCollectionBlock( $collections[ 'values' ][ '0' ][ 'data' ] );
         if( $collectionBlock ) {
           $template->addToBlock( 'collections', $collectionBlock );
         }
@@ -1006,7 +1057,7 @@ class ResourceController {
     $template->setTpl( 'resourceViewBlock.tpl', 'geozzy' );
 
     return( $template );
-  } // function getResourceBlock( $resObj )
+  } // function getResourceBlock( $resData )
 
 
   public function getCollectionBlock( $collection ) {
@@ -1072,7 +1123,7 @@ class ResourceController {
     */
 
 
-  } // function getCollectionBlock( $resObj )
+  } // function getCollectionBlock( $collection )
 
 
 } // class ResourceController

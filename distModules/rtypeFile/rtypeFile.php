@@ -15,8 +15,19 @@ class rtypeFile extends Module {
     'view/RTypeFileView.php'
   );
 
+  public $nameLocations = array(
+    'es' => 'Fichero',
+    'en' => 'File',
+    'gl' => 'Ficheiro'
+  );
+
 
   public function __construct() {
   }
 
+
+  public function moduleRc() {
+    geozzy::load('controller/ResourcetypeController.php');
+    ResourcetypeController::rTypeModuleRc( __CLASS__ );
+  }
 }

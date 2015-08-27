@@ -1,7 +1,7 @@
 <?php
 
 abstract class ExplorerController {
-  abstract function serveIndexData( );
-  abstract function serveCurrentData( );
-  abstract function serveFilter( );
+  abstract function serveMinimal( );
+  abstract function servePartial( );
+  abstract function serveChecksum( );
 }

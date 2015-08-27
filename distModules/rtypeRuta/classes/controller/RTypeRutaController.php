@@ -56,7 +56,7 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
   /**
     Visualizamos el Recurso
    **/
-  public function getViewBlock( ResourceModel $resource, Template $resBlock ) {
+  public function getViewBlock( Template $resBlock ) {
     // error_log( "RTypeRutaController: getViewBlock()" );
     $template = false;
 

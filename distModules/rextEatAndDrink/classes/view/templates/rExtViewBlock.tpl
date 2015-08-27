@@ -14,6 +14,11 @@
     {$rextEatAndDrink_reservationPhone|escape:'htmlall'}
   </div>
 
+  <div class="capacity">
+    <label>{t}Capacity{/t}</label>
+    {$rextEatAndDrink_capacity|escape:'htmlall'}
+  </div>
+
   <div class="averagePrice">
     <label>{t}Average Price{/t}</label>
     {$rextEatAndDrink_averagePrice|escape:'htmlall'}
