@@ -4,58 +4,43 @@ geozzy::load( 'model/UrlAliasModel.php' );
 
 class UrlAliasController {
 
-  private $urlFrom = false;
-  public $urlTo = false;
-  public $httpCode = false;
-
-
-  public function __construct( $urlFrom ) {
-    error_log( 'UrlAliasController::__construct: ' . $urlFrom  );
-
-    $this->urlFrom = $urlFrom;
+  public function __construct() {
   }
 
 
-  public function evaluateAlternative() {
-    error_log( 'UrlAliasController::evaluateAlternative' );
+  public function getAlternative( $urlFrom ) {
+    // error_log( 'UrlAliasController::getAlternative' );
 
     $alternative = false;
 
     $urlAliasModel = new UrlAliasModel();
-    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'urlFrom' => '/'.$this->urlFrom ) ) );
-    $urlAlias = $urlAliasList->fetch();
+    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'urlFrom' => '/'.$urlFrom ) ) );
 
-    if( $urlAlias ) {
-      $allData = $urlAlias->getAllData();
-      error_log( "Alias: " . print_r( $allData, true ) );
+    if( $urlAliasList && $urlAlias = $urlAliasList->fetch() ) {
+      $aliasData = $urlAlias->getAllData( 'onlydata' );
+      error_log( "Alias: " . print_r( $aliasData, true ) );
 
-      $baseUrl = '/recurso/' . $allData[ 'data' ][ 'resource' ];
+      $baseUrl = '/recurso/' . $aliasData[ 'resource' ];
       $langUrl = '';
 
-      if( isset( $allData[ 'data' ][ 'lang' ] ) && $allData[ 'data' ][ 'lang' ] !== '' ) {
-        $langUrl = '/' . $allData[ 'data' ][ 'lang' ];
+      if( isset( $aliasData[ 'lang' ] ) && $aliasData[ 'lang' ] !== '' ) {
+        $langUrl = '/' . $aliasData[ 'lang' ];
       }
 
-      if( !isset( $allData[ 'data' ][ 'http' ] ) || $allData[ 'data' ][ 'http' ] <= 200 ) {
+      if( !isset( $aliasData[ 'http' ] ) || $aliasData[ 'http' ] <= 200 ) {
         // Es un alias
-        error_log( "Alias-viewUrl: " . $baseUrl );
-        global $_C;
-        $_C->viewUrl( $baseUrl );
-        /**
-        TODO: NO USA LANG PORQUE FALLA viewUrl
-        $_C->viewUrl( $langUrl . $baseUrl );
-        */
+        $alternative = array(
+          'code' => 'alias',
+          'url' => $baseUrl
+        );
       }
       else {
         // Es un Redirect
-        error_log( "Redirect: " . $langUrl . $baseUrl );
-        Cogumelo::redirect( $langUrl . $baseUrl );
+        $alternative = array(
+          'code' => $aliasData[ 'http' ],
+          'url' => $baseUrl
+        );
       }
-    }
-    else {
-      header( $_SERVER[ 'SERVER_PROTOCOL' ].' 404 Not Found' );
-      echo __( 'URL not found: /'.$this->urlFrom );
-      exit();
     }
 
     return $alternative;

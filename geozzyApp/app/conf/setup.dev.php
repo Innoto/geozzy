@@ -74,6 +74,9 @@ define( 'SITE_URL_HTTP', 'http://'.$_SERVER['HTTP_HOST'] . SITE_FOLDER );
 define( 'SITE_URL_HTTPS', 'https://'.$_SERVER['HTTP_HOST'] . SITE_FOLDER );
 define( 'SITE_URL_CURRENT', SITE_PROTOCOL == 'http' ? SITE_URL_HTTP : SITE_URL_HTTPS );
 
+// Fichero que contiene una clase UrlAliasController con un metodo getAlternative
+define( 'COGUMELO_APP_URL_ALIAS_CONTROLLER', COGUMELO_DIST_LOCATION.'/distModules/geozzy/classes/controller/UrlAliasController.php' );
+
 
 //
 //  Sendmail
