@@ -20,8 +20,10 @@ function bindResourceForm(){
   });
 
   $('#resourceAddCollection').on('click', function(){
+    var rtypeParent = $('#rTypeIdName').val();
+alert(rtypeParent);
     //PARAMS( URL - ID - TITLE )
-    app.mainView.loadAjaxContentModal('/admin/collection/create', 'createCollectionsModal', 'Create Collection');
+    app.mainView.loadAjaxContentModal('/admin/collection/create/'+rtypeParent, 'createCollectionsModal', 'Create Collection');
   });
 
   $('#resourceMultimediaGalleries').multiList({

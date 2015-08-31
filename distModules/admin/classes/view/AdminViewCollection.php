@@ -14,13 +14,20 @@ class AdminViewCollection extends AdminViewMaster
     Creacion/Edicion de Collection
   */
 
-  public function createForm() {
+  public function createForm( $urlParams = false ) {
     $formName = 'collectionCreate';
     $formUrl = '/admin/collection/sendcollection';
 
+    if( isset( $urlParams['1'] ) ) {
+      $urlParamRTypeParent = $urlParams['1'];
+      $valuesArray['filterRTypeParent'] = $urlParamRTypeParent;
+    }else{
+      $valuesArray = false;
+    }
+
     $collectionView = new GeozzyCollectionView();
 
-    $formBlock = $collectionView->getFormBlock( $formName, $formUrl, false );
+    $formBlock = $collectionView->getFormBlock( $formName, $formUrl, $valuesArray );
     $formBlock->setTpl( 'collectionFormBlockBase.tpl', 'admin' );
 
     // Template base

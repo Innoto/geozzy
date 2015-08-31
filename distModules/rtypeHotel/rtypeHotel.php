@@ -21,6 +21,9 @@ class rtypeHotel extends Module {
     'gl' => 'Hotel'
   );
 
+  public $collectionRTypeFilter = array(
+    'rtypeHotel', 'rtypeRestaurant'
+  );
 
   public function __construct() {
   }
