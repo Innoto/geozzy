@@ -26,10 +26,17 @@
       center: { lat: 43.1, lng: -7.36 },
       zoom: 7
     };
+
+
     resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
 
 
     var explorer = new geozzy.explorer({debug:true});
+    var listaActiva = new geozzy.explorerDisplay.activeList();
+    var mapa = new geozzy.explorerDisplay.map();
+    explorer.addDisplay( 'activeList', listaActiva );
+    explorer.addDisplay( 'map', mapa );
+
     explorer.exec();
 
   });

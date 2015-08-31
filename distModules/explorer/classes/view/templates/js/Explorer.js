@@ -55,81 +55,57 @@ geozzy.explorer = function( opts ) {
     pasiveList: false
   }
 
-  that.addDisplay = {};
-
-  that.addDisplay.map = function( obj ) {
-    that.displays.map = obj;
-    that.displays.map.parent = that;
+  that.addDisplay = function( diplayId, displayObj ){
+    if( diplayId == 'map' ) {
+      that.displays.map = displayObj;
+      that.displays.map.parentExplorer = that;
+    }
+    else
+    if( diplayId == 'activeList' ) {
+      that.displays.activeList = displayObj;
+      that.displays.activeList.parentExplorer = that;
+    }
+    else
+    if( diplayId == 'pasiveList' ) {
+      that.displays.pasiveList = displayObj;
+      that.displays.pasiveList.parentExplorer = that;
+    }
+    else {
+      console.log('Geozzy explorer ERROR: Display type id not found');
+    }
   }
 
-  that.addDisplay.activeList = function( obj ) {
-    that.displays.activeList = obj;
-    that.displays.activeList.parent = that;
-  }
-
-  that.addDisplay.pasiveList = function( obj ) {
-    that.displays.pasiveList = obj;
-    that.displays.pasiveList.parent = that;
-  }
 
 
   that.renderDisplays = function() {
     var resourcesToLoad = [];
 
     if(that.displays.map) {
+      resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
       that.displays.map.render();
-      resourcesToLoad = that.displays.getVisibleResources();
     }
 
     if(that.displays.activeList) {
-      that.displays.activeList.getVisibleResources();
+      resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
     }
 
     if(that.displays.pasiveList) {
-      that.displays.pasiveList.getVisibleResources();
+      //that.displays.pasiveList.getVisibleResourceIds();
     }
 
 
+
     // Advanced Fetch
-    /*
-
-        if(that.displays.activeList) {
-          that.displays.activeList.render();
-        }
-
-        if(that.displays.pasiveList) {
-          that.displays.map.pasiveList();
-        }
-    */
-
-    // add markerssssSSSSSSSSSSSSSSSSSSSSSS
-    that.resourceCurrentIndex.setPerPage(600);
-    $.each( that.resourceCurrentIndex.toJSON(), function(i,e) {
-
-      new google.maps.Marker({
-        position: new google.maps.LatLng( e.lat, e.lng ),
-        map: resourceMap,
-        title: toString(e.id)
-
-      });
-    });
-    that.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.resourceCurrentIndex.length+ 'recursos' );
-
-
     that.timeDebugerExtended.log('Starting second data fetch at')
     that.resourcePartialList.fetchAndCache({
-
+        'data': resourcesToLoad,
         'url': that.options.explorerAPIHost + that.options.explorerName+ '/partial',
         'success': function() {
           that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
 
-          that.resourceCurrentIndex.setPerPage(100);
-
-          that.timeDebugerExtended.log( '&nbsp;- pagination' );
-          $.each( that.resourceCurrentIndex.pluck('id'), function(i,e){
-            $('#explorerList').append('<div>'+ that.resourcePartialList.get( e ).get('title') +'</div><br>');
-          });
-
+          if(that.displays.activeList) {
+            that.displays.activeList.render();
+          }
 
           that.timeDebugerExtended.log( '&nbsp;- Render lists' );
         }
@@ -161,14 +137,10 @@ geozzy.explorer = function( opts ) {
           that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
 
 
-          // when map exist, set current index as map context
-          if( that.displays.map ) {
 
-          }
-          else {
-            that.resourceCurrentIndex = new Backbone.Obscura(that.resourceIndex);
-            that.timeDebugerMain.log( '&nbsp;- Clonado indice' );
-          }
+          that.resourceCurrentIndex = new Backbone.Obscura(that.resourceIndex);
+          that.timeDebugerMain.log( '&nbsp;- Clonado indice' );
+
 
           that.timeDebugerMain.log( '> Carga inicial concluida' );
 

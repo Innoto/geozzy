@@ -52,6 +52,8 @@ class DefaultExplorerController extends ExplorerController {
 
     $resources = $resourceModel->listItems( array('fields'=>array('id', 'title_es', 'image') ) );
 
+var_dump($_POST);
+
     $coma = '';
 
     echo '[';
