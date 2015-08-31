@@ -45,6 +45,7 @@ class AdminViewCollection extends AdminViewMaster
 
     if( isset( $urlParams['1'] ) ) {
       $idCollection = $urlParams['1'];
+
       $collectionsModel = new CollectionModel();
       $collectionsList = $collectionsModel->listItems( array( 'affectsDependences' =>
         array( 'FiledataModel', 'CollectionResourcesModel' ),
@@ -56,6 +57,11 @@ class AdminViewCollection extends AdminViewMaster
       $collectionData = $collection->getAllData();
       $collectionData = $collectionData[ 'data' ];
 
+
+      if(isset( $urlParams['2'] )){
+        $collectionData['filterRTypeParent'] = $urlParams['2'];
+      }
+      
       // Cargo los datos de image dentro de los del collection
       $fileDep = $collection->getterDependence( 'image' );
       if( $fileDep !== false ) {

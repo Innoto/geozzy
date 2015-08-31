@@ -154,7 +154,7 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/resourcetypefile/sendresource$#', 'view:AdminViewResource::sendResourceForm' );
 
     $this->addUrlPatterns( '#^admin/collection/create/(.+)$#', 'view:AdminViewCollection::createForm' );
-    $this->addUrlPatterns( '#^admin/collection/edit/(\d+)$#', 'view:AdminViewCollection::editForm' );
+    $this->addUrlPatterns( '#^admin/collection/edit/(\d+)/(.+)$#', 'view:AdminViewCollection::editForm' );
     $this->addUrlPatterns( '#^admin/collection/sendcollection$#', 'view:AdminViewCollection::sendCollectionForm' );
 
     $this->addUrlPatterns( '#^admin/multimedia/create$#', 'view:AdminViewCollection::createMultimediaForm' );
