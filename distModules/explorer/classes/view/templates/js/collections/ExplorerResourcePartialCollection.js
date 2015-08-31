@@ -8,7 +8,7 @@ var ExplorerResourcePartialCollection = Backbone.Collection.extend({
     resPartialCollection.url = params.url;
 
     var tmpResources = resPartialCollection.fetch({
-      data: { ids: [1,10,15] },
+      data: {ids:params.ids},
       type: 'POST',
       success: function( list ){
         list.each(function(resource) {
@@ -16,7 +16,7 @@ var ExplorerResourcePartialCollection = Backbone.Collection.extend({
         });
         if(params.success) {
           params.success();
-        }        
+        }
       }
     });
 
