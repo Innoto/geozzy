@@ -3,12 +3,13 @@ var ExplorerResourcePartialCollection = Backbone.Collection.extend({
   model: ExplorerResourcePartialModel,
 
   fetchAndCache: function( params ) {
+
     var that = this;
     var resPartialCollection = new ExplorerResourcePartialCollection();
     resPartialCollection.url = params.url;
 
     var tmpResources = resPartialCollection.fetch({
-      data: {ids:params.ids},
+      data: params.data,
       type: 'POST',
       success: function( list ){
         list.each(function(resource) {

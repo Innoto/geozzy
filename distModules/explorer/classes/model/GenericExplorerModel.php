@@ -48,7 +48,10 @@ class GenericExplorerModel extends Model
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'ids' => ' id IN (?)'
+
+  );
 
 
   function __construct( $datarray= array(), $otherRelObj = false ) {
