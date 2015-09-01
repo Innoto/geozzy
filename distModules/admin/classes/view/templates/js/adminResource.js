@@ -86,10 +86,22 @@ alert(rtypeParent);
     var resourceMap = new google.maps.Map(document.getElementById('resourceLocationMap'), mapOptions);
 
     // add marker
+
+    var my_marker = {
+      url: media+'/module/admin/img/geozzy_marker.png',
+      // This marker is 20 pixels wide by 36 pixels high.
+      size: new google.maps.Size(30, 36),
+      // The origin for this image is (0, 0).
+      origin: new google.maps.Point(0, 0),
+      // The anchor for this image is the base of the flagpole at (0, 36).
+      anchor: new google.maps.Point(13, 36)
+    };
+
     var resourceMarker = new google.maps.Marker({
       position: new google.maps.LatLng( latValue, lonValue ),
       map: false,
       title: 'Resource location',
+      icon: my_marker,
       draggable: true
 
     });
