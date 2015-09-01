@@ -251,24 +251,25 @@ class AdminViewResource extends AdminViewMaster {
     $formName = 'resourceUrlCreate';
     $formUrl = '/admin/resourcetypeurl/sendresource';
 
+    $noFields = array(
+      'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
+      'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
+    );
+
     $resourceView = new GeozzyResourceView();
     $rtypeControl = new ResourcetypeModel();
     $rtype = $rtypeControl->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
 
     $recursoData['rTypeId'] = $rtype->getter('id');
-    $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
+    $form = $resourceView->getFormObj( $formName, $formUrl, $recursoData );
+    $form->removeField( $noFields );
+    $formBlock = $resourceView->formToTemplate( $form );
 
     // Cambiamos el template del formulario
     $formBlock->setTpl( 'resourceTypeFormBlockBase.tpl', 'admin' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
 
-    // Fragmentamos el formulario generado
-    $noFields = $this->extractFormBlockFields( $formBlock,
-      array(
-        'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
-        'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
-      )
-    );
+
 
     $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
     $this->template->exec();
@@ -283,17 +284,27 @@ class AdminViewResource extends AdminViewMaster {
     $formName = 'resourceFileCreate';
     $formUrl = '/admin/resourcetypefile/sendresource';
 
+    $noFields = array(
+      'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
+      'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
+    );
+
     $resourceView = new GeozzyResourceView();
     $rtypeControl = new ResourcetypeModel();
     $rtype = $rtypeControl->listItems( array( 'filters' => array('idName' => 'rtypeFile') ) )->fetch();
 
     $recursoData['rTypeId'] = $rtype->getter('id');
-    $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
+    // $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
+    $form = $resourceView->getFormObj( $formName, $formUrl, $recursoData );
+    $form->removeField( $noFields );
+    $formBlock = $resourceView->formToTemplate( $form );
+
 
     // Cambiamos el template del formulario
     $formBlock->setTpl( 'resourceTypeFormBlockBase.tpl', 'admin' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
 
+/*
     // Fragmentamos el formulario generado
     $noFields = $this->extractFormBlockFields( $formBlock,
       array(
@@ -301,6 +312,7 @@ class AdminViewResource extends AdminViewMaster {
         'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
       )
     );
+*/
 
     $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
     $this->template->exec();
