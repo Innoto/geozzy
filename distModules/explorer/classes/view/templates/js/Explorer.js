@@ -81,12 +81,13 @@ geozzy.explorer = function( opts ) {
     var resourcesToLoad = [];
 
     if(that.displays.map) {
-      resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
+      //resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
       that.displays.map.render();
     }
 
     if(that.displays.activeList) {
       resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
+
     }
 
     if(that.displays.pasiveList) {
@@ -94,13 +95,13 @@ geozzy.explorer = function( opts ) {
     }
 
 
-
     // Advanced Fetch
     that.timeDebugerExtended.log('Starting second data fetch at')
+
     that.resourcePartialList.fetchAndCache({
-        'data': resourcesToLoad,
-        'url': that.options.explorerAPIHost + that.options.explorerName+ '/partial',
-        'success': function() {
+        data: {ids: resourcesToLoad},
+        url: that.options.explorerAPIHost + that.options.explorerName+ '/partial',
+        success: function() {
           that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
 
           if(that.displays.activeList) {
