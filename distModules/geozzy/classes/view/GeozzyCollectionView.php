@@ -332,7 +332,7 @@ class GeozzyCollectionView extends View
 
       $filterNotIn = array( "rtypeUrl", "rtypeFile" );
       $rtypeArray = $rtypeControl->listItems(
-        array( 'filters' => array( 'idNameExists' => $filter ) )
+        array( 'filters' => array( 'idNameExists' => $filterNotIn ) )
       );
       $filterRtype = array();
       while( $res = $rtypeArray->fetch() ){
