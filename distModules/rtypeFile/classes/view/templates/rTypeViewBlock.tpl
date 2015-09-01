@@ -1,6 +1,6 @@
-<!-- rTypeViewBlock.tpl en geozzy module -->
+<!-- rTypeViewBlock.tpl en rtypeFile module -->
 
-<p> --- rTypeViewBlock.tpl en geozzy module --- </p>
+<p> --- rTypeViewBlock.tpl en rtypeFile module --- </p>
 
 <div class="resViewBlock">
 
@@ -39,15 +39,15 @@
   </div>
   {/if}
 
-  <div class="rTypeUrl">
-    <p> --- rTypeUrl Ext --- </p>
-    <div class="rTypeUrl rExtUrl">
-      {$rextUrl}
+  <div class="rTypeFile">
+    <p> --- rTypeFile Ext --- </p>
+    <div class="rTypeFile rExtFile">
+      {$rextFile}
     </div>
   </div>
 
 </div>
 
-<!-- /rTypeViewBlock.tpl en geozzy module -->
+<!-- /rTypeViewBlock.tpl en rtypeFile module -->
 
 

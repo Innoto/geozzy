@@ -1,16 +1,23 @@
-<!-- rExtViewBlock.tpl en rExtUrl module -->
+<!-- rExtViewBlock.tpl en rExtFile module -->
 
-<p> --- rExtViewBlock.tpl en rExtUrl module</p>
+<p> --- rExtViewBlock.tpl en rExtFile module</p>
 
-<div class="rExtUrl">
+<div class="rExtFile">
 
-  <div class="urlContentType">
-    <label>{t}URL content type{/t}</label>
-    {$rExtUrl_urlContentType|escape:'htmlall'}
-  </div>
+  {if $rExtFile_file}
+    <div class="fileName">
+      <label>{t}File name{/t}</label>
+      {$rExtFile_file['name']}
+    </div>
+    <img src="/cgmlformfilews/{$rExtFile_file[ 'id' ]}"></img>
+  {else}
+    <p>None</p>
+  {/if}
+
+
 
 </div>
 
-<!-- /rExtViewBlock.tpl en rExtUrl module -->
+<!-- /rExtViewBlock.tpl en rExtFile module -->
 
 

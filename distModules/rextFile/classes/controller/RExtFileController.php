@@ -20,11 +20,12 @@ class RExtFileController extends RExtController implements RExtInterface {
     $rExtData = false;
 
     $rExtModel = new RExtFileModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'id' => $resId ), 'affectsDependences' => array( 'RExtFileModel' ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'affectsDependences' => array( 'FiledataModel' ) ) );
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
+      error_log( "RExtFileController: getRExtData - getAllData:" . print_r( $rExtData, true ) );
 
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
       $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
@@ -60,9 +61,9 @@ class RExtFileController extends RExtController implements RExtInterface {
 
     $fieldsInfo = array(
       'file' => array(
-        'params' => array( 'label' => __( 'File' ), 'type' => 'file', 'id' => 'fileRext',
+        'params' => array( 'label' => __( 'File' ), 'type' => 'file', 'id' => 'rExtFileField',
         'placeholder' => __( 'File' ), 'destDir' => '/rext_file' ),
-        'rules' => array( 'maxfilesize' => '100000' )
+        'rules' => array( 'maxfilesize' => '1000000' )
       )
     );
 
@@ -137,8 +138,29 @@ class RExtFileController extends RExtController implements RExtInterface {
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     error_log( "RExtFileController: resFormProcess()" );
 
-    if( !$form->existErrors() && $form->isFieldDefined( 'file' ) ) {
-      $this->setFormFiledata( $form, 'file', 'file', $resource );
+
+    if( !$form->existErrors() ) {
+      $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
+      unset( $valuesArray[ 'file' ] );
+      $valuesArray[ 'resource' ] = $resource->getter( 'id' );
+
+      // error_log( 'NEW RExtFileModel: ' . print_r( $valuesArray, true ) );
+      $rExtModel = new RExtFileModel( $valuesArray );
+      if( $rExtModel === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
+      }
+    }
+
+
+    // Guardo los datos de file
+    $fileField = $this->addPrefix( 'file' );
+    if( !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
+      $this->defResCtrl->setFormFiledata( $form, $fileField, 'file', $rExtModel );
+      $rExtModel->save();
+    }
+
+    if( !$form->existErrors() ) {
+      $rExtModel->save();
     }
 
     if( $this->taxonomies ) {
@@ -192,19 +214,36 @@ class RExtFileController extends RExtController implements RExtInterface {
       }
 
       // Procesamos as taxonomías asociadas para mostralas en CSV
-      foreach( $this->taxonomies as $tax ) {
-        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-        $taxFieldValue = '';
+      if( $this->taxonomies ) {
+        foreach( $this->taxonomies as $tax ) {
+          $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+          $taxFieldValue = '';
 
-        if( isset( $rExtData[ $taxFieldName ] ) ) {
-          $terms = array();
-          foreach( $rExtData[ $taxFieldName ] as $termInfo ) {
-            $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
+          if( isset( $rExtData[ $taxFieldName ] ) ) {
+            $terms = array();
+            foreach( $rExtData[ $taxFieldName ] as $termInfo ) {
+              $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
+            }
+            $taxFieldValue = implode( ', ', $terms );
           }
-          $taxFieldValue = implode( ', ', $terms );
+          $template->assign( $taxFieldName, $taxFieldValue );
         }
-        $template->assign( $taxFieldName, $taxFieldValue );
       }
+
+      /*
+      // Cargo los datos de file
+      $fileField = $this->addPrefix( 'file' );
+      if( $rExtData[ $fileField ] !== false ) {
+        $fileData = $rExtData[ $fileField ];
+        error_log( 'fileData: ' . print_r( $fileData, true ) );
+        $titleImage = isset( $fileData[ 'title' ] ) ? $fileData[ 'title' ] : '';
+        $template->assign( $fileField, '<img src="/cgmlformfilews/' . $fileData[ 'id' ] . '"
+          alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
+      }
+      else {
+        $template->assign( $fileField, '<p>'.__('None').'</p>' );
+      }
+      */
 
       $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
       $template->setTpl( 'rExtViewBlock.tpl', 'rextFile' );
