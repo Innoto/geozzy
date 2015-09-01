@@ -111,7 +111,7 @@ class GeozzyResourceView extends View {
     $form = $this->defResCtrl->resFormLoad();
 
     if( !$form->existErrors() ) {
-      // Enviamos el OK-ERROR a la BBDD y al formulario
+      // Validar y guardar los datos
       $resource = $this->defResCtrl->actionResourceFormProcess( $form );
     }
 
