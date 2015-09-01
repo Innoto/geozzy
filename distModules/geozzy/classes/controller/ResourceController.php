@@ -505,15 +505,16 @@ class ResourceController {
   /**
     Filedata methods
    */
-  private function setFormFiledata( $form, $fieldName, $colName, $resObj ) {
+  public function setFormFiledata( $form, $fieldName, $colName, $resObj ) {
     $fileField = $form->getFieldValue( $fieldName );
-    error_log( 'fileInfo: '. print_r( $fileField, true ) );
+    error_log( 'setFormFiledata fileInfo: '. print_r( $fileField, true ) );
     $fileFieldValues = false;
     $error = false;
 
     if( isset( $fileField['status'] ) ) {
 
       // error_log( 'To Model - fileInfo: '. print_r( $fileField[ 'values' ], true ) );
+      // error_log( 'To Model - status: '.$fileField['status'] );
 
       switch( $fileField['status'] ) {
         case 'LOADED':
