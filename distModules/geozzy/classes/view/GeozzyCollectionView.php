@@ -38,16 +38,11 @@ class GeozzyCollectionView extends View
     // $form->setSuccess( 'redirect', SITE_URL . 'admin#collection/list' );
 
     // Recursos disponibles
+    $valueMultimedia = ( array_key_exists('multimedia', $valuesArray ) ) ? $valuesArray['multimedia'] : false;
+    $valueRTypeFilterParent = ( array_key_exists('filterRTypeParent', $valuesArray ) ) ? $valuesArray['filterRTypeParent'] : false;
 
-    $resourceModel =  new ResourceModel();
-/*
-    if($valuesArray['multimedia'] === 1){
-      $filter = array( "rtypeUrl", "rtypeFile" );
-    }else{
-      $filter = array( "rtypeRestaurant", "rtypeHotel" );
-    }
-*/
-    $elemList = $resourceModel->listItems();
+    $elemList = $this->getAvailableResources( $valueMultimedia, $valueRTypeFilterParent );
+
 
     $resOptions = array();
     while( $res = $elemList->fetch() ){
@@ -92,7 +87,7 @@ class GeozzyCollectionView extends View
       )
     );
 
-    if( $valuesArray['multimedia'] === 1 ){
+    if( array_key_exists('multimedia', $valuesArray ) && $valuesArray['multimedia'] === 1 ){
       $fieldsInfo['addResourceLocal'] = array(
         'params' => array( 'id' => 'addResourceLocal', 'type' => 'button', 'value' => __( 'Add Local Resource ' ))
       );
@@ -312,5 +307,59 @@ class GeozzyCollectionView extends View
     $form->sendJsonResponse();
 
   } // function actionCollectionForm()
+
+  public function getAvailableResources( $multimedia, $filterRTypeParent ){
+
+    if( $multimedia === 1){
+      $filter = array( "rtypeUrl", "rtypeFile" );
+    }else{
+      if( $filterRTypeParent && class_exists($filterRTypeParent) ){
+
+        $rtypeMod = new $filterRTypeParent();
+        $rtypeFilter = (isset($rtypeMod->collectionRTypeFilter)) ? $rtypeMod->collectionRTypeFilter : false;
+        $rtypeFilter = ( is_array($rtypeFilter) && count($rtypeFilter)>0 ) ? $rtypeFilter : false;
+        $filter = $rtypeFilter;
+      }else{
+        $filter = false;
+      }
+    }
+
+
+    $resourceModel = new ResourceModel();
+    $rtypeControl = new ResourcetypeModel();
+
+    if( !$filter ){
+
+      $filterNotIn = array( "rtypeUrl", "rtypeFile" );
+      $rtypeArray = $rtypeControl->listItems(
+        array( 'filters' => array( 'idNameExists' => $filterNotIn ) )
+      );
+      $filterRtype = array();
+      while( $res = $rtypeArray->fetch() ){
+        array_push( $filterRtype, $res->getter('id') );
+      }
+      $elemList = $resourceModel->listItems(
+        array( 'filters' => array( 'notInRtype' => $filterRtype ) )
+      );
+
+    }else{
+
+      $rtypeArray = $rtypeControl->listItems(
+        array( 'filters' => array( 'idNameExists' => $filter ) )
+      );
+
+      $filterRtype = array();
+      while( $res = $rtypeArray->fetch() ){
+        array_push( $filterRtype, $res->getter('id') );
+      }
+
+      $elemList = $resourceModel->listItems(
+        array( 'filters' => array( 'inRtype' => $filterRtype ) )
+      );
+
+    }
+
+    return $elemList;
+  }
 
 } // class CollectionView extends Vie

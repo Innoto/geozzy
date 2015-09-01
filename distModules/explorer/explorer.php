@@ -52,6 +52,9 @@ class explorer extends Module
     'js/models/ExplorerResourcePartialModel.js',
     'js/collections/ExplorerResourceMinimalCollection.js',
     'js/collections/ExplorerResourcePartialCollection.js',
+    'js/views/ExplorerActiveListView.js',
+    'js/views/ExplorerPasiveListView.js',
+    'js/views/ExplorerMapView.js',
     'js/Explorer.js'
   );
 

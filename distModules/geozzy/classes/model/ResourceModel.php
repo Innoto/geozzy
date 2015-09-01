@@ -102,7 +102,8 @@ class ResourceModel extends Model {
     'find' => " UPPER(title)  LIKE CONCAT( '%', UPPER(?), '%' ) ",
     'nottopic' => ' id NOT IN ( select resource from geozzy_resource_topic where topic=? ) ',
     'notintaxonomyterm' => ' id NOT IN ( select resource from geozzy_resource_taxonomyterm where taxonomyterm=? )',
-    'inrtype' => ' rTypeId IN (?) '
+    'inRtype' => ' rTypeId IN (?) ',
+    'notInRtype' => ' rTypeId NOT IN (?) '
   );
 
 

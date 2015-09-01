@@ -156,7 +156,7 @@ class AdminViewResource extends AdminViewMaster {
 
 
   public function resourceEditForm( $urlParams = false ) {
-    $formName = 'resourceCreate';
+    $formName = 'resourceEdit';
     $formUrl = '/admin/resource/sendresource';
 
     $valuesArray = false;

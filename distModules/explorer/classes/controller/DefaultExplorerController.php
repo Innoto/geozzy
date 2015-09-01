@@ -50,7 +50,13 @@ class DefaultExplorerController extends ExplorerController {
     explorer::load('model/GenericExplorerModel.php');
     $resourceModel = new GenericExplorerModel();
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'title_es', 'image') ) );
+    $ids = false;
+
+    if( isset($_POST['ids']) ){
+      $ids = array_map( 'intval',$_POST['ids']);
+    }
+
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'title_es', 'image'), 'filters' => array( 'ids' => $ids) ) );
 
     $coma = '';
 

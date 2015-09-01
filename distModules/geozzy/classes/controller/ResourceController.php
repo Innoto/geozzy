@@ -139,6 +139,10 @@ class ResourceController {
         }
       }
 
+      // Cargo el campo rTypeIdName
+      $rtypeControl = new ResourcetypeModel();
+      $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $resourceData['rTypeId'] ) ) )->fetch();
+      $resourceData['rTypeIdName'] = $rTypeItem->getter('idName');
 
       if( $resourceData ) {
         $this->resData = $resourceData;
@@ -205,7 +209,7 @@ class ResourceController {
         'params' => array( 'type' => 'reserved' )
       ),
       'rTypeIdName' => array(
-        'params' => array( 'type' => 'hidden' )
+        'params' => array( 'id' => 'rTypeIdName', 'type' => 'hidden' )
       ),
       'title' => array(
         'translate' => true,

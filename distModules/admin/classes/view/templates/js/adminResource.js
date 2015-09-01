@@ -20,8 +20,9 @@ function bindResourceForm(){
   });
 
   $('#resourceAddCollection').on('click', function(){
+    var rtypeParent = $('#rTypeIdName').val();
     //PARAMS( URL - ID - TITLE )
-    app.mainView.loadAjaxContentModal('/admin/collection/create', 'createCollectionsModal', 'Create Collection');
+    app.mainView.loadAjaxContentModal('/admin/collection/create/'+rtypeParent, 'createCollectionsModal', 'Create Collection');
   });
 
   $('#resourceMultimediaGalleries').multiList({
@@ -152,7 +153,8 @@ function successCollectionForm( data ){
 }
 
 function editCollection(e){
-  app.mainView.loadAjaxContentModal('/admin/collection/edit/'+e.value, 'editCollectionsModal', 'Edit Collection');
+  var rtypeParent = $('#rTypeIdName').val();
+  app.mainView.loadAjaxContentModal('/admin/collection/edit/'+e.value+'/'+rtypeParent, 'editCollectionsModal', 'Edit Collection');
 }
 function editMultimediaGallery(e){
   app.mainView.loadAjaxContentModal('/admin/multimedia/edit/'+e.value, 'editMultimediaGalleryModal', 'Edit Multimedia Gallery');

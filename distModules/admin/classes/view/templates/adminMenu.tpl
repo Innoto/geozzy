@@ -4,7 +4,7 @@
 
         <div id="menuInfo">
           <div class="menuLogo">
-            <img src="/media/module/geozzy/img/logo.png" class="img-responsive">
+            <img src="{$mediaJs}/module/geozzy/img/logo.png" class="img-responsive">
           </div>
           <ul class="userInfo nav">
             <li class="dropdown">
