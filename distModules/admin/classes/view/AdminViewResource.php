@@ -364,4 +364,27 @@ class AdminViewResource extends AdminViewMaster {
     $resourceView->actionResourceForm();
   } // sendResourceForm()
 
+  public function sendModalResourceForm() {
+    $resourceView = new GeozzyResourceView();
+    $resource = null;
+
+    // Se construye el formulario con sus datos y se realizan las validaciones que contiene
+    $form = $resourceView->defResCtrl->resFormLoad();
+
+    if( !$form->existErrors() ) {
+      // Validar y guardar los datos
+      $resource = $resourceView->actionResourceFormProcess( $form );
+    }
+
+    if( !$form->existErrors() && $resource ) {
+Cogumelo::console($resource);
+      $form->removeSuccess( 'redirect' );
+      $form->setSuccess( 'jsEval', ' successResourceForm( { id : "'.$resource->getter('id').'", title: "'.$resource->getter('title_'.$form->langDefault).'", image: "'.$resource->getter('image').'" });' );
+
+      // Enviamos el OK-ERROR a la BBDD y al formulario
+      $resourceView->actionResourceFormSuccess( $form, $resource );
+    }
+
+  }
+
 }
