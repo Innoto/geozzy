@@ -19,15 +19,12 @@ var AdminRouter = Backbone.Router.extend({
 
     "resource/list": "resourceList",
     "topic/:id" : "resourceintopicList",
-    "resourceintopic/list/:id": "resourceintopicList",
-    "resourceouttopic/list/:id": "resourceouttopicList",
+    "resourceintopic/list/topic/:id": "resourceintopicList",
+    "resourceouttopic/list/topic/:id": "resourceouttopicList",
     "starred/:id": "starredList",
     "starred/:id/assign": "starredAssign",
-    //"resource/create/all/:resourcetype" : "resourceCreate",
     "resource/create(/topic/:topicId)/rType/:resourcetype" : "resourceCreate",
-    //"resource/create/:topic/:resourcetype" : "resourceCreateinTopic",
-    "resource/edit/:id" : "resourceEdit",
-
+    "resource/edit/id/:id" : "resourceEdit",
     "collection/create" : "collectionCreate",
     "collection/edit/:id" : "collectionEdit"
 
@@ -91,7 +88,7 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   roleEdit: function( id ) {
-    app.mainView.loadAjaxContent( '/admin/role/edit/' + id );
+    app.mainView.loadAjaxContent( '/admin/role/edit/roleId/' + id );
     app.mainView.setBodyClass('roleEdit');
   },
 
@@ -103,13 +100,13 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   resourceintopicList: function(id) {
-    app.mainView.loadAjaxContent( '/admin/resourceintopic/list/'+id);
+    app.mainView.loadAjaxContent( '/admin/resourceintopic/list/topic/'+id);
     app.mainView.menuSelect('topic_'+id);
     app.mainView.setBodyClass('resourceintopicList');
   },
 
   resourceouttopicList: function(id) {
-    app.mainView.loadAjaxContent( '/admin/resourceouttopic/list/'+id);
+    app.mainView.loadAjaxContent( '/admin/resourceouttopic/list/topic/'+id);
     app.mainView.setBodyClass('resourceouttopicList');
   },
 
@@ -131,16 +128,13 @@ var AdminRouter = Backbone.Router.extend({
       app.mainView.loadAjaxContent( '/admin/resource/create/resourcetype/'+resourcetype);
     app.mainView.setBodyClass('resourceCreate');
   },
-  // resourceCreate:function(resourcetype) {
-  //   app.mainView.loadAjaxContent( '/admin/resource/create/all/'+resourcetype);
-  //   app.mainView.setBodyClass('resourceCreate');
-  // },
+
   resourceCreateinTopic:function( topic, resourcetype) {
     app.mainView.loadAjaxContent( '/admin/resource/create/'+topic+'/'+resourcetype);
     app.mainView.setBodyClass('resourceCreateinTopic');
   },
   resourceEdit:function( id )   {
-    app.mainView.loadAjaxContent( '/admin/resource/edit/' + id);
+    app.mainView.loadAjaxContent( '/admin/resource/edit/resourceId/' + id);
     app.mainView.setBodyClass('resourceEdit');
   },
 
@@ -149,7 +143,7 @@ var AdminRouter = Backbone.Router.extend({
     app.mainView.setBodyClass('collectionCreate');
   },
   collectionEdit:function( id )   {
-    app.mainView.loadAjaxContent( '/admin/collection/edit/' + id);
+    app.mainView.loadAjaxContent( '/admin/collection/edit/collectionId/' + id);
     app.mainView.setBodyClass('collectionEdit');
   }
 

@@ -1,6 +1,6 @@
 <?php
 admin::load('view/AdminViewMaster.php');
-
+Cogumelo::load("coreController/RequestController.php");
 
 class AdminViewResourceOutTopic extends AdminViewMaster {
 
@@ -12,11 +12,14 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
   /**
   * Section list resource
   **/
-  public function listResourcesOutTopic( $request ) {
-    $topicId = $request['1'];
+  public function listResourcesOutTopic( $urlParams ) {
+
+    $urlParamsList = RequestController::processUrlParams($urlParams[1]);
+
+    $topicId = $urlParamsList['topic'];
 
     $template = new Template( $this->baseDir );
-    $template->assign('resourceouttopicTable', table::getTableHtml('AdminViewResourceOutTopic', '/admin/resourceouttopic/table/'.$topicId ) );
+    $template->assign('resourceouttopicTable', table::getTableHtml('AdminViewResourceOutTopic', '/admin/resourceouttopic/table/topic/'.$topicId ) );
     $template->setTpl('listResourceOutTopic.tpl', 'admin');
 
     $resourcetype =  new ResourcetypeModel();
@@ -59,7 +62,10 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
     $this->template->exec();
   }
 
-  public function listResourcesOutTopicTable( $topicId ) {
+  public function listResourcesOutTopicTable( $urlParams ) {
+
+    $urlParamsList = RequestController::processUrlParams($urlParams[1]);
+    $topicId = $urlParamsList['topic'];
 
     table::autoIncludes();
     $resource =  new ResourceModel();
@@ -76,7 +82,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin#resource/edit/".$rowId');
+    $tabla->setEachRowUrl('"/admin#resource/edit/id/".$rowId');
     $tabla->setNewItemUrl('/admin#resource/create');
 
     // Nome das columnas
@@ -84,7 +90,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
     $tabla->setCol('rTypeId', __('Type'));
     $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
 
-    $tabla->setActionMethod(__('Assign'), 'assign', 'createTopicRelation('.$topicId[1].',$rowId)');
+    $tabla->setActionMethod(__('Assign'), 'assign', 'createTopicRelation('.$topicId.',$rowId)');
 
     // Contido especial
     $typeModel =  new ResourcetypeModel();
@@ -94,7 +100,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
     }
 
     // Filtrar por temática
-    $tabla->setDefaultFilters( array('nottopic'=> $topicId[1] ) );
+    $tabla->setDefaultFilters( array('nottopic'=> $topicId ) );
 
     // imprimimos o JSON da taboa
     $tabla->exec();

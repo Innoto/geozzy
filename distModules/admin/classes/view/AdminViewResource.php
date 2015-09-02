@@ -65,7 +65,7 @@ class AdminViewResource extends AdminViewMaster {
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin#resource/edit/".$rowId');
+    $tabla->setEachRowUrl('"/admin#resource/edit/id/".$rowId');
     $tabla->setNewItemUrl('/admin#resource/create');
 
     // Nome das columnas
@@ -109,7 +109,7 @@ class AdminViewResource extends AdminViewMaster {
 
     $params = $urlParams[1];
 
-    /* Porcesamos os parámetros da url e obtemos un array de volta*/
+    /* Procesamos os parámetros da url e obtemos un array de volta*/
     $urlParamsList = RequestController::processUrlParams($params);
 
     if( $urlParamsList ) {
@@ -144,6 +144,7 @@ class AdminViewResource extends AdminViewMaster {
           $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
         }
       }
+
       $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
     }
     else{
@@ -167,7 +168,9 @@ class AdminViewResource extends AdminViewMaster {
 
     $valuesArray = false;
 
-    $urlParamIdResource = $urlParams['1'];
+    $urlParamsList = RequestController::processUrlParams($urlParams[1]);
+
+    $urlParamIdResource = $urlParamsList['resourceId'];
 
     if( isset( $urlParamIdResource ) ) {
       $resCtrl = new ResourceController();
@@ -245,10 +248,6 @@ class AdminViewResource extends AdminViewMaster {
 
 
 
-
-
-
-
   /**
     Creacion/Edicion de Recursos type URL
    */
@@ -262,6 +261,7 @@ class AdminViewResource extends AdminViewMaster {
     $rtype = $rtypeControl->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
 
     $recursoData['rTypeId'] = $rtype->getter('id');
+
     $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
 
     // Cambiamos el template del formulario
