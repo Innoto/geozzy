@@ -131,12 +131,12 @@ class GeozzyResourceView extends View {
 
     if( !$form->existErrors() ) {
       // Validar y guardar los datos
-      $resource = $this->defResCtrl->actionResourceFormProcess( $form );
+      $resource = $this->actionResourceFormProcess( $form );
     }
 
     if( !$form->existErrors() && $resource ) {
       // Enviamos el OK-ERROR a la BBDD y al formulario
-      $this->defResCtrl->actionResourceFormSuccess( $form, $resource );
+      $this->actionResourceFormSuccess( $form, $resource );
     }
   } // function actionResourceForm()
 
@@ -192,7 +192,7 @@ class GeozzyResourceView extends View {
   /**
    * Action del formulario Success
    */
-  public function actionResourceFormSuccess( $resource ) {
+  public function actionResourceFormSuccess( $form, $resource ) {
     error_log( "GeozzyResourceView: actionResourceFormSuccess()" );
 
     // Enviamos el OK-ERROR a la BBDD y al formulario
