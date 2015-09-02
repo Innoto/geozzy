@@ -1,7 +1,7 @@
 <?php
 admin::load('view/AdminViewMaster.php');
 geozzy::load( 'view/GeozzyResourceView.php' );
-
+Cogumelo::load("coreController/RequestController.php");
 
 class AdminViewResource extends AdminViewMaster {
 
@@ -25,7 +25,7 @@ class AdminViewResource extends AdminViewMaster {
     $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
     foreach( $resourcetypelist as $i => $res ) {
       $typeList[ $i ] = $res->getter('name_es');
-      $resCreateByType .= '<li><a class="create-'.$res->getter('idName').'" href="/admin#resource/create/all/'.$res->getter('id').'">'.$res->getter('name_es').'</a></li>';
+      $resCreateByType .= '<li><a class="create-'.$res->getter('idName').'" href="/admin#resource/create/rType/'.$res->getter('id').'">'.$res->getter('name_es').'</a></li>';
     }
     $resCreateByType .= '</ul>';
 
@@ -101,23 +101,29 @@ class AdminViewResource extends AdminViewMaster {
    */
 
   public function resourceForm( $urlParams = false ) {
+
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
 
     $resourceView = new GeozzyResourceView();
 
-    if( $urlParams ) {
+    $params = $urlParams[1];
 
-      $urlParamTopic = $urlParams['1'];
-      $urlParamRtype = $urlParams['2'];
+    /* Porcesamos os parámetros da url e obtemos un array de volta*/
+    $urlParamsList = RequestController::processUrlParams($params);
 
-      if ( $urlParamTopic != 'all') {
+    if( $urlParamsList ) {
+      if (isset($urlParamsList['topic'])){
+        $urlParamTopic = $urlParamsList['topic'];
         $topicControl = new TopicModel();
         $topicItem = $topicControl->ListItems( array( 'filters' => array( 'id' => $urlParamTopic ) ) )->fetch();
       }
 
-      $rtypeControl = new ResourcetypeModel();
-      $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $urlParamRtype ) ) )->fetch();
+      if (isset($urlParamsList['resourcetype'])) {
+        $urlParamRtype = $urlParamsList['resourcetype'];
+        $rtypeControl = new ResourcetypeModel();
+        $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $urlParamRtype ) ) )->fetch();
+      }
 
       if( isset($topicItem) && $topicItem && $rTypeItem ){
         $rtypeTopicControl = new ResourcetypeTopicModel();

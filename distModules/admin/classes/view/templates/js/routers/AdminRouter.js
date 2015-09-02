@@ -23,8 +23,9 @@ var AdminRouter = Backbone.Router.extend({
     "resourceouttopic/list/:id": "resourceouttopicList",
     "starred/:id": "starredList",
     "starred/:id/assign": "starredAssign",
-    "resource/create/all/:resourcetype" : "resourceCreate",
-    "resource/create/:topic/:resourcetype" : "resourceCreateinTopic",
+    //"resource/create/all/:resourcetype" : "resourceCreate",
+    "resource/create(/topic/:topicId)/rType/:resourcetype" : "resourceCreate",
+    //"resource/create/:topic/:resourcetype" : "resourceCreateinTopic",
     "resource/edit/:id" : "resourceEdit",
 
     "collection/create" : "collectionCreate",
@@ -123,11 +124,17 @@ var AdminRouter = Backbone.Router.extend({
     app.mainView.setBodyClass('starredAssign');
   },
 
-
-  resourceCreate:function(resourcetype) {
-    app.mainView.loadAjaxContent( '/admin/resource/create/all/'+resourcetype);
+  resourceCreate:function(topic, resourcetype) {
+    if (topic !== null)
+      app.mainView.loadAjaxContent( '/admin/resource/create/topic/'+topic+'/resourcetype/'+resourcetype);
+    else
+      app.mainView.loadAjaxContent( '/admin/resource/create/resourcetype/'+resourcetype);
     app.mainView.setBodyClass('resourceCreate');
   },
+  // resourceCreate:function(resourcetype) {
+  //   app.mainView.loadAjaxContent( '/admin/resource/create/all/'+resourcetype);
+  //   app.mainView.setBodyClass('resourceCreate');
+  // },
   resourceCreateinTopic:function( topic, resourcetype) {
     app.mainView.loadAjaxContent( '/admin/resource/create/'+topic+'/'+resourcetype);
     app.mainView.setBodyClass('resourceCreateinTopic');
