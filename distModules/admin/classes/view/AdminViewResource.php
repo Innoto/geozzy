@@ -251,24 +251,25 @@ class AdminViewResource extends AdminViewMaster {
     $formName = 'resourceUrlCreate';
     $formUrl = '/admin/resourcetypeurl/sendresource';
 
+    $noFields = array(
+      'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
+      'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom', 'weight'
+    );
+
     $resourceView = new GeozzyResourceView();
     $rtypeControl = new ResourcetypeModel();
     $rtype = $rtypeControl->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
 
     $recursoData['rTypeId'] = $rtype->getter('id');
-    $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
+    $form = $resourceView->getFormObj( $formName, $formUrl, $recursoData );
+    $form->removeField( $noFields );
+    $formBlock = $resourceView->formToTemplate( $form );
 
     // Cambiamos el template del formulario
     $formBlock->setTpl( 'resourceTypeFormBlockBase.tpl', 'admin' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
 
-    // Fragmentamos el formulario generado
-    $noFields = $this->extractFormBlockFields( $formBlock,
-      array(
-        'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
-        'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
-      )
-    );
+
 
     $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
     $this->template->exec();
@@ -283,17 +284,29 @@ class AdminViewResource extends AdminViewMaster {
     $formName = 'resourceFileCreate';
     $formUrl = '/admin/resourcetypefile/sendresource';
 
+    //multilangFieldNames
+
+    $noFields = array(
+      'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
+      'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom', 'weight'
+    );
+
     $resourceView = new GeozzyResourceView();
     $rtypeControl = new ResourcetypeModel();
     $rtype = $rtypeControl->listItems( array( 'filters' => array('idName' => 'rtypeFile') ) )->fetch();
 
     $recursoData['rTypeId'] = $rtype->getter('id');
-    $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
+    // $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
+    $form = $resourceView->getFormObj( $formName, $formUrl, $recursoData );
+    $form->removeField( $noFields );
+    $formBlock = $resourceView->formToTemplate( $form );
+
 
     // Cambiamos el template del formulario
     $formBlock->setTpl( 'resourceTypeFormBlockBase.tpl', 'admin' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
 
+/*
     // Fragmentamos el formulario generado
     $noFields = $this->extractFormBlockFields( $formBlock,
       array(
@@ -301,6 +314,7 @@ class AdminViewResource extends AdminViewMaster {
         'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
       )
     );
+*/
 
     $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
     $this->template->exec();
@@ -351,5 +365,28 @@ class AdminViewResource extends AdminViewMaster {
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();
   } // sendResourceForm()
+
+  public function sendModalResourceForm() {
+    $resourceView = new GeozzyResourceView();
+    $resource = null;
+
+    // Se construye el formulario con sus datos y se realizan las validaciones que contiene
+    $form = $resourceView->defResCtrl->resFormLoad();
+
+    if( !$form->existErrors() ) {
+      // Validar y guardar los datos
+      $resource = $resourceView->actionResourceFormProcess( $form );
+    }
+
+    if( !$form->existErrors() && $resource ) {
+Cogumelo::console($resource);
+      $form->removeSuccess( 'redirect' );
+      $form->setSuccess( 'jsEval', ' successResourceForm( { id : "'.$resource->getter('id').'", title: "'.$resource->getter('title_'.$form->langDefault).'", image: "'.$resource->getter('image').'" });' );
+
+      // Enviamos el OK-ERROR a la BBDD y al formulario
+      $resourceView->actionResourceFormSuccess( $form, $resource );
+    }
+
+  }
 
 }

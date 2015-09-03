@@ -65,6 +65,39 @@ class GeozzyResourceView extends View {
   /**
    * Defino el formulario y creo su Bloque con su TPL
    *
+   * @param $form object Form
+   *
+   * @return Obj-Template
+   **/
+  public function formToTemplate( $form ) {
+    error_log( "GeozzyResourceView: getFormBlock()" );
+
+    $template = new Template();
+
+    $template->assign( 'formOpen', $form->getHtmpOpen() );
+
+    $template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
+
+    $template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
+
+    $template->assign( 'rTypeName', $form->getFieldValue( 'rTypeName' ) );
+
+    $template->assign( 'rTypeFieldNames', $form->getFieldValue( 'rTypeFieldNames' ) );
+
+    $template->assign( 'formClose', $form->getHtmlClose() );
+    $template->assign( 'formValidations', $form->getScriptCode() );
+
+    $template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
+
+    return( $template );
+  } // function getFormBlock()
+
+
+
+
+  /**
+   * Defino el formulario y creo su Bloque con su TPL
+   *
    * @param $formName string Nombre del form
    * @param $urlAction string URL del action
    * @param $valuesArray array Opcional: Valores de los campos del form
@@ -75,25 +108,11 @@ class GeozzyResourceView extends View {
     error_log( "GeozzyResourceView: getFormBlock()" );
 
 
-    $rTypeFieldNames = array();
-
     $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
 
-    $this->template->assign( 'formOpen', $form->getHtmpOpen() );
+    $template = $this->formToTemplate( $form );
 
-    $this->template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
-
-    $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
-
-    $this->template->assign( 'rTypeName', $form->getFieldValue( 'rTypeName' ) );
-    $this->template->assign( 'rTypeFieldNames', $form->getFieldValue( 'rTypeFieldNames' ) );
-
-    $this->template->assign( 'formClose', $form->getHtmlClose() );
-    $this->template->assign( 'formValidations', $form->getScriptCode() );
-
-    $this->template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
-
-    return( $this->template );
+    return( $template );
   } // function getFormBlock()
 
 
@@ -112,12 +131,12 @@ class GeozzyResourceView extends View {
 
     if( !$form->existErrors() ) {
       // Validar y guardar los datos
-      $resource = $this->defResCtrl->actionResourceFormProcess( $form );
+      $resource = $this->actionResourceFormProcess( $form );
     }
 
     if( !$form->existErrors() && $resource ) {
       // Enviamos el OK-ERROR a la BBDD y al formulario
-      $this->defResCtrl->actionResourceFormSuccess( $form, $resource );
+      $this->actionResourceFormSuccess( $form, $resource );
     }
   } // function actionResourceForm()
 
@@ -173,7 +192,7 @@ class GeozzyResourceView extends View {
   /**
    * Action del formulario Success
    */
-  public function actionResourceFormSuccess( $resource ) {
+  public function actionResourceFormSuccess( $form, $resource ) {
     error_log( "GeozzyResourceView: actionResourceFormSuccess()" );
 
     // Enviamos el OK-ERROR a la BBDD y al formulario

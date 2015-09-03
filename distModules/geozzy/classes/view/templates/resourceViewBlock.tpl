@@ -28,8 +28,13 @@
 
   <div class="image cgmMForm-fileField">
     <label for="imgResource" class="cgmMForm">{t}Image{/t}</label>
-    <style type="text/css">.cgmMForm-fileField img { height: 100px }</style>
-    {$image}
+    {if isset( $image )}
+      <style type="text/css">.cgmMForm-fileField img { height: 100px }</style>
+      <img src="/cgmlformfilews/{$image.id}"
+        {if isset( $image.title )}alt="{$image.title}" title="{$image.title}"{/if}></img>
+    {else}
+      <p>{t}None{/t}</p>
+    {/if}
   </div>
 
   {if isset($externalUrl)}
