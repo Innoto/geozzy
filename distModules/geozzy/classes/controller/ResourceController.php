@@ -1037,6 +1037,7 @@ class ResourceController {
       // error_log( $key . ' === ' . print_r( $value, true ) );
     }
 
+    /*
     // Cargo los datos de image dentro de los del recurso
     if( $resData[ 'image' ] !== false ) {
       error_log( "" . print_r( $resData[ 'image' ], true ) );
@@ -1048,6 +1049,7 @@ class ResourceController {
     else {
       $template->assign( 'image', '<p>'.__('None').'</p>' );
     }
+    */
 
     $collections = $this->getCollectionsInfo( $resData[ 'id' ] );
     error_log( "collections = ". print_r( $collections, true ) );

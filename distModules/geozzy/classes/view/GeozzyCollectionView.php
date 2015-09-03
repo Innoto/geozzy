@@ -99,6 +99,7 @@ class GeozzyCollectionView extends View
     //$this->arrayToForm( $form, $fieldsInfo, $form->langAvailable );
     $form->definitionsToForm( $fieldsInfo );
     $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
+    $form->removeValidationRule( 'resources', 'inArray' );
 
     //Si es una edicion, añadimos el ID y cargamos los datos
     // error_log( 'GeozzyCollectionView getFormObj: ' . print_r( $valuesArray, true ) );

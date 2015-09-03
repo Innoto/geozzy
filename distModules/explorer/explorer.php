@@ -30,12 +30,6 @@ class explorer extends Module
      "installer" => "bower",
      "includes" => array("backbone.fetch-cache.min.js")
     ),
-    array(
-     "id" =>"Backbone.localStorage",
-     "params" => array("Backbone.localStorage"),
-     "installer" => "bower",
-     "includes" => array("backbone.localStorage-min.js")
-    ),
      array(
       "id" =>"backbone.obscura",
       "params" => array("backbone.obscura#1.0.1"),
