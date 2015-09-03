@@ -22,8 +22,8 @@ var AdminRouter = Backbone.Router.extend({
     "resourceintopic/list/topic/:id": "resourceintopicList",
     "resourceouttopic/list/topic/:id": "resourceouttopicList",
     "starred/:id": "starredList",
-    "starred/:id/assign": "starredAssign",
-    "resource/create(/topic/:topicId)/rType/:resourcetype" : "resourceCreate",
+    "starred/star/:id/assign": "starredAssign",
+    "resource/create(/star/:star)(/topic/:topicId)/resourcetype/:resourcetype" : "resourceCreate",
     "resource/edit/id/:id" : "resourceEdit",
     "collection/create" : "collectionCreate",
     "collection/edit/:id" : "collectionEdit"
@@ -117,16 +117,21 @@ var AdminRouter = Backbone.Router.extend({
 
   },
   starredAssign: function(id) {
-    app.mainView.loadAjaxContent( '/admin/starred/'+id+'/assign');
+    app.mainView.loadAjaxContent( '/admin/starred/star/'+id+'/assign');
     app.mainView.setBodyClass('starredAssign');
   },
 
-  resourceCreate:function(topic, resourcetype) {
-    if (topic !== null)
-      app.mainView.loadAjaxContent( '/admin/resource/create/topic/'+topic+'/resourcetype/'+resourcetype);
-    else
-      app.mainView.loadAjaxContent( '/admin/resource/create/resourcetype/'+resourcetype);
-    app.mainView.setBodyClass('resourceCreate');
+  resourceCreate:function(star, topic, resourcetype) {
+    if (star !== null){
+      app.mainView.loadAjaxContent( '/admin/resource/create/star/'+star+'/resourcetype/'+resourcetype);
+    }
+    else{
+      if (topic !== null)
+        app.mainView.loadAjaxContent( '/admin/resource/create/topic/'+topic+'/resourcetype/'+resourcetype);
+      else
+        app.mainView.loadAjaxContent( '/admin/resource/create/resourcetype/'+resourcetype);
+      app.mainView.setBodyClass('resourceCreate');
+    }
   },
 
   resourceCreateinTopic:function( topic, resourcetype) {

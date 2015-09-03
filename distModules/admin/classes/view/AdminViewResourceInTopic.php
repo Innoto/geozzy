@@ -15,7 +15,8 @@ class AdminViewResourceInTopic extends AdminViewMaster
   **/
   public function listResourcesInTopic($urlParams) {
 
-    $urlParamsList = RequestController::processUrlParams($urlParams[1]);
+    $validation = array('topic'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
 
     $topicId = $urlParamsList['topic'];
 
@@ -37,7 +38,8 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
   public function listResourcesInTopicTable($urlParams) {
 
-    $urlParamsList = RequestController::processUrlParams($urlParams[1]);
+    $validation = array('topic'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
 
     $topicId = $urlParamsList['topic'];
 

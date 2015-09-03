@@ -25,7 +25,7 @@ class AdminViewResource extends AdminViewMaster {
     $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
     foreach( $resourcetypelist as $i => $res ) {
       $typeList[ $i ] = $res->getter('name_es');
-      $resCreateByType .= '<li><a class="create-'.$res->getter('idName').'" href="/admin#resource/create/rType/'.$res->getter('id').'">'.$res->getter('name_es').'</a></li>';
+      $resCreateByType .= '<li><a class="create-'.$res->getter('idName').'" href="/admin#resource/create/resourcetype/'.$res->getter('id').'">'.$res->getter('name_es').'</a></li>';
     }
     $resCreateByType .= '</ul>';
 
@@ -107,10 +107,10 @@ class AdminViewResource extends AdminViewMaster {
 
     $resourceView = new GeozzyResourceView();
 
-    $params = $urlParams[1];
+    $validation = array('topic'=> '#\d+$#', 'resourcetype' => '#\d+$#', 'star' => '#\d+$#');
 
     /* Procesamos os parámetros da url e obtemos un array de volta*/
-    $urlParamsList = RequestController::processUrlParams($params);
+    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
     if( $urlParamsList ) {
       if (isset($urlParamsList['topic'])){
@@ -168,7 +168,10 @@ class AdminViewResource extends AdminViewMaster {
 
     $valuesArray = false;
 
-    $urlParamsList = RequestController::processUrlParams($urlParams[1]);
+    $validation = array('resourceId'=> '#\d+$#');
+
+    /* Procesamos os parámetros da url e obtemos un array de volta*/
+    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
     $urlParamIdResource = $urlParamsList['resourceId'];
 

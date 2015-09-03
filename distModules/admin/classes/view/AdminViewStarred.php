@@ -1,6 +1,6 @@
 <?php
 admin::load('view/AdminViewMaster.php');
-
+Cogumelo::load("coreController/RequestController.php");
 
 class AdminViewStarred extends AdminViewMaster
 {
@@ -13,8 +13,11 @@ class AdminViewStarred extends AdminViewMaster
   /**
   * Section list resources in topic
   **/
-  public function listAssignStarred( $request ) {
-    $starredId = $request['1'];
+  public function listAssignStarred( $urlParams ) {
+
+    $validation = array('star'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
+    $starredId = $urlParamsList['star'];
 
     $template = new Template( $this->baseDir );
     $template->assign('starredTable', table::getTableHtml( 'AdminViewStarred', '/admin/starred/table/'.$starredId ) );
@@ -26,12 +29,12 @@ class AdminViewStarred extends AdminViewMaster
     $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
     foreach( $resourcetypelist as $i => $rType ) {
       $typeList[ $i ] = $rType->getter('name_es');
-      $resCreateByType .= '<li><a class="create-'.$rType->getter('idName').'" href="/admin#resource/create/'.$starredId.'/'.$rType->getter('id').'">'.$rType->getter('name_es').'</a></li>';
+      $resCreateByType .= '<li><a class="create-'.$rType->getter('idName').'" href="/admin#resource/create/star/'.$starredId.'/resourcetype/'.$rType->getter('id').'">'.$rType->getter('name_es').'</a></li>';
     }
     $resCreateByType .= '</ul>';
 
     $this->template->assign( 'headTitle', __('Create and add resources') );
-    $this->template->assign( 'headActions', '<a href="/admin#starred/'.$starredId.'" class="btn btn-default"> '.__('Return').'</a>
+    $this->template->assign( 'headActions', '<a href="/admin#starred/star/'.$starredId.'" class="btn btn-default"> '.__('Return').'</a>
       <div class="btn-group assignResource AdminViewStarred">
         <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>
@@ -41,7 +44,7 @@ class AdminViewStarred extends AdminViewMaster
       <div class="btn btn-primary assignResource btnAssign"> '.__('Assign selected').'</div>'
     );
 
-    $this->template->assign( 'footerActions', '<a href="/admin#starred/'.$starredId.'" class="btn btn-default"> '.__('Return').'</a>
+    $this->template->assign( 'footerActions', '<a href="/admin#starred/star/'.$starredId.'" class="btn btn-default"> '.__('Return').'</a>
       <div class="btn-group assignResource">
         <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>
@@ -77,7 +80,7 @@ class AdminViewStarred extends AdminViewMaster
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin#resource/edit/".$rowId');
+    $tabla->setEachRowUrl('"/admin#resource/edit/id/".$rowId');
     $tabla->setNewItemUrl('/admin#resource/create');
 
     // Nome das columnas

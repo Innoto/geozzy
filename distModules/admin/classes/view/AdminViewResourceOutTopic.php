@@ -14,7 +14,8 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
   **/
   public function listResourcesOutTopic( $urlParams ) {
 
-    $urlParamsList = RequestController::processUrlParams($urlParams[1]);
+    $validation = array('topic'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
 
     $topicId = $urlParamsList['topic'];
 
@@ -28,7 +29,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
     $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
     foreach( $resourcetypelist as $i => $rType ) {
       $typeList[ $i ] = $rType->getter('name_es');
-      $resCreateByType .= '<li><a class="create-'.$rType->getter('idName').'" href="/admin#resource/create/topic/'.$topicId.'/rType/'.$rType->getter('id').'">'.$rType->getter('name_es').'</a></li>';
+      $resCreateByType .= '<li><a class="create-'.$rType->getter('idName').'" href="/admin#resource/create/topic/'.$topicId.'/resourcetype/'.$rType->getter('id').'">'.$rType->getter('name_es').'</a></li>';
     }
     $resCreateByType .= '</ul>';
 
@@ -64,7 +65,8 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
 
   public function listResourcesOutTopicTable( $urlParams ) {
 
-    $urlParamsList = RequestController::processUrlParams($urlParams[1]);
+    $validation = array('topic'=> '#\d+$#','resourceId'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
     $topicId = $urlParamsList['topic'];
 
     table::autoIncludes();
