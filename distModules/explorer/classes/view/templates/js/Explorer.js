@@ -6,9 +6,7 @@ geozzy.explorer = function( opts ) {
   var that = this;
 
 
-  //
   //  Options
-  //
 
   that.options = {
     explorerAPIHost: '/api/explorer/',
@@ -27,16 +25,13 @@ geozzy.explorer = function( opts ) {
   $.extend(true, that.options, opts);
 
 
-  //
   //  Debuger
-  //
 
   that.timeDebugerMain = new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer main'} );
   that.timeDebugerExtended =  new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer extended data'} );
 
-  //
+
   // Resource Collections and Indexes
-  //
 
   that.resourceIndex = false;
   that.resourceCurrentIndex = false;
@@ -44,10 +39,7 @@ geozzy.explorer = function( opts ) {
   that.resourcePartialList =  new ExplorerResourcePartialCollection();
 
 
-
-  //
   // Displays
-  //
 
   that.displays = {
     map: false,
@@ -55,65 +47,10 @@ geozzy.explorer = function( opts ) {
     pasiveList: false
   }
 
-  that.addDisplay = function( diplayId, displayObj ){
-    if( diplayId == 'map' ) {
-      that.displays.map = displayObj;
-      that.displays.map.parentExplorer = that;
-    }
-    else
-    if( diplayId == 'activeList' ) {
-      that.displays.activeList = displayObj;
-      that.displays.activeList.parentExplorer = that;
-    }
-    else
-    if( diplayId == 'pasiveList' ) {
-      that.displays.pasiveList = displayObj;
-      that.displays.pasiveList.parentExplorer = that;
-    }
-    else {
-      console.log('Geozzy explorer ERROR: Display type id not found');
-    }
-  }
 
 
 
-  that.renderDisplays = function() {
-    var resourcesToLoad = [];
 
-    if(that.displays.map) {
-      //resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
-      that.displays.map.render();
-    }
-
-    if(that.displays.activeList) {
-      resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
-
-    }
-
-    if(that.displays.pasiveList) {
-      //that.displays.pasiveList.getVisibleResourceIds();
-    }
-
-
-    // Advanced Fetch
-    that.timeDebugerExtended.log('Starting second data fetch at')
-
-    that.resourcePartialList.fetchAndCache({
-        data: {ids: resourcesToLoad},
-        url: that.options.explorerAPIHost + that.options.explorerName+ '/partial',
-        success: function() {
-          that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
-
-          if(that.displays.activeList) {
-            that.displays.activeList.render();
-          }
-
-          that.timeDebugerExtended.log( '&nbsp;- Render lists' );
-        }
-    });
-
-
-  }
 
   //
   // First Execution
@@ -170,8 +107,73 @@ geozzy.explorer = function( opts ) {
       that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
 
 
-      that.renderDisplays();
+      that.render();
   }
+
+  //
+  // Display methods
+  //
+
+  that.addDisplay = function( diplayId, displayObj ){
+    if( diplayId == 'map' ) {
+      that.displays.map = displayObj;
+      that.displays.map.parentExplorer = that;
+    }
+    else
+    if( diplayId == 'activeList' ) {
+      that.displays.activeList = displayObj;
+      that.displays.activeList.parentExplorer = that;
+    }
+    else
+    if( diplayId == 'pasiveList' ) {
+      that.displays.pasiveList = displayObj;
+      that.displays.pasiveList.parentExplorer = that;
+    }
+    else {
+      console.log('Geozzy explorer ERROR: Display type id not found');
+    }
+  }
+
+
+
+  that.render = function() {
+    var resourcesToLoad = [];
+
+    if(that.displays.map) {
+      //resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
+      that.displays.map.render();
+    }
+
+    if(that.displays.activeList) {
+      resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
+
+    }
+
+    if(that.displays.pasiveList) {
+      //that.displays.pasiveList.getVisibleResourceIds();
+    }
+
+
+    // Advanced Fetch
+    that.timeDebugerExtended.log('Starting second data fetch at')
+
+    that.resourcePartialList.fetchAndCache({
+      ids: resourcesToLoad,
+      url: that.options.explorerAPIHost + that.options.explorerName+ '/partial',
+      success: function() {
+        that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
+
+        if(that.displays.activeList) {
+          that.displays.activeList.render();
+        }
+
+        that.timeDebugerExtended.log( '&nbsp;- Render lists' );
+      }
+    });
+
+
+  }
+
 
 
 }

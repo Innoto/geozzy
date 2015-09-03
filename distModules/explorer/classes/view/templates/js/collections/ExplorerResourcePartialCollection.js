@@ -8,8 +8,15 @@ var ExplorerResourcePartialCollection = Backbone.Collection.extend({
     var resPartialCollection = new ExplorerResourcePartialCollection();
     resPartialCollection.url = params.url;
 
+    var idsToFetch = [];
+    $.each( params.ids, function(i,e) {
+      if( !that.get( e ) ){
+        idsToFetch.push( e );
+      }
+    });
+
     var tmpResources = resPartialCollection.fetch({
-      data: params.data,
+      data: {ids: params.ids},
       type: 'POST',
       success: function( list ){
         list.each(function(resource) {
