@@ -253,7 +253,7 @@ class AdminViewResource extends AdminViewMaster {
 
     $noFields = array(
       'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
-      'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
+      'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom', 'weight'
     );
 
     $resourceView = new GeozzyResourceView();
@@ -284,9 +284,11 @@ class AdminViewResource extends AdminViewMaster {
     $formName = 'resourceFileCreate';
     $formUrl = '/admin/resourcetypefile/sendresource';
 
+    //multilangFieldNames
+
     $noFields = array(
       'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
-      'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
+      'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom', 'weight'
     );
 
     $resourceView = new GeozzyResourceView();
