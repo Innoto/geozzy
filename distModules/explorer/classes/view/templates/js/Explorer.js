@@ -47,6 +47,9 @@ geozzy.explorer = function( opts ) {
     pasiveList: false
   }
 
+  // filters
+  that.filters = [ ];
+
 
 
 
@@ -96,13 +99,25 @@ geozzy.explorer = function( opts ) {
   // Apply filters
   //
 
+  that.addFilter = function( filter ) {
+    that.filters.push( filter );
+  }
+
   that.applyFilters = function() {
 
       // Set filters for current index
       that.resourceCurrentIndex.filterBy( function(model) {
-          var terms =  model.get('terms');
-          var diff = $( terms ).not( [14,10,25,37,19,47]);
-          return (diff.length != terms.length );
+        var matches = false;
+        $.each( that.filters, function(i, filter){
+
+          if( filter.filter( model ) ) {
+            matches = true;
+            return;
+          }
+        });
+
+        return matches;
+
       });
       that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
 
@@ -130,7 +145,7 @@ geozzy.explorer = function( opts ) {
       that.displays.pasiveList.parentExplorer = that;
     }
     else {
-      console.log('Geozzy explorer ERROR: Display type id not found');
+      console.log('Geozzy explorer ERROR: Display type key not found');
     }
   }
 

@@ -31,9 +31,30 @@
     resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
 
 
+    geozzy.filterList = geozzy.filter.extend({
+      filter: function( model ) {
+        var terms =  model.get('terms');
+
+        var diff = $( terms ).not( this.data );
+        return (diff.length != terms.length );
+
+      }
+    });
+
+
+
     var explorer = new geozzy.explorer({debug:true});
+
+    var filtro1 = new geozzy.filterList();
+    filtro1.data = [14,10,25,37];
+    var filtro2 = new geozzy.filterList();
+    filtro2.data = [19,47,20,30,15,16];
+
+
     var listaActiva = new geozzy.explorerDisplay.activeList();
     var mapa = new geozzy.explorerDisplay.map();
+    explorer.addFilter( filtro1 );
+    explorer.addFilter( filtro2 );
     explorer.addDisplay( 'activeList', listaActiva );
     explorer.addDisplay( 'map', mapa );
 

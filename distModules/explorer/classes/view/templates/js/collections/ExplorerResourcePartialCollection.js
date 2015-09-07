@@ -18,7 +18,7 @@ var ExplorerResourcePartialCollection = Backbone.Collection.extend({
     var tmpResources = resPartialCollection.fetch({
       data: {ids: params.ids},
       type: 'POST',
-      success: function( list ){
+      success: function( list ) {
         list.each(function(resource) {
           that.add(resource);
         });
