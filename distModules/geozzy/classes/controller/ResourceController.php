@@ -482,14 +482,12 @@ class ResourceController {
   public function resFormSuccess( $form, $resource ) {
 
     if( !$form->existErrors() ) {
-
       // TRANSACTION COMMIT
       $resource->transactionCommit();
 
       echo $form->jsonFormOk();
     }
     else {
-
       // TRANSACTION ROLLBACK
       if( $resource ) {
         $resource->transactionRollback();
@@ -883,10 +881,22 @@ class ResourceController {
     $formValuesCol = $form->getFieldValue( 'collections' );
     $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' );
 
+    if( !is_array($formValuesCol) && $formValuesCol != false ){
+      $fVCol = array();
+      array_push( $fVCol, $formValuesCol );
+      $formValuesCol = $fVCol;
+    }
+
+    if( !is_array($formValuesMulti) && $formValuesMulti != false ){
+      $fVMulti = array();
+      array_push( $fVMulti, $formValuesMulti );
+      $formValuesMulti = $fVMulti;
+    }
+
     $formValuesCol = ( !is_array($formValuesCol) ) ? array() : $formValuesCol;
     $formValuesMulti = ( !is_array($formValuesMulti) ) ? array() : $formValuesMulti;
-    $formValues = array_merge( $formValuesCol, $formValuesMulti );
 
+    $formValues = array_merge( $formValuesCol, $formValuesMulti );
     $relPrevInfo = false;
 
     if( $formValues !== false && !is_array( $formValues ) ) {

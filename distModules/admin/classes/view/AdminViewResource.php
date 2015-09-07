@@ -384,7 +384,6 @@ class AdminViewResource extends AdminViewMaster {
     }
 
     if( !$form->existErrors() && $resource ) {
-Cogumelo::console($resource);
       $form->removeSuccess( 'redirect' );
       $form->setSuccess( 'jsEval', ' successResourceForm( { id : "'.$resource->getter('id').'", title: "'.$resource->getter('title_'.$form->langDefault).'", image: "'.$resource->getter('image').'" });' );
 
