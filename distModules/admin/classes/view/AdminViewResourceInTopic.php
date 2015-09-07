@@ -1,6 +1,6 @@
 <?php
 admin::load('view/AdminViewMaster.php');
-
+Cogumelo::load("coreController/RequestController.php");
 
 class AdminViewResourceInTopic extends AdminViewMaster
 {
@@ -13,25 +13,35 @@ class AdminViewResourceInTopic extends AdminViewMaster
   /**
   * Section list resources in topic
   **/
-  public function listResourcesInTopic($request) {
+  public function listResourcesInTopic($urlParams) {
+
+    $validation = array('topic'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
+
+    $topicId = $urlParamsList['topic'];
 
     $template = new Template( $this->baseDir );
-    $template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table/'.$request['1']) );
+    $template->assign('resourceintopicTable', table::getTableHtml('AdminViewResourceInTopic', '/admin/resourceintopic/table/topic/'.$topicId) );
     $template->setTpl('listResourceInTopic.tpl', 'admin');
 
     $topicmodel =  new TopicModel();
-    $topic = $topicmodel->listItems(array("filters" => array("id" => $request['1'])));
+    $topic = $topicmodel->listItems(array("filters" => array("id" => $topicId)));
     $name = $topic->fetch()->getter('name', LANG_DEFAULT);
 
     $this->template->addToBlock( 'col12', $template );
     $this->template->assign( 'headTitle', $name );
-    $this->template->assign( 'headActions', '<a href="/admin#resourceouttopic/list/'.$request['1'].'" class="btn btn-default"> '.__('Add resource').'</a>' );
-    $this->template->assign( 'footerActions', '<a href="/admin#resourceouttopic/list/'.$request['1'].'" class="btn btn-default"> '.__('Add resource').'</a>' );
+    $this->template->assign( 'headActions', '<a href="/admin#resourceouttopic/list/topic/'.$topicId.'" class="btn btn-default"> '.__('Add resource').'</a>' );
+    $this->template->assign( 'footerActions', '<a href="/admin#resourceouttopic/list/topic/'.$topicId.'" class="btn btn-default"> '.__('Add resource').'</a>' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
 
-  public function listResourcesInTopicTable($topicId) {
+  public function listResourcesInTopicTable($urlParams) {
+
+    $validation = array('topic'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
+
+    $topicId = $urlParamsList['topic'];
 
     table::autoIncludes();
     $resource =  new ResourceModel();
@@ -53,7 +63,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin#resource/edit/".$rowId');
+    $tabla->setEachRowUrl('"/admin#resource/edit/id/".$rowId');
     $tabla->setNewItemUrl('/admin#resource/create');
 
     // Nome das columnas
@@ -63,7 +73,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setCol('published', __('Published'));
 
     // Filtrar por temática
-    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> $topicId[1] ) );
+    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> $topicId ) );
     $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
     $tabla->setJoinType('INNER');
 

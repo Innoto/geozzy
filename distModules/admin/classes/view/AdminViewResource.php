@@ -1,7 +1,7 @@
 <?php
 admin::load('view/AdminViewMaster.php');
 geozzy::load( 'view/GeozzyResourceView.php' );
-
+Cogumelo::load("coreController/RequestController.php");
 
 class AdminViewResource extends AdminViewMaster {
 
@@ -25,7 +25,7 @@ class AdminViewResource extends AdminViewMaster {
     $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
     foreach( $resourcetypelist as $i => $res ) {
       $typeList[ $i ] = $res->getter('name_es');
-      $resCreateByType .= '<li><a class="create-'.$res->getter('idName').'" href="/admin#resource/create/all/'.$res->getter('id').'">'.$res->getter('name_es').'</a></li>';
+      $resCreateByType .= '<li><a class="create-'.$res->getter('idName').'" href="/admin#resource/create/resourcetype/'.$res->getter('id').'">'.$res->getter('name_es').'</a></li>';
     }
     $resCreateByType .= '</ul>';
 
@@ -65,7 +65,7 @@ class AdminViewResource extends AdminViewMaster {
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin#resource/edit/".$rowId');
+    $tabla->setEachRowUrl('"/admin#resource/edit/id/".$rowId');
     $tabla->setNewItemUrl('/admin#resource/create');
 
     // Nome das columnas
@@ -101,23 +101,29 @@ class AdminViewResource extends AdminViewMaster {
    */
 
   public function resourceForm( $urlParams = false ) {
+
     $formName = 'resourceCreate';
     $formUrl = '/admin/resource/sendresource';
 
     $resourceView = new GeozzyResourceView();
 
-    if( $urlParams ) {
+    $validation = array('topic'=> '#\d+$#', 'resourcetype' => '#\d+$#', 'star' => '#\d+$#');
 
-      $urlParamTopic = $urlParams['1'];
-      $urlParamRtype = $urlParams['2'];
+    /* Procesamos os parámetros da url e obtemos un array de volta*/
+    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
-      if ( $urlParamTopic != 'all') {
+    if( $urlParamsList ) {
+      if (isset($urlParamsList['topic'])){
+        $urlParamTopic = $urlParamsList['topic'];
         $topicControl = new TopicModel();
         $topicItem = $topicControl->ListItems( array( 'filters' => array( 'id' => $urlParamTopic ) ) )->fetch();
       }
 
-      $rtypeControl = new ResourcetypeModel();
-      $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $urlParamRtype ) ) )->fetch();
+      if (isset($urlParamsList['resourcetype'])) {
+        $urlParamRtype = $urlParamsList['resourcetype'];
+        $rtypeControl = new ResourcetypeModel();
+        $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $urlParamRtype ) ) )->fetch();
+      }
 
       if( isset($topicItem) && $topicItem && $rTypeItem ){
         $rtypeTopicControl = new ResourcetypeTopicModel();
@@ -138,6 +144,7 @@ class AdminViewResource extends AdminViewMaster {
           $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
         }
       }
+
       $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
     }
     else{
@@ -161,7 +168,12 @@ class AdminViewResource extends AdminViewMaster {
 
     $valuesArray = false;
 
-    $urlParamIdResource = $urlParams['1'];
+    $validation = array('resourceId'=> '#\d+$#');
+
+    /* Procesamos os parámetros da url e obtemos un array de volta*/
+    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
+
+    $urlParamIdResource = $urlParamsList['resourceId'];
 
     if( isset( $urlParamIdResource ) ) {
       $resCtrl = new ResourceController();
@@ -237,12 +249,6 @@ class AdminViewResource extends AdminViewMaster {
     $this->template->exec();
   }
 
-
-
-
-
-
-
   /**
     Creacion/Edicion de Recursos type URL
    */
@@ -261,6 +267,7 @@ class AdminViewResource extends AdminViewMaster {
     $rtype = $rtypeControl->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
 
     $recursoData['rTypeId'] = $rtype->getter('id');
+
     $form = $resourceView->getFormObj( $formName, $formUrl, $recursoData );
     $form->removeField( $noFields );
     $formBlock = $resourceView->formToTemplate( $form );
@@ -268,8 +275,6 @@ class AdminViewResource extends AdminViewMaster {
     // Cambiamos el template del formulario
     $formBlock->setTpl( 'resourceTypeFormBlockBase.tpl', 'admin' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
-
-
 
     $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
     $this->template->exec();
@@ -379,7 +384,6 @@ class AdminViewResource extends AdminViewMaster {
     }
 
     if( !$form->existErrors() && $resource ) {
-Cogumelo::console($resource);
       $form->removeSuccess( 'redirect' );
       $form->setSuccess( 'jsEval', ' successResourceForm( { id : "'.$resource->getter('id').'", title: "'.$resource->getter('title_'.$form->langDefault).'", image: "'.$resource->getter('image').'" });' );
 

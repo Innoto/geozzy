@@ -132,17 +132,16 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/resource/table$#', 'view:AdminViewResource::listResourcesTable' );
 
     $this->addUrlPatterns( '#^admin/resourceintopic/list/(.*)$#', 'view:AdminViewResourceInTopic::listResourcesInTopic' );
-    $this->addUrlPatterns( '#^admin/resourceintopic/table/(\d+)$#', 'view:AdminViewResourceInTopic::listResourcesInTopicTable' );
+    $this->addUrlPatterns( '#^admin/resourceintopic/table/(.*)$#', 'view:AdminViewResourceInTopic::listResourcesInTopicTable' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/list/(.*)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopic' );
-    $this->addUrlPatterns( '#^admin/resourceouttopic/table/(\d+)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );
-    $this->addUrlPatterns( '#^admin/resourceouttopic/assign/(\d+)/(.*)$#', 'view:AdminViewResourceOutTopic::addResourceTopic' );
+    $this->addUrlPatterns( '#^admin/resourceouttopic/table/(.*)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );
+    //$this->addUrlPatterns( '#^admin/resourceouttopic/assign/(\d+)/(.*)$#', 'view:AdminViewResourceOutTopic::addResourceTopic' );
 
     $this->addUrlPatterns( '#^admin/starred/(.*)/assign$#', 'view:AdminViewStarred::listAssignStarred' );
     $this->addUrlPatterns( '#^admin/starred/table/(\d+)$#', 'view:AdminViewStarred::listStarredTable' );
 
-    $this->addUrlPatterns( '#^admin/resource/create/(.+)/(\d+)$#', 'view:AdminViewResource::resourceForm' );
-    $this->addUrlPatterns( '#^admin/resource/create$#', 'view:AdminViewResource::resourceForm' );
-    $this->addUrlPatterns( '#^admin/resource/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
+    $this->addUrlPatterns( '#^admin/resource/create/(.*)$#', 'view:AdminViewResource::resourceForm' );
+    $this->addUrlPatterns( '#^admin/resource/edit/(.*)$#', 'view:AdminViewResource::resourceEditForm' );
     $this->addUrlPatterns( '#^admin/resource/sendresource$#', 'view:AdminViewResource::sendResourceForm' );
 
     $this->addUrlPatterns( '#^admin/resourcetypeurl/create$#', 'view:AdminViewResource::resourceTypeUrlForm' );

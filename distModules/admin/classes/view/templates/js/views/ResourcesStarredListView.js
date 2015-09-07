@@ -92,7 +92,7 @@ var ResourcesStarredListView = Backbone.View.extend({
 
   assignResourceTerm: function() {
     var that = this;
-    Backbone.history.navigate('starred/'+that.starredTerm.id+'/assign', {trigger:true});
+    Backbone.history.navigate('starred/star/'+that.starredTerm.id+'/assign', {trigger:true});
   },
 
   saveResourceStarred: function() {
