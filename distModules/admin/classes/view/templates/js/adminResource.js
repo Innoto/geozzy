@@ -98,7 +98,6 @@ function bindResourceForm(){
 
     var resourceMarker = new google.maps.Marker({
       position: new google.maps.LatLng( latValue, lonValue ),
-      map: false,
       title: 'Resource location',
       icon: my_marker,
       draggable: true
