@@ -101,104 +101,90 @@ class AdminViewResource extends AdminViewMaster {
    */
 
   public function resourceForm( $urlParams = false ) {
+    $recursoData = false;
 
-    $formName = 'resourceCreate';
-    $formUrl = '/admin/resource/sendresource';
-
-    $resourceView = new GeozzyResourceView();
-
-    $validation = array('topic'=> '#\d+$#', 'resourcetype' => '#\d+$#', 'star' => '#\d+$#');
-
-    /* Procesamos os parámetros da url e obtemos un array de volta*/
-    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
+    /* Validamos os parámetros da url e obtemos un array de volta*/
+    $validation = array( 'topic'=> '#^\d+$#', 'resourcetype' => '#^\d+$#', 'star' => '#^\d+$#' );
+    $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
     if( $urlParamsList ) {
-      if (isset($urlParamsList['topic'])){
+      $topicItem = false;
+      $rTypeItem = false;
+
+      if( isset( $urlParamsList['topic'] ) ) {
         $urlParamTopic = $urlParamsList['topic'];
         $topicControl = new TopicModel();
         $topicItem = $topicControl->ListItems( array( 'filters' => array( 'id' => $urlParamTopic ) ) )->fetch();
       }
 
-      if (isset($urlParamsList['resourcetype'])) {
+      if( isset( $urlParamsList['resourcetype'] ) ) {
         $urlParamRtype = $urlParamsList['resourcetype'];
         $rtypeControl = new ResourcetypeModel();
         $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $urlParamRtype ) ) )->fetch();
       }
 
-      if( isset($topicItem) && $topicItem && $rTypeItem ){
-        $rtypeTopicControl = new ResourcetypeTopicModel();
-        $resourcetypeTopic = $rtypeTopicControl->ListItems( array( 'filters' => array( 'topic' => $urlParamTopic, 'resourceType' => $urlParamRtype ) ) )->fetch();
+      if( $rTypeItem ) {
+        $recursoData = array();
+        $recursoData['rTypeId'] = $rTypeItem->getter('id');
+        $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
 
-        if( !$resourcetypeTopic ){
-          print('O.o ERROR!!!');
-          exit();
-        }else{
-          $recursoData['topicReturn'] = $topicItem->getter('id');
-          $recursoData['topics'] = $topicItem->getter('id');
-          $recursoData['rTypeId'] = $rTypeItem->getter('id');
-          $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
-        }
-      }else{
-        if( $rTypeItem ){
-          $recursoData['rTypeId'] = $rTypeItem->getter('id');
-          $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
+        if( $topicItem ) {
+          $rtypeTopicControl = new ResourcetypeTopicModel();
+          $resourcetypeTopic = $rtypeTopicControl->ListItems(
+            array( 'filters' => array( 'topic' => $urlParamTopic, 'resourceType' => $urlParamRtype ) )
+          )->fetch();
+
+          if( $resourcetypeTopic ){
+            $recursoData['topicReturn'] = $topicItem->getter('id');
+            $recursoData['topics'] = $topicItem->getter('id');
+          }
         }
       }
-
-      $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
-    }
-    else{
-      $formBlock = $resourceView->getFormBlock( $formName, $formUrl, false );
     }
 
-    // Cambiamos el template del formulario
-    $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
-
-    // Template base: Admin 8-4
-    $this->template->assign( 'headTitle', __('Create Resource') );
-    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
-
-    $this->showFormBlocks( $formBlock );
-  } // function resourceForm()
+    $resourceView = new GeozzyResourceView();
+    $this->resourceShowForm( 'resourceCreate', '/admin/resource/sendresource', $recursoData );
+  }
 
 
   public function resourceEditForm( $urlParams = false ) {
-    $formName = 'resourceEdit';
-    $formUrl = '/admin/resource/sendresource';
+    $recursoData = false;
 
-    $valuesArray = false;
+    /* Validamos os parámetros da url e obtemos un array de volta*/
+    $validation = array( 'resourceId'=> '#^\d+$#' );
+    $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
-    $validation = array('resourceId'=> '#\d+$#');
-
-    /* Procesamos os parámetros da url e obtemos un array de volta*/
-    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
-
-    $urlParamIdResource = $urlParamsList['resourceId'];
-
-    if( isset( $urlParamIdResource ) ) {
+    if( isset( $urlParamsList['resourceId'] ) ) {
       $resCtrl = new ResourceController();
-      $valuesArray = $resCtrl->getResourceData( $urlParamIdResource );
+      $recursoData = $resCtrl->getResourceData( $urlParamsList['resourceId'] );
     }
 
-    if( $valuesArray ) {
+    if( $recursoData ) {
       $resourceView = new GeozzyResourceView();
-
-      // error_log( 'recursoData para FORM: ' . print_r( $valuesArray, true ) );
-      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $valuesArray );
-
-      // Cambiamos el template del formulario
-      $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
-
-      // Template base: Admin 8-4
-      $this->template->assign( 'headTitle', __('Edit Resource') );
-      $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
-
-      $this->showFormBlocks( $formBlock );
+      $this->resourceShowForm( 'resourceEdit', '/admin/resource/sendresource', $recursoData );
     }
     else {
       cogumelo::error( 'Imposible acceder al recurso indicado.' );
     }
   } // function resourceEditForm()
+
+
+
+  public function resourceShowForm( $formName, $formUrl, $recursoData = false ) {
+    $resourceView = new GeozzyResourceView();
+
+    // error_log( 'recursoData para FORM: ' . print_r( $recursoData, true ) );
+    $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
+
+    // Cambiamos el template del formulario
+    $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
+
+    // Template base: Admin 8-4
+    $this->template->assign( 'headTitle', __('Edit Resource') );
+    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
+
+    $this->showFormBlocks( $formBlock );
+  }
 
 
   private function showFormBlocks( $formBlock ) {
