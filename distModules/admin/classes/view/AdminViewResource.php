@@ -257,9 +257,19 @@ class AdminViewResource extends AdminViewMaster {
     $formName = 'resourceUrlCreate';
     $formUrl = '/admin/resourcetypeurl/sendresource';
 
-    $noFields = array(
-      'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
-      'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom', 'weight'
+    $reqFields = array(
+      'cgIntFrmId',
+      'id',
+      'rTypeId',
+      'title',
+      'shortDescription',
+      'content',
+      'externalUrl',
+      'image',
+      'rExtUrl_urlContentType',
+      'rExtUrl_embed',
+      'rExtUrl_author',
+      'submit'
     );
 
     $resourceView = new GeozzyResourceView();
@@ -269,6 +279,23 @@ class AdminViewResource extends AdminViewMaster {
     $recursoData['rTypeId'] = $rtype->getter('id');
 
     $form = $resourceView->getFormObj( $formName, $formUrl, $recursoData );
+
+    $allResourceFields = $form->getFieldsNamesArray();
+    $noFields = array();
+    $yesFields = array();
+    foreach ( $reqFields as $key => $field ) {
+      if( in_array( $field, $allResourceFields ) ){
+        array_push( $yesFields, $field );
+      }else{
+        $mfield = $form->multilangFieldNames($field);
+        foreach ($mfield as $k => $mf) {
+          if( in_array( $mf, $allResourceFields) ){
+            array_push( $yesFields, $mf );
+          }
+        }
+      }
+    }
+    $noFields = array_diff( $allResourceFields, $yesFields );
     $form->removeField( $noFields );
     $formBlock = $resourceView->formToTemplate( $form );
 
@@ -291,10 +318,19 @@ class AdminViewResource extends AdminViewMaster {
 
     //multilangFieldNames
 
-    $noFields = array(
-      'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
-      'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom', 'weight'
+    $reqFields = array(
+      'cgIntFrmId',
+      'id',
+      'rTypeId',
+      'title',
+      'shortDescription',
+      'content',
+      'image',
+      'rExtFile_file',
+      'rExtFile_author',
+      'submit'
     );
+
 
     $resourceView = new GeozzyResourceView();
     $rtypeControl = new ResourcetypeModel();
@@ -303,6 +339,22 @@ class AdminViewResource extends AdminViewMaster {
     $recursoData['rTypeId'] = $rtype->getter('id');
     // $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
     $form = $resourceView->getFormObj( $formName, $formUrl, $recursoData );
+    $allResourceFields = $form->getFieldsNamesArray();
+    $noFields = array();
+    $yesFields = array();
+    foreach ( $reqFields as $key => $field ) {
+      if( in_array( $field, $allResourceFields ) ){
+        array_push( $yesFields, $field );
+      }else{
+        $mfield = $form->multilangFieldNames($field);
+        foreach ($mfield as $k => $mf) {
+          if( in_array( $mf, $allResourceFields) ){
+            array_push( $yesFields, $mf );
+          }
+        }
+      }
+    }
+    $noFields = array_diff( $allResourceFields, $yesFields );
     $form->removeField( $noFields );
     $formBlock = $resourceView->formToTemplate( $form );
 
