@@ -372,8 +372,9 @@ class ResourceController {
     Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( $form ) {
-
-    $this->evalFormUrlAlias( $form, 'urlAlias' );
+    if( $form->isFieldDefined( 'urlAlias' ) || $form->isFieldDefined( $form->multilangFieldNames( 'urlAlias' )['0'] ) ) {
+      $this->evalFormUrlAlias( $form, 'urlAlias' );
+    }
   }
 
   /**
@@ -480,7 +481,6 @@ class ResourceController {
     Finalizar transaction
    */
   public function resFormSuccess( $form, $resource ) {
-
     if( !$form->existErrors() ) {
       // TRANSACTION COMMIT
       $resource->transactionCommit();
