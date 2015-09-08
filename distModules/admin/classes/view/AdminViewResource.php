@@ -151,12 +151,29 @@ class AdminViewResource extends AdminViewMaster {
     $recursoData = false;
 
     /* Validamos os parámetros da url e obtemos un array de volta*/
-    $validation = array( 'resourceId'=> '#^\d+$#' );
+    $validation = array( 'topic'=> '#^\d+$#', 'resourceId'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
     if( isset( $urlParamsList['resourceId'] ) ) {
       $resCtrl = new ResourceController();
       $recursoData = $resCtrl->getResourceData( $urlParamsList['resourceId'] );
+    }
+
+    if( isset( $urlParamsList['topic'] ) ) {
+      $urlParamTopic = $urlParamsList['topic'];
+      $topicControl = new TopicModel();
+      $topicItem = $topicControl->ListItems( array( 'filters' => array( 'id' => $urlParamTopic ) ) )->fetch();
+    }
+
+    if( $topicItem ) {
+      $rtypeTopicControl = new ResourcetypeTopicModel();
+      $resourcetypeTopic = $rtypeTopicControl->ListItems(
+        array( 'filters' => array( 'topic' => $urlParamTopic, 'resourceType' => $recursoData['rTypeId'] ) )
+      )->fetch();
+
+      if( $resourcetypeTopic ){
+        $recursoData['topicReturn'] = $topicItem->getter('id');
+      }
     }
 
     if( $recursoData ) {
