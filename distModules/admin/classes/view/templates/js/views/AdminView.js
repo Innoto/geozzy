@@ -64,6 +64,9 @@ var AdminView = Backbone.View.extend({
     $("#"+modalId).on('hidden.bs.modal', function (e) {
       e.target.remove();
     });
+    $(document).on('hidden.bs.modal', '.modal', function () {
+      $('.modal:visible').length && $(document.body).addClass('modal-open');
+    });
 
   },
 
