@@ -87,7 +87,7 @@ class AdminViewResource extends AdminViewMaster {
 
     $typeModel =  new ResourcetypeModel();
     $typeList = $typeModel->listItems()->fetchAll();
-    foreach ($typeList as $id => $type){
+    foreach( $typeList as $id => $type ) {
       $tabla->colRule('rTypeId', '#'.$id.'#', $type->getter('name'));
     }
 
@@ -438,14 +438,16 @@ class AdminViewResource extends AdminViewMaster {
       $resource = $resourceView->actionResourceFormProcess( $form );
     }
 
-    if( !$form->existErrors() && $resource ) {
+    if( !$form->existErrors() ) {
       $form->removeSuccess( 'redirect' );
-      $form->setSuccess( 'jsEval', ' successResourceForm( { id : "'.$resource->getter('id').'", title: "'.$resource->getter('title_'.$form->langDefault).'", image: "'.$resource->getter('image').'" });' );
-
-      // Enviamos el OK-ERROR a la BBDD y al formulario
-      $resourceView->actionResourceFormSuccess( $form, $resource );
+      $form->setSuccess( 'jsEval', ' successResourceForm( { id : "'.$resource->getter('id').'",'.
+        ' title: "'.$resource->getter('title_'.$form->langDefault).'",'.
+        ' image: "'.$resource->getter('image').'" });'
+      );
     }
 
+    // Enviamos el OK-ERROR a la BBDD y al formulario
+    $resourceView->actionResourceFormSuccess( $form, $resource );
   }
 
 }
