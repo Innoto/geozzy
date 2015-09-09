@@ -63,7 +63,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin#resource/edit/id/".$rowId');
+    $tabla->setEachRowUrl('"/admin#resource/edit/id/".$rowId."/topic/'.$topicId.'"');
     $tabla->setNewItemUrl('/admin#resource/create');
 
     // Nome das columnas

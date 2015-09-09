@@ -100,6 +100,7 @@ var AdminView = Backbone.View.extend({
     /* Bindeamos unha acción da táboa ao botón da barra superior */
     var pathname = window.location.href;
     parts1 = pathname.split('admin#');
+
     if (parts1[1]){
       parts2 = parts1[1].split('/');
       if (parts2[0] == 'resourceouttopic'){ //táboa de asignación intermedia recursos-temáticas
@@ -111,10 +112,10 @@ var AdminView = Backbone.View.extend({
         });
       }
 
-      if (parts2[0] == 'starred' && parts2[2] == 'assign'){ //táboa de asignación intermedia recursos-destacados
+      if (parts2[0] == 'starred' && parts2[3] == 'assign'){ //táboa de asignación intermedia recursos-destacados
         // Assign
         $('.btnAssign').bind('click', function(){
-          cogumeloTables.AdminViewStarred.actionOnSelectedRows('assign', function(){window.location = 'admin#starred/'+parts2[1]+'/assign';});
+          cogumeloTables.AdminViewStarred.actionOnSelectedRows('assign', function(){window.location = 'admin#starred/star/'+parts2[2]+'/assign';});
         });
       }
     }
