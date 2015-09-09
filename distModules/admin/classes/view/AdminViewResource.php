@@ -151,6 +151,7 @@ error_log( 'resourceEditForm' );
     $tsEntrada = microtime( true );
 
     $recursoData = false;
+    $urlParamTopic = false;
     $topicItem = false;
 
     /* Validamos os parámetros da url e obtemos un array de volta*/
