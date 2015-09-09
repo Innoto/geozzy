@@ -80,7 +80,8 @@ function bindResourceForm(){
     // gmaps init
     var mapOptions = {
       center: { lat: latValue, lng: lonValue },
-      zoom: zoom
+      zoom: zoom,
+      scrollwheel: false
     };
     var resourceMap = new google.maps.Map(document.getElementById('resourceLocationMap'), mapOptions);
 
