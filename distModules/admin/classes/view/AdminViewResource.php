@@ -142,30 +142,51 @@ class AdminViewResource extends AdminViewMaster {
       }
     }
 
-    $resourceView = new GeozzyResourceView();
     $this->resourceShowForm( 'resourceCreate', '/admin/resource/sendresource', $recursoData );
   }
 
 
   public function resourceEditForm( $urlParams = false ) {
+error_log( 'resourceEditForm' );
+    $tsEntrada = microtime( true );
+
     $recursoData = false;
 
     /* Validamos os parámetros da url e obtemos un array de volta*/
-    $validation = array( 'resourceId'=> '#^\d+$#' );
+    $validation = array( 'topic'=> '#^\d+$#', 'resourceId'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
+error_log( 'resourceEditForm1 TIME=' . intval( 1000*(microtime( true ) - $tsEntrada) ) );
     if( isset( $urlParamsList['resourceId'] ) ) {
       $resCtrl = new ResourceController();
       $recursoData = $resCtrl->getResourceData( $urlParamsList['resourceId'] );
     }
 
+error_log( 'resourceEditForm2 TIME=' . intval( 1000*(microtime( true ) - $tsEntrada) ) );
+    if( isset( $urlParamsList['topic'] ) ) {
+      $urlParamTopic = $urlParamsList['topic'];
+      $topicControl = new TopicModel();
+      $topicItem = $topicControl->ListItems( array( 'filters' => array( 'id' => $urlParamTopic ) ) )->fetch();
+    }
+
+    if( $topicItem ) {
+      $rtypeTopicControl = new ResourcetypeTopicModel();
+      $resourcetypeTopic = $rtypeTopicControl->ListItems(
+        array( 'filters' => array( 'topic' => $urlParamTopic, 'resourceType' => $recursoData['rTypeId'] ) )
+      )->fetch();
+
+      if( $resourcetypeTopic ){
+        $recursoData['topicReturn'] = $topicItem->getter('id');
+      }
+    }
+
     if( $recursoData ) {
-      $resourceView = new GeozzyResourceView();
       $this->resourceShowForm( 'resourceEdit', '/admin/resource/sendresource', $recursoData );
     }
     else {
       cogumelo::error( 'Imposible acceder al recurso indicado.' );
     }
+error_log( 'resourceEditForm FIN TIME=' . intval( 1000*(microtime( true ) - $tsEntrada) ) );
   } // function resourceEditForm()
 
 
@@ -188,6 +209,7 @@ class AdminViewResource extends AdminViewMaster {
 
 
   private function showFormBlocks( $formBlock ) {
+
     // Fragmentamos el formulario generado
     $formImage = $this->extractFormBlockFields( $formBlock, array( 'image' ) );
     $formPublished = $this->extractFormBlockFields( $formBlock, array( 'published' ) );
@@ -203,7 +225,7 @@ class AdminViewResource extends AdminViewMaster {
     // El bloque que usa $formBlock contiene la estructura del form
 
     // Bloques de 8
-    $this->template->addToBlock( 'col8', $this->getPanelBlock( $formBlock, __('Edit Resource'), 'fa-archive' ) );
+    $this->template->addToBlock( 'col8', $this->getPanelBlock( $formBlock, __('Main Resource information'), 'fa-archive' ) );
     if( $formLatLon ) {
       $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formLatLon ), __('Location'), 'fa-archive' ) );
     }
@@ -362,44 +384,6 @@ class AdminViewResource extends AdminViewMaster {
     $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
     $this->template->exec();
   } // function resourceForm()
-
-
-
-
-/*
-  public function resourceEditForm( $urlParams = false ) {
-    $formName = 'resourceCreate';
-    $formUrl = '/admin/resource/sendresource';
-
-    $valuesArray = false;
-
-    if( isset( $urlParams['1'] ) ) {
-      $resCtrl = new ResourceController();
-      $valuesArray = $resCtrl->getResourceData( $urlParams['1'] );
-    }
-
-    if( $valuesArray ) {
-      $resourceView = new GeozzyResourceView();
-
-      // error_log( 'recursoData para FORM: ' . print_r( $valuesArray, true ) );
-      $formBlock = $resourceView->getFormBlock( $formName,  $formUrl, $valuesArray );
-
-      // Cambiamos el template del formulario
-      $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
-
-      // Template base: Admin 8-4
-      $this->template->assign( 'headTitle', __('Edit Resource') );
-      $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
-
-      $this->showFormBlocks( $formBlock );
-    }
-    else {
-      cogumelo::error( 'Imposible acceder al recurso indicado.' );
-    }
-  } // function resourceEditForm()
-*/
-
-
 
 
 
