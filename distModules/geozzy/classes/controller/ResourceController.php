@@ -372,7 +372,9 @@ class ResourceController {
     Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( $form ) {
-    if( $form->isFieldDefined( 'urlAlias' ) || $form->isFieldDefined( $form->multilangFieldNames( 'urlAlias' )['0'] ) ) {
+    $urlAliasFieldNames = $form->multilangFieldNames( 'urlAlias' );
+    $fieldName = is_array( $urlAliasFieldNames ) ? $urlAliasFieldNames['0'] : $urlAliasFieldNames;
+    if( $form->isFieldDefined( $fieldName ) ) {
       $this->evalFormUrlAlias( $form, 'urlAlias' );
     }
   }
