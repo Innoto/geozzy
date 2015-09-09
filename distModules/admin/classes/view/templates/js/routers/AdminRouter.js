@@ -24,7 +24,7 @@ var AdminRouter = Backbone.Router.extend({
     "starred/:id": "starredList",
     "starred/star/:id/assign": "starredAssign",
     "resource/create(/star/:star)(/topic/:topicId)/resourcetype/:resourcetype" : "resourceCreate",
-    "resource/edit/id/:id" : "resourceEdit",
+    "resource/edit/id/:id(/topic/:topicId)" : "resourceEdit",
     "collection/create" : "collectionCreate",
     "collection/edit/:id" : "collectionEdit"
 
@@ -126,10 +126,12 @@ var AdminRouter = Backbone.Router.extend({
       app.mainView.loadAjaxContent( '/admin/resource/create/star/'+star+'/resourcetype/'+resourcetype);
     }
     else{
-      if (topic !== null)
+      if (topic !== null){
         app.mainView.loadAjaxContent( '/admin/resource/create/topic/'+topic+'/resourcetype/'+resourcetype);
-      else
+      }
+      else{
         app.mainView.loadAjaxContent( '/admin/resource/create/resourcetype/'+resourcetype);
+      }
       app.mainView.setBodyClass('resourceCreate');
     }
   },
@@ -138,8 +140,13 @@ var AdminRouter = Backbone.Router.extend({
     app.mainView.loadAjaxContent( '/admin/resource/create/'+topic+'/'+resourcetype);
     app.mainView.setBodyClass('resourceCreateinTopic');
   },
-  resourceEdit:function( id )   {
-    app.mainView.loadAjaxContent( '/admin/resource/edit/resourceId/' + id);
+  resourceEdit:function( id, topic ) {
+    if (topic !== null){
+      app.mainView.loadAjaxContent( '/admin/resource/edit/resourceId/'+id+'/topic/'+topic);
+    }
+    else{
+      app.mainView.loadAjaxContent( '/admin/resource/edit/resourceId/'+id);
+    }
     app.mainView.setBodyClass('resourceEdit');
   },
 
