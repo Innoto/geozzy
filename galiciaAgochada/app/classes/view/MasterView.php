@@ -26,14 +26,6 @@ class MasterView extends View
   function page404() {
     echo 'PAGE404: Recurso non atopado';
   }
-
-  function explorerExample() {
-    $this->template->addClientScript('js/TimeDebuger.js', 'common');
-    explorer::autoIncludes();
-    $this->template->setTpl('explorerExample.tpl');
-    $this->template->exec();
-  }
-
   function main(){
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     $this->template->setTpl('portada.tpl');

@@ -12,9 +12,9 @@
   {$js_includes}
 
 </head>
-<body style="background:#BFE3E9;">
+<body style="background:#34536C;">
 
-<h2 style="position:absolute; top:40%; left:40%; color:#30494E;">GEOZZY APP</h2>
+<h2 style="position:absolute; top:40%; left:40%; color:#fff;">GALICIA AGOCHADA</h2>
 {literal}
 <script>
   $( document ).ready(function() {
