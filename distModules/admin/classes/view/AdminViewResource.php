@@ -147,8 +147,6 @@ class AdminViewResource extends AdminViewMaster {
 
 
   public function resourceEditForm( $urlParams = false ) {
-error_log( 'resourceEditForm' );
-    $tsEntrada = microtime( true );
 
     $recursoData = false;
     $urlParamTopic = false;
@@ -158,13 +156,11 @@ error_log( 'resourceEditForm' );
     $validation = array( 'topic'=> '#^\d+$#', 'resourceId'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
-error_log( 'resourceEditForm1 TIME=' . intval( 1000*(microtime( true ) - $tsEntrada) ) );
     if( isset( $urlParamsList['resourceId'] ) ) {
       $resCtrl = new ResourceController();
       $recursoData = $resCtrl->getResourceData( $urlParamsList['resourceId'] );
     }
 
-error_log( 'resourceEditForm2 TIME=' . intval( 1000*(microtime( true ) - $tsEntrada) ) );
     if( isset( $urlParamsList['topic'] ) ) {
       $urlParamTopic = $urlParamsList['topic'];
       $topicControl = new TopicModel();
@@ -188,7 +184,6 @@ error_log( 'resourceEditForm2 TIME=' . intval( 1000*(microtime( true ) - $tsEntr
     else {
       cogumelo::error( 'Imposible acceder al recurso indicado.' );
     }
-error_log( 'resourceEditForm FIN TIME=' . intval( 1000*(microtime( true ) - $tsEntrada) ) );
   } // function resourceEditForm()
 
 
