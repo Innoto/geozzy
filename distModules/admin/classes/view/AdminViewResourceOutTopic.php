@@ -28,10 +28,11 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
 
     $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
     foreach( $resourcetypelist as $i => $rType ) {
-      $typeList[ $i ] = $rType->getter('name_es');
+      //$typeList[ $i ] = $rType->getter('name_es');
       $resCreateByType .= '<li><a class="create-'.$rType->getter('idName').'" href="/admin#resource/create/topic/'.$topicId.'/resourcetype/'.$rType->getter('id').'">'.$rType->getter('name_es').'</a></li>';
     }
     $resCreateByType .= '</ul>';
+
 
     $this->template->assign( 'headTitle', __('Create and add resources') );
     $this->template->assign( 'headActions', '<a href="/admin#resourceintopic/list/'.$topicId.'" class="btn btn-default"> '.__('Return').'</a>
@@ -69,12 +70,23 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
     $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
     $topicId = $urlParamsList['topic'];
 
+    $resourcetype =  new ResourcetypeModel();
+    $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
+
+    foreach ($resourcetypelist as $typeId => $type){
+      $tiposArray[$typeId] = $typeId;
+    }
+
     table::autoIncludes();
     $resource =  new ResourceModel();
 
     $tabla = new TableController( $resource );
 
     $tabla->setTabs(__('id'), array('*'=> __('All') ), '*');
+
+    // filters
+    $internalFilters['inRtype'] = $tiposArray;
+    $tabla->setDefaultFilters($internalFilters);
 
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
@@ -95,14 +107,14 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
     $tabla->setActionMethod(__('Assign'), 'assign', 'createTopicRelation('.$topicId.',$rowId)');
 
     // Contido especial
-    $typeModel =  new ResourcetypeModel();
-    $typeList = $typeModel->listItems()->fetchAll();
-    foreach ($typeList as $id => $type){
+  //  $typeModel =  new ResourcetypeModel();
+  //  $typeList = $typeModel->listItems()->fetchAll();
+    foreach ($resourcetypelist as $id => $type){
       $tabla->colRule('rTypeId', '#'.$id.'#', $type->getter('name'));
     }
 
     // Filtrar por temática
-    $tabla->setDefaultFilters( array('nottopic'=> $topicId ) );
+    $tabla->setDefaultFilters( array('nottopic'=> $topicId, 'inRtype'=>$tiposArray) );
 
     // imprimimos o JSON da taboa
     $tabla->exec();
