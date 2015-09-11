@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=Edge"><![endif]-->
-  <title>Geozzy app</title>
+  <title>galiciaagochada</title>
 
   {$css_includes}
   {$js_includes}

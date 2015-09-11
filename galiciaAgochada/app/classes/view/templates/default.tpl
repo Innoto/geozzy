@@ -7,7 +7,7 @@
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=Edge"><![endif]-->
   <meta name="keywords" content="{block name="headKeywords"}default keywords{/block}">
   <meta name="description" content="{block name="headDescription"}default description{/block}">
-  <title>{block name="headTitle"}Geozzy app{/block}</title>
+  <title>{block name="headTitle"}galiciaagochada{/block}</title>
 
   {block name="headCssIncludes"}{$css_includes}{/block}
 
