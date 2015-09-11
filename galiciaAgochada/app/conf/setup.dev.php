@@ -50,9 +50,9 @@ define( 'COGUMELO_DIST_LOCATION', '/home/proxectos/geozzy');
 define( 'DB_ENGINE', 'mysql' );
 define( 'DB_HOSTNAME', 'localhost');
 define( 'DB_PORT', '3306');
-define( 'DB_USER', 'geozzyapp');
+define( 'DB_USER', 'galiciaagochada');
 define( 'DB_PASSWORD', 'q7w8e9r');
-define( 'DB_NAME', 'geozzyapp');
+define( 'DB_NAME', 'galiciaagochada');
 
 define( 'DB_MYSQL_GROUPCONCAT_MAX_LEN', 1844674407370954751); //max 	4294967295 (in 32 bits) , 18446744073709547520 (in 64 bits)
 
@@ -65,7 +65,7 @@ require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
 //  Url settings
 //
 // TODO: Cuidado porque no se admite un puerto
-define( 'COGUMELO_ADMINSCRIPT_URL', 'http://geozzyapp/cogumelo-server.php');
+define( 'COGUMELO_ADMINSCRIPT_URL', 'http://galiciaagochada/cogumelo-server.php');
 define( 'SITE_PROTOCOL', isset( $_SERVER['HTTPS'] ) ? 'https' : 'http' );
 define( 'SITE_HOST', SITE_PROTOCOL.'://'.$_SERVER['HTTP_HOST']);  // solo HOST sin ('/')
 define( 'SITE_FOLDER', '/' );  // SITE_FOLDER STARTS AND ENDS WITH SLASH ('/')
