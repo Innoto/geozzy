@@ -1,6 +1,7 @@
 <?php
 
 Cogumelo::load('coreView/View.php');
+
 common::autoIncludes();
 Cogumelo::autoIncludes();
 
