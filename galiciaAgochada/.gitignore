@@ -1,0 +1,20 @@
+
+# logs
+/app/log/
+
+# backups
+/app/backups/
+
+# temp
+/app/tmp/
+
+# mediaserver and dependences
+/httpdocs/mediaCache/
+/httpdocs/vendor/
+/bower.*
+/composer.json
+/composer.lock
+
+# temp form files
+/formFiles/
+

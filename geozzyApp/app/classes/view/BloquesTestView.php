@@ -1,6 +1,6 @@
 <?php
 
-Cogumelo::load( 'coreView/View.php' );
+Cogumelo::load('view/MasterView.php');
 
 // Blocks::autoIncludes();
 Blocks::load( 'view/BlocksPorto1.php' );
@@ -10,7 +10,7 @@ user::autoIncludes();
 admin::load( 'view/AdminViewUser.php' );
 
 
-class BloquesTestView extends View
+class BloquesTestView extends MasterView
 {
 
   public function __construct( $baseDir ) {

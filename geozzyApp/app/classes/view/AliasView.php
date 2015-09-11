@@ -1,5 +1,5 @@
 <?php
-Cogumelo::load( 'coreView/View.php' );
+Cogumelo::load('view/MasterView.php');
 geozzy::load( 'view/UrlAliasView.php' );
 
 common::autoIncludes();
@@ -7,7 +7,7 @@ geozzy::autoIncludes();
 
 
 
-class AliasView extends View
+class AliasView extends MasterView
 {
 
   private $formName = 'aliasCreate';

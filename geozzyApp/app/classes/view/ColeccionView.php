@@ -1,5 +1,5 @@
 <?php
-Cogumelo::load( 'coreView/View.php' );
+Cogumelo::load('view/MasterView.php');
 geozzy::load( 'view/GeozzyCollectionView.php' );
 
 common::autoIncludes();
@@ -7,7 +7,7 @@ geozzy::autoIncludes();
 
 
 
-class ColeccionView extends View
+class ColeccionView extends MasterView
 {
 
   private $formName = 'collectionCreate';
@@ -170,4 +170,3 @@ class ColeccionView extends View
 
 
 } // class ColeccionView
-
