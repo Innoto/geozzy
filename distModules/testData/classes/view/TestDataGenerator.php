@@ -151,7 +151,7 @@ class TestDataGenerator extends View
             }
         }
       }
-
+      $resourcetype =  new ResourcetypeModel();
       // asignamos temáticas ao recurso
       $usedTopic = array();
       if ($topicArray){
@@ -161,6 +161,15 @@ class TestDataGenerator extends View
             if (!in_array($topicArray[$topicNum],$usedTopic)){
               $usedTopic[$a] = $topicArray[$topicNum];
               $resource->setterDependence( 'id', new ResourceTopicModel( array('resource' => $resource->getter('id'), 'topic' => $topicArray[$topicNum])) );
+
+              $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicArray[$topicNum] ) ) )->fetchAll();
+              $cont = 0;
+              foreach ($resourcetypelist as $typeId => $type){
+                $tiposArray[$cont] = $typeId;
+                $cont = $cont + 1;
+              }
+              $t = rand(0,sizeof($tiposArray)-1);
+              $resource->setter('rTypeId', $tiposArray[$t]);
             }
         }
       }
