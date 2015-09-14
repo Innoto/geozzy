@@ -398,6 +398,13 @@ class ResourceController {
     $template->assign( 'formClose', $form->getHtmlClose() );
     $template->assign( 'formValidations', $form->getScriptCode() );
 
+    $template->assign( 'resourceId', $this->resData['id']);
+    $template->assign( 'timeCreation', $this->resData['timeCreation']);
+    if (isset($this->resData['timeLastUpdate']))
+      $template->assign( 'timeLastUpdate', $this->resData['timeLastUpdate']);
+    if (isset($this->resData['averageVotes']))
+      $template->assign( 'timeLastUpdate', $this->resData['averageVotes']);
+
 
     $this->rTypeCtrl = $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
     if( $this->rTypeCtrl ) {
