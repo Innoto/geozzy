@@ -398,16 +398,13 @@ class ResourceController {
     $template->assign( 'formClose', $form->getHtmlClose() );
     $template->assign( 'formValidations', $form->getScriptCode() );
 
-error_log( 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZzz' );
-error_log( 'ResourceController: formToTemplate '. print_r( $this->resData, true ) );
 
     $this->rTypeCtrl = $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
     if( $this->rTypeCtrl ) {
-      /*
-      $rTypeFieldNames = $this->rTypeCtrl->manipulateFormTemplate( $form, $template );
-      // error_log( 'rTypeFieldNames: '.print_r( $rTypeFieldNames, true ) );
-      $template->assign( 'rTypeFieldNames', $rTypeFieldNames );
-      */
+      $rTypeTemplate = $this->rTypeCtrl->manipulateFormTemplate( $form, $template );
+      if( $rTypeTemplate ) {
+        $template = $rTypeTemplate;
+      }
     }
 
     return( $template );
@@ -493,7 +490,6 @@ error_log( 'ResourceController: formToTemplate '. print_r( $this->resData, true 
       else {
         $valuesArray[ 'user' ] = $user->getter( 'id' );
         $valuesArray[ 'timeCreation' ] = date( "Y-m-d H:i:s", time() );
-        $valuesArray[ 'timeLastUpdate' ] = $valuesArray[ 'timeCreation' ];
       }
 
       // Resource LOCATION
