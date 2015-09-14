@@ -219,7 +219,6 @@ class AdminViewResource extends AdminViewMaster {
     $formMultimediaGalleries = $this->extractFormBlockFields( $formBlock, array( 'multimediaGalleries', 'addMultimediaGalleries' ) );
     $formLatLon = $this->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom' ) );
 
-
     // El bloque que usa $formBlock contiene la estructura del form
 
     // Bloques de 8
@@ -251,6 +250,16 @@ class AdminViewResource extends AdminViewMaster {
     if( $formSeo ) {
       $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' ) );
     }
+
+    $resourceId = $formBlock->getTemplateVars('resourceId');
+    $timeCreation = $formBlock->getTemplateVars('timeCreation');
+    $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
+
+    $info = '<div class="infoBasic"><ul><li><label>ID:</label><span>'.$resourceId.'</span></li>'.
+            '<li><label>Creado:</label><span>'.$timeCreation.'</span></li>'.
+            '<li><label>Actualizado:</label><span>'.$timeLastUpdate.'</span></li></ul></div>';
+
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( $info, __( 'Resource information' ), 'fa-globe' ) );
 
     $this->template->exec();
   }
