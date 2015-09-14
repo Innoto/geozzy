@@ -154,7 +154,7 @@ class ResourceController {
 
 
   /**
-     Defino el formulario
+   * Defino el formulario del Recurso Base
    *
    * @param $formName string Nombre del form
    * @param $urlAction string URL del action
@@ -162,8 +162,8 @@ class ResourceController {
    *
    * @return Obj-Form
    **/
-  public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "ResourceController: getFormObj()" );
+  public function getBaseFormObj( $formName, $urlAction, $valuesArray = false ) {
+    error_log( "ResourceController: getBaseFormObj()" );
     // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
 
     $form = new FormController( $formName, $urlAction );
@@ -342,7 +342,80 @@ class ResourceController {
     $form->saveToSession();
 
     return( $form );
-  } // function getFormObj()
+  }
+
+
+
+  /**
+   * Construimos el formulario completo
+   *
+   * @param $formName string Nombre del form
+   * @param $urlAction string URL del action
+   * @param $valuesArray array Opcional: Valores de los campos del form
+   *
+   * @return Obj-Form
+   **/
+  public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
+    error_log( "ResourceController: getFormObj()" );
+    // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
+    $form = $this->getBaseFormObj( $formName, $urlAction, $valuesArray );
+
+    $this->rTypeCtrl = $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
+    if( $this->rTypeCtrl ) {
+      $rTypeFieldNames = $this->rTypeCtrl->manipulateForm( $form );
+      // error_log( 'rTypeFieldNames: '.print_r( $rTypeFieldNames, true ) );
+    }
+
+    // Una vez que lo tenemos definido, guardamos el form en sesion
+    $form->saveToSession();
+
+    return( $form );
+  }
+
+
+
+
+
+  /**
+   * Defino el formulario y creo su Bloque con su TPL
+   *
+   * @param $form object Form
+   * @param $template object
+   *
+   * @return Obj-Template
+   **/
+  public function formToTemplate( $form, $template = false ) {
+    error_log( "ResourceController: formToTemplate()" );
+
+    if( !$template ) {
+      $template = new Template();
+      $template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
+    }
+
+    $template->assign( 'formOpen', $form->getHtmpOpen() );
+    $template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
+    $template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
+    $template->assign( 'formClose', $form->getHtmlClose() );
+    $template->assign( 'formValidations', $form->getScriptCode() );
+
+
+    $this->rTypeCtrl = $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
+    if( $this->rTypeCtrl ) {
+      /*
+      $rTypeFieldNames = $this->rTypeCtrl->manipulateFormTemplate( $form, $template );
+      // error_log( 'rTypeFieldNames: '.print_r( $rTypeFieldNames, true ) );
+      $template->assign( 'rTypeFieldNames', $rTypeFieldNames );
+      */
+    }
+
+    return( $template );
+  }
+
+
+
+
+
+
 
 
 

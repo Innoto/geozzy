@@ -45,21 +45,8 @@ class GeozzyResourceView extends View {
    * @return Obj-Form
    **/
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "GeozzyResourceView: getFormObj()" );
-
-    $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
-
-    $this->rTypeCtrl = $this->defResCtrl->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
-    if( $this->rTypeCtrl ) {
-      $rTypeFieldNames = $this->rTypeCtrl->manipulateForm( $form );
-      // error_log( 'rTypeFieldNames: '.print_r( $rTypeFieldNames, true ) );
-    }
-
-    // Una vez que lo tenemos completamente definido, guardamos el form en sesion
-    $form->saveToSession();
-
-    return $form;
-  } // function getFormObj()
+    return $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
+  }
 
 
   /**
@@ -70,27 +57,8 @@ class GeozzyResourceView extends View {
    * @return Obj-Template
    **/
   public function formToTemplate( $form ) {
-    error_log( "GeozzyResourceView: getFormBlock()" );
-
-    $template = new Template();
-
-    $template->assign( 'formOpen', $form->getHtmpOpen() );
-
-    $template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
-
-    $template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
-
-    $template->assign( 'rTypeName', $form->getFieldValue( 'rTypeName' ) );
-
-    $template->assign( 'rTypeFieldNames', $form->getFieldValue( 'rTypeFieldNames' ) );
-
-    $template->assign( 'formClose', $form->getHtmlClose() );
-    $template->assign( 'formValidations', $form->getScriptCode() );
-
-    $template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
-
-    return( $template );
-  } // function getFormBlock()
+    return( $this->defResCtrl->formToTemplate( $form ) );
+  }
 
 
 
@@ -107,10 +75,9 @@ class GeozzyResourceView extends View {
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
     error_log( "GeozzyResourceView: getFormBlock()" );
 
+    $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
-    $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
-
-    $template = $this->formToTemplate( $form );
+    $template = $this->defResCtrl->formToTemplate( $form );
 
     return( $template );
   } // function getFormBlock()
