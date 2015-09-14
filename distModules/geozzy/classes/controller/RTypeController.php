@@ -45,7 +45,7 @@ class RTypeController {
   }
 
   public function manipulateFormTemplate( FormController $form, Template $template ) {
-    return( $template );
+    return( false );
   }
 
 
