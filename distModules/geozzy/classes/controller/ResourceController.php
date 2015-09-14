@@ -493,6 +493,7 @@ error_log( 'ResourceController: formToTemplate '. print_r( $this->resData, true 
       else {
         $valuesArray[ 'user' ] = $user->getter( 'id' );
         $valuesArray[ 'timeCreation' ] = date( "Y-m-d H:i:s", time() );
+        $valuesArray[ 'timeLastUpdate' ] = $valuesArray[ 'timeCreation' ];
       }
 
       // Resource LOCATION
