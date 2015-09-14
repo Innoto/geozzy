@@ -36,6 +36,10 @@ $GEOZZY_API_DOC_URLS =  array_merge(
   $GEOZZY_API_DOC_URLS_ADMIN,
   array(
     array(
+      'path' => '/bi.json',
+      'description' => 'BI dashboard utils'
+    ),
+    array(
       'path' => '/resources.json',
       'description' => 'Core Resource'
     ),
