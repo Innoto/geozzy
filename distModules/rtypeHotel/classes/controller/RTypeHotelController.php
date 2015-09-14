@@ -49,8 +49,8 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     $rTypeExtNames[] = 'rextAccommodation';
     $this->accomCtrl = new RExtAccommodationController( $this );
-    $rExtFieldNames = $this->accomCtrl->manipulateFormTemplate( $form, $template );
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+    //$rExtFieldNames = $this->accomCtrl->manipulateFormTemplate( $form, $template );
+    //$rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
 
     $template->assign( 'rTypeExtNames', $rTypeExtNames );
