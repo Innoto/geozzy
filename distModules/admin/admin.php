@@ -28,15 +28,9 @@ class admin extends Module
     ),
     array(
      "id" => "font-awesome",
-     "params" => array("font-awesome-4.2.0"),
-     "installer" => "manual",
-     "includes" => array("css/font-awesome.min.css")
-    ),
-    array(
-     "id" =>"metismenu",
-     "params" => array("metisMenu"),
+     "params" => array("Font-Awesome"),
      "installer" => "bower",
-     "includes" => array("dist/metisMenu.min.css", "dist/metisMenu.min.js")
+     "includes" => array("css/font-awesome.min.css")
     ),
     array(
      "id" =>"html5shiv",
@@ -51,12 +45,17 @@ class admin extends Module
      "includes" => array("src/respond.js")
     ),
     array(
+     "id" =>"metismenu",
+     "params" => array("metisMenu"),
+     "installer" => "bower",
+     "includes" => array("dist/metisMenu.min.css", "dist/metisMenu.min.js")
+    ),
+    array(
      "id" =>"raphael",
      "params" => array("raphael"),
      "installer" => "bower",
      "includes" => array("raphael-min.js")
     ),
-
     array(
      "id" =>"select2",
      "params" => array("select2"),
@@ -136,7 +135,7 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/resourceouttopic/list/(.*)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopic' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/table/(.*)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );
     //$this->addUrlPatterns( '#^admin/resourceouttopic/assign/(\d+)/(.*)$#', 'view:AdminViewResourceOutTopic::addResourceTopic' );
-    
+
 
     $this->addUrlPatterns( '#^admin/starred/(.*)/assign$#', 'view:AdminViewStarred::listAssignStarred' );
     $this->addUrlPatterns( '#^admin/starred/table/(\d+)$#', 'view:AdminViewStarred::listStarredTable' );
@@ -175,7 +174,7 @@ class admin extends Module
 
 
     // data Admin API
-    $this->addUrlPatterns( '#^api/admin/categoryterms(.*)$#', 'view:AdminDataAPIView::categoryTerms' );
+    $this->addUrlPatterns( '#^api/admin/categoryterms(\?.*|\/.*)$#', 'view:AdminDataAPIView::categoryTerms' );
     $this->addUrlPatterns( '#^api/admin/adminCategoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
     $this->addUrlPatterns( '#^api/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger

@@ -41,9 +41,24 @@ class AdminDataAPIView extends View
   }
 
 
-  function categoryTerms( $request ) {
+  function categoryTerms( $urlParams ) {
 
-    $id = substr($request[1], 1);
+
+    $validation = array('id'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
+
+
+    if( isset( $urlParamsList['id'] ) ){
+      $id = $urlParamsList['id'];
+    }
+    else
+    if( isset( $_GET['group'] ) ){
+      $id = $_GET['group'];
+    }
+    else {
+      $id = false;
+    }
+
 
     header('Content-type: application/json');
 
@@ -84,10 +99,10 @@ class AdminDataAPIView extends View
         break;
       case 'GET':
 
-        if( array_key_exists( 'group', $_GET ) && is_numeric( $_GET['group'] ) ){
+        if( $id != false ){
 
           $taxtermModel = new TaxonomytermModel();
-          $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$_GET['group']) ) );
+          $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$id) ) );
           echo '[';
           $c = '';
           while ($taxTerm = $taxtermList->fetch() )
@@ -239,7 +254,7 @@ class AdminDataAPIView extends View
                               "summary": "Delete category terms"
                           }
                       ],
-                      "path": "/admin/categoryterms/{id}",
+                      "path": "/admin/categoryterms/id/{id}",
                       "description": ""
                   }
               ]
