@@ -2,7 +2,7 @@ var geozzy = geozzy || {};
 
 geozzy.filter = Backbone.View.extend({
 
-    filter: function() {
+    filterAction: function() {
       return true;
     },
 
