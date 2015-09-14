@@ -30,11 +30,34 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     // Altero campos del form del recurso "normal"
     $form->setFieldParam( 'externalUrl', 'label', __( 'Hotel home URL' ) );
 
-    // Valadaciones extra
+    // Añadir validadores extra
     // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
 
     return( $rTypeFieldNames );
   } // function manipulateForm()
+
+
+  /**
+    Defino la visualizacion del formulario
+   **/
+  public function manipulateFormTemplate( FormController $form, Template $template ) {
+    error_log( "RTypeHotelController: formToTemplate()" );
+
+    $rTypeExtNames = array();
+    $rTypeFieldNames = array();
+
+
+    $rTypeExtNames[] = 'rextAccommodation';
+    $this->accomCtrl = new RExtAccommodationController( $this );
+    //$rExtFieldNames = $this->accomCtrl->manipulateFormTemplate( $form, $template );
+    //$rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+
+    $template->assign( 'rTypeExtNames', $rTypeExtNames );
+    $template->assign( 'rTypeFieldNames', $rTypeFieldNames );
+
+    return( $template );
+  }
 
 
 
