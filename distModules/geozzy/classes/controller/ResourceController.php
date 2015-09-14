@@ -398,6 +398,8 @@ class ResourceController {
     $template->assign( 'formClose', $form->getHtmlClose() );
     $template->assign( 'formValidations', $form->getScriptCode() );
 
+error_log( 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZzz' );
+error_log( 'ResourceController: formToTemplate '. print_r( $this->resData, true ) );
 
     $this->rTypeCtrl = $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
     if( $this->rTypeCtrl ) {
@@ -414,6 +416,24 @@ class ResourceController {
 
 
 
+  /**
+   * Defino el formulario y creo su Bloque con su TPL
+   *
+   * @param $formName string Nombre del form
+   * @param $urlAction string URL del action
+   * @param $valuesArray array Opcional: Valores de los campos del form
+   *
+   * @return Obj-Template
+   **/
+  public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
+    error_log( "GeozzyResourceView: getFormBlock()" );
+
+    $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
+
+    $template = $this->formToTemplate( $form );
+
+    return( $template );
+  } // function getFormBlock()
 
 
 
