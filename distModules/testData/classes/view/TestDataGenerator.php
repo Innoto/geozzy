@@ -124,8 +124,22 @@ class TestDataGenerator extends View
       // generamos a clave para o array de tipos
       $typeNum = rand(1,$k-1);
 
-      // creación del recurso
-      $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom);
+      $rand1 = rand(500000,900000);
+      $rand2 = rand(0,500000);
+      $timeCreation = date( "Y-m-d H:i:s", time()-$rand1 );
+      $timeLastUpdate = date( "Y-m-d H:i:s", time()-$rand2 );
+      $randUpdate = rand(0,1);
+        // creación del recurso
+      if ($randUpdate == 1){
+        $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom,
+        'timeCreation' => $timeCreation, 'timeLastUpdate' => $timeLastUpdate);
+      }
+      else{
+        $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom,
+        'timeCreation' => $timeCreation);
+      }
+
+
 
       // Location
 
