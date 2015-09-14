@@ -430,7 +430,7 @@ class ResourceController {
     $template = $this->formToTemplate( $form );
 
     return( $template );
-  } // function getFormBlock()
+  }
 
 
 
