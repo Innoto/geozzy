@@ -6,6 +6,9 @@ interface RTypeInterface {
   // Defino el formulario
   public function manipulateForm( FormController $form );
 
+  // Defino la visualizacion del formulario
+  public function manipulateFormTemplate( FormController $form, Template $template );
+
   // Validaciones extra previas a usar los datos del recurso base
   public function resFormRevalidate( FormController $form );
 
@@ -40,5 +43,10 @@ class RTypeController {
       $this->rExts = $this->rTypeModule->rext;
     }
   }
+
+  public function manipulateFormTemplate( FormController $form, Template $template ) {
+    return( false );
+  }
+
 
 } // class RTypeController

@@ -24,6 +24,44 @@ class CoreAPIView extends View
   }
 
 
+  function biJson() {
+    header('Content-type: application/json');
+
+
+    ?>
+          {
+              "resourcePath": "/bi.json",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "Utils  for BI dashboard",
+                                      "code": 200
+                                  }
+                              ],
+
+                              "httpMethod": "GET",
+                              "nickname": "resource",
+                              "parameters": [
+                              ],
+                              "summary": ""
+                          }
+                      ],
+                      "path": "/core/bi",
+                      "description": ""
+                  }
+              ]
+
+          }
+
+        <?php
+  }
+
+
+
   function resourcesJson() {
     header('Content-type: application/json');
 
@@ -372,6 +410,28 @@ class CoreAPIView extends View
   }
 
 
+
+    // resources
+
+    function bi(  ) {
+      require_once APP_BASE_PATH."/conf/geozzyBI.php";
+      header('Content-type: application/json');
+      global $LANG_AVAILABLE, $BI_SITE_SECTIONS, $BI_DEVICES;
+
+      $langs = array(
+        'default'=> LANG_DEFAULT,
+        'available'=> $LANG_AVAILABLE
+      );
+
+      echo json_encode(
+        array(
+          'languages' => $langs,
+          'devices' => $BI_DEVICES,
+          'sections' => $BI_SITE_SECTIONS
+        )
+      );
+
+    }
 
 
 

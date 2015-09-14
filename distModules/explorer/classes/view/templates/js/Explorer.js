@@ -110,7 +110,7 @@ geozzy.explorer = function( opts ) {
         var matches = false;
         $.each( that.filters, function(i, filter){
 
-          if( filter.filter( model ) ) {
+          if( filter.filterAction( model ) ) {
             matches = true;
             return;
           }
@@ -192,65 +192,3 @@ geozzy.explorer = function( opts ) {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          ////////////////////////////////////////////////////////////////////////////////////////////
-          //////////////////////////////////////////////////////////////////////////////////////////
-          ////////////////////////////////////////////////////////////////////////////////////////////
-          //////////////////////////////////////////////////////////////////////////////////////////
-/*
-          that.timeDebuger.log('Index - loaded '+ that.resourceSimpleList.length + ' resources');
-
-
-          var proxy = new Backbone.Obscura(that.resourceSimpleList);
-          that.timeDebuger.log( 'Pimeiro ndexado' );
-          // Set the transformations on the original collection
-          proxy.filterBy(function(model) {
-              return model.get('lat') > 40.3949 && model.get('lng') > -7.2256 && model.get('lat') < 45 && model.get('lng') > -6.2256;
-
-            });
-
-          that.timeDebuger.log( 'Resultado filtrado:' + proxy.length + ' Records' );
-
-          var proxy2 = new Backbone.Obscura(proxy);
-
-          that.timeDebuger.log( 'segundo indexado' );
-          proxy2.filterBy(function(model) {
-
-              var terms =  model.get('terms');
-              var diff = $( terms ).not( [14,10,25]);
-
-              return (diff.length != terms.length );
-
-            });
-          that.timeDebuger.log( 'Resultado segundo filtrado '+ proxy2.length + ' Records' );
-
-          //console.log(proxy2.pluck('id'));
-
-
-          //console.log(proxy.toJSON() );
-*/
-          ////////////////////////////////////////////////////////////////////////////////////////////
-          //////////////////////////////////////////////////////////////////////////////////////////
-          ////////////////////////////////////////////////////////////////////////////////////////////
-          //////////////////////////////////////////////////////////////////////////////////////////

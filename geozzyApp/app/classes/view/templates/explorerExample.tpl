@@ -32,7 +32,8 @@
 
 
     geozzy.filterList = geozzy.filter.extend({
-      filter: function( model ) {
+      filterAction: function( model ) {
+
         var terms =  model.get('terms');
 
         var diff = $( terms ).not( this.data );

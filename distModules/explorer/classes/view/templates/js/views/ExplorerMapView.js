@@ -3,12 +3,20 @@ if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 
 geozzy.explorerDisplay.map = Backbone.View.extend({
 
-  parentExplorer: false,
+  parentExplorer: false ,
+  map: false ,
+  clusterize:false ,
+
+  setMap: function( mapObj ) {
+    this.map = mapObj;
+  },
 
   getVisibleResourceIds: function() {
     var visibleResources = this.parentExplorer.resourceCurrentIndex.setPerPage(600);
     return visibleResources.pluck( 'id' );
   },
+
+
 
 
   render: function() {

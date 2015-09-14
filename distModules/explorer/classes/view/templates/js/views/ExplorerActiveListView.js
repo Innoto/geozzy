@@ -14,7 +14,7 @@ geozzy.explorerDisplay.activeList = Backbone.View.extend({
   render: function() {
     var that = this;
     $.each(  that.parentExplorer.resourceCurrentIndex.pluck('id'), function(i,e){
-      $('#explorerList').append('<div>'+  that.parentExplorer.resourcePartialList.get( e ).get('title') +'</div><br>');
+      $('#explorerList').append('<div> - '+  that.parentExplorer.resourcePartialList.get( e ).get('title') +'</div><br>');
     });
 
   }

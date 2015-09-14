@@ -156,10 +156,8 @@ class AdminViewResource extends AdminViewMaster {
     $validation = array( 'topic'=> '#^\d+$#', 'resourceId'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
-    if( isset( $urlParamsList['resourceId'] ) ) {
-      $resCtrl = new ResourceController();
-      $recursoData = $resCtrl->getResourceData( $urlParamsList['resourceId'] );
-    }
+    $resCtrl = new ResourceController();
+    $recursoData = $resCtrl->getResourceData( $urlParamsList['resourceId'] );
 
     if( isset( $urlParamsList['topic'] ) ) {
       $urlParamTopic = $urlParamsList['topic'];
@@ -179,7 +177,7 @@ class AdminViewResource extends AdminViewMaster {
     }
 
     if( $recursoData ) {
-      $this->resourceShowForm( 'resourceEdit', '/admin/resource/sendresource', $recursoData );
+      $this->resourceShowForm( 'resourceEdit', '/admin/resource/sendresource', $recursoData, $resCtrl );
     }
     else {
       cogumelo::error( 'Imposible acceder al recurso indicado.' );
@@ -188,11 +186,14 @@ class AdminViewResource extends AdminViewMaster {
 
 
 
-  public function resourceShowForm( $formName, $formUrl, $recursoData = false ) {
-    $resourceView = new GeozzyResourceView();
+  public function resourceShowForm( $formName, $formUrl, $recursoData = false, $resCtrl = false ) {
+
+    if( !$resCtrl ) {
+      $resCtrl = new ResourceController();
+    }
 
     // error_log( 'recursoData para FORM: ' . print_r( $recursoData, true ) );
-    $formBlock = $resourceView->getFormBlock( $formName, $formUrl, $recursoData );
+    $formBlock = $resCtrl->getFormBlock( $formName, $formUrl, $recursoData );
 
     // Cambiamos el template del formulario
     $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
