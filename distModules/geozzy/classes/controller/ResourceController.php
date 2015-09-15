@@ -398,13 +398,34 @@ class ResourceController {
     $template->assign( 'formClose', $form->getHtmlClose() );
     $template->assign( 'formValidations', $form->getScriptCode() );
 
-    $template->assign( 'resourceId', $this->resData['id']);
-    $template->assign( 'timeCreation', $this->resData['timeCreation']);
-    if (isset($this->resData['timeLastUpdate']))
-      $template->assign( 'timeLastUpdate', $this->resData['timeLastUpdate']);
-    if (isset($this->resData['averageVotes']))
-      $template->assign( 'timeLastUpdate', $this->resData['averageVotes']);
+    /* Cuadro información de recurso */
+    if ($this->resData){
+      $rtypeModel = new ResourcetypeModel();
+      $rType = $rtypeModel->listItems( array( 'filters' => array('id' => $this->resData['rTypeId']) ) )->fetch();
+      $rTypeName = $rType->getter('name_'.LANG_DEFAULT);
 
+      $userModel = new UserModel();
+      $user = $userModel->listItems( array( 'filters' => array('id' => $this->resData['user']) ) )->fetch();
+      $userName = $user->getter('name');
+      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $this->resData['userUpdate']) ) )->fetch();
+      $userUpdateName = $userUpdate->getter('name');
+
+      $timeCreation = date('d/m/Y', time($this->resData['timeCreation']));
+
+      $template->assign( 'resourceId', $this->resData['id']);
+      $template->assign( 'rTypeName', $rTypeName);
+      $template->assign( 'timeCreation', $timeCreation);
+      $template->assign( 'userName', $userName);
+
+      if (isset($this->resData['timeLastUpdate'])){
+        $timeLastUpdate = date('d/m/Y', time($this->resData['timeLastUpdate']));
+        $template->assign( 'timeLastUpdate', $timeLastUpdate);
+        $template->assign( 'userUpdate', $userUpdateName);
+      }
+      if (isset($this->resData['averageVotes'])){
+        $template->assign( 'timeLastUpdate', $this->resData['averageVotes']);
+      }
+    }
 
     $this->rTypeCtrl = $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
     if( $this->rTypeCtrl ) {

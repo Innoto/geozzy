@@ -251,15 +251,20 @@ class AdminViewResource extends AdminViewMaster {
       $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' ) );
     }
 
-    $resourceId = $formBlock->getTemplateVars('resourceId');
-    $timeCreation = $formBlock->getTemplateVars('timeCreation');
-    $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
+    if ($formBlock->getTemplateVars('resourceId')){
+      $resourceId = $formBlock->getTemplateVars('resourceId');
+      $resourceType = $formBlock->getTemplateVars('rTypeName');
+      $timeCreation = $formBlock->getTemplateVars('timeCreation');
+      $user = $formBlock->getTemplateVars('userName');
+      $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
+      $userUpdate = $formBlock->getTemplateVars('userUpdate');
 
-    $info = '<div class="infoBasic"><ul><li><label>ID:</label><span>'.$resourceId.'</span></li>'.
-            '<li><label>Creado:</label><span>'.$timeCreation.'</span></li>'.
-            '<li><label>Actualizado:</label><span>'.$timeLastUpdate.'</span></li></ul></div>';
+      $info = '<div class="infoBasic"><ul><li><label>ID</label><span>'.$resourceId.' ('.$resourceType.')</span></li>'.
+              '<li><label>Creado</label><span>'.$timeCreation.' ('.$user.')</span></li>'.
+              '<li><label>Actualizado</label><span>'.$timeLastUpdate.' ('.$userUpdate.')</span></li></ul></div>';
 
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( $info, __( 'Resource information' ), 'fa-globe' ) );
+      $this->template->addToBlock( 'col4', $this->getPanelBlock( $info, __( 'Information' ), 'fa-globe' ) );
+    }
 
     $this->template->exec();
   }
