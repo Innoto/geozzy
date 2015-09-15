@@ -129,14 +129,15 @@ class TestDataGenerator extends View
       $timeCreation = date( "Y-m-d H:i:s", time()-$rand1 );
       $timeLastUpdate = date( "Y-m-d H:i:s", time()-$rand2 );
       $randUpdate = rand(0,1);
+      $user = 10;
         // creación del recurso
       if ($randUpdate == 1){
         $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom,
-        'timeCreation' => $timeCreation, 'timeLastUpdate' => $timeLastUpdate);
+        'timeCreation' => $timeCreation, 'user' => $user, 'timeLastUpdate' => $timeLastUpdate, 'userUpdate' => 'admin');
       }
       else{
         $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom,
-        'timeCreation' => $timeCreation);
+        'timeCreation' => $timeCreation, 'user' => 'admin');
       }
 
 
