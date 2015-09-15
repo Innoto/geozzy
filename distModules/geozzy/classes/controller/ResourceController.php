@@ -400,10 +400,12 @@ class ResourceController {
 
     $template->assign( 'resourceId', $this->resData['id']);
     $template->assign( 'timeCreation', $this->resData['timeCreation']);
-    if (isset($this->resData['timeLastUpdate']))
+    if( isset($this->resData['timeLastUpdate']) ) {
       $template->assign( 'timeLastUpdate', $this->resData['timeLastUpdate']);
-    if (isset($this->resData['averageVotes']))
+    }
+    if( isset($this->resData['averageVotes']) ) {
       $template->assign( 'timeLastUpdate', $this->resData['averageVotes']);
+    }
 
 
     $this->rTypeCtrl = $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
@@ -440,6 +442,91 @@ class ResourceController {
   }
 
 
+  public function loadAdminFormColumns( $formBlock, $template, $adminViewResource ) {
+
+    $adminColsInfo = $this->getFormBlocksCols( $formBlock, $template, $adminViewResource );
+
+
+    if( $this->rTypeCtrl ) {
+      $rTypeAdminCols = $this->rTypeCtrl->manipulateAdminFormColumns( $formBlock, $template, $adminViewResource, $adminColsInfo );
+      if( $rTypeAdminCols ) {
+        $adminColsInfo = $rTypeAdminCols;
+      }
+    }
+
+
+    foreach( $adminColsInfo as $colName => $colElements ) {
+      if( count( $colElements ) ) {
+        foreach( $colElements as $idName => $colElementInfo ) {
+          list( $content, $title, $icon ) = $colElementInfo;
+          $template->addToBlock( $colName, $adminViewResource->getPanelBlock( $content, $title, $icon ) );
+        }
+      }
+    }
+
+  }
+
+
+  public function getFormBlocksCols( $formBlock, $template, $adminViewResource ) {
+
+    $cols = array(
+      'col8' => array(),
+      'col4' => array()
+    );
+
+
+    // Fragmentamos el formulario generado
+    $formImage = $adminViewResource->extractFormBlockFields( $formBlock, array( 'image' ) );
+    $formPublished = $adminViewResource->extractFormBlockFields( $formBlock, array( 'published' ) );
+    $formStatus = $adminViewResource->extractFormBlockFields( $formBlock, array( 'topics', 'starred' ) );
+    $formSeo = $adminViewResource->extractFormBlockFields( $formBlock,
+      array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
+    $formContacto = $adminViewResource->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
+    $formCollections = $adminViewResource->extractFormBlockFields( $formBlock, array( 'collections', 'addCollections' ) );
+    $formMultimediaGalleries = $adminViewResource->extractFormBlockFields( $formBlock, array( 'multimediaGalleries', 'addMultimediaGalleries' ) );
+    $formLatLon = $adminViewResource->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom' ) );
+
+
+    // El bloque que usa $formBlock contiene la estructura del form
+
+    // Bloques de 8
+    $cols['col8']['main'] = array( $formBlock, __('Main Resource information'), 'fa-archive' );
+    if( $formLatLon ) {
+      $cols['col8']['location'] = array( implode( "\n", $formLatLon ), __('Location'), 'fa-archive' );
+    }
+    if( $formCollections ) {
+      $cols['col8']['collections'] = array( implode( "\n", $formCollections ), __('Collections of related resources'), 'fa-th-large' );
+    }
+    if( $formMultimediaGalleries ) {
+      $cols['col8']['multimedia'] = array( implode( "\n", $formMultimediaGalleries ), __('Multimedia galleries'), 'fa-th-large' );
+    }
+    if( $formContacto ) {
+      $cols['col8']['contact'] = array( implode( "\n", $formContacto ), __('Contact'), 'fa-archive' );
+    }
+
+
+    // Bloques de 4
+    if( $formPublished ) {
+      $cols['col4']['publication'] = array( implode( "\n", $formPublished ), __( 'Publication' ), 'fa-adjust' );
+    }
+    if( $formImage ) {
+      $cols['col4']['image'] = array( implode( "\n", $formImage ), __( 'Select a image' ), 'fa-file-image-o' );
+    }
+    if( $formStatus ) {
+      $cols['col4']['status'] = array( implode( "\n", $formStatus ), __( 'Status' ), false );
+    }
+    if( $formSeo ) {
+      $cols['col4']['seo'] = array( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' );
+    }
+
+    $info = '<div class="infoBasic"><ul><li><label>ID:</label><span>'.$formBlock->getTemplateVars('resourceId').'</span></li>'.
+      '<li><label>Creado:</label><span>'.$formBlock->getTemplateVars('timeCreation').'</span></li>'.
+      '<li><label>Actualizado:</label><span>'.$formBlock->getTemplateVars('timeLastUpdate').'</span></li></ul></div>';
+    $cols['col4']['info'] = array( $info, __( 'Resource information' ), 'fa-globe' );
+
+
+    return $cols;
+  }
 
 
 

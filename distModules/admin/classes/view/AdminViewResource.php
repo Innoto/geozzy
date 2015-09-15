@@ -202,10 +202,16 @@ class AdminViewResource extends AdminViewMaster {
     $this->template->assign( 'headTitle', __('Edit Resource') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
-    $this->showFormBlocks( $formBlock );
+
+
+    // $this->showFormBlocks( $formBlock );
+
+    $resCtrl->loadAdminFormColumns( $formBlock, $this->template, $this );
+
+    $this->template->exec();
   }
 
-
+/*
   private function showFormBlocks( $formBlock ) {
 
     // Fragmentamos el formulario generado
@@ -263,6 +269,7 @@ class AdminViewResource extends AdminViewMaster {
 
     $this->template->exec();
   }
+*/
 
   /**
     Creacion/Edicion de Recursos type URL
