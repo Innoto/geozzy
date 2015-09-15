@@ -41,9 +41,12 @@ class Cogumelo extends CogumeloClass
     $this->addUrlPatterns( '#^recurso/?$#', 'view:RecursoView::verRecurso' );
     $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:RecursoView::verRecurso' );
 
-    /*Explorer*/
+    /*Explorer (Param = Sagan||Dora||Indiana)*/
     $this->addUrlPatterns( '#^explorerLayout/(.*)$#', 'view:ExplorerView::explorerLayout' );
     $this->addUrlPatterns( '#^explorerLayout$#', 'view:ExplorerView::explorerLayout' );
+    /*Explorer Section (Param = Sagan||Dora||Indiana) */
+    $this->addUrlPatterns( '#^explorerLayoutSection/(.*)$#', 'view:ExplorerView::explorerLayoutSection' );
+    $this->addUrlPatterns( '#^explorerLayoutSection$#', 'view:ExplorerView::explorerLayoutSection' );
 
     /*MasterView*/
     $this->addUrlPatterns( '#^$#', 'view:MasterView::main' );
