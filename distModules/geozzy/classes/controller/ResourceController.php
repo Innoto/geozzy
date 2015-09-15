@@ -547,9 +547,15 @@ class ResourceController {
       $cols['col4']['seo'] = array( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' );
     }
 
-    $info = '<div class="infoBasic"><ul><li><label>ID:</label><span>'.$formBlock->getTemplateVars('resourceId').'</span></li>'.
-      '<li><label>Creado:</label><span>'.$formBlock->getTemplateVars('timeCreation').'</span></li>'.
-      '<li><label>Actualizado:</label><span>'.$formBlock->getTemplateVars('timeLastUpdate').'</span></li></ul></div>';
+    $resourceId = $formBlock->getTemplateVars('resourceId');
+    $resourceType = $formBlock->getTemplateVars('rTypeName');
+    $timeCreation = $formBlock->getTemplateVars('timeCreation');
+    $user = $formBlock->getTemplateVars('userName');
+    $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
+    $userUpdate = $formBlock->getTemplateVars('userUpdate');
+    $info = '<div class="infoBasic"><ul><li><label>ID</label><span>'.$resourceId.' ('.$resourceType.')</span></li>'.
+      '<li><label>Creado</label><span>'.$timeCreation.' ('.$user.')</span></li>'.
+      '<li><label>Actualizado</label><span>'.$timeLastUpdate.' ('.$userUpdate.')</span></li></ul></div>';
     $cols['col4']['info'] = array( $info, __( 'Resource information' ), 'fa-globe' );
 
 
