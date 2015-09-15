@@ -1,0 +1,50 @@
+
+
+//mixin with all css that depends on your style explorer
+.explorerBase() {
+  .explorerContainer{
+    border: 4px solid black;
+    padding: 40px;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+
+    &.explorer-container-du{ background-color: rgba( 225, 71, 71, .7 ); }
+    &.explorer-container-map{ background-color: rgba( 71, 225, 118, .7 ); }
+    &.explorer-container-filter{ background-color: rgba( 71, 156, 225, .7 ); }
+    &.explorer-container-gallery{ background-color: rgba( 199, 198, 73, .7 ); }
+
+  }
+}
+.explorerLayoutDora(){
+
+}
+.explorerLayoutIndiana(){
+
+}
+.explorerLayoutTraffic(){
+
+}
+.explorerLayoutSagan(){
+
+}
+
+
+/* --> Explorer Styles */
+
+.explorerLayout{
+  .explorerBase();
+
+  .explorerLayoutDora{
+    .explorerLayoutDora();
+  }
+  .explorerLayoutIndiana{
+    .explorerLayoutIndiana();
+  }
+  .explorerLayoutTraffic{
+    .explorerLayoutTraffic();
+  }
+  .explorerLayoutSagan{
+    .explorerLayoutSagan();
+  }
+}

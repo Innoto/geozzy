@@ -30,7 +30,7 @@ class Cogumelo extends CogumeloClass
    )
   );
   public $includesCommon = array(
-    'styles/base.less'
+    'styles/primary.less'
   );
 
 

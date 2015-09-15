@@ -202,10 +202,16 @@ class AdminViewResource extends AdminViewMaster {
     $this->template->assign( 'headTitle', __('Edit Resource') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
-    $this->showFormBlocks( $formBlock );
+
+
+    // $this->showFormBlocks( $formBlock );
+
+    $resCtrl->loadAdminFormColumns( $formBlock, $this->template, $this );
+
+    $this->template->exec();
   }
 
-
+/*
   private function showFormBlocks( $formBlock ) {
 
     // Fragmentamos el formulario generado
@@ -218,7 +224,6 @@ class AdminViewResource extends AdminViewMaster {
     $formCollections = $this->extractFormBlockFields( $formBlock, array( 'collections', 'addCollections' ) );
     $formMultimediaGalleries = $this->extractFormBlockFields( $formBlock, array( 'multimediaGalleries', 'addMultimediaGalleries' ) );
     $formLatLon = $this->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom' ) );
-
 
     // El bloque que usa $formBlock contiene la estructura del form
 
@@ -252,8 +257,19 @@ class AdminViewResource extends AdminViewMaster {
       $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' ) );
     }
 
+    $resourceId = $formBlock->getTemplateVars('resourceId');
+    $timeCreation = $formBlock->getTemplateVars('timeCreation');
+    $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
+
+    $info = '<div class="infoBasic"><ul><li><label>ID:</label><span>'.$resourceId.'</span></li>'.
+            '<li><label>Creado:</label><span>'.$timeCreation.'</span></li>'.
+            '<li><label>Actualizado:</label><span>'.$timeLastUpdate.'</span></li></ul></div>';
+
+    $this->template->addToBlock( 'col4', $this->getPanelBlock( $info, __( 'Resource information' ), 'fa-globe' ) );
+
     $this->template->exec();
   }
+*/
 
   /**
     Creacion/Edicion de Recursos type URL

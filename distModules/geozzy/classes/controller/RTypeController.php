@@ -9,6 +9,8 @@ interface RTypeInterface {
   // Defino la visualizacion del formulario
   public function manipulateFormTemplate( FormController $form, Template $template );
 
+  public function manipulateAdminFormColumns( Template $formBlock, Template $template, AdminViewResource $adminViewResource, Array $adminColsInfo );
+
   // Validaciones extra previas a usar los datos del recurso base
   public function resFormRevalidate( FormController $form );
 
@@ -48,5 +50,8 @@ class RTypeController {
     return( false );
   }
 
+  public function manipulateAdminFormColumns( Template $formBlock, Template $template, AdminViewResource $adminViewResource, Array $adminColsInfo ) {
+    return( false );
+  }
 
 } // class RTypeController
