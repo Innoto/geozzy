@@ -321,7 +321,7 @@ class CoreAPIView extends View
                               "summary": "Fetches category terms"
                           }
                       ],
-                      "path": "/core/categoryterms/{id}",
+                      "path": "/core/categoryterms/id/{id}",
                       "description": ""
                   }
               ]
@@ -537,13 +537,16 @@ class CoreAPIView extends View
 
   }
 
-  function categoryTerms( $path ) {
+  function categoryTerms( $urlParams ) {
 
 
-    if( isset( $path[1] ) && is_numeric( $path[1] ) ) {
+    $validation = array('id'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
+
+    if( isset( $urlParamsList['id'] ) && is_numeric( $urlParamsList['id'] ) ) {
       geozzy::load('model/TaxonomytermModel.php');
       $taxtermModel = new TaxonomytermModel();
-      $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$path[1]) ) );
+      $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$urlParamsList['id'] ) ) );
       $this->syncModelList( $taxtermList );
     }
     else {
