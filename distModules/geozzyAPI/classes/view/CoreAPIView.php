@@ -449,73 +449,81 @@ class CoreAPIView extends View
 
 
 
-  function resourceIndex( $param ) {
+  function resourceIndex( $urlParams ) {
     geozzyAPI::load('model/ResourceIndexModel.php');
     $resourceModel = new ResourceIndexModel();
-    $filters = explode( '/',$param[1] );
-    $queryFilters = array();
-
-    // check parameter integrity
-    if( $filters[1] == 'taxonomyTerms' && $filters[3] == 'types' && $filters[5] == 'topics' && $filters[7] == 'bounds' ) {
 
 
-      // taxonomy terms
-      if( $filters[2] != 'false' ) {
-        $queryFilters['taxonomyterms'] = implode(',', array_map('intval', explode(',',$filters[2] ) ) );
-      }
+    $validation = array(
+      'taxonomyterms'=> '#(.*)#',
+      'types'=> '#(.*)#',
+      'topics'=> '#(.*)#',
+      'bounds'=> '#(.*)#'
+    );
 
-      // types
-      if( $filters[4] != 'false' ) {
-        $queryFilters['types'] = array_map('intval', explode(',',$filters[4]) );
-      }
-
-      // topics
-      if( $filters[6] != 'false' ) {
-        $queryFilters['topics'] = array_map('intval', explode(',',$filters[6]) );
-      }
-
-
-
-
-      if(
-        $filters[8] != 'false' &&
-        preg_match(
-          '#(.*)\ (.*)\,(.*)\ (.*)#',
-          urldecode($filters[8]),
-          $bounds
-        )
-      ) {
-
-          if( is_numeric($bounds[1]) && is_numeric($bounds[2]) &&
-              is_numeric($bounds[3]) && is_numeric($bounds[4])
-          ) {
-
-            $queryFilters['bounds']=  $bounds[1].' '.$bounds[2].','.
-                                      $bounds[1].' '.$bounds[4].','.
-                                      $bounds[3].' '.$bounds[4].','.
-                                      $bounds[3].' '.$bounds[2].','.
-                                      $bounds[1].' '.$bounds[2];
-          }
-
-      }
+    $queryFilters = RequestController::processUrlParams($urlParams[1], $validation);
 
 
 
 
 
-
-
-      $resourceList = $resourceModel->listItems( array('filters' => $queryFilters, 'groupBy'=>'id') );
-      header('Content-type: application/json');
-      echo '[';
-      $c = '';
-      while ($valueobject = $resourceList->fetch() )
-      {
-        echo $c.$valueobject->getter('id');
-        if($c === ''){$c=',';}
-      }
-      echo ']';
+    // taxonomy terms
+    if( isset($queryFilters['taxonomyterms']) ) {
+      $queryFilters['taxonomyterms'] = implode(',', array_map('intval', explode(',', $queryFilters['taxonomyterms'] ) ) );
     }
+
+    // types
+    if(  isset($queryFilters['types']) ) {
+      $queryFilters['types'] = array_map('intval', explode(',',$queryFilters['types']) );
+    }
+
+    // topics
+    if(  isset($queryFilters['topics']) ) {
+      $queryFilters['topics'] = array_map('intval', explode(',', $queryFilters['topics'] ) );
+    }
+
+
+
+
+    if(
+      isset($queryFilters['bounds']) &&
+      preg_match(
+        '#(.*)\ (.*)\,(.*)\ (.*)#',
+        urldecode( $queryFilters['bounds'] ),
+        $bounds
+      )
+    ) {
+
+        if( is_numeric($bounds[1]) && is_numeric($bounds[2]) &&
+            is_numeric($bounds[3]) && is_numeric($bounds[4])
+        ) {
+
+          $queryFilters['bounds']=  $bounds[1].' '.$bounds[2].','.
+                                    $bounds[1].' '.$bounds[4].','.
+                                    $bounds[3].' '.$bounds[4].','.
+                                    $bounds[3].' '.$bounds[2].','.
+                                    $bounds[1].' '.$bounds[2];
+        }
+
+    }
+
+
+
+
+
+
+
+    $resourceList = $resourceModel->listItems( array('filters' => $queryFilters, 'groupBy'=>'id') );
+    header('Content-type: application/json');
+    echo '[';
+    $c = '';
+    while ($valueobject = $resourceList->fetch() )
+    {
+      echo $c.$valueobject->getter('id');
+      if($c === ''){$c=',';}
+    }
+    echo ']';
+
 
 
   }
