@@ -13,15 +13,15 @@
 
 </head>
 <body>
-  <div class="explorerLayout explorerLayoutDora">
-    <!--FilterContainer -->
-    <div class="explorerContainer explorer-container-du"> ->DORA->DU </div>
-    <!--FilterContainer -->
-    <div class="explorerContainer explorer-container-map"> ->DORA->MAP </div>
-    <!--FilterContainer -->
-    <div class="explorerContainer explorer-container-filter"> ->DORA->FILTER </div>
-    <!--FilterContainer -->
-    <div class="explorerContainer explorer-container-gallery"> ->DORA->GALLERY </div>
+  <div class="explorerLayout {$explorerType} mapFull clearfix">
+    <!--duContainer -->
+    <div class="explorerContainer explorer-container-du"> -->DU </div>
+    <!--filterContainer -->
+    <div class="explorerContainer explorer-container-filter"> -->FILTER </div>
+    <!--mapContainer -->
+    <div class="explorerContainer explorer-container-map"> -->MAP </div>
+    <!--galleryContainer -->
+    <div class="explorerContainer explorer-container-gallery"> -->GALLERY </div>
   </div>
 </body>
 </html>
