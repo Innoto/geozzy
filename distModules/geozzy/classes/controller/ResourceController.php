@@ -391,6 +391,7 @@ class ResourceController {
 
     $template->assign( 'formOpen', $form->getHtmpOpen() );
     $template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
+    $template->assign( 'formFieldsHiddenArray', array() );
     $template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
     $template->assign( 'formClose', $form->getHtmlClose() );
     $template->assign( 'formValidations', $form->getScriptCode() );
@@ -520,31 +521,39 @@ class ResourceController {
     // Bloques de 8
     $cols['col8']['main'] = array( $formBlock, __('Main Resource information'), 'fa-archive' );
     if( $formLatLon ) {
-      $cols['col8']['location'] = array( implode( "\n", $formLatLon ), __('Location'), 'fa-archive' );
+      $formPartBlock = $this->setBlockPartTemplate($formLatLon);
+      $cols['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
     }
     if( $formCollections ) {
-      $cols['col8']['collections'] = array( implode( "\n", $formCollections ), __('Collections of related resources'), 'fa-th-large' );
+      $formPartBlock = $this->setBlockPartTemplate($formCollections);
+      $cols['col8']['collections'] = array( $formPartBlock, __('Collections of related resources'), 'fa-th-large' );
     }
     if( $formMultimediaGalleries ) {
-      $cols['col8']['multimedia'] = array( implode( "\n", $formMultimediaGalleries ), __('Multimedia galleries'), 'fa-th-large' );
+      $formPartBlock = $this->setBlockPartTemplate($formMultimediaGalleries);
+      $cols['col8']['multimedia'] = array( $formPartBlock, __('Multimedia galleries'), 'fa-th-large' );
     }
     if( $formContacto ) {
-      $cols['col8']['contact'] = array( implode( "\n", $formContacto ), __('Contact'), 'fa-archive' );
+      $formPartBlock = $this->setBlockPartTemplate($formContacto);
+      $cols['col8']['contact'] = array( $formPartBlock, __('Contact'), 'fa-archive' );
     }
 
 
     // Bloques de 4
     if( $formPublished ) {
-      $cols['col4']['publication'] = array( implode( "\n", $formPublished ), __( 'Publication' ), 'fa-adjust' );
+      $formPartBlock = $this->setBlockPartTemplate($formPublished);
+      $cols['col4']['publication'] = array( $formPartBlock, __( 'Publication' ), 'fa-adjust' );
     }
     if( $formImage ) {
-      $cols['col4']['image'] = array( implode( "\n", $formImage ), __( 'Select a image' ), 'fa-file-image-o' );
+      $formPartBlock = $this->setBlockPartTemplate($formImage);
+      $cols['col4']['image'] = array( $formPartBlock, __( 'Select a image' ), 'fa-file-image-o' );
     }
     if( $formStatus ) {
-      $cols['col4']['status'] = array( implode( "\n", $formStatus ), __( 'Status' ), false );
+      $formPartBlock = $this->setBlockPartTemplate($formStatus);
+      $cols['col4']['status'] = array( $formPartBlock, __( 'Status' ), false );
     }
     if( $formSeo ) {
-      $cols['col4']['seo'] = array( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' );
+      $formPartBlock = $this->setBlockPartTemplate($formSeo);
+      $cols['col4']['seo'] = array( $formPartBlock, __( 'SEO' ), 'fa-globe' );
     }
 
     $resourceId = $formBlock->getTemplateVars('resourceId');
@@ -562,7 +571,15 @@ class ResourceController {
     return $cols;
   }
 
-
+  /**
+    Se crea un nuevo template y se asigna el array de variables recibido
+   */
+  public function setBlockPartTemplate($formPartArray){
+    $partTemplate = new Template();
+    $partTemplate->setTpl('blockPart.tpl', 'admin');
+    $partTemplate->assign('formFieldsArray', $formPartArray);
+    return $partTemplate;
+  }
 
   /**
     Se reconstruye el formulario con sus datos y se realizan las validaciones que contiene
