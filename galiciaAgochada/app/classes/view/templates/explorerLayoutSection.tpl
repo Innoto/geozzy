@@ -10,6 +10,7 @@
 
   {$css_includes}
   {$js_includes}
+  <script src="https://maps.googleapis.com/maps/api/js">  </script>
 
 </head>
 <body>
@@ -20,13 +21,13 @@
   </div>
   <div id="explorerSectionExample" class="explorerLayout {$explorerType} mapFull clearfix">
     <!--duContainer -->
-    <div class="explorerContainer explorer-container-du"> -->DU </div>
+    <div class="explorerContainer explorer-container-du"></div>
     <!--filterContainer -->
-    <div class="explorerContainer explorer-container-filter"> -->FILTER </div>
+    <div class="explorerContainer explorer-container-filter"></div>
     <!--mapContainer -->
-    <div class="explorerContainer explorer-container-map"> -->MAP </div>
+    <div class="explorerContainer explorer-container-map"> <div id="explorerMap"></div> </div>
     <!--galleryContainer -->
-    <div class="explorerContainer explorer-container-gallery"> -->GALLERY </div>
+    <div class="explorerContainer explorer-container-gallery"></div>
   </div>
   <div style=" padding:20px; font-size:20px;">
     <div class="container">
@@ -34,6 +35,17 @@
       <img src="http://lorempixel.com/300/160" />
     </div>
   </div>
+
+  <script>
+  $( document ).ready(function() {
+      // gmaps init
+      var mapOptions = {
+        center: { lat: 43.1, lng: -7.36 },
+        zoom: 7
+      };
+      resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
+  });
+  </script>
 
 </body>
 </html>
