@@ -10,9 +10,29 @@ class ExplorerView extends MasterView
     parent::__construct( $baseDir );
   }
 
-  function explorerLayout(){
+  function explorerLayout( $urlParams = false ){
+
+    if( isset($urlParams) && $urlParams[1]){
+      $this->template->assign( 'explorerType', 'explorerLayout'.$urlParams[1] );
+    }
+    else{
+      $this->template->assign( 'explorerType', '');
+    }
     $this->template->addClientStyles('styles/explorerLayout.less');
     $this->template->setTpl('explorerLayout.tpl');
+    $this->template->exec();
+  }
+
+  function explorerLayoutSection( $urlParams = false ){
+
+    if( isset($urlParams) && $urlParams[1]){
+      $this->template->assign( 'explorerType', 'explorerLayout'.$urlParams[1] );
+    }
+    else{
+      $this->template->assign( 'explorerType', '');
+    }
+    $this->template->addClientStyles('styles/explorerLayout.less');
+    $this->template->setTpl('explorerLayoutSection.tpl');
     $this->template->exec();
   }
 }

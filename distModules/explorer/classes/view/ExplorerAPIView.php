@@ -71,7 +71,7 @@ class ExplorerAPIView extends View
                         "summary": "Fetches explorer data"
                     }
                 ],
-                "path": "/explorer/{explorer}/{request}",
+                "path": "/explorer/explorer/{explorer}/request/{request}",
                 "description": ""
             }
         ]
@@ -126,16 +126,19 @@ class ExplorerAPIView extends View
 
   // explorer
 
-  function explorer( $param ) {
+  function explorer( $urlParams ) {
 
     require_once APP_BASE_PATH."/conf/geozzyExplorers.php";
     global $GEOZZY_EXPLORERS;
 
-    $params = explode('/', $param[1]);
+
+    $validation = array('explorer'=> '#(.*)#', 'request'=> '#(.*)#');
+    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
 
-    if( isset( $GEOZZY_EXPLORERS[ $params[0] ] ) ) {
-      $explorerConf = $GEOZZY_EXPLORERS[ $params[0] ];
+
+    if( isset($urlParamsList['request']) && isset($urlParamsList['explorer']) && isset( $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ] ) ) {
+      $explorerConf = $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ];
       header('Content-type: application/json');
 
 
@@ -146,15 +149,15 @@ class ExplorerAPIView extends View
       $explorer = new $explorerConf['controllerName']();
 
 
-      if( $params[1] == 'minimal' ) {
+      if( $urlParamsList['request'] == 'minimal' ) {
         $explorer->serveMinimal();
       }
       else
-      if( $params[1] == 'partial' ) {
+      if( $urlParamsList['request'] == 'partial' ) {
         $explorer->servePartial();
       }
       else
-      if( $params[1] == 'checksum' ) {
+      if( $urlParamsList['request'] == 'checksum' ) {
         $explorer->serveChecksum();
       }
 

@@ -1,50 +1,147 @@
 
 
 //mixin with all css that depends on your style explorer
-.explorerBase() {
+/*******************************************************************************************/
+.mixinDevel(){
   .explorerContainer{
     border: 4px solid black;
     padding: 40px;
-    -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+    font-weight: bold;
+    font-size: 22px;
 
     &.explorer-container-du{ background-color: rgba( 225, 71, 71, .7 ); }
     &.explorer-container-map{ background-color: rgba( 71, 225, 118, .7 ); }
     &.explorer-container-filter{ background-color: rgba( 71, 156, 225, .7 ); }
     &.explorer-container-gallery{ background-color: rgba( 199, 198, 73, .7 ); }
-
   }
 }
+/*******************************************************************************************/
+.explorerBase() {
+  .explorerContainer{
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+
+    &.explorer-container-du{
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      display: none;
+      overflow: auto;
+    }
+    &.explorer-container-map{
+      width: 100%;
+      height: 55vh;
+    }
+    &.explorer-container-filter{
+      width: 100%;
+      height: 10vh;
+      overflow: auto;
+    }
+    &.explorer-container-gallery{
+      width: 100%;
+      height: 35vh;
+      overflow: auto;
+    }
+  }
+}
+/*******************************************************************************************/
 .explorerLayoutDora(){
+  .explorerContainer{
+    &.explorer-container-du{
 
+    }
+    &.explorer-container-map{
+      width: 70%;
+      height: 100vh;
+      float: left;
+    }
+    &.explorer-container-filter{
+      width: 30%;
+      height: 15vh;
+      float: right;
+    }
+    &.explorer-container-gallery{
+      width: 30%;
+      height: 85vh;
+      float: right;
+    }
+  }
 }
+/*******************************************************************************************/
 .explorerLayoutIndiana(){
+  .explorerContainer{
+    &.explorer-container-du{
 
+    }
+    &.explorer-container-map{
+      width: 70%;
+      height: 85vh;
+      float: right;
+    }
+    &.explorer-container-filter{
+      width: 100%;
+      height: 15vh;
+    }
+    &.explorer-container-gallery{
+      width: 30%;
+      height: 85vh;
+      float: left;
+    }
+  }
 }
-.explorerLayoutTraffic(){
-
-}
+/*******************************************************************************************/
 .explorerLayoutSagan(){
+  .explorerContainer{
+    &.explorer-container-du{
 
+    }
+    &.explorer-container-map{
+      width: 70%;
+      height: 100vh;
+      float: left;
+    }
+    &.explorer-container-filter{
+      width: 100%;
+      max-width: 400px;
+      height: 150px;
+      position: absolute;
+      top: 30px;
+      left: 30px;
+    }
+    &.explorer-container-gallery{
+      width: 30%;
+      height: 100vh;
+      float: right;
+    }
+  }
+  &.mapFull{
+    .explorer-container-map{
+      width: 100%;
+      height: 100vh;
+    }
+    .explorer-container-gallery{
+      display: none;
+    }
+  }
 }
+/*******************************************************************************************/
 
 
 /* --> Explorer Styles */
 
 .explorerLayout{
+  position: relative;
+  .mixinDevel();
   .explorerBase();
 
-  .explorerLayoutDora{
+  &.explorerLayoutDora{
     .explorerLayoutDora();
   }
-  .explorerLayoutIndiana{
+  &.explorerLayoutIndiana{
     .explorerLayoutIndiana();
   }
-  .explorerLayoutTraffic{
-    .explorerLayoutTraffic();
-  }
-  .explorerLayoutSagan{
+  &.explorerLayoutSagan{
     .explorerLayoutSagan();
   }
 }
