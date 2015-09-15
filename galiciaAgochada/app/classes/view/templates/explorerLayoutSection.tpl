@@ -31,6 +31,7 @@
   <div style=" padding:20px; font-size:20px;">
     <div class="container">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et condimentum ex, quis vestibulum dui. Aenean ut ornare magna. Ut est ante, pellentesque in faucibus eget, dignissim ac velit. Cras eget ipsum dolor. Praesent ultrices nec nibh et lacinia. Cras malesuada, libero ut ullamcorper luctus, urna lectus accumsan dolor, eget interdum velit eros fermentum tortor. Nullam est ligula, auctor ut mollis quis, ornare congue tortor. Fusce rhoncus ligula eget quam rhoncus, interdum suscipit tellus finibus. Phasellus interdum, elit accumsan semper iaculis, tellus ex cursus urna, quis fringilla tortor mi accumsan velit.</p>
+      <img src="http://lorempixel.com/300/160" />
     </div>
   </div>
 

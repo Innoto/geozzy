@@ -5,7 +5,7 @@
 .mixinDevel(){
   .explorerContainer{
     border: 4px solid black;
-    padding: 40px;
+    padding: 10px 20px;
     font-weight: bold;
     font-size: 22px;
 
@@ -25,22 +25,22 @@
     &.explorer-container-du{
       position: absolute;
       width: 100%;
-      height: 100vh;
-      display: none;
+      height: 100%;
+      display:none;
       overflow: auto;
     }
     &.explorer-container-map{
       width: 100%;
-      height: 55vh;
+      height: 55%;
     }
     &.explorer-container-filter{
       width: 100%;
-      height: 10vh;
+      height: 10%;
       overflow: auto;
     }
     &.explorer-container-gallery{
       width: 100%;
-      height: 35vh;
+      height: 35%;
       overflow: auto;
     }
   }
@@ -53,17 +53,17 @@
     }
     &.explorer-container-map{
       width: 70%;
-      height: 100vh;
+      height: 100%;
       float: left;
     }
     &.explorer-container-filter{
       width: 30%;
-      height: 15vh;
+      height: 15%;
       float: right;
     }
     &.explorer-container-gallery{
       width: 30%;
-      height: 85vh;
+      height: 85%;
       float: right;
     }
   }
@@ -76,16 +76,16 @@
     }
     &.explorer-container-map{
       width: 70%;
-      height: 85vh;
+      height: 85%;
       float: right;
     }
     &.explorer-container-filter{
       width: 100%;
-      height: 15vh;
+      height: 15%;
     }
     &.explorer-container-gallery{
       width: 30%;
-      height: 85vh;
+      height: 85%;
       float: left;
     }
   }
@@ -98,7 +98,7 @@
     }
     &.explorer-container-map{
       width: 70%;
-      height: 100vh;
+      height: 100%;
       float: left;
     }
     &.explorer-container-filter{
@@ -111,14 +111,13 @@
     }
     &.explorer-container-gallery{
       width: 30%;
-      height: 100vh;
+      height: 100%;
       float: right;
     }
   }
   &.mapFull{
     .explorer-container-map{
       width: 100%;
-      height: 100vh;
     }
     .explorer-container-gallery{
       display: none;
@@ -132,6 +131,7 @@
 
 .explorerLayout{
   position: relative;
+  height: 100vh;
   .mixinDevel();
   .explorerBase();
 
