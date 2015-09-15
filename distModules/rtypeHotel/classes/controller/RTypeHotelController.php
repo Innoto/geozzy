@@ -38,8 +38,8 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
 
   /**
-    Defino la visualizacion del formulario
-   **/
+   * Defino la visualizacion del formulario
+   */
   public function manipulateFormTemplate( FormController $form, Template $template ) {
     error_log( "RTypeHotelController: formToTemplate()" );
 
@@ -58,6 +58,49 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     return( $template );
   }
+
+
+
+
+
+
+  /**
+   * Cambios en el reparto de elementos para las distintas columnas del Template de Admin
+   *
+   * @param $formBlock Template Contiene el form y los datos cargados
+   * @param $template Template Contiene la estructura de columnas para Admin
+   * @param $adminViewResource AdminViewResource Acceso a los métodos usados en Admin
+   * @param $adminColsInfo Array Organización de elementos establecida por defecto
+   *
+   * @return Array Información de los elementos de cada columna
+   */
+  public function manipulateAdminFormColumns( Template $formBlock, Template $template, AdminViewResource $adminViewResource, Array $adminColsInfo ) {
+
+    if( isset( $adminColsInfo['col8']['location'] ) ) {
+      unset( $adminColsInfo['col8']['location'] );
+    }
+    if( isset( $adminColsInfo['col8']['collections'] ) ) {
+      unset( $adminColsInfo['col8']['collections'] );
+    }
+    if( isset( $adminColsInfo['col8']['multimedia'] ) ) {
+      unset( $adminColsInfo['col8']['multimedia'] );
+    }
+    if( isset( $adminColsInfo['col8']['contact'] ) ) {
+      unset( $adminColsInfo['col8']['contact'] );
+    }
+
+
+    if( isset( $adminColsInfo['col4']['seo'] ) ) {
+      unset( $adminColsInfo['col4']['seo'] );
+    }
+
+    return $adminColsInfo;
+  }
+
+
+
+
+
 
 
 

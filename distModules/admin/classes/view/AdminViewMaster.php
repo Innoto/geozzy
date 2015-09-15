@@ -84,7 +84,7 @@ class AdminViewMaster extends View
   }
 
 
-  public function getPanelBlock( $content, $title = '', $icon = 'fa-info' ) {
+  public function getPanelBlock( $content, $title = '', $icon = false ) {
     $template = new Template( $this->baseDir );
 
     if( is_string( $content ) ) {
@@ -94,7 +94,7 @@ class AdminViewMaster extends View
       $template->setBlock( 'content', $content );
     }
     $template->assign( 'title', $title );
-    $template->assign( 'icon', $icon );
+    $template->assign( 'icon', ( $icon ) ? $icon : 'fa-info' );
     $template->setTpl( 'adminPanel.tpl', 'admin' );
 
     return $template;
