@@ -20,8 +20,8 @@ class ResourceController {
   }
 
   /**
-     Cargando controlador del RType
-   **/
+   *  Cargando controlador del RType
+   */
   public function getRTypeCtrl( $rTypeId ) {
     error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
 
@@ -44,12 +44,12 @@ class ResourceController {
 
 
   /**
-     Load resource object
+   * Load resource object
    *
    * @param $resId integer
    *
    * @return array OR false
-   **/
+   */
   public function loadResourceObject( $resId ) {
     if( $this->resObj === null ) {
       $resModel = new ResourceModel();
@@ -63,13 +63,14 @@ class ResourceController {
     return( $this->resObj != null &&  $this->resObj != false );
   }
 
+
   /**
-     Load basic data values
+   * Load basic data values
    *
    * @param $resId integer
    *
    * @return array OR false
-   **/
+   */
   public function getResourceData( $resId, $translate = false ) {
     // error_log( "ResourceController: getResourceData()" );
 
@@ -161,7 +162,7 @@ class ResourceController {
    * @param $valuesArray array Opcional: Valores de los campos del form
    *
    * @return Obj-Form
-   **/
+   */
   public function getBaseFormObj( $formName, $urlAction, $valuesArray = false ) {
     error_log( "ResourceController: getBaseFormObj()" );
     // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
@@ -345,7 +346,6 @@ class ResourceController {
   }
 
 
-
   /**
    * Construimos el formulario completo
    *
@@ -354,7 +354,7 @@ class ResourceController {
    * @param $valuesArray array Opcional: Valores de los campos del form
    *
    * @return Obj-Form
-   **/
+   */
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
     error_log( "ResourceController: getFormObj()" );
     // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
@@ -373,17 +373,14 @@ class ResourceController {
   }
 
 
-
-
-
   /**
    * Defino el formulario y creo su Bloque con su TPL
    *
    * @param $form object Form
    * @param $template object
    *
-   * @return Obj-Template
-   **/
+   * @return Template
+   */
   public function formToTemplate( $form, $template = false ) {
     error_log( "ResourceController: formToTemplate()" );
 
@@ -420,8 +417,6 @@ class ResourceController {
   }
 
 
-
-
   /**
    * Defino el formulario y creo su Bloque con su TPL
    *
@@ -429,8 +424,8 @@ class ResourceController {
    * @param $urlAction string URL del action
    * @param $valuesArray array Opcional: Valores de los campos del form
    *
-   * @return Obj-Template
-   **/
+   * @return Template
+   */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
     error_log( "GeozzyResourceView: getFormBlock()" );
 
@@ -442,11 +437,18 @@ class ResourceController {
   }
 
 
+  /**
+   * Cargamos el contenido del Template del Form en el de Admin
+   *
+   * @param $formBlock Template Contiene el form y los datos cargados
+   * @param $template Template Contiene la estructura de columnas para Admin
+   * @param $adminViewResource AdminViewResource Acceso a los métodos usados en Admin
+   */
   public function loadAdminFormColumns( $formBlock, $template, $adminViewResource ) {
 
-    $adminColsInfo = $this->getFormBlocksCols( $formBlock, $template, $adminViewResource );
+    $adminColsInfo = $this->getAdminFormColumns( $formBlock, $template, $adminViewResource );
 
-
+    // Pasamos al control al rType
     if( $this->rTypeCtrl ) {
       $rTypeAdminCols = $this->rTypeCtrl->manipulateAdminFormColumns( $formBlock, $template, $adminViewResource, $adminColsInfo );
       if( $rTypeAdminCols ) {
@@ -454,7 +456,7 @@ class ResourceController {
       }
     }
 
-
+    // Metemos los bloques dentro de las columnas del Template
     foreach( $adminColsInfo as $colName => $colElements ) {
       if( count( $colElements ) ) {
         foreach( $colElements as $idName => $colElementInfo ) {
@@ -463,17 +465,23 @@ class ResourceController {
         }
       }
     }
-
   }
 
 
-  public function getFormBlocksCols( $formBlock, $template, $adminViewResource ) {
-
+  /**
+   * Repartimos el contenido del Template del Form en elementos para las distintas columnas
+   *
+   * @param $formBlock Template Contiene el form y los datos cargados
+   * @param $template Template Contiene la estructura de columnas para Admin
+   * @param $adminViewResource AdminViewResource Acceso a los métodos usados en Admin
+   *
+   * @return Array Información de los elementos de cada columna
+   */
+  public function getAdminFormColumns( $formBlock, $template, $adminViewResource ) {
     $cols = array(
       'col8' => array(),
       'col4' => array()
     );
-
 
     // Fragmentamos el formulario generado
     $formImage = $adminViewResource->extractFormBlockFields( $formBlock, array( 'image' ) );
