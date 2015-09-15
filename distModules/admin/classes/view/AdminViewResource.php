@@ -3,6 +3,7 @@ admin::load('view/AdminViewMaster.php');
 geozzy::load( 'view/GeozzyResourceView.php' );
 Cogumelo::load("coreController/RequestController.php");
 
+
 class AdminViewResource extends AdminViewMaster {
 
   public function __construct( $baseDir ) {
@@ -97,9 +98,8 @@ class AdminViewResource extends AdminViewMaster {
 
 
   /**
-    Creacion/Edicion de Recursos
+   * Creacion de Recursos
    */
-
   public function resourceForm( $urlParams = false ) {
     $recursoData = false;
 
@@ -146,6 +146,9 @@ class AdminViewResource extends AdminViewMaster {
   }
 
 
+  /**
+   * Edicion de Recursos
+   */
   public function resourceEditForm( $urlParams = false ) {
 
     $recursoData = false;
@@ -203,78 +206,15 @@ class AdminViewResource extends AdminViewMaster {
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
 
-
-    // $this->showFormBlocks( $formBlock );
-
     $resCtrl->loadAdminFormColumns( $formBlock, $this->template, $this );
 
     $this->template->exec();
   }
 
-/*
-  private function showFormBlocks( $formBlock ) {
-
-    // Fragmentamos el formulario generado
-    $formImage = $this->extractFormBlockFields( $formBlock, array( 'image' ) );
-    $formPublished = $this->extractFormBlockFields( $formBlock, array( 'published' ) );
-    $formStatus = $this->extractFormBlockFields( $formBlock, array( 'topics', 'starred' ) );
-    $formSeo = $this->extractFormBlockFields( $formBlock,
-      array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
-    $formContacto = $this->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
-    $formCollections = $this->extractFormBlockFields( $formBlock, array( 'collections', 'addCollections' ) );
-    $formMultimediaGalleries = $this->extractFormBlockFields( $formBlock, array( 'multimediaGalleries', 'addMultimediaGalleries' ) );
-    $formLatLon = $this->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom' ) );
-
-    // El bloque que usa $formBlock contiene la estructura del form
-
-    // Bloques de 8
-    $this->template->addToBlock( 'col8', $this->getPanelBlock( $formBlock, __('Main Resource information'), 'fa-archive' ) );
-    if( $formLatLon ) {
-      $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formLatLon ), __('Location'), 'fa-archive' ) );
-    }
-    if( $formCollections ) {
-      $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formCollections ), __('Collections of related resources'), 'fa-th-large' ) );
-    }
-    if( $formMultimediaGalleries ) {
-      $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formMultimediaGalleries ), __('Multimedia galleries'), 'fa-th-large' ) );
-    }
-    if( $formContacto ) {
-      $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formContacto ), __('Contact'), 'fa-archive' ) );
-    }
-
-
-    // Bloques de 4
-    if( $formPublished ) {
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formPublished ), __( 'Publication' ), 'fa-adjust' ) );
-    }
-    if( $formImage ) {
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formImage ), __( 'Select a image' ), 'fa-file-image-o' ) );
-    }
-    if( $formStatus ) {
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formStatus ), __( 'Status' ) ) );
-    }
-    if( $formSeo ) {
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' ) );
-    }
-
-    $resourceId = $formBlock->getTemplateVars('resourceId');
-    $timeCreation = $formBlock->getTemplateVars('timeCreation');
-    $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
-
-    $info = '<div class="infoBasic"><ul><li><label>ID:</label><span>'.$resourceId.'</span></li>'.
-            '<li><label>Creado:</label><span>'.$timeCreation.'</span></li>'.
-            '<li><label>Actualizado:</label><span>'.$timeLastUpdate.'</span></li></ul></div>';
-
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( $info, __( 'Resource information' ), 'fa-globe' ) );
-
-    $this->template->exec();
-  }
-*/
 
   /**
-    Creacion/Edicion de Recursos type URL
+   * Creacion/Edicion de Recursos type URL
    */
-
   public function resourceTypeUrlForm( $urlParams = false ) {
     $formName = 'resourceUrlCreate';
     $formUrl = '/admin/resourcetypeurl/sendresource';
@@ -306,12 +246,13 @@ class AdminViewResource extends AdminViewMaster {
     $noFields = array();
     $yesFields = array();
     foreach ( $reqFields as $key => $field ) {
-      if( in_array( $field, $allResourceFields ) ){
+      if( in_array( $field, $allResourceFields ) ) {
         array_push( $yesFields, $field );
-      }else{
+      }
+      else {
         $mfield = $form->multilangFieldNames($field);
-        foreach ($mfield as $k => $mf) {
-          if( in_array( $mf, $allResourceFields) ){
+        foreach( $mfield as $k => $mf ) {
+          if( in_array( $mf, $allResourceFields) ) {
             array_push( $yesFields, $mf );
           }
         }
@@ -327,13 +268,12 @@ class AdminViewResource extends AdminViewMaster {
 
     $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
     $this->template->exec();
-  } // function resourceForm()
+  }
 
 
   /**
-    Creacion/Edicion de Recursos type FILE
+   * Creacion/Edicion de Recursos type FILE
    */
-
   public function resourceTypeFileForm( $urlParams = false ) {
     $formName = 'resourceFileCreate';
     $formUrl = '/admin/resourcetypefile/sendresource';
@@ -384,20 +324,9 @@ class AdminViewResource extends AdminViewMaster {
     // Cambiamos el template del formulario
     $formBlock->setTpl( 'resourceTypeFormBlockBase.tpl', 'admin' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
-
-/*
-    // Fragmentamos el formulario generado
-    $noFields = $this->extractFormBlockFields( $formBlock,
-      array(
-        'published', 'topics', 'starred', 'urlAlias', 'headKeywords', 'headDescription', 'headTitle', 'datoExtra1', 'datoExtra2',
-        'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries', 'locLat', 'locLon', 'defaultZoom'
-      )
-    );
-*/
-
     $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
     $this->template->exec();
-  } // function resourceForm()
+  }
 
 
 
@@ -405,7 +334,7 @@ class AdminViewResource extends AdminViewMaster {
   public function sendResourceForm() {
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();
-  } // sendResourceForm()
+  }
 
   public function sendModalResourceForm() {
     $resourceView = new GeozzyResourceView();
@@ -421,7 +350,8 @@ class AdminViewResource extends AdminViewMaster {
 
     if( !$form->existErrors() ) {
       $form->removeSuccess( 'redirect' );
-      $form->setSuccess( 'jsEval', ' successResourceForm( { id : "'.$resource->getter('id').'",'.
+      $form->setSuccess( 'jsEval', ' successResourceForm( { '.
+        ' id : "'.$resource->getter('id').'",'.
         ' title: "'.$resource->getter('title_'.$form->langDefault).'",'.
         ' image: "'.$resource->getter('image').'" });'
       );
