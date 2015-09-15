@@ -143,7 +143,7 @@ class AdminViewResource extends AdminViewMaster {
     }
 
     $this->resourceShowForm( 'resourceCreate', '/admin/resource/sendresource', $recursoData );
-  }
+  } // function resourceForm()
 
 
   /**
@@ -205,69 +205,6 @@ class AdminViewResource extends AdminViewMaster {
     $this->template->assign( 'headTitle', __('Edit Resource') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
-    $this->showFormBlocks( $formBlock );
-  }
-
-
-  private function showFormBlocks( $formBlock ) {
-
-    // Fragmentamos el formulario generado
-    $formImage = $this->extractFormBlockFields( $formBlock, array( 'image' ) );
-    $formPublished = $this->extractFormBlockFields( $formBlock, array( 'published' ) );
-    $formStatus = $this->extractFormBlockFields( $formBlock, array( 'topics', 'starred' ) );
-    $formSeo = $this->extractFormBlockFields( $formBlock,
-      array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
-    $formContacto = $this->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
-    $formCollections = $this->extractFormBlockFields( $formBlock, array( 'collections', 'addCollections' ) );
-    $formMultimediaGalleries = $this->extractFormBlockFields( $formBlock, array( 'multimediaGalleries', 'addMultimediaGalleries' ) );
-    $formLatLon = $this->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom' ) );
-
-    // El bloque que usa $formBlock contiene la estructura del form
-
-    // Bloques de 8
-    $this->template->addToBlock( 'col8', $this->getPanelBlock( $formBlock, __('Main Resource information'), 'fa-archive' ) );
-    if( $formLatLon ) {
-      $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formLatLon ), __('Location'), 'fa-archive' ) );
-    }
-    if( $formCollections ) {
-      $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formCollections ), __('Collections of related resources'), 'fa-th-large' ) );
-    }
-    if( $formMultimediaGalleries ) {
-      $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formMultimediaGalleries ), __('Multimedia galleries'), 'fa-th-large' ) );
-    }
-    if( $formContacto ) {
-      $this->template->addToBlock( 'col8', $this->getPanelBlock( implode( "\n", $formContacto ), __('Contact'), 'fa-archive' ) );
-    }
-
-
-    // Bloques de 4
-    if( $formPublished ) {
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formPublished ), __( 'Publication' ), 'fa-adjust' ) );
-    }
-    if( $formImage ) {
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formImage ), __( 'Select a image' ), 'fa-file-image-o' ) );
-    }
-    if( $formStatus ) {
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formStatus ), __( 'Status' ) ) );
-    }
-    if( $formSeo ) {
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( implode( "\n", $formSeo ), __( 'SEO' ), 'fa-globe' ) );
-    }
-
-    if ($formBlock->getTemplateVars('resourceId')){
-      $resourceId = $formBlock->getTemplateVars('resourceId');
-      $resourceType = $formBlock->getTemplateVars('rTypeName');
-      $timeCreation = $formBlock->getTemplateVars('timeCreation');
-      $user = $formBlock->getTemplateVars('userName');
-      $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
-      $userUpdate = $formBlock->getTemplateVars('userUpdate');
-
-      $info = '<div class="infoBasic"><ul><li><label>ID</label><span>'.$resourceId.' ('.$resourceType.')</span></li>'.
-              '<li><label>Creado</label><span>'.$timeCreation.' ('.$user.')</span></li>'.
-              '<li><label>Actualizado</label><span>'.$timeLastUpdate.' ('.$userUpdate.')</span></li></ul></div>';
-
-      $this->template->addToBlock( 'col4', $this->getPanelBlock( $info, __( 'Information' ), 'fa-globe' ) );
-    }
 
     $resCtrl->loadAdminFormColumns( $formBlock, $this->template, $this );
 

@@ -137,7 +137,7 @@ class TestDataGenerator extends View
       }
       else{
         $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom,
-        'timeCreation' => $timeCreation, 'user' => 'admin');
+        'timeCreation' => $timeCreation, 'user' =>  $user);
       }
 
 

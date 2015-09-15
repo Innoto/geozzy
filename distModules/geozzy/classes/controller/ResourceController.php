@@ -404,8 +404,6 @@ class ResourceController {
       $userModel = new UserModel();
       $user = $userModel->listItems( array( 'filters' => array('id' => $this->resData['user']) ) )->fetch();
       $userName = $user->getter('name');
-      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $this->resData['userUpdate']) ) )->fetch();
-      $userUpdateName = $userUpdate->getter('name');
 
       $timeCreation = date('d/m/Y', time($this->resData['timeCreation']));
 
@@ -414,11 +412,14 @@ class ResourceController {
       $template->assign( 'timeCreation', $timeCreation);
       $template->assign( 'userName', $userName);
 
-      if (isset($this->resData['timeLastUpdate'])){
+      if (isset($this->resData['userUpdate'])){
+        $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $this->resData['userUpdate']) ) )->fetch();
+        $userUpdateName = $userUpdate->getter('name');
         $timeLastUpdate = date('d/m/Y', time($this->resData['timeLastUpdate']));
         $template->assign( 'timeLastUpdate', $timeLastUpdate);
         $template->assign( 'userUpdate', $userUpdateName);
       }
+
       if (isset($this->resData['averageVotes'])){
         $template->assign( 'timeLastUpdate', $this->resData['averageVotes']);
       }
