@@ -64,6 +64,8 @@ class AdminViewMaster extends View
 
     // Tomamos la variable del formulario principal con todos los campos
     $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
+    $formFieldsHiddenArray = $formBlock->getTemplateVars( 'formFieldsHiddenArray' );
+
     global $LANG_AVAILABLE;
 
     foreach( $vars as $field ) {
@@ -72,13 +74,15 @@ class AdminViewMaster extends View
         $fieldLang = ( $lang !== '' ) ? $field.'_'.$lang : $field;
         if( isset( $formFieldsArray[ $fieldLang ] ) ) {
           $formFragment[ $fieldLang ] = $formFieldsArray[ $fieldLang ];
-          unset( $formFieldsArray[ $fieldLang ] );
+          //unset( $formFieldsArray[ $fieldLang ] );
+          $formFieldsHiddenArray[] = $fieldLang;
         }
       }
     }
 
     // Guardamos la variable del formulario principal sin los campos extraidos
-    $formBlock->assign( 'formFieldsArray', $formFieldsArray );
+    //$formBlock->assign( 'formFieldsArray', $formFieldsArray );
+    $formBlock->assign( 'formFieldsHiddenArray', $formFieldsHiddenArray );
 
     return ( count( $formFragment ) > 0 ) ? $formFragment : false;
   }
