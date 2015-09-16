@@ -64,7 +64,7 @@ class admin extends Module
     ),
     array(
       "id" =>"nestable2",
-      "params" => array("nestable2"),
+      "params" => array("nestable2-old"),
       "installer" => "bower",
       "includes" => array("jquery.nestable.js")
     ),
