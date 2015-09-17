@@ -6,8 +6,8 @@
 {/block}
 
 {block name="content"}
+<!--
   <h3>MultiList Vertical</h3>
-
   <select class="asigned_terms2" multiple style="width:250px;">
   {foreach key=key item=item from=$termArray}
     <optgroup label="OptG">
@@ -45,11 +45,11 @@
     <option selected data-image="/cgmlformfilews/10" value="98">a98</option>
     <option selected data-image="/cgmlformfilews/10" value="99">a99</option>
   </select>
-
+-->
 {literal}
 
 <script type="text/javascript">
-
+/*
 
 $( document ).ready(function() {
 
@@ -70,12 +70,9 @@ $( document ).ready(function() {
     itemImage: true
   });
 
-/*
-  $('select').multiMultiList();
-*/
 });
 
-
+*/
 </script>
 {/literal}
 {/block}

@@ -41,7 +41,7 @@ class AdminViewRole extends AdminViewMaster
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin#role/edit/".$rowId');
+    $tabla->setEachRowUrl('"/admin#role/edit/id/".$rowId');
     $tabla->setNewItemUrl('/admin#role/create');
 
     // Nome das columnas
@@ -81,12 +81,14 @@ class AdminViewRole extends AdminViewMaster
   * Section edit role
   **/
 
-  function editRole($request) {
+  function editRole( $urlParams ) {
 
+    $validation = array( 'id'=> '#^\d+$#' );
+    $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
     $roleView = new RoleView();
 
     /*FORM EDIT*/
-    $form = $roleView->roleUpdateFormDefine($request);
+    $form = $roleView->roleUpdateFormDefine( $urlParamsList['id'] );
     $form->setAction('/admin/role/sendrole');
     $form->setSuccess( 'redirect', '/admin#role/list' );
     $editRoleHtml = $roleView->roleFormGet( $form );
