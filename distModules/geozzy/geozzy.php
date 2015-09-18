@@ -73,8 +73,18 @@ class geozzy extends Module {
     /**
     Crea un usuario superAdmin para Geozzy
     */
-    fwrite( STDOUT, "Enter the superAdmin password:\n" );
-    $passwd = self::getPassword(true);
+    $fileConnectionsInfo = SITE_PATH.'conf/default-connections-info.php';
+    if( file_exists( $fileConnectionsInfo ) ) {
+      include $fileConnectionsInfo;
+      if( defined( 'SUPERADMIN_PASS' ) ) {
+        $passwd = SUPERADMIN_PASS;
+      }
+      else {
+        fwrite( STDOUT, "Enter the superAdmin password:\n" );
+        $passwd = self::getPassword(true);
+      }
+    }
+
 
     $userData = array(
       'login' => 'superAdmin',
