@@ -84,7 +84,7 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setCountMethodAlias('listCount');
 
     // set Urls
-    $tabla->setEachRowUrl('"/admin#user/edit/".$rowId');
+    $tabla->setEachRowUrl('"/admin#user/edit/id/".$rowId');
     $tabla->setNewItemUrl('/admin#user/create');
 
     // Nome das columnas
@@ -130,12 +130,15 @@ class AdminViewUser extends AdminViewMaster
   /**
   * Section edit user
   **/
-  public function editUser( $request ) {
+  public function editUser( $urlParams ) {
+
+    $validation = array( 'id'=> '#^\d+$#' );
+    $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
     $userView = new UserView();
 
     /*FORM EDIT*/
-    $form = $userView->userUpdateFormDefine($request);
+    $form = $userView->userUpdateFormDefine($urlParamsList['id']);
     $form->setAction('/admin/user/senduser');
     $form->setSuccess( 'redirect', '/admin#user/list' );
     $editUserBlock = $userView->userFormGetBlock( $form );
@@ -144,7 +147,7 @@ class AdminViewUser extends AdminViewMaster
     /*--------------------*/
 
     /*FORM CHANGE PASSWORD*/
-    $formChange = $userView->userChangePasswordFormDefine($request);
+    $formChange = $userView->userChangePasswordFormDefine($urlParamsList['id']);
     $formChange->setAction('/admin/user/changepassword');
     $formChange->setSuccess( 'redirect', '/admin#user/list' );
     $changePasswordBlock = $userView->userChangePasswordFormGetBlock( $formChange );
@@ -153,7 +156,7 @@ class AdminViewUser extends AdminViewMaster
     /*--------------------*/
 
     /*FORM ASSIGN ROLES*/
-    $userRolesForm = $userView->userRolesFormDefine($request);
+    $userRolesForm = $userView->userRolesFormDefine($urlParamsList['id']);
     $userRolesForm->setAction('/admin/user/assignroles');
     $userRolesForm->setSuccess( 'redirect', '/admin#user/list' );
     $userRolesFormBlock = $userView->userRolesFormGetBlock( $userRolesForm );

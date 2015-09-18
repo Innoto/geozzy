@@ -11,11 +11,11 @@ var AdminRouter = Backbone.Router.extend({
     "category/:category/term/edit/:term" : "categoryEditTerm",
     "user/list" : "userList",
     "user/create" : "userCreate",
-    "user/edit/:id" : "userEdit",
+    "user/edit/id/:id" : "userEdit",
     "user/show" : "userShow",
     "role/list" : "roleList",
     "role/create" : "roleCreate",
-    "role/edit/:id" : "roleEdit",
+    "role/edit/id/:id" : "roleEdit",
 
     "resource/list": "resourceList",
     "topic/:id" : "resourceintopicList",
@@ -66,7 +66,7 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   userEdit: function( id ) {
-    app.mainView.loadAjaxContent( '/admin/user/edit/' + id );
+    app.mainView.loadAjaxContent( '/admin/user/edit/id/' + id );
     app.mainView.setBodyClass('userEdit');
   },
 
@@ -88,7 +88,7 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   roleEdit: function( id ) {
-    app.mainView.loadAjaxContent( '/admin/role/edit/roleId/' + id );
+    app.mainView.loadAjaxContent( '/admin/role/edit/id/' + id );
     app.mainView.setBodyClass('roleEdit');
   },
 

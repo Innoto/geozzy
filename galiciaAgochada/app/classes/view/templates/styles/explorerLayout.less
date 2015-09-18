@@ -1,14 +1,7 @@
-
-
 //mixin with all css that depends on your style explorer
 /*******************************************************************************************/
 .mixinDevel(){
   .explorerContainer{
-    border: 1px solid black;
-    padding: 10px 20px;
-    font-weight: bold;
-    font-size: 22px;
-
     &.explorer-container-du{ background-color: rgba( 225, 71, 71, .7 ); }
     &.explorer-container-map{ background-color: rgba( 71, 225, 118, .7 ); }
     &.explorer-container-filter{ background-color: rgba( 71, 156, 225, .7 ); }
@@ -24,23 +17,24 @@
 
     &.explorer-container-du{
       position: absolute;
-      width: 100%;
-      height: 100%;
+      z-index: 101;
+      width: @explDu-w;
+      height: @explDu-h;
       display:none;
       overflow: auto;
     }
     &.explorer-container-map{
-      width: 100%;
-      height: 55%;
+      width: @explMap-w;
+      height: @explMap-h;
     }
     &.explorer-container-filter{
-      width: 100%;
-      height: 10%;
+      width: @explFilter-w;
+      height: @explFilter-h;
       overflow: auto;
     }
     &.explorer-container-gallery{
-      width: 100%;
-      height: 35%;
+      width: @explGallery-w;
+      height: @explGallery-h;
       overflow: auto;
     }
   }
@@ -52,18 +46,18 @@
 
     }
     &.explorer-container-map{
-      width: 70%;
-      height: 100%;
+      width: @explMap-w;
+      height: @explMap-h;
       float: left;
     }
     &.explorer-container-filter{
-      width: 30%;
-      height: 15%;
+      width: @explFilter-w;
+      height: @explFilter-h;
       float: right;
     }
     &.explorer-container-gallery{
-      width: 30%;
-      height: 85%;
+      width: @explGallery-w;
+      height: @explGallery-h;
       float: right;
     }
   }
@@ -75,17 +69,17 @@
 
     }
     &.explorer-container-map{
-      width: 70%;
-      height: 85%;
+      width: @explMap-w;
+      height: @explMap-h;
       float: right;
     }
     &.explorer-container-filter{
-      width: 100%;
-      height: 15%;
+      width: @explFilter-w;
+      height: @explFilter-h;
     }
     &.explorer-container-gallery{
-      width: 30%;
-      height: 85%;
+      width: @explGallery-w;
+      height: @explGallery-h;
       float: left;
     }
   }
@@ -97,21 +91,22 @@
 
     }
     &.explorer-container-map{
-      width: 70%;
-      height: 100%;
+      width: @explMap-w;
+      height: @explMap-h;
       float: left;
     }
     &.explorer-container-filter{
       width: 100%;
-      max-width: 400px;
-      height: 150px;
+      max-width: @explFilter-w;
+      height: @explFilter-h;
       position: absolute;
+      z-index: 100;
       top: 30px;
       left: 30px;
     }
     &.explorer-container-gallery{
-      width: 30%;
-      height: 100%;
+      width: @explGallery-w;
+      height: @explGallery-h;
       float: right;
     }
   }
@@ -133,15 +128,47 @@
   position: relative;
   height: 100vh;
   .mixinDevel();
+  @explDu-w: 100%;
+  @explDu-h: 100%;
+  @explMap-w: 100%;
+  @explMap-h: 55%;
+  @explFilter-w: 100%;
+  @explFilter-h: 10%;
+  @explGallery-w: 100%;
+  @explGallery-h: 35%;
   .explorerBase();
 
   &.explorerLayoutDora{
+    @explDu-w: 100%;
+    @explDu-h: 100%;
+    @explMap-w: 70%;
+    @explMap-h: 100%;
+    @explFilter-w: 30%;
+    @explFilter-h: 15%;
+    @explGallery-w: 30%;
+    @explGallery-h: 85%;
     .explorerLayoutDora();
   }
   &.explorerLayoutIndiana{
+    @explDu-w: 100%;
+    @explDu-h: 100%;
+    @explMap-w: 70%;
+    @explMap-h: 85%;
+    @explFilter-w: 100%;
+    @explFilter-h: 15%;
+    @explGallery-w: 30%;
+    @explGallery-h: 85%;
     .explorerLayoutIndiana();
   }
   &.explorerLayoutSagan{
+    @explDu-w: 100%;
+    @explDu-h: 100%;
+    @explMap-w: 70%;
+    @explMap-h: 100%;
+    @explFilter-w: 400px;
+    @explFilter-h: 150px;
+    @explGallery-w: 30%;
+    @explGallery-h: 100%;
     .explorerLayoutSagan();
   }
 }
