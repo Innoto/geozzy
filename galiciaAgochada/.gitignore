@@ -5,6 +5,9 @@
 # backups
 /app/backups/
 
+# private info
+/app/conf/default-connections-info.php
+
 # temp
 /app/tmp/
 
