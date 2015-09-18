@@ -3,7 +3,7 @@
   {block name="headSection"}
 
   <div class="row">
-    <div class="col-md-8 col-sm-12">
+    <div class="col-lg-6 col-md-12">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <i class="fa fa-bars"></i>
@@ -17,7 +17,7 @@
         </h3>
       </div>
     </div>
-    <div class="col-md-4 col-sm-12 clearfix">
+    <div class="col-lg-6 col-md-12 clearfix">
       <div class="headerActionsContainer">
         {block name="headActions"}
           {if !isset($headActions)}{assign var='headActions' value=''}{/if}

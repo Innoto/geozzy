@@ -5,7 +5,7 @@
 
   <div class="headSection clearfix">
     <div class="row">
-      <div class="col-md-8 col-sm-12">
+      <div class="col-lg-6 col-md-12" style="background:blue;">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-bars"></i>
@@ -14,7 +14,7 @@
           <h3>{t}Resources Starred in{/t} <%- name_{$langDefault} %> </h3>
         </div>
       </div>
-      <div class="col-md-4 col-sm-12 clearfix">
+      <div class="col-lg-6 col-md-12 clearfix" style="background:green;">
         <div class="headerActionsContainer">
           <button type="button" class="assignResourceTerm btn btn-default"> {t}Assign to{/t} <%- name_{$langDefault} %></button>
           <span class="saveChanges">
@@ -78,7 +78,7 @@
 
         <div class="dd-handle">
           <i class="fa fa-arrows icon-handle"></i>
-          <%- resource.title_{$langDefault} %>
+          <div class="text"><%- resource.title_{$langDefault} %></div>
         </div>
 
       </div>
