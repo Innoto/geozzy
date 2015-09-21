@@ -1,5 +1,6 @@
 var CategorytermCollection = Backbone.Collection.extend({
-  url: '/api/admin/categoryterms',
+  baseUrl: '/api/admin/categoryterms',
+  url: false,
   model: TaxonomytermModel,
   sortKey: 'weight',
 
@@ -19,6 +20,9 @@ var CategorytermCollection = Backbone.Collection.extend({
   },
 
   save: function(){
+
+
+    this.url = this.baseUrl + '/id' ;
 
     var mA = [];
 

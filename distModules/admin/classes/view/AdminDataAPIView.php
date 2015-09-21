@@ -65,10 +65,12 @@ class AdminDataAPIView extends View
     switch( $_SERVER['REQUEST_METHOD'] ) {
       case 'PUT':
 
+
+
         $putData = json_decode(file_get_contents('php://input'), true);
         $taxtermModel = new TaxonomytermModel();
 
-        if( is_numeric( $id )) {  // UPDATE
+        if( is_numeric( $id ) ) {  // UPDATE
           $taxTerm = $taxtermModel->listItems(  array( 'filters' => array( 'id'=>$id ) ))->fetch();
         }
         else { // CREATE
