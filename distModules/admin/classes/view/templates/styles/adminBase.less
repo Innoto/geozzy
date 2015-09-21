@@ -59,7 +59,7 @@ body {
       white-space: nowrap;
       width: 100%;
       height: 33px;
-      line-height: 50px;
+      line-height: 45px;
     }
     .navbar-toggle {
       background-color: @gzzColor-positive;
@@ -67,7 +67,7 @@ body {
       margin: 0px;
       padding: 0px 10px;
       font-size: 16px;
-      height: 25px;
+      height: 30px;
 
       &:hover{
         background-color: @gzzColor-positive-hover;
@@ -184,6 +184,7 @@ body {
 .btn-gzz(@h){
   padding: @h/6px @h/2px;
   /*margin: 0 0 0 @h/2px;*/
+  margin: 0 0 5px 5px;
 }
 
 
@@ -331,8 +332,15 @@ label { display: block; }
     .headSection {
       padding-top: 5px;
       .headerTitleContainer{
-        margin-bottom: 8px;
+        margin-bottom: 5px;
+        margin-right: 40px;
+        h3{
+          line-height: 33px;
+        }
       }
+    }
+    .footerSection{
+      padding: 10px 30px;
     }
   }
 }/*1199px*/
@@ -344,7 +352,6 @@ label { display: block; }
     height: auto;
     z-index: 9;
     top: 85px;
-    border-bottom: 2px solid @gzzColor-positive;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
 
     .menuLogo{
@@ -357,15 +364,8 @@ label { display: block; }
   #page-wrapper {
     margin-left:0px;
     .headSection {
-      padding: 10px 20px 5px 20px;
+      padding: 5px 20px 5px 20px;
       height: 85px;
-
-      .headerTitleContainer{
-        margin-bottom: 8px;
-        h2{
-          font-size:22px;
-        }
-      }
     }
   }
 

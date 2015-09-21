@@ -5,7 +5,7 @@
 
   <div class="headSection clearfix">
     <div class="row">
-      <div class="col-lg-6 col-md-12" style="background:blue;">
+      <div class="col-lg-6 col-md-12 clearfix">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-bars"></i>
@@ -14,9 +14,9 @@
           <h3>{t}Resources Starred in{/t} <%- name_{$langDefault} %> </h3>
         </div>
       </div>
-      <div class="col-lg-6 col-md-12 clearfix" style="background:green;">
+      <div class="col-lg-6 col-md-12 clearfix">
         <div class="headerActionsContainer">
-          <button type="button" class="assignResourceTerm btn btn-default"> {t}Assign to{/t} <%- name_{$langDefault} %></button>
+          <button type="button" class="assignResourceTerm btn btn-default"> {t}Assign{/t}</button>
           <span class="saveChanges">
             <button class="btn btn-danger cancel">{t}Cancel{/t}</button>
             <button class="btn btn-primary save">{t}Save{/t}</button>
@@ -54,7 +54,7 @@
 
   <div class="footerSection clearfix">
     <div class="headerActionsContainer">
-      <button type="button" class="assignResourceTerm btn btn-default"> {t}Assign to{/t} <%- name_{$langDefault}  %></button>
+      <button type="button" class="assignResourceTerm btn btn-default"> {t}Assign{/t}</button>
       <span class="saveChanges">
         <button class="btn btn-danger cancel">{t}Cancel{/t}</button>
         <button class="btn btn-primary save">{t}Save{/t}</button>
@@ -78,7 +78,7 @@
 
         <div class="dd-handle">
           <i class="fa fa-arrows icon-handle"></i>
-          <div class="text"><%- resource.title_{$langDefault} %></div>
+          <%- resource.title_{$langDefault} %>
         </div>
 
       </div>

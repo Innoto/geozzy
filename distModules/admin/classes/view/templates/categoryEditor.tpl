@@ -79,7 +79,7 @@
 
         <div class="dd-handle">
           <i class="fa fa-arrows icon-handle"></i>
-          <div class="text"><%- term.name_{$langDefault} %></div>
+          <%- term.name_{$langDefault} %>
         </div>
 
       </div>

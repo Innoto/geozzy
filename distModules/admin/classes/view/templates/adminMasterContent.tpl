@@ -3,7 +3,7 @@
   {block name="headSection"}
 
   <div class="row">
-    <div class="col-lg-6 col-md-12">
+    <div class="col-lg-6 col-md-12 clearfix">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <i class="fa fa-bars"></i>
