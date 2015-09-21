@@ -1,12 +1,12 @@
 
+# private info
+/app/conf/default-connections-info.php
+
 # logs
 /app/log/
 
 # backups
 /app/backups/
-
-# private info
-/app/conf/default-connections-info.php
 
 # temp
 /app/tmp/
@@ -15,6 +15,7 @@
 /httpdocs/mediaCache/
 /httpdocs/vendor/
 /bower.*
+/.bowerrc
 /composer.json
 /composer.lock
 
