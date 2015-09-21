@@ -2,6 +2,7 @@
 
 // Project location
 define( 'WEB_BASE_PATH', getcwd() );
+define( 'PRJ_BASE_PATH', getcwd().'/..' );
 define( 'APP_BASE_PATH', getcwd().'/../app' );
 define( 'SITE_PATH', APP_BASE_PATH.'/' );
 
