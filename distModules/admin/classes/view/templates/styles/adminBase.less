@@ -99,8 +99,19 @@ body {
     margin-bottom: 0px;
   }
   .userInfo{
-    .dropdown-toggle:hover{
-      color: @gzzColor-positive;
+    .dropdown-toggle{
+      min-height: 40px;
+      line-height: 40px;
+      vertical-align:middle;
+      &:hover{
+        color: @gzzColor-positive;
+      }
+    }
+    .userAvatar{
+      max-height: 40px;
+      .img-rounded;
+      float:left;
+      margin-right: 10px;
     }
     .dropdown-menu{
       margin:0;
