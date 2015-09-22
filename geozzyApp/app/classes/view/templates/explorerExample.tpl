@@ -14,6 +14,7 @@
 
 </head>
 <body style="background:#E9B6B7;">
+  <div id="filters" style="width:400px;height:150px;position:absolute;right:10px;top:410px;background-color:white;"></div>
   <div id="explorerMap" style="width:100%;height:400px;background-color:grey;"></div>
   <div id="explorerList"></div>
 {literal}
@@ -31,7 +32,13 @@
     resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
 
 
+
+
+
+
+
     geozzy.filterList = geozzy.filter.extend({
+
       filterAction: function( model ) {
 
         var terms =  model.get('terms');
@@ -39,8 +46,19 @@
         var diff = $( terms ).not( this.data );
         return (diff.length != terms.length );
 
+      },
+
+      render: function() {
+
       }
+
     });
+
+
+
+
+
+
 
 
 
