@@ -12,6 +12,7 @@ body {
 }
 
 
+
 // Wrappers
 #wrapper {
   height: 100%;
@@ -53,9 +54,12 @@ body {
       color: @gzzColor-text-light;
       text-transform: uppercase;
       font-size: 22px;
-
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
       height: 33px;
-      line-height: 50px;
+      line-height: 45px;
     }
     .navbar-toggle {
       background-color: @gzzColor-positive;
@@ -63,7 +67,7 @@ body {
       margin: 0px;
       padding: 0px 10px;
       font-size: 16px;
-      height: 25px;
+      height: 30px;
 
       &:hover{
         background-color: @gzzColor-positive-hover;
@@ -95,8 +99,19 @@ body {
     margin-bottom: 0px;
   }
   .userInfo{
-    .dropdown-toggle:hover{
-      color: @gzzColor-positive;
+    .dropdown-toggle{
+      min-height: 40px;
+      line-height: 40px;
+      vertical-align:middle;
+      &:hover{
+        color: @gzzColor-positive;
+      }
+    }
+    .userAvatar{
+      max-height: 40px;
+      .img-rounded;
+      float:left;
+      margin-right: 10px;
     }
     .dropdown-menu{
       margin:0;
@@ -179,7 +194,7 @@ body {
 
 .btn-gzz(@h){
   padding: @h/6px @h/2px;
-  /*margin: 0 0 0 @h/2px;*/
+  margin-bottom: 5px;
 }
 
 
@@ -263,6 +278,15 @@ button[type="submit"]{
   }
 }
 
+//CHECKBOX
+input[type="checkbox"]{
+  margin-right: 5px;
+  margin-top:0px;
+  vertical-align: middle;
+}
+
+//LABEL
+label { display: block; }
 
 /*PANEL BASE*/
 .panel{
@@ -314,7 +338,21 @@ button[type="submit"]{
 } /*1200px*/
 
 @media screen and (max-width: 1199px) {
-
+  #page-wrapper {
+    .headSection {
+      padding-top: 5px;
+      .headerTitleContainer{
+        margin-bottom: 5px;
+        margin-right: 40px;
+        h3{
+          line-height: 33px;
+        }
+      }
+    }
+    .footerSection{
+      padding: 10px 30px;
+    }
+  }
 }/*1199px*/
 
 @media screen and (max-width: 991px) {
@@ -324,7 +362,6 @@ button[type="submit"]{
     height: auto;
     z-index: 9;
     top: 85px;
-    border-bottom: 2px solid @gzzColor-positive;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
 
     .menuLogo{
@@ -337,15 +374,8 @@ button[type="submit"]{
   #page-wrapper {
     margin-left:0px;
     .headSection {
-      padding: 10px 20px 5px 20px;
+      padding: 5px 20px 5px 20px;
       height: 85px;
-
-      .headerTitleContainer{
-        margin-bottom: 8px;
-        h2{
-          font-size:22px;
-        }
-      }
     }
   }
 

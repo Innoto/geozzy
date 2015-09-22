@@ -62,7 +62,7 @@ geozzy.explorer = function( opts ) {
   that.exec = function() {
 
     // set multiple fetches
-    that.resourceMinimalList.url = that.options.explorerAPIHost + that.options.explorerName+ '/minimal';
+    that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/minimal';
 
     that.resourceMinimalList.fetch(
       {
@@ -174,7 +174,7 @@ geozzy.explorer = function( opts ) {
 
     that.resourcePartialList.fetchAndCache({
       ids: resourcesToLoad,
-      url: that.options.explorerAPIHost + that.options.explorerName+ '/partial',
+      url: that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/partial',
       success: function() {
         that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
 
