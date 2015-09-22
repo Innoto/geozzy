@@ -1,0 +1,19 @@
+
+/* --> Explorer Styles */
+
+.explorerLayout{
+  position: relative;
+  height: 100vh;
+  .mixinDevel();
+  .explorerBase();
+
+  &.explorerLayoutDora{
+    .explorerLayoutDora();
+  }
+  &.explorerLayoutIndiana{
+    .explorerLayoutIndiana();
+  }
+  &.explorerLayoutSagan{
+    .explorerLayoutSagan();
+  }
+}

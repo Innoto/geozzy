@@ -1,0 +1,122 @@
+//mixin with all css that depends on your style explorer
+/*******************************************************************************************/
+.mixinDevel(){
+  .explorerContainer{
+    &.explorer-container-du{ background-color: rgba( 225, 71, 71, .7 ); }
+    &.explorer-container-map{ background-color: rgba( 71, 225, 118, .7 ); }
+    &.explorer-container-filter{ background-color: rgba( 71, 156, 225, .7 ); }
+    &.explorer-container-gallery{ background-color: rgba( 199, 198, 73, .7 ); }
+  }
+}
+/*******************************************************************************************/
+.explorerBase() {
+  .explorerContainer{
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+
+    &.explorer-container-du{
+      position: absolute;
+      z-index: 101;
+      width: @explDu-w;
+      height: @explDu-h;
+      display:none;
+      overflow: auto;
+    }
+    &.explorer-container-map{
+      width: @explMap-w;
+      height: @explMap-h;
+    }
+    &.explorer-container-filter{
+      width: @explFilter-w;
+      height: @explFilter-h;
+      overflow: auto;
+    }
+    &.explorer-container-gallery{
+      width: @explGallery-w;
+      height: @explGallery-h;
+      overflow: auto;
+    }
+  }
+}
+/*******************************************************************************************/
+.explorerLayoutDora(){
+  .explorerContainer{
+    &.explorer-container-du{
+
+    }
+    &.explorer-container-map{
+      width: @explMap-w;
+      height: @explMap-h;
+      float: left;
+    }
+    &.explorer-container-filter{
+      width: @explFilter-w;
+      height: @explFilter-h;
+      float: right;
+    }
+    &.explorer-container-gallery{
+      width: @explGallery-w;
+      height: @explGallery-h;
+      float: right;
+    }
+  }
+}
+/*******************************************************************************************/
+.explorerLayoutIndiana(){
+  .explorerContainer{
+    &.explorer-container-du{
+
+    }
+    &.explorer-container-map{
+      width: @explMap-w;
+      height: @explMap-h;
+      float: right;
+    }
+    &.explorer-container-filter{
+      width: @explFilter-w;
+      height: @explFilter-h;
+    }
+    &.explorer-container-gallery{
+      width: @explGallery-w;
+      height: @explGallery-h;
+      float: left;
+    }
+  }
+}
+/*******************************************************************************************/
+.explorerLayoutSagan(){
+  .explorerContainer{
+    &.explorer-container-du{
+
+    }
+    &.explorer-container-map{
+      width: @explMap-w;
+      height: @explMap-h;
+      float: left;
+    }
+    &.explorer-container-filter{
+      width: 100%;
+      max-width: @explFilter-w;
+      height: @explFilter-h;
+      position: absolute;
+      z-index: 100;
+      top: 30px;
+      left: 30px;
+    }
+    &.explorer-container-gallery{
+      width: @explGallery-w;
+      height: @explGallery-h;
+      float: right;
+    }
+  }
+  &.mapFull{
+    .explorer-container-map{
+      width: 100%;
+    }
+    .explorer-container-gallery{
+      display: none;
+    }
+  }
+}
+/*******************************************************************************************/
