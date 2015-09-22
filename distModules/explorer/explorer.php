@@ -35,7 +35,15 @@ class explorer extends Module
       "params" => array("backbone.obscura#1.0.1"),
       "installer" => "bower",
       "includes" => array("backbone.obscura.js")
-     )
+    ),
+    array(
+     "id" =>"marker-clusterer-v3-innoto",
+     "params" => array("marker-clusterer-v3-innoto"),
+     "installer" => "bower",
+     "includes" => array("src/markerclusterer.js")
+   )
+
+
 
   );
 
