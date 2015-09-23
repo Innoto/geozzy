@@ -37,7 +37,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
     geozzy.filterList = geozzy.filter.extend({
+
+      template: _.template("<select><option>OP1</opton><option>OP2</opton></select>"),
 
       filterAction: function( model ) {
 
@@ -50,6 +62,19 @@
 
       render: function() {
 
+        var that = this;
+
+        if( !$( '#' + this.options.DOMContainer+' #' + this.options.DOMId ).length ) {
+          $( '#' + this.options.DOMContainer).append( '<div id='+ this.options.DOMId +'>' + this.template() + '</div>' );
+        }
+
+
+        $('#'+this.options.DOMId).bind('change', function() {
+          that.data = [10,15];
+        //  console.log(that.parentExplorer);
+          that.parentExplorer.applyFilters();
+        });
+
       }
 
     });
@@ -61,12 +86,11 @@
 
 
 
-
     var explorer = new geozzy.explorer({debug:true});
 
-    var filtro1 = new geozzy.filterList();
+    var filtro1 = new geozzy.filterList({DOMContainer: 'filters', DOMId: 'filtro1'});
     filtro1.data = [14,10,25,37];
-    var filtro2 = new geozzy.filterList();
+    var filtro2 = new geozzy.filterList({DOMContainer: 'filters', DOMId: 'filtro2'});
     filtro2.data = [19,47,20,30,15,16];
 
 
