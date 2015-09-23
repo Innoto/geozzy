@@ -9,7 +9,12 @@
   }
 }
 /*******************************************************************************************/
-.explorerBase() {
+.explorerBase( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 100%, @explMap-h: 55%, @explFilter-w: 100%,
+   @explFilter-h: 10%, @explGallery-w: 100%, @explGallery-h: 35% ) {
+     
+   position: relative;
+   height: 100vh;
+
   .explorerContainer{
     -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -40,7 +45,8 @@
   }
 }
 /*******************************************************************************************/
-.explorerLayoutDora(){
+.explorerLayoutDora( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 100%, @explFilter-w: 30%,
+   @explFilter-h: 15%, @explGallery-w: 30%, @explGallery-h: 85% ) {
   .explorerContainer{
     &.explorer-container-du{
 
@@ -63,7 +69,8 @@
   }
 }
 /*******************************************************************************************/
-.explorerLayoutIndiana(){
+.explorerLayoutIndiana( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 85%, @explFilter-w: 100%,
+   @explFilter-h: 15%, @explGallery-w: 30%, @explGallery-h: 85% ) {
   .explorerContainer{
     &.explorer-container-du{
 
@@ -85,7 +92,8 @@
   }
 }
 /*******************************************************************************************/
-.explorerLayoutSagan(){
+.explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 100%, @explFilter-w: 400px,
+   @explFilter-h: 150px, @explGallery-w: 30%, @explGallery-h: 100% ) {
   .explorerContainer{
     &.explorer-container-du{
 

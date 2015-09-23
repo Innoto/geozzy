@@ -10,6 +10,13 @@ class ExplorerView extends MasterView
     parent::__construct( $baseDir );
   }
 
+  function paisaxesExplorer(){
+    $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
+    $this->template->setTpl('paisaxesExplorer.tpl');
+    $this->template->exec();
+  }
+
+/*Examples*/
   function explorerLayout( $urlParams = false ){
 
     if( isset($urlParams) && $urlParams[1]){
@@ -18,8 +25,8 @@ class ExplorerView extends MasterView
     else{
       $this->template->assign( 'explorerType', '');
     }
-    $this->template->addClientStyles('styles/explorerLayout.less');
-    $this->template->setTpl('explorerLayout.tpl');
+    $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
+    $this->template->setTpl('Example_explorerLayout.tpl');
     $this->template->exec();
   }
 
@@ -31,8 +38,8 @@ class ExplorerView extends MasterView
     else{
       $this->template->assign( 'explorerType', '');
     }
-    $this->template->addClientStyles('styles/explorerLayout.less');
-    $this->template->setTpl('explorerLayoutSection.tpl');
+    $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
+    $this->template->setTpl('Example_explorerLayoutSection.tpl');
     $this->template->exec();
   }
 }

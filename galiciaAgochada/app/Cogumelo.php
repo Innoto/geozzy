@@ -29,9 +29,7 @@ class Cogumelo extends CogumeloClass
      "includes" => array("src/respond.js")
    )
   );
-  public $includesCommon = array(
-    'styles/primary.less'
-  );
+  public $includesCommon = array( );
 
 
   public function __construct() {
@@ -47,6 +45,9 @@ class Cogumelo extends CogumeloClass
     /*Explorer Section (Param = Sagan||Dora||Indiana) */
     $this->addUrlPatterns( '#^explorerLayoutSection/(.*)$#', 'view:ExplorerView::explorerLayoutSection' );
     $this->addUrlPatterns( '#^explorerLayoutSection$#', 'view:ExplorerView::explorerLayoutSection' );
+
+    /*Real urls*/
+    $this->addUrlPatterns( '#^paisaxes-espectaculares#', 'view:ExplorerView::paisaxesExplorer' );
 
     /*MasterView*/
     $this->addUrlPatterns( '#^$#', 'view:MasterView::main' );

@@ -14,15 +14,14 @@
 
 </head>
 <body>
-  <div class="explorerLayout {$explorerType} mapFull clearfix">
-    <!--duContainer -->
-    <div class="explorerContainer explorer-container-du"></div>
-    <!--filterContainer -->
-    <div class="explorerContainer explorer-container-filter"></div>
-    <!--mapContainer -->
-    <div class="explorerContainer explorer-container-map">  <div id="explorerMap"></div> </div>
-    <!--galleryContainer -->
-    <div class="explorerContainer explorer-container-gallery"></div>
+  <div class="tempHeader">
+    <div class="container">
+      <h2> HEADER </h2>
+    </div>
+  </div>
+
+  <div class="paisaxesExplorer">
+  {include file="explorer///explorer.tpl"}
   </div>
 
   <script>
@@ -35,6 +34,7 @@
       resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
   });
   </script>
+
 </body>
 </html>
 <!-- /portada.tpl en app de Geozzy -->
