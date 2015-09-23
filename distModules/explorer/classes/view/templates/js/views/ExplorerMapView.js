@@ -7,6 +7,9 @@ geozzy.explorerDisplay.map = Backbone.View.extend({
   map: false ,
   clusterize:false ,
 
+  markers: false,
+  markerClusterer: false,
+
   setMap: function( mapObj ) {
     this.map = mapObj;
   },
@@ -20,12 +23,15 @@ geozzy.explorerDisplay.map = Backbone.View.extend({
 
 
   render: function() {
+
     var that = this;
 
-    var markers = [];
+    that.parentExplorer.timeDebugerMain.log( '&nbsp;- Previo a pintar en mapa '+that.parentExplorer.resourceCurrentIndex.length+ 'recursos' );
 
 
-    var my_marker = {
+    that.markers = [];
+
+    var my_marker_icon = {
       url: media+'/module/admin/img/geozzy_marker.png',
       // This marker is 20 pixels wide by 36 pixels high.
       size: new google.maps.Size(30, 36),
@@ -37,31 +43,28 @@ geozzy.explorerDisplay.map = Backbone.View.extend({
 
 
     $.each( that.parentExplorer.resourceCurrentIndex.toJSON(), function(i,e) {
-/*
-      new google.maps.Marker({
-        position: new google.maps.LatLng( e.lat, e.lng ),
-        map: resourceMap,
-        title: toString(e.id)
-
-      });
-*/
-
-
-
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng( e.lat, e.lng ),
-        icon: my_marker
+        icon: my_marker_icon
       });
-      markers.push(marker);
 
-
+      that.markers.push(marker);
     });
 
-    var markerClusterer = new MarkerClusterer(resourceMap, markers, {
-      maxZoom: 15,
-      gridSize: 45,
-      zoomOnClick: false
-    });
+    if( that.markerClusterer == false ) {
+
+      that.markerClusterer = new MarkerClusterer(resourceMap, that.markers, {
+        maxZoom: 15,
+        gridSize: 45,
+        zoomOnClick: false
+      });
+
+    }
+    else {
+      this.markerClusterer.clearMarkers();
+      this.markerClusterer.addMarkers( that.markers );
+      this.markerClusterer.redraw();
+    }
 
     that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceCurrentIndex.length+ 'recursos' );
   }
