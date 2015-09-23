@@ -139,7 +139,7 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
     Visualizamos el Recurso
    */
   public function getViewBlock( Template $resBlock ) {
-    // error_log( "RExtAppEspazoNaturalController: getViewBlock()" );
+    error_log( "RExtAppEspazoNaturalController: getViewBlock()" );
     $template = false;
 
     $resId = $this->defResCtrl->resObj->getter('id');

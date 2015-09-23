@@ -8,15 +8,13 @@ class rextAppEspazoNatural extends Module {
   public $version = '1.0';
 
 
-  public $models = array(
-    'RExtAppEspazoNaturalModel'
-  );
+  public $models = array();
 
   public $taxonomies = array(
     'appEspazoNaturalType' => array(
       'idName' => 'appEspazoNaturalType',
       'name' => array(
-        'en' => 'Espazo natural Type',
+        'en' => 'EspazoNatural Type',
         'es' => 'Tipo de Espacio natural',
         'gl' => 'Tipo de Espazo natural'
       ),
@@ -27,17 +25,17 @@ class rextAppEspazoNatural extends Module {
         array(
           'idName' => 'praia',
           'name' => array(
-            'en' => 'Page',
-            'es' => 'Página',
-            'gl' => 'Páxina'
+            'en' => 'Beach',
+            'es' => 'Playa',
+            'gl' => 'Praia'
           )
         ),
         array(
           'idName' => 'monte',
           'name' => array(
-            'en' => 'File',
-            'es' => 'Fichero',
-            'gl' => 'Ficheiro'
+            'en' => 'Forest',
+            'es' => 'Bosque',
+            'gl' => 'Monte'
           )
         )
       )
