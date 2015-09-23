@@ -16,11 +16,11 @@ $geozzyTopicsInfo = array(
         ),
         'weight' => 1
       ),
-      'rtypeEspazoNatural' => array(
+      'rtypeAppEspazoNatural' => array(
         'form' => array(
-          'viewHtml' => 'modules/rtypeEspazoNatural/classes/view/example::viewHtml',
-          'update' => 'modules/rtypeEspazoNatural/classes/view/example::update',
-          'create' => 'modules/rtypeEspazoNatural/classes/view/example::create'
+          'viewHtml' => 'modules/rtypeAppEspazoNatural/classes/view/example::viewHtml',
+          'update' => 'modules/rtypeAppEspazoNatural/classes/view/example::update',
+          'create' => 'modules/rtypeAppEspazoNatural/classes/view/example::create'
         ),
         'weight' => 3
       )
@@ -50,11 +50,11 @@ $geozzyTopicsInfo = array(
         ),
         'weight' => 2
       ),
-      'rtypeEspazoNatural' => array(
+      'rtypeAppEspazoNatural' => array(
         'form' => array(
-          'viewHtml' => 'modules/rtypeEspazoNatural/classes/view/example::viewHtml',
-          'update' => 'modules/rtypeEspazoNatural/classes/view/example::update',
-          'create' => 'modules/rtypeEspazoNatural/classes/view/example::create'
+          'viewHtml' => 'modules/rtypeAppEspazoNatural/classes/view/example::viewHtml',
+          'update' => 'modules/rtypeAppEspazoNatural/classes/view/example::update',
+          'create' => 'modules/rtypeAppEspazoNatural/classes/view/example::create'
         ),
         'weight' => 1
       )
@@ -92,11 +92,11 @@ $geozzyTopicsInfo = array(
         ),
         'weight' => 1
       ),
-      'rtypeEspazoNatural' => array(
+      'rtypeAppEspazoNatural' => array(
         'form' => array(
-          'viewHtml' => 'modules/rtypeEspazoNatural/classes/view/example::viewHtml',
-          'update' => 'modules/rtypeEspazoNatural/classes/view/example::update',
-          'create' => 'modules/rtypeEspazoNatural/classes/view/example::create'
+          'viewHtml' => 'modules/rtypeAppEspazoNatural/classes/view/example::viewHtml',
+          'update' => 'modules/rtypeAppEspazoNatural/classes/view/example::update',
+          'create' => 'modules/rtypeAppEspazoNatural/classes/view/example::create'
         ),
         'weight' => 2
       )
@@ -134,11 +134,11 @@ $geozzyTopicsInfo = array(
         ),
         'weight' => 2
       ),
-      'rtypeFestaPopular' => array(
+      'rtypeAppFestaPopular' => array(
         'form' => array(
-          'viewHtml' => 'modules/rtypeFestaPopular/classes/view/example::viewHtml',
-          'update' => 'modules/rtypeFestaPopular/classes/view/example::update',
-          'create' => 'modules/rtypeFestaPopular/classes/view/example::create'
+          'viewHtml' => 'modules/rtypeAppFestaPopular/classes/view/example::viewHtml',
+          'update' => 'modules/rtypeAppFestaPopular/classes/view/example::update',
+          'create' => 'modules/rtypeAppFestaPopular/classes/view/example::create'
         ),
         'weight' => 2
       )
@@ -194,11 +194,11 @@ $geozzyTopicsInfo = array(
       'gl' => 'Festa rachada'
     ),
     'resourceTypes' => array(
-      'rtypeFestaPopular' => array(
+      'rtypeAppFestaPopular' => array(
         'form' => array(
-          'viewHtml' => 'modules/rtypeFestaPopular/classes/view/example::viewHtml',
-          'update' => 'modules/rtypeFestaPopular/classes/view/example::update',
-          'create' => 'modules/rtypeFestaPopular/classes/view/example::create'
+          'viewHtml' => 'modules/rtypeAppFestaPopular/classes/view/example::viewHtml',
+          'update' => 'modules/rtypeAppFestaPopular/classes/view/example::update',
+          'create' => 'modules/rtypeAppFestaPopular/classes/view/example::create'
         ),
         'weight' => 1
       )
