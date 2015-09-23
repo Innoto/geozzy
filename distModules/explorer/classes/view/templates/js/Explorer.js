@@ -64,6 +64,15 @@ geozzy.explorer = function( opts ) {
     // set multiple fetches
     that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/minimal';
 
+
+    // render filters
+    if( that.filters.length > 0 ) {
+      $.each( that.filters, function(i,e){
+        e.render();
+      });
+    }
+
+
     that.resourceMinimalList.fetch(
       {
         cache: true,
@@ -154,18 +163,12 @@ geozzy.explorer = function( opts ) {
 
 
   that.render = function() {
+
     var resourcesToLoad = [];
 
     if(that.displays.map) {
       //resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
       that.displays.map.render();
-    }
-
-    // render filters
-    if( that.filters.length > 0 ) {
-      $.each( that.filters, function(i,e){
-        e.render();
-      });
     }
 
     if(that.displays.activeList) {
@@ -179,7 +182,6 @@ geozzy.explorer = function( opts ) {
 
     // Advanced Fetch
     that.timeDebugerExtended.log('Starting second data fetch at')
-
     that.resourcePartialList.fetchAndCache({
       ids: resourcesToLoad,
       url: that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/partial',
