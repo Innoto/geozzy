@@ -1,12 +1,12 @@
 <?php
 
 
-class RTypeFestaPopularController extends RTypeController implements RTypeInterface {
+class RTypeAppFestaPopularController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeFestaPopularController::__construct' );
+    error_log( 'RTypeAppFestaPopularController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeFestaPopular() );
+    parent::__construct( $defResCtrl, new rtypeAppFestaPopular() );
   }
 
 
@@ -15,7 +15,7 @@ class RTypeFestaPopularController extends RTypeController implements RTypeInterf
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeFestaPopularController: manipulateForm()" );
+    // error_log( "RTypeAppFestaPopularController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
@@ -29,7 +29,7 @@ class RTypeFestaPopularController extends RTypeController implements RTypeInterf
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeFestaPopularController: resFormRevalidate()" );
+    // error_log( "RTypeAppFestaPopularController: resFormRevalidate()" );
 
   }
 
@@ -38,7 +38,7 @@ class RTypeFestaPopularController extends RTypeController implements RTypeInterf
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeFestaPopularController: resFormProcess()" );
+    // error_log( "RTypeAppFestaPopularController: resFormProcess()" );
 
   }
 
@@ -47,7 +47,7 @@ class RTypeFestaPopularController extends RTypeController implements RTypeInterf
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeFestaPopularController: resFormSuccess()" );
+    // error_log( "RTypeAppFestaPopularController: resFormSuccess()" );
 
   }
 
@@ -57,7 +57,7 @@ class RTypeFestaPopularController extends RTypeController implements RTypeInterf
     Visualizamos el Recurso
    **/
   public function getViewBlock( Template $resBlock ) {
-    // error_log( "RTypeFestaPopularController: getViewBlock()" );
+    // error_log( "RTypeAppFestaPopularController: getViewBlock()" );
     $template = false;
 
     $template = $resBlock;
@@ -65,4 +65,4 @@ class RTypeFestaPopularController extends RTypeController implements RTypeInterf
     return $template;
   }
 
-} // class RTypeFestaPopularController
+} // class RTypeAppFestaPopularController

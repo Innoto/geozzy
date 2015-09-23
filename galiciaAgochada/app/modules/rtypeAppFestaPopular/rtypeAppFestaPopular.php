@@ -2,17 +2,17 @@
 
 Cogumelo::load( 'coreController/Module.php' );
 
-class rtypeFestaPopular extends Module {
+class rtypeAppFestaPopular extends Module {
 
-  public $name = 'rtypeFestaPopular';
+  public $name = 'rtypeAppFestaPopular';
   public $version = '1.0';
   public $rext = array();
 
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RTypeFestaPopularController.php',
-    'view/RTypeFestaPopularView.php'
+    'controller/RTypeAppFestaPopularController.php',
+    'view/RTypeAppFestaPopularView.php'
   );
 
   public $nameLocations = array(
