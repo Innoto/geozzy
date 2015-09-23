@@ -131,7 +131,8 @@ $C_REXT_MODULES = array(
   'rextEatAndDrink',
   'rextUrl',
   'rextView',
-  'rextFile'
+  'rextFile',
+  'rextAppEspazoNatural'
 );
 
 // resource Types
@@ -144,8 +145,8 @@ $C_RTYPE_MODULES = array(
   'rtypeFile',
   'rtypeRuta',
   'rtypeLugar',
-  'rtypeEspazoNatural',
-  'rtypeFestaPopular'
+  'rtypeAppEspazoNatural',
+  'rtypeAppFestaPopular'
 );
 
 // Merge all modules

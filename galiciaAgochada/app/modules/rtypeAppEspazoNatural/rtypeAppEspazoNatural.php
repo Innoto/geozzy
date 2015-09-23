@@ -2,17 +2,17 @@
 
 Cogumelo::load( 'coreController/Module.php' );
 
-class rtypeEspazoNatural extends Module {
+class rtypeAppEspazoNatural extends Module {
 
-  public $name = 'rtypeEspazoNatural';
+  public $name = 'rtypeAppEspazoNatural';
   public $version = '1.0';
-  public $rext = array();
+  public $rext = array( 'rextAppEspazoNatural' );
 
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RTypeEspazoNaturalController.php',
-    'view/RTypeEspazoNaturalView.php'
+    'controller/RTypeAppEspazoNaturalController.php',
+    'view/RTypeAppEspazoNaturalView.php'
   );
 
   public $nameLocations = array(
