@@ -11,6 +11,8 @@ class ExplorerView extends MasterView
   }
 
   function paisaxesExplorer(){
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
     $this->template->addClientScript('js/paisaxesExplorer.js');
     $this->template->setTpl('paisaxesExplorer.tpl');
