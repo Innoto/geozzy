@@ -69,9 +69,9 @@
         }
 
 
-        $('#'+this.options.DOMId).bind('change', function() {
+        $('#'+this.options.DOMId+' select').bind('change', function() {
+
           that.data = [10,15];
-        //  console.log(that.parentExplorer);
           that.parentExplorer.applyFilters();
         });
 
@@ -97,7 +97,7 @@
     var listaActiva = new geozzy.explorerDisplay.activeList();
     var mapa = new geozzy.explorerDisplay.map();
     explorer.addFilter( filtro1 );
-    explorer.addFilter( filtro2 );
+    //explorer.addFilter( filtro2 );
     explorer.addDisplay( 'activeList', listaActiva );
     explorer.addDisplay( 'map', mapa );
 
