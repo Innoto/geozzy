@@ -14,6 +14,7 @@
 
 </head>
 <body style="background:#E9B6B7;">
+  <div id="filters" style="width:400px;height:150px;position:absolute;right:10px;top:410px;background-color:white;"></div>
   <div id="explorerMap" style="width:100%;height:400px;background-color:grey;"></div>
   <div id="explorerList"></div>
 {literal}
@@ -31,7 +32,25 @@
     resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     geozzy.filterList = geozzy.filter.extend({
+
+      template: _.template("<select><option>OP1</opton><option>OP2</opton></select>"),
+
       filterAction: function( model ) {
 
         var terms =  model.get('terms');
@@ -39,16 +58,39 @@
         var diff = $( terms ).not( this.data );
         return (diff.length != terms.length );
 
+      },
+
+      render: function() {
+
+        var that = this;
+
+        if( !$( '#' + this.options.DOMContainer+' #' + this.options.DOMId ).length ) {
+          $( '#' + this.options.DOMContainer).append( '<div id='+ this.options.DOMId +'>' + this.template() + '</div>' );
+        }
+
+
+        $('#'+this.options.DOMId).bind('change', function() {
+          that.data = [10,15];
+        //  console.log(that.parentExplorer);
+          that.parentExplorer.applyFilters();
+        });
+
       }
+
     });
+
+
+
+
+
 
 
 
     var explorer = new geozzy.explorer({debug:true});
 
-    var filtro1 = new geozzy.filterList();
+    var filtro1 = new geozzy.filterList({DOMContainer: 'filters', DOMId: 'filtro1'});
     filtro1.data = [14,10,25,37];
-    var filtro2 = new geozzy.filterList();
+    var filtro2 = new geozzy.filterList({DOMContainer: 'filters', DOMId: 'filtro2'});
     filtro2.data = [19,47,20,30,15,16];
 
 

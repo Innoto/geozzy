@@ -100,7 +100,9 @@ geozzy.explorer = function( opts ) {
   //
 
   that.addFilter = function( filter ) {
+    filter.parentExplorer = this;
     that.filters.push( filter );
+
   }
 
   that.applyFilters = function() {
@@ -159,9 +161,15 @@ geozzy.explorer = function( opts ) {
       that.displays.map.render();
     }
 
+    // render filters
+    if( that.filters.length > 0 ) {
+      $.each( that.filters, function(i,e){
+        e.render();
+      });
+    }
+
     if(that.displays.activeList) {
       resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
-
     }
 
     if(that.displays.pasiveList) {
