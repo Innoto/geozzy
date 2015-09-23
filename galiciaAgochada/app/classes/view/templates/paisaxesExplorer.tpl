@@ -24,17 +24,6 @@
   {include file="explorer///explorer.tpl"}
   </div>
 
-  <script>
-  $( document ).ready(function() {
-      // gmaps init
-      var mapOptions = {
-        center: { lat: 43.1, lng: -7.36 },
-        zoom: 7
-      };
-      resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
-  });
-  </script>
-
 </body>
 </html>
 <!-- /portada.tpl en app de Geozzy -->
