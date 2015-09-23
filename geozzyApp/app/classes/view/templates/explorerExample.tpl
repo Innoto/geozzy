@@ -29,7 +29,7 @@
     };
 
 
-    resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
+    var resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
 
 
 
@@ -96,6 +96,9 @@
 
     var listaActiva = new geozzy.explorerDisplay.activeList();
     var mapa = new geozzy.explorerDisplay.map();
+
+    mapa.setMap( resourceMap );
+
     explorer.addFilter( filtro1 );
     //explorer.addFilter( filtro2 );
     explorer.addDisplay( 'activeList', listaActiva );

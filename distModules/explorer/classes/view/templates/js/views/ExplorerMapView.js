@@ -10,6 +10,7 @@ geozzy.explorerDisplay.map = Backbone.View.extend({
   markers: false,
   markerClusterer: false,
 
+
   setMap: function( mapObj ) {
     this.map = mapObj;
   },
@@ -53,7 +54,7 @@ geozzy.explorerDisplay.map = Backbone.View.extend({
 
     if( that.markerClusterer == false ) {
 
-      that.markerClusterer = new MarkerClusterer(resourceMap, that.markers, {
+      that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
         maxZoom: 15,
         gridSize: 45,
         zoomOnClick: false
