@@ -6,7 +6,7 @@ Cogumelo::load('coreView/View.php');
 /**
 * Clase Master to extend other application methods
 */
-class CoreAPIView extends View
+class geozzyAPIView extends View
 {
 
   function __construct($baseDir){
