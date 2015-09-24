@@ -1,4 +1,4 @@
-{extends file="primaryHeader.tpl"}
+{extends file="primary.tpl"}
 
 {block name="headJsIncludes" append}
   <script src="https://maps.googleapis.com/maps/api/js"></script>
