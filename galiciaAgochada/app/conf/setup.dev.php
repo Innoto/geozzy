@@ -132,7 +132,7 @@ $C_REXT_MODULES = array(
   'rextUrl',
   'rextView',
   'rextFile',
-  'rextLugar',
+  'rextAppLugar',
   'rextAppEspazoNatural'
 );
 
@@ -145,7 +145,7 @@ $C_RTYPE_MODULES = array(
   'rtypePage',
   'rtypeFile',
   'rtypeRuta',
-  'rtypeLugar',
+  'rtypeAppLugar',
   'rtypeAppEspazoNatural',
   'rtypeAppFestaPopular'
 );

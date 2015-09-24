@@ -142,10 +142,7 @@ $C_RTYPE_MODULES = array(
   'rtypeUrl',
   'rtypePage',
   'rtypeFile',
-  'rtypeRuta',
-  'rtypeLugar',
-  'rtypeEspazoNatural',
-  'rtypeFestaPopular'
+  'rtypeRuta'
 );
 
 // Merge all modules

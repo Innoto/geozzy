@@ -23,7 +23,7 @@ class rextLugar extends Module {
       'sortable' => 0,
       'initialTerms' => array(
         array(
-          'idName' => 'ZZpraia',
+          'idName' => 'praia',
           'name' => array(
             'en' => 'Beach',
             'es' => 'Playa',
@@ -31,7 +31,7 @@ class rextLugar extends Module {
           )
         ),
         array(
-          'idName' => 'ZZmonte',
+          'idName' => 'monte',
           'name' => array(
             'en' => 'Forest',
             'es' => 'Bosque',
