@@ -1,4 +1,4 @@
-{extends file="default.tpl"}
+{extends file="primary.tpl"}
 
 {block name="headCssIncludes" append}
 <style type="text/css">
