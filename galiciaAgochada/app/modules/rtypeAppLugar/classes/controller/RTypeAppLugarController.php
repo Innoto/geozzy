@@ -1,13 +1,13 @@
 <?php
-rextLugar::autoIncludes();
+rextAppLugar::autoIncludes();
 
 
-class RTypeLugarController extends RTypeController implements RTypeInterface {
+class RTypeAppLugarController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeLugarController::__construct' );
+    error_log( 'RTypeAppLugarController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeLugar() );
+    parent::__construct( $defResCtrl, new rtypeAppLugar() );
   }
 
 
@@ -16,13 +16,13 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeLugarController: manipulateForm()" );
+    // error_log( "RTypeAppLugarController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
-    $rTypeExtNames[] = 'rextLugar';
-    $this->rExtCtrl = new RExtLugarController( $this );
+    $rTypeExtNames[] = 'rextAppLugar';
+    $this->rExtCtrl = new RExtAppLugarController( $this );
     $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
@@ -36,10 +36,10 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeLugarController: resFormRevalidate()" );
+    // error_log( "RTypeAppLugarController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
-      $this->rExtCtrl = new RExtLugarController( $this );
+      $this->rExtCtrl = new RExtAppLugarController( $this );
       $this->rExtCtrl->resFormRevalidate( $form );
     }
   }
@@ -49,10 +49,10 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeLugarController: resFormProcess()" );
+    // error_log( "RTypeAppLugarController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
-      $this->rExtCtrl = new RExtLugarController( $this );
+      $this->rExtCtrl = new RExtAppLugarController( $this );
       $this->rExtCtrl->resFormProcess( $form, $resource );
     }
   }
@@ -62,9 +62,9 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeLugarController: resFormSuccess()" );
+    // error_log( "RTypeAppLugarController: resFormSuccess()" );
 
-    $this->rExtCtrl = new RExtLugarController( $this );
+    $this->rExtCtrl = new RExtAppLugarController( $this );
     $this->rExtCtrl->resFormSuccess( $form, $resource );
   }
 
@@ -74,25 +74,25 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     Visualizamos el Recurso
    **/
   public function getViewBlock( Template $resBlock ) {
-    // error_log( "RTypeLugarController: getViewBlock()" );
+    // error_log( "RTypeAppLugarController: getViewBlock()" );
     $template = false;
 
     $template = $resBlock;
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeLugar' );
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppLugar' );
 
-    $this->rExtCtrl = new RExtLugarController( $this );
+    $this->rExtCtrl = new RExtAppLugarController( $this );
     $rExtBlock = $this->rExtCtrl->getViewBlock( $resBlock );
 
     if( $rExtBlock ) {
-      $template->addToBlock( 'rextLugar', $rExtBlock );
-      $template->assign( 'rExtBlockNames', array( 'rextLugar' ) );
+      $template->addToBlock( 'rextAppLugar', $rExtBlock );
+      $template->assign( 'rExtBlockNames', array( 'rextAppLugar' ) );
     }
     else {
-      $template->assign( 'rextLugar', false );
+      $template->assign( 'rextAppLugar', false );
       $template->assign( 'rExtBlockNames', false );
     }
 
     return $template;
   }
 
-} // class RTypeLugarController
+} // class RTypeAppLugarController

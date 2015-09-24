@@ -34,6 +34,36 @@ class geozzy extends Module {
   public function __construct() {
     $this->addUrlPatterns( '#^'.MOD_GEOZZY_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
 
+
+    // geozzy core api doc
+    $this->addUrlPatterns( '#^api/bi.json$#', 'view:GeozzyAPIView::biJson' );
+    $this->addUrlPatterns( '#^api/resources.json$#', 'view:GeozzyAPIView::resourcesJson' );
+    $this->addUrlPatterns( '#^api/resourceTypes.json$#', 'view:GeozzyAPIView::resourceTypesJson' );
+    $this->addUrlPatterns( '#^api/resourceIndex.json$#', 'view:GeozzyAPIView::resourceIndexJson' );
+    $this->addUrlPatterns( '#^api/categoryList.json$#', 'view:GeozzyAPIView::categoryListJson' );
+    $this->addUrlPatterns( '#^api/categoryTerms.json$#', 'view:GeozzyAPIView::categoryTermsJson' );
+    $this->addUrlPatterns( '#^api/topicList.json$#', 'view:GeozzyAPIView::topicListJson' );
+    $this->addUrlPatterns( '#^api/uiEventList.json$#', 'view:GeozzyAPIView::uiEventListJson' );
+
+
+    // environment
+    $this->addUrlPatterns( '#^api/core/bi#', 'view:GeozzyAPIView::bi' );
+
+    // resources
+    $this->addUrlPatterns( '#^api/core/resourcelist(.*)$#', 'view:GeozzyAPIView::resourceList' );
+    $this->addUrlPatterns( '#^api/core/resourceIndex(.*)#', 'view:GeozzyAPIView::resourceIndex' );
+    $this->addUrlPatterns( '#^api/core/resourcetypes$#', 'view:GeozzyAPIView::resourceTypes' );
+
+    // Categories
+    $this->addUrlPatterns( '#^api/core/categorylist$#', 'view:GeozzyAPIView::categoryList' );
+    $this->addUrlPatterns( '#^api/core/categoryterms/(.*)$#', 'view:GeozzyAPIView::categoryTerms' );
+
+    // Topics
+    $this->addUrlPatterns( '#^api/core/topiclist$#', 'view:GeozzyAPIView::topicList' );
+
+    // UI events
+    $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
+
     /* Probando Recursos */
     //$this->addUrlPatterns( '#^recurso$#', 'view:GeozzyResourceView::showRecurso' );
     //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
