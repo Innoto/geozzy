@@ -2,17 +2,17 @@
 
 Cogumelo::load( 'coreController/Module.php' );
 
-class rtypeLugar extends Module {
+class rtypeAppLugar extends Module {
 
-  public $name = 'rtypeLugar';
+  public $name = 'rtypeAppLugar';
   public $version = '1.0';
-  public $rext = array( 'rextLugar' );
+  public $rext = array( 'rextAppLugar' );
 
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RTypeLugarController.php',
-    'view/RTypeLugarView.php'
+    'controller/RTypeAppLugarController.php',
+    'view/RTypeAppLugarView.php'
   );
 
   public $nameLocations = array(

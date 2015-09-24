@@ -2,17 +2,17 @@
 Cogumelo::load( 'coreController/Module.php' );
 
 
-class rextLugar extends Module {
+class rextAppLugar extends Module {
 
-  public $name = 'rextLugar';
+  public $name = 'rextAppLugar';
   public $version = '1.0';
 
 
   public $models = array();
 
   public $taxonomies = array(
-    'rextLugarType' => array(
-      'idName' => 'rextLugarType',
+    'rextAppLugarType' => array(
+      'idName' => 'rextAppLugarType',
       'name' => array(
         'en' => 'Lugar type',
         'es' => 'Tipo de Lugar',
@@ -45,7 +45,7 @@ class rextLugar extends Module {
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RExtLugarController.php'
+    'controller/RExtAppLugarController.php'
     //,'model/RExtUrlModel.php'
   );
 
