@@ -2,23 +2,23 @@
 
 Cogumelo::load( 'coreController/Module.php' );
 
-class rtypeEspazoNatural extends Module {
+class rtypeAppFestaPopular extends Module {
 
-  public $name = 'rtypeEspazoNatural';
+  public $name = 'rtypeAppFestaPopular';
   public $version = '1.0';
   public $rext = array();
 
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RTypeEspazoNaturalController.php',
-    'view/RTypeEspazoNaturalView.php'
+    'controller/RTypeAppFestaPopularController.php',
+    'view/RTypeAppFestaPopularView.php'
   );
 
   public $nameLocations = array(
-    'es' => 'Espazo Natural',
-    'en' => 'Espazo Natural',
-    'gl' => 'Espazo Natural'
+    'es' => 'Festa Popular',
+    'en' => 'Festa Popular',
+    'gl' => 'Festa Popular'
   );
 
 

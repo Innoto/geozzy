@@ -1,8 +1,8 @@
-<!-- rTypeViewBlock.tpl en rTypeHotel module -->
+<!-- rTypeViewBlock.tpl en rtypeAppEspazoNatural module -->
 
-<p> --- rTypeViewBlock.tpl en rTypeHotel module --- </p>
+<p> --- rTypeViewBlock.tpl en rtypeAppEspazoNatural module --- </p>
 
-<div class="resViewBlock">
+<div class="resViewBlock rtypeAppEspazoNatural">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
@@ -44,15 +44,15 @@
   </div>
   {/if}
 
-  <div class="rTypeHotel">
+  <div class="rtypeAppEspazoNatural">
     <p> --- rTypeHotel Ext --- </p>
-    <div class="rTypeHotel accommodation">
-      {$rextAccommodation}
+    <div class="rTypeHotel rextAppEspazoNatural">
+      {$rextAppEspazoNatural}
     </div>
   </div>
 
 </div>
 
-<!-- /rTypeViewBlock.tpl en rTypeHotel module -->
+<!-- /rTypeViewBlock.tpl en rtypeAppEspazoNatural module -->
 
 

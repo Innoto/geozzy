@@ -1,13 +1,13 @@
 <?php
-rextLugar::autoIncludes();
+rextAppEspazoNatural::autoIncludes();
 
 
-class RTypeLugarController extends RTypeController implements RTypeInterface {
+class RTypeAppEspazoNaturalController extends RTypeController implements RTypeInterface {
 
-  public function __construct( $defResCtrl ){
-    error_log( 'RTypeLugarController::__construct' );
+  public function __construct( $defResCtrl ) {
+    error_log( 'RTypeAppEspazoNaturalController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeLugar() );
+    parent::__construct( $defResCtrl, new rtypeAppEspazoNatural() );
   }
 
 
@@ -16,13 +16,13 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeLugarController: manipulateForm()" );
+    // error_log( "RTypeAppEspazoNaturalController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
-    $rTypeExtNames[] = 'rextLugar';
-    $this->rExtCtrl = new RExtLugarController( $this );
+    $rTypeExtNames[] = 'rextAppEspazoNatural';
+    $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
     $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
@@ -36,10 +36,10 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeLugarController: resFormRevalidate()" );
+    // error_log( "RTypeAppEspazoNaturalController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
-      $this->rExtCtrl = new RExtLugarController( $this );
+      $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
       $this->rExtCtrl->resFormRevalidate( $form );
     }
   }
@@ -49,10 +49,10 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeLugarController: resFormProcess()" );
+    // error_log( "RTypeAppEspazoNaturalController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
-      $this->rExtCtrl = new RExtLugarController( $this );
+      $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
       $this->rExtCtrl->resFormProcess( $form, $resource );
     }
   }
@@ -62,9 +62,9 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeLugarController: resFormSuccess()" );
+    // error_log( "RTypeAppEspazoNaturalController: resFormSuccess()" );
 
-    $this->rExtCtrl = new RExtLugarController( $this );
+    $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
     $this->rExtCtrl->resFormSuccess( $form, $resource );
   }
 
@@ -74,25 +74,25 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     Visualizamos el Recurso
    **/
   public function getViewBlock( Template $resBlock ) {
-    // error_log( "RTypeLugarController: getViewBlock()" );
+    // error_log( "RTypeAppEspazoNaturalController: getViewBlock()" );
     $template = false;
 
     $template = $resBlock;
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeLugar' );
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppEspazoNatural' );
 
-    $this->rExtCtrl = new RExtLugarController( $this );
+    $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
     $rExtBlock = $this->rExtCtrl->getViewBlock( $resBlock );
 
     if( $rExtBlock ) {
-      $template->addToBlock( 'rextLugar', $rExtBlock );
-      $template->assign( 'rExtBlockNames', array( 'rextLugar' ) );
+      $template->addToBlock( 'rextAppEspazoNatural', $rExtBlock );
+      $template->assign( 'rExtBlockNames', array( 'rextAppEspazoNatural' ) );
     }
     else {
-      $template->assign( 'rextLugar', false );
+      $template->assign( 'rextAppEspazoNatural', false );
       $template->assign( 'rExtBlockNames', false );
     }
 
     return $template;
   }
 
-} // class RTypeLugarController
+} // class RTypeAppEspazoNaturalController

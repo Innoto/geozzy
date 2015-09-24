@@ -1,12 +1,12 @@
 <?php
 
 
-class RTypeEspazoNaturalController extends RTypeController implements RTypeInterface {
+class RTypeAppFestaPopularController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeEspazoNaturalController::__construct' );
+    error_log( 'RTypeAppFestaPopularController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeEspazoNatural() );
+    parent::__construct( $defResCtrl, new rtypeAppFestaPopular() );
   }
 
 
@@ -15,7 +15,7 @@ class RTypeEspazoNaturalController extends RTypeController implements RTypeInter
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeEspazoNaturalController: manipulateForm()" );
+    // error_log( "RTypeAppFestaPopularController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
@@ -29,7 +29,7 @@ class RTypeEspazoNaturalController extends RTypeController implements RTypeInter
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeEspazoNaturalController: resFormRevalidate()" );
+    // error_log( "RTypeAppFestaPopularController: resFormRevalidate()" );
 
   }
 
@@ -38,7 +38,7 @@ class RTypeEspazoNaturalController extends RTypeController implements RTypeInter
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeEspazoNaturalController: resFormProcess()" );
+    // error_log( "RTypeAppFestaPopularController: resFormProcess()" );
 
   }
 
@@ -47,7 +47,7 @@ class RTypeEspazoNaturalController extends RTypeController implements RTypeInter
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeEspazoNaturalController: resFormSuccess()" );
+    // error_log( "RTypeAppFestaPopularController: resFormSuccess()" );
 
   }
 
@@ -57,7 +57,7 @@ class RTypeEspazoNaturalController extends RTypeController implements RTypeInter
     Visualizamos el Recurso
    **/
   public function getViewBlock( Template $resBlock ) {
-    // error_log( "RTypeEspazoNaturalController: getViewBlock()" );
+    // error_log( "RTypeAppFestaPopularController: getViewBlock()" );
     $template = false;
 
     $template = $resBlock;
@@ -65,4 +65,4 @@ class RTypeEspazoNaturalController extends RTypeController implements RTypeInter
     return $template;
   }
 
-} // class RTypeEspazoNaturalController
+} // class RTypeAppFestaPopularController

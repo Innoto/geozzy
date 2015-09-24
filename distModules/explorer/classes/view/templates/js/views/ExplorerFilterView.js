@@ -9,7 +9,7 @@ geozzy.filter = Backbone.View.extend({
   options:  {
     title: false,
     DOMId: false,
-    DOMContainer: false
+    containerQueryDiv: false
   },
 
   initialize: function( opts ) {
