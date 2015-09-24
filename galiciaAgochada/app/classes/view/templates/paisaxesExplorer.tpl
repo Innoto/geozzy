@@ -8,7 +8,6 @@
   <h2> PAISAXES ESPECTACULARES </h2>
 {/block}
 
-
 {block name="bodyContent"}
   <div class="paisaxesExplorer">
     {include file="explorer///explorer.tpl"}
