@@ -1,8 +1,8 @@
-<!-- rTypeViewBlock.tpl en rTypeHotel module -->
+<!-- rTypeViewBlock.tpl en rTypeLugar module -->
 
-<p> --- rTypeViewBlock.tpl en rTypeHotel module --- </p>
+<p> --- rTypeViewBlock.tpl en rTypeLugar module --- </p>
 
-<div class="resViewBlock">
+<div class="resViewBlock rTypeLugar">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
@@ -44,15 +44,15 @@
   </div>
   {/if}
 
-  <div class="rTypeHotel">
-    <p> --- rTypeHotel Ext --- </p>
-    <div class="rTypeHotel accommodation">
-      {$rextAccommodation}
+  <div class="rTypeLugar">
+    <p> --- rTypeLugar Ext --- </p>
+    <div class="rTypeLugar rExtLugar">
+      {$rextLugar}
     </div>
   </div>
 
 </div>
 
-<!-- /rTypeViewBlock.tpl en rTypeHotel module -->
+<!-- /rTypeViewBlock.tpl en geozzy module -->
 
 

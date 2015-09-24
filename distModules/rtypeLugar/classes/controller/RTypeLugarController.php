@@ -1,4 +1,5 @@
 <?php
+rextLugar::autoIncludes();
 
 
 class RTypeLugarController extends RTypeController implements RTypeInterface {
@@ -20,6 +21,12 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
+    $rTypeExtNames[] = 'rextLugar';
+    $this->rExtCtrl = new RExtLugarController( $this );
+    $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
+
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
     return( $rTypeFieldNames );
   } // function manipulateForm()
 
@@ -31,6 +38,10 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
   public function resFormRevalidate( FormController $form ) {
     // error_log( "RTypeLugarController: resFormRevalidate()" );
 
+    if( !$form->existErrors() ) {
+      $this->rExtCtrl = new RExtLugarController( $this );
+      $this->rExtCtrl->resFormRevalidate( $form );
+    }
   }
 
   /**
@@ -40,6 +51,10 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RTypeLugarController: resFormProcess()" );
 
+    if( !$form->existErrors() ) {
+      $this->rExtCtrl = new RExtLugarController( $this );
+      $this->rExtCtrl->resFormProcess( $form, $resource );
+    }
   }
 
   /**
@@ -49,6 +64,8 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
     // error_log( "RTypeLugarController: resFormSuccess()" );
 
+    $this->rExtCtrl = new RExtLugarController( $this );
+    $this->rExtCtrl->resFormSuccess( $form, $resource );
   }
 
 
@@ -61,6 +78,19 @@ class RTypeLugarController extends RTypeController implements RTypeInterface {
     $template = false;
 
     $template = $resBlock;
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeLugar' );
+
+    $this->rExtCtrl = new RExtLugarController( $this );
+    $rExtBlock = $this->rExtCtrl->getViewBlock( $resBlock );
+
+    if( $rExtBlock ) {
+      $template->addToBlock( 'rextLugar', $rExtBlock );
+      $template->assign( 'rExtBlockNames', array( 'rextLugar' ) );
+    }
+    else {
+      $template->assign( 'rextLugar', false );
+      $template->assign( 'rExtBlockNames', false );
+    }
 
     return $template;
   }

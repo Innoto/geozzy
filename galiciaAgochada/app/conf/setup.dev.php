@@ -132,6 +132,7 @@ $C_REXT_MODULES = array(
   'rextUrl',
   'rextView',
   'rextFile',
+  'rextLugar',
   'rextAppEspazoNatural'
 );
 
