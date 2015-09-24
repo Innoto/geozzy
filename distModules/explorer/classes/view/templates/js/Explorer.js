@@ -118,16 +118,24 @@ geozzy.explorer = function( opts ) {
 
       // Set filters for current index
       that.resourceCurrentIndex.filterBy( function(model) {
-        var matches = false;
+        var matches = 0;
+        var ret = false;
+
         $.each( that.filters, function(i, filter){
 
           if( filter.filterAction( model ) ) {
-            matches = true;
+            matches++;
             return;
           }
+
         });
 
-        return matches;
+        if( matches == that.filters.length ) {
+          ret = true
+        }
+
+        // if matches number is same of filters number
+        return ret;
 
       });
       that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
