@@ -30,7 +30,7 @@ $(document).ready(function(){
 
       geozzy.filterList = geozzy.filter.extend({
 
-        template: _.template("<select><option>OP1</opton><option>OP2</opton></select>"),
+        template: _.template("<select><option>Opción 2</opton><option>Opción 1</opton></select>"),
 
         filterAction: function( model ) {
 
@@ -45,8 +45,8 @@ $(document).ready(function(){
 
           var that = this;
 
-          if( !$( '#' + this.options.DOMContainer+' #' + this.options.DOMId ).length ) {
-            $( '#' + this.options.DOMContainer).append( '<div id='+ this.options.DOMId +'>' + this.template() + '</div>' );
+          if( !$(  this.options.containerQueryDiv+' #' + this.options.DOMId ).length ) {
+            $( this.options.containerQueryDiv).append( '<div id='+ this.options.DOMId +'>' + this.template() + '</div>' );
           }
 
 
@@ -69,9 +69,9 @@ $(document).ready(function(){
 
       var explorer = new geozzy.explorer({debug:false});
 
-      var filtro1 = new geozzy.filterList({DOMContainer: 'filters', DOMId: 'filtro1'});
+      var filtro1 = new geozzy.filterList({containerQueryDiv: '.explorer-container-filter', DOMId: 'filtro1'});
       filtro1.data = [14,10,25,37];
-      var filtro2 = new geozzy.filterList({DOMContainer: 'filters', DOMId: 'filtro2'});
+      var filtro2 = new geozzy.filterList({containerQueryDiv: '.explorer-container-filter', DOMId: 'filtro2'});
       filtro2.data = [19,47,20,30,15,16];
 
 
