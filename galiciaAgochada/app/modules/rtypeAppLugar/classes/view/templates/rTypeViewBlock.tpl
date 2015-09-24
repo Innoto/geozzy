@@ -1,8 +1,8 @@
-<!-- rTypeViewBlock.tpl en rTypeLugar module -->
+<!-- rTypeViewBlock.tpl en rTypeAppLugar module -->
 
-<p> --- rTypeViewBlock.tpl en rTypeLugar module --- </p>
+<p> --- rTypeViewBlock.tpl en rTypeAppLugar module --- </p>
 
-<div class="resViewBlock rTypeLugar">
+<div class="resViewBlock rTypeAppLugar">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
@@ -44,10 +44,10 @@
   </div>
   {/if}
 
-  <div class="rTypeLugar">
-    <p> --- rTypeLugar Ext --- </p>
-    <div class="rTypeLugar rExtLugar">
-      {$rextLugar}
+  <div class="rTypeAppLugar">
+    <p> --- rTypeAppLugar Ext --- </p>
+    <div class="rTypeAppLugar rExtAppLugar">
+      {$rextAppLugar}
     </div>
   </div>
 

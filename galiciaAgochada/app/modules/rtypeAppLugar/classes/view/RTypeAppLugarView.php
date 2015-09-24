@@ -1,10 +1,10 @@
 <?php
 Cogumelo::load('coreView/View.php');
-rtypeLugar::load('controller/RTypeLugarController.php');
+rtypeAppLugar::load('controller/RTypeAppLugarController.php');
 
 
 
-class RTypeLugarView extends View
+class RTypeAppLugarView extends View
 {
 
   private $defResCtrl = null;
@@ -14,7 +14,7 @@ class RTypeLugarView extends View
     parent::__construct( $baseDir );
 
     $this->defResCtrl = $defResCtrl;
-    $this->rTypeCtrl = new RTypeLugarController( $defResCtrl );
+    $this->rTypeCtrl = new RTypeAppLugarController( $defResCtrl );
   }
 
 
@@ -23,7 +23,7 @@ class RTypeLugarView extends View
     Defino un formulario con su TPL como Bloque
    */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "RTypeLugarView: getFormBlock()" );
+    error_log( "RTypeAppLugarView: getFormBlock()" );
 
     $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -47,7 +47,7 @@ class RTypeLugarView extends View
     Proceso formulario
    */
   public function actionResourceForm() {
-    error_log( "RTypeLugarView: actionResourceForm()" );
+    error_log( "RTypeAppLugarView: actionResourceForm()" );
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
     $form = $this->defResCtrl->resFormLoad();
@@ -79,4 +79,4 @@ class RTypeLugarView extends View
   } // function actionResourceForm()
 
 
-} // class RTypeLugarView
+} // class RTypeAppLugarView
