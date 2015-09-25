@@ -1,5 +1,8 @@
 
 
+    var filterList =
+
+
     $(document).ready(function(){
 
 
@@ -40,26 +43,46 @@
       var resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
 
 
-      // EXPLORADOR
+
+
       var explorer = new geozzy.explorer({debug:false});
+
+
+
+      var listaActiva = new geozzy.explorerDisplay.activeList();
+      var mapa = new geozzy.explorerDisplay.map();
+
       mapa.setMap( resourceMap );
 
-
-      // FILTROS
       explorer.addFilter(
-        new geozzy.filters.filterListSimple({containerQueryDiv: '.explorer-container-filter', DivId: 'filtro1', title:'Tipo de cociña', data: dataFilter1 })
+        new geozzy.filters.filterListSimple(
+          {
+            containerQueryDiv: '.explorer-container-filter',
+            DivId: 'filtro1',
+            title:'Tipo de cociña',
+            data: dataFilter1
+          }
+        )
       );
       explorer.addFilter(
-        new geozzy.filters.filterListSimple({containerQueryDiv: '.explorer-container-filter', DivId: 'filtro2', title:'Idades', data: dataFilter2 })
+        new geozzy.filters.filterListSimple(
+          {
+            containerQueryDiv: '.explorer-container-filter',
+            DivId: 'filtro2',
+            title:'Idades',
+            data: dataFilter2
+          }
+        )
       );
       explorer.addFilter(
-        new geozzy.filters.filterListSimple({containerQueryDiv: '.explorer-container-filter', DivId: 'filtro3', title:'Horario de apertura', data: dataFilter3 })
+        new geozzy.filters.filterListSimple(
+          {
+            containerQueryDiv: '.explorer-container-filter', DivId: 'filtro3', title:'Horario de apertura', data: dataFilter3 }
+        )
       );
 
-
-      // DISPLAYS
-//    explorer.addDisplay( 'activeList', listaActiva );
-      explorer.addDisplay( 'map', new geozzy.explorerDisplay.map() );
+      //explorer.addDisplay( 'activeList', listaActiva );
+      explorer.addDisplay( 'map', mapa );
 
       explorer.exec();
 
