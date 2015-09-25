@@ -15,7 +15,9 @@
 <body>
 
   <div class="headContent">
-    {block name="headContent"}Este é o espacio da cabeceira...{/block}
+    {block name="headContent"}
+      {include file="header.tpl"}
+    {/block}
   </div>
 
   <div class="bodyContent">
