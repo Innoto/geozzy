@@ -14,7 +14,6 @@
 
 </head>
 <body>
-  {include }
 
   <div class="explorerLayout {$explorerType} mapFull clearfix">
     <!--duContainer -->
