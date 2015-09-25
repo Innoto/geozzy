@@ -9,7 +9,7 @@
       // ESTO CHEGARÍA POR CHAMADA AJAX
       var dataFilter1 = [
         {value:'*', title: 'Todas'},
-        {value:'10', title: 'Galega'},
+        {value:'10', title: 'Galega swagger'},
         {value:'11', title: 'Canibal'},
         {value:'12', title: 'Indo oceánica'}
       ];
@@ -40,20 +40,29 @@
         center: { lat: 43.1, lng: -7.36 },
         zoom: 8
       };
-      var resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
+
+      var resourceMap = new google.maps.Map( $('#explorerMap').get( 0 ), mapOptions);
 
 
 
-
+      // EXPLORADOR
       var explorer = new geozzy.explorer({debug:false});
 
 
 
+      // DISPLAYS
       var listaActiva = new geozzy.explorerDisplay.activeList();
       var mapa = new geozzy.explorerDisplay.map();
-
       mapa.setMap( resourceMap );
 
+
+      //explorer.addDisplay( 'activeList', listaActiva );
+      explorer.addDisplay( 'map', mapa );
+
+
+
+
+      // FILTROS
       explorer.addFilter(
         new geozzy.filters.filterListSimple(
           {
@@ -77,13 +86,16 @@
       explorer.addFilter(
         new geozzy.filters.filterListSimple(
           {
-            containerQueryDiv: '.explorer-container-filter', DivId: 'filtro3', title:'Horario de apertura', data: dataFilter3 }
+            containerQueryDiv: '.explorer-container-filter',
+            DivId: 'filtro3',
+            title:'Horario de apertura',
+            data: dataFilter3
+          }
         )
       );
 
-      //explorer.addDisplay( 'activeList', listaActiva );
-      explorer.addDisplay( 'map', mapa );
 
+      // EXECUCIÓN EXPLORADOR
       explorer.exec();
 
 
