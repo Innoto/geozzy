@@ -3,8 +3,9 @@ var geozzy = geozzy || {};
 geozzy.filter = Backbone.View.extend({
   parentExplorer: false,
   selectedData: false,
-
   template: false,
+  title : false,
+  data: false,
 
   options:  {
     title: false,
@@ -14,6 +15,12 @@ geozzy.filter = Backbone.View.extend({
 
   initialize: function( opts ) {
     this.options = opts;
+    if( opts.data ) {
+      this.data = opts.data;
+    }
+    if( opts.title ) {
+      this.title = opts.title;
+    }
   },
 
   filterAction: function() {

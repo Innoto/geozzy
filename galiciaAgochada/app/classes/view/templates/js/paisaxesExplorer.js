@@ -1,74 +1,55 @@
 
 
-    var filterList = geozzy.filter.extend({
-
-      template: _.template("<select><option value='*'>Todos</opton><option>10</opton><option>15</opton><option>16</opton><option>17</opton></select>"),
-
-      filterAction: function( model ) {
-        var ret = false;
-
-        if( this.selectedData != false ) {
-
-          var terms =  model.get('terms');
-
-          var diff = $( terms ).not( this.selectedData );
-
-          //console.log(diff.length, terms.length)
-          ret = (diff.length != terms.length );
-        }
-        else {
-          ret = true;
-        }
-
-        return ret;
-      },
-
-      render: function() {
-
-        var that = this;
-
-        if( !$(  this.options.containerQueryDiv+' #' + this.options.DOMId ).length ) {
-          $( this.options.containerQueryDiv).append( '<div id='+ this.options.DOMId +'>' + this.template() + '</div>' );
-        }
-
-
-        $('#'+this.options.DOMId+' select').bind('change', function(el) {
-          var val = $(el.target).val();
-          if( val == '*' ) {
-            that.selectedData = false;
-          }
-          else {
-            //that.selectedData = false;
-            that.selectedData = [ parseInt( $(el.target).val() ) ];
-          }
-
-          that.parentExplorer.applyFilters();
-        });
-
-      }
-
-    });
+    var filterList =
 
 
     $(document).ready(function(){
 
 
-      // gmaps init
+      // ESTO CHEGARÍA POR CHAMADA AJAX
+      var dataFilter1 = [
+        {value:'*', title: 'Todas'},
+        {value:'10', title: 'Galega'},
+        {value:'11', title: 'Canibal'},
+        {value:'12', title: 'Indo oceánica'}
+      ];
+
+
+      var dataFilter2 = [
+        {value:'*', title: 'Todos os públicos'},
+        {value:'13', title: 'Nenos'},
+        {value:'14', title: 'Adultos'},
+        {value:'15', title: 'Toda a familia'}
+      ];
+
+      var dataFilter3 = [
+        {value:'*', title: 'Calquera'},
+        {value:'16', title: 'De mañá'},
+        {value:'17', title: 'De tarde'},
+        {value:'18', title: 'Todo o día'}
+      ];
+
+
+
+
+
+
+
+      // GOOGLE MAPS MAPS
       var mapOptions = {
         center: { lat: 43.1, lng: -7.36 },
         zoom: 8
       };
-
-
       var resourceMap = new google.maps.Map( document.getElementById('explorerMap'), mapOptions);
+
+
+
 
       var explorer = new geozzy.explorer({debug:false});
 
-      var filtro1 = new filterList({containerQueryDiv: '.explorer-container-filter', DOMId: 'filtro1'});
-      var filtro2 = new filterList({containerQueryDiv: '.explorer-container-filter', DOMId: 'filtro2'});
-      var filtro3 = new filterList({containerQueryDiv: '.explorer-container-filter', DOMId: 'filtro3'});
-      var filtro4 = new filterList({containerQueryDiv: '.explorer-container-filter', DOMId: 'filtro4'});
-      //filtro2.data = false;
+      var filtro1 = new geozzy.filters.filterListSimple({containerQueryDiv: '.explorer-container-filter', DivId: 'filtro1', title:'Tipo de cociña', data: dataFilter1 });
+      var filtro2 = new geozzy.filters.filterListSimple({containerQueryDiv: '.explorer-container-filter', DivId: 'filtro2', title:'Idades', data: dataFilter2 });
+      var filtro3 = new geozzy.filters.filterListSimple({containerQueryDiv: '.explorer-container-filter', DivId: 'filtro3', title:'Horario de apertura', data: dataFilter3 });
 
 
       var listaActiva = new geozzy.explorerDisplay.activeList();
@@ -79,7 +60,6 @@
       explorer.addFilter( filtro1 );
       explorer.addFilter( filtro2 );
       explorer.addFilter( filtro3 );
-      explorer.addFilter( filtro4 );
 
       //explorer.addDisplay( 'activeList', listaActiva );
       explorer.addDisplay( 'map', mapa );
