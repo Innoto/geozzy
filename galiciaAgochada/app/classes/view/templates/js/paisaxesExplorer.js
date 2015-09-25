@@ -41,7 +41,7 @@
         zoom: 8
       };
 
-      var resourceMap = new google.maps.Map( $('#explorerMap').get( 0 ), mapOptions);
+      var resourceMap = new google.maps.Map( $('.explorerMap').get( 0 ), mapOptions);
 
 
 

@@ -2,7 +2,7 @@
   <!--duContainer -->
   <div class="explorerContainer explorer-container-du"></div>
   <!--mapContainer -->
-  <div class="explorerContainer explorer-container-map">  <div id="explorerMap"></div> </div>
+  <div class="explorerContainer explorer-container-map">  <div class="explorerMap"></div> </div>
   <!--filterContainer -->
   <div class="explorerContainer explorer-container-filter"></div>
   <!--galleryContainer -->
