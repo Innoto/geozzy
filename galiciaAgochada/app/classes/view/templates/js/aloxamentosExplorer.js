@@ -4,7 +4,6 @@
 
     $(document).ready(function(){
 
-
       // ESTO CHEGARÍA POR CHAMADA AJAX
       var dataFilter1 = [
         {value:'*', title: 'Todas'},
