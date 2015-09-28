@@ -27,9 +27,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     var that = this;
 
-    that.parentExplorer.timeDebugerMain.log( '&nbsp;- Previo a pintar en mapa '+that.parentExplorer.resourceCurrentIndex.length+ 'recursos' );
-
-
     that.markers = [];
 
     var my_marker_icon = {
