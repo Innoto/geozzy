@@ -1,6 +1,5 @@
 
 
-    var filterList =
 
 
     $(document).ready(function(){

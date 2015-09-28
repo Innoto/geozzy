@@ -61,6 +61,7 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
       that.parentExplorer.applyFilters();
     });
 
+
   }
 
 });

@@ -21,6 +21,9 @@ geozzy.filterView = Backbone.View.extend({
     if( opts.title ) {
       this.title = opts.title;
     }
+    if( opts.afterRender ) {
+      this.afterRender = opts.afterRender;
+    }
   },
 
   filterAction: function() {
