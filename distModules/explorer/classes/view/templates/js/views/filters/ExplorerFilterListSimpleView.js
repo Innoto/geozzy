@@ -3,7 +3,7 @@ if(!geozzy.filters) geozzy.filters={};
 
 geozzy.filters.filterListSimple = geozzy.filter.extend({
 
-  template: _.template("<label><%= title %>:</label>  <select id='<%= id %>'><%= options %></select>"),
+  template: _.template("<label><%= title %>:</label>  <select class='<%= filterClass %>'><%= options %></select>"),
   templateOption: _.template("<option value='<%- value %>'><%- title %></option>"),
 
 
@@ -37,18 +37,18 @@ geozzy.filters.filterListSimple = geozzy.filter.extend({
       filterOptions += that.templateOption(e);
     });
 
-    var filterHtml = that.template( { id: that.options.DivId+'filtro1_select', title: that.title, options: filterOptions } );
+    var filterHtml = that.template( { filterClass: that.options.containerClass+'filtro1_select', title: that.title, options: filterOptions } );
 
     // Print filter html into div
-    if( !$(  that.options.containerQueryDiv+' #' + that.options.DivId ).length ) {
-      $( that.options.containerQueryDiv).append( '<div id='+ that.options.DivId +'>' + filterHtml + '</div>' );
+    if( !$(  '.'+that.options.mainCotainerClass+' .' +that.options.containerClass ).length ) {
+      $( '.'+that.options.mainCotainerClass).append( '<div class='+ that.options.containerClass +'>' + filterHtml + '</div>' );
     }
     else {
-      $(  that.options.containerQueryDiv+' #' + that.options.DivId ).html( filterHtml );
+      $(  '.'+that.options.mainCotainerClass+' #' + that.options.containerClass ).html( filterHtml );
     }
 
 
-    $('#'+that.options.DivId+' select').bind('change', function(el) {
+    $('.'+that.options.containerClass+' select').bind('change', function(el) {
       var val = $(el.target).val();
       if( val == '*' ) {
         that.selectedData = false;

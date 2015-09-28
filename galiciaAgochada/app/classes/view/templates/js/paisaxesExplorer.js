@@ -66,8 +66,8 @@
       explorer.addFilter(
         new geozzy.filters.filterListSimple(
           {
-            containerQueryDiv: '.explorer-container-filter',
-            DivId: 'filtro1',
+            mainCotainerClass: 'explorer-container-filter',
+            containerClass: 'filtro1',
             title:'Tipo de cociña',
             data: dataFilter1
           }
@@ -76,8 +76,8 @@
       explorer.addFilter(
         new geozzy.filters.filterListSimple(
           {
-            containerQueryDiv: '.explorer-container-filter',
-            DivId: 'filtro2',
+            mainCotainerClass: 'explorer-container-filter',
+            containerClass: 'filtro2',
             title:'Idades',
             data: dataFilter2
           }
@@ -86,8 +86,8 @@
       explorer.addFilter(
         new geozzy.filters.filterListSimple(
           {
-            containerQueryDiv: '.explorer-container-filter',
-            DivId: 'filtro3',
+            mainCotainerClass: 'explorer-container-filter',
+            containerClass: 'filtro3',
             title:'Horario de apertura',
             data: dataFilter3
           }
