@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
 if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 
-geozzy.explorerDisplay.activeList = Backbone.View.extend({
+geozzy.explorerDisplay.activeListView = Backbone.View.extend({
 
   parentExplorer: false,
 

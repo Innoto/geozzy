@@ -1,6 +1,6 @@
 var geozzy = geozzy || {};
 
-geozzy.filter = Backbone.View.extend({
+geozzy.filterView = Backbone.View.extend({
   parentExplorer: false,
   selectedData: false,
   template: false,
