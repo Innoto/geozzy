@@ -4,6 +4,8 @@
 
     $(document).ready(function(){
 
+      var explorerclass = '.paisaxesExplorer';
+
 
       // ESTO CHEGARÍA POR CHAMADA AJAX
       var dataFilter1 = [
@@ -40,7 +42,7 @@
         zoom: 8
       };
 
-      var resourceMap = new google.maps.Map( $('.explorerMap').get( 0 ), mapOptions);
+      var resourceMap = new google.maps.Map( $( explorerclass+' .explorerMap').get( 0 ), mapOptions);
 
 
 
@@ -65,7 +67,7 @@
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: 'explorer-container-filter',
+            mainCotainerClass: explorerclass+' .explorer-container-filter',
             containerClass: 'filtro1',
             title:'Tipo de cociña',
             data: dataFilter1
@@ -75,7 +77,7 @@
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: 'explorer-container-filter',
+            mainCotainerClass: explorerclass+' .explorer-container-filter',
             containerClass: 'filtro2',
             title:'Idades',
             data: dataFilter2
@@ -85,7 +87,7 @@
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: 'explorer-container-filter',
+            mainCotainerClass: explorerclass+' .explorer-container-filter',
             containerClass: 'filtro3',
             title:'Horario de apertura',
             data: dataFilter3

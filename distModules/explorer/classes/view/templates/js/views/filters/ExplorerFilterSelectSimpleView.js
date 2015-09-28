@@ -40,11 +40,11 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
     var filterHtml = that.template( { filterClass: that.options.containerClass+'filtro1_select', title: that.title, options: filterOptions } );
 
     // Print filter html into div
-    if( !$(  '.'+that.options.mainCotainerClass+' .' +that.options.containerClass ).length ) {
-      $( '.'+that.options.mainCotainerClass).append( '<div class='+ that.options.containerClass +'>' + filterHtml + '</div>' );
+    if( !$(  that.options.mainCotainerClass+' .' +that.options.containerClass ).length ) {
+      $( that.options.mainCotainerClass).append( '<div class='+ that.options.containerClass +'>' + filterHtml + '</div>' );
     }
     else {
-      $(  '.'+that.options.mainCotainerClass+' .' + that.options.containerClass ).html( filterHtml );
+      $( that.options.mainCotainerClass+' .' + that.options.containerClass ).html( filterHtml );
     }
 
 

@@ -1,9 +1,10 @@
 
 
-    var filterList =
 
 
     $(document).ready(function(){
+
+      var explorerclass = '.xantaresExplorer';
 
 
       // ESTO CHEGARÍA POR CHAMADA AJAX
@@ -41,7 +42,7 @@
         zoom: 8
       };
 
-      var resourceMap = new google.maps.Map( $('.explorerMap').get( 0 ), mapOptions);
+      var resourceMap = new google.maps.Map( $( explorerclass+' .explorerMap').get( 0 ), mapOptions);
 
 
 
@@ -51,8 +52,8 @@
 
 
       // DISPLAYS
-      var listaActiva = new geozzy.explorerDisplay.activeList();
-      var mapa = new geozzy.explorerDisplay.map();
+      var listaActiva = new geozzy.explorerDisplay.activeListView();
+      var mapa = new geozzy.explorerDisplay.mapView();
       mapa.setMap( resourceMap );
 
 
@@ -64,9 +65,9 @@
 
       // FILTROS
       explorer.addFilter(
-        new geozzy.filters.filterListSimple(
+        new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: 'explorer-container-filter',
+            mainCotainerClass: explorerclass+' .explorer-container-filter',
             containerClass: 'filtro1',
             title:'Tipo de cociña',
             data: dataFilter1
@@ -74,9 +75,9 @@
         )
       );
       explorer.addFilter(
-        new geozzy.filters.filterListSimple(
+        new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: 'explorer-container-filter',
+            mainCotainerClass: explorerclass+' .explorer-container-filter',
             containerClass: 'filtro2',
             title:'Idades',
             data: dataFilter2
@@ -84,9 +85,9 @@
         )
       );
       explorer.addFilter(
-        new geozzy.filters.filterListSimple(
+        new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: 'explorer-container-filter',
+            mainCotainerClass: explorerclass+' .explorer-container-filter',
             containerClass: 'filtro3',
             title:'Horario de apertura',
             data: dataFilter3
