@@ -47,7 +47,10 @@ class Cogumelo extends CogumeloClass
     $this->addUrlPatterns( '#^explorerLayoutSection$#', 'view:ExplorerView::explorerLayoutSection' );
 
     /*Real urls*/
+    /*Explorers*/
     $this->addUrlPatterns( '#^paisaxes-espectaculares#', 'view:ExplorerView::paisaxesExplorer' );
+    $this->addUrlPatterns( '#^sabrosos-xantares#', 'view:ExplorerView::xantaresExplorer' );
+    $this->addUrlPatterns( '#^aloxamentos-con-encanto#', 'view:ExplorerView::aloxamentosExplorer' );
 
     /*MasterView*/
     $this->addUrlPatterns( '#^$#', 'view:MasterView::main' );

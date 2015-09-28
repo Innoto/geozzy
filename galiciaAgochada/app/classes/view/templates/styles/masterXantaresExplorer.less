@@ -1,0 +1,18 @@
+@import "primary.less";
+@import "/explorer/classes/view/templates/styles/explorerMixins.less";
+
+.explorerLayout{
+  .mixinDevel();
+  .explorerBase( @explFilter-h: 8%,  @explGallery-h: 36%,  @explMap-h: 56% );
+}
+
+.xantaresExplorer{
+  position: fixed;
+  top:100px;
+  width: 100%;
+
+  .explorerMap{
+    width: 100% !important;
+    height: 100% !important;
+  }
+}

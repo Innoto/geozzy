@@ -18,6 +18,22 @@ class ExplorerView extends MasterView
     $this->template->setTpl('paisaxesExplorer.tpl');
     $this->template->exec();
   }
+  function xantaresExplorer(){
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    explorer::autoIncludes();
+    $this->template->addClientStyles('styles/masterXantaresExplorer.less');
+    $this->template->addClientScript('js/xantaresExplorer.js');
+    $this->template->setTpl('xantaresExplorer.tpl');
+    $this->template->exec();
+  }
+  function aloxamentosExplorer(){
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    explorer::autoIncludes();
+    $this->template->addClientStyles('styles/masterAloxamentosExplorer.less');
+    $this->template->addClientScript('js/aloxamentosExplorer.js');
+    $this->template->setTpl('aloxamentosExplorer.tpl');
+    $this->template->exec();
+  }
 
 /*Examples*/
   function explorerLayout( $urlParams = false ){
