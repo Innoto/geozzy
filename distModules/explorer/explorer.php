@@ -55,7 +55,7 @@ class explorer extends Module
     'js/collections/ExplorerResourceMinimalCollection.js',
     'js/collections/ExplorerResourcePartialCollection.js',
     'js/views/ExplorerFilterView.js',
-    'js/views/filters/ExplorerFilterListSimpleView.js',
+    'js/views/filters/ExplorerFilterSelectSimpleView.js',
     'js/views/ExplorerActiveListView.js',
     'js/views/ExplorerPasiveListView.js',
     'js/views/ExplorerMapView.js',

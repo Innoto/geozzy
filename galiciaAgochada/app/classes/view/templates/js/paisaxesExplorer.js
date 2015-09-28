@@ -51,8 +51,8 @@
 
 
       // DISPLAYS
-      var listaActiva = new geozzy.explorerDisplay.activeList();
-      var mapa = new geozzy.explorerDisplay.map();
+      var listaActiva = new geozzy.explorerDisplay.activeListView();
+      var mapa = new geozzy.explorerDisplay.mapView();
       mapa.setMap( resourceMap );
 
 
@@ -64,7 +64,7 @@
 
       // FILTROS
       explorer.addFilter(
-        new geozzy.filters.filterListSimple(
+        new geozzy.filters.filterSelectSimpleView(
           {
             mainCotainerClass: 'explorer-container-filter',
             containerClass: 'filtro1',
@@ -74,7 +74,7 @@
         )
       );
       explorer.addFilter(
-        new geozzy.filters.filterListSimple(
+        new geozzy.filters.filterSelectSimpleView(
           {
             mainCotainerClass: 'explorer-container-filter',
             containerClass: 'filtro2',
@@ -84,7 +84,7 @@
         )
       );
       explorer.addFilter(
-        new geozzy.filters.filterListSimple(
+        new geozzy.filters.filterSelectSimpleView(
           {
             mainCotainerClass: 'explorer-container-filter',
             containerClass: 'filtro3',

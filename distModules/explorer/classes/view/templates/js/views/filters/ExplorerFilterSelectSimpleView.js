@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
 if(!geozzy.filters) geozzy.filters={};
 
-geozzy.filters.filterListSimple = geozzy.filter.extend({
+geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
 
   template: _.template("<label><%= title %>:</label>  <select class='<%= filterClass %>'><%= options %></select>"),
   templateOption: _.template("<option value='<%- value %>'><%- title %></option>"),
@@ -44,7 +44,7 @@ geozzy.filters.filterListSimple = geozzy.filter.extend({
       $( '.'+that.options.mainCotainerClass).append( '<div class='+ that.options.containerClass +'>' + filterHtml + '</div>' );
     }
     else {
-      $(  '.'+that.options.mainCotainerClass+' #' + that.options.containerClass ).html( filterHtml );
+      $(  '.'+that.options.mainCotainerClass+' .' + that.options.containerClass ).html( filterHtml );
     }
 
 
