@@ -48,7 +48,7 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
     }
 
 
-    $('.'+that.options.containerClass+' select').bind('change', function(el) {
+    $( that.options.mainCotainerClass+' .'+that.options.containerClass+' select').bind('change', function(el) {
       var val = $(el.target).val();
       if( val == '*' ) {
         that.selectedData = false;
