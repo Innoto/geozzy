@@ -1,4 +1,7 @@
 
+# private info
+/app/conf/default-connections-info.php
+
 # logs
 /app/log/
 
@@ -12,6 +15,7 @@
 /httpdocs/mediaCache/
 /httpdocs/vendor/
 /bower.*
+/.bowerrc
 /composer.json
 /composer.lock
 

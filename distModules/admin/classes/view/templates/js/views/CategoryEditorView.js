@@ -24,6 +24,8 @@ var CategoryEditorView = Backbone.View.extend({
 
     that.category = category;
 
+    that.categoryTerms.url = that.categoryTerms.baseUrl;
+
     that.categoryTerms.fetch(
       {
         data: { group: that.category.get('id') },

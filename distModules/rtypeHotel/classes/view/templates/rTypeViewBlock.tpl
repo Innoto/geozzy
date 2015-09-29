@@ -1,6 +1,6 @@
-<!-- rTypeViewBlock.tpl en geozzy module -->
+<!-- rTypeViewBlock.tpl en rTypeHotel module -->
 
-<p> --- rTypeViewBlock.tpl en geozzy module --- </p>
+<p> --- rTypeViewBlock.tpl en rTypeHotel module --- </p>
 
 <div class="resViewBlock">
 
@@ -53,6 +53,6 @@
 
 </div>
 
-<!-- /rTypeViewBlock.tpl en geozzy module -->
+<!-- /rTypeViewBlock.tpl en rTypeHotel module -->
 
 

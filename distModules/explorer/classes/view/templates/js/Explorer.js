@@ -62,7 +62,16 @@ geozzy.explorer = function( opts ) {
   that.exec = function() {
 
     // set multiple fetches
-    that.resourceMinimalList.url = that.options.explorerAPIHost + that.options.explorerName+ '/minimal';
+    that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/minimal';
+
+
+    // render filters
+    if( that.filters.length > 0 ) {
+      $.each( that.filters, function(i,e){
+        e.render();
+      });
+    }
+
 
     that.resourceMinimalList.fetch(
       {
@@ -100,29 +109,44 @@ geozzy.explorer = function( opts ) {
   //
 
   that.addFilter = function( filter ) {
+    filter.parentExplorer = this;
     that.filters.push( filter );
+
   }
 
   that.applyFilters = function() {
 
-      // Set filters for current index
-      that.resourceCurrentIndex.filterBy( function(model) {
-        var matches = false;
-        $.each( that.filters, function(i, filter){
 
-          if( filter.filterAction( model ) ) {
-            matches = true;
-            return;
-          }
-        });
+    that.timeDebugerMain.reset();
+    that.timeDebugerExtended.reset();
 
-        return matches;
+
+    // Set filters for current index
+    that.resourceCurrentIndex.filterBy( function(model) {
+      var matches = 0;
+      var ret = false;
+
+      $.each( that.filters, function(i, filter){
+
+        if( filter.filterAction( model ) ) {
+          matches++;
+          return;
+        }
 
       });
-      that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
+
+      if( matches == that.filters.length ) {
+        ret = true
+      }
+
+      // if matches number is same of filters number
+      return ret;
+
+    });
+    that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
 
 
-      that.render();
+    that.render();
   }
 
   //
@@ -152,6 +176,7 @@ geozzy.explorer = function( opts ) {
 
 
   that.render = function() {
+
     var resourcesToLoad = [];
 
     if(that.displays.map) {
@@ -161,7 +186,6 @@ geozzy.explorer = function( opts ) {
 
     if(that.displays.activeList) {
       resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
-
     }
 
     if(that.displays.pasiveList) {
@@ -171,10 +195,9 @@ geozzy.explorer = function( opts ) {
 
     // Advanced Fetch
     that.timeDebugerExtended.log('Starting second data fetch at')
-
     that.resourcePartialList.fetchAndCache({
       ids: resourcesToLoad,
-      url: that.options.explorerAPIHost + that.options.explorerName+ '/partial',
+      url: that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/partial',
       success: function() {
         that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
 

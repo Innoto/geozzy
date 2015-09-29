@@ -1,7 +1,7 @@
 <?php
 admin::load('view/AdminViewMaster.php');
 geozzy::load( 'view/GeozzyResourceView.php' );
-Cogumelo::load("coreController/RequestController.php");
+
 
 
 class AdminViewResource extends AdminViewMaster {

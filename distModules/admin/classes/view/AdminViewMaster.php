@@ -8,6 +8,7 @@ form::autoIncludes();
 form::loadDependence( 'ckeditor' );
 user::autoIncludes();
 table::autoIncludes();
+bi::autoIncludes();
 
 
 class AdminViewMaster extends View

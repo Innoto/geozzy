@@ -64,7 +64,7 @@ class admin extends Module
     ),
     array(
       "id" =>"nestable2",
-      "params" => array("nestable2"),
+      "params" => array("nestable2-old"),
       "installer" => "bower",
       "includes" => array("jquery.nestable.js")
     ),
@@ -108,7 +108,7 @@ class admin extends Module
 
   public function __construct() {
     $this->addUrlPatterns( '#^admin$#', 'view:AdminViewMaster::commonAdminInterface' );
-    $this->addUrlPatterns( '#^admin/charts$#', 'view:AdminViewStats::main' );
+    $this->addUrlPatterns( '#^admin/charts$#', 'view:AdminViewBi::dashboard' );
 
     $this->addUrlPatterns( '#^admin/alltables$#', 'view:AdminViewStatic::allTables' );
     $this->addUrlPatterns( '#^admin/addcontent$#', 'view:AdminViewStatic::addContent' );

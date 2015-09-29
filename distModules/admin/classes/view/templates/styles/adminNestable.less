@@ -79,6 +79,8 @@
       border-radius: 3px;
       box-sizing: border-box;
       cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       .icon-handle{
         float:left;
@@ -97,6 +99,14 @@
           color: #2ea8e5;
         }
       }
+      .term-icon{
+        max-height: 25px;
+        display: block;
+        float: right;
+        line-height:25px;
+        vertical-align:middle;
+        margin: 3px 10px 0px 0px ;
+      }
     }
 
     .dd-content {
@@ -109,9 +119,9 @@
       color: #333;
       text-decoration: none;
       font-weight: bold;
-      background: #fafafa;
       border-radius: 3px;
       box-sizing: border-box;
+      background-color: @gzzColor-bck-3;
 
       .nestableActions{
         float: right;

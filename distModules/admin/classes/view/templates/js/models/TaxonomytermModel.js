@@ -4,7 +4,8 @@ var TaxonomytermModel = Backbone.Model.extend({
     parent: 0,
     weight:0,
     taxgroup: false,
-    deleted: 0
+    deleted: 0,
+    icon: false
   }
 
 });

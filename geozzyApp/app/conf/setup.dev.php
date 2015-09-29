@@ -114,6 +114,7 @@ $C_ENABLED_MODULES = array(
   'geozzyAPI',
   'filedata',
   'geozzy',
+  'bi',
   'admin',
   'form',
   'Blocks',
@@ -142,10 +143,7 @@ $C_RTYPE_MODULES = array(
   'rtypeUrl',
   'rtypePage',
   'rtypeFile',
-  'rtypeRuta',
-  'rtypeLugar',
-  'rtypeEspazoNatural',
-  'rtypeFestaPopular'
+  'rtypeRuta'
 );
 
 // Merge all modules

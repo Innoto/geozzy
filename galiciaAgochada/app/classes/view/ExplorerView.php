@@ -4,12 +4,42 @@ Cogumelo::load('view/MasterView.php');
 common::autoIncludes();
 geozzy::autoIncludes();
 
+
 class ExplorerView extends MasterView
 {
   public function __construct( $baseDir ) {
     parent::__construct( $baseDir );
+
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
+
   }
 
+  function paisaxesExplorer(){
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    explorer::autoIncludes();
+    $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
+    $this->template->addClientScript('js/paisaxesExplorer.js');
+    $this->template->setTpl('paisaxesExplorer.tpl');
+    $this->template->exec();
+  }
+  function xantaresExplorer(){
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    explorer::autoIncludes();
+    $this->template->addClientStyles('styles/masterXantaresExplorer.less');
+    $this->template->addClientScript('js/xantaresExplorer.js');
+    $this->template->setTpl('xantaresExplorer.tpl');
+    $this->template->exec();
+  }
+  function aloxamentosExplorer(){
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    explorer::autoIncludes();
+    $this->template->addClientStyles('styles/masterAloxamentosExplorer.less');
+    $this->template->addClientScript('js/aloxamentosExplorer.js');
+    $this->template->setTpl('aloxamentosExplorer.tpl');
+    $this->template->exec();
+  }
+
+/*Examples*/
   function explorerLayout( $urlParams = false ){
 
     if( isset($urlParams) && $urlParams[1]){
@@ -18,8 +48,8 @@ class ExplorerView extends MasterView
     else{
       $this->template->assign( 'explorerType', '');
     }
-    $this->template->addClientStyles('styles/explorerLayout.less');
-    $this->template->setTpl('explorerLayout.tpl');
+    $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
+    $this->template->setTpl('Example_explorerLayout.tpl');
     $this->template->exec();
   }
 
@@ -31,8 +61,8 @@ class ExplorerView extends MasterView
     else{
       $this->template->assign( 'explorerType', '');
     }
-    $this->template->addClientStyles('styles/explorerLayout.less');
-    $this->template->setTpl('explorerLayoutSection.tpl');
+    $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
+    $this->template->setTpl('Example_explorerLayoutSection.tpl');
     $this->template->exec();
   }
 }

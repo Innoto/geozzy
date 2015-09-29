@@ -2,6 +2,7 @@
 
 var app = app || {};
 
+
  if( window.location.pathname != '/admin/login') {
   // Catch all ajax denied
   $.ajaxSetup({
