@@ -24,6 +24,13 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $rTypeExtNames[] = 'rextAccommodation';
     $this->accomCtrl = new RExtAccommodationController( $this );
     $rExtFieldNames = $this->accomCtrl->manipulateForm( $form );
+    // Elimino los campos de la extensión que no quiero usar
+    foreach ($rExtFieldNames as $i => $fieldName){
+      if ($fieldName == 'singleRooms' || $fieldName == 'doubleRooms' || $fieldName == 'tripleRooms' || $fieldName == 'familyRooms'
+          || $fieldName == 'beds' || $fieldName == 'accommodationBrand' || $fieldName == 'accommodationUsers'){
+        $form->removeField('rExtAccommodation_'.$rExtFieldNames[$i]);
+      }
+    }
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
@@ -76,32 +83,17 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
    */
   public function manipulateAdminFormColumns( Template $formBlock, Template $template, AdminViewResource $adminViewResource, Array $adminColsInfo ) {
 
-    if( isset( $adminColsInfo['col8']['location'] ) ) {
-      unset( $adminColsInfo['col8']['location'] );
-    }
-    if( isset( $adminColsInfo['col8']['collections'] ) ) {
-      unset( $adminColsInfo['col8']['collections'] );
-    }
-    if( isset( $adminColsInfo['col8']['multimedia'] ) ) {
-      unset( $adminColsInfo['col8']['multimedia'] );
-    }
-    if( isset( $adminColsInfo['col8']['contact'] ) ) {
-      unset( $adminColsInfo['col8']['contact'] );
-    }
+    // Extraemos los campos del tipo Hotel que irán a la otra columna y los desasignamos
+    $formHotel8 = $adminViewResource->extractFormBlockFields( $adminColsInfo['col8']['main']['0'], array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',
+                  'rExtAccommodation_averagePrice', 'rExtAccommodation_accommodationFacilities', 'rExtAccommodation_accommodationServices') );
 
-
-    if( isset( $adminColsInfo['col4']['seo'] ) ) {
-      unset( $adminColsInfo['col4']['seo'] );
+    if( $formHotel8 ) {
+       $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formHotel8);
+       $adminColsInfo['col4']['hotel2'] = array( $formPartBlock, __( 'Categorization' ), false );
     }
 
     return $adminColsInfo;
   }
-
-
-
-
-
-
 
 
   /**

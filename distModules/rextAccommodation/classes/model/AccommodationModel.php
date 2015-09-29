@@ -26,6 +26,10 @@ class AccommodationModel extends Model
       'type' => 'VARCHAR',
       'size' => 20
     ),
+    'reservationEmail' => array(
+      'type' => 'VARCHAR',
+      'size' => 255
+    ),
     'singleRooms' => array(
       'type' => 'INT'
     ),

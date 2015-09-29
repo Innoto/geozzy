@@ -57,7 +57,11 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
       ),
       'reservationPhone' => array(
         'params' => array( 'label' => __( 'Hotel reservation phone' ) ),
-        'rules' => array( 'maxlength' => 200 )
+        'rules' => array( 'maxlength' => 20 )
+      ),
+      'reservationEmail' => array(
+        'params' => array( 'label' => __( 'Hotel reservation email' ) ),
+        'rules' => array( 'maxlength' => 255, 'email' => true)
       ),
       'singleRooms' => array(
         'params' => array( 'label' => __( 'Hotel single rooms' ) ),
