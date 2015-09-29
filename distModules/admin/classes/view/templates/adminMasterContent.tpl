@@ -27,13 +27,8 @@
     </div>
   </div>
   {/block}
-
-
   <!-- /.navbar-header -->
-
-
 </div><!-- /headSection -->
-
 
 <div class="contentSection clearfix">
 {block name="contentSection"}{/block}

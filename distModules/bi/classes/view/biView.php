@@ -17,9 +17,9 @@ class biView extends View
   }
 
   public function dashboard() {
-
-    $this->template->setTpl( 'bi.tpl', 'bi' );
-    return $this->template;
+    $template = new Template( $this->baseDir );
+    $template->setTpl( 'bi.tpl', 'bi' );
+    return $template;
   }
 
 }
