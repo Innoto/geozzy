@@ -536,6 +536,10 @@ class ResourceController {
       $formPartBlock = $this->setBlockPartTemplate($formContacto);
       $cols['col8']['contact'] = array( $formPartBlock, __('Contact'), 'fa-archive' );
     }
+    if( $formSeo ) {
+      $formPartBlock = $this->setBlockPartTemplate($formSeo);
+      $cols['col8']['seo'] = array( $formPartBlock, __( 'SEO' ), 'fa-globe' );
+    }
 
 
     // Bloques de 4
@@ -547,14 +551,12 @@ class ResourceController {
       $formPartBlock = $this->setBlockPartTemplate($formImage);
       $cols['col4']['image'] = array( $formPartBlock, __( 'Select a image' ), 'fa-file-image-o' );
     }
-    if( $formStatus ) {
-      $formPartBlock = $this->setBlockPartTemplate($formStatus);
-      $cols['col4']['status'] = array( $formPartBlock, __( 'Status' ), false );
-    }
-    if( $formSeo ) {
-      $formPartBlock = $this->setBlockPartTemplate($formSeo);
-      $cols['col4']['seo'] = array( $formPartBlock, __( 'SEO' ), 'fa-globe' );
-    }
+    /* Taxonomías */
+    // if( $formStatus ) {
+    //   $formPartBlock = $this->setBlockPartTemplate($formStatus);
+    //   $cols['col4']['status'] = array( $formPartBlock, __( 'Status' ), false );
+    // }
+
 
     $resourceId = $formBlock->getTemplateVars('resourceId');
     $resourceType = $formBlock->getTemplateVars('rTypeName');
@@ -576,8 +578,10 @@ class ResourceController {
    */
   public function setBlockPartTemplate($formPartArray){
     $partTemplate = new Template();
-    $partTemplate->setTpl('blockPart.tpl', 'admin');
+    $partTemplate->setTpl('resourceFormBlockPart.tpl', 'admin');
     $partTemplate->assign('formFieldsArray', $formPartArray);
+    $partTemplate->assign('formFieldsHiddenArray', array());
+
     return $partTemplate;
   }
 
