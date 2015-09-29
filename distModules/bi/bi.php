@@ -36,37 +36,37 @@ class bi extends Module
      "id" =>"mustache",
      "params" => array("mustache"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array('mustache.js')
     ),
     array(
      "id" =>"material-design-lite",
      "params" => array("material-design-lite"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array('material.min.js')
     ),
     array(
      "id" =>"highcharts-release",
      "params" => array("highcharts-release"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array('highcharts.js')
     ),
     array(
      "id" =>"funplus-highcharts-export-csv",
-     "params" => array("mustache"),
+     "params" => array("funplus-highcharts-export-csv"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array('export-csv.js')
     ),
     array(
      "id" =>"leaflet",
      "params" => array("leaflet"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array('dist/leaflet.js')
     ),
     array(
      "id" =>"heatmap.js-amd",
      "params" => array("heatmap.js-amd"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array('plugins/leaflet-heatmap.js')
     ),
     /*array(
      "id" =>"select2-bootstrap-css",
@@ -78,22 +78,14 @@ class bi extends Module
      "id" =>"moment",
      "params" => array("moment"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array('min/moment-with-locales.min.js')
     ),
     array(
      "id" =>"eonasdan-bootstrap-datetimepicker",
      "params" => array("eonasdan-bootstrap-datetimepicker"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array('build/js/bootstrap-datetimepicker.min.js')
     )
-
-
-
-
-
-
-
-
 
   );
 

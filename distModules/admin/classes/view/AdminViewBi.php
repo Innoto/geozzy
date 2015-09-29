@@ -10,7 +10,7 @@ class AdminViewBi extends AdminViewMaster
   }
 
   public function dashboard() {
-    bi::autoIncludes();
+
     
     $biView =  new biView();
     $dashboardBlock = $biView->dashboard();
