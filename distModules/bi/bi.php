@@ -42,7 +42,7 @@ class bi extends Module
      "id" =>"material-design-lite",
      "params" => array("material-design-lite"),
      "installer" => "bower",
-     "includes" => array('material.min.js')
+     "includes" => array('material.min.js','material.min.css')
     ),
     array(
      "id" =>"highcharts-release",
@@ -60,13 +60,13 @@ class bi extends Module
      "id" =>"leaflet",
      "params" => array("leaflet"),
      "installer" => "bower",
-     "includes" => array('dist/leaflet.js')
+     "includes" => array('dist/leaflet.js','dist/leaflet.css')
     ),
     array(
      "id" =>"heatmap.js-amd",
      "params" => array("heatmap.js-amd"),
      "installer" => "bower",
-     "includes" => array('plugins/leaflet-heatmap.js')
+     "includes" => array('plugins/leaflet-heatmap.js','build/heatmap.js')
     ),
     /*array(
      "id" =>"select2-bootstrap-css",
@@ -84,13 +84,15 @@ class bi extends Module
      "id" =>"eonasdan-bootstrap-datetimepicker",
      "params" => array("eonasdan-bootstrap-datetimepicker"),
      "installer" => "bower",
-     "includes" => array('build/js/bootstrap-datetimepicker.min.js')
+     "includes" => array('build/js/bootstrap-datetimepicker.min.js','build/css/bootstrap-datetimepicker.min.css')
     )
 
   );
 
   public $includesCommon = array(
-    'view/biView.php'
+    'view/biView.php',
+    'styles/app.css',
+    'js/'
   );
   public function __construct() {}
 }
