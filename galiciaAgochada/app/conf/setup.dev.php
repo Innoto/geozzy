@@ -114,6 +114,7 @@ $C_ENABLED_MODULES = array(
   'geozzyAPI',
   'filedata',
   'geozzy',
+  'bi',
   'admin',
   'form',
   'Blocks',
