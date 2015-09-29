@@ -9,34 +9,46 @@ class bi extends Module
   public $version = "1.0";
   public $dependences = array(
     array(
+     "id" =>"requirejs",
+     "params" => array("requirejs#^2.1.15"),
+     "installer" => "bower",
+     "includes" => array()
+    ),
+    array(
+     "id" =>"requirejs-text",
+     "params" => array("requirejs-text#^2.0.12"),
+     "installer" => "bower",
+     "includes" => array()
+    ),
+    array(
      "id" =>"underscore",
      "params" => array("underscore#1.8.3"),
      "installer" => "bower",
-     "includes" => array("underscore-min.js")
+     "includes" => array()
     ),
     array(
      "id" =>"backbonejs",
      "params" => array("backbone#1.1.2"),
      "installer" => "bower",
-     "includes" => array("backbone.js")
+     "includes" => array()
     ),
     array(
      "id" => "bootstrap",
      "params" => array("bootstrap"),
      "installer" => "bower",
-     "includes" => array("dist/js/bootstrap.min.js")
+     "includes" => array()
     ),
     array(
      "id" =>"select2",
      "params" => array("select2"),
      "installer" => "bower",
-     "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
+     "includes" => array()
     ),
     array(
      "id" =>"mustache",
      "params" => array("mustache"),
      "installer" => "bower",
-     "includes" => array('mustache.js')
+     "includes" => array()
     ),
     array(
      "id" =>"material-design-lite",
@@ -48,13 +60,13 @@ class bi extends Module
      "id" =>"highcharts-release",
      "params" => array("highcharts-release"),
      "installer" => "bower",
-     "includes" => array('highcharts.js')
+     "includes" => array()
     ),
     array(
      "id" =>"funplus-highcharts-export-csv",
      "params" => array("funplus-highcharts-export-csv"),
      "installer" => "bower",
-     "includes" => array('export-csv.js')
+     "includes" => array()
     ),
     array(
      "id" =>"leaflet",
@@ -78,21 +90,20 @@ class bi extends Module
      "id" =>"moment",
      "params" => array("moment"),
      "installer" => "bower",
-     "includes" => array('min/moment-with-locales.min.js')
+     "includes" => array()
     ),
     array(
      "id" =>"eonasdan-bootstrap-datetimepicker",
      "params" => array("eonasdan-bootstrap-datetimepicker"),
      "installer" => "bower",
-     "includes" => array('build/js/bootstrap-datetimepicker.min.js','build/css/bootstrap-datetimepicker.min.css')
+     "includes" => array()
     )
 
   );
 
   public $includesCommon = array(
     'view/biView.php',
-    'styles/app.css',
-    'js/'
+    'styles/app.css'
   );
   public function __construct() {}
 }

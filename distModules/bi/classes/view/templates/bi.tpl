@@ -44,3 +44,4 @@
         </section>
     </div>
 </section>
+<script data-main="/media/module/bi/js/main" src="/vendor/bower/requirejs/require.js"></script>
