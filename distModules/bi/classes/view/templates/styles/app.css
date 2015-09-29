@@ -3,32 +3,33 @@ html, body {
     height: 100%;
 }
 
-#statisticsModule {
+#statisticsModule #statisticsModule {
     padding: 2% 2% 2% 2%;
 }
 
-#statsParams {
+#statisticsModule #statsParams {
     margin-bottom: 10%;
 }
 
-#loading {
+#statisticsModule #loading {
     display: none;
 }
 
-#chart, #map {
+#statisticsModule #chart,
+#statisticsModule #map {
     width: 100%;
     min-height: 600px;
 }
 
-.btn-group {
+#statisticsModule .btn-group {
     width: 100%;
 }
 
-.legend {
+#statisticsModule .legend {
     line-height: 18px;
     color: #555;
 }
-.legend i {
+#statisticsModule .legend i {
     width: 18px;
     height: 18px;
     float: left;
@@ -36,14 +37,14 @@ html, body {
     opacity: 0.7;
 }
 
-ul{
+#statisticsModule ul{
     list-style-type: none;
 }
 
-.red{
+#statisticsModule .red{
     color: red;
 }
 
-.filter{
+#statisticsModule .filter{
     margin-left: 5%;
 }
