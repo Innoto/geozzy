@@ -8,7 +8,7 @@ define([
             '*all': 'redirectToRoot'
         },
         redirectToRoot: function(){
-            this.navigate('/');
+            //this.navigate('/');
         }
     });
     return Router;
