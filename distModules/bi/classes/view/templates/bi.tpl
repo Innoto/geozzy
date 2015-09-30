@@ -9,12 +9,12 @@
             <i class="fa fa-bars"></i>
         </button>
         <div class="headerTitleContainer">
-          <h3>Estad�sticas / Comportamiendo usuarios</h3>
+          <h3>Estadísticas / Comportamiendo usuarios</h3>
         </div>
       </div>
       <div class="col-lg-6 col-md-12 clearfix">
         <div class="headerActionsContainer">
-          <button class="btn btn-default" id="newAnalysis">Nuevo An�lisis</button>
+          <button class="btn btn-default" id="newAnalysis">Nuevo Análisis</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <section id="statisticsPanel" class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
           <div class="panel panel-success">
               <div class="panel-heading">
-                  <h4 class="panel-title">Estad�sticas</h4>
+                  <h4 class="panel-title">Estadísticas</h4>
               </div>
               <div class="panel-body">
                   <div id="statsParams">
