@@ -3,6 +3,7 @@ if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 
 geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
+  displayType: 'map',
   parentExplorer: false ,
   map: false ,
   clusterize:false ,

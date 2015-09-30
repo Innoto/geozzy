@@ -92,7 +92,7 @@ geozzy.explorer = function( opts ) {
           that.timeDebugerMain.log( '&nbsp;- Clonado indice' );
 
 
-          that.timeDebugerMain.log( '> Carga inicial concluida' );
+          //that.timeDebugerMain.log( '> Carga inicial concluida' );
 
           that.applyFilters();
 
@@ -120,6 +120,7 @@ geozzy.explorer = function( opts ) {
     that.timeDebugerMain.reset();
     that.timeDebugerExtended.reset();
 
+    that.resourceCurrentIndex.removePagination();
 
     // Set filters for current index
     that.resourceCurrentIndex.filterBy( function(model) {
@@ -153,18 +154,18 @@ geozzy.explorer = function( opts ) {
   // Display methods
   //
 
-  that.addDisplay = function( diplayId, displayObj ){
-    if( diplayId == 'map' ) {
+  that.addDisplay = function( displayObj ){
+    if( displayObj.displayType == 'map' ) {
       that.displays.map = displayObj;
       that.displays.map.parentExplorer = that;
     }
     else
-    if( diplayId == 'activeList' ) {
+    if( displayObj.displayType == 'activeList' ) {
       that.displays.activeList = displayObj;
       that.displays.activeList.parentExplorer = that;
     }
     else
-    if( diplayId == 'pasiveList' ) {
+    if( displayObj.displayType == 'pasiveList' ) {
       that.displays.pasiveList = displayObj;
       that.displays.pasiveList.parentExplorer = that;
     }
@@ -189,7 +190,7 @@ geozzy.explorer = function( opts ) {
     }
 
     if(that.displays.pasiveList) {
-      //that.displays.pasiveList.getVisibleResourceIds();
+      resourcesToLoad = $.merge( that.displays.pasiveList.getVisibleResourceIds() , resourcesToLoad);
     }
 
 
@@ -203,6 +204,10 @@ geozzy.explorer = function( opts ) {
 
         if(that.displays.activeList) {
           that.displays.activeList.render();
+        }
+
+        if(that.displays.pasiveList) {
+          that.displays.pasiveList.render();
         }
 
         that.timeDebugerExtended.log( '&nbsp;- Render lists' );

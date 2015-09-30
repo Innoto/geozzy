@@ -52,13 +52,13 @@
 
 
       // DISPLAYS
-      var listaActiva = new geozzy.explorerDisplay.activeListView();
+      var listaPasiva = new geozzy.explorerDisplay.pasiveListView();
       var mapa = new geozzy.explorerDisplay.mapView();
       mapa.setMap( resourceMap );
 
 
-      //explorer.addDisplay( 'activeList', listaActiva );
-      explorer.addDisplay( 'map', mapa );
+      explorer.addDisplay( listaPasiva );
+      explorer.addDisplay( mapa );
 
 
 
