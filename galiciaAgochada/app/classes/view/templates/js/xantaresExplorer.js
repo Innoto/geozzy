@@ -58,7 +58,7 @@
 
 
       //explorer.addDisplay( 'activeList', listaActiva );
-      explorer.addDisplay( 'map', mapa );
+      explorer.addDisplay( mapa );
 
 
 

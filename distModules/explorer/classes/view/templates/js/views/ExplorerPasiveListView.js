@@ -39,6 +39,8 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
     var contador = 1;
 
 
+    $('.explorer-container-gallery').html( this.renderPager() );
+
     $.each(  that.parentExplorer.resourceCurrentIndex.pluck('id'), function(i,e){
       $('.explorer-container-gallery').append('<div> ' + contador + '- '+  that.parentExplorer.resourcePartialList.get( e ).get('title') +' '+that.parentExplorer.resourcePartialList.get( e ).get('id') +'</div><br>');
       contador++;
@@ -46,6 +48,9 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
   },
 
+  renderPager() {
+    return ' ◀••••▶';
+  },
 
   setPage: function( pageNum ) {
     var that = this;
