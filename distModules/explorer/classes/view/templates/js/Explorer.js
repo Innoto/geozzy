@@ -196,10 +196,10 @@ geozzy.explorer = function( opts ) {
 
     // Advanced Fetch
     that.timeDebugerExtended.log('Starting second data fetch at')
-    that.resourcePartialList.fetchAndCache({
-      ids: resourcesToLoad,
-      url: that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/partial',
-      success: function() {
+
+    that.fetchPartialList(
+      resourcesToLoad,
+      function() {
         that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
 
         if(that.displays.activeList) {
@@ -212,10 +212,22 @@ geozzy.explorer = function( opts ) {
 
         that.timeDebugerExtended.log( '&nbsp;- Render lists' );
       }
+
+    );
+  },
+
+
+  that.fetchPartialList = function( resourcesToLoad, success ) {
+    that.resourcePartialList.fetchAndCache({
+      ids: resourcesToLoad,
+      url: that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/partial',
+      success: function() {
+        success();
+      }
     });
-
-
   }
+
+
 
 
 

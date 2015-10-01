@@ -6,10 +6,14 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
   displayType: 'activeList',
   parentExplorer: false,
   visibleResources: [],
+  currentPage: 0,
 
   getVisibleResourceIds: function() {
     this.parentExplorer.resourceCurrentIndex.removePagination();
-    var visibleResources = this.parentExplorer.resourceCurrentIndex.setPerPage(100);
+    var visibleResources = this.parentExplorer.resourceCurrentIndex.setPerPage(1);
+
+    visibleResources.lastPage();
+
     this.visibleResources = visibleResources.pluck( 'id' );
 
     return this.visibleResources;
