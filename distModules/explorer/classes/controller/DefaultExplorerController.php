@@ -26,8 +26,8 @@ class DefaultExplorerController extends ExplorerController {
 
         if( isset($resourceDataArray['loc']) ) {
           $loc = DBUtils::decodeGeometry( $resourceDataArray['loc'] );
-          $row['lat'] = $loc['data'][0];
-          $row['lng'] = $loc['data'][1];
+          $row['lat'] = floatval( $loc['data'][0] );
+          $row['lng'] = floatval( $loc['data'][1] );
         }
         unset($resourceDataArray['loc']);
 

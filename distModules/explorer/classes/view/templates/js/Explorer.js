@@ -34,7 +34,7 @@ geozzy.explorer = function( opts ) {
   // Resource Collections and Indexes
 
   that.resourceIndex = false;
-  that.resourceCurrentIndex = false;
+
   that.resourceMinimalList = new ExplorerResourceMinimalCollection();
   that.resourcePartialList =  new ExplorerResourcePartialCollection();
 
@@ -87,13 +87,6 @@ geozzy.explorer = function( opts ) {
           that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
 
 
-
-          that.resourceCurrentIndex = new Backbone.Obscura(that.resourceIndex);
-          that.timeDebugerMain.log( '&nbsp;- Clonado indice' );
-
-
-          //that.timeDebugerMain.log( '> Carga inicial concluida' );
-
           that.applyFilters();
 
         }
@@ -120,10 +113,10 @@ geozzy.explorer = function( opts ) {
     that.timeDebugerMain.reset();
     that.timeDebugerExtended.reset();
 
-    that.resourceCurrentIndex.removePagination();
+    that.resourceIndex.removePagination();
 
     // Set filters for current index
-    that.resourceCurrentIndex.filterBy( function(model) {
+    that.resourceIndex.filterBy( function(model) {
       var matches = 0;
       var ret = false;
 
@@ -144,7 +137,7 @@ geozzy.explorer = function( opts ) {
       return ret;
 
     });
-    that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceCurrentIndex.length + ' Records' );
+    that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceIndex.length + ' Records' );
 
 
     that.render();
@@ -176,13 +169,18 @@ geozzy.explorer = function( opts ) {
 
 
 
-  that.render = function() {
+  that.render = function( dontRenderMap ) {
 
     var resourcesToLoad = [];
 
-    if(that.displays.map) {
-      //resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
-      that.displays.map.render();
+    if(that.displays.map ) {
+      if( that.displays.map.isReady() ){
+        resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
+      }
+
+      if( !dontRenderMap ) {
+        that.displays.map.render();
+      }
     }
 
     if(that.displays.activeList) {

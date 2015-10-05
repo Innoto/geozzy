@@ -11,25 +11,26 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
   totalPages: false,
 
   initialize: function( opts ) {
-
+    
   },
 
   getVisibleResourceIds: function() {
-    this.parentExplorer.resourceCurrentIndex.removePagination();
+    this.parentExplorer.resourceIndex.removePagination();
 
 
-    var visibleResources = this.parentExplorer.resourceCurrentIndex.setPerPage(4);
 
+    var visibleResources = this.parentExplorer.resourceIndex.setPerPage(7);
+
+    visibleResources.setSort('mapVisible', 'desc');
 
     // get total packages
-    this.totalPages = this.parentExplorer.resourceCurrentIndex.getNumPages();
+    this.totalPages = this.parentExplorer.resourceIndex.getNumPages();
 
     // set current page
     visibleResources.setPage(this.currentPage);
 
     this.visibleResources = visibleResources.pluck( 'id' );
-
-    return this.visibleResources;
+    return visibleResources.pluck( 'id' );
   },
 
 
@@ -41,15 +42,15 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
     $('.explorer-container-gallery').html( this.renderPager() );
 
-    $.each(  that.parentExplorer.resourceCurrentIndex.pluck('id'), function(i,e){
-      $('.explorer-container-gallery').append('<div> ' + contador + '- '+  that.parentExplorer.resourcePartialList.get( e ).get('title') +' '+that.parentExplorer.resourcePartialList.get( e ).get('id') +'</div><br>');
+    $.each(  this.visibleResources, function(i,e){
+      $('.explorer-container-gallery').append('<div> ' + contador + '- '+  that.parentExplorer.resourcePartialList.get( e ).get('title') +' '+that.parentExplorer.resourcePartialList.get( e ).get('id')+' Visible en mapa: '+ that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible')+'</div><br>');
       contador++;
     });
 
   },
 
   renderPager() {
-    return ' ◀••••▶';
+    return ' ◀ • • • • ▶';
   },
 
   setPage: function( pageNum ) {

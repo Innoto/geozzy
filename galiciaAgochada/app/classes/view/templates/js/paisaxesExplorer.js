@@ -47,7 +47,7 @@
 
 
       // EXPLORADOR
-      var explorer = new geozzy.explorer({debug:true});
+      var explorer = new geozzy.explorer({debug:false});
 
 
 

@@ -6,6 +6,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   displayType: 'map',
   parentExplorer: false ,
   map: false ,
+  ready:false,
   clusterize:false ,
 
   markers: false,
@@ -14,11 +15,43 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   setMap: function( mapObj ) {
     this.map = mapObj;
+    this.setMapEvents();
+  },
+
+  setMapEvents: function() {
+    var that = this;
+
+    // on any map change
+    google.maps.event.addListener(this.map, "idle", function() {
+      that.ready = true;
+      that.parentExplorer.render(true);
+    });
   },
 
   getVisibleResourceIds: function() {
-    var visibleResources = this.parentExplorer.resourceCurrentIndex.setPerPage(600);
-    return visibleResources.pluck( 'id' );
+
+    var that = this;
+    // AQUÍ hai que seleccionar os que están dentro dos bounds, non o paxinado
+
+    var visibleResources = [];
+
+    this.coordsInMap();
+    that.parentExplorer.resourceMinimalList.each(function(m, index) {
+
+
+      if( that.coordsInMap( m.get('lat'), m.get('lng') ) ) {
+        m.set('mapVisible', true);
+        visibleResources.push( m.get('id') )
+      }
+      else {
+        m.set('mapVisible', false);
+      }
+
+    });
+
+    console.log(visibleResources.length)
+
+    return visibleResources;
   },
 
 
@@ -41,7 +74,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     };
 
 
-    $.each( that.parentExplorer.resourceCurrentIndex.toJSON(), function(i,e) {
+    $.each( that.parentExplorer.resourceIndex.toJSON(), function(i,e) {
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng( e.lat, e.lng ),
         icon: my_marker_icon
@@ -65,7 +98,29 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       this.markerClusterer.redraw();
     }
 
-    that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceCurrentIndex.length+ 'recursos' );
+    that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceIndex.length+ 'recursos' );
+  },
+
+  coordsInMap: function( lat, lng ) {
+    var ret = false;
+    var b =  this.map.getBounds();
+
+    var ne = b.getNorthEast();
+    var sw = b.getSouthWest();
+
+
+    if( lat < ne.lat() && lng < ne.lng() &&
+    lat > sw.lat() && lng > sw.lng() ) {
+      ret = true;
+    }
+
+    return ret;
+  },
+
+  isReady: function() {
+    return this.ready;
   }
+
+
 
 });
