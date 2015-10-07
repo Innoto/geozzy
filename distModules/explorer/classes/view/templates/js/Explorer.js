@@ -192,8 +192,10 @@ geozzy.explorer = function( opts ) {
     }
 
 
+
     // Advanced Fetch
     that.timeDebugerExtended.log('Starting second data fetch at')
+
 
     that.fetchPartialList(
       resourcesToLoad,
@@ -209,6 +211,7 @@ geozzy.explorer = function( opts ) {
         }
 
         that.timeDebugerExtended.log( '&nbsp;- Render lists' );
+
       }
 
     );
