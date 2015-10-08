@@ -3,15 +3,19 @@ if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 
 geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
+
+  tplElement: _.template('<div class="element"> <%-contador%> - <%-title%> <b>id:</b> <%- id %> <b>En mapa:</b> <%- inMap %> </div>'),
+  tplPager: _.template('<div class="previous">◀</div> <div>•</div> <div>•</div> <div>•</div>  <div class="next">▶</div>'),
+
   displayType: 'pasiveList',
   parentExplorer: false,
   visibleResources: [],
-  currentPage: 0,
+  currentPage: 1,
   endPage: false,
   totalPages: false,
 
   initialize: function( opts ) {
-    
+
   },
 
   getVisibleResourceIds: function() {
@@ -36,21 +40,31 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
   render: function() {
     var that = this;
-    $('.explorer-container-gallery').html('');
+
+
+    that.$el.html('');
     var contador = 1;
 
 
-    $('.explorer-container-gallery').html( this.renderPager() );
+    that.$el.html( this.renderPager() );
 
     $.each(  this.visibleResources, function(i,e){
-      $('.explorer-container-gallery').append('<div> ' + contador + '- '+  that.parentExplorer.resourcePartialList.get( e ).get('title') +' '+that.parentExplorer.resourcePartialList.get( e ).get('id')+' Visible en mapa: '+ that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible')+'</div><br>');
+
+      var element = {
+        contador: contador,
+        title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
+        id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
+        inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible')
+      };
+
+      that.$el.append( that.tplElement(element) )
       contador++;
     });
 
   },
 
   renderPager() {
-    return ' ◀ • • • • ▶';
+    return this.tplPager();
   },
 
   setPage: function( pageNum ) {

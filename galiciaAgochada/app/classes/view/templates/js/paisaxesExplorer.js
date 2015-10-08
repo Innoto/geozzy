@@ -52,7 +52,7 @@
 
 
       // DISPLAYS
-      var listaPasiva = new geozzy.explorerDisplay.pasiveListView();
+      var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
       var mapa = new geozzy.explorerDisplay.mapView();
       mapa.setMap( resourceMap );
 
