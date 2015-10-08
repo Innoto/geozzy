@@ -49,7 +49,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     });
 
-    console.log(visibleResources.length)
+    //console.log(visibleResources.length)
 
     return visibleResources;
   },
