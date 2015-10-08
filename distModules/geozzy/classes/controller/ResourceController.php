@@ -204,7 +204,6 @@ class ResourceController {
       $valuesArray['locLon'] = $geoLocation['data'][1];
     }
 
-
     $fieldsInfo = array(
       'rTypeId' => array(
         'params' => array( 'type' => 'reserved' )
@@ -357,6 +356,7 @@ class ResourceController {
    */
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
     error_log( "ResourceController: getFormObj()" );
+
     // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
     $form = $this->getBaseFormObj( $formName, $urlAction, $valuesArray );
 
@@ -515,15 +515,20 @@ class ResourceController {
     $formMultimediaGalleries = $adminViewResource->extractFormBlockFields( $formBlock, array( 'multimediaGalleries', 'addMultimediaGalleries' ) );
     $formLatLon = $adminViewResource->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom' ) );
 
-
     // El bloque que usa $formBlock contiene la estructura del form
 
     // Bloques de 8
     $cols['col8']['main'] = array( $formBlock, __('Main Resource information'), 'fa-archive' );
+
+    if( $formContacto ) {
+      $formPartBlock = $this->setBlockPartTemplate($formContacto);
+      $cols['col8']['contact'] = array( $formPartBlock, __('Contact'), 'fa-archive' );
+    }
     if( $formLatLon ) {
       $formPartBlock = $this->setBlockPartTemplate($formLatLon);
       $cols['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
     }
+
     if( $formCollections ) {
       $formPartBlock = $this->setBlockPartTemplate($formCollections);
       $cols['col8']['collections'] = array( $formPartBlock, __('Collections of related resources'), 'fa-th-large' );
@@ -532,10 +537,7 @@ class ResourceController {
       $formPartBlock = $this->setBlockPartTemplate($formMultimediaGalleries);
       $cols['col8']['multimedia'] = array( $formPartBlock, __('Multimedia galleries'), 'fa-th-large' );
     }
-    if( $formContacto ) {
-      $formPartBlock = $this->setBlockPartTemplate($formContacto);
-      $cols['col8']['contact'] = array( $formPartBlock, __('Contact'), 'fa-archive' );
-    }
+
     if( $formSeo ) {
       $formPartBlock = $this->setBlockPartTemplate($formSeo);
       $cols['col8']['seo'] = array( $formPartBlock, __( 'SEO' ), 'fa-globe' );
@@ -567,7 +569,7 @@ class ResourceController {
     $info = '<div class="infoBasic"><ul><li><label>ID</label><span>'.$resourceId.' ('.$resourceType.')</span></li>'.
       '<li><label>Creado</label><span>'.$timeCreation.' ('.$user.')</span></li>'.
       '<li><label>Actualizado</label><span>'.$timeLastUpdate.' ('.$userUpdate.')</span></li></ul></div>';
-    $cols['col4']['info'] = array( $info, __( 'Resource information' ), 'fa-globe' );
+    $cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
 
 
     return $cols;
@@ -642,17 +644,17 @@ class ResourceController {
       }
 
       // Resource LOCATION
-      if( isset( $valuesArray[ 'locLat' ] ) && isset( $valuesArray[ 'locLon' ] ) ) {
-        Cogumelo::load( 'coreModel/DBUtils.php' );
-        $valuesArray[ 'loc' ] = DBUtils::encodeGeometry(
-          array(
-            'type' => 'POINT',
-            'data'=> array( $valuesArray[ 'locLat' ], $valuesArray[ 'locLon' ] )
-          )
-        );
-        unset( $valuesArray[ 'locLat' ] );
-        unset( $valuesArray[ 'locLon' ] );
-      }
+      // if( isset( $valuesArray[ 'locLat' ] ) && isset( $valuesArray[ 'locLon' ] ) ) {
+      //   Cogumelo::load( 'coreModel/DBUtils.php' );
+      //   $valuesArray[ 'loc' ] = DBUtils::encodeGeometry(
+      //     array(
+      //       'type' => 'POINT',
+      //       'data'=> array( $valuesArray[ 'locLat' ], $valuesArray[ 'locLon' ] )
+      //     )
+      //   );
+      //   unset( $valuesArray[ 'locLat' ] );
+      //   unset( $valuesArray[ 'locLon' ] );
+      // }
     }
 
 

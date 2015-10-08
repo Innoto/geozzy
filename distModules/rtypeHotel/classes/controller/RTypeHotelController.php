@@ -84,15 +84,40 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
   public function manipulateAdminFormColumns( Template $formBlock, Template $template, AdminViewResource $adminViewResource, Array $adminColsInfo ) {
 
     // Extraemos los campos del tipo Hotel que irán a la otra columna y los desasignamos
+    $formHotel = $adminViewResource->extractFormBlockFields( $formBlock, array( 'externalUrl', 'rExtAccommodation_reservationURL', 'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail') );
     $formHotel8 = $adminViewResource->extractFormBlockFields( $adminColsInfo['col8']['main']['0'], array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',
                   'rExtAccommodation_averagePrice', 'rExtAccommodation_accommodationFacilities', 'rExtAccommodation_accommodationServices') );
 
-    if( $formHotel8 ) {
-       $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formHotel8);
-       $adminColsInfo['col4']['hotel2'] = array( $formPartBlock, __( 'Categorization' ), false );
+    if( $formHotel ) {
+       $formPartBlock =$this->defResCtrl->setBlockPartTemplate($formHotel);
+       $adminColsInfo['col8']['reservation'] = array( $formPartBlock, __('Reservation'), 'fa-archive' );
     }
 
-    return $adminColsInfo;
+    if( $formHotel8 ) {
+       $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formHotel8);
+       $adminColsInfo['col4']['categorization'] = array( $formPartBlock, __( 'Categorization' ), false );
+    }
+    //
+    // echo '<pre>';
+    // print_r($adminColsInfo);
+    // echo '</pre>';
+
+    // Resordenamos los bloques de acuerdo al diseño
+    $adminColsInfoOrd = array();
+    $adminColsInfoOrd['col8']['main'] = $adminColsInfo['col8']['main'];
+    $adminColsInfoOrd['col8']['contact'] = $adminColsInfo['col8']['contact'];
+    $adminColsInfoOrd['col8']['reservation'] = $adminColsInfo['col8']['reservation'];
+    $adminColsInfoOrd['col8']['location'] = $adminColsInfo['col8']['location'];
+    $adminColsInfoOrd['col8']['multimedia'] = $adminColsInfo['col8']['multimedia'];
+    $adminColsInfoOrd['col8']['collections'] = $adminColsInfo['col8']['collections'];
+    $adminColsInfoOrd['col8']['seo'] = $adminColsInfo['col8']['seo'];
+
+    $adminColsInfoOrd['col4']['publication'] = $adminColsInfo['col4']['publication'];
+    $adminColsInfoOrd['col4']['image'] = $adminColsInfo['col4']['image'];
+    $adminColsInfoOrd['col4']['categorization'] = $adminColsInfo['col4']['categorization'];
+    $adminColsInfoOrd['col4']['info'] = $adminColsInfo['col4']['info'];
+
+    return $adminColsInfoOrd;
   }
 
 

@@ -61,9 +61,9 @@ function bindResourceForm(){
     var defaultZoom = $("input[name='defaultZoom']");
     var locationContainer = latInput.parent().parent();
 
-    latInput.parent().hide();
-    lonInput.parent().hide();
-    defaultZoom.parent().hide();
+    // latInput.parent().hide();
+    // lonInput.parent().hide();
+    // defaultZoom.parent().hide();
 
     locationContainer.append('<div id="resourceLocationMap"></div>');
 
