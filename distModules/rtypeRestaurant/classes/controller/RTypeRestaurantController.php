@@ -1,6 +1,6 @@
 <?php
 rextEatAndDrink::autoIncludes();
-
+rextContact::autoIncludes();
 
 class RTypeRestaurantController extends RTypeController implements RTypeInterface {
 
@@ -25,6 +25,19 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $this->eatCtrl = new RExtEatAndDrinkController( $this );
     $rExtFieldNames = $this->eatCtrl->manipulateForm( $form );
 
+    // cambiamos el tipo de topics y starred para que no se muestren
+    $form->setFieldParam('topics', 'type', 'reserved');
+    $form->setFieldParam('starred', 'type', 'reserved');
+    $form->removeValidationRules('topics');
+    $form->removeValidationRules('starred');
+
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Extensión contacto
+    $rTypeExtNames[] = 'rextContact';
+    $this->contactCtrl = new RExtContactController( $this );
+    $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
+
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     $form->setFieldParam( 'externalUrl', 'label', __( 'Restaurant home URL' ) );
@@ -46,6 +59,9 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     if( !$form->existErrors() ) {
       $this->eatCtrl = new RExtEatAndDrinkController( $this );
       $this->eatCtrl->resFormRevalidate( $form );
+
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormRevalidate( $form );
     }
 
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
@@ -59,8 +75,10 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     // error_log( "RTypeRestaurantController: resFormProcess()" );
     if( !$form->existErrors() ) {
       $this->eatCtrl = new RExtEatAndDrinkController( $this );
-
       $this->eatCtrl->resFormProcess( $form, $resource );
+
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormProcess( $form, $resource );
     }
   }
 
@@ -73,6 +91,9 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
     $this->eatCtrl = new RExtEatAndDrinkController( $this );
     $this->eatCtrl->resFormSuccess( $form, $resource );
+
+    $this->contactCtrl = new RExtContactController( $this );
+    $this->contactCtrl->resFormSuccess( $form, $resource );
   }
 
 
@@ -90,6 +111,9 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $this->eatCtrl = new RExtEatAndDrinkController( $this );
     $eatBlock = $this->eatCtrl->getViewBlock( $resBlock );
 
+    $this->contactCtrl = new RExtContactController( $this );
+    $contactBlock = $this->contactCtrl->getViewBlock( $resBlock );
+
     if( $eatBlock ) {
       $template->addToBlock( 'rextEatAndDrink', $eatBlock );
       $template->assign( 'rExtBlockNames', array( 'rextEatAndDrink' ) );
@@ -98,6 +122,16 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
       $template->assign( 'rextEatAndDrink', false );
       $template->assign( 'rExtBlockNames', false );
     }
+
+    if( $contactBlock ) {
+      $template->addToBlock( 'rextContact', $contactBlock );
+      $template->assign( 'rExtContactBlockNames', array( 'rextContact' ) );
+    }
+    else {
+      $template->assign( 'rextContact', false );
+      $template->assign( 'rExtContactBlockNames', false );
+    }
+
 
     return $template;
   }

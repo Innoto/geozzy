@@ -3,21 +3,30 @@ if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 
 geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
+  tpl: _.template('<div class="pager"> <%=pager%> </div><div class="content"><%=content%></div>'),
+  tplElement: _.template('<div class="element"> <%-contador%> - <%-title%> <b>id:</b> <%- id %> <b>En mapa:</b> <%- inMap %> </div>'),
+  tplPager: _.template(' <span class="previous">◀</span> <% for( c=0 ; c <= pages ; c++){ %> <span class="page" <% if(c==v.currentPage){ %>style="color:white;"<% } %>>●</span> <%} %> <span class="next">▶</span>'),
+
   displayType: 'pasiveList',
   parentExplorer: false,
   visibleResources: [],
   currentPage: 0,
-  endPage: false,
+  endPage: 3,
   totalPages: false,
 
-  initialize: function( opts ) {
-    
+
+  events: {
+      "click .pager .next" : "nextPage",
+      "click .pager .previous" : "previousPage"
   },
+
+  initialize: function( opts ) {
+
+  },
+
 
   getVisibleResourceIds: function() {
     this.parentExplorer.resourceIndex.removePagination();
-
-
 
     var visibleResources = this.parentExplorer.resourceIndex.setPerPage(7);
 
@@ -36,21 +45,43 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
   render: function() {
     var that = this;
-    $('.explorer-container-gallery').html('');
+
+
+    that.$el.html('');
     var contador = 1;
 
 
-    $('.explorer-container-gallery').html( this.renderPager() );
 
+    var contentHtml = '';
     $.each(  this.visibleResources, function(i,e){
-      $('.explorer-container-gallery').append('<div> ' + contador + '- '+  that.parentExplorer.resourcePartialList.get( e ).get('title') +' '+that.parentExplorer.resourcePartialList.get( e ).get('id')+' Visible en mapa: '+ that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible')+'</div><br>');
+
+      var element = {
+        contador: contador,
+        title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
+        id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
+        inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible')
+      };
+
+      contentHtml += that.tplElement(element);
       contador++;
     });
+
+
+    that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) )
 
   },
 
   renderPager() {
-    return ' ◀ • • • • ▶';
+    var that = this;
+
+    var pages = that.endPage;
+
+    if( that.limitPages < that.totalPages && that.endPage) {
+      pages = that.endPage;
+    }
+
+
+    return this.tplPager({ v:that, pages:pages } );
   },
 
   setPage: function( pageNum ) {
@@ -86,7 +117,15 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
       }
     );
 
-  }
+  },
 
+
+  nextPage: function() {
+    this.setPage(this.currentPage+1);
+  },
+
+  previousPage: function( ){
+    this.setPage(this.currentPage-1);
+  }
 
 });
