@@ -3,25 +3,30 @@ if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 
 geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
-
+  tpl: _.template('<div class="pager"> <%=pager%> </div><div class="content"><%=content%></div>'),
   tplElement: _.template('<div class="element"> <%-contador%> - <%-title%> <b>id:</b> <%- id %> <b>En mapa:</b> <%- inMap %> </div>'),
-  tplPager: _.template('<div class="previous">◀</div> <div>•</div> <div>•</div> <div>•</div>  <div class="next">▶</div>'),
+  tplPager: _.template(' <span class="previous">◀</span> <% for( c=0 ; c < pages ; c++){ %> <span class="page">●</span> <%} %> <span class="next">▶</span>'),
 
   displayType: 'pasiveList',
   parentExplorer: false,
   visibleResources: [],
-  currentPage: 1,
-  endPage: false,
+  currentPage: 0,
+  endPage: 3,
   totalPages: false,
+
+
+  events: {
+      "click .pager .next" : "nextPage",
+      "click .pager .previous" : "previousPage"
+  },
 
   initialize: function( opts ) {
 
   },
 
+
   getVisibleResourceIds: function() {
     this.parentExplorer.resourceIndex.removePagination();
-
-
 
     var visibleResources = this.parentExplorer.resourceIndex.setPerPage(7);
 
@@ -46,8 +51,8 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
     var contador = 1;
 
 
-    that.$el.html( this.renderPager() );
 
+    var contentHtml = '';
     $.each(  this.visibleResources, function(i,e){
 
       var element = {
@@ -57,14 +62,26 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
         inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible')
       };
 
-      that.$el.append( that.tplElement(element) )
+      contentHtml += that.tplElement(element);
       contador++;
     });
+
+
+    that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) )
 
   },
 
   renderPager() {
-    return this.tplPager();
+    var that = this;
+
+    var pages = that.endPage;
+
+    if( that.limitPages < that.totalPages && that.endPage) {
+      pages = that.endPage;
+    }
+
+
+    return this.tplPager({ v:that, pages:pages } );
   },
 
   setPage: function( pageNum ) {
@@ -100,7 +117,15 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
       }
     );
 
-  }
+  },
 
+
+  nextPage: function() {
+    this.setPage(this.currentPage+1);
+  },
+
+  previousPage: function( ){
+    this.setPage(this.currentPage-1);
+  }
 
 });
