@@ -5,7 +5,7 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
   tpl: _.template('<div class="pager"> <%=pager%> </div><div class="content"><%=content%></div>'),
   tplElement: _.template('<div class="element"> <%-contador%> - <%-title%> <b>id:</b> <%- id %> <b>En mapa:</b> <%- inMap %> </div>'),
-  tplPager: _.template(' <span class="previous">◀</span> <% for( c=0 ; c < pages ; c++){ %> <span class="page">●</span> <%} %> <span class="next">▶</span>'),
+  tplPager: _.template(' <span class="previous">◀</span> <% for( c=0 ; c <= pages ; c++){ %> <span class="page" <% if(c==v.currentPage){ %>style="color:white;"<% } %>>●</span> <%} %> <span class="next">▶</span>'),
 
   displayType: 'pasiveList',
   parentExplorer: false,
