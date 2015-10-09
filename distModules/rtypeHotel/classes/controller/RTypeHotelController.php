@@ -1,6 +1,6 @@
 <?php
 rextAccommodation::autoIncludes();
-
+rextContact::autoIncludes();
 
 class RTypeHotelController extends RTypeController implements RTypeInterface {
 
@@ -21,6 +21,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
+    // Extensión alojamiento
     $rTypeExtNames[] = 'rextAccommodation';
     $this->accomCtrl = new RExtAccommodationController( $this );
     $rExtFieldNames = $this->accomCtrl->manipulateForm( $form );
@@ -31,6 +32,19 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
         $form->removeField('rExtAccommodation_'.$rExtFieldNames[$i]);
       }
     }
+
+    // cambiamos el tipo de topics y starred para que no se muestren
+    $form->setFieldParam('topics', 'type', 'reserved');
+    $form->setFieldParam('starred', 'type', 'reserved');
+    $form->removeValidationRules('topics');
+    $form->removeValidationRules('starred');
+
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Extensión contacto
+    $rTypeExtNames[] = 'rextContact';
+    $this->contactCtrl = new RExtContactController( $this );
+    $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
@@ -53,23 +67,8 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
-
-    $rTypeExtNames[] = 'rextAccommodation';
-    $this->accomCtrl = new RExtAccommodationController( $this );
-    //$rExtFieldNames = $this->accomCtrl->manipulateFormTemplate( $form, $template );
-    //$rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-
-    $template->assign( 'rTypeExtNames', $rTypeExtNames );
-    $template->assign( 'rTypeFieldNames', $rTypeFieldNames );
-
     return( $template );
   }
-
-
-
-
-
 
   /**
    * Cambios en el reparto de elementos para las distintas columnas del Template de Admin
@@ -83,29 +82,40 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
    */
   public function manipulateAdminFormColumns( Template $formBlock, Template $template, AdminViewResource $adminViewResource, Array $adminColsInfo ) {
 
-    // Extraemos los campos del tipo Hotel que irán a la otra columna y los desasignamos
-    $formHotel = $adminViewResource->extractFormBlockFields( $formBlock, array( 'externalUrl', 'rExtAccommodation_reservationURL', 'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail') );
-    $formHotel8 = $adminViewResource->extractFormBlockFields( $adminColsInfo['col8']['main']['0'], array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',
+    // Extraemos los campos de la extensión Alojamiento que irán a otro bloque y los desasignamos
+    $formReservation = $adminViewResource->extractFormBlockFields( $formBlock, array( 'externalUrl', 'rExtAccommodation_reservationURL', 'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail') );
+    $formCategorization = $adminViewResource->extractFormBlockFields( $adminColsInfo['col8']['main']['0'], array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',
                   'rExtAccommodation_averagePrice', 'rExtAccommodation_accommodationFacilities', 'rExtAccommodation_accommodationServices') );
 
-    if( $formHotel ) {
-       $formPartBlock =$this->defResCtrl->setBlockPartTemplate($formHotel);
+    if( $formReservation ) {
+       $formPartBlock =$this->defResCtrl->setBlockPartTemplate($formReservation);
        $adminColsInfo['col8']['reservation'] = array( $formPartBlock, __('Reservation'), 'fa-archive' );
     }
-
-    if( $formHotel8 ) {
-       $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formHotel8);
+    if( $formCategorization ) {
+       $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formCategorization);
        $adminColsInfo['col4']['categorization'] = array( $formPartBlock, __( 'Categorization' ), false );
     }
-    //
-    // echo '<pre>';
-    // print_r($adminColsInfo);
-    // echo '</pre>';
+
+    // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
+    $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address', 'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone', 'rExtContact_email') );
+    $adminColsInfo['col8']['contact1'] = array();
+
+    if( $formContact1 ) {
+      $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formContact1);
+      $adminColsInfo['col8']['contact1'] = array( $formPartBlock, __( 'Contact' ), false );
+    }
+
+    // Extraemos de nuevo los campos de localización y le añadimos Cómo llegar de la extensión contacto para visualizarlos en el mismo bloque
+    $formLatLon = $adminViewResource->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom', 'rExtContact_directions' ) );
+    if( $formLatLon ) {
+      $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formLatLon);
+      $adminColsInfo['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
+    }
 
     // Resordenamos los bloques de acuerdo al diseño
     $adminColsInfoOrd = array();
     $adminColsInfoOrd['col8']['main'] = $adminColsInfo['col8']['main'];
-    $adminColsInfoOrd['col8']['contact'] = $adminColsInfo['col8']['contact'];
+    $adminColsInfoOrd['col8']['contact1'] = $adminColsInfo['col8']['contact1'];
     $adminColsInfoOrd['col8']['reservation'] = $adminColsInfo['col8']['reservation'];
     $adminColsInfoOrd['col8']['location'] = $adminColsInfo['col8']['location'];
     $adminColsInfoOrd['col8']['multimedia'] = $adminColsInfo['col8']['multimedia'];
@@ -130,6 +140,9 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     if( !$form->existErrors() ) {
       $this->accomCtrl = new RExtAccommodationController( $this );
       $this->accomCtrl->resFormRevalidate( $form );
+
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormRevalidate( $form );
     }
 
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
@@ -145,6 +158,9 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     if( !$form->existErrors() ) {
       $this->accomCtrl = new RExtAccommodationController( $this );
       $this->accomCtrl->resFormProcess( $form, $resource );
+
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormProcess( $form, $resource );
     }
   }
 
@@ -157,6 +173,9 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     $this->accomCtrl = new RExtAccommodationController( $this );
     $this->accomCtrl->resFormSuccess( $form, $resource );
+
+    $this->contactCtrl = new RExtContactController( $this );
+    $this->contactCtrl->resFormSuccess( $form, $resource );
   }
 
 
@@ -174,13 +193,25 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $this->accomCtrl = new RExtAccommodationController( $this );
     $accomBlock = $this->accomCtrl->getViewBlock( $resBlock );
 
+    $this->contactCtrl = new RExtContactController( $this );
+    $contactBlock = $this->contactCtrl->getViewBlock( $resBlock );
+
     if( $accomBlock ) {
       $template->addToBlock( 'rextAccommodation', $accomBlock );
-      $template->assign( 'rExtBlockNames', array( 'rextAccommodation' ) );
+      $template->assign( 'rExtAccommodationBlockNames', array( 'rextAccommodation' ) );
     }
     else {
       $template->assign( 'rextAccommodation', false );
-      $template->assign( 'rExtBlockNames', false );
+      $template->assign( 'rExtAccommodationBlockNames', false );
+    }
+
+    if( $contactBlock ) {
+      $template->addToBlock( 'rextContact', $contactBlock );
+      $template->assign( 'rExtContactBlockNames', array( 'rextContact' ) );
+    }
+    else {
+      $template->assign( 'rextContact', false );
+      $template->assign( 'rExtContactBlockNames', false );
     }
 
     return $template;

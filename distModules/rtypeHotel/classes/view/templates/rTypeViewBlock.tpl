@@ -49,10 +49,11 @@
     <div class="rTypeHotel accommodation">
       {$rextAccommodation}
     </div>
+    <div class="rTypeHotel accommodation">
+      {$rextContact}
+    </div>
   </div>
 
 </div>
 
 <!-- /rTypeViewBlock.tpl en rTypeHotel module -->
-
-

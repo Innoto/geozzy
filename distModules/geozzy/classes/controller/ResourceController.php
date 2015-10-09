@@ -507,7 +507,7 @@ class ResourceController {
     // Fragmentamos el formulario generado
     $formImage = $adminViewResource->extractFormBlockFields( $formBlock, array( 'image' ) );
     $formPublished = $adminViewResource->extractFormBlockFields( $formBlock, array( 'published' ) );
-    $formStatus = $adminViewResource->extractFormBlockFields( $formBlock, array( 'topics', 'starred' ) );
+    //$formStatus = $adminViewResource->extractFormBlockFields( $formBlock, array( 'topics', 'starred' ) );
     $formSeo = $adminViewResource->extractFormBlockFields( $formBlock,
       array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
     $formContacto = $adminViewResource->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
@@ -520,10 +520,10 @@ class ResourceController {
     // Bloques de 8
     $cols['col8']['main'] = array( $formBlock, __('Main Resource information'), 'fa-archive' );
 
-    if( $formContacto ) {
-      $formPartBlock = $this->setBlockPartTemplate($formContacto);
-      $cols['col8']['contact'] = array( $formPartBlock, __('Contact'), 'fa-archive' );
-    }
+    // if( $formContacto ) {
+    //    $formPartBlock = $this->setBlockPartTemplate($formContacto);
+    //    $cols['col8']['contact'] = array( $formPartBlock, __('Contact'), 'fa-archive' );
+    // }
     if( $formLatLon ) {
       $formPartBlock = $this->setBlockPartTemplate($formLatLon);
       $cols['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
@@ -643,18 +643,18 @@ class ResourceController {
         $valuesArray[ 'timeCreation' ] = date( "Y-m-d H:i:s", time() );
       }
 
-      // Resource LOCATION
-      // if( isset( $valuesArray[ 'locLat' ] ) && isset( $valuesArray[ 'locLon' ] ) ) {
-      //   Cogumelo::load( 'coreModel/DBUtils.php' );
-      //   $valuesArray[ 'loc' ] = DBUtils::encodeGeometry(
-      //     array(
-      //       'type' => 'POINT',
-      //       'data'=> array( $valuesArray[ 'locLat' ], $valuesArray[ 'locLon' ] )
-      //     )
-      //   );
-      //   unset( $valuesArray[ 'locLat' ] );
-      //   unset( $valuesArray[ 'locLon' ] );
-      // }
+      //Resource LOCATION
+      if( isset( $valuesArray[ 'locLat' ] ) && isset( $valuesArray[ 'locLon' ] ) ) {
+        Cogumelo::load( 'coreModel/DBUtils.php' );
+        $valuesArray[ 'loc' ] = DBUtils::encodeGeometry(
+          array(
+            'type' => 'POINT',
+            'data'=> array( $valuesArray[ 'locLat' ], $valuesArray[ 'locLon' ] )
+          )
+        );
+        unset( $valuesArray[ 'locLat' ] );
+        unset( $valuesArray[ 'locLon' ] );
+      }
     }
 
 
@@ -694,13 +694,6 @@ class ResourceController {
 
     if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
       $this->setFormTax( $form, 'starred', 'starred', $form->getFieldValue( 'starred' ), $resource );
-    }
-
-    if( !$form->existErrors() ) {
-      $this->setFormExtraData( $form, 'datoExtra1', 'datoExtra1', $resource );
-    }
-    if( !$form->existErrors() ) {
-      $this->setFormExtraData( $form, 'datoExtra2', 'datoExtra2', $resource );
     }
 
     if( !$form->existErrors() ) {
