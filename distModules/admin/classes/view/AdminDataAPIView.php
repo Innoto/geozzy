@@ -428,7 +428,7 @@ class AdminDataAPIView extends View
     header('Content-type: application/json');
     ?>
     {
-      "resourcePath": "/admin/resourcesTerm.json",
+      "resourcePath": "/admin/adminResourcesTerm.json",
       "basePath": "/api",
       "apis": [
         {
@@ -576,7 +576,7 @@ class AdminDataAPIView extends View
     header('Content-type: application/json');
     ?>
     {
-      "resourcePath": "/admin/starred.json",
+      "resourcePath": "/admin/adminStarred.json",
       "basePath": "/api",
       "apis": [
         {

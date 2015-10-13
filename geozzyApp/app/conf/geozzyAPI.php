@@ -16,11 +16,11 @@ if( $useraccesscontrol->isLogged()){
       'description' => 'Admin CategoryTerms'
     ),
     array(
-      'path' => '/admin/resourcesTerm.json',
+      'path' => '/admin/adminResourcesTerm.json',
       'description' => 'Admin ResourcesTerm'
     ),
     array(
-      'path' => '/admin/starred.json',
+      'path' => '/admin/adminStarred.json',
       'description' => 'Admin StarredTerms'
     )
   );
