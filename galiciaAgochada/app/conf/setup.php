@@ -1,5 +1,6 @@
 <?php
 
+
 if( develEnviroment() ) {
   define( 'IS_DEVEL_ENV', true );
   require_once('setup.dev.php');
