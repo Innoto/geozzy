@@ -24,7 +24,8 @@ class ResourceCollectionsModel extends Model {
       'key' => 'id'
     ),
     'weight' => array(
-      'type' => 'SMALLINT'
+      'type' => 'SMALLINT',
+      'default' => 0
     )
   );
 

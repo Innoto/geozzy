@@ -40,6 +40,7 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^api/resources.json$#', 'view:GeozzyAPIView::resourcesJson' );
     $this->addUrlPatterns( '#^api/resourceTypes.json$#', 'view:GeozzyAPIView::resourceTypesJson' );
     $this->addUrlPatterns( '#^api/resourceIndex.json$#', 'view:GeozzyAPIView::resourceIndexJson' );
+    $this->addUrlPatterns( '#^api/starred.json$#', 'view:GeozzyAPIView::starredJson' );
     $this->addUrlPatterns( '#^api/categoryList.json$#', 'view:GeozzyAPIView::categoryListJson' );
     $this->addUrlPatterns( '#^api/categoryTerms.json$#', 'view:GeozzyAPIView::categoryTermsJson' );
     $this->addUrlPatterns( '#^api/topicList.json$#', 'view:GeozzyAPIView::topicListJson' );
@@ -50,6 +51,7 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^api/core/bi#', 'view:GeozzyAPIView::bi' );
 
     // resources
+    $this->addUrlPatterns( '#^api/core/starred$#', 'view:GeozzyAPIView::starred' );
     $this->addUrlPatterns( '#^api/core/resourcelist(.*)$#', 'view:GeozzyAPIView::resourceList' );
     $this->addUrlPatterns( '#^api/core/resourceIndex(.*)#', 'view:GeozzyAPIView::resourceIndex' );
     $this->addUrlPatterns( '#^api/core/resourcetypes$#', 'view:GeozzyAPIView::resourceTypes' );

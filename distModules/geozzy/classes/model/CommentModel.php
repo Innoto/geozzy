@@ -46,7 +46,8 @@ class CommentModel extends Model {
       'type' => 'TIMESTAMP'
     ),
     'weight' => array(
-      'type' => 'SMALLINT'
+      'type' => 'SMALLINT',
+      'default' => 0
     )
   );
 

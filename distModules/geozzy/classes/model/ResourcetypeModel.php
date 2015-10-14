@@ -28,7 +28,8 @@ class ResourcetypeModel extends Model {
       'size' => 400
     ),
     'weight' => array(
-      'type' => 'SMALLINT'
+      'type' => 'SMALLINT',
+      'default' => 0      
     )
   );
 

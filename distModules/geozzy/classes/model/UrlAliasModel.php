@@ -38,7 +38,8 @@ class UrlAliasModel extends Model {
       'size' => 2000
     ),
     'weight' => array(
-      'type' => 'SMALLINT'
+      'type' => 'SMALLINT',
+      'default' => 0
     )
   );
 

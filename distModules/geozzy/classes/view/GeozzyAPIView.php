@@ -252,6 +252,48 @@ class geozzyAPIView extends View
 
 
 
+  function starredJson() {
+    header('Content-type: application/json');
+    ?>
+    {
+      "resourcePath": "/starred.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
+            {
+              "errorResponses": [
+                {
+                  "reason": "Permission denied",
+                  "code": 401
+                },
+                {
+                  "reason": "Starred term list",
+                  "code": 200
+                },
+                {
+                  "reason": "Starred not found",
+                  "code": 404
+                }
+              ],
+
+              "httpMethod": "GET",
+              "nickname": "group",
+              "parameters": [],
+              "summary": "Get Starred terms"
+            }
+          ],
+          "path": "/core/starred",
+          "description": ""
+        }
+      ]
+    }
+    <?php
+  }
+
+
+
+
   function categoryListJson() {
     header('Content-type: application/json');
 
@@ -534,6 +576,28 @@ class geozzyAPIView extends View
     $resourcetypeList = $resourcetypeModel->listItems( ) ;
     $this->syncModelList( $resourcetypeList );
   }
+
+  // Starred
+
+  function starred() {
+    $taxtermModel = new TaxonomytermModel();
+    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+
+    header('Content-type: application/json');
+
+    echo '[';
+
+    $c = '';
+    while ($starred = $starredList->fetch() )
+    {
+      $starData = $starred->getAllData();
+      echo $c.json_encode( $starData['data'] );
+      if($c === ''){$c=',';}
+    }
+    echo ']';
+
+  }
+
 
   // Categories
 

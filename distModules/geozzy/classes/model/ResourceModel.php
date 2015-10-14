@@ -94,7 +94,8 @@ class ResourceModel extends Model {
       'type' => 'FLOAT'
     ),
     'weight' => array(
-      'type' => 'SMALLINT'
+      'type' => 'SMALLINT',
+      'default' => 0      
     )
   );
 
