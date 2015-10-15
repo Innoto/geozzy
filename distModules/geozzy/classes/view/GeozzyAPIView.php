@@ -583,6 +583,7 @@ class geozzyAPIView extends View
     $taxtermModel = new TaxonomytermModel();
     $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
 
+    geozzy::load('model/StarredResourcesModel.php');
     header('Content-type: application/json');
 
     echo '[';
@@ -590,8 +591,15 @@ class geozzyAPIView extends View
     $c = '';
     while ($starred = $starredList->fetch() )
     {
-      $starData = $starred->getAllData();
-      echo $c.json_encode( $starData['data'] );
+      $starData = $starred->getAllData('onlydata');
+
+      $starredResources = (new StarredResourcesModel)->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']), 'order'=>array('weight'=>1)) );
+
+      while( $starredResource = $starredResources->fetch() ){
+        $starData['resources'][] = $starredResource->getAllData('onlydata');
+      }
+
+      echo $c.json_encode( $starData );
       if($c === ''){$c=',';}
     }
     echo ']';
