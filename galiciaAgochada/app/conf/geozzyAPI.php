@@ -31,10 +31,13 @@ else {
 
 
 
-
 $GEOZZY_API_DOC_URLS =  array_merge(
   $GEOZZY_API_DOC_URLS_ADMIN,
   array(
+    array(
+      'path' => '/bi.json',
+      'description' => 'BI dashboard utils'
+    ),
     array(
       'path' => '/resources.json',
       'description' => 'Core Resource'
@@ -44,12 +47,12 @@ $GEOZZY_API_DOC_URLS =  array_merge(
       'description' => 'Resource index'
     ),
     array(
-      'path' => '/resourceTypes.json',
-      'description' => 'Resource Types'
+      'path' => '/starred.json',
+      'description' => 'Starred terms with resources'
     ),
     array(
-      'path'=> '/starred.json',
-      'description' => 'Starred category List API'
+      'path' => '/categoryList.json',
+      'description' => 'Category List'
     ),
     array(
       'path' => '/categoryList.json',
