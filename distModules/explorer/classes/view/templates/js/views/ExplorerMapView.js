@@ -12,6 +12,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   markers: false,
   markerClusterer: false,
 
+  bufferPixels:150,
 
   setMap: function( mapObj ) {
     this.map = mapObj;
@@ -21,11 +22,18 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   setMapEvents: function() {
     var that = this;
 
-    // on any map change
-    google.maps.event.addListener(this.map, "idle", function() {
+    // drag event on map
+    google.maps.event.addListener(this.map, "dragend", function() {
       that.ready = true;
       that.parentExplorer.render(true);
     });
+
+    // zoom event on map
+    google.maps.event.addListener(this.map, "zoom_changed", function() {
+      that.ready = true;
+      that.parentExplorer.render(true);
+    });
+
   },
 
   getVisibleResourceIds: function() {
@@ -35,18 +43,9 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     var visibleResources = [];
 
-    this.coordsInMap();
     that.parentExplorer.resourceMinimalList.each(function(m, index) {
-
-
-      if( that.coordsInMap( m.get('lat'), m.get('lng') ) ) {
-        m.set('mapVisible', true);
-        visibleResources.push( m.get('id') )
-      }
-      else {
-        m.set('mapVisible', false);
-      }
-
+      // Assign values 2:visible in map, 1:not visible in map but present in buffer zone, 0:not in map or buffer
+      m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
     });
 
     //console.log(visibleResources.length)
@@ -102,16 +101,20 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   },
 
   coordsInMap: function( lat, lng ) {
-    var ret = false;
+    var that = this;
+    var ret = 0;
     var b =  this.map.getBounds();
 
     var ne = b.getNorthEast();
     var sw = b.getSouthWest();
 
 
-    if( lat < ne.lat() && lng < ne.lng() &&
-    lat > sw.lat() && lng > sw.lng() ) {
-      ret = true;
+    if( lat < ne.lat() && lng < ne.lng() && lat > sw.lat() && lng > sw.lng() ) {
+      ret = 2;
+    }
+    else
+    if( lat < ne.lat()+that.bufferPixels && lng < ne.lng()+that.bufferPixels && lat > sw.lat()-that.bufferPixels && lng > sw.lng()-that.bufferPixels ) {
+      ret = 1;
     }
 
     return ret;
