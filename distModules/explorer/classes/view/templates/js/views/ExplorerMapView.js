@@ -59,11 +59,10 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   render: function() {
 
+console.log('rerender');
     var that = this;
 
-    that.markers = [];
-
-    var my_marker_icon = {
+    that.my_marker_icon = {
       url: media+'/module/admin/img/geozzy_marker.png',
       // This marker is 20 pixels wide by 36 pixels high.
       size: new google.maps.Size(30, 36),
@@ -74,16 +73,59 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     };
 
 
+
+    that.renderWithCluster();
+    if( that.clusterize != false ) {
+      //that.renderWithCluster();
+    }
+    else {
+      //that.renderWithoutCluster();
+    }
+
+
+
+    that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceIndex.length+ 'recursos' );
+  },
+
+
+  renderWithoutCluster: function() {
+    var that = this;
+
+    if( that.markers.length > 0 ){
+      $.each(  that.markers , function(i,e) {
+        e.setMap(false);
+      });
+
+    }
+
+    that.markers = [];
+
     $.each( that.parentExplorer.resourceIndex.toJSON(), function(i,e) {
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng( e.lat, e.lng ),
-        icon: my_marker_icon
+        icon: that.my_marker_icon,
+        map: that.map
       });
 
       that.markers.push(marker);
     });
+  },
+
+  renderWithCluster: function() {
+    var that = this;
 
     if( that.markerClusterer == false ) {
+      that.markers = [];
+
+      $.each( that.parentExplorer.resourceIndex.toJSON(), function(i,e) {
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng( e.lat, e.lng ),
+          icon: that.my_marker_icon,
+        });
+
+        that.markers.push(marker);
+      });
+
 
       that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
         maxZoom: 15,
@@ -97,19 +139,11 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       this.markerClusterer.addMarkers( that.markers );
       this.markerClusterer.redraw();
     }
-
-    that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceIndex.length+ 'recursos' );
   },
+
 
   coordsInMap: function( lat, lng ) {
     var that = this;
-
-/*
-    var overlay = new google.maps.OverlayView();
-    overlay.draw = function() {};
-    overlay.setMap(that.map);
-    var proj = overlay.getProjection();
-*/
 
     that.getProjection();
 
