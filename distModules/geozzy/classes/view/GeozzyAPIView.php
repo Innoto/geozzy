@@ -85,10 +85,19 @@ class geozzyAPIView extends View
                                   }
                               ],
 
-                              "httpMethod": "GET",
+                              "httpMethod": "POST",
                               "nickname": "resource",
                               "parameters": [
-
+                                {
+                                  "name": "ids",
+                                  "description": "fields (separed by comma)",
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer"
+                                  },
+                                  "paramType": "form",
+                                  "required": false
+                                },
                                 {
                                   "name": "fields",
                                   "description": "fields (separed by comma)",
@@ -484,8 +493,23 @@ class geozzyAPIView extends View
     geozzy::load('model/ResourceModel.php');
     geozzyAPI::load('controller/apiFiltersController.php');
 
+
+    $queryParameters = apiFiltersController::resourceListOptions($param);
+
+    if( isset($_POST['ids']) ) {
+      if( is_array($_POST['ids']) ) {
+        $queryParameters['filters']['ids'] = array_map( 'intval',$_POST['ids']);
+      }
+      else if( intval( $_POST['ids'] ) ) {
+          $queryParameters['filters']['ids'] = $_POST['ids'];
+
+      }
+
+    }
+
+
     $resourceModel = new ResourceModel();
-    $resourceList = $resourceModel->listItems( apiFiltersController::resourceListOptions($param) );
+    $resourceList = $resourceModel->listItems( $queryParameters  );
     $this->syncModelList( $resourceList );
   }
 
