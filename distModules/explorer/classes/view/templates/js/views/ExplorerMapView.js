@@ -6,6 +6,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   displayType: 'map',
   parentExplorer: false ,
   map: false ,
+  projection: false,
   ready:false,
   clusterize:false ,
 
@@ -102,17 +103,34 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   coordsInMap: function( lat, lng ) {
     var that = this;
-    var ret = 0;
-    var b =  this.map.getBounds();
 
-    var ne = b.getNorthEast();
+/*
+    var overlay = new google.maps.OverlayView();
+    overlay.draw = function() {};
+    overlay.setMap(that.map);
+    var proj = overlay.getProjection();
+*/
+
+    that.getProjection();
+
+    var ret = 0;
+    var b =  that.map.getBounds();
+
     var sw = b.getSouthWest();
+    var ne = b.getNorthEast();
+
+    var swBuffer = new google.maps.Point( that.projection.fromLatLngToDivPixel(sw ).x - that.bufferPixels , that.projection.fromLatLngToDivPixel(sw ).y + that.bufferPixels );
+    var neBuffer = new google.maps.Point( that.projection.fromLatLngToDivPixel(ne ).x + that.bufferPixels , that.projection.fromLatLngToDivPixel(ne ).y - that.bufferPixels );
+
+    var swB = that.projection.fromDivPixelToLatLng( swBuffer );
+    var neB = that.projection.fromDivPixelToLatLng( neBuffer )
+
 
 
     if( lat < ne.lat() && lng < ne.lng() && lat > sw.lat() && lng > sw.lng() ) {
       ret = 2;
     }
-    else if( lat < ne.lat()+that.bufferPixels && lng < ne.lng()+that.bufferPixels && lat > sw.lat()-that.bufferPixels && lng > sw.lng()-that.bufferPixels ) {
+    else if( lat < neB.lat() && lng < neB.lng() && lat > swB.lat()-that.bufferPixels && lng > swB.lng()) {
       ret = 1;
     }
 
@@ -121,8 +139,20 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   isReady: function() {
     return this.ready;
-  }
+  },
 
+
+  getProjection: function( ) {
+    var that = this;
+
+    if( that.projection == false ) {
+      var overlay = new google.maps.OverlayView();
+      overlay.draw = function() {};
+      overlay.setMap(that.map);
+      that.projection = overlay.getProjection();
+    }
+
+  }
 
 
 });
