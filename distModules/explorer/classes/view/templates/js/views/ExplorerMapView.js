@@ -112,8 +112,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     if( lat < ne.lat() && lng < ne.lng() && lat > sw.lat() && lng > sw.lng() ) {
       ret = 2;
     }
-    else
-    if( lat < ne.lat()+that.bufferPixels && lng < ne.lng()+that.bufferPixels && lat > sw.lat()-that.bufferPixels && lng > sw.lng()-that.bufferPixels ) {
+    else if( lat < ne.lat()+that.bufferPixels && lng < ne.lng()+that.bufferPixels && lat > sw.lat()-that.bufferPixels && lng > sw.lng()-that.bufferPixels ) {
       ret = 1;
     }
 
