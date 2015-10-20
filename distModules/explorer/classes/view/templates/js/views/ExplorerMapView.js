@@ -59,7 +59,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   render: function() {
 
-console.log('rerender');
     var that = this;
 
     that.my_marker_icon = {
@@ -76,9 +75,11 @@ console.log('rerender');
 
     if( that.clusterize != false ) {
       that.renderWithCluster();
+
     }
     else {
       that.renderWithoutCluster();
+
     }
 
 
@@ -92,7 +93,7 @@ console.log('rerender');
 
     if( that.markers.length > 0 ){
       $.each(  that.markers , function(i,e) {
-        e.setMap(false);
+        e.setMap( null );
       });
 
     }
@@ -139,7 +140,6 @@ console.log('rerender');
       this.markerClusterer.redraw();
     }
   },
-
 
   coordsInMap: function( lat, lng ) {
     var that = this;
