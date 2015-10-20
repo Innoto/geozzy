@@ -43,7 +43,8 @@ class CollectionModel extends Model {
       'type' => 'BOOLEAN'
     ),
     'weight' => array(
-      'type' => 'SMALLINT'
+      'type' => 'SMALLINT',
+      'default' => 0
     )
   );
 

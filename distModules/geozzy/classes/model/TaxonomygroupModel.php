@@ -39,7 +39,8 @@ class TaxonomygroupModel extends Model {
       'key' => 'id'
     ),
     'weight' => array(
-      'type' => 'SMALLINT'
+      'type' => 'SMALLINT',
+      'default' => 0
     )
   );
 

@@ -28,7 +28,8 @@ class ExtraDataModel extends Model {
       'multilang' => true
     ),
     'weight' => array(
-      'type' => 'SMALLINT'
+      'type' => 'SMALLINT',
+      'default' => 0
     )
   );
 

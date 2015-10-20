@@ -6,11 +6,11 @@ global $GEOZZY_STARRED;
 NEW TAXGROUP
 */
 $GEOZZY_STARRED['Destacado1'] = array(
-  'idName' => 'Destacado1',
+  'idName' => 'portadaApp',
   'name' => array(
-    'es' => 'Destacado1_es',
-    'en' => 'Starred1_en',
-    'gl' => 'Destacado1_gl'
+    'es' => 'Portada App',
+    'en' => 'App Landing',
+    'gl' => 'Portada App'
   ),
   'taxgroup' => 10
 );

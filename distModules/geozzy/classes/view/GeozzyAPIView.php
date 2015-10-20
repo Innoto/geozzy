@@ -85,10 +85,19 @@ class geozzyAPIView extends View
                                   }
                               ],
 
-                              "httpMethod": "GET",
+                              "httpMethod": "POST",
                               "nickname": "resource",
                               "parameters": [
-
+                                {
+                                  "name": "ids",
+                                  "description": "fields (separed by comma)",
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer"
+                                  },
+                                  "paramType": "form",
+                                  "required": false
+                                },
                                 {
                                   "name": "fields",
                                   "description": "fields (separed by comma)",
@@ -249,6 +258,48 @@ class geozzyAPIView extends View
 
         <?php
   }
+
+
+
+  function starredJson() {
+    header('Content-type: application/json');
+    ?>
+    {
+      "resourcePath": "/starred.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
+            {
+              "errorResponses": [
+                {
+                  "reason": "Permission denied",
+                  "code": 401
+                },
+                {
+                  "reason": "Starred term list",
+                  "code": 200
+                },
+                {
+                  "reason": "Starred not found",
+                  "code": 404
+                }
+              ],
+
+              "httpMethod": "GET",
+              "nickname": "group",
+              "parameters": [],
+              "summary": "Get Starred terms"
+            }
+          ],
+          "path": "/core/starred",
+          "description": ""
+        }
+      ]
+    }
+    <?php
+  }
+
 
 
 
@@ -442,8 +493,23 @@ class geozzyAPIView extends View
     geozzy::load('model/ResourceModel.php');
     geozzyAPI::load('controller/apiFiltersController.php');
 
+
+    $queryParameters = apiFiltersController::resourceListOptions($param);
+
+    if( isset($_POST['ids']) ) {
+      if( is_array($_POST['ids']) ) {
+        $queryParameters['filters']['ids'] = array_map( 'intval',$_POST['ids']);
+      }
+      else if( intval( $_POST['ids'] ) ) {
+          $queryParameters['filters']['ids'] = $_POST['ids'];
+
+      }
+
+    }
+
+
     $resourceModel = new ResourceModel();
-    $resourceList = $resourceModel->listItems( apiFiltersController::resourceListOptions($param) );
+    $resourceList = $resourceModel->listItems( $queryParameters  );
     $this->syncModelList( $resourceList );
   }
 
@@ -534,6 +600,36 @@ class geozzyAPIView extends View
     $resourcetypeList = $resourcetypeModel->listItems( ) ;
     $this->syncModelList( $resourcetypeList );
   }
+
+  // Starred
+
+  function starred() {
+    $taxtermModel = new TaxonomytermModel();
+    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+
+    geozzy::load('model/StarredResourcesModel.php');
+    header('Content-type: application/json');
+
+    echo '[';
+
+    $c = '';
+    while ($starred = $starredList->fetch() )
+    {
+      $starData = $starred->getAllData('onlydata');
+
+      $starredResources = (new StarredResourcesModel)->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']), 'order'=>array('weight'=>1)) );
+
+      while( $starredResource = $starredResources->fetch() ){
+        $starData['resources'][] = $starredResource->getAllData('onlydata');
+      }
+
+      echo $c.json_encode( $starData );
+      if($c === ''){$c=',';}
+    }
+    echo ']';
+
+  }
+
 
   // Categories
 

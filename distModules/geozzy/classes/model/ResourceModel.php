@@ -94,7 +94,8 @@ class ResourceModel extends Model {
       'type' => 'FLOAT'
     ),
     'weight' => array(
-      'type' => 'SMALLINT'
+      'type' => 'SMALLINT',
+      'default' => 0
     )
   );
 
@@ -103,7 +104,8 @@ class ResourceModel extends Model {
     'nottopic' => ' id NOT IN ( select resource from geozzy_resource_topic where topic=? ) ',
     'notintaxonomyterm' => ' id NOT IN ( select resource from geozzy_resource_taxonomyterm where taxonomyterm=? )',
     'inRtype' => ' rTypeId IN (?) ',
-    'notInRtype' => ' rTypeId NOT IN (?) '
+    'notInRtype' => ' rTypeId NOT IN (?) ',
+    'ids' => ' id IN (?)'
   );
 
 

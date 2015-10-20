@@ -6,12 +6,14 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   displayType: 'map',
   parentExplorer: false ,
   map: false ,
+  projection: false,
   ready:false,
   clusterize:false ,
 
   markers: false,
   markerClusterer: false,
 
+  bufferPixels:150,
 
   setMap: function( mapObj ) {
     this.map = mapObj;
@@ -21,11 +23,18 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   setMapEvents: function() {
     var that = this;
 
-    // on any map change
-    google.maps.event.addListener(this.map, "idle", function() {
+    // drag event on map
+    google.maps.event.addListener(this.map, "dragend", function() {
       that.ready = true;
       that.parentExplorer.render(true);
     });
+
+    // zoom event on map
+    google.maps.event.addListener(this.map, "zoom_changed", function() {
+      that.ready = true;
+      that.parentExplorer.render(true);
+    });
+
   },
 
   getVisibleResourceIds: function() {
@@ -35,18 +44,9 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     var visibleResources = [];
 
-    this.coordsInMap();
     that.parentExplorer.resourceMinimalList.each(function(m, index) {
-
-
-      if( that.coordsInMap( m.get('lat'), m.get('lng') ) ) {
-        m.set('mapVisible', true);
-        visibleResources.push( m.get('id') )
-      }
-      else {
-        m.set('mapVisible', false);
-      }
-
+      // Assign values 2:visible in map, 1:not visible in map but present in buffer zone, 0:not in map or buffer
+      m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
     });
 
     //console.log(visibleResources.length)
@@ -59,11 +59,10 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   render: function() {
 
+console.log('rerender');
     var that = this;
 
-    that.markers = [];
-
-    var my_marker_icon = {
+    that.my_marker_icon = {
       url: media+'/module/admin/img/geozzy_marker.png',
       // This marker is 20 pixels wide by 36 pixels high.
       size: new google.maps.Size(30, 36),
@@ -74,16 +73,59 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     };
 
 
+
+    that.renderWithCluster();
+    if( that.clusterize != false ) {
+      //that.renderWithCluster();
+    }
+    else {
+      //that.renderWithoutCluster();
+    }
+
+
+
+    that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceIndex.length+ 'recursos' );
+  },
+
+
+  renderWithoutCluster: function() {
+    var that = this;
+
+    if( that.markers.length > 0 ){
+      $.each(  that.markers , function(i,e) {
+        e.setMap(false);
+      });
+
+    }
+
+    that.markers = [];
+
     $.each( that.parentExplorer.resourceIndex.toJSON(), function(i,e) {
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng( e.lat, e.lng ),
-        icon: my_marker_icon
+        icon: that.my_marker_icon,
+        map: that.map
       });
 
       that.markers.push(marker);
     });
+  },
+
+  renderWithCluster: function() {
+    var that = this;
 
     if( that.markerClusterer == false ) {
+      that.markers = [];
+
+      $.each( that.parentExplorer.resourceIndex.toJSON(), function(i,e) {
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng( e.lat, e.lng ),
+          icon: that.my_marker_icon,
+        });
+
+        that.markers.push(marker);
+      });
+
 
       that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
         maxZoom: 15,
@@ -97,21 +139,33 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       this.markerClusterer.addMarkers( that.markers );
       this.markerClusterer.redraw();
     }
-
-    that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceIndex.length+ 'recursos' );
   },
 
+
   coordsInMap: function( lat, lng ) {
-    var ret = false;
-    var b =  this.map.getBounds();
+    var that = this;
 
-    var ne = b.getNorthEast();
+    that.getProjection();
+
+    var ret = 0;
+    var b =  that.map.getBounds();
+
     var sw = b.getSouthWest();
+    var ne = b.getNorthEast();
+
+    var swBuffer = new google.maps.Point( that.projection.fromLatLngToDivPixel(sw ).x - that.bufferPixels , that.projection.fromLatLngToDivPixel(sw ).y + that.bufferPixels );
+    var neBuffer = new google.maps.Point( that.projection.fromLatLngToDivPixel(ne ).x + that.bufferPixels , that.projection.fromLatLngToDivPixel(ne ).y - that.bufferPixels );
+
+    var swB = that.projection.fromDivPixelToLatLng( swBuffer );
+    var neB = that.projection.fromDivPixelToLatLng( neBuffer )
 
 
-    if( lat < ne.lat() && lng < ne.lng() &&
-    lat > sw.lat() && lng > sw.lng() ) {
-      ret = true;
+
+    if( lat < ne.lat() && lng < ne.lng() && lat > sw.lat() && lng > sw.lng() ) {
+      ret = 2;
+    }
+    else if( lat < neB.lat() && lng < neB.lng() && lat > swB.lat()-that.bufferPixels && lng > swB.lng()) {
+      ret = 1;
     }
 
     return ret;
@@ -119,8 +173,20 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   isReady: function() {
     return this.ready;
-  }
+  },
 
+
+  getProjection: function( ) {
+    var that = this;
+
+    if( that.projection == false ) {
+      var overlay = new google.maps.OverlayView();
+      overlay.draw = function() {};
+      overlay.setMap(that.map);
+      that.projection = overlay.getProjection();
+    }
+
+  }
 
 
 });
