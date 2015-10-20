@@ -386,6 +386,7 @@ class ResourceController {
 
     if( !$template ) {
       $template = new Template();
+      $template->addClientStyles( 'masterResource.less');
       $template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
     }
 
@@ -507,6 +508,7 @@ class ResourceController {
     // Fragmentamos el formulario generado
     $formImage = $adminViewResource->extractFormBlockFields( $formBlock, array( 'image' ) );
     $formPublished = $adminViewResource->extractFormBlockFields( $formBlock, array( 'published' ) );
+    $formWeight = $adminViewResource->extractFormBlockFields( $formBlock, array( 'weight' ) );
     //$formStatus = $adminViewResource->extractFormBlockFields( $formBlock, array( 'topics', 'starred' ) );
     $formSeo = $adminViewResource->extractFormBlockFields( $formBlock,
       array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
@@ -549,28 +551,98 @@ class ResourceController {
       $formPartBlock = $this->setBlockPartTemplate($formPublished);
       $cols['col4']['publication'] = array( $formPartBlock, __( 'Publication' ), 'fa-adjust' );
     }
+    if( $formWeight ) {
+      $formPartBlock = $this->setBlockPartTemplate($formWeight);
+      $cols['col4']['weight'] = array( $formPartBlock, __( 'Priority' ), 'fa-adjust' );
+    }
     if( $formImage ) {
       $formPartBlock = $this->setBlockPartTemplate($formImage);
       $cols['col4']['image'] = array( $formPartBlock, __( 'Select a image' ), 'fa-file-image-o' );
     }
-    /* Taxonomías */
-    // if( $formStatus ) {
-    //   $formPartBlock = $this->setBlockPartTemplate($formStatus);
-    //   $cols['col4']['status'] = array( $formPartBlock, __( 'Status' ), false );
-    // }
 
 
+    // Recuperamos las temáticas que tiene asociadas el recurso
     $resourceId = $formBlock->getTemplateVars('resourceId');
+    $allTopics = $this->getOptionsTopic();
+
+    $resourceTopicModel = new ResourceTopicModel();
+    $resourceTopicList = $resourceTopicModel->listItems( array( 'filters' => array( 'resource' => $resourceId ) ) );
+    $topicsHtml = '';
+    if( $resourceTopicList ) {
+      $relPrevInfo = array();
+      while( $topicList = $resourceTopicList->fetch() ){
+        $topics[$topicList->getter( 'topic' )] = $allTopics[$topicList->getter( 'topic' )];
+      }
+
+      if (isset($topics)){
+        $i = 0;
+        foreach ($topics as $topicId=>$topicName){
+          if ($i == 1){
+            $topicsHtml = $topicsHtml.'<tr class="par"><td class="left"></td><td>'.$topicName.'</td></tr>';
+            $i = 0;
+          }
+          else {
+            $topicsHtml = $topicsHtml.'<tr class="impar"><td class="left"></td><td>'.$topicName.'</td></tr>';
+            $i = 1;
+          }
+        }
+      }
+    }
+
+    // Recuperamos las taxonomías asociadas al recurso
+    $starredHtml = '';
+    $resourceTax = $this->getTermsInfoByGroupIdName( $resourceId );
+    if (isset($resourceTax['starred'])){
+      foreach ($resourceTax['starred'] as $tax){
+        $starred[$tax['id']] = $tax['idName'];
+      }
+
+      if ($starred){
+        $j = 0;
+        foreach ($starred as $starredId=>$starredName){
+          if ($j == 1){
+            $starredHtml = $starredHtml.'<tr class="par"><td class="left"></td><td>'.$starredName.'</td></tr>';
+            $j = 0;
+          }
+          else{
+            $starredHtml = $starredHtml.'<tr class="impar"><td class="left"></td><td>'.$starredName.'</td></tr>';
+            $j = 1;
+          }
+        }
+      }
+    }
+
     $resourceType = $formBlock->getTemplateVars('rTypeName');
     $timeCreation = $formBlock->getTemplateVars('timeCreation');
     $user = $formBlock->getTemplateVars('userName');
     $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
     $userUpdate = $formBlock->getTemplateVars('userUpdate');
-    $info = '<div class="infoBasic"><ul><li><label>ID</label><span>'.$resourceId.' ('.$resourceType.')</span></li>'.
-      '<li><label>Creado</label><span>'.$timeCreation.' ('.$user.')</span></li>'.
-      '<li><label>Actualizado</label><span>'.$timeLastUpdate.' ('.$userUpdate.')</span></li></ul></div>';
+    $info = '<table class="infoBasic">
+              <tr class="par">
+                <td class="left">ID</td>
+                <td>'.$resourceId.'</td>
+              </tr>
+              <tr class="impar">
+                <td class="left">Tipo de recurso</td>
+                <td>'.$resourceType.'</td>
+              </tr>
+              <tr class="par">
+                <td class="left">Creado</td>
+                <td>'.$timeCreation.' ('.$user.')</td>
+              </tr>
+              <tr class="impar">
+                <td class="left">Actualizado</td>
+                <td>'.$timeLastUpdate.' ('.$userUpdate.')</td>
+              </tr>
+              <tr class="par">
+                <td class="left">Temáticas</td>
+                <td></td>
+              </tr>'.$topicsHtml.'
+              <tr class="impar">
+                <td class="left">Destacados</td>
+                <td></td>
+              </tr>'.$starredHtml.'</table>';
     $cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
-
 
     return $cols;
   }
@@ -580,10 +652,10 @@ class ResourceController {
    */
   public function setBlockPartTemplate($formPartArray){
     $partTemplate = new Template();
+    $partTemplate->addClientStyles( 'masterResource.less');
     $partTemplate->setTpl('resourceFormBlockPart.tpl', 'admin');
     $partTemplate->assign('formFieldsArray', $formPartArray);
     $partTemplate->assign('formFieldsHiddenArray', array());
-
     return $partTemplate;
   }
 
@@ -1309,7 +1381,7 @@ class ResourceController {
         }
       }
     }
-
+    $template->addClientStyles( 'masterResource.less');
     $template->setTpl( 'resourceViewBlock.tpl', 'geozzy' );
 
     return( $template );

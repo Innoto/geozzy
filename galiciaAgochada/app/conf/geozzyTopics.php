@@ -59,7 +59,7 @@ $geozzyTopicsInfo = array(
       'rtypeRuta' => array(
         'weight' => 3
       ),
-      'rtypeLugar' => array(
+      'rtypeAppLugar' => array(
         'weight' => 1
       ),
       'rtypeAppEspazoNatural' => array(

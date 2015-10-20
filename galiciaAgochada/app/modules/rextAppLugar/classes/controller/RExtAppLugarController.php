@@ -48,7 +48,7 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
 
     $fieldsInfo = array(
       'rextAppLugarType' => array(
-        'params' => array( 'label' => __( 'Lugar type' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'Lugar type' ), 'type' => 'select', 'multiple' => true, 'class' => 'cgmMForm-order',
           'options' => $this->defResCtrl->getOptionsTax( 'rextAppLugarType' )
         )
       )
