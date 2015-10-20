@@ -123,6 +123,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $adminColsInfoOrd['col8']['seo'] = $adminColsInfo['col8']['seo'];
 
     $adminColsInfoOrd['col4']['publication'] = $adminColsInfo['col4']['publication'];
+    $adminColsInfoOrd['col4']['weight'] = $adminColsInfo['col4']['weight'];
     $adminColsInfoOrd['col4']['image'] = $adminColsInfo['col4']['image'];
     $adminColsInfoOrd['col4']['categorization'] = $adminColsInfo['col4']['categorization'];
     $adminColsInfoOrd['col4']['info'] = $adminColsInfo['col4']['info'];
