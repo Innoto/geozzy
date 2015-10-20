@@ -36,13 +36,35 @@ if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] )
       }
       break;
     case 'flush':
-      $dir = SITE_PATH.'tmp/templates_c/';
-      $handle = opendir( $dir );
-      while ( $file = readdir( $handle ) ) {
-        if ( is_file( $dir.$file ) ) {
-          unlink( $dir.$file );
+      $dir = SITE_PATH.'tmp/templates_c';
+      $dirElements = scandir( $dir );
+      if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {
+        foreach( $dirElements as $dirElement ) {
+          if( $dirElement != '.' && $dirElement != '..' && is_file( $dir.'/'.$dirElement ) ) {
+            unlink( $dir.'/'.$dirElement );
+          }
         }
       }
+
+      $dir = MOD_FORM_FILES_CACHE_PATH;
+      $dirElements = scandir( $dir );
+      if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {
+        foreach( $dirElements as $dirElement ) {
+          if( $dirElement != '.' && $dirElement != '..' && is_dir( $dir.'/'.$dirElement ) ) {
+            rmdirRec( $dir.'/'.$dirElement );
+          }
+        }
+      }
+
+      /*
+      $dirHandle = opendir( $dir );
+      while( $file = readdir( $dirHandle ) ) {
+        if( is_file( $dir.'/'.$file ) ) {
+          unlink( $dir.'/'.$file );
+        }
+      }
+      closedir( $dirHandle );
+      */
       break;
     case 'client_caches':
       Cogumelo::load( 'coreController/ModuleController.php' );
@@ -55,6 +77,28 @@ if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] )
 else {
   header( 'HTTP/1.0 403 Forbidden' );
   echo( "You are forbidden!\n\nUnusual access to cogumelo-server\n" );
+}
+
+
+function rmdirRec( $dir ) {
+  error_log( "rmdirRec( $dir )" );
+  if( is_dir( $dir ) ) {
+    $dirElements = scandir( $dir );
+    if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {
+      foreach( $dirElements as $object ) {
+        if( $object != '.' && $object != '..' ) {
+          if( is_dir( $dir.'/'.$object ) ) {
+            rmdirRec( $dir.'/'.$object );
+          }
+          else {
+            unlink( $dir.'/'.$object );
+          }
+        }
+      }
+    }
+    reset( $dirElements );
+    rmdir( $dir );
+  }
 }
 
 
