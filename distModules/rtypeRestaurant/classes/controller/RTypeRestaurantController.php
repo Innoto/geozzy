@@ -40,7 +40,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
-    $form->setFieldParam( 'externalUrl', 'label', __( 'Restaurant home URL' ) );
+    $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
 
     // Valadaciones extra
     // $form->setValidationRule( 'restaurantName_'.$form->langDefault, 'required' );
@@ -61,7 +61,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
   public function manipulateAdminFormColumns( Template $formBlock, Template $template, AdminViewResource $adminViewResource, Array $adminColsInfo ) {
 
     // Extraemos los campos de la extensión EatandDrink que irán a otro bloque y los desasignamos
-    $formReservation = $adminViewResource->extractFormBlockFields( $formBlock, array( 'externalUrl', 'rextEatAndDrink_reservationURL', 'rextEatAndDrink_reservationPhone', 'rextEatAndDrink_reservationEmail') );
+    $formReservation = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rextEatAndDrink_reservationURL', 'rextEatAndDrink_reservationPhone', 'rextEatAndDrink_reservationEmail') );
     $formCategorization = $adminViewResource->extractFormBlockFields( $adminColsInfo['col8']['main']['0'], array( 'rextEatAndDrink_eatanddrinkType', 'rextEatAndDrink_eatanddrinkSpecialities', 'rextEatAndDrink_capacity', 'rextEatAndDrink_averagePrice') );
 
     if( $formReservation ) {
@@ -74,7 +74,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     }
 
     // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
-    $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address', 'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone', 'rExtContact_email', 'rExtContact_timetable') );
+    $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address', 'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone', 'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
     $adminColsInfo['col8']['contact1'] = array();
 
     if( $formContact1 ) {
