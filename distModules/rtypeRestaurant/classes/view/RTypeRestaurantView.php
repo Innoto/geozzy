@@ -35,6 +35,7 @@ class RTypeRestaurantView extends View
 
     $this->template->assign( 'formClose', $form->getHtmlClose() );
     $this->template->assign( 'formValidations', $form->getScriptCode() );
+    $this->template->addClientStyles( 'masterResource.less');
 
     $this->template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
 

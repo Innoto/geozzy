@@ -46,6 +46,10 @@ class ContactModel extends Model
       'type' => 'VARCHAR',
       'size' => 2000
     ),
+    'timetable' => array(
+      'type' => 'VARCHAR',
+      'size' => 2000
+    ),
   );
 
   static $extraFilters = array();

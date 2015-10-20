@@ -130,6 +130,7 @@ global $C_REXT_MODULES;
 $C_REXT_MODULES = array(
   'rextAccommodation',
   'rextEatAndDrink',
+  'rextContact',
   'rextUrl',
   'rextView',
   'rextFile',
