@@ -22,7 +22,7 @@ class rextEatAndDrink extends Module {
       ),
       'editable' => 1,
       'nestable' => 0,
-      'sortable' => 0,
+      'sortable' => 1,
       'initialTerms' => array(
         array(
           'idName' => 'italiano',
@@ -60,7 +60,7 @@ class rextEatAndDrink extends Module {
       ),
       'editable' => 1,
       'nestable' => 0,
-      'sortable' => 0,
+      'sortable' => 1,
       'initialTerms' => array(
         array(
           'idName' => 'tortilla',

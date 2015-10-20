@@ -18,9 +18,9 @@ class rextAppLugar extends Module {
         'es' => 'Tipo de Lugar',
         'gl' => 'Tipo de Lugar'
       ),
-      'editable' => 0,
+      'editable' => 1,
       'nestable' => 0,
-      'sortable' => 0,
+      'sortable' => 1,
       'initialTerms' => array(
         array(
           'idName' => 'praia',

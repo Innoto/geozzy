@@ -23,17 +23,21 @@
 # -- Request System Directives (Must to be) --
 #
 
-Options -Indexes
-Options +FollowSymLinks
-
-DirectoryIndex index.php
-
-RewriteEngine On
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php
 
 
 # PHP5 script time limit
 php_value max_execution_time 180
+
+
+
+Options -Indexes
+Options +FollowSymLinks
+
+
+
+FallbackResource /index.php
+
+# RewriteEngine On
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ index.php
