@@ -59,7 +59,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   render: function() {
 
-console.log('rerender');
     var that = this;
 
     that.my_marker_icon = {
@@ -74,12 +73,13 @@ console.log('rerender');
 
 
 
-    that.renderWithCluster();
     if( that.clusterize != false ) {
-      //that.renderWithCluster();
+      that.renderWithCluster();
+
     }
     else {
-      //that.renderWithoutCluster();
+      that.renderWithoutCluster();
+
     }
 
 
@@ -93,7 +93,7 @@ console.log('rerender');
 
     if( that.markers.length > 0 ){
       $.each(  that.markers , function(i,e) {
-        e.setMap(false);
+        e.setMap( null );
       });
 
     }
@@ -141,31 +141,31 @@ console.log('rerender');
     }
   },
 
-
   coordsInMap: function( lat, lng ) {
     var that = this;
 
-    that.getProjection();
 
-    var ret = 0;
+    var ret = 0; // NOT IN MAP OR BUFFER
+
     var b =  that.map.getBounds();
 
     var sw = b.getSouthWest();
     var ne = b.getNorthEast();
 
-    var swBuffer = new google.maps.Point( that.projection.fromLatLngToDivPixel(sw ).x - that.bufferPixels , that.projection.fromLatLngToDivPixel(sw ).y + that.bufferPixels );
-    var neBuffer = new google.maps.Point( that.projection.fromLatLngToDivPixel(ne ).x + that.bufferPixels , that.projection.fromLatLngToDivPixel(ne ).y - that.bufferPixels );
+    var scale = Math.pow(2, that.map.getZoom());
 
-    var swB = that.projection.fromDivPixelToLatLng( swBuffer );
-    var neB = that.projection.fromDivPixelToLatLng( neBuffer )
+    var swBuffer = new google.maps.Point(   that.map.getProjection().fromLatLngToPoint(sw ).x- that.bufferPixels /scale,   that.map.getProjection().fromLatLngToPoint(sw).y+ that.bufferPixels /scale );
+    var neBuffer = new google.maps.Point(   that.map.getProjection().fromLatLngToPoint(ne ).x+ that.bufferPixels /scale ,   that.map.getProjection().fromLatLngToPoint(ne).y- that.bufferPixels /scale );
 
+    var swB = that.map.getProjection().fromPointToLatLng( swBuffer );
+    var neB = that.map.getProjection().fromPointToLatLng( neBuffer );
 
 
     if( lat < ne.lat() && lng < ne.lng() && lat > sw.lat() && lng > sw.lng() ) {
-      ret = 2;
+      ret = 2; // IN MAP AREA
     }
-    else if( lat < neB.lat() && lng < neB.lng() && lat > swB.lat()-that.bufferPixels && lng > swB.lng()) {
-      ret = 1;
+    else if(lat < neB.lat() && lng < neB.lng() && lat > swB.lat() && lng > swB.lng() ) {
+      ret = 1; // NOT IN MAP AREA BUT IN BUFFER
     }
 
     return ret;
@@ -175,18 +175,6 @@ console.log('rerender');
     return this.ready;
   },
 
-
-  getProjection: function( ) {
-    var that = this;
-
-    if( that.projection == false ) {
-      var overlay = new google.maps.OverlayView();
-      overlay.draw = function() {};
-      overlay.setMap(that.map);
-      that.projection = overlay.getProjection();
-    }
-
-  }
 
 
 });
