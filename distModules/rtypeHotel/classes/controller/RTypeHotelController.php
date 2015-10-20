@@ -97,7 +97,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     }
 
     // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
-    $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address', 'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone', 'rExtContact_email') );
+    $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address', 'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone', 'rExtContact_email', 'rExtContact_timetable') );
     $adminColsInfo['col8']['contact1'] = array();
 
     if( $formContact1 ) {

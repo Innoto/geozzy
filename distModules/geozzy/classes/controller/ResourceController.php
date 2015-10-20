@@ -386,6 +386,7 @@ class ResourceController {
 
     if( !$template ) {
       $template = new Template();
+      $template->addClientStyles( 'masterResource.less');
       $template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
     }
 
@@ -588,12 +589,10 @@ class ResourceController {
       }
     }
 
-
-
     // Recuperamos las taxonomías asociadas al recurso
     $starredHtml = '';
     $resourceTax = $this->getTermsInfoByGroupIdName( $resourceId );
-    if ($resourceTax['starred']){
+    if (isset($resourceTax['starred'])){
       foreach ($resourceTax['starred'] as $tax){
         $starred[$tax['id']] = $tax['idName'];
       }
@@ -653,10 +652,10 @@ class ResourceController {
    */
   public function setBlockPartTemplate($formPartArray){
     $partTemplate = new Template();
+    $partTemplate->addClientStyles( 'masterResource.less');
     $partTemplate->setTpl('resourceFormBlockPart.tpl', 'admin');
     $partTemplate->assign('formFieldsArray', $formPartArray);
     $partTemplate->assign('formFieldsHiddenArray', array());
-    $partTemplate->addClientStyles( 'masterResource.less');
     return $partTemplate;
   }
 
@@ -1382,7 +1381,7 @@ class ResourceController {
         }
       }
     }
-
+    $template->addClientStyles( 'masterResource.less');
     $template->setTpl( 'resourceViewBlock.tpl', 'geozzy' );
 
     return( $template );
