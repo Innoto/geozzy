@@ -227,8 +227,12 @@ ini_set( 'session.gc_maxlifetime', 86400 );
 define( 'MOD_FORM_CSS_PRE', 'cgmMForm' );
 define( 'MOD_FORM_FILES_TMP_PATH', APP_TMP_PATH.'/formFiles' );
 define( 'MOD_FORM_FILES_APP_PATH', realpath( APP_BASE_PATH.'/../formFiles' ) );
-define( 'MOD_FORM_FILES_CACHE_PATH', WEB_BASE_PATH.'/cgmlImg' );
-//define( 'FORM_FILES_APP_PATH', WEB_BASE_PATH.'/formFiles' );
+
+//
+//  Filedata Mod
+//
+define( 'MOD_FILEDATA_CACHE_PATH', WEB_BASE_PATH.'/cgmlImg' );
+include 'filedataImageProfiles.php';
 
 
 //

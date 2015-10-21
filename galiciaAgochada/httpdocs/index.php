@@ -1,10 +1,10 @@
 <?php
 
 // Project location
-define( 'PRJ_BASE_PATH', getcwd().'/..' );
 define( 'WEB_BASE_PATH', getcwd() );
-define( 'APP_BASE_PATH', getcwd().'/../app' );
-define( 'SITE_PATH', APP_BASE_PATH.'/' );
+define( 'PRJ_BASE_PATH', realpath( WEB_BASE_PATH.'/..' ) );
+define( 'APP_BASE_PATH', PRJ_BASE_PATH.'/app' );
+define( 'SITE_PATH',     APP_BASE_PATH.'/' );
 
 // Include cogumelo core Location
 set_include_path( '.:'.SITE_PATH );
