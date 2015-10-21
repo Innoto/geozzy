@@ -72,7 +72,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     };
 
 
-
+    that.renderWithCluster();/*
     if( that.clusterize != false ) {
       that.renderWithCluster();
 
@@ -80,7 +80,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     else {
       that.renderWithoutCluster();
 
-    }
+    }*/
 
 
 
@@ -107,6 +107,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         map: that.map
       });
 
+      marker.addListener('click', function() {
+        that.markerEvent('click');
+      });
+      marker.addListener('mouseover', function() {
+        that.markerEvent('hover');
+      });
+
       that.markers.push(marker);
     });
   },
@@ -122,6 +129,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
           position: new google.maps.LatLng( e.lat, e.lng ),
           icon: that.my_marker_icon,
         });
+        marker.addListener('click', function() {
+          that.markerEvent('click');
+        });
+        marker.addListener('mouseover', function() {
+          that.markerEvent('hover');
+        });
+
 
         that.markers.push(marker);
       });
@@ -175,6 +189,11 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     return this.ready;
   },
 
+
+
+  markerEvent: function( eventType, data ) {
+    console.log('Evento tipo :'+eventType);
+  }
 
 
 });
