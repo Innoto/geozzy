@@ -238,7 +238,7 @@ class ResourceController {
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
         'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
-        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '100000', 'accept' => 'image/jpeg' )
+        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/jpeg' )
       ),
       'urlAlias' => array(
         'translate' => true,
@@ -566,16 +566,8 @@ class ResourceController {
       }
 
       if (isset($topics)){
-        $i = 0;
         foreach ($topics as $topicId=>$topicName){
-          if ($i == 1){
-            $topicsHtml = $topicsHtml.'<tr class="par"><td class="left"></td><td>'.$topicName.'</td></tr>';
-            $i = 0;
-          }
-          else {
-            $topicsHtml = $topicsHtml.'<tr class="impar"><td class="left"></td><td>'.$topicName.'</td></tr>';
-            $i = 1;
-          }
+          $topicsHtml = $topicsHtml.'<div class="row"><div class="col-lg-4"></div><div class="col-lg-8">'.$topicName.'</div></div>';
         }
       }
     }
@@ -587,18 +579,9 @@ class ResourceController {
       foreach ($resourceTax['starred'] as $tax){
         $starred[$tax['id']] = $tax['idName'];
       }
-
-      if ($starred){
-        $j = 0;
+      if (isset($starred)){
         foreach ($starred as $starredId=>$starredName){
-          if ($j == 1){
-            $starredHtml = $starredHtml.'<tr class="par"><td class="left"></td><td>'.$starredName.'</td></tr>';
-            $j = 0;
-          }
-          else{
-            $starredHtml = $starredHtml.'<tr class="impar"><td class="left"></td><td>'.$starredName.'</td></tr>';
-            $j = 1;
-          }
+          $starredHtml = $starredHtml.'<div class="row"><div class="col-lg-4"></div><div class="col-lg-8">'.$starredName.'</div></div>';
         }
       }
     }
@@ -606,33 +589,22 @@ class ResourceController {
     $resourceType = $formBlock->getTemplateVars('rTypeName');
     $timeCreation = $formBlock->getTemplateVars('timeCreation');
     $user = $formBlock->getTemplateVars('userName');
-    $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
-    $userUpdate = $formBlock->getTemplateVars('userUpdate');
-    $info = '<table class="infoBasic">
-              <tr class="par">
-                <td class="left">ID</td>
-                <td>'.$resourceId.'</td>
-              </tr>
-              <tr class="impar">
-                <td class="left">Tipo de recurso</td>
-                <td>'.$resourceType.'</td>
-              </tr>
-              <tr class="par">
-                <td class="left">Creado</td>
-                <td>'.$timeCreation.' ('.$user.')</td>
-              </tr>
-              <tr class="impar">
-                <td class="left">Actualizado</td>
-                <td>'.$timeLastUpdate.' ('.$userUpdate.')</td>
-              </tr>
-              <tr class="par">
-                <td class="left">Temáticas</td>
-                <td></td>
-              </tr>'.$topicsHtml.'
-              <tr class="impar">
-                <td class="left">Destacados</td>
-                <td></td>
-              </tr>'.$starredHtml.'</table>';
+    if ($formBlock->getTemplateVars('timeLastUpdate')){
+      $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
+      $userUpdate = $formBlock->getTemplateVars('userUpdate');
+      $update = $timeLastUpdate.' ('.$userUpdate.')';
+    }else{
+      $update =  '- - -';
+    }
+    $info = '<div class="infoBasic table-stripped">
+            <div class="row"><div class="col-lg-4">ID</div><div class="col-lg-8">'.$resourceId.'</div></div>
+            <div class="row"><div class="col-lg-4">Tipo</div><div class="col-lg-8">'.$resourceType.'</div></div>
+            <div class="row"><div class="col-lg-4">Creado</div><div class="col-lg-8">'.$timeCreation.' ('.$user.')</div></div>
+            <div class="row"><div class="col-lg-4">Actualizado</div><div class="col-lg-8">'.$update.'</div></div>
+            <div class="row"><div class="col-lg-4">Temáticas</div><div class="col-lg-8"></div></div>'.$topicsHtml.'
+            <div class="row"><div class="col-lg-4">Destacados</div><div class="col-lg-8"></div></div>'.$starredHtml.'
+            </div>';
+
     $cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
 
     return $cols;

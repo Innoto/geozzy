@@ -44,12 +44,28 @@
 }
 
 /* FORM RESOURCE: no me carga en su css específico */
-table.infoBasic{
+.infoBasic{
   width:100%;
   background: white;
-  td.left{border-right: 1px solid #333;width:30%;}
-  tr{margin-top:2px;}
-  tr:nth-child(2n+1) {
+  font-family:@font-family-sans-serif;
+
+  .row{
+    padding:10px;
+    border:1px solid #BAC3C3;
+    margin-top:2px;
+    margin-left:0px;
+    margin-right:0px;
+
+    .col-lg-4{
+      text-transform: uppercase;
+      font-weight:bold;
+      color:#333;
+    }
+    .col-lg-8{
+      border-left: 1px solid #BAC3C3;
+    }
+  }
+  .row:nth-child(2n+1) {
     background-color: #EEEEEE;
   }
 }

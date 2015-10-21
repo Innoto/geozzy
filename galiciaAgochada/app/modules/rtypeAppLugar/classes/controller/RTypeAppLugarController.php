@@ -110,6 +110,9 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     if( !$form->existErrors() ) {
       $this->rExtCtrl = new RExtAppLugarController( $this );
       $this->rExtCtrl->resFormRevalidate( $form );
+
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormRevalidate( $form );
     }
   }
 
@@ -123,6 +126,9 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     if( !$form->existErrors() ) {
       $this->rExtCtrl = new RExtAppLugarController( $this );
       $this->rExtCtrl->resFormProcess( $form, $resource );
+
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormProcess( $form, $resource );
     }
   }
 

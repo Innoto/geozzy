@@ -100,6 +100,9 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     if( !$form->existErrors() ) {
       $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
       $this->rExtCtrl->resFormRevalidate( $form );
+
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormProcess( $form, $resource );
     }
   }
 
@@ -113,6 +116,9 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     if( !$form->existErrors() ) {
       $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
       $this->rExtCtrl->resFormProcess( $form, $resource );
+
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormProcess( $form, $resource );
     }
   }
 
