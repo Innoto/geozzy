@@ -11,16 +11,16 @@ class rextAppEspazoNatural extends Module {
   public $models = array();
 
   public $taxonomies = array(
-    'appEspazoNaturalType' => array(
-      'idName' => 'appEspazoNaturalType',
+    'rextAppEspazoNaturalType' => array(
+      'idName' => 'rextAppEspazoNaturalType',
       'name' => array(
         'en' => 'EspazoNatural Type',
         'es' => 'Tipo de Espacio natural',
         'gl' => 'Tipo de Espazo natural'
       ),
-      'editable' => 0,
+      'editable' => 1,
       'nestable' => 0,
-      'sortable' => 0,
+      'sortable' => 1,
       'initialTerms' => array(
         array(
           'idName' => 'praia',
