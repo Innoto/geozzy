@@ -18,9 +18,9 @@ class rextAppEspazoNatural extends Module {
         'es' => 'Tipo de Espacio natural',
         'gl' => 'Tipo de Espazo natural'
       ),
-      'editable' => 0,
+      'editable' => 1,
       'nestable' => 0,
-      'sortable' => 0,
+      'sortable' => 1,
       'initialTerms' => array(
         array(
           'idName' => 'praia',
