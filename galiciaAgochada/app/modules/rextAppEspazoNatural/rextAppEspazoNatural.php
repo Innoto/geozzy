@@ -11,8 +11,8 @@ class rextAppEspazoNatural extends Module {
   public $models = array();
 
   public $taxonomies = array(
-    'appEspazoNaturalType' => array(
-      'idName' => 'appEspazoNaturalType',
+    'rextAppEspazoNaturalType' => array(
+      'idName' => 'rextAppEspazoNaturalType',
       'name' => array(
         'en' => 'EspazoNatural Type',
         'es' => 'Tipo de Espacio natural',

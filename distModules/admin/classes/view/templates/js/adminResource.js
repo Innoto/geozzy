@@ -52,6 +52,7 @@ function bindResourceForm(){
 
   $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').select2();
   $('select.cgmMForm-field-rExtAppLugar_rextAppLugarType').select2();
+  $('select.cgmMForm-field-rExtAppEspazoNatural_rextAppEspazoNaturalType').select2();
 
 
   // Location Map

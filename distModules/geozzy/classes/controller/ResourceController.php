@@ -507,9 +507,7 @@ class ResourceController {
 
     // Fragmentamos el formulario generado
     $formImage = $adminViewResource->extractFormBlockFields( $formBlock, array( 'image' ) );
-    $formPublished = $adminViewResource->extractFormBlockFields( $formBlock, array( 'published' ) );
-    $formWeight = $adminViewResource->extractFormBlockFields( $formBlock, array( 'weight' ) );
-    //$formStatus = $adminViewResource->extractFormBlockFields( $formBlock, array( 'topics', 'starred' ) );
+    $formPublished = $adminViewResource->extractFormBlockFields( $formBlock, array( 'published', 'weight' ) );
     $formSeo = $adminViewResource->extractFormBlockFields( $formBlock,
       array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
     $formContacto = $adminViewResource->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
@@ -522,10 +520,6 @@ class ResourceController {
     // Bloques de 8
     $cols['col8']['main'] = array( $formBlock, __('Main Resource information'), 'fa-archive' );
 
-    // if( $formContacto ) {
-    //    $formPartBlock = $this->setBlockPartTemplate($formContacto);
-    //    $cols['col8']['contact'] = array( $formPartBlock, __('Contact'), 'fa-archive' );
-    // }
     if( $formLatLon ) {
       $formPartBlock = $this->setBlockPartTemplate($formLatLon);
       $cols['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
@@ -551,10 +545,7 @@ class ResourceController {
       $formPartBlock = $this->setBlockPartTemplate($formPublished);
       $cols['col4']['publication'] = array( $formPartBlock, __( 'Publication' ), 'fa-adjust' );
     }
-    if( $formWeight ) {
-      $formPartBlock = $this->setBlockPartTemplate($formWeight);
-      $cols['col4']['weight'] = array( $formPartBlock, __( 'Priority' ), 'fa-adjust' );
-    }
+
     if( $formImage ) {
       $formPartBlock = $this->setBlockPartTemplate($formImage);
       $cols['col4']['image'] = array( $formPartBlock, __( 'Select a image' ), 'fa-file-image-o' );
