@@ -4,7 +4,7 @@ var app = app || {};
 var AdminRouter = Backbone.Router.extend({
 
   routes: {
-    "" : "charts",
+    "" : "default",
     "charts" : "charts",
     "category/:id" : "categoryEdit",
     "category/:category/term/create" : "categoryNewTerm",
@@ -28,6 +28,10 @@ var AdminRouter = Backbone.Router.extend({
     "collection/create" : "collectionCreate",
     "collection/edit/:id" : "collectionEdit"
 
+  },
+
+  default: function() {
+    app.router.navigate("resource/list", {trigger: true});
   },
 
   // charts
