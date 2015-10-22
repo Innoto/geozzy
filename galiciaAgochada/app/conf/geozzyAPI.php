@@ -55,10 +55,6 @@ $GEOZZY_API_DOC_URLS =  array_merge(
       'description' => 'Category List'
     ),
     array(
-      'path' => '/categoryList.json',
-      'description' => 'Category List'
-    ),
-    array(
       'path' => '/categoryTerms.json',
       'description' => 'CategoryTerms by category'
     ),
