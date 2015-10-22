@@ -12,7 +12,7 @@ class AdminViewBi extends AdminViewMaster
   public function dashboard() {
     $biView =  new biView();
     $dashboardBlock = $biView->dashboard();
-//    $dashboardBlock->exec();
+    $dashboardBlock->exec();
   }
 
 
