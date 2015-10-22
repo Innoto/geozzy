@@ -66,7 +66,7 @@ function bindResourceForm(){
     // lonInput.parent().hide();
     // defaultZoom.parent().hide();
 
-    locationContainer.append('<div id="resourceLocationMap"></div>');
+    //locationContainer.append('<div id="resourceLocationMap"></div>');
 
     var latValue = 0;
     var lonValue = 0;
