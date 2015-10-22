@@ -74,7 +74,7 @@ class GeozzyCollectionView extends View
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgCollection',
         'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgCollection' ),
-        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '100000', 'accept' => 'image/jpeg' )
+        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/jpeg' )
       ),
       'resources' => array(
         'params' => array( 'label' => __( 'Resources' ), 'type' => 'select', 'id' => 'collResources',
