@@ -551,6 +551,24 @@ class ResourceController {
       $cols['col4']['image'] = array( $formPartBlock, __( 'Select a image' ), 'fa-file-image-o' );
     }
 
+    // Componemos el bloque geolocalización
+    $resourceLocLat = $formBlock->getTemplateVars('locLat');
+    $resourceLocLon = $formBlock->getTemplateVars('locLon');
+    $resourceDefaultZoom = $formBlock->getTemplateVars('defaultZoom');
+
+    $locationData = '<div class="row locData">'.$resourceLocLat.'</div>
+                     <div class="row locData">'.$resourceLocLon.'</div>
+                     <div class="row locData">'.$resourceDefaultZoom.'</div>
+                     <div class="row btn btn-primary col-md-offset-3">'.__("Authomatic Location").'</div>';
+
+
+    $locAll = '<div class="location">
+            <div class="row"><div class="col-lg-6"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div><div id="resourceLocationMap"></div></div>
+            <div class="col-lg-6 locationData">'.$locationData.'</div></div>
+            </div>';
+
+    $adminColsInfo['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
+
 
     // Recuperamos las temáticas que tiene asociadas el recurso
     $resourceId = $formBlock->getTemplateVars('resourceId');

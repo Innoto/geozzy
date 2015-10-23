@@ -133,8 +133,16 @@ function bindResourceForm(){
       resourceMarker.setMap( resourceMap);
     }
 
+    $('.locationData .cgmMForm-field').each(function(i,e){
+      $(e).change(function(){
+        newPos = new google.maps.LatLng( latInput.val(), lonInput.val() );
+        resourceMarker.position.lat(latInput.val());
+        resourceMarker.position.lng(lonInput.val());
+        resourceMap.setCenter(newPos);
+        resourceMarker.setPosition(newPos);
+      });
+    });
   }
-
 }
 
 function successCollectionForm( data ){
