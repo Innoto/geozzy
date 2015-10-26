@@ -1,3 +1,4 @@
+//### Metrics View
 'use strict';
 
 define([
@@ -6,22 +7,32 @@ define([
     'backbone',
     'mustache',
     'text!templates/statistics/metrics.html'
-],function($,_,Backbone,Mustache,MetricsTemplate){
-
+], function ($, _, Backbone, Mustache, MetricsTemplate) {
+    // Creating Metrics template, used for selecting a Metric
     var MetricsView = Backbone.View.extend({
+        // Picking the Change event on the box
         events: {
             'change #metrics': 'changeMetric'
         },
-        render: function (){
-            var rendered = Mustache.render(MetricsTemplate,this.model.toJSON());
+        // The default values for the initial metric are empty
+        defaults: {
+            selectedMetric: '',
+            selectedFilterID: ''
+        },
+        // Rendering the Metrics template, and returns that element
+        render: function () {
+            var rendered = Mustache.render(MetricsTemplate, this.model.toJSON());
             this.$el.html(rendered);
             return this;
         },
-        changeMetric: function(e){
-            var metricID = e.target.value;
-            if (!_.isUndefined(metricID)){
-                this.model.set('selectedMetric',metricID);
+        // Manages the Change event, where is taken the correct value ID if Metric is not Undefined
+        changeMetric: function (e) {
+            var metricID = e.target.value,
+                filterID = $('option:selected', $(e.target)).attr('filterID');
+            if (!_.isUndefined(metricID)) {
+                this.model.set('selectedMetric', metricID);
             }
+            this.model.set('selectedFilterID', filterID);
         }
     });
     return MetricsView;

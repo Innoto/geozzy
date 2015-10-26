@@ -14,25 +14,32 @@ define([
             url: '',
             content:[]
         },
-        initialize: function(){
-            //Request made with filterTitle
-            //this.settitle
-            //Modify template
-        },
         parse: function(res){
             var content;
             switch(this.attributes.filterID){
-                case Config.FILTER_EVENT_TYPES:
-                    content = this.parseDevSec(res,'desc');
-                    break;
-                case Config.FILTER_DEVICE_TYPE:
-                    content = this.parseDevSec(res.devices,'name');
-                    break;
                 case Config.FILTER_LANGUAGE:
                     content = this.parseLanguage(res.languages.available);
                     break;
+                case Config.FILTER_EVENT_TYPES:
+                    content = this.parseObjectKeyValue(res,'desc');
+                    break;
+                case Config.FILTER_DEVICE_TYPE:
+                    content = this.parseObjectKeyValue(res.devices,'name');
+                    break;
                 case Config.FILTER_SECTION:
-                    content = this.parseDevSec(res.sections,'name');
+                    content = this.parseObjectKeyValue(res.sections,'name');
+                    break;
+                case Config.FILTER_EXPLORER:
+                    content = this.parseObjectKeyValue(res,'name');
+                    break;
+                case Config.FILTER_RESOURCE:
+                    content = this.parseListObject(res,'title_es');
+                    break;
+                case Config.FILTER_RESOURCE_TERMS:
+                case Config.FILTER_TAXONOMY_TERMS:
+                case Config.FILTER_RESOURCE_TOPICS:
+                case Config.FILTER_RESOURCE_TYPES:
+                    content = this.parseListObject(res,'name_es');
                     break;
             }
             this.set('content',content);
@@ -50,7 +57,7 @@ define([
             );
             return content;
         },
-        parseDevSec: function(devsec,valueName){
+        parseObjectKeyValue: function(devsec,valueName){
             var content = [],
                 keys = _.keys(devsec),
                 values = _.values(devsec);
@@ -58,6 +65,17 @@ define([
                 content.push({
                     id: keys[index],
                     name: value[valueName]
+                });
+            });
+            return content;
+        },
+        parseListObject: function(res,valueName){
+            var content = [];
+            _.each(res,function(resource){
+                var r = _.pick(resource,'id',valueName);
+                content.push({
+                    id: r.id,
+                    name: r[valueName]
                 });
             });
             return content;

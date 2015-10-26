@@ -1,49 +1,70 @@
+//### Date Chart View
 'use strict';
 
 define([
     'jquery',
     'underscore',
     'backbone',
-    'higcharts-export-csv'
-], function($,_,Backbone,Highcharts){
+    'highstock-export-csv'
+], function ($, _, Backbone) {
+    // Creating DateChart template, used for charting a Date graph
     var DateChartView = Backbone.View.extend({
         el: '#result',
-        initialize: function(options){
-            if (_.size(this.$('#chart')) === 0){
+        // Initializes the chart element
+        initialize: function (options) {
+            // Creates the chart
+            if (_.size(this.$('#chart')) === 0) {
                 this.$el.append('<div id=\'chart\'></div>');
             }
             this.$chart = this.$('#chart');
-
+            // Creates the data list, pushing the Group, the UTC Date and the Index in there
             var data = [];
-            _.each(options.groups, function(elementGroup, index){
-                var date = elementGroup;
-                var dateUTC = Date.UTC(date.year,date.month-1,date.dayOfMonth,date.hour);
+            _.each(options.groups, function (elementGroup, index) {
+                var dateGroup = elementGroup;
+                var dateUTC = Date.UTC(dateGroup.year, dateGroup.month - 1, dateGroup.dayOfMonth, dateGroup.hour);
                 var elementData = options.data[index];
-                data.push([dateUTC,elementData]);
+                data.push([dateUTC, elementData]);
             });
             this.data = data;
+            Highcharts.setOptions({
+                global: {
+                    // Returns the difference between the UTC and the local time
+                    getTimezoneOffset: function () {
+                        var now = new Date();
+                        return now.getTimezoneOffset();
+                    }
+                }
+            });
         },
-        render: function(){
+        // Renders the chart using Highstock
+        render: function () {
             this.chart =
                 this.$chart.highcharts({
+                    //* No credits function used
                     credits: {
                         enabled: false
                     },
+                    //* Zoom used only for the X axis
                     chart: {
                         zoomType: 'x'
                     },
+                    //* Empty title for the chart
                     title: {
                         text: ''
                     },
+                    //* Datetime used for list the xAxis
                     xAxis: {
                         type: 'datetime'
                     },
+                    //* Nothing used for list the yAxis
                     yAxis: {
                         title: ''
                     },
+                    //* No legend used
                     legend: {
                         enabled: false
                     },
+                    //* Predefined configuration for the plotting
                     plotOptions: {
                         area: {
                             fillColor: {
@@ -70,11 +91,13 @@ define([
                             threshold: null
                         }
                     },
+                    //* Introduces the data to show
                     series: [{
                         name: 'Datos Estadisticos',
                         type: 'area',
                         data: this.data
                     }],
+                    //* Function added for exporting the CSV file type
                     exporting: {
                         csv: {
                             itemDelimiter: ";"
@@ -82,7 +105,8 @@ define([
                     }
                 });
         },
-        remove: function(){
+        // Removes the chart
+        remove: function () {
             this.$chart.remove();
         }
     });
