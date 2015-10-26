@@ -7,7 +7,6 @@ require.config({
 		underscore: '/vendor/bower/underscore/underscore',
 		q: '/vendor/bower/q/q',
 		backbone: '/vendor/bower/backbone/backbone',
-		bootstrap :  "/vendor/bower/bootstrap/dist/js/bootstrap.min",
 		material: '/vendor/bower/material-design-lite/material.min',
 		mustache: '/vendor/bower/mustache/mustache',
 		'highstock': '/vendor/bower/highstock/highstock.src',
@@ -25,12 +24,6 @@ require.config({
 				'jquery'
 			],
 			exports: 'Backbone'
-		},
-		bootstrap: {
-			deps: [
-				'jquery',
-                'material'
-			]
 		},
     	mustache: {
         	exports: 'Mustache'
@@ -68,7 +61,6 @@ require.config({
 require([
 	'backbone',
     'views/app',
-    'bootstrap',
     'material'
 ], function (Backbone,AppView) {
 	Backbone.history.start();

@@ -50,3 +50,7 @@ html, body {
 #statisticsModule .filter{
     margin-left: 5%;
 }
+
+#statisticsModule .filterSelectorItem{
+    cursor: pointer;
+}

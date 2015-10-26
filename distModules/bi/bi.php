@@ -33,23 +33,11 @@ class bi extends Module
      "includes" => array()
     ),
     array(
-     "id" => "bootstrap",
-     "params" => array("bootstrap"),
-     "installer" => "bower",
-     "includes" => array()
-    ),
-    array(
      "id" =>"select2",
      "params" => array("select2"),
      "installer" => "bower",
      "includes" => array()
     ),
-     /*array(
-     "id" =>"select2-bootstrap-css",
-     "params" => array("select2-bootstrap-css"),
-     "installer" => "bower",
-     "includes" => array()
-    ),*/
     array(
      "id" =>"mustache",
      "params" => array("mustache"),
