@@ -76,5 +76,6 @@
       // EXECUCIÓN EXPLORADOR
       explorer.exec();
 
+      console.log($('.select2GeozzyCustom'));
       $('.select2GeozzyCustom').select2();
     });
