@@ -15,6 +15,10 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   bufferPixels:150,
 
+  initialize: function( opts ) {
+
+  },
+
   setMap: function( mapObj ) {
     this.map = mapObj;
     this.setMapEvents();
@@ -195,7 +199,9 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
 
   markerEvent: function( eventType, data ) {
-    console.log('Evento tipo :'+eventType);
+
+
+
   }
 
 
