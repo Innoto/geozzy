@@ -56,8 +56,8 @@
         new geozzy.filters.filterSelectSimpleView(
           {
             mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: '.tipoPaisaxe .select2GeozzyCustom',
-            title:'',
+            containerClass: 'tipoPaisaxe select2GeozzyCustom',
+            //title:'asdfasfd',
             data: dataFilter1
           }
         )
@@ -66,8 +66,7 @@
         new geozzy.filters.filterSelectSimpleView(
           {
             mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: '.tipoZona',
-            title:'',
+            containerClass: 'tipoZona',
             data: dataFilter2
           }
         )
