@@ -68,8 +68,7 @@ class GeozzyCollectionView extends View
       ),
       'description' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Description' ), 'type' => 'textarea',
-          'value' => '<p>ola mundo<br />...probando ;-)</p>', 'htmlEditor' => 'true' )
+        'params' => array( 'label' => __( 'Description' ), 'type' => 'textarea', 'htmlEditor' => 'true' )
       ),
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgCollection',

@@ -227,9 +227,7 @@ class ResourceController {
       ),
       'content' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
-          'htmlEditor' => 'true',
-          'value' => '<p>ola mundo<br />...probando ;-)</p>' )
+        'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea', 'htmlEditor' => 'true' )
       ),
       'externalUrl' => array(
         'params' => array( 'label' => __( 'External URL' ) ),
