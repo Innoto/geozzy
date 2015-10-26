@@ -4,10 +4,9 @@ define([
     'backbone',
     'mustache',
     'text!templates/filters/sliderFilter.html',
-    'select2',
     'collections/filters/filters',
     'bootstrap-slider'
-], function ($, Backbone, Mustache, filtersTemplate, Select2, FiltersCollection, Slider) {
+], function ($, Backbone, Mustache, filtersTemplate, FiltersCollection, Slider) {
     // Creating SliderFilter template, used for filtering by Duration
     var SliderFilter = Backbone.View.extend({
         // Default value for tagName

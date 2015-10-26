@@ -4,11 +4,10 @@ define([
     'backbone',
     'mustache',
     'text!templates/filters/dateFilter.html',
-    'select2',
     'collections/filters/filters',
     'datetimepicker',
     'moment'
-], function ($, Backbone, Mustache, filtersTemplate, Select2, FiltersCollection, DateTimePicker, moment) {
+], function ($, Backbone, Mustache, filtersTemplate, FiltersCollection, DateTimePicker, moment) {
     // Creating DateFilter template, used for filtering by Date
     var DateFilter = Backbone.View.extend({
         // Default value for tagName

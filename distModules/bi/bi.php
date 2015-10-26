@@ -33,12 +33,6 @@ class bi extends Module
      "includes" => array()
     ),
     array(
-     "id" =>"select2",
-     "params" => array("select2"),
-     "installer" => "bower",
-     "includes" => array()
-    ),
-    array(
      "id" =>"mustache",
      "params" => array("mustache"),
      "installer" => "bower",
@@ -96,7 +90,7 @@ class bi extends Module
      "id" =>"eonasdan-bootstrap-datetimepicker",
      "params" => array("eonasdan-bootstrap-datetimepicker"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array("build/css/bootstrap-datetimepicker.min.css")
     ),
     array(
      "id" =>"q",

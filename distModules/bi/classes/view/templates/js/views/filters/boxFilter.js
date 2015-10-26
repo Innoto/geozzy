@@ -4,9 +4,8 @@ define([
     'backbone',
     'mustache',
     'text!templates/filters/boxFilter.html',
-    'select2',
     'collections/filters/filters'
-], function ($, Backbone, Mustache, filtersTemplate, Select2, FiltersCollection) {
+], function ($, Backbone, Mustache, filtersTemplate, FiltersCollection) {
     // Creating BoxFilter template, used for filtering by different options selected
     var BoxFilter = Backbone.View.extend({
         // Default value for tagName

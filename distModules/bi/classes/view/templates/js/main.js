@@ -12,7 +12,6 @@ require.config({
 		'highstock': '/vendor/bower/highstock/highstock.src',
 		'highstock-exporting': '/vendor/bower/highstock/modules/exporting.src',
 		'higcharts-export-csv': '/vendor/bower/funplus-highcharts-export-csv/export-csv',
-		'select2': '/vendor/bower/select2/dist/js/select2.min',
 		'moment': '/vendor/bower/moment/min/moment-with-locales.min',
 		'datetimepicker': '/vendor/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min',
 		'bootstrap-slider': '/vendor/bower/seiyria-bootstrap-slider/dist/bootstrap-slider.min'
@@ -40,16 +39,12 @@ require.config({
             deps: ['highstock-exporting'],
             exports: 'Highcharts'
         },
-		'select2': {
-			deps: ['jquery'],
-			exports: 'Select2'
-		},
 		'datetimepicker': {
-			deps: ['jquery','moment','bootstrap'],
+			deps: ['jquery','moment'],
 			exports: 'DateTimePicker'
 		},
 		'bootstrap-slider': {
-            deps: ['jquery', 'bootstrap'],
+            deps: ['jquery'],
             exports: 'Slider'
         },
         q: {
