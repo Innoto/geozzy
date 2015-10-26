@@ -72,7 +72,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     };
 
 
-    that.renderWithCluster();/*
+    that.renderWithoutCluster();/*
     if( that.clusterize != false ) {
       that.renderWithCluster();
 

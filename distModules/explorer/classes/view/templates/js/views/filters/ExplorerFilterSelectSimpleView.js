@@ -43,7 +43,7 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
 
 
 
-    var filterHtml = that.template( { filterClass: that.options.containerClass+'filtro1_select', title: that.title, options: filterOptions } );
+    var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.title, options: filterOptions } );
 
     // Print filter html into div
     if( !$(  that.options.mainCotainerClass+' .' +that.options.containerClass ).length ) {
