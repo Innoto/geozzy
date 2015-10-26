@@ -47,7 +47,7 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
 
     // Print filter html into div
     if( !$(  that.options.mainCotainerClass+' .' +that.options.containerClass ).length ) {
-      $( that.options.mainCotainerClass).append( '<div class="explorerFilterContainer '+ that.options.containerClass +'">' + filterHtml + '</div>' );
+      $( that.options.mainCotainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
     }
     else {
 
