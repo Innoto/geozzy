@@ -72,7 +72,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     };
 
 
-    that.renderWithCluster();/*
+    that.renderWithoutCluster();/*
     if( that.clusterize != false ) {
       that.renderWithCluster();
 
@@ -121,25 +121,28 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   renderWithCluster: function() {
     var that = this;
 
-    if( that.markerClusterer == false ) {
-      that.markers = [];
 
-      $.each( that.parentExplorer.resourceIndex.toJSON(), function(i,e) {
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng( e.lat, e.lng ),
-          icon: that.my_marker_icon,
-        });
-        marker.addListener('click', function() {
-          that.markerEvent('click');
-        });
-        marker.addListener('mouseover', function() {
-          that.markerEvent('hover');
-        });
+    that.markers = [];
 
-
-        that.markers.push(marker);
+    $.each( that.parentExplorer.resourceIndex.toJSON(), function(i,e) {
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng( e.lat, e.lng ),
+        icon: that.my_marker_icon,
+      });
+      marker.addListener('click', function() {
+        that.markerEvent('click');
+      });
+      marker.addListener('mouseover', function() {
+        that.markerEvent('hover');
       });
 
+
+      that.markers.push(marker);
+    });
+
+
+
+    if( that.markerClusterer == false ) {
 
       that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
         maxZoom: 15,
