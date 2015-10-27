@@ -4,7 +4,7 @@
 
 .explorerLayout{
   //.mixinDevel();
-  .explorerBase( @explFilter-h: 8%,  @explGallery-h: 36%,  @explMap-h: 56% );
+  .explorerBase( @explFilter-h: 6%,  @explGallery-h: 38%,  @explMap-h: 56% );
 }
 
 .paisaxesExplorer{
@@ -20,7 +20,7 @@
   .explorer-container-filter{
     .explorerFilterElement{
       float:left;
-      margin: 0 10px;
+      margin: 0 5px;
 
       &.select2GeozzyCustom{
         .select2Theme( @width: 200px, @height: 45px, @bckHeader: #90C147, @colorHeader: #fff);
@@ -28,6 +28,14 @@
       &.select2GeozzyRed{
         .select2Theme( @width: 200px, @height: 45px, @bckHeader: #CD4C56, @colorHeader: #fff);
       }//.select2GeozzyRed
+    }
+  }
+  .explorer-container-gallery{
+    .explorerListContent{
+      padding: 0px 60px;
+      .element{
+        padding: 10px 5px;
+      }
     }
   }
 }

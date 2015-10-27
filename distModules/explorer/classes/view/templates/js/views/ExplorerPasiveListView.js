@@ -3,8 +3,24 @@ if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 
 geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
-  tpl: _.template('<div class="pager"> <%=pager%> </div><div class="content"><%=content%></div>'),
-  tplElement: _.template('<div class="element"> <%-contador%> - <%-title%> <b>id:</b> <%- id %> <b>En mapa:</b> <%- inMap %> </div>'),
+  tpl: _.template(
+    '<div class="explorerListPager">'+
+      //'<%=pager%>'+
+    '</div>'+
+    '<div class="explorerListContent container-fluid">'+
+      '<div class="">'+
+        '<%=content%>'+
+      '</div>'+
+    '</div>'),
+  tplElement: _.template(
+    '<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 element element-<%- id %>">'+
+      '<div class="elementImg">'+
+        '<img class="img-responsive" src="http://lorempixel.com/400/250/nature" />'+
+      '</div>'+
+      '<div class="elementInfo">'+
+        '<%-title%>'+
+      '</div>'+
+    '</div>'),
   tplPager: _.template(' <span class="previous">◀</span> <% for( c=0 ; c <= pages ; c++){ %> <span class="page" <% if(c==v.currentPage){ %>style="color:white;"<% } %>>●</span> <%} %> <span class="next">▶</span>'),
 
   displayType: 'pasiveList',
@@ -28,7 +44,7 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
   getVisibleResourceIds: function() {
     this.parentExplorer.resourceIndex.removePagination();
 
-    var visibleResources = this.parentExplorer.resourceIndex.setPerPage(7);
+    var visibleResources = this.parentExplorer.resourceIndex.setPerPage(6);
 
     visibleResources.setSort('mapVisible', 'desc');
 
