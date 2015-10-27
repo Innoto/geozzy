@@ -49,10 +49,18 @@ function bindResourceForm(){
   $('select.cgmMForm-field-rExtAccommodation_accommodationFacilities').multiList({
     orientation: 'horizontal'
   });
-
-  $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').select2();
-  $('select.cgmMForm-field-rExtAppLugar_rextAppLugarType').select2();
-  $('select.cgmMForm-field-rExtAppEspazoNatural_rextAppEspazoNaturalType').select2();
+  $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkType').multiList({
+    orientation: 'horizontal'
+  });
+  $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').multiList({
+    orientation: 'horizontal'
+  });
+  $('select.cgmMForm-field-rExtAppLugar_rextAppLugarType').multiList({
+    orientation: 'horizontal'
+  });
+  $('select.cgmMForm-field-rExtAppEspazoNatural_rextAppEspazoNaturalType').multiList({
+    orientation: 'horizontal'
+  });
 
 
   // Location Map
@@ -66,7 +74,7 @@ function bindResourceForm(){
     // lonInput.parent().hide();
     // defaultZoom.parent().hide();
 
-    locationContainer.append('<div id="resourceLocationMap"></div>');
+    //locationContainer.append('<div id="resourceLocationMap"></div>');
 
     var latValue = 0;
     var lonValue = 0;
@@ -133,8 +141,16 @@ function bindResourceForm(){
       resourceMarker.setMap( resourceMap);
     }
 
+    $('.locationData .cgmMForm-field').each(function(i,e){
+      $(e).change(function(){
+        newPos = new google.maps.LatLng( latInput.val(), lonInput.val() );
+        resourceMarker.position.lat(latInput.val());
+        resourceMarker.position.lng(lonInput.val());
+        resourceMap.setCenter(newPos);
+        resourceMarker.setPosition(newPos);
+      });
+    });
   }
-
 }
 
 function successCollectionForm( data ){

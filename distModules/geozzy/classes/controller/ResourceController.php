@@ -549,6 +549,24 @@ class ResourceController {
       $cols['col4']['image'] = array( $formPartBlock, __( 'Select a image' ), 'fa-file-image-o' );
     }
 
+    // Componemos el bloque geolocalización
+    $resourceLocLat = $formBlock->getTemplateVars('locLat');
+    $resourceLocLon = $formBlock->getTemplateVars('locLon');
+    $resourceDefaultZoom = $formBlock->getTemplateVars('defaultZoom');
+
+    $locationData = '<div class="row locData">'.$resourceLocLat.'</div>
+                     <div class="row locData">'.$resourceLocLon.'</div>
+                     <div class="row locData">'.$resourceDefaultZoom.'</div>
+                     <div class="row btn btn-primary col-md-offset-3">'.__("Authomatic Location").'</div>';
+
+
+    $locAll = '<div class="location">
+            <div class="row"><div class="col-lg-6"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div><div id="resourceLocationMap"></div></div>
+            <div class="col-lg-6 locationData">'.$locationData.'</div></div>
+            </div>';
+
+    $adminColsInfo['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
+
 
     // Recuperamos las temáticas que tiene asociadas el recurso
     $resourceId = $formBlock->getTemplateVars('resourceId');
@@ -1085,33 +1103,37 @@ class ResourceController {
     $baseId = $baseObj->getter( 'id' );
     // $taxTermIds = $form->getFieldValue( $fieldName );
 
-
     if( $taxTermIds !== false && !is_array( $taxTermIds ) ) {
       $taxTermIds = ( $taxTermIds !== '' &&  is_numeric( $taxTermIds ) ) ? array( $taxTermIds ) : false;
     }
 
     // Si estamos editando, repasamos y borramos relaciones sobrantes
     if( $baseId ) {
-      $relModel = new ResourceTaxonomytermModel();
+
       $relFilter = array( 'resource' => $baseId );
+
       if( is_numeric( $taxGroup ) ) {
-        $relFilter[ 'TaxonomygroupModel.id' ] = $taxGroup;
+        $relFilter[ 'taxgroup' ] = $taxGroup;
       }
       else {
-        $relFilter[ 'TaxonomygroupModel.idName' ] = $taxGroup;
+        $relFilter[ 'idNameTaxgroup' ] = $taxGroup;
       }
+
+      $relModel = new ResourceTaxonomyAllModel();
       $relPrevList = $relModel->listItems( array(
-        'filters' => $relFilter,
-        'affectsDependences' => array( 'TaxonomytermModel' ,'TaxonomygroupModel' ),
-        'joinType' => 'RIGHT'
+        'filters' => $relFilter
       ));
+
       if( $relPrevList ) {
         // estaban asignados antes
         $relPrevInfo = array();
         while( $relPrev = $relPrevList->fetch() ){
-          $relPrevInfo[ $relPrev->getter( 'taxonomyterm' ) ] = $relPrev->getter( 'id' );
-          if( $taxTermIds === false || !in_array( $relPrev->getter( 'taxonomyterm' ), $taxTermIds ) ){ // desasignar
-            $relPrev->delete();
+          $relPrevInfo[ $relPrev->getter( 'id' ) ] = $relPrev->getter( 'idResTaxTerm' );
+          if( $taxTermIds === false || !in_array( $relPrev->getter( 'id' ), $taxTermIds ) ){ // desasignar
+            $restermModel = new ResourceTaxonomytermModel();
+            // buscamos el término eliminado y lo borramos
+            $resterm = $restermModel->ListItems( array( 'filters' => array( 'resource' => $baseId, 'taxonomyterm' =>$relPrev->getter( 'id' ) ) ) )->fetch();
+            $resterm->delete();
           }
         }
       }
@@ -1126,6 +1148,7 @@ class ResourceController {
         if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
           $info[ 'id' ] = $relPrevInfo[ $value ];
         }
+
         $relObj = new ResourceTaxonomytermModel( $info );
         if( !$relObj->save() ) {
           $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );
