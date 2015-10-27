@@ -41,9 +41,15 @@
 
       // DISPLAYS
       var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
-      var mapa = new geozzy.explorerDisplay.mapView();
-      mapa.setMap( resourceMap );
+      var mapa = new geozzy.explorerDisplay.mapView({
+        map: resourceMap,
+        markerClick: function( marker ) {
 
+        },
+        markerHover: function( marker ) {
+
+        }
+      });
 
       explorer.addDisplay( listaPasiva );
       explorer.addDisplay( mapa );
