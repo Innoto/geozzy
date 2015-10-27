@@ -15,6 +15,7 @@ html, body {
 #statisticsModule #map {
     width: 100%;
     min-height: 600px;
+    z-index: 1;
 }
 
 #statisticsModule .map {
@@ -57,4 +58,8 @@ html, body {
 
 #statisticsModule .bootstrap-datetimepicker-widget table th{
     background: none;
+}
+
+#statisticsModule .dropdown-menu{
+    z-index: 1;
 }
