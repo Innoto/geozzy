@@ -66,7 +66,7 @@
         new geozzy.filters.filterSelectSimpleView(
           {
             mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: 'tipoZona',
+            containerClass: 'tipoZona select2Geozzy',
             data: dataFilter2
           }
         )
@@ -76,6 +76,13 @@
       // EXECUCIÓN EXPLORADOR
       explorer.exec();
 
-      console.log($('.select2GeozzyCustom'));
-      $('.select2GeozzyCustom').select2();
+
+
+      //
+      $('select.select2GeozzyCustom').select2({
+         minimumResultsForSearch: -1
+      });  
+
+
+      $('select.select2Geozzy').select2();
     });
