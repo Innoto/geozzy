@@ -118,7 +118,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $locationData = '<div class="row">'.$resourceLocLat.'</div>
                      <div class="row">'.$resourceLocLon.'</div>
                      <div class="row">'.$resourceDefaultZoom.'</div>
-                     <div class="row btn btn-primary col-md-offset-3">'.__("Authomatic Location").'</div>';
+                     <div class="row btn btn-primary col-md-offset-3">'.__("Automatic Location").'</div>';
 
 
     $locAll = '<div class="location">

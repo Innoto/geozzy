@@ -1055,32 +1055,46 @@ class ResourceController {
 
 
   private function setFormTopic( $form, $fieldName, $baseObj ) {
+
+    // print('SET TOPIC:');
+    // print_r($baseObj->data);
     $baseId = $baseObj->getter( 'id' );
+
     $formValues = $form->getFieldValue( $fieldName );
+
+
+
     $relPrevInfo = false;
 
     if( $formValues !== false && !is_array( $formValues ) ) {
       $formValues = array( $formValues );
     }
 
-    // Si estamos editando, repasamos y borramos relaciones sobrantes
-    if( $baseId ) {
-      $relModel = new ResourceTopicModel();
-      $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
-      if( $relPrevList ) {
-        // estaban asignados antes
-        $relPrevInfo = array();
-        while( $relPrev = $relPrevList->fetch() ){
-          $relPrevInfo[ $relPrev->getter( 'topic' ) ] = $relPrev->getter( 'id' );
-          if( $formValues === false || !in_array( $relPrev->getter( 'topic' ), $formValues ) ){ // desasignar
-            $relPrev->delete();
-          }
-        }
+    if (count($formValues)===1){
+      $elm = current($formValues);
+      if (!$elm || $elm === 0){
+         $formValues = false;
       }
     }
 
-    // Creamos-Editamos todas las relaciones
     if( $formValues !== false ) {
+      // Si estamos editando, repasamos y borramos relaciones sobrantes
+      if( $baseId ) {
+        $relModel = new ResourceTopicModel();
+        $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
+        if( $relPrevList ) {
+          // estaban asignados antes
+          $relPrevInfo = array();
+          while( $relPrev = $relPrevList->fetch() ){
+            $relPrevInfo[ $relPrev->getter( 'topic' ) ] = $relPrev->getter( 'id' );
+            if( $formValues === false || !in_array( $relPrev->getter( 'topic' ), $formValues ) ){ // desasignar
+              $relPrev->delete();
+            }
+          }
+        }
+      }
+
+      // Creamos-Editamos todas las relaciones
       $weight = 0;
       foreach( $formValues as $value ) {
         $weight++;
@@ -1088,6 +1102,8 @@ class ResourceController {
         if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
           $info[ 'id' ] = $relPrevInfo[ $value ];
         }
+
+        // Creamos la nueva relación
         $relObj = new ResourceTopicModel( $info );
         if( !$relObj->save() ) {
           $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );

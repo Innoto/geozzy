@@ -8,7 +8,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   map: false ,
   projection: false,
   ready:false,
-  clusterize:false ,
 
   markers: false,
   markerClusterer: false,
@@ -17,6 +16,17 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   initialize: function( opts ) {
 
+    this.options = new Object({
+      map : false,
+      clusterize: false,
+      markerClick: function(){},
+      markerHover: function(){},
+      clusterClick: function(){},
+      clusterHover: function(){}
+    });
+    $.extend(true, this.options, opts);
+
+    this.setMap( this.options.map );
   },
 
   setMap: function( mapObj ) {
@@ -76,15 +86,15 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     };
 
 
-    that.renderWithoutCluster();/*
-    if( that.clusterize != false ) {
+
+    if( that.options.clusterize != false ) {
       that.renderWithCluster();
 
     }
     else {
       that.renderWithoutCluster();
 
-    }*/
+    }
 
 
 
@@ -112,10 +122,10 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       });
 
       marker.addListener('click', function() {
-        that.markerEvent('click');
+        that.options.markerClick( marker );
       });
       marker.addListener('mouseover', function() {
-        that.markerEvent('hover');
+        that.options.markerHover( marker );
       });
 
       that.markers.push(marker);
@@ -134,10 +144,10 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         icon: that.my_marker_icon,
       });
       marker.addListener('click', function() {
-        that.markerEvent('click');
+        that.options.markerClick( marker );
       });
       marker.addListener('mouseover', function() {
-        that.markerEvent('hover');
+        that.options.markerHover( marker );
       });
 
 
@@ -194,14 +204,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   isReady: function() {
     return this.ready;
-  },
-
-
-
-  markerEvent: function( eventType, data ) {
-
-
-
   }
 
 
