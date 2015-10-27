@@ -19,7 +19,7 @@ define([], function () {
         filterTaxonomyTerms = 17,
         filterSeconds = 18;
     // Variables for the both domains to access
-    var urlBIserver = "http://localhost:8080",
+    var urlBIserver = "http://test.geozzy.itg.es:10164",
         urlGeozzy = "http://galiciaagochada.nnt/api";
 
     return {
