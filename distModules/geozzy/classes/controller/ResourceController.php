@@ -1114,33 +1114,37 @@ class ResourceController {
     $baseId = $baseObj->getter( 'id' );
     // $taxTermIds = $form->getFieldValue( $fieldName );
 
-
     if( $taxTermIds !== false && !is_array( $taxTermIds ) ) {
       $taxTermIds = ( $taxTermIds !== '' &&  is_numeric( $taxTermIds ) ) ? array( $taxTermIds ) : false;
     }
 
     // Si estamos editando, repasamos y borramos relaciones sobrantes
     if( $baseId ) {
-      $relModel = new ResourceTaxonomytermModel();
+
       $relFilter = array( 'resource' => $baseId );
+
       if( is_numeric( $taxGroup ) ) {
-        $relFilter[ 'TaxonomygroupModel.id' ] = $taxGroup;
+        $relFilter[ 'taxgroup' ] = $taxGroup;
       }
       else {
-        $relFilter[ 'TaxonomygroupModel.idName' ] = $taxGroup;
+        $relFilter[ 'idNameTaxgroup' ] = $taxGroup;
       }
+
+      $relModel = new ResourceTaxonomyAllModel();
       $relPrevList = $relModel->listItems( array(
-        'filters' => $relFilter,
-        'affectsDependences' => array( 'TaxonomytermModel' ,'TaxonomygroupModel' ),
-        'joinType' => 'RIGHT'
+        'filters' => $relFilter
       ));
+
       if( $relPrevList ) {
         // estaban asignados antes
         $relPrevInfo = array();
         while( $relPrev = $relPrevList->fetch() ){
-          $relPrevInfo[ $relPrev->getter( 'taxonomyterm' ) ] = $relPrev->getter( 'id' );
-          if( $taxTermIds === false || !in_array( $relPrev->getter( 'taxonomyterm' ), $taxTermIds ) ){ // desasignar
-            $relPrev->delete();
+          $relPrevInfo[ $relPrev->getter( 'id' ) ] = $relPrev->getter( 'idResTaxTerm' );
+          if( $taxTermIds === false || !in_array( $relPrev->getter( 'id' ), $taxTermIds ) ){ // desasignar
+            $restermModel = new ResourceTaxonomytermModel();
+            // buscamos el término eliminado y lo borramos
+            $resterm = $restermModel->ListItems( array( 'filters' => array( 'resource' => $baseId, 'taxonomyterm' =>$relPrev->getter( 'id' ) ) ) )->fetch();
+            $resterm->delete();
           }
         }
       }
@@ -1155,6 +1159,7 @@ class ResourceController {
         if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
           $info[ 'id' ] = $relPrevInfo[ $value ];
         }
+
         $relObj = new ResourceTaxonomytermModel( $info );
         if( !$relObj->save() ) {
           $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );

@@ -30,6 +30,15 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $form->setFieldParam('starred', 'type', 'reserved');
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
+    // eliminamos los campos de contacto que no necesitamos ->falla en email (TODO PORTO)
+    $form->removeField('rExtContact_address');
+    $form->removeField('rExtContact_city');
+    $form->removeField('rExtContact_cp');
+    $form->removeField('rExtContact_province');
+    $form->removeField('rExtContact_phone');
+    $form->removeField('rExtContact_email');
+    $form->removeField('externalUrl');
+    $form->removeField('rExtContact_timetable');
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
@@ -67,7 +76,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
     $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address', 'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone', 'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
     $formContact2 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_directions') );
-    
+
     // Componemos el bloque geolocalización
     $templateBlock = $formBlock->getTemplateVars('formFieldsArray');
     $resourceLocLat = $templateBlock['locLat'];
