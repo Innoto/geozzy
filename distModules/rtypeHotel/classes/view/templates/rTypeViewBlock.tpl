@@ -2,19 +2,27 @@
 
 <p> --- rTypeViewBlock.tpl en rTypeHotel module --- </p>
 
-<div class="resViewBlock">
+
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
-  <div class="title">
-    <label class="cgmMForm">{t}Title{/t}</label>
-    {$title|escape:'htmlall'}
+  <div class="row image">
+    {if isset( $image )}
+      <img src="/cgmlformfilews/{$image.id}"
+        {if isset( $image.title )}alt="{$image.title}" title="{$image.title}"{/if}></img>
+    {else}
+      <p>{t}None{/t}</p>
+    {/if}
   </div>
 
-  <div class="shortDescription">
-    <label class="cgmMForm">{t}Short description{/t}</label>
-    {$shortDescription|escape:'htmlall'}
-  </div>
+<div class="row resViewBlock">
+  <h3>
+    <div class="shortDescription">
+      {$shortDescription|escape:'htmlall'}
+    </div>
+  </h3>
+
+  <p>--- Galería multimedia ---</p>
 
   <div class="mediumDescription">
     <label for="mediumDescription" class="cgmMForm">{t}Medium description{/t}</label>

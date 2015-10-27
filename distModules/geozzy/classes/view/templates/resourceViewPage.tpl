@@ -3,10 +3,20 @@
 {block name="headCssIncludes" append}
 <style type="text/css">
   label { color:green; padding: 5px 0; }
-  .resource div { color:red; padding: 5px 20px; }
+  .resource div { }
+  .bodyContent{
+    background-color:#fff;
+    width: 960px;
+    margin:auto;
+  }
+  .resViewBlock{
+    padding:20px;
+  }
+  .resViewBlock .image{
+      width: 960px;
+  }
 </style>
 {/block}
-
 
 {block name="headTitle" prepend}
 {if $headTitle or $title}{$headTitle|default:$title|escape:'htmlall'} - {/if}
@@ -27,8 +37,12 @@
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>
   {else}
-  <h2 style="color:#30494E;">GEOZZY APP - {t}View Resource{/t}</h2>
-  <h3>{t}Resource{/t}</h3>
+  <h2>
+    <div class="title">
+      {$title|escape:'htmlall'}
+    </div>
+  </h2>
+
   <div class="resource">
     {$resourceBlock}
   </div>

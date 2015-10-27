@@ -201,7 +201,7 @@ class GeozzyResourceView extends View {
       $this->template->assign( 'htmlMsg', $htmlMsg );
       error_log( 'NON hai Recurso: ' . $htmlMsg );
     }
-
+    $this->template->addClientStyles('styles/masterResource.less');
     $this->template->setTpl( 'resourceViewPage.tpl', 'geozzy' );
     $this->template->exec();
   } // function showResource( $resId = false )

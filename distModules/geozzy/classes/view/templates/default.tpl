@@ -16,7 +16,7 @@
 </head>
 <body style="background:#BFE3E9;">
 
-  <div class="bodyContent">
+  <div class="row bodyContent">
     {block name="bodyContent"}{/block}
   </div>
 

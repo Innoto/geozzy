@@ -6,15 +6,19 @@
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
-  <div class="title">
+  <!-- <div class="title">
     <label class="cgmMForm">{t}Title{/t}</label>
     {$title|escape:'htmlall'}
   </div>
-
   <div class="shortDescription">
     <label class="cgmMForm">{t}Short description{/t}</label>
     {$shortDescription|escape:'htmlall'}
-  </div>
+  </div> -->
+  <h3>
+    <div class="shortDescription">
+      {$shortDescription|escape:'htmlall'}
+    </div>
+  </h3>
 
   <div class="mediumDescription">
     <label for="mediumDescription" class="cgmMForm">{t}Medium description{/t}</label>
