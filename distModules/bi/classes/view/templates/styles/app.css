@@ -54,3 +54,7 @@ html, body {
 #statisticsModule .filterSelectorItem{
     cursor: pointer;
 }
+
+#statisticsModule .bootstrap-datetimepicker-widget table th{
+    background: none;
+}
