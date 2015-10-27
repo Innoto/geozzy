@@ -70,6 +70,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
 
     // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
     $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address', 'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone', 'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
+    $formContact2 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_directions') );
     $adminColsInfo['col8']['contact1'] = array();
 
     if( $formContact1 ) {
@@ -77,12 +78,27 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
       $adminColsInfo['col8']['contact1'] = array( $formPartBlock, __( 'Contact' ), false );
     }
 
-    // Extraemos de nuevo los campos de localización y le añadimos Cómo llegar de la extensión contacto para visualizarlos en el mismo bloque
-    $formLatLon = $adminViewResource->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom', 'rExtContact_directions' ) );
-    if( $formLatLon ) {
-      $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formLatLon);
-      $adminColsInfo['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
-    }
+    // Componemos el bloque geolocalización
+    $templateBlock = $formBlock->getTemplateVars('formFieldsArray');
+    $resourceLocLat = $templateBlock['locLat'];
+    $resourceLocLon = $templateBlock['locLon'];
+    $resourceDefaultZoom = $templateBlock['defaultZoom'];
+    $resourceDirections = $templateBlock['rExtContact_directions'];
+
+
+    $locationData = '<div class="row">'.$resourceLocLat.'</div>
+                     <div class="row">'.$resourceLocLon.'</div>
+                     <div class="row">'.$resourceDefaultZoom.'</div>
+                     <div class="row btn btn-primary col-md-offset-3">'.__("Authomatic Location").'</div>';
+
+
+    $locAll = '<div class="location">
+            <div class="row"><div class="col-lg-6"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div><div id="resourceLocationMap"></div></div>
+            <div class="col-lg-6 locationData">'.$locationData.'</div></div>
+            <div class="locationDirections">'.$resourceDirections.'</div>
+            </div>';
+
+    $adminColsInfo['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
 
     // Resordenamos los bloques de acuerdo al diseño
     $adminColsInfoOrd = array();

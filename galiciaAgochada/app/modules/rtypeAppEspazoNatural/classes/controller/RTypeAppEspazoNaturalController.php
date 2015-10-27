@@ -30,6 +30,15 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $form->setFieldParam('starred', 'type', 'reserved');
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
+    // eliminamos los campos de contacto que no necesitamos ->falla en email (TODO PORTO)
+    $form->removeField('rExtContact_address');
+    $form->removeField('rExtContact_city');
+    $form->removeField('rExtContact_cp');
+    $form->removeField('rExtContact_province');
+    $form->removeField('rExtContact_phone');
+    $form->removeField('rExtContact_email');
+    $form->removeField('externalUrl');
+    $form->removeField('rExtContact_timetable');
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
@@ -66,13 +75,29 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
 
     // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
     $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address', 'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone', 'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
+    $formContact2 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_directions') );
 
-    // Extraemos de nuevo los campos de localización y le añadimos Cómo llegar de la extensión contacto para visualizarlos en el mismo bloque
-    $formLatLon = $adminViewResource->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom', 'rExtContact_directions' ) );
-    if( $formLatLon ) {
-      $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formLatLon);
-      $adminColsInfo['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
-    }
+    // Componemos el bloque geolocalización
+    $templateBlock = $formBlock->getTemplateVars('formFieldsArray');
+    $resourceLocLat = $templateBlock['locLat'];
+    $resourceLocLon = $templateBlock['locLon'];
+    $resourceDefaultZoom = $templateBlock['defaultZoom'];
+    $resourceDirections = $templateBlock['rExtContact_directions'];
+
+
+    $locationData = '<div class="row">'.$resourceLocLat.'</div>
+                     <div class="row">'.$resourceLocLon.'</div>
+                     <div class="row">'.$resourceDefaultZoom.'</div>
+                     <div class="row btn btn-primary col-md-offset-3">'.__("Authomatic Location").'</div>';
+
+
+    $locAll = '<div class="location">
+            <div class="row"><div class="col-lg-6"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div><div id="resourceLocationMap"></div></div>
+            <div class="col-lg-6 locationData">'.$locationData.'</div></div>
+            <div class="locationDirections">'.$resourceDirections.'</div>
+            </div>';
+
+    $adminColsInfo['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
 
     // Resordenamos los bloques de acuerdo al diseño
     $adminColsInfoOrd = array();
