@@ -15,11 +15,12 @@ html, body {
 #statisticsModule #map {
     width: 100%;
     min-height: 600px;
+    z-index: 5;
 }
 
 #statisticsModule .map {
     min-height: 180px;
-    z-index: 1;
+    z-index: 5;
 }
 
 #statisticsModule .btn-group,
@@ -53,4 +54,12 @@ html, body {
 
 #statisticsModule .filterSelectorItem{
     cursor: pointer;
+}
+
+#statisticsModule .bootstrap-datetimepicker-widget table th{
+    background: none;
+}
+
+#statisticsModule .dropdown-menu{
+    z-index: 8;
 }

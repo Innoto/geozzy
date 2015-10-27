@@ -41,9 +41,15 @@
 
       // DISPLAYS
       var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
-      var mapa = new geozzy.explorerDisplay.mapView();
-      mapa.setMap( resourceMap );
+      var mapa = new geozzy.explorerDisplay.mapView({
+        map: resourceMap,
+        markerClick: function( marker ) {
 
+        },
+        markerHover: function( marker ) {
+
+        }
+      });
 
       explorer.addDisplay( listaPasiva );
       explorer.addDisplay( mapa );
@@ -66,7 +72,7 @@
         new geozzy.filters.filterSelectSimpleView(
           {
             mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: 'tipoZona select2Geozzy',
+            containerClass: 'tipoZona select2GeozzyRed',
             data: dataFilter2
           }
         )
@@ -81,8 +87,9 @@
       //
       $('select.select2GeozzyCustom').select2({
          minimumResultsForSearch: -1
-      });  
+      });
 
 
-      $('select.select2Geozzy').select2();
+      $('select.select2GeozzyRed').select2();
+      $('select.select2GeozzyRed').select2('open');
     });
