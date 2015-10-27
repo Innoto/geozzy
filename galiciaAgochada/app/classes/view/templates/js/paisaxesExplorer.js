@@ -78,12 +78,19 @@
 
 
 
-      //
+
+      function formatState (state) {
+        if (!state.id) { return state.text; }
+        var $state = $(
+          '<span><i class="fa fa-tree"></i> ' + state.text + '</span>'
+        );
+        return $state;
+      };
+
       $('select.select2GeozzyCustom').select2({
-         minimumResultsForSearch: -1
+         minimumResultsForSearch: -1,
+         templateSelection: formatState,
+         templateResult: formatState
       });
-
-
       $('select.select2GeozzyRed').select2();
-      $('select.select2GeozzyRed').select2('open');
     });
