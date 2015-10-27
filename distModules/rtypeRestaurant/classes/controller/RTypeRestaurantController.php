@@ -24,6 +24,8 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $rTypeExtNames[] = 'rextEatAndDrink';
     $this->eatCtrl = new RExtEatAndDrinkController( $this );
     $rExtFieldNames = $this->eatCtrl->manipulateForm( $form );
+    // Elimino los campos de la extensión que no quiero usar
+    $form->removeField('rextEatAndDrink_capacity');
 
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
