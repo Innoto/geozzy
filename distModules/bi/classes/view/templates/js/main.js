@@ -14,7 +14,8 @@ require.config({
 		'higcharts-export-csv': '/vendor/bower/funplus-highcharts-export-csv/export-csv',
 		'moment': '/vendor/bower/moment/min/moment-with-locales.min',
 		'datetimepicker': '/vendor/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min',
-		'bootstrap-slider': '/vendor/bower/seiyria-bootstrap-slider/dist/bootstrap-slider.min'
+		'bootstrap-slider': '/vendor/bower/seiyria-bootstrap-slider/dist/bootstrap-slider.min',
+		'select2': '/vendor/bower/select2/dist/js/select2.full'
 	},
 	shim: {
 		backbone: {
@@ -49,7 +50,11 @@ require.config({
         },
         q: {
             exports: 'q'
-        }
+        },
+        'select2': {
+            deps: ['jquery'],
+            exports: 'select2'
+        },
 	}
 });
 
