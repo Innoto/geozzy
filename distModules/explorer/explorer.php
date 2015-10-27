@@ -59,6 +59,7 @@ class explorer extends Module
     'js/views/ExplorerActiveListView.js',
     'js/views/ExplorerPasiveListView.js',
     'js/views/ExplorerMapView.js',
+    'js/views/ExplorerInfoView.js',    
     'js/Explorer.js'
   );
 
