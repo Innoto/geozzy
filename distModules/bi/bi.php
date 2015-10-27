@@ -33,18 +33,6 @@ class bi extends Module
      "includes" => array()
     ),
     array(
-     "id" => "bootstrap",
-     "params" => array("bootstrap"),
-     "installer" => "bower",
-     "includes" => array()
-    ),
-    array(
-     "id" =>"select2",
-     "params" => array("select2"),
-     "installer" => "bower",
-     "includes" => array()
-    ),
-    array(
      "id" =>"mustache",
      "params" => array("mustache"),
      "installer" => "bower",
@@ -57,14 +45,14 @@ class bi extends Module
      "includes" => array('material.min.js','material.min.css')
     ),
     array(
-     "id" =>"highcharts-release",
-     "params" => array("highcharts-release"),
+     "id" =>"highstock",
+     "params" => array("highstock-release#~2.1.9"),
      "installer" => "bower",
      "includes" => array()
     ),
     array(
      "id" =>"funplus-highcharts-export-csv",
-     "params" => array("funplus-highcharts-export-csv"),
+     "params" => array("funplus-highcharts-export-csv#~1.0.4"),
      "installer" => "bower",
      "includes" => array()
     ),
@@ -80,12 +68,18 @@ class bi extends Module
      "installer" => "bower",
      "includes" => array('plugins/leaflet-heatmap.js','build/heatmap.js')
     ),
-    /*array(
-     "id" =>"select2-bootstrap-css",
-     "params" => array("select2-bootstrap-css"),
+    array(
+     "id" =>"leaflet-areaselect",
+     "params" => array("leaflet-areaselect"),
      "installer" => "bower",
-     "includes" => array()
-    ),*/
+     "includes" => array("src/leaflet-areaselect.css","src/leaflet-areaselect.js")
+    ),
+    array(
+     "id" =>"leaflet.heat",
+     "params" => array("Leaflet.heat#*"),
+     "installer" => "bower",
+     "includes" => array("dist/leaflet-heat.js")
+    ),
     array(
      "id" =>"moment",
      "params" => array("moment"),
@@ -96,9 +90,20 @@ class bi extends Module
      "id" =>"eonasdan-bootstrap-datetimepicker",
      "params" => array("eonasdan-bootstrap-datetimepicker"),
      "installer" => "bower",
+     "includes" => array("build/css/bootstrap-datetimepicker.min.css")
+    ),
+    array(
+     "id" =>"q",
+     "params" => array("q#1.0.1"),
+     "installer" => "bower",
      "includes" => array()
+    ),
+    array(
+     "id" =>"seiyria-bootstrap-slider",
+     "params" => array("seiyria-bootstrap-slider"),
+     "installer" => "bower",
+     "includes" => array("dist/css/bootstrap-slider.css")
     )
-
   );
 
   public $includesCommon = array(

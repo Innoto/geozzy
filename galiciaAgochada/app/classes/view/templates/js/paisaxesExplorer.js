@@ -15,24 +15,12 @@
         {value:'12', title: 'Indo oceánica'}
       ];
 
-
       var dataFilter2 = [
-        {value:'*', title: 'Todos os públicos'},
-        {value:'13', title: 'Nenos'},
-        {value:'14', title: 'Adultos'},
-        {value:'15', title: 'Toda a familia'}
-      ];
-
-      var dataFilter3 = [
         {value:'*', title: 'Calquera'},
         {value:'16', title: 'De mañá'},
         {value:'17', title: 'De tarde'},
         {value:'18', title: 'Todo o día'}
       ];
-
-
-
-
 
 
 
@@ -68,8 +56,8 @@
         new geozzy.filters.filterSelectSimpleView(
           {
             mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: 'filtro1',
-            title:'Tipo de cociña',
+            containerClass: 'tipoPaisaxe select2GeozzyCustom',
+            //title:'asdfasfd',
             data: dataFilter1
           }
         )
@@ -78,19 +66,8 @@
         new geozzy.filters.filterSelectSimpleView(
           {
             mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: 'filtro2',
-            title:'Idades',
+            containerClass: 'tipoZona select2Geozzy',
             data: dataFilter2
-          }
-        )
-      );
-      explorer.addFilter(
-        new geozzy.filters.filterSelectSimpleView(
-          {
-            mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: 'filtro3',
-            title:'Horario de apertura',
-            data: dataFilter3
           }
         )
       );
@@ -100,4 +77,12 @@
       explorer.exec();
 
 
+
+      //
+      $('select.select2GeozzyCustom').select2({
+         minimumResultsForSearch: -1
+      });  
+
+
+      $('select.select2Geozzy').select2();
     });

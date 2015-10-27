@@ -13,11 +13,16 @@ define([
         },
         defaults: {
             metrics: [],
+            filterMetrics: [],
             selectedMetric: ''
         },
-        getSelectedMetricType : function(){
-            var metricID = this.get('selectedMetric');
-            return _.findWhere(this.metrics,{metricID:metricID});
+        getMetricType : function(metricID){
+            var metric = _.findWhere(this.get('metrics'),{metricID:metricID});
+            if (!_.isUndefined(metric) && !_.isUndefined(metric.type)){
+                return metric.type;
+            }else{
+                return undefined;
+            }
         },
         parse: function(res){
             this.set({

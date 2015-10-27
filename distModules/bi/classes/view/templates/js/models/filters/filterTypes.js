@@ -8,7 +8,7 @@ define([
         url: function(){
             var url = this.urlRoot + '/filters';
             var metricID = this.get('metricID');
-            if (metricID){
+            if (!_.isUndefined(metricID)){
                 url += '?metricID=' + metricID;
             }
             return url;

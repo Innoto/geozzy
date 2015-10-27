@@ -1,26 +1,31 @@
+//### Date Filter View
 define([
     'jquery',
     'backbone',
     'mustache',
     'text!templates/filters/dateFilter.html',
-    'select2',
     'collections/filters/filters',
-    'datetimepicker'
-], function($,Backbone,Mustache,filtersTemplate,Select2,FiltersCollection,DateTimePicker){
-
+    'datetimepicker',
+    'moment'
+], function ($, Backbone, Mustache, filtersTemplate, FiltersCollection, DateTimePicker, moment) {
+    // Creating DateFilter template, used for filtering by Date
     var DateFilter = Backbone.View.extend({
+        // Default value for tagName
         tagName: 'div',
+        // Picking the Closing event on the filter bar
         events: {
             'click #close': 'remove'
         },
-        render: function (){
-            var rendered = Mustache.render(filtersTemplate, {});
+        // Rendering the DateFilter template, and returns that element
+        render: function () {
+            var rendered = Mustache.render(filtersTemplate, this.model.toJSON());
             this.$el.html(rendered);
             return this;
         },
-        remove: function(){
+        // Removes the filter
+        remove: function () {
             var filterID = this.model.attributes.filterID,
-                filterFound = FiltersCollection.findWhere({filterID:filterID});
+                filterFound = FiltersCollection.findWhere({filterID: filterID});
             FiltersCollection.remove(filterFound);
             this.$el.remove();
         }

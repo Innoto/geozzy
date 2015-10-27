@@ -227,9 +227,7 @@ class ResourceController {
       ),
       'content' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea',
-          'htmlEditor' => 'true',
-          'value' => '<p>ola mundo<br />...probando ;-)</p>' )
+        'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea', 'htmlEditor' => 'true' )
       ),
       'externalUrl' => array(
         'params' => array( 'label' => __( 'External URL' ) ),
@@ -572,56 +570,47 @@ class ResourceController {
 
     // Recuperamos las temáticas que tiene asociadas el recurso
     $resourceId = $formBlock->getTemplateVars('resourceId');
-    $allTopics = $this->getOptionsTopic();
 
+    $allTopics = $this->getOptionsTopic();
     $resourceTopicModel = new ResourceTopicModel();
     $resourceTopicList = $resourceTopicModel->listItems( array( 'filters' => array( 'resource' => $resourceId ) ) );
     $topicsHtml = '';
     if( $resourceTopicList ) {
-      $relPrevInfo = array();
-      while( $topicList = $resourceTopicList->fetch() ){
-        $topics[$topicList->getter( 'topic' )] = $allTopics[$topicList->getter( 'topic' )];
-      }
-
-      if (isset($topics)){
-        foreach ($topics as $topicId=>$topicName){
-          $topicsHtml = $topicsHtml.'<div class="row"><div class="col-lg-4"></div><div class="col-lg-8">'.$topicName.'</div></div>';
-        }
+      while( $topicList = $resourceTopicList->fetch() ) {
+        $allTopics[ $topicList->getter( 'topic' ) ];
+        $topicsHtml = $topicsHtml.'<div class="row"><div class="col-lg-4"></div>'.
+          '<div class="col-lg-8">'.$allTopics[ $topicList->getter( 'topic' ) ].'</div></div>';
       }
     }
 
     // Recuperamos las taxonomías asociadas al recurso
     $starredHtml = '';
     $resourceTax = $this->getTermsInfoByGroupIdName( $resourceId );
-    if (isset($resourceTax['starred'])){
-      foreach ($resourceTax['starred'] as $tax){
-        $starred[$tax['id']] = $tax['idName'];
-      }
-      if (isset($starred)){
-        foreach ($starred as $starredId=>$starredName){
-          $starredHtml = $starredHtml.'<div class="row"><div class="col-lg-4"></div><div class="col-lg-8">'.$starredName.'</div></div>';
-        }
+    if( isset( $resourceTax['starred'] ) && count( $resourceTax['starred'] ) > 0 ) {
+      foreach( $resourceTax['starred'] as $tax ) {
+        $starredHtml = $starredHtml.'<div class="row"><div class="col-lg-4"></div><div class="col-lg-8">'.$tax['idName'].'</div></div>';
       }
     }
 
     $resourceType = $formBlock->getTemplateVars('rTypeName');
     $timeCreation = $formBlock->getTemplateVars('timeCreation');
     $user = $formBlock->getTemplateVars('userName');
-    if ($formBlock->getTemplateVars('timeLastUpdate')){
+    if( $formBlock->getTemplateVars('timeLastUpdate') ) {
       $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
       $userUpdate = $formBlock->getTemplateVars('userUpdate');
       $update = $timeLastUpdate.' ('.$userUpdate.')';
-    }else{
+    }
+    else{
       $update =  '- - -';
     }
-    $info = '<div class="infoBasic table-stripped">
-            <div class="row"><div class="col-lg-4">ID</div><div class="col-lg-8">'.$resourceId.'</div></div>
-            <div class="row"><div class="col-lg-4">Tipo</div><div class="col-lg-8">'.$resourceType.'</div></div>
-            <div class="row"><div class="col-lg-4">Creado</div><div class="col-lg-8">'.$timeCreation.' ('.$user.')</div></div>
-            <div class="row"><div class="col-lg-4">Actualizado</div><div class="col-lg-8">'.$update.'</div></div>
-            <div class="row"><div class="col-lg-4">Temáticas</div><div class="col-lg-8"></div></div>'.$topicsHtml.'
-            <div class="row"><div class="col-lg-4">Destacados</div><div class="col-lg-8"></div></div>'.$starredHtml.'
-            </div>';
+    $info = '<div class="infoBasic table-stripped">'.
+      '<div class="row"><div class="col-lg-4">ID</div><div class="col-lg-8">'.$resourceId.'</div></div>'.
+      '<div class="row"><div class="col-lg-4">Tipo</div><div class="col-lg-8">'.$resourceType.'</div></div>'.
+      '<div class="row"><div class="col-lg-4">Creado</div><div class="col-lg-8">'.$timeCreation.' ('.$user.')</div></div>'.
+      '<div class="row"><div class="col-lg-4">Actualizado</div><div class="col-lg-8">'.$update.'</div></div>'.
+      '<div class="row"><div class="col-lg-4">Temáticas</div><div class="col-lg-8"></div></div>'.$topicsHtml.
+      '<div class="row"><div class="col-lg-4">Destacados</div><div class="col-lg-8"></div></div>'.$starredHtml.
+      '</div>';
 
     $cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
 
@@ -631,7 +620,7 @@ class ResourceController {
   /**
     Se crea un nuevo template y se asigna el array de variables recibido
    */
-  public function setBlockPartTemplate($formPartArray){
+  public function setBlockPartTemplate( $formPartArray ) {
     $partTemplate = new Template();
     $partTemplate->addClientStyles( 'masterResource.less');
     $partTemplate->setTpl('resourceFormBlockPart.tpl', 'admin');

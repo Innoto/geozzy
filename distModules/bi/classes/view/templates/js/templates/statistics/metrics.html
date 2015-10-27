@@ -5,5 +5,8 @@
         {{#metrics}}
             <option value="{{metricID}}">{{metricName}}</option>
         {{/metrics}}
+        {{#filterMetrics}}
+            <option value="filter" filterID="{{id}}">Filtrado {{name}}</option>
+        {{/filterMetrics}}
     </select>
 </div>

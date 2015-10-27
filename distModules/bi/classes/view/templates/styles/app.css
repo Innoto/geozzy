@@ -3,10 +3,6 @@ html, body {
     height: 100%;
 }
 
-#statisticsModule #statisticsModule {
-    padding: 2% 2% 2% 2%;
-}
-
 #statisticsModule #statsParams {
     margin-bottom: 10%;
 }
@@ -21,7 +17,13 @@ html, body {
     min-height: 600px;
 }
 
-#statisticsModule .btn-group {
+#statisticsModule .map {
+    min-height: 180px;
+    z-index: 1;
+}
+
+#statisticsModule .btn-group,
+#statisticsModule #applyFilters{
     width: 100%;
 }
 
@@ -47,4 +49,8 @@ html, body {
 
 #statisticsModule .filter{
     margin-left: 5%;
+}
+
+#statisticsModule .filterSelectorItem{
+    cursor: pointer;
 }
