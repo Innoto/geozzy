@@ -892,6 +892,7 @@ class ResourceController {
   }
 
   public function getOptionsTax( $taxIdName ) {
+
     $options = array();
     $taxTermModel =  new TaxonomyTermModel();
     $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ),
@@ -899,6 +900,10 @@ class ResourceController {
     while( $taxTerm = $taxTermList->fetch() ){
       $options[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'name', LANG_DEFAULT );
     }
+
+    echo '<pre>';
+    print_r($options);
+    echo '</pre>';
 
     return $options;
   }
