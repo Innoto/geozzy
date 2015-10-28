@@ -21,33 +21,37 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
-    $rTypeExtNames[] = 'rextAppEspazoNatural';
-    $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
-    $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
-
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
     $form->setFieldParam('starred', 'type', 'reserved');
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
-    // eliminamos los campos de contacto que no necesitamos ->falla en email (TODO PORTO)
+    // eliminamos campos de recurso
+    $form->removeField('externalUrl');
+
+    // Extensión Espazo Natural
+    $rTypeExtNames[] = 'rextAppEspazoNatural';
+    $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
+    $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
+
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Extensión Contacto
+    $rTypeExtNames[] = 'rextContact';
+    $this->contactCtrl = new RExtContactController( $this );
+    $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
+
+    // eliminamos los campos de contacto que no necesitamos
     $form->removeField('rExtContact_address');
     $form->removeField('rExtContact_city');
     $form->removeField('rExtContact_cp');
     $form->removeField('rExtContact_province');
     $form->removeField('rExtContact_phone');
     $form->removeField('rExtContact_email');
-    $form->removeField('externalUrl');
     $form->removeField('rExtContact_timetable');
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
-    // Extensión contacto
-    $rTypeExtNames[] = 'rextContact';
-    $this->contactCtrl = new RExtContactController( $this );
-    $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
-
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     return( $rTypeFieldNames );
   } // function manipulateForm()
@@ -127,7 +131,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
       $this->rExtCtrl->resFormRevalidate( $form );
 
       $this->contactCtrl = new RExtContactController( $this );
-      $this->contactCtrl->resFormProcess( $form, $resource );
+      $this->contactCtrl->resFormRevalidate( $form );
     }
   }
 

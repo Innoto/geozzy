@@ -1,4 +1,4 @@
-//### Bar Chart View
+//### Bar Chart View: Manages the view for the Bar Chart
 'use strict';
 
 define([
@@ -11,8 +11,9 @@ define([
     var BarChartView = Backbone.View.extend({
         el: '#result',
         // Initializes the chart element
+        //* Creates the chart
         initialize: function (options) {
-            // Creates the chart
+
             if (_.size(this.$('#chart')) === 0) {
                 this.$el.append('<div id=\'chart\'></div>');
             }
@@ -26,34 +27,37 @@ define([
             var scrollEnabled = (this.groups.length > 1);
             this.$chart =
                 this.$('#chart').highcharts({
-                    //* No credits function used
                     credits: {
                         enabled: false
                     },
-                    //* Bar Chart Type used, Zoom used only for the X axis, and Panning function enabled
+                    //* Bar Chart Type used, Zoom used only for the X axis, Panning function enabled, and Reset Zoom position at the bottom/right of the chart
                     chart: {
                         type: 'bar',
                         zoomType: 'x',
-                        panning: true
+                        panning: true,
+                        resetZoomButton: {
+                            position: {
+                                align: 'right',
+                                verticalAlign: 'bottom',
+                                x: 0,
+                                y: 20
+                            },
+                            relativeTo: 'bar'
+                        }
                     },
-                    //* Scroll bar enabled
                     scrollbar: {
                         enabled: scrollEnabled
                     },
-                    //* Empty title for the chart
                     title: {
                         text: ''
                     },
-                    //* Sets the categories in groups for the xAxis
                     xAxis: {
                         categories: this.groups
                     },
-                    //* Nothing used for list the yAxis
                     yAxis: {
                         title: '',
                         min: 0
                     },
-                    //* No legend used
                     legend: {
                         enabled: false
                     },
@@ -63,14 +67,12 @@ define([
                             return '<strong>' + this.x + '</strong><br/>' + this.y;
                         }
                     },
-                    //* Predefined configuration for the plotting
+                    //* Predefined configuration for the plotting. Whether to stack the values of each series on top of each other
                     plotOptions: {
-                        //* Whether to stack the values of each series on top of each other
                         series: {
                             stacking: 'normal'
                         }
                     },
-                    //* Introduces the data to show
                     series: [{
                         name: 'Datos Estadisticos',
                         data: this.data
@@ -89,7 +91,6 @@ define([
                 this.$chart.highcharts().showResetZoom();
             }
         },
-        // Removes the chart
         remove: function () {
             this.$chart.remove();
         }
