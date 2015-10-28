@@ -1,4 +1,4 @@
-//### Date Chart View
+//### Date Chart View: Manages the view for the Date Chart
 'use strict';
 
 define([
