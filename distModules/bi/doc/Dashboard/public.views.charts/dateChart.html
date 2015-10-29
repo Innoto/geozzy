@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>dateChart.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>dateChart.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="date-chart-view-manages-the-view-for-the-date-chart">Date Chart View: Manages the view for the Date Chart</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-pi">'use strict'</span>;
+
+define([
+    <span class="hljs-string">'jquery'</span>,
+    <span class="hljs-string">'underscore'</span>,
+    <span class="hljs-string">'backbone'</span>,
+    <span class="hljs-string">'highstock-export-csv'</span>
+], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$, _, Backbone</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Creating DateChart template, used for charting a Date graph</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> DateChartView = Backbone.View.extend({
+        el: <span class="hljs-string">'#result'</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Initializes the chart element</p>
+<ul>
+<li>Creates the chart</li>
+<li>Creates the data list, pushing the Group, the UTC Date and the Index in there</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">options</span>) </span>{
+            <span class="hljs-keyword">if</span> (_.size(<span class="hljs-keyword">this</span>.$(<span class="hljs-string">'#chart'</span>)) === <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">this</span>.$el.append(<span class="hljs-string">'&lt;div id=\'chart\'&gt;&lt;/div&gt;'</span>);
+            }
+            <span class="hljs-keyword">this</span>.$chart = <span class="hljs-keyword">this</span>.$(<span class="hljs-string">'#chart'</span>);
+
+            <span class="hljs-keyword">var</span> data = [];
+            _.each(options.groups, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">elementGroup, index</span>) </span>{
+                <span class="hljs-keyword">var</span> dateGroup = elementGroup;
+                <span class="hljs-keyword">var</span> dateUTC = <span class="hljs-built_in">Date</span>.UTC(dateGroup.year, dateGroup.month - <span class="hljs-number">1</span>, dateGroup.dayOfMonth, dateGroup.hour);
+                <span class="hljs-keyword">var</span> elementData = options.data[index];
+                data.push([dateUTC, elementData]);
+            });
+            <span class="hljs-keyword">this</span>.data = data;
+            Highcharts.setOptions({
+                global: {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Returns the difference between the UTC and the local time</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    getTimezoneOffset: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                        <span class="hljs-keyword">var</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+                        <span class="hljs-keyword">return</span> now.getTimezoneOffset();
+                    }
+                }
+            });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Renders the chart using Highstock</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        render: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">this</span>.chart =
+                <span class="hljs-keyword">this</span>.$chart.highcharts({
+                    credits: {
+                        enabled: <span class="hljs-literal">false</span>
+                    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <ul>
+<li>Zoom used only for the X axis</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    chart: {
+                        zoomType: <span class="hljs-string">'x'</span>
+                    },
+                    title: {
+                        text: <span class="hljs-string">''</span>
+                    },
+                    xAxis: {
+                        type: <span class="hljs-string">'datetime'</span>
+                    },
+                    yAxis: {
+                        title: <span class="hljs-string">''</span>
+                    },
+                    legend: {
+                        enabled: <span class="hljs-literal">false</span>
+                    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <ul>
+<li>Predefined configuration for the plotting</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    plotOptions: {
+                        area: {
+                            fillColor: {
+                                linearGradient: {
+                                    x1: <span class="hljs-number">0</span>,
+                                    y1: <span class="hljs-number">0</span>,
+                                    x2: <span class="hljs-number">0</span>,
+                                    y2: <span class="hljs-number">1</span>
+                                },
+                                stops: [
+                                    [<span class="hljs-number">0</span>, <span class="hljs-string">"#7cb5ec"</span>],
+                                    [<span class="hljs-number">1</span>, <span class="hljs-string">"rgba(124,181,236,0)"</span>]
+                                ]
+                            },
+                            marker: {
+                                radius: <span class="hljs-number">2</span>
+                            },
+                            lineWidth: <span class="hljs-number">1</span>,
+                            states: {
+                                hover: {
+                                    lineWidth: <span class="hljs-number">1</span>
+                                }
+                            },
+                            threshold: <span class="hljs-literal">null</span>
+                        }
+                    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <ul>
+<li>Introduces the data to show</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    series: [{
+                        name: <span class="hljs-string">'Datos Estadisticos'</span>,
+                        type: <span class="hljs-string">'area'</span>,
+                        data: <span class="hljs-keyword">this</span>.data
+                    }],</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <ul>
+<li>Function added for exporting the CSV file type</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    exporting: {
+                        csv: {
+                            itemDelimiter: <span class="hljs-string">";"</span>
+                        }
+                    }
+                });
+        },
+        remove: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">this</span>.$chart.remove();
+        }
+    });
+    <span class="hljs-keyword">return</span> DateChartView;
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

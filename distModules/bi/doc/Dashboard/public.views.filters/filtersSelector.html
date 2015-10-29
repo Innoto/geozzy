@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>filtersSelector.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>filtersSelector.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="filter-selector-view">Filter Selector View</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>define([
+    <span class="hljs-string">'jquery'</span>,
+    <span class="hljs-string">'backbone'</span>,
+    <span class="hljs-string">'mustache'</span>,
+    <span class="hljs-string">'models/filters/filter'</span>,
+    <span class="hljs-string">'text!templates/filters/filtersSelector.html'</span>,
+    <span class="hljs-string">'../../utils/filterUtils'</span>
+], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$, Backbone, Mustache, FilterModel, filtersTemplate, FilterUtils</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Creating FilterView template, used for selecting the different filters to use</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> FiltersView = Backbone.View.extend({
+        events: {
+            <span class="hljs-string">'click .filterSelectorItem'</span>: <span class="hljs-string">'filterClicked'</span>
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Render the FilterSelector template, and returns that element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        render: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> rendered = Mustache.render(filtersTemplate, <span class="hljs-keyword">this</span>.model.toJSON());
+            <span class="hljs-keyword">this</span>.$el.html(rendered);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Picks the ID from the filter selected, search on the collection,
+and gets the Filter Model for adding it to the collection</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        filterClicked: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+            <span class="hljs-keyword">var</span> filterID = <span class="hljs-built_in">parseInt</span>($(e.target).attr(<span class="hljs-string">"filterID"</span>)),
+                filterFound = <span class="hljs-keyword">this</span>.collection.findWhere({filterID: filterID});
+            <span class="hljs-keyword">if</span> (!_.isNaN(filterID) &amp;&amp; !_.isUndefined(filterID) &amp;&amp; _.isUndefined(filterFound)) {
+                <span class="hljs-keyword">var</span> filter = FilterUtils.getFilterModel(filterID);
+                <span class="hljs-keyword">this</span>.collection.add(filter);
+            }
+        }
+    });
+    <span class="hljs-keyword">return</span> FiltersView;
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
