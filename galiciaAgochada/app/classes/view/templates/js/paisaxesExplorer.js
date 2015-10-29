@@ -77,20 +77,39 @@
       explorer.exec();
 
 
-
-
-      function formatState (state) {
-        if (!state.id) { return state.text; }
-        var $state = $(
-          '<span><i class="fa fa-tree"></i> ' + state.text + '</span>'
-        );
-        return $state;
-      };
-
       $('select.select2GeozzyCustom').select2({
          minimumResultsForSearch: -1,
          templateSelection: formatState,
          templateResult: formatState
       });
       $('select.select2GeozzyRed').select2();
+      //LAYOUT
+      layoutDistributeSize();
     });
+
+    $(window).bind("load resize", function() {
+      layoutDistributeSize();
+    });
+
+    function formatState (state) {
+      if (!state.id) { return state.text; }
+      var $state = $(
+        '<span><i class="fa fa-tree"></i> ' + state.text + '</span>'
+      );
+      return $state;
+    };
+
+    function layoutDistributeSize(){
+      var hExplorerLayout = $('.paisaxesExplorer').height();
+      var hExplorerFilters = $('.paisaxesExplorer .explorer-container-filter').height();
+      var hExplorerGallery = $('.paisaxesExplorer .explorer-container-gallery').height();
+      var hHeader = 100;
+      var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
+
+      $('.paisaxesExplorer .explorer-container-map').height( hExplorerMap );
+
+      console.log('hExplorerLayout: ', hExplorerLayout );
+      console.log('hExplorerFilters: ', hExplorerFilters );
+      console.log('hExplorerGallery: ', hExplorerGallery );
+      console.log('hExplorerMap: ', hExplorerMap );
+    }

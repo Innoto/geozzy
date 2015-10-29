@@ -3,8 +3,8 @@
 @import "/explorer/classes/view/templates/styles/explorerMixins.less";
 
 .explorerLayout{
-  //.mixinDevel();
-  .explorerBase( @explFilter-h: 6%,  @explGallery-h: 38%,  @explMap-h: 56% );
+  .mixinDevel();
+  .explorerBase( @explFilter-h: auto,  @explGallery-h: auto,  @explMap-h: 52% );
 }
 
 .paisaxesExplorer{
@@ -35,6 +35,16 @@
       padding: 0px 60px;
       .element{
         padding: 10px 5px;
+        .elementImg{
+
+        }
+        .elementInfo{
+          font-size: 14px;
+          line-height:20px;
+          height: 40px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
   }
