@@ -18,30 +18,49 @@
   }
 
   .explorer-container-filter{
-    padding: 5px 60px;
-
-    .explorerFilterElement{
-      float:left;
-      margin: 0 5px;
-
-      &.select2GeozzyCustom{
-        .select2Theme( @width: 200px, @height: 45px, @bckHeader: #90C147, @colorHeader: #fff);
-      }//.select2GeozzyCustom
-      &.select2GeozzyRed{
-        .select2Theme( @width: 200px, @height: 45px, @bckHeader: #CD4C56, @colorHeader: #fff);
-      }//.select2GeozzyRed
+    padding-top: 5px;
+    padding-bottom: 5px;
+    overflow: inherit !important;
+    .explorerPaisaxesTitle{
+      img{
+        position: absolute;
+        z-index: 110;
+      }
+      h1{
+        font-size: 22px;
+        margin-top: 10px;
+        padding-left: 74px;
+        color: #555;
+        font-weight: normal;
+      }
     }
+    .explorerPaisaxesFilters{
+      .explorerFilterElement{
+        float:right;
+        margin: 0 5px;
+
+        &.select2GeozzyCustom{
+          .select2Theme( @width: 200px, @height: 42px, @bckHeader: #90C147, @colorHeader: #fff);
+        }//.select2GeozzyCustom
+        &.select2GeozzyRed{
+          .select2Theme( @width: 200px, @height: 42px, @bckHeader: #CD4C56, @colorHeader: #fff);
+        }//.select2GeozzyRed
+      }
+    }
+
+
+
   }
   .explorer-container-gallery{
     position: relative;
     .explorerListContent{
-      padding: 0 60px;
+      padding: 5px 60px;
       .element{
-        padding: 10px 5px;
+        padding: 5px 5px;
         .elementImg{}
         .elementInfo{
           font-size: 14px;
-          line-height:20px;
+          line-height: 20px;
           height: 40px;
           overflow: hidden;
           text-overflow: ellipsis;

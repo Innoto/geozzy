@@ -52,22 +52,36 @@
 
 
       // FILTROS
+
+      $( explorerclass+' .explorer-container-filter').html(
+        '<div class="container">'+
+          '<div class="row">'+
+            '<div class="col-md-6 col-sm-4 hidden-xs explorerPaisaxesTitle" >'+
+              '<img class="img-responsive" alt="Paisaxes Espectaculares" src="/media/img/paisaxesIcon.png"></img>'+
+              '<h1>Paisaxes Espectaculares</h1>'+
+            '</div>'+
+            '<div class="col-md-6 col-sm-8 col-xs-12 explorerPaisaxesFilters clearfix" ></div>'+
+          '</div>'+
+        '</div>'
+      );
+
+
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: 'tipoPaisaxe select2GeozzyCustom',
-            //title:'asdfasfd',
-            data: dataFilter1
+            mainCotainerClass: explorerclass+' .explorer-container-filter .explorerPaisaxesFilters',
+            containerClass: 'tipoZona select2GeozzyRed',
+            data: dataFilter2
           }
         )
       );
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: 'tipoZona select2GeozzyRed',
-            data: dataFilter2
+            mainCotainerClass: explorerclass+' .explorer-container-filter .explorerPaisaxesFilters',
+            containerClass: 'tipoPaisaxe select2GeozzyCustom',
+            //title:'asdfasfd',
+            data: dataFilter1
           }
         )
       );

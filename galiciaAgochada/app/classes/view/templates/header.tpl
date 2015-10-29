@@ -11,7 +11,7 @@
       <!-- LOGO in brand section -->
       <a href="#home" class="navbar-brand page-scroll">
         <!-- Logo -->
-        <img alt="logo" src="" class="img-responsive">
+        <img alt="logo" class="img-responsive" src="/media/img/logoGA.png"></img>
       </a>
     </div>
 
