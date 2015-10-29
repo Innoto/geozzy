@@ -20,6 +20,12 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
+    // cambiamos el tipo de topics y starred para que no se muestren
+    $form->setFieldParam('topics', 'type', 'reserved');
+    $form->setFieldParam('starred', 'type', 'reserved');
+    $form->removeValidationRules('topics');
+    $form->removeValidationRules('starred');
+
     return( $rTypeFieldNames );
   } // function manipulateForm()
 

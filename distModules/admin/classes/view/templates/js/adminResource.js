@@ -68,13 +68,13 @@ function bindResourceForm(){
     var latInput = $("input[name='locLat']");
     var lonInput = $("input[name='locLon']");
     var defaultZoom = $("input[name='defaultZoom']");
-    var locationContainer = latInput.parent().parent();
+    //var locationContainer = latInput.parent().parent();
 
     // latInput.parent().hide();
     // lonInput.parent().hide();
     // defaultZoom.parent().hide();
 
-    //locationContainer.append('<div id="resourceLocationMap"></div>');
+    $('.mapContainer').append('<div id="resourceLocationMap"></div>');
 
     var latValue = 0;
     var lonValue = 0;
@@ -124,7 +124,6 @@ function bindResourceForm(){
     google.maps.event.addListener(resourceMap, 'click', function(e) {
       resourceMarker.setPosition( e.latLng )
       resourceMarker.setMap( resourceMap );
-
       latInput.val( resourceMarker.position.lat() );
       lonInput.val( resourceMarker.position.lng() );
 
@@ -146,8 +145,10 @@ function bindResourceForm(){
         newPos = new google.maps.LatLng( latInput.val(), lonInput.val() );
         resourceMarker.position.lat(latInput.val());
         resourceMarker.position.lng(lonInput.val());
+        resourceMap.setZoom(parseInt(defaultZoom.val()));
         resourceMap.setCenter(newPos);
         resourceMarker.setPosition(newPos);
+        resourceMarker.setMap( resourceMap );
       });
     });
   }

@@ -5,7 +5,7 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
   tpl: _.template(
     '<div class="explorerListPager">'+
-      //'<%=pager%>'+
+      '<%=pager%>'+
     '</div>'+
     '<div class="explorerListContent container-fluid">'+
       '<div class="">'+
@@ -13,15 +13,24 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
       '</div>'+
     '</div>'),
   tplElement: _.template(
-    '<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 element element-<%- id %>">'+
+    '<div class="col-md-2 col-sm-4 col-xs-6 element element-<%- id %>">'+
       '<div class="elementImg">'+
-        '<img class="img-responsive" src="http://lorempixel.com/400/250/nature" />'+
+        '<img class="img-responsive" src="http://lorempixel.com/260/196/nature" />'+
       '</div>'+
       '<div class="elementInfo">'+
         '<%-title%>'+
       '</div>'+
     '</div>'),
-  tplPager: _.template(' <span class="previous">◀</span> <% for( c=0 ; c <= pages ; c++){ %> <span class="page" <% if(c==v.currentPage){ %>style="color:white;"<% } %>>●</span> <%} %> <span class="next">▶</span>'),
+  tplPager: _.template(
+    '<div class="previous"><i class="fa fa-sort-asc"></i></div>'+
+    '<% for( c=0 ; c <= pages ; c++){ %>'+
+      '<% if(c==v.currentPage){ %>'+
+        '<div><span class="currentPage"><i class="fa fa-square-o"></i></span></div>'+
+      '<% }else{ %>'+
+        '<div><span><i class="fa fa-square"></i></span></div>'+
+      '<% } %>'+
+    '<% } %>'+
+    '<div class="next"><i class="fa fa-sort-desc"></i></div>'),
 
   displayType: 'pasiveList',
   parentExplorer: false,
@@ -32,8 +41,8 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
 
   events: {
-      "click .pager .next" : "nextPage",
-      "click .pager .previous" : "previousPage"
+      "click .explorerListPager .next" : "nextPage",
+      "click .explorerListPager .previous" : "previousPage"
   },
 
   initialize: function( opts ) {
