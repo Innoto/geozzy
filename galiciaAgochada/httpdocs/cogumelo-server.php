@@ -46,7 +46,7 @@ if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] )
         }
       }
 
-      $dir = MOD_FORM_FILES_CACHE_PATH;
+      $dir = MOD_FILEDATA_CACHE_PATH;
       $dirElements = scandir( $dir );
       if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {
         foreach( $dirElements as $dirElement ) {
