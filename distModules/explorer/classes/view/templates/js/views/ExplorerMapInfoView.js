@@ -9,7 +9,7 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   containerMap: false,
   divId: 'geozzyExplorerMapInfo',
 
-  template: _.template('<div> title </div><div><img class="img-responsive" src="http://lorempixel.com/260/196/nature?putarrrl" /></div> '),
+  template: _.template('<div> <%-title%> </div><div><img class="img-responsive" src="http://lorempixel.com/260/196/nature?putarrrl" /></div> '),
 
   margin: 10,
 
@@ -33,7 +33,7 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
     });
 
     if( $( '#'+that.divId ).length === 0 ) {
-      $('body').append( '<div id="' + that.divId + '" >asdf</div>' )
+      $('body').append( '<div id="' + that.divId + '" ></div>' )
     }
 
 
@@ -47,13 +47,25 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
   },
 
-  render: function() {
+  render: function( id ) {
     var that = this;
     that.createInfoMapDiv();
 
-    var resourceInfo =
+    var resourceInfo = new Backbone.Model(  );
 
-    $( '#'+that.divId ).html( that.template({title:'BLOBLO'}) )
+    resourceInfo.set(that.parentExplorer.resourceMinimalList.get(id).toJSON());
+
+
+ //
+
+    that.parentExplorer.fetchPartialList(
+       [id],
+       function() {
+         //console.log(  that.parentExplorer.resourcePartialList.get(id) );
+         $( '#'+that.divId ).html( that.template(  that.parentExplorer.resourcePartialList.get(id).toJSON() ) );
+         //$( '#'+that.divId ).html( that.template( resourceInfo ) );
+       }
+    );
 
   },
 
