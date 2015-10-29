@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>filter.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>filter.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="filter-model-depending-on-selected-filter-the-way-for-making-the-request-of-the-values-is-different">Filter Model: Depending on selected filter, the way for making the request of the values is different</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>define([
+    <span class="hljs-string">'underscore'</span>,
+    <span class="hljs-string">'backbone'</span>,
+    <span class="hljs-string">'config/appConfig'</span>
+], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, Backbone, Config</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>URL GET method, and the model contains the filter ID, values, title, url and the Content (with different IDs and Values)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> FilterModel = Backbone.Model.extend({
+        url: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.attributes.url;
+        },
+        defaults: {
+            filterID: <span class="hljs-string">''</span>,
+            values: [],
+            title: <span class="hljs-string">''</span>,
+            url: <span class="hljs-string">''</span>,
+            content: []
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Main function where is chosen the structure type for each filter</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        parse: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>{
+            <span class="hljs-keyword">var</span> content;
+            <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">this</span>.attributes.filterID) {
+                <span class="hljs-keyword">case</span> Config.FILTER_LANGUAGE:
+                    content = <span class="hljs-keyword">this</span>.parseLanguage(res.languages.available);
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> Config.FILTER_EVENT_TYPES:
+                    content = <span class="hljs-keyword">this</span>.parseObjectKeyValue(res, <span class="hljs-string">'desc'</span>);
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> Config.FILTER_DEVICE_TYPE:
+                    content = <span class="hljs-keyword">this</span>.parseObjectKeyValue(res.devices, <span class="hljs-string">'name'</span>);
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> Config.FILTER_SECTION:
+                    content = <span class="hljs-keyword">this</span>.parseObjectKeyValue(res.sections, <span class="hljs-string">'name'</span>);
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> Config.FILTER_EXPLORER:
+                    content = <span class="hljs-keyword">this</span>.parseObjectKeyValue(res, <span class="hljs-string">'name'</span>);
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> Config.FILTER_RESOURCE:
+                    content = <span class="hljs-keyword">this</span>.parseListObject(res, <span class="hljs-string">'title_es'</span>);
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> Config.FILTER_RESOURCE_TERMS:
+                <span class="hljs-keyword">case</span> Config.FILTER_TAXONOMY_TERMS:
+                <span class="hljs-keyword">case</span> Config.FILTER_RESOURCE_TOPICS:
+                <span class="hljs-keyword">case</span> Config.FILTER_RESOURCE_TYPES:
+                    content = <span class="hljs-keyword">this</span>.parseListObject(res, <span class="hljs-string">'name_es'</span>);
+                    <span class="hljs-keyword">break</span>;
+            }
+            <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'content'</span>, content);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Parsing method used only for the Language Filter, which is totally different to the others</p>
+<ul>
+<li>For each different value on the correct field, the ID and Name are pushed into the Content List</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        parseLanguage: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">languages</span>) </span>{
+            <span class="hljs-keyword">var</span> content = [];
+            _.each(
+                _.values(languages),
+                <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">language</span>) </span>{
+                    content.push({
+                        id: language.i18n,
+                        name: language.name
+                    });
+                }
+            );
+            <span class="hljs-keyword">return</span> content;
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Parsing method used for another different structure, in which for each key, the value is picked from inside
+of that object</p>
+<ul>
+<li>The Key is picked and for each Key, the Value is taken from inside of it. After, the values are pushed
+into the Content List</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        parseObjectKeyValue: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">devsec, valueName</span>) </span>{
+            <span class="hljs-keyword">var</span> content = [],
+                keys = _.keys(devsec),
+                values = _.values(devsec);
+            _.each(values, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value, index</span>) </span>{
+                content.push({
+                    id: keys[index],
+                    name: value[valueName]
+                });
+            });
+            <span class="hljs-keyword">return</span> content;
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Parsing method used for another different structure, in which there are objects with the key and the value as fields</p>
+<ul>
+<li>Simpler loop, where for each object in the list, ID and Name are picked, and finally pushed into the Content List</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        parseListObject: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res, valueName</span>) </span>{
+            <span class="hljs-keyword">var</span> content = [];
+            _.each(res, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resource</span>) </span>{
+                <span class="hljs-keyword">var</span> r = _.pick(resource, <span class="hljs-string">'id'</span>, valueName);
+                content.push({
+                    id: r.id,
+                    name: r[valueName]
+                });
+            });
+            <span class="hljs-keyword">return</span> content;
+        }
+    });
+    <span class="hljs-keyword">return</span> FilterModel;
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

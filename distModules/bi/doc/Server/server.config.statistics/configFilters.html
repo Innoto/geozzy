@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>configFilters.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>configFilters.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="filters-configuration-file">Filters configuration file</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <ul>
+<li>constants: constants module</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> constants = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./constants'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Filter configuration fields:</p>
+<ul>
+<li>filterID: filter ID</li>
+<li>filterType: filter type</li>
+<li>filterName: filter name</li>
+<li>filed: MongoDB field which the filter is applied to</li>
+<li>operator: <a href="https://docs.mongodb.org/manual/reference/operator/query/">MongoDB query operator</a></li>
+<li>value: Default filter value</li>
+<li>isInteger: If true the filter value will be casted to integer</li>
+<li>isDate: If true the filter value will be casted to a Date,</li>
+<li>titleResource: Title that will be shown if we are dealing with a resource metric</li>
+<li>titleExplorer: Title that will be shown if we are dealing with an explorer metric</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = [
+    {
+        filterID: constants.FILTER_ACCESS_UNIQUE,
+        filterType: constants.FILTER_TYPE_METRIC,
+        filterName: <span class="hljs-string">'Access Unique'</span>,
+        field: <span class="hljs-string">'data'</span>,
+        operator: <span class="hljs-string">'$eq'</span>,
+        value: <span class="hljs-number">1</span>
+    },
+    {
+        filterID: constants.FILTER_COUNTRY,
+        filterType: constants.FILTER_TYPE_METRIC,
+        filterName: <span class="hljs-string">'Country'</span>,
+        field: <span class="hljs-string">'remoteLocation.country'</span>,
+        operator: <span class="hljs-string">'$eq'</span>
+    },
+    {
+        filterID: constants.FILTER_RESOURCE,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Recurso'</span>,
+        titleResource: <span class="hljs-string">'Trabajar sobre los siguientes recursos...'</span>,
+        field: <span class="hljs-string">'metric.resource.resource_ID'</span>,
+        isInteger: <span class="hljs-literal">true</span>,
+        operator: <span class="hljs-string">'$eq'</span>
+    },
+    {
+        filterID: constants.FILTER_RESOURCE_TYPES,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Tipo Recurso'</span>,
+        titleResource: <span class="hljs-string">'Tipos de Recursos...'</span>,
+        field: <span class="hljs-string">'metric.resource.type.type_ID'</span>,
+        isInteger: <span class="hljs-literal">true</span>,
+        operator: <span class="hljs-string">'$eq'</span>
+    },
+    {
+        filterID: constants.FILTER_RESOURCE_TOPICS,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Tematica Recurso'</span>,
+        titleResource: <span class="hljs-string">'Tematicas asignadas a recurso...'</span>,
+        field: <span class="hljs-string">'metric.resource.topic'</span>,
+        isInteger: <span class="hljs-literal">true</span>,
+        operator: <span class="hljs-string">'$eq'</span>
+    },
+    {
+        filterID: constants.FILTER_RESOURCE_TERMS,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Terminos Recurso'</span>,
+        titleResource: <span class="hljs-string">'Terminos asignados a recurso...'</span>,
+        field: <span class="hljs-string">'metric.resource.term'</span>,
+        isInteger: <span class="hljs-literal">true</span>,
+        operator: <span class="hljs-string">'$eq'</span>
+    },
+    {
+        filterID: constants.FILTER_EVENT_TYPES,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Tipo Evento'</span>,
+        field: <span class="hljs-string">'metric.event.name'</span>,
+        operator: <span class="hljs-string">'$eq'</span>,
+        titleResource: <span class="hljs-string">'Recursos que han sido...'</span>
+    },
+    {
+        filterID: constants.FILTER_REGION_COUNTRY,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Region-pais'</span>,
+        titleResource: <span class="hljs-string">'Localizacion del cliente...'</span>,
+        titleExplorer: <span class="hljs-string">'Localizacion del cliente...'</span>
+    },
+    {
+        filterID: constants.FILTER_DEVICE_TYPE,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Tipo Dispositivo'</span>,
+        field: <span class="hljs-string">'device.type'</span>,
+        operator: <span class="hljs-string">'$eq'</span>,
+        titleResource: <span class="hljs-string">'Recursos accedidos desde dispositivos...'</span>,
+        titleExplorer: <span class="hljs-string">'Exploradores accedidos desde dispositivos...'</span>
+    },
+    {
+        filterID: constants.FILTER_LANGUAGE,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Lenguaje de Acceso'</span>,
+        field: <span class="hljs-string">'language'</span>,
+        operator: <span class="hljs-string">'$eq'</span>,
+        titleResource: <span class="hljs-string">'Recursos accedidos con Lenguajes...'</span>,
+        titleExplorer: <span class="hljs-string">'Exploradores accedidos con Lenguajes...'</span>
+    },
+    {
+        filterID: constants.FILTER_DATE_RANGE,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Rango Fecha-Hora'</span>,
+        isDate: <span class="hljs-literal">true</span>,
+        field: <span class="hljs-string">'metric.metricTime'</span>,
+        titleResource: <span class="hljs-string">'Recursos accedidos entre las fechas...'</span>,
+        titleExplorer: <span class="hljs-string">'Exploradores accedidos entre las fechas... '</span>
+    },
+    {
+        filterID: constants.FILTER_RESOURCE_GEOGRAPHIC_BOUND,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Bound Geografico Recurso'</span>,
+        titleResource: <span class="hljs-string">'Recursos localizados en...'</span>,
+        field: <span class="hljs-string">'metric.resource.location_array'</span>,
+        operator: <span class="hljs-string">'$geoWithin'</span>
+    },
+    {
+        filterID: constants.FILTER_SECTION,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Seccion'</span>,
+        field: <span class="hljs-string">'metric.section'</span>,
+        operator: <span class="hljs-string">'$eq'</span>,
+        titleResource: <span class="hljs-string">'Recursos accedidos en Seccion...'</span>,
+        titleExplorer: <span class="hljs-string">'Exploradores accedidos en Seccion...'</span>
+    },
+    {
+        filterID: constants.FILTER_SECONDS,
+        filterType: constants.FILTER_TYPE_RESOURCE,
+        filterName: <span class="hljs-string">'Duracion'</span>,
+        titleResource: <span class="hljs-string">'Tener en cuenta visitas con duracion...'</span>,
+        field: <span class="hljs-string">'metric.seconds'</span>,
+        operator: <span class="hljs-string">'$gte'</span>
+    },
+    {
+        filterID: constants.FILTER_EXPLORER_FILTERS,
+        filterType: constants.FILTER_TYPE_EXPLORER,
+        field: <span class="hljs-string">'metric.filters'</span>,
+        operator: <span class="hljs-string">'$elemMatch'</span>
+    },
+    {
+        filterID: constants.FILTER_EXPLORER,
+        filterType: constants.FILTER_TYPE_EXPLORER,
+        filterName: <span class="hljs-string">'Explorador'</span>,
+        titleExplorer: <span class="hljs-string">'Exploradores accedidos...'</span>,
+        field: <span class="hljs-string">'metric.explorer_ID'</span>,
+        operator: <span class="hljs-string">'$eq'</span>
+    },
+    {
+        filterID: constants.FILTER_TAXONOMY_TERMS,
+        filterType: constants.FILTER_TYPE_EXPLORER,
+        filterName: <span class="hljs-string">'Taxonomias-Terminos Filtro'</span>,
+        titleExplorer: <span class="hljs-string">'Filtros aplicados...'</span>,
+        field: <span class="hljs-string">'metric.filters'</span>,
+        operator: <span class="hljs-string">'$eq'</span>
+    },
+    {
+        filterID: constants.FILTER_EXPLORER_GEOGRAPHIC_BOUND,
+        filterType: constants.FILTER_TYPE_EXPLORER,
+        filterName: <span class="hljs-string">'Bound Geografico Exploracion'</span>,
+        titleExplorer: <span class="hljs-string">'Exploradores localizados en...'</span>,
+        field: <span class="hljs-string">'metric.bounds'</span>,
+        operator: <span class="hljs-string">'$geoWithin'</span>
+    }
+];</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

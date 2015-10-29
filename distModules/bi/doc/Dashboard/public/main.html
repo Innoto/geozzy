@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>main.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>main.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="configuration-of-the-libraries-used-on-geozzy-with-its-dependencies">Configuration of the libraries used on Geozzy, with its dependencies</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-pi">'use strict'</span>;
+
+<span class="hljs-built_in">require</span>.config({
+    paths: {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <ul>
+<li><a href="https://github.com/requirejs/text">Text</a>: A plugin for loading text resources.</li>
+<li><a href="https://jquery.com/">JQuery</a>: A cross-platform JavaScript library designed to simplify the client-side scripting of HTML.</li>
+<li><a href="http://underscorejs.org/">Underscore</a>: JavaScript library that provides a whole mess of useful functional programming helpers.</li>
+<li><a href="https://github.com/kriskowal/q">Q</a>: A tool for creating and composing asynchronous promises in JavaScript.</li>
+<li><a href="http://backbonejs.org/">Backbone</a>: Used for giving structure to web applications by providing Models, Collections, Views and connecting them with a RESTful JSON interface.</li>
+<li><a href="http://getbootstrap.com/">Bootstrap</a>: Collection of tools for creating websites and using templates.</li>
+<li><a href="http://www.google.com/design/spec/material-design/introduction.html">Material Design</a>: Adding a Material Design look and feel to websites.</li>
+<li><a href="http://mustache.github.com/">Mustache</a>: A simple web template system with implementations available for JavaScript.</li>
+<li><a href="https://github.com/highslide-software/highcharts.com">Highstock</a>: is a charting library written in pure JavaScript, offering a way of adding interactive charts to web sites, web and mobile applications.</li>
+<li><a href="http://api.highcharts.com/highstock#exporting">Highstock-exporting</a>: The exporting module allows users to download the chart as pdf, png, jpeg or a svg vector image.</li>
+<li><a href="http://api.highcharts.com/highcharts#Highcharts.dateFormat">Highstock-export-csv</a>: The exporting module allows users to download the chart as csv document.</li>
+<li><a href="http://select2.github.io/select2/">Select2</a>: is a jQuery-based replacement for select boxes. It supports searching, remote data sets, and pagination of results..</li>
+<li><a href="http://momentjs.com/docs/">Moment</a>: Used for parsing, validating, manipulating, and displaying dates in JavaScript.</li>
+<li><a href="http://eonasdan.github.io/bootstrap-datetimepicker/">DateTimePicker</a>: Date selector used for the Date Filter.</li>
+<li><a href="http://seiyria.github.io/bootstrap-slider/">Slider</a>: Creates a slider used for choosing a duration on filters.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        text: <span class="hljs-string">'bower_components/requirejs-text/text'</span>,
+        jquery: <span class="hljs-string">'bower_components/jquery/jquery.min'</span>,
+        underscore: <span class="hljs-string">'bower_components/underscore/underscore'</span>,
+        q: <span class="hljs-string">'bower_components/q/q'</span>,
+        backbone: <span class="hljs-string">'bower_components/backbone/backbone'</span>,
+        bootstrap: <span class="hljs-string">"bower_components/bootstrap/dist/js/bootstrap.min"</span>,
+        material: <span class="hljs-string">'bower_components/material-design-lite/material.min'</span>,
+        mustache: <span class="hljs-string">'bower_components/mustache/mustache'</span>,
+        <span class="hljs-string">'highstock'</span>: <span class="hljs-string">'bower_components/highstock/highstock.src'</span>,
+        <span class="hljs-string">'highstock-exporting'</span>: <span class="hljs-string">'bower_components/highstock/modules/exporting.src'</span>,
+        <span class="hljs-string">'highstock-export-csv'</span>: <span class="hljs-string">'bower_components/funplus-highcharts-export-csv/export-csv'</span>,
+        <span class="hljs-string">'select2'</span>: <span class="hljs-string">'bower_components/select2/select2.min'</span>,
+        <span class="hljs-string">'moment'</span>: <span class="hljs-string">'bower_components/moment/min/moment-with-locales.min'</span>,
+        <span class="hljs-string">'datetimepicker'</span>: <span class="hljs-string">'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min'</span>,
+        <span class="hljs-string">'bootstrap-slider'</span>: <span class="hljs-string">'bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min'</span>
+    },
+    shim: {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <ul>
+<li>Backbone: depends of Underscore and JQuery libraries. Exports the Backbone one.</li>
+<li>Bootstrap: depends of Material and JQuery libraries.</li>
+<li>Mustache: It exports the library.</li>
+<li>Highstock: depends of JQuery library. Exported as Highstock.</li>
+<li>Highstock-exporting: depends of highstock library. Exported as Highstock.</li>
+<li>Highstock-export-csv: depends of highstock-exporting library. Exported as Highcharts.</li>
+<li>Select2: depends of JQuery library. Exported as Select2.</li>
+<li>Moment: is exported as moment.</li>
+<li>Datetimepicker: depends of Moment, Bootstrap and JQuery libraries. Exports the DateTimePicker one.</li>
+<li>Boostrap-slider: depends of Bootstrap and JQuery libraries. Exports the Slider one.</li>
+<li>Q: is exported as q.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        backbone: {
+            deps: [
+                <span class="hljs-string">'underscore'</span>,
+                <span class="hljs-string">'jquery'</span>
+            ],
+            exports: <span class="hljs-string">'Backbone'</span>
+        },
+        bootstrap: {
+            deps: [
+                <span class="hljs-string">'jquery'</span>,
+                <span class="hljs-string">'material'</span>
+            ]
+        },
+        mustache: {
+            exports: <span class="hljs-string">'Mustache'</span>
+        },
+        <span class="hljs-string">'highstock'</span>: {
+            deps: [<span class="hljs-string">'jquery'</span>],
+            exports: <span class="hljs-string">'Highstock'</span>
+        },
+        <span class="hljs-string">'highstock-exporting'</span>: {
+            deps: [<span class="hljs-string">'highstock'</span>],
+            exports: <span class="hljs-string">'Highstock'</span>
+        },
+        <span class="hljs-string">'highstock-export-csv'</span>: {
+            deps: [<span class="hljs-string">'highstock-exporting'</span>],
+            exports: <span class="hljs-string">'Highcharts'</span>
+        },
+        <span class="hljs-string">'select2'</span>: {
+            deps: [<span class="hljs-string">'jquery'</span>],
+            exports: <span class="hljs-string">'Select2'</span>
+        },
+        <span class="hljs-string">'moment'</span>: {
+            exports: <span class="hljs-string">'moment'</span>
+        },
+        <span class="hljs-string">'datetimepicker'</span>: {
+            deps: [<span class="hljs-string">'jquery'</span>, <span class="hljs-string">'moment'</span>, <span class="hljs-string">'bootstrap'</span>],
+            exports: <span class="hljs-string">'DateTimePicker'</span>
+        },
+        <span class="hljs-string">'bootstrap-slider'</span>: {
+            deps: [<span class="hljs-string">'jquery'</span>, <span class="hljs-string">'bootstrap'</span>],
+            exports: <span class="hljs-string">'Slider'</span>
+        },
+        q: {
+            exports: <span class="hljs-string">'q'</span>
+        }
+    }
+});
+
+<span class="hljs-built_in">require</span>([
+    <span class="hljs-string">'backbone'</span>,
+    <span class="hljs-string">'views/app'</span>,
+    <span class="hljs-string">'bootstrap'</span>,
+    <span class="hljs-string">'material'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Start Backbone history a necessary step for bookmarkable URL’s</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Backbone, AppView</span>) </span>{
+    Backbone.history.start();
+    <span class="hljs-keyword">new</span> AppView();
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>app.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>app.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="application-s-main-file-manages-the-whole-view">Application’s Main File: Manages the whole View</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-pi">'use strict'</span>;
+
+define([
+    <span class="hljs-string">'jquery'</span>,
+    <span class="hljs-string">'underscore'</span>,
+    <span class="hljs-string">'q'</span>,
+    <span class="hljs-string">'backbone'</span>,
+    <span class="hljs-string">'models/statistics/metrics'</span>,
+    <span class="hljs-string">'models/statistics/organizations'</span>,
+    <span class="hljs-string">'models/statistics/detailBy'</span>,
+    <span class="hljs-string">'models/statistics/statistics'</span>,
+    <span class="hljs-string">'models/filters/filterTypes'</span>,
+    <span class="hljs-string">'models/filters/filterTitle'</span>,
+    <span class="hljs-string">'models/categories/categoryTerms'</span>,
+    <span class="hljs-string">'models/topics/topics'</span>,
+    <span class="hljs-string">'collections/filters/filters'</span>,
+    <span class="hljs-string">'views/statistics/metrics'</span>,
+    <span class="hljs-string">'views/statistics/organizations'</span>,
+    <span class="hljs-string">'views/statistics/detailBy'</span>,
+    <span class="hljs-string">'views/filters/filtersSelector'</span>,
+    <span class="hljs-string">'views/filters/boxFilter'</span>,
+    <span class="hljs-string">'views/filters/dateFilter'</span>,
+    <span class="hljs-string">'views/filters/sliderFilter'</span>,
+    <span class="hljs-string">'views/filters/areaFilter'</span>,
+    <span class="hljs-string">'views/charts/barChart'</span>,
+    <span class="hljs-string">'views/charts/dateChart'</span>,
+    <span class="hljs-string">'views/maps/heatMap'</span>,
+    <span class="hljs-string">'views/maps/heatMapZones'</span>,
+    <span class="hljs-string">'utils/filterUtils'</span>,
+    <span class="hljs-string">'utils/idUtils'</span>,
+    <span class="hljs-string">'config/appConfig'</span>
+], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$, _, q, Backbone, MetricsModel, OrgsModel, DetailByModel, StatsModel, FilterTypesModel,
+             FilterTitleModel, CategoryTerms, Topics, FiltersCollection, MetricsView, OrgsView, DetailByView, FiltersSelectorView,
+             BoxFilterView, SliderFilter, AreaFilter, DateFilterView, BarChartView, DateChartView, HeatMapView,
+             HeatMapZonesView, FilterUtils, idUtils, Config</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <ul>
+<li>Main method where everything is controlled and rendered</li>
+<li>Every view &amp; subview manages its own events.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">var</span> AppView = Backbone.View.extend({
+        el: <span class="hljs-string">'#statisticsModule'</span>,
+        events: {
+            <span class="hljs-string">'click #newAnalysis'</span>: <span class="hljs-string">'resetAnalysis'</span>,
+            <span class="hljs-string">'click #applyFilters'</span>: <span class="hljs-string">'requestStatisticsHandler'</span>
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <ul>
+<li>Creating all selectors of the view</li>
+<li>Listening to some events of change in the view</li>
+<li>Requesting Metrics and resetting the Organizations and Filters for the first time</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">this</span>.$metricSelect = <span class="hljs-keyword">this</span>.$(<span class="hljs-string">'#metricsSelect'</span>);
+            <span class="hljs-keyword">this</span>.$orgsSelect = <span class="hljs-keyword">this</span>.$(<span class="hljs-string">'#orgsSelect'</span>);
+            <span class="hljs-keyword">this</span>.$detailBySelect = <span class="hljs-keyword">this</span>.$(<span class="hljs-string">'#detailBySelect'</span>);
+            <span class="hljs-keyword">this</span>.$filterSelector = <span class="hljs-keyword">this</span>.$(<span class="hljs-string">'#filtersSelector'</span>);
+            <span class="hljs-keyword">this</span>.$filters = <span class="hljs-keyword">this</span>.$(<span class="hljs-string">'#filters'</span>);
+            <span class="hljs-keyword">this</span>.$loading = <span class="hljs-keyword">this</span>.$(<span class="hljs-string">'#loading'</span>);
+            <span class="hljs-keyword">this</span>.$applyButton = <span class="hljs-keyword">this</span>.$(<span class="hljs-string">'#applyButton'</span>).hide();
+
+            <span class="hljs-keyword">this</span>.listenTo(FiltersCollection, <span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.addFilterHandler);
+            <span class="hljs-keyword">this</span>.listenTo(FiltersCollection, <span class="hljs-string">'remove'</span>, <span class="hljs-keyword">this</span>.checkCollection);
+            <span class="hljs-keyword">this</span>.listenTo(MetricsModel, <span class="hljs-string">'change:selectedMetric'</span>, <span class="hljs-keyword">this</span>.metricChanged);
+            <span class="hljs-keyword">this</span>.listenTo(OrgsModel, <span class="hljs-string">'change:selectedOrg'</span>, <span class="hljs-keyword">this</span>.orgChanged);
+            <span class="hljs-keyword">this</span>.listenTo(DetailByModel, <span class="hljs-string">'change:selectedDetailBy'</span>, <span class="hljs-keyword">this</span>.detailByChanged);
+
+            <span class="hljs-keyword">this</span>.requestMetrics();
+            <span class="hljs-keyword">this</span>.resetOrgs();
+            <span class="hljs-keyword">this</span>.resetFilters();
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>If there are no filters selected, the application button is going to be hide.</p>
+<ul>
+<li>As there are no filters, the organization changes if the last filter was erased</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        checkCollection: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">if</span> (FiltersCollection.length &gt; <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">this</span>.$applyButton.show();
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">this</span>.$applyButton.hide();
+                <span class="hljs-keyword">this</span>.orgChanged();
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Activated when metric has changed</p>
+<ul>
+<li>If the selected metric is empty, the Orgs and Filters will be reset. If not, clear the Orgs, request the Filters and set the new Metric</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        metricChanged: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">this</span>.checkMetricTypeChanged();
+            <span class="hljs-keyword">this</span>.resetChart();
+            <span class="hljs-keyword">this</span>.resetDetailBy();
+            <span class="hljs-keyword">var</span> metricID = MetricsModel.get(<span class="hljs-string">'selectedMetric'</span>);
+
+            <span class="hljs-keyword">if</span> (!_.isEmpty(metricID)) {
+                OrgsModel.clear();
+                <span class="hljs-keyword">this</span>.requestOrgsFilters();
+                <span class="hljs-keyword">this</span>.setCurrentMetric(metricID);
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">this</span>.resetOrgs();
+                <span class="hljs-keyword">this</span>.resetFilters();
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Checking if the new selected Metric is the same as the previous or not. If it is different the Filters are going to be resetted</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        checkMetricTypeChanged: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> previousMetricType = MetricsModel.getMetricType(<span class="hljs-keyword">this</span>.currentMetric),
+                currentMetricType = MetricsModel.getMetricType(MetricsModel.get(<span class="hljs-string">'selectedMetric'</span>));
+
+            <span class="hljs-keyword">if</span> (!_.isEqual(previousMetricType, currentMetricType)) {
+                <span class="hljs-keyword">this</span>.resetFilters();
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Sets the metric ID currently selected</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        setCurrentMetric: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">metricID</span>) </span>{
+            <span class="hljs-keyword">this</span>.currentMetric = metricID;
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Used when Organization changes</p>
+<ul>
+<li>Gets the new Organization</li>
+<li>If an Org is selected, it makes the request, with another one for the Client Location if the organization is that one (and reset it if the case that no)</li>
+<li>If there is none selected, the Detail By will be reset</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        orgChanged: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">this</span>.resetChart();
+            <span class="hljs-keyword">var</span> organizationID = OrgsModel.get(<span class="hljs-string">'selectedOrg'</span>);
+            <span class="hljs-keyword">if</span> (!_.isEmpty(organizationID)) {
+                <span class="hljs-keyword">if</span> (organizationID == Config.GROUP_BY_CLIENT_LOCATION) {
+                    <span class="hljs-keyword">this</span>.requestDetailBy();
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-keyword">this</span>.resetDetailBy();
+                }
+                <span class="hljs-keyword">this</span>.requestStatisticsHandler();
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">this</span>.resetDetailBy();
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>If Detail By Client Location changes, the new statistics will be requested</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        detailByChanged: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">this</span>.requestStatisticsHandler();
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Shows the dropdown with the metrics when clicked</p>
+<ul>
+<li>Create view from the model, and then the HTML</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        renderMetrics: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> metricsView = <span class="hljs-keyword">new</span> MetricsView({model: MetricsModel});
+            <span class="hljs-keyword">this</span>.$metricSelect.html(metricsView.render().$el);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Shows the dropdown with the organization when clicked</p>
+<ul>
+<li>Create view from the model, and then the HTML</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        renderOrgs: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> orgsView = <span class="hljs-keyword">new</span> OrgsView({model: OrgsModel});
+            <span class="hljs-keyword">this</span>.$orgsSelect.html(orgsView.render().$el);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Shows the dropdown with the filters when clicked</p>
+<ul>
+<li>Create view from the model and the correct collection of filters, and then the HTML</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        renderFiltersSelector: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> filtersSelectorView = <span class="hljs-keyword">new</span> FiltersSelectorView({
+                model: FilterTypesModel,
+                collection: FiltersCollection
+            });
+            <span class="hljs-keyword">this</span>.$filterSelector.html(filtersSelectorView.render().$el);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Shows the dropdown with the Detail By Client Location when clicked</p>
+<ul>
+<li>Create view from the model, and then the HTML</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        renderDetailBy: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> detailByView = <span class="hljs-keyword">new</span> DetailByView({model: DetailByModel});
+            <span class="hljs-keyword">this</span>.$detailBySelect.html(detailByView.render().$el);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Used for showing the selected filter</p>
+<ul>
+<li>Getting the Filter ID and the correspondent metric, then the Title for the Filter will be created</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        renderFilter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">FilterView, filterModel</span>) </span>{
+            <span class="hljs-keyword">var</span> filterID = filterModel.get(<span class="hljs-string">'filterID'</span>),
+                metricType = MetricsModel.getMetricType(MetricsModel.get(<span class="hljs-string">'selectedMetric'</span>));
+
+            <span class="hljs-keyword">var</span> filterTitle = <span class="hljs-keyword">new</span> FilterTitleModel({
+                filterID: filterID,
+                metricType: metricType
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <ul>
+<li>If the fetching success, the Title will be setted to the Filter</li>
+<li>Then creates the Filter View</li>
+<li>Finally it will be rendered</li>
+<li>In the case that the filter is a map, it will be rendered</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+            filterTitle.fetch({
+                success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                    filterModel.set(<span class="hljs-string">'title'</span>, filterTitle.get(<span class="hljs-string">'title'</span>));
+                    <span class="hljs-keyword">var</span> filterView = <span class="hljs-keyword">new</span> FilterView({
+                        model: filterModel
+                    });
+                    that.$filters.append(filterView.render().$el);
+
+                    <span class="hljs-keyword">if</span> (!_.isUndefined(filterView.renderMap)) {
+                        filterView.renderMap();
+                    }
+                }
+            });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Cancels the Stats requests and hide the loading logo</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        resetRequest: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">if</span> (!_.isUndefined(<span class="hljs-keyword">this</span>.requestStats)) {
+                <span class="hljs-keyword">this</span>.requestStats.abort();
+            }
+            <span class="hljs-keyword">this</span>.$loading.hide();
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Resets the whole Analysis, resetting all the components</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        resetAnalysis: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">this</span>.resetRequest();
+            <span class="hljs-keyword">this</span>.resetOrgs();
+            <span class="hljs-keyword">this</span>.resetFilters();
+            <span class="hljs-keyword">this</span>.resetDetailBy();
+            <span class="hljs-keyword">this</span>.resetChart();
+            MetricsModel.clear();
+            <span class="hljs-keyword">this</span>.requestMetrics();
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Clears the metrics and renders it once again</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        resetMetrics: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            MetricsModel.clear();
+            <span class="hljs-keyword">this</span>.renderMetrics();
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Resets the organizations</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        resetOrgs: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            OrgsModel.clear();
+            <span class="hljs-keyword">this</span>.renderOrgs();
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Resets the whole Filters</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        resetFilters: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            FilterTypesModel.clear();
+            <span class="hljs-keyword">this</span>.renderFiltersSelector();
+            FiltersCollection.reset();
+            <span class="hljs-keyword">this</span>.$filters.html(<span class="hljs-string">''</span>);
+            <span class="hljs-keyword">this</span>.$applyButton.hide();
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Resets the Detail By Client Location selector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        resetDetailBy: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            DetailByModel.clear();
+            <span class="hljs-keyword">this</span>.$detailBySelect.html(<span class="hljs-string">''</span>);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Clear the stats and removes the chart if it is showed</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        resetChart: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            StatsModel.clear();
+            <span class="hljs-keyword">if</span> (!_.isUndefined(<span class="hljs-keyword">this</span>.chart) &amp;&amp; !_.isUndefined(<span class="hljs-keyword">this</span>.chart.remove)) {
+                <span class="hljs-keyword">this</span>.chart.remove();
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Manages adding filters. If it uses an URL, it will call to Requesting Filter, if not it will add it directly</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        addFilterHandler: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">filter</span>) </span>{
+            <span class="hljs-keyword">var</span> filterID = filter.attributes.filterID,
+                filterUrl = FilterUtils.getFilterUrl(filterID),
+                FilterView = FilterUtils.getFilterView(filterID);
+
+            <span class="hljs-keyword">this</span>.checkCollection();
+            <span class="hljs-keyword">if</span> (!_.isUndefined(FilterView)) {
+                <span class="hljs-keyword">if</span> (!_.isUndefined(filterUrl)) {
+                    filter.set({
+                        url: filterUrl
+                    });
+                    <span class="hljs-keyword">this</span>.addRequestFilter(FilterView, filter);
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-keyword">this</span>.renderFilter(FilterView, filter);
+                }
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Requests Filters in the case that uses an URL. If there are no Terms to load (undefined), it will make the fetch and if it success it will render.
+In the another case (there are Terms to get), it will get it, and for each element, it is going to push it on the Content List with the ID and Name fields.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        addRequestFilter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">FilterView, filter</span>) </span>{
+            <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+            <span class="hljs-keyword">if</span> (_.isUndefined(filter.getTerms)) {
+                filter.fetch({
+                    success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                        that.renderFilter(FilterView, filter);
+                    }
+                });
+            } <span class="hljs-keyword">else</span> {
+                filter.getTerms()
+                    .then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>{
+                        <span class="hljs-keyword">var</span> content = [];
+                        _.each(result.elements, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">element</span>) </span>{
+                            content.push({
+                                id: element.id,
+                                name: element.categoryTermName
+                            })
+                        });
+                        filter.set(<span class="hljs-string">'content'</span>, content);
+                        that.renderFilter(FilterView, filter);
+                    });
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Manages the rendering of a chart. Calls for rendering the chart after controlling and choosing which nameis going to show on the chart for the attribute: If the ID or the name ‘per se’, depending on the type.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        renderChartHandler: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">metricID, groupByID, chartType, chartData, countryID</span>) </span>{
+            <span class="hljs-keyword">this</span>.resetChart();
+            <span class="hljs-keyword">var</span> groups = [],
+                data = [];
+            <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+            groupByID = <span class="hljs-built_in">parseInt</span>(groupByID);
+            idUtils.getIDModel(groupByID)
+                .then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">names</span>) </span>{
+                    names = (!_.isUndefined(names) &amp;&amp; !_.isUndefined(names.elements)) ? names.elements : names;
+                    <span class="hljs-built_in">console</span>.log(names);
+                    _.each(chartData, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">elementData, index</span>) </span>{
+                        <span class="hljs-keyword">if</span> (!_.isUndefined(names)) {
+                            <span class="hljs-keyword">var</span> id = (!_.isUndefined(elementData.group.groupName)) ? elementData.group.groupName : elementData.group;
+                            <span class="hljs-keyword">var</span> name = <span class="hljs-literal">undefined</span>;
+                            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; names.length; i++) {
+                                <span class="hljs-keyword">var</span> element = names[i];
+                                <span class="hljs-keyword">if</span> (element.id == id) {
+                                    name = (!_.isUndefined(element.name)) ? element.name : element;
+                                    <span class="hljs-keyword">break</span>;
+                                }
+                            }
+                            name = (_.isUndefined(name)) ? id : name;
+                            <span class="hljs-keyword">if</span> (!_.isUndefined(chartData[index].group.groupName)) {
+                                chartData[index].group.groupName = name;
+                            } <span class="hljs-keyword">else</span> {
+                                chartData[index].group = name;
+                            }
+                            groups.push(name);
+                            data.push(elementData.data);
+                        } <span class="hljs-keyword">else</span> {
+                            groups.push(elementData.group);
+                            data.push(elementData.data);
+                        }
+                    });
+                    that.renderChart(metricID, chartType, chartData, countryID, groups, data);
+                });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Creates a new Chart View depending of the Chart Type. If it’s undefined it shows an “Chart Not Found” message</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        renderChart: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">metricID, chartType, chartData, countryID, groups, data</span>) </span>{
+            <span class="hljs-keyword">switch</span> (chartType) {
+                <span class="hljs-keyword">case</span> Config.BAR_CHART:
+                    <span class="hljs-keyword">this</span>.chart = <span class="hljs-keyword">new</span> BarChartView({groups: groups, data: data});
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> Config.HEAT_MAP:
+                    <span class="hljs-keyword">this</span>.chart = <span class="hljs-keyword">new</span> HeatMapView({chartData: chartData});
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> Config.DATE_CHART:
+                    <span class="hljs-keyword">this</span>.chart = <span class="hljs-keyword">new</span> DateChartView({groups: groups, data: data});
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> Config.COUNTRY_BAR_CHART:
+                    <span class="hljs-keyword">this</span>.chart = <span class="hljs-keyword">new</span> BarChartView({groups: groups, data: data});
+                    <span class="hljs-keyword">if</span> (_.isUndefined(countryID)) {
+                        DetailByModel.set({<span class="hljs-string">'countryIDs'</span>: groups});
+                        <span class="hljs-keyword">this</span>.requestDetailBy();
+                    }
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> Config.MAP_EXPLORED_ZONES:
+                    <span class="hljs-keyword">this</span>.chart = <span class="hljs-keyword">new</span> HeatMapZonesView({chartData: chartData});
+                    <span class="hljs-keyword">break</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_.isUndefined(<span class="hljs-keyword">this</span>.chart)) {
+                <span class="hljs-keyword">this</span>.chart.render();
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Chart "</span> + chartType + <span class="hljs-string">" not found"</span>);
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Requests the metrics to show. If the fetch success, it will get the Terms and then renders them. If not, only resets Metrics and Charts.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        requestMetrics: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+            MetricsModel.fetch({
+                success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                    <span class="hljs-keyword">var</span> categoryTerms = <span class="hljs-keyword">new</span> CategoryTerms();
+                    categoryTerms.getTerms()
+                        .then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>{
+                            MetricsModel.set(<span class="hljs-string">'filterMetrics'</span>, result.elements);
+                            that.renderMetrics();
+                        });
+                },
+                error: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                    that.resetMetrics();
+                    that.resetChart();
+                }
+            });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Requests the Organizations and the Filters once is clicked on the Metric dropdown. If there is not a selected Metric it resets Orgs, Filters and Charts.
+If there is a valid Metric, it sets the Orgs and Filters, and if the fetch success in the both cases, it will render them. If there is an Error, it will reset the Chart, and Orgs and/or Filters.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        requestOrgsFilters: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> metricID = MetricsModel.get(<span class="hljs-string">'selectedMetric'</span>);
+            <span class="hljs-keyword">if</span> (!_.isEmpty(metricID)) {
+                <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+                OrgsModel.set(<span class="hljs-string">'metricID'</span>, metricID);
+                OrgsModel.fetch({
+                    success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                        that.renderOrgs();
+                    },
+                    error: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                        that.resetOrgs();
+                        that.resetChart();
+                    }
+                });
+                FilterTypesModel.set(<span class="hljs-string">'metricID'</span>, metricID);
+                FilterTypesModel.fetch({
+                    success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                        that.renderFiltersSelector();
+                    },
+                    error: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                        that.resetFilters();
+                        that.resetChart();
+                    }
+                });
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">this</span>.resetOrgs();
+                <span class="hljs-keyword">this</span>.resetFilters();
+                <span class="hljs-keyword">this</span>.resetChart();
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Requests the Detail By Countries. If success, it will set the countries and render them, if not, it will reset the Detail By.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        requestDetailBy: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+            DetailByModel.requestCountries({
+                success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">countries</span>) </span>{
+                    DetailByModel.set(<span class="hljs-string">'countries'</span>, countries);
+                    that.renderDetailBy();
+                },
+                error: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                    that.resetDetailBy();
+                }
+            });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Manages the Statistics Request. Get all of the selections, and if they are not undefined, Chart and Request are resetted.
+If the there is a Filter ID then calls for pushing on the filters list the explorer’s filters. Finally, for each filter on List, process it (choosing if it is a Date or another different filter).
+Then applies the Statistics Request.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        requestStatisticsHandler: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> metricID = MetricsModel.get(<span class="hljs-string">'selectedMetric'</span>),
+                filterID = MetricsModel.get(<span class="hljs-string">'selectedFilterID'</span>),
+                organizationID = OrgsModel.get(<span class="hljs-string">'selectedOrg'</span>),
+                filters = [],
+                detailByID = DetailByModel.get(<span class="hljs-string">'selectedDetailBy'</span>);
+
+            <span class="hljs-keyword">if</span> (!_.isUndefined(metricID) &amp;&amp; !_.isEmpty(metricID) &amp;&amp; !_.isUndefined(organizationID) &amp;&amp; !_.isEmpty(organizationID)) {
+
+                <span class="hljs-keyword">this</span>.resetRequest();
+                <span class="hljs-keyword">this</span>.resetChart();
+
+                <span class="hljs-keyword">if</span> (!_.isUndefined(filterID)) {
+                    FilterUtils.processMetricFilters(filters, filterID);
+                }
+
+                <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+                FiltersCollection.each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">filter</span>) </span>{
+                    <span class="hljs-keyword">switch</span> (filter.attributes.filterID) {
+                        <span class="hljs-keyword">case</span> Config.FILTER_DATE_RANGE:
+                            FilterUtils.processDateFilters(filters, filter, that.$(<span class="hljs-string">'#fromDate'</span>).val(), that.$(<span class="hljs-string">'#toDate'</span>).val());
+                            <span class="hljs-keyword">break</span>;
+                        <span class="hljs-keyword">default</span>:
+                            FilterUtils.processFilter(filters, filter);
+                            <span class="hljs-keyword">break</span>;
+                    }
+                });
+                <span class="hljs-keyword">this</span>.requestStatistics(metricID, organizationID, filters, detailByID);
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>Controls the Detail By Client Location special case, and loads the Detail By ID. Clear the current Stats, and then make the new Request.
+If success then Render the Chart Handler, if not only reset the Chart.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        requestStatistics: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">metricID, organizationID, filters, detailByID</span>) </span>{
+            <span class="hljs-keyword">var</span> payload = {
+                metricID: metricID,
+                groupByID: organizationID,
+                filters: filters
+            };
+            <span class="hljs-keyword">if</span> (!_.isUndefined(detailByID) &amp;&amp; !_.isEmpty(detailByID)) {
+                payload[<span class="hljs-string">"countryID"</span>] = detailByID;
+            }
+            StatsModel.clear().set(payload);
+
+            <span class="hljs-keyword">this</span>.$loading.show();
+            <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+            <span class="hljs-keyword">this</span>.requestStats =
+                StatsModel.requestStats({
+                    success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) </span>{
+                        that.$loading.hide();
+                        that.renderChartHandler(payload.metricID, payload.groupByID,
+                            response.chartType, response.data, response.countryID);
+                    },
+                    error: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                        that.$loading.hide();
+                        that.resetChart();
+                    }
+                });
+        }
+    });
+    <span class="hljs-keyword">return</span> AppView;
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

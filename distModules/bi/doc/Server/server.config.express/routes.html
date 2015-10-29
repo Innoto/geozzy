@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>routes.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>routes.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="expressjs-routes-configuration-module">ExpressJS routes configuration module</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <ul>
+<li>express: web framework for NodeJS used to implement a webservice.</li>
+<li>rootRouter: / requests handler</li>
+<li>authRooter: / request handler used for authentication</li>
+<li>observationRouter: /observation request handler</li>
+<li>statisticsRouter: /statistics request handler</li>
+<li>statisticsConfigRouter: /statistics/config request handler</li>
+<li>configServer: server configuration module</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>),
+    rootRouter = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../routers/rootRouter'</span>),
+    authRooter = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../routers/authRouter'</span>),
+    observationRouter = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../routers/observationRouter'</span>),
+    statisticsRouter = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../routers/statisticsRouter'</span>),
+    ststisticsConfigRouter = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../routers/statisticsConfigRouter'</span>),
+    configServer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../system/configServer'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Adds routes to a ExpressJS instance</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>exports.createRoutes = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">app</span>) </span>{
+
+    app.use(<span class="hljs-string">'/'</span>, rootRouter);
+    app.use(<span class="hljs-string">'/auth'</span>, authRooter);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>If server is configured as insert observation server, add /observation route</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (configServer.insertObservationServer) {
+        app.use(<span class="hljs-string">'/observation'</span>, observationRouter);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Else serve static files and configure the staticstics routes</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    } <span class="hljs-keyword">else</span> {
+        app.use(express.static(<span class="hljs-string">'public'</span>));
+        app.use(<span class="hljs-string">'/statistics'</span>, statisticsRouter);
+        app.use(<span class="hljs-string">'/statistics/config'</span>, ststisticsConfigRouter);
+    }
+};</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

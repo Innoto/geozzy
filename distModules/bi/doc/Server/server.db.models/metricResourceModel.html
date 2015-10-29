@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>metricResourceModel.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>metricResourceModel.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="mongoose-model-for-resource-metrics">Mongoose model for resource metrics</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <ul>
+<li>mongoose: Mongoose instance</li>
+<li>Schema: Mongoose Schema instance</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mongoose'</span>),
+    Schema = mongoose.Schema;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Schema fields:</p>
+<ul>
+<li>_observation: Reference to the observation related to</li>
+<li>metricTime: Date and time of the metric</li>
+<li>resource: Resource object</li>
+<li>event: Event object</li>
+<li>section: Part of the page related to</li>
+<li>seconds: Number of seconds while events were generated</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> metricResourceSchema = <span class="hljs-keyword">new</span> Schema({
+    _observation: { type: Schema.Types.ObjectId, ref: <span class="hljs-string">'Observation'</span> },
+    metricTime: { type: <span class="hljs-built_in">Date</span>, required: <span class="hljs-literal">true</span> },
+    resource: { type: <span class="hljs-built_in">Object</span>, required: <span class="hljs-literal">true</span> },
+    event: { type: <span class="hljs-built_in">Object</span>, required: <span class="hljs-literal">true</span> },
+    section: { type: <span class="hljs-built_in">String</span>, required: <span class="hljs-literal">true</span> },
+    seconds: { type: <span class="hljs-built_in">Number</span>, required: <span class="hljs-literal">true</span> }
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Create a new model using the schema</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> metricResourceModel = mongoose.model(<span class="hljs-string">'MetricResource'</span>, metricResourceSchema);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Exported:</p>
+<ul>
+<li>metricResourceSchema: Schema for content metric</li>
+<li>metricResourceModel: Model for content metric</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>exports.metricResourceSchema = metricResourceSchema;
+exports.metricResourceModel = metricResourceModel;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

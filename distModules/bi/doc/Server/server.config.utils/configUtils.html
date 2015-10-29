@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>configUtils.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>configUtils.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="configuration-utilities-module">Configuration Utilities Module</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <ul>
+<li>constants: constants module</li>
+<li>configMetrics: metrics configuration module</li>
+<li>configGroupBy: group by configuration module</li>
+<li>configFilters: filters configuration module</li>
+<li>_ : underscore utility library</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> constants = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../statistics/constants'</span>),
+    configMetrics = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../statistics/configMetrics'</span>),
+    configGroupBy = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../statistics/configGroupBy'</span>),
+    configFilters = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../statistics/configFilters'</span>),
+    _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'underscore'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Get metric from config file by its ID</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>exports.getMetric = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">metricID</span>)</span>{
+    <span class="hljs-keyword">return</span> _.findWhere(configMetrics,{metricID:metricID});
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Get group from config file by its ID</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>exports.getGroupBy = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">groupByID</span>)</span>{
+    <span class="hljs-keyword">return</span> _.findWhere(configGroupBy,{groupByID:groupByID});
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Get group IDs by its related metric</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>exports.getMetricGroupIDs = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">metricID</span>)</span>{
+    <span class="hljs-keyword">var</span> metricGroup = _.findWhere(configMetrics,{metricID:metricID});
+    <span class="hljs-keyword">if</span> (!_.isUndefined(metricGroup)){
+        <span class="hljs-keyword">return</span> metricGroup.groups;
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+    }
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Get chart type from a metric and a group ID</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>exports.getChartType = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">metric,groupBy</span>)</span>{
+    <span class="hljs-keyword">if</span> (metric.type == constants.METRIC_TYPE_RESOURCE){
+        <span class="hljs-keyword">var</span> barChartGroups = [
+            constants.GROUP_BY_RESOURCE_NAME,
+            constants.GROUP_BY_RESOURCE_TYPE,
+            constants.GROUP_BY_RESOURCE_TOPIC,
+            constants.GROUP_BY_RESOURCE_TERM,
+            constants.GROUP_BY_DEVICE_TYPE,
+            constants.GROUP_BY_LANGUAGE,
+            constants.GROUP_BY_SECTION
+        ];
+        <span class="hljs-keyword">if</span> (_.contains(barChartGroups,groupBy.groupByID)){
+            <span class="hljs-keyword">return</span> constants.BAR_CHART;
+        }
+        <span class="hljs-keyword">if</span> (groupBy.groupByID == constants.GROUP_BY_GEOGRAPHIC_BOUND){
+            <span class="hljs-keyword">return</span> constants.HEAT_MAP;
+        }
+        <span class="hljs-keyword">if</span> (groupBy.groupByID == constants.GROUP_BY_DATE_RANGE){
+            <span class="hljs-keyword">return</span> constants.DATE_CHART;
+        }
+        <span class="hljs-keyword">if</span> (groupBy.groupByID == constants.GROUP_BY_CLIENT_LOCATION){
+            <span class="hljs-keyword">return</span> constants.COUNTRY_BAR_CHART;
+        }
+    }
+    <span class="hljs-keyword">if</span> (metric.type == constants.METRIC_TYPE_EXPLORER){
+        <span class="hljs-keyword">if</span> (metric.metricID == constants.METRIC_EXPLORED_ZONE){
+            <span class="hljs-keyword">if</span> (groupBy.groupByID == constants.GROUP_BY_EXPLORER_BOUNDS ||
+                groupBy.groupByID== constants.GROUP_BY_FILTER_BOUNDS ){
+                <span class="hljs-keyword">return</span> constants.MAP_EXPLORED_ZONES;
+            }
+        }
+        <span class="hljs-keyword">if</span> (metric.metricID == constants.METRIC_FILTER){
+            <span class="hljs-keyword">var</span> barChartGroups = [
+                constants.GROUP_BY_EXPLORER,
+                constants.GROUP_BY_DEVICE_TYPE,
+                constants.GROUP_BY_LANGUAGE
+            ];
+            <span class="hljs-keyword">if</span> (_.contains(barChartGroups,groupBy.groupByID)){
+                <span class="hljs-keyword">return</span> constants.BAR_CHART;
+            }
+            <span class="hljs-keyword">if</span> (groupBy.groupByID == constants.GROUP_BY_DATE_RANGE){
+                <span class="hljs-keyword">return</span> constants.DATE_CHART;
+            }
+            <span class="hljs-keyword">if</span> (groupBy.groupByID == constants.GROUP_BY_CLIENT_LOCATION){
+                <span class="hljs-keyword">return</span> constants.COUNTRY_BAR_CHART;
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Get filters related to a metric type</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>exports.getFilters = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">metric</span>)</span>{
+    <span class="hljs-keyword">var</span> filters = [],
+        filterIDs = [];
+    <span class="hljs-keyword">if</span> (metric.type == constants.METRIC_TYPE_RESOURCE){
+        filterIDs = [
+            constants.FILTER_RESOURCE,
+            constants.FILTER_RESOURCE_TYPES,
+            constants.FILTER_RESOURCE_TOPICS,
+            constants.FILTER_RESOURCE_TERMS,
+            constants.FILTER_EVENT_TYPES,
+            constants.FILTER_REGION_COUNTRY,
+            constants.FILTER_DEVICE_TYPE,
+            constants.FILTER_LANGUAGE,
+            constants.FILTER_DATE_RANGE,
+            constants.FILTER_RESOURCE_GEOGRAPHIC_BOUND,
+            constants.FILTER_SECTION,
+            constants.FILTER_SECONDS
+        ];
+    }
+    <span class="hljs-keyword">if</span> (metric.type == constants.METRIC_TYPE_EXPLORER){
+        filterIDs = [
+            constants.FILTER_EXPLORER,
+            constants.FILTER_TAXONOMY_TERMS,
+            constants.FILTER_EXPLORER_GEOGRAPHIC_BOUND,
+            constants.FILTER_DATE_RANGE,
+            constants.FILTER_REGION_COUNTRY,
+            constants.FILTER_DEVICE_TYPE,
+            constants.FILTER_SECTION
+        ];
+    }
+    _.each(filterIDs, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">filterID</span>)</span>{
+        <span class="hljs-keyword">var</span> filter = _.findWhere(configFilters,{filterID:filterID});
+        <span class="hljs-keyword">if</span> (!_.isUndefined(filter)){
+            <span class="hljs-keyword">var</span> pickedFilter = _.pick(filter,<span class="hljs-string">'filterID'</span>,<span class="hljs-string">'filterType'</span>,<span class="hljs-string">'filterName'</span>);
+            filters.push(pickedFilter);
+        }
+    });
+    <span class="hljs-keyword">return</span> filters;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Get some <a href="https://docs.mongodb.org/manual/reference/operator/aggregation/match/">$match MongoDB pipeline stages</a>
+using the request metric and the request filters</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>exports.getRequestFiltersMatch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">metric,requestFilters</span>)</span>{
+    <span class="hljs-keyword">var</span> filters = [];
+    _.each(requestFilters,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">requestFilter</span>)</span>{
+        <span class="hljs-keyword">var</span> configFilter = _.findWhere(configFilters,{filterID:requestFilter.filterID});
+        <span class="hljs-keyword">if</span> (!_.isUndefined(configFilter) &amp;&amp; !_.isEmpty(requestFilter.values)){
+            <span class="hljs-keyword">var</span> field = configFilter.field;
+            <span class="hljs-keyword">var</span> operator = configFilter.operator;
+            _.each(requestFilter.values, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">requestFilter</span>)</span>{
+                operator = !_.isUndefined(requestFilter.operator) ? requestFilter.operator : operator;
+                <span class="hljs-keyword">var</span> value = !_.isUndefined(requestFilter.value) ? requestFilter.value : requestFilter;
+
+                <span class="hljs-keyword">if</span> (configFilter.isInteger) {
+                    value = <span class="hljs-built_in">parseInt</span>(value);
+                }
+                <span class="hljs-keyword">if</span> (configFilter.isDate){
+                    value = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(value);
+                }
+
+                <span class="hljs-keyword">var</span> filter = {};
+                filter[field] = {};
+                filter[field][operator] = value;
+                filters.push(filter);
+            });
+        }
+    });
+    <span class="hljs-keyword">if</span> (!_.isEmpty(filters)){
+        <span class="hljs-keyword">return</span> {
+            $and: filters
+        }
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+    }
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Get a single $match <a href="https://docs.mongodb.org/manual/reference/operator/aggregation/match/">$match MongoDB pipeline stage</a>
+using a filter ID and a value</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>exports.getMatchFilter = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">filterID,paramValue</span>)</span>{
+    <span class="hljs-keyword">var</span> configFilter = _.findWhere(configFilters, {filterID: filterID});
+    <span class="hljs-keyword">if</span> (!_.isUndefined(configFilter)){
+        <span class="hljs-keyword">var</span> field = configFilter.field;
+        <span class="hljs-keyword">var</span> operator = configFilter.operator;
+        <span class="hljs-keyword">var</span> configValue = configFilter.value;
+
+        <span class="hljs-keyword">var</span> filter = {};
+        filter[field] = {};
+        filter[field][operator] = !_.isUndefined(configValue)? configValue:paramValue;
+    }
+    <span class="hljs-keyword">return</span> filter;
+};</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

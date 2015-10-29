@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>filterUtils.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>filterUtils.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3 id="utils-file-for-processing-parsing-and-configuring-the-filters">Utils file for processing, parsing and configuring the filters</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-pi">'use strict'</span>;
+
+define([
+    <span class="hljs-string">'jquery'</span>,
+    <span class="hljs-string">'underscore'</span>,
+    <span class="hljs-string">'q'</span>,
+    <span class="hljs-string">'moment'</span>,
+    <span class="hljs-string">'views/filters/boxFilter'</span>,
+    <span class="hljs-string">'views/filters/dateFilter'</span>,
+    <span class="hljs-string">'views/filters/areaFilter'</span>,
+    <span class="hljs-string">'views/filters/sliderFilter'</span>,
+    <span class="hljs-string">'models/filters/filter'</span>,
+    <span class="hljs-string">'models/categories/categoryTerms'</span>,
+    <span class="hljs-string">'config/appConfig'</span>
+], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$, _, q, moment, BoxFilterView, DateFilterView, MapFilterView, SliderFilterView, Filter, CategoryTerms, Config</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Parses the date String into a valid format for processing with toDate and toISOString</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> formatDate = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dateString</span>) </span>{
+        <span class="hljs-keyword">if</span> (!_.isEmpty(dateString)) {
+            <span class="hljs-keyword">var</span> date = moment(dateString, Config.DATE_FORMAT).toDate().toISOString();
+            <span class="hljs-keyword">return</span> date;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        }
+    };
+
+    <span class="hljs-keyword">return</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Function used to get the correct Filter View using the ID</p>
+<ul>
+<li>Creating different lists with each type of filter: Box, Date, Map and Slider</li>
+<li>Searches the Filter ID into the different lists for getting the correct view to use</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        getFilterView: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">filterID</span>) </span>{
+            <span class="hljs-keyword">var</span> listBox = [Config.FILTER_LANGUAGE, Config.FILTER_SECTION, Config.FILTER_EVENT_TYPES,
+                    Config.FILTER_DEVICE_TYPE, Config.FILTER_RESOURCE,
+                    Config.FILTER_RESOURCE_TERMS, Config.FILTER_RESOURCE_TOPICS, Config.FILTER_RESOURCE_TYPES,
+                    Config.FILTER_EXPLORER, Config.FILTER_TAXONOMY_TERMS],
+                listDate = [Config.FILTER_DATE_RANGE],
+                listMap = [Config.FILTER_RESOURCE_GEOGRAPHIC_BOUND, Config.FILTER_EXPLORER_GEOGRAPHIC_BOUND],
+                listSlider = [Config.FILTER_SECONDS];
+
+            <span class="hljs-keyword">if</span> (_.contains(listBox, filterID)) {
+                <span class="hljs-keyword">return</span> BoxFilterView;
+            }
+            <span class="hljs-keyword">if</span> (_.contains(listDate, filterID)) {
+                <span class="hljs-keyword">return</span> DateFilterView;
+            }
+            <span class="hljs-keyword">if</span> (_.contains(listMap, filterID)) {
+                <span class="hljs-keyword">return</span> MapFilterView;
+            }
+            <span class="hljs-keyword">if</span> (_.contains(listSlider, filterID)) {
+                <span class="hljs-keyword">return</span> SliderFilterView;
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Returns the URL from the determined filter of the Collection</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        getFilterUrl: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">filterID</span>) </span>{
+            <span class="hljs-keyword">var</span> filterConfig = _.findWhere(Config.FILTER_URL, {filterID: filterID});
+            <span class="hljs-keyword">if</span> (!_.isUndefined(filterConfig) &amp;&amp; !_.isUndefined(filterConfig.url)) {
+                <span class="hljs-keyword">return</span> filterConfig.url;
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Returns the Filter Model from the determined filter of the Collection</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        getFilterModel: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">filterID</span>) </span>{
+            <span class="hljs-keyword">var</span> filterCategoryTermIDs = [Config.FILTER_RESOURCE_TERMS, Config.FILTER_TAXONOMY_TERMS];
+            <span class="hljs-keyword">if</span> (_.contains(filterCategoryTermIDs, filterID)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CategoryTerms({filterID: filterID});
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Filter({filterID: filterID});
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Process the date filters and push it into the Filters list</p>
+<ul>
+<li>If there is some start date, push it into the filter to add</li>
+<li>If there is some final date, push it into the filter to add</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        processDateFilters: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">filters, dateFilter, fromDateString, toDateString</span>) </span>{
+            <span class="hljs-keyword">var</span> dateFilters = [];
+            <span class="hljs-keyword">if</span> (!_.isEmpty(fromDateString)) {
+                dateFilters.push({
+                    <span class="hljs-string">"operator"</span>: <span class="hljs-string">"$gte"</span>,
+                    <span class="hljs-string">"value"</span>: formatDate(fromDateString)
+                });
+            }
+            <span class="hljs-keyword">if</span> (!_.isEmpty(toDateString)) {
+                dateFilters.push({
+                    <span class="hljs-string">"operator"</span>: <span class="hljs-string">"$lte"</span>,
+                    <span class="hljs-string">"value"</span>: formatDate(toDateString)
+                })
+            }
+            filters.push({
+                filterID: dateFilter.attributes.filterID,
+                values: dateFilters
+            });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Push the metric from explorers with his values into the Filters list</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        processMetricFilters: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">filters, filterID</span>) </span>{
+            filters.push({
+                filterID: Config.FILTER_EXPLORERS_FILTERS_ID,
+                values: [
+                    {
+                        <span class="hljs-string">'$eq'</span>: filterID
+                    }
+                ]
+            });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Push into the Filters list the new Filter with his ID and values</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        processFilter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">filters, filter</span>) </span>{
+            filters.push({
+                filterID: filter.attributes.filterID,
+                values: filter.attributes.values
+            });
+        }
+    };
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
