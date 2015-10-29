@@ -9,6 +9,10 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   containerMap: false,
   divId: 'geozzyExplorerMapInfo',
 
+  template: _.template('<div> title </div><div><img class="img-responsive" src="http://lorempixel.com/260/196/nature?putarrrl" /></div> '),
+
+  margin: 10,
+
   initialize: function( opts ) {
     var that = this;
     that.options = new Object({
@@ -29,20 +33,15 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
     });
 
     if( $( '#'+that.divId ).length === 0 ) {
-      $('body').append( '<div id="' + that.divId + '" ></div>' )
+      $('body').append( '<div id="' + that.divId + '" >asdf</div>' )
     }
-    else {
-      $( '#'+that.divId ).show();
-    }
+
 
     $('#'+that.divId).css('position', 'absolute');
-    $('#'+that.divId).css('background-color', 'red');
 
-    $('#'+that.divId).css('width', 200+'px');
-    $('#'+that.divId).css('height', 300+'px');
-
-    $('#'+that.divId).css('top', pos.y+'px');
-    $('#'+that.divId).css('left', pos.x+'px');
+    $('#'+that.divId).css('background-color', 'white');
+    $('#'+that.divId).css('top', pos.y+that.margin+'px');
+    $('#'+that.divId).css('left', pos.x+that.margin+'px');
     $('#'+that.divId).css('z-index',highest);
 
 
@@ -51,11 +50,17 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   render: function() {
     var that = this;
     that.createInfoMapDiv();
+
+    var resourceInfo =
+
+    $( '#'+that.divId ).html( that.template({title:'BLOBLO'}) )
+
   },
 
-  show: function( ) {
+  show: function( id ) {
     var that = this;
-    that.render( );
+    that.render( id );
+    $( '#'+that.divId ).show();
   },
 
   hide: function() {
