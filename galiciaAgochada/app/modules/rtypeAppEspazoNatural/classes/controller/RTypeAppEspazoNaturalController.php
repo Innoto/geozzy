@@ -96,7 +96,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
 
 
     $locAll = '<div class="location">
-            <div class="row"><div class="col-lg-6"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div><div id="resourceLocationMap"></div></div>
+            <div class="row"><div class="col-lg-6 mapContainer"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div></div>
             <div class="col-lg-6 locationData">'.$locationData.'</div></div>
             <div class="locationDirections">'.$resourceDirections.'</div>
             </div>';

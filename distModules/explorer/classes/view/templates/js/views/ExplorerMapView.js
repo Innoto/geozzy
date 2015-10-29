@@ -9,7 +9,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   projection: false,
   ready:false,
 
-  markers: false,
+  markersCreated: false,
   markerClusterer: false,
 
   bufferPixels:150,
@@ -19,10 +19,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     this.options = new Object({
       map : false,
       clusterize: false,
-      markerClick: function(){},
-      markerHover: function(){},
-      clusterClick: function(){},
-      clusterHover: function(){}
     });
     $.extend(true, this.options, opts);
 
@@ -101,59 +97,72 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceIndex.length+ 'recursos' );
   },
 
+  createAllMarkers: function() {
+    var that = this;
+
+    if( !that.markersCreated ) {
+      that.parentExplorer.resourceMinimalList.each( function(e) {
+
+        e.mapMarker = new google.maps.Marker({
+          position: new google.maps.LatLng( e.get('lat'), e.get('lng') ),
+          icon: that.my_marker_icon
+          //map: that.map
+        });
+
+        e.mapMarker .addListener('click', function() {
+          that.markerClick(   );
+        });
+        e.mapMarker .addListener('mouseover', function() {
+          that.markerHover(  );
+        });
+
+      });
+    }
+
+    that.markersCreated = true;
+  },
+
+
+  hideAllMarkers: function() {
+    var that = this;
+    that.parentExplorer.resourceMinimalList.each( function(e) {
+      e.mapMarker.setMap(null);
+    });
+  },
 
   renderWithoutCluster: function() {
     var that = this;
 
-    if( that.markers.length > 0 ){
-      $.each(  that.markers , function(i,e) {
-        e.setMap( null );
-      });
-
+    if( !that.markersCreated ) {
+      that.createAllMarkers();
     }
+    that.hideAllMarkers();
 
-    that.markers = [];
-
-    $.each( that.parentExplorer.resourceIndex.toJSON(), function(i,e) {
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng( e.lat, e.lng ),
-        icon: that.my_marker_icon,
-        map: that.map
-      });
-
-      marker.addListener('click', function() {
-        that.options.markerClick( marker );
-      });
-      marker.addListener('mouseover', function() {
-        that.options.markerHover( marker );
-      });
-
-      that.markers.push(marker);
+    that.parentExplorer.resourceIndex.each( function(e) {
+      e.mapMarker.setMap(that.map);
     });
+
+
+
   },
 
   renderWithCluster: function() {
+
+
     var that = this;
 
 
     that.markers = [];
 
-    $.each( that.parentExplorer.resourceIndex.toJSON(), function(i,e) {
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng( e.lat, e.lng ),
-        icon: that.my_marker_icon,
-      });
-      marker.addListener('click', function() {
-        that.options.markerClick( marker );
-      });
-      marker.addListener('mouseover', function() {
-        that.options.markerHover( marker );
-      });
+    if( !that.markersCreated ) {
+      that.createAllMarkers();
+    }
+    that.hideAllMarkers();
 
 
-      that.markers.push(marker);
+    that.parentExplorer.resourceIndex.each( function( e ) {
+      that.markers.push( e.mapMarker );
     });
-
 
 
     if( that.markerClusterer == false ) {
@@ -170,6 +179,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       this.markerClusterer.addMarkers( that.markers );
       this.markerClusterer.redraw();
     }
+
   },
 
   coordsInMap: function( lat, lng ) {
@@ -204,7 +214,19 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   isReady: function() {
     return this.ready;
-  }
+  },
 
+
+  markerClick: function(){
+    var that = this;
+
+    if( that.parentExplorer.displays.mapInfo ) {
+
+      that.parentExplorer.displays.mapInfo.show();
+    }
+  },
+  markerHover: function(){},
+  clusterClick: function(){},
+  clusterHover: function(){}
 
 });
