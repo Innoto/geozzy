@@ -13,9 +13,9 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
       '</div>'+
     '</div>'),
   tplElement: _.template(
-    '<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 element element-<%- id %>">'+
+    '<div class="col-md-2 col-sm-4 col-xs-12 element element-<%- id %>">'+
       '<div class="elementImg">'+
-        '<img class="img-responsive" src="http://lorempixel.com/400/250/nature" />'+
+        '<img class="img-responsive" src="http://lorempixel.com/260/196/nature" />'+
       '</div>'+
       '<div class="elementInfo">'+
         '<%-title%>'+

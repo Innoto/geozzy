@@ -43,6 +43,7 @@ geozzy.explorer = function( opts ) {
 
   that.displays = {
     map: false,
+    mapInfo: false,
     activeList: false,
     pasiveList: false
   }
@@ -151,6 +152,11 @@ geozzy.explorer = function( opts ) {
     if( displayObj.displayType == 'map' ) {
       that.displays.map = displayObj;
       that.displays.map.parentExplorer = that;
+    }
+    else
+    if( displayObj.displayType == 'mapInfo' ) {
+      that.displays.mapInfo = displayObj;
+      that.displays.mapInfo.parentExplorer = that;
     }
     else
     if( displayObj.displayType == 'activeList' ) {
