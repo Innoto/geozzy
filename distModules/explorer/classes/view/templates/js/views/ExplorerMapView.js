@@ -115,6 +115,9 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         e.mapMarker .addListener('mouseover', function() {
           that.markerHover(  );
         });
+        e.mapMarker .addListener('mouseout', function() {
+          that.markerOut(  );
+        });
 
       });
     }
@@ -218,14 +221,23 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
 
   markerClick: function(){
+
+  },
+
+  markerHover: function(){
     var that = this;
 
     if( that.parentExplorer.displays.mapInfo ) {
-
       that.parentExplorer.displays.mapInfo.show();
     }
   },
-  markerHover: function(){},
+  markerOut: function() {
+    var that = this;
+
+    if( that.parentExplorer.displays.mapInfo ) {
+      that.parentExplorer.displays.mapInfo.hide();
+    }
+  },
   clusterClick: function(){},
   clusterHover: function(){}
 
