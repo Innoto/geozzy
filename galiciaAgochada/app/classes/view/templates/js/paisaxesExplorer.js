@@ -40,20 +40,14 @@
 
 
       // DISPLAYS
+      var infowindow = new geozzy.explorerDisplay.mapInfoView();
       var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
-      var mapa = new geozzy.explorerDisplay.mapView({
-        map: resourceMap,
-        markerClick: function( marker ) {
+      var mapa = new geozzy.explorerDisplay.mapView({ map: resourceMap, clusterize:false });
 
-        },
-        markerHover: function( marker ) {
-
-        }
-      });
 
       explorer.addDisplay( listaPasiva );
       explorer.addDisplay( mapa );
-
+      explorer.addDisplay( infowindow );
 
 
 
