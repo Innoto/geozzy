@@ -148,28 +148,21 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   renderWithCluster: function() {
 
-    /*
+
     var that = this;
 
 
     that.markers = [];
 
-    $.each( that.parentExplorer.resourceIndex.toJSON(), function(i,e) {
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng( e.lat, e.lng ),
-        icon: that.my_marker_icon,
-      });
-      marker.addListener('click', function() {
-        that.markerClick( marker );
-      });
-      marker.addListener('mouseover', function() {
-        that.markerHover( marker );
-      });
+    if( !that.markersCreated ) {
+      that.createAllMarkers();
+    }
+    that.hideAllMarkers();
 
 
-      that.markers.push(marker);
+    that.parentExplorer.resourceIndex.each( function( e ) {
+      that.markers.push( e.mapMarker );
     });
-
 
 
     if( that.markerClusterer == false ) {
@@ -186,7 +179,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       this.markerClusterer.addMarkers( that.markers );
       this.markerClusterer.redraw();
     }
-    */
+
   },
 
   coordsInMap: function( lat, lng ) {
