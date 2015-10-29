@@ -3,7 +3,7 @@
 @import "/explorer/classes/view/templates/styles/explorerMixins.less";
 
 .explorerLayout{
-  .mixinDevel();
+  //.mixinDevel();
   .explorerBase( @explFilter-h: auto,  @explGallery-h: auto,  @explMap-h: 52% );
 }
 
@@ -18,6 +18,8 @@
   }
 
   .explorer-container-filter{
+    padding: 5px 60px;
+
     .explorerFilterElement{
       float:left;
       margin: 0 5px;
@@ -31,13 +33,12 @@
     }
   }
   .explorer-container-gallery{
+    position: relative;
     .explorerListContent{
-      padding: 0px 60px;
+      padding: 0 60px;
       .element{
         padding: 10px 5px;
-        .elementImg{
-
-        }
+        .elementImg{}
         .elementInfo{
           font-size: 14px;
           line-height:20px;
@@ -45,6 +46,25 @@
           overflow: hidden;
           text-overflow: ellipsis;
         }
+      }//.element
+    }//.explorerListContent
+    .explorerListPager{
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 22px;
+      color: #ececec;
+
+      div{
+        height: 25px;
+      }
+      .currentPage{
+        font-size: 24px;
+        color: #90C147;
+      }
+      .previous,
+      .next{
+        font-size: 30px;
       }
     }
   }
