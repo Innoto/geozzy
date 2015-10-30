@@ -63,7 +63,7 @@ class RExtFileController extends RExtController implements RExtInterface {
       'file' => array(
         'params' => array( 'label' => __( 'File' ), 'type' => 'file', 'id' => 'rExtFileField',
         'placeholder' => __( 'File' ), 'destDir' => '/rext_file' ),
-        'rules' => array( 'maxfilesize' => '1000000' )
+        'rules' => array( 'maxfilesize' => '2097152' )
       )
     );
 
