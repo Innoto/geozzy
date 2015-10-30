@@ -63,6 +63,7 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
        function() {
          //console.log(  that.parentExplorer.resourcePartialList.get(id) );
          $( '#'+that.divId ).html( that.template(  that.parentExplorer.resourcePartialList.get(id).toJSON() ) );
+         $( '#'+that.divId ).show();
          //$( '#'+that.divId ).html( that.template( resourceInfo ) );
        }
     );
@@ -72,7 +73,6 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   show: function( id ) {
     var that = this;
     that.render( id );
-    $( '#'+that.divId ).show();
   },
 
   hide: function() {
