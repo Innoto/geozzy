@@ -13,7 +13,7 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
       '</div>'+
     '</div>'),
   tplElement: _.template(
-    '<div class="col-md-2 col-sm-4 col-xs-6 element element-<%- id %>">'+
+    '<div resourceId="<%- id %>" class="col-md-2 col-sm-4 col-xs-6 element element-<%- id %>">'+
       '<div class="elementImg">'+
         '<img class="img-responsive" src="http://lorempixel.com/260/196/nature?<%- id %>" />'+
       '</div>'+
@@ -42,7 +42,9 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
   events: {
       "click .explorerListPager .next" : "nextPage",
-      "click .explorerListPager .previous" : "previousPage"
+      "click .explorerListPager .previous" : "previousPage",
+      "mouseenter .explorerListContent .element": "resourceHover",
+      "mouseleave .explorerListContent": "resourceOut",
   },
 
   initialize: function( opts ) {
@@ -151,6 +153,24 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
   previousPage: function( ){
     this.setPage(this.currentPage-1);
-  }
+  },
 
+  resourceHover: function( element ) {
+    var that = this;
+
+    if( that.parentExplorer.displays.map ) {
+      that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('resourceId') );
+      that.parentExplorer.displays.map.markerHover( $(element.currentTarget).attr('resourceId') );
+    }
+  },
+
+  resourceOut: function( element ) {
+    var that = this;
+
+    if( that.parentExplorer.displays.map ) {
+      that.parentExplorer.displays.map.markerOut( );
+    }
+
+
+  }
 });
