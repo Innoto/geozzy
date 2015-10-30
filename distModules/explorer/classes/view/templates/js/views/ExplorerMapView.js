@@ -229,6 +229,15 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     setTimeout(function(){ that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(null); }, 800);
   },
 
+  panTo: function( id ) {
+    var that = this;
+    
+    if(that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible') == 1 ) {
+      that.map.setCenter(  that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() );
+    }
+  },
+
+
   markerClick: function(){
 
   },

@@ -159,6 +159,7 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
     var that = this;
 
     if( that.parentExplorer.displays.map ) {
+      that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('resourceId') );
       that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('resourceId') );
       that.parentExplorer.displays.map.markerHover( $(element.currentTarget).attr('resourceId') );
     }
