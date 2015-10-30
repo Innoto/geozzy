@@ -13,6 +13,8 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
   margin: 10,
 
+  ready: true,
+
   initialize: function( opts ) {
     var that = this;
     that.options = new Object({
@@ -56,15 +58,17 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
     resourceInfo.set(that.parentExplorer.resourceMinimalList.get(id).toJSON());
 
 
- //
+    that.ready = id;
 
     that.parentExplorer.fetchPartialList(
        [id],
        function() {
-         //console.log(  that.parentExplorer.resourcePartialList.get(id) );
+
          $( '#'+that.divId ).html( that.template(  that.parentExplorer.resourcePartialList.get(id).toJSON() ) );
-         $( '#'+that.divId ).show();
-         //$( '#'+that.divId ).html( that.template( resourceInfo ) );
+
+         if( that.ready == id){
+          $( '#'+that.divId ).show();
+        }
        }
     );
 
@@ -78,6 +82,8 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   hide: function() {
     var that = this;
 
+
+    that.ready = false;
     $('#'+that.divId).hide();
   },
 
