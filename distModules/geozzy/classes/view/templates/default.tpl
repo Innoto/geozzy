@@ -14,7 +14,7 @@
   {block name="headJsIncludes"}{$js_includes}{/block}
 
 </head>
-<body style="background:#BFE3E9;">
+<body>
 
   <div class="row bodyContent">
     {block name="bodyContent"}{/block}
