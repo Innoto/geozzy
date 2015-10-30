@@ -156,7 +156,6 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
   },
 
   resourceHover: function( element ) {
-console.log('Entramos en elemento')
     var that = this;
 
     if( that.parentExplorer.displays.map ) {
@@ -167,8 +166,6 @@ console.log('Entramos en elemento')
 
   resourceOut: function( element ) {
     var that = this;
-
-console.log('salimos de lista xeral')
 
     if( that.parentExplorer.displays.map ) {
       that.parentExplorer.displays.map.markerOut( );

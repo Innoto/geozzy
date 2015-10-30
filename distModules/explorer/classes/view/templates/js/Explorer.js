@@ -194,8 +194,10 @@ geozzy.explorer = function( opts ) {
     }
 
     if(that.displays.pasiveList) {
+      that.displays.pasiveList.currentPage = 0;
       resourcesToLoad = $.merge( that.displays.pasiveList.getVisibleResourceIds() , resourcesToLoad);
     }
+
 
 
 
