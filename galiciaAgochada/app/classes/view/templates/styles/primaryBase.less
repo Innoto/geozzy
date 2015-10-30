@@ -42,8 +42,16 @@ body {
           font-weight: bold;
           background: transparent;
         }
-        &.dropdown.open a{
-          background: none;
+        &.dropdown.open{
+          .dropdown-menu {
+            border: 3px solid #333;
+            background: #555;
+            li{ margin: 0px; }
+            a{ color: #fff; }
+          }
+          a{
+           background: none;
+          }
         }
       }//li
     }//.navbar-nav
