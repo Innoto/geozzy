@@ -185,8 +185,14 @@ class GeozzyResourceView extends View {
     $resData = $this->defResCtrl->getResourceData( $resId, true ); // true -> translated version
     if( $resData ) {
       // error_log( '$resData === ' . print_r( $resData, true ) );
+      // echo '<pre>';
+      // print_r($resData);
+      // echo '</pre>';
+      $rTypeController = new ResourcetypeModel();
+      $type = $rTypeController->listItems(array('filters' => array('id' => $resData['rTypeId'])))->fetch();
+      $resData[ 'rType' ] = $type->getter('name_'.LANG_DEFAULT);;
 
-      $loadFields = array( 'headKeywords', 'headDescription', 'headTitle', 'title' );
+      $loadFields = array( 'headKeywords', 'headDescription', 'headTitle', 'title', 'rType' );
       foreach( $loadFields as $field ) {
         $this->template->assign( $field, $resData[ $field ] );
       }

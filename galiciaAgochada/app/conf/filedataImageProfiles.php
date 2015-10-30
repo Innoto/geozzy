@@ -39,7 +39,8 @@ $IMAGE_PROFILES = array(
   'alto' => array( 'width' => 200, 'height' => 400 ),
   'fast' => array( 'width' => 400, 'height' => 300, 'cut' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
   'exp1' => array( 'width' => 200, 'height' => 150 ),
-  'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' )
+  'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
+  'typeIcon' => array( 'width' => 64, 'height' => 64 ),
 );
 
 

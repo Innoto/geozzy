@@ -1,49 +1,66 @@
+{block name="headCssIncludes" append}
+<style type="text/css">
+  .imageSec{
+    height:420px;
+    background: rgba(0, 0, 0, 0) url("/cgmlImg/{$image.id}/fast/{$image.id}.jpg") no-repeat scroll center center / cover;
+  }
+</style>
+{/block}
+
 <!-- rTypeViewBlock.tpl en rTypeHotel module -->
-
-<p> --- rTypeViewBlock.tpl en rTypeHotel module --- </p>
-
-
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
-  <div class="row image">
-    {if isset( $image )}
+  <div class="imageSec gzSection">
+  <!--   {if isset( $image )}
       <img src="/cgmlformfilews/{$image.id}"
         {if isset( $image.title )}alt="{$image.title}" title="{$image.title}"{/if}></img>
     {else}
       <p>{t}None{/t}</p>
-    {/if}
+    {/if} -->
   </div>
 
-<div class="row resViewBlock">
-  <h3>
-    <div class="shortDescription">
+  <div class="contentSec container gzSection">
+    <div class="typeBar">
+      <div class="type col-lg-10">{$rType|escape:'htmlall'}</div>
+      <div class="social col-lg-2 row">
+        <div class="col-lg-6">
+          MY
+        </div>
+        <div class="col-lg-6">
+          SOCIAL
+        </div>
+      </div>
+    </div>
+
+    <div class="shortDescription row">
       {$shortDescription|escape:'htmlall'}
     </div>
-  </h3>
 
-  <p>--- Galería multimedia ---</p>
+    <!-- Galería Multimedia -->
+    <div class="imageGallery">
+      <label for="imgResource" class="cgmMForm"></label>
+      {if isset( $image )}
+        <style type="text/css">.cgmMForm-fileField img { height: 100px; }</style>
+        <img src="/cgmlformfilews/{$image.id}"
+          {if isset( $image.title )}alt="{$image.title}" title="{$image.title}"{/if}></img>
+      {else}
+        <p>{t}None{/t}</p>
+      {/if}
+    </div>
 
-  <div class="mediumDescription">
-    <label for="mediumDescription" class="cgmMForm">{t}Medium description{/t}</label>
-    {$mediumDescription}
+    <div class="mediumDescription">
+      {$content}
+    </div>
   </div>
 
-  <div class="content">
-    <label for="content" class="cgmMForm">{t}Content{/t}</label>
-    {$content}
+  <div class="locationSec container gzSection">
+    <div class="location">
+      LOCATION
+    </div>
   </div>
 
-  <div class="image cgmMForm-fileField">
-    <label for="imgResource" class="cgmMForm">{t}Image{/t}</label>
-    {if isset( $image )}
-      <style type="text/css">.cgmMForm-fileField img { height: 100px }</style>
-      <img src="/cgmlformfilews/{$image.id}"
-        {if isset( $image.title )}alt="{$image.title}" title="{$image.title}"{/if}></img>
-    {else}
-      <p>{t}None{/t}</p>
-    {/if}
-  </div>
+
 
   {if isset($collections)}
   <div class="collections">
@@ -62,6 +79,5 @@
     </div>
   </div>
 
-</div>
 
 <!-- /rTypeViewBlock.tpl en rTypeHotel module -->
