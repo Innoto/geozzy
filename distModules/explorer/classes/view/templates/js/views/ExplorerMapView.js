@@ -12,7 +12,12 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   markersCreated: false,
   markerClusterer: false,
 
-  bufferPixels:150,
+  lastCenter: false,
+
+  mapZones: {
+    outerMargin: 150,
+    innerMargin:100,
+  },
 
   initialize: function( opts ) {
 
@@ -200,21 +205,40 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     var scale = Math.pow(2, that.map.getZoom());
 
-    var swBuffer = new google.maps.Point(   that.map.getProjection().fromLatLngToPoint(sw ).x- that.bufferPixels /scale,   that.map.getProjection().fromLatLngToPoint(sw).y+ that.bufferPixels /scale );
-    var neBuffer = new google.maps.Point(   that.map.getProjection().fromLatLngToPoint(ne ).x+ that.bufferPixels /scale ,   that.map.getProjection().fromLatLngToPoint(ne).y- that.bufferPixels /scale );
+    var swOuter = new google.maps.Point(   that.coordToPixel(sw ).x- that.mapZones.outerMargin /scale,   that.coordToPixel(sw).y+ that.mapZones.outerMargin /scale );
+    var neOuter = new google.maps.Point(   that.coordToPixel(ne ).x+ that.mapZones.outerMargin /scale ,   that.coordToPixel(ne).y- that.mapZones.outerMargin /scale );
 
-    var swB = that.map.getProjection().fromPointToLatLng( swBuffer );
-    var neB = that.map.getProjection().fromPointToLatLng( neBuffer );
+    var swInner = new google.maps.Point(   that.coordToPixel(sw ).x+ that.mapZones.innerMargin /scale,   that.coordToPixel(sw).y- that.mapZones.innerMargin /scale );
+    var neInner = new google.maps.Point(   that.coordToPixel(ne ).x- that.mapZones.innerMargin /scale ,   that.coordToPixel(ne).y+ that.mapZones.innerMargin /scale );
 
+
+
+    var swO = that.map.getProjection().fromPointToLatLng( swOuter );
+    var neO = that.map.getProjection().fromPointToLatLng( neOuter );
+    var swI = that.map.getProjection().fromPointToLatLng( swInner );
+    var neI = that.map.getProjection().fromPointToLatLng( neInner );
 
     if( lat < ne.lat() && lng < ne.lng() && lat > sw.lat() && lng > sw.lng() ) {
-      ret = 2; // IN MAP AREA
+
+      if( lat < neI.lat() && lng < neI.lng() && lat > swI.lat() && lng > swI.lng() ) {
+        ret = 3; // IN CENTER OF MAP AREA
+      }
+      else{
+        ret = 2;
+      }
+
     }
-    else if(lat < neB.lat() && lng < neB.lng() && lat > swB.lat() && lng > swB.lng() ) {
-      ret = 1; // NOT IN MAP AREA BUT IN BUFFER
+    else if(lat < neO.lat() && lng < neO.lng() && lat > swO.lat() && lng > swO.lng() ) {
+      ret = 1; // NOT IN MAP AREA BUT IN OUTER MARGIN
     }
 
     return ret;
+  },
+
+
+  coordToPixel: function( latLng) {
+    var that = this;
+    return that.map.getProjection().fromLatLngToPoint( latLng );
   },
 
   isReady: function() {
@@ -231,12 +255,26 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   panTo: function( id ) {
     var that = this;
-    
-    if(that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible') == 1 ) {
-      that.map.setCenter(  that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() );
+
+    //console.log(that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible'))
+    if( that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible') == 1 || that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible') == 2  ) {
+      if( that.lastCenter == false ){
+        that.lastCenter = that.map.getCenter();
+      }
+      that.map.panTo(  that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() );
+    }
+    else {
+      that.lastCenter = false;
     }
   },
 
+  panToLastCenter: function() {
+    var that = this;
+    if( that.lastCenter ) {
+      that.map.panTo( that.lastCenter );
+    }
+
+  },
 
   markerClick: function(){
 
@@ -254,6 +292,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     if( that.parentExplorer.displays.mapInfo ) {
       that.parentExplorer.displays.mapInfo.hide();
+      that.panToLastCenter();
     }
   },
   clusterClick: function(){},
