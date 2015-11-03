@@ -57,13 +57,58 @@
       padding: 5px 60px;
       .element{
         padding: 5px 5px;
-        .elementImg{}
+        cursor: pointer;
+        .elementImg{
+          overflow:hidden;
+          position: relative;
+          img{
+            -webkit-transform: scale(1, 1); /* Saf3.1+, Chrome */
+            -moz-transform: scale(1, 1); /* FF3.5+ */
+            -ms-transform: scale(1, 1); /* IE9 */
+             -o-transform: scale(1, 1); /* Opera 10.5+ */
+                transform: scale(1, 1);
+          }
+          .elementOptions{
+            position: absolute;
+            top:0px;
+            left: 0px;
+            background-color: rgba( 0, 0, 0, 0.6);
+            color: #fff;
+            width: 100%;
+            height: 100%;
+            line-height: 50%;
+            vertical-align: middle;
+            font-size: 32px;
+            text-align: center;
+            display: none;
+
+            li{
+              padding: 33% 0;
+              list-style: none;
+            }
+
+          }
+        }
         .elementInfo{
           font-size: 14px;
           line-height: 20px;
           height: 40px;
           overflow: hidden;
           text-overflow: ellipsis;
+        }
+        &:hover{
+          .elementImg img{
+            -webkit-transform: scale(1.08, 1.1); /* Saf3.1+, Chrome */
+            -moz-transform: scale(1.08, 1.1); /* FF3.5+ */
+            -ms-transform: scale(1.08, 1.1); /* IE9 */
+             -o-transform: scale(1.08, 1.1); /* Opera 10.5+ */
+                transform: scale(1.08, 1.1);
+            transition-duration: 450ms;
+            transition-timing-function: ease-out;
+          }
+          .elementOptions{
+            display: block;
+          }
         }
       }//.element
     }//.explorerListContent
