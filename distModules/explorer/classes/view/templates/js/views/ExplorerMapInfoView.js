@@ -9,9 +9,14 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   containerMap: false,
   divId: 'geozzyExplorerMapInfo',
 
-  template: _.template('<div> <%-title%> </div><div><img class="img-responsive" src="http://lorempixel.com/260/196/nature?putarrrl" /></div> '),
+  template: _.template(
+    '<div class="gempiImg"><img class="img-responsive" src="http://lorempixel.com/260/196/nature?prrrl" /></div>'+
+    '<div class="gempiTitle"><%-title%></div>'+
+    '<div class="gempiDescription">Sed vitae enim ex. Nullam urna eros, commodo in sodales sed, fermentum at quam. Nunc non ultrices mi. Nullam vel porttitor magna. Morbi fringilla purus ac pulvinar lacinia. Curabitur sollicitudin ultricies sodales. Nullam eu enim scelerisque, cursus lectus a, placerat elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin ut mi cursus, auctor magna et, porta tortor.</div>'
+  ),
 
-  margin: 10,
+  marginX: 60,
+  marginY: 20,
 
   ready: true,
 
@@ -41,9 +46,8 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
     $('#'+that.divId).css('position', 'absolute');
 
-    $('#'+that.divId).css('background-color', 'white');
-    $('#'+that.divId).css('top', pos.y+that.margin+'px');
-    $('#'+that.divId).css('left', pos.x+that.margin+'px');
+    $('#'+that.divId).css('top', pos.y+that.marginY+'px');
+    $('#'+that.divId).css('left', pos.x+that.marginX+'px');
     $('#'+that.divId).css('z-index',highest);
 
 
