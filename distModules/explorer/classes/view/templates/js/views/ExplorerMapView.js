@@ -264,6 +264,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       that.map.panTo(  that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() );
     }
     else {
+      that.panToLastCenter();
       that.lastCenter = false;
     }
   },
