@@ -24,7 +24,15 @@
     {$userFormFields.avatar}
   </div>
 </div>
-{$userFormFields.description}
+
+{if $langAvailableIds === false || $langAvailableIds|@count gt 1}
+  {foreach $langAvailableIds as $lang}
+    {$userFormFields['description_'|cat:$lang]}
+  {/foreach}
+{else}
+  {$userFormFields.description}
+{/if}
+
 {$userFormFields.submit}
 
 {$userFormClose}

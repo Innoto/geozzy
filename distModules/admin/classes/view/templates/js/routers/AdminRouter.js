@@ -76,7 +76,7 @@ var AdminRouter = Backbone.Router.extend({
 
   userShow: function() {
     app.mainView.loadAjaxContent( '/admin/user/show' );
-    app.mainView.setBodyClass('userShow');
+    app.mainView.setBodyClass('userShow');    
   },
 
   // Roles

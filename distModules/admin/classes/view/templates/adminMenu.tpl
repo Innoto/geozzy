@@ -17,7 +17,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="/admin#user/show"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-                    <li><a href="/admin#user/edit/{$user->getter('id')}"><i class="fa fa-edit fa-fw"></i> Edit Profile</a></li>
+                    <li><a href="/admin#user/edit/id/{$user->getter('id')}"><i class="fa fa-edit fa-fw"></i> Edit Profile</a></li>
                     <li class="divider"></li>
                     <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                 </ul>
