@@ -14,13 +14,18 @@ class AdminViewUser extends AdminViewMaster
   * Section user profile
   **/
   public function showUser() {
+
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
-    $this->template->assign( 'user' , $user);
 
-    $this->template->setTpl('showUser.tpl', 'admin');
+    $template = new Template( $this->baseDir );
+    $template->assign( 'user' , $user);
+    $template->setTpl('showUser.tpl', 'admin');
+
+    $this->template->addToBlock( 'col8', $template );
+    $this->template->assign( 'headTitle', __('Show user') );
+    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
-
   }
 
   /**
@@ -108,7 +113,7 @@ class AdminViewUser extends AdminViewMaster
   **/
 
   public function createUser() {
-
+var_dump('asdasd');
     $userView = new UserView();
 
     $form = $userView->userFormDefine();

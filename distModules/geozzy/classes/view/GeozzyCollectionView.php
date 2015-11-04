@@ -76,9 +76,13 @@ class GeozzyCollectionView extends View
         'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/jpeg' )
       ),
       'resources' => array(
-        'params' => array( 'label' => __( 'Resources' ), 'type' => 'select', 'id' => 'collResources',
-        'class' => 'cgmMForm-order',
-        'multiple' => true, 'options'=> $resOptions ),
+        'params' => array(
+          'label' => __( 'Resources' ),
+          'type' => 'select', 'id' => 'collResources',
+          'class' => 'cgmMForm-order',
+          'multiple' => true,
+          'options'=> $resOptions
+        ),
         'rules' => array( 'required' => true )
       ),
       'multimedia' => array(
