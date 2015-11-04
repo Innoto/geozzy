@@ -56,7 +56,9 @@
 
   <div class="locationSec gzSection">
     <div class="location container">
-      {t}LOCATION AND CONTACT{/t}
+      <div class="title">
+        {t}Location and contact{/t}
+      </div>
       <div class="rTypeHotel accommodation">
         {$rextContact}
       </div>
@@ -65,10 +67,12 @@
     <div class="directions">
       <div class="container">
           <div class="col-lg-8">
-            Ver indicaciones
+            {t}See indications{/t} <i class="fa fa-sort-desc"></i>
           </div>
           <div class="col-lg-4">
-            Cómo llegar desde...
+            <div class="search">
+              {t}How to arrive from?{/t} <i class="fa fa-search"></i>
+            </div>
           </div>
       </div>
     </div>

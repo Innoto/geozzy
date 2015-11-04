@@ -66,7 +66,8 @@ class ResourceModel extends Model {
     ),
     'headKeywords' => array(
       'type' => 'VARCHAR',
-      'size' => 150
+      'size' => 150,
+      'multilang' => true
     ),
     'headDescription' => array(
       'type' => 'VARCHAR',
@@ -129,6 +130,24 @@ class ResourceModel extends Model {
 
     return true;
   }
+
+
+    /**
+     * Delete relation between resource and topic
+     *
+     * @return boolean
+     */
+    public function deleteTopicRelation( $topicId, $resourceId ) {
+      //$this->dataFacade->transactionStart();
+
+      //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+      $resource =  new ResourceModel();
+      $resourceTopic = $resource->listItems( array('filters' => array('id' => $resourceId ), 'affectsDependences' => array( 'ResourceTopic')))->fetch();
+      print_r($resourceTopic);
+
+
+      return true;
+    }
 
   /**
    * Create relation between resource and starred taxonomy
