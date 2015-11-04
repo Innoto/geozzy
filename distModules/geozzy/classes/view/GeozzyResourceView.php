@@ -190,9 +190,9 @@ class GeozzyResourceView extends View {
       // echo '</pre>';
       $rTypeController = new ResourcetypeModel();
       $type = $rTypeController->listItems(array('filters' => array('id' => $resData['rTypeId'])))->fetch();
-      $resData[ 'rType' ] = $type->getter('name_'.LANG_DEFAULT);;
+      $resData[ 'rType' ] = $type->getter('name_'.LANG_DEFAULT);
 
-      $loadFields = array( 'headKeywords', 'headDescription', 'headTitle', 'title', 'rType' );
+      $loadFields = array( 'headKeywords', 'headDescription', 'headTitle', 'title', 'loc', 'defaultZoom' );
       foreach( $loadFields as $field ) {
         $this->template->assign( $field, $resData[ $field ] );
       }

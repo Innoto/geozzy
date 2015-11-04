@@ -248,6 +248,7 @@ class ResourceController {
           'options'=> array( '0' => __( 'Normal' ), '-20' => __( 'High' ), '20' => __( 'Low' ) ) )
       ),
       'headKeywords' => array(
+        'translate' => true,
         'params' => array( 'label' => __( 'SEO: Head Keywords' ) ),
         'rules' => array( 'maxlength' => '150' )
       ),
@@ -554,18 +555,24 @@ class ResourceController {
     $resourceLocLon = $formBlock->getTemplateVars('locLon');
     $resourceDefaultZoom = $formBlock->getTemplateVars('defaultZoom');
 
-    $locationData = '<div class="row locData">'.$resourceLocLat.'</div>
-                     <div class="row locData">'.$resourceLocLon.'</div>
-                     <div class="row locData">'.$resourceDefaultZoom.'</div>
-                     <div class="row btn btn-primary col-md-offset-3">'.__("Authomatic Location").'</div>';
+    // Componemos el bloque geolocalización
+    $templateBlock = $formBlock->getTemplateVars('formFieldsArray');
+    $resourceLocLat = $templateBlock['locLat'];
+    $resourceLocLon = $templateBlock['locLon'];
+    $resourceDefaultZoom = $templateBlock['defaultZoom'];
+
+
+    $locationData = '<div class="row">'.$resourceLocLat.'</div>
+                     <div class="row">'.$resourceLocLon.'</div>
+                     <div class="row">'.$resourceDefaultZoom.'</div>
+                     <div class="row btn btn-primary col-md-offset-3">'.__("Automatic Location").'</div>';
 
 
     $locAll = '<div class="location">
             <div class="row"><div class="col-lg-6 mapContainer"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div></div>
-            <div class="col-lg-6 locationData">'.$locationData.'</div></div>
-            </div>';
+            <div class="col-lg-6 locationData">'.$locationData.'</div></div></div>';
 
-    $adminColsInfo['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
+    $cols['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
 
 
     // Recuperamos las temáticas que tiene asociadas el recurso

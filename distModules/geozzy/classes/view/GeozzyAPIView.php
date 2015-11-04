@@ -517,7 +517,7 @@ class geozzyAPIView extends View
 
   function resourceIndex( $urlParams ) {
     geozzyAPI::load('model/ResourceIndexModel.php');
-    $resourceModel = new ResourceIndexModel();
+    $resourceIndexModel = new ResourceIndexModel();
 
 
     $validation = array(
@@ -576,10 +576,10 @@ class geozzyAPIView extends View
 
 
 
+    $queryFilters['published'] = 1;
 
 
-
-    $resourceList = $resourceModel->listItems( array('filters' => $queryFilters, 'groupBy'=>'id') );
+    $resourceList = $resourceIndexModel->listItems( array('filters' => $queryFilters, 'groupBy'=>'id') );
     header('Content-type: application/json');
     echo '[';
     $c = '';
