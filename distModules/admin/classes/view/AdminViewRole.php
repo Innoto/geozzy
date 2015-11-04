@@ -22,6 +22,7 @@ class AdminViewRole extends AdminViewMaster
 
     $this->template->addToBlock( 'col12', $template );
     $this->template->assign( 'headTitle', __('Roles Management') );
+    $this->template->assign( 'headActions', '<a href="/admin#role/create" class="btn btn-default"> '.__('Add role').'</a>' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }

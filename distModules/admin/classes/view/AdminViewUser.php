@@ -41,6 +41,7 @@ class AdminViewUser extends AdminViewMaster
 
     $this->template->addToBlock( 'col12', $template );
     $this->template->assign( 'headTitle', __('User Management') );
+    $this->template->assign( 'headActions', '<a href="/admin#user/create" class="btn btn-default"> '.__('Add user').'</a>' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
