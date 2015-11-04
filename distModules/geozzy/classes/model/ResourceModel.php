@@ -139,14 +139,20 @@ class ResourceModel extends Model {
      */
     public function deleteTopicRelation( $topicId, $resourceId ) {
       //$this->dataFacade->transactionStart();
-
       //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
-      $resource =  new ResourceModel();
-      $resourceTopic = $resource->listItems( array('filters' => array('id' => $resourceId ), 'affectsDependences' => array( 'ResourceTopic')))->fetch();
-      print_r($resourceTopic);
+      $resourcetopic =  new ResourceTopicModel();
+      $resourceRel = $resourcetopic->listItems( array('filters' => array('resource' => $resourceId, 'topic'=> $topicId)))->fetch();
 
+      if ($resourceRel){
+        $deleted = $resourceRel->delete();
+      }
 
-      return true;
+      if ($deleted){
+        return true;
+      }
+      else{
+        return false;
+      }
     }
 
   /**
