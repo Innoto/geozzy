@@ -86,9 +86,11 @@ class AdminViewTaxonomy extends AdminViewMaster
   public function categoryForm( $request ){
     $geozzyTaxtermView = new GeozzyTaxonomytermView();
 
+    $catId = $request[1];
+
     $form = $geozzyTaxtermView->taxtermFormDefine( $request );
     $form->setAction('/admin/category/term/sendcategoryterm');
-    $form->setSuccess( 'redirect', '/admin#category/'.$request[1] );
+    $form->setSuccess( 'redirect', '/admin#category/'.$catId );
 
     $formBlock = $geozzyTaxtermView->taxtermGetFormBlock( $form );
 
@@ -104,6 +106,8 @@ class AdminViewTaxonomy extends AdminViewMaster
     $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'icon' ], __( 'Selecciona un icono' ) ) );
 
     $this->template->assign( 'headTitle', __('Category form') );
+    $this->template->assign( 'headActions', '<a href="/admin#category/'.$catId.'" class="btn btn-danger"> '.__('Cancel').'</a>' );
+    $this->template->assign( 'footerActions', '<a href="/admin#category/'.$catId.'" class="btn btn-danger"> '.__('Cancel').'</a>' );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
     $this->template->exec();
