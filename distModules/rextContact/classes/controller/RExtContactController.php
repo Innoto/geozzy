@@ -65,10 +65,12 @@ class RExtContactController extends RExtController implements RExtInterface {
         'rules' => array( 'maxlength' => 255, 'email' => true)
       ),
       'directions' => array(
+        'translate' => true,
         'params' => array( 'label' => __( 'How to arrive' ), 'type' => 'textarea' ),
-      'rules' => array( 'maxlength' => 2000 )
+        'rules' => array( 'maxlength' => 2000 )
       ),
       'timetable' => array(
+        'translate' => true,
         'params' => array( 'label' => __( 'Opening times' ), 'type' => 'textarea' ),
         'rules' => array( 'maxlength' => 2000 )
       )
