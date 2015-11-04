@@ -85,23 +85,26 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $formUtils = new FormController();
 
     // Extraemos los campos de la extensión Alojamiento que irán a otro bloque y los desasignamos
-    $formReservation = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtAccommodation_reservationURL', 'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail') );
+    $formReservation = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtAccommodation_reservationURL',
+      'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail') );
     $formCategorization = $adminViewResource->extractFormBlockFields( $adminColsInfo['col8']['main']['0'],
       array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',
         'rExtAccommodation_averagePrice', 'rExtAccommodation_accommodationFacilities',
         'rExtAccommodation_accommodationServices') );
 
     if( $formReservation ) {
-       $formPartBlock =$this->defResCtrl->setBlockPartTemplate($formReservation);
-       $adminColsInfo['col8']['reservation'] = array( $formPartBlock, __('Reservation'), 'fa-archive' );
+      $formPartBlock =$this->defResCtrl->setBlockPartTemplate($formReservation);
+      $adminColsInfo['col8']['reservation'] = array( $formPartBlock, __('Reservation'), 'fa-archive' );
     }
     if( $formCategorization ) {
-       $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formCategorization);
-       $adminColsInfo['col4']['categorization'] = array( $formPartBlock, __( 'Categorization' ), false );
+      $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formCategorization);
+      $adminColsInfo['col4']['categorization'] = array( $formPartBlock, __( 'Categorization' ), false );
     }
 
     // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
-    $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address', 'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone', 'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
+    $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address',
+      'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone',
+      'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
     $formContact2 = $adminViewResource->extractFormBlockFields( $formBlock, $formUtils->multilangFieldNames( 'rExtContact_directions' ) );
     $adminColsInfo['col8']['contact1'] = array();
 
