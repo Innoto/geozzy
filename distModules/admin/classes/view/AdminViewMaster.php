@@ -63,6 +63,8 @@ class AdminViewMaster extends View
   public function extractFormBlockFields( $formBlock, $vars ) {
     $formFragment = array();
 
+    $vars = is_array( $vars ) ? $vars : array( $vars );
+
     // Tomamos la variable del formulario principal con todos los campos
     $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
     $formFieldsHiddenArray = $formBlock->getTemplateVars( 'formFieldsHiddenArray' );
