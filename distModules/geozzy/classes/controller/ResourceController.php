@@ -585,8 +585,8 @@ class ResourceController {
     if( $resourceTopicList ) {
       while( $topicList = $resourceTopicList->fetch() ) {
         $allTopics[ $topicList->getter( 'topic' ) ];
-        $topicsHtml = $topicsHtml.'<div class="row"><div class="col-lg-4"></div>'.
-          '<div class="col-lg-8">'.$allTopics[ $topicList->getter( 'topic' ) ].'</div></div>';
+        $topicsHtml = $topicsHtml.'<div class="row rowWhite"><div class="infoCol col-md-4"></div>'.
+          '<div class="infoColData col-md-8">'.$allTopics[ $topicList->getter( 'topic' ) ].'</div></div>';
       }
     }
 
@@ -595,7 +595,7 @@ class ResourceController {
     $resourceTax = $this->getTermsInfoByGroupIdName( $resourceId );
     if( isset( $resourceTax['starred'] ) && count( $resourceTax['starred'] ) > 0 ) {
       foreach( $resourceTax['starred'] as $tax ) {
-        $starredHtml = $starredHtml.'<div class="row"><div class="col-lg-4"></div><div class="col-lg-8">'.$tax['idName'].'</div></div>';
+        $starredHtml = $starredHtml.'<div class="row rowWhite"><div class="infoCol col-md-4"></div><div class="infoColData col-md-8">'.$tax['idName'].'</div></div>';
       }
     }
 
@@ -610,13 +610,13 @@ class ResourceController {
     else{
       $update =  '- - -';
     }
-    $info = '<div class="infoBasic table-stripped">'.
-      '<div class="row"><div class="col-lg-4">ID</div><div class="col-lg-8">'.$resourceId.'</div></div>'.
-      '<div class="row"><div class="col-lg-4">Tipo</div><div class="col-lg-8">'.$resourceType.'</div></div>'.
-      '<div class="row"><div class="col-lg-4">Creado</div><div class="col-lg-8">'.$timeCreation.' ('.$user.')</div></div>'.
-      '<div class="row"><div class="col-lg-4">Actualizado</div><div class="col-lg-8">'.$update.'</div></div>'.
-      '<div class="row"><div class="col-lg-4">Temáticas</div><div class="col-lg-8"></div></div>'.$topicsHtml.
-      '<div class="row"><div class="col-lg-4">Destacados</div><div class="col-lg-8"></div></div>'.$starredHtml.
+    $info = '<div class="infoBasic">'.
+      '<div class="row"><div class="infoCol col-md-4">ID</div><div class="infoColData col-md-8">'.$resourceId.'</div></div>'.
+      '<div class="row"><div class="infoCol col-md-4">Tipo</div><div class="infoColData col-md-8">'.$resourceType.'</div></div>'.
+      '<div class="row"><div class="infoCol col-md-4">Creado</div><div class="infoColData col-md-8">'.$timeCreation.' ('.$user.')</div></div>'.
+      '<div class="row"><div class="infoCol col-md-4">Actualizado</div><div class="infoColData col-md-8">'.$update.'</div></div>'.
+      '<div class="row"><div class="infoCol col-md-12">Temáticas</div></div>'.$topicsHtml.
+      '<div class="row"><div class="infoCol col-md-12">Destacados</div></div>'.$starredHtml.
       '</div>';
 
     $cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
