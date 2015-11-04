@@ -59,6 +59,8 @@ class RTypePageController extends RTypeController implements RTypeInterface {
    */
   public function manipulateAdminFormColumns( Template $formBlock, Template $template, AdminViewResource $adminViewResource, Array $adminColsInfo ) {
 
+    $formUtils = new FormController();
+
     // Extraemos los campos de la extensión Vista
     $viewAlternativeMode = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtView_viewAlternativeMode') );
     if( $viewAlternativeMode ) {
@@ -67,12 +69,14 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     }
 
     // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
-    $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address', 'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone', 'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
-    $formContact2 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_directions') );
+    $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address',
+      'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone',
+      'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
+    $formContact2 = $adminViewResource->extractFormBlockFields( $formBlock, $formUtils->multilangFieldNames( 'rExtContact_directions' ) );
     $adminColsInfo['col8']['contact1'] = array();
 
     if( $formContact1 ) {
-      $formPartBlock = $this->defResCtrl->setBlockPartTemplate($formContact1);
+      $formPartBlock = $this->defResCtrl->setBlockPartTemplate( $formContact1 );
       $adminColsInfo['col8']['contact1'] = array( $formPartBlock, __( 'Contact' ), false );
     }
 
@@ -81,20 +85,19 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $resourceLocLat = $templateBlock['locLat'];
     $resourceLocLon = $templateBlock['locLon'];
     $resourceDefaultZoom = $templateBlock['defaultZoom'];
-    $resourceDirections = $templateBlock['rExtContact_directions'];
+    $resourceDirections = implode( "\n", $formContact2 ); // $templateBlock['rExtContact_directions'];
 
+    $locationData = '<div class="row">'.$resourceLocLat.'</div>'.
+      '<div class="row">'.$resourceLocLon.'</div>'.
+      '<div class="row">'.$resourceDefaultZoom.'</div>'.
+      '<div class="row btn btn-primary col-md-offset-3">'.__("Automatic Location").'</div>';
 
-    $locationData = '<div class="row">'.$resourceLocLat.'</div>
-                     <div class="row">'.$resourceLocLon.'</div>
-                     <div class="row">'.$resourceDefaultZoom.'</div>
-                     <div class="row btn btn-primary col-md-offset-3">'.__("Automatic Location").'</div>';
-
-
-    $locAll = '<div class="location">
-            <div class="row"><div class="col-lg-6 mapContainer"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div></div>
-            <div class="col-lg-6 locationData">'.$locationData.'</div></div>
-            <div class="locationDirections">'.$resourceDirections.'</div>
-            </div>';
+    $locAll = '<div class="location">'.
+      '<div class="row">'.
+      '<div class="col-lg-6 mapContainer"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div></div>'.
+      '<div class="col-lg-6 locationData">'.$locationData.'</div></div>'.
+      '<div class="locationDirections">'.$resourceDirections.'</div>'.
+      '</div>';
 
     $adminColsInfo['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
 

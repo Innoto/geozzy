@@ -44,11 +44,13 @@ class ContactModel extends Model
     ),
     'directions' => array(
       'type' => 'VARCHAR',
-      'size' => 2000
+      'size' => 2000,
+      'multilang' => true
     ),
     'timetable' => array(
       'type' => 'VARCHAR',
-      'size' => 2000
+      'size' => 2000,
+      'multilang' => true
     ),
   );
 
