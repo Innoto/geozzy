@@ -17,7 +17,7 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
       '<div class="elementImg">'+
         '<img class="img-responsive" src="http://lorempixel.com/260/196/nature?<%- id %>" />'+
         '<ul class="elementOptions container-fluid">'+
-          '<li class="elementOpt elementLink col-sm-6"><i class="fa fa-link"></i></li>'+
+          '<li class="elementOpt elementLink col-sm-6"><i class="fa fa-search"></i></li>'+
           '<li class="elementOpt elementFav col-sm-6"><i class="fa fa-heart-o"></i></li>'+
         '</ul>'+
       '</div>'+
