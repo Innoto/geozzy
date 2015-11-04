@@ -248,6 +248,7 @@ class ResourceController {
           'options'=> array( '0' => __( 'Normal' ), '-20' => __( 'High' ), '20' => __( 'Low' ) ) )
       ),
       'headKeywords' => array(
+        'translate' => true,
         'params' => array( 'label' => __( 'SEO: Head Keywords' ) ),
         'rules' => array( 'maxlength' => '150' )
       ),
