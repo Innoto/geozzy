@@ -173,7 +173,7 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
     var that = this;
 
     if( that.parentExplorer.displays.map ) {
-      that.parentExplorer.displays.map.markerOut( );
+      that.parentExplorer.displays.map.markerOut( true );
     }
 
 

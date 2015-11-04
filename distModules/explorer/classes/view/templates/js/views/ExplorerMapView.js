@@ -265,7 +265,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     }
     else {
       that.panToLastCenter();
-      that.lastCenter = false;
     }
   },
 
@@ -273,6 +272,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     var that = this;
     if( that.lastCenter ) {
       that.map.panTo( that.lastCenter );
+      that.lastCenter = false;
     }
 
   },
