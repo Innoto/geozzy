@@ -16,6 +16,10 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
     '<div resourceId="<%- id %>" class="col-md-2 col-sm-4 col-xs-6 element element-<%- id %>">'+
       '<div class="elementImg">'+
         '<img class="img-responsive" src="http://lorempixel.com/260/196/nature?<%- id %>" />'+
+        '<ul class="elementOptions container-fluid">'+
+          '<li class="elementOpt elementLink col-sm-6"><i class="fa fa-search"></i></li>'+
+          '<li class="elementOpt elementFav col-sm-6"><i class="fa fa-heart-o"></i></li>'+
+        '</ul>'+
       '</div>'+
       '<div class="elementInfo">'+
         '<%-title%>'+
@@ -159,6 +163,7 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
     var that = this;
 
     if( that.parentExplorer.displays.map ) {
+      that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('resourceId') );
       that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('resourceId') );
       that.parentExplorer.displays.map.markerHover( $(element.currentTarget).attr('resourceId') );
     }

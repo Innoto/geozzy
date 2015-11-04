@@ -23,23 +23,29 @@ class Cogumelo extends CogumeloClass
      "includes" => array("dist/html5shiv.js")
     ),
     array(
-     "id" =>"respond",
-     "params" => array("respond"),
-     "installer" => "bower",
-     "includes" => array("src/respond.js")
-   ),
-   array(
-    "id" =>"select2",
-    "params" => array("select2"),
-    "installer" => "bower",
-    "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
-   ),
-   array(
-    "id" =>"placeholders",
-    "params" => array("placeholders"),
-    "installer" => "bower",
-    "includes" => array("dist/placeholders.jquery.min.js")
-   )
+      "id" =>"respond",
+      "params" => array("respond"),
+      "installer" => "bower",
+      "includes" => array("src/respond.js")
+    ),
+    array(
+      "id" =>"select2",
+      "params" => array("select2"),
+      "installer" => "bower",
+      "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
+    ),
+    array(
+      "id" =>"placeholders",
+      "params" => array("placeholders"),
+      "installer" => "bower",
+      "includes" => array("dist/placeholders.jquery.min.js")
+    ),
+    array(
+      "id" =>"raleway",
+      "params" => array("raleway"),
+      "installer" => "bower",
+      "includes" => array("raleway.css")
+    )
   );
   public $includesCommon = array( );
 

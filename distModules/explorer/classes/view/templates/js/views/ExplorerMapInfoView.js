@@ -9,9 +9,20 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   containerMap: false,
   divId: 'geozzyExplorerMapInfo',
 
-  template: _.template('<div> <%-title%> </div><div><img class="img-responsive" src="http://lorempixel.com/260/196/nature?putarrrl" /></div> '),
+  template: _.template(
+    '<div class="gempiContent">'+
+      '<div class="gempiImg"><img class="img-responsive" src="http://lorempixel.com/260/196/nature?prrrl" /></div>'+
+      '<div class="gempiInfo">'+
+        '<div class="gempiTitle"><%-title%></div>'+
+        '<div class="gempiDescription">Sed vitae enim ex. Nullam urna eros, commodo in sodales sed, fermentum at quam. </div>'+
+      '</div>'+
+    '</div>'
+  ),
 
-  margin: 10,
+  marginX: 60,
+  marginY: 20,
+
+  ready: true,
 
   initialize: function( opts ) {
     var that = this;
@@ -39,9 +50,8 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
     $('#'+that.divId).css('position', 'absolute');
 
-    $('#'+that.divId).css('background-color', 'white');
-    $('#'+that.divId).css('top', pos.y+that.margin+'px');
-    $('#'+that.divId).css('left', pos.x+that.margin+'px');
+    $('#'+that.divId).css('top', pos.y+that.marginY+'px');
+    $('#'+that.divId).css('left', pos.x+that.marginX+'px');
     $('#'+that.divId).css('z-index',highest);
 
 
@@ -56,15 +66,17 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
     resourceInfo.set(that.parentExplorer.resourceMinimalList.get(id).toJSON());
 
 
- //
+    that.ready = id;
 
     that.parentExplorer.fetchPartialList(
        [id],
        function() {
-         //console.log(  that.parentExplorer.resourcePartialList.get(id) );
+
          $( '#'+that.divId ).html( that.template(  that.parentExplorer.resourcePartialList.get(id).toJSON() ) );
-         $( '#'+that.divId ).show();
-         //$( '#'+that.divId ).html( that.template( resourceInfo ) );
+
+         if( that.ready == id){
+          $( '#'+that.divId ).show();
+        }
        }
     );
 
@@ -78,6 +90,8 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   hide: function() {
     var that = this;
 
+
+    that.ready = false;
     $('#'+that.divId).hide();
   },
 
