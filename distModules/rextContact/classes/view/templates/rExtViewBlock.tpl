@@ -1,31 +1,22 @@
-<!-- rExtViewBlock.tpl en rExtAccommodation module -->
-
-<p> --- rExtViewBlock.tpl en rExtContact module</p>
+<!-- rExtViewBlock.tpl en rExtContact module -->
 
 <div class="rExtContact">
 
     <div class="address">
       <label>{t}Address{/t}</label>
-      {$rExtContact_address|escape:'htmlall'}
-    </div>
-
-    <div class="city">
-      <label>{t}City{/t}</label>
-      {$rExtContact_city|escape:'htmlall'}
-    </div>
-
-    <div class="cp">
-      <label>{t}Postal code{/t}</label>
-      {$rExtContact_cp|escape:'htmlall'}
+      <i class="fa fa-map-marker"></i>
+      {$rExtContact_address|escape:'htmlall'} {$rExtContact_cp|escape:'htmlall'} {$rExtContact_city|escape:'htmlall'}
     </div>
 
     <div class="province">
       <label>{t}Province{/t}</label>
+      <i class="fa fa-globe"></i>
       {$rExtContact_province|escape:'htmlall'}
     </div>
 
     <div class="email">
       <label>{t}contact e-mail{/t}</label>
+      <i class="fa fa-envelope"></i>
       {$rExtContact_email|escape:'htmlall'}
     </div>
 

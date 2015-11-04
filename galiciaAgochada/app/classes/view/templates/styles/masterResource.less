@@ -24,7 +24,7 @@
 
     .typeBar{
       height:30px;
-      .type{margin-top:15px;font-size:16px;}
+      .type{margin-top:15px;font-size: 16px;}
 
       .social{margin-top:10px;}
     }
@@ -44,21 +44,64 @@
     background-color: #46D3EF;
     color:#fff;
 
-    .directions{height:70px;border-top:1px solid #fff;}
+    .directions{
+      height:70px;
+      border-top:1px solid @gzzColor-text-light;
+      font-size: @medium-title;
+
+      .container{
+        line-height:70px;
+
+        .col-lg-8 .fa{
+          font-size:30px;
+          vertical-align:2px;
+          margin-left:15px;
+        }
+
+        .search{
+          border:1px solid @gzzColor-text-light;
+          border-radius: 50px;
+          width:280px;
+          height:40px;
+          margin-top:15px;
+          line-height:40px;
+          text-align:center;
+          .fa{
+            font-size:24px;
+            font-weight:lighter;
+            margin-left:15px;
+            margin-top:5px;
+          }
+        }
+      }
+    }
 
     .location{
       height:225px;
       padding:10px;
 
+      .title{
+        margin-top:25px;
+        margin-bottom:25px;
+        font-size: @medium-title;
+      }
+
       .rExtContact{
         label{display:none;}
+        div{margin-top:20px;
+          .fa{font-size:18px;margin-right:10px;}
+        }
+        .email .fa{
+          color: @gzzColor-text-light;
+          font-size:16px;
+        }
       }
     }
 
-
-
-
-    .map{height:620px;background-color:orange;}
+    .map{
+      height:620px;
+      background-color:orange;
+    }
 
   }
 
