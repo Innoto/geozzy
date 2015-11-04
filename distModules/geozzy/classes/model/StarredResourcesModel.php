@@ -17,7 +17,7 @@ class StarredResourcesModel extends Model
                     geozzy_resource_taxonomyterm.taxonomyterm as taxonomyterm,
                     geozzy_resource_taxonomyterm.weight as weight
                   from geozzy_resource , geozzy_resource_taxonomyterm
-                  where geozzy_resource_taxonomyterm.resource = geozzy_resource.id;
+                  where geozzy_resource_taxonomyterm.resource = geozzy_resource.id AND geozzy_resource.published = true;
               ";
 
   static $tableName = 'geozzy_starred_resources';
