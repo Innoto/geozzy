@@ -54,30 +54,55 @@
     </div>
   </div>
 
-  <div class="locationSec container gzSection">
-    <div class="location">
-      LOCATION
+  <div class="locationSec gzSection">
+    <div class="location container">
+      {t}LOCATION AND CONTACT{/t}
+      <div class="rTypeHotel accommodation">
+        {$rextContact}
+      </div>
+    </div>
+
+    <div class="directions">
+      <div class="container">
+          <div class="col-lg-8">
+            Ver indicaciones
+          </div>
+          <div class="col-lg-4">
+            Cómo llegar desde...
+          </div>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="container">
+        (AQUI VAI O MAPA)
+        {$loc|escape:'htmlall'}
+        {$defaultZoom|escape:'htmlall'}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="reservationSec container gzSection">
+    <div class="rTypeHotel">
+      <p> --- rTypeHotel Ext RESERVAS --- </p>
+      <div class="rTypeHotel accommodation">
+        {$rextAccommodation}
+      </div>
     </div>
   </div>
 
+UHH
 
-
-  {if isset($collections)}
-  <div class="collections">
-    <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
-    {$collections}
-  </div>
-  {/if}
-
-  <div class="rTypeHotel">
-    <p> --- rTypeHotel Ext --- </p>
-    <div class="rTypeHotel accommodation">
-      {$rextAccommodation}
+  <div class="collectionSec container gzSection">
+    {if isset($collections)}
+    <div class="collections">
+      <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
+      {$collections}
     </div>
-    <div class="rTypeHotel accommodation">
-      {$rextContact}
-    </div>
-  </div>
+    {/if}
+ </div>
+
 
 
 <!-- /rTypeViewBlock.tpl en rTypeHotel module -->
