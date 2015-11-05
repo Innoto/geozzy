@@ -143,34 +143,41 @@ class ResourceModel extends Model {
   function delete( array $parameters = array() ) {
 
 
-
-
-    Cogumelo::debug( 'Called delete on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    Cogumelo::debug( 'Called custom delete on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $this->dataFacade->deleteFromKey( $this->getFirstPrimarykeyId(), $this->getter( $this->getFirstPrimarykeyId() )  );
 
 
-/*
-    $p = array(
-        'affectsDependences' => false
-      );
-    $parameters =  array_merge($p, $parameters );
+    // Remove resource taxonomy term
+     $resourceTaxonomyTermList = (new ResourceTaxonomytermModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+     while( $resourceTaxonomyTerm = $resourceTaxonomyTermList->fetch()  ) {
+       $resourceTaxonomyTerm->delete();
+     }
 
 
-    // Delete all dependences
-    if($parameters['affectsDependences']) {
-      $depsInOrder = $this->getDepInLinearArray();
+     // Remove resource Topic
+     $resourceTopicList = (new ResourceTopicModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
 
-      while( $selectDep = array_pop($depsInOrder) ) {
-          Cogumelo::debug( 'Called delete on '.get_called_class().' with "'.$selectDep['ref']->getFirstPrimarykeyId().'" = '. $selectDep['ref']->getter( $selectDep['ref']->getFirstPrimarykeyId() ) );
-          $selectDep['ref']->dataFacade->deleteFromKey( $selectDep['ref']->getFirstPrimarykeyId(), $selectDep['ref']->getter( $selectDep['ref']->getFirstPrimarykeyId() )  );
-      }
-    }
-    // Delete only this Model
-    else {
-      Cogumelo::debug( 'Called delete on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
-      $this->dataFacade->deleteFromKey( $this->getFirstPrimarykeyId(), $this->getter( $this->getFirstPrimarykeyId() )  );
-    }*/
+     while( $resourceTopic = $resourceTopicList->fetch()  ) {
+       $resourceTopic->delete();
+     }
 
+
+     // remove all relation between Resource and COLLECTIONS
+     $resourceCollectionsList = (new ResourceCollectionsModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+     $collectionsToRemove = array();
+
+     while( $resourceCollections = $resourceCollectionsList->fetch()  ) {
+       $resourceCollections->delete();
+     }
+
+     $CollectionResourcesList = (new CollectionResourcesModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+     while( $CollectionResources = $CollectionResourcesList->fetch()  ) {
+       $collectionsToRemove[] = $CollectionResources->getter('collection');
+       $CollectionResources->delete();
+     }
 
 
 

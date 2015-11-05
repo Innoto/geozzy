@@ -109,6 +109,7 @@ class AdminViewResource extends AdminViewMaster {
   public function resourceForm( $urlParams = false ) {
     $recursoData = false;
 
+
     /* Validamos os parámetros da url e obtemos un array de volta*/
     $validation = array( 'topic'=> '#^\d+$#', 'resourcetype' => '#^\d+$#', 'star' => '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
@@ -159,10 +160,10 @@ class AdminViewResource extends AdminViewMaster {
 
     $recursoData = false;
     $urlParamTopic = false;
-    $topicItem = false;
+    $topicItem = false;;
 
     /* Validamos os parámetros da url e obtemos un array de volta*/
-    $validation = array( 'topic'=> '#^\d+$#', 'resourceId'=> '#^\d+$#' );
+    $validation = array( 'topic'=> '#^\d+$#', 'resourceId'=> '#^\d+$#', 'type'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
     $resCtrl = new ResourceController();
@@ -174,6 +175,10 @@ class AdminViewResource extends AdminViewMaster {
       $topicItem = $topicControl->ListItems( array( 'filters' => array( 'id' => $urlParamTopic ) ) )->fetch();
     }
 
+    if (isset( $urlParamsList['type'])){
+      $typeItem = $urlParamsList['type'];
+    }
+
     if( $topicItem ) {
       $rtypeTopicControl = new ResourcetypeTopicModel();
       $resourcetypeTopic = $rtypeTopicControl->ListItems(
@@ -182,6 +187,11 @@ class AdminViewResource extends AdminViewMaster {
 
       if( $resourcetypeTopic ){
         $recursoData['topicReturn'] = $topicItem->getter('id');
+      }
+    }
+    else{
+      if ($typeItem){
+        $recursoData['typeReturn'] = $typeItem;
       }
     }
 

@@ -171,10 +171,16 @@ class ResourceController {
 
     $form->setSuccess( 'accept', __( 'Thank you' ) );
 
+    /* Establecemos la página a la que debe retornar */
     if( !isset($valuesArray['topicReturn']) ) {
-      $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
+      if (isset($valuesArray['typeReturn'])){ // tabla de páginas
+        $form->setSuccess( 'redirect', SITE_URL . 'admin#resourcepage/list/type/'.$valuesArray['typeReturn']);
+      }
+      else{ // tabla general de contenidos
+        $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
+      }
     }
-    else {
+    else { // tabla de recursos de una temática
       $form->setSuccess( 'redirect', SITE_URL . 'admin#topic/'.$valuesArray['topicReturn']);
     }
 
