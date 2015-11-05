@@ -140,8 +140,9 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/resourceintopic/table/(.*)$#', 'view:AdminViewResourceInTopic::listResourcesInTopicTable' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/list/(.*)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopic' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/table/(.*)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );
-    //$this->addUrlPatterns( '#^admin/resourceouttopic/assign/(\d+)/(.*)$#', 'view:AdminViewResourceOutTopic::addResourceTopic' );
 
+    $this->addUrlPatterns( '#^admin/resourcepage/list/(.*)$#', 'view:AdminViewPage::listResourcesPage' );
+    $this->addUrlPatterns( '#^admin/resourcepage/table/(.*)$#', 'view:AdminViewPage::listResourcesPageTable' );
 
     $this->addUrlPatterns( '#^admin/starred/(.*)/assign$#', 'view:AdminViewStarred::listAssignStarred' );
     $this->addUrlPatterns( '#^admin/starred/table/(\d+)$#', 'view:AdminViewStarred::listStarredTable' );

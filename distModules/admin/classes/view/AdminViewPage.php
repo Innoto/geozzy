@@ -4,7 +4,7 @@ geozzy::load( 'view/GeozzyResourceView.php' );
 
 
 
-class AdminViewResource extends AdminViewMaster {
+class AdminViewPage extends AdminViewMaster {
 
   public function __construct( $baseDir ) {
     parent::__construct( $baseDir );
@@ -14,14 +14,19 @@ class AdminViewResource extends AdminViewMaster {
   /**
   * Section list user
   **/
-  public function listResources() {
+  public function listResourcesPage($urlParams) {
+
+    $validation = array('type'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
+
+    $type = $urlParamsList['type'];
 
     $template = new Template( $this->baseDir );
-    $template->assign('resourceTable', table::getTableHtml('AdminViewResource', '/admin/resource/table') );
-    $template->setTpl('listResource.tpl', 'admin');
+    $template->assign('resourcepageTable', table::getTableHtml('AdminViewPage', '/admin/resourcepage/table/type/'.$type) );
+    $template->setTpl('listResourcePage.tpl', 'admin');
 
     $resourcetype =  new ResourcetypeModel();
-    $resourcetypelist = $resourcetype->listItems()->fetchAll();
+    $resourcetypelist = $resourcetype->listItems(array( 'filters' => array( 'id' => $type ) ))->fetchAll();
 
     $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
     foreach( $resourcetypelist as $i => $res ) {
@@ -30,7 +35,6 @@ class AdminViewResource extends AdminViewMaster {
     }
     $resCreateByType .= '</ul>';
 
-    $this->template->addToBlock( 'col12', $template );
     $this->template->assign( 'headTitle', __('Resource Management') );
     $this->template->assign( 'headActions', '<div class="btn-group assignResource AdminViewResource">
         <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
@@ -45,12 +49,20 @@ class AdminViewResource extends AdminViewMaster {
         </button>
         '.$resCreateByType.'
       </div>' );
+
+    $this->template->addToBlock( 'col12', $template );
+
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
 
 
-  public function listResourcesTable() {
+  public function listResourcesPageTable($urlParams) {
+
+    $validation = array('type'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
+
+    $type = $urlParamsList['type'];
 
     table::autoIncludes();
     $resource =  new ResourceModel();
@@ -81,12 +93,10 @@ class AdminViewResource extends AdminViewMaster {
     $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
     $tabla->setCol('published', __('Published'));
 
-    // Filtrar por temática
-    /*
-    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> 15 ) );
-    $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
-    $tabla->setJoinType('INNER');
-    */
+    // Filtrar por tipo
+
+    $tabla->setDefaultFilters( array('rTypeId'=> $type ) );
+
 
     // Contido especial
     $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');

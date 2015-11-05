@@ -31,18 +31,21 @@ class RTypePageController extends RTypeController implements RTypeInterface {
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
-    // cambiamos el tipo de topics y starred para que no se muestren
-    $form->setFieldParam('topics', 'type', 'reserved');
-    $form->setFieldParam('starred', 'type', 'reserved');
-    $form->removeValidationRules('topics');
-    $form->removeValidationRules('starred');
-
     // Extensión contacto
     $rTypeExtNames[] = 'rextContact';
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // cambiamos el tipo de topics y starred para que no se muestren
+    $form->setFieldParam('topics', 'type', 'reserved');
+    $form->setFieldParam('starred', 'type', 'reserved');
+    $form->removeValidationRules('topics');
+    $form->removeValidationRules('starred');
+
+    $form->removeField('externalUrl');
+    $form->removeField('rExtContact_email');
 
     return( $rTypeFieldNames );
   } // function manipulateForm()
