@@ -44,9 +44,25 @@
 
 
 
-#userForm img{
+#userForm{
+  img{
   /*.img-circle;*/
   .img-rounded
+  }
+  .cgmMForm-field-submit{
+    float: right;
+  }
+}
+#changePasswordForm{
+  .cgmMForm-field-submit{
+    float: right;
+  }
+}
+
+#userRoleForm{
+  .cgmMForm-field-submit{
+    float: right;
+  }
 }
 
 /* FORM RESOURCE*/
@@ -89,12 +105,10 @@
   }
   .locationData{
     margin-top:25px;
+    .automaticBtn{ margin-top:25px;}
   }
   .locationDirections{
-    margin-top:20px;
-  }
-  .btn{
-    margin-top:20px;
+    margin-top:25px;
   }
 }
 
@@ -108,11 +122,15 @@
   margin-bottom: 0px;
 }
 
+.cgmMForm-field-addCollections,
+.cgmMForm-field-addMultimediaGalleries{
+  float: right;
+}
+
 .cgmMForm-field-multimediaGalleries .multiListSelect2,
 .cgmMForm-field-collections .multiListSelect2{
   display:none;
 }
-
 
 /*FORM USER*/
 #userForm input[type="submit"],
