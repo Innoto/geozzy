@@ -29,11 +29,10 @@ var ResourcesStarredCollection = Backbone.Collection.extend({
     _(mA).each( function(m2) {
 
       if( m2.get('deleted') == 1 ){
-        m2.destroyResourceTerm(taxonomyterm);
+        //console.log(m2.toJSON())
+        m2.destroy();
       }
-      else {
-        m2.saveResourceTerm(taxonomyterm);
-      }
+
     });
   }
 });

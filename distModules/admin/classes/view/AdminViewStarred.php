@@ -44,7 +44,7 @@ class AdminViewStarred extends AdminViewMaster
       <div class="btn btn-primary assignResource btnAssign"> '.__('Assign selected').'</div>'
     );
 
-    $this->template->assign( 'footerActions', '<a href="/admin#starred/star/'.$starredId.'" class="btn btn-default"> '.__('Return').'</a>
+    $this->template->assign( 'footerActions', '<a href="/admin#starred/'.$starredId.'" class="btn btn-default"> '.__('Return').'</a>
       <div class="btn-group assignResource">
         <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>

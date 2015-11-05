@@ -132,28 +132,75 @@ class ResourceModel extends Model {
   }
 
 
-    /**
-     * Delete relation between resource and topic
-     *
-     * @return boolean
-     */
-    public function deleteTopicRelation( $topicId, $resourceId ) {
-      //$this->dataFacade->transactionStart();
-      //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
-      $resourcetopic =  new ResourceTopicModel();
-      $resourceRel = $resourcetopic->listItems( array('filters' => array('resource' => $resourceId, 'topic'=> $topicId)))->fetch();
 
-      if ($resourceRel){
-        $deleted = $resourceRel->delete();
-      }
+  /**
+  * delete item (This method is a mod from Model::delete)
+  *
+  * @param array $parameters array of filters
+  *
+  * @return boolean
+  */
+  function delete( array $parameters = array() ) {
 
-      if ($deleted){
-        return true;
-      }
-      else{
-        return false;
+
+
+
+    Cogumelo::debug( 'Called delete on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    $this->dataFacade->deleteFromKey( $this->getFirstPrimarykeyId(), $this->getter( $this->getFirstPrimarykeyId() )  );
+
+
+/*
+    $p = array(
+        'affectsDependences' => false
+      );
+    $parameters =  array_merge($p, $parameters );
+
+
+    // Delete all dependences
+    if($parameters['affectsDependences']) {
+      $depsInOrder = $this->getDepInLinearArray();
+
+      while( $selectDep = array_pop($depsInOrder) ) {
+          Cogumelo::debug( 'Called delete on '.get_called_class().' with "'.$selectDep['ref']->getFirstPrimarykeyId().'" = '. $selectDep['ref']->getter( $selectDep['ref']->getFirstPrimarykeyId() ) );
+          $selectDep['ref']->dataFacade->deleteFromKey( $selectDep['ref']->getFirstPrimarykeyId(), $selectDep['ref']->getter( $selectDep['ref']->getFirstPrimarykeyId() )  );
       }
     }
+    // Delete only this Model
+    else {
+      Cogumelo::debug( 'Called delete on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+      $this->dataFacade->deleteFromKey( $this->getFirstPrimarykeyId(), $this->getter( $this->getFirstPrimarykeyId() )  );
+    }*/
+
+
+
+
+    return true;
+  }
+
+
+
+  /**
+   * Delete relation between resource and topic
+   *
+   * @return boolean
+   */
+  public function deleteTopicRelation( $topicId, $resourceId ) {
+    //$this->dataFacade->transactionStart();
+    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    $resourcetopic =  new ResourceTopicModel();
+    $resourceRel = $resourcetopic->listItems( array('filters' => array('resource' => $resourceId, 'topic'=> $topicId)))->fetch();
+
+    if ($resourceRel){
+      $deleted = $resourceRel->delete();
+    }
+
+    if ($deleted){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 
   /**
    * Create relation between resource and starred taxonomy

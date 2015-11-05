@@ -368,6 +368,8 @@ class AdminDataAPIView extends View
             'title_'.LANG_DEFAULT
           );
 
+
+
           $resourceStarred = $resourceModel->listItems(
             array(
               'filters' => array(
@@ -383,12 +385,15 @@ class AdminDataAPIView extends View
           while ($rs = $resourceStarred->fetch() )
           {
             $dataDep = $rs->getterDependence('id', 'ResourceTaxonomytermModel');
-            $weight = $dataDep[0]->getter('weight');
 
             $rsData = $rs->getAllData();
-            $rsData['data']['weight'] = intval($weight);
+            $newRsData = $rsData['data'];
 
-            echo $c.json_encode( $rsData['data'] );
+            $newRsData['id'] = intval( $dataDep[0]->getter('id') );
+            $newRsData['weight'] = intval( $dataDep[0]->getter('weight') );
+            $newRsData['resource'] = $rsData['data']['id'];
+
+            echo $c.json_encode( $newRsData );
             if($c === ''){$c=',';}
           }
           echo ']';
@@ -399,13 +404,11 @@ class AdminDataAPIView extends View
       break;
 
       case 'DELETE':
-        $idR = $dataRequest[2];
         $resourceTermModel = new ResourceTaxonomytermModel();
         $rTerm = $resourceTermModel->listItems(
           array(
             'filters' => array(
-              'taxonomyterm'=> $id,
-              'resource'=> $idR
+              'id'=> $id
             )
           )
         );
