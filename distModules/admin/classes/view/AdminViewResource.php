@@ -160,7 +160,8 @@ class AdminViewResource extends AdminViewMaster {
 
     $recursoData = false;
     $urlParamTopic = false;
-    $topicItem = false;;
+    $topicItem = false;
+    $typeItem = false;
 
     /* Validamos os parámetros da url e obtemos un array de volta*/
     $validation = array( 'topic'=> '#^\d+$#', 'resourceId'=> '#^\d+$#', 'type'=> '#^\d+$#' );
