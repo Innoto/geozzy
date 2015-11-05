@@ -114,7 +114,7 @@ class AdminViewUser extends AdminViewMaster
   **/
 
   public function createUser() {
-var_dump('asdasd');
+
     $userView = new UserView();
 
     $form = $userView->userFormDefine();

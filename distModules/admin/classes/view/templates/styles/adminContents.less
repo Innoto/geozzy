@@ -56,23 +56,29 @@
   font-family:@font-family-sans-serif;
 
   .row{
-    padding:10px;
+    padding:10px 0px;
     border:1px solid @gzzColor-bck-5;
     margin-top:2px;
     margin-left:0px;
     margin-right:0px;
 
-    .col-lg-4{
+    &.rowWhite{
+      background-color: @gzzColor-bck-1 !important;
+    }
+    &:nth-child(2n+1){
+      background-color: @gzzColor-bck-3;
+    }
+    .infoCol{
+      text-overflow:ellipsis;
+      overflow:hidden;
+
       text-transform: uppercase;
       font-weight:bold;
       color:@gzzColor-bck-8;
     }
-    .col-lg-8{
+    .infoColData{
       border-left: 1px solid @gzzColor-bck-5;
     }
-  }
-  .row:nth-child(2n+1) {
-    background-color: @gzzColor-bck-3;
   }
 }
 
