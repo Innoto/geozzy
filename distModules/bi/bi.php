@@ -39,12 +39,6 @@ class bi extends Module
      "includes" => array()
     ),
     array(
-     "id" =>"material-design-lite",
-     "params" => array("material-design-lite"),
-     "installer" => "bower",
-     "includes" => array('material.min.js','material.min.css')
-    ),
-    array(
      "id" =>"highstock",
      "params" => array("highstock-release#~2.1.9"),
      "installer" => "bower",

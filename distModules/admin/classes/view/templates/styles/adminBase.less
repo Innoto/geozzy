@@ -12,7 +12,6 @@ body {
 }
 
 
-
 // Wrappers
 #wrapper {
   height: 100%;
@@ -330,6 +329,31 @@ label { display: block; }
 .cgmMForm-wrap{
   margin-bottom: 20px;
 }
+
+/*SELECT LANG*/
+.langSwitch {
+  float: right;
+  margin:0;
+  padding:0;
+
+  li {
+    display: none;
+    padding: 1px 0.5em;
+    cursor: pointer;
+    font-weight: bold;
+    color: @gzzColor-text-dest;
+    line-height: 18px;
+    text-transform: uppercase;
+  }
+  &:hover li{
+    display: inline;
+  }
+  .langActive {
+    color:#fff;
+    background-color: @gzzColor-bck-4;
+  }
+}
+.langSwitchIcon { margin-top:-4px; font-size: 20px; color: @gzzColor-text-dest; }
 
 
 
