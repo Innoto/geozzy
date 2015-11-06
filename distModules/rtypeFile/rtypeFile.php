@@ -27,7 +27,7 @@ class rtypeFile extends Module {
 
 
   public function moduleRc() {
-    geozzy::load('controller/ResourcetypeController.php');
-    ResourcetypeController::rTypeModuleRc( __CLASS__ );
+    geozzy::load('controller/ResourcetypeUtils.php');
+    ResourcetypeUtils::rTypeModuleRc( __CLASS__ );
   }
 }
