@@ -148,7 +148,7 @@ class ResourceModel extends Model {
 
 /*
     // Remove resource taxonomy term
-     $resourceTaxonomyTermList = (new ResourceTaxonomytermModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+     $resourceTaxonomyTermList = ( new ResourceTaxonomytermModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
 
      while( $resourceTaxonomyTerm = $resourceTaxonomyTermList->fetch()  ) {
        $resourceTaxonomyTerm->delete();

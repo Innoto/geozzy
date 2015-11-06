@@ -41,25 +41,32 @@ function bindResourceForm(){
 
 
   $('select.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
-    orientation: 'horizontal'
+    orientation: 'horizontal',
+    icon: '<i class="fa fa-arrows"></i>'
   });
   $('select.cgmMForm-field-rExtAccommodation_accommodationServices').multiList({
-    orientation: 'horizontal'
+    orientation: 'horizontal',
+    icon: '<i class="fa fa-arrows"></i>'
   });
   $('select.cgmMForm-field-rExtAccommodation_accommodationFacilities').multiList({
-    orientation: 'horizontal'
+    orientation: 'horizontal',
+    icon: '<i class="fa fa-arrows"></i>'
   });
   $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkType').multiList({
-    orientation: 'horizontal'
+    orientation: 'horizontal',
+    icon: '<i class="fa fa-arrows"></i>'
   });
   $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').multiList({
-    orientation: 'horizontal'
+    orientation: 'horizontal',
+    icon: '<i class="fa fa-arrows"></i>'
   });
   $('select.cgmMForm-field-rExtAppLugar_rextAppLugarType').multiList({
-    orientation: 'horizontal'
+    orientation: 'horizontal',
+    icon: '<i class="fa fa-arrows"></i>'
   });
   $('select.cgmMForm-field-rExtAppEspazoNatural_rextAppEspazoNaturalType').multiList({
-    orientation: 'horizontal'
+    orientation: 'horizontal',
+    icon: '<i class="fa fa-arrows"></i>'
   });
 
 

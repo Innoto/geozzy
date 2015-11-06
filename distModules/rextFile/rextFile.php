@@ -27,7 +27,7 @@ class rextFile extends Module {
 
 
   public function moduleRc() {
-    geozzy::load('controller/ResourcetypeController.php');
-    ResourcetypeController::rExtModuleRc( __CLASS__ );
+    geozzy::load('controller/ResourcetypeUtils.php');
+    ResourcetypeUtils::rExtModuleRc( __CLASS__ );
   }
 }

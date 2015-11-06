@@ -15,7 +15,7 @@ body {
   z-index: 102;
   width: 100%;
   height: @headerHeight;
-  background: #333;
+  background: @gzzColor-bck-8;
 
   .navbar{
     background: transparent;
@@ -32,11 +32,11 @@ body {
         margin-left: 10px;
         text-transform: uppercase;
         a{
-          color: #fff;
+          color: @gzzColor-text-light;
           padding: 5px;
         }
         &:hover a{
-          color: #fff;
+          color: @gzzColor-text-light;
         }
         &.active a{
           font-weight: bold;
@@ -44,10 +44,10 @@ body {
         }
         &.dropdown.open{
           .dropdown-menu {
-            border: 3px solid #333;
+            border: 3px solid @gzzColor-bck-8;
             background: #555;
             li{ margin: 0px; }
-            a{ color: #fff; }
+            a{ color: @gzzColor-text-light; }
           }
           a{
            background: none;
