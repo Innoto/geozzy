@@ -6,6 +6,7 @@ var AdminRouter = Backbone.Router.extend({
   routes: {
     "" : "default",
     "charts" : "charts",
+    "multiList" : "multiList",
     "category/:id" : "categoryEdit",
     "category/:category/term/create" : "categoryNewTerm",
     "category/:category/term/edit/:term" : "categoryEditTerm",
@@ -40,6 +41,11 @@ var AdminRouter = Backbone.Router.extend({
   charts: function() {
     app.mainView.loadAjaxContent( '/admin/charts' );
     app.mainView.setBodyClass('charts');
+  },
+
+  multiList: function() {
+    app.mainView.loadAjaxContent( '/admin/multilist' );
+    app.mainView.setBodyClass('multiList');
   },
 
   categoryEdit: function( id ){

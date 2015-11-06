@@ -6,7 +6,7 @@
 {/block}
 
 {block name="content"}
-<!--
+
   <h3>MultiList Vertical</h3>
   <select class="asigned_terms2" multiple style="width:250px;">
   {foreach key=key item=item from=$termArray}
@@ -45,17 +45,20 @@
     <option selected data-image="/cgmlformfilews/10" value="98">a98</option>
     <option selected data-image="/cgmlformfilews/10" value="99">a99</option>
   </select>
--->
+
 {literal}
 
 <script type="text/javascript">
-/*
+
 
 $( document ).ready(function() {
 
-  $('.asigned_terms2').multiList();
+  $('.asigned_terms2').multiList({
+    icon: '<i class="fa fa-arrows"></i>'
+  });
   $('.asigned_terms3').multiList({
-    orientation: 'horizontal'
+    orientation: 'horizontal',
+    icon: '<i class="fa fa-arrows"></i>'
   });
 
   $('#asigned_terms4').multiList({
@@ -72,7 +75,7 @@ $( document ).ready(function() {
 
 });
 
-*/
+
 </script>
 {/literal}
 {/block}
