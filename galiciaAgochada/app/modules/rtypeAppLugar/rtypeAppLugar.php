@@ -6,8 +6,7 @@ class rtypeAppLugar extends Module {
 
   public $name = 'rtypeAppLugar';
   public $version = '1.0';
-  public $rext = array( 'rextAppLugar' );
-  public $rextContact = array( 'rextContact' );
+  public $rext = array( 'rextAppLugar', 'rextContact');
 
   public $dependences = array();
 
@@ -28,7 +27,7 @@ class rtypeAppLugar extends Module {
 
 
   public function moduleRc() {
-    geozzy::load('controller/ResourcetypeController.php');
-    ResourcetypeController::rTypeModuleRc( __CLASS__ );
+    geozzy::load('controller/ResourcetypeUtils.php');
+    ResourcetypeUtils::rTypeModuleRc( __CLASS__ );
   }
 }

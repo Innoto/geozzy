@@ -41,6 +41,9 @@ $IMAGE_PROFILES = array(
   'exp1' => array( 'width' => 200, 'height' => 150 ),
   'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
   'typeIcon' => array( 'width' => 64, 'height' => 64 ),
+  'resourceLg' => array( 'width' => 1200, 'height' => 500),
+  'resourceMd' => array( 'width' => 992, 'height' => 400),
+  'resourceSm' => array( 'width' => 768, 'height' => 300),
 );
 
 

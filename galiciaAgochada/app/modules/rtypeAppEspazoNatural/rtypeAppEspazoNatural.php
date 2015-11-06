@@ -6,7 +6,7 @@ class rtypeAppEspazoNatural extends Module {
 
   public $name = 'rtypeAppEspazoNatural';
   public $version = '1.0';
-  public $rext = array( 'rextAppEspazoNatural' );
+  public $rext = array( 'rextAppEspazoNatural', 'rextContact');
 
   public $dependences = array();
 
@@ -27,7 +27,7 @@ class rtypeAppEspazoNatural extends Module {
 
 
   public function moduleRc() {
-    geozzy::load('controller/ResourcetypeController.php');
-    ResourcetypeController::rTypeModuleRc( __CLASS__ );
+    geozzy::load('controller/ResourcetypeUtils.php');
+    ResourcetypeUtils::rTypeModuleRc( __CLASS__ );
   }
 }

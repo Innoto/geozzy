@@ -24,11 +24,27 @@
   <p> --- resourceViewPage.tpl en geozzy module --- </p>
   <div class="titleSec gzSection">
     <div class="container">
-      <div class="title col-lg-8">
+      <div class="title col-lg-10">
         <img alt="typeIcon" src="/mediaCache/module/rtypeHotel/img/icon.png"/>
         <h1>{$title|escape:'htmlall'}</h1>
       </div>
-      <div class="stars col-lg-4">VALORACIONES</div>
+      <div class="stars col-lg-2">
+        <div class="col-lg-2">
+          <i class="fa fa-star-o"></i>
+        </div>
+        <div class="col-lg-2">
+          <i class="fa fa-star-o"></i>
+        </div>
+        <div class="col-lg-2">
+          <i class="fa fa-star-o"></i>
+        </div>
+        <div class="col-lg-2">
+          <i class="fa fa-star-o"></i>
+        </div>
+        <div class="col-lg-2">
+          <i class="fa fa-star-o"></i>
+        </div>
+      </div>
     </div>
   </div>
 

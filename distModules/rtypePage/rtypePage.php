@@ -6,7 +6,7 @@ class rtypePage extends Module {
 
   public $name = 'rtypePage';
   public $version = '1.0';
-  public $rext = array( 'rextView' );
+  public $rext = array( 'rextView', 'rextContact');
 
   public $dependences = array();
 
