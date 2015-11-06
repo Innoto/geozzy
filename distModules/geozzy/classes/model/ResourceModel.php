@@ -146,7 +146,7 @@ class ResourceModel extends Model {
     Cogumelo::debug( 'Called custom delete on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $this->dataFacade->deleteFromKey( $this->getFirstPrimarykeyId(), $this->getter( $this->getFirstPrimarykeyId() )  );
 
-
+/*
     // Remove resource taxonomy term
      $resourceTaxonomyTermList = (new ResourceTaxonomytermModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
 
@@ -179,7 +179,7 @@ class ResourceModel extends Model {
        $CollectionResources->delete();
      }
 
-
+*/
 
     return true;
   }
