@@ -6,9 +6,8 @@ class rtypeHotel extends Module {
 
   public $name = 'rtypeHotel';
   public $version = '1.0';
-  public $rext = array( 'rextAccommodation' );
-  public $rextContact = array( 'rextContact' );
-
+  public $rext = array( 'rextAccommodation', 'rextContact');
+  
   public $dependences = array();
 
   public $includesCommon = array(

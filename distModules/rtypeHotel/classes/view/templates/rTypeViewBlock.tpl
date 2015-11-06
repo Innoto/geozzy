@@ -1,9 +1,26 @@
 {block name="headCssIncludes" append}
 <style type="text/css">
   .imageSec{
-    height:420px;
     background: rgba(0, 0, 0, 0) url("/cgmlImg/{$image.id}/fast/{$image.id}.jpg") no-repeat scroll center center / cover;
+    height: 50vh;
   }
+  @media screen and (min-width: 1200px) {
+    .resource .imageSec {
+      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$image.id}/resourceLg/{$image.id}.jpg") no-repeat scroll center center / cover;
+    }
+  } /*1200px*/
+
+  @media screen and (max-width: 1199px) {
+    .resource .imageSec {
+      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$image.id}/resourceMd/{$image.id}.jpg") no-repeat scroll center center / cover;
+    }
+  }/*1199px*/
+
+  @media screen and (max-width: 991px) {
+    .resource .imageSec {
+      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$image.id}/resourceSm/{$image.id}.jpg") no-repeat scroll center center / cover;
+    }
+  }/*991px*/
 </style>
 {/block}
 
