@@ -171,10 +171,16 @@ class ResourceController {
 
     $form->setSuccess( 'accept', __( 'Thank you' ) );
 
+    /* Establecemos la página a la que debe retornar */
     if( !isset($valuesArray['topicReturn']) ) {
-      $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
+      if (isset($valuesArray['typeReturn'])){ // tabla de páginas
+        $form->setSuccess( 'redirect', SITE_URL . 'admin#resourcepage/list/type/'.$valuesArray['typeReturn']);
+      }
+      else{ // tabla general de contenidos
+        $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
+      }
     }
-    else {
+    else { // tabla de recursos de una temática
       $form->setSuccess( 'redirect', SITE_URL . 'admin#topic/'.$valuesArray['topicReturn']);
     }
 
@@ -561,16 +567,18 @@ class ResourceController {
     $resourceLocLon = $templateBlock['locLon'];
     $resourceDefaultZoom = $templateBlock['defaultZoom'];
 
+    $locationData = '<div class="row">'.
+      '<div class="col-md-3">'.$resourceLocLat.'</div>'.
+      '<div class="col-md-3">'.$resourceLocLon.'</div>'.
+      '<div class="col-md-3">'.$resourceDefaultZoom.'</div>'.
+      '<div class="col-md-3"><div class="automaticBtn btn btn-primary">'.__("Automatic Location").'</div></div></div>';
 
-    $locationData = '<div class="row">'.$resourceLocLat.'</div>
-                     <div class="row">'.$resourceLocLon.'</div>
-                     <div class="row">'.$resourceDefaultZoom.'</div>
-                     <div class="row btn btn-primary col-md-offset-3">'.__("Automatic Location").'</div>';
-
-
-    $locAll = '<div class="location">
-            <div class="row"><div class="col-lg-6 mapContainer"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div></div>
-            <div class="col-lg-6 locationData">'.$locationData.'</div></div></div>';
+    $locAll = '<div class="row location">'.
+        '<div class="col-lg-12 mapContainer">'.
+          '<div class="descMap">Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización</div>'.
+        '</div>'.
+        '<div class="col-lg-12 locationData">'.$locationData.'</div>'.
+      '</div>';
 
     $cols['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
 
