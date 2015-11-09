@@ -5,7 +5,8 @@ var ExplorerResourceMinimalModel = Backbone.Model.extend({
     lat: false,
     lng: false,
     mapVisible: 0,
-    mapMarker: false
+    mapMarker: false,
+    img: false
   }
 
 });
