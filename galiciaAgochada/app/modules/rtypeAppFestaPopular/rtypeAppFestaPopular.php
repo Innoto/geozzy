@@ -27,7 +27,7 @@ class rtypeAppFestaPopular extends Module {
 
 
   public function moduleRc() {
-    geozzy::load('controller/ResourcetypeUtils.php');
-    ResourcetypeUtils::rTypeModuleRc( __CLASS__ );
+    geozzy::load('controller/RTUtilsController.php');
+    RTUtilsController::rTypeModuleRc( __CLASS__ );
   }
 }
