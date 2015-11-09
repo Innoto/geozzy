@@ -69,6 +69,9 @@ function bindResourceForm(){
     icon: '<i class="fa fa-arrows"></i>'
   });
 
+  $('select.cgmMForm-field-weight').select2();
+  $('select.cgmMForm-field-rExtView_viewAlternativeMode').select2();
+
 
   // Location Map
   if(  $("input[name='locLat']").length &&  $("input[name='locLon']").length ) {
