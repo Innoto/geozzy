@@ -25,7 +25,7 @@
   <div class="titleSec gzSection">
     <div class="container">
       <div class="title col-lg-10">
-        <img alt="typeIcon" src="/mediaCache/module/rtypeHotel/img/icon.png"/>
+        <img alt="topicIcon" src="/mediaCache/module/geozzy/img/topic/{$topic}.png"/>
         <h1>{$title|escape:'htmlall'}</h1>
       </div>
       <div class="stars col-lg-2">
@@ -48,7 +48,7 @@
     </div>
   </div>
 
-  <div class="resource">
+  <div class="resource {$rType}">
     {$resourceBlock}
   </div>
 

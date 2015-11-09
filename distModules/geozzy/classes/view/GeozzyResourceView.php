@@ -182,17 +182,22 @@ class GeozzyResourceView extends View {
     $resBlock = false;
     $htmlMsg = '';
 
+
     $resData = $this->defResCtrl->getResourceData( $resId, true ); // true -> translated version
     if( $resData ) {
       // error_log( '$resData === ' . print_r( $resData, true ) );
-      // echo '<pre>';
-      // print_r($resData);
-      // echo '</pre>';
+
       $rTypeController = new ResourcetypeModel();
       $type = $rTypeController->listItems(array('filters' => array('id' => $resData['rTypeId'])))->fetch();
-      $resData[ 'rType' ] = $type->getter('name_'.LANG_DEFAULT);
+      $resData[ 'rType' ] = $type->getter('idName');
 
-      $loadFields = array( 'headKeywords', 'headDescription', 'headTitle', 'title', 'loc', 'defaultZoom' );
+      $resourceTopicModel = new ResourceTopicModel();
+      $topicId = $resourceTopicModel->listItems(array('filters' => array('resource' => $resId), 'order' => array('weight' => -1)))->fetch()->getter('topic');
+      $topicModel = new TopicModel();
+      $topic = $topicModel->listItems(array('filters' => array('id' => $topicId)))->fetch();
+      $resData[ 'topic' ] = $topic->getter('idName');
+
+      $loadFields = array( 'headKeywords', 'headDescription', 'headTitle', 'title', 'rType', 'topic' );
       foreach( $loadFields as $field ) {
         $this->template->assign( $field, $resData[ $field ] );
       }
@@ -208,6 +213,7 @@ class GeozzyResourceView extends View {
       error_log( 'NON hai Recurso: ' . $htmlMsg );
     }
     $this->template->addClientStyles('styles/masterResource.less');
+    $this->template->addClientScript('js/resource.js');
     $this->template->setTpl( 'resourceViewPage.tpl', 'geozzy' );
     $this->template->exec();
   } // function showResource( $resId = false )

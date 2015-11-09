@@ -135,7 +135,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
         '<div class="col-lg-12 locationDirections">'.$resourceDirections.'</div>'.
       '</div>';
 
-  
+
 
     $adminColsInfo['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
 
@@ -234,6 +234,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     if( $contactBlock ) {
       $template->addToBlock( 'rextContact', $contactBlock );
+      $template->assign( 'rExtContact_directions', $contactBlock->tpl_vars['rExtContact_directions_'.LANG_DEFAULT]->value );
       $template->assign( 'rExtContactBlockNames', array( 'rextContact' ) );
     }
     else {

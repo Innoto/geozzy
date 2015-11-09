@@ -563,24 +563,26 @@ class ResourceController {
 
     // Componemos el bloque geolocalización
     $templateBlock = $formBlock->getTemplateVars('formFieldsArray');
-    $resourceLocLat = $templateBlock['locLat'];
-    $resourceLocLon = $templateBlock['locLon'];
-    $resourceDefaultZoom = $templateBlock['defaultZoom'];
+    if (isset($templateBlock['locLat'])){
+      $resourceLocLat = $templateBlock['locLat'];
+      $resourceLocLon = $templateBlock['locLon'];
+      $resourceDefaultZoom = $templateBlock['defaultZoom'];
 
-    $locationData = '<div class="row">'.
-      '<div class="col-md-3">'.$resourceLocLat.'</div>'.
-      '<div class="col-md-3">'.$resourceLocLon.'</div>'.
-      '<div class="col-md-3">'.$resourceDefaultZoom.'</div>'.
-      '<div class="col-md-3"><div class="automaticBtn btn btn-primary">'.__("Automatic Location").'</div></div></div>';
+      $locationData = '<div class="row">'.
+        '<div class="col-md-3">'.$resourceLocLat.'</div>'.
+        '<div class="col-md-3">'.$resourceLocLon.'</div>'.
+        '<div class="col-md-3">'.$resourceDefaultZoom.'</div>'.
+        '<div class="col-md-3"><div class="automaticBtn btn btn-primary">'.__("Automatic Location").'</div></div></div>';
 
-    $locAll = '<div class="row location">'.
-        '<div class="col-lg-12 mapContainer">'.
-          '<div class="descMap">Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización</div>'.
-        '</div>'.
-        '<div class="col-lg-12 locationData">'.$locationData.'</div>'.
-      '</div>';
+      $locAll = '<div class="row location">'.
+          '<div class="col-lg-12 mapContainer">'.
+            '<div class="descMap">Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización</div>'.
+          '</div>'.
+          '<div class="col-lg-12 locationData">'.$locationData.'</div>'.
+        '</div>';
 
-    $cols['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
+      $cols['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
+    }
 
 
     // Recuperamos las temáticas que tiene asociadas el recurso

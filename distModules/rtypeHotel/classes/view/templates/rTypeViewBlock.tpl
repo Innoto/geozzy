@@ -50,20 +50,22 @@
       </div>
     </div>
 
-    <div class="shortDescription row">
+    <div class="shortDescription">
       {$shortDescription|escape:'htmlall'}
     </div>
 
-    <!-- Galería Multimedia -->
-    <div class="imageGallery">
-      <label for="imgResource" class="cgmMForm"></label>
-      {if isset( $image )}
-        <style type="text/css">.cgmMForm-fileField img { height: 100px; }</style>
-        <img src="/cgmlformfilews/{$image.id}"
-          {if isset( $image.title )}alt="{$image.title}" title="{$image.title}"{/if}></img>
-      {else}
-        <p>{t}None{/t}</p>
-      {/if}
+    <div class="taxonomyBar row">
+      <div class="taxStars col-lg-2">
+        VALORACIONES
+      </div>
+      <div class="taxIcons col-lg-10">
+        <div class="icon">
+          icono 1
+        </div>
+        <div class="icon">
+          icono 2
+        </div>
+      </div>
     </div>
 
     <div class="mediumDescription">
@@ -83,17 +85,23 @@
 
     <div class="directions">
       <div class="container">
+        <div class="title">
+          {t}See indications{/t} <i class="fa fa-sort-desc"></i>
+        </div>
+        <div class="indications row" style="display:none;">
           <div class="col-lg-8">
-            {t}See indications{/t} <i class="fa fa-sort-desc"></i>
+            {$rExtContact_directions|escape:'htmlall'}
           </div>
           <div class="col-lg-4">
             <div class="search">
               {t}How to arrive from?{/t} <i class="fa fa-search"></i>
             </div>
           </div>
+        </div>
       </div>
     </div>
 
+    {if isset( $loc )}
     <div class="map">
       <div class="container">
         (AQUI VAI O MAPA)
@@ -101,7 +109,21 @@
         {$defaultZoom|escape:'htmlall'}
       </div>
     </div>
+    {/if}
+  </div>
 
+  <div class="gallerySec container gzSection">
+    <!-- Galería Multimedia -->
+    <div class="imageGallery">
+      <label for="imgResource" class="cgmMForm"></label>
+      {if isset( $image )}
+        <style type="text/css">.cgmMForm-fileField img { height: 100px; }</style>
+        <img src="/cgmlformfilews/{$image.id}"
+          {if isset( $image.title )}alt="{$image.title}" title="{$image.title}"{/if}></img>
+      {else}
+        <p>{t}None{/t}</p>
+      {/if}
+    </div>
   </div>
 
   <div class="reservationSec container gzSection">
@@ -112,8 +134,6 @@
       </div>
     </div>
   </div>
-
-UHH
 
   <div class="collectionSec container gzSection">
     {if isset($collections)}
