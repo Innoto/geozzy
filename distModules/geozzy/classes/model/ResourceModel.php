@@ -146,40 +146,44 @@ class ResourceModel extends Model {
     Cogumelo::debug( 'Called custom delete on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $this->dataFacade->deleteFromKey( $this->getFirstPrimarykeyId(), $this->getter( $this->getFirstPrimarykeyId() )  );
 
-/*
+
     // Remove resource taxonomy term
-     $resourceTaxonomyTermList = ( new ResourceTaxonomytermModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+    $resourceTaxonomytermControl = new ResourceTaxonomytermModel();
+    $resourceTaxonomyTermList = $resourceTaxonomytermControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
 
-     while( $resourceTaxonomyTerm = $resourceTaxonomyTermList->fetch()  ) {
-       $resourceTaxonomyTerm->delete();
-     }
-
-
-     // Remove resource Topic
-     $resourceTopicList = (new ResourceTopicModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
-
-     while( $resourceTopic = $resourceTopicList->fetch()  ) {
-       $resourceTopic->delete();
-     }
+    while( $resourceTaxonomyTerm = $resourceTaxonomyTermList->fetch()  ) {
+     $resourceTaxonomyTerm->delete();
+    }
 
 
-     // remove all relation between Resource and COLLECTIONS
-     $resourceCollectionsList = (new ResourceCollectionsModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+    // Remove resource Topic
+    $resourceTopicControl = new ResourceTopicModel();
+    $resourceTopicList = $resourceTopicControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
 
-     $collectionsToRemove = array();
+    while( $resourceTopic = $resourceTopicList->fetch()  ) {
+     $resourceTopic->delete();
+    }
 
-     while( $resourceCollections = $resourceCollectionsList->fetch()  ) {
-       $resourceCollections->delete();
-     }
 
-     $CollectionResourcesList = (new CollectionResourcesModel())->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+    // remove all relation between Resource and COLLECTIONS
+    $resourceCollectionsControl = new ResourceCollectionsModel();
+    $resourceCollectionsList = $resourceCollectionsControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
 
-     while( $CollectionResources = $CollectionResourcesList->fetch()  ) {
-       $collectionsToRemove[] = $CollectionResources->getter('collection');
-       $CollectionResources->delete();
-     }
+    $collectionsToRemove = array();
 
-*/
+    while( $resourceCollections = $resourceCollectionsList->fetch()  ) {
+     $resourceCollections->delete();
+    }
+
+
+    $collectionResourcesModel = new CollectionResourcesModel();
+    $CollectionResourcesList = $collectionResourcesModel->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+    while( $CollectionResources = $CollectionResourcesList->fetch()  ) {
+     $collectionsToRemove[] = $CollectionResources->getter('collection');
+     $CollectionResources->delete();
+    }
+
 
     return true;
   }

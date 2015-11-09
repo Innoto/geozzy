@@ -166,10 +166,10 @@ class geozzy extends Module {
     Añade Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
     */
     /*
-    geozzy::load('controller/ResourcetypeUtils.php');
+    geozzy::load('controller/RTUtilsController.php');
     global $C_RTYPE_MODULES;
     $GEOZZY_TAXONOMYGROUPS = array_merge(
-      ResourcetypeUtils::getAllCategories( $C_RTYPE_MODULES ),
+      RTUtilsController::getAllCategories( $C_RTYPE_MODULES ),
       $GEOZZY_TAXONOMYGROUPS
     );
     */

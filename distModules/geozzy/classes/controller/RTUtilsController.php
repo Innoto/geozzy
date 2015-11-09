@@ -3,7 +3,7 @@ geozzy::load('model/ResourcetypeModel.php');
 
 
 
-class ResourcetypeUtils {
+class RTUtilsController {
 
   public function rTypeModuleRc( $rTypeClassName ) {
     $rTypeObj = new $rTypeClassName();
