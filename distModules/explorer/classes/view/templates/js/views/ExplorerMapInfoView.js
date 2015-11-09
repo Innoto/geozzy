@@ -11,7 +11,7 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
   template: _.template(
     '<div class="gempiContent">'+
-      '<div class="gempiImg"><img class="img-responsive" src="/cgmlImg/<%-img%>/.jpg" /></div>'+
+      '<div class="gempiImg"><img class="img-responsive" src="/cgmlImg/<%-img%>/lista_explorador/.jpg" /></div>'+
       '<div class="gempiInfo">'+
         '<div class="gempiTitle"><%-title%></div>'+
         '<div class="gempiDescription"><%-description%></div>'+
