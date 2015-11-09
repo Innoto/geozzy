@@ -286,7 +286,7 @@ class ResourceController {
         'params' => array( 'id' => 'resourceAddCollection', 'type' => 'button', 'value' => __( 'Add Collection' ))
       ),
       'multimediaGalleries' => array(
-        'params' => array( 'label' => __( 'Collections' ), 'type' => 'select', 'class' => 'cgmMForm-order',
+        'params' => array( 'label' => __( 'Galleries' ), 'type' => 'select', 'class' => 'cgmMForm-order',
         'multiple' => true, 'options'=> $resMultimedia, 'id' => 'resourceMultimediaGalleries' )
       ),
       'addMultimediaGalleries' => array(

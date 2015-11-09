@@ -17,6 +17,9 @@ class GenericExplorerModel extends Model
                     geozzy_resource.title_es as title_es,
                     geozzy_resource.title_gl as title_gl,
                     geozzy_resource.image as image,
+                    geozzy_resource.shortDescription_es as shortDescription_es,
+                    geozzy_resource.shortDescription_en as shortDescription_en,
+                    geozzy_resource.shortDescription_gl as shortDescription_gl,
                     geozzy_resource.loc as loc,
                     group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
                   FROM geozzy_resource
@@ -34,6 +37,10 @@ class GenericExplorerModel extends Model
       'primarykey' => true
     ),
     'title' => array(
+      'type' => 'VARCHAR',
+      'multilang' => true
+    ),
+    'shortDescription' => array(
       'type' => 'VARCHAR',
       'multilang' => true
     ),

@@ -60,11 +60,15 @@ class RExtFileController extends RExtController implements RExtInterface {
     $rExtFieldNames = array();
 
     $fieldsInfo = array(
+      'author' => array(
+        'params' => array( 'label' => __( 'Author' ) ),
+        'rules' => array( 'maxlength' => '500' )
+      ),
       'file' => array(
-        'params' => array( 'label' => __( 'File' ), 'type' => 'file', 'id' => 'rExtFileField',
+        'params' => array( 'label' => __( 'Multimedia file' ), 'type' => 'file', 'id' => 'rExtFileField',
         'placeholder' => __( 'File' ), 'destDir' => '/rext_file' ),
         'rules' => array( 'maxfilesize' => '2097152' )
-      )
+      )      
     );
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );

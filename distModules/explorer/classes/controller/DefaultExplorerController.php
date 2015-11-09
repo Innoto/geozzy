@@ -9,7 +9,7 @@ class DefaultExplorerController extends ExplorerController {
     explorer::load('model/GenericExplorerModel.php');
     $resourceModel = new GenericExplorerModel();
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc', 'terms') ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc', 'terms', 'image') ) );
 
     $coma = '';
 
@@ -35,6 +35,8 @@ class DefaultExplorerController extends ExplorerController {
           $row['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
         }
 
+        $row['img'] = $resourceDataArray['image'];
+
 
         echo json_encode( $row );
 
@@ -56,7 +58,7 @@ class DefaultExplorerController extends ExplorerController {
       $ids = array_map( 'intval',$_POST['ids']);
     }
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'title_es', 'image'), 'filters' => array( 'ids' => $ids) ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'title_es', 'shortDescription_es'), 'filters' => array( 'ids' => $ids) ) );
 
     $coma = '';
 
@@ -71,7 +73,10 @@ class DefaultExplorerController extends ExplorerController {
 
         $row['id'] = $resourceDataArray['id'];
         $row['title'] = $resourceDataArray['title_es'];
-        $row['image'] = $resourceDataArray['image'];
+        $row['description'] = $resourceDataArray['shortDescription_es'];
+
+
+
 
         echo json_encode( $row );
 

@@ -70,11 +70,6 @@ class GeozzyCollectionView extends View
         'translate' => true,
         'params' => array( 'label' => __( 'Description' ), 'type' => 'textarea', 'htmlEditor' => 'true' )
       ),
-      'image' => array(
-        'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgCollection',
-        'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgCollection' ),
-        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/jpeg' )
-      ),
       'resources' => array(
         'params' => array(
           'label' => __( 'Resources' ),
@@ -92,12 +87,18 @@ class GeozzyCollectionView extends View
 
     if( array_key_exists('multimedia', $valuesArray ) && $valuesArray['multimedia'] === 1 ){
       $fieldsInfo['addResourceLocal'] = array(
-        'params' => array( 'id' => 'addResourceLocal', 'type' => 'button', 'value' => __( 'Add Local Resource ' ))
+        'params' => array( 'id' => 'addResourceLocal', 'type' => 'button', 'value' => __( 'Upload multimedia ' ))
       );
       $fieldsInfo['addResourceExterno'] = array(
-        'params' => array( 'id' => 'addResourceExternal', 'type' => 'button', 'value' => __( 'Add External Resource' ))
+        'params' => array( 'id' => 'addResourceExternal', 'type' => 'button', 'value' => __( 'Link or embed multimedia' ))
       );
     }
+
+    $fieldsInfo['image'] = array(
+      'params' => array( 'label' => __( 'Descriptive image of the gallery (opcional)' ), 'type' => 'file', 'id' => 'imgCollection',
+      'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgCollection' ),
+      'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/jpeg' )
+    );
 
     //$this->arrayToForm( $form, $fieldsInfo, $form->langAvailable );
     $form->definitionsToForm( $fieldsInfo );
@@ -111,7 +112,7 @@ class GeozzyCollectionView extends View
       $form->loadArrayValues( $valuesArray );
     }
 
-    $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Send' ), 'class' => 'gzzAdminToMove' ) );
+    $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Save' ), 'class' => 'gzzAdminToMove' ) );
 
     // Una vez que lo tenemos definido, guardamos el form en sesion
     $form->saveToSession();

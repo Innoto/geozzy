@@ -36,6 +36,7 @@ global $IMAGE_PROFILES;
 
 $IMAGE_PROFILES = array(
   'ancho' => array( 'width' => 400, 'height' => 200 ),
+  'lista_explorador' => array( 'width' => 400, 'height' => 302, 'cut'=>true ),  
   'alto' => array( 'width' => 200, 'height' => 400 ),
   'fast' => array( 'width' => 400, 'height' => 300, 'cut' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
   'exp1' => array( 'width' => 200, 'height' => 150 ),

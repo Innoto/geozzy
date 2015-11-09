@@ -11,10 +11,10 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
   template: _.template(
     '<div class="gempiContent">'+
-      '<div class="gempiImg"><img class="img-responsive" src="http://lorempixel.com/260/196/nature?prrrl" /></div>'+
+      '<div class="gempiImg"><img class="img-responsive" src="/cgmlImg/<%-img%>/lista_explorador/.jpg" /></div>'+
       '<div class="gempiInfo">'+
         '<div class="gempiTitle"><%-title%></div>'+
-        '<div class="gempiDescription">Sed vitae enim ex. Nullam urna eros, commodo in sodales sed, fermentum at quam. </div>'+
+        '<div class="gempiDescription"><%-description%></div>'+
       '</div>'+
     '</div>'
   ),
@@ -72,7 +72,18 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
        [id],
        function() {
 
-         $( '#'+that.divId ).html( that.template(  that.parentExplorer.resourcePartialList.get(id).toJSON() ) );
+
+
+         var element = {
+           id: that.parentExplorer.resourcePartialList.get( id ).get('id'),
+           inMap: that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible'),
+           img: that.parentExplorer.resourceMinimalList.get( id ).get('img'),
+           title: that.parentExplorer.resourcePartialList.get( id ).get('title'),
+           description: that.parentExplorer.resourcePartialList.get( id ).get('description')
+         };
+
+
+         $( '#'+that.divId ).html( that.template( element ) );
 
          if( that.ready == id){
           $( '#'+that.divId ).show();

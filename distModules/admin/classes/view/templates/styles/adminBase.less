@@ -354,8 +354,22 @@ label { display: block; }
 }
 .langSwitchIcon { margin-top:-4px; font-size: 20px; color: @gzzColor-text-dest; }
 
+.select2-container,
+select.cgmMForm-field{ width: 100% !important; }
+.select2-container .select2-search .select2-search__field{ width: auto !important; }
 
-select.cgmMForm-field{ width: 100%; }
+.select2-selection .select2-selection--multiple,
+.select2-container .select2-selection--single{
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  background-color: #fff;
+}
 
 
 @media screen and (min-width: 1200px) {

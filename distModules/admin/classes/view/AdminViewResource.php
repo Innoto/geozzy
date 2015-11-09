@@ -239,6 +239,7 @@ class AdminViewResource extends AdminViewMaster {
     $reqFields = array(
       'cgIntFrmId',
       'id',
+      'published',
       'rTypeId',
       'title',
       'shortDescription',
@@ -276,6 +277,9 @@ class AdminViewResource extends AdminViewMaster {
       }
     }
     $noFields = array_diff( $allResourceFields, $yesFields );
+    $form->setFieldParam('published', 'type', 'reserved');
+    $form->setFieldParam('published', 'value', '1');
+    $form->removeValidationRules('published');
     $form->removeField( $noFields );
     $formBlock = $resourceView->formToTemplate( $form );
 
@@ -300,13 +304,12 @@ class AdminViewResource extends AdminViewMaster {
     $reqFields = array(
       'cgIntFrmId',
       'id',
+      'published',
       'rTypeId',
       'title',
-      'shortDescription',
-      'content',
-      'image',
-      'rExtFile_file',
       'rExtFile_author',
+      'rExtFile_file',
+      'image',
       'submit'
     );
 
@@ -334,6 +337,9 @@ class AdminViewResource extends AdminViewMaster {
       }
     }
     $noFields = array_diff( $allResourceFields, $yesFields );
+    $form->setFieldParam('published', 'type', 'reserved');
+    $form->setFieldParam('published', 'value', '1');
+    $form->removeValidationRules('published');
     $form->removeField( $noFields );
     $formBlock = $resourceView->formToTemplate( $form );
 
