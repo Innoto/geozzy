@@ -225,6 +225,9 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     if( $accomBlock ) {
       $template->addToBlock( 'rextAccommodation', $accomBlock );
+      $template->assign( 'rExtAccommodation_averagePrice', $accomBlock->tpl_vars['rExtAccommodation_averagePrice']->value );
+      $template->assign( 'rExtAccommodation_reservationURL', $accomBlock->tpl_vars['rExtAccommodation_reservationURL']->value );
+      $template->assign( 'rExtAccommodation_reservationPhone', $accomBlock->tpl_vars['rExtAccommodation_reservationPhone']->value );
       $template->assign( 'rExtAccommodationBlockNames', array( 'rextAccommodation' ) );
     }
     else {

@@ -14,16 +14,7 @@
     {$rExtAccommodation_reservationPhone|escape:'htmlall'}
   </div>
 
-  <div class="reservationAverageprice">
-    <label>{t}Reservation average price{/t}</label>
-    {$rExtAccommodation_averagePrice|escape:'htmlall'}
-  </div>
-
   <!-- taxonomías -->
-  <div class="accomodationType">
-    <label>{t}Accommodation type{/t}</label>
-    {$rExtAccommodation_accommodationType|escape:'htmlall'}
-  </div>
   <div class="accomodationCategory">
     <label>{t}Accommodation category{/t}</label>
     {$rExtAccommodation_accommodationCategory|escape:'htmlall'}

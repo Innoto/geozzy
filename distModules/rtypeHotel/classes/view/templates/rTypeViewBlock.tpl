@@ -35,6 +35,24 @@
     {else}
       <p>{t}None{/t}</p>
     {/if} -->
+    <div class="reservationSec container">
+      <div class="reservationBox">
+        <div class="priceText">{t}Precio medio por noche{/t}</div>
+        <div class="priceAmount"><span class="num">{$rExtAccommodation_averagePrice|escape:'htmlall'}</span><span class="unit"> €</span></div>
+        <div class="reservationBtb">
+          {if $rExtAccommodation_reservationURL}
+          <a href="{$rExtAccommodation_reservationURL}" target="blank">{t}Reservar{/t}</a>
+          {else}
+          <div class="showReservations">{t}Reservar{/t}</div>
+          {/if}
+        </div>
+      </div>
+      <div class="reservationData" style="display:none;">
+        <div class="priceText">{t}Teléfono para reservas{/t}</div>
+        <div class="priceAmount"><span class="num">{$rExtAccommodation_reservationPhone|escape:'htmlall'}</span></div>
+      </div>
+
+    </div>
   </div>
 
   <div class="contentSec container gzSection">
@@ -76,7 +94,7 @@
   <div class="locationSec gzSection">
     <div class="location container">
       <div class="title">
-        {t}Location and contact{/t}
+        {t}Contact{/t}
       </div>
       <div class="rTypeHotel accommodation">
         {$rextContact}
