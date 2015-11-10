@@ -25,5 +25,3 @@
 </div>
 
 <!-- /rExtViewBlock.tpl en rExtFile module -->
-
-
