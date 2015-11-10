@@ -5,7 +5,7 @@ $(document).ready(function(){
     $('.directions .indications').toggle();
   });
 
-  $('.rtypeHotel .reservationSec .reservationBox div.reservationBtb').click(function(){
+  $('.rtypeHotel .reservationSec .reservationBox .reservationBtb .showReservation').click(function(){
     $('.rtypeHotel .reservationSec .reservationBox').hide();
     $('.rtypeHotel .reservationSec .reservationData').show();
   })

@@ -35,6 +35,7 @@
     {else}
       <p>{t}None{/t}</p>
     {/if} -->
+    {if $rExtAccommodation_averagePrice}
     <div class="reservationSec container">
       <div class="reservationBox">
         <div class="priceText">{t}Precio medio por noche{/t}</div>
@@ -42,8 +43,8 @@
         <div class="reservationBtb">
           {if $rExtAccommodation_reservationURL}
           <a href="{$rExtAccommodation_reservationURL}" target="blank">{t}Reservar{/t}</a>
-          {else}
-          <div class="showReservations">{t}Reservar{/t}</div>
+          {elseif $rExtAccommodation_reservationPhone}
+          <div class="showReservation">{t}Reservar{/t}</div>
           {/if}
         </div>
       </div>
@@ -51,8 +52,8 @@
         <div class="priceText">{t}Teléfono para reservas{/t}</div>
         <div class="priceAmount"><span class="num">{$rExtAccommodation_reservationPhone|escape:'htmlall'}</span></div>
       </div>
-
     </div>
+    {/if}
   </div>
 
   <div class="contentSec container gzSection">
