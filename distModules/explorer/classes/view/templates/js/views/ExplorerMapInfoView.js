@@ -82,7 +82,10 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
 
 
-    if( infoDiv.offset().left < that.currentMousePos.x &&  infoDiv.offset().left + infoDiv.width() > that.currentMousePos.x ) {
+    if(
+       infoDiv.offset().left < that.currentMousePos.x &&  infoDiv.offset().left + infoDiv.width() > that.currentMousePos.x &&
+       infoDiv.offset().top < that.currentMousePos.y &&  infoDiv.offset().top + infoDiv.height() > that.currentMousePos.y
+    ) {
       var pos = that.getTopLeftPosition();
       $('#'+that.divId).css('left', ( that.currentMousePos.x + 20 ) +'px');
     }
