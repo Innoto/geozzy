@@ -3,6 +3,37 @@ geozzy::load( 'controller/RTypeController.php' );
 geozzy::load( 'controller/RExtController.php' );
 
 
+
+
+
+/**
+
+METODOS A CAMBIAR/ELIMINAR
+
+loadResourceObject
+
+getResourceData
+
+formToTemplate
+
+loadAdminFormColumns
+
+getAdminFormColumns
+
+setBlockPartTemplate
+
+getViewBlock
+
+getResourceBlock
+
+getCollectionBlock
+
+**/
+
+
+
+
+
 class ResourceController {
 
   public $rTypeCtrl = null;

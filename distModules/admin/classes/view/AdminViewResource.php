@@ -242,8 +242,6 @@ class AdminViewResource extends AdminViewMaster {
       'published',
       'rTypeId',
       'title',
-      'shortDescription',
-      'content',
       'externalUrl',
       'image',
       'rExtUrl_urlContentType',

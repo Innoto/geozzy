@@ -51,6 +51,10 @@ class RExtUrlController extends RExtController implements RExtInterface {
     $rExtFieldNames = array();
 
     $fieldsInfo = array(
+      'author' => array(
+        'params' => array( 'label' => __( 'Author' ) ),
+        'rules' => array( 'maxlength' => '500' )
+      ),
       'urlContentType' => array(
         'params' => array( 'label' => __( 'URL content type' ), 'type' => 'select',
           'options' => $this->defResCtrl->getOptionsTax( 'urlContentType' )
@@ -59,11 +63,8 @@ class RExtUrlController extends RExtController implements RExtInterface {
       'embed' => array(
         'params' => array( 'label' => __( 'Embed HTML' ), 'type' => 'textarea' ),
         'rules' => array( 'maxlength' => '2000' )
-      ),
-      'author' => array(
-        'params' => array( 'label' => __( 'Author' ) ),
-        'rules' => array( 'maxlength' => '500' )
       )
+
     );
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
