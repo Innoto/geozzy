@@ -15,8 +15,8 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   lastCenter: false,
 
   mapZones: {
-    outerMargin: 150,
-    innerMargin:100,
+    outerMargin: {x:200,y:200},
+    innerMargin:{x:400,y:150},
   },
 
   initialize: function( opts ) {
@@ -61,7 +61,8 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     that.parentExplorer.resourceMinimalList.each(function(m, index) {
       // Assign values 2:visible in map, 1:not visible in map but present in buffer zone, 0:not in map or buffer
-      m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
+      //m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
     });
 
     //console.log(visibleResources.length)
@@ -195,21 +196,20 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   coordsInMap: function( lat, lng ) {
     var that = this;
 
+    google.maps.event.trigger( that.map, "resize");
 
     var ret = 0; // NOT IN MAP OR BUFFER
 
-    var b =  that.map.getBounds();
-
-    var sw = b.getSouthWest();
-    var ne = b.getNorthEast();
+    var sw = that.map.getBounds().getSouthWest();
+    var ne = that.map.getBounds().getNorthEast();
 
     var scale = Math.pow(2, that.map.getZoom());
 
-    var swOuter = new google.maps.Point(   that.coordToPixel(sw ).x- that.mapZones.outerMargin /scale,   that.coordToPixel(sw).y+ that.mapZones.outerMargin /scale );
-    var neOuter = new google.maps.Point(   that.coordToPixel(ne ).x+ that.mapZones.outerMargin /scale ,   that.coordToPixel(ne).y- that.mapZones.outerMargin /scale );
+    var swOuter = new google.maps.Point(   that.coordToPixel(sw ).x- that.mapZones.outerMargin.x /scale,   that.coordToPixel(sw).y+ that.mapZones.outerMargin.y /scale );
+    var neOuter = new google.maps.Point(   that.coordToPixel(ne ).x+ that.mapZones.outerMargin.x /scale ,   that.coordToPixel(ne).y- that.mapZones.outerMargin.y /scale );
 
-    var swInner = new google.maps.Point(   that.coordToPixel(sw ).x+ that.mapZones.innerMargin /scale,   that.coordToPixel(sw).y- that.mapZones.innerMargin /scale );
-    var neInner = new google.maps.Point(   that.coordToPixel(ne ).x- that.mapZones.innerMargin /scale ,   that.coordToPixel(ne).y+ that.mapZones.innerMargin /scale );
+    var swInner = new google.maps.Point(   that.coordToPixel(sw ).x+ that.mapZones.innerMargin.x /scale,   that.coordToPixel(sw).y- that.mapZones.innerMargin.y /scale );
+    var neInner = new google.maps.Point(   that.coordToPixel(ne ).x- that.mapZones.innerMargin.x /scale ,   that.coordToPixel(ne).y+ that.mapZones.innerMargin.y /scale );
 
 
 

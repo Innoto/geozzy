@@ -106,6 +106,9 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
        [id],
        function() {
 
+         console.log( that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible'));
+
+
          var element = {
            id: that.parentExplorer.resourcePartialList.get( id ).get('id'),
            inMap: that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible'),
