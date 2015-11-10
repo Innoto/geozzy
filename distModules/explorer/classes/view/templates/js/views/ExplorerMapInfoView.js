@@ -9,6 +9,11 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   containerMap: false,
   divId: 'geozzyExplorerMapInfo',
 
+  currentMousePos: { x: -1, y: -1 },
+
+
+
+
   template: _.template(
     '<div class="gempiContent">'+
       '<div class="gempiImg"><img class="img-responsive" src="/cgmlImg/<%-img%>/fast_cut/.jpg" /></div>'+
@@ -30,6 +35,20 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
     });
     $.extend(true, that.options, opts);
+
+
+    that.mousePosEventListener();
+
+  },
+
+
+  mousePosEventListener: function() {
+    var that = this;
+
+    $(document).mousemove(function(event) {
+        that.currentMousePos.x = event.pageX;
+        that.currentMousePos.y = event.pageY;
+    });
   },
 
   createInfoMapDiv: function () {
@@ -53,8 +72,20 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
     $('#'+that.divId).css('top', pos.y+that.marginY+'px');
     $('#'+that.divId).css('left', pos.x+that.marginX+'px');
     $('#'+that.divId).css('z-index',highest);
+  },
+
+  moveInfoMapDivWhenBehindMouse: function() {
+    var that = this;
+
+    var infoDiv = $( '#'+that.divId );
 
 
+
+
+    if( infoDiv.offset().left < that.currentMousePos.x &&  infoDiv.offset().left + infoDiv.width() > that.currentMousePos.x ) {
+      var pos = that.getTopLeftPosition();
+      $('#'+that.divId).css('left', ( that.currentMousePos.x + 20 ) +'px');
+    }
   },
 
   render: function( id ) {
@@ -72,8 +103,6 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
        [id],
        function() {
 
-
-
          var element = {
            id: that.parentExplorer.resourcePartialList.get( id ).get('id'),
            inMap: that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible'),
@@ -87,6 +116,7 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
          if( that.ready == id){
           $( '#'+that.divId ).show();
+          that.moveInfoMapDivWhenBehindMouse();
         }
        }
     );
