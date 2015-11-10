@@ -180,6 +180,10 @@ class RExtContactController extends RExtController implements RExtInterface {
     $resId = $this->defResCtrl->resObj->getter('id');
     $rExtData = $this->getRExtData( $resId );
 
+    $resourceModel = new resourceModel();
+    $web = $resourceModel->listItems(array('filters' => array('id' => $resId)))->fetch()->getter('externalUrl');
+    $rExtData['web'] = $web;
+
     if( $rExtData ) {
       $template = new Template();
       $rExtData = $this->prefixArrayKeys( $rExtData );
