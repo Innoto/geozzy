@@ -5,14 +5,20 @@
 
   .gzSection{
     /* Todos os segmentos */
+    margin-bottom:10px;
   }
 
   .titleSec{
 
-    h1{font-size:22px;margin-left:50px;}
+    h1{
+      font-size:22px;
+      margin-left:60px;
+    }
 
-    img{position:absolute;
-    left:0px;top:5px;}
+    img{
+      position:absolute;
+      left:0px;
+    }
 
     .stars{margin-top:22px;
       .fa{font-size:18px;}
@@ -34,38 +40,63 @@
       font-size:20px;
     }
 
+    .taxonomyBar{
+      padding: 10px 0px;
+      .taxStars{}
+      .taxIcons{
+        .icon{
+          background-color:yellow;
+          display:inline;
+          float:right;
+          margin-left:10px;
+        }
+      }
+    }
+
     .mediumDescription{
-      margin-top:30px;
+      margin-top:10px;
       text-align:justify;
     }
   }
 
   .locationSec{
-    background-color: #46D3EF;
-    color:#fff;
+
+
 
     .directions{
-      height:70px;
-      border-top:1px solid @gzzColor-text-light;
-      font-size: @medium-title;
+      border-top:2px solid @gzzColor-text-light;
 
       .container{
-        line-height:70px;
 
-        .col-lg-8 .fa{
-          font-size:30px;
-          vertical-align:2px;
-          margin-left:15px;
+        .title{
+          font-size: @medium-title;
+          line-height:70px;
+          max-width:200px;
+
+          .fa{
+            font-size:30px;
+            vertical-align:2px;
+            margin-left:15px;
+          }
+        }
+
+        .indications{
+          margin-bottom:20px;
+          text-align:justify;
         }
 
         .search{
-          border:1px solid @gzzColor-text-light;
+          border:1px solid;
           border-radius: 50px;
           width:280px;
           height:40px;
-          margin-top:15px;
-          line-height:40px;
+          line-height:35px;
           text-align:center;
+          text-transform:uppercase;
+          color:#333;
+          margin-left:auto;
+          margin-right:auto;
+
           .fa{
             font-size:24px;
             font-weight:lighter;
@@ -77,22 +108,24 @@
     }
 
     .location{
-      height:225px;
       padding:10px;
+      margin-bottom:10px;
 
       .title{
         margin-top:25px;
-        margin-bottom:25px;
         font-size: @medium-title;
       }
 
       .rExtContact{
         label{display:none;}
-        div{margin-top:20px;
-          .fa{font-size:18px;margin-right:10px;}
+        div{
+          margin-top:20px;
+          .fa{
+            font-size:18px;
+            margin-right:10px;
+          }
         }
         .email .fa{
-          color: @gzzColor-text-light;
           font-size:16px;
         }
       }
@@ -104,5 +137,16 @@
     }
 
   }
+
+  /* Fichas específicas */
+  .rtypeHotel .locationSec{
+    background-color: @gzzColor-bck-2;
+  }
+
+  .rtypeAppEspazoNatural .locationSec{
+    background-color: #46D3EF;
+    color:#fff;
+  }
+
 
 }
