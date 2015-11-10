@@ -1,5 +1,5 @@
 <nav role="navigation" class="navbar navbar-default  clearfix">
-  <div class="">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header ">
       <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
