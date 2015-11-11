@@ -184,9 +184,12 @@ class RExtContactController extends RExtController implements RExtInterface {
     $web = $resourceModel->listItems(array('filters' => array('id' => $resId)))->fetch()->getter('externalUrl');
     $rExtData['web'] = $web;
 
+
+
     if( $rExtData ) {
       $template = new Template();
       $rExtData = $this->prefixArrayKeys( $rExtData );
+      $template->assign( 'rExtContact_timetable', $rExtData['rExtContact_timetable_'.LANG_DEFAULT] );
       foreach( $rExtData as $key => $value ) {
         $template->assign( $key, ($value) ? $value : '' );
         // error_log( $key . ' === ' . print_r( $value, true ) );

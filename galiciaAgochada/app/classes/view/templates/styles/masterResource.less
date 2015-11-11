@@ -25,117 +25,167 @@
     }
   }
 
-  .contentSec{
-    background-color: @gzzColor-text-light;
+  .resource{margin-top:-15px;
 
-    .typeBar{
-      height:30px;
-      .type{margin-top:15px;font-size: 16px;}
+    .imageSec{
 
-      .social{margin-top:10px;}
-    }
+      .reservationSec{
+        position:relative;
+        height:100%;
+        text-transform:uppercase;
 
-    .shortDescription{
-      padding:20px;
-      font-size:20px;
-    }
 
-    .taxonomyBar{
-      padding: 10px 0px;
-      .taxStars{}
-      .taxIcons{
-        .icon{
-          background-color:yellow;
-          display:inline;
-          float:right;
-          margin-left:10px;
+        .reservationBox, .reservationData{
+          position:absolute;
+          bottom:0px;
+          right:0px;
+          background-color: rgba(255,255,255,0.6);
+          text-align:center;
+          padding:10px 20px;
+
+          .priceText{
+            font-size:11px;
+            letter-spacing:-0.2px;
+            font-weight:bold;
+          }
+
+          .priceAmount{
+            font-weight:bold;
+            .num{font-size:26px;}
+            .unit{font-size:20px;}
+          }
+
+          .reservationBtb{
+            background-color: @gzzColor-AloxamentoConEncanto;
+            padding:2px;
+            border-radius:25px;
+            color:@gzzColor-bck-1;
+            font-size:16px;
+            cursor:pointer;
+
+            a{
+              color:@gzzColor-bck-1;
+            }
+
+          }
         }
+
+      }
+
+    }
+
+    .contentSec{
+      background-color: @gzzColor-text-light;
+
+      .typeBar{
+        height:30px;
+        .type{margin-top:15px;font-size: 16px;}
+
+        .social{margin-top:10px;}
+      }
+
+      .shortDescription{
+        padding:20px;
+        font-size:20px;
+      }
+
+      .taxonomyBar{
+        padding: 10px 0px;
+        .taxStars{}
+        .taxIcons{
+          .icon{
+            background-color:yellow;
+            display:inline;
+            float:right;
+            margin-left:10px;
+          }
+        }
+      }
+
+      .mediumDescription{
+        margin-top:10px;
+        text-align:justify;
       }
     }
 
-    .mediumDescription{
-      margin-top:10px;
-      text-align:justify;
-    }
-  }
-
-  .locationSec{
+    .locationSec{
 
 
 
-    .directions{
-      border-top:2px solid @gzzColor-text-light;
+      .directions{
+        border-top:2px solid @gzzColor-text-light;
 
-      .container{
+        .container{
+
+          .title{
+            font-size: @medium-title;
+            line-height:70px;
+            max-width:200px;
+
+            .fa{
+              font-size:30px;
+              vertical-align:2px;
+              margin-left:15px;
+            }
+          }
+
+          .indications{
+            margin-bottom:20px;
+            text-align:justify;
+          }
+
+          .search{
+            border:1px solid;
+            border-radius: 50px;
+            width:280px;
+            height:40px;
+            line-height:35px;
+            text-align:center;
+            text-transform:uppercase;
+            color:#333;
+            margin-left:auto;
+            margin-right:auto;
+
+            .fa{
+              font-size:24px;
+              font-weight:lighter;
+              margin-left:15px;
+              margin-top:5px;
+            }
+          }
+        }
+      }
+
+      .location{
+        padding:10px;
+        margin-bottom:10px;
 
         .title{
+          margin-top:25px;
           font-size: @medium-title;
-          line-height:70px;
-          max-width:200px;
+        }
 
-          .fa{
-            font-size:30px;
-            vertical-align:2px;
-            margin-left:15px;
+        .rExtContact{
+          label{display:none;}
+          div{
+            margin-top:20px;
+            .fa{
+              font-size:18px;
+              margin-right:10px;
+            }
           }
-        }
-
-        .indications{
-          margin-bottom:20px;
-          text-align:justify;
-        }
-
-        .search{
-          border:1px solid;
-          border-radius: 50px;
-          width:280px;
-          height:40px;
-          line-height:35px;
-          text-align:center;
-          text-transform:uppercase;
-          color:#333;
-          margin-left:auto;
-          margin-right:auto;
-
-          .fa{
-            font-size:24px;
-            font-weight:lighter;
-            margin-left:15px;
-            margin-top:5px;
+          .email .fa{
+            font-size:16px;
           }
         }
       }
-    }
 
-    .location{
-      padding:10px;
-      margin-bottom:10px;
-
-      .title{
-        margin-top:25px;
-        font-size: @medium-title;
+      .map{
+        height:620px;
+        background-color:@gzzColor-bck-4;
       }
 
-      .rExtContact{
-        label{display:none;}
-        div{
-          margin-top:20px;
-          .fa{
-            font-size:18px;
-            margin-right:10px;
-          }
-        }
-        .email .fa{
-          font-size:16px;
-        }
-      }
     }
-
-    .map{
-      height:620px;
-      background-color:@gzzColor-bck-4;
-    }
-
   }
 
   /* Fichas específicas */
