@@ -4,7 +4,7 @@
 
     $(document).ready(function(){
 
-      var explorerclass = '.paisaxesExplorer';
+      var explorerclass = '.rinconsExplorer';
 
 
       // ESTO CHEGARÍA POR CHAMADA AJAX
@@ -57,8 +57,8 @@
         '<div class="container titleBar">'+
           '<div class="row">'+
             '<div class="col-md-6 col-sm-4 hidden-xs explorerTitle" >'+
-              '<img class="img-responsive" alt="Paisaxes Espectaculares" src="/media/img/paisaxesIcon.png"></img>'+
-              '<h1>Paisaxes Espectaculares</h1>'+
+              '<img class="img-responsive" alt="rincons Espectaculares" src="/media/img/rinconsIcon.png"></img>'+
+              '<h1>Rincons Espectaculares</h1>'+
             '</div>'+
             '<div class="col-md-6 col-sm-8 col-xs-12 explorerFilters clearfix" ></div>'+
           '</div>'+
@@ -114,13 +114,13 @@
     };
 
     function layoutDistributeSize(){
-      var hExplorerLayout = $('.paisaxesExplorer').height();
-      var hExplorerFilters = $('.paisaxesExplorer .explorer-container-filter').height();
-      var hExplorerGallery = $('.paisaxesExplorer .explorer-container-gallery').height();
+      var hExplorerLayout = $('.rinconsExplorer').height();
+      var hExplorerFilters = $('.rinconsExplorer .explorer-container-filter').height();
+      var hExplorerGallery = $('.rinconsExplorer .explorer-container-gallery').height();
       var hHeader = 100;
       var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
 
-      $('.paisaxesExplorer .explorer-container-map').height( hExplorerMap );
+      $('.rinconsExplorer .explorer-container-map').height( hExplorerMap );
 
       console.log('hExplorerLayout: ', hExplorerLayout );
       console.log('hExplorerFilters: ', hExplorerFilters );

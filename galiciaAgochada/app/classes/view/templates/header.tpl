@@ -24,6 +24,8 @@
           <ul class="dropdown-menu">
             <li><a href="/aloxamentos-con-encanto">{t}Aloxamentos con encanto{/t}</a></li>
             <li><a href="/paisaxes-espectaculares">{t}Paisaxes espectaculares{/t}</a></li>
+            <li><a href="/praias-ensono">{t}Praias de ensono{/t}</a></li>
+            <li><a href="/rincons-con-encanto">{t}Rincons con encanto{/t}</a></li>
             <li><a href="/sabrosos-xantares">{t}Sabrosos xantares{/t}</a></li>
           </ul>
         </li>
