@@ -52,24 +52,51 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
   },
 
   initialize: function( opts ) {
+    var that = this;
+    that.options = new Object({
+      showInBuffer: true,
+      showOutMapAndBuffer: false
+    });
+    $.extend(true, that.options, opts);
 
   },
 
 
   getVisibleResourceIds: function() {
+    var that = this;
     this.parentExplorer.resourceIndex.removePagination();
 
-    var visibleResources = this.parentExplorer.resourceIndex.setPerPage(6);
+    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(6);
+
+    that.parentExplorer.resourceIndex.filterBy( function(e) {
+      var ret = false;
+      var mapVisible = e.get('mapVisible');
+
+      if( that.options.showOutMapAndBuffer == true && ( mapVisible == 0) ) {
+        ret = true;
+      }
+      else if( that.options.showInBuffer == true && mapVisible==1) {
+        ret = true;
+      }
+      else if( mapVisible == 2 || mapVisible==3) {
+        ret = true;
+      }
+
+
+      //console.log(mapVisible, ret)
+
+      return ret;
+    });
 
     visibleResources.setSort('mapVisible', 'desc');
 
     // get total packages
-    this.totalPages = this.parentExplorer.resourceIndex.getNumPages();
+    that.totalPages = that.parentExplorer.resourceIndex.getNumPages();
 
     // set current page
-    visibleResources.setPage(this.currentPage);
+    visibleResources.setPage(that.currentPage);
 
-    this.visibleResources = visibleResources.pluck( 'id' );
+    that.visibleResources = visibleResources.pluck( 'id' );
     return visibleResources.pluck( 'id' );
   },
 
