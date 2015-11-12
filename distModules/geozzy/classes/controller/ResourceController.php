@@ -12,7 +12,7 @@ METODOS A CAMBIAR/ELIMINAR
 
 loadResourceObject
 
-getResourceData
+getResourceData: Controlar ben translate e cargar a maioria dos datos
 
 formToTemplate
 
@@ -81,7 +81,7 @@ class ResourceController {
    *
    * @return array OR false
    */
-  public function loadResourceObject( $resId ) {
+  public function loadResourceObject( $resId = false ) {
     if( $this->resObj === null ) {
       $resModel = new ResourceModel();
       $resList = $resModel->listItems( array( 'affectsDependences' =>
@@ -102,7 +102,7 @@ class ResourceController {
    *
    * @return array OR false
    */
-  public function getResourceData( $resId, $translate = false ) {
+  public function getResourceData( $resId = false, $translate = false ) {
     // error_log( "ResourceController: getResourceData()" );
 
     if( !$this->resData && $this->loadResourceObject( $resId ) ) {
@@ -1366,10 +1366,11 @@ class ResourceController {
   /**
     Visualizamos el Recurso
    */
-  public function getViewBlock( $resData ) {
+  public function getViewBlock( $resData = false ) {
     error_log( "GeozzyResourceView: getViewBlock()" );
 
     $resBlock = $this->getResourceBlock( $resData );
+    //$resBlock = false;
 
     $this->getRTypeCtrl( $resData[ 'rTypeId' ] );
 
@@ -1386,6 +1387,32 @@ class ResourceController {
   } // function getViewBlock( $resData )
 
 
+
+  /**
+    Datos y template por defecto del Resource
+   */
+  public function getViewInfo() {
+    error_log( "GeozzyResourceView: getViewInfo()" );
+
+    $resBlock = false;
+
+    if( !$resData ) {
+      $resData = $this->getResourceData(); // true -> translated version
+    }
+
+    if( !$resData ) {
+      $this->getRTypeCtrl( $resData['rTypeId'] );
+      if( $this->rTypeCtrl ) {
+        error_log( 'GeozzyResourceView: rTypeCtrl->getViewInfo' );
+        $resBlock = $this->rTypeCtrl->getViewInfo( $resBlock );
+      }
+    }
+
+    return( $resBlock );
+  } // function getViewInfo()
+
+
+
   public function getResourceBlock( $resData ) {
     error_log( "GeozzyResourceView: getResourceBlock()" );
 
@@ -1399,19 +1426,6 @@ class ResourceController {
       // error_log( $key . ' === ' . print_r( $value, true ) );
     }
 
-    /*
-    // Cargo los datos de image dentro de los del recurso
-    if( $resData[ 'image' ] !== false ) {
-      error_log( "" . print_r( $resData[ 'image' ], true ) );
-      $titleImage = isset( $resData[ 'image' ][ 'title' ] ) ? $resData[ 'image' ][ 'title' ] : '';
-      $template->assign( 'image', '<img src="/cgmlformfilews/' . $resData[ 'image' ][ 'id' ] . '"
-        alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
-      error_log( 'getterDependence fileData: ' . print_r( $resData[ 'image' ], true ) );
-    }
-    else {
-      $template->assign( 'image', '<p>'.__('None').'</p>' );
-    }
-    */
 
     $collections = $this->getCollectionsInfo( $resData[ 'id' ] );
     error_log( "collections = ". print_r( $collections, true ) );
