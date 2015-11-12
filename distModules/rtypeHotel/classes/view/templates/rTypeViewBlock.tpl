@@ -58,7 +58,7 @@
 
   <div class="contentSec container gzSection">
     <div class="typeBar">
-      <div class="type col-lg-10">{$rType|escape:'htmlall'}</div>
+      <div class="type col-lg-10">{$rTypeIdName|escape:'htmlall'}</div>
       <div class="social col-lg-2 row">
         <div class="col-lg-6">
           MY
@@ -97,7 +97,7 @@
       <div class="title">
         {t}Contact{/t}
       </div>
-      <div class="rTypeHotel accommodation">
+      <div class="{$rTypeIdName|escape:'htmlall'} accommodation">
         {$rextContact}
       </div>
     </div>
@@ -146,9 +146,9 @@
   </div>
 
   <div class="reservationSec container gzSection">
-    <div class="rTypeHotel">
-      <p> --- rTypeHotel Ext RESERVAS --- </p>
-      <div class="rTypeHotel accommodation">
+    <div class="{$rTypeIdName|escape:'htmlall'}">
+      <p> --- {$rTypeIdName|escape:'htmlall'} Ext RESERVAS --- </p>
+      <div class="{$rTypeIdName|escape:'htmlall'} accommodation">
         {$rextAccommodation}
       </div>
     </div>
