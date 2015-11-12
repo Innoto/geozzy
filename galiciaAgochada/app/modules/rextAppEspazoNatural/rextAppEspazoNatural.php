@@ -22,22 +22,82 @@ class rextAppEspazoNatural extends Module {
       'nestable' => 0,
       'sortable' => 1,
       'initialTerms' => array(
+
+
+
         array(
-          'idName' => 'praia',
+          'idName' => 'montanas',
           'name' => array(
-            'en' => 'Beach',
-            'es' => 'Playa',
-            'gl' => 'Praia'
+            'en' => 'Mountains',
+            'es' => 'Montañas',
+            'gl' => 'Montañas'
           )
         ),
+
         array(
-          'idName' => 'monte',
+          'idName' => 'fragas',
           'name' => array(
-            'en' => 'Forest',
-            'es' => 'Bosque',
-            'gl' => 'Monte'
+            'en' => 'Forests',
+            'es' => 'Bosques',
+            'gl' => 'Fragas'
+          )
+        ),
+
+        array(
+          'idName' => 'praias',
+          'name' => array(
+            'en' => 'Beaches and Sandunes',
+            'es' => 'Playas, calas y dunas',
+            'gl' => 'Praias, calas e dunas'
+          )
+        ),
+
+        array(
+          'idName' => 'rios',
+          'name' => array(
+            'en' => 'Rivers and Lakes',
+            'es' => 'Rios y lagunas',
+            'gl' => 'Ríos e lagoas'
+          )
+        ),
+
+        array(
+          'idName' => 'fervenzas',
+          'name' => array(
+            'en' => 'Waterfalls and Ponds',
+            'es' => 'Cascadas y charcas',
+            'gl' => 'Fervenzas e pozas'
+          )
+        ),
+
+        array(
+          'idName' => 'cantis',
+          'name' => array(
+            'en' => 'Cliffs, Canyons and Capes',
+            'es' => 'Acantilados, cañones y cabos',
+            'gl' => 'Cantís, cañóns e cabos'
+          )
+        ),
+
+        array(
+          'idName' => 'humidas',
+          'name' => array(
+            'en' => 'Wetlands',
+            'es' => 'Humedales',
+            'gl' => 'Zoas húmidas'
+          )
+        ),
+
+        array(
+          'idName' => 'illas',
+          'name' => array(
+            'en' => 'Islands',
+            'es' => 'Islas',
+            'gl' => 'Illas'
           )
         )
+
+
       )
     )
   );
