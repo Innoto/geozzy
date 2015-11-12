@@ -21,7 +21,7 @@
   </div>
 
   <div class="bodyContent">
-    {block name="bodyContent"}{/block}
+    {block name="bodyContent"}{if $bodyContent}{$bodyContent}{/if}{/block}
   </div>
 
 </body>

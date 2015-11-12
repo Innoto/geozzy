@@ -4,7 +4,7 @@
 
     $(document).ready(function(){
 
-      var explorerclass = '.paisaxesExplorer';
+      var explorerclass = '.praiasExplorer';
 
 
       // ESTO CHEGARÍA POR CHAMADA AJAX
@@ -14,8 +14,6 @@
         {value:'11', title: 'Canibal'},
         {value:'12', title: 'Indo oceánica'}
       ];
-
-
 
       // GOOGLE MAPS MAPS
       var mapOptions = {
@@ -50,13 +48,15 @@
         '<div class="container titleBar">'+
           '<div class="row">'+
             '<div class="col-md-6 col-sm-4 hidden-xs explorerTitle" >'+
-              '<img class="img-responsive" alt="Paisaxes Espectaculares" src="/media/img/paisaxesIcon.png"></img>'+
-              '<h1>Paisaxes Espectaculares</h1>'+
+              '<img class="img-responsive" alt="praias Espectaculares" src="/media/img/praiasIcon.png"></img>'+
+              '<h1>Praias Espectaculares</h1>'+
             '</div>'+
             '<div class="col-md-6 col-sm-8 col-xs-12 explorerFilters clearfix" ></div>'+
           '</div>'+
         '</div>'
       );
+
+
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
@@ -95,13 +95,13 @@
     };
 
     function layoutDistributeSize(){
-      var hExplorerLayout = $('.paisaxesExplorer').height();
-      var hExplorerFilters = $('.paisaxesExplorer .explorer-container-filter').height();
-      var hExplorerGallery = $('.paisaxesExplorer .explorer-container-gallery').height();
+      var hExplorerLayout = $('.praiasExplorer').height();
+      var hExplorerFilters = $('.praiasExplorer .explorer-container-filter').height();
+      var hExplorerGallery = $('.praiasExplorer .explorer-container-gallery').height();
       var hHeader = 100;
       var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
 
-      $('.paisaxesExplorer .explorer-container-map').height( hExplorerMap );
+      $('.praiasExplorer .explorer-container-map').height( hExplorerMap );
 
       console.log('hExplorerLayout: ', hExplorerLayout );
       console.log('hExplorerFilters: ', hExplorerFilters );

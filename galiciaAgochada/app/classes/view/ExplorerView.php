@@ -22,6 +22,22 @@ class ExplorerView extends MasterView
     $this->template->setTpl('paisaxesExplorer.tpl');
     $this->template->exec();
   }
+  function rinconsExplorer(){
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    explorer::autoIncludes();
+    $this->template->addClientStyles('styles/masterRinconsExplorer.less');
+    $this->template->addClientScript('js/rinconsExplorer.js');
+    $this->template->setTpl('rinconsExplorer.tpl');
+    $this->template->exec();
+  }
+  function praiasExplorer(){
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    explorer::autoIncludes();
+    $this->template->addClientStyles('styles/masterPraiasExplorer.less');
+    $this->template->addClientScript('js/praiasExplorer.js');
+    $this->template->setTpl('praiasExplorer.tpl');
+    $this->template->exec();
+  }
   function xantaresExplorer(){
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     explorer::autoIncludes();

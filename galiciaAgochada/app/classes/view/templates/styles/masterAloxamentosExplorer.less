@@ -4,16 +4,24 @@
 .explorerLayout{
   .mixinDevel();
   .explorerBase( );
-  .explorerLayoutSagan( );
+  .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 60%, @explMap-h: 100%, @explFilter-w: 400px,
+     @explFilter-h: 150px, @explGallery-w: 40%, @explGallery-h: 100% );
 }
 
 .aloxamentosExplorer{
   position: fixed;
-  top:100px;
+  top:150px;
   width: 100%;
 
   .explorerMap{
     width: 100% !important;
     height: 100% !important;
+  }
+  .explorer-container-filter{
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+  .explorer-container-gallery{
+    border-top:1px solid @gzzColor-bck-4;
+    position: relative;
   }
 }
