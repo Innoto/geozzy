@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="128mm"
+   height="128mm"
+   viewBox="0 0 453.5433 453.5433"
+   id="svg4509"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="montanas.svg">
+  <defs
+     id="defs4511" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="-15.381293"
+     inkscape:cy="221.1403"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1005"
+     inkscape:window-x="-9"
+     inkscape:window-y="83"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4514">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-598.8189)">
+    <g
+       transform="matrix(13.72969,0,0,13.72969,-2205.6628,-626.47593)"
+       id="g183"
+       inkscape:export-filename="C:\Users\sneira\Desktop\iconos.png"
+       inkscape:export-xdpi="291.73425"
+       inkscape:export-ydpi="291.73425"
+       style="fill:#000000">
+      <path
+         style="fill:#000000"
+         inkscape:connector-curvature="0"
+         d="m 181.09,96.05 c -0.419,-0.756 -1.465,-0.77 -1.869,0.012 l -10.567,18.676 23.377,0 L 181.09,96.05 Z m 1.132,10.501 c -0.308,0.235 -0.566,0.526 -0.854,0.772 -0.179,0.062 -0.357,0.129 -0.537,0.186 -0.338,0.106 -0.747,0.21 -1.028,-0.069 -0.232,-0.23 -0.366,-0.576 -0.535,-0.853 -0.158,-0.259 -0.643,-0.846 -1,-0.508 -0.219,0.205 -0.268,0.527 -0.387,0.791 -0.146,0.324 -0.698,0.729 -1.045,0.815 -0.248,0.061 -0.53,-0.138 -0.74,-0.242 -0.342,-0.169 -0.692,-0.293 -1.07,-0.354 -0.226,-0.038 -0.461,-0.053 -0.689,-0.035 l 5.233,-9.248 c 0.278,-0.54 0.999,-0.53 1.288,-0.008 l 5.244,8.958 c -0.669,-0.28 -1.35,-0.522 -2.071,-0.614 -0.675,-0.086 -1.259,-0.012 -1.809,0.409 z"
+         id="path185" />
+      <g
+         id="g187"
+         style="fill:#000000">
+        <path
+           style="fill:#000000"
+           inkscape:connector-curvature="0"
+           d="m 173.227,99.819 c -0.42,-0.757 -1.465,-0.771 -1.869,0.011 l -8.688,14.909 4.884,0 7.21,-12.295 -1.537,-2.625 z"
+           id="path189" />
+      </g>
+    </g>
+  </g>
+</svg>

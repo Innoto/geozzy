@@ -27,6 +27,7 @@ class rextAppEspazoNatural extends Module {
 
         array(
           'idName' => 'montanas',
+          'icon' => 'view/categoryIcons/montanas.svg',
           'name' => array(
             'en' => 'Mountains',
             'es' => 'Montañas',
@@ -36,6 +37,7 @@ class rextAppEspazoNatural extends Module {
 
         array(
           'idName' => 'fragas',
+          'icon' => 'view/categoryIcons/bosques.svg',
           'name' => array(
             'en' => 'Forests',
             'es' => 'Bosques',
@@ -45,6 +47,7 @@ class rextAppEspazoNatural extends Module {
 
         array(
           'idName' => 'praias',
+          'icon' => 'view/categoryIcons/playas.svg',
           'name' => array(
             'en' => 'Beaches and Sandunes',
             'es' => 'Playas, calas y dunas',
@@ -54,6 +57,7 @@ class rextAppEspazoNatural extends Module {
 
         array(
           'idName' => 'rios',
+          'icon' => 'view/categoryIcons/rios.svg',
           'name' => array(
             'en' => 'Rivers and Lakes',
             'es' => 'Rios y lagunas',
@@ -63,6 +67,7 @@ class rextAppEspazoNatural extends Module {
 
         array(
           'idName' => 'fervenzas',
+          'icon' => 'view/categoryIcons/cascadas.svg',
           'name' => array(
             'en' => 'Waterfalls and Ponds',
             'es' => 'Cascadas y charcas',
@@ -72,6 +77,7 @@ class rextAppEspazoNatural extends Module {
 
         array(
           'idName' => 'cantis',
+          'icon' => 'view/categoryIcons/acantilados.svg',
           'name' => array(
             'en' => 'Cliffs, Canyons and Capes',
             'es' => 'Acantilados, cañones y cabos',
@@ -81,6 +87,7 @@ class rextAppEspazoNatural extends Module {
 
         array(
           'idName' => 'humidas',
+          'icon' => 'view/categoryIcons/humedales.svg',
           'name' => array(
             'en' => 'Wetlands',
             'es' => 'Humedales',
@@ -90,6 +97,7 @@ class rextAppEspazoNatural extends Module {
 
         array(
           'idName' => 'illas',
+          'icon' => 'view/categoryIcons/islas.svg',
           'name' => array(
             'en' => 'Islands',
             'es' => 'Islas',
