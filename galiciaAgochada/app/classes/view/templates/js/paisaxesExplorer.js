@@ -15,13 +15,6 @@
         {value:'12', title: 'Indo oceánica'}
       ];
 
-      var dataFilter2 = [
-        {value:'*', title: 'Calquera'},
-        {value:'16', title: 'De mañá'},
-        {value:'17', title: 'De tarde'},
-        {value:'18', title: 'Todo o día'}
-      ];
-
 
 
       // GOOGLE MAPS MAPS
@@ -64,17 +57,6 @@
           '</div>'+
         '</div>'
       );
-
-
-      explorer.addFilter(
-        new geozzy.filters.filterSelectSimpleView(
-          {
-            mainCotainerClass: explorerclass+' .explorer-container-filter .explorerFilters',
-            containerClass: 'tipoZona select2GeozzyRed',
-            data: dataFilter2
-          }
-        )
-      );
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
@@ -96,7 +78,6 @@
          templateSelection: formatState,
          templateResult: formatState
       });
-      $('select.select2GeozzyRed').select2();
       //LAYOUT
       layoutDistributeSize();
     });
