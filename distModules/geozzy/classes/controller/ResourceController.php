@@ -146,10 +146,15 @@ class ResourceController {
       // Cargo los datos de temáticas con las que está asociado el recurso
       $topicsDep = $this->resObj->getterDependence( 'id', 'ResourceTopicModel');
       if( $topicsDep !== false ) {
+        $topicsArray = array();
         foreach( $topicsDep as $topicRel ) {
-          $topicsArray[$topicRel->getter('id')] = $topicRel->getter('topic');
+          $topicsArray[ $topicRel->getter('id') ] = $topicRel->getter('topic');
         }
         $resourceData[ 'topics' ] = $topicsArray;
+        $resourceData[ 'topic' ] = current( $resourceData[ 'topics' ] );
+        /**
+          TODO: Asegurarse de que os topics se cargan en orden
+        */
       }
 
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup

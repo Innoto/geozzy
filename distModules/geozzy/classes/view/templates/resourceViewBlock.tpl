@@ -14,6 +14,33 @@
     <label class="cgmMForm">{t}Short description{/t}</label>
     {$shortDescription|escape:'htmlall'}
   </div> -->
+
+  <div class="titleSec gzSection">
+    <div class="container">
+      <div class="title col-lg-10">
+        <img alt="topicIcon" src="/mediaCache/module/geozzy/img/topic/{$topic}.png"/>
+        <h1>{$title|escape:'htmlall'}</h1>
+      </div>
+      <div class="stars col-lg-2">
+        <div class="col-lg-2">
+          <i class="fa fa-star-o"></i>
+        </div>
+        <div class="col-lg-2">
+          <i class="fa fa-star-o"></i>
+        </div>
+        <div class="col-lg-2">
+          <i class="fa fa-star-o"></i>
+        </div>
+        <div class="col-lg-2">
+          <i class="fa fa-star-o"></i>
+        </div>
+        <div class="col-lg-2">
+          <i class="fa fa-star-o"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <h3>
     <div class="shortDescription">
       {$shortDescription|escape:'htmlall'}
