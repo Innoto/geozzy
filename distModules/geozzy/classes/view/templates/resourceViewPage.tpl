@@ -24,7 +24,9 @@
 
   <p> --- resourceViewPage.tpl en geozzy module --- </p>
 
-  {$resourceBlock}
+  <div class="resource {$rTypeIdName}">
+    {$resourceBlock}
+  </div><!-- resource {$rTypeIdName} -->
 
   {/if}
 
