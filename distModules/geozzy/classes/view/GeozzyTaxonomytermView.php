@@ -190,7 +190,7 @@ class GeozzyTaxonomytermView extends View
     if( !$form->processFileFields() ) {
       $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario subirlos otra vez.', 'formError' );
     }
-    $res = false;
+    $taxterm = false;
     if( !$form->existErrors() ){
       $valuesArray = $form->getValuesArray();
 
@@ -244,12 +244,13 @@ class GeozzyTaxonomytermView extends View
         }
       }
 
-      $res = $taxterm->save( array( 'affectsDependences' => $affectsDependences ) );
+      $taxterm->save( array( 'affectsDependences' => $affectsDependences ) );
 
-      $res->setter( 'idName', $res->getter('id') );
-      $res = $res->save();
+      $taxterm->setter( 'idName', $taxterm->getter('id') );
+
+      $taxterm->save();
     }
-    return $res;
+    return $taxterm;
   }
 
 
