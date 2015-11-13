@@ -1,10 +1,1 @@
-define([
-    'backbone',
-    '../../models/filters/filter'
-], function(Backbone,FilterModel){
-
-    var FiltersCollection = Backbone.Collection.extend({
-        model: FilterModel
-    });
-    return new FiltersCollection();
-});
+define(["backbone","../../models/filters/filter"],function(a,b){var c=a.Collection.extend({model:b});return new c});
