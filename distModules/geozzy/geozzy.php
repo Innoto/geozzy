@@ -13,8 +13,8 @@ class geozzy extends Module {
 
   public $name = 'geozzy';
   public $version = '';
-  public $dependences = array(
 
+  public $dependences = array(
     array(
      'id' =>'ckeditor',
      'params' => array('ckeditor#standard/stable'),
@@ -22,8 +22,9 @@ class geozzy extends Module {
      'includes' => array('ckeditor.js'),
      'autoinclude' => false
     )
-
   );
+
+
   public $includesCommon = array(
     'model/ResourceModel.php',
     'model/UrlAliasModel.php',
@@ -67,9 +68,12 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
 
     // geozzy Resource views
-    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:GeozzyResourceView::showResourcePage' ); // TODO: BORRAR
-    $this->addUrlPatterns( '#^resource/(\d+)$#', 'view:GeozzyResourceView::showResourcePage' );
-    $this->addUrlPatterns( '#^resourceBlock/(\d+)$#', 'view:GeozzyResourceView::showResourcePageBlock' );
+    // TODO: BORRAR
+    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:GeozzyResourceView::showResourcePage' );
+
+    //$this->addUrlPatterns( '#^resource/(\d+)$#', 'view:GeozzyResourceView::showResourcePage' );
+    //$this->addUrlPatterns( '#^resourceBlock/(\d+)$#', 'view:GeozzyResourceView::showResourcePageBlock' );
+
     //$this->addUrlPatterns( '#^recurso$#', 'view:GeozzyResourceView::showRecurso' );
     //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
     //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
