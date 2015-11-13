@@ -2,10 +2,6 @@
 Cogumelo::load('view/MasterView.php');
 geozzy::load( 'view/GeozzyResourceView.php' );
 
-common::autoIncludes();
-geozzy::autoIncludes();
-
-
 
 class RecursoView extends MasterView
 {
