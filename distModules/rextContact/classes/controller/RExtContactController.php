@@ -180,11 +180,37 @@ class RExtContactController extends RExtController implements RExtInterface {
     $resId = $this->defResCtrl->resObj->getter('id');
     $rExtData = $this->getRExtData( $resId );
 
-    $resourceModel = new resourceModel();
-    $web = $resourceModel->listItems(array('filters' => array('id' => $resId)))->fetch()->getter('externalUrl');
-    $rExtData['web'] = $web;
+    $rExtData['web'] = 'Hai que quitar esto e collese a orl do modelo';
+
+    if( $rExtData ) {
+      $template = new Template();
+      $rExtData = $this->prefixArrayKeys( $rExtData );
+      $template->assign( 'rExtContact_timetable', $rExtData['rExtContact_timetable_'.LANG_DEFAULT] );
+      foreach( $rExtData as $key => $value ) {
+        $template->assign( $key, ($value) ? $value : '' );
+        // error_log( $key . ' === ' . print_r( $value, true ) );
+      }
+
+      $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextContact' );
+    }
+
+    return $template;
+  }
 
 
+
+  /**
+    Datos y template por defecto de la extension (extensión Contact)
+  */
+  public function getViewInfo() {
+    error_log( "RExtContactController: getViewInfo()" );
+    $template = false;
+
+    $resId = $this->defResCtrl->resObj->getter('id');
+    $rExtData = $this->getRExtData( $resId );
+
+    $rExtData['web'] = 'Hai que quitar esto e collese a orl do modelo';
 
     if( $rExtData ) {
       $template = new Template();

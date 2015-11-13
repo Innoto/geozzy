@@ -15,8 +15,8 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   lastCenter: false,
 
   mapZones: {
-    outerMargin: {x:200,y:200},
-    innerMargin:{x:400,y:150},
+    outerMargin: {x:300,y:300},
+    innerMargin:{x:400,y:90},
   },
 
   initialize: function( opts ) {

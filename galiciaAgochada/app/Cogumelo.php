@@ -54,8 +54,8 @@ class Cogumelo extends CogumeloClass
     parent::__construct();
 
     /* Probando Recursos */
-    $this->addUrlPatterns( '#^recurso/?$#', 'view:RecursoView::verRecurso' );
-    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:RecursoView::verRecurso' );
+//    $this->addUrlPatterns( '#^recurso/?$#', 'view:RecursoView::verRecurso' );
+//    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:RecursoView::verRecurso' );
 
     /*Explorer (Param = Sagan||Dora||Indiana)*/
     $this->addUrlPatterns( '#^explorerLayout/(.*)$#', 'view:ExplorerView::explorerLayout' );

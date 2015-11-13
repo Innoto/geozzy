@@ -13,13 +13,16 @@ class RecursoView extends MasterView
   private $formName = 'resourceCreate';
   private $formUrl = '/recurso-form-action';
 
+  // PROBAS !!!!!!
   public function __construct( $baseDir ) {
     parent::__construct( $baseDir );
   }
 
+  // PROBAS !!!!!!
   /**
     Defino y muestro un formulario de creacion
   */
+  // PROBAS !!!!!!
   public function crearForm() {
     error_log( "RecursoView: crearForm()" );
 
@@ -34,9 +37,11 @@ class RecursoView extends MasterView
 
 
 
+  // PROBAS !!!!!!
   /**
     Defino y muestro un formulario de edicion
   */
+  // PROBAS !!!!!!
   public function editarForm( $urlParams = false ) {
     error_log( "RecursoView: editarForm()". print_r( $urlParams, true ) );
 
@@ -68,18 +73,20 @@ class RecursoView extends MasterView
   } // function editarForm()
 
 
+  // PROBAS !!!!!!
   /**
     Visualizamos el Recurso
   */
+  // PROBAS !!!!!!
   public function verRecurso( $urlParams = false ) {
     error_log( "RecursoView: showRecurso()" . print_r( $urlParams, true ) );
 
     $resourceView = new GeozzyResourceView();
-    $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;
-    $resourceView->showResource( $resId );
+    $resourceView->showResourcePage( $urlParams );
   } // function verRecurso()
 
 
+  // PROBAS !!!!!!
   public function verRecurso2( $urlParams = false ) {
     error_log( "RecursoView: showRecurso2()" . print_r( $urlParams, true ) );
 
@@ -132,9 +139,11 @@ class RecursoView extends MasterView
 
 
 
+  // PROBAS !!!!!!
   /**
     Proceso formulario crear/editar Recurso
   */
+  // PROBAS !!!!!!
   public function actionResourceForm() {
     error_log( "RecursoView: actionResourceForm()" );
 
