@@ -52,7 +52,8 @@ class ResourceModel extends Model {
     'image' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
-      'key' => 'id'
+      'key' => 'id',
+      'uploadDir' => '/Resource/'
     ),
     'loc' => array(
       'type' => 'GEOMETRY'

@@ -96,7 +96,7 @@ class GeozzyCollectionView extends View
 
     $fieldsInfo['image'] = array(
       'params' => array( 'label' => __( 'Descriptive image of the gallery (opcional)' ), 'type' => 'file', 'id' => 'imgCollection',
-      'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgCollection' ),
+      'placeholder' => 'Escolle unha imaxe', 'destDir' => CollectionModel::$cols['image']['uploadDir']),
       'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/jpeg' )
     );
 
