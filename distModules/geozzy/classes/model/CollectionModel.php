@@ -34,7 +34,8 @@ class CollectionModel extends Model {
     'image' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
-      'key' => 'id'
+      'key' => 'id',
+      'uploadDir' => '/Collection/'
     ),
     'share' => array(
       'type' => 'TINYINT'

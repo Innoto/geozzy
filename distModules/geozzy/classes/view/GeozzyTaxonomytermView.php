@@ -63,7 +63,7 @@ class GeozzyTaxonomytermView extends View
         'params' => array( 'type' => 'reserved', 'value' => $request['1'] )
       ),
       'icon' => array(
-        'params' => array( 'type' => 'file', 'placeholder' => 'Sube unha imaxe', 'label' => 'Sube unha imaxe', 'destDir' => '/')
+        'params' => array( 'type' => 'file', 'placeholder' => 'Sube unha imaxe', 'label' => 'Sube unha imaxe', 'destDir' => '/imgTaxterm/')
       ),
       'name' => array(
         'translate' => true,

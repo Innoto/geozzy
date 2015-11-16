@@ -36,7 +36,8 @@ class TaxonomytermModel extends Model {
     'icon' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
-      'key' => 'id'
+      'key' => 'id',
+      'uploadDir' => '/Taxonomyterm/'
     ),
     'weight' => array(
       'type' => 'SMALLINT',
