@@ -4,8 +4,8 @@
 .explorerLayout{
   //.mixinDevel();
   .explorerBase( );
-  .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 60%, @explMap-h: 100%, @explFilter-w: 400px,
-     @explFilter-h: 150px, @explGallery-w: 40%, @explGallery-h: 100% );
+  .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 60%, @explMap-h: calc(~"100% - "@headerTitleBarHeight ), @explFilter-w: 400px,
+     @explFilter-h: 150px, @explGallery-w: 40%, @explGallery-h: calc(~"100% - "@headerTitleBarHeight ) );
 }
 
 .xantaresExplorer{
@@ -21,7 +21,24 @@
     background-color: rgba(255, 255, 255, 0.6);
   }
   .explorer-container-gallery{
-    border-top:1px solid @gzzColor-bck-4;
+    border-top: 1px solid @gzzColor-bck-4;
+    border-left: 5px solid @gzzColor-bck-4;
+    padding: 10px 20px;
     position: relative;
-  }
+
+    .element{
+      margin: 10px 0px;
+      .elementImg{
+        img{ width: 100%; }
+      }
+      .elementInfo{
+        .elementTitle{
+
+        }
+        .elementDesc{
+
+        }
+      }
+    }//.element
+  }//.explorer-container-gallery
 }
