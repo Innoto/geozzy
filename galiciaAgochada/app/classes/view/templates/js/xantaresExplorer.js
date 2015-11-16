@@ -16,25 +16,6 @@
       ];
 
 
-      var dataFilter2 = [
-        {value:'*', title: 'Todos os públicos'},
-        {value:'13', title: 'Nenos'},
-        {value:'14', title: 'Adultos'},
-        {value:'15', title: 'Toda a familia'}
-      ];
-
-      var dataFilter3 = [
-        {value:'*', title: 'Calquera'},
-        {value:'16', title: 'De mañá'},
-        {value:'17', title: 'De tarde'},
-        {value:'18', title: 'Todo o día'}
-      ];
-
-
-
-
-
-
 
       // GOOGLE MAPS MAPS
       var mapOptions = {
@@ -50,54 +31,47 @@
       var explorer = new geozzy.explorer({debug:false});
 
 
-
       // DISPLAYS
-      var listaActiva = new geozzy.explorerDisplay.activeListView();
-      var mapa = new geozzy.explorerDisplay.mapView();
-      mapa.setMap( resourceMap );
+      var infowindow = new geozzy.explorerDisplay.mapInfoView();
+      //var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
+      var mapa = new geozzy.explorerDisplay.mapView({ map: resourceMap, clusterize:false });
 
 
-      //explorer.addDisplay( 'activeList', listaActiva );
+      //explorer.addDisplay( listaPasiva );
       explorer.addDisplay( mapa );
+      explorer.addDisplay( infowindow );
 
-
-
-
-      // FILTROS
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: 'filtro1',
-            title:'Tipo de cociña',
+            mainCotainerClass: explorerclass+' .explorer-container-filter .explorerFilters',
+            containerClass: 'tipoPaisaxe select2GeozzyCustom',
+            //title:'asdfasfd',
             data: dataFilter1
           }
         )
       );
-      explorer.addFilter(
-        new geozzy.filters.filterSelectSimpleView(
-          {
-            mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: 'filtro2',
-            title:'Idades',
-            data: dataFilter2
-          }
-        )
-      );
-      explorer.addFilter(
-        new geozzy.filters.filterSelectSimpleView(
-          {
-            mainCotainerClass: explorerclass+' .explorer-container-filter',
-            containerClass: 'filtro3',
-            title:'Horario de apertura',
-            data: dataFilter3
-          }
-        )
-      );
-
 
       // EXECUCIÓN EXPLORADOR
       explorer.exec();
+
+      for (var i = 0; i < 12; i++) {
+
+        var tempElemHtml = '<div data-resource-id="" class="col-md-12 element">'+
+          '<div class="elementImg">'+
+            '<img class="img-responsive" src="http://lorempixel.com/530/213/food/'+i+'" />'+
+            '<ul class="elementOptions container-fluid">'+
+              '<li class="elementOpt elementFav col-sm-6"><i class="fa fa-heart-o"></i></li>'+
+            '</ul>'+
+          '</div>'+
+          '<div class="elementInfo">'+
+            '<div class="elementTitle">Lorem ipsum dolor sit amet, consectetur</div>'+
+            '<div class="elementType"><i class="fa fa-cutlery"></i> Furancho</div>'+
+            '<div class="elementPrice">'+(i*103)+'€<span>/persona</span></div>'+
+          '</div>'+
+        '</div>';
+        $('.explorer-container-gallery').append(tempElemHtml);
+      }
 
 
     });

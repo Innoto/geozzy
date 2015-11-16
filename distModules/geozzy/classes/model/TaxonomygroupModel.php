@@ -36,7 +36,8 @@ class TaxonomygroupModel extends Model {
     'icon' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
-      'key' => 'id'
+      'key' => 'id',
+      'uploadDir' => '/TaxonomyGroup/'
     ),
     'weight' => array(
       'type' => 'SMALLINT',
