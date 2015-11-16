@@ -66,9 +66,9 @@ class RExtFileController extends RExtController implements RExtInterface {
       ),
       'file' => array(
         'params' => array( 'label' => __( 'Multimedia file' ), 'type' => 'file', 'id' => 'rExtFileField',
-        'placeholder' => __( 'File' ), 'destDir' => '/rext_file' ),
+        'placeholder' => __( 'File' ), 'destDir' => CollectionModel::$cols['file']['uploadDir'] ,
         'rules' => array( 'maxfilesize' => '2097152' )
-      )      
+      )
     );
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );

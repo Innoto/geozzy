@@ -277,7 +277,7 @@ class ResourceController {
       ),
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
-        'placeholder' => 'Escolle unha imaxe', 'destDir' => '/imgResource' ),
+        'placeholder' => 'Escolle unha imaxe', 'destDir' => ResourceModel::$cols['image']['uploadDir'] ),
         'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/jpeg' )
       ),
       'urlAlias' => array(

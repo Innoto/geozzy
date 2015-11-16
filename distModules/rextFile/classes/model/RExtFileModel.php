@@ -20,7 +20,8 @@ class RExtFileModel extends Model {
     'file' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
-      'key' => 'id'
+      'key' => 'id',
+      'uploadDir'=> '/RExtFile/'
     ),
     'author' => array(
       'type' => 'VARCHAR',
