@@ -1,6 +1,7 @@
 <?php
 
 
+
 class RTypeAppFestaPopularController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
@@ -69,6 +70,25 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     $template = $resBlock;
 
     return $template;
+  }
+
+
+
+  /**
+    Preparamos los datos para visualizar el Recurso
+   **/
+  public function getViewBlockInfo() {
+    error_log( "RTypeAppFestaPopularController: getViewBlockInfo()" );
+
+    $viewBlockInfo = array(
+      'template' => false,
+      'data' => $this->defResCtrl->getResourceData( false, true ),
+      'ext' => array()
+    );
+
+    // PENDIENTE
+
+    return $viewBlockInfo;
   }
 
 } // class RTypeAppFestaPopularController

@@ -13,9 +13,13 @@ class RExtContactController extends RExtController implements RExtInterface {
   }
 
 
-  public function getRExtData( $resId ) {
+  public function getRExtData( $resId = false ) {
     // error_log( "RExtContactController: getRExtData( $resId )" );
     $rExtData = false;
+
+    if( $resId === false ) {
+      $resId = $this->defResCtrl->resObj->getter('id');
+    }
 
     $rExtModel = new ContactModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
@@ -201,31 +205,34 @@ class RExtContactController extends RExtController implements RExtInterface {
 
 
   /**
-    Datos y template por defecto de la extension (extensión Contact)
-  */
-  public function getViewInfo() {
-    error_log( "RExtContactController: getViewInfo()" );
-    $template = false;
+    Datos y template por defecto de la extension
+   */
+  public function getViewBlockInfo() {
+    error_log( "RExtContactController: getViewBlockInfo()" );
 
-    $resId = $this->defResCtrl->resObj->getter('id');
-    $rExtData = $this->getRExtData( $resId );
+    $rExtViewBlockInfo = array(
+      'template' => false,
+      'data' => $this->getRExtData()
+    );
 
-    $rExtData['web'] = 'Hai que quitar esto e collese a orl do modelo';
-
-    if( $rExtData ) {
-      $template = new Template();
-      $rExtData = $this->prefixArrayKeys( $rExtData );
-      $template->assign( 'rExtContact_timetable', $rExtData['rExtContact_timetable_'.LANG_DEFAULT] );
-      foreach( $rExtData as $key => $value ) {
-        $template->assign( $key, ($value) ? $value : '' );
-        // error_log( $key . ' === ' . print_r( $value, true ) );
+    if( $rExtViewBlockInfo['data'] ) {
+      // TODO: esto será un campo da BBDD
+      $rExtViewBlockInfo['data']['web'] = 'Hai que quitar esto e collese a url do modelo';
+      // TODO: Trampa para idiomas. Esto ten que tratarse no getRExtData()
+      if( isset( $rExtViewBlockInfo['data'][ 'timetable_' . LANG_DEFAULT ] ) ) {
+        $rExtViewBlockInfo['data']['timetable'] = $rExtViewBlockInfo['data'][ 'timetable_' . LANG_DEFAULT ];
       }
 
-      $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
+      $template = new Template();
+
+      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+
       $template->setTpl( 'rExtViewBlock.tpl', 'rextContact' );
+
+      $rExtViewBlockInfo['template'] = array( 'full' => $template );
     }
 
-    return $template;
+    return $rExtViewBlockInfo;
   }
 
 } // class RExtContactController

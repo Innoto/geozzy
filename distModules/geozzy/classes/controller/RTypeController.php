@@ -23,6 +23,9 @@ interface RTypeInterface {
   // Visualizamos el Recurso
   public function getViewBlock( Template $resBlock );
 
+  // Preparamos los datos para visualizar el Recurso
+  public function getViewBlockInfo();
+
 } // interface RTypeInterface
 
 
@@ -31,6 +34,8 @@ class RTypeController {
   public $defResCtrl = null;
   public $rTypeModule = null;
   public $rExts = false;
+  public $rTypeName = 'rType';
+
 
   public function __construct( $defResCtrl, $rTypeModule ){
     error_log( 'RTypeController::__construct' );
@@ -38,11 +43,13 @@ class RTypeController {
     $this->defResCtrl = $defResCtrl;
     // error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
 
+    $this->rTypeName = $rTypeModule->name;
+
     $this->rTypeModule = $rTypeModule;
-    if( property_exists( $this->rTypeModule, 'rext' ) && is_array( $this->rTypeModule->rext )
-      && count( $this->rTypeModule->rext ) > 0 )
+    if( property_exists( $rTypeModule, 'rext' ) && is_array( $rTypeModule->rext )
+      && count( $rTypeModule->rext ) > 0 )
     {
-      $this->rExts = $this->rTypeModule->rext;
+      $this->rExts = $rTypeModule->rext;
     }
   }
 

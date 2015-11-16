@@ -6,7 +6,14 @@
 
   <div class="rextAppLugarType">
     <label>{t}Lugar type{/t}</label>
-    {$rExtAppLugar_rextAppLugarType|escape:'htmlall'}
+    {if isset($rExt.data.rextAppLugarType)}
+    <ul>
+    {foreach from=$rExt.data.rextAppLugarType item=termInfo}
+      <li>{$termInfo.name_es} ({$termInfo.id})</li>
+    {/foreach}
+    </ul>
+    {/if}
+
   </div>
 
 

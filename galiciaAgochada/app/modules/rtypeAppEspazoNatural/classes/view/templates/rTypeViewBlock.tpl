@@ -1,37 +1,38 @@
 {block name="headCssIncludes" append}
 <style type="text/css">
   .imageSec{
-    background: rgba(0, 0, 0, 0) url("/cgmlImg/{$image.id}/fast/{$image.id}.jpg") no-repeat scroll center center / cover;
+    background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     height: 50vh;
   }
   @media screen and (min-width: 1200px) {
     .resource .imageSec {
-      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$image.id}/resourceLg/{$image.id}.jpg") no-repeat scroll center center / cover;
+      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/resourceLg/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     }
   } /*1200px*/
 
   @media screen and (max-width: 1199px) {
     .resource .imageSec {
-      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$image.id}/resourceMd/{$image.id}.jpg") no-repeat scroll center center / cover;
+      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/resourceMd/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     }
   }/*1199px*/
 
   @media screen and (max-width: 991px) {
     .resource .imageSec {
-      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$image.id}/resourceSm/{$image.id}.jpg") no-repeat scroll center center / cover;
+      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/resourceSm/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     }
   }/*991px*/
 </style>
 {/block}
 
 <!-- rTypeViewBlock.tpl en rTypeHotel module -->
+<div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
   <div class="imageSec gzSection">
-  <!--   {if isset( $image )}
-      <img src="/cgmlformfilews/{$image.id}"
-        {if isset( $image.title )}alt="{$image.title}" title="{$image.title}"{/if}></img>
+  <!--   {if isset( $res.data.image )}
+      <img src="/cgmlformfilews/{$res.data.image.id}"
+        {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
     {else}
       <p>{t}None{/t}</p>
     {/if} -->
@@ -39,7 +40,7 @@
 
   <div class="contentSec container gzSection">
     <div class="typeBar">
-      <div class="type col-lg-10">{$rType|escape:'htmlall'}</div>
+      <div class="type col-lg-10">{$res.data.rTypeIdName|escape:'htmlall'}</div>
       <div class="social col-lg-2 row">
         <div class="col-lg-6">
           MY
@@ -51,23 +52,23 @@
     </div>
 
     <div class="shortDescription row">
-      {$shortDescription|escape:'htmlall'}
+      {$res.data.shortDescription|escape:'htmlall'}
     </div>
 
     <!-- Galería Multimedia -->
     <div class="imageGallery">
       <label for="imgResource" class="cgmMForm"></label>
-      {if isset( $image )}
+      {if isset( $res.data.image )}
         <style type="text/css">.cgmMForm-fileField img { height: 100px; }</style>
-        <img src="/cgmlformfilews/{$image.id}"
-          {if isset( $image.title )}alt="{$image.title}" title="{$image.title}"{/if}></img>
+        <img src="/cgmlformfilews/{$res.data.image.id}"
+          {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
       {else}
         <p>{t}None{/t}</p>
       {/if}
     </div>
 
     <div class="mediumDescription">
-      {$content}
+      {$res.data.content}
     </div>
   </div>
 
@@ -77,7 +78,7 @@
         {t}Location and contact{/t}
       </div>
       <div class="rTypeHotel accommodation">
-        {$rextContact}
+        {$res.ext.rextContact.data.directions_es|escape:'htmlall'}
       </div>
     </div>
 
@@ -97,22 +98,21 @@
     <div class="map">
       <div class="container">
         (AQUI VAI O MAPA)
-        {$loc|escape:'htmlall'}
-        {$defaultZoom|escape:'htmlall'}
+        {$res.data.loc|escape:'htmlall'}
+        {$res.data.defaultZoom|escape:'htmlall'}
       </div>
     </div>
 
   </div>
 
   <div class="collectionSec container gzSection">
-    {if isset($collections)}
+    {if isset($res.data.collections)}
     <div class="collections">
       <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
-      {$collections}
+      {$res.data.collections}
     </div>
     {/if}
- </div>
+  </div>
 
-
-
+</div><!-- /.resource .resViewBlock -->
 <!-- /rTypeViewBlock.tpl en rTypeHotel module -->

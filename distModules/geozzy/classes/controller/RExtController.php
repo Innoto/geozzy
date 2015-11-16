@@ -18,11 +18,15 @@ interface RExtInterface {
   // Visualizamos el Recurso
   public function getViewBlock( Template $resBlock );
 
+  // Preparamos los datos para visualizar el Recurso
+  public function getViewBlockInfo();
+
 } // interface RExtInterface
 
 
 class RExtController {
 
+  public $rExtName = 'rExt';
   public $prefix = 'rExt_';
 
   public $defRTypeCtrl = null;
@@ -31,18 +35,19 @@ class RExtController {
   public $taxonomies = false;
 
 
-  public function __construct( $defRTypeCtrl, $rExtModule, $prefix ){
+  public function __construct( $defRTypeCtrl, $rExtModule, $prefix = false ){
     error_log( 'RExtController::__construct' );
 
     $this->defRTypeCtrl = $defRTypeCtrl;
     $this->defResCtrl = $defRTypeCtrl->defResCtrl;
-    $this->prefix = $prefix;
+    $this->rExtName = $rExtModule->name;
+    $this->prefix = ( $prefix ) ? $prefix : $this->rExtName.'_';
 
     $this->rExtModule = $rExtModule;
-    if( property_exists( $this->rExtModule, 'taxonomies' ) && is_array( $this->rExtModule->taxonomies )
-      && count( $this->rExtModule->taxonomies ) > 0 )
+    if( property_exists( $rExtModule, 'taxonomies' ) && is_array( $rExtModule->taxonomies )
+      && count( $rExtModule->taxonomies ) > 0 )
     {
-      $this->taxonomies = $this->rExtModule->taxonomies;
+      $this->taxonomies = $rExtModule->taxonomies;
     }
   }
 

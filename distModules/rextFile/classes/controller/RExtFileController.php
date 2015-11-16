@@ -15,9 +15,13 @@ class RExtFileController extends RExtController implements RExtInterface {
   }
 
 
-  public function getRExtData( $resId ) {
-    error_log( "RExtFileController: getRExtData( $resId )" );
+  public function getRExtData( $resId = false ) {
+    // error_log( "RExtFileController: getRExtData( $resId )" );
     $rExtData = false;
+
+    if( $resId === false ) {
+      $resId = $this->defResCtrl->resObj->getter('id');
+    }
 
     $rExtModel = new RExtFileModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'affectsDependences' => array( 'FiledataModel' ) ) );
@@ -68,7 +72,7 @@ class RExtFileController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Multimedia file' ), 'type' => 'file', 'id' => 'rExtFileField',
         'placeholder' => __( 'File' ), 'destDir' => '/rext_file' ),
         'rules' => array( 'maxfilesize' => '2097152' )
-      )      
+      )
     );
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
@@ -254,6 +258,32 @@ class RExtFileController extends RExtController implements RExtInterface {
     }
 
     return $template;
+  }
+
+
+
+  /**
+    Preparamos los datos para visualizar el Recurso
+   */
+  public function getViewBlockInfo() {
+    error_log( "RExtFileController: getViewBlockInfo()" );
+
+    $rExtViewBlockInfo = array(
+      'template' => false,
+      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
+    );
+
+    if( $rExtViewBlockInfo['data'] ) {
+      $template = new Template();
+
+      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextFile' );
+
+      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+    }
+
+    return $rExtViewBlockInfo;
   }
 
 } // class RExtFileController

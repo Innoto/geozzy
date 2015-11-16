@@ -1,6 +1,7 @@
 <?php
 
 
+
 class RTypeRutaController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
@@ -69,6 +70,25 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
     $template = $resBlock;
 
     return $template;
+  }
+
+
+
+  /**
+    Preparamos los datos para visualizar el Recurso
+   **/
+  public function getViewBlockInfo() {
+    error_log( "RTypeRutaController: getViewBlockInfo()" );
+
+    $viewBlockInfo = array(
+      'template' => false,
+      'data' => $this->defResCtrl->getResourceData( false, true ),
+      'ext' => array()
+    );
+
+    // PENDIENTE!!!
+
+    return $viewBlockInfo;
   }
 
 } // class RTypeRutaController

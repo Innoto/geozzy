@@ -15,9 +15,13 @@ class RExtViewController extends RExtController implements RExtInterface {
   }
 
 
-  public function getRExtData( $resId ) {
-    error_log( "RExtViewController: getRExtData( $resId )" );
+  public function getRExtData( $resId = false ) {
+    // error_log( "RExtViewController: getRExtData( $resId )" );
     $rExtData = false;
+
+    if( $resId === false ) {
+      $resId = $this->defResCtrl->resObj->getter('id');
+    }
 
     if( $this->taxonomies && is_array( $this->taxonomies ) && count( $this->taxonomies ) > 0 ) {
       $rExtData = array();
@@ -182,6 +186,34 @@ class RExtViewController extends RExtController implements RExtInterface {
     }
 
     return $template;
+  }
+
+
+
+  /**
+    Preparamos los datos para visualizar el Recurso
+   */
+  public function getViewBlockInfo() {
+    error_log( "RExtViewController: getViewBlockInfo()" );
+
+    $rExtViewBlockInfo = array(
+      'template' => false,
+      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
+    );
+
+    /*
+    if( $rExtViewBlockInfo['data'] ) {
+      $template = new Template();
+
+      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextAccommodation' );
+
+      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+    }
+    */
+
+    return $rExtViewBlockInfo;
   }
 
 } // class RExtViewController

@@ -14,9 +14,13 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
   }
 
 
-  public function getRExtData( $resId ) {
-    error_log( "RExtAppEspazoNaturalController: getRExtData( $resId )" );
+  public function getRExtData( $resId = false ) {
+    // error_log( "RExtAppEspazoNaturalController: getRExtData( $resId )" );
     $rExtData = false;
+
+    if( $resId === false ) {
+      $resId = $this->defResCtrl->resObj->getter('id');
+    }
 
     // Only tax fields !!!
 
@@ -184,6 +188,30 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
     }
 
     return $template;
+  }
+
+  /**
+    Datos y template por defecto de la extension
+   */
+  public function getViewBlockInfo() {
+    error_log( "RExtAppEspazoNaturalController: getViewBlockInfo()" );
+
+    $rExtViewBlockInfo = array(
+      'template' => false,
+      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
+    );
+
+    if( $rExtViewBlockInfo['data'] ) {
+      $template = new Template();
+
+      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextAppEspazoNatural' );
+
+      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+    }
+
+    return $rExtViewBlockInfo;
   }
 
 } // class RExtAppEspazoNaturalController

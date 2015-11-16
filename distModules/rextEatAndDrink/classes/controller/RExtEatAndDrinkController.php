@@ -15,9 +15,13 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
   }
 
 
-  public function getRExtData( $resId ) {
+  public function getRExtData( $resId = false ) {
     // error_log( "RExtEatanddrinkController: getRExtData( $resId )" );
     $rExtData = false;
+
+    if( $resId === false ) {
+      $resId = $this->defResCtrl->resObj->getter('id');
+    }
 
     $rExtModel = new EatAndDrinkModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
@@ -233,6 +237,32 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     }
 
     return $template;
+  }
+
+
+
+  /**
+    Preparamos los datos para visualizar el Recurso
+   */
+  public function getViewBlockInfo() {
+    error_log( "RExtAccommodationController: getViewBlockInfo()" );
+
+    $rExtViewBlockInfo = array(
+      'template' => false,
+      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
+    );
+
+    if( $rExtViewBlockInfo['data'] ) {
+      $template = new Template();
+
+      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextEatAndDrink' );
+
+      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+    }
+
+    return $rExtViewBlockInfo;
   }
 
 } // class RExtEatAndDrinkController
