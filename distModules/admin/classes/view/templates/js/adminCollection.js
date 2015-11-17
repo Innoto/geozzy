@@ -41,7 +41,7 @@ function moveHTML(){
 function successResourceForm( data ){
   //resource
 
-  $('#collResources').append('<option data-image="/cgmlformfilews/'+data.image+'" selected="selected" value="'+data.id+'">'+data.title+'</option>');
+  $('#collResources').append('<option data-image="/cgmlImg/'+data.image+'" selected="selected" value="'+data.id+'">'+data.title+'</option>');
   $('#createResourceLocalModal, #createResourceExternalModal').modal('hide');
 
   $('#collResources').trigger('change');

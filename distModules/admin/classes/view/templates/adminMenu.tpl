@@ -10,7 +10,7 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                   {if $user->getter('avatar')}
-                    <img class="userAvatar img-responsive" src="/cgmlformfilews/{$user->getter('avatar')}">
+                    <img class="userAvatar img-responsive" src="/cgmlImg/{$user->getter('avatar')}">
                   {/if}
                   {$user->getter('login')}
                   <i class="fa fa-caret-down"></i>
