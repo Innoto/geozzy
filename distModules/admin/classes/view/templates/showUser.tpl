@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-md-4">
     {if $user->getter('avatar')}
-      <img class="userAvatar img-responsive img-rounded" src="/cgmlformfilews/{$user->getter('avatar')}">
+      <img class="userAvatar img-responsive img-rounded" src="/cgmlImg/{$user->getter('avatar')}">
     {/if}
   </div>
   <div class="col-md-8">

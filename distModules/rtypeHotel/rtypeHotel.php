@@ -7,7 +7,7 @@ class rtypeHotel extends Module {
   public $name = 'rtypeHotel';
   public $version = '1.0';
   public $rext = array( 'rextAccommodation', 'rextContact');
-  
+
   public $dependences = array();
 
   public $includesCommon = array(
@@ -31,6 +31,8 @@ class rtypeHotel extends Module {
 
   public function moduleRc() {
     geozzy::load('controller/RTUtilsController.php');
-    RTUtilsController::rTypeModuleRc( __CLASS__ );
+
+    $rtUtilsControl = new RTUtilsController(__CLASS__);
+    $rtUtilsControl->rTypeModuleRc();
   }
 }

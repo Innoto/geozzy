@@ -113,7 +113,7 @@ class RecursoView extends MasterView
     $fileDep = $recurso->getterDependence( 'image' );
     if( $fileDep !== false ) {
       $titleImage = $fileDep['0']->getter('title');
-      $this->template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"
+      $this->template->assign( 'image', '<img src="/cgmlImg/' . $fileDep['0']->getter('id') . '"
         alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
       error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
     }
