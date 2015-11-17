@@ -6,34 +6,64 @@
 
   <div class="reservationURL">
     <label>{t}Reservation URL{/t}</label>
-    {$rExtAccommodation_reservationURL|escape:'htmlall'}
+    {$rExt.data.reservationURL|escape:'htmlall'}
   </div>
 
   <div class="reservationPhone">
     <label>{t}Reservation phone{/t}</label>
-    {$rExtAccommodation_reservationPhone|escape:'htmlall'}
+    {$rExt.data.reservationPhone|escape:'htmlall'}
   </div>
 
   <!-- taxonomías -->
   <div class="accomodationCategory">
     <label>{t}Accommodation category{/t}</label>
-    {$rExtAccommodation_accommodationCategory|escape:'htmlall'}
+    {if isset($rExt.data.accommodationCategory)}
+    <ul>
+    {foreach from=$rExt.data.accommodationCategory item=termInfo}
+      <li>{$termInfo.name_es} ({$termInfo.id})</li>
+    {/foreach}
+    </ul>
+    {/if}
   </div>
   <div class="accomodationServices">
     <label>{t}Accommodation services{/t}</label>
-    {$rExtAccommodation_accommodationServices|escape:'htmlall'}
+    {if isset($rExt.data.accommodationServices)}
+    <ul>
+    {foreach from=$rExt.data.accommodationServices item=termInfo}
+      <li>{$termInfo.name_es} ({$termInfo.id})</li>
+    {/foreach}
+    </ul>
+    {/if}
   </div>
   <div class="accomodationFacilities">
     <label>{t}Accommodation facilities{/t}</label>
-    {$rExtAccommodation_accommodationFacilities|escape:'htmlall'}
+    {if isset($rExt.data.accommodationFacilities)}
+    <ul>
+    {foreach from=$rExt.data.accommodationFacilities item=termInfo}
+      <li>{$termInfo.name_es} ({$termInfo.id})</li>
+    {/foreach}
+    </ul>
+    {/if}
   </div>
   <div class="accomodationBrand">
     <label>{t}Accommodation brand{/t}</label>
-    {$rExtAccommodation_accommodationBrand|escape:'htmlall'}
+    {if isset($rExt.data.accommodationBrand)}
+    <ul>
+    {foreach from=$rExt.data.accommodationBrand item=termInfo}
+      <li>{$termInfo.name_es} ({$termInfo.id})</li>
+    {/foreach}
+    </ul>
+    {/if}
   </div>
   <div class="accomodationUsers">
     <label>{t}Accommodation users profile{/t}</label>
-    {$rExtAccommodation_accommodationUsers|escape:'htmlall'}
+    {if isset($rExt.data.accommodationUsers)}
+    <ul>
+    {foreach from=$rExt.data.accommodationUsers item=termInfo}
+      <li>{$termInfo.name_es} ({$termInfo.id})</li>
+    {/foreach}
+    </ul>
+    {/if}
   </div>
 
   <!-- coleciones -->

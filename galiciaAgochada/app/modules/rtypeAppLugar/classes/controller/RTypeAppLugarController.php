@@ -191,4 +191,43 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     return $template;
   }
 
+
+
+  /**
+    Preparamos los datos para visualizar el Recurso
+   **/
+  public function getViewBlockInfo() {
+    error_log( "RTypeAppLugarController: getViewBlockInfo()" );
+
+    $viewBlockInfo = array(
+      'template' => false,
+      'data' => $this->defResCtrl->getResourceData( false, true ),
+      'ext' => array()
+    );
+
+    $template = new Template();
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppLugar' );
+
+    $this->rExtCtrl = new RExtAppLugarController( $this );
+    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
+
+    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+
+    if( $rExtViewInfo ) {
+      if( $rExtViewInfo['template'] ) {
+        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextAppLugarBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextAppLugarBlock', false );
+    }
+
+    $viewBlockInfo['template'] = array( 'full' => $template );
+
+    return $viewBlockInfo;
+  }
+
 } // class RTypeAppLugarController

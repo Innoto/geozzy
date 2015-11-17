@@ -3,52 +3,52 @@
 <div class="rExtContact row">
 
   <div class="col-lg-6">
-    {if $rExtContact_address || $rExtContact_cp || $rExtContact_city || $rExtContact_province}
+    {if $rExt.data.address || $rExt.data.cp || $rExt.data.city || $rExt.data.province}
     <div class="address">
       <i class="fa fa-map-marker"></i>
-      {$rExtContact_address|escape:'htmlall'} {$rExtContact_cp|escape:'htmlall'} {$rExtContact_city|escape:'htmlall'} {$rExtContact_province|escape:'htmlall'}
+      {$rExt.data.address|escape:'htmlall'} {$rExt.data.cp|escape:'htmlall'} {$rExt.data.city|escape:'htmlall'} {$rExt.data.province|escape:'htmlall'}
     </div>
     {/if}
   </div>
 
   <div class="col-lg-6">
-    {if $rExtContact_phone}
+    {if $rExt.data.phone}
     <div class="phone">
       <i class="fa fa-phone"></i>
-      {$rExtContact_phone|escape:'htmlall'}
+      {$rExt.data.phone|escape:'htmlall'}
     </div>
     {/if}
   </div>
 
   <div class="col-lg-6">
-    {if $rExtContact_web}
+    {if $rExt.data.web}
     <div class="web">
       <i class="fa fa-globe"></i>
-      {$rExtContact_web|escape:'htmlall'}
+      {$rExt.data.web|escape:'htmlall'}
     </div>
     {/if}
   </div>
 
   <div class="col-lg-6">
-    {if $rExtContact_email}
+    {if $rExt.data.email}
     <div class="email">
       <i class="fa fa-envelope"></i>
-      {$rExtContact_email|escape:'htmlall'}
+      {$rExt.data.email|escape:'htmlall'}
     </div>
     {/if}
   </div>
 
   <div class="col-lg-6">
-    {if $rExtContact_timetable}
+    {if $rExt.data.timetable}
     <div class="timetable">
       <i class="fa fa-clock-o"></i>
-      {$rExtContact_timetable|escape:'htmlall'}
+      {$rExt.data.timetable|escape:'htmlall'}
     </div>
     {/if}
   </div>
 
   <div class="directions" style="display:none;">
-    {$rExtContact_directions|escape:'htmlall'}
+    {$rExt.data.directions|escape:'htmlall'}
   </div>
 
   <!-- taxonomías -->

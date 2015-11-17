@@ -41,22 +41,30 @@ class ResourceController {
   public $resData = null;
   private $taxonomyAll = null;
 
-  public function __construct() {
+  public function __construct( $resId = false ) {
     // error_log( 'ResourceController::__construct' );
 
     common::autoIncludes();
     form::autoIncludes();
     user::autoIncludes();
     filedata::autoIncludes();
+
+    if( $resId ) {
+      $this->loadResourceObject( $resId );
+    }
   }
 
   /**
    *  Cargando controlador del RType
    */
-  public function getRTypeCtrl( $rTypeId ) {
+  public function getRTypeCtrl( $rTypeId = false ) {
     error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
 
     if( !$this->rTypeCtrl ) {
+      if( $rTypeId === false ) {
+        $resData = $this->getResourceData();
+        $rTypeId = ( $resData ) ? $resData['rTypeId'] : false;
+      }
       $rTypeModel = new ResourcetypeModel();
       $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
       if( $rTypeInfo = $rTypeList->fetch() ) {
@@ -1363,11 +1371,18 @@ class ResourceController {
 
 
 
+
+
+
   /**
     Visualizamos el Recurso
    */
   public function getViewBlock( $resData = false ) {
     error_log( "GeozzyResourceView: getViewBlock()" );
+
+    if( !$resData ) {
+      $resData = $this->getResourceData(); // true -> translated version
+    }
 
     $resBlock = $this->getResourceBlock( $resData );
     //$resBlock = false;
@@ -1389,27 +1404,35 @@ class ResourceController {
 
 
   /**
-    Datos y template por defecto del Resource
+    Datos y template por defecto del ResourceBlock
    */
-  public function getViewInfo() {
-    error_log( "GeozzyResourceView: getViewInfo()" );
+  public function getViewBlockInfo( $resId = false ) {
+    error_log( "GeozzyResourceView: getViewBlockInfo()" );
 
-    $resBlock = false;
+    $viewBlockInfo = array(
+      'template' => false,
+      'data' => $this->getResourceData( $resId, true ),
+      'ext' => array()
+    );
 
-    if( !$resData ) {
-      $resData = $this->getResourceData(); // true -> translated version
+    if( $this->getRTypeCtrl() ) {
+      error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlockInfo' );
+      $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
     }
 
-    if( !$resData ) {
-      $this->getRTypeCtrl( $resData['rTypeId'] );
-      if( $this->rTypeCtrl ) {
-        error_log( 'GeozzyResourceView: rTypeCtrl->getViewInfo' );
-        $resBlock = $this->rTypeCtrl->getViewInfo( $resBlock );
-      }
-    }
+    return( $viewBlockInfo );
+  } // function getViewBlockInfo()
 
-    return( $resBlock );
-  } // function getViewInfo()
+
+
+
+
+
+
+
+
+
+
 
 
 

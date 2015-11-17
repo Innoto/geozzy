@@ -188,97 +188,16 @@ class GeozzyResourceView extends View {
   public function getViewBlockInfo( $resId = false ) {
     error_log( "GeozzyResourceView: showResourcePageBlock()" );
 
-    $template = new Template();
-
     $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
 
-  } // function showResource( $resId = false )
-
-
-
-
-
-
-
-  /**
-   * Visualizamos el Recurso
-   *
-   * @param $resId int ID del recurso
-   */
-  public function getResourceBlockTmp( $urlParams = false ) {
-    error_log( "GeozzyResourceView: showResourcePageBlock()" );
-
-    $resId = false;
-    $resData = false;
-
-    if( isset( $urlParams['1'] ) ) {
-      $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;
-      $resData = $this->defResCtrl->getResourceData( $resId, true ); // true -> translated version
-    }
-
-    if( $resData ) {
-      // error_log( '$resData === ' . print_r( $resData, true ) );
-      $this->template->setBlock( 'resourceBlock', $this->defResCtrl->getViewBlock( $resData ) );
-      error_log( 'Hai Recurso - Hai Template' );
-    }
-    else {
-      $htmlMsg = '<span class="error">' . __('Error: Imposible mostrar el recurso ') . $resId . '</span>';
-      $this->template->assign( 'headTitle', __('Unknown Resource') );
-      $this->template->assign( 'htmlMsg', $htmlMsg );
-      error_log( 'NON hai Recurso: ' . $htmlMsg );
-    }
-
-    $this->template->addClientStyles('styles/masterResource.less');
-    $this->template->addClientScript('js/resource.js');
-    $this->template->setTpl( 'resourceViewPageBlock.tpl', 'geozzy' );
-
-    return( $this->template );
+    return $resViewBlockInfo;
   }
 
 
 
-
-  /**
-   * Visualizamos el Recurso
-   *
-   * @param $resId int ID del recurso
-   */
-  public function showResourcePageBlock( $urlParams = false ) {
-    error_log( "GeozzyResourceView: showResourcePageBlock()" );
-
-    $resId = false;
-    $resData = false;
-
-    if( isset( $urlParams['1'] ) ) {
-      $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;
-      $resData = $this->defResCtrl->getResourceData( $resId, true ); // true -> translated version
-    }
-
-    if( $resData ) {
-      // error_log( '$resData === ' . print_r( $resData, true ) );
-      $this->template->setBlock( 'resourceBlock', $this->defResCtrl->getViewBlock( $resData ) );
-      error_log( 'Hai Recurso - Hai Template' );
-    }
-    else {
-      $htmlMsg = '<span class="error">' . __('Error: Imposible mostrar el recurso ') . $resId . '</span>';
-      $this->template->assign( 'headTitle', __('Unknown Resource') );
-      $this->template->assign( 'htmlMsg', $htmlMsg );
-      error_log( 'NON hai Recurso: ' . $htmlMsg );
-    }
-
-    $this->template->addClientStyles('styles/masterResource.less');
-    $this->template->addClientScript('js/resource.js');
-    $this->template->setTpl( 'resourceViewPageBlock.tpl', 'geozzy' );
-    $this->template->exec();
-  } // function showResource( $resId = false )
-
-
-
-  /**
-   * Visualizamos el Recurso
-   *
-   * @param $resId int ID del recurso
-   */
+  // TEMPORAL!!!
+  // TEMPORAL!!!
+  // TEMPORAL!!!
   public function showResourcePage( $urlParams = false ) {
     error_log( "GeozzyResourceView: showResourcePage()" );
 
@@ -313,5 +232,113 @@ class GeozzyResourceView extends View {
     $this->template->setTpl( 'resourceViewPage.tpl', 'geozzy' );
     $this->template->exec();
   } // function showResource( $resId = false )
+
+
+
+
+
+  // TEMPORAL!!!
+  // TEMPORAL!!!
+  // TEMPORAL!!!
+  public function getResourceBlockTmp( $urlParams = false ) {
+    error_log( "GeozzyResourceView: showResourcePageBlock()" );
+
+    $resId = false;
+    $resData = false;
+
+    if( isset( $urlParams['1'] ) ) {
+      $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;
+      $resData = $this->defResCtrl->getResourceData( $resId, true ); // true -> translated version
+    }
+
+    if( $resData ) {
+      // error_log( '$resData === ' . print_r( $resData, true ) );
+      $this->template->setBlock( 'resourceBlock', $this->defResCtrl->getViewBlock( $resData ) );
+      error_log( 'Hai Recurso - Hai Template' );
+    }
+    else {
+      $htmlMsg = '<span class="error">' . __('Error: Imposible mostrar el recurso ') . $resId . '</span>';
+      $this->template->assign( 'headTitle', __('Unknown Resource') );
+      $this->template->assign( 'htmlMsg', $htmlMsg );
+      error_log( 'NON hai Recurso: ' . $htmlMsg );
+    }
+
+    $this->template->addClientStyles('styles/masterResource.less');
+    $this->template->addClientScript('js/resource.js');
+    $this->template->setTpl( 'resourceViewPageBlock.tpl', 'geozzy' );
+
+    return( $this->template );
+  }
+
+
+
+  // TEMPORAL!!!
+  // TEMPORAL!!!
+  // TEMPORAL!!!
+  /*
+  public function showResourcePageBlock( $urlParams = false ) {
+    error_log( "GeozzyResourceView: showResourcePageBlock()" );
+
+    $resId = false;
+    $resData = false;
+
+    if( isset( $urlParams['1'] ) ) {
+      $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;
+      $resData = $this->defResCtrl->getResourceData( $resId, true ); // true -> translated version
+    }
+
+    if( $resData ) {
+      // error_log( '$resData === ' . print_r( $resData, true ) );
+      $this->template->setBlock( 'resourceBlock', $this->defResCtrl->getViewBlock( $resData ) );
+      error_log( 'Hai Recurso - Hai Template' );
+    }
+    else {
+      $htmlMsg = '<span class="error">' . __('Error: Imposible mostrar el recurso ') . $resId . '</span>';
+      $this->template->assign( 'headTitle', __('Unknown Resource') );
+      $this->template->assign( 'htmlMsg', $htmlMsg );
+      error_log( 'NON hai Recurso: ' . $htmlMsg );
+    }
+
+    $this->template->addClientStyles('styles/masterResource.less');
+    $this->template->addClientScript('js/resource.js');
+    $this->template->setTpl( 'resourceViewPageBlock.tpl', 'geozzy' );
+    $this->template->exec();
+  } // function showResource( $resId = false )
+  */
+
+
+
+  // TEMPORAL!!!
+  // TEMPORAL!!!
+  // TEMPORAL!!!
+  public function showResource( $resId = false ) {
+    error_log( "GeozzyResourceView: showResourcePage()" );
+
+    $resData = $this->defResCtrl->getResourceData( $resId, true ); // true -> translated version
+
+    if( $resData ) {
+      $loadFields = array( 'headKeywords', 'headDescription', 'headTitle', 'title', 'rTypeIdName', 'topic' );
+      foreach( $loadFields as $field ) {
+        if( isset( $resData[ $field ] ) ) {
+          $this->template->assign( $field, $resData[ $field ] );
+        }
+      }
+
+      $this->template->setBlock( 'resourceBlock', $this->defResCtrl->getViewBlock( $resData ) );
+      error_log( 'Hai Recurso - Hai Template' );
+    }
+    else {
+      $htmlMsg = '<span class="error">' . __('Error: Imposible mostrar el recurso ') . $resId . '</span>';
+      $this->template->assign( 'headTitle', __('Unknown Resource') );
+      $this->template->assign( 'htmlMsg', $htmlMsg );
+      error_log( 'NON hai Recurso: ' . $htmlMsg );
+    }
+
+    $this->template->addClientStyles('styles/masterResource.less');
+    $this->template->addClientScript('js/resource.js');
+    $this->template->setTpl( 'resourceViewPage.tpl', 'geozzy' );
+    $this->template->exec();
+  } // function showResource( $resId = false )
+
 
 } // class ResourceView extends Vie

@@ -115,4 +115,43 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     return $template;
   }
 
+
+
+  /**
+    Preparamos los datos para visualizar el Recurso
+   **/
+  public function getViewBlockInfo() {
+    error_log( "RTypeUrlController: getViewBlockInfo()" );
+
+    $viewBlockInfo = array(
+      'template' => false,
+      'data' => $this->defResCtrl->getResourceData( false, true ),
+      'ext' => array()
+    );
+
+    $template = new Template();
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
+
+    $this->rExtCtrl = $this->newRExtContr();
+    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
+
+    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+
+    if( $rExtViewInfo ) {
+      if( $rExtViewInfo['template'] ) {
+        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextUrlBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextUrlBlock', false );
+    }
+
+    $viewBlockInfo['template'] = array( 'full' => $template );
+
+    return $viewBlockInfo;
+  }
+
 } // class RTypeUrlController

@@ -201,4 +201,58 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     return $template;
   }
 
+
+
+  /**
+    Preparamos los datos para visualizar el Recurso
+   **/
+  public function getViewBlockInfo() {
+    error_log( "RTypeEspazoNaturalController: getViewBlockInfo()" );
+
+    $viewBlockInfo = array(
+      'template' => false,
+      'data' => $this->defResCtrl->getResourceData( false, true ),
+      'ext' => array()
+    );
+
+    $template = new Template();
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppEspazoNatural' );
+
+    $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
+    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
+
+    $this->contactCtrl = new RExtContactController( $this );
+    $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
+    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+
+    if( $rExtViewInfo ) {
+      if( $rExtViewInfo['template'] ) {
+        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextAppEspazoNaturalBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextAppEspazoNatural', false );
+    }
+
+    if( $contactViewInfo ) {
+      if( $contactViewInfo['template'] ) {
+        foreach( $contactViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextContactBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextContactBlock', false );
+    }
+
+    $viewBlockInfo['template'] = array( 'full' => $template );
+
+    return $viewBlockInfo;
+  }
+
 } // class RTypeAppEspazoNaturalController

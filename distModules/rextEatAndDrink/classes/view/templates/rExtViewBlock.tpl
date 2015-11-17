@@ -6,32 +6,44 @@
 
   <div class="reservationURL">
     <label>{t}Reservation URL{/t}</label>
-    {$rextEatAndDrink_reservationURL|escape:'htmlall'}
+    {$rExt.data.reservationURL|escape:'htmlall'}
   </div>
 
   <div class="reservationPhone">
     <label>{t}Reservation phone{/t}</label>
-    {$rextEatAndDrink_reservationPhone|escape:'htmlall'}
+    {$rExt.data.reservationPhone|escape:'htmlall'}
   </div>
 
   <div class="capacity">
     <label>{t}Capacity{/t}</label>
-    {$rextEatAndDrink_capacity|escape:'htmlall'}
+    {if isset($rExt.data.capacity)}{$rExt.data.capacity|escape:'htmlall'}{/if}
   </div>
 
   <div class="averagePrice">
     <label>{t}Average Price{/t}</label>
-    {$rextEatAndDrink_averagePrice|escape:'htmlall'}
+    {if isset($rExt.data.averagePrice)}{$rExt.data.averagePrice|escape:'htmlall'}{/if}
   </div>
 
   <div class="eatanddrinkType">
     <label>{t}Restaurant type{/t}</label>
-    {$rextEatAndDrink_eatanddrinkType|escape:'htmlall'}
+    {if isset($rExt.data.eatanddrinkType)}
+    <ul>
+    {foreach from=$rExt.data.eatanddrinkType item=termInfo}
+      <li>{$termInfo.name_es} ({$termInfo.id})</li>
+    {/foreach}
+    </ul>
+    {/if}
   </div>
 
   <div class="eatanddrinkSpecialities">
     <label>{t}Specialities{/t}</label>
-    {$rextEatAndDrink_eatanddrinkSpecialities|escape:'htmlall'}
+    {if isset($rExt.data.eatanddrinkSpecialities)}
+    <ul>
+    {foreach from=$rExt.data.eatanddrinkSpecialities item=termInfo}
+      <li>{$termInfo.name_es} ({$termInfo.id})</li>
+    {/foreach}
+    </ul>
+    {/if}
   </div>
 
 

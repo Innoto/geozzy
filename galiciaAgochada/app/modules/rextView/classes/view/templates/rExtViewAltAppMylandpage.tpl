@@ -8,17 +8,17 @@
 
   <div class="altViewInfo">
     <label class="cgmMForm">{t}Alternate view{/t}</label>
-    {$altViewInfo|escape:'htmlall'}
+    {$res.ext.rextView.data.altViewInfo|escape:'htmlall'}
   </div>
 
   <div class="title">
     <label class="cgmMForm">{t}Title{/t}</label>
-    {$title|escape:'htmlall'}
+    {$res.data.title|escape:'htmlall'}
   </div>
 
   <div class="content">
     <label for="content" class="cgmMForm">{t}Content{/t}</label>
-    {$content}
+    {$res.data.content}
   </div>
 
 </div>

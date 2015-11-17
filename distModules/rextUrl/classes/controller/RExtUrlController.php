@@ -15,9 +15,13 @@ class RExtUrlController extends RExtController implements RExtInterface {
   }
 
 
-  public function getRExtData( $resId ) {
-    error_log( "RExtUrlController: getRExtData( $resId )" );
+  public function getRExtData( $resId = false ) {
+    // error_log( "RExtUrlController: getRExtData( $resId )" );
     $rExtData = false;
+
+    if( $resId === false ) {
+      $resId = $this->defResCtrl->resObj->getter('id');
+    }
 
     $rExtModel = new RExtUrlModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
@@ -251,6 +255,59 @@ class RExtUrlController extends RExtController implements RExtInterface {
     }
 
     return $template;
+  }
+
+
+
+  /**
+    Preparamos los datos para visualizar el Recurso
+   */
+  public function getViewBlockInfo() {
+    error_log( "RExtUrlController: getViewBlockInfo()" );
+
+    $rExtViewBlockInfo = array(
+      'template' => false,
+      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
+    );
+
+    if( $rExtViewBlockInfo['data'] ) {
+      $template = new Template();
+
+      $rExtViewBlockInfo['data']['externalUrl'] = $resId = $this->defResCtrl->resObj->getter('externalUrl');
+
+      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextUrl' );
+      if( isset( $rExtViewBlockInfo['data'][ 'urlContentType' ] ) ) {
+        $urlContentType = array_pop( $rExtViewBlockInfo['data'][ 'urlContentType' ] );
+        $urlContentType = $urlContentType[ 'idName' ];
+        error_log( 'urlContentType: ' . $urlContentType );
+        switch( $urlContentType ) {
+          case 'page':
+            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
+            break;
+          case 'file':
+            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
+            break;
+          case 'media':
+            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
+            break;
+          case 'image':
+            $template->setTpl( 'rExtViewBlockImage.tpl', 'rextUrl' );
+            break;
+          case 'audio':
+            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
+            break;
+          case 'video':
+            $template->setTpl( 'rExtViewBlockVideo.tpl', 'rextUrl' );
+            break;
+        }
+      }
+
+      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+    }
+
+    return $rExtViewBlockInfo;
   }
 
 } // class RExtUrlController

@@ -8,30 +8,30 @@
 
   <div class="title">
     <label class="cgmMForm">{t}Title{/t}</label>
-    {$title|escape:'htmlall'}
+    {$res.data.title|escape:'htmlall'}
   </div>
 
   <div class="shortDescription">
     <label class="cgmMForm">{t}Short description{/t}</label>
-    {$shortDescription|escape:'htmlall'}
+    {$res.data.shortDescription|escape:'htmlall'}
   </div>
 
   <div class="mediumDescription">
     <label for="mediumDescription" class="cgmMForm">{t}Medium description{/t}</label>
-    {$mediumDescription}
+    {$res.data.mediumDescription}
   </div>
 
   <div class="content">
     <label for="content" class="cgmMForm">{t}Content{/t}</label>
-    {$content}
+    {$res.data.content}
   </div>
 
   <div class="image cgmMForm-fileField">
     <label for="imgResource" class="cgmMForm">{t}Image{/t}</label>
-    {if isset( $image )}
+    {if isset( $res.data.image )}
       <style type="text/css">.cgmMForm-fileField img { height: 100px }</style>
-      <img src="/cgmlformfilews/{$image.id}"
-        {if isset( $image.title )}alt="{$image.title}" title="{$image.title}"{/if}></img>
+      <img src="/cgmlformfilews/{$res.data.image.id}"
+        {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
     {else}
       <p>{t}None{/t}</p>
     {/if}
@@ -40,7 +40,7 @@
   <div class="rTypeUrl">
     <p> --- rTypeUrl Ext --- </p>
     <div class="rTypeUrl rExtUrl">
-      {$rextUrl}
+      {$rextUrlBlock}
     </div>
   </div>
 

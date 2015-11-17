@@ -251,43 +251,57 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
 
   /**
-    Datos y template por defecto del rType
+    Preparamos los datos para visualizar el Recurso
    **/
-  public function getViewInfo() {
-    // error_log( "RTypeHotelController: getViewInfo()" );
+  public function getViewBlockInfo() {
+    error_log( "RTypeHotelController: getViewBlockInfo()" );
+
+    $viewBlockInfo = array(
+      'template' => false,
+      'data' => $this->defResCtrl->getResourceData( false, true ),
+      'ext' => array()
+    );
 
     $template = new Template();
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeHotel' );
 
     $this->accomCtrl = new RExtAccommodationController( $this );
-    $accomViewInfo = $this->accomCtrl->getViewInfo();
+    $accomViewInfo = $this->accomCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->accomCtrl->rExtName ] = $accomViewInfo;
 
     $this->contactCtrl = new RExtContactController( $this );
-    $contactViewInfo = $this->contactCtrl->getViewInfo();
+    $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
-    if( $accomBlock ) {
-      $template->addToBlock( 'rextAccommodation', $accomBlock );
-      $template->assign( 'rExtAccommodation_averagePrice', $accomBlock->tpl_vars['rExtAccommodation_averagePrice']->value );
-      $template->assign( 'rExtAccommodation_reservationURL', $accomBlock->tpl_vars['rExtAccommodation_reservationURL']->value );
-      $template->assign( 'rExtAccommodation_reservationPhone', $accomBlock->tpl_vars['rExtAccommodation_reservationPhone']->value );
-      $template->assign( 'rExtAccommodationBlockNames', array( 'rextAccommodation' ) );
+    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+
+
+
+    if( $accomViewInfo ) {
+      if( $accomViewInfo['template'] ) {
+        foreach( $accomViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextAccommodationBlock', $templateBlock );
+        }
+      }
     }
     else {
-      $template->assign( 'rextAccommodation', false );
-      $template->assign( 'rExtAccommodationBlockNames', false );
+      $template->assign( 'rextAccommodationBlock', false );
     }
 
-    if( $contactBlock ) {
-      $template->addToBlock( 'rextContact', $contactBlock );
-      $template->assign( 'rExtContact_directions', $contactBlock->tpl_vars['rExtContact_directions_'.LANG_DEFAULT]->value );
-      $template->assign( 'rExtContactBlockNames', array( 'rextContact' ) );
+    if( $contactViewInfo ) {
+      if( $contactViewInfo['template'] ) {
+        foreach( $contactViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextContactBlock', $templateBlock );
+        }
+      }
     }
     else {
-      $template->assign( 'rextContact', false );
-      $template->assign( 'rExtContactBlockNames', false );
+      $template->assign( 'rextContactBlock', false );
     }
 
-    return $template;
+    $viewBlockInfo['template'] = array( 'full' => $template );
+
+    return $viewBlockInfo;
   }
 
 } // class RTypeHotelController

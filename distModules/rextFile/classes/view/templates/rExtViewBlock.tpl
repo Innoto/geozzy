@@ -4,16 +4,15 @@
 
 <div class="rExtFile">
 
-  {if isset( $rExtFile_file )}
+  {if isset( $rExt.data.file )}
     <div class="fileName">
       <label>{t}File name{/t}</label>
-      {$rExtFile_file.name}
+      {$rExt.data.file.name}
     </div>
-    {if strpos( $rExtFile_file.type, 'image/' ) === 0 }
-      <img src="/cgmlformfilews/{$rExtFile_file.id}"
-        {if isset( $rExtFile_file.title )}alt="{$rExtFile_file.title}" title="{$rExtFile_file.title}"{/if}></img>
+    {if strpos( $rExt.data.file.type, 'image/' ) === 0 }
+      <img src="/cgmlformfilews/{$rExt.data.file.id}" {if isset( $rExt.data.file.title )}alt="{$rExt.data.file.title}" title="{$rExt.data.file.title}"{/if}></img>
     {else}
-      <a href="/cgmlformfilewd/{$rExtFile_file.id}" target="_blank">{t}Download{/t} {$rExtFile_file.name}</a>
+      <a href="/cgmlformfilewd/{$rExt.data.file.id}" target="_blank">{t}Download{/t} {$rExt.data.file.name}</a>
     {/if}
 
   {else}
