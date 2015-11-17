@@ -87,3 +87,20 @@ body {
     }
   }
 }
+
+.commonFav{
+  list-style: none;
+  color: @gzzColor-fav;
+
+  .fa-heart{ display:none; }
+  .fa-heart-o{ display: inline; }
+
+  &:hover{
+    .fa-heart{ display:inline; }
+    .fa-heart-o{ display: none; }
+  }
+  &.selected{
+    .fa-heart{ display:inline; }
+    .fa-heart-o{ display: none; }
+  }
+}

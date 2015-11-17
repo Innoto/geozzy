@@ -37,7 +37,7 @@
 
         img{
           width: 100%;
-          margin-bottom: 5px;
+
           -webkit-transform: scale(1, 1); /* Saf3.1+, Chrome */
           -moz-transform: scale(1, 1); /* FF3.5+ */
           -ms-transform: scale(1, 1); /* IE9 */
@@ -48,27 +48,14 @@
           margin: 0px;
 
           li.elementFav{
-            list-style: none;
             position: absolute;
             top: 0px;
             left: 25px;
             background-color: rgba( 255, 255, 255, 0.7);
             padding: 15px;
             font-size: 24px;
-            color: @gzzColor-fav;
             display: none;
-
-            .fa-heart{ display:none; }
-            .fa-heart-o{ display: inline; }
-
-            &:hover{
-              .fa-heart{ display:inline; }
-              .fa-heart-o{ display: none; }
-            }
-            &.selected{
-              .fa-heart{ display:inline; }
-              .fa-heart-o{ display: none; }
-            }
+            .commonFav;
           }//li.elementFav
         }//.elementOptions
       }//.elementImg
@@ -76,6 +63,7 @@
       .elementInfo{
         position: relative;
         .elementTitle{
+          margin-top: 5px;
           font-size: 18px;
           padding-right: 160px;
         }
