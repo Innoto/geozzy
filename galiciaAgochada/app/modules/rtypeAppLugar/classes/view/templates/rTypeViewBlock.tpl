@@ -30,7 +30,7 @@
     <label for="imgResource" class="cgmMForm">{t}Image{/t}</label>
     {if isset( $res.data.image )}
       <style type="text/css">.cgmMForm-fileField img { height: 100px }</style>
-      <img src="/cgmlformfilews/{$res.data.image.id}"
+      <img src="/cgmlImg/{$res.data.image.id}"
         {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
     {else}
       <p>{t}None{/t}</p>

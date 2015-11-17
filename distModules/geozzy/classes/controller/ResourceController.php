@@ -1521,7 +1521,7 @@ class ResourceController {
       $fileDep = $resObj->getterDependence( 'image' );
       if( $fileDep !== false ) {
         $titleImage = $fileDep['0']->getter('title');
-        $template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"
+        $template->assign( 'image', '<img src="/cgmlImg/' . $fileDep['0']->getter('id') . '"
           alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
         // error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
       }
