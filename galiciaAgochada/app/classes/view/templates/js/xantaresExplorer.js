@@ -61,7 +61,9 @@
           '<div class="elementImg">'+
             '<img class="img-responsive" src="http://lorempixel.com/530/213/food/'+i+'" />'+
             '<ul class="elementOptions container-fluid">'+
-              '<li class="elementOpt elementFav"><i class="fa"></i></li>'+
+              '<li class="elementOpt elementFav">'+
+                '<i class="fa fa-heart-o"></i>'+
+                '<i class="fa fa-heart"></i></li>'+
             '</ul>'+
           '</div>'+
           '<div class="elementInfo">'+
