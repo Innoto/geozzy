@@ -28,17 +28,47 @@
 
     .element{
       margin: 10px 0px;
+      position: relative;
       .elementImg{
-        img{ width: 100%; }
+        position: relative;
+        img{
+          width: 100%;
+          margin-bottom: 5px;
+        }
+        .elementOptions{
+          margin: 0px;
+          li.elementFav{
+            list-style: none;
+            position: absolute;
+            top: 0px;
+            left: 25px;
+            .fa:before { content: @fa-var-heart-o; }
+
+          }
+        }
       }
       .elementInfo{
+        position: relative;
         .elementTitle{
-
+          font-size: 18px;
+          padding-right: 160px;
         }
-        .elementDesc{
-
+        .elementType{
+          padding-right: 160px;
+        }
+        .elementPrice{
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          font-size: 28px;
+          font-weight: bold;
+          span{
+            font-size: 12px;
+            text-transform: uppercase;
+          }
         }
       }
+
     }//.element
   }//.explorer-container-gallery
 }
