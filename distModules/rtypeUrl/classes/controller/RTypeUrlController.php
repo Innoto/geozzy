@@ -141,12 +141,12 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     if( $rExtViewInfo ) {
       if( $rExtViewInfo['template'] ) {
         foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextUrl', $templateBlock );
+          $template->addToBlock( 'rextUrlBlock', $templateBlock );
         }
       }
     }
     else {
-      $template->assign( 'rextUrl', false );
+      $template->assign( 'rextUrlBlock', false );
     }
 
     $viewBlockInfo['template'] = array( 'full' => $template );

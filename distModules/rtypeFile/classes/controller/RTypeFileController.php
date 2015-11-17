@@ -133,12 +133,12 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     if( $rExtViewInfo ) {
       if( $rExtViewInfo['template'] ) {
         foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextFile', $templateBlock );
+          $template->addToBlock( 'rextFileBlock', $templateBlock );
         }
       }
     }
     else {
-      $template->assign( 'rextFile', false );
+      $template->assign( 'rextFileBlock', false );
     }
 
     $viewBlockInfo['template'] = array( 'full' => $template );

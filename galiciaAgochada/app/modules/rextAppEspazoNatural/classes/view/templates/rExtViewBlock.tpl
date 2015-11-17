@@ -6,7 +6,6 @@
 
   <div class="appEspazoNaturalType">
     <label>{t}Espazo natural type{/t}</label>
-    {* $rExtAppEspazoNatural_appEspazoNaturalType|escape:'htmlall' *}
     {if isset($rExt.data.appEspazoNaturalType)}
     <ul>
     {foreach from=$rExt.data.appEspazoNaturalType item=termInfo}

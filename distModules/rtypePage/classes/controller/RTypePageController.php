@@ -217,12 +217,12 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     if( $rExtViewInfo ) {
       if( $rExtViewInfo['template'] ) {
         foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextView', $templateBlock );
+          $template->addToBlock( 'rextViewBlock', $templateBlock );
         }
       }
     }
     else {
-      $template->assign( 'rextView', false );
+      $template->assign( 'rextViewBlock', false );
     }
 
     $viewBlockInfo['template'] = array( 'full' => $template );

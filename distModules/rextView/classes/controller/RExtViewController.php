@@ -217,4 +217,3 @@ class RExtViewController extends RExtController implements RExtInterface {
   }
 
 } // class RExtViewController
-

@@ -273,6 +273,8 @@ class RExtUrlController extends RExtController implements RExtInterface {
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
 
+      $rExtViewBlockInfo['data']['externalUrl'] = $resId = $this->defResCtrl->resObj->getter('externalUrl');
+
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
 
       $template->setTpl( 'rExtViewBlock.tpl', 'rextUrl' );

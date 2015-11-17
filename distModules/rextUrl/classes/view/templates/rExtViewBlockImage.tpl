@@ -6,7 +6,7 @@
 
   <div class="url">
     <label>{t}External URL{/t}</label>
-    {$externalUrl|escape:'htmlall'}
+    {$rExt.data.externalUrl|escape:'htmlall'}
   </div>
 
   <div class="urlContentType">
@@ -16,12 +16,12 @@
 
   <div class="embed">
     <label>{t}Embed HTML{/t}</label>
-    {$rExtUrl_embed}
+    {$rExt.data.embed}
   </div>
 
   <div class="author">
     <label>{t}Author{/t}</label>
-    {$rExtUrl_author|escape:'htmlall'}
+    {$rExt.data.author|escape:'htmlall'}
   </div>
 
 </div>
