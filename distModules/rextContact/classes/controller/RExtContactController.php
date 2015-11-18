@@ -218,10 +218,9 @@ class RExtContactController extends RExtController implements RExtInterface {
     if( $rExtViewBlockInfo['data'] ) {
       // TODO: esto será un campo da BBDD
       $rExtViewBlockInfo['data']['web'] = 'Hai que quitar esto e collese a url do modelo';
-      // TODO: Trampa para idiomas. Esto ten que tratarse no getRExtData()
-      if( isset( $rExtViewBlockInfo['data'][ 'timetable_' . LANG_DEFAULT ] ) ) {
-        $rExtViewBlockInfo['data']['timetable'] = $rExtViewBlockInfo['data'][ 'timetable_' . LANG_DEFAULT ];
-      }
+
+      $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
+
 
       $template = new Template();
 

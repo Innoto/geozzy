@@ -240,6 +240,8 @@ class rextAccommodation extends Module {
 
   public function moduleRc() {
     geozzy::load('controller/RTUtilsController.php');
-    RTUtilsController::rExtModuleRc( __CLASS__ );
+
+    $rtUtilsControl = new RTUtilsController(__CLASS__);
+    $rtUtilsControl->rExtModuleRc(  );
   }
 }

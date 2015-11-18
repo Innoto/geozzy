@@ -10,7 +10,7 @@
       {$rExt.data.file.name}
     </div>
     {if strpos( $rExt.data.file.type, 'image/' ) === 0 }
-      <img src="/cgmlformfilews/{$rExt.data.file.id}" {if isset( $rExt.data.file.title )}alt="{$rExt.data.file.title}" title="{$rExt.data.file.title}"{/if}></img>
+      <img src="/cgmlImg/{$rExt.data.file.id}" {if isset( $rExt.data.file.title )}alt="{$rExt.data.file.title}" title="{$rExt.data.file.title}"{/if}></img>
     {else}
       <a href="/cgmlformfilewd/{$rExt.data.file.id}" target="_blank">{t}Download{/t} {$rExt.data.file.name}</a>
     {/if}

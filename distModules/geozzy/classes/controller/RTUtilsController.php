@@ -5,19 +5,25 @@ geozzy::load('model/ResourcetypeModel.php');
 
 class RTUtilsController {
 
-  public function rTypeModuleRc( $rTypeClassName ) {
-    $rTypeObj = new $rTypeClassName();
-    $rTypeModel = self::addRType( $rTypeObj->name, $rTypeObj->nameLocations );
+  var $moduleClass = false;
+
+  public function __construct( $moduleClass ) {
+    $this->moduleClass = $moduleClass;
+  }
+
+  public function rTypeModuleRc( ) {
+    $rTypeObj = new $this->moduleClass();
+    $rTypeModel = $this->addRType( $rTypeObj->name, $rTypeObj->nameLocations );
 
     if( $rTypeModel ) {
-      self::addRTypeToTopics( $rTypeModel->getter( 'id' ), $rTypeModel->getter( 'idName' ) );
+      $this->addRTypeToTopics( $rTypeModel->getter( 'id' ), $rTypeModel->getter( 'idName' ) );
     }
   }
 
 
-  public function rExtModuleRc( $rExtClassName ) {
-    $rExtObj = new $rExtClassName();
-    self::createTaxonomies( $rExtObj->taxonomies );
+  public function rExtModuleRc( ) {
+    $rExtObj = new $this->moduleClass();
+    $this->createTaxonomies( $rExtObj->taxonomies );
   }
 
 
@@ -26,7 +32,7 @@ class RTUtilsController {
 
     $rTypeData = array(
       'idName' => $rTypeIdName,
-      'relatedModels' => json_encode( self::getRtModels( $rTypeIdName ) )
+      'relatedModels' => json_encode( $this->getRtModels( $rTypeIdName ) )
     );
 
     foreach( $nameLocations as $langKey => $name ) {
@@ -49,7 +55,7 @@ class RTUtilsController {
       foreach( $geozzyTopicsInfo as $topicIdName => $topicInfo ) {
 
         if( array_key_exists( $rTypeIdName, $topicInfo['resourceTypes'] ) ) {
-          error_log( 'addRTypeToTopics: Añadiendo '.$rTypeIdName.' a '.$topicIdName );
+          error_log( 'addRTypeToTopics: Adding '.$rTypeIdName.' to '.$topicIdName );
 
           $topicModel = new TopicModel();
           $topicList = $topicModel->listItems( array( 'filters' => array( 'idName' => $topicIdName ) ) );
@@ -80,6 +86,10 @@ class RTUtilsController {
 
 
   public function createTaxonomies( $taxGroups ) {
+    filedata::load('controller/FiledataController.php');
+
+    $fileDataControl = new FiledataController();
+
     // echo "createTaxonomies\n"; print_r( $taxGroups );
     if( $taxGroups && is_array( $taxGroups ) && count( $taxGroups ) > 0 ) {
       foreach( $taxGroups as $tax ) {
@@ -93,27 +103,45 @@ class RTUtilsController {
           foreach( $tax['initialTerms'] as $term ) {
             $term['taxgroup'] = $taxgroup->getter('id');
 
+            if( isset( $term['icon'] ) ) {
+
+              $iconPath = ModuleController::getRealFilePath( 'classes/'.$term['icon'] , $this->moduleClass );
+
+              $iconPathSplit = explode('/',$iconPath);
+
+              if( $icon = $fileDataControl->saveFile( $iconPath, '/initialIcons', array_pop($iconPathSplit) ,false ) ) {
+                $term['icon'] = $icon->getter('id');
+              }
+              else{
+                unset( $term['icon'] );
+              }
+
+            }
+
+
             foreach( $term['name'] as $langKey => $name ) {
-               $term['name_'.$langKey] = $name;
+              $term['name_'.$langKey] = $name;
             }
             unset($term['name']);
             $taxterm = new TaxonomytermModel( $term );
             $taxterm->save();
           }
+
         }
+
       }
     }
   }
 
 
-  static public function getRtModels( $rTypeClassName ) {
+  public function getRtModels( $rTypeClassName ) {
     $retModels = array();
 
     if( class_exists( $rTypeClassName ) && property_exists( $rTypeClassName, 'rext' ) ) {
       $rTypeObj = new $rTypeClassName();
       if( is_array( $rTypeObj->rext ) && count( $rTypeObj->rext ) > 0 ) {
         foreach( $rTypeObj->rext as $rext ) {
-          $retModels = array_merge( $retModels, self::getRextModels( $rext )  );
+          $retModels = array_merge( $retModels, $this->getRextModels( $rext )  );
         }
       }
     }
@@ -122,7 +150,7 @@ class RTUtilsController {
   }
 
 
-  static public function getRextModels( $rExtClassName ) {
+  public function getRextModels( $rExtClassName ) {
     $retModels = array();
 
     if( class_exists( $rExtClassName ) && property_exists( $rExtClassName, 'models' ) ) {

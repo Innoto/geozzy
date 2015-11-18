@@ -245,7 +245,7 @@ class RExtFileController extends RExtController implements RExtInterface {
         $fileData = $rExtData[ $fileField ];
         error_log( 'fileData: ' . print_r( $fileData, true ) );
         $titleImage = isset( $fileData[ 'title' ] ) ? $fileData[ 'title' ] : '';
-        $template->assign( $fileField, '<img src="/cgmlformfilews/' . $fileData[ 'id' ] . '"
+        $template->assign( $fileField, '<img src="/cgmlImg/' . $fileData[ 'id' ] . '"
           alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
       }
       else {
