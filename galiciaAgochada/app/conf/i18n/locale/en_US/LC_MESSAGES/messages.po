@@ -7,9 +7,118 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2015-05-28T11:46:21+02:00\n"
-"PO-Revision-Date: 2015-05-28T11:46:25+02:00\n"
+"POT-Creation-Date: 2015-11-17T17:00:05+01:00\n"
+"PO-Revision-Date: 2015-11-17T17:00:05+01:00\n"
 "Language: \n"
+
+#: /home/proxectos/geozzy/galiciaAgochada/app//modules/rtypeAppEspazoNatural/classes/controller/RTypeAppEspazoNaturalController.php:80
+#: /home/proxectos/geozzy/distModules/rtypeRestaurant/classes/controller/RTypeRestaurantController.php:80
+#: /home/proxectos/geozzy/distModules/rtypeHotel/classes/controller/RTypeHotelController.php:101
+msgid "Categorization"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app//modules/rtypeAppEspazoNatural/classes/controller/RTypeAppEspazoNaturalController.php:92
+#: /home/proxectos/geozzy/distModules/rtypeRestaurant/classes/controller/RTypeRestaurantController.php:92
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:83
+#: /home/proxectos/geozzy/distModules/rtypeHotel/classes/controller/RTypeHotelController.php:113
+msgid "Contact"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app//modules/rtypeAppEspazoNatural/classes/controller/RTypeAppEspazoNaturalController.php:106
+#: /home/proxectos/geozzy/distModules/rtypeRestaurant/classes/controller/RTypeRestaurantController.php:106
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:96
+#: /home/proxectos/geozzy/distModules/rtypeHotel/classes/controller/RTypeHotelController.php:128
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:611
+msgid "Automatic Location"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app//modules/rtypeAppEspazoNatural/classes/controller/RTypeAppEspazoNaturalController.php:116
+#: /home/proxectos/geozzy/distModules/rtypeRestaurant/classes/controller/RTypeRestaurantController.php:117
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:105
+#: /home/proxectos/geozzy/distModules/rtypeHotel/classes/controller/RTypeHotelController.php:140
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:566
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:620
+msgid "Location"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:48
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:44
+msgid "Address"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:52
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:48
+msgid "City"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:56
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:52
+msgid "Postal code"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:60
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:56
+msgid "Province"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:64
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:60
+msgid "Phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:68
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:64
+msgid "Contact email"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:73
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:69
+msgid "How to arrive"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:78
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:74
+msgid "Opening times"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:59
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:55
+#: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:64
+msgid "Author"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:63
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:59
+msgid "URL content type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:68
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:64
+msgid "Embed HTML"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextView/classes/controller/RExtViewController.php:55
+#: /home/proxectos/geozzy/distModules/rextView/classes/controller/RExtViewController.php:51
+msgid "viewAlternativeMode"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeRestaurant/classes/controller/RTypeRestaurantController.php:45
+#: /home/proxectos/geozzy/distModules/rtypeHotel/classes/controller/RTypeHotelController.php:52
+msgid "Home URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeRestaurant/classes/controller/RTypeRestaurantController.php:76
+#: /home/proxectos/geozzy/distModules/rtypeHotel/classes/controller/RTypeHotelController.php:97
+msgid "Reservation"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:71
+msgid "View alternative mode"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStats.php:27
+msgid "Stats Page"
+msgstr ""
 
 #: /home/proxectos/cogumelo/packages/sampleApp/app/classes/view/I18nView.php:22
 msgid "colo"
@@ -23,19 +132,54 @@ msgstr ""
 msgid "aquenometraduces"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:106
+msgid "Selecciona un icono"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:108
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:100
 msgid "Category form"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:109
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:110
+#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/categoryEditor.tpl:21
+#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/categoryEditor.tpl:60
+msgid "Cancel"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:34
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:38
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:23
 msgid "Resource Management"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:37
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:41
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:48
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:40
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:50
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:41
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:51
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:26
+msgid "Crear"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:60
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:72
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:58
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
 msgid "published"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:60
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:82
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:72
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:94
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:58
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:81
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:58
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
@@ -43,38 +187,67 @@ msgstr ""
 msgid "Published"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:60
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:72
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:58
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
 msgid "Unpublished"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:60
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:72
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:58
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:73
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:85
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:36
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:41
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:65
 msgid "All"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:66
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:78
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:64
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:42
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:47
 msgid "Publish"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:79
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:65
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:43
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:48
 msgid "Unpublish"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:68
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:80
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:67
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:44
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:49
 msgid "Delete"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:80
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:92
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:79
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:88
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:104
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:56
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:61
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:80
 msgid "Type"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:81
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:93
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:80
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:89
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:105
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:61
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:258
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:57
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:62
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:81
@@ -82,112 +255,411 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:94
-msgid "Create Resource"
-msgstr ""
-
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:222
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:170
 msgid "Edit Resource"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:288
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:348
+#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/verRecurso.tpl:23
+msgid "Resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:33
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:34
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:28
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:29
 msgid "Add resource"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:66
+msgid "Unasign"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:26
+msgid "Show user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:43
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:38
 msgid "User Management"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:44
+msgid "Add user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:129
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:125
 msgid "Create user"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:172
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:176
 msgid "Edit user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:36
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:37
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:22
+msgid "Create and add resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:37
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:47
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:38
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:48
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:23
+msgid "Return"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:54
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:45
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:55
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:36
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:51
+msgid "Assign selected"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:61
+msgid ""
+"<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working "
+"with resource types)</li><li>Assign to this starred)</li></ul>"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:61
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:62
+msgid "Assign resources: howto"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:73
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:85
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:65
+msgid "id"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:91
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:107
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:83
+msgid "Assign"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:24
 msgid "Roles Management"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:25
+msgid "Add role"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:76
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:75
 msgid "Create role"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:103
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:100
 msgid "Edit role"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:22
-msgid "Create and add resources"
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:62
+msgid ""
+"<ul style=\"list-style:none;\"><li>Create a new resource)</li><li>Working "
+"with resource types)</li><li>Assign to this topic)</li></ul>"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:23
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:38
-msgid "Return"
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:201
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:243
+msgid "Error: Imposible mostrar el recurso "
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:26
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:41
-msgid "Crear"
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:202
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:244
+msgid "Unknown Resource"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:36
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:51
-msgid "Assign selected"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:65
-msgid "id"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:83
-msgid "Assign"
-msgstr ""
-
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:37
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:208
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:51
 msgid "Thank you"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:66
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:263
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:64
 msgid "Short description"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:71
+msgid "Description"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:75
+msgid "Resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:90
+msgid "Upload multimedia "
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:93
+msgid "Link or embed multimedia"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:98
+msgid "Descriptive image of the gallery (opcional)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:115
+#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/categoryEditor.tpl:22
+#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/categoryEditor.tpl:61
+msgid "Save"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:268
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:69
 msgid "Medium description"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:272
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:73
 msgid "Content"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:275
+msgid "External URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:279
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:77
 msgid "Image"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:285
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:88
 msgid "SEO: URL"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:289
+msgid "Priority"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:290
+msgid "Normal"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:290
+msgid "High"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:290
+msgid "Low"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:294
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:92
 msgid "SEO: Head Keywords"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:299
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:97
 msgid "SEO: Head Description"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:304
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:102
 msgid "SEO: Head Title"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:309
+msgid "Extra information 1"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:314
+msgid "Extra information 2"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:318
+msgid "Collections"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:322
+msgid "Add Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:325
+msgid "Galleries"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:329
+msgid "Add Multimedia Gallery"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:335
+msgid "Topics"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:338
+#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/adminMenu.tpl:46
+msgid "Starred"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:341
+msgid "Latitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:345
+msgid "Longitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:349
+msgid "Zoom"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:380
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:143
 msgid "Send"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:562
+msgid "Main Resource information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:571
+msgid "Collections of related resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:575
+msgid "Multimedia galleries"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:580
+msgid "SEO"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:587
+msgid "Publication"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:592
+msgid "Select a image"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:668
+msgid "Information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:926
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1162
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1223
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1285
+msgid "Error setting values"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1322
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyResourceView.php:237
 msgid "Error setting URL alias"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1462
+#: /home/proxectos/geozzy/geozzyApp/app/classes/view/ColeccionView.php:147
+#: /home/proxectos/geozzy/geozzyApp/app/classes/view/RecursoView.php:121
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/RecursoView.php:128
+msgid "None"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:55
+msgid "Hotel reservation URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:59
+msgid "Hotel reservation phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:63
+msgid "Hotel reservation email"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:67
+msgid "Hotel single rooms"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:71
+msgid "Hotel double rooms"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:75
+msgid "Hotel family rooms"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:79
+msgid "Hotel beds"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:83
+msgid "Hotel average price"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:87
+msgid "Accommodation type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:92
+msgid "Accommodation category"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:97
+msgid "Accommodation services"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:102
+msgid "Accommodation facilities"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:107
+msgid "Accommodation brand"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:112
+msgid "Accommodation users profile"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:55
+msgid "Restaurant reservation URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:59
+msgid "Restaurant reservation phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:63
+msgid "Restaurant capacity"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:67
+msgid "Restaurant average price"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:71
+msgid "EatAndDrink type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:76
+msgid "EatAndDrink specialities"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:68
+msgid "Multimedia file"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:69
+msgid "File"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:94
+msgid "Create Resource"
 msgstr ""
 
 #: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/listResourceOutTopic.tpl:4
@@ -196,10 +668,6 @@ msgstr ""
 
 #: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/verRecurso.tpl:21
 msgid "View Resource"
-msgstr ""
-
-#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/verRecurso.tpl:23
-msgid "Resource"
 msgstr ""
 
 #: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/proba.tpl:4
@@ -216,10 +684,6 @@ msgstr ""
 
 #: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/adminMenu.tpl:43
 msgid "Pages"
-msgstr ""
-
-#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/adminMenu.tpl:46
-msgid "Starred"
 msgstr ""
 
 #: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/adminMenu.tpl:49
@@ -264,16 +728,123 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/categoryEditor.tpl:21
-#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/categoryEditor.tpl:60
-msgid "Cancel"
-msgstr ""
-
-#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/categoryEditor.tpl:22
-#: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/categoryEditor.tpl:61
-msgid "Save"
-msgstr ""
-
 #: /home/proxectos/geozzy/geozzyApp/app/tmp/tpl/categoryEditor.tpl:39
 msgid "List of terms for"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/header.tpl:21
+msgid "Inicio"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/header.tpl:23
+msgid "Segredos"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/header.tpl:25
+msgid "Aloxamentos con encanto"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/header.tpl:26
+msgid "Paisaxes espectaculares"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/header.tpl:27
+msgid "Praias de ensono"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/header.tpl:28
+msgid "Rincons con encanto"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/header.tpl:29
+msgid "Sabrosos xantares"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/header.tpl:32
+msgid "Participa"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/header.tpl:33
+msgid "Recomendamos"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/header.tpl:34
+msgid "Acerca de"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/resourcesStarredList.tpl:14
+msgid "Resources Starred in"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/resourcesStarredList.tpl:38
+msgid "List of resources for"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewBlockPage.tpl:22
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewBlockVideo.tpl:22
+msgid "Link target _blank"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/tplTwoColsPage.tpl:42
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/resourceViewBlock.tpl:73
+msgid "External Url"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/listAsignStarred.tpl:4
+msgid "Resources not starred yet"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewVideo.tpl:8
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewPage.tpl:8
+msgid "Reservation URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewVideo.tpl:13
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewPage.tpl:13
+msgid "Reservation phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rTypeViewBlock.tpl:77
+msgid "Location and contact"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rTypeViewBlock.tpl:87
+msgid "See indications"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rTypeViewBlock.tpl:91
+msgid "How to arrive from?"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewBlock.tpl:8
+msgid "Espazo natural type"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewBlockImage.tpl:13
+msgid "IMAGE"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewAltLandingHotelCollections.tpl:10
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewAltAppMylandpage.tpl:10
+msgid "Alternate view"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/coleccion.tpl:21
+msgid "View Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/coleccion.tpl:23
+msgid "Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/resourceCollectionViewBlock.tpl:24
+msgid "Collection resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewBlock.tpl:9
+msgid "File name"
+msgstr ""
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/rExtViewBlock.tpl:16
+msgid "Download"
 msgstr ""

@@ -8,7 +8,7 @@
   <div class="titleBar">
     <div class="container">
       <img class="img-responsive" alt="Paisaxes Espectaculares" src="/media/img/aloxamentosIcon.png"></img>
-      <h1>Aloxamentos con encanto</h1>
+      <h1>{t}Aloxamentos con encanto{/t}</h1>
     </div>
   </div>
   <div class="aloxamentosExplorer">
