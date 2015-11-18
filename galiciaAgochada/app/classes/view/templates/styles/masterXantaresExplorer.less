@@ -28,17 +28,102 @@
 
     .element{
       margin: 10px 0px;
+      position: relative;
+      cursor:pointer;
+
       .elementImg{
-        img{ width: 100%; }
-      }
+        position: relative;
+        overflow: hidden;
+
+        img{
+          width: 100%;
+
+          -webkit-transform: scale(1, 1); /* Saf3.1+, Chrome */
+          -moz-transform: scale(1, 1); /* FF3.5+ */
+          -ms-transform: scale(1, 1); /* IE9 */
+           -o-transform: scale(1, 1); /* Opera 10.5+ */
+              transform: scale(1, 1);
+        }
+        .elementOptions{
+          margin: 0px;
+
+          li.elementFav{
+            position: absolute;
+            top: 0px;
+            left: 25px;
+            background-color: rgba( 255, 255, 255, 0.7);
+            padding: 15px;
+            font-size: 24px;
+            display: none;
+            .commonFav;
+          }//li.elementFav
+        }//.elementOptions
+      }//.elementImg
+
       .elementInfo{
+        position: relative;
         .elementTitle{
-
+          margin-top: 5px;
+          font-size: 18px;
+          padding-right: 160px;
         }
-        .elementDesc{
-
+        .elementType{
+          padding-right: 160px;
         }
-      }
+        .elementPrice{
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          font-size: 28px;
+          font-weight: bold;
+          span{
+            font-size: 12px;
+            text-transform: uppercase;
+          }
+        }
+      }//elementInfo
+      &:hover{
+        .elementOptions li.elementFav{ display: block; }
+        .elementImg img{
+          -webkit-transform: scale(1.08, 1.1); /* Saf3.1+, Chrome */
+          -moz-transform: scale(1.08, 1.1); /* FF3.5+ */
+          -ms-transform: scale(1.08, 1.1); /* IE9 */
+           -o-transform: scale(1.08, 1.1); /* Opera 10.5+ */
+              transform: scale(1.08, 1.1);
+          transition-duration: 450ms;
+          transition-timing-function: ease-out;
+        }
+      }//element:hover
     }//.element
   }//.explorer-container-gallery
+}
+
+
+#geozzyExplorerMapInfo{
+  width: 100%;
+  max-width: 270px;
+  max-height: 400px;
+  border: 5px solid rgba( 255, 255, 255, 0.4);
+  overflow: hidden;
+
+  .gempiContent{
+    background: @gzzColor-bck-1;
+    padding-bottom: 20px;
+    .gempiInfo{
+      .gempiTitle,
+      .gempiDescription{
+        padding: 5px 10px;
+        background: @gzzColor-bck-1;
+      }
+      .gempiTitle{
+        color: #555;
+        font-size: 17px;
+        line-height: 20px;
+      }
+      .gempiDescription{
+        font-size: 13px;
+        line-height: 15px;
+      }
+    }//.gempiInfo
+  }//.gempiContent
 }

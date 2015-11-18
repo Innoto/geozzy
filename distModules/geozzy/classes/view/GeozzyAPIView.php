@@ -361,18 +361,28 @@ class geozzyAPIView extends View
                               "nickname": "resource",
                               "parameters": [
                                 {
-                                  "required": true,
+                                  "required": false,
                                   "dataType": "int",
                                   "name": "id",
                                   "paramType": "path",
                                   "allowMultiple": false,
+                                  "defaultValue": "false",
                                   "description": "group id"
+                                },
+                                {
+                                  "required": false,
+                                  "dataType": "string",
+                                  "name": "name",
+                                  "paramType": "path",
+                                  "allowMultiple": false,
+                                  "defaultValue": "false",
+                                  "description": "group idName"
                                 }
                               ],
                               "summary": "Fetches category terms"
                           }
                       ],
-                      "path": "/core/categoryterms/id/{id}",
+                      "path": "/core/categoryterms/id/{id}/idname/{name}",
                       "description": ""
                   }
               ]
@@ -644,13 +654,22 @@ class geozzyAPIView extends View
   function categoryTerms( $urlParams ) {
 
 
-    $validation = array('id'=> '#\d+$#');
+    $validation = array('id'=> '#\d+$#', 'idname'=>'#(.*)#');
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
     if( isset( $urlParamsList['id'] ) && is_numeric( $urlParamsList['id'] ) ) {
       geozzy::load('model/TaxonomytermModel.php');
       $taxtermModel = new TaxonomytermModel();
       $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$urlParamsList['id'] ) ) );
+      $this->syncModelList( $taxtermList );
+    }
+    else
+    if( isset( $urlParamsList['idname'] ) && $urlParamsList['idname'] != 'false' ) {
+
+      geozzy::load('model/TaxonomytermModel.php');
+      $taxtermModel = new TaxonomytermModel();
+      $taxtermList = $taxtermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $urlParamsList['idname']  ),'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
+
       $this->syncModelList( $taxtermList );
     }
     else {

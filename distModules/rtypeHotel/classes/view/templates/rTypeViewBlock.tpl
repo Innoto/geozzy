@@ -29,9 +29,16 @@
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
+  <div class="titleBar">
+    <div class="container">
+      <img class="img-responsive" alt="Aloxamentos con encanto" src="/media/img/aloxamentosIcon.png"></img>
+      <h1>{$res.data.title}</h1>
+    </div>
+  </div>
+
   <div class="imageSec gzSection">
   <!--   {if isset( $res.data.image )}
-      <img src="/cgmlformfilews/{$res.data.image.id}"
+      <img src="/cgmlImg/{$res.data.image.id}"
         {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
     {else}
       <p>{t}None{/t}</p>
@@ -60,14 +67,15 @@
   <div class="contentSec container gzSection">
     <div class="typeBar">
       <div class="type col-lg-10">{$res.data.rTypeIdName}</div>
-      <div class="social col-lg-2 row">
-        <div class="col-lg-6">
-          MY
-        </div>
-        <div class="col-lg-6">
-          SOCIAL
-        </div>
-      </div>
+      <ul class="social">
+        <li class="elementShare">
+          <i class="fa fa-share-alt"></i>
+        </li>
+        <li class="elementFav">
+          <i class="fa fa-heart-o"></i>
+          <i class="fa fa-heart"></i>
+        </li>
+      </ul>
     </div>
 
     <div class="shortDescription">
@@ -76,7 +84,7 @@
 
     <div class="taxonomyBar row">
       <div class="taxStars col-lg-2">
-        VALORACIONES
+        {t}VALORACIONES{/t}
       </div>
       <div class="taxIcons col-lg-10">
         <div class="icon">
@@ -110,7 +118,7 @@
         </div>
         <div class="indications row" style="display:none;">
           <div class="col-lg-8">
-            {$res.ext.rextContact.directions|escape:'htmlall'}
+            {$res.ext.rextContact.data.directions|escape:'htmlall'}
           </div>
           <div class="col-lg-4">
             <div class="search">
@@ -138,7 +146,7 @@
       <label for="imgResource" class="cgmMForm"></label>
       {if isset( $res.data.image )}
         <style type="text/css">.cgmMForm-fileField img { height: 100px; }</style>
-        <img src="/cgmlformfilews/{$res.data.image.id}"
+        <img src="/cgmlImg/{$res.data.image.id}"
           {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
       {else}
         <p>{t}None{/t}</p>

@@ -8,7 +8,7 @@
   <div class="titleBar">
     <div class="container">
       <img class="img-responsive" alt="Paisaxes Espectaculares" src="/media/img/xantaresIcon.png"></img>
-      <h1>Sabrosos xantares</h1>
+      <h1>{t}Sabrosos xantares{/t}</h1>
     </div>
   </div>
   <div class="xantaresExplorer">

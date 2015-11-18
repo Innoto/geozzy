@@ -37,6 +37,9 @@ class ResourceController {
   public $resObj = null;
   public $resData = null;
   private $taxonomyAll = null;
+  public $actLang = null;
+  public $defLang = null;
+  public $allLang = null;
 
   public function __construct( $resId = false ) {
     // error_log( 'ResourceController::__construct' );
@@ -45,6 +48,11 @@ class ResourceController {
     form::autoIncludes();
     user::autoIncludes();
     filedata::autoIncludes();
+
+    global $C_LANG, $LANG_AVAILABLE; // Idioma actual, cogido de la url
+    $this->actLang = $C_LANG;
+    $this->defLang = LANG_DEFAULT;
+    $this->allLang = $LANG_AVAILABLE;
 
     if( $resId ) {
       $this->loadResourceObject( $resId );
@@ -1430,9 +1438,24 @@ class ResourceController {
 
 
 
+  /**
+    Devuelve resData con los campos traducibles en el idioma actual
+  */
+  public function getTranslatedData( $resData ) {
 
-
-
+    foreach ( $resData as $key => $data ){
+        if ( strpos($key,'_'.$this->actLang) ){ // existe en el idioma actual
+          $key_parts = explode('_'.$this->actLang, $key);
+          if ($data && $data !== ""){
+            $resData[$key_parts[0]] = $data;
+          }
+          else{
+            $resData[$key_parts[0]] = $resData[$key_parts[0].'_'.$this->defLang];
+          }
+        }
+    }
+    return $resData;
+  }
 
   public function getResourceBlock( $resData ) {
     error_log( "GeozzyResourceView: getResourceBlock()" );
@@ -1519,7 +1542,7 @@ class ResourceController {
       $fileDep = $resObj->getterDependence( 'image' );
       if( $fileDep !== false ) {
         $titleImage = $fileDep['0']->getter('title');
-        $template->assign( 'image', '<img src="/cgmlformfilews/' . $fileDep['0']->getter('id') . '"
+        $template->assign( 'image', '<img src="/cgmlImg/' . $fileDep['0']->getter('id') . '"
           alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
         // error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
       }
