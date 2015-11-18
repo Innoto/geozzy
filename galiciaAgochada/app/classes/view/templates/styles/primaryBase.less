@@ -62,11 +62,17 @@ body {
 }
 .bodyContent{
   width: 100%;
-  padding-top: @headerHeight;
+  padding-top: @headerTitleBarHeight;
 
   .titleBar{
     padding: 5px 0px;
     height: @titleBarHeight;
+    position:fixed;
+    width:100%;
+    top: 100px;
+    background-color:@gzzColor-bck-1;
+    border-bottom:1px solid @gzzColor-bck-3;
+    z-index: 120;
 
     img{
       position: absolute;

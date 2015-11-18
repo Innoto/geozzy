@@ -29,6 +29,13 @@
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
+  <div class="titleBar">
+    <div class="container">
+      <img class="img-responsive" alt="Aloxamentos con encanto" src="/media/img/aloxamentosIcon.png"></img>
+      <h1>{$res.data.title}</h1>
+    </div>
+  </div>
+
   <div class="imageSec gzSection">
   <!--   {if isset( $res.data.image )}
       <img src="/cgmlImg/{$res.data.image.id}"
