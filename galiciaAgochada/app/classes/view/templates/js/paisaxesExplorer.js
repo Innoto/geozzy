@@ -28,18 +28,6 @@
 
     function setExplorer( ) {
 
-
-      // ESTO CHEGARÍA POR CHAMADA AJAX
-      var dataFilter1 = [
-        {value:'*', title: 'Todas'},
-        {value:'10', title: 'Galega swagger'},
-        {value:'11', title: 'Canibal'},
-        {value:'12', title: 'Indo oceánica'}
-      ];
-
-
-
-
       // EXPLORADOR
       var explorer = new geozzy.explorer({debug:false});
 
@@ -82,7 +70,7 @@
           {
             mainCotainerClass: explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'tipoPaisaxe select2GeozzyCustom',
-            //title:'asdfasfd',
+            defaultOption: { icon: false, title: 'Todas as paisaxes', value:'*' },
             data: espazoNaturalCategories
           }
         )
@@ -110,14 +98,22 @@
     });
 
     function formatState (state) {
-      if ( $(state.element).attr('icon') == 'false') { return state.text; }
 
+      $ret = false;
 
-      var $state = $(
-        '<span><img width=32 height=32 src="/cgmlImg/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>'
-      );
-      return $state;
-    };
+      if( $(state.element).val() == '*' &&  $(state.element).attr('icon')  !='false' ) {
+        $ret = $('<span><img width=32 height=32 src="/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>');
+      }
+      else
+      if ( $(state.element).attr('icon') != 'false') {
+        $ret = $('<span><img width=32 height=32 src="/cgmlImg/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>');
+      }
+      else {
+        $ret = state.text;
+      }
+
+      return $ret;
+    }
 
     function layoutDistributeSize(){
       var hExplorerLayout = $('.paisaxesExplorer').height();
