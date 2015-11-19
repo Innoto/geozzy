@@ -110,8 +110,7 @@
     });
 
     function formatState (state) {
-      console.log( $(state.element).attr('icon') )
-      if ( $(state.element).attr('icon') == false) { return state.text; }
+      if ( $(state.element).attr('icon') == 'false') { return state.text; }
 
 
       var $state = $(
