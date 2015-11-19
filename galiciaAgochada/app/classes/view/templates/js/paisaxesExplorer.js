@@ -36,7 +36,14 @@
       // DISPLAYS
       var infowindow = new geozzy.explorerDisplay.mapInfoView();
       var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
-      var mapa = new geozzy.explorerDisplay.mapView({ map: resourceMap, clusterize:false });
+      var mapa = new geozzy.explorerDisplay.mapView({
+                                                        map: resourceMap,
+                                                        clusterize:false,
+                                                        chooseMarkerIcon: function( markerData ) {
+                                                          console.log(markerData.toJSON())
+                                                          return '/cgmlImg/13/explorerMarker/marker.svg';
+                                                        }
+                                                    });
 
 
       //map set icons

@@ -24,6 +24,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     this.options = new Object({
       map : false,
       clusterize: false,
+      chooseMarkerIcon: function() {return '/mediaCache/module/admin/img/geozzy_marker.png'}
     });
     $.extend(true, this.options, opts);
 
@@ -77,15 +78,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     var that = this;
 
-    that.my_marker_icon = {
-      url: media+'/module/admin/img/geozzy_marker.png',
-      // This marker is 20 pixels wide by 36 pixels high.
-      size: new google.maps.Size(30, 36),
-      // The origin for this image is (0, 0).
-      origin: new google.maps.Point(0, 0),
-      // The anchor for this image is the base of the flagpole at (0, 36).
-      anchor: new google.maps.Point(13, 36)
-    };
+
 
 
 
@@ -111,7 +104,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
         var marker = e.mapMarker = new google.maps.Marker({
                   position: new google.maps.LatLng( e.get('lat'), e.get('lng') ),
-                  icon: that.my_marker_icon
+                  icon: that.chooseMarker(e)
                   //map: that.map
                 });
 
@@ -245,6 +238,27 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     return this.ready;
   },
 
+  chooseMarker: function( e ) {
+
+    var that = this;
+
+    var iconUrl = '/cgmlImg/14/explorerMarker/marker.svg';
+    var newIconUrl = that.options.chooseMarkerIcon(e);
+
+    if( newIconUrl ) {
+      iconUrl = newIconUrl
+    }
+
+    return {
+      url: iconUrl,
+      // This marker is 20 pixels wide by 36 pixels high.
+      size: new google.maps.Size(30, 36),
+      // The origin for this image is (0, 0).
+      origin: new google.maps.Point(0, 0),
+      // The anchor for this image is the base of the flagpole at (0, 36).
+      anchor: new google.maps.Point(13, 36)
+    };
+  },
 
   markerBounce: function(id) {
     var that = this;
