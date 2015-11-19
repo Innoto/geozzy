@@ -59,7 +59,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
 
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
-    $panel = $this->getPanelBlock( '<ul style="list-style:none;"><li>__(Create a new resource)</li><li>Working with resource types)</li><li>Assign to this topic)</li></ul>'), __('Assign resources: howto') );
+    $panel = $this->getPanelBlock( '<ul style="list-style:none;"><li>__(Create a new resource)</li><li>Working with resource types)</li><li>Assign to this topic)</li></ul>', __('Assign resources: howto') );
     $this->template->addToBlock( 'col4', $panel );
     $this->template->exec();
   }

@@ -1,8 +1,8 @@
 <!-- rExtViewBlock.tpl en rExtAccommodation module -->
-
-<p> --- rExtViewBlock.tpl en rExtAccommodation module</p>
-
 <div class="rExtAccommodation">
+  
+<!--
+  <p> --- rExtViewBlock.tpl en rExtAccommodation module</p>
 
   <div class="reservationURL">
     <label>{t}Reservation URL{/t}</label>
@@ -14,7 +14,6 @@
     {$rExt.data.reservationPhone|escape:'htmlall'}
   </div>
 
-  <!-- taxonomías -->
   <div class="accomodationCategory">
     <label>{t}Accommodation category{/t}</label>
     {if isset($rExt.data.accommodationCategory)}
@@ -25,6 +24,7 @@
     </ul>
     {/if}
   </div>
+
   <div class="accomodationServices">
     <label>{t}Accommodation services{/t}</label>
     {if isset($rExt.data.accommodationServices)}
@@ -35,6 +35,7 @@
     </ul>
     {/if}
   </div>
+
   <div class="accomodationFacilities">
     <label>{t}Accommodation facilities{/t}</label>
     {if isset($rExt.data.accommodationFacilities)}
@@ -45,6 +46,7 @@
     </ul>
     {/if}
   </div>
+
   <div class="accomodationBrand">
     <label>{t}Accommodation brand{/t}</label>
     {if isset($rExt.data.accommodationBrand)}
@@ -55,6 +57,7 @@
     </ul>
     {/if}
   </div>
+
   <div class="accomodationUsers">
     <label>{t}Accommodation users profile{/t}</label>
     {if isset($rExt.data.accommodationUsers)}
@@ -65,8 +68,7 @@
     </ul>
     {/if}
   </div>
-
-  <!-- coleciones -->
+-->
 
 </div>
 

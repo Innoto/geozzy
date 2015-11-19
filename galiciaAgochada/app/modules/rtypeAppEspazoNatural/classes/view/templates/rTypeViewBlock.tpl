@@ -29,6 +29,24 @@
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
+  <div class="titleBar">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10">
+          <img class="img-responsive" alt="Espazos naturais" src="/media/img/paisaxesIcon.png"></img>
+          <h1>{$res.data.title}</h1>
+        </div>
+        <div class="stars col-lg-2">
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star-o"></i>
+          <i class="fa selected fa-star-o"></i>
+          <i class="fa selected fa-star-o"></i>
+          <i class="fa selected fa-star-o"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="imageSec gzSection">
   <!--   {if isset( $res.data.image )}
       <img src="/cgmlImg/{$res.data.image.id}"
@@ -40,15 +58,16 @@
 
   <div class="contentSec container gzSection">
     <div class="typeBar">
-      <div class="type col-lg-10">{$res.data.rTypeIdName|escape:'htmlall'}</div>
-      <div class="social col-lg-2 row">
-        <div class="col-lg-6">
-          MY
-        </div>
-        <div class="col-lg-6">
-          SOCIAL
-        </div>
-      </div>
+      <div class="type col-lg-10">{$res.data.rTypeIdName}</div>
+      <ul class="social">
+        <li class="elementShare">
+          <i class="fa fa-share-alt"></i>
+        </li>
+        <li class="elementFav">
+          <i class="fa fa-heart-o"></i>
+          <i class="fa fa-heart"></i>
+        </li>
+      </ul>
     </div>
 
     <div class="shortDescription row">

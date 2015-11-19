@@ -31,8 +31,19 @@
 
   <div class="titleBar">
     <div class="container">
-      <img class="img-responsive" alt="Aloxamentos con encanto" src="/media/img/aloxamentosIcon.png"></img>
-      <h1>{$res.data.title}</h1>
+      <div class="row">
+        <div class="col-lg-10">
+          <img class="img-responsive" alt="Aloxamentos con encanto" src="/media/img/aloxamentosIcon.png"></img>
+          <h1>{$res.data.title}</h1>
+        </div>
+        <div class="stars col-lg-2">
+          <i class="fa fa-star-o"></i>
+          <i class="fa selected fa-star-o"></i>
+          <i class="fa selected fa-star-o"></i>
+          <i class="fa selected fa-star-o"></i>
+          <i class="fa selected fa-star-o"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -46,28 +57,43 @@
     {if $res.ext.rextAccommodation.data.averagePrice}
     <div class="reservationSec container">
       <div class="reservationBox">
-        <div class="priceText">{t}Precio medio por noche{/t}</div>
+        <div class="priceText">{t}Average night rate{/t}</div>
         <div class="priceAmount"><span class="num">{$res.ext.rextAccommodation.data.averagePrice|escape:'htmlall'}</span><span class="unit"> €</span></div>
-        <div class="reservationBtb">
-          {if $res.ext.rextAccommodation.data.reservationURL}
-          <a href="{$res.ext.rextAccommodation.data.reservationURL}" target="blank">{t}Reservar{/t}</a>
-          {elseif $res.ext.rextAccommodation.data.reservationPhone}
-          <div class="showReservation">{t}Reservar{/t}</div>
-          {/if}
-        </div>
+        {if $res.ext.rextAccommodation.data.reservationURL || $res.ext.rextAccommodation.data.reservationPhone}
+          <div class="reservationBtb">
+            {if $res.ext.rextAccommodation.data.reservationURL}
+              <a href="{$res.ext.rextAccommodation.data.reservationURL}" target="blank">{t}Reservar{/t}</a>
+            {elseif $res.ext.rextAccommodation.data.reservationPhone}
+              <div class="showReservation">{t}Reserve{/t}</div>
+            {/if}
+          </div>
+        {/if}
       </div>
       <div class="reservationData" style="display:none;">
-        <div class="priceText">{t}Teléfono para reservas{/t}</div>
+        <div class="priceText">{t}Reservation phone{/t}</div>
         <div class="priceAmount"><span class="num">{$res.ext.rextAccommodation.data.reservationPhone|escape:'htmlall'}</span></div>
+        <div class="reservationBtb">
+            <div class="showAverageRate">{t}Show average rate{/t}</div>
+        </div>
       </div>
     </div>
     {/if}
   </div>
 
   <div class="contentSec container gzSection">
-    <div class="typeBar">
-      <div class="type col-lg-10">{$res.data.rTypeIdName}</div>
-      <ul class="social">
+    <div class="typeBar row">
+      {if isset($res.data.accommodationType)}
+      <ul class="type col-lg-10">
+        {foreach from=$res.data.accommodationType item=termInfo}
+          <li>
+            {if isset($termInfo.icon)}<img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
+            <div class="name">{$termInfo.name_es}</div>
+          </li>
+          {break}
+        {/foreach}
+      </ul>
+      {/if}
+      <ul class="social col-lg-2">
         <li class="elementShare">
           <i class="fa fa-share-alt"></i>
         </li>
@@ -78,21 +104,38 @@
       </ul>
     </div>
 
+
     <div class="shortDescription">
       {$res.data.shortDescription|escape:'htmlall'}
     </div>
 
     <div class="taxonomyBar row">
       <div class="taxStars col-lg-2">
-        {t}VALORACIONES{/t}
+        {if isset($res.data.accommodationCategory)}
+          <div class="taxStarsBox">
+          {foreach from=$res.data.accommodationCategory item=termInfo}
+            {for $foo=1 to $termInfo.idName|substr:0:1}
+              <i class="fa fa-star"></i>
+            {/for}
+          </div>
+        {/foreach}
+        {/if}
       </div>
       <div class="taxIcons col-lg-10">
-        <div class="icon">
-          icono 1
-        </div>
-        <div class="icon">
-          icono 2
-        </div>
+        {if isset($res.data.accommodationServices)}
+          {foreach from=$res.data.accommodationServices item=termInfo}
+            <div class="icon">
+              {if isset($termInfo.icon)}<img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{else}{$termInfo.name_es}{/if}
+            </div>
+          {/foreach}
+        {/if}
+        {if isset($res.data.accommodationFacilities)}
+          {foreach from=$res.data.accommodationFacilities item=termInfo}
+            <div class="icon">
+              {if isset($termInfo.icon)}<img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{else}{$termInfo.name_es}{/if}
+            </div>
+          {/foreach}
+        {/if}
       </div>
     </div>
 
@@ -111,6 +154,7 @@
       </div>
     </div>
 
+    {if isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== ""}
     <div class="directions">
       <div class="container">
         <div class="title">
@@ -128,6 +172,7 @@
         </div>
       </div>
     </div>
+    {/if}
 
     {if isset( $res.data.loc )}
     <div class="map">
@@ -154,6 +199,7 @@
     </div>
   </div>
 
+<!--
   <div class="reservationSec container gzSection">
     <div class="{$res.data.rTypeIdName}">
       <p> --- {$res.data.rTypeIdName} Ext RESERVAS --- </p>
@@ -162,6 +208,7 @@
       </div>
     </div>
   </div>
+-->
 
   <div class="collectionSec container gzSection">
     {if isset($res.data.collections)}

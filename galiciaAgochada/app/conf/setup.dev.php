@@ -255,7 +255,7 @@ define( 'MEDIASERVER_HOST', '/' );
 define( 'MEDIASERVER_TMP_CACHE_PATH', APP_TMP_PATH.'/mediaCache' );
 define( 'MOD_MEDIASERVER_URL_DIR', 'media');
 define( 'MEDIASERVER_FINAL_CACHE_PATH', 'mediaCache' );
-define( 'MEDIASERVER_NOT_CACHE_JS', true );
+define( 'MEDIASERVER_NOT_CACHE_JS', false );
 define( 'MEDIASERVER_PRODUCTION_MODE', false ); // If true, you must compile less manually with ./cogumelo generateClientCaches
 define( 'MEDIASERVER_MINIMIFY_FILES', false ); // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
 
