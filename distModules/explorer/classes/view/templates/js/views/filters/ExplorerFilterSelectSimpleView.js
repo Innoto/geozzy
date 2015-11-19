@@ -4,7 +4,7 @@ if(!geozzy.filters) geozzy.filters={};
 geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
 
   template: _.template(" <% if(title){ %> <label><%= title %>:</label><%}%>  <select class='<%= filterClass %>'><%= options %></select>"),
-  templateOption: _.template("<option value='<%- value %>'><%- title %></option>"),
+  templateOption: _.template("<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"),
 
 
 
@@ -36,7 +36,9 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
 
 
-    $.each(that.data, function(i,e){
+
+
+    $.each(that.data.toJSON(), function(i,e){
       filterOptions += that.templateOption(e);
     });
 

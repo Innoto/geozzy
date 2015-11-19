@@ -13,6 +13,13 @@ class ExplorerView extends MasterView
 
   function paisaxesExplorer(){
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    $this->template->addClientScript('js/models/TaxonomygroupModel.js', 'geozzy');
+
+    $this->template->addClientScript('js/models/TaxonomytermModel.js', 'geozzy');
+    $this->template->addClientScript('js/collections/CategoryCollection.js', 'geozzy');
+    $this->template->addClientScript('js/collections/CategorytermCollection.js', 'geozzy');
+
+
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
     $this->template->addClientScript('js/paisaxesExplorer.js');
