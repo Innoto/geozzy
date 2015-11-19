@@ -3,10 +3,12 @@
 {block name="bodyContent"}
   <section class="gzzSec secImage">
     <div class="container">
-      <h2>{t}Galicia{/t}</h2>
-      <p>{t}Das postas do sol en Lapamán ás vistas de Saiáns{/t}</p>
-      <p>{t}Ruta polos mellores chiringuitos de Galicia{/t}</p>
-      <a href="#">{t}Descubre os nosos segredos{/t}</a>
+      <div class="intro">
+        <h2>{t}Galicia{/t}</h2>
+        <p>{t}Das postas do sol en Lapamán ás vistas de Saiáns{/t}</p>
+        <p>{t}Ruta polos mellores chiringuitos de Galicia{/t}</p>
+      </div>
+      <a class="introLinkSegredos" href="#">{t}Descubre os nosos segredos{/t} <i class="fa fa-caret-down"></i></a>
     </div>
   </section>
   <section class="gzzSec secSegredos">
