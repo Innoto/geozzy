@@ -67,14 +67,7 @@ class geozzy extends Module {
     // geozzy api UI events
     $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
 
-    // geozzy Resource views
-    // TODO: BORRAR
-    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:GeozzyResourceView::showResourcePage' );
-
-    //$this->addUrlPatterns( '#^resource/(\d+)$#', 'view:GeozzyResourceView::showResourcePage' );
-    //$this->addUrlPatterns( '#^resourceBlock/(\d+)$#', 'view:GeozzyResourceView::showResourcePageBlock' );
-
-    //$this->addUrlPatterns( '#^recurso$#', 'view:GeozzyResourceView::showRecurso' );
+    // geozzy Resource
     //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
     //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
   }

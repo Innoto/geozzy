@@ -4,10 +4,7 @@ geozzy::load( 'controller/RExtController.php' );
 
 
 
-
-
 /**
-
 METODOS A CAMBIAR/ELIMINAR
 
 loadResourceObject
@@ -1347,7 +1344,8 @@ class ResourceController {
     $result = true;
 
     if( !isset( $urlAlias ) || $urlAlias === false || $urlAlias === '' ) {
-      $urlAlias = '/recurso/'.$resId;
+      global $CGMLCONF;
+      $urlAlias = '/'.$CGMLCONF['geozzy']['resourceURL'].'/'.$resId;
     }
 
     $aliasArray = array( 'http' => 0, 'canonical' => 1, 'lang' => $langId,
