@@ -13,17 +13,23 @@
 
 </head>
 <body>
+  <article>
+    <header class="headContent">
+      {block name="headContent"}
+        {include file="header.tpl"}
+      {/block}
+    </header>
 
-  <div class="headContent">
-    {block name="headContent"}
-      {include file="header.tpl"}
-    {/block}
-  </div>
+    <section class="bodyContent">
+      {block name="bodyContent"}{if $bodyContent}{$bodyContent}{/if}{/block}
+    </section>
 
-  <div class="bodyContent">
-    {block name="bodyContent"}{if $bodyContent}{$bodyContent}{/if}{/block}
-  </div>
-
+    <footer class="footerContent">
+      {block name="footerContent"}
+        {include file="footer.tpl"}
+      {/block}
+    </footer>
+  </article>
 </body>
 </html>
 

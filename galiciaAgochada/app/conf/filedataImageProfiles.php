@@ -44,7 +44,7 @@ $IMAGE_PROFILES = array(
   'typeIcon' => array( 'width' => 64, 'height' => 64 ),
   'resourceLg' => array( 'width' => 1200, 'height' => 500),
   'resourceMd' => array( 'width' => 992, 'height' => 400),
-  'resourceSm' => array( 'width' => 768, 'height' => 300),
+  'resourceSm' => array( 'width' => 768, 'height' => 300)
 );
 
 

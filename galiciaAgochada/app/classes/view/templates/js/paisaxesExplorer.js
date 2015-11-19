@@ -1,10 +1,32 @@
 
 
+    var explorerclass = '.paisaxesExplorer';
+    var resourceMap  = false;
+    var espazoNaturalCategories = false;
 
 
     $(document).ready(function(){
 
-      var explorerclass = '.paisaxesExplorer';
+      var mapOptions = {
+        center: { lat: 43.1, lng: -7.36 },
+        zoom: 8
+      };
+      resourceMap = new google.maps.Map( $( explorerclass+' .explorerMap').get( 0 ), mapOptions);
+
+
+      espazoNaturalCategories = new geozzy.collections.CategorytermCollection();
+      espazoNaturalCategories.setUrlByIdName('rextAppEspazoNaturalType');
+
+
+      // Multiple data fetch
+      $.when( espazoNaturalCategories.fetch() ).done(function() {
+
+        setExplorer(  );
+      });
+    });
+
+
+    function setExplorer( ) {
 
 
       // ESTO CHEGARÍA POR CHAMADA AJAX
@@ -17,15 +39,6 @@
 
 
 
-      // GOOGLE MAPS MAPS
-      var mapOptions = {
-        center: { lat: 43.1, lng: -7.36 },
-        zoom: 8
-      };
-
-      var resourceMap = new google.maps.Map( $( explorerclass+' .explorerMap').get( 0 ), mapOptions);
-
-
 
       // EXPLORADOR
       var explorer = new geozzy.explorer({debug:false});
@@ -36,6 +49,11 @@
       var infowindow = new geozzy.explorerDisplay.mapInfoView();
       var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
       var mapa = new geozzy.explorerDisplay.mapView({ map: resourceMap, clusterize:false });
+
+
+      //map set icons
+
+
 
 
       explorer.addDisplay( listaPasiva );
@@ -65,7 +83,7 @@
             mainCotainerClass: explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'tipoPaisaxe select2GeozzyCustom',
             //title:'asdfasfd',
-            data: dataFilter1
+            data: espazoNaturalCategories
           }
         )
       );
@@ -82,16 +100,21 @@
       });
       //LAYOUT
       layoutDistributeSize();
-    });
+
+    }
+
+
 
     $(window).bind("load resize", function() {
       layoutDistributeSize();
     });
 
     function formatState (state) {
-      if (!state.id) { return state.text; }
+      if ( $(state.element).attr('icon') == 'false') { return state.text; }
+
+
       var $state = $(
-        '<span><i class="fa fa-tree"></i> ' + state.text + '</span>'
+        '<span><img width=32 height=32 src="/cgmlImg/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>'
       );
       return $state;
     };

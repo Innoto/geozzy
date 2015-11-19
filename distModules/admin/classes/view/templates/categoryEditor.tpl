@@ -81,7 +81,7 @@
           <i class="fa fa-arrows icon-handle"></i>
           <%- term.name_{$langDefault} %>
           <% if (term.icon){  %>
-            <img class="term-icon img-responsive" src="/cgmlImg/<%- term.icon %>">
+            <img class="term-icon img-responsive" src="/cgmlImg/<%- term.icon %>/">
           <% } %>
         </div>
 
