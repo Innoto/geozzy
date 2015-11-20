@@ -1,8 +1,10 @@
 <!-- rExtViewBlock.tpl en rextEatAndDrink module -->
 
-<p> --- rExtViewBlock.tpl en rextEatAndDrink module</p>
-
 <div class="rExtEatAndDrink">
+
+<!--
+
+  <p> --- rExtViewBlock.tpl en rextEatAndDrink module</p>
 
   <div class="reservationURL">
     <label>{t}Reservation URL{/t}</label>
@@ -46,7 +48,7 @@
     {/if}
   </div>
 
-
+-->
 </div>
 
 <!-- /rExtViewBlock.tpl en rExtEatAndDrink module -->

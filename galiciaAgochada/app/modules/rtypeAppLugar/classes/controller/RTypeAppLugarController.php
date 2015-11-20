@@ -73,7 +73,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
     $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address',
       'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone',
-      'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
+      'rExtContact_email', 'rExtContact_url', 'rExtContact_timetable') );
     $formContact2 = $adminViewResource->extractFormBlockFields( $formBlock, $formUtils->multilangFieldNames( 'rExtContact_directions' ) );
     $adminColsInfo['col8']['contact1'] = array();
 
@@ -212,6 +212,10 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
 
+    $this->contactCtrl = new RExtContactController( $this );
+    $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
     if( $rExtViewInfo ) {
@@ -223,6 +227,17 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     }
     else {
       $template->assign( 'rextAppLugarBlock', false );
+    }
+
+    if( $contactViewInfo ) {
+      if( $contactViewInfo['template'] ) {
+        foreach( $contactViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextContactBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextContactBlock', false );
     }
 
     $viewBlockInfo['template'] = array( 'full' => $template );

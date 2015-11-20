@@ -501,7 +501,7 @@ class geozzyAPIView extends View
   function resourceList( $param ) {
 
     geozzy::load('model/ResourceModel.php');
-    geozzyAPI::load('controller/apiFiltersController.php');
+    geozzy::load('controller/apiFiltersController.php');
 
 
     $queryParameters = apiFiltersController::resourceListOptions($param);

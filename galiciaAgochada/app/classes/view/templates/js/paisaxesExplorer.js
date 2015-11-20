@@ -36,7 +36,30 @@
       // DISPLAYS
       var infowindow = new geozzy.explorerDisplay.mapInfoView();
       var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
-      var mapa = new geozzy.explorerDisplay.mapView({ map: resourceMap, clusterize:false });
+      var mapa = new geozzy.explorerDisplay.mapView({
+                                                        map: resourceMap,
+                                                        clusterize:false,
+                                                        chooseMarkerIcon: function( markerData ) {
+                                                          var iconUrl = false;
+
+                                                          espazoNaturalCategories.each( function(e){
+                                                            //console.log(e.get('id'))
+                                                            //console.debug(markerData.get('terms'))
+
+                                                            if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
+                                                                      
+                                                              if( jQuery.isNumeric( e.get('icon') )  ){
+                                                                iconUrl = '/cgmlImg/'+e.get('icon')+'/explorerMarker/marker.png';
+                                                                return false;
+                                                              }
+
+                                                            }
+
+                                                          });
+
+                                                          return iconUrl;
+                                                        }
+                                                    });
 
 
       //map set icons

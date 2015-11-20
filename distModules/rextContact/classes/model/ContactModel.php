@@ -52,6 +52,10 @@ class ContactModel extends Model
       'size' => 2000,
       'multilang' => true
     ),
+    'url' => array(
+      'type' => 'VARCHAR',
+      'size' => 2000
+    ),
   );
 
   static $extraFilters = array();

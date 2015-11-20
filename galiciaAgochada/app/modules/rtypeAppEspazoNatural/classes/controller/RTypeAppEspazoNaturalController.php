@@ -27,7 +27,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
     // eliminamos campos de recurso
-    $form->removeField('externalUrl');
+    //$form->removeField('externalUrl');
 
     // Extensión Espazo Natural
     $rTypeExtNames[] = 'rextAppEspazoNatural';
@@ -42,13 +42,13 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
 
     // eliminamos los campos de contacto que no necesitamos
-    $form->removeField('rExtContact_address');
+    /*$form->removeField('rExtContact_address');
     $form->removeField('rExtContact_city');
     $form->removeField('rExtContact_cp');
     $form->removeField('rExtContact_province');
     $form->removeField('rExtContact_phone');
     $form->removeField('rExtContact_email');
-    $form->removeField('rExtContact_timetable');
+    $form->removeField('rExtContact_timetable');*/
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
@@ -83,7 +83,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
     $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address',
       'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone',
-      'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
+      'rExtContact_email', 'rExtContact_url', 'rExtContact_timetable') );
     $formContact2 = $adminViewResource->extractFormBlockFields( $formBlock, $formUtils->multilangFieldNames( 'rExtContact_directions' ) );
     $adminColsInfo['col8']['contact1'] = array();
 
@@ -118,6 +118,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     // Resordenamos los bloques de acuerdo al diseño
     $adminColsInfoOrd = array();
     $adminColsInfoOrd['col8']['main'] = $adminColsInfo['col8']['main'];
+    $adminColsInfoOrd['col8']['contact1'] = $adminColsInfo['col8']['contact1'];
     $adminColsInfoOrd['col8']['location'] = $adminColsInfo['col8']['location'];
     $adminColsInfoOrd['col8']['multimedia'] = $adminColsInfo['col8']['multimedia'];
     $adminColsInfoOrd['col8']['collections'] = $adminColsInfo['col8']['collections'];
