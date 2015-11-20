@@ -1,18 +1,53 @@
 @import "primary.less";
 
 .headContent{
-  &.transparent{ background: transparent; }
+  &.transparent{
+    background: transparent;
+  }
 }
 
 .bodyContent{
   padding-top: 0;
   .gzzSec{
     &.secImage{
+      padding: 0px;
       position: relative;
       width: 100%;
       height: 60vh;
-      background: url("/media/img/photo-GA.jpg") no-repeat scroll center center / cover;
       color: @gzzColor-text-light;
+
+      .s-carousel{
+        width: 100%;
+        height: 100%;
+        .trama{
+          background: rgba(51, 51, 51, 0.3);
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+        }
+        .carousel-inner{
+          width: 100%;
+          height: 100%;
+          .item{
+            width: 100%;
+            height: 100%;
+            &:nth-child(1){
+              background: url("/media/img/photo-GA.jpg") no-repeat scroll center center / cover;
+            }
+            &:nth-child(2){
+              background: url("/media/img/photo-GA2.jpg") no-repeat scroll center center / cover;
+            }
+            &:nth-child(3){
+              background: url("/media/img/photo-GA3.jpg") no-repeat scroll center center / cover;
+            }
+            &:nth-child(4){
+              background: url("/media/img/photo-GA4.jpg") no-repeat scroll bottom center / cover;
+            }
+          }
+        }
+      }//.s-carousel
       .intro{
         position: absolute;
         top: 50%;
@@ -39,6 +74,7 @@
         font-weight: 600;
         text-decoration: none;
         display: block;
+        //text-shadow: 1px 0 1px rgba(0,0,0, 0.6);
         i{
           font-size: 24px;
           margin: 0 0 0 10px;
@@ -46,7 +82,52 @@
       }
     }//.secImage
     &.secSegredos{
+      .row{
+        margin: 0 -5px 0 -5px;
+      }
+      .segredoItem{
+        padding: 5px;
 
-    }
+        .segredoItemImg{
+          position: relative;
+          overflow: hidden;
+          .trama{
+            background: rgba(51, 51, 51, 0.3);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 100;
+            width: 100%;
+            height: 100%;
+            display: none;
+          }
+          img{
+            width: 100%;
+
+            -webkit-transform: scale(1, 1); /* Saf3.1+, Chrome */
+            -moz-transform: scale(1, 1); /* FF3.5+ */
+            -ms-transform: scale(1, 1); /* IE9 */
+             -o-transform: scale(1, 1); /* Opera 10.5+ */
+                transform: scale(1, 1);
+
+          }
+          &:hover{
+            img{
+              -webkit-transform: scale(1.08, 1.1); /* Saf3.1+, Chrome */
+              -moz-transform: scale(1.08, 1.1); /* FF3.5+ */
+              -ms-transform: scale(1.08, 1.1); /* IE9 */
+               -o-transform: scale(1.08, 1.1); /* Opera 10.5+ */
+                  transform: scale(1.08, 1.1);
+              transition-duration: 450ms;
+              transition-timing-function: ease-out;
+            }
+            .trama{
+              display:block;
+            }
+          }
+        }
+
+      }//.segredoItem
+    }//.secSegredos
   }//gzzSec
 }//bodyContent
