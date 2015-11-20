@@ -25,27 +25,57 @@ class rextEatAndDrink extends Module {
       'sortable' => 1,
       'initialTerms' => array(
         array(
-          'idName' => 'italiano',
+          'idName' => 'xamoneria',
+          'icon' => 'view/categoryIcons/xamoneria.svg',
           'name' => array(
-            'en' => 'Italiano',
-            'es' => 'Italiano',
-            'gl' => 'Italiano'
+            'en' => 'Ham bars',
+            'es' => 'Jamonerías',
+            'gl' => 'Xamonerías'
           )
         ),
         array(
-          'idName' => 'tapas',
+          'idName' => 'pulpeira',
+          'icon' => 'view/categoryIcons/pulpeira.svg',
           'name' => array(
-            'en' => 'Tapas',
-            'es' => 'Tapas',
-            'gl' => 'Tapas'
+            'en' => 'Octopus bars',
+            'es' => 'Pulperías',
+            'gl' => 'Pulpeiras'
           )
         ),
         array(
-          'idName' => 'restaurante',
+          'idName' => 'meson',
+          'icon' => 'view/categoryIcons/meson.svg',
           'name' => array(
-            'en' => 'Restaurante',
-            'es' => 'Restaurante',
-            'gl' => 'Restaurante'
+            'en' => 'Restaurants',
+            'es' => 'Mesones-restaurantes',
+            'gl' => 'Mesóns-restaurantes'
+          )
+        ),
+        array(
+          'idName' => 'furancho',
+          'icon' => 'view/categoryIcons/furancho.svg',
+          'name' => array(
+            'en' => 'Furanchos',
+            'es' => 'Furanchos',
+            'gl' => 'Furanchos'
+          )
+        ),
+        array(
+          'idName' => 'parrillada',
+          'icon' => 'view/categoryIcons/parrillada.svg',
+          'name' => array(
+            'en' => 'Grill restaurants',
+            'es' => 'Parrilladas',
+            'gl' => 'Churrasquerías'
+          )
+        ),
+        array(
+          'idName' => 'marisquería',
+          'icon' => 'view/categoryIcons/marisqueria.svg',
+          'name' => array(
+            'en' => 'Seefood restaurant',
+            'es' => 'Marisquería',
+            'gl' => 'Marisquería'
           )
         )
       )
@@ -81,9 +111,81 @@ class rextEatAndDrink extends Module {
         array(
           'idName' => 'empanada',
           'name' => array(
-            'en' => 'Pie',
+            'en' => 'Meat and Fish Pie',
             'es' => 'Empanada',
             'gl' => 'Empanada'
+          )
+        ),
+        array(
+          'idName' => 'churrasco',
+          'name' => array(
+            'en' => 'BBQ meat',
+            'es' => 'Churrasco',
+            'gl' => 'Churrasco'
+          )
+        ),
+        array(
+          'idName' => 'bacalao',
+          'name' => array(
+            'en' => 'Cod Fish',
+            'es' => 'Bacalao',
+            'gl' => 'Bacalao'
+          )
+        ),
+        array(
+          'idName' => 'carneabrasa',
+          'name' => array(
+            'en' => 'Grilled meats',
+            'es' => 'Carnes a la brasa',
+            'gl' => 'Carnes á brasa'
+          )
+        ),
+        array(
+          'idName' => 'lamprea',
+          'name' => array(
+            'en' => 'Lamprea',
+            'es' => 'Lamprea',
+            'gl' => 'Lamprea'
+          )
+        ),
+        array(
+          'idName' => 'cocido',
+          'name' => array(
+            'en' => 'Boiled meat and vegetables',
+            'es' => 'Cocido',
+            'gl' => 'Cocido'
+          )
+        ),
+        array(
+          'idName' => 'mexillons',
+          'name' => array(
+            'en' => 'Mussels',
+            'es' => 'Mejillones',
+            'gl' => 'Mexillóns'
+          )
+        ),
+        array(
+          'idName' => 'marraxo',
+          'name' => array(
+            'en' => 'Marraxo',
+            'es' => 'Marraxo',
+            'gl' => 'Marraxo'
+          )
+        ),
+        array(
+          'idName' => 'costrada',
+          'name' => array(
+            'en' => 'Costrada',
+            'es' => 'Costrada',
+            'gl' => 'Costrada'
+          )
+        ),
+        array(
+          'idName' => 'marisco',
+          'name' => array(
+            'en' => 'Sea food',
+            'es' => 'Marisco',
+            'gl' => 'Marisco'
           )
         )
       )
