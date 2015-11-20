@@ -79,6 +79,45 @@
       {$res.data.shortDescription|escape:'htmlall'}
     </div>
 
+    
+
+    <!-- Galería Multimedia -->
+    <div id="imageGallery" style="display:none;">
+
+        <img alt="Image 1 Title" src="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg"
+          data-image="/cgmlImg/{$res.data.image.id}/resourceSm/{$res.data.image.id}.jpg"
+          data-description="Image 1 Description">
+
+        <img alt="Image 2 Title" src="http://lorempixel.com/400/200/nature/1"
+          data-image="http://lorempixel.com/400/200/nature/1"
+          data-description="Image 2 Description">
+
+        <img alt="Image 3 Title" src="http://lorempixel.com/400/200/nature/2"
+          data-image="http://lorempixel.com/400/200/nature/2"
+          data-description="Image 3 Description">
+
+        <img alt="Image 4 Title" src="http://lorempixel.com/600/300/nature"
+          data-image="http://lorempixel.com/400/100/"
+          data-description="Image 4 Description">
+
+        <img alt="Image 5 Title" src="http://lorempixel.com/350/550/nature"
+          data-image="http://lorempixel.com/150/350/"
+          data-description="Image 5 Description">
+
+        <img alt="Image 6 Title" src="http://lorempixel.com/400/200/nature/3"
+            data-image="http://lorempixel.com/400/200/nature/3"
+            data-description="Image 3 Description">
+
+        <img alt="Image 7 Title" src="http://lorempixel.com/400/300/nature"
+            data-image="http://lorempixel.com/400/300/"
+            data-description="Image 4 Description">
+
+        <img alt="Image 8 Title" src="http://lorempixel.com/250/450/nature"
+            data-image="http://lorempixel.com/400/200/"
+            data-description="Image 5 Description">
+
+    </div>
+
     <div class="mediumDescription">
       {$res.data.content}
     </div>
@@ -136,17 +175,7 @@
   </section>
 
   <section class="gallerySec container gzSection">
-    <!-- Galería Multimedia -->
-    <div class="imageGallery">
-      <label for="imgResource" class="cgmMForm"></label>
-      {if isset( $res.data.image )}
-        <style type="text/css">.cgmMForm-fileField img { height: 100px; }</style>
-        <img src="/cgmlImg/{$res.data.image.id}"
-          {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
-      {else}
-        <p>{t}None{/t}</p>
-      {/if}
-    </div>
+
   </section>
 
 <!--

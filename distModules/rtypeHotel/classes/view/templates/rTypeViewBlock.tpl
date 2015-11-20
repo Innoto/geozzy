@@ -24,6 +24,9 @@
 </style>
 {/block}
 
+<script type='text/javascript' src='unitegallery/themes/default/ug-theme-default.js'></script>
+<link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' />
+
 <!-- rTypeViewBlock.tpl en rTypeHotel module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
@@ -195,22 +198,47 @@
 
   <section class="gallerySec container gzSection">
     <!-- Galería Multimedia -->
-    <div class="imageGallery">
-      <label for="imgResource" class="cgmMForm"></label>
-      {if isset( $res.data.image )}
-        <style type="text/css">.cgmMForm-fileField img { height: 100px; }</style>
-        <img src="/cgmlImg/{$res.data.image.id}"
-          {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
-      {else}
-        <p>{t}None{/t}</p>
-      {/if}
+    <div id="imageGallery" style="display:none;">
+
+        <img alt="Image 1 Title" src="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg"
+          data-image="/cgmlImg/{$res.data.image.id}/resourceSm/{$res.data.image.id}.jpg"
+          data-description="Image 1 Description">
+
+        <img alt="Image 2 Title" src="http://lorempixel.com/400/200/nature/1"
+          data-image="http://lorempixel.com/400/200/nature/1"
+          data-description="Image 2 Description">
+
+        <img alt="Image 3 Title" src="http://lorempixel.com/400/200/nature/2"
+          data-image="http://lorempixel.com/400/200/nature/2"
+          data-description="Image 3 Description">
+
+        <img alt="Image 4 Title" src="http://lorempixel.com/400/100/"
+          data-image="http://lorempixel.com/400/100/"
+          data-description="Image 4 Description">
+
+        <img alt="Image 5 Title" src="http://lorempixel.com/150/350/"
+          data-image="http://lorempixel.com/150/350/"
+          data-description="Image 5 Description">
+
+        <img alt="Image 6 Title" src="http://lorempixel.com/400/200/nature/3"
+            data-image="http://lorempixel.com/400/200/nature/3"
+            data-description="Image 3 Description">
+
+        <img alt="Image 7 Title" src="http://lorempixel.com/400/300/"
+            data-image="http://lorempixel.com/400/300/"
+            data-description="Image 4 Description">
+
+        <img alt="Image 8 Title" src="http://lorempixel.com/250/450/"
+            data-image="http://lorempixel.com/400/200/"
+            data-description="Image 5 Description">
+
     </div>
   </section>
 
 <!--
   <div class="reservationSec container gzSection">
     <div class="{$res.data.rTypeIdName}">
-      <p> --- {$res.data.rTypeIdName} Ext RESERVAS --- </p>
+      <p> {$res.data.rTypeIdName} Ext RESERVAS </p>
       <div class="{$res.data.rTypeIdName} accommodation">
         {$rextAccommodationBlock}
       </div>

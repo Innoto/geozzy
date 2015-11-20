@@ -14,6 +14,9 @@ $(document).ready(function(){
     })
   })
 
-
+  $("#imageGallery").unitegallery({
+    gallery_theme: "tiles",
+		tiles_type: "justified"		
+  });
 
 });
