@@ -1,1 +1,52 @@
 @import "primary.less";
+
+.headContent{
+  &.transparent{ background: transparent; }
+}
+
+.bodyContent{
+  padding-top: 0;
+  .gzzSec{
+    &.secImage{
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      background: url("/media/img/photo-GA.jpg") no-repeat scroll center center / cover;
+      color: @gzzColor-text-light;
+      .intro{
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-20%); /* IE 9 */
+        -webkit-transform: translateY(-20%); /* Chrome, Safari, Opera */
+        transform: translateY(-20%);
+
+        h2{
+          text-transform: uppercase;
+          font-size: 48px;
+          font-weight: 600;
+        }
+        p{
+          font-size: 20px;
+          margin: 0px;
+        }
+      }//.intro
+      .introLinkSegredos{
+        position: absolute;
+        bottom: 50px;
+        color: @gzzColor-text-light;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-decoration: none;
+        display: block;
+        i{
+          font-size: 24px;
+          margin: 0 0 0 10px;
+        }
+      }
+    }//.secImage
+    &.secSegredos{
+
+    }
+  }//gzzSec
+}//bodyContent

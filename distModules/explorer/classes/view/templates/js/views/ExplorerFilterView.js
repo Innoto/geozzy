@@ -10,20 +10,14 @@ geozzy.filterView = Backbone.View.extend({
   options:  {
     title: false,
     containerClass: false,
-    mainCotainerClass: false
+    mainCotainerClass: false,
+    data:false,
+    title:false,
+    afterRender:false
   },
 
   initialize: function( opts ) {
-    this.options = opts;
-    if( opts.data ) {
-      this.data = opts.data;
-    }
-    if( opts.title ) {
-      this.title = opts.title;
-    }
-    if( opts.afterRender ) {
-      this.afterRender = opts.afterRender;
-    }
+    $.extend(true, this.options, opts);
   },
 
   filterAction: function() {
