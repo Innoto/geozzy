@@ -25,6 +25,7 @@
   }
 
   .resource{
+    font-size:16px;
 
     .imageSec{
 
@@ -141,12 +142,20 @@
       }
 
       .mediumDescription{
-        margin-top:10px;
+        margin-top:15px;
         text-align:justify;
       }
     }
 
     .locationSec{
+
+      .locationLight{
+        background: url('../img/light_trama.png') repeat;
+        padding-bottom:8px;
+      }
+      .locationDark{
+
+        background: url('../img/dark_trama.png') repeat;}
 
 
 
@@ -158,7 +167,6 @@
           .title{
             font-size: @medium-title;
             line-height:70px;
-            max-width:200px;
             cursor:pointer;
 
             .fa{
@@ -184,6 +192,7 @@
             color:#333;
             margin-left:auto;
             margin-right:auto;
+            background-color:@gzzColor-bck-1;
 
             .fa{
               font-size:24px;
@@ -207,9 +216,10 @@
         .rExtContact{
           label{display:none;}
           div{
-            margin-top:20px;
+            margin-top:10px;
+
             .fa{
-              font-size:18px;
+              font-size:22px;
               margin-right:10px;
             }
           }
@@ -221,7 +231,7 @@
 
       .map{
         height:620px;
-        background-color:@gzzColor-bck-4;
+        background: url('../img/mapa.png');
       }
 
     }
@@ -232,7 +242,6 @@
     .reservationBtb{
       background-color: @gzzColor-aloxamento;
     }
-
     .contentSec{
       .taxStarsBox{
         border:2px solid @gzzColor-bck-7;
@@ -246,31 +255,20 @@
         }
       }
     }
-
-    .locationSec{
-      background-color: @gzzColor-bck-2;
-    }
-  }
-
-  .rtypeAppEspazoNatural .locationSec{
-    background-color: #46D3EF;
-    color:#fff;
   }
 
   .rtypeRestaurant{
-
     .reservationBtb{
       background-color: @gzzColor-xantares;
     }
     .reservationBtb:hover{
       background-color: @gzzColor-xantares + #111111;
     }
-
-    .locationSec{
-      background-color: @gzzColor-bck-2;
-    }
-
   }
+
+  .rtypeAppEspazoNatural{  }
+
+  .rtypeAppLugar{  }
 
 
 }

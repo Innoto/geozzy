@@ -47,7 +47,7 @@
     </div>
   </div>
 
-  <div class="imageSec gzSection">
+  <section class="imageSec gzSection">
   <!--   {if isset( $res.data.image )}
       <img src="/cgmlImg/{$res.data.image.id}"
         {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
@@ -78,9 +78,9 @@
       </div>
     </div>
     {/if}
-  </div>
+  </section>
 
-  <div class="contentSec container gzSection">
+  <section class="contentSec container gzSection">
     <div class="typeBar row">
       {if isset($res.data.accommodationType)}
       <ul class="type col-lg-10">
@@ -142,50 +142,58 @@
     <div class="mediumDescription">
       {$res.data.content}
     </div>
-  </div>
+  </section>
 
-  <div class="locationSec gzSection">
-    <div class="location container">
-      <div class="title">
-        {t}Contact{/t}
-      </div>
-      <div class="{$res.data.rTypeIdName} accommodation">
-        {$rextContactBlock}
+  <section class="locationSec gzSection">
+    <div class="locationLight">
+      <div class="location container">
+        <div class="title">
+          {t}Contact{/t}
+        </div>
+        <div class="{$res.data.rTypeIdName} accommodation">
+          {$rextContactBlock}
+        </div>
       </div>
     </div>
 
-    {if isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== ""}
-    <div class="directions">
-      <div class="container">
-        <div class="title">
-          {t}See indications{/t} <i class="fa fa-sort-desc"></i>
-        </div>
-        <div class="indications row" style="display:none;">
-          <div class="col-lg-8">
-            {$res.ext.rextContact.data.directions|escape:'htmlall'}
+    <div class="locationDark">
+      {if isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== ""}
+      <div class="directions">
+        <div class="container">
+          <div class="title">
+            {t}See indications{/t} <i class="fa fa-sort-desc"></i>
           </div>
-          <div class="col-lg-4">
-            <div class="search">
-              {t}How to arrive from?{/t} <i class="fa fa-search"></i>
+          {if isset( $res.data.loc )}
+          <div class="indications row" style="display:none;">
+            <div class="col-lg-8">
+              {$res.ext.rextContact.data.directions|escape:'htmlall'}
+            </div>
+            <div class="col-lg-4">
+              <div class="search">
+                {t}How to arrive from?{/t} <i class="fa fa-search"></i>
+              </div>
             </div>
           </div>
+          {else}
+          <div class="indications" style="display:none;">
+              {$res.ext.rextContact.data.directions|escape:'htmlall'}
+          </div>
+          {/if}
         </div>
       </div>
+      {/if}
     </div>
-    {/if}
 
     {if isset( $res.data.loc )}
     <div class="map">
       <div class="container">
-        (AQUI VAI O MAPA)
-        {$res.data.loc|escape:'htmlall'}
-        {$res.data.defaultZoom|escape:'htmlall'}
+
       </div>
     </div>
     {/if}
-  </div>
+  </section>
 
-  <div class="gallerySec container gzSection">
+  <section class="gallerySec container gzSection">
     <!-- Galería Multimedia -->
     <div class="imageGallery">
       <label for="imgResource" class="cgmMForm"></label>
@@ -197,7 +205,7 @@
         <p>{t}None{/t}</p>
       {/if}
     </div>
-  </div>
+  </section>
 
 <!--
   <div class="reservationSec container gzSection">
@@ -210,14 +218,14 @@
   </div>
 -->
 
-  <div class="collectionSec container gzSection">
+  <section class="collectionSec container gzSection">
     {if isset($res.data.collections)}
     <div class="collections">
       <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
       {$res.data.collections}
     </div>
     {/if}
-  </div>
+  </section>
 
 </div><!-- /.resource .resViewBlock -->
 <!-- /rTypeViewBlock.tpl en rTypeHotel module -->
