@@ -24,7 +24,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     this.options = new Object({
       map : false,
       clusterize: false,
-      chooseMarkerIcon: function() {return '/mediaCache/module/admin/img/geozzy_marker.png'}
+      chooseMarkerIcon: function() {return false}
     });
     $.extend(true, this.options, opts);
 
@@ -242,7 +242,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     var that = this;
 
-    var iconUrl = '/cgmlImg/14/explorerMarker/marker.svg';
+    var iconUrl = '/mediaCache/module/admin/img/geozzy_marker.png';
     var newIconUrl = that.options.chooseMarkerIcon(e);
 
     if( newIconUrl ) {
