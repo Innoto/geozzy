@@ -104,9 +104,11 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
         var marker = e.mapMarker = new google.maps.Marker({
                   position: new google.maps.LatLng( e.get('lat'), e.get('lng') ),
-                  icon: that.chooseMarker(e)
-                  //map: that.map
+                  icon: that.chooseMarker(e),
+                  map: that.map
                 });
+
+        marker.setVisible(false);
 
         marker.addListener('click', function() {
           that.markerClick( e.get('id') );
@@ -130,7 +132,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   hideAllMarkers: function() {
     var that = this;
     that.parentExplorer.resourceMinimalList.each( function(e) {
-      e.mapMarker.setMap(null);
+      e.mapMarker.setVisible(false);
     });
   },
 
@@ -143,7 +145,8 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     that.hideAllMarkers();
 
     that.parentExplorer.resourceIndex.each( function(e) {
-      e.mapMarker.setMap(that.map);
+      e.mapMarker.setIcon( that.chooseMarkerIcon(e) );
+      e.mapMarker.setVisible(true);
     });
 
 
@@ -238,19 +241,29 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     return this.ready;
   },
 
-  chooseMarker: function( e ) {
-
+  chooseMarkerIcon: function( e ) {
     var that = this;
 
     var iconUrl = '/mediaCache/module/admin/img/geozzy_marker.png';
     var newIconUrl = that.options.chooseMarkerIcon(e);
 
+
     if( newIconUrl ) {
+      console.log(newIconUrl);
       iconUrl = newIconUrl
     }
 
+    return iconUrl;
+  },
+
+  chooseMarker: function( e ) {
+
+    var that = this;
+
+
+
     return {
-      url: iconUrl,
+      url: that.chooseMarkerIcon(e),
       // This marker is 20 pixels wide by 36 pixels high.
       size: new google.maps.Size(30, 36),
       // The origin for this image is (0, 0).
