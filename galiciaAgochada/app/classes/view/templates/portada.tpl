@@ -2,6 +2,23 @@
 
 {block name="bodyContent"}
   <section class="gzzSec secImage">
+    <!-- Carousel items -->
+    <div id="carousel" class="s-carousel carousel carousel-fade" data-ride="carousel" data-interval="5000" data-pause="false">
+      <!--<ol class="carousel-indicators">
+        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel" data-slide-to="1"></li>
+        <li data-target="#carousel" data-slide-to="2"></li>
+        <li data-target="#carousel" data-slide-to="3"></li>
+      </ol>-->
+      <div class="carousel-inner">
+        <div class="item active"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+      </div>
+      <div class="trama"></div>
+    </div>
+
     <div class="container">
       <div class="intro">
         <h2>{t}Galicia{/t}</h2>
@@ -15,34 +32,52 @@
     <div class="container">
       <h2>{t}Os segredos de galicia{/t}</h2>
       <div class="row">
-        <div class="col-lg-4">
-          <a href="/aloxamentos-con-encanto">
-            <img class="img-responsive" src="http://lorempixel.com/600/600/nature/1/">
-          </a>
-        </div>
-        <div class="col-lg-4">
-          <a href="/paisaxes-espectaculares">
-            <img class="img-responsive" src="http://lorempixel.com/600/600/nature/2/">
-          </a>
-        </div>
-        <div class="col-lg-4">
-          <a href="/praias-ensono">
-            <img class="img-responsive" src="http://lorempixel.com/600/600/nature/3/">
-          </a>
-        </div>
-        <div class="col-lg-4">
+        <div class="segredoItem segredoRincons col-lg-4 col-sm-6">
           <a href="/rincons-con-encanto">
-            <img class="img-responsive" src="http://lorempixel.com/600/600/nature/4/">
+            <div class="segredoItemImg">
+              <div class="trama"></div>
+              <img class="img-responsive" src="/media/img/rincons.png">
+            </div>
           </a>
         </div>
-        <div class="col-lg-4">
+        <div class="segredoItem segredoPaisaxes col-lg-4 col-sm-6">
+          <a href="/paisaxes-espectaculares">
+            <div class="segredoItemImg">
+              <div class="trama"></div>
+              <img class="img-responsive" src="/media/img/paisaxes.png">
+            </div>
+          </a>
+        </div>
+        <div class="segredoItem segredoPraias col-lg-4 col-sm-6">
+          <a href="/praias-ensono">
+            <div class="segredoItemImg">
+              <div class="trama"></div>
+              <img class="img-responsive" src="/media/img/praias.png">
+            </div>
+          </a>
+        </div>
+        <div class="segredoItem segredoXantares col-lg-4 col-sm-6">
           <a href="/sabrosos-xantares">
-            <img class="img-responsive" src="http://lorempixel.com/600/600/nature/5/">
+            <div class="segredoItemImg">
+              <div class="trama"></div>
+              <img class="img-responsive" src="/media/img/xantares.png">
+            </div>
           </a>
         </div>
-        <div class="col-lg-4">
+        <div class="segredoItem segredoAloxamentos col-lg-4 col-sm-6">
+          <a href="/aloxamentos-con-encanto">
+            <div class="segredoItemImg">
+              <div class="trama"></div>
+              <img class="img-responsive" src="/media/img/aloxamentos.png">
+            </div>
+          </a>
+        </div>
+        <div class="segredoItem segredoFestas col-lg-4 col-sm-6">
           <a href="#">
-            <img class="img-responsive" src="http://lorempixel.com/600/600/nature/6/">
+            <div class="segredoItemImg">
+              <div class="trama"></div>
+              <img class="img-responsive" src="/media/img/festas.png">
+            </div>
           </a>
         </div>
         <a href="#">{t}Descúbreos todos xuntos{/t}</a>
