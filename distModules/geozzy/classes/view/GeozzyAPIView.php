@@ -500,6 +500,7 @@ class geozzyAPIView extends View
 
   function resourceList( $param ) {
 
+    Cogumelo::load('coreModel/DBUtils.php');
     geozzy::load('model/ResourceModel.php');
     geozzy::load('controller/apiFiltersController.php');
 
@@ -520,7 +521,30 @@ class geozzyAPIView extends View
 
     $resourceModel = new ResourceModel();
     $resourceList = $resourceModel->listItems( $queryParameters  );
-    $this->syncModelList( $resourceList );
+
+
+    header('Content-type: application/json');
+    echo '[';
+    $c = '';
+    while ($valueobject = $resourceList->fetch() )
+    {
+      $allData = $valueobject->getAllData('onlydata');
+
+
+      $loc = DBUtils::decodeGeometry( $allData['loc'] );
+      $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
+
+      echo $c.json_encode( $allData );
+
+
+      if($c === ''){$c=',';}
+    }
+    echo ']';
+
+
+
+
+
   }
 
 
