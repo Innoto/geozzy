@@ -110,8 +110,8 @@
             </div>
           </a>
         </div>
-        <a href="#">{t}Descúbreos todos xuntos{/t}</a>
       </div>
+      <a class="segredosAll" href="#">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
     </div>
   </section>
   <section class="gzzSec secParticipa">
@@ -119,6 +119,10 @@
       <h2>{t}¿Algún outro segredo?{/t} <span>{t}¡Somos todo oídos!{/t}</span></h2>
       <p>{t}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec justo et odio tempus eleifend. Sed gravida pharetra sagittis. Aliquam vel tempus lacus. Morbi a nibh convallis, laoreet massa eget, consectetur lorem. {/t}</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec justo et odio tempus eleifend.</p>
+
+      <div class="propose">
+        
+      </div>
     </div>
   </section>
   <section class="gzzSec secRecomendamos"></section>
