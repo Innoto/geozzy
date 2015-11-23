@@ -129,13 +129,21 @@ class geozzyAPIView extends View
                                   "paramType": "path",
                                   "defaultValue": "false",
                                   "required": false
+                                },
+                                {
+                                  "name": "rextmodels",
+                                  "description": "extension Models",
+                                  "dataType": "string",
+                                  "paramType": "path",
+                                  "defaultValue": "false",
+                                  "required": false
                                 }
 
                               ],
                               "summary": "Fetches resource list"
                           }
                       ],
-                      "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}",
+                      "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}",
                       "description": ""
                   }
               ]
@@ -505,6 +513,18 @@ class geozzyAPIView extends View
     geozzy::load('controller/apiFiltersController.php');
 
 
+    $validation = array(
+      'rextmodels'=> '#(.*)#',
+      'loc'=> '#(.*)#',
+      'type'=> '#(.*)#',
+      'filters'=> '#(.*)#',
+      'fields' => '#(.*)#',
+      'rtype' => '#(.*)#'
+
+    );
+
+    $extraParams = RequestController::processUrlParams($param, $validation);
+
     $queryParameters = apiFiltersController::resourceListOptions($param);
 
     if( isset($_POST['ids']) ) {
@@ -531,9 +551,40 @@ class geozzyAPIView extends View
       $allData = $valueobject->getAllData('onlydata');
 
 
-      $loc = DBUtils::decodeGeometry( $allData['loc'] );
-      $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
+      if( $extraParams['rextmodels'] == 'true') {
+        // Remove all REXT related models
 
+        $relatedModels = $valueobject->getRextModels();
+
+
+        foreach( $relatedModels as $relModelIdName => $relModel ) {
+
+          $rexData = array();
+          $rexData['MODELNAME'] = $relModelIdName;
+
+          $rexData = array_merge($rexData, $relModel->getAllData('onlydata') );
+          $allData['rextmodels'][] = $rexData;
+        }
+      }
+
+
+
+/*
+
+      // Remove all REXT related models
+      $relatedModels = $this->getRextModels();
+
+      foreach( $relatedModels as $relModelIdName => $relModel ) {
+        if($relModel) {
+          $relModel->delete();
+        }
+      }
+*/
+
+      if( isset($allData['loc']) ) {
+        $loc = DBUtils::decodeGeometry( $allData['loc'] );
+        $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
+      }
       echo $c.json_encode( $allData );
 
 
@@ -561,7 +612,7 @@ class geozzyAPIView extends View
       'bounds'=> '#(.*)#'
     );
 
-    $queryFilters = RequestController::processUrlParams($urlParams[1], $validation);
+    $queryFilters = RequestController::processUrlParams($urlParams, $validation);
 
 
 
