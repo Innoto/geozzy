@@ -87,10 +87,23 @@
       }
       .segredoItem{
         padding: 5px;
-
         .segredoItemImg{
           position: relative;
           overflow: hidden;
+          .icon{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 101;
+            width: 64px;
+            height: 64px;
+            -ms-transform: translate(-50%,-50%); /* IE 9 */
+           	-webkit-transform: translate(-50%,-50%); /* Safari */
+            transform: translate(-50%,-50%);
+            transition: top .45s ease-in-out;
+            -moz-transition: top .45s ease-in-out;
+            -webkit-transition: top .45s ease-in-out;
+          }
           .trama{
             background: rgba(51, 51, 51, 0.3);
             position: absolute;
@@ -100,6 +113,25 @@
             width: 100%;
             height: 100%;
             display: none;
+          }
+          .info{
+            position: absolute;
+            bottom: 0;
+            left: 0%;
+            z-index: 101;
+            padding: 20px;
+            color: @gzzColor-text-light;
+            opacity: 0;
+            transition: opacity .45s ease-in-out;
+            -moz-transition: opacity .45s ease-in-out;
+            -webkit-transition: opacity .45s ease-in-out;
+            h3{
+              text-align: center;
+              margin: 20px 0;
+            }
+            p{
+              text-align: justify;
+            }
           }
           img{
             width: 100%;
@@ -124,10 +156,33 @@
             .trama{
               display:block;
             }
+            .icon{
+              top: 40%;
+            }
+            .info{
+              opacity: 1;
+            }
           }
+        }//.segredoItemImg
+        &.segredoRincons .segredoItemImg .icon{
+          background: url('/media/img/rinconsIconAlt.png') no-repeat;
         }
-
+        &.segredoPaisaxes .segredoItemImg .icon{
+          background: url('/media/img/paisaxesIconAlt.png') no-repeat;
+        }
+        &.segredoPraias .segredoItemImg .icon{
+          background: url('/media/img/praiasIconAlt.png') no-repeat;
+        }
+        &.segredoXantares .segredoItemImg .icon{
+          background: url('/media/img/xantaresIconAlt.png') no-repeat;
+        }
+        &.segredoAloxamentos .segredoItemImg .icon{
+          background: url('/media/img/aloxamentosIconAlt.png') no-repeat;
+        }
+        &.segredoFestas .segredoItemImg .icon{
+          background: url('/media/img/festasIconAlt.png') no-repeat;
+        }
       }//.segredoItem
     }//.secSegredos
-  }//gzzSec
+  }//.gzzSec
 }//bodyContent

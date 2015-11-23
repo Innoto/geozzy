@@ -35,48 +35,78 @@
         <div class="segredoItem segredoRincons col-lg-4 col-sm-6">
           <a href="/rincons-con-encanto">
             <div class="segredoItemImg">
+              <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="/media/img/rincons.png">
+              <div class="info">
+                <h3>{t}Rincons con encanto{/t}</h3>
+                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+              </div>
             </div>
           </a>
         </div>
         <div class="segredoItem segredoPaisaxes col-lg-4 col-sm-6">
           <a href="/paisaxes-espectaculares">
             <div class="segredoItemImg">
+              <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="/media/img/paisaxes.png">
+              <div class="info">
+                <h3>{t}Paisaxes Espectaculares{/t}</h3>
+                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+              </div>
             </div>
           </a>
         </div>
         <div class="segredoItem segredoPraias col-lg-4 col-sm-6">
           <a href="/praias-ensono">
             <div class="segredoItemImg">
+              <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="/media/img/praias.png">
+              <div class="info">
+                <h3>{t}Praias de ensono{/t}</h3>
+                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+              </div>
             </div>
           </a>
         </div>
         <div class="segredoItem segredoXantares col-lg-4 col-sm-6">
           <a href="/sabrosos-xantares">
             <div class="segredoItemImg">
+              <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="/media/img/xantares.png">
+              <div class="info">
+                <h3>{t}Sabrosos Xantares{/t}</h3>
+                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+              </div>
             </div>
           </a>
         </div>
         <div class="segredoItem segredoAloxamentos col-lg-4 col-sm-6">
           <a href="/aloxamentos-con-encanto">
             <div class="segredoItemImg">
+              <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="/media/img/aloxamentos.png">
+              <div class="info">
+                <h3>{t}Aloxamentos con encanto{/t}</h3>
+                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+              </div>
             </div>
           </a>
         </div>
         <div class="segredoItem segredoFestas col-lg-4 col-sm-6">
           <a href="#">
             <div class="segredoItemImg">
+              <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="/media/img/festas.png">
+              <div class="info">
+                <h3>{t}Festas{/t}</h3>
+                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+              </div>
             </div>
           </a>
         </div>
