@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.collections) geozzy.models={};
+if(!geozzy.model) geozzy.model={};
 
-geozzy.models.ResourceModel = Backbone.Model.extend({
+geozzy.model.ResourceModel = Backbone.Model.extend({
   defaults: {
     id: false,
     title: ''

@@ -14,7 +14,7 @@
       resourceMap = new google.maps.Map( $( explorerclass+' .explorerMap').get( 0 ), mapOptions);
 
 
-      espazoNaturalCategories = new geozzy.collections.CategorytermCollection();
+      espazoNaturalCategories = new geozzy.collection.CategorytermCollection();
       espazoNaturalCategories.setUrlByIdName('rextAppEspazoNaturalType');
 
 
@@ -47,7 +47,7 @@
                                                             //console.debug(markerData.get('terms'))
 
                                                             if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
-                                                                      
+
                                                               if( jQuery.isNumeric( e.get('icon') )  ){
                                                                 iconUrl = '/cgmlImg/'+e.get('icon')+'/explorerMarker/marker.png';
                                                                 return false;

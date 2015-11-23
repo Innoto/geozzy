@@ -1,9 +1,9 @@
 var geozzy = geozzy || {};
-if(!geozzy.collections) geozzy.collections={};
+if(!geozzy.collection) geozzy.collection={};
 
-geozzy.collections.ResourceCollection = Backbone.Collection.extend({
+geozzy.collection.ResourceCollection = Backbone.Collection.extend({
   baseUrl: '/api/resource',
   url: false,
-  model: geozzy.models.ResourceModel,
+  model: geozzy.model.ResourceModel,
   sortKey: 'weight'
 });

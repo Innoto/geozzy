@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.collections) geozzy.collections={};
+if(!geozzy.collection) geozzy.collection={};
 
-geozzy.collections.CategoryCollection = Backbone.Collection.extend({
+geozzy.collection.CategoryCollection = Backbone.Collection.extend({
   url: '/api/core/categorylist',
-  model: geozzy.models.TaxonomygroupModel
+  model: geozzy.model.TaxonomygroupModel
 });
