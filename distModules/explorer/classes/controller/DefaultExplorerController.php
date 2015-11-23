@@ -35,7 +35,9 @@ class DefaultExplorerController extends ExplorerController {
           $row['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
         }
 
-        $row['img'] = $resourceDataArray['image'];
+        if( isset($resourceDataArray['image']) ) {
+          $row['img'] = $resourceDataArray['image'];
+        }
 
 
         echo json_encode( $row );
