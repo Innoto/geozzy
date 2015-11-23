@@ -97,19 +97,19 @@ class admin extends Module
   public $includesCommon = array(
     'styles/admin.less',
     'js/app.js',
-    'js/views/AdminView.js',
-    'js/views/CategoryEditorView.js',
-    'js/views/ResourcesStarredListView.js',
-    'js/routers/AdminRouter.js',
-    'js/models/TaxonomygroupModel.js',
-    'js/models/TaxonomytermModel.js',
-    'js/models/TopicModel.js',
-    'js/models/ResourceModel.js',
-    'js/collections/CategoryCollection.js',
-    'js/collections/CategorytermCollection.js',
-    'js/collections/TopicCollection.js',
-    'js/collections/StarredCollection.js',
-    'js/collections/ResourcesStarredCollection.js'
+    'js/view/AdminView.js',
+    'js/view/CategoryEditorView.js',
+    'js/view/ResourcesStarredListView.js',
+    'js/router/AdminRouter.js',
+    'js/model/TaxonomygroupModel.js',
+    'js/model/TaxonomytermModel.js',
+    'js/model/TopicModel.js',
+    'js/model/ResourceModel.js',
+    'js/collection/CategoryCollection.js',
+    'js/collection/CategorytermCollection.js',
+    'js/collection/TopicCollection.js',
+    'js/collection/StarredCollection.js',
+    'js/collection/ResourcesStarredCollection.js'
   );
 
   public function __construct() {
