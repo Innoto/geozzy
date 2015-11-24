@@ -60,10 +60,18 @@ class ExplorerAPIView extends View
                           },
                           {
                             "name": "request",
-                            "description": "( ,minimal | partial | checksum )",
+                            "description": "( minimal | partial )",
                             "dataType": "string",
                             "paramType": "path",
                             "defaultValue": "minimal",
+                            "required": true
+                          },
+                          {
+                            "name": "updatedfrom",
+                            "description": "updated from (UTC timestamp)",
+                            "dataType": "int",
+                            "paramType": "path",
+                            "defaultValue": "false",
                             "required": true
                           }
 
@@ -71,7 +79,7 @@ class ExplorerAPIView extends View
                         "summary": "Fetches explorer data"
                     }
                 ],
-                "path": "/explorer/explorer/{explorer}/request/{request}",
+                "path": "/explorer/explorer/{explorer}/request/{request}/updatedfrom/{updatedfrom}",
                 "description": ""
             }
         ]
@@ -132,7 +140,11 @@ class ExplorerAPIView extends View
     global $GEOZZY_EXPLORERS;
 
 
-    $validation = array('explorer'=> '#(.*)#', 'request'=> '#(.*)#');
+    $validation = array(
+      'explorer'=> '#(.*)#',
+      'request'=> '#(.*)#',
+      'updatedfrom' => '#\d+$#'
+    );
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
 
@@ -150,15 +162,20 @@ class ExplorerAPIView extends View
 
 
       if( $urlParamsList['request'] == 'minimal' ) {
-        $explorer->serveMinimal();
+        if( isset($urlParamsList['updatedfrom']) ) {
+          $explorer->serveMinimal( $urlParamsList['updatedfrom'] );
+        }
+        else {
+          $explorer->serveMinimal( );
+        }
+
       }
       else
       if( $urlParamsList['request'] == 'partial' ) {
         $explorer->servePartial();
       }
-      else
-      if( $urlParamsList['request'] == 'checksum' ) {
-        $explorer->serveChecksum();
+      else {
+        header("HTTP/1.0 404 Not Found");
       }
 
 
