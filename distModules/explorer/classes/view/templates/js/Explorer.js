@@ -63,7 +63,7 @@ geozzy.explorer = function( opts ) {
   that.exec = function() {
 
     // set multiple fetches
-    that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/minimal';
+    that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/minimal/updatedfrom/false';
 
 
     // render filters
@@ -229,7 +229,7 @@ geozzy.explorer = function( opts ) {
   that.fetchPartialList = function( resourcesToLoad, success ) {
     that.resourcePartialList.fetchAndCache({
       ids: resourcesToLoad,
-      url: that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/partial',
+      url: that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/partial/updatedfrom/false',
       success: function() {
         success();
       }
