@@ -121,7 +121,21 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec justo et odio tempus eleifend.</p>
 
       <div class="propose">
-        
+        <div class="row">
+          <div class="col-lg-6">
+            <select>
+              <option value="1">Option1</option>
+              <option value="2">Option2</option>
+              <option value="3">Option3</option>
+              <option value="4">Option4</option>
+            </select>
+          </div>
+          <div class="col-lg-6">
+            <button>{t}Propoñer{/t}</button>
+            <span>(?) {t}qué lugares podo suxerir{/t}</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
