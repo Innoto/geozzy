@@ -26,10 +26,10 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $this->accomCtrl = new RExtAccommodationController( $this );
     $rExtFieldNames = $this->accomCtrl->manipulateForm( $form );
     // Elimino los campos de la extensión que no quiero usar
-    foreach ($rExtFieldNames as $i => $fieldName){
-      if ($fieldName == 'singleRooms' || $fieldName == 'doubleRooms' || $fieldName == 'tripleRooms' || $fieldName == 'familyRooms'
-          || $fieldName == 'beds' || $fieldName == 'accommodationBrand' || $fieldName == 'accommodationUsers'){
-        $form->removeField('rExtAccommodation_'.$rExtFieldNames[$i]);
+    foreach( $rExtFieldNames as $i => $fieldName ) {
+      if( $fieldName == 'singleRooms' || $fieldName == 'doubleRooms' || $fieldName == 'tripleRooms' || $fieldName == 'familyRooms'
+          || $fieldName == 'beds' || $fieldName == 'accommodationBrand' || $fieldName == 'accommodationUsers' ) {
+        $form->removeField( 'rExtAccommodation_'.$rExtFieldNames[$i] );
       }
     }
 
@@ -56,6 +56,129 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     return( $rTypeFieldNames );
   } // function manipulateForm()
+
+
+
+
+
+
+
+  public function getFormBlockInfo( FormController $form ) {
+    error_log( "RTypeHotelController: getFormBlockInfo()" );
+
+    $formBlockInfo = array(
+      'template' => false,
+      'data' => false,
+      'dataForm' => false,
+      'ext' => array()
+    );
+
+    $formBlockInfo['dataForm'] = array(
+      'formOpen' => $form->getHtmpOpen(),
+      'formFieldsArray' => $form->getHtmlFieldsArray(),
+      'formFieldsHiddenArray' => array(),
+      'formFields' => $form->getHtmlFieldsAndGroups(),
+      'formClose' => $form->getHtmlClose(),
+      'formValidations' => $form->getScriptCode()
+    );
+
+    if( $resId = $form->getFieldValue( 'id' ) ) {
+      $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
+    }
+
+    $this->accomCtrl = new RExtAccommodationController( $this );
+    $accomViewInfo = $this->accomCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->accomCtrl->rExtName ] = $accomViewInfo;
+
+    $this->contactCtrl = new RExtContactController( $this );
+    $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
+
+    // TEMPLATE panel principa del form. Contiene los elementos globales del form.
+    $templates['formBase'] = new Template();
+    $templates['formBase']->setTpl( 'rTypeFormBase.tpl', 'rtypeHotel' );
+    $templates['formBase']->assign( 'title', __('Main Resource information') );
+    $templates['formBase']->assign( 'res', $formBlockInfo );
+
+    $formFieldsNames = array_merge(
+      $form->multilangFieldNames( 'title' ),
+      $form->multilangFieldNames( 'shortDescription' ),
+      $form->multilangFieldNames( 'mediumDescription' ),
+      $form->multilangFieldNames( 'content' )
+    );
+    $formFieldsNames[] = 'externalUrl';
+    $formFieldsNames[] = 'topics';
+    $formFieldsNames[] = 'starred';
+    $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel estado de publicacion
+    $templates['publication'] = new Template();
+    $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['publication']->assign( 'title', __( 'Publication' ) );
+    $templates['publication']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'published', 'weight' );
+    $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel SEO
+    $templates['seo'] = new Template();
+    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['seo']->assign( 'title', __( 'SEO' ) );
+    $templates['seo']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array_merge(
+      $form->multilangFieldNames( 'urlAlias' ),
+      $form->multilangFieldNames( 'headKeywords' ),
+      $form->multilangFieldNames( 'headDescription' ),
+      $form->multilangFieldNames( 'headTitle' )
+    );
+    $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel reservas
+    $templates['reservation'] = new Template();
+    $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['reservation']->assign( 'title', __( 'Reservation' ) );
+    $templates['reservation']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'rExtAccommodation_reservationURL', 'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail' );
+    $templates['reservation']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE con todos los paneles
+    $templates['adminFull'] = new Template();
+    $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
+    $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
+    // COL8
+    $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
+    // COL4
+    $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
+
+/*
+$cols['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
+$cols['col8']['collections'] = array( $formPartBlock, __('Collections of related resources'), 'fa-th-large' );
+$cols['col8']['multimedia'] = array( $formPartBlock, __('Multimedia galleries'), 'fa-th-large' );
+$cols['col4']['image'] = array( $formPartBlock, __( 'Select a image' ), 'fa-file-image-o' );
+$cols['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
+$cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
+*/
+
+    // TEMPLATE en bruto con todos los elementos del form
+    $templates['full'] = new Template();
+    $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'rtypeHotel' );
+    $templates['full']->assign( 'res', $formBlockInfo );
+
+
+    $formBlockInfo['template'] = $templates;
+
+    return $formBlockInfo;
+  }
+
+
+
+
 
 
   /**
@@ -274,6 +397,21 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+
+    $resData = $this->defResCtrl->getResourceData( false, true );
+
+    $collections = $this->defResCtrl->getCollectionsInfo( $resData[ 'id' ] );
+    //error_log( "collections = ". print_r( $collections, true ) );
+
+    if( $collections ) {
+      foreach( $collections['options'] as $collectionId => $values) {
+
+        $collectionBlock = $this->defResCtrl->getCollectionBlock( $collectionId );
+        if( $collectionBlock ) {
+          $template->addToBlock( 'collections', $collectionBlock );
+        }
+      }
+    }
 
 
 

@@ -196,8 +196,9 @@
     {/if}
   </section>
 
+  <!-- Galería Multimedia
   <section class="gallerySec container gzSection">
-    <!-- Galería Multimedia -->
+
     <div id="imageGallery" style="display:none;">
 
         <img alt="Image 1 Title" src="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg"
@@ -233,27 +234,26 @@
             data-description="Image 5 Description">
 
     </div>
-  </section>
-
-<!--
-  <div class="reservationSec container gzSection">
-    <div class="{$res.data.rTypeIdName}">
-      <p> {$res.data.rTypeIdName} Ext RESERVAS </p>
-      <div class="{$res.data.rTypeIdName} accommodation">
-        {$rextAccommodationBlock}
-      </div>
-    </div>
-  </div>
--->
+  </section>-->
 
   <section class="collectionSec container gzSection">
-    {if isset($res.data.collections)}
-    <div class="collections">
-      <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
-      {$res.data.collections}
+    <h4>{t}Related resources{/t}</h4>
+    {$collections}
+    <div id="collectionsAllGallery" style="display:none;">
     </div>
-    {/if}
+    <div class="more">{t}Ver más{/t}</div>
   </section>
+
+  <!--
+    <div class="reservationSec container gzSection">
+      <div class="{$res.data.rTypeIdName}">
+        <p> {$res.data.rTypeIdName} Ext RESERVAS </p>
+        <div class="{$res.data.rTypeIdName} accommodation">
+          {$rextAccommodationBlock}
+        </div>
+      </div>
+    </div>
+  -->
 
 </div><!-- /.resource .resViewBlock -->
 <!-- /rTypeViewBlock.tpl en rTypeHotel module -->

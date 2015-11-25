@@ -12,8 +12,8 @@ class AdminViewResource extends AdminViewMaster {
 
 
   /**
-  * Section list user
-  **/
+    Section list user
+   **/
   public function listResources() {
 
     $template = new Template( $this->baseDir );
@@ -206,7 +206,31 @@ class AdminViewResource extends AdminViewMaster {
 
 
 
-  public function resourceShowForm( $formName, $formUrl, $recursoData = false, $resCtrl = false ) {
+  public function resourceShowForm( $formName, $urlAction, $valuesArray = false, $resCtrl = false ) {
+
+    if( !$resCtrl ) {
+      $resCtrl = new ResourceController();
+    }
+
+
+    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
+    $formBlockInfo['template']['adminFull']->exec();
+
+    /*
+    // Template base sin columnas
+    $this->template->assign( 'headTitle', __('Edit Resource') );
+    $this->template->setTpl( 'adminContent-plain.tpl', 'admin' );
+    if( $formBlockInfo['template'] ) {
+      $this->template->setBlock( 'contentSection', $formBlockInfo['template']['full'] );
+      $this->template->assign( 'res', array( 'data' => $formBlockInfo['data'], 'ext' => $formBlockInfo['ext'] ) );
+    }
+
+    $this->template->exec();
+    */
+  }
+
+
+  public function resourceShowForm_PRE( $formName, $formUrl, $recursoData = false, $resCtrl = false ) {
 
     if( !$resCtrl ) {
       $resCtrl = new ResourceController();
