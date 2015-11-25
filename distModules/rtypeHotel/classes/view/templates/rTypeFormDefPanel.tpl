@@ -9,4 +9,8 @@
 {/foreach}
 {/if}
 
+{if isset($blockContent)}
+  {$blockContent}
+{/if}
+
 {/block}{*/content*}

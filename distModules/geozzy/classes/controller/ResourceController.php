@@ -1540,15 +1540,19 @@ class ResourceController {
        $collectionData[ 'resources' ][] = $res->getter( 'resource' );
      }
    }
-
+   $i = 0;
    foreach ($collectionData['resources'] as $colId){
      $resourceModel = new ResourceModel();
      $resource = $resourceModel->listItems(array('filters' => array('id' => $colId)))->fetch();
-
-     $colResources[$colId] = array ('name'=> $resource->getter('title_'.$this->actLang), 'img' => $resource->getter('image'));
+     $colResourcesAll[$colId] = array ('name'=> $resource->getter('title_'.$this->actLang), 'img' => $resource->getter('image'));
+     if($i < 4){
+       $colResources[$colId] = array ('name'=> $resource->getter('title_'.$this->actLang), 'img' => $resource->getter('image'));
+       $i = $i + 1;
+     }
    }
 
    $template->assign( 'collectionResources', $colResources );
+   $template->assign( 'collectionResourcesAll', $colResourcesAll );
 
 
    $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );

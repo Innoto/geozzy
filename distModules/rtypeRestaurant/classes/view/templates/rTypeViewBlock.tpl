@@ -181,9 +181,11 @@
 {if isset($collections)}
   <section class="collectionSec container gzSection">
     <h4>{t}Related resources{/t}</h4>
-    <div id="collectionsGallery" style="display:none;">
-      {$collections}
+    {$collections}
+    <div id="collectionsAllGallery" style="display:none;">
     </div>
+    <div class="more">{t}Ver más...{/t}</div>
+    <div class="less" style="display:none;">{t}Ver menos{/t}</div>
   </section>
 {/if}
 

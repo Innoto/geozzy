@@ -243,12 +243,12 @@
     }
 
     .collectionSec{
-      .more{
-        padding:5px;
-        background-color:violet;
-        color:#fff;
-        width:80px;
+      .more, .less{
+        text-transform: uppercase;
+        margin-top:7px;
         float:right;
+        font-weight:bold;
+        cursor: pointer;
       }
     }
 
@@ -272,6 +272,12 @@
         }
       }
     }
+
+    .collectionSec{
+      .more, .less{
+        color:@gzzColor-aloxamento;
+      }
+    }
   }
 
   .rtypeRestaurant{
@@ -280,6 +286,11 @@
     }
     .reservationBtb:hover{
       background-color: @gzzColor-xantares + #111111;
+    }
+    .collectionSec{
+      .more, .less{
+        color:@gzzColor-xantares;
+      }
     }
   }
 

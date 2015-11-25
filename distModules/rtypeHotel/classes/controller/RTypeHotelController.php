@@ -144,6 +144,85 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $formFieldsNames = array( 'rExtAccommodation_reservationURL', 'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail' );
     $templates['reservation']->assign( 'formFieldsNames', $formFieldsNames );
 
+    // TEMPLATE panel contacto
+    $templates['location'] = new Template();
+    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'rtypeHotel' );
+    $templates['location']->assign( 'title', __( 'Location' ) );
+    $templates['location']->assign( 'res', $formBlockInfo );
+    $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
+
+    // TEMPLATE panel localización
+    $templates['contact'] = new Template();
+    $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['contact']->assign( 'title', __( 'Contact' ) );
+    $templates['contact']->setBlock( 'blockContent', $contactViewInfo['template']['basic'] );
+
+    // TEMPLATE panel multimedia
+    $templates['multimedia'] = new Template();
+    $templates['multimedia']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['multimedia']->assign( 'title', __( 'Multimedia galleries' ) );
+    $templates['multimedia']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'multimediaGalleries', 'addMultimediaGalleries' );
+    $templates['multimedia']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel collections
+    $templates['collections'] = new Template();
+    $templates['collections']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['collections']->assign( 'title', __( 'Collections of related resources' ) );
+    $templates['collections']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'collections', 'addCollections' );
+    $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel image
+    $templates['image'] = new Template();
+    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['image']->assign( 'title', __( 'Select a image' ) );
+    $templates['image']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'image' );
+    $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel categorization
+    $templates['categorization'] = new Template();
+    $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['categorization']->assign( 'title', __( 'Select a image' ) );
+    $templates['categorization']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',
+      'rExtAccommodation_averagePrice', 'rExtAccommodation_accommodationFacilities',
+      'rExtAccommodation_accommodationServices');
+    $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // Recuperamos las temáticas que tiene asociadas el recurso
+    // $allTopics = $this->getOptionsTopic();
+    // $resourceTopicModel = new ResourceTopicModel();
+    // $resourceTopicList = $resourceTopicModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    // $topicsHtml = '';
+    // if( $resourceTopicList ) {
+    //   while( $topicList = $resourceTopicList->fetch() ) {
+    //     $allTopics[ $topicList->getter( 'topic' ) ];
+    //     $topicsHtml = $topicsHtml.'<div class="row rowWhite"><div class="infoCol col-md-4"></div>'.
+    //       '<div class="infoColData col-md-8">'.$allTopics[ $topicList->getter( 'topic' ) ].'</div></div>';
+    //   }
+    // }
+    //
+    // $templates['info'] = new Template();
+    // $templates['image']->setTpl( 'rTypeFormInfoPanel.tpl', 'rtypeHotel' );
+    // $templates['image']->assign( 'allTopics', $allTopics );
+    // $templates['image']->assign( 'resourceTopicList', $resourceTopicList );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // TEMPLATE con todos los paneles
     $templates['adminFull'] = new Template();
@@ -152,9 +231,15 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
 
 /*
 $cols['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
