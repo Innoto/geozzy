@@ -139,5 +139,9 @@
       </div>
     </div>
   </section>
-  <section class="gzzSec secRecomendamos"></section>
+  <section class="gzzSec secRecomendamos">
+    <div class="container">
+
+    </div>
+  </section>
 {/block}
