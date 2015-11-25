@@ -132,6 +132,45 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
 
 
   /**
+    getFormBlockInfo
+  */
+  public function getFormBlockInfo( FormController $form ) {
+    error_log( "rextEatAndDrinkController: getFormBlockInfo()" );
+
+    $formBlockInfo = array(
+      'template' => false,
+      'data' => false,
+      'dataForm' => false
+    );
+
+    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
+    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+
+    $formBlockInfo['dataForm'] = array(
+      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
+      'formFields' => $form->getHtmlFieldsAndGroups(),
+    );
+
+    if( $form->getFieldValue( 'id' ) ) {
+      $formBlockInfo['data'] = $this->getRExtData();
+    }
+
+    $templates['full'] = new Template();
+    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    $templates['full']->assign( 'rExtName', $this->rExtName );
+    $templates['full']->assign( 'rExt', $formBlockInfo );
+
+    $formBlockInfo['template'] = $templates;
+
+    return $formBlockInfo;
+  }
+
+
+
+
+
+
+  /**
     Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( FormController $form ) {
