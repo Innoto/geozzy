@@ -115,7 +115,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     // TEMPLATE panel estado de publicacion
     $templates['publication'] = new Template();
-    $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['publication']->assign( 'title', __( 'Publication' ) );
     $templates['publication']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'published', 'weight' );
@@ -124,7 +124,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     // TEMPLATE panel SEO
     $templates['seo'] = new Template();
-    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['seo']->assign( 'title', __( 'SEO' ) );
     $templates['seo']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array_merge(
@@ -138,7 +138,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     // TEMPLATE panel reservas
     $templates['reservation'] = new Template();
-    $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['reservation']->assign( 'title', __( 'Reservation' ) );
     $templates['reservation']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'rExtAccommodation_reservationURL', 'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail' );
@@ -153,13 +153,13 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     // TEMPLATE panel localización
     $templates['contact'] = new Template();
-    $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['contact']->assign( 'title', __( 'Contact' ) );
     $templates['contact']->setBlock( 'blockContent', $contactViewInfo['template']['basic'] );
 
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();
-    $templates['multimedia']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['multimedia']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['multimedia']->assign( 'title', __( 'Multimedia galleries' ) );
     $templates['multimedia']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'multimediaGalleries', 'addMultimediaGalleries' );
@@ -167,7 +167,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     // TEMPLATE panel collections
     $templates['collections'] = new Template();
-    $templates['collections']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['collections']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['collections']->assign( 'title', __( 'Collections of related resources' ) );
     $templates['collections']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'collections', 'addCollections' );
@@ -175,7 +175,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     // TEMPLATE panel image
     $templates['image'] = new Template();
-    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['image']->assign( 'title', __( 'Select a image' ) );
     $templates['image']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'image' );
@@ -183,7 +183,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     // TEMPLATE panel categorization
     $templates['categorization'] = new Template();
-    $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['categorization']->assign( 'title', __( 'Select a image' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',

@@ -189,7 +189,8 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     }
 
     $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'rextContact' );
+    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
 
     $formBlockInfo['template'] = $templates;

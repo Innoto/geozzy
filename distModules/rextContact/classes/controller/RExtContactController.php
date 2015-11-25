@@ -159,7 +159,8 @@ class RExtContactController extends RExtController implements RExtInterface {
     $templates['basic']->assign('timetable', $form->multilangFieldNames( 'rExtContact_timetable' ));
 
     $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'rextContact' );
+    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
 
     $formBlockInfo['template'] = $templates;

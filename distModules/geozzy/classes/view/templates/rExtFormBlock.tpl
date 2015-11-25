@@ -1,6 +1,6 @@
 <!-- rExtFormBlock.tpl en  module -->
 
-<div class="rExt formBlock">
+<div class="{$rExtName} formBlock">
 
 {foreach $rExt.dataForm.formFieldsArray as $key=>$formField}
   {if !in_array($key,$formFieldsHiddenArray)}
