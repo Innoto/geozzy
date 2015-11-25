@@ -85,6 +85,20 @@ class RExtController {
     return $prefixArray;
   }
 
+  public function prefixArray( $valuesArray ) {
+    if( is_array( $valuesArray ) ) {
+      $prefixArray = array();
+      foreach( $valuesArray as $value ) {
+        $prefixArray[] = $this->addPrefix( $value );
+      }
+    }
+    else {
+      $prefixArray = $valuesArray;
+    }
+
+    return $prefixArray;
+  }
+
   public function addPrefix( $text ) {
 
     return $this->prefix . $text;

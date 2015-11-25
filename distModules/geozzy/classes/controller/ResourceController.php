@@ -414,8 +414,7 @@ class ResourceController {
     // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
     $form = $this->getBaseFormObj( $formName, $urlAction, $valuesArray );
 
-    $this->rTypeCtrl = $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
-    if( $this->rTypeCtrl ) {
+    if( $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) ) ) {
       $rTypeFieldNames = $this->rTypeCtrl->manipulateForm( $form );
       // error_log( 'rTypeFieldNames: '.print_r( $rTypeFieldNames, true ) );
     }
@@ -491,6 +490,28 @@ class ResourceController {
 
     return( $template );
   }
+
+
+
+
+
+
+
+
+  public function getFormBlockInfo( $formName, $urlAction, $valuesArray = false ) {
+    error_log( "GeozzyResourceView: getFormBlockInfo()" );
+
+    $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
+
+    $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
+
+    return( $formBlockInfo );
+  }
+
+
+
+
+
 
 
   /**
