@@ -28,8 +28,8 @@ class MasterView extends View
     echo 'PAGE404: Recurso non atopado';
   }
   function main(){
-    $this->template->addClientScript('js/TimeDebuger.js', 'common');
-    $this->template->addClientStyles('styles/master.less');
+    $this->template->addClientScript('js/portada.js');
+    $this->template->addClientStyles('styles/masterPortada.less');
     $this->template->setTpl('portada.tpl');
     $this->template->exec();
   }

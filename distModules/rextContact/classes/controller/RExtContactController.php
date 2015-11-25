@@ -77,6 +77,10 @@ class RExtContactController extends RExtController implements RExtInterface {
         'translate' => true,
         'params' => array( 'label' => __( 'Opening times' ), 'type' => 'textarea' ),
         'rules' => array( 'maxlength' => 2000 )
+      ),
+      'url' => array(
+        'params' => array( 'label' => __( 'Contact url' ) ),
+        'rules' => array( 'maxlength' => 2000 )
       )
     );
 
@@ -254,8 +258,6 @@ class RExtContactController extends RExtController implements RExtInterface {
 
     if( $rExtViewBlockInfo['data'] ) {
       // TODO: esto será un campo da BBDD
-      $rExtViewBlockInfo['data']['web'] = 'Hai que quitar esto e collese a url do modelo';
-
       $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
 
 

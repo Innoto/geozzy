@@ -3,10 +3,21 @@ if(!geozzy.filters) geozzy.filters={};
 
 geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
 
-  template: _.template(" <% if(title){ %> <label><%= title %>:</label><%}%>  <select class='<%= filterClass %>'><%= options %></select>"),
-  templateOption: _.template("<option value='<%- value %>'><%- title %></option>"),
+  template: _.template(
+                          " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+                          "<select class='<%= filterClass %>'>"+
+                            "<% if(defaultOption){ %> <option value='<%- defaultOption.value %>' icon='<%- defaultOption.icon %>'><%- defaultOption.title %></option> <%}%>"+
+                            "<%= options %>"+
+                          "</select>"
+                      ),
+  templateOption: _.template("<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"),
 
+  initialize: function( opts ) {
+    this.options.defaultOption = false;
 
+    $.extend(true, this.options, opts);
+
+  },
 
   filterAction: function( model ) {
     var ret = false;
@@ -28,7 +39,6 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
   },
 
   render: function() {
-
     var that = this;
 
     var filterOptions = '';
@@ -36,14 +46,16 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
 
 
-    $.each(that.data, function(i,e){
+
+
+    $.each(that.options.data.toJSON(), function(i,e){
       filterOptions += that.templateOption(e);
     });
 
 
 
 
-    var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.title, options: filterOptions } );
+    var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.options.title, defaultOption: that.options.defaultOption, options: filterOptions } );
 
     // Print filter html into div
     if( !$(  that.options.mainCotainerClass+' .' +that.options.containerClass ).length ) {

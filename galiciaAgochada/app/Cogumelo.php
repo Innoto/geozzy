@@ -45,6 +45,12 @@ class Cogumelo extends CogumeloClass
       "params" => array("raleway"),
       "installer" => "bower",
       "includes" => array("raleway.css")
+    ),
+    array(
+      "id" =>"unitegallery",
+      "params" => array("unitegallery"),
+      "installer" => "bower",
+      "includes" => array("package/unitegallery/js/unitegallery.min.js", "package/unitegallery/css/unite-gallery.css","package/unitegallery/themes/tiles/ug-theme-tiles.js", "package/unitegallery/themes/default/ug-theme-default.css")
     )
   );
   public $includesCommon = array( );

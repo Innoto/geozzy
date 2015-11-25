@@ -9,3 +9,7 @@
     {include file="explorer///explorer.tpl"}
   </div>
 {/block}
+
+{block name="footerContent"}
+
+{/block}

@@ -64,6 +64,16 @@ body {
   width: 100%;
   padding-top: @headerTitleBarHeight;
 
+  .gzzSec{
+    padding: 20px 0;
+
+    h2{
+      margin: 20px 0;
+      text-transform: uppercase;
+      font-size: 32px;
+    }
+  }
+
   .titleBar{
     padding: 5px 0px;
     height: @titleBarHeight;
@@ -82,7 +92,6 @@ body {
       z-index: 110;
       height: 64px;
       width: 64px;
-      top: -2px;
     }
     h1{
       font-size: 22px;
@@ -94,9 +103,65 @@ body {
       padding-left: 74px;
       color: @gzzColor-text-dark-2;
       font-weight: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
+.footerContent{
+  background: @gzzColor-bck-8;
+  padding: 40px 0 50px 0;
+  color: @gzzColor-text-light;
+  font-size: 16px;
+  .logo{
+    margin-top: 22px;
+  }
+  h3{
+    font-size: 22px;
+  }
+  a{ color: @gzzColor-text-light; }
+  ul{
+    list-style: none;
+    li{
+      margin: 5px 0;
+    }
+    &.rs{
+      margin: 10px 0;
+      li{
+        margin: 5px;
+        font-size: 24px;
+        text-align: center;
+        float: left;
+        padding: 10px;
+        width: 45px;
+        height: 45px;
+        border: 1px solid @gzzColor-text-light;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+    }// ul.rs
+  }//ul
+  .footerSearch{
+    margin-top: 25px;
+  }
+  .poweredGzzy{
+
+    position: relative;
+    text-align: right;
+    vertical-align: text-bottom;
+    margin-top: 70px;
+    span{
+      margin-top: 45px;
+      display: block;
+      float: right;
+      font-size: 13px;
+
+    }
+    img{ margin-left: 20px; float: right; }
+  }
+}//footerContent
+
 
 .commonFav{
   list-style: none;

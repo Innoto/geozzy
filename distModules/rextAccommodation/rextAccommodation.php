@@ -25,27 +25,44 @@ class rextAccommodation extends Module {
       'sortable' => 1,
       'initialTerms' => array(
         array(
-          'idName' => 'hotel',
+          'idName' => 'hoteles',
           'name' => array(
-            'en' => 'Hotel',
-            'es' => 'Hotel',
-            'gl' => 'Hotel'
+            'en' => 'Hotels',
+            'es' => 'Hoteles',
+            'gl' => 'Hoteis'
           )
         ),
         array(
-          'idName' => 'hostel',
+          'idName' => 'albergues',
           'name' => array(
-            'en' => 'Hostel',
-            'es' => 'Hostel',
-            'gl' => 'Hostel'
+            'en' => 'Hostels',
+            'es' => 'Albergues',
+            'gl' => 'Albergues'
           )
         ),
         array(
           'idName' => 'camping',
           'name' => array(
-            'en' => 'Camping',
-            'es' => 'Camping',
-            'gl' => 'Camping'
+            'en' => 'Bungalows-campings',
+            'es' => 'Bungalós-campings',
+            'gl' => 'Bungalós-campings'
+          )
+        ),
+        array(
+          'idName' => 'casasrurales',
+          'name' => array(
+            'en' => 'Bed & Breakfasts',
+            'es' => 'Casas rurales',
+            'gl' => 'Casas rurais'
+          )
+        )
+        ,
+        array(
+          'idName' => 'paradores',
+          'name' => array(
+            'en' => 'Palace Hotels',
+            'es' => 'Paradores',
+            'gl' => 'Paradores'
           )
         )
       )
@@ -117,7 +134,7 @@ class rextAccommodation extends Module {
       'sortable' => 1,
       'initialTerms' => array(
         array(
-          'idName' => 'telephone',
+          'idName' => 'telefono',
           'name' => array(
             'en' => 'Telephone',
             'es' => 'Teléfono',
@@ -125,11 +142,59 @@ class rextAccommodation extends Module {
           )
         ),
         array(
-          'idName' => 'roomservice',
+          'idName' => 'serviciodehabitacions',
           'name' => array(
             'en' => 'Room service',
             'es' => 'Servicio de habitaciones',
             'gl' => 'Servicio de habitacións'
+          )
+        ),
+        array(
+          'idName' => 'transportepublico',
+          'name' => array(
+            'en' => 'Public transportation available',
+            'es' => 'Accesible transporte público',
+            'gl' => 'Accesible transporte público'
+          )
+        ),
+        array(
+          'idName' => 'wifi',
+          'name' => array(
+            'en' => 'WiFi',
+            'es' => 'WiFi',
+            'gl' => 'WiFi'
+          )
+        ),
+        array(
+          'idName' => 'tarxeta',
+          'name' => array(
+            'en' => 'Credit card accepted',
+            'es' => 'Tarjeta de crédito',
+            'gl' => 'Tarxeta de crédito'
+          )
+        ),
+        array(
+          'idName' => 'almorzo',
+          'name' => array(
+            'en' => 'Breakfast',
+            'es' => 'Desayuno',
+            'gl' => 'Almorzo'
+          )
+        ),
+        array(
+          'idName' => 'xantares',
+          'name' => array(
+            'en' => 'Lunch and dinner',
+            'es' => 'Comida y cena',
+            'gl' => 'Xantar e cea'
+          )
+        ),
+        array(
+          'idName' => 'accesible',
+          'name' => array(
+            'en' => 'Wheelchair accessible',
+            'es' => 'Accesible discapacitados',
+            'gl' => 'Accesible discapacitados'
           )
         )
       )
@@ -160,6 +225,38 @@ class rextAccommodation extends Module {
             'en' => 'Parking',
             'es' => 'Aparcamiento',
             'gl' => 'Aparcamento'
+          )
+        ),
+        array(
+          'idName' => 'piscina',
+          'name' => array(
+            'en' => 'Swimming pool',
+            'es' => 'Piscina',
+            'gl' => 'Piscina'
+          )
+        ),
+        array(
+          'idName' => 'cocina',
+          'name' => array(
+            'en' => 'Common kitchen',
+            'es' => 'Cocina común',
+            'gl' => 'cociña común'
+          )
+        ),
+        array(
+          'idName' => 'tv',
+          'name' => array(
+            'en' => 'TV',
+            'es' => 'TV',
+            'gl' => 'TV'
+          )
+        ),
+        array(
+          'idName' => 'lavadora',
+          'name' => array(
+            'en' => 'Washing machine',
+            'es' => 'Lavadora',
+            'gl' => 'Lavadora'
           )
         )
       )

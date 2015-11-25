@@ -5,27 +5,27 @@
 
   .gzSection{
     /* Todos os segmentos */
-    margin-bottom:10px;
+    margin-bottom:20px;
   }
 
-  .titleSec{
+  .titleBar{
 
-    h1{
-      font-size:22px;
-      margin-left:60px;
-    }
+    .stars{
+      margin-top:12px;
 
-    img{
-      position:absolute;
-      left:0px;
-    }
-
-    .stars{margin-top:22px;
-      .fa{font-size:18px;}
+      .fa{
+        font-size:18px;
+        float:right;
+        margin-right:5px;
+      }
+      .selected{
+        color:#FED671;
+      }
     }
   }
 
   .resource{
+    font-size:16px;
 
     .imageSec{
 
@@ -41,7 +41,7 @@
           right:0px;
           background-color: rgba(255,255,255,0.6);
           text-align:center;
-          padding:10px 20px;
+          padding:12px 25px;
 
           .priceText{
             font-size:11px;
@@ -51,23 +51,24 @@
 
           .priceAmount{
             font-weight:bold;
-            .num{font-size:26px;}
-            .unit{font-size:20px;}
+            font-size:18px;
+            .num{font-size:28px;}
           }
 
           .reservationBtb{
-            background-color: @gzzColor-aloxamento;
-            padding:2px;
+            padding:2px 8px;
             border-radius:25px;
             color:@gzzColor-bck-1;
-            font-size:16px;
+            font-size:13px;
             cursor:pointer;
-
             a{
               color:@gzzColor-bck-1;
             }
 
           }
+        }
+        .reservationData{
+          .reservationBtb{font-size:13px;}
         }
 
       }
@@ -77,41 +78,57 @@
     .contentSec{
       background-color: @gzzColor-text-light;
 
-      .social{
-        li{
-          font-size:26px;
-          cursor: pointer;
+      .typeBar{
+        height:60px;
+
+        ul.type{
+
+          li{
+            list-style: none;
+            margin-top:10px;
+
+            img{
+              float:left;
+              margin-left:-5px;
+            }
+            .name{
+              font-size: 14px;
+              float:left;
+              margin-top:7px;
+            }
+          }
         }
 
-        li.elementFav{
-          .commonFav;
-           float:right;
-           margin-right:14px;
+        ul.social{
+          height:50px;
+
+          li{
+            margin-top:12px;
+            font-size:26px;
+            cursor: pointer;
+          }
+
+          li.elementFav{
+            .commonFav;
+             float:right;
+             margin-right:14px;
+           }
+           li.elementShare{
+            list-style: none;
+            float:right;
+           }
          }
-         li.elementShare{
-          list-style: none;
-          float:right;
-         }
-       }
 
-      .typeBar{
-        height:30px;
-        .type{margin-top:15px;font-size: 16px;}
-
-        .social{margin-top:10px;}
-      }
-
-      .shortDescription{
-        padding:20px;
-        font-size:20px;
       }
 
       .taxonomyBar{
+        height:40px;
         padding: 10px 0px;
+
         .taxStars{}
+
         .taxIcons{
           .icon{
-            background-color:yellow;
             display:inline;
             float:right;
             margin-left:10px;
@@ -119,13 +136,26 @@
         }
       }
 
+      .shortDescription{
+        font-size:20px;
+        margin-bottom:20px;
+      }
+
       .mediumDescription{
-        margin-top:10px;
+        margin-top:15px;
         text-align:justify;
       }
     }
 
     .locationSec{
+
+      .locationLight{
+        background: url('../img/light_trama.png') repeat;
+        padding-bottom:8px;
+      }
+      .locationDark{
+
+        background: url('../img/dark_trama.png') repeat;}
 
 
 
@@ -137,7 +167,7 @@
           .title{
             font-size: @medium-title;
             line-height:70px;
-            max-width:200px;
+            cursor:pointer;
 
             .fa{
               font-size:30px;
@@ -162,6 +192,7 @@
             color:#333;
             margin-left:auto;
             margin-right:auto;
+            background-color:@gzzColor-bck-1;
 
             .fa{
               font-size:24px;
@@ -185,9 +216,10 @@
         .rExtContact{
           label{display:none;}
           div{
-            margin-top:20px;
+            margin-top:10px;
+
             .fa{
-              font-size:18px;
+              font-size:22px;
               margin-right:10px;
             }
           }
@@ -198,22 +230,62 @@
       }
 
       .map{
-        height:620px;
-        background-color:@gzzColor-bck-4;
+        height:420px;
+        background: url('../img/mapa.png');
       }
 
     }
+
+    .gallerySec{
+      #imageGallery{
+
+      }
+    }
+
+    .collectionSec{
+      .more{
+        padding:5px;
+        background-color:violet;
+        color:#fff;
+        width:80px;
+        float:right;
+      }
+    }
+
   }
 
   /* Fichas específicas */
-  .rtypeHotel .locationSec{
-    background-color: @gzzColor-bck-2;
+  .rtypeHotel{
+    .reservationBtb{
+      background-color: @gzzColor-aloxamento;
+    }
+    .contentSec{
+      .taxStarsBox{
+        border:2px solid @gzzColor-bck-7;
+        padding:6px 6px 3px 6px;
+        display:inline;
+        font-weight:bold;
+        border-radius:2px;
+        i{
+          font-size:18px;
+          vercial-align: center;
+        }
+      }
+    }
   }
 
-  .rtypeAppEspazoNatural .locationSec{
-    background-color: #46D3EF;
-    color:#fff;
+  .rtypeRestaurant{
+    .reservationBtb{
+      background-color: @gzzColor-xantares;
+    }
+    .reservationBtb:hover{
+      background-color: @gzzColor-xantares + #111111;
+    }
   }
+
+  .rtypeAppEspazoNatural{  }
+
+  .rtypeAppLugar{  }
 
 
 }

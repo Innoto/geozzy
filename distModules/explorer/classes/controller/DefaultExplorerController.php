@@ -4,12 +4,22 @@ explorer::load('controller/ExplorerController.php');
 
 class DefaultExplorerController extends ExplorerController {
 
-  public function serveMinimal( ) {
+  public function serveMinimal( $updatedFrom = false ) {
     Cogumelo::load('coreModel/DBUtils.php');
     explorer::load('model/GenericExplorerModel.php');
     $resourceModel = new GenericExplorerModel();
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc', 'terms', 'image') ) );
+
+    if( $updatedFrom ) {
+      $filters = array('updatedfrom'=> $updatedFrom);
+    }
+    else {
+      $filters = array();
+    }
+
+
+
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc', 'terms', 'image'), 'filters'=> $filters ) );
 
     $coma = '';
 
@@ -35,7 +45,9 @@ class DefaultExplorerController extends ExplorerController {
           $row['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
         }
 
-        $row['img'] = $resourceDataArray['image'];
+        if( isset($resourceDataArray['image']) ) {
+          $row['img'] = $resourceDataArray['image'];
+        }
 
 
         echo json_encode( $row );
@@ -86,8 +98,4 @@ class DefaultExplorerController extends ExplorerController {
     echo ']';
   }
 
-
-  public function serveChecksum() {
-    echo "CHECKSYM";
-  }
 }

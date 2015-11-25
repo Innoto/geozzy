@@ -1,31 +1,35 @@
 
 
+    var explorerclass = '.paisaxesExplorer';
+    var resourceMap  = false;
+    var espazoNaturalCategories = false;
 
 
     $(document).ready(function(){
 
-      var explorerclass = '.paisaxesExplorer';
+      var data = new Date();
+      console.log( Date.UTC(data.getUTCFullYear(),data.getUTCMonth(), data.getUTCDate() , data.getUTCHours(), data.getUTCMinutes(), data.getUTCSeconds(), data.getUTCMilliseconds()) )
 
-
-      // ESTO CHEGARÍA POR CHAMADA AJAX
-      var dataFilter1 = [
-        {value:'*', title: 'Todas'},
-        {value:'10', title: 'Galega swagger'},
-        {value:'11', title: 'Canibal'},
-        {value:'12', title: 'Indo oceánica'}
-      ];
-
-
-
-      // GOOGLE MAPS MAPS
       var mapOptions = {
         center: { lat: 43.1, lng: -7.36 },
         zoom: 8
       };
+      resourceMap = new google.maps.Map( $( explorerclass+' .explorerMap').get( 0 ), mapOptions);
 
-      var resourceMap = new google.maps.Map( $( explorerclass+' .explorerMap').get( 0 ), mapOptions);
+
+      espazoNaturalCategories = new geozzy.collection.CategorytermCollection();
+      espazoNaturalCategories.setUrlByIdName('rextAppEspazoNaturalType');
 
 
+      // Multiple data fetch
+      $.when( espazoNaturalCategories.fetch() ).done(function() {
+
+        setExplorer(  );
+      });
+    });
+
+
+    function setExplorer( ) {
 
       // EXPLORADOR
       var explorer = new geozzy.explorer({debug:false});
@@ -35,7 +39,35 @@
       // DISPLAYS
       var infowindow = new geozzy.explorerDisplay.mapInfoView();
       var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
-      var mapa = new geozzy.explorerDisplay.mapView({ map: resourceMap, clusterize:false });
+      var mapa = new geozzy.explorerDisplay.mapView({
+          map: resourceMap,
+          clusterize:false,
+          chooseMarkerIcon: function( markerData ) {
+            var iconUrl = false;
+
+            espazoNaturalCategories.each( function(e){
+              //console.log(e.get('id'))
+              //console.debug(markerData.get('terms'))
+
+              if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
+
+                if( jQuery.isNumeric( e.get('icon') )  ){
+                  iconUrl = '/cgmlImg/'+e.get('icon')+'/explorerMarker/marker.png';
+                  return false;
+                }
+
+              }
+
+            });
+
+            return iconUrl;
+          }
+      });
+
+
+      //map set icons
+
+
 
 
       explorer.addDisplay( listaPasiva );
@@ -64,8 +96,8 @@
           {
             mainCotainerClass: explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'tipoPaisaxe select2GeozzyCustom',
-            //title:'asdfasfd',
-            data: dataFilter1
+            defaultOption: { icon: false, title: 'Todas as paisaxes', value:'*' },
+            data: espazoNaturalCategories
           }
         )
       );
@@ -82,19 +114,32 @@
       });
       //LAYOUT
       layoutDistributeSize();
-    });
+
+    }
+
+
 
     $(window).bind("load resize", function() {
       layoutDistributeSize();
     });
 
     function formatState (state) {
-      if (!state.id) { return state.text; }
-      var $state = $(
-        '<span><i class="fa fa-tree"></i> ' + state.text + '</span>'
-      );
-      return $state;
-    };
+
+      $ret = false;
+
+      if( $(state.element).val() == '*' &&  $(state.element).attr('icon')  !='false' ) {
+        $ret = $('<span><img width=32 height=32 src="/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>');
+      }
+      else
+      if ( $(state.element).attr('icon') != 'false') {
+        $ret = $('<span><img width=32 height=32 src="/cgmlImg/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>');
+      }
+      else {
+        $ret = state.text;
+      }
+
+      return $ret;
+    }
 
     function layoutDistributeSize(){
       var hExplorerLayout = $('.paisaxesExplorer').height();

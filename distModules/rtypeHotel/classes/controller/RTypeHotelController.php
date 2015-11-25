@@ -227,7 +227,7 @@ $cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
     // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
     $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address',
       'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone',
-      'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
+      'rExtContact_email', 'rExtContact_url', 'rExtContact_timetable') );
     $formContact2 = $adminViewResource->extractFormBlockFields( $formBlock, $formUtils->multilangFieldNames( 'rExtContact_directions' ) );
     $adminColsInfo['col8']['contact1'] = array();
 
@@ -397,6 +397,21 @@ $cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+
+    $resData = $this->defResCtrl->getResourceData( false, true );
+
+    $collections = $this->defResCtrl->getCollectionsInfo( $resData[ 'id' ] );
+    //error_log( "collections = ". print_r( $collections, true ) );
+
+    if( $collections ) {
+      foreach( $collections['options'] as $collectionId => $values) {
+
+        $collectionBlock = $this->defResCtrl->getCollectionBlock( $collectionId );
+        if( $collectionBlock ) {
+          $template->addToBlock( 'collections', $collectionBlock );
+        }
+      }
+    }
 
 
 

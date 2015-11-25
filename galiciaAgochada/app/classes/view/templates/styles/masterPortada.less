@@ -1,0 +1,239 @@
+@import "primary.less";
+
+.headContent{
+  &.transparent{
+    background: transparent;
+  }
+}
+
+.bodyContent{
+  padding-top: 0;
+  .gzzSec{
+    &.secImage{
+      padding: 0px;
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      color: @gzzColor-text-light;
+
+      .s-carousel{
+        width: 100%;
+        height: 100%;
+        .trama{
+          background: rgba(51, 51, 51, 0.3);
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+        }
+        .carousel-inner{
+          width: 100%;
+          height: 100%;
+          .item{
+            width: 100%;
+            height: 100%;
+            &:nth-child(1){
+              background: url("/media/img/photo-GA.jpg") no-repeat scroll center center / cover;
+            }
+            &:nth-child(2){
+              background: url("/media/img/photo-GA2.jpg") no-repeat scroll center center / cover;
+            }
+            &:nth-child(3){
+              background: url("/media/img/photo-GA3.jpg") no-repeat scroll center center / cover;
+            }
+            &:nth-child(4){
+              background: url("/media/img/photo-GA4.jpg") no-repeat scroll bottom center / cover;
+            }
+          }
+        }
+      }//.s-carousel
+      .intro{
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-20%); /* IE 9 */
+        -webkit-transform: translateY(-20%); /* Chrome, Safari, Opera */
+        transform: translateY(-20%);
+
+        h2{
+          text-transform: uppercase;
+          font-size: 48px;
+          font-weight: 600;
+        }
+        p{
+          font-size: 20px;
+          margin: 0px;
+        }
+      }//.intro
+      .introLinkSegredos{
+        position: absolute;
+        bottom: 50px;
+        color: @gzzColor-text-light;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-decoration: none;
+        display: block;
+        //text-shadow: 1px 0 1px rgba(0,0,0, 0.6);
+        i{
+          font-size: 24px;
+          margin: 0 0 0 10px;
+        }
+      }
+    }//.secImage
+    &.secSegredos{
+      .row{
+        margin: 0 -5px 0 -5px;
+      }
+      .segredoItem{
+        padding: 5px;
+        .segredoItemImg{
+          position: relative;
+          overflow: hidden;
+          .icon{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 101;
+            width: 64px;
+            height: 64px;
+            -ms-transform: translate(-50%,-50%); /* IE 9 */
+           	-webkit-transform: translate(-50%,-50%); /* Safari */
+            transform: translate(-50%,-50%);
+            transition: top .45s ease-in-out;
+            -moz-transition: top .45s ease-in-out;
+            -webkit-transition: top .45s ease-in-out;
+          }
+          .trama{
+            background: rgba(51, 51, 51, 0.3);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 100;
+            width: 100%;
+            height: 100%;
+            display: none;
+          }
+          .info{
+            position: absolute;
+            bottom: 0;
+            left: 0%;
+            z-index: 101;
+            padding: 20px;
+            color: @gzzColor-text-light;
+            opacity: 0;
+            transition: opacity .45s ease-in-out;
+            -moz-transition: opacity .45s ease-in-out;
+            -webkit-transition: opacity .45s ease-in-out;
+            h3{
+              text-align: center;
+              margin: 20px 0;
+            }
+            p{
+              text-align: justify;
+              font-size: 14px;
+            }
+          }
+          img{
+            width: 100%;
+
+            -webkit-transform: scale(1, 1); /* Saf3.1+, Chrome */
+            -moz-transform: scale(1, 1); /* FF3.5+ */
+            -ms-transform: scale(1, 1); /* IE9 */
+             -o-transform: scale(1, 1); /* Opera 10.5+ */
+                transform: scale(1, 1);
+
+          }
+          &:hover{
+            img{
+              -webkit-transform: scale(1.08, 1.1); /* Saf3.1+, Chrome */
+              -moz-transform: scale(1.08, 1.1); /* FF3.5+ */
+              -ms-transform: scale(1.08, 1.1); /* IE9 */
+               -o-transform: scale(1.08, 1.1); /* Opera 10.5+ */
+                  transform: scale(1.08, 1.1);
+              transition-duration: 450ms;
+              transition-timing-function: ease-out;
+            }
+            .trama{
+              display:block;
+            }
+            .icon{
+              top: 40%;
+            }
+            .info{
+              opacity: 1;
+            }
+          }
+        }//.segredoItemImg
+        &.segredoRincons .segredoItemImg .icon{
+          background: url('/media/img/rinconsIconAlt.png') no-repeat;
+        }
+        &.segredoPaisaxes .segredoItemImg .icon{
+          background: url('/media/img/paisaxesIconAlt.png') no-repeat;
+        }
+        &.segredoPraias .segredoItemImg .icon{
+          background: url('/media/img/praiasIconAlt.png') no-repeat;
+        }
+        &.segredoXantares .segredoItemImg .icon{
+          background: url('/media/img/xantaresIconAlt.png') no-repeat;
+        }
+        &.segredoAloxamentos .segredoItemImg .icon{
+          background: url('/media/img/aloxamentosIconAlt.png') no-repeat;
+        }
+        &.segredoFestas .segredoItemImg .icon{
+          background: url('/media/img/festasIconAlt.png') no-repeat;
+        }
+      }//.segredoItem
+      .segredosAll{
+        text-transform: uppercase;
+        margin: 20px 0;
+        display: block;
+        text-decoration: none;
+        color: @gzzColor-text-dark;
+        i{ margin-left: 5px; }
+      }
+    }//.secSegredos
+    &.secParticipa{
+      background: @gzzColor-bck-2 url('/media/img/tramaSection.png');
+      h2{
+        span{ font-size: 0.75em; }
+      }
+      .propose{
+        padding: 20px 0;
+        select{
+          width: 100%;
+          background-color: @gzzColor-bck-1;
+          border: 2px solid @gzzColor-bck-8;
+          padding: 10px;
+          text-transform: uppercase;
+          -moz-appearance: none;
+          -webkit-appearance: none;
+          appearance: none;
+          height: 50px;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
+          option{
+            padding: 5px 10px;
+          }
+        }
+        button{
+          height: 50px;
+          padding: 10px 40px;
+          background-color: @gzzColor-bck-8;
+          border: 2px solid @gzzColor-bck-8;
+          color: @gzzColor-text-light;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
+          text-transform: uppercase;
+          display: block;
+          font-size: 18px;
+        }
+        span{
+          font-size: 14px;
+        }
+      }//.propose
+    }//.secParticipa
+  }//.gzzSec
+}//bodyContent
