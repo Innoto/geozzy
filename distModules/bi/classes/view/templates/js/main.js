@@ -4,6 +4,7 @@ require.config({
 	paths: {
 		text: '/vendor/bower/requirejs-text/text',
 		jquery: '/vendor/bower/jquery/dist/jquery',
+		bootstrap: '/vendor/bower/bootstrap/dist/js/bootstrap.min?c',
 		underscore: '/vendor/bower/underscore/underscore',
 		q: '/vendor/bower/q/q',
 		backbone: '/vendor/bower/backbone/backbone',
@@ -60,8 +61,7 @@ require.config({
 
 require([
 	'backbone',
-    'views/app',
-    'material'
+    'views/app'
 ], function (Backbone,AppView) {
 	Backbone.history.start();
     new AppView();
