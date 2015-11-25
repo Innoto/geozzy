@@ -79,7 +79,7 @@
       {$res.data.shortDescription|escape:'htmlall'}
     </div>
 
-    
+
 
     <!-- Galería Multimedia -->
     <div id="imageGallery" style="display:none;">
@@ -174,28 +174,14 @@
     {/if}
   </section>
 
-  <section class="gallerySec container gzSection">
-
-  </section>
-
-<!--
-  <div class="reservationSec container gzSection">
-    <div class="{$res.data.rTypeIdName}">
-      <p>  {$res.data.rTypeIdName} Ext RESERVAS  </p>
-      <div class="{$res.data.rTypeIdName} eatanddrink">
+  {if isset($collections)}
+    <section class="collectionSec container gzSection">
+      <h4>{t}Related resources{/t}</h4>
+      <div id="collectionsGallery" style="display:none;">
+        {$collections}
       </div>
-    </div>
-  </div>
--->
-
-  <section class="collectionSec container gzSection">
-    {if isset($res.data.collections)}
-    <div class="collections">
-      <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
-      {$res.data.collections}
-    </div>
-    {/if}
-  </section>
+    </section>
+  {/if}
 
 </div><!-- /.resource .resViewBlock -->
 <!-- /rTypeViewBlock.tpl en rTypeEspazoNatural module -->

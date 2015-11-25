@@ -14,9 +14,28 @@ $(document).ready(function(){
     })
   })
 
-  $("#imageGallery").unitegallery({
-    gallery_theme: "tiles",
-		tiles_type: "justified"		
+  if ($("#imageGallery")){
+    $("#imageGallery").unitegallery({
+      gallery_theme: "tiles",
+  		tiles_type: "justified"
+    });
+  }
+
+  if ($("#collectionsGallery")){
+    $("#collectionsGallery").unitegallery({
+      gallery_theme: "tiles",
+  	 	tiles_type: "justified"
+    });
+  }
+
+  $('.collectionSec .more').bind('click', function(){
+    $('#collectionsAllGallery').append(resources);
+    $("#collectionsGallery").css('display','none');
+    $('#collectionsAllGallery').unitegallery({
+      gallery_theme: "tiles",
+  	 	tiles_type: "justified"
+    });
   });
+
 
 });

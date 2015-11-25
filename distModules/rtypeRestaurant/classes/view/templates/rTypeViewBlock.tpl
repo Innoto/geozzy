@@ -169,38 +169,23 @@
     {/if}
   </section>
 
+{if isset($imggallery)}
   <section class="gallerySec container gzSection">
-    <!-- Galería Multimedia -->
-    <div class="imageGallery">
-      <label for="imgResource" class="cgmMForm"></label>
-      {if isset( $res.data.image )}
-        <style type="text/css">.cgmMForm-fileField img { height: 100px; }</style>
-        <img src="/cgmlImg/{$res.data.image.id}"
-          {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
-      {else}
-        <p>{t}None{/t}</p>
-      {/if}
+    <h4>{t}Images gallery{/t}</h4>
+    <div id="imageGallery" style="display:none;">
+      {$imggallery}
     </div>
   </section>
+{/if}
 
-<!--
-  <div class="reservationSec container gzSection">
-    <div class="{$res.data.rTypeIdName}">
-      <p>  {$res.data.rTypeIdName} Ext RESERVAS  </p>
-      <div class="{$res.data.rTypeIdName} eatanddrink">
-      </div>
-    </div>
-  </div>
--->
-
+{if isset($collections)}
   <section class="collectionSec container gzSection">
-    {if isset($res.data.collections)}
-    <div class="collections">
-      <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
-      {$res.data.collections}
+    <h4>{t}Related resources{/t}</h4>
+    <div id="collectionsGallery" style="display:none;">
+      {$collections}
     </div>
-    {/if}
   </section>
+{/if}
 
 </div><!-- /.resource .resViewBlock -->
 <!-- /rTypeViewBlock.tpl en rTypeRestaurant module -->

@@ -1076,15 +1076,15 @@ class ResourceController {
       );
 
       while( $res = $resCollectionList->fetch() ){
-
         $collections = $res->getterDependence( 'collection', 'CollectionModel' );
+
         if( $collections ){
           $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
           $colInfo[ 'values' ][] = $res->getter( 'collection' );
         }
       }
     }
-    // error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
+     //error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
     return ( count( $colInfo['values'] ) > 0 ) ? $colInfo : false;
   }
 
@@ -1490,7 +1490,7 @@ class ResourceController {
   } // function getResourceBlock( $resData )
 
 
-  public function getCollectionBlock( $collection ) {
+  public function getCollectionBlock( $collectionId ) {
     error_log( "GeozzyResourceView: getCollectionBlock()" );
 
     $template = false;
@@ -1500,16 +1500,40 @@ class ResourceController {
       Parece que funciona, falta cargar a imaxe e a colección de recursos asociados pq teño dúbidas
       */
 
-      $template = new Template();
-      $template->assign( 'title', $collection['title_'.LANG_DEFAULT] );
-      $template->assign( 'shortDescription', $collection['shortDescription_'.LANG_DEFAULT] );
-      $template->assign( 'image', '<p>'.__('None').'</p>' );
-      $template->assign( 'collectionResources', 'Listado dos recursos da colección Num. '.$collection['id'] );
+    $template = new Template();
+    // $template->assign( 'title', $collection['title_'.LANG_DEFAULT] );
+    // $template->assign( 'shortDescription', $collection['shortDescription_'.LANG_DEFAULT] );
+    // $template->assign( 'image', '<p>'.__('None').'</p>' );
 
 
-      $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
+    // Cargo los datos de recursos asociados a la collection
+   $collectionResourcesModel = new CollectionResourcesModel();
+   $colResList = $collectionResourcesModel->listItems(
+     array(
+       'filters' => array( 'collection' => $collectionId ),
+       'order' => array( 'weight' => 1 )
+     )
+   );
+   while( $res = $colResList->fetch() ){
+     if( $res ){
+       $collectionData[ 'resources' ][] = $res->getter( 'resource' );
+     }
+   }
 
-      return( $template );
+   foreach ($collectionData['resources'] as $colId){
+     $resourceModel = new ResourceModel();
+     $resource = $resourceModel->listItems(array('filters' => array('id' => $colId)))->fetch();
+
+     $colResources[$colId] = array ('name'=> $resource->getter('title_'.$this->actLang), 'img' => $resource->getter('image'));
+   }
+
+   $template->assign( 'collectionResources', $colResources );
+
+
+   $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
+
+   return( $template );
+
 
     /*
       $collectionModel =  new CollectionModel();
