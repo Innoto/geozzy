@@ -112,7 +112,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
     // TEMPLATE panel SEO
     $templates['seo'] = new Template();
-    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['seo']->assign( 'title', __( 'SEO' ) );
     $templates['seo']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array_merge(
@@ -125,37 +125,85 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
 
     // TEMPLATE panel reservas
+/*
     $templates['reservation'] = new Template();
-    $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'rtypeHotel' );
+    $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['reservation']->assign( 'title', __( 'Reservation' ) );
     $templates['reservation']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'rExtAccommodation_reservationURL', 'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail' );
     $templates['reservation']->assign( 'formFieldsNames', $formFieldsNames );
+*/
+    // TEMPLATE panel contacto
+    $templates['location'] = new Template();
+    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'rtypeHotel' );
+    $templates['location']->assign( 'title', __( 'Location' ) );
+    $templates['location']->assign( 'res', $formBlockInfo );
+    $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
+
+    // TEMPLATE panel localización
+    $templates['contact'] = new Template();
+    $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['contact']->assign( 'title', __( 'Contact' ) );
+    $templates['contact']->setBlock( 'blockContent', $contactViewInfo['template']['basic'] );
+
+    // TEMPLATE panel multimedia
+    $templates['multimedia'] = new Template();
+    $templates['multimedia']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['multimedia']->assign( 'title', __( 'Multimedia galleries' ) );
+    $templates['multimedia']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'multimediaGalleries', 'addMultimediaGalleries' );
+    $templates['multimedia']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel collections
+    $templates['collections'] = new Template();
+    $templates['collections']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['collections']->assign( 'title', __( 'Collections of related resources' ) );
+    $templates['collections']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'collections', 'addCollections' );
+    $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel image
+    $templates['image'] = new Template();
+    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['image']->assign( 'title', __( 'Select a image' ) );
+    $templates['image']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'image' );
+    $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
+/*
+    // TEMPLATE panel categorization
+    $templates['categorization'] = new Template();
+    $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['categorization']->assign( 'title', __( 'Select a image' ) );
+    $templates['categorization']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',
+      'rExtAccommodation_averagePrice', 'rExtAccommodation_accommodationFacilities',
+      'rExtAccommodation_accommodationServices');
+    $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
+*/
 
 
     // TEMPLATE con todos los paneles
     $templates['adminFull'] = new Template();
     $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
+
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
+    //$templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
+    //$templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
 
-  /*
-  $cols['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
-  $cols['col8']['collections'] = array( $formPartBlock, __('Collections of related resources'), 'fa-th-large' );
-  $cols['col8']['multimedia'] = array( $formPartBlock, __('Multimedia galleries'), 'fa-th-large' );
-  $cols['col4']['image'] = array( $formPartBlock, __( 'Select a image' ), 'fa-file-image-o' );
-  $cols['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
-  $cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
-  */
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'rtypeHotel' );
+    $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'res', $formBlockInfo );
 
 

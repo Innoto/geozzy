@@ -252,7 +252,7 @@ $cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'rtypeHotel' );
+    $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'res', $formBlockInfo );
 
 
