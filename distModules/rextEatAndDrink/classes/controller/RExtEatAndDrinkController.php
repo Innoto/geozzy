@@ -121,8 +121,8 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
         $rExtFieldNames[] = $fieldName;
       }
     }
-
-    $form->setField( 'RExtEatAndDrinkController', array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
+    $rExtFieldNames[] = 'FieldNames';
+    $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
 
@@ -135,7 +135,6 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     getFormBlockInfo
   */
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "rextEatAndDrinkController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,

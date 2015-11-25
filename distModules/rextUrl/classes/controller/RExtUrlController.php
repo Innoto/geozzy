@@ -109,14 +109,46 @@ class RExtUrlController extends RExtController implements RExtInterface {
       }
     }
 
-    $form->setField( 'rExtUrlFieldNames', array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
+    $rExtFieldNames[] = 'FieldNames';
+    $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
 
     return( $rExtFieldNames );
   } // function manipulateForm()
 
+  /**
+    getFormBlockInfo
+  */
+  public function getFormBlockInfo( FormController $form ) {
 
+    $formBlockInfo = array(
+      'template' => false,
+      'data' => false,
+      'dataForm' => false
+    );
+
+    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
+    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+
+    $formBlockInfo['dataForm'] = array(
+      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
+      'formFields' => $form->getHtmlFieldsAndGroups(),
+    );
+
+    if( $form->getFieldValue( 'id' ) ) {
+      $formBlockInfo['data'] = $this->getRExtData();
+    }
+
+    $templates['full'] = new Template();
+    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    $templates['full']->assign( 'rExtName', $this->rExtName );
+    $templates['full']->assign( 'rExt', $formBlockInfo );
+
+    $formBlockInfo['template'] = $templates;
+
+    return $formBlockInfo;
+  }
 
   /**
     Validaciones extra previas a usar los datos del recurso base
