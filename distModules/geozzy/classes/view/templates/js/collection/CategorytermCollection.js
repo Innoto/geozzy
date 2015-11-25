@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.collections) geozzy.collections={};
+if(!geozzy.collection) geozzy.collection={};
 
-geozzy.collections.CategorytermCollection = Backbone.Collection.extend({
+geozzy.collection.CategorytermCollection = Backbone.Collection.extend({
   baseUrl: '/api/core/categoryterms',
   url: false,
   setUrlByIdName: function(idName) {
@@ -11,5 +11,5 @@ geozzy.collections.CategorytermCollection = Backbone.Collection.extend({
     this.url = this.baseUrl + '/id/'+id+'/idname/false';
   },
 
-  model: geozzy.models.TaxonomytermModel
+  model: geozzy.model.TaxonomytermModel
 });

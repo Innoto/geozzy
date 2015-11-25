@@ -50,16 +50,16 @@ class explorer extends Module
 
 
   public $includesCommon = array(
-    'js/models/ExplorerResourceMinimalModel.js',
-    'js/models/ExplorerResourcePartialModel.js',
-    'js/collections/ExplorerResourceMinimalCollection.js',
-    'js/collections/ExplorerResourcePartialCollection.js',
-    'js/views/ExplorerFilterView.js',
-    'js/views/filters/ExplorerFilterSelectSimpleView.js',
-    'js/views/ExplorerActiveListView.js',
-    'js/views/ExplorerPasiveListView.js',
-    'js/views/ExplorerMapView.js',
-    'js/views/ExplorerMapInfoView.js',
+    'js/model/ExplorerResourceMinimalModel.js',
+    'js/model/ExplorerResourcePartialModel.js',
+    'js/collection/ExplorerResourceMinimalCollection.js',
+    'js/collection/ExplorerResourcePartialCollection.js',
+    'js/view/ExplorerFilterView.js',
+    'js/view/filters/ExplorerFilterSelectSimpleView.js',
+    'js/view/ExplorerActiveListView.js',
+    'js/view/ExplorerPasiveListView.js',
+    'js/view/ExplorerMapView.js',
+    'js/view/ExplorerMapInfoView.js',
     'js/Explorer.js'
   );
 

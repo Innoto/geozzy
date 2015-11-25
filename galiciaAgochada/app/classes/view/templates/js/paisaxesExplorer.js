@@ -7,6 +7,9 @@
 
     $(document).ready(function(){
 
+      var data = new Date();
+      console.log( Date.UTC(data.getUTCFullYear(),data.getUTCMonth(), data.getUTCDate() , data.getUTCHours(), data.getUTCMinutes(), data.getUTCSeconds(), data.getUTCMilliseconds()) )
+
       var mapOptions = {
         center: { lat: 43.1, lng: -7.36 },
         zoom: 8
@@ -14,7 +17,7 @@
       resourceMap = new google.maps.Map( $( explorerclass+' .explorerMap').get( 0 ), mapOptions);
 
 
-      espazoNaturalCategories = new geozzy.collections.CategorytermCollection();
+      espazoNaturalCategories = new geozzy.collection.CategorytermCollection();
       espazoNaturalCategories.setUrlByIdName('rextAppEspazoNaturalType');
 
 
@@ -37,29 +40,29 @@
       var infowindow = new geozzy.explorerDisplay.mapInfoView();
       var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
       var mapa = new geozzy.explorerDisplay.mapView({
-                                                        map: resourceMap,
-                                                        clusterize:false,
-                                                        chooseMarkerIcon: function( markerData ) {
-                                                          var iconUrl = false;
+          map: resourceMap,
+          clusterize:false,
+          chooseMarkerIcon: function( markerData ) {
+            var iconUrl = false;
 
-                                                          espazoNaturalCategories.each( function(e){
-                                                            //console.log(e.get('id'))
-                                                            //console.debug(markerData.get('terms'))
+            espazoNaturalCategories.each( function(e){
+              //console.log(e.get('id'))
+              //console.debug(markerData.get('terms'))
 
-                                                            if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
-                                                                      
-                                                              if( jQuery.isNumeric( e.get('icon') )  ){
-                                                                iconUrl = '/cgmlImg/'+e.get('icon')+'/explorerMarker/marker.png';
-                                                                return false;
-                                                              }
+              if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
 
-                                                            }
+                if( jQuery.isNumeric( e.get('icon') )  ){
+                  iconUrl = '/cgmlImg/'+e.get('icon')+'/explorerMarker/marker.png';
+                  return false;
+                }
 
-                                                          });
+              }
 
-                                                          return iconUrl;
-                                                        }
-                                                    });
+            });
+
+            return iconUrl;
+          }
+      });
 
 
       //map set icons

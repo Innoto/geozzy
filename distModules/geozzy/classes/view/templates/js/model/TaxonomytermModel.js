@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.collections) geozzy.models={};
+if(!geozzy.model) geozzy.model={};
 
-geozzy.models.TaxonomytermModel = Backbone.Model.extend({
+geozzy.model.TaxonomytermModel = Backbone.Model.extend({
   defaults: {
     id: false,
     parent: 0,

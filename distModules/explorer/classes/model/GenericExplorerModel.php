@@ -21,6 +21,7 @@ class GenericExplorerModel extends Model
                     geozzy_resource.shortDescription_en as shortDescription_en,
                     geozzy_resource.shortDescription_gl as shortDescription_gl,
                     geozzy_resource.loc as loc,
+                    geozzy_resource.timeLastUpdate as timeLastUpdate,
                     group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
                   FROM geozzy_resource
                   LEFT JOIN geozzy_resource_taxonomyterm
@@ -52,11 +53,15 @@ class GenericExplorerModel extends Model
     ),
     'loc' => array(
       'type'=>'GEOMETRY'
+    ),
+    'timeLastUpdate' => array(
+      'type'=>'GEOMETRY'
     )
   );
 
   static $extraFilters = array(
-    'ids' => ' id IN (?)'
+    'ids' => ' id IN (?)',
+    'updatedfrom' => ' timeLastUpdate > FROM_UNIXTIME(?) '
 
   );
 
