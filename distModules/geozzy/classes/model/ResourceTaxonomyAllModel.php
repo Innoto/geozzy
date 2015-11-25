@@ -43,7 +43,9 @@ class ResourceTaxonomyAllModel extends Model {
       'size' => 100
     ),
     'resource' => array(
-      'type' => 'INT'
+      'type'=>'FOREIGN',
+      'vo' => 'ResourceModel',
+      'key' => 'id'
     ),
     'idResTaxTerm' => array(
       'type' => 'INT'

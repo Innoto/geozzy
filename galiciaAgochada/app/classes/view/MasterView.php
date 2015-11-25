@@ -3,6 +3,7 @@
 Cogumelo::load('coreView/View.php');
 
 common::autoIncludes();
+geozzy::autoIncludes();
 Cogumelo::autoIncludes();
 
 /**
@@ -28,6 +29,26 @@ class MasterView extends View
     echo 'PAGE404: Recurso non atopado';
   }
   function main(){
+
+    $resourceTaxAllModel = new ResourceTaxonomyAllModel( );
+    $resourcesList = $resourceTaxAllModel->listItems(
+      array(
+        'filters' => array(
+          'idName' => 'RecantosConEstilo',
+          'idNameTaxgroup' => 'starred'
+        ),
+        'order' => array(
+          'weightResTAxTerm' => '-1'
+        ),
+        'affectsDependences' => array('ResourceModel')
+      )
+    );
+
+    while ($resource = $resourcesList->fetch() )
+    {
+      Cogumelo::console( $resource->getAllData() );
+    }
+
     $this->template->addClientScript('js/portada.js');
     $this->template->addClientStyles('styles/masterPortada.less');
     $this->template->setTpl('portada.tpl');

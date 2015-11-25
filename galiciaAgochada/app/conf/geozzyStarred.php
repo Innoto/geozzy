@@ -2,35 +2,56 @@
 
 global $GEOZZY_STARRED;
 
-/**
-NEW TAXGROUP
-*/
-$GEOZZY_STARRED['Destacado1'] = array(
-  'idName' => 'portadaApp',
+$GEOZZY_STARRED['RecantosConEstilo'] = array(
+  'idName' => 'RecantosConEstilo',
   'name' => array(
-    'es' => 'Portada App',
-    'en' => 'App Landing',
-    'gl' => 'Portada App'
-  ),
-  'taxgroup' => 10
+    'es' => 'Lugares con estilo',
+    'en' => 'Stylish places',
+    'gl' => 'Recantos con estilo'
+  )
 );
 
-$GEOZZY_STARRED['Destacado2'] = array(
-  'idName' => 'Destacado2',
+$GEOZZY_STARRED['PaisaxesEspectaculares'] = array(
+  'idName' => 'PaisaxesEspectaculares',
   'name' => array(
-    'es' => 'Destacado2_es',
-    'en' => 'Starred2_en',
-    'gl' => 'Destacado2_gl'
-  ),
-  'taxgroup' => 10
+    'es' => 'Paisajes espectaculares',
+    'en' => 'Spectacular scenery',
+    'gl' => 'Paisaxes espectaculares'
+  )
 );
 
-$GEOZZY_STARRED['Destacado3'] = array(
-  'idName' => 'Destacado3',
+$GEOZZY_STARRED['PraiasDeEnsono'] = array(
+  'idName' => 'PraiasDeEnsono',
   'name' => array(
-    'es' => 'Destacado3_es',
-    'en' => 'Starred3_en',
-    'gl' => 'Destacado3_gl'
-  ),
-  'taxgroup' => 10
+    'es' => 'Playas de ensueño',
+    'en' => 'Dream beaches',
+    'gl' => 'Praias de ensono'
+  )
+);
+
+$GEOZZY_STARRED['FestaRachada'] = array(
+  'idName' => 'FestaRachada',
+  'name' => array(
+    'es' => 'Fiesta',
+    'en' => 'Party',
+    'gl' => 'Festa rachada'
+  )
+);
+
+$GEOZZY_STARRED['AutenticaGastronomia'] = array(
+  'idName' => 'AutenticaGastronomia',
+  'name' => array(
+    'es' => 'Auténtica gastronomía',
+    'en' => 'Authentic cuisine',
+    'gl' => 'Auténtica gastronomía'
+  )
+);
+
+$GEOZZY_STARRED['AloxamentoConEncanto'] = array(
+  'idName' => 'AloxamentoConEncanto',
+  'name' => array(
+    'es' => 'Alojamiento con encanto',
+    'en' => 'Charming accommodation',
+    'gl' => 'Aloxamento con encanto'
+  )
 );

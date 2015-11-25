@@ -162,18 +162,6 @@ class geozzy extends Module {
     );
 
 
-    /**
-    Añade Taxonomias definidas en el un archivo de Conf en GeozzyApp por el usuario
-    */
-    /*
-    geozzy::load('controller/RTUtilsController.php');
-    global $C_RTYPE_MODULES;
-    $GEOZZY_TAXONOMYGROUPS = array_merge(
-      RTUtilsController::getAllCategories( $C_RTYPE_MODULES ),
-      $GEOZZY_TAXONOMYGROUPS
-    );
-    */
-
 
     /**
     Crea las taxonomías
@@ -202,41 +190,6 @@ class geozzy extends Module {
     }
 
 
-    /**
-    Crea los Topics definidas en el un archivo de Conf en GeozzyApp por el usuario
-    */
-    /*
-    global $GEOZZY_TOPICS;
-
-    if( count( $GEOZZY_TOPICS ) > 0 ) {
-      foreach( $GEOZZY_TOPICS as $key => $topic ) {
-        foreach( $topic['name'] as $langKey => $name ) {
-           $topic['name_'.$langKey] = $name;
-        }
-
-        $topic['idName'] = $key;
-        $topicD = new TopicModel( $topic );
-        $topicD->save();
-
-        if( count( $topic['resourceTypes'] ) > 0 ) {
-          foreach( $topic['resourceTypes'] as $key => $rt ) {
-            $reTypeModel = new ResourcetypeModel( );
-            $reType = $reTypeModel->listItems( array( 'filters' => array( 'idName' => $rt['resourceTypeIdName'] ) ) )->fetch();
-            if($reType){
-              $rtypeTopicParams = array(
-                'topic' => $topicD->getter('id'),
-                'resourceType' => $reType->getter('id'),
-                'weight' => $rt['weight']
-              );
-
-              $rtt = new ResourcetypeTopicModel( $rtypeTopicParams );
-              $rtt->save();
-            }
-          }
-        }
-      }
-    }
-    */
 
   }
 
