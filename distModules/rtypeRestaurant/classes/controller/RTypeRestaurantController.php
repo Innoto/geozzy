@@ -85,7 +85,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
-    $templates['formBase']->setTpl( 'rTypeFormBase.tpl', 'rtypeHotel' );
+    $templates['formBase']->setTpl( 'rTypeFormBase.tpl', 'geozzy' );
     $templates['formBase']->assign( 'title', __('Main Resource information') );
     $templates['formBase']->assign( 'res', $formBlockInfo );
 

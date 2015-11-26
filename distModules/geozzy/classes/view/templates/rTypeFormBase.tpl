@@ -2,7 +2,7 @@
 
 
 {block name="content"}
-<!-- rExtFormBlock.tpl en admin module -->
+<!-- rExtFormBase.tpl en geozzt module -->
 
 <style>
   label { display: block; }
@@ -12,6 +12,7 @@
 
 
 {$res.dataForm.formOpen}
+{$res.dataForm.formFieldsArray.cgIntFrmId}
 {if isset($res.dataForm.formFieldsArray.id)}{$res.dataForm.formFieldsArray.id}{/if}
 
 {if isset($formFieldsNames)}
@@ -27,5 +28,5 @@
 {$res.dataForm.formValidations}
 
 
-<!-- /rExtFormBlock.tpl en admin module -->
+<!-- rExtFormBase.tpl en geozzt module -->
 {/block}{*/content*}
