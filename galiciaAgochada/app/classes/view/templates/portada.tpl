@@ -144,9 +144,9 @@
       {if isset($rdRecantosConEstilo) }
         <div class="destContainer destRecantosConEstilo">
           <h2>{t}Recantos con Estilo{/t}</h2>
-          <div class="row">
+          <div class="owl-carousel">
             {foreach from=$rdRecantosConEstilo item=rd}
-              <div class="col-lg-3">
+              <div class="item">
                 <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
                 <div class="destResourceInfo">
                   <h3>{$rd->getter('title', 'es')}</h3>
@@ -160,9 +160,9 @@
       {if isset($rdFestaRachada) }
         <div class="destContainer destFestaRachada">
           <h2>{t}Festa Rachada{/t}</h2>
-          <div class="row">
+          <div class="owl-carousel">
             {foreach from=$rdFestaRachada item=rd}
-              <div class="col-lg-3">
+              <div class="item">
                 <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
                 <div class="destResourceInfo">
                   <h3>{$rd->getter('title_es')}</h3>
@@ -176,9 +176,9 @@
       {if isset($rdPraiasDeEnsono) }
         <div class="destContainer destPraiasDeEnsono">
           <h2>{t}Praias de Ensono{/t}</h2>
-          <div class="row">
+          <div class="owl-carousel">
             {foreach from=$rdPraiasDeEnsono item=rd}
-              <div class="col-lg-3">
+              <div class="item">
                 <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
                 <div class="destResourceInfo">
                   <h3>{$rd->getter('title_es')}</h3>
@@ -193,9 +193,9 @@
       {if isset($rdPaisaxesEspectaculares) }
         <div class="destContainer destPaisaxesEspectaculares">
           <h2>{t}Paisaxes Espectaculares{/t}</h2>
-          <div class="row">
+          <div class="owl-carousel">
             {foreach from=$rdPaisaxesEspectaculares item=rd}
-              <div class="col-lg-3">
+              <div class="item">
                 <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
                 <div class="destResourceInfo">
                   <h3>{$rd->getter('title_es')}</h3>
@@ -208,10 +208,10 @@
       {/if}
       {if isset($rdAloxamentoConEncanto) }
         <div class="destContainer destAloxamentoConEncanto">
-          <h2>{t}AloxamentoConEncanto{/t}</h2>
-          <div class="row">
+          <h2>{t}Aloxamento con Encanto{/t}</h2>
+          <div class="owl-carousel">
             {foreach from=$rdAloxamentoConEncanto item=rd}
-              <div class="col-lg-3">
+              <div class="item">
                 <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
                 <div class="destResourceInfo">
                   <h3>{$rd->getter('title_es')}</h3>
@@ -225,9 +225,9 @@
       {if isset($rdAutenticaGastronomia) }
       <div class="destContainer destAutenticaGastronomia">
         <h2>{t}Autentica Gastronomia{/t}</h2>
-        <div class="row">
+        <div class="owl-carousel">
           {foreach from=$rdAutenticaGastronomia item=rd}
-            <div class="col-lg-3">
+            <div class="item">
               <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
               <div class="destResourceInfo">
                 <h3>{$rd->getter('title_es')}</h3>
