@@ -74,9 +74,9 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
 
-    $this->accomCtrl = new RExtEatAndDrinkController( $this );
-    $EatandDrinkViewInfo = $this->accomCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->accomCtrl->rExtName ] = $EatandDrinkViewInfo;
+    $this->eatCtrl = new RExtEatAndDrinkController( $this );
+    $EatandDrinkViewInfo = $this->eatCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->eatCtrl->rExtName ] = $EatandDrinkViewInfo;
 
     $this->contactCtrl = new RExtContactController( $this );
     $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
@@ -125,14 +125,14 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
 
     // TEMPLATE panel reservas
-/*
+
     $templates['reservation'] = new Template();
     $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['reservation']->assign( 'title', __( 'Reservation' ) );
     $templates['reservation']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'rExtAccommodation_reservationURL', 'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail' );
+    $formFieldsNames = $this->eatCtrl->prefixArray( array( 'reservationURL', 'reservationPhone' ) );
     $templates['reservation']->assign( 'formFieldsNames', $formFieldsNames );
-*/
+
     // TEMPLATE panel contacto
     $templates['location'] = new Template();
     $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'rtypeHotel' );
@@ -169,17 +169,15 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $templates['image']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'image' );
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
-/*
+
     // TEMPLATE panel categorization
     $templates['categorization'] = new Template();
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['categorization']->assign( 'title', __( 'Select a image' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',
-      'rExtAccommodation_averagePrice', 'rExtAccommodation_accommodationFacilities',
-      'rExtAccommodation_accommodationServices');
+    $formFieldsNames = $this->eatCtrl->prefixArray( array('eatanddrinkType', 'eatanddrinkSpecialities', 'averagePrice') );
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
-*/
+
 
 
     // TEMPLATE con todos los paneles
@@ -189,7 +187,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    //$templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
@@ -198,6 +196,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
     //$templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
 
 
