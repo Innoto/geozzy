@@ -141,7 +141,103 @@
   </section>
   <section class="gzzSec secRecomendamos">
     <div class="container">
+      {if isset($rdRecantosConEstilo) }
+        <div class="destContainer destRecantosConEstilo">
+          <h2>{t}Recantos con Estilo{/t}</h2>
+          <div class="row">
+            {foreach from=$rdRecantosConEstilo item=rd}
+              <div class="col-lg-3">
+                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
+                <div class="destResourceInfo">
+                  <h3>{$rd->getter('title', 'es')}</h3>
+                  <p>{$rd->getter('shortDescription', 'es')}</p>
+                </div>
+              </div>
+            {/foreach}
+          </div>
+        </div>
+      {/if}
+      {if isset($rdFestaRachada) }
+        <div class="destContainer destFestaRachada">
+          <h2>{t}Festa Rachada{/t}</h2>
+          <div class="row">
+            {foreach from=$rdFestaRachada item=rd}
+              <div class="col-lg-3">
+                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
+                <div class="destResourceInfo">
+                  <h3>{$rd->getter('title_es')}</h3>
+                  <p>{$rd->getter('shortDescription_es')}</p>
+                </div>
+              </div>
+            {/foreach}
+          </div>
+        </div>
+      {/if}
+      {if isset($rdPraiasDeEnsono) }
+        <div class="destContainer destPraiasDeEnsono">
+          <h2>{t}Praias de Ensono{/t}</h2>
+          <div class="row">
+            {foreach from=$rdPraiasDeEnsono item=rd}
+              <div class="col-lg-3">
+                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
+                <div class="destResourceInfo">
+                  <h3>{$rd->getter('title_es')}</h3>
+                  <p>{$rd->getter('shortDescription_es')}</p>
+                </div>
+              </div>
+            {/foreach}
+          </div>
+        </div>
+      {/if}
 
+      {if isset($rdPaisaxesEspectaculares) }
+        <div class="destContainer destPaisaxesEspectaculares">
+          <h2>{t}Paisaxes Espectaculares{/t}</h2>
+          <div class="row">
+            {foreach from=$rdPaisaxesEspectaculares item=rd}
+              <div class="col-lg-3">
+                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
+                <div class="destResourceInfo">
+                  <h3>{$rd->getter('title_es')}</h3>
+                  <p>{$rd->getter('shortDescription_es')}</p>
+                </div>
+              </div>
+            {/foreach}
+          </div>
+        </div>
+      {/if}
+      {if isset($rdAloxamentoConEncanto) }
+        <div class="destContainer destAloxamentoConEncanto">
+          <h2>{t}AloxamentoConEncanto{/t}</h2>
+          <div class="row">
+            {foreach from=$rdAloxamentoConEncanto item=rd}
+              <div class="col-lg-3">
+                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
+                <div class="destResourceInfo">
+                  <h3>{$rd->getter('title_es')}</h3>
+                  <p>{$rd->getter('shortDescription_es')}</p>
+                </div>
+              </div>
+            {/foreach}
+          </div>
+        </div>
+      {/if}
+      {if isset($rdAutenticaGastronomia) }
+      <div class="destContainer destAutenticaGastronomia">
+        <h2>{t}Autentica Gastronomia{/t}</h2>
+        <div class="row">
+          {foreach from=$rdAutenticaGastronomia item=rd}
+            <div class="col-lg-3">
+              <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
+              <div class="destResourceInfo">
+                <h3>{$rd->getter('title_es')}</h3>
+                <p>{$rd->getter('shortDescription_es')}</p>
+              </div>
+            </div>
+          {/foreach}
+        </div>
+      </div>
+      {/if}
     </div>
   </section>
 {/block}
