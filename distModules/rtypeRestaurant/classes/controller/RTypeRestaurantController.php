@@ -173,7 +173,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     // TEMPLATE panel categorization
     $templates['categorization'] = new Template();
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['categorization']->assign( 'title', __( 'Select a image' ) );
+    $templates['categorization']->assign( 'title', __( 'Categorization' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
     $formFieldsNames = $this->eatCtrl->prefixArray( array('eatanddrinkType', 'eatanddrinkSpecialities', 'averagePrice') );
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );

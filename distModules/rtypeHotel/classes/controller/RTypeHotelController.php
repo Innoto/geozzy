@@ -184,7 +184,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     // TEMPLATE panel categorization
     $templates['categorization'] = new Template();
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['categorization']->assign( 'title', __( 'Select a image' ) );
+    $templates['categorization']->assign( 'title', __( 'Categorization' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',
       'rExtAccommodation_averagePrice', 'rExtAccommodation_accommodationFacilities',
