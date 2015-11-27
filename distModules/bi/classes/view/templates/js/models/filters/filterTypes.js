@@ -1,1 +1,30 @@
-define(["underscore","backbone","config/appConfig"],function(a,b,c){var d=b.Model.extend({urlRoot:c.URL_STATS_CONFIG,url:function(){var b=this.urlRoot+"/filters",c=this.get("metricID");return a.isUndefined(c)||(b+="?metricID="+c),b},defaults:{metricId:"",filters:[]},parse:function(a){this.set({filters:a})}});return new d});
+//### Filter Types Model: Used for getting the correspondent type of filters for a selected Metric
+define([
+    'underscore',
+    'backbone',
+    'config/appConfig'
+], function (_, Backbone, Config) {
+    // Composes the Config URL with Filters and the selected Metric
+    var FilterTypesModel = Backbone.Model.extend({
+        urlRoot: Config.URL_STATS_CONFIG,
+        url: function () {
+            var url = this.urlRoot + '/filters';
+            var metricID = this.get('metricID');
+            if (!_.isUndefined(metricID)) {
+                url += '?metricID=' + metricID;
+            }
+            return url;
+        },
+        defaults: {
+            metricId: '',
+            filters: []
+        },
+        // Sets on Filters field the filters list correspondent to that metric
+        parse: function (res) {
+            this.set({
+                filters: res
+            });
+        }
+    });
+    return new FilterTypesModel();
+});

@@ -1,1 +1,31 @@
-define(["jquery","backbone","mustache","text!templates/filters/dateFilter.html","collections/filters/filters","datetimepicker","moment"],function(a,b,c,d,e,f,g){var h=b.View.extend({tagName:"div",events:{"click #close":"remove"},render:function(){var a=c.render(d,this.model.toJSON());return this.$el.html(a),this},remove:function(){var a=this.model.attributes.filterID,b=e.findWhere({filterID:a});e.remove(b),this.$el.remove()}});return h});
+//### Date Filter View
+define([
+    'backbone',
+    'mustache',
+    'text!templates/filters/dateFilter.html',
+    'collections/filters/filters',
+    'datetimepicker',
+    'moment'
+], function (Backbone, Mustache, filtersTemplate, FiltersCollection, DateTimePicker, moment) {
+    // Creating DateFilter template, used for filtering by Date
+    var DateFilter = Backbone.View.extend({
+        tagName: 'div',
+        events: {
+            'click #close': 'remove'
+        },
+        // Rendering the DateFilter template, and returns that element
+        render: function () {
+            var rendered = Mustache.render(filtersTemplate, this.model.toJSON());
+            this.$el.html(rendered);
+            return this;
+        },
+        // Removes the filter
+        remove: function () {
+            var filterID = this.model.attributes.filterID,
+                filterFound = FiltersCollection.findWhere({filterID: filterID});
+            FiltersCollection.remove(filterFound);
+            this.$el.remove();
+        }
+    });
+    return DateFilter;
+});

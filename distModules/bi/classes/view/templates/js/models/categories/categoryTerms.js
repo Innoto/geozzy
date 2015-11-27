@@ -1,1 +1,61 @@
-define(["jquery","underscore","backbone","q","config/appConfig"],function(a,b,c,d,e){var f=c.Model.extend({defaults:{filterID:"",values:[],title:""},getTerms:function(){var c=d.defer(),f=[],g=[],h=[];return a.get(e.URL_CATEGORY).done(function(i){b.each(i,function(b){var c=e.URL_CATEGORY_TERMS+b.id;g.push({id:b.id,name:b.name_es}),f.push(a.get(c))}),d.allSettled(f).then(function(a){b.each(a,function(a,c){var d=g[c];b.each(a.value,function(a){h.push({categoryID:d.id,id:a.id,name:a.name_es,categoryTermName:d.name+" -> "+a.name_es})})}),c.resolve({categories:g,elements:h})}).fail(function(){c.reject()})}).fail(function(){c.reject()}),c.promise}});return f});
+//### Category Terms Model: Used for getting the Terms and their categories
+define([
+    'underscore',
+    'backbone',
+    'q',
+    'config/appConfig'
+], function (_, Backbone, q, Config) {
+    // Model with the values for the terms: ID, Values and Title
+    var CategoryTerms = Backbone.Model.extend({
+        defaults: {
+            filterID: '',
+            values: [],
+            title: ''
+        },
+        // Return the correct terms. Search by Categories, and push into a list all of the results with the ID and Name.
+        // Then, for each Category is going push into another list all of the correspondent Terms with his Attributes.
+        getTerms: function () {
+            var deferred = q.defer();
+            var promises = [],
+                categoriesResult = [],
+                elementsResult = [];
+            $.get(Config.URL_CATEGORY)
+                .done(function (categories) {
+                    _.each(categories, function (category) {
+                        var url = Config.URL_CATEGORY_TERMS + category.id;
+                        categoriesResult.push({
+                            id: category.id,
+                            name: category.name_es
+                        });
+                        promises.push($.get(url));
+                    });
+                    q.allSettled(promises)
+                        .then(function (promiseResults) {
+                            _.each(promiseResults, function (promiseResult, index) {
+                                var category = categoriesResult[index];
+                                _.each(promiseResult.value, function (term) {
+                                    elementsResult.push({
+                                        categoryID: category.id,
+                                        id: term.id,
+                                        name: term.name_es,
+                                        categoryTermName: category.name + " -> " + term.name_es
+                                    });
+                                });
+                            });
+                            deferred.resolve({
+                                categories: categoriesResult,
+                                elements: elementsResult
+                            });
+                        })
+                        .fail(function () {
+                            deferred.reject();
+                        });
+                })
+                .fail(function () {
+                    deferred.reject();
+                });
+            return deferred.promise;
+        }
+    });
+    return CategoryTerms;
+});
