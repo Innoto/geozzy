@@ -237,7 +237,59 @@
     }//.secParticipa
     &.secRecomendamos{
       .destContainer{
+        margin: 60px 0;
         .destResourceInfo{ display:none; }
+        .owl-carousel{
+          position: relative;
+          .owl-nav{
+            .owl-prev{
+              position: absolute;
+              top:50%;
+              left: -15px;
+              width: 30px;
+              height: 30px;
+              line-height: 30px;
+              vertical-align: center;
+              background: @gzzColor-bck-8;
+              color: @gzzColor-text-light;
+              -ms-transform: translateY(-50%); /* IE 9 */
+              -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+              transform: translateY(-50%);
+              text-align: center;
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              border-radius: 5px;
+              font-size: 22px;
+
+              &:hover{
+                background: @gzzColor-bck-6;
+              }
+            }
+            .owl-next{
+              position: absolute;
+              top:50%;
+              right: -15px;
+              width: 30px;
+              height: 30px;
+              line-height: 30px;
+              vertical-align: center;
+              background: @gzzColor-bck-8;
+              color: @gzzColor-text-light;
+              -ms-transform: translateY(-50%); /* IE 9 */
+              -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+              transform: translateY(-50%);
+              text-align: center;
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              border-radius: 5px;
+              font-size: 22px;
+
+              &:hover{
+                background: @gzzColor-bck-6;
+              }
+            }
+          }
+        }
       }
     }//.secRecomendamos
   }//.gzzSec
