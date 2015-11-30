@@ -78,7 +78,7 @@ class bi extends Module
      "id" =>"moment",
      "params" => array("moment"),
      "installer" => "bower",
-     "includes" => array('moment.js')
+     "includes" => array('min/moment-with-locales.min.js')
     ),
     array(
      "id" =>"eonasdan-bootstrap-datetimepicker",
