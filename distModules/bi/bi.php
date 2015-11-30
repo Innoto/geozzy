@@ -78,7 +78,7 @@ class bi extends Module
      "id" =>"moment",
      "params" => array("moment"),
      "installer" => "bower",
-     "includes" => array()
+     "includes" => array('moment.js')
     ),
     array(
      "id" =>"eonasdan-bootstrap-datetimepicker",
