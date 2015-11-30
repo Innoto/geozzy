@@ -84,7 +84,7 @@ class bi extends Module
      "id" =>"eonasdan-bootstrap-datetimepicker",
      "params" => array("eonasdan-bootstrap-datetimepicker"),
      "installer" => "bower",
-     "includes" => array("build/css/bootstrap-datetimepicker.min.css")
+     "includes" => array("build/css/bootstrap-datetimepicker.min.css", "build/js/bootstrap-datetimepicker.min.js")
     ),
     array(
      "id" =>"q",
@@ -96,7 +96,7 @@ class bi extends Module
      "id" =>"seiyria-bootstrap-slider",
      "params" => array("seiyria-bootstrap-slider"),
      "installer" => "bower",
-     "includes" => array("dist/css/bootstrap-slider.css")
+     "includes" => array("dist/css/bootstrap-slider.css", "dist/bootstrap-slider.min.js")
     )
   );
 
