@@ -1,11 +1,12 @@
 //### Filter Selector View
 define([
+    'jquery',
     'backbone',
     'mustache',
     'models/filters/filter',
     'text!templates/filters/filtersSelector.html',
     '../../utils/filterUtils'
-], function (Backbone, Mustache, FilterModel, filtersTemplate, FilterUtils) {
+], function ($, Backbone, Mustache, FilterModel, filtersTemplate, FilterUtils) {
     // Creating FilterView template, used for selecting the different filters to use
     var FiltersView = Backbone.View.extend({
         events: {

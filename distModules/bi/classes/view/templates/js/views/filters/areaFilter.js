@@ -1,11 +1,12 @@
 //### Area Filter View: Manages the filter view by Geographic Bound
 define([
+    'jquery',
     'backbone',
     'mustache',
     'text!templates/filters/areaFilter.html',
     'collections/filters/filters',
     'config/appConfig'
-], function (Backbone, Mustache, AreaFilterTemplate, FiltersCollection, Config) {
+], function ($, Backbone, Mustache, AreaFilterTemplate, FiltersCollection, Config) {
     // Creating AreaFilter template, used for filtering by map zone
     var AreaFilter = Backbone.View.extend({
         tagName: 'div',
