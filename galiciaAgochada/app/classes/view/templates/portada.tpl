@@ -1,6 +1,7 @@
 {extends file="primary.tpl"}
 
 {block name="bodyContent"}
+  <span id="inicio"></span>
   <section class="gzzSec secImage">
     <!-- Carousel items -->
     <div id="carousel" class="s-carousel carousel carousel-fade" data-ride="carousel" data-interval="5000" data-pause="false">
@@ -28,6 +29,8 @@
       <a class="introLinkSegredos" href="#">{t}Descubre os nosos segredos{/t} <i class="fa fa-caret-down"></i></a>
     </div>
   </section>
+
+  <span class="anchor" id="segredos"></span>
   <section class="gzzSec secSegredos">
     <div class="container">
       <h2>{t}Os segredos de galicia{/t}</h2>
@@ -114,6 +117,8 @@
       <a class="segredosAll" href="#">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
     </div>
   </section>
+
+  <span class="anchor" id="participa"></span>
   <section class="gzzSec secParticipa">
     <div class="container">
       <h2>{t}¿Algún outro segredo?{/t} <span>{t}¡Somos todo oídos!{/t}</span></h2>
@@ -139,6 +144,8 @@
       </div>
     </div>
   </section>
+
+  <span class="anchor" id="recomendamos"></span>
   <section class="gzzSec secRecomendamos">
     <div class="container">
       {if isset($rdRecantosConEstilo) }

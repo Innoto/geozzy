@@ -18,11 +18,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse ">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#" class="page-scroll">{t}Inicio{/t}</a></li>
-        <li class="dropdown">
-          <a href="#" class="page-scroll">{t}Segredos{/t}</a></li>
-        <li><a href="#" class="page-scroll">{t}Participa{/t}</a></li>
-        <li><a href="#" class="page-scroll">{t}Recomendamos{/t}</a></li>
+        <li><a href="#inicio" class="page-scroll">{t}Inicio{/t}</a></li>
+        <li><a href="#segredos" class="page-scroll">{t}Segredos{/t}</a></li>
+        <li><a href="#participa" class="page-scroll">{t}Participa{/t}</a></li>
+        <li><a href="#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
         <li><a href="#" class="page-scroll">{t}Acerca de{/t}</a></li>
       </ul>
     </div>
