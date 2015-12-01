@@ -19,7 +19,7 @@ class ExplorerView extends MasterView
     $this->template->addClientScript('js/collection/CategoryCollection.js', 'geozzy');
     $this->template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
 
-
+    biMetrics::autoIncludes();
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
     $this->template->addClientScript('js/paisaxesExplorer.js');

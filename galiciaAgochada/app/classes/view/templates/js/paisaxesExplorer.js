@@ -7,6 +7,8 @@
 
     $(document).ready(function(){
 
+      console.log( new geozzy.biMetrics.controller.explorer({}) );
+
       var data = new Date();
       console.log( Date.UTC(data.getUTCFullYear(),data.getUTCMonth(), data.getUTCDate() , data.getUTCHours(), data.getUTCMinutes(), data.getUTCSeconds(), data.getUTCMilliseconds()) )
 

@@ -116,6 +116,7 @@ $C_ENABLED_MODULES = array(
   'geozzy',
   'appResourceBridge',
   'bi',
+  'biMetrics',
   'admin',
   'form',
   'Blocks',
@@ -282,8 +283,8 @@ $MEDIASERVER_JAVASCRIPT_CONSTANTS = array(
 
 global $MEDIASERVER_SMARTY_GLOBALS; // Se cargan con el prefijo GLOBAL_
 $MEDIASERVER_SMARTY_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG' );
-global $COGUMELO_SMARTY_CONSTANTS;
-$COGUMELO_SMARTY_CONSTANTS = array(
+global $MEDIASERVER_SMARTY_CONSTANTS;
+$MEDIASERVER_SMARTY_CONSTANTS = array(
   'langDefault' => LANG_DEFAULT,
   'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
   'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,

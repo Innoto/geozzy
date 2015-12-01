@@ -162,9 +162,16 @@ class ResourceController {
         $topicsArray = array();
         foreach( $topicsDep as $topicRel ) {
           $topicsArray[ $topicRel->getter('id') ] = $topicRel->getter('topic');
+          //$topicsIdsArray[$topicRel->getter('topic')] = $topicRel->getter('topic');
         }
         $resourceData[ 'topics' ] = $topicsArray;
         $resourceData[ 'topic' ] = current( $resourceData[ 'topics' ] );
+
+        $topicModel = new TopicModel();
+        foreach ($topicsArray as $i => $topicId){
+          $resourceTopicList[$topicId] = $topicModel->listItems( array( 'filters' => array( 'id' => $topicId ) ) )->fetch()->getter('name');
+        }
+        $resourceData[ 'topicsName' ] = $resourceTopicList;
         /**
           TODO: Asegurarse de que os topics se cargan en orden
         */
@@ -476,7 +483,7 @@ class ResourceController {
       }
 
       if (isset($this->resData['averageVotes'])){
-        $template->assign( 'timeLastUpdate', $this->resData['averageVotes']);
+        $template->assign( 'averageVotes', $this->resData['averageVotes']);
       }
     }
 

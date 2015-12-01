@@ -1,15 +1,30 @@
 var geozzy = geozzy || {};
 if(!geozzy.biMetrics) geozzy.biMetrics={};
-if(!geozzy.biMetrics.conroller) geozzy.biMetrics.controller={};
-
-geozzy.biMetrics.controller.biMetricsController = _.extend({
+if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
 
 
-  options: false;
+
+geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
+
+
+  options: false,
   pendingMetrics: [],
   syncInterval: false,
 
 
+
+
+  initialize: function( options ) {
+    var that = this;
+    var opts = {
+      url: false,
+      syncPeriod: 4000 // in miliseconds
+    }
+
+    $.extend(true, this.options, opts);
+
+    that.syncEnable();
+  },
 
   packageTemplate: function( ) {
 
@@ -23,7 +38,7 @@ geozzy.biMetrics.controller.biMetricsController = _.extend({
        "device":{
           "type":"mob",
           "device_ID":0
-       }
+       },
        "metrics": that.pendingMetrics
 
     };
@@ -36,30 +51,12 @@ geozzy.biMetrics.controller.biMetricsController = _.extend({
   },
 
 
-  defaults: function( options ) {
-
-    alert('CONSTRUCTOR');
-/*
-    var opts = {
-      url: false,
-      syncPeriod: 4000 // in miliseconds
-    }
-
-    $.extend(true, this.options, opts);
-*/
-  },
-
-
-
-
-
-
-
-
   addMetric: function( data ) {
     var that = this;
 
-    if( var metric = that.metricTemplate( data ) ) {
+    var metric = false;
+
+    if( metric = that.metricTemplate( data ) ) {
       that.pendingMetrics.push(metric);
     }
   },
