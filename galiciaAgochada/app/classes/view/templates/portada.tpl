@@ -161,6 +161,7 @@
                     <a href="/resource/{$rd->getter('id')}">
                       <p>{$rd->getter('shortDescription', 'es')}</p>
                     </a>
+                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
                   </div>
                 </div>
                 <div class="itemTitle">
@@ -186,6 +187,7 @@
                     <a href="/resource/{$rd->getter('id')}">
                       <p>{$rd->getter('shortDescription', 'es')}</p>
                     </a>
+                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
                   </div>
                 </div>
                 <div class="itemTitle">
@@ -211,6 +213,7 @@
                     <a href="/resource/{$rd->getter('id')}">
                       <p>{$rd->getter('shortDescription', 'es')}</p>
                     </a>
+                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
                   </div>
                 </div>
                 <div class="itemTitle">
@@ -237,6 +240,7 @@
                     <a href="/resource/{$rd->getter('id')}">
                       <p>{$rd->getter('shortDescription', 'es')}</p>
                     </a>
+                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
                   </div>
                 </div>
                 <div class="itemTitle">
@@ -262,6 +266,7 @@
                     <a href="/resource/{$rd->getter('id')}">
                       <p>{$rd->getter('shortDescription', 'es')}</p>
                     </a>
+                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
                   </div>
                 </div>
                 <div class="itemTitle">
@@ -287,6 +292,7 @@
                   <a href="/resource/{$rd->getter('id')}">
                     <p>{$rd->getter('shortDescription', 'es')}</p>
                   </a>
+                  <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
                 </div>
               </div>
               <div class="itemTitle">
