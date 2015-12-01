@@ -32,7 +32,9 @@ var ResourcesStarredCollection = Backbone.Collection.extend({
         //console.log(m2.toJSON())
         m2.destroy();
       }
-
+      else {
+        m2.save();
+      }
     });
   }
 });

@@ -340,21 +340,23 @@ class AdminDataAPIView extends View
 
     switch( $_SERVER['REQUEST_METHOD'] ) {
       case 'PUT':
-        $idR = $dataRequest[2];
+
         $putData = json_decode(file_get_contents('php://input'), true);
         $resourceTaxtermModel = new ResourceTaxonomytermModel();
 
-        if( is_numeric( $id ) && is_numeric( $idR ) ) {  // UPDATE
-          $rterm = $resourceTaxtermModel->listItems( array( 'filters' => array( 'taxonomyterm' => $id, 'resource' => $idR )))->fetch();
-        }
-        if( isset( $putData['weight'] ) ) {
-          $rterm->setter('weight', $putData['weight'] );
-        }
+        if( is_numeric( $id ) && is_numeric( $putData['resource'] ) ) {  // UPDATE
+          $rterm = $resourceTaxtermModel->listItems( array( 'filters' => array( 'id' => $id, 'resource' => $putData['resource'] )))->fetch();
 
-        $rterm->save();
 
-        $rtData = $rterm->getAllData();
-        echo json_encode( $rtData['data'] );
+          if( isset( $putData['weight'] ) ) {
+            $rterm->setter('weight', $putData['weight'] );
+          }
+
+          $rterm->save();
+
+          $rtData = $rterm->getAllData();
+          echo json_encode( $rtData['data'] );
+        }
       break;
 
       case 'GET':
