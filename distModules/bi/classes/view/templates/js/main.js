@@ -3,6 +3,7 @@
 
 require.config({
     paths: {
+        jquery: '/vendor/bower/jquery/dist/jquery.min',
 		text: '/vendor/bower/requirejs-text/text',
 		underscore: '/vendor/bower/underscore/underscore',
 		q: '/vendor/bower/q/q',
@@ -68,10 +69,15 @@ require.config({
 });
 
 require([
+    'jquery',
     'backbone',
-    'views/app',
+    'routers/router',
+    'views/app'
     // Start Backbone history a necessary step for bookmarkable URL's
-], function (Backbone, AppView) {
+], function ($,Backbone,Router,AppView) {
+    $.noConflict();
     Backbone.history.start();
-    new AppView();
+    new Router();
+    var view = new AppView();
+    view.render();
 });

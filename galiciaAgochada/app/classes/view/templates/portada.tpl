@@ -1,6 +1,7 @@
 {extends file="primary.tpl"}
 
 {block name="bodyContent"}
+  <span id="inicio"></span>
   <section class="gzzSec secImage">
     <!-- Carousel items -->
     <div id="carousel" class="s-carousel carousel carousel-fade" data-ride="carousel" data-interval="5000" data-pause="false">
@@ -28,6 +29,8 @@
       <a class="introLinkSegredos" href="#">{t}Descubre os nosos segredos{/t} <i class="fa fa-caret-down"></i></a>
     </div>
   </section>
+
+  <span class="anchor" id="segredos"></span>
   <section class="gzzSec secSegredos">
     <div class="container">
       <h2>{t}Os segredos de galicia{/t}</h2>
@@ -114,6 +117,8 @@
       <a class="segredosAll" href="#">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
     </div>
   </section>
+
+  <span class="anchor" id="participa"></span>
   <section class="gzzSec secParticipa">
     <div class="container">
       <h2>{t}¿Algún outro segredo?{/t} <span>{t}¡Somos todo oídos!{/t}</span></h2>
@@ -139,6 +144,8 @@
       </div>
     </div>
   </section>
+
+  <span class="anchor" id="recomendamos"></span>
   <section class="gzzSec secRecomendamos">
     <div class="container">
       {if isset($rdRecantosConEstilo) }
@@ -147,10 +154,20 @@
           <div class="owl-carousel">
             {foreach from=$rdRecantosConEstilo item=rd}
               <div class="item">
-                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
-                <div class="destResourceInfo">
-                  <h3>{$rd->getter('title', 'es')}</h3>
-                  <p>{$rd->getter('shortDescription', 'es')}</p>
+                <div class="itemImage">
+                  <div class="trama"></div>
+                  <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                  <div class="destResourceMoreInfo">
+                    <a href="/resource/{$rd->getter('id')}">
+                      <p>{$rd->getter('shortDescription', 'es')}</p>
+                    </a>
+                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                  </div>
+                </div>
+                <div class="itemTitle">
+                  <a href="/resource/{$rd->getter('id')}">
+                    <h3>{$rd->getter('title', 'es')} </h3>
+                  </a>
                 </div>
               </div>
             {/foreach}
@@ -163,10 +180,20 @@
           <div class="owl-carousel">
             {foreach from=$rdFestaRachada item=rd}
               <div class="item">
-                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
-                <div class="destResourceInfo">
-                  <h3>{$rd->getter('title_es')}</h3>
-                  <p>{$rd->getter('shortDescription_es')}</p>
+                <div class="itemImage">
+                  <div class="trama"></div>
+                  <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                  <div class="destResourceMoreInfo">
+                    <a href="/resource/{$rd->getter('id')}">
+                      <p>{$rd->getter('shortDescription', 'es')}</p>
+                    </a>
+                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                  </div>
+                </div>
+                <div class="itemTitle">
+                  <a href="/resource/{$rd->getter('id')}">
+                    <h3>{$rd->getter('title', 'es')} </h3>
+                  </a>
                 </div>
               </div>
             {/foreach}
@@ -179,10 +206,20 @@
           <div class="owl-carousel">
             {foreach from=$rdPraiasDeEnsono item=rd}
               <div class="item">
-                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
-                <div class="destResourceInfo">
-                  <h3>{$rd->getter('title_es')}</h3>
-                  <p>{$rd->getter('shortDescription_es')}</p>
+                <div class="itemImage">
+                  <div class="trama"></div>
+                  <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                  <div class="destResourceMoreInfo">
+                    <a href="/resource/{$rd->getter('id')}">
+                      <p>{$rd->getter('shortDescription', 'es')}</p>
+                    </a>
+                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                  </div>
+                </div>
+                <div class="itemTitle">
+                  <a href="/resource/{$rd->getter('id')}">
+                    <h3>{$rd->getter('title', 'es')} </h3>
+                  </a>
                 </div>
               </div>
             {/foreach}
@@ -196,10 +233,20 @@
           <div class="owl-carousel">
             {foreach from=$rdPaisaxesEspectaculares item=rd}
               <div class="item">
-                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
-                <div class="destResourceInfo">
-                  <h3>{$rd->getter('title_es')}</h3>
-                  <p>{$rd->getter('shortDescription_es')}</p>
+                <div class="itemImage">
+                  <div class="trama"></div>
+                  <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                  <div class="destResourceMoreInfo">
+                    <a href="/resource/{$rd->getter('id')}">
+                      <p>{$rd->getter('shortDescription', 'es')}</p>
+                    </a>
+                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                  </div>
+                </div>
+                <div class="itemTitle">
+                  <a href="/resource/{$rd->getter('id')}">
+                    <h3>{$rd->getter('title', 'es')} </h3>
+                  </a>
                 </div>
               </div>
             {/foreach}
@@ -212,10 +259,20 @@
           <div class="owl-carousel">
             {foreach from=$rdAloxamentoConEncanto item=rd}
               <div class="item">
-                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
-                <div class="destResourceInfo">
-                  <h3>{$rd->getter('title_es')}</h3>
-                  <p>{$rd->getter('shortDescription_es')}</p>
+                <div class="itemImage">
+                  <div class="trama"></div>
+                  <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                  <div class="destResourceMoreInfo">
+                    <a href="/resource/{$rd->getter('id')}">
+                      <p>{$rd->getter('shortDescription', 'es')}</p>
+                    </a>
+                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                  </div>
+                </div>
+                <div class="itemTitle">
+                  <a href="/resource/{$rd->getter('id')}">
+                    <h3>{$rd->getter('title', 'es')} </h3>
+                  </a>
                 </div>
               </div>
             {/foreach}
@@ -228,10 +285,20 @@
         <div class="owl-carousel">
           {foreach from=$rdAutenticaGastronomia item=rd}
             <div class="item">
-              <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast/{$rd->getter('image')}.jpg">
-              <div class="destResourceInfo">
-                <h3>{$rd->getter('title_es')}</h3>
-                <p>{$rd->getter('shortDescription_es')}</p>
+              <div class="itemImage">
+                <div class="trama"></div>
+                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                <div class="destResourceMoreInfo">
+                  <a href="/resource/{$rd->getter('id')}">
+                    <p>{$rd->getter('shortDescription', 'es')}</p>
+                  </a>
+                  <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                </div>
+              </div>
+              <div class="itemTitle">
+                <a href="/resource/{$rd->getter('id')}">
+                  <h3>{$rd->getter('title', 'es')} </h3>
+                </a>
               </div>
             </div>
           {/foreach}

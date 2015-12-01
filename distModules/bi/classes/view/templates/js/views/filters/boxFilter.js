@@ -1,11 +1,12 @@
 //### Box Filter View
 define([
+    'jquery',
     'backbone',
     'mustache',
     'text!templates/filters/boxFilter.html',
     'collections/filters/filters',
     'select2'
-], function (Backbone, Mustache, filtersTemplate, FiltersCollection) {
+], function ($, Backbone, Mustache, filtersTemplate, FiltersCollection) {
     // Creating BoxFilter template, used for filtering by different options selected
     var BoxFilter = Backbone.View.extend({
         tagName: 'div',
@@ -17,6 +18,7 @@ define([
         render: function () {
             var rendered = Mustache.render(filtersTemplate, this.model.toJSON());
             this.$el.html(rendered);
+            this.$el.find('select').select2({width: "95%"});
             return this;
         },
         // Removes the filter

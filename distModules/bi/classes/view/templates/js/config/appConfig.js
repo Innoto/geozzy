@@ -1,1 +1,129 @@
-"use strict";define([],function(){var a=3,b=5,c=6,d=7,e=8,f=9,g=10,h=11,i=12,j=13,k=14,l=15,m=16,n=17,o=18,p="http://localhost:8080",q="http://galiciaagochada.nnt/api",r=6048e5;return{URL_BI_SERVER:p,URL_STATS:p+"/statistics",URL_STATS_CONFIG:p+"/statistics/config",URL_GEOZZY:q,URL_CATEGORY:q+"/core/categorylist",URL_CATEGORY_TERMS:q+"/core/categoryterms/id/",URL_TOPICS:q+"/core/topiclist",URL_EXPLORERS:q+"/explorerList",URL_OPENSTREETMAP:"http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",DATE_FORMAT:"D/M/YYYY HH:mm:ss",METRICS_CACHE_EXPIRATION:r,FILTER_EXPLORERS_FILTERS_ID:19,GROUP_BY_RESOURCE_TOPIC:3,GROUP_BY_RESOURCE_TERM:4,GROUP_BY_CLIENT_LOCATION:10,GROUP_BY_EXPLORER:12,GROUP_BY_FILTER:13,GROUP_BY_EXPLORER_BOUNDS:14,GROUP_BY_FILTER_BOUNDS:15,FILTER_RESOURCE:a,FILTER_RESOURCE_TYPES:b,FILTER_RESOURCE_TOPICS:c,FILTER_RESOURCE_TERMS:d,FILTER_EVENT_TYPES:e,FILTER_REGION_COUNTRY:f,FILTER_DEVICE_TYPE:g,FILTER_LANGUAGE:h,FILTER_DATE_RANGE:i,FILTER_RESOURCE_GEOGRAPHIC_BOUND:j,FILTER_EXPLORER_GEOGRAPHIC_BOUND:k,FILTER_SECTION:l,FILTER_EXPLORER:m,FILTER_TAXONOMY_TERMS:n,FILTER_SECONDS:o,FILTER_URL:[{filterID:a,url:q+"/core/resourcelist/fields/false/filters/false/rtype/false"},{filterID:b,url:q+"/core/resourcetypes"},{filterID:c,url:q+"/core/topiclist"},{filterID:d,url:q+"/core/categorylist"},{filterID:e,url:q+"/core/uieventlist"},{filterID:f,url:q},{filterID:g,url:q+"/core/bi"},{filterID:h,url:q+"/core/bi"},{filterID:l,url:q+"/core/bi"},{filterID:m,url:q+"/explorerList"},{filterID:n,url:q+"/core/categorylist"}],BAR_CHART:1,HEAT_MAP:2,DATE_CHART:3,COUNTRY_BAR_CHART:4,MAP_EXPLORED_ZONES:5}});
+//### Configuration file with the variables and their respective ID, URLs, etc.
+'use strict';
+
+define([], function () {
+    // Filters ID assigned to the names
+    var filterResource = 3,
+        filterResourceTypes = 5,
+        filterResourceTopics = 6,
+        filterResourceTerms = 7,
+        filterEventTypes = 8,
+        filterRegionCountry = 9,
+        filterDeviceType = 10,
+        filterLanguage = 11,
+        filterDateRange = 12,
+        filterResourceGeographicBound = 13,
+        filterExplorerGeographicBound = 14,
+        filterSection = 15,
+        filterExplorer = 16,
+        filterTaxonomyTerms = 17,
+        filterSeconds = 18;
+    // Variables for the both domains to access
+    var urlBIserver = "http://test.geozzy.itg.es:10164",
+        urlGeozzy = "http://galiciaagochada.nnt/api";
+
+    var weekMilis = 7 * 24 * 60 * 60 * 1000;
+
+    return {
+        //* URLs assigned to their variables.
+        //* Specifies the date format used.
+        //* Filter Explorer ID assigned to the variable
+        //* Group By ID assigned to the variables
+        //* Filter ID names assigned to the variables
+        //* Parsing the Filter URL with the different ID and urls
+        //* Chart Type ID assigned to the variables
+        URL_BI_SERVER: urlBIserver,
+        URL_STATS: urlBIserver + '/statistics',
+        URL_STATS_CONFIG: urlBIserver + '/statistics/config',
+        URL_GEOZZY: urlGeozzy,
+        URL_CATEGORY: urlGeozzy + '/core/categorylist',
+        URL_CATEGORY_TERMS: urlGeozzy + '/core/categoryterms/id/',
+        URL_TOPICS: urlGeozzy + '/core/topiclist',
+        URL_EXPLORERS: urlGeozzy + '/explorerList',
+        URL_OPENSTREETMAP: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+
+        DATE_FORMAT: 'D/M/YYYY HH:00:00',
+        LOCALE: 'es',
+
+        METRICS_CACHE_EXPIRATION: weekMilis,
+
+        FILTER_EXPLORERS_FILTERS_ID: 19,
+
+        GROUP_BY_RESOURCE_TOPIC: 3,
+        GROUP_BY_RESOURCE_TERM: 4,
+        GROUP_BY_CLIENT_LOCATION: 10,
+        GROUP_BY_EXPLORER: 12,
+        GROUP_BY_FILTER: 13,
+        GROUP_BY_EXPLORER_BOUNDS: 14,
+        GROUP_BY_FILTER_BOUNDS: 15,
+
+        FILTER_RESOURCE: filterResource,
+        FILTER_RESOURCE_TYPES: filterResourceTypes,
+        FILTER_RESOURCE_TOPICS: filterResourceTopics,
+        FILTER_RESOURCE_TERMS: filterResourceTerms,
+        FILTER_EVENT_TYPES: filterEventTypes,
+        FILTER_REGION_COUNTRY: filterRegionCountry,
+        FILTER_DEVICE_TYPE: filterDeviceType,
+        FILTER_LANGUAGE: filterLanguage,
+        FILTER_DATE_RANGE: filterDateRange,
+        FILTER_RESOURCE_GEOGRAPHIC_BOUND: filterResourceGeographicBound,
+        FILTER_EXPLORER_GEOGRAPHIC_BOUND: filterExplorerGeographicBound,
+        FILTER_SECTION: filterSection,
+        FILTER_EXPLORER: filterExplorer,
+        FILTER_TAXONOMY_TERMS: filterTaxonomyTerms,
+        FILTER_SECONDS: filterSeconds,
+
+        FILTER_URL: [
+            {
+                filterID: filterResource,
+                url: urlGeozzy + '/core/resourcelist/fields/false/filters/false/rtype/false'
+            },
+            {
+                filterID: filterResourceTypes,
+                url: urlGeozzy + '/core/resourcetypes'
+            },
+            {
+                filterID: filterResourceTopics,
+                url: urlGeozzy + '/core/topiclist'
+            },
+            {
+                filterID: filterResourceTerms,
+                url: urlGeozzy + '/core/categorylist'
+            },
+            {
+                filterID: filterEventTypes,
+                url: urlGeozzy + '/core/uieventlist'
+            },
+            {
+                filterID: filterRegionCountry,
+                url: urlGeozzy
+            },
+            {
+                filterID: filterDeviceType,
+                url: urlGeozzy + '/core/bi'
+            },
+            {
+                filterID: filterLanguage,
+                url: urlGeozzy + '/core/bi'
+            },
+            {
+                filterID: filterSection,
+                url: urlGeozzy + '/core/bi'
+            },
+            {
+                filterID: filterExplorer,
+                url: urlGeozzy + '/explorerList'
+            },
+            {
+                filterID: filterTaxonomyTerms,
+                url: urlGeozzy + '/core/categorylist'
+            }
+        ],
+
+        'BAR_CHART': 1,
+        'HEAT_MAP': 2,
+        'DATE_CHART': 3,
+        'COUNTRY_BAR_CHART': 4,
+        'MAP_EXPLORED_ZONES': 5
+    };
+});

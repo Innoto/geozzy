@@ -12,7 +12,7 @@
   {block name="headJsIncludes"}{$js_includes}{/block}
 
 </head>
-<body>
+<body data-spy="scroll" data-target=".headContent">
   <article>
     <header class="headContent">
       {block name="headContent"}

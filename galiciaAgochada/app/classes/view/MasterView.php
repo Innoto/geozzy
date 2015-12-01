@@ -44,7 +44,7 @@ class MasterView extends View
         'order' => array(
           'weightResTAxTerm' => '-1'
         ),
-        'affectsDependences' => array('ResourceModel')
+        'affectsDependences' => array('ResourceModel','UrlAliasModel')
       )
     );
     $resDest = array();
