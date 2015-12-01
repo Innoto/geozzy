@@ -1,6 +1,8 @@
 var geozzy = geozzy || {};
 if(!geozzy.biMetrics) geozzy.biMetrics={};
-if(!geozzy.biMetrics.conroller) geozzy.biMetrics.controller={};
+if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
+
+
 
 geozzy.biMetrics.controller.explorer = geozzy.biMetrics.controller.biMetricsController.extend( {
 

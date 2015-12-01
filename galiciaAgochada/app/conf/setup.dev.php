@@ -116,6 +116,7 @@ $C_ENABLED_MODULES = array(
   'geozzy',
   'appResourceBridge',
   'bi',
+  'biMetrics',
   'admin',
   'form',
   'Blocks',
