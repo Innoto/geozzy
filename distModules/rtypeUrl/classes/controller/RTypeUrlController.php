@@ -126,6 +126,29 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     $formFieldsNames = array( 'image' );
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
 
+    // TEMPLATE panel cuadro informativo
+    $templates['info'] = new Template();
+    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'geozzy' );
+    $templates['info']->assign( 'title', __( 'Information' ) );
+    $templates['info']->assign( 'res', $formBlockInfo );
+
+    $resourceType = new ResourcetypeModel();
+    $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
+    $templates['info']->assign( 'rType', $type->getter('name_es') );
+    $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
+    $templates['info']->assign( 'timeCreation', $timeCreation );
+    if (isset($formBlockInfo['data']['userUpdate'])){
+      $userModel = new UserModel();
+      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
+      $userUpdateName = $userUpdate->getter('name');
+      $timeLastUpdate = date('d/m/Y', time($formBlockInfo['data']['timeLastUpdate']));
+      $templates['info']->assign( 'timeLastUpdate', $timeLastUpdate.' ('.$userUpdateName.')' );
+    }
+    if (isset($formBlockInfo['data']['averageVotes'])){
+      $templates['info']->assign( 'averageVotes', $formBlockInfo['data']['averageVotes']);
+    }
+    $templates['info']->assign( 'res', $formBlockInfo );
+    $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE con todos los paneles
     $templates['adminFull'] = new Template();
@@ -137,6 +160,7 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();

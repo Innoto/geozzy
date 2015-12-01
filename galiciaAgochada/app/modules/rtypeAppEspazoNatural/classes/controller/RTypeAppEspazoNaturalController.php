@@ -176,7 +176,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
 
     // TEMPLATE panel cuadro informativo
     $templates['info'] = new Template();
-    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'rtypeHotel' );
+    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'geozzy' );
     $templates['info']->assign( 'title', __( 'Information' ) );
     $templates['info']->assign( 'res', $formBlockInfo );
 

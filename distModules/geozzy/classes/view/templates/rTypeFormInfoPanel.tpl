@@ -18,8 +18,10 @@
   </div>
   <div class="row">
     <div class="infoCol col-md-4">Actualizado</div>
-    <div class="infoColData col-md-8">{$timeLastUpdate}</div>
+    <div class="infoColData col-md-8">{if isset($timeLastUpdate)}{$timeLastUpdate}{/if}</div>
   </div>
+
+  {if isset($resourceTopicList)}
   <div class="row">
     <div class="infoCol col-md-12">Temáticas</div>
   </div>
@@ -28,6 +30,7 @@
     <div class="infoColData col-md-8">{$dir}</div>
   </div>
   {/foreach}
+  {/if}
 
   {if isset($res.data.starred)}
     <div class="row">
