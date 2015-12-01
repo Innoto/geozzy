@@ -35,6 +35,7 @@ body {
           color: @gzzColor-text-light;
           padding: 5px;
           font-size: 16px;
+          outline: 0;
         }
         &:hover a{
           color: @gzzColor-text-light;
@@ -42,6 +43,7 @@ body {
         &.active a{
           font-weight: bold;
           background: transparent;
+          &:focus{ color: @gzzColor-text-light;  }
         }
         &.dropdown.open{
           .dropdown-menu {
@@ -181,4 +183,11 @@ body {
 }
 .containerGzzy{
   padding: 0 60px;
+}
+
+.anchor{
+  display: block;
+  height: @headerHeight;
+  margin-top: -@headerHeight;
+  visibility: hidden;
 }
