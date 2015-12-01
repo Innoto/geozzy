@@ -21,7 +21,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
       syncPeriod: 4000 // in miliseconds
     }
 
-    $.extend(true, this.options, opts);
+    that.options = $.extend(true, that.options, opts);
 
     that.syncEnable();
   },
@@ -98,15 +98,16 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
 
   },
 
+
   syncEnable: function() {
+
     var that = this;
 
     if( that.syncInterval == false ) {
-      setInterval( function(){
+
+      that.syncInterval = setInterval( function(){
         // syncrhonization
         that.sync();
-        console.log('biMetrics: that.syncInterval already defined');
-
       }, that.options.syncPeriod);
     }
     else {
