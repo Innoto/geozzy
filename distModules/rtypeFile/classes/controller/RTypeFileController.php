@@ -40,7 +40,109 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     return( $rTypeFieldNames );
   } // function manipulateForm()
 
+  public function getFormBlockInfo( FormController $form ) {
+    error_log( "RTypeHotelController: getFormBlockInfo()" );
 
+    $formBlockInfo = array(
+      'template' => false,
+      'data' => false,
+      'dataForm' => false,
+      'ext' => array()
+    );
+
+    $formBlockInfo['dataForm'] = array(
+      'formOpen' => $form->getHtmpOpen(),
+      'formFieldsArray' => $form->getHtmlFieldsArray(),
+      'formFieldsHiddenArray' => array(),
+      'formFields' => $form->getHtmlFieldsAndGroups(),
+      'formClose' => $form->getHtmlClose(),
+      'formValidations' => $form->getScriptCode()
+    );
+
+    if( $resId = $form->getFieldValue( 'id' ) ) {
+      $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
+    }
+
+    $this->fileCtrl = new RExtFileController( $this );
+    $fileViewInfo = $this->fileCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->fileCtrl->rExtName ] = $fileViewInfo;
+
+    // TEMPLATE panel principa del form. Contiene los elementos globales del form.
+    $templates['formBase'] = new Template();
+    $templates['formBase']->setTpl( 'rTypeFormBase.tpl', 'geozzy' );
+    $templates['formBase']->assign( 'title', __('Main Resource information') );
+    $templates['formBase']->assign( 'res', $formBlockInfo );
+
+    $formFieldsNames = array_merge(
+      $form->multilangFieldNames( 'title' ),
+      $form->multilangFieldNames( 'shortDescription' ),
+      $form->multilangFieldNames( 'mediumDescription' )
+    );
+    $formFieldsNames[] = 'externalUrl';
+    $formFieldsNames[] = $this->fileCtrl->addPrefix( 'author' );
+    $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel estado de publicacion
+    $templates['publication'] = new Template();
+    $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['publication']->assign( 'title', __( 'Publication' ) );
+    $templates['publication']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'published', 'weight' );
+    $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel SEO
+    $templates['seo'] = new Template();
+    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['seo']->assign( 'title', __( 'SEO' ) );
+    $templates['seo']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array_merge(
+      $form->multilangFieldNames( 'urlAlias' ),
+      $form->multilangFieldNames( 'headKeywords' ),
+      $form->multilangFieldNames( 'headDescription' ),
+      $form->multilangFieldNames( 'headTitle' )
+    );
+    $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel image
+    $templates['image'] = new Template();
+    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['image']->assign( 'title', __( 'Select a image' ) );
+    $templates['image']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'image' );
+    $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel image
+    $templates['file'] = new Template();
+    $templates['file']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['file']->assign( 'title', __( 'Multimedia file' ) );
+    $templates['file']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = $this->fileCtrl->addPrefix( 'file' );
+    $templates['file']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE con todos los paneles
+    $templates['adminFull'] = new Template();
+    $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
+    $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
+    // COL8
+    $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
+    // COL4
+    $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['file'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
+
+    // TEMPLATE en bruto con todos los elementos del form
+    $templates['full'] = new Template();
+    $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );
+    $templates['full']->assign( 'res', $formBlockInfo );
+
+
+    $formBlockInfo['template'] = $templates;
+
+    return $formBlockInfo;
+  }
 
   /**
     Validaciones extra previas a usar los datos del recurso base
