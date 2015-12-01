@@ -141,7 +141,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['reservation']->assign( 'title', __( 'Reservation' ) );
     $templates['reservation']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'rExtAccommodation_reservationURL', 'rExtAccommodation_reservationPhone', 'rExtAccommodation_reservationEmail' );
+    $formFieldsNames = $this->accomCtrl->prefixArray(array( 'reservationURL', 'reservationPhone', 'reservationEmail' ));
     $templates['reservation']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel contacto
@@ -186,43 +186,37 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['categorization']->assign( 'title', __( 'Categorization' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'rExtAccommodation_accommodationType', 'rExtAccommodation_accommodationCategory',
-      'rExtAccommodation_averagePrice', 'rExtAccommodation_accommodationFacilities',
-      'rExtAccommodation_accommodationServices');
+    $formFieldsNames = $this->accomCtrl->prefixArray(array( 'accommodationType', 'accommodationCategory',
+      'averagePrice', 'accommodationFacilities', 'accommodationServices'));
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
 
-    // Recuperamos las temáticas que tiene asociadas el recurso
-    // $allTopics = $this->getOptionsTopic();
-    // $resourceTopicModel = new ResourceTopicModel();
-    // $resourceTopicList = $resourceTopicModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
-    // $topicsHtml = '';
-    // if( $resourceTopicList ) {
-    //   while( $topicList = $resourceTopicList->fetch() ) {
-    //     $allTopics[ $topicList->getter( 'topic' ) ];
-    //     $topicsHtml = $topicsHtml.'<div class="row rowWhite"><div class="infoCol col-md-4"></div>'.
-    //       '<div class="infoColData col-md-8">'.$allTopics[ $topicList->getter( 'topic' ) ].'</div></div>';
-    //   }
-    // }
-    //
-    // $templates['info'] = new Template();
-    // $templates['image']->setTpl( 'rTypeFormInfoPanel.tpl', 'rtypeHotel' );
-    // $templates['image']->assign( 'allTopics', $allTopics );
-    // $templates['image']->assign( 'resourceTopicList', $resourceTopicList );
+    // TEMPLATE panel cuadro informativo
+    $templates['info'] = new Template();
+    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'rtypeHotel' );
+    $templates['info']->assign( 'title', __( 'Information' ) );
+    $templates['info']->assign( 'res', $formBlockInfo );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $resourceType = new ResourcetypeModel();
+    $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
+    $templates['info']->assign( 'rType', $type->getter('name_es') );
+    $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
+    $templates['info']->assign( 'timeCreation', $timeCreation );
+    if (isset($formBlockInfo['data']['userUpdate'])){
+      $userModel = new UserModel();
+      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
+      $userUpdateName = $userUpdate->getter('name');
+      $timeLastUpdate = date('d/m/Y', time($formBlockInfo['data']['timeLastUpdate']));
+      $templates['info']->assign( 'timeLastUpdate', $timeLastUpdate.' ('.$userUpdateName.')' );
+    }
+    if (isset($formBlockInfo['data']['averageVotes'])){
+      $templates['info']->assign( 'averageVotes', $formBlockInfo['data']['averageVotes']);
+    }
+    /* Temáticas */
+    if (isset($formBlockInfo['data']['topicsName'])){
+      $templates['info']->assign( 'resourceTopicList', $formBlockInfo['data']['topicsName']);
+    }
+    $templates['info']->assign( 'res', $formBlockInfo );
+    $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE con todos los paneles
     $templates['adminFull'] = new Template();
@@ -240,15 +234,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
-
-/*
-$cols['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
-$cols['col8']['collections'] = array( $formPartBlock, __('Collections of related resources'), 'fa-th-large' );
-$cols['col8']['multimedia'] = array( $formPartBlock, __('Multimedia galleries'), 'fa-th-large' );
-$cols['col4']['image'] = array( $formPartBlock, __( 'Select a image' ), 'fa-file-image-o' );
-$cols['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
-$cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
-*/
+    $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();
