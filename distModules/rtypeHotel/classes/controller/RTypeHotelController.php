@@ -146,7 +146,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     // TEMPLATE panel contacto
     $templates['location'] = new Template();
-    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'rtypeHotel' );
+    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
     $templates['location']->assign( 'title', __( 'Location' ) );
     $templates['location']->assign( 'res', $formBlockInfo );
     $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
@@ -198,7 +198,9 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     $resourceType = new ResourcetypeModel();
     $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
-    $templates['info']->assign( 'rType', $type->getter('name_es') );
+    if ($type){
+      $templates['info']->assign( 'rType', $type->getter('name_es') );
+    }
     $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
     $templates['info']->assign( 'timeCreation', $timeCreation );
     if (isset($formBlockInfo['data']['userUpdate'])){
@@ -224,8 +226,8 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );

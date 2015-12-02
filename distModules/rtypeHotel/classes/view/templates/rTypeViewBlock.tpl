@@ -89,7 +89,7 @@
       <ul class="type col-lg-10">
         {foreach from=$res.data.accommodationType item=termInfo}
           <li>
-            {if isset($termInfo.icon)}<img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
+            {if isset($termInfo.icon)}<img width="16" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
             <div class="name">{$termInfo.name_es}</div>
           </li>
           {break}

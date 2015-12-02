@@ -26,6 +26,7 @@ class rextAccommodation extends Module {
       'initialTerms' => array(
         array(
           'idName' => 'hoteles',
+          'icon' => 'view/categoryIcons/hotel.svg',
           'name' => array(
             'en' => 'Hotels',
             'es' => 'Hoteles',
@@ -34,6 +35,7 @@ class rextAccommodation extends Module {
         ),
         array(
           'idName' => 'albergues',
+          'icon' => 'view/categoryIcons/albergue.svg',
           'name' => array(
             'en' => 'Hostels',
             'es' => 'Albergues',
@@ -42,6 +44,7 @@ class rextAccommodation extends Module {
         ),
         array(
           'idName' => 'camping',
+          'icon' => 'view/categoryIcons/camping.svg',
           'name' => array(
             'en' => 'Bungalows-campings',
             'es' => 'Bungalós-campings',
@@ -50,19 +53,29 @@ class rextAccommodation extends Module {
         ),
         array(
           'idName' => 'casasrurales',
+          'icon' => 'view/categoryIcons/casarural.svg',
           'name' => array(
             'en' => 'Bed & Breakfasts',
             'es' => 'Casas rurales',
             'gl' => 'Casas rurais'
           )
-        )
-        ,
+        ),
         array(
           'idName' => 'paradores',
+          'icon' => 'view/categoryIcons/parador.svg',
           'name' => array(
             'en' => 'Palace Hotels',
             'es' => 'Paradores',
             'gl' => 'Paradores'
+          )
+        ),
+        array(
+          'idName' => 'balnearios',
+          'icon' => 'view/categoryIcons/balneario.svg',
+          'name' => array(
+            'en' => 'Spa',
+            'es' => 'Balneario',
+            'gl' => 'Balneario'
           )
         )
       )
@@ -159,6 +172,7 @@ class rextAccommodation extends Module {
         ),
         array(
           'idName' => 'wifi',
+          'icon' => 'view/categoryIcons/wifi.svg',
           'name' => array(
             'en' => 'WiFi',
             'es' => 'WiFi',
@@ -167,6 +181,7 @@ class rextAccommodation extends Module {
         ),
         array(
           'idName' => 'tarxeta',
+          'icon' => 'view/categoryIcons/tarxeta.svg',
           'name' => array(
             'en' => 'Credit card accepted',
             'es' => 'Tarjeta de crédito',
@@ -175,6 +190,7 @@ class rextAccommodation extends Module {
         ),
         array(
           'idName' => 'almorzo',
+          'icon' => 'view/categoryIcons/almorzo.svg',
           'name' => array(
             'en' => 'Breakfast',
             'es' => 'Desayuno',
@@ -182,7 +198,8 @@ class rextAccommodation extends Module {
           )
         ),
         array(
-          'idName' => 'xantares',
+          'idName' => 'comida',
+          'icon' => 'view/categoryIcons/comida.svg',
           'name' => array(
             'en' => 'Lunch and dinner',
             'es' => 'Comida y cena',
@@ -190,7 +207,17 @@ class rextAccommodation extends Module {
           )
         ),
         array(
+          'idName' => 'cuna',
+          'icon' => 'view/categoryIcons/cuna.svg',
+          'name' => array(
+            'en' => 'Baby Cot',
+            'es' => 'Cuna',
+            'gl' => 'Berce'
+          )
+        ),
+        array(
           'idName' => 'accesible',
+          'icon' => 'view/categoryIcons/accesible.svg',
           'name' => array(
             'en' => 'Wheelchair accessible',
             'es' => 'Accesible discapacitados',
@@ -221,6 +248,7 @@ class rextAccommodation extends Module {
         ),
         array(
           'idName' => 'parking',
+          'icon' => 'view/categoryIcons/parking.svg',
           'name' => array(
             'en' => 'Parking',
             'es' => 'Aparcamiento',
@@ -229,6 +257,7 @@ class rextAccommodation extends Module {
         ),
         array(
           'idName' => 'piscina',
+          'icon' => 'view/categoryIcons/piscina.svg',
           'name' => array(
             'en' => 'Swimming pool',
             'es' => 'Piscina',
@@ -237,6 +266,7 @@ class rextAccommodation extends Module {
         ),
         array(
           'idName' => 'cocina',
+          'icon' => 'view/categoryIcons/cocina.svg',
           'name' => array(
             'en' => 'Common kitchen',
             'es' => 'Cocina común',
@@ -245,6 +275,7 @@ class rextAccommodation extends Module {
         ),
         array(
           'idName' => 'tv',
+          'icon' => 'view/categoryIcons/tv.svg',
           'name' => array(
             'en' => 'TV',
             'es' => 'TV',
