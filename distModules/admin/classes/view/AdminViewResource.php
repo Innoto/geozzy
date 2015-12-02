@@ -215,18 +215,6 @@ class AdminViewResource extends AdminViewMaster {
 
     $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
     $formBlockInfo['template']['adminFull']->exec();
-
-    /*
-    // Template base sin columnas
-    $this->template->assign( 'headTitle', __('Edit Resource') );
-    $this->template->setTpl( 'adminContent-plain.tpl', 'admin' );
-    if( $formBlockInfo['template'] ) {
-      $this->template->setBlock( 'contentSection', $formBlockInfo['template']['full'] );
-      $this->template->assign( 'res', array( 'data' => $formBlockInfo['data'], 'ext' => $formBlockInfo['ext'] ) );
-    }
-
-    $this->template->exec();
-    */
   }
 
 
@@ -257,10 +245,25 @@ class AdminViewResource extends AdminViewMaster {
    * Creacion/Edicion de Recursos type URL
    */
   public function resourceTypeUrlForm( $urlParams = false ) {
-    $formName = 'resourceUrlCreate';
-    $formUrl = '/admin/resourcetypeurl/sendresource';
 
-    $reqFields = array(
+
+  $resCtrl = new ResourceController();
+  $rtypeModel = new ResourcetypeModel();
+
+  $formName = 'resourceUrlCreate';
+  $urlAction = '/admin/resourcetypeurl/sendresource';
+
+  $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
+  var_dump($rtype->getter('id'));
+  $valuesArray['rTypeId'] = $rtype->getter('id');
+
+  $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
+  $formBlockInfo['template']['miniFormModal']->exec();
+
+
+
+
+    /*$reqFields = array(
       'cgIntFrmId',
       'id',
       'published',
@@ -272,45 +275,7 @@ class AdminViewResource extends AdminViewMaster {
       'rExtUrl_embed',
       'rExtUrl_author',
       'submit'
-    );
-
-    $resourceView = new GeozzyResourceView();
-    $rtypeControl = new ResourcetypeModel();
-    $rtype = $rtypeControl->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
-
-    $recursoData['rTypeId'] = $rtype->getter('id');
-
-    $form = $resourceView->getFormObj( $formName, $formUrl, $recursoData );
-
-    $allResourceFields = $form->getFieldsNamesArray();
-    $noFields = array();
-    $yesFields = array();
-    foreach ( $reqFields as $key => $field ) {
-      if( in_array( $field, $allResourceFields ) ) {
-        array_push( $yesFields, $field );
-      }
-      else {
-        $mfield = $form->multilangFieldNames($field);
-        foreach( $mfield as $k => $mf ) {
-          if( in_array( $mf, $allResourceFields) ) {
-            array_push( $yesFields, $mf );
-          }
-        }
-      }
-    }
-    $noFields = array_diff( $allResourceFields, $yesFields );
-    $form->setFieldParam('published', 'type', 'reserved');
-    $form->setFieldParam('published', 'value', '1');
-    $form->removeValidationRules('published');
-    $form->removeField( $noFields );
-    $formBlock = $resourceView->formToTemplate( $form );
-
-    // Cambiamos el template del formulario
-    $formBlock->setTpl( 'resourceTypeFormBlockBase.tpl', 'admin' );
-    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
-
-    $this->template->addToBlock( 'col12', $this->getPanelBlock( $formBlock, __('Resource'), 'fa-archive' ) );
-    $this->template->exec();
+    );*/
   }
 
 
