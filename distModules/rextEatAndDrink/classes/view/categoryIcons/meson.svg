@@ -9,14 +9,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="50"
-   height="50"
-   id="svg3235"
+   width="32px"
+   height="32px"
+   id="svg3166"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
    sodipodi:docname="xamoneria.svg">
   <defs
-     id="defs3237" />
+     id="defs3168" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -24,19 +24,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="13.371408"
-     inkscape:cy="22.51252"
-     inkscape:document-units="px"
+     inkscape:zoom="11.197802"
+     inkscape:cx="16"
+     inkscape:cy="16"
      inkscape:current-layer="layer1"
-     showgrid="false"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
      inkscape:window-width="1871"
      inkscape:window-height="1056"
      inkscape:window-x="1729"
      inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
-     id="metadata3240">
+     id="metadata3171">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -48,58 +49,22 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-1002.3622)">
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
     <g
-       transform="translate(-169.34869,847.83054)"
-       id="g157">
-      <g
-         id="g159"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90"
-         inkscape:export-filename="/home/proxectos/geozzy/distModules/rextEatAndDrink/classes/view/categoryIcon/meson.svg.png">
-        <path
-           style="fill:#333333"
-           inkscape:connector-curvature="0"
-           d="m 184.14,173.789 c 0,-2.095 -1.372,-3.792 -3.065,-3.792 -1.693,0 -3.066,1.696 -3.066,3.792 0,1.614 0.816,2.992 1.964,3.539 v 11.799 c 0,0.542 0.44,0.983 0.983,0.983 h 0.133 c 0.542,0 0.982,-0.44 0.982,-0.983 v -11.751 c 1.203,-0.513 2.069,-1.924 2.069,-3.587 z"
-           id="path161" />
-        <g
-           id="g163">
-          <path
-             style="fill:#333333"
-             inkscape:connector-curvature="0"
-             d="m 207.639,170.453 v -0.012 c -0.002,0.002 0,0.01 0,0.012 z"
-             id="path165" />
-          <path
-             style="fill:#333333"
-             inkscape:connector-curvature="0"
-             d="m 208.721,170.441 v 0.012 c 0.001,-0.002 0.002,-0.01 0,-0.012 z"
-             id="path167" />
-          <path
-             style="fill:#333333"
-             inkscape:connector-curvature="0"
-             d="m 210.527,170.317 c 0.004,-0.001 0.007,-0.002 0,0 -0.056,-0.261 -0.215,-0.406 -0.479,-0.374 -0.229,0.026 -0.382,0.273 -0.383,0.496 -0.001,-0.002 -0.001,-0.001 -0.001,0.007 l 0.002,2.919 c 0,0.328 -0.185,0.594 -0.412,0.594 -0.227,0 -0.412,-0.266 -0.521,-0.594 l -0.012,-2.912 c -0.001,0.001 -0.002,0 0,-0.012 0,-0.278 -0.257,-0.542 -0.534,-0.542 -0.002,0 -0.005,0.001 -0.007,0.001 -0.003,0 -0.005,-0.001 -0.008,-0.001 -0.277,0 -0.533,0.263 -0.533,0.542 0.002,0.012 10e-4,0.013 0,0.012 l -0.013,2.912 c -0.107,0.328 -0.292,0.594 -0.52,0.594 -0.228,0 -0.412,-0.266 -0.412,-0.594 v -2.919 c 0,-0.008 0,-0.009 0,-0.007 -10e-4,-0.222 -0.154,-0.469 -0.383,-0.496 -0.265,-0.032 -0.424,0.113 -0.479,0.374 -0.008,-0.002 -0.004,-0.001 0,0 -0.401,1.3 -0.669,2.479 -0.669,3.471 0,1.614 0.707,2.992 1.855,3.539 v 11.799 c 0,0.542 0.439,0.983 0.983,0.983 h 0.133 c 0.015,0 0.03,-0.002 0.045,-0.003 0.015,0.001 0.029,0.003 0.045,0.003 h 0.132 c 0.543,0 0.983,-0.44 0.983,-0.983 v -11.799 c 1.147,-0.547 1.857,-1.924 1.857,-3.539 0.002,-0.992 -0.268,-2.17 -0.669,-3.471 z"
-             id="path169" />
-        </g>
-      </g>
-      <g
-         id="g171"
-         inkscape:export-filename="/home/proxectos/geozzy/distModules/rextEatAndDrink/classes/view/categoryIcon/meson.svg.png"
-         inkscape:export-xdpi="90"
-         inkscape:export-ydpi="90">
-        <path
-           style="fill:#333333"
-           inkscape:connector-curvature="0"
-           d="m 194.74,190.677 c -5.403,0 -9.801,-4.396 -9.801,-9.799 0,-5.404 4.397,-9.8 9.801,-9.8 5.404,0 9.8,4.396 9.8,9.8 0,5.403 -4.396,9.799 -9.8,9.799 z m 0,-18.639 c -4.874,0 -8.841,3.966 -8.841,8.84 0,4.874 3.967,8.839 8.841,8.839 4.875,0 8.841,-3.965 8.841,-8.839 0,-4.875 -3.966,-8.84 -8.841,-8.84 z"
-           id="path173" />
-        <path
-           style="fill:#333333"
-           inkscape:connector-curvature="0"
-           d="m 201.591,182.19 h -0.96 c 0,-3.87 -3.147,-7.018 -7.019,-7.018 v -0.959 c 4.401,0 7.979,3.579 7.979,7.977 z"
-           id="path175" />
-      </g>
+       id="g185"
+       transform="matrix(0.85176608,0,0,0.85176608,-238.63803,-136.4146)">
+      <path
+         d="m 313.996,170.95 c 0.002,-1.715 -0.461,-7.751 -1.156,-9.999 -0.094,-0.45 -0.369,-0.7 -0.828,-0.646 -0.395,0.045 -0.658,0.471 -0.66,0.858 -0.002,-0.004 -0.002,-0.002 -0.002,0.011 l 0.002,7.046 c 0,0.566 -0.842,1.162 -1.232,1.162 -0.393,0 -1.191,-0.595 -1.379,-1.162 l -0.021,-7.033 c 0,0.002 0,0 0,-0.021 0,-0.479 -0.988,-1.011 -1.467,-1.011 -0.48,0 -1.402,0.529 -1.402,1.011 0.004,0.021 0,0.023 0,0.021 l -0.021,7.033 c -0.188,0.566 -1.121,1.162 -1.516,1.162 -0.395,0 -1.096,-0.595 -1.096,-1.162 l 0.002,-7.046 c 0,-0.013 0,-0.015 0,-0.011 -0.004,-0.385 -0.27,-0.81 -0.664,-0.858 -0.457,-0.054 -0.732,0.196 -0.828,0.646 -0.693,2.247 -1.156,8.284 -1.156,9.999 0,2.789 3.225,4.169 5.207,5.116 l -1,21.658 h 6.01 l -1,-21.658 c 1.984,-0.946 4.207,-2.326 4.207,-5.116 z"
+         id="path187"
+         inkscape:connector-curvature="0"
+         style="fill:#020202" />
+      <path
+         d="m 290.562,160.425 c -5.127,0.256 -6.652,5.904 -6.652,9.526 0,2.789 2.408,5.17 4.395,6.117 l -1,21.656 h 6.625 l -1,-21.574 c 2.084,-0.887 4.426,-3.367 4.426,-6.242 -0.002,-3.62 -1.989,-9.548 -6.794,-9.483 z"
+         id="path189"
+         inkscape:connector-curvature="0"
+         style="fill:#020202" />
     </g>
   </g>
 </svg>

@@ -131,7 +131,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
 
     // TEMPLATE panel contacto
     $templates['location'] = new Template();
-    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'rtypeHotel' );
+    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
     $templates['location']->assign( 'title', __( 'Location' ) );
     $templates['location']->assign( 'res', $formBlockInfo );
     $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
@@ -182,7 +182,9 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
 
     $resourceType = new ResourcetypeModel();
     $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
-    $templates['info']->assign( 'rType', $type->getter('name_es') );
+    if ($type){
+      $templates['info']->assign( 'rType', $type->getter('name_es') );
+    }
     $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
     $templates['info']->assign( 'timeCreation', $timeCreation );
     if (isset($formBlockInfo['data']['userUpdate'])){

@@ -96,7 +96,7 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
 
     // TEMPLATE panel contacto
     $templates['location'] = new Template();
-    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'rtypeHotel' );
+    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
     $templates['location']->assign( 'title', __( 'Location' ) );
     $templates['location']->assign( 'res', $formBlockInfo );
     $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
@@ -127,13 +127,15 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
 
     // TEMPLATE panel cuadro informativo
     $templates['info'] = new Template();
-    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'rtypeHotel' );
+    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'geozzy' );
     $templates['info']->assign( 'title', __( 'Information' ) );
     $templates['info']->assign( 'res', $formBlockInfo );
 
     $resourceType = new ResourcetypeModel();
     $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
-    $templates['info']->assign( 'rType', $type->getter('name_es') );
+    if ($type){
+      $templates['info']->assign( 'rType', $type->getter('name_es') );
+    }
     $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
     $templates['info']->assign( 'timeCreation', $timeCreation );
     if (isset($formBlockInfo['data']['userUpdate'])){
