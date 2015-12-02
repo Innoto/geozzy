@@ -6,9 +6,8 @@ if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
 
 geozzy.biMetrics.controller.explorer = geozzy.biMetrics.controller.biMetricsController.extend( {
 
-
-
-  metricTemplate: function() {
+  metricTemplate: function( metric ) {
+    var that = this;
     return {
        "explorer_ID":3,
        "bounds":[
@@ -22,9 +21,9 @@ geozzy.biMetrics.controller.explorer = geozzy.biMetrics.controller.biMetricsCont
           ]
        ],
        "filters":[
-
+         1,32
        ],
-       "metricTime":"Mon Nov 16 2015 11:33:16 GMT+0200 (Hora de verano romance)"
+       "metricTime": that.packageTimestamp 
     };
 
   }
