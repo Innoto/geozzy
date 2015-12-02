@@ -8,6 +8,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
 
 
   options: false,
+  packageTimestamp: false,
   pendingMetrics: [],
   syncInterval: false,
 
@@ -18,11 +19,13 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
     var that = this;
     var opts = {
       url: false,
-      syncPeriod: 4000 // in miliseconds
+      syncPeriod: 3000 // in miliseconds
     }
 
-    that.options = $.extend(true, that.options, opts);
+    that.options = $.extend(true, opts, options );
 
+
+    that.packageTimestamp = that.getTimesTamp();
     that.syncEnable();
   },
 
@@ -32,14 +35,14 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
 
     return {
        "user_ID":283,
-       "language":"es_ES",
+       "language": GLOBAL_C_LANG,
        "session_ID":"0Eca798C0EfD46CA3de2827B8ed6DA",
-       "observationTime":"Mon Nov 16 2015 11:33:46 GMT+0200 (Hora de verano romance)",
+       "observationTime": that.packageTimestamp ,
        "device":{
           "type":"mob",
           "device_ID":0
        },
-       "metrics": that.pendingMetrics
+       "metrics": that.metricTemplate()
 
     };
   },
@@ -65,24 +68,29 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
     var that = this;
 
     this.pendingMetrics = [];
+    this.packageTimestamp = false;
+
   },
+
 
   sync: function() {
     var that = this;
 
-    $.ajax({
-      type: "POST",
-      url: that.options.url,
-      data: that.metricTemplate,
-      success: function( res ) {
-        console.log(res);
-      },
-      dataType: 'application/json'
-    });
+    if( that.pendingMetrics.length > 0 ) {
 
-    that.reset();
+      $.ajax({
+        type: "POST",
+        url: that.options.url,
+        data: JSON.stringify( that.packageTemplate() ),
+        success: function( res ) {
+          console.log(res);
+        },
+        dataType: 'application/json'
+      });
 
-
+      that.reset();
+      that.packageTimestamp = that.getTimesTamp();
+    }
 
   },
 

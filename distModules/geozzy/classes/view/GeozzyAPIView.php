@@ -485,7 +485,7 @@ class geozzyAPIView extends View
     function bi(  ) {
       require_once APP_BASE_PATH."/conf/geozzyBI.php";
       header('Content-type: application/json');
-      global $LANG_AVAILABLE, $BI_SITE_SECTIONS, $BI_DEVICES;
+      global $LANG_AVAILABLE, $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE;
 
       $langs = array(
         'default'=> LANG_DEFAULT,
@@ -496,7 +496,9 @@ class geozzyAPIView extends View
         array(
           'languages' => $langs,
           'devices' => $BI_DEVICES,
-          'sections' => $BI_SITE_SECTIONS
+          'sections' => $BI_SITE_SECTIONS,
+          'explorerMetrics' => $BI_METRICS_EXPLORER,
+          'resourceMetrics' => $BI_METRICS_RESOURCE
         )
       );
 
