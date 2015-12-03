@@ -70,6 +70,7 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     if( $resId = $form->getFieldValue( 'id' ) ) {
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
+
     $this->urlCtrl = new RExtUrlController( $this );
     $urlViewInfo = $this->urlCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->urlCtrl->rExtName ] = $urlViewInfo;
@@ -165,7 +166,8 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['miniFormModal'] = new Template();
-    $templates['miniFormModal']->setTpl( 'rTypeUrlFormModalBlock.tpl', 'rTypeUrl' );
+    $templates['miniFormModal']->assign( 'title', __( 'Resource' ) );
+    $templates['miniFormModal']->setTpl( 'rTypeUrlFormModalBlock.tpl', 'rtypeUrl' );
     $templates['miniFormModal']->assign( 'res', $formBlockInfo );
 
     // TEMPLATE en bruto con todos los elementos del form

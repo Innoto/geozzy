@@ -17,31 +17,21 @@
       {foreach $langAvailableIds as $lang}
         {$res.dataForm.formFieldsArray["urlAlias_$lang"]}
       {/foreach}
+      {$res.dataForm.formFieldsArray.externalUrl}
     </div>
     {foreach $langAvailableIds as $lang}
       {$res.dataForm.formFieldsArray["title_$lang"]}
     {/foreach}
-    {$res.dataForm.formFieldsArray.rExtUrl_author}
-    {$res.dataForm.formFieldsArray.rExtUrl_urlContentType}
+    {$res.dataForm.formFieldsArray.rExtFile_author}
 
-    <div class="cgmMForm-wrap">
-      <label>{t}Link or embed{/t}</label>
-      <select id="linkOrEmbed" class="cgmMForm-field">
-        <option value="link">{t}External link{/t}</option>
-        <option value="embed">{t}Embedable code{/t}</option>
-      </select>
-    </div>
+    {$res.dataForm.formFieldsArray.rExtFile_file}
+    <label class="resImageMoreInfo">*{t}Files up to 5MB can be upload in JPG and PNG format{/t}</label>
 
-    <div class="linkOrEmbed_link linkOrEmbedContainer">
-      {$res.dataForm.formFieldsArray.externalUrl}
-    </div>
-    <div class="linkOrEmbed_embed linkOrEmbedContainer">
-      {$res.dataForm.formFieldsArray.rExtUrl_embed}
-    </div>
     {$res.dataForm.formFieldsArray.image}
     <label class="resImageMoreInfo">*{t}If not uploaded, an automatic thumbnail will be created{/t}</label>
 
     {$res.dataForm.formFieldsArray.submit}
+
 
   {$res.dataForm.formClose}
   {$res.dataForm.formValidations}
@@ -50,4 +40,4 @@
 
 
 
-<!-- /rExtFormBlock.tpl (rTypeUrlFormModalBlock)  en admin module -->
+<!-- /rExtFormBlock.tpl (rTypeFileFormModalBlock)  en admin module -->
