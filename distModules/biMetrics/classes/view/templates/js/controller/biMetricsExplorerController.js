@@ -23,8 +23,14 @@ geozzy.biMetrics.controller.explorer = geozzy.biMetrics.controller.biMetricsCont
        "filters":[
          1,32
        ],
-       "metricTime": that.packageTimestamp 
+       "metricTime": that.packageTimestamp
     };
 
+  },
+
+  getMetricsURL: function() {
+    var that = this;
+    return that.biApiConf.metrics.explorer;
   }
+
 });
