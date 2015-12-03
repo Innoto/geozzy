@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="32px"
+   height="32px"
+   id="svg3583"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="hotel.svg">
+  <defs
+     id="defs3585" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.197802"
+     inkscape:cx="16"
+     inkscape:cy="16"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="1871"
+     inkscape:window-height="1056"
+     inkscape:window-x="1729"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3588">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       id="g3"
+       transform="matrix(0.80180406,0,0,0.80180406,-203.52794,-98.171286)">
+      <rect
+         x="280.16699"
+         y="141.717"
+         width="1.875"
+         height="5.8759999"
+         id="rect5"
+         style="fill:#1d1d1b" />
+      <path
+         d="m 277.742,135.416 h -2.501 -0.574 -5.5 c -0.285,0 -0.519,0.232 -0.519,0.517 v 4.784 h 5.502 1.605 2.5 v -4.784 c 0.002,-0.285 -0.228,-0.517 -0.513,-0.517 z"
+         id="path7"
+         inkscape:connector-curvature="0"
+         style="fill:#1d1d1b" />
+      <polygon
+         points="273.419,147.593 273.419,141.761 273.15,141.761 272.757,141.761 272.757,141.717 271.544,141.717 271.544,147.593 "
+         id="polygon9"
+         style="fill:#1d1d1b" />
+      <rect
+         x="268.67099"
+         y="141.717"
+         width="1.873"
+         height="5.8759999"
+         id="rect11"
+         style="fill:#1d1d1b" />
+      <rect
+         x="274.41901"
+         y="141.717"
+         width="1.875"
+         height="5.8759999"
+         id="rect13"
+         style="fill:#1d1d1b" />
+      <polygon
+         points="265.796,141.717 265.796,147.593 267.671,147.593 267.671,141.761 267.648,141.761 267.648,141.717 "
+         id="polygon15"
+         style="fill:#1d1d1b" />
+      <polygon
+         points="278.257,141.761 278.257,141.717 277.294,141.717 277.294,147.593 279.167,147.593 279.167,141.761 "
+         id="polygon17"
+         style="fill:#1d1d1b" />
+      <rect
+         x="262.92099"
+         y="141.717"
+         width="1.875"
+         height="5.8759999"
+         id="rect19"
+         style="fill:#1d1d1b" />
+      <polygon
+         points="288.573,136.128 288.573,124.562 282.525,124.562 282.525,130.128 "
+         id="polygon21"
+         style="fill:#1d1d1b" />
+      <g
+         id="g23">
+        <rect
+           x="283.04199"
+           y="141.717"
+           width="1.875"
+           height="5.8759999"
+           id="rect25"
+           style="fill:#1d1d1b" />
+        <path
+           d="m 277.154,123.833 c -1.858,-1.86 -4.872,-1.86 -6.733,0 l -15.776,15.782 h 3.121 v 21.359 c 0,0.759 0.612,1.374 1.37,1.374 h 9.291 v -6.713 c 0,-0.759 0.615,-1.375 1.375,-1.375 h 7.976 c 0.762,0 1.375,0.616 1.375,1.375 v 6.713 h 9.291 c 0.76,0 1.375,-0.615 1.375,-1.374 v -21.359 h 3.121 l -15.786,-15.782 z m 9.185,23.76 c 0.274,0 0.5,0.224 0.5,0.5 0,0.276 -0.226,0.5 -0.5,0.5 h -25.198 c -0.275,0 -0.5,-0.224 -0.5,-0.5 0,-0.276 0.225,-0.5 0.5,-0.5 h 0.78 v -5.876 h -0.78 c -0.275,0 -0.5,-0.224 -0.5,-0.5 0,-0.276 0.225,-0.5 0.5,-0.5 h 6.51 v -4.784 c 0,-0.836 0.682,-1.517 1.518,-1.517 h 3.074 2.426 3.075 c 0.835,0 1.515,0.68 1.515,1.517 v 4.784 h 7.082 c 0.275,0 0.5,0.224 0.5,0.5 0,0.276 -0.224,0.5 -0.5,0.5 h -0.422 v 5.876 h 0.42 z"
+           id="path27"
+           inkscape:connector-curvature="0"
+           style="fill:#1d1d1b" />
+      </g>
+    </g>
+  </g>
+</svg>

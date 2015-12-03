@@ -10,7 +10,7 @@
   </div>
   <div class="row">
     <div class="infoCol col-md-4">Tipo</div>
-    <div class="infoColData col-md-8">{$rType}</div>
+    <div class="infoColData col-md-8">{if isset($rType)}{$rType}{/if}</div>
   </div>
   <div class="row">
     <div class="infoCol col-md-4">Creado</div>

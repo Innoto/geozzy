@@ -23,19 +23,30 @@ class rextAppLugar extends Module {
       'sortable' => 1,
       'initialTerms' => array(
         array(
-          'idName' => 'praia',
+          'idName' => 'rinconesurbanos',
+          'icon' => 'view/categoryIcons/rinconesurbanos.svg',
           'name' => array(
-            'en' => 'Beach',
-            'es' => 'Playa',
-            'gl' => 'Praia'
+            'en' => 'Urban places',
+            'es' => 'Rincones urbanos',
+            'gl' => 'Rincóns urbanos'
           )
         ),
         array(
-          'idName' => 'monte',
+          'idName' => 'rinconesrurales',
+          'icon' => 'view/categoryIcons/rinconesrurales.svg',
           'name' => array(
-            'en' => 'Forest',
-            'es' => 'Bosque',
-            'gl' => 'Monte'
+            'en' => 'Rural places',
+            'es' => 'Rincones rurales',
+            'gl' => 'rincóns rurais'
+          )
+        ),
+        array(
+          'idName' => 'rinconeshistoricos',
+          'icon' => 'view/categoryIcons/rinconeshistoricos.svg',
+          'name' => array(
+            'en' => 'Historical places',
+            'es' => 'Rincones históricos',
+            'gl' => 'rincóns históricos'
           )
         )
       )

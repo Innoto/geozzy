@@ -134,7 +134,9 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
 
     $resourceType = new ResourcetypeModel();
     $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
-    $templates['info']->assign( 'rType', $type->getter('name_es') );
+    if ($type){
+      $templates['info']->assign( 'rType', $type->getter('name_es') );
+    }
     $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
     $templates['info']->assign( 'timeCreation', $timeCreation );
     if (isset($formBlockInfo['data']['userUpdate'])){
