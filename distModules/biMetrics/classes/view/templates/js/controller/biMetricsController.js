@@ -33,8 +33,16 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
         that.biApiConf = dat;
         that.syncEnable();
 
+        // leave page event
+        $( window ).unload(function() {
+          that.sync();
+        });
+
       }
     });
+
+
+
 
 
 
