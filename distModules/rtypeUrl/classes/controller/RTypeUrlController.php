@@ -165,6 +165,12 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 
     // TEMPLATE en bruto con todos los elementos del form
+    $templates['miniFormModal'] = new Template();
+    $templates['miniFormModal']->assign( 'title', __( 'Resource' ) );
+    $templates['miniFormModal']->setTpl( 'rTypeUrlFormModalBlock.tpl', 'rtypeUrl' );
+    $templates['miniFormModal']->assign( 'res', $formBlockInfo );
+
+    // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();
     $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'res', $formBlockInfo );
