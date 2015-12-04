@@ -193,12 +193,8 @@ geozzy.explorer = function( opts ) {
 
       if( that.displays.map.isReady() ){
 
-
         var mapbounds = that.displays.map.getMapBounds();
-        console.log(mapbounds[0]);
-
         metricData.bounds = [ [mapbounds[0].lat(), mapbounds[0].lng()], [mapbounds[1].lat(), mapbounds[1].lng()] ];
-
 
         resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
       }
@@ -217,6 +213,11 @@ geozzy.explorer = function( opts ) {
       resourcesToLoad = $.merge( that.displays.pasiveList.getVisibleResourceIds() , resourcesToLoad);
     }
 
+
+    $.each(that.filters, function(i,e) {
+      metricData.filters = $.merge( metricData.filters, e.getSelectedTerms() );
+
+    });
     // add metric
     that.metricsController.addMetric(metricData);
 
