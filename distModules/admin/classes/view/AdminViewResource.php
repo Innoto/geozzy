@@ -245,32 +245,37 @@ class AdminViewResource extends AdminViewMaster {
    * Creacion de Recursos type URL
    */
   public function resourceTypeUrlForm( $urlParams = false ) {
+    $resCtrl = new ResourceController();
+    $rtypeModel = new ResourcetypeModel();
+
+    $formName = 'resourceUrlCreate';
+    $urlAction = '/admin/resourcetypeurl/sendresource';
+
+    $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
+    $valuesArray['rTypeId'] = $rtype->getter('id');
+
+    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
 
 
-  $resCtrl = new ResourceController();
-  $rtypeModel = new ResourcetypeModel();
-
-  $formName = 'resourceUrlCreate';
-  $urlAction = '/admin/resourcetypeurl/sendresource';
-
-  $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
-  $valuesArray['rTypeId'] = $rtype->getter('id');
-
-  $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
-
-
-  $form = $formBlockInfo['objForm'];
-  $form->setFieldParam('image', 'label', 'Thumbnail image (Optional)');
-  $formBlockInfo['dataForm'] = array(
-    'formOpen' => $form->getHtmpOpen(),
-    'formFieldsArray' => $form->getHtmlFieldsArray(),
-    'formFieldsHiddenArray' => array(),
-    'formFields' => $form->getHtmlFieldsAndGroups(),
-    'formClose' => $form->getHtmlClose(),
-    'formValidations' => $form->getScriptCode()
-  );
-
-  $formBlockInfo['template']['miniFormModal']->exec();
+    $form = $formBlockInfo['objForm'];
+    $form->setFieldParam('image', 'label', 'Thumbnail image (Optional)');
+    $form->setFieldParam('published', 'type', 'reserved');
+    $form->setFieldParam('published', 'value', '1');
+    $urlAliasLang = $form->multilangFieldNames('urlAlias');
+    foreach ($urlAliasLang as $key => $field) {
+      $form->removeField( $field);
+    }
+    $form->removeValidationRules('published');
+    $formBlockInfo['dataForm'] = array(
+      'formOpen' => $form->getHtmpOpen(),
+      'formFieldsArray' => $form->getHtmlFieldsArray(),
+      'formFieldsHiddenArray' => array(),
+      'formFields' => $form->getHtmlFieldsAndGroups(),
+      'formClose' => $form->getHtmlClose(),
+      'formValidations' => $form->getScriptCode()
+    );
+    $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
+    $formBlockInfo['template']['miniFormModal']->exec();
   }
 
 
@@ -301,7 +306,7 @@ class AdminViewResource extends AdminViewMaster {
     $form->removeField('externalUrl');
     $form->removeValidationRules('published');
     $form->setValidationRule('rExtFile_file', 'required', true);
-    
+
     $formBlockInfo['dataForm'] = array(
       'formOpen' => $form->getHtmpOpen(),
       'formFieldsArray' => $form->getHtmlFieldsArray(),
