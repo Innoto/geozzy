@@ -2,7 +2,7 @@ var geozzy = geozzy || {};
 if(!geozzy.filters) geozzy.filters={};
 
 geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
-
+  isTaxonomyFilter: true,
   template: _.template(
                           " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
                           "<select class='<%= filterClass %>'>"+
@@ -22,11 +22,11 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
   filterAction: function( model ) {
     var ret = false;
 
-    if( this.selectedData != false ) {
+    if( this.selectedTerms != false ) {
 
       var terms =  model.get('terms');
 
-      var diff = $( terms ).not( this.selectedData );
+      var diff = $( terms ).not( this.selectedTerms );
 
       //console.log(diff.length, terms.length)
       ret = (diff.length != terms.length );
@@ -70,11 +70,11 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
     $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
       var val = $(el.target).val();
       if( val == '*' ) {
-        that.selectedData = false;
+        that.selectedTerms = false;
       }
       else {
-        //that.selectedData = false;
-        that.selectedData = [ parseInt( $(el.target).val() ) ];
+        //that.selectedTerms = false;
+        that.selectedTerms = [ parseInt( $(el.target).val() ) ];
       }
 
       that.parentExplorer.applyFilters();

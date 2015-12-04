@@ -3,6 +3,7 @@ $(document).ready(function(){
 
   moveSubmitBtn('#createResourceExternalModal');
   moveSubmitBtn('#createResourceLocalModal');
+  linkOrEmbed();
 });
 
 
@@ -17,4 +18,16 @@ function moveSubmitBtn(query){
       $(this).hide();
     });
   }
+}
+
+function linkOrEmbed (){
+  var linkOrEmbedValue = $('#linkOrEmbed').val();
+  $('.linkOrEmbedContainer').hide();  
+  $('.linkOrEmbed_'+linkOrEmbedValue).show();
+
+  $('#linkOrEmbed').change(function(){
+    console.log(this.value);
+    $('.linkOrEmbedContainer').hide();
+    $('.linkOrEmbed_'+this.value).show();
+  });
 }

@@ -11,14 +11,14 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
   packageTimestamp: false,
   pendingMetrics: [],
   syncInterval: false,
+  metricsUrl: false,
 
-
+  biApiConf: false,
 
 
   initialize: function( options ) {
     var that = this;
     var opts = {
-      url: false,
       syncPeriod: 3000 // in miliseconds
     }
 
@@ -26,7 +26,27 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
 
 
     that.packageTimestamp = that.getTimesTamp();
-    that.syncEnable();
+
+    $.ajax({
+      url:'/api/core/bi',
+      cache: true,
+      success: function( dat ){
+        that.biApiConf = dat;
+        that.syncEnable();
+
+        // leave page event
+        $( window ).unload(function() {
+          that.sync();
+        });
+
+      }
+    });
+
+
+
+
+
+
   },
 
   packageTemplate: function( ) {
@@ -42,7 +62,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
           "type":"mob",
           "device_ID":0
        },
-       "metrics": that.metricTemplate()
+       "metrics": that.pendingMetrics
 
     };
   },
@@ -53,7 +73,9 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
     return false;
   },
 
-
+  getMetricsURL: function() {
+    console.log('biMetrics: method "getMetricsURL" not defined');
+  },
   addMetric: function( data ) {
     var that = this;
 
@@ -76,15 +98,13 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
   sync: function() {
     var that = this;
 
+
     if( that.pendingMetrics.length > 0 ) {
 
       $.ajax({
         type: "POST",
-        url: that.options.url,
+        url: that.getMetricsURL(),
         data: JSON.stringify( that.packageTemplate() ),
-        success: function( res ) {
-          console.log(res);
-        },
         dataType: 'application/json'
       });
 

@@ -8,9 +8,6 @@
     $(document).ready(function(){
 
 
-      metrics = new geozzy.biMetrics.controller.explorer({url:'http://test.geozzy.itg.es:10163/observation/explorer'})
-
-
       //var data = new Date();
       //console.log( Date.UTC(data.getUTCFullYear(),data.getUTCMonth(), data.getUTCDate() , data.getUTCHours(), data.getUTCMinutes(), data.getUTCSeconds(), data.getUTCMilliseconds()) )
 

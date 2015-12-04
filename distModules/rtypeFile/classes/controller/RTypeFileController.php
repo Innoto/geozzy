@@ -137,7 +137,9 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
 
     $resourceType = new ResourcetypeModel();
     $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
-    $templates['info']->assign( 'rType', $type->getter('name_es') );
+    if ($type){
+      $templates['info']->assign( 'rType', $type->getter('name_es') );
+    }
     $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
     $templates['info']->assign( 'timeCreation', $timeCreation );
     if (isset($formBlockInfo['data']['userUpdate'])){
@@ -165,6 +167,12 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->addToBlock( 'col4', $templates['file'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
+
+    // TEMPLATE en bruto con todos los elementos del form
+    $templates['miniFormModal'] = new Template();
+    $templates['miniFormModal']->assign( 'title', __( 'Resource' ) );
+    $templates['miniFormModal']->setTpl( 'rTypeFileFormModalBlock.tpl', 'rtypeFile' );
+    $templates['miniFormModal']->assign( 'res', $formBlockInfo );
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();

@@ -511,6 +511,7 @@ class ResourceController {
     $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
 
     $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
+    $formBlockInfo['objForm'] =  $form;
 
     return( $formBlockInfo );
   }
