@@ -25,7 +25,7 @@ var ExplorerResourcePartialCollection = Backbone.Collection.extend({
             that.add(resource);
           });
 
-          console.log('Elementos cargados - Total:' + that.length, 'Engadidos: '+list.length)
+          //console.log('Elementos cargados - Total:' + that.length, 'Engadidos: '+list.length)
           if(params.success) {
             params.success();
           }

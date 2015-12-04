@@ -51,6 +51,12 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       that.parentExplorer.render(true);
     });
 
+    // map first load
+    google.maps.event.addListener(this.map, "idle", function() {
+      that.ready = true;
+      that.parentExplorer.render(true);
+    });
+
   },
 
   getVisibleResourceIds: function() {
@@ -196,8 +202,10 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     var ret = 0; // NOT IN MAP OR BUFFER
 
-    var sw = that.map.getBounds().getSouthWest();
-    var ne = that.map.getBounds().getNorthEast();
+    var mb = that.getMapBounds();
+
+    var sw = mb[0];
+    var ne = mb[1];
 
     var scale = Math.pow(2, that.map.getZoom());
 
@@ -231,6 +239,11 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     return ret;
   },
 
+
+  getMapBounds: function() {
+    var that = this;
+    return [ that.map.getBounds().getSouthWest(), that.map.getBounds().getNorthEast() ];
+  },
 
   coordToPixel: function( latLng) {
     var that = this;

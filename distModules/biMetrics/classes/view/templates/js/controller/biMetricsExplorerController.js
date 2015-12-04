@@ -10,19 +10,8 @@ geozzy.biMetrics.controller.explorer = geozzy.biMetrics.controller.biMetricsCont
     var that = this;
     return {
        "explorer_ID":3,
-       "bounds":[
-          [
-             42.9754,
-             -8.36267
-          ],
-          [
-             42.8245,
-             -8.63733
-          ]
-       ],
-       "filters":[
-         1,32
-       ],
+       "bounds":metric.bounds,
+       "filters": metric.filters,
        "metricTime": that.packageTimestamp
     };
 

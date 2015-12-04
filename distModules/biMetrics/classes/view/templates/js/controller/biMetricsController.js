@@ -29,6 +29,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
 
     $.ajax({
       url:'/api/core/bi',
+      cache: true,
       success: function( dat ){
         that.biApiConf = dat;
         that.syncEnable();

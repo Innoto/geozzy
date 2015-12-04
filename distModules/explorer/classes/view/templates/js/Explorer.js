@@ -24,6 +24,9 @@ geozzy.explorer = function( opts ) {
   }
   $.extend(true, that.options, opts);
 
+  // metrics
+
+  that.metricsController = false;
 
   //  Debuger
 
@@ -61,6 +64,10 @@ geozzy.explorer = function( opts ) {
   //
 
   that.exec = function() {
+
+
+    that.metricsController = new geozzy.biMetrics.controller.explorer();
+
 
     // set multiple fetches
     that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/minimal/updatedfrom/false';
@@ -141,6 +148,7 @@ geozzy.explorer = function( opts ) {
     that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceIndex.length + ' Records' );
 
 
+
     that.render();
   }
 
@@ -178,9 +186,20 @@ geozzy.explorer = function( opts ) {
   that.render = function( dontRenderMap ) {
 
     var resourcesToLoad = [];
+    var metricData = {bounds:[], filters:[]};
+
 
     if(that.displays.map ) {
+
       if( that.displays.map.isReady() ){
+
+
+        var mapbounds = that.displays.map.getMapBounds();
+        console.log(mapbounds[0]);
+
+        metricData.bounds = [ [mapbounds[0].lat(), mapbounds[0].lng()], [mapbounds[1].lat(), mapbounds[1].lng()] ];
+
+
         resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
       }
 
@@ -198,7 +217,8 @@ geozzy.explorer = function( opts ) {
       resourcesToLoad = $.merge( that.displays.pasiveList.getVisibleResourceIds() , resourcesToLoad);
     }
 
-
+    // add metric
+    that.metricsController.addMetric(metricData);
 
 
     // Advanced Fetch
