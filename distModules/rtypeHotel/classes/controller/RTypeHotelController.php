@@ -471,6 +471,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
+
     $resData = $this->defResCtrl->getResourceData( false, true );
 
     $collections = $this->defResCtrl->getCollectionsInfo( $resData[ 'id' ] );
@@ -486,7 +487,33 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
       }
     }
 
+    $taxtermModel = new TaxonomytermModel();
 
+    /* Recuperamos todos los términos de la taxonomía servicios*/
+    $services = $this->defResCtrl->getOptionsTax( 'accommodationServices' );
+    foreach ($services as $serviceId => $serviceName){
+      $service = $taxtermModel->listItems(array('filters'=> array('id' => $serviceId)))->fetch();
+      /*Quitamos los términos de la extensión que no se usan en este proyecto*/
+      if ($service->getter('idName') !== 'telefono' && $service->getter('idName') !== 'serviciodehabitacions' && $service->getter('idName') !== 'transportepublico'){
+        $allServices[$serviceId]['name'] = $serviceName;
+        $allServices[$serviceId]['idName'] = $service->getter('idName');
+        $allServices[$serviceId]['icon'] = $service->getter('icon');
+      }
+    }
+    $template->assign('allServices', $allServices);
+
+    /* Recuperamos todos los términos de la taxonomía instalaciones*/
+    $facilities = $this->defResCtrl->getOptionsTax( 'accommodationFacilities' );
+    foreach ($facilities as $facilityId => $facilityName){
+      $facility = $taxtermModel->listItems(array('filters'=> array('id' => $facilityId)))->fetch();
+      /*Quitamos los términos de la extensión que no se usan en este proyecto*/
+      if ($facility->getter('idName') !== 'bar' && $facility->getter('idName') !== 'lavadora'){
+        $allFacilities[$facilityId]['name'] = $facilityName;
+        $allFacilities[$facilityId]['idName'] = $facility->getter('idName');
+        $allFacilities[$facilityId]['icon'] = $facility->getter('icon');
+      }
+    }
+    $template->assign('allFacilities', $allFacilities);
 
     if( $accomViewInfo ) {
       if( $accomViewInfo['template'] ) {

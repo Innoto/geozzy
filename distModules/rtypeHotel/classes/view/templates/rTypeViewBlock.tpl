@@ -90,7 +90,7 @@
         {foreach from=$res.data.accommodationType item=termInfo}
           <li>
             {if isset($termInfo.icon)}<img width="16" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
-            <div class="name">{$termInfo.name_es}</div>
+            <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
           </li>
           {break}
         {/foreach}
@@ -125,20 +125,29 @@
         {/if}
       </div>
       <div class="taxIcons col-lg-10">
-        {if isset($res.data.accommodationServices)}
-          {foreach from=$res.data.accommodationServices item=termInfo}
+        {foreach $allServices as $termId => $term}
+          {if $termId|array_key_exists:$res.data.accommodationServices}
             <div class="icon">
-              {if isset($termInfo.icon)}<img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{else}{$termInfo.name_es}{/if}
+              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
             </div>
-          {/foreach}
-        {/if}
-        {if isset($res.data.accommodationFacilities)}
-          {foreach from=$res.data.accommodationFacilities item=termInfo}
+          {else}
+            <div class="icon light">
+              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
+            </div>
+          {/if}
+        {/foreach}
+
+        {foreach $allFacilities as $termId => $term}
+          {if $termId|array_key_exists:$res.data.accommodationFacilities}
             <div class="icon">
-              {if isset($termInfo.icon)}<img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{else}{$termInfo.name_es}{/if}
+              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
             </div>
-          {/foreach}
-        {/if}
+          {else}
+            <div class="icon light">
+              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
+            </div>
+          {/if}
+        {/foreach}
       </div>
     </div>
 
