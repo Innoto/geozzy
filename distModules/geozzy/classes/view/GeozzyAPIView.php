@@ -497,8 +497,10 @@ class geozzyAPIView extends View
           'languages' => $langs,
           'devices' => $BI_DEVICES,
           'sections' => $BI_SITE_SECTIONS,
-          'explorerMetrics' => $BI_METRICS_EXPLORER,
-          'resourceMetrics' => $BI_METRICS_RESOURCE
+          'metrics' => array(
+            'explorer' => $BI_METRICS_EXPLORER,
+            'resource' => $BI_METRICS_RESOURCE
+          )
         )
       );
 
