@@ -5,7 +5,6 @@
     label { display: block; }
     .cgmMForm-field { max-width: none !important; }
   </style>
-  <script type="text/javascript" src="{$mediaJs}/module/admin/js/adminResource.js"></script>
   <script type="text/javascript" src="{$mediaJs}/module/admin/js/adminResourceTypeMultimedia.js"></script>
 
   {$res.dataForm.formOpen}

@@ -257,6 +257,19 @@ class AdminViewResource extends AdminViewMaster {
   $valuesArray['rTypeId'] = $rtype->getter('id');
 
   $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
+
+
+  $form = $formBlockInfo['objForm'];
+  $form->setFieldParam('image', 'label', 'Thumbnail image (Optional)');
+  $formBlockInfo['dataForm'] = array(
+    'formOpen' => $form->getHtmpOpen(),
+    'formFieldsArray' => $form->getHtmlFieldsArray(),
+    'formFieldsHiddenArray' => array(),
+    'formFields' => $form->getHtmlFieldsAndGroups(),
+    'formClose' => $form->getHtmlClose(),
+    'formValidations' => $form->getScriptCode()
+  );
+
   $formBlockInfo['template']['miniFormModal']->exec();
   }
 
@@ -276,6 +289,21 @@ class AdminViewResource extends AdminViewMaster {
     $valuesArray['rTypeId'] = $rtype->getter('id');
 
     $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
+    $form = $formBlockInfo['objForm'];
+
+    $form->setFieldParam('image', 'label', 'Thumbnail image (Optional)');
+    $form->setFieldParam('published', 'type', 'reserved');
+    $form->setFieldParam('published', 'value', '1');
+    $form->removeValidationRules('published');
+
+    $formBlockInfo['dataForm'] = array(
+      'formOpen' => $form->getHtmpOpen(),
+      'formFieldsArray' => $form->getHtmlFieldsArray(),
+      'formFieldsHiddenArray' => array(),
+      'formFields' => $form->getHtmlFieldsAndGroups(),
+      'formClose' => $form->getHtmlClose(),
+      'formValidations' => $form->getScriptCode()
+    );
     $formBlockInfo['template']['miniFormModal']->exec();
   }
 

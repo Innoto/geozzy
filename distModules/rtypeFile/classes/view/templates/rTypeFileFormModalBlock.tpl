@@ -5,14 +5,13 @@
     label { display: block; }
     .cgmMForm-field { max-width: none !important; }
   </style>
-  <script type="text/javascript" src="{$mediaJs}/module/admin/js/adminResource.js"></script>
   <script type="text/javascript" src="{$mediaJs}/module/admin/js/adminResourceTypeMultimedia.js"></script>
 
   {$res.dataForm.formOpen}
     {$res.dataForm.formFieldsArray.cgIntFrmId}
     {$res.dataForm.formFieldsArray.id}
     {$res.dataForm.formFieldsArray.rTypeId}
-    <div style="display:none;">
+    <div style="">
       {$res.dataForm.formFieldsArray.published}
       {foreach $langAvailableIds as $lang}
         {$res.dataForm.formFieldsArray["urlAlias_$lang"]}
