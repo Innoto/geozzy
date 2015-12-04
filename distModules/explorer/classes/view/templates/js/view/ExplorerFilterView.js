@@ -1,8 +1,9 @@
 var geozzy = geozzy || {};
 
 geozzy.filterView = Backbone.View.extend({
+
   parentExplorer: false,
-  selectedData: false,
+  selectedTerms: false,
   template: false,
   title : false,
   data: false,
@@ -38,6 +39,20 @@ geozzy.filterView = Backbone.View.extend({
     return matches;
   },
 
+
+  getSelectedTerms: function() {
+    var retTerms = [];
+
+    if( $.isArray( this.selectedTerms ) ) {
+      retTerms = this.selectedTerms;
+    }
+    else if( this.selectedTerms != false ) {
+      retTerms.push( this.selectedTerms );
+    }
+
+    return retTerms;
+  },
+
   render: function() {
 
   },
@@ -49,6 +64,7 @@ geozzy.filterView = Backbone.View.extend({
   hide: function() {
 
   }
+
 
 
 });
