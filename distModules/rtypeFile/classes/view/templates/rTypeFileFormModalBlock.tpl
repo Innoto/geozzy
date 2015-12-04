@@ -11,13 +11,7 @@
     {$res.dataForm.formFieldsArray.cgIntFrmId}
     {$res.dataForm.formFieldsArray.id}
     {$res.dataForm.formFieldsArray.rTypeId}
-    <div style="">
-      {$res.dataForm.formFieldsArray.published}
-      {foreach $langAvailableIds as $lang}
-        {$res.dataForm.formFieldsArray["urlAlias_$lang"]}
-      {/foreach}
-      {$res.dataForm.formFieldsArray.externalUrl}
-    </div>
+    {$res.dataForm.formFieldsArray.published}
     {foreach $langAvailableIds as $lang}
       {$res.dataForm.formFieldsArray["title_$lang"]}
     {/foreach}

@@ -294,8 +294,14 @@ class AdminViewResource extends AdminViewMaster {
     $form->setFieldParam('image', 'label', 'Thumbnail image (Optional)');
     $form->setFieldParam('published', 'type', 'reserved');
     $form->setFieldParam('published', 'value', '1');
+    $urlAliasLang = $form->multilangFieldNames('urlAlias');
+    foreach ($urlAliasLang as $key => $field) {
+      $form->removeField( $field);
+    }
+    $form->removeField('externalUrl');
     $form->removeValidationRules('published');
-
+    $form->setValidationRule('rExtFile_file', 'required', true);
+    
     $formBlockInfo['dataForm'] = array(
       'formOpen' => $form->getHtmpOpen(),
       'formFieldsArray' => $form->getHtmlFieldsArray(),
@@ -304,6 +310,8 @@ class AdminViewResource extends AdminViewMaster {
       'formClose' => $form->getHtmlClose(),
       'formValidations' => $form->getScriptCode()
     );
+
+    $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
     $formBlockInfo['template']['miniFormModal']->exec();
   }
 

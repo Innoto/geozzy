@@ -50,7 +50,7 @@ class GeozzyCollectionView extends View
       $elOpt = array(
         'value' => $res->getter( 'id' ),
         'text' => $res->getter( 'title', LANG_DEFAULT ),
-        'data-image' => '/cgmlImg/'.$res->getter( 'image' )
+        'data-image' => '/cgmlImg/'.$res->getter( 'image' ).'/square_cut/'.$res->getter( 'image' )
       );
       $resOptions[ $res->getter( 'id' ) ] = $elOpt;
     }
