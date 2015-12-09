@@ -439,7 +439,7 @@ class geozzyAPIView extends View
 
         <?php
   }
-
+/*
 
   function uiEventListJson() {
     header('Content-type: application/json');
@@ -477,7 +477,7 @@ class geozzyAPIView extends View
 
         <?php
   }
-
+*/
 
 
     // resources
@@ -485,7 +485,7 @@ class geozzyAPIView extends View
     function bi(  ) {
       require_once APP_BASE_PATH."/conf/geozzyBI.php";
       header('Content-type: application/json');
-      global $LANG_AVAILABLE, $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE;
+      global $LANG_AVAILABLE, $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS;
 
       $langs = array(
         'default'=> LANG_DEFAULT,
@@ -497,6 +497,7 @@ class geozzyAPIView extends View
           'languages' => $langs,
           'devices' => $BI_DEVICES,
           'sections' => $BI_SITE_SECTIONS,
+          'ui_events' => $BI_GEOZZY_UI_EVENTS,
           'metrics' => array(
             'explorer' => $BI_METRICS_EXPLORER,
             'resource' => $BI_METRICS_RESOURCE
@@ -766,7 +767,7 @@ class geozzyAPIView extends View
     $this->syncModelList( $topicList );
   }
 
-
+/*
   // UI events
   function uiEventList() {
     require_once APP_BASE_PATH."/conf/geozzyUIEvents.php";
@@ -775,7 +776,7 @@ class geozzyAPIView extends View
     header('Content-type: application/json');
     echo json_encode( $GEOZZY_UI_EVENTS );
   }
-
+*/
 
   function syncModelList( $result ) {
 
