@@ -81,8 +81,8 @@
       <ul class="type col-lg-10">
         {foreach from=$res.data.eatanddrinkType item=termInfo}
           <li>
-            <img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
-            <div class="name">{$termInfo.name_es}</div>
+            <img width="16" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
+            <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
           </li>
           {break}
         {/foreach}
@@ -101,18 +101,6 @@
 
     <div class="shortDescription">
       {$res.data.shortDescription|escape:'htmlall'}
-    </div>
-
-    <div class="taxonomyBar">
-      <div class="taxIcons">
-        {if isset($res.data.eatanddrinkSpecialities)}
-          {foreach from=$res.data.eatanddrinkSpecialities item=termInfo}
-            <div class="icon">
-              {if isset($termInfo.icon)}<img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{else}{$termInfo.name_es}{/if}
-            </div>
-          {/foreach}
-        {/if}
-      </div>
     </div>
 
     <div class="mediumDescription">
