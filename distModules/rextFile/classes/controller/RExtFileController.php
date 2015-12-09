@@ -71,7 +71,7 @@ class RExtFileController extends RExtController implements RExtInterface {
       'file' => array(
         'params' => array( 'label' => __( 'Multimedia file' ), 'type' => 'file', 'id' => 'rExtFileField',
         'placeholder' => __( 'File' ), 'destDir' => CollectionModel::$cols['image']['uploadDir'] ,
-        'rules' => array( 'maxfilesize' => '2097152' )
+        'rules' => array( 'maxfilesize' => '2097152', 'required' => 'true' )
         )
       )
     );
@@ -191,8 +191,8 @@ class RExtFileController extends RExtController implements RExtInterface {
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
       // error_log( 'NEW RExtFileModel: ' . print_r( $valuesArray, true ) );
-      $rExtModel = new RExtFileModel( $valuesArray );
-      if( $rExtModel === false ) {
+      $this->rExtModel = new RExtFileModel( $valuesArray );
+      if( $this->rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
     }
@@ -201,12 +201,12 @@ class RExtFileController extends RExtController implements RExtInterface {
     // Guardo los datos de file
     $fileField = $this->addPrefix( 'file' );
     if( !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
-      $this->defResCtrl->setFormFiledata( $form, $fileField, 'file', $rExtModel );
-      $rExtModel->save();
+      $this->defResCtrl->setFormFiledata( $form, $fileField, 'file', $this->rExtModel );
+      $this->rExtModel->save();
     }
 
     if( !$form->existErrors() ) {
-      $rExtModel->save();
+      $this->rExtModel->save();
     }
 
     if( $this->taxonomies ) {

@@ -32,6 +32,7 @@ class RExtController {
   public $defRTypeCtrl = null;
   public $defResCtrl = null;
   public $rExtModule = null;
+  public $rExtModel = null;
   public $taxonomies = false;
 
 

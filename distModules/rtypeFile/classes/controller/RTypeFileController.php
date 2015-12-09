@@ -210,6 +210,26 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
       $this->rExtCtrl = $this->newRExtContr();
       $this->rExtCtrl->resFormProcess( $form, $resource );
     }
+
+    if( !$form->existErrors() ) {
+//error_log( "rExtCtrl->rExtModel:" . print_r( $this->rExtCtrl->rExtModel, true ) );
+
+      $valueFile = $form->getFieldValue( $this->rExtCtrl->addPrefix( 'file' ) );
+      $valueImage = $form->getFieldValue( 'image' );
+
+      if(!$valueImage && ( $valueFile )){
+        error_log( "valueImage: NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" );
+      }
+error_log( "valueImage:" . print_r( $valueImage, true ) );
+error_log( "valueFile:" . print_r( $valueFile, true ) );
+      // image field == file field
+/*
+      $resdata['id'] = $this->rExtCtrl->rExtModel->getter('resource');
+      $resdata['image'] = $this->rExtCtrl->rExtModel->getter('file');
+      $resModel = new resourceModel($resdata);
+      $resModel->save();
+*/
+    }
   }
 
   /**

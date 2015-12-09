@@ -155,9 +155,14 @@ class RExtUrlController extends RExtController implements RExtInterface {
    */
   public function resFormRevalidate( FormController $form ) {
     error_log( "RExtUrlController: resFormRevalidate()" );
-
-    error_log( "ERROR !!!! VALIDAR externalUrl E urlContentType OU embed" );
-
+    $valueEmbed = $form->getFieldValue( $this->addPrefix( 'embed' ) );
+    $valueExternalUrl = $form->getFieldValue( 'externalUrl' );
+    
+    if( !$valueExternalUrl && !$valueEmbed ) {
+      //$form->addFormError( $msgText, $msgClass = false )
+      $form->addFieldRuleError( $this->addPrefix( 'embed' ), 'required' );
+      $form->addFieldRuleError( 'externalUrl', 'required' );
+    }
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
   }
 
