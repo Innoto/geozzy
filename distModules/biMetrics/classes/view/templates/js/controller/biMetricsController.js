@@ -19,7 +19,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
   initialize: function( options ) {
     var that = this;
     var opts = {
-      syncPeriod: 3000 // in miliseconds
+      syncPeriod: 10000 // in miliseconds
     }
 
     that.options = $.extend(true, opts, options );
