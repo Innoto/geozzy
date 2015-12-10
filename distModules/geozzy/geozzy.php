@@ -45,7 +45,7 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^api/categoryList.json$#', 'view:GeozzyAPIView::categoryListJson' );
     $this->addUrlPatterns( '#^api/categoryTerms.json$#', 'view:GeozzyAPIView::categoryTermsJson' );
     $this->addUrlPatterns( '#^api/topicList.json$#', 'view:GeozzyAPIView::topicListJson' );
-    $this->addUrlPatterns( '#^api/uiEventList.json$#', 'view:GeozzyAPIView::uiEventListJson' );
+    //$this->addUrlPatterns( '#^api/uiEventList.json$#', 'view:GeozzyAPIView::uiEventListJson' );
 
 
     // geozzy api environment
@@ -65,7 +65,7 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^api/core/topiclist$#', 'view:GeozzyAPIView::topicList' );
 
     // geozzy api UI events
-    $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
+//    $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
 
     // geozzy Resource
     //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
