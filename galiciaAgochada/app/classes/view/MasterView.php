@@ -51,7 +51,9 @@ class MasterView extends View
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');
-      $resDest = array_merge( $resDest, $resource );
+      if($resource){
+        $resDest = array_merge( $resDest, $resource );
+      }
     }
     $this->template->assign('rdRecantosConEstilo', $resDest);
     // end
@@ -75,7 +77,9 @@ class MasterView extends View
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');
-      $resDest = array_merge( $resDest, $resource );
+      if($resource){
+        $resDest = array_merge( $resDest, $resource );
+      }
     }
     $this->template->assign('rdFestaRachada', $resDest);
     // end
@@ -99,7 +103,9 @@ class MasterView extends View
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');
-      $resDest = array_merge( $resDest, $resource );
+      if($resource){
+        $resDest = array_merge( $resDest, $resource );
+      }
     }
     $this->template->assign('rdPraiasDeEnsono', $resDest);
     // end
@@ -123,7 +129,9 @@ class MasterView extends View
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');
-      $resDest = array_merge( $resDest, $resource );
+      if($resource){
+        $resDest = array_merge( $resDest, $resource );
+      }
     }
     $this->template->assign('rdPaisaxesEspectaculares', $resDest);
     // end
@@ -147,7 +155,9 @@ class MasterView extends View
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');
-      $resDest = array_merge( $resDest, $resource );
+      if($resource){
+        $resDest = array_merge( $resDest, $resource );
+      }
     }
     $this->template->assign('rdAloxamentoConEncanto', $resDest);
     // end
@@ -171,7 +181,9 @@ class MasterView extends View
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');
-      $resDest = array_merge( $resDest, $resource );
+      if($resource){
+        $resDest = array_merge( $resDest, $resource );
+      }
     }
     $this->template->assign('rdAutenticaGastronomia', $resDest);
     // end
