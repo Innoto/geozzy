@@ -474,6 +474,20 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     $resData = $this->defResCtrl->getResourceData( false, true );
 
+    $galleries = $this->defResCtrl->getMultimediaInfo( $resData[ 'id' ] );
+    //error_log( "collections = ". print_r( $collections, true ) );
+
+
+    if( $galleries ) {
+      foreach( $galleries['options'] as $galleryId => $values) {
+        $galleryBlock = $this->defResCtrl->getCollectionBlock( $galleryId );
+        if( $galleryBlock ) {
+          $template->addToBlock( 'multimediaGalleries', $galleryBlock );
+        }
+      }
+    }
+/*
+
     $collections = $this->defResCtrl->getCollectionsInfo( $resData[ 'id' ] );
     //error_log( "collections = ". print_r( $collections, true ) );
 
@@ -485,6 +499,10 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
           $template->addToBlock( 'collections', $collectionBlock );
         }
       }
+    }*/
+    $collectionBlock = $this->defResCtrl->getCollections( $resData[ 'id' ] );
+    if( $collectionBlock ) {
+      $template->addToBlock( 'collections', $collectionBlock );
     }
 
     $taxtermModel = new TaxonomytermModel();

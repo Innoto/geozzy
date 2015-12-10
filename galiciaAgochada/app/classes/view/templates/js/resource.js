@@ -15,13 +15,33 @@ $(document).ready(function(){
     })
   })
 
-  if ($("#imageGallery")){
-    $("#imageGallery").unitegallery({
-      gallery_theme: "tiles",
-  		tiles_type: "justified"
-    });
-  }
+  if ($("#multimediaGallery")){
+     $("#multimediaGallery").unitegallery({
+       gallery_theme: "tiles",
+   		tiles_type: "justified"
+     });
+   }
 
+  $('.multimediaSec .more').bind('click', function(){
+
+    if (firstLoad){
+      $('#multimediaAllGallery').append(multimedia);
+      $('#multimediaAllGallery').unitegallery({
+        gallery_theme: "tiles",
+        tiles_type: "justified"
+      });
+      firstLoad = false;
+    }
+    else{
+      $("#multimediaAllGallery").css('display','block');
+    }
+    showMoreMultimedia();
+
+    $('.multimediaSec .less').bind('click', function(){
+      showLessMultimedia();
+    });
+  });
+/*
   if ($("#collectionsGallery")){
     $("#collectionsGallery").unitegallery({
       gallery_theme: "tiles",
@@ -42,25 +62,41 @@ $(document).ready(function(){
     else{
       $("#collectionsAllGallery").css('display','block');
     }
-    showMore();
+    showMoreCollection();
 
     $('.collectionSec .less').bind('click', function(){
-      showLess();
+      showLessCollection();
     });
   });
 
-
+*/
 });
 
 // Show all the elements
-function showMore(){
+function showMoreMultimedia(){
+  $('.multimediaSec .more').hide();
+  $('.multimediaSec .less').show();
+  $("#multimediaGallery").css('display','none');
+}
+
+// Show the initially loaded elements
+function showLessMultimedia(){
+  $('.multimediaSec .more').show();
+  $('.multimediaSec .less').hide();
+  $("#multimediaGallery").css('display','block');
+  $('#multimediaAllGallery').css('display','none');
+}
+
+
+// Show all the elements
+function showMoreCollection(){
   $('.collectionSec .more').hide();
   $('.collectionSec .less').show();
   $("#collectionsGallery").css('display','none');
 }
 
 // Show the initially loaded elements
-function showLess(){
+function showLessCollection(){
   $('.collectionSec .more').show();
   $('.collectionSec .less').hide();
   $("#collectionsGallery").css('display','block');

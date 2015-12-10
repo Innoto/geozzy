@@ -1535,11 +1535,11 @@ class ResourceController {
     // $template->assign( 'image', '<p>'.__('None').'</p>' );
 
 
-    // Cargo los datos de recursos asociados a la collection
+   // Cargo los datos de recursos asociados a la collection (no multimedia)
    $collectionResourcesModel = new CollectionResourcesModel();
    $colResList = $collectionResourcesModel->listItems(
      array(
-       'filters' => array( 'collection' => $collectionId ),
+       'filters' => array( 'collection' => $collectionId, 'CollectionModel.multimedia' => 0  ),
        'order' => array( 'weight' => 1 )
      )
    );
@@ -1562,6 +1562,38 @@ class ResourceController {
    $template->assign( 'collectionResources', $colResources );
    $template->assign( 'collectionResourcesAll', $colResourcesAll );
 
+
+
+
+
+
+
+
+   // Cargo los datos de recursos asociados a la collection(galería multimedia)
+   $multimediaResList = $collectionResourcesModel->listItems(
+     array(
+       'filters' => array( 'collection' => $collectionId, 'CollectionModel.multimedia' => 1  ),
+       'order' => array( 'weight' => 1 )
+     )
+   );
+   while( $resM = $multimediaResList->fetch() ){
+     if( $resM ){
+       $multimediaData[ 'resources' ][] = $resM->getter( 'resource' );
+     }
+   }
+   $i = 0;
+   foreach ($multimediaData['resources'] as $multId){
+     $resourceModel = new ResourceModel();
+     $resourceM = $resourceModel->listItems(array('filters' => array('id' => $multId)))->fetch();
+     $multimediaResourcesAll[$multId] = array ('name'=> $resourceM->getter('title_'.$this->actLang), 'img' => $resourceM->getter('image'));
+     if($i < 4){
+       $multimediaResources[$multId] = array ('name'=> $resourceM->getter('title_'.$this->actLang), 'img' => $resourceM->getter('image'));
+       $i = $i + 1;
+     }
+   }
+
+   $template->assign( 'multimediaResources', $multimediaResources );
+   $template->assign( 'multimediaResourcesAll', $multimediaResourcesAll );
 
    $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
 
@@ -1611,6 +1643,98 @@ class ResourceController {
 
 
   } // function getCollectionBlock( $collection )
+
+
+  public function getCollections($resId){
+
+    $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
+    $template = new Template();
+
+    /* Traemos todas las colecciones que son multimedia */
+    if( isset( $resId ) ) {
+      $resMultimediaList = $resourceCollectionsAllModel->listItems(
+        array(
+          'filters' => array( 'resourceMain' => $resId, 'multimedia' => 1 ),
+          'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
+          'affectsDependences' => array( 'ResourceModel')
+        )
+      );
+
+      $j = 0;
+      while ( $multimedia = $resMultimediaList->fetch() )
+      {
+
+        $multimediaResources[$multimedia->getter('id')]['col'] = array('title' => $multimedia->getter('title_'.$this->actLang), 'image' => $multimedia->getter('image'));
+        $multimediaResourcesFirst[$multimedia->getter('id')]['col'] = $multimediaResources[$multimedia->getter('id')]['col'];
+
+        $resourceMulti = $multimedia->getterDependence( 'resourceSon', 'ResourceModel');
+
+        if ($resourceMulti){
+          foreach($resourceMulti as $resVal){
+            if($j < 4){
+              $j = $j + 1;
+              $multimediaResourcesFirst[$multimedia->getter('id')]['res'][$resVal->getter('id')] = array('rType' => $resVal->getter('rTypeId'),
+                                                                                     'title' => $resVal->getter('title_'.$this->actLang),
+                                                                                     'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
+                                                                                     'image' => $resVal->getter('image')
+                                                                                   );
+            }
+            $multimediaResources[$multimedia->getter('id')]['res'][$resVal->getter('id')] = array('rType' => $resVal->getter('rTypeId'),
+                                                                                   'title' => $resVal->getter('title_'.$this->actLang),
+                                                                                   'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
+                                                                                   'image' => $resVal->getter('image')
+                                                                                 );
+          }
+        }
+        // echo '<pre>';
+        // print_r($multimediaResourcesFirst);
+        // echo '</pre>';
+      }
+
+      $template->assign( 'multimediaResources', $multimediaResourcesFirst );
+      $template->assign( 'multimediaResourcesAll', $multimediaResources );
+    }
+
+    /* Traemos todas las colecciones que NO son multimedia */
+    if( isset( $resId ) ) {
+      $resCollectionList = $resourceCollectionsAllModel->listItems(
+        array(
+          'filters' => array( 'resourceMain' => $resId, 'multimedia' => 0 ),
+          'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
+          'affectsDependences' => array( 'ResourceModel', 'UrlAliasModel')
+        )
+      );
+
+      $i = 0;
+      while ( $collection = $resCollectionList->fetch() )
+      {
+        $collections[$collection->getter('id')]['col'] = array('title' => $collection->getter('title_'.$this->actLang), 'image' => $collection->getter('image'));
+        $collectionsFirst[$collection->getter('id')]['col'] = $collections[$collection->getter('id')]['col'];
+
+        $resource = $collection->getterDependence( 'resourceSon', 'ResourceModel');
+        if ($resource){
+          foreach($resource as $resVal){
+            if($i < 4){
+              $i = $i + 1;
+              $collectionsFirst[$collection->getter('id')]['res'][$resVal->getter('id')] = array('rType' => $resVal->getter('rTypeId'),
+                                                                                     'title' => $resVal->getter('title_'.$this->actLang),
+                                                                                     'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
+                                                                                     'image' => $resVal->getter('image')
+                                                                                   );
+            }
+            $collections[$collection->getter('id')]['res'][$resVal->getter('id')] = array('rType' => $resVal->getter('rTypeId'),
+                                                                                   'title' => $resVal->getter('title_'.$this->actLang),
+                                                                                   'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
+                                                                                   'image' => $resVal->getter('image')
+                                                                                 );
+          }
+        }
+      }
+
+      $template->assign( 'collectionResources', $collectionsFirst );
+      $template->assign( 'collectionResourcesAll', $collections );
+    }
+  }
 
 
 } // class ResourceController
