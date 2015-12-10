@@ -341,6 +341,13 @@ class AdminViewResource extends AdminViewMaster {
     }
 
     if( !$form->existErrors() ) {
+/* Kw11
+      $rtypeControl = new ResourcetypeModel();
+      $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $resource->getter('rTypeId') ) ) )->fetch();
+      if ( ($rTypeItem && $rTypeItem->getter('idName') === 'rtypeUrl') && ( !$resource->getter('image') && $form->getter('url')) ){
+
+      }
+*/
       $form->removeSuccess( 'redirect' );
       $form->setSuccess( 'jsEval', ' successResourceForm( { '.
         ' id : "'.$resource->getter('id').'",'.

@@ -27,7 +27,7 @@
     </div>
 
     <div class="linkOrEmbed_link linkOrEmbedContainer">
-      {$res.dataForm.formFieldsArray.externalUrl}
+      {$res.dataForm.formFieldsArray.rExtUrl_url}
     </div>
     <div class="linkOrEmbed_embed linkOrEmbedContainer">
       {$res.dataForm.formFieldsArray.rExtUrl_embed}

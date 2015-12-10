@@ -40,7 +40,7 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
       $form->multilangFieldNames( 'datoExtra1' ),
       $form->multilangFieldNames( 'datoExtra2' ),
       array( 'collections', 'addCollections', 'multimediaGalleries', 'addMultimediaGalleries',
-        'topics', 'starred', 'locLat', 'locLon', 'defaultZoom' )
+        'topics', 'starred', 'locLat', 'locLon', 'defaultZoom', 'externalUrl')
     );
     $form->removeField( $removeFields );
     $form->saveToSession();
@@ -89,7 +89,7 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
 
     $formFieldsNames[] = $this->urlCtrl->addPrefix( 'author' );
     $formFieldsNames[] = $this->urlCtrl->addPrefix( 'urlContentType' );
-    $formFieldsNames[] = 'externalUrl';
+    $formFieldsNames[] = $this->urlCtrl->addPrefix( 'url' );
     $formFieldsNames[] = $this->urlCtrl->addPrefix( 'embed' );
 
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );

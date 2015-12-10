@@ -64,6 +64,10 @@ class RExtUrlController extends RExtController implements RExtInterface {
           'options' => $this->defResCtrl->getOptionsTax( 'urlContentType' )
         )
       ),
+      'url' => array(
+        'params' => array( 'label' => __( 'URL' ) ),
+        'rules' => array( 'maxlength' => '2000', 'url' => true, 'required' => true )
+      ),
       'embed' => array(
         'params' => array( 'label' => __( 'Embed HTML' ), 'type' => 'textarea' ),
         'rules' => array( 'maxlength' => '2000' )
@@ -156,12 +160,12 @@ class RExtUrlController extends RExtController implements RExtInterface {
   public function resFormRevalidate( FormController $form ) {
     error_log( "RExtUrlController: resFormRevalidate()" );
     $valueEmbed = $form->getFieldValue( $this->addPrefix( 'embed' ) );
-    $valueExternalUrl = $form->getFieldValue( 'externalUrl' );
-    
-    if( !$valueExternalUrl && !$valueEmbed ) {
+    $valueUrl = $form->getFieldValue( $this->addPrefix( 'url' ) );
+
+    if( !$valueUrl && !$valueEmbed ) {
       //$form->addFormError( $msgText, $msgClass = false )
       $form->addFieldRuleError( $this->addPrefix( 'embed' ), 'required' );
-      $form->addFieldRuleError( 'externalUrl', 'required' );
+      $form->addFieldRuleError( $this->addPrefix( 'url' ), 'required' );
     }
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
   }

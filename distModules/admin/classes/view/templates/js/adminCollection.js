@@ -40,10 +40,33 @@ function moveHTML(){
 
 function successResourceForm( data ){
   //resource
+  var urlImg;
 
-  $('#collResources').append('<option data-image="/cgmlImg/'+data.image+'/square_cut/'+data.image+'" selected="selected" value="'+data.id+'">'+data.title+'</option>');
+  urlImg = '/cgmlImg/'+data.image+'/square_cut/'+data.image;
+  /*Kw11
+  if(data.image){
+
+  }
+  else{
+
+  }*/
+
+  $('#collResources').append('<option data-image="'+urlImg+'" selected="selected" value="'+data.id+'">'+data.title+'</option>');
   $('#createResourceLocalModal, #createResourceExternalModal').modal('hide');
 
   $('#collResources').trigger('change');
   //End resource
 }
+/*Kw11
+function ytVidId(url) {
+  var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+  return (url.match(p)) ? RegExp.$1 : false;
+}
+*/
+// for example snippet only!
+document.body.addEventListener('click', function(e) {
+    if (e.target.className == 'yt-url' && 'undefined' !== e.target.value) {
+        var ytId = ytVidId(e.target.value);
+        alert(e.target.value + "\r\nResult: " + (!ytId ? 'false' : ytId));
+    }
+}, false);
