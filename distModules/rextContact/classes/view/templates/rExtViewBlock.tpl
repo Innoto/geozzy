@@ -1,12 +1,14 @@
 <!-- rExtViewBlock.tpl en rExtContact module -->
 
-<div class="rExtContact row">
+<address class="rExtContact row">
 
   {if isset($rExt.data.address) || isset($rExt.data.cp) || isset($rExt.data.city) || isset($rExt.data.province)}
   <div class="col-lg-6">
     <div class="address">
-      <i class="fa fa-map-marker"></i>
-      {$rExt.data.address|escape:'htmlall'} {$rExt.data.cp|escape:'htmlall'} {$rExt.data.city|escape:'htmlall'} {$rExt.data.province|escape:'htmlall'}
+      <i class="fa fa-map-marker icon"></i>
+      <div class="data">
+      {$rExt.data.address|escape:'htmlall'} <br>{$rExt.data.cp|escape:'htmlall'} {$rExt.data.city|escape:'htmlall'} <br>{$rExt.data.province|escape:'htmlall'}
+      </div>
     </div>
   </div>
   {/if}
@@ -42,8 +44,10 @@
   {if isset($rExt.data.timetable) && $rExt.data.timetable!=""}
   <div class="col-lg-6">
     <div class="timetable">
-      <i class="fa fa-clock-o"></i>
-      {$rExt.data.timetable|escape:'htmlall'}
+      <i class="fa fa-clock-o icon"></i>
+      <div class="data">
+        {$rExt.data.timetable|escape:'htmlall'}
+      </div>
     </div>
   </div>
   {/if}
@@ -58,6 +62,6 @@
 
   <!-- coleciones -->
 
-</div>
+</address>
 
 <!-- /rExtViewBlock.tpl en rExtContact module -->
