@@ -21,6 +21,10 @@ class RExtUrlModel extends Model {
       'type' => 'VARCHAR',
       'size' => 2000
     ),
+    'url' => array(
+      'type' => 'VARCHAR',
+      'size' => 2000
+    ),
     'author' => array(
       'type' => 'VARCHAR',
       'size' => 500

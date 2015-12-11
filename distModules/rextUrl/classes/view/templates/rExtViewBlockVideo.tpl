@@ -15,11 +15,11 @@
 
     <div class="url">
       <label>{t}External URL{/t}</label>
-      {$rExt.data.externalUrl|escape:'htmlall'}
+      {$rExt.data.url|escape:'htmlall'}
     </div>
 
     <div class="urlContentType">
-      <a href="{$externalUrl|escape:'htmlall'}" target="_blank">{t}Link target _blank{/t}</a>
+      <a href="{$url|escape:'htmlall'}" target="_blank">{t}Link target _blank{/t}</a>
     </div>
 
   {/if}
@@ -32,5 +32,3 @@
 </div>
 
 <!-- /rExtViewBlockVideo.tpl en rExtUrl module -->
-
-

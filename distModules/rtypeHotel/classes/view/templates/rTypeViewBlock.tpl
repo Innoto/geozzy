@@ -65,7 +65,7 @@
         {if $res.ext.rextAccommodation.data.reservationURL || $res.ext.rextAccommodation.data.reservationPhone}
           <div class="reservationBtb">
             {if $res.ext.rextAccommodation.data.reservationURL}
-              <a href="{$res.ext.rextAccommodation.data.reservationURL}" target="blank">{t}Reservar{/t}</a>
+              <a href="{$res.ext.rextAccommodation.data.reservationURL}" target="blank">{t}Reserve{/t}</a>
             {elseif $res.ext.rextAccommodation.data.reservationPhone}
               <div class="showReservation">{t}Reserve{/t}</div>
             {/if}
@@ -245,6 +245,21 @@
     </div>
   </section>-->
 
+
+  {if isset($multimediaGalleries)}
+    <section class="multimediaSec container gzSection">
+      <h4>{t}Multimedia gallery{/t}</h4>
+      {$multimediaGalleries}
+      <div id="multimediaAllGallery" style="display:none;">
+      </div>
+      <div class="more">{t}Ver más...{/t}</div>
+      <div class="less" style="display:none;">{t}Ver menos{/t}</div>
+    </section>
+  {/if}
+
+
+
+<!--
 {if isset($collections)}
   <section class="collectionSec container gzSection">
     <h4>{t}Related resources{/t}</h4>
@@ -254,7 +269,7 @@
     <div class="more">{t}Ver más...{/t}</div>
     <div class="less" style="display:none;">{t}Ver menos{/t}</div>
   </section>
-{/if}
+{/if}-->
 
   <!--
     <div class="reservationSec container gzSection">
