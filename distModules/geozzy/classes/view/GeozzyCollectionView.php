@@ -1,6 +1,6 @@
 <?php
 Cogumelo::load('coreView/View.php');
-
+geozzy::load('controller/ResourceController.php');
 
 
 class GeozzyCollectionView extends View
@@ -43,14 +43,22 @@ class GeozzyCollectionView extends View
 
     $elemList = $this->getAvailableResources( $valueMultimedia, $valueRTypeFilterParent );
 
+    $resControl = new ResourceController();
 
     $resOptions = array();
     while( $res = $elemList->fetch() ){
-Cogumelo::console($res);
+
+      $thumbSettings = array(
+        'profile' => 'square_cut',
+        'image' => $res->getter( 'image' )
+      );
+      if( $resDataExt = $res->getterDependence('id', 'RExtUrlModel')[0] ){
+        $thumbSettings['url'] = $resDataExt->getter('url');
+      }
       $elOpt = array(
         'value' => $res->getter( 'id' ),
         'text' => $res->getter( 'title', LANG_DEFAULT ),
-        'data-image' => '/cgmlImg/'.$res->getter( 'image' ).'/square_cut/'.$res->getter( 'image' )
+        'data-image' => $resControl->getResourceThumbnail( $thumbSettings )
       );
       $resOptions[ $res->getter( 'id' ) ] = $elOpt;
     }
@@ -359,7 +367,10 @@ Cogumelo::console($res);
       }
 
       $elemList = $resourceModel->listItems(
-        array( 'filters' => array( 'inRtype' => $filterRtype ) )
+        array(
+          'filters' => array( 'inRtype' => $filterRtype ),
+          'affectsDependences' => array('RExtUrlModel')
+        )
       );
 
     }

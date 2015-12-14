@@ -1736,6 +1736,38 @@ class ResourceController {
     }
   }
 
+  public function getResourceThumbnail( $param ) {
+
+    $imgDefault = false;
+    $thumbImg = false;
+    $isYoutubeID = false;
+
+    if( array_key_exists( 'image', $param ) && $param['image'] ){
+      if( array_key_exists( 'profile', $param ) ){
+        $thumbImg = '/cgmlImg/'.$param['image'].'/'.$param['profile'].'/'.$param['image'];
+      }else{
+        $thumbImg = '/cgmlImg/'.$param['image'];
+      }
+    }else{
+      if( array_key_exists( 'url', $param ) ){
+        $isYoutubeID = $this->ytVidId( $param['url'] );
+        if(!$isYoutubeID){
+          $imgDefault = true;
+        }else{
+          $thumbImg = 'http://img.youtube.com/vi/'.$isYoutubeID.'/0.jpg';
+        }
+      }else{
+        $imgDefault = true;
+      }
+    }
+
+    if( $imgDefault ){
+      $thumbImg = '/media/module/geozzy/img/default-multimedia.png';
+    }
+
+    return $thumbImg;
+  }
+
   public function ytVidId($url) {
     $p = '#^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$#';
     return (preg_match($p, $url, $coincidencias)) ? $coincidencias[1] : false;

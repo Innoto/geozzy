@@ -347,27 +347,18 @@ class AdminViewResource extends AdminViewMaster {
       $imgDefault = false;
       $thumbImg = false;
       $isYoutubeID = false;
-
+      $thumbSettings = array(
+        'profile' => 'square_cut'
+      );
 
       if($resource->getter('image')){
-        $thumbImg = '/cgmlImg/'.$resource->getter('image').'/square_cut/'.$resource->getter('image');
-      }else{
-        if(($rTypeItem && $rTypeItem->getter('idName') === 'rtypeUrl') && $form->getFieldValue('rExtUrl_url')){
-          $url = $form->getFieldValue('rExtUrl_url');
-          $isYoutubeID = $this->ytVidId($url);
-          if(!$isYoutubeID){
-            $imgDefault = true;
-          }else{
-            $thumbImg = 'http://img.youtube.com/vi/'.$isYoutubeID.'/0.jpg';
-          }
-        }else{
-          $imgDefault = true;
-        }
+        $thumbSettings['image'] = $resource->getter('image');
       }
+      if(($rTypeItem && $rTypeItem->getter('idName') === 'rtypeUrl') && $form->getFieldValue('rExtUrl_url')){
+        $thumbSettings['url'] = $form->getFieldValue('rExtUrl_url');      }
 
-      if( $imgDefault ){
-        $thumbImg = '/media/module/geozzy/img/default-multimedia.png';
-      }
+      $resCtrl = new ResourceController();
+      $thumbImg = $resCtrl->getResourceThumbnail( $thumbSettings );
 
       $form->removeSuccess( 'redirect' );
       $form->setSuccess( 'jsEval', ' successResourceForm( { '.
