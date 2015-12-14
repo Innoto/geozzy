@@ -341,23 +341,48 @@ class AdminViewResource extends AdminViewMaster {
     }
 
     if( !$form->existErrors() ) {
-/* Kw11
+
       $rtypeControl = new ResourcetypeModel();
       $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $resource->getter('rTypeId') ) ) )->fetch();
-      if ( ($rTypeItem && $rTypeItem->getter('idName') === 'rtypeUrl') && ( !$resource->getter('image') && $form->getter('url')) ){
+      $imgDefault = false;
+      $thumbImg = false;
+      $isYoutubeID = false;
 
+
+      if($resource->getter('image')){
+        $thumbImg = '/cgmlImg/'.$resource->getter('image').'/square_cut/'.$resource->getter('image');
+      }else{
+        if(($rTypeItem && $rTypeItem->getter('idName') === 'rtypeUrl') && $form->getFieldValue('rExtUrl_url')){
+          $url = $form->getFieldValue('rExtUrl_url');
+          $isYoutubeID = $this->ytVidId($url);
+          if(!$isYoutubeID){
+            $imgDefault = true;
+          }else{
+            $thumbImg = 'http://img.youtube.com/vi/'.$isYoutubeID.'/0.jpg';
+          }
+        }else{
+          $imgDefault = true;
+        }
       }
-*/
+
+      if( $imgDefault ){
+        $thumbImg = '/media/module/geozzy/img/default-multimedia.png';
+      }
+
       $form->removeSuccess( 'redirect' );
       $form->setSuccess( 'jsEval', ' successResourceForm( { '.
         ' id : "'.$resource->getter('id').'",'.
         ' title: "'.$resource->getter('title_'.$form->langDefault).'",'.
-        ' image: "'.$resource->getter('image').'" });'
+        ' image: "'.$thumbImg.'" });'
       );
     }
 
     // Enviamos el OK-ERROR a la BBDD y al formulario
     $resourceView->actionResourceFormSuccess( $form, $resource );
+  }
+  public function ytVidId($url) {
+    $p = '#^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$#';
+    return (preg_match($p, $url, $coincidencias)) ? $coincidencias[1] : false;
   }
 
 }

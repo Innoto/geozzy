@@ -1736,5 +1736,9 @@ class ResourceController {
     }
   }
 
+  public function ytVidId($url) {
+    $p = '#^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$#';
+    return (preg_match($p, $url, $coincidencias)) ? $coincidencias[1] : false;
+  }
 
 } // class ResourceController

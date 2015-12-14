@@ -46,7 +46,7 @@ class GeozzyCollectionView extends View
 
     $resOptions = array();
     while( $res = $elemList->fetch() ){
-
+Cogumelo::console($res);
       $elOpt = array(
         'value' => $res->getter( 'id' ),
         'text' => $res->getter( 'title', LANG_DEFAULT ),
