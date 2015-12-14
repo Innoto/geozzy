@@ -35,8 +35,13 @@
 global $IMAGE_PROFILES;
 
 $IMAGE_PROFILES = array(
-  'ancho' => array( 'width' => 400, 'height' => 200 ),
-  'alto' => array( 'width' => 200, 'height' => 400 ),
+  'mdpi4' => array( 'width' => 640, 'height' => 480, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+  'hdpi4' => array( 'width' => 960, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+  'xhdpi4' => array( 'width' => 1280, 'height' => 960, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+  'mdpi16' => array( 'width' => 640, 'height' => 360, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+  'hdpi16' => array( 'width' => 960, 'height' => 540, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+  'xhdpi16' => array( 'width' => 1280, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+  'big' => array( 'width' => 2000, 'height' => 2000, 'cut' => false, 'enlarge' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
   'fast' => array( 'width' => 400, 'height' => 300, 'cut' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
   'fast_cut' => array( 'width' => 400, 'height' => 300, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
   'square_cut' => array( 'width' => 128, 'height' => 128, 'cut' => true ),
@@ -46,7 +51,11 @@ $IMAGE_PROFILES = array(
   'explorerMarker' => array( 'width' => 32, 'height' => 32, 'saveFormat' => 'PNG' ),
   'resourceLg' => array( 'width' => 1200, 'height' => 500),
   'resourceMd' => array( 'width' => 992, 'height' => 400),
-  'resourceSm' => array( 'width' => 768, 'height' => 300)
+  'resourceSm' => array( 'width' => 768, 'height' => 300),
+
+  // TEST
+  'ancho' => array( 'width' => 400, 'height' => 200 ),
+  'alto' => array( 'width' => 200, 'height' => 400 )
 );
 
 
