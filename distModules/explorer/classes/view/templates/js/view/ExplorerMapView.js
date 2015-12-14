@@ -324,6 +324,12 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   markerHover: function( id ){
     var that = this;
 
+    //#######################################################
+
+    that.parentExplorer.metricsResourceController.eventHoverStart(id);
+
+    //#######################################################
+
     if( that.parentExplorer.displays.mapInfo ) {
       that.parentExplorer.displays.mapInfo.show( id );
     }

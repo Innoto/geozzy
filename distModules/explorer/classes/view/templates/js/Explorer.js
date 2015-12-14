@@ -26,7 +26,8 @@ geozzy.explorer = function( opts ) {
 
   // metrics
 
-  that.metricsController = false;
+  that.metricsExplorerController = false;
+  that.metricsResourceController = false;
 
   //  Debuger
 
@@ -64,11 +65,6 @@ geozzy.explorer = function( opts ) {
   //
 
   that.exec = function() {
-
-
-    that.metricsController = new geozzy.biMetrics.controller.explorer();
-
-
     // set multiple fetches
     that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/minimal/updatedfrom/false';
 
@@ -219,7 +215,7 @@ geozzy.explorer = function( opts ) {
 
     });
     // add metric
-    that.metricsController.addMetric(metricData);
+    that.metricsExplorerController.addMetric(metricData);
 
 
     // Advanced Fetch
@@ -255,6 +251,18 @@ geozzy.explorer = function( opts ) {
         success();
       }
     });
+  }
+
+
+  that.setMetricsExplorer = function( obj ) {
+
+    that.metricsExplorerController = obj;//new geozzy.biMetrics.controller.explorer();
+
+  }
+
+  that.setMetricsResource = function( obj) {
+
+    that.metricsResourceController = obj;
   }
 
 

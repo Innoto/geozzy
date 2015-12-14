@@ -7,7 +7,6 @@
 
     $(document).ready(function(){
 
-
       //var data = new Date();
       //console.log( Date.UTC(data.getUTCFullYear(),data.getUTCMonth(), data.getUTCDate() , data.getUTCHours(), data.getUTCMinutes(), data.getUTCSeconds(), data.getUTCMilliseconds()) )
 
@@ -37,7 +36,15 @@
 
 
 
+      // METRICAS
+
+      explorer.setMetricsExplorer( new geozzy.biMetrics.controller.explorer() );
+      explorer.setMetricsResource( new geozzy.biMetrics.controller.resource() );
+
+
+
       // DISPLAYS
+
       var infowindow = new geozzy.explorerDisplay.mapInfoView();
       var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
       var mapa = new geozzy.explorerDisplay.mapView({
@@ -102,6 +109,9 @@
           }
         )
       );
+
+
+
 
 
       // EXECUCIÓN EXPLORADOR
