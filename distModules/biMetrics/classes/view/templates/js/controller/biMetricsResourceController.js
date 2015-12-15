@@ -92,8 +92,14 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
 
   },
 
-  eventClick: function( id ) {
-
+  eventClick: function( id, section ) {
+    var that = this;
+    
+    that.addMetric({
+          resourceId: id,
+          section: section,
+          event: 'click'
+    });
   }
 
 });

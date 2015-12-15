@@ -195,6 +195,12 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
       that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('data-resource-id') );
       that.parentExplorer.displays.map.markerHover( $(element.currentTarget).attr('data-resource-id') );
     }
+    else {
+      that.parentExplorer.metricsResourceController.eventHoverStart(
+        $(element.currentTarget).attr('data-resource-id') ,
+        'Explorer: '+that.parentExplorer.options.explorerSectionName
+      );
+    }
   },
 
   resourceOut: function( element ) {
@@ -202,6 +208,11 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
     if( that.parentExplorer.displays.map ) {
       that.parentExplorer.displays.map.markerOut( );
+    }
+    else {
+      that.parentExplorer.metricsResourceController.eventHoverEnd(
+        $(element.currentTarget).attr('data-resource-id')
+      );
     }
 
 
