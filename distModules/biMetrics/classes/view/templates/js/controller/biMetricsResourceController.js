@@ -6,7 +6,7 @@ if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
 
 geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsController.extend( {
 
-  hoverTimes: {},
+  hoverStack: [],
 
   metricTemplate: function( metric ) {
     var that = this;
@@ -20,7 +20,7 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
     };*/
 
     return {
-       "seconds": 1.0,
+       "seconds": metric.duration,
        "section": metric.section,
        "resource":{
           "term":[
@@ -61,11 +61,34 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
 
 
 
-  eventHoverStart: function( id ) {
-console.log(id);
+  eventHoverStart: function( id, section ) {
+    var that = this;
+
+    that.hoverStack.push({
+          start: that.getTimesTamp(),
+          resourceId: id,
+          section: section,
+          event: 'hover'
+    });
   },
 
   eventHoverEnd: function( id ) {
+    var that = this;
+
+    $.each( that.hoverStack, function( i, e ){
+
+      if( e.resourceId == id ) {
+
+        that.hoverStack[i] = false;
+
+        e.duration= ( that.getTimesTamp() - e.start )/1000;
+        e.start = null;
+        console.log(e.duration);
+        that.addMetric( e );
+
+      }
+    });
+
 
   },
 
