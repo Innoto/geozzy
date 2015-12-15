@@ -6,7 +6,7 @@
 
   <div class="url">
     <label>{t}External URL{/t}</label>
-    {$rExt.data.externalUrl|escape:'htmlall'}
+    {$rExt.data.url|escape:'htmlall'}
   </div>
 
   <div class="urlContentType">
@@ -27,5 +27,3 @@
 </div>
 
 <!-- /rExtViewBlock.tpl en rExtUrl module -->
-
-

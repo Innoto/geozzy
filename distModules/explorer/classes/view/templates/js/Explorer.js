@@ -9,8 +9,11 @@ geozzy.explorer = function( opts ) {
   //  Options
 
   that.options = {
+
+    explorerSectionName: 'Geozzy Explorer',
+
     explorerAPIHost: '/api/explorer/',
-    explorerName: 'default',
+    explorerId: 'default',
 
     // cache times (in seconds)
     cacheTimeIndex: 120,
@@ -26,7 +29,8 @@ geozzy.explorer = function( opts ) {
 
   // metrics
 
-  that.metricsController = false;
+  that.metricsExplorerController = false;
+  that.metricsResourceController = false;
 
   //  Debuger
 
@@ -64,13 +68,8 @@ geozzy.explorer = function( opts ) {
   //
 
   that.exec = function() {
-
-
-    that.metricsController = new geozzy.biMetrics.controller.explorer();
-
-
     // set multiple fetches
-    that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/minimal/updatedfrom/false';
+    that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal/updatedfrom/false';
 
 
     // render filters
@@ -219,7 +218,7 @@ geozzy.explorer = function( opts ) {
 
     });
     // add metric
-    that.metricsController.addMetric(metricData);
+    that.metricsExplorerController.addMetric(metricData);
 
 
     // Advanced Fetch
@@ -250,11 +249,23 @@ geozzy.explorer = function( opts ) {
   that.fetchPartialList = function( resourcesToLoad, success ) {
     that.resourcePartialList.fetchAndCache({
       ids: resourcesToLoad,
-      url: that.options.explorerAPIHost + 'explorer/' + that.options.explorerName+ '/request/partial/updatedfrom/false',
+      url: that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/partial/updatedfrom/false',
       success: function() {
         success();
       }
     });
+  }
+
+
+  that.setMetricsExplorer = function( obj ) {
+
+    that.metricsExplorerController = obj;//new geozzy.biMetrics.controller.explorer();
+
+  }
+
+  that.setMetricsResource = function( obj) {
+
+    that.metricsResourceController = obj;
   }
 
 

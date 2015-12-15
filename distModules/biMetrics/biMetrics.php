@@ -29,7 +29,8 @@ class biMetrics extends Module
   public $includesCommon = array(
 
     'js/controller/biMetricsController.js',
-    'js/controller/biMetricsExplorerController.js'
+    'js/controller/biMetricsExplorerController.js',
+    'js/controller/biMetricsResourceController.js'    
   );
 
 

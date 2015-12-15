@@ -40,10 +40,8 @@ function moveHTML(){
 
 function successResourceForm( data ){
   //resource
-
-  $('#collResources').append('<option data-image="/cgmlImg/'+data.image+'/square_cut/'+data.image+'" selected="selected" value="'+data.id+'">'+data.title+'</option>');
+  $('#collResources').append('<option data-image="'+data.image+'" selected="selected" value="'+data.id+'">'+data.title+'</option>');
   $('#createResourceLocalModal, #createResourceExternalModal').modal('hide');
-
   $('#collResources').trigger('change');
   //End resource
 }

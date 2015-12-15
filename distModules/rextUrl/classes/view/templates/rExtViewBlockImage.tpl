@@ -6,12 +6,12 @@
 
   <div class="url">
     <label>{t}External URL{/t}</label>
-    {$rExt.data.externalUrl|escape:'htmlall'}
+    {$rExt.data.url|escape:'htmlall'}
   </div>
 
   <div class="urlContentType">
     <label>{t}IMAGE{/t}</label>
-    <img src="{$externalUrl|escape:'htmlall'}"></img>
+    <img src="{$url|escape:'htmlall'}"></img>
   </div>
 
   <div class="embed">
@@ -27,5 +27,3 @@
 </div>
 
 <!-- /rExtViewBlockImage.tpl en rExtUrl module -->
-
-

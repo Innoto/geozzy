@@ -76,6 +76,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
   getMetricsURL: function() {
     console.log('biMetrics: method "getMetricsURL" not defined');
   },
+  
   addMetric: function( data ) {
     var that = this;
 
@@ -104,7 +105,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
       $.ajax({
         type: "POST",
         url: that.getMetricsURL(),
-        data: JSON.stringify( that.packageTemplate() ),
+        data: that.packageTemplate() ,
         dataType: 'application/json'
       });
 
@@ -148,18 +149,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
   getTimesTamp: function() {
     var that = this;
 
-    var data = new Date();
-
-    return Date.UTC(
-      data.getUTCFullYear(),
-      data.getUTCMonth(),
-      data.getUTCDate() ,
-      data.getUTCHours(),
-      data.getUTCMinutes(),
-      data.getUTCSeconds(),
-      data.getUTCMilliseconds()
-    )
-
+    return new Date().getTime()
   }
 
 });
