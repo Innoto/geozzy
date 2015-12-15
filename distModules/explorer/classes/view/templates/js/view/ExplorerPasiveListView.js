@@ -121,6 +121,13 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
         img: that.parentExplorer.resourceMinimalList.get( e ).get('img')
       };
 
+
+      // metrics 
+      that.parentExplorer.metricsResourceController.eventShow(
+        that.parentExplorer.resourcePartialList.get( e ).get('id'),
+        'Explorer: '+that.parentExplorer.options.explorerSectionName
+      );
+
       contentHtml += that.tplElement(element);
       contador++;
     });
