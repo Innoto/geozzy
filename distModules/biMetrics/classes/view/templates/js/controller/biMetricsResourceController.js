@@ -83,7 +83,7 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
 
         e.duration= ( that.getTimesTamp() - e.start )/1000;
         e.start = null;
-        console.log(e.duration);
+
         that.addMetric( e );
 
       }
