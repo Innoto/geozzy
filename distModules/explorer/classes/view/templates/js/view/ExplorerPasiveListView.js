@@ -121,6 +121,13 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
         img: that.parentExplorer.resourceMinimalList.get( e ).get('img')
       };
 
+
+      // metrics 
+      that.parentExplorer.metricsResourceController.eventShow(
+        that.parentExplorer.resourcePartialList.get( e ).get('id'),
+        'Explorer: '+that.parentExplorer.options.explorerSectionName
+      );
+
       contentHtml += that.tplElement(element);
       contador++;
     });
@@ -190,15 +197,16 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
   resourceHover: function( element ) {
     var that = this;
 
-
-    //#######################################################
-    that.parentExplorer.metricsResourceController.eventHoverStart( $(element.currentTarget).attr('data-resource-id') );
-    //#######################################################
-
     if( that.parentExplorer.displays.map ) {
       that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
       that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('data-resource-id') );
       that.parentExplorer.displays.map.markerHover( $(element.currentTarget).attr('data-resource-id') );
+    }
+    else {
+      that.parentExplorer.metricsResourceController.eventHoverStart(
+        $(element.currentTarget).attr('data-resource-id') ,
+        'Explorer: '+that.parentExplorer.options.explorerSectionName
+      );
     }
   },
 
@@ -207,6 +215,11 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
     if( that.parentExplorer.displays.map ) {
       that.parentExplorer.displays.map.markerOut( );
+    }
+    else {
+      that.parentExplorer.metricsResourceController.eventHoverEnd(
+        $(element.currentTarget).attr('data-resource-id')
+      );
     }
 
 

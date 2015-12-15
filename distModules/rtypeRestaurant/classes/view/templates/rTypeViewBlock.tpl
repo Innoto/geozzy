@@ -159,7 +159,7 @@
 
 {if isset($imggallery)}
   <section class="gallerySec container gzSection">
-    <h4>{t}Images gallery{/t}</h4>
+
     <div id="imageGallery" style="display:none;">
       {$imggallery}
     </div>

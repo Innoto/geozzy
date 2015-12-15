@@ -317,25 +317,28 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   },
 
-  markerClick: function(){
+  markerClick: function( id ){
+    var that = this;
+    // call metrics event
+    that.parentExplorer.metricsResourceController.eventHoverStart( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
 
   },
 
   markerHover: function( id ){
     var that = this;
 
-    //#######################################################
-
-    that.parentExplorer.metricsResourceController.eventHoverStart(id);
-
-    //#######################################################
+    // call metrics event
+    that.parentExplorer.metricsResourceController.eventHoverStart( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
 
     if( that.parentExplorer.displays.mapInfo ) {
       that.parentExplorer.displays.mapInfo.show( id );
     }
   },
-  markerOut: function() {
+  markerOut: function( id ) {
     var that = this;
+
+    // call metrics event end
+    that.parentExplorer.metricsResourceController.eventHoverEnd( id );
 
     if( that.parentExplorer.displays.mapInfo ) {
       that.parentExplorer.displays.mapInfo.hide();

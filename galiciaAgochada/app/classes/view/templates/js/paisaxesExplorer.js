@@ -32,7 +32,7 @@
     function setExplorer( ) {
 
       // EXPLORADOR
-      var explorer = new geozzy.explorer({debug:false});
+      var explorer = new geozzy.explorer({debug:false, explorerSectionName:'Paisaxes espectaculares'});
 
 
 

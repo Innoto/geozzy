@@ -76,6 +76,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
   getMetricsURL: function() {
     console.log('biMetrics: method "getMetricsURL" not defined');
   },
+  
   addMetric: function( data ) {
     var that = this;
 
