@@ -1,11 +1,5 @@
 
 <script>
-  var multimedia = '';
-  {foreach $multimediaResourcesAll as $multiId => $multimedia}
-  multimedia = multimedia + '<img alt="{$multimedia['name']}" src="/cgmlImg/{$multimedia['img']}/typeIconMini/{$multimedia['img']}.jpg"'+
-      'data-image="/cgmlImg/{$multimedia['img']}/typeIconMini/{$multimedia['img']}.jpg"'+
-      'data-description="{$multimedia['name']}">';
-  {/foreach}
 
   var recursos = '';
   {foreach $collectionResourcesAll as $resId => $res}
@@ -15,18 +9,24 @@
   {/foreach}
 </script>
 
-<div id="multimediaGallery" style="display:none;">
-    {foreach $multimediaResources as $multiId => $multimedia}
-      <img alt="{$multimedia['name']}" src="/cgmlImg/{$multimedia['img']}/typeIconMini/{$multimedia['img']}.jpg"
-        data-image="/cgmlImg/{$multimedia['img']}/typeIconMini/{$multimedia['img']}.jpg"
-        data-description="{$multimedia['name']}">
+
+UH
+<div id="collectionsGallery" style="display:none;">
+    {foreach $collectionResources as $multiId => $multimediaVal}
+    OLA
+      <h4>{$multimediaVal.col.title}</h4>
+      {foreach $multimediaVal.res as $multimedia}
+      <img alt="{$multimedia['title']}" src="/cgmlImg/{$multimedia['image']}/typeIconMini/{$multimedia['image']}.jpg"
+        data-image="/cgmlImg/{$multimedia['image']}/typeIconMini/{$multimedia['image']}.jpg"
+        data-description="{$multimedia['title']}">
+      {/foreach}
     {/foreach}
 </div>
 
-<div id="collectionsGallery" style="display:none;">
-    {foreach $collectionResources as $resId => $res}
-      <img alt="{$res['name']}" src="/cgmlImg/{$res['img']}/typeIconMini/{$res['img']}.jpg"
-        data-image="/cgmlImg/{$res['img']}/typeIconMini/{$res['img']}.jpg"
-        data-description="{$res['name']}">
+<!-- <div class="owl-carousel">
+    {foreach $collectionResourcesAll as $resId => $res}
+      <div class="item">
+        <img alt="{$res['name']}" src="/cgmlImg/{$res['img']}/typeIconMini/{$res['img']}.jpg" data-image="/cgmlImg/{$res['img']}/typeIconMini/{$res['img']}.jpg" data-description="{$res['name']}">
+      </div>
     {/foreach}
-</div>
+</div> -->

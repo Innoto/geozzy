@@ -248,12 +248,7 @@
 
   {if isset($multimediaGalleries)}
     <section class="multimediaSec container gzSection">
-      <h4>{t}Multimedia gallery{/t}</h4>
       {$multimediaGalleries}
-      <div id="multimediaAllGallery" style="display:none;">
-      </div>
-      <div class="more">{t}Ver más...{/t}</div>
-      <div class="less" style="display:none;">{t}Ver menos{/t}</div>
     </section>
   {/if}
 

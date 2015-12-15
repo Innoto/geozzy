@@ -1,4 +1,6 @@
 firstLoad = firstLoadAll = true;
+var idGallery = [];
+var multimedia = [];
 
 $(document).ready(function(){
 
@@ -13,92 +15,96 @@ $(document).ready(function(){
       $('.rtypeHotel .reservationSec .reservationBox').show();
       $('.rtypeHotel .reservationSec .reservationData').hide();
     })
-  })
-
-  if ($("#multimediaGallery")){
-     $("#multimediaGallery").unitegallery({
-       gallery_theme: "tiles",
-   		tiles_type: "justified"
-     });
-   }
-
-  $('.multimediaSec .more').bind('click', function(){
-
-    if (firstLoad){
-      $('#multimediaAllGallery').append(multimedia);
-      $('#multimediaAllGallery').unitegallery({
-        gallery_theme: "tiles",
-        tiles_type: "justified"
-      });
-      firstLoad = false;
-    }
-    else{
-      $("#multimediaAllGallery").css('display','block');
-    }
-    showMoreMultimedia();
-
-    $('.multimediaSec .less').bind('click', function(){
-      showLessMultimedia();
-    });
   });
+
+  $.each(idGallery, function(i, elm){
+    if ($('#multimediaGallery_'+elm)){
+       $('#multimediaGallery_'+elm).unitegallery({
+         gallery_theme: "tiles",
+     		tiles_type: "justified"
+      });
+
+      $('.multimediaSec #more_'+elm).bind('click', function(){
+        var colMulti = getCollection(elm);
+        if (colMulti.firstLoad){
+          $('#multimediaAllGallery_'+elm).append(colMulti.html);
+          $('#multimediaAllGallery_'+elm).unitegallery({
+            gallery_theme: "tiles",
+            tiles_type: "justified"
+          });
+          colMulti.firstLoad = false;
+        }
+        else{
+          $("#multimediaAllGallery_"+elm).css('display','block');
+        }
+        showMoreMultimedia(elm);
+
+        $('.multimediaSec #less_'+elm).bind('click', function(){
+          showLessMultimedia(idGallery);
+        });
+      });
+    }
+  });
+
 /*
-  if ($("#collectionsGallery")){
-    $("#collectionsGallery").unitegallery({
-      gallery_theme: "tiles",
-  	 	tiles_type: "justified"
-    });
-  }
-
-  $('.collectionSec .more').bind('click', function(){
-
-    if (firstLoad){
-      $('#collectionsAllGallery').append(recursos);
-      $('#collectionsAllGallery').unitegallery({
-        gallery_theme: "tiles",
-    	 	tiles_type: "justified"
-      });
-      firstLoad = false;
+  $('.owl-carousel').owlCarousel({
+    loop: true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:4
+        }
     }
-    else{
-      $("#collectionsAllGallery").css('display','block');
-    }
-    showMoreCollection();
-
-    $('.collectionSec .less').bind('click', function(){
-      showLessCollection();
-    });
   });
 
+  $('.owl-carousel .owl-nav .owl-prev').html('<i class="fa fa-angle-left"></i>');
+  $('.owl-carousel .owl-nav .owl-next').html('<i class="fa fa-angle-right"></i>');
+
+  initEffectNavs();
 */
 });
 
+function getCollection(id){
+     return $.grep(multimedia, function(e){
+       return e.id == id;
+     })[0];
+}
+
+
+function initEffectNavs(){
+  $('a.page-scroll').bind('click', function scrollSuave(event) {
+    var hrefText = $(this).attr('href');
+    if( hrefText.indexOf( '#' ) === 0 ) {
+      var $anchor = $( hrefText );
+      if( $anchor.length > 0) {
+        $('html, body').stop().animate({
+            scrollTop: $anchor.offset().top
+        }, 1500, 'easeInOutExpo');
+        event.preventDefault();
+      }
+    }
+  });
+}
+
+
 // Show all the elements
-function showMoreMultimedia(){
-  $('.multimediaSec .more').hide();
-  $('.multimediaSec .less').show();
-  $("#multimediaGallery").css('display','none');
+function showMoreMultimedia(idGallery){
+  $('.multimediaSec #more_'+idGallery).hide();
+  $('.multimediaSec #less_'+idGallery).show();
+  $("#multimediaGallery_"+idGallery).css('display','none');
 }
 
 // Show the initially loaded elements
-function showLessMultimedia(){
-  $('.multimediaSec .more').show();
-  $('.multimediaSec .less').hide();
-  $("#multimediaGallery").css('display','block');
-  $('#multimediaAllGallery').css('display','none');
-}
-
-
-// Show all the elements
-function showMoreCollection(){
-  $('.collectionSec .more').hide();
-  $('.collectionSec .less').show();
-  $("#collectionsGallery").css('display','none');
-}
-
-// Show the initially loaded elements
-function showLessCollection(){
-  $('.collectionSec .more').show();
-  $('.collectionSec .less').hide();
-  $("#collectionsGallery").css('display','block');
-  $('#collectionsAllGallery').css('display','none');
+function showLessMultimedia(idGallery){
+  $('.multimediaSec #more_'+idGallery).show();
+  $('.multimediaSec #less_'+idGallery).hide();
+  $("#multimediaGallery_"+idGallery).css('display','block');
+  $('#multimediaAllGallery_'+idGallery).css('display','none');
 }

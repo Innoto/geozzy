@@ -1459,14 +1459,6 @@ class ResourceController {
   } // function getViewBlockInfo()
 
 
-
-
-
-
-
-
-
-
   /**
     Devuelve resData con los campos traducibles en el idioma actual
   */
@@ -1519,222 +1511,82 @@ class ResourceController {
   } // function getResourceBlock( $resData )
 
 
-  public function getCollectionBlock( $collectionId ) {
-    error_log( "GeozzyResourceView: getCollectionBlock()" );
-
-    $template = false;
-
-    /**
-      Cargamos os datos da collection e metemolos no tpl para crear un bloque
-      Parece que funciona, falta cargar a imaxe e a colección de recursos asociados pq teño dúbidas
-      */
-
-    $template = new Template();
-    // $template->assign( 'title', $collection['title_'.LANG_DEFAULT] );
-    // $template->assign( 'shortDescription', $collection['shortDescription_'.LANG_DEFAULT] );
-    // $template->assign( 'image', '<p>'.__('None').'</p>' );
-
-
-   // Cargo los datos de recursos asociados a la collection (no multimedia)
-   $collectionResourcesModel = new CollectionResourcesModel();
-   $colResList = $collectionResourcesModel->listItems(
-     array(
-       'filters' => array( 'collection' => $collectionId, 'CollectionModel.multimedia' => 0  ),
-       'order' => array( 'weight' => 1 )
-     )
-   );
-   while( $res = $colResList->fetch() ){
-     if( $res ){
-       $collectionData[ 'resources' ][] = $res->getter( 'resource' );
-     }
-   }
-   $i = 0;
-   foreach ($collectionData['resources'] as $colId){
-     $resourceModel = new ResourceModel();
-     $resource = $resourceModel->listItems(array('filters' => array('id' => $colId)))->fetch();
-     $colResourcesAll[$colId] = array ('name'=> $resource->getter('title_'.$this->actLang), 'img' => $resource->getter('image'));
-     if($i < 4){
-       $colResources[$colId] = array ('name'=> $resource->getter('title_'.$this->actLang), 'img' => $resource->getter('image'));
-       $i = $i + 1;
-     }
-   }
-
-   $template->assign( 'collectionResources', $colResources );
-   $template->assign( 'collectionResourcesAll', $colResourcesAll );
-
-
-
-
-
-
-
-
-   // Cargo los datos de recursos asociados a la collection(galería multimedia)
-   $multimediaResList = $collectionResourcesModel->listItems(
-     array(
-       'filters' => array( 'collection' => $collectionId, 'CollectionModel.multimedia' => 1  ),
-       'order' => array( 'weight' => 1 )
-     )
-   );
-   while( $resM = $multimediaResList->fetch() ){
-     if( $resM ){
-       $multimediaData[ 'resources' ][] = $resM->getter( 'resource' );
-     }
-   }
-   $i = 0;
-   foreach ($multimediaData['resources'] as $multId){
-     $resourceModel = new ResourceModel();
-     $resourceM = $resourceModel->listItems(array('filters' => array('id' => $multId)))->fetch();
-     $multimediaResourcesAll[$multId] = array ('name'=> $resourceM->getter('title_'.$this->actLang), 'img' => $resourceM->getter('image'));
-     if($i < 4){
-       $multimediaResources[$multId] = array ('name'=> $resourceM->getter('title_'.$this->actLang), 'img' => $resourceM->getter('image'));
-       $i = $i + 1;
-     }
-   }
-
-   $template->assign( 'multimediaResources', $multimediaResources );
-   $template->assign( 'multimediaResourcesAll', $multimediaResourcesAll );
-
-   $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
-
-   return( $template );
-
-
-    /*
-      $collectionModel =  new CollectionModel();
-
-      $collectionList = $collectionModel->listItems(
-        array(
-          'filters' => array( 'id' => $collectionId ),
-          'order' => array( 'weight' => 1 ),
-          'affectsDependences' => array( 'FiledataModel', 'CollectionResourcesModel', 'ResourceModel' )
-        )
-      );
-
-      while( $res = $resCollectionList->fetch() ){
-        $collections = $res->getterDependence( 'collection', 'ResourceModel' );
-        $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
-        $colInfo[ 'values' ][] = $res->getter( 'collection' );
-      }
-
-      $template = new Template();
-
-      // DEBUG
-      $htmlMsg = "\n<pre>\n" . print_r( $resObj->getAllData( '' ), true ) . "\n</pre>\n";
-
-      foreach( $resObj->getCols() as $key => $value ) {
-        $template->assign( $key, $resObj->getter( $key ) );
-        // error_log( $key . ' === ' . print_r( $resObj->getter( $key ), true ) );
-      }
-
-      // Cargo los datos de image dentro de los del recurso
-      $fileDep = $resObj->getterDependence( 'image' );
-      if( $fileDep !== false ) {
-        $titleImage = $fileDep['0']->getter('title');
-        $template->assign( 'image', '<img src="/cgmlImg/' . $fileDep['0']->getter('id') . '"
-          alt="' . $titleImage . '" title="' . $titleImage . '"></img>' );
-        // error_log( 'getterDependence fileData: ' . print_r( $fileDep['0']->getAllData(), true ) );
-      }
-      else {
-        $template->assign( 'image', '<p>'.__('None').'</p>' );
-      }
-
-    */
-
-
-  } // function getCollectionBlock( $collection )
-
-
-  public function getCollections($resId){
-
+  // Carga los datos de todas las colecciones de reucrsos asociadas al recurso dado
+  public function getCollectionBlockInfo($resId){
     $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
-    $template = new Template();
-
-    /* Traemos todas las colecciones que son multimedia */
     if( isset( $resId ) ) {
-      $resMultimediaList = $resourceCollectionsAllModel->listItems(
+      $resCollectionList = $resourceCollectionsAllModel->listItems(
         array(
-          'filters' => array( 'resourceMain' => $resId, 'multimedia' => 1 ),
+          'filters' => array( 'resourceMain' => $resId),
           'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
           'affectsDependences' => array( 'ResourceModel')
         )
       );
 
-      $j = 0;
-      while ( $multimedia = $resMultimediaList->fetch() )
-      {
-
-        $multimediaResources[$multimedia->getter('id')]['col'] = array('title' => $multimedia->getter('title_'.$this->actLang), 'image' => $multimedia->getter('image'));
-        $multimediaResourcesFirst[$multimedia->getter('id')]['col'] = $multimediaResources[$multimedia->getter('id')]['col'];
-
-        $resourceMulti = $multimedia->getterDependence( 'resourceSon', 'ResourceModel');
-
-        if ($resourceMulti){
-          foreach($resourceMulti as $resVal){
-            if($j < 4){
-              $j = $j + 1;
-              $multimediaResourcesFirst[$multimedia->getter('id')]['res'][$resVal->getter('id')] = array('rType' => $resVal->getter('rTypeId'),
-                                                                                     'title' => $resVal->getter('title_'.$this->actLang),
-                                                                                     'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
-                                                                                     'image' => $resVal->getter('image')
-                                                                                   );
-            }
-            $multimediaResources[$multimedia->getter('id')]['res'][$resVal->getter('id')] = array('rType' => $resVal->getter('rTypeId'),
-                                                                                   'title' => $resVal->getter('title_'.$this->actLang),
-                                                                                   'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
-                                                                                   'image' => $resVal->getter('image')
-                                                                                 );
-          }
-        }
-        // echo '<pre>';
-        // print_r($multimediaResourcesFirst);
-        // echo '</pre>';
-      }
-
-      $template->assign( 'multimediaResources', $multimediaResourcesFirst );
-      $template->assign( 'multimediaResourcesAll', $multimediaResources );
-    }
-
-    /* Traemos todas las colecciones que NO son multimedia */
-    if( isset( $resId ) ) {
-      $resCollectionList = $resourceCollectionsAllModel->listItems(
-        array(
-          'filters' => array( 'resourceMain' => $resId, 'multimedia' => 0 ),
-          'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-          'affectsDependences' => array( 'ResourceModel', 'UrlAliasModel')
-        )
-      );
-
-      $i = 0;
       while ( $collection = $resCollectionList->fetch() )
       {
-        $collections[$collection->getter('id')]['col'] = array('title' => $collection->getter('title_'.$this->actLang), 'image' => $collection->getter('image'));
-        $collectionsFirst[$collection->getter('id')]['col'] = $collections[$collection->getter('id')]['col'];
+        $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
+        'title' => $collection->getter('title_'.$this->actLang),
+        'image' => $collection->getter('image'), 'multimedia' => $collection->getter('multimedia'));
+        $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
 
         $resource = $collection->getterDependence( 'resourceSon', 'ResourceModel');
         if ($resource){
           foreach($resource as $resVal){
-            if($i < 4){
-              $i = $i + 1;
-              $collectionsFirst[$collection->getter('id')]['res'][$resVal->getter('id')] = array('rType' => $resVal->getter('rTypeId'),
-                                                                                     'title' => $resVal->getter('title_'.$this->actLang),
-                                                                                     'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
-                                                                                     'image' => $resVal->getter('image')
-                                                                                   );
-            }
-            $collections[$collection->getter('id')]['res'][$resVal->getter('id')] = array('rType' => $resVal->getter('rTypeId'),
-                                                                                   'title' => $resVal->getter('title_'.$this->actLang),
-                                                                                   'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
-                                                                                   'image' => $resVal->getter('image')
+            $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
+            array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
+                  'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $resVal->getter('image')
                                                                                  );
           }
         }
       }
-
-      $template->assign( 'collectionResources', $collectionsFirst );
-      $template->assign( 'collectionResourcesAll', $collections );
+      return($collectionResources);
     }
   }
 
 
-} // class ResourceController
+  // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
+  public function goOverCollections(array $collections, $multimedia){
+    foreach($collections as $idCollection => $collection){
+      if ($multimedia){
+        $collectionBlock[$idCollection] = $this->getMultimediaBlock($collection);
+      }
+      else{
+        $collectionBlock[$idCollection] = $this->getCollectionBlock($collection);
+      }
+    }
+    return $collectionBlock;
+  }
+
+
+  // Obtiene un bloque de una colección no multimedia dada
+  public function getCollectionBlock($collection){
+    $template = new Template();
+
+    $template->assign( 'collectionResources', $collection );
+    $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
+    return $template;
+  }
+
+
+  // Obtiene un bloque de una colección multimedia dada
+  public function getMultimediaBlock($multimedia){
+    $template = new Template();
+
+    $j = 0;
+    $multimediaFirst['col'] = $multimedia['col'];
+    foreach ($multimedia['res'] as $idRes => $res){
+      if($j < 4){
+        $j = $j + 1;
+        $multimediaFirst['res'][$idRes] = $res;
+      }
+    }
+
+    $template->assign( 'id', $multimedia['col']['id'] );
+    $template->assign( 'multimediaFirst', $multimediaFirst );
+    $template->assign( 'multimediaAll', $multimedia );
+    $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
+    return $template;
+  }
+
+}

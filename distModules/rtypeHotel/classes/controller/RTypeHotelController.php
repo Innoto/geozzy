@@ -474,10 +474,9 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     $resData = $this->defResCtrl->getResourceData( false, true );
 
-    $galleries = $this->defResCtrl->getMultimediaInfo( $resData[ 'id' ] );
     //error_log( "collections = ". print_r( $collections, true ) );
 
-
+/*
     if( $galleries ) {
       foreach( $galleries['options'] as $galleryId => $values) {
         $galleryBlock = $this->defResCtrl->getCollectionBlock( $galleryId );
@@ -486,6 +485,9 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
         }
       }
     }
+*/
+
+
 /*
 
     $collections = $this->defResCtrl->getCollectionsInfo( $resData[ 'id' ] );
@@ -500,10 +502,25 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
         }
       }
     }*/
-    $collectionBlock = $this->defResCtrl->getCollections( $resData[ 'id' ] );
-    if( $collectionBlock ) {
-      $template->addToBlock( 'collections', $collectionBlock );
+
+    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
+
+    foreach ($collectionArrayInfo as $key => $collectionInfo){
+      if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
+          $multimediaArray[$key] = $collectionInfo;
+      }
+      else{ // resto de colecciones
+          $collectionArray[$key] = $collectionInfo;
+      }
     }
+
+    $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
+    foreach ($arrayMultimediaBlock as $multimediaBlock){
+      $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+    }
+
+    $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
+
 
     $taxtermModel = new TaxonomytermModel();
 
