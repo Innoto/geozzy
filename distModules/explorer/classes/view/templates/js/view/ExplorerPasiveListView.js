@@ -122,8 +122,8 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
       };
 
 
-      // metrics 
-      that.parentExplorer.metricsResourceController.eventShow(
+      // metrics
+      that.parentExplorer.metricsResourceController.eventPrint(
         that.parentExplorer.resourcePartialList.get( e ).get('id'),
         'Explorer: '+that.parentExplorer.options.explorerSectionName
       );
