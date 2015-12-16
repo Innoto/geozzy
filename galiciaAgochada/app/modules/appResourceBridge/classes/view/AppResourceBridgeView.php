@@ -32,8 +32,13 @@ class AppResourceBridgeView extends MasterView {
     $this->template->addClientStyles('styles/masterResource.less');
     $this->template->addClientScript('js/resource.js');
 
-    $this->template->setTpl( 'appResourceBridgePageFull.tpl', 'appResourceBridge');
-    //$this->template->setTpl( 'appResourceBridgePageBlock.tpl', 'appResourceBridge');
+    $tplFile = 'appResourceBridgePageFull.tpl';
+    if( isset( $_REQUEST['pf'] ) && $_REQUEST['pf'] !== '' ) {
+      $mark = preg_replace( '/[^0-9a-z_-]/i', '_', $_REQUEST['pf'] );
+      $tplFile = 'appResourceBridgePage-'.$mark.'.tpl';
+    }
+
+    $this->template->setTpl( $tplFile, 'appResourceBridge');
 
     $this->template->exec();
   }
