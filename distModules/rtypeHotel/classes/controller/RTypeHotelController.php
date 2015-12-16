@@ -516,11 +516,18 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
       }
 
       $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
-      foreach ($arrayMultimediaBlock as $multimediaBlock){
-        $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+      if ($arrayMultimediaBlock){
+        foreach ($arrayMultimediaBlock as $multimediaBlock){
+          $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+        }
       }
 
       $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
+      if ($arrayCollectionBlock){
+        foreach ($arrayCollectionBlock as $collectionBlock){
+          $template->addToBlock( 'collections', $collectionBlock );
+        }
+      }
     }
 
 
