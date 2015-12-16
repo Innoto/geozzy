@@ -1550,6 +1550,7 @@ class ResourceController {
   // Carga los datos de todas las colecciones de reucrsos asociadas al recurso dado
   public function getCollectionBlockInfo($resId){
     $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
+    $collectionResources = '';
     if( isset( $resId ) ) {
       $resCollectionList = $resourceCollectionsAllModel->listItems(
         array(
@@ -1586,13 +1587,14 @@ class ResourceController {
           }
         }
       }
-      return($collectionResources);
     }
+    return($collectionResources);
   }
 
 
   // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
   public function goOverCollections(array $collections, $multimedia){
+    $collectionBlock = array();
     foreach($collections as $idCollection => $collection){
       if ($multimedia){
         $collectionBlock[$idCollection] = $this->getMultimediaBlock($collection);
