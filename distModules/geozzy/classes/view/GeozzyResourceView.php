@@ -198,6 +198,7 @@ class GeozzyResourceView extends View {
   // TEMPORAL!!!
   // TEMPORAL!!!
   // TEMPORAL!!!
+  /*
   public function showResourcePage( $urlParams = false ) {
     error_log( "GeozzyResourceView: showResourcePage()" );
 
@@ -232,7 +233,7 @@ class GeozzyResourceView extends View {
     $this->template->setTpl( 'resourceViewPage.tpl', 'geozzy' );
     $this->template->exec();
   } // function showResource( $resId = false )
-
+  */
 
 
 
@@ -240,6 +241,7 @@ class GeozzyResourceView extends View {
   // TEMPORAL!!!
   // TEMPORAL!!!
   // TEMPORAL!!!
+  /*
   public function getResourceBlockTmp( $urlParams = false ) {
     error_log( "GeozzyResourceView: showResourcePageBlock()" );
 
@@ -269,7 +271,7 @@ class GeozzyResourceView extends View {
 
     return( $this->template );
   }
-
+  */
 
 
   // TEMPORAL!!!
@@ -311,6 +313,7 @@ class GeozzyResourceView extends View {
   // TEMPORAL!!!
   // TEMPORAL!!!
   // TEMPORAL!!!
+  /*
   public function showResource( $resId = false ) {
     error_log( "GeozzyResourceView: showResourcePage()" );
 
@@ -339,6 +342,6 @@ class GeozzyResourceView extends View {
     $this->template->setTpl( 'resourceViewPage.tpl', 'geozzy' );
     $this->template->exec();
   } // function showResource( $resId = false )
-
+  */
 
 } // class ResourceView extends Vie
