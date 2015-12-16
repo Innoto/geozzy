@@ -505,21 +505,23 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
 
-    foreach ($collectionArrayInfo as $key => $collectionInfo){
-      if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
-          $multimediaArray[$key] = $collectionInfo;
+    if ($collectionArrayInfo){
+      foreach ($collectionArrayInfo as $key => $collectionInfo){
+        if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
+            $multimediaArray[$key] = $collectionInfo;
+        }
+        else{ // resto de colecciones
+            $collectionArray[$key] = $collectionInfo;
+        }
       }
-      else{ // resto de colecciones
-          $collectionArray[$key] = $collectionInfo;
+
+      $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
+      foreach ($arrayMultimediaBlock as $multimediaBlock){
+        $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
       }
-    }
 
-    $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
-    foreach ($arrayMultimediaBlock as $multimediaBlock){
-      $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+      $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
     }
-
-    $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
 
 
     $taxtermModel = new TaxonomytermModel();

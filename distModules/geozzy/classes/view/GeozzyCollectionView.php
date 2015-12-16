@@ -52,7 +52,8 @@ class GeozzyCollectionView extends View
         'profile' => 'square_cut',
         'image' => $res->getter( 'image' )
       );
-      if( $resDataExt = $res->getterDependence('id', 'RExtUrlModel')[0] ){
+      $resDataExtArray = $res->getterDependence('id', 'RExtUrlModel');
+      if( $resDataExt = $resDataExtArray[0] ){
         $thumbSettings['url'] = $resDataExt->getter('url');
       }
       $elOpt = array(

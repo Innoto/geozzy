@@ -16,9 +16,9 @@ class appResourceBridge extends Module {
     global $CGMLCONF;
 
     // geozzy show Resource
-    $this->addUrlPatterns( '#^'.$CGMLCONF['geozzy']['resourceURL'].'/(\d+)$#', 'view:AppResourceBridgeView::showResourcePage' );
+    $this->addUrlPatterns( '#^'.$CGMLCONF['geozzy']['resourceURL'].'/(\d+)(.*)$#', 'view:AppResourceBridgeView::showResourcePage' );
     // TODO: a borrar
-    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:AppResourceBridgeView::showResourcePage' );
+    // $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:AppResourceBridgeView::showResourcePage' );
   }
 
 
