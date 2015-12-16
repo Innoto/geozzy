@@ -35,7 +35,10 @@ class AppResourceBridgeView extends MasterView {
     $tplFile = 'appResourceBridgePageFull.tpl';
     if( isset( $_REQUEST['pf'] ) && $_REQUEST['pf'] !== '' ) {
       $mark = preg_replace( '/[^0-9a-z_-]/i', '_', $_REQUEST['pf'] );
-      $tplFile = 'appResourceBridgePage-'.$mark.'.tpl';
+      $tplTest = 'appResourceBridgePage-'.$mark.'.tpl';
+      if( ModuleController::getRealFilePath( 'classes/view/templates/'.$tplTest, 'appResourceBridge' ) ) {
+        $tplFile = $tplTest;
+      }
     }
 
     $this->template->setTpl( $tplFile, 'appResourceBridge');
