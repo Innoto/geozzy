@@ -1510,61 +1510,13 @@ class ResourceController {
     return( $template );
   } // function getResourceBlock( $resData )
 
-
-  // Carga los datos de todas las colecciones de reucrsos asociadas al recurso dado
-  public function getCollectionBlockInfo($resId){
-    $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
-    if( isset( $resId ) ) {
-      $resCollectionList = $resourceCollectionsAllModel->listItems(
-        array(
-          'filters' => array( 'resourceMain' => $resId),
-          'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-          'affectsDependences' => array( 'ResourceModel')
-        )
-      );
-
-      while ( $collection = $resCollectionList->fetch() )
-      {
-        $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
-        'title' => $collection->getter('title_'.$this->actLang),
-        'image' => $collection->getter('image'), 'multimedia' => $collection->getter('multimedia'));
-        $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
-
-        $resource = $collection->getterDependence( 'resourceSon', 'ResourceModel');
-        if ($resource){
-          foreach($resource as $resVal){
-            $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
-            array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
-                  'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $resVal->getter('image')
-                                                                                 );
-          }
-        }
-      }
-      return($collectionResources);
-    }
-  }
-
-
-  // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
-  public function goOverCollections(array $collections, $multimedia){
-    foreach($collections as $idCollection => $collection){
-      if ($multimedia){
-        $collectionBlock[$idCollection] = $this->getMultimediaBlock($collection);
-      }
-      else{
-        $collectionBlock[$idCollection] = $this->getCollectionBlock($collection);
-      }
-    }
-    return $collectionBlock;
-  }
-
   public function getResourceThumbnail( $param ) {
 
     $imgDefault = false;
     $thumbImg = false;
     $isYoutubeID = false;
 
-    if( array_key_exists( 'image', $param ) && $param['image'] ){
+    if( array_key_exists( 'image', $param ) && $param['image'] && $param['image'] != 'null' ){
       if( array_key_exists( 'profile', $param ) ){
         $thumbImg = '/cgmlImg/'.$param['image'].'/'.$param['profile'].'/'.$param['image'];
       }else{
@@ -1593,6 +1545,63 @@ class ResourceController {
   public function ytVidId($url) {
     $p = '#^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$#';
     return (preg_match($p, $url, $coincidencias)) ? $coincidencias[1] : false;
+  }
+
+  // Carga los datos de todas las colecciones de reucrsos asociadas al recurso dado
+  public function getCollectionBlockInfo($resId){
+    $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
+    if( isset( $resId ) ) {
+      $resCollectionList = $resourceCollectionsAllModel->listItems(
+        array(
+          'filters' => array( 'resourceMain' => $resId),
+          'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
+          'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel')
+        )
+      );
+
+      while ( $collection = $resCollectionList->fetch() )
+      {
+        $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
+        'title' => $collection->getter('title_'.$this->actLang),
+        'image' => $collection->getter('image'), 'multimedia' => $collection->getter('multimedia'));
+        $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
+
+        $resource = $collection->getterDependence( 'resourceSon', 'ResourceModel');
+        if ($resource){
+          foreach($resource as $resVal){
+
+            $thumbSettings = array(
+             'image' => $resVal->getter( 'image' ),
+             'profile' => 'typeIconMini'
+            );
+            $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
+            if( $resDataExt = $resDataExtArray[0]){
+             $thumbSettings['url'] = $resDataExt->getter('url');
+            }
+            $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+
+            $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
+              array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
+                    'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl);
+          }
+        }
+      }
+      return($collectionResources);
+    }
+  }
+
+
+  // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
+  public function goOverCollections(array $collections, $multimedia){
+    foreach($collections as $idCollection => $collection){
+      if ($multimedia){
+        $collectionBlock[$idCollection] = $this->getMultimediaBlock($collection);
+      }
+      else{
+        $collectionBlock[$idCollection] = $this->getCollectionBlock($collection);
+      }
+    }
+    return $collectionBlock;
   }
 
   // Obtiene un bloque de una colección no multimedia dada
