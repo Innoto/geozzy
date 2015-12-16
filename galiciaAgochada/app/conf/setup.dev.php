@@ -137,7 +137,8 @@ $C_REXT_MODULES = array(
   'rextView',
   'rextFile',
   'rextAppLugar',
-  'rextAppEspazoNatural'
+  'rextAppEspazoNatural',
+  'rextAppZona'
 );
 
 // resource Types

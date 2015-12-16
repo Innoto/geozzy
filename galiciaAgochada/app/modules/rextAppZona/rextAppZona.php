@@ -24,7 +24,6 @@ class rextAppZona extends Module {
       'initialTerms' => array(
         array(
           'idName' => 'baixominoVigo',
-          'icon' => 'view/categoryIcons/baixominoVigo.svg',
           'name' => array(
             'en' => 'Baixo Miño - Vigo',
             'es' => 'Baixo Miño - Vigo',
@@ -33,7 +32,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'terrasDePontevedra',
-          'icon' => 'view/categoryIcons/terrasPontevedra.svg',
           'name' => array(
             'en' => 'Terras de Pontevedra',
             'es' => 'Terras de Pontevedra',
@@ -42,7 +40,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'arousa',
-          'icon' => 'view/categoryIcons/arousa.svg',
           'name' => array(
             'en' => 'Arousa',
             'es' => 'Arousa',
@@ -51,7 +48,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'costaDaMorte',
-          'icon' => 'view/categoryIcons/costaDaMorte.svg',
           'name' => array(
             'en' => 'Costa da Morte',
             'es' => 'Costa da Morte',
@@ -60,7 +56,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'aMarinaLucense',
-          'icon' => 'view/categoryIcons/aMarinaLucense.svg',
           'name' => array(
             'en' => 'A mariña lucense',
             'es' => 'A mariña lucense',
@@ -69,7 +64,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'ancaresCourel',
-          'icon' => 'view/categoryIcons/ancaresCourel.svg',
           'name' => array(
             'en' => 'Ancares - Courel',
             'es' => 'Ancares - Courel',
@@ -78,7 +72,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'manzanedaTrevinca',
-          'icon' => 'view/categoryIcons/manzanedaTrevinca.svg',
           'name' => array(
             'en' => 'Manzaneda - Trevinca',
             'es' => 'Manzaneda - Trevinca',
@@ -87,16 +80,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'ribeiraSacra',
-          'icon' => 'view/categoryIcons/ribeiraSacra.svg',
-          'name' => array(
-            'en' => 'Ribeira Sacra',
-            'es' => 'Ribeira Sacra',
-            'gl' => 'Ribeira Sacra'
-          )
-        ),
-        array(
-          'idName' => 'ribeiraSacra',
-          'icon' => 'view/categoryIcons/ribeiraSacra.svg',
           'name' => array(
             'en' => 'Ribeira Sacra',
             'es' => 'Ribeira Sacra',
@@ -105,7 +88,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'verinViana',
-          'icon' => 'view/categoryIcons/verinViana.svg',
           'name' => array(
             'en' => 'Verín - Viana',
             'es' => 'Verín - Viana',
@@ -114,7 +96,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'celanovaAlimia',
-          'icon' => 'view/categoryIcons/celanovaAlimia.svg',
           'name' => array(
             'en' => 'Celanova - A Limia',
             'es' => 'Celanova - A Limia',
@@ -123,7 +104,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'terrasDeOurenseAllariz',
-          'icon' => 'view/categoryIcons/terrasDeOurenseAllariz.svg',
           'name' => array(
             'en' => 'Terras de Ourense - Allariz',
             'es' => 'Terras de Ourense - Allariz',
@@ -132,7 +112,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'oRibeiro',
-          'icon' => 'view/categoryIcons/oRibeiro.svg',
           'name' => array(
             'en' => 'O Ribeiro',
             'es' => 'O Ribeiro',
@@ -141,7 +120,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'dezaTabeiros',
-          'icon' => 'view/categoryIcons/dezaTabeiros.svg',
           'name' => array(
             'en' => 'Deza - Tabeirós',
             'es' => 'Deza - Tabeirós',
@@ -150,7 +128,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'lugoTerraCha',
-          'icon' => 'view/categoryIcons/lugoTerraCha.svg',
           'name' => array(
             'en' => 'Lugo - Terra Chá',
             'es' => 'Lugo - Terra Chá',
@@ -159,7 +136,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'terrasDeSantiago',
-          'icon' => 'view/categoryIcons/terrasDeSantiago.svg',
           'name' => array(
             'en' => 'Terras de Santiago',
             'es' => 'Terras de Santiago',
@@ -168,7 +144,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'murosNoia',
-          'icon' => 'view/categoryIcons/murosNoia.svg',
           'name' => array(
             'en' => 'Muros - Noia',
             'es' => 'Muros - Noia',
@@ -177,7 +152,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'ferrolTerra',
-          'icon' => 'view/categoryIcons/ferrolTerra.svg',
           'name' => array(
             'en' => 'Ferrol Terra',
             'es' => 'Ferrol Terra',
@@ -186,7 +160,6 @@ class rextAppZona extends Module {
         ),
         array(
           'idName' => 'aCorunaAsMarinas',
-          'icon' => 'view/categoryIcons/aCorunaAsMarinas.svg',
           'name' => array(
             'en' => 'A Coruña - As Mariñas',
             'es' => 'A Coruña - As Mariñas',
