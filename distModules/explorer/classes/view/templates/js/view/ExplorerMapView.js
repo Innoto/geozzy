@@ -50,13 +50,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       that.ready = true;
       that.parentExplorer.render(true);
     });
-
+/*
     // map first load
     google.maps.event.addListener(this.map, "idle", function() {
       that.ready = true;
       that.parentExplorer.render(true);
     });
-
+*/
   },
 
   getVisibleResourceIds: function() {
