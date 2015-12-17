@@ -1547,7 +1547,7 @@ class ResourceController {
     return (preg_match($p, $url, $coincidencias)) ? $coincidencias[1] : false;
   }
 
-  // Carga los datos de todas las colecciones de reucrsos asociadas al recurso dado
+  // Carga los datos de todas las colecciones de recursos asociadas al recurso dado
   public function getCollectionBlockInfo($resId){
     $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
     $collectionResources = '';
@@ -1580,17 +1580,18 @@ class ResourceController {
              $thumbSettings['url'] = $resDataExt->getter('url');
             }
             $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+            $thumbSettings['profile'] = 'hdpi4';
+            $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
             $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
               array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
-                    'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl);
+                    'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl, 'image_big' => $imgUrl2);
           }
         }
       }
     }
     return($collectionResources);
   }
-
 
   // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
   public function goOverCollections(array $collections, $multimedia){
@@ -1608,8 +1609,13 @@ class ResourceController {
 
   // Obtiene un bloque de una colección no multimedia dada
   public function getCollectionBlock($collection){
-    $template = new Template();
 
+    // echo '<pre>';
+    // print_r($collection);
+    // echo '</pre>';
+
+    $template = new Template();
+    $template->assign( 'id', $collection['col']['id'] );
     $template->assign( 'collectionResources', $collection );
     $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
     return $template;
@@ -1619,18 +1625,7 @@ class ResourceController {
   // Obtiene un bloque de una colección multimedia dada
   public function getMultimediaBlock($multimedia){
     $template = new Template();
-
-    $j = 0;
-    $multimediaFirst['col'] = $multimedia['col'];
-    foreach ($multimedia['res'] as $idRes => $res){
-      if($j < 4){
-        $j = $j + 1;
-        $multimediaFirst['res'][$idRes] = $res;
-      }
-    }
-
     $template->assign( 'id', $multimedia['col']['id'] );
-    $template->assign( 'multimediaFirst', $multimediaFirst );
     $template->assign( 'multimediaAll', $multimedia );
     $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
     return $template;

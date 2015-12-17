@@ -24,9 +24,6 @@
 </style>
 {/block}
 
-<script type='text/javascript' src='unitegallery/themes/default/ug-theme-default.js'></script>
-<link rel='stylesheet' href='unitegallery/themes/default/ug-theme-default.css' type='text/css' />
-
 <!-- rTypeViewBlock.tpl en rTypeHotel module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
@@ -51,13 +48,8 @@
   </div>
 
   <section class="imageSec gzSection">
-  <!--   {if isset( $res.data.image )}
-      <img src="/cgmlImg/{$res.data.image.id}"
-        {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
-    {else}
-      <p>{t}None{/t}</p>
-    {/if} -->
-    {if $res.ext.rextAccommodation.data.averagePrice}
+
+    {if isset($res.ext.rextAccommodation.data.averagePrice)}
     <div class="reservationSec container">
       <div class="reservationBox">
         <div class="priceText">{t}Average night rate{/t}</div>
@@ -221,27 +213,6 @@
         <img alt="Image 3 Title" src="http://lorempixel.com/400/200/nature/2"
           data-image="http://lorempixel.com/400/200/nature/2"
           data-description="Image 3 Description">
-
-        <img alt="Image 4 Title" src="http://lorempixel.com/400/100/"
-          data-image="http://lorempixel.com/400/100/"
-          data-description="Image 4 Description">
-
-        <img alt="Image 5 Title" src="http://lorempixel.com/150/350/"
-          data-image="http://lorempixel.com/150/350/"
-          data-description="Image 5 Description">
-
-        <img alt="Image 6 Title" src="http://lorempixel.com/400/200/nature/3"
-            data-image="http://lorempixel.com/400/200/nature/3"
-            data-description="Image 3 Description">
-
-        <img alt="Image 7 Title" src="http://lorempixel.com/400/300/"
-            data-image="http://lorempixel.com/400/300/"
-            data-description="Image 4 Description">
-
-        <img alt="Image 8 Title" src="http://lorempixel.com/250/450/"
-            data-image="http://lorempixel.com/400/200/"
-            data-description="Image 5 Description">
-
     </div>
   </section>-->
 
@@ -252,19 +223,11 @@
     </section>
   {/if}
 
-
-
-<!--
-{if isset($collections)}
-  <section class="collectionSec container gzSection">
-    <h4>{t}Related resources{/t}</h4>
-    {$collections}
-    <div id="collectionsAllGallery" style="display:none;">
-    </div>
-    <div class="more">{t}Ver más...{/t}</div>
-    <div class="less" style="display:none;">{t}Ver menos{/t}</div>
-  </section>
-{/if}-->
+  {if isset($collections)}
+    <section class="collectionSec container gzSection">
+      {$collections}
+    </section>
+  {/if}
 
   <!--
     <div class="reservationSec container gzSection">
@@ -277,5 +240,4 @@
     </div>
   -->
 
-</div><!-- /.resource .resViewBlock -->
-<!-- /rTypeViewBlock.tpl en rTypeHotel module -->
+</div>
