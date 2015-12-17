@@ -46,9 +46,8 @@ $(document).ready(function(){
     }
   });
 
-/*
+
   $('.owl-carousel').owlCarousel({
-    loop: true,
     margin:10,
     nav:true,
     responsive:{
@@ -68,7 +67,7 @@ $(document).ready(function(){
   $('.owl-carousel .owl-nav .owl-next').html('<i class="fa fa-angle-right"></i>');
 
   initEffectNavs();
-*/
+
 });
 
 function getCollection(id){
