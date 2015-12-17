@@ -9,6 +9,9 @@ class RExtContactController extends RExtController implements RExtInterface {
   public function __construct( $defRTypeCtrl ){
     error_log( 'RExtContactController::__construct' );
 
+    global $C_LANG;
+    $this->actLang = $C_LANG;
+
     parent::__construct( $defRTypeCtrl, new rextContact(), 'rExtContact_' );
   }
 
@@ -262,18 +265,26 @@ class RExtContactController extends RExtController implements RExtInterface {
       'data' => $this->getRExtData()
     );
 
+
+
     if( $rExtViewBlockInfo['data'] ) {
       // TODO: esto será un campo da BBDD
       $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
 
+      if ($rExtViewBlockInfo['data']['city']=='' && $rExtViewBlockInfo['data']['province']=='' && $rExtViewBlockInfo['data']['cp']==''
+          && $rExtViewBlockInfo['data']['phone']==''&& $rExtViewBlockInfo['data']['email']=='' && $rExtViewBlockInfo['data']['url']==''
+          && $rExtViewBlockInfo['data']['directions']=='' && $rExtViewBlockInfo['data']['timetable']==''){
+            $rExtViewBlockInfo = false;
+      }
+      else{
+        $template = new Template();
 
-      $template = new Template();
+        $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
 
-      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+        $template->setTpl( 'rExtViewBlock.tpl', 'rextContact' );
 
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextContact' );
-
-      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+        $rExtViewBlockInfo['template'] = array( 'full' => $template );
+      }
     }
 
     return $rExtViewBlockInfo;

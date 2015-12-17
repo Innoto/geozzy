@@ -437,6 +437,8 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
+    $resData = $this->defResCtrl->getResourceData( false, true );
+
     if( $rExtViewInfo ) {
       if( $rExtViewInfo['template'] ) {
         foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
@@ -458,6 +460,34 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     else {
       $template->assign( 'rextContactBlock', false );
     }
+
+    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
+
+    if ($collectionArrayInfo){
+      foreach ($collectionArrayInfo as $key => $collectionInfo){
+        if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
+            $multimediaArray[$key] = $collectionInfo;
+        }
+        else{ // resto de colecciones
+            $collectionArray[$key] = $collectionInfo;
+        }
+      }
+
+      $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
+      if ($arrayMultimediaBlock){
+        foreach ($arrayMultimediaBlock as $multimediaBlock){
+          $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+        }
+      }
+
+      $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
+      if ($arrayCollectionBlock){
+        foreach ($arrayCollectionBlock as $collectionBlock){
+          $template->addToBlock( 'collections', $collectionBlock );
+        }
+      }
+    }
+
 
     $viewBlockInfo['template'] = array( 'full' => $template );
 
