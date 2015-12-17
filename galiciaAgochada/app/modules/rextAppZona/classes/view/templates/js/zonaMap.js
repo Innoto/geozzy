@@ -1,16 +1,41 @@
+/*
+(function($) {
+
+  $.fn.selectZonaMap = function( options ){
+    var that = this;
+    var selector = this;
+    var optSelected = "";
+
+    var defaults = {
+
+    };
+    var settings = $.extend( {}, defaults, options );
+
+    that.initOptionsValues = function (){
+
+    }
+  ));
+});
+*/
+
+
 $(document).ready(function(){
-  zonaGalMapMouseOut();
+  initZonaMap();
 });
 
-function zonaGalMapMouseOver(idNameTerm){
+function zonaMapMouseOver(idNameTerm){
   $('#zonaGalMap_title').html(idNameTerm);
   $('.zonaGal_'+idNameTerm).show();
 }
 
-function zonaGalMapClick(idNameTerm){
+function zonaMapClick(idNameTerm){
   alert(idNameTerm);
 }
 
-function zonaGalMapMouseOut(){
+function zonaMapMouseOut(){
   $('.zonaGal').hide();
+}
+
+function initZonaMap(){
+  zonaMapMouseOut();
 }
