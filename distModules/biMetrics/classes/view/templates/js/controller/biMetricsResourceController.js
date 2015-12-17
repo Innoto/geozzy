@@ -99,7 +99,7 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
     that.addMetric({
           resourceId: id,
           section: section,
-          event: 'click'
+          event: 'clicked'
     });
   },
 

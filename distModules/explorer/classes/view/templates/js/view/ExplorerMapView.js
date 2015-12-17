@@ -318,9 +318,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   },
 
   markerClick: function( id ){
+
     var that = this;
+
+    that.parentExplorer.options.resourceAccess( id )
+
     // call metrics event
-    that.parentExplorer.metricsResourceController.eventHoverStart( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
+    that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
 
   },
 
