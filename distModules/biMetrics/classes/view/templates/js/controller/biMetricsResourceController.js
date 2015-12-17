@@ -7,6 +7,7 @@ if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
 geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsController.extend( {
 
   hoverStack: [],
+  printedResources:[],
 
   metricTemplate: function( metric ) {
     var that = this;
@@ -98,18 +99,23 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
     that.addMetric({
           resourceId: id,
           section: section,
-          event: 'click'
+          event: 'clicked'
     });
   },
 
-  eventShow: function(id, section) {
+  eventPrint: function(id, section) {
     var that = this;
 
-    that.addMetric({
-          resourceId: id,
-          section: section,
-          event: 'click'
-    });
+    if( $.inArray(id , that.printedResources)  == -1) {
+      that.printedResources.push( id );
+
+      that.addMetric({
+            resourceId: id,
+            section: section,
+            event: 'printed'
+      });
+    }
+
 
   }
 

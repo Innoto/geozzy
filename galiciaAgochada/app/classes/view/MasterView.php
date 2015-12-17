@@ -28,7 +28,7 @@ class MasterView extends View
   function page404() {
     echo 'PAGE404: Recurso non atopado';
   }
-  function main(){
+  function home(){
 
     $resourceTaxAllModel = new ResourceTaxonomyAllModel( );
 
@@ -192,6 +192,13 @@ class MasterView extends View
     $this->template->addClientScript('js/portada.js');
     $this->template->addClientStyles('styles/masterPortada.less');
     $this->template->setTpl('portada.tpl');
+    $this->template->exec();
+  }
+
+  function exampleComarca(){
+    $this->template->addClientScript('js/zonaMap.js', 'rextAppZona');
+    $this->template->addClientStyles('styles/zonaMap.less', 'rextAppZona');
+    $this->template->setTpl('zonaMap.tpl','rextAppZona');
     $this->template->exec();
   }
 

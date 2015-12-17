@@ -17,7 +17,7 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
       '<div class="elementImg">'+
         '<img class="img-responsive" src="/cgmlImg/<%- img %>/fast_cut/.jpg" />'+
         '<ul class="elementOptions container-fluid">'+
-          '<li class="elementOpt elementLink col-sm-6"><i class="fa fa-search"></i></li>'+
+          '<li class="elementOpt elementLink col-sm-6 accessButton" data-resource-id="<%- id %>" ><i class="fa fa-search"></i></li>'+
           '<li class="elementOpt elementFav col-sm-6"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
         '</ul>'+
       '</div>'+
@@ -47,6 +47,9 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
   events: {
       "click .explorerListPager .next" : "nextPage",
       "click .explorerListPager .previous" : "previousPage",
+
+      // resource events
+      "click .explorerListContent .accessButton": "resourceClick",
       "mouseenter .explorerListContent .element": "resourceHover",
       "mouseleave .explorerListContent": "resourceOut",
   },
@@ -122,8 +125,8 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
       };
 
 
-      // metrics 
-      that.parentExplorer.metricsResourceController.eventShow(
+      // metrics
+      that.parentExplorer.metricsResourceController.eventPrint(
         that.parentExplorer.resourcePartialList.get( e ).get('id'),
         'Explorer: '+that.parentExplorer.options.explorerSectionName
       );
@@ -187,11 +190,26 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
 
 
   nextPage: function() {
-    this.setPage(this.currentPage+1);
+    var that =  this;
+    that.setPage(that.currentPage+1);
   },
 
   previousPage: function( ){
-    this.setPage(this.currentPage-1);
+    var that = this;
+    that.setPage(that.currentPage-1);
+  },
+
+  resourceClick: function( element ) {
+    var that = this;
+    if( that.parentExplorer.displays.map ) {
+      that.parentExplorer.displays.map.markerClick( $(element.currentTarget).attr('data-resource-id') );
+    }
+    else {
+      that.parentExplorer.options.resourceAccess( id )
+      // call metrics event
+      that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
+    }
+
   },
 
   resourceHover: function( element ) {

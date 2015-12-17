@@ -23,7 +23,8 @@ geozzy.explorer = function( opts ) {
     // events
     filterChangeEvent: function(){},
     filteringEndEvent: function(){},
-    firstLoadEvent: function(){}
+    firstLoadEvent: function(){},
+    resourceAccess: function(  ){}
   }
   $.extend(true, that.options, opts);
 
