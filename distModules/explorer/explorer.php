@@ -50,6 +50,7 @@ class explorer extends Module
 
 
   public $includesCommon = array(
+    'js/router/ExplorerRouter.js',
     'js/model/ExplorerResourceMinimalModel.js',
     'js/model/ExplorerResourcePartialModel.js',
     'js/collection/ExplorerResourceMinimalCollection.js',
