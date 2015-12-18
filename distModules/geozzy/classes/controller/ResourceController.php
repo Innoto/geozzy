@@ -1584,6 +1584,11 @@ class ResourceController {
               $thumbSettings['profile'] = 'hdpi4';
               $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
+              // $multimediaType = false;
+              // if($collection->getter('multimedia')){
+              //   print_r($resource);
+              // }
+
               $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
                 array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
                       'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl, 'image_big' => $imgUrl2);

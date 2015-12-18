@@ -19,6 +19,7 @@
     {assign var=counter value=0}
     {foreach $multimediaAll.res as $multimedia}
       {if $counter<$max}
+      
       <img alt="{$multimedia.title}" src="{$multimedia.image}"
           data-image="{$multimedia.image_big}"
           data-description="{$multimedia.title}">
