@@ -11,6 +11,9 @@
   {block name="headCssIncludes"}{$css_includes}{/block}
   {block name="headJsIncludes"}{$js_includes}{/block}
 
+  <script>
+    $('#filter_gal_map').zonaMap();
+  </script>
 </head>
 <body data-spy="scroll" data-target=".headContent">
   <article>
