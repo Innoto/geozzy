@@ -23,7 +23,9 @@ geozzy.explorer = function( opts ) {
     // events
     filterChangeEvent: function(){},
     filteringEndEvent: function(){},
-    firstLoadEvent: function(){}
+    firstLoadEvent: function(){},
+    resourceAccess: function( ){},
+    resourceQuit: function( ) {}
   }
   $.extend(true, that.options, opts);
 
@@ -31,6 +33,10 @@ geozzy.explorer = function( opts ) {
 
   that.metricsExplorerController = false;
   that.metricsResourceController = false;
+
+
+  // router
+  that.explorerRouter = false;
 
   //  Debuger
 
@@ -71,6 +77,10 @@ geozzy.explorer = function( opts ) {
     // set multiple fetches
     that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal/updatedfrom/false';
 
+    // set explorer router
+    that.explorerRouter = new ExplorerRouter();
+    that.explorerRouter.parentExplorer = that;
+    Backbone.history.start();
 
     // render filters
     if( that.filters.length > 0 ) {

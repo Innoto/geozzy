@@ -50,13 +50,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       that.ready = true;
       that.parentExplorer.render(true);
     });
-
+/*
     // map first load
     google.maps.event.addListener(this.map, "idle", function() {
       that.ready = true;
       that.parentExplorer.render(true);
     });
-
+*/
   },
 
   getVisibleResourceIds: function() {
@@ -318,9 +318,14 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   },
 
   markerClick: function( id ){
+
     var that = this;
+
+    //that.parentExplorer.options.resourceAccess( id )
+    that.parentExplorer.explorerRouter.navigate('resource/'+id, {trigger:true});
+
     // call metrics event
-    that.parentExplorer.metricsResourceController.eventHoverStart( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
+    that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
 
   },
 

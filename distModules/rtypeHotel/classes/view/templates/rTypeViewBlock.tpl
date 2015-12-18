@@ -101,7 +101,7 @@
 
 
     <div class="shortDescription">
-      {$res.data.shortDescription|escape:'htmlall'}
+      {$res.data.mediumDescription|escape:'htmlall'}
     </div>
 
     <div class="taxonomyBar row">
@@ -195,27 +195,11 @@
       </div>
     </div>
     {/if}
+
+    {if (isset($collections) || isset($multimediaGalleries)) }
+      <div class="grey-bar"></div>
+    {/if}
   </section>
-
-  <!-- Galería Multimedia
-  <section class="gallerySec container gzSection">
-
-    <div id="imageGallery" style="display:none;">
-
-        <img alt="Image 1 Title" src="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg"
-          data-image="/cgmlImg/{$res.data.image.id}/resourceSm/{$res.data.image.id}.jpg"
-          data-description="Image 1 Description">
-
-        <img alt="Image 2 Title" src="http://lorempixel.com/400/200/nature/1"
-          data-image="http://lorempixel.com/400/200/nature/1"
-          data-description="Image 2 Description">
-
-        <img alt="Image 3 Title" src="http://lorempixel.com/400/200/nature/2"
-          data-image="http://lorempixel.com/400/200/nature/2"
-          data-description="Image 3 Description">
-    </div>
-  </section>-->
-
 
   {if isset($multimediaGalleries)}
     <section class="multimediaSec container gzSection">
@@ -228,16 +212,5 @@
       {$collections}
     </section>
   {/if}
-
-  <!--
-    <div class="reservationSec container gzSection">
-      <div class="{$res.data.rTypeIdName}">
-        <p> {$res.data.rTypeIdName} Ext RESERVAS </p>
-        <div class="{$res.data.rTypeIdName} accommodation">
-          {$rextAccommodationBlock}
-        </div>
-      </div>
-    </div>
-  -->
 
 </div>

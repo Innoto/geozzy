@@ -32,7 +32,27 @@
     function setExplorer( ) {
 
       // EXPLORADOR
-      var explorer = new geozzy.explorer({debug:false, explorerSectionName:'Paisaxes espectaculares'});
+      var explorer = new geozzy.explorer({
+        debug:false,
+        explorerSectionName:'Paisaxes espectaculares',
+        resourceAccess: function(id) {
+          //alert('mecagoenmimaquina'+id)
+          $(".explorerContainer.explorer-container-du").load(
+            '/resource/'+id,
+            { pf: 'blk' },
+            function() {
+              $(".explorerContainer.explorer-container-du").show();
+            }
+          );
+
+        },
+        resourceQuit: function() {
+
+          $(".explorerContainer.explorer-container-du").hide();
+          $(".explorerContainer.explorer-container-du").html('');
+        }
+
+      });
 
 
 

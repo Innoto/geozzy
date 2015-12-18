@@ -1556,7 +1556,7 @@ class ResourceController {
         array(
           'filters' => array( 'resourceMain' => $resId),
           'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-          'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel')
+          'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias')
         )
       );
 
@@ -1568,24 +1568,46 @@ class ResourceController {
         $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
 
         $resource = $collection->getterDependence( 'resourceSon', 'ResourceModel');
-        if ($resource){
-          foreach($resource as $resVal){
+        if ($collection->getter('multimedia')){
+          if ($resource){
+            foreach($resource as $resVal){
 
-            $thumbSettings = array(
-             'image' => $resVal->getter( 'image' ),
-             'profile' => 'typeIconMini'
-            );
-            $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-            if( $resDataExt = $resDataExtArray[0]){
-             $thumbSettings['url'] = $resDataExt->getter('url');
+              $thumbSettings = array(
+               'image' => $resVal->getter( 'image' ),
+               'profile' => 'typeIconMini'
+              );
+              $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
+              if( $resDataExt = $resDataExtArray[0]){
+               $thumbSettings['url'] = $resDataExt->getter('url');
+              }
+              $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+              $thumbSettings['profile'] = 'hdpi4';
+              $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
+
+              $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
+                array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
+                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl, 'image_big' => $imgUrl2);
             }
-            $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-            $thumbSettings['profile'] = 'hdpi4';
-            $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
+          }
+        }
+        else{
+          if ($resource){
+            foreach($resource as $resVal){
 
-            $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
-              array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
-                    'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl, 'image_big' => $imgUrl2);
+              $thumbSettings = array(
+               'image' => $resVal->getter( 'image' ),
+               'profile' => 'fast_cut'
+              );
+              $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
+              if( $resDataExt = $resDataExtArray[0]){
+               $thumbSettings['url'] = $resDataExt->getter('url');
+              }
+              $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+
+              $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
+                array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
+                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl);
+            }
           }
         }
       }
@@ -1626,6 +1648,7 @@ class ResourceController {
   public function getMultimediaBlock($multimedia){
     $template = new Template();
     $template->assign( 'id', $multimedia['col']['id'] );
+    $template->assign( 'max', 4 );
     $template->assign( 'multimediaAll', $multimedia );
     $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
     return $template;

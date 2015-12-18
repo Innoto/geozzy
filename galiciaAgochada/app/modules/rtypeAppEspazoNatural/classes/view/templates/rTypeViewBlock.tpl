@@ -76,47 +76,19 @@
     </div>
 
     <div class="shortDescription">
-      {$res.data.shortDescription|escape:'htmlall'}
+      {if $res.data.mediumDescription}
+        {$res.data.mediumDescription|escape:'htmlall'}
+      {else}
+        {$res.data.shortDescription|escape:'htmlall'}
+      {/if}
     </div>
 
 
-
-    <!-- Galería Multimedia -->
-    <div id="imageGallery" style="display:none;">
-
-        <img alt="Image 1 Title" src="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg"
-          data-image="/cgmlImg/{$res.data.image.id}/resourceSm/{$res.data.image.id}.jpg"
-          data-description="Image 1 Description">
-
-        <img alt="Image 2 Title" src="http://lorempixel.com/400/200/nature/1"
-          data-image="http://lorempixel.com/400/200/nature/1"
-          data-description="Image 2 Description">
-
-        <img alt="Image 3 Title" src="http://lorempixel.com/400/200/nature/2"
-          data-image="http://lorempixel.com/400/200/nature/2"
-          data-description="Image 3 Description">
-
-        <img alt="Image 4 Title" src="http://lorempixel.com/600/300/nature"
-          data-image="http://lorempixel.com/400/100/"
-          data-description="Image 4 Description">
-
-        <img alt="Image 5 Title" src="http://lorempixel.com/350/550/nature"
-          data-image="http://lorempixel.com/150/350/"
-          data-description="Image 5 Description">
-
-        <img alt="Image 6 Title" src="http://lorempixel.com/400/200/nature/3"
-            data-image="http://lorempixel.com/400/200/nature/3"
-            data-description="Image 3 Description">
-
-        <img alt="Image 7 Title" src="http://lorempixel.com/400/300/nature"
-            data-image="http://lorempixel.com/400/300/"
-            data-description="Image 4 Description">
-
-        <img alt="Image 8 Title" src="http://lorempixel.com/250/450/nature"
-            data-image="http://lorempixel.com/400/200/"
-            data-description="Image 5 Description">
-
-    </div>
+    {if isset($multimediaGalleries)}
+      <section class="multimediaSec container gzSection">
+        {$multimediaGalleries}
+      </section>
+    {/if}
 
     <div class="mediumDescription">
       {$res.data.content}
@@ -124,7 +96,7 @@
   </section>
 
   <section class="locationSec gzSection">
-    {if isset($rextContactBlock)}
+    {if (isset($rextContactBlock) && $rextContactBlock!="")}
     <div class="locationLight">
       <div class="location container">
         <div class="title">
@@ -172,14 +144,15 @@
       </div>
     </div>
     {/if}
+
+    {if isset($collections)}
+      <div class="grey-bar"></div>
+    {/if}
   </section>
 
   {if isset($collections)}
     <section class="collectionSec container gzSection">
-      <h4>{t}Related resources{/t}</h4>
-      <div id="collectionsGallery" style="display:none;">
-        {$collections}
-      </div>
+      {$collections}
     </section>
   {/if}
 
