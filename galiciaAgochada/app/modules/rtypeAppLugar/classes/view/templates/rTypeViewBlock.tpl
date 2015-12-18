@@ -76,8 +76,18 @@
     </div>
 
     <div class="shortDescription">
-      {$res.data.shortDescription|escape:'htmlall'}
+      {if $res.data.mediumDescription}
+        {$res.data.mediumDescription|escape:'htmlall'}
+      {else}
+        {$res.data.shortDescription|escape:'htmlall'}
+      {/if}
     </div>
+
+    {if isset($multimediaGalleries)}
+      <section class="multimediaSec container gzSection">
+        {$multimediaGalleries}
+      </section>
+    {/if}
 
     <div class="mediumDescription">
       {$res.data.content}
@@ -85,7 +95,7 @@
   </section>
 
   <section class="locationSec gzSection">
-    {if isset($rextContactBlock)}
+    {if (isset($rextContactBlock) && $rextContactBlock!="")}
     <div class="locationLight">
       <div class="location container">
         <div class="title">
@@ -133,40 +143,17 @@
       </div>
     </div>
     {/if}
-  </section>
 
-  <section class="gallerySec container gzSection">
-    <!-- Galería Multimedia -->
-    <div class="imageGallery">
-      <label for="imgResource" class="cgmMForm"></label>
-      {if isset( $res.data.image )}
-        <style type="text/css">.cgmMForm-fileField img { height: 100px; }</style>
-        <img src="/cgmlImg/{$res.data.image.id}"
-          {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
-      {else}
-        <p>{t}None{/t}</p>
-      {/if}
-    </div>
-  </section>
-
-<!--
-  <div class="reservationSec container gzSection">
-    <div class="{$res.data.rTypeIdName}">
-      <p>  {$res.data.rTypeIdName} Ext RESERVAS  </p>
-      <div class="{$res.data.rTypeIdName} eatanddrink">
-      </div>
-    </div>
-  </div>
--->
-
-  <section class="collectionSec container gzSection">
-    {if isset($res.data.collections)}
-    <div class="collections">
-      <label for="collections" class="cgmMForm">{t}Collections{/t}</label>
-      {$res.data.collections}
-    </div>
+    {if isset($collections)}
+      <div class="grey-bar"></div>
     {/if}
   </section>
+
+  {if isset($collections)}
+    <section class="collectionSec container gzSection">
+      {$collections}
+    </section>
+  {/if}
 
 </div><!-- /.resource .resViewBlock -->
 <!-- /rTypeViewBlock.tpl en rTypeRestaurant module -->

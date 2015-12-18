@@ -1018,9 +1018,9 @@ class ResourceController {
    * Devolve os taxterm asociados ao recurso dado e a info da taxonomía a maiores
    */
   public function getTaxonomyAll( $resId ) {
+    $taxTerms = array();
 
-    if( !$this->taxonomyAll ) {
-      $taxTerms = array();
+    if( !$this->taxonomyAll || $this->resObj->getter('id') != $resId ) {
 
       $resourceTaxAllModel = new ResourceTaxonomyAllModel();
       $taxAllList = $resourceTaxAllModel->listItems(array( 'filters' => array( 'resource' => $resId ) ));
@@ -1030,14 +1030,15 @@ class ResourceController {
         }
       }
 
-      if( count( $taxTerms ) > 0 ) {
+      if( $this->resObj->getter('id') != $resId ) {
         $this->taxonomyAll = $taxTerms;
       }
     }
 
     // error_log( "getTaxonomyAll( $resId ): ".print_r( $this->taxonomyAll, true ) );
-    return $this->taxonomyAll;
+    return $taxTerms;
   }
+
 
 
 
@@ -1567,18 +1568,24 @@ class ResourceController {
         'image' => $collection->getter('image'), 'multimedia' => $collection->getter('multimedia'));
         $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
 
-        $resource = $collection->getterDependence( 'resourceSon', 'ResourceModel');
+        $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
         if ($collection->getter('multimedia')){
-          if ($resource){
-            foreach($resource as $resVal){
+          if ($resources){
+            foreach($resources as $resVal){
 
               $thumbSettings = array(
                'image' => $resVal->getter( 'image' ),
                'profile' => 'typeIconMini'
               );
               $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
+              $multimediaUrl = false;
               if( $resDataExt = $resDataExtArray[0]){
                $thumbSettings['url'] = $resDataExt->getter('url');
+               $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
+               $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+               if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
+                $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
+               }
               }
               $imgUrl = $this->getResourceThumbnail( $thumbSettings );
               $thumbSettings['profile'] = 'hdpi4';
@@ -1586,14 +1593,14 @@ class ResourceController {
 
               $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
                 array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
-                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl, 'image_big' => $imgUrl2);
+                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
+                      'multimediaUrl' => $multimediaUrl, 'image' => $imgUrl, 'image_big' => $imgUrl2);
             }
           }
         }
         else{
-          if ($resource){
-            foreach($resource as $resVal){
-
+          if ($resources){
+            foreach($resources as $resVal){
               $thumbSettings = array(
                'image' => $resVal->getter( 'image' ),
                'profile' => 'fast_cut'
