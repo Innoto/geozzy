@@ -202,10 +202,11 @@ geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
   resourceClick: function( element ) {
     var that = this;
     if( that.parentExplorer.displays.map ) {
-      that.parentExplorer.displays.map.markerClick( $(element.currentTarget).attr('data-resource-id') );
+
+      that.parentExplorer.explorerRouter.navigate( 'resource/' + $(element.currentTarget).attr('data-resource-id') );
     }
     else {
-      that.parentExplorer.options.resourceAccess( id )
+      that.parentExplorer.options.resourceAccess( id, {trigger:true} )
       // call metrics event
       that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
     }

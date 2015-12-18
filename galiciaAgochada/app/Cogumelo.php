@@ -60,7 +60,8 @@ class Cogumelo extends CogumeloClass
     )
 
   );
-  public $includesCommon = array( );
+  public $includesCommon = array(
+  );
 
 
   public function __construct() {
