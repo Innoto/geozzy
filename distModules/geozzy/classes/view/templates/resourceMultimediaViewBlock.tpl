@@ -19,11 +19,18 @@
     {assign var=counter value=0}
     {foreach $multimediaAll.res as $multimedia}
       {if $counter<$max}
-      
-      <img alt="{$multimedia.title}" src="{$multimedia.image}"
-          data-image="{$multimedia.image_big}"
-          data-description="{$multimedia.title}">
-          {capture assign=counter}{$counter+1}{/capture}
+        {if $multimedia.multimediaUrl}
+          <img alt="Youtube Without Images" src="{$multimedia.image}"
+            data-type="youtube"
+            data-image="{$multimedia.image_big}"
+            data-videoid="{$multimedia.multimediaUrl}"
+            data-description="Youtube video description">
+        {else}
+          <img alt="{$multimedia.title}" src="{$multimedia.image}"
+            data-image="{$multimedia.image_big}"
+            data-description="{$multimedia.title}">
+        {/if}
+        {capture assign=counter}{$counter+1}{/capture}
       {/if}
     {/foreach}
   </div>
