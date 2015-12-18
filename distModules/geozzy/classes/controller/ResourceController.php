@@ -1018,9 +1018,9 @@ class ResourceController {
    * Devolve os taxterm asociados ao recurso dado e a info da taxonomía a maiores
    */
   public function getTaxonomyAll( $resId ) {
+    $taxTerms = array();
 
-    if( !$this->taxonomyAll ) {
-      $taxTerms = array();
+    if( !$this->taxonomyAll || $this->resObj->getter('id') != $resId ) {
 
       $resourceTaxAllModel = new ResourceTaxonomyAllModel();
       $taxAllList = $resourceTaxAllModel->listItems(array( 'filters' => array( 'resource' => $resId ) ));
@@ -1030,14 +1030,15 @@ class ResourceController {
         }
       }
 
-      if( count( $taxTerms ) > 0 ) {
+      if( $this->resObj->getter('id') != $resId ) {
         $this->taxonomyAll = $taxTerms;
       }
     }
 
     // error_log( "getTaxonomyAll( $resId ): ".print_r( $this->taxonomyAll, true ) );
-    return $this->taxonomyAll;
+    return $taxTerms;
   }
+
 
 
 
@@ -1580,8 +1581,11 @@ class ResourceController {
               $multimediaUrl = false;
               if( $resDataExt = $resDataExtArray[0]){
                $thumbSettings['url'] = $resDataExt->getter('url');
-               $termsGroupedIdName = $this->getTaxonomyAll($resVal->getter('id'));
-               $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
+               $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
+               $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+               if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
+                $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
+               }
               }
               $imgUrl = $this->getResourceThumbnail( $thumbSettings );
               $thumbSettings['profile'] = 'hdpi4';
