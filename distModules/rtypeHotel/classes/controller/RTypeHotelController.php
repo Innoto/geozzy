@@ -471,37 +471,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
-
     $resData = $this->defResCtrl->getResourceData( false, true );
-
-    //error_log( "collections = ". print_r( $collections, true ) );
-
-/*
-    if( $galleries ) {
-      foreach( $galleries['options'] as $galleryId => $values) {
-        $galleryBlock = $this->defResCtrl->getCollectionBlock( $galleryId );
-        if( $galleryBlock ) {
-          $template->addToBlock( 'multimediaGalleries', $galleryBlock );
-        }
-      }
-    }
-*/
-
-
-/*
-
-    $collections = $this->defResCtrl->getCollectionsInfo( $resData[ 'id' ] );
-    //error_log( "collections = ". print_r( $collections, true ) );
-
-    if( $collections ) {
-      foreach( $collections['options'] as $collectionId => $values) {
-
-        $collectionBlock = $this->defResCtrl->getCollectionBlock( $collectionId );
-        if( $collectionBlock ) {
-          $template->addToBlock( 'collections', $collectionBlock );
-        }
-      }
-    }*/
 
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
 

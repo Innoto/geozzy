@@ -16,9 +16,9 @@
 <div class="galleryBox">
 <h4>{$multimediaAll.col.title}</h4>
   <div id="multimediaGallery_{$id}" class="simpleMultimediaGallery" style="display:none;">
-    {assign var=counter value=1}
+    {assign var=counter value=0}
     {foreach $multimediaAll.res as $multimedia}
-      {if $counter<5}
+      {if $counter<$max}
       <img alt="{$multimedia.title}" src="{$multimedia.image}"
           data-image="{$multimedia.image_big}"
           data-description="{$multimedia.title}">
@@ -26,7 +26,7 @@
       {/if}
     {/foreach}
   </div>
-  {if $counter>4}
+  {if $counter>$max}
     <div id="more_{$id}" class="more">{t}Ver más...{/t}</div>
     <div id="multimediaAllGallery_{$id}" style="display:none;"></div>
     <div id="less_{$id}" class="less" style="display:none;">{t}Ver menos{/t}</div>
