@@ -11,9 +11,7 @@
   {block name="headCssIncludes"}{$css_includes}{/block}
   {block name="headJsIncludes"}{$js_includes}{/block}
 
-  <script>
-    $('#filter_gal_map').zonaMap();
-  </script>
+
 </head>
 <body data-spy="scroll" data-target=".headContent">
   <article>
@@ -25,7 +23,7 @@
 
     <section class="bodyContent">
 
-      <select id="filter_gal_map">
+      <select id="filter_gal_map" name="filter_gal_map">
         <option value="baixominoVigo" data-coords="77,369,77,419,101,404,116,387,134,379,160,375,180,360,178,344,166,340,167,330,157,319,132,324,125,320,119,325">Baixo Miño Vigo</option>
         <option value="terrasDePontevedra" data-coords="123,260,131,260,137,282,150,297,153,297,159,319,139,319,132,322,125,318,105,338,91,345,82,342,82,333,87,324,97,324,98,308,107,296,102,279,110,264">Terras de Pontevedra</option>
         <option value="arousa" data-coords="53,279,62,274,70,264,70,256,86,249,89,253,96,247,107,246,123,259,107,264,101,281,106,298,97,309,96,317,84,317,65,299">Arousa</option>
@@ -102,7 +100,15 @@
 -->
     </section>
 
-
+    <script>
+      $(document).ready(function(){
+        $('#filter_gal_map').zonaMap({
+          width: 400,
+          height: 500,
+          imgSrc: '/media/module/rextAppZona/img/gal.svg'
+        });
+      });
+    </script>
   </article>
 </body>
 </html>
