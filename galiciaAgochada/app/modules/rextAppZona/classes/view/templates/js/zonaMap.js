@@ -10,6 +10,7 @@
     var dataOpts = [];
 
     var defaults = {
+      textReset: 'All',
       imgSrc: '',
       width: 'auto',
       height: 'auto',
@@ -28,17 +29,23 @@
         htmlInterface += '<div class="filterZonaMap_openFilter"><img width="40" height="40" class="zonaMapCustomSvg" src="'+settings.imgSrc+'"></div>';
         htmlInterface += '<div class="filterZonaMap_opts">';
           $.each( dataOpts , function( index, optData ) {
-            htmlInterface += '<img width="'+settings.width+'" height="'+settings.height+'" class="zonaMapCustomSvg zonaMap zonaMap_'+optData.value+'" src="/media/module/rextAppZona/img/'+optData.value+'.svg">';
+            if(optData.coords){
+              htmlInterface += '<img width="'+settings.width+'" height="'+settings.height+'" class="zonaMapCustomSvg zonaMap zonaMap_'+optData.value+'" src="/media/module/rextAppZona/img/'+optData.value+'.svg">';
+            }
           });
           htmlInterface += '<img width="'+settings.width+'" height="'+settings.height+'" class="zonaMap_primary" src="/media/module/rextAppZona/img/transparent_gal.png" usemap="#'+zonaMapArea+'">';
           htmlInterface += '<img width="'+settings.width+'" height="'+settings.height+'" class="zonaMap_map" src="'+settings.imgSrc+'">';
 
           htmlInterface += '<map id="'+zonaMapArea+'" name="zonaMapMap">';
           $.each( dataOpts , function( index, optData ) {
-            htmlInterface += '<area shape="poly" data-term="'+optData.value+'" coords="'+optData.coords+'" target=""  />';
+            if(optData.coords){
+              htmlInterface += '<area shape="poly" data-term="'+optData.value+'" coords="'+optData.coords+'" target=""  />';
+            }
           });
           htmlInterface += '</map>';
+
           htmlInterface += '<div class="zonaMap_title"></div>';
+          htmlInterface += '<div class="zonaMap_reset">'+settings.textReset+'</div>';
         htmlInterface += '</div>';
 
       htmlInterface += '</div>';
@@ -61,6 +68,7 @@
           selected: $( this ).is( ":selected" ),
           value: $( this ).val()
         }
+        console.log(data);
         dataOpts.push(data);
       });
 
@@ -75,6 +83,7 @@
       $.each( dataOpts , function( index, optData ) {
         if(optData.selected){
           zonaMapObj.find('.zonaMap_'+optData.value).show();
+          zonaMapObj.find('.zonaMap_title').html(optData.value);
         }
       });
 
@@ -102,6 +111,11 @@
 
       zonaMapObj.find('.filterZonaMap_openFilter').on( "click", function (){
         that.openFilterZonaMap();
+      });
+      zonaMapObj.find('.zonaMap_reset').on( "click", function (){
+        selector.find("option:selected").prop("selected", false);
+        that.reloadZonaMap();
+        that.closeFilterZonaMap();
       });
       selector.on("change", function (e) {
         that.reloadZonaMap();
@@ -156,6 +170,7 @@
       $.each( dataOpts , function( index, optData ) {
         if(optData.selected){
           zonaMapObj.find('.zonaMap_'+optData.value).show();
+          zonaMapObj.find('.zonaMap_title').html(optData.value);
         }
       });
     }
