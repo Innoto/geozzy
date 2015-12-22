@@ -170,7 +170,14 @@ class rextAppZona extends Module {
     )
   );
 
-  public $dependences = array();
+  public $dependences = array(
+    array(
+      "id" =>"zonaMap",
+      "params" => array("zonaMap"),
+      "installer" => "bower",
+      "includes" => array("zonaMap.js","zonaMap.less")
+    )
+  );
 
   public $includesCommon = array(
     //,'model/RExtUrlModel.php'
