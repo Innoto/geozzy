@@ -60,6 +60,9 @@ define( 'DB_MYSQL_GROUPCONCAT_MAX_LEN', 1844674407370954751); //max 	4294967295 
 define( 'DB_ALLOW_CACHE', true );
 require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
 
+// Public Access User
+define( 'GA_ACCESS_USER', 'gaUser' );
+define( 'GA_ACCESS_PASSWORD', 'gz15005' );
 
 //
 //  Url settings
