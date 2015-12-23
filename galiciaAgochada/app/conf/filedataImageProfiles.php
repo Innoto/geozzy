@@ -50,11 +50,11 @@ $IMAGE_PROFILES = array(
   'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
   'typeIcon' => array(
     'width' => 64, 'height' => 64,
-    'backgroundColor' => '#00000000', 'rasterColor' => '#FFFFFF',
+    'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
     'saveFormat' => 'PNG' ),
   'explorerMarker' => array(
     'width' => 32, 'height' => 32, 'cut' => false,
-    'backgroundColor' => '#00000000', 'rasterColor' => '#00FF00',
+    'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
 
   'resourceLg' => array( 'width' => 1200, 'height' => 500),
@@ -67,7 +67,7 @@ $IMAGE_PROFILES = array(
   'svgTest' => array(
     'width' => 320, 'height' => 240,
     'cut' => false,
-    'backgroundColor' => '#00000040',
+    'backgroundColor' => '#80000040',
     //'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
     'rasterColor' => '#FFFFFF',
     'saveFormat' => 'PNG', 'cache' => false
