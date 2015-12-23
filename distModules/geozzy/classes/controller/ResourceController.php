@@ -1034,6 +1034,9 @@ class ResourceController {
         $this->taxonomyAll = $taxTerms;
       }
     }
+    else {
+      $taxTerms = $this->taxonomyAll;
+    }
 
     // error_log( "getTaxonomyAll( $resId ): ".print_r( $this->taxonomyAll, true ) );
     return $taxTerms;
