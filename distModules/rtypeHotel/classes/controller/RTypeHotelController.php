@@ -1,6 +1,7 @@
 <?php
 rextAccommodation::autoIncludes();
 rextContact::autoIncludes();
+rextAppZona::autoIncludes();
 
 class RTypeHotelController extends RTypeController implements RTypeInterface {
 
@@ -25,6 +26,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $rTypeExtNames[] = 'rextAccommodation';
     $this->accomCtrl = new RExtAccommodationController( $this );
     $rExtFieldNames = $this->accomCtrl->manipulateForm( $form );
+
     // Elimino los campos de la extensión que no quiero usar
     foreach( $rExtFieldNames as $i => $fieldName ) {
       if( $fieldName == 'singleRooms' || $fieldName == 'doubleRooms' || $fieldName == 'tripleRooms' || $fieldName == 'familyRooms'
@@ -46,6 +48,12 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
 
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Extensión Zona
+    $rTypeExtNames[] = 'rextAppZona';
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $rExtFieldNames = $this->zonaCtrl->manipulateForm( $form );
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // Altero campos del form del recurso "normal"
@@ -93,6 +101,10 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $this->contactCtrl = new RExtContactController( $this );
     $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $zonaViewInfo = $this->zonaCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->zonaCtrl->rExtName ] = $zonaViewInfo;
 
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
@@ -188,6 +200,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $templates['categorization']->assign( 'res', $formBlockInfo );
     $formFieldsNames = $this->accomCtrl->prefixArray(array( 'accommodationType', 'accommodationCategory',
       'averagePrice', 'accommodationFacilities', 'accommodationServices'));
+    $formFieldsNames[] = $this->zonaCtrl->addPrefix('rextAppZonaType');
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel cuadro informativo
@@ -384,6 +397,9 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
       $this->contactCtrl = new RExtContactController( $this );
       $this->contactCtrl->resFormProcess( $form, $resource );
+
+      $this->zonaCtrl = new RExtAppZonaController( $this );
+      $this->zonaCtrl->resFormProcess( $form, $resource );
     }
   }
 

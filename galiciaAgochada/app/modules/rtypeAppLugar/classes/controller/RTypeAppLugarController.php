@@ -1,6 +1,7 @@
 <?php
 rextAppLugar::autoIncludes();
 rextContact::autoIncludes();
+rextAppZona::autoIncludes();
 
 class RTypeAppLugarController extends RTypeController implements RTypeInterface {
 
@@ -26,6 +27,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $this->rExtCtrl = new RExtAppLugarController( $this );
     $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
 
+
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
     $form->setFieldParam('starred', 'type', 'reserved');
@@ -39,6 +41,12 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
 
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Extensión Zona
+    $rTypeExtNames[] = 'rextAppZona';
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $rExtFieldNames = $this->zonaCtrl->manipulateForm( $form );
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // Altero campos del form del recurso "normal"
@@ -78,6 +86,10 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $this->contactCtrl = new RExtContactController( $this );
     $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $zonaViewInfo = $this->zonaCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->zonaCtrl->rExtName ] = $zonaViewInfo;
 
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
@@ -173,6 +185,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $templates['categorization']->assign( 'title', __( 'Categorization' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
     $formFieldsNames = $this->lugarCtrl->prefixArray( array('rextAppLugarType') );
+    $formFieldsNames[] = $this->zonaCtrl->addPrefix('rextAppZonaType');
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel cuadro informativo
@@ -338,6 +351,9 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
 
       $this->contactCtrl = new RExtContactController( $this );
       $this->contactCtrl->resFormProcess( $form, $resource );
+
+      $this->zonaCtrl = new RExtAppZonaController( $this );
+      $this->zonaCtrl->resFormProcess( $form, $resource );
     }
   }
 

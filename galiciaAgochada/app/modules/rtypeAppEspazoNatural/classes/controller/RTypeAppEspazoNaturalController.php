@@ -42,7 +42,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
 
-    // Extensión Contacto
+    // Extensión Zona
     $rTypeExtNames[] = 'rextAppZona';
     $this->zonaCtrl = new RExtAppZonaController( $this );
     $rExtFieldNames = $this->zonaCtrl->manipulateForm( $form );

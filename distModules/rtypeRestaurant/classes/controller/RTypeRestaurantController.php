@@ -1,6 +1,7 @@
 <?php
 rextEatAndDrink::autoIncludes();
 rextContact::autoIncludes();
+rextAppZona::autoIncludes();
 
 class RTypeRestaurantController extends RTypeController implements RTypeInterface {
 
@@ -24,6 +25,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $rTypeExtNames[] = 'rextEatAndDrink';
     $this->eatCtrl = new RExtEatAndDrinkController( $this );
     $rExtFieldNames = $this->eatCtrl->manipulateForm( $form );
+
     // Elimino los campos de la extensión que no quiero usar
     $form->removeField('rextEatAndDrink_capacity');
 
@@ -43,6 +45,12 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
+
+    // Extensión Zona
+    $rTypeExtNames[] = 'rextAppZona';
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $rExtFieldNames = $this->zonaCtrl->manipulateForm( $form );
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // Valadaciones extra
     // $form->setValidationRule( 'restaurantName_'.$form->langDefault, 'required' );
@@ -81,6 +89,10 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $this->contactCtrl = new RExtContactController( $this );
     $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $zonaViewInfo = $this->zonaCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->zonaCtrl->rExtName ] = $zonaViewInfo;
 
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
@@ -176,6 +188,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $templates['categorization']->assign( 'title', __( 'Categorization' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
     $formFieldsNames = $this->eatCtrl->prefixArray( array('eatanddrinkType', 'eatanddrinkSpecialities', 'averagePrice') );
+    $formFieldsNames[] = $this->zonaCtrl->addPrefix('rextAppZonaType');
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel cuadro informativo
@@ -353,6 +366,9 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
       $this->contactCtrl = new RExtContactController( $this );
       $this->contactCtrl->resFormProcess( $form, $resource );
+
+      $this->zonaCtrl = new RExtAppZonaController( $this );
+      $this->zonaCtrl->resFormProcess( $form, $resource );
     }
   }
 
