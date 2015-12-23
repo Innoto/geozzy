@@ -12,35 +12,53 @@ Cogumelo::autoIncludes();
 class MasterView extends View
 {
 
-  function __construct($baseDir){
-    parent::__construct($baseDir);
+  public function __construct( $baseDir ) {
+    parent::__construct( $baseDir );
   }
 
   /**
   * Evaluate the access conditions and report if can continue
   * @return bool : true -> Access allowed
   */
-  function accessCheck() {
+  public function accessCheck() {
+    $accessValid = false;
 
+    $validIp = array(
+      '213.60.18.106', // Innoto
+      '176.83.204.135', '91.117.124.2', // ITG
+      '91.116.191.224', // Zadia
+      '127.0.0.1'
+    );
 
-      if ((!isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER']!= GA_ACCESS_USER) && (!isset($_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_PW']!= GA_ACCESS_PASSWORD )) {
+    if( in_array( $_SERVER['REMOTE_ADDR'], $validIp ) || strpos( $_SERVER['REMOTE_ADDR'], '10.77.' ) === 0 ) {
+      $accessValid = true;
+    }
+    else {
+      if(
+        ( !isset( $_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER']!= GA_ACCESS_USER ) &&
+        ( !isset( $_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_PW']!= GA_ACCESS_PASSWORD ) )
+      {
+        error_log( 'BLOQUEO --- Acceso Denegado!!!' );
         header('WWW-Authenticate: Basic realm="Galicia Agochada"');
         header('HTTP/1.0 401 Unauthorized');
         echo 'Acceso Denegado.';
-        exit;
+        // exit;
       }
       else {
-        return true;
+        $accessValid = true;
       }
-    
+    }
+
+    return $accessValid;
   }
 
 
-  function page404() {
+  public function page404() {
     echo 'PAGE404: Recurso non atopado';
   }
-  function home(){
 
+
+  public function home() {
     $resourceTaxAllModel = new ResourceTaxonomyAllModel( );
 
     /**
@@ -59,8 +77,7 @@ class MasterView extends View
       )
     );
     $resDest = array();
-    while ( $dRes = $dList->fetch() )
-    {
+    while ( $dRes = $dList->fetch() ) {
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
@@ -206,7 +223,7 @@ class MasterView extends View
     $this->template->exec();
   }
 
-  function exampleComarca(){
+  public function exampleComarca() {
     $this->template->setTpl('zonaMap.tpl','rextAppZona');
     $this->template->exec();
   }
