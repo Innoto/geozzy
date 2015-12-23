@@ -1030,7 +1030,7 @@ class ResourceController {
         }
       }
 
-      if( $this->resObj->getter('id') != $resId ) {
+      if( $this->resObj && $this->resObj->getter('id') === $resId ) {
         $this->taxonomyAll = $taxTerms;
       }
     }
