@@ -100,7 +100,7 @@
     </div>
 
     <div class="shortDescription">
-      {$res.data.shortDescription|escape:'htmlall'}
+      {$res.data.mediumDescription|escape:'htmlall'}
     </div>
 
     <div class="mediumDescription">
@@ -155,27 +155,23 @@
       </div>
     </div>
     {/if}
+
+    {if (isset($collections) || isset($multimediaGalleries)) }
+      <div class="grey-bar"></div>
+    {/if}
   </section>
 
-{if isset($imggallery)}
-  <section class="gallerySec container gzSection">
+  {if isset($multimediaGalleries)}
+    <section class="multimediaSec container gzSection">
+      {$multimediaGalleries}
+    </section>
+  {/if}
 
-    <div id="imageGallery" style="display:none;">
-      {$imggallery}
-    </div>
-  </section>
-{/if}
-
-{if isset($collections)}
-  <section class="collectionSec container gzSection">
-    <h4>{t}Related resources{/t}</h4>
-    {$collections}
-    <div id="collectionsAllGallery" style="display:none;">
-    </div>
-    <div class="more">{t}Ver más...{/t}</div>
-    <div class="less" style="display:none;">{t}Ver menos{/t}</div>
-  </section>
-{/if}
+  {if isset($collections)}
+    <section class="collectionSec container gzSection">
+      {$collections}
+    </section>
+  {/if}
 
 </div><!-- /.resource .resViewBlock -->
 <!-- /rTypeViewBlock.tpl en rTypeRestaurant module -->

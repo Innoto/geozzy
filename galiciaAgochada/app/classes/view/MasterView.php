@@ -196,8 +196,6 @@ class MasterView extends View
   }
 
   function exampleComarca(){
-    $this->template->addClientScript('js/zonaMap.js', 'rextAppZona');
-    $this->template->addClientStyles('styles/zonaMap.less', 'rextAppZona');
     $this->template->setTpl('zonaMap.tpl','rextAppZona');
     $this->template->exec();
   }

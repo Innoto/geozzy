@@ -44,6 +44,12 @@ class ExplorerView extends MasterView
   }
   function xantaresExplorer(){
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    $this->template->addClientScript('js/model/TaxonomygroupModel.js', 'geozzy');
+
+    $this->template->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');
+    $this->template->addClientScript('js/collection/CategoryCollection.js', 'geozzy');
+    $this->template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
+    biMetrics::autoIncludes();
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterXantaresExplorer.less');
     $this->template->addClientScript('js/xantaresExplorer.js');

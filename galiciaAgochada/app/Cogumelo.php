@@ -57,10 +57,17 @@ class Cogumelo extends CogumeloClass
       "params" => array("owl.carousel"),
       "installer" => "bower",
       "includes" => array("dist/owl.carousel.js", "dist/assets/owl.carousel.css")
+    ),
+    array(
+      "id" =>"zonaMap",
+      "params" => array("zonaMap"),
+      "installer" => "bower",
+      "includes" => array("zonaMap.js","zonaMap.less")
     )
 
   );
-  public $includesCommon = array( );
+  public $includesCommon = array(
+  );
 
 
   public function __construct() {
