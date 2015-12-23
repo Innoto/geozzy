@@ -180,7 +180,7 @@ class rextAppZona extends Module {
   );
 
   public $includesCommon = array(
-    //,'model/RExtUrlModel.php'
+    'controller/RExtAppZonaController.php'
   );
 
 

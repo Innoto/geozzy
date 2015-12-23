@@ -1,6 +1,7 @@
 <?php
 rextAppEspazoNatural::autoIncludes();
 rextContact::autoIncludes();
+rextAppZona::autoIncludes();
 
 class RTypeAppEspazoNaturalController extends RTypeController implements RTypeInterface {
 
@@ -40,6 +41,11 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $rTypeExtNames[] = 'rextContact';
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
+
+    // Extensión Contacto
+    $rTypeExtNames[] = 'rextAppZona';
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $rExtFieldNames = $this->zonaCtrl->manipulateForm( $form );
 
     // eliminamos los campos de contacto que no necesitamos
     /*$form->removeField('rExtContact_address');
@@ -88,6 +94,9 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $zonaViewInfo = $this->zonaCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->zonaCtrl->rExtName ] = $zonaViewInfo;
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -171,7 +180,8 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['categorization']->assign( 'title', __( 'Categorization' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->espazoCtrl->prefixArray(array( 'rextAppEspazoNaturalType'));
+    $formFieldsNames = $this->espazoCtrl->prefixArray( array('rextAppEspazoNaturalType'));
+    $formFieldsNames[] = $this->zonaCtrl->addPrefix('rextAppZonaType');
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel cuadro informativo
@@ -336,6 +346,9 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
 
       $this->contactCtrl = new RExtContactController( $this );
       $this->contactCtrl->resFormProcess( $form, $resource );
+
+      $this->zonaCtrl = new RExtAppZonaController( $this );
+      $this->zonaCtrl->resFormProcess( $form, $resource );
     }
   }
 
