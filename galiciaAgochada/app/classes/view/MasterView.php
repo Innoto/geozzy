@@ -22,11 +22,7 @@ class MasterView extends View
   */
   function accessCheck() {
 
-    if( !MOD_DEVEL_ALLOW_ACCESS ) {
-      Cogumelo::error("Must be developer to enter on this site");
-      RequestController::redirect(SITE_URL_CURRENT.'');
-    }
-    else {
+
       if ((!isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER']!= GA_ACCESS_USER) && (!isset($_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_PW']!= GA_ACCESS_PASSWORD )) {
         header('WWW-Authenticate: Basic realm="Galicia Agochada"');
         header('HTTP/1.0 401 Unauthorized');
@@ -36,7 +32,7 @@ class MasterView extends View
       else {
         return true;
       }
-    }
+    
   }
 
 
