@@ -41,19 +41,40 @@ $IMAGE_PROFILES = array(
   'mdpi16' => array( 'width' => 640, 'height' => 360, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
   'hdpi16' => array( 'width' => 960, 'height' => 540, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
   'xhdpi16' => array( 'width' => 1280, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+
   'big' => array( 'width' => 2000, 'height' => 2000, 'cut' => false, 'enlarge' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
   'fast' => array( 'width' => 400, 'height' => 300, 'cut' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
   'fast_cut' => array( 'width' => 400, 'height' => 300, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
   'square_cut' => array( 'width' => 128, 'height' => 128, 'cut' => true ),
   'exp1' => array( 'width' => 200, 'height' => 150 ),
   'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
-  'typeIcon' => array( 'width' => 64, 'height' => 64, 'saveFormat' => 'PNG' ),
-  'explorerMarker' => array( 'width' => 32, 'height' => 32, 'cut' => false, 'saveFormat' => 'PNG' ),
+  'typeIcon' => array(
+    'width' => 64, 'height' => 64,
+    'backgroundColor' => '#00000000', 'rasterColor' => '#FFFFFF',
+    'saveFormat' => 'PNG' ),
+  'explorerMarker' => array(
+    'width' => 32, 'height' => 32, 'cut' => false,
+    'backgroundColor' => '#00000000', 'rasterColor' => '#00FF00',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
   'resourceLg' => array( 'width' => 1200, 'height' => 500),
   'resourceMd' => array( 'width' => 992, 'height' => 400),
   'resourceSm' => array( 'width' => 768, 'height' => 300),
 
+
+
   // TEST
+  'svgTest' => array(
+    'width' => 320, 'height' => 240,
+    'cut' => false,
+    'backgroundColor' => '#00000040',
+    //'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'rasterColor' => '#FFFFFF',
+    'saveFormat' => 'PNG', 'cache' => false
+  ),
+
+
+
   'ancho' => array( 'width' => 400, 'height' => 200 ),
   'alto' => array( 'width' => 200, 'height' => 400 )
 );
