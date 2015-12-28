@@ -17,8 +17,7 @@
         <script src="/vendor/bower/html5shiv/dist/html5shiv.js"></script>
         <script src="/vendor/bower/respond/dest/respond.min.js"></script>
     <![endif]-->
-    {$css_includes}
-    {$js_includes}
+    {$client_includes}
 
 </head>
 

@@ -8,9 +8,8 @@
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=Edge"><![endif]-->
   <title>galiciaagochada</title>
 
-  {$css_includes}
-  {$js_includes}
   <script src="https://maps.googleapis.com/maps/api/js">  </script>
+  {$client_includes}
 
 </head>
 <body>

@@ -9,8 +9,7 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <title>{block name="headTitle"}galiciaagochada{/block}</title>
 
-  {block name="headCssIncludes"}{$css_includes}{/block}
-  {block name="headJsIncludes"}{$js_includes}{/block}
+  {block name="headClientIncludes"}{$client_includes}{/block}
 
 </head>
 <body data-spy="scroll" data-target=".headContent">

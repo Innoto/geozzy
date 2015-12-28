@@ -14,10 +14,9 @@
       <script src="/vendor/bower/respond/dest/respond.min.js"></script>
   <![endif]-->
 
-  {$css_includes}
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+  {$client_includes}
 
-  {$js_includes}
 
 </head>
 
