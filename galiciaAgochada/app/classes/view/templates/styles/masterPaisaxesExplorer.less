@@ -32,6 +32,51 @@
           }
           .select2Theme( @width: 200px, @height: 42px, @bckHeader: @gzzColor-paisaxes, @colorHeader: @gzzColor-bck-1);
         }//.select2GeozzyCustom
+
+
+        .filterZonaMapContainer{
+          .filterZonaMap_openFilter{
+            svg{
+              width: 36px;
+              height: 36px;
+              path{
+                fill: @gzzColor-paisaxes !important;
+              }
+            }
+          }
+          .filterZonaMap_opts{
+            right: 15px;
+            z-index: 2;
+            border: 1px solid #000;
+            display: none;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+
+            .zonaMap{
+              position: absolute;
+              z-index: 1;
+              display:none;
+
+              path{
+                fill: @gzzColor-paisaxes !important;
+              }
+            }
+            .zonaMap_reset{
+              color: white;
+              background-color: @gzzColor-paisaxes;
+            }
+          }
+        }
+
+
+
+
+
+
+
+
+
       }
     }
 
@@ -55,20 +100,7 @@
              -o-transform: scale(1, 1); /* Opera 10.5+ */
                 transform: scale(1, 1);
           }
-          /*.elementOptions{
-            position: absolute;
-            top:0px;
-            left: 0px;
-            background-color: rgba( 0, 0, 0, 0.6);
-            color: @gzzColor-text-light;
-            width: 100%;
-            height: 100%;
-            line-height: 50%;
-            vertical-align: middle;
-            font-size: 32px;
-            text-align: center;
-            display: none;
-          }*/
+
           .elementOptions{
             margin: 0px;
 
