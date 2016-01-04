@@ -159,11 +159,11 @@
       $ret = false;
 
       if( $(state.element).val() == '*' &&  $(state.element).attr('icon')  !='false' ) {
-        $ret = $('<span><img width=32 height=32 src="/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>');
+        $ret = $('<span><img width=24 height=24 src="/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>');
       }
       else
       if ( $(state.element).attr('icon') != 'false') {
-        $ret = $('<span><img width=32 height=32 src="/cgmlImg/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>');
+        $ret = $('<span><img width=24 height=24 src="/cgmlImg/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>');
       }
       else {
         $ret = state.text;

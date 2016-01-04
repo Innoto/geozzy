@@ -34,7 +34,7 @@ class AdminViewStarred extends AdminViewMaster
     $resCreateByType .= '</ul>';
 
     $this->template->assign( 'headTitle', __('Create and add resources') );
-    $this->template->assign( 'headActions', '<a href="/admin#starred/star/'.$starredId.'" class="btn btn-default"> '.__('Return').'</a>
+    $this->template->assign( 'headActions', '<a href="/admin#starred/'.$starredId.'" class="btn btn-default"> '.__('Return').'</a>
       <div class="btn-group assignResource AdminViewStarred">
         <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>

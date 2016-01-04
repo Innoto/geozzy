@@ -25,6 +25,11 @@
         margin: 0 5px;
 
         &.select2GeozzyCustom{
+          img{
+            width: 32px;
+            height: 32px;
+            position: static;
+          }
           .select2Theme( @width: 200px, @height: 42px, @bckHeader: @gzzColor-paisaxes, @colorHeader: @gzzColor-bck-1);
         }//.select2GeozzyCustom
       }
@@ -50,7 +55,7 @@
              -o-transform: scale(1, 1); /* Opera 10.5+ */
                 transform: scale(1, 1);
           }
-          .elementOptions{
+          /*.elementOptions{
             position: absolute;
             top:0px;
             left: 0px;
@@ -63,19 +68,23 @@
             font-size: 32px;
             text-align: center;
             display: none;
+          }*/
+          .elementOptions{
+            margin: 0px;
 
-            li{
-              padding: 33% 0;
-              list-style: none;
-              &.elementLink{
-                color: white;
-                &:hover{ color: @gzzColor-paisaxes; }
-              }
-              &.elementFav{
-                .commonFav;
-              }
-            }
-
+            li.elementFav{
+              position: absolute;
+              top: 0px;
+              left: 25px;
+              background-color: rgba( 255, 255, 255, 0.7);
+              padding: 15px;
+              font-size: 24px;
+              display: none;
+              .commonFav;
+            }//li.elementFav
+          }//.elementOptions
+          &:hover{
+            .elementOptions li.elementFav{ display: block; }
           }
         }
         .elementInfo{
@@ -94,6 +103,10 @@
                 transform: scale(1.08, 1.1);
             transition-duration: 450ms;
             transition-timing-function: ease-out;
+            -webkit-filter: blur(1px);
+	           filter: blur(1px);
+           -webkit-filter: brightness(0.8);
+            filter: brightness(0.8);
           }
           .elementOptions{
             display: block;
