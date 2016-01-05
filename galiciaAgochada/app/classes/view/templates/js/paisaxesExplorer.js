@@ -33,7 +33,8 @@
 
       // EXPLORADOR
       var explorer = new geozzy.explorer({
-        debug:false,
+        debug: false,
+        explorerId:'paisaxes',
         explorerSectionName:'Paisaxes espectaculares',
         resourceAccess: function(id) {
           //alert('mecagoenmimaquina'+id)
