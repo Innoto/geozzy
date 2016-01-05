@@ -148,8 +148,8 @@ class ExplorerAPIView extends View
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
 
-
     if( isset($urlParamsList['request']) && isset($urlParamsList['explorer']) && isset( $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ] ) ) {
+
       $explorerConf = $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ];
       header('Content-type: application/json');
 
