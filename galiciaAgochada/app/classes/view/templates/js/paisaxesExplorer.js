@@ -111,7 +111,7 @@
           '<div class="container">'+
             '<div class="row">'+
               '<div class="col-md-6 col-sm-4 hidden-xs explorerTitle" >'+
-                '<img class="img-responsive" alt="Paisaxes Espectaculares" src="/media/img/paisaxesIcon.png"></img>'+
+                '<img class="iconTitleBar img-responsive" alt="Paisaxes Espectaculares" src="/media/img/paisaxesIcon.png"></img>'+
                 '<h1>Paisaxes Espectaculares</h1>'+
               '</div>'+
               '<div class="col-md-6 col-sm-8 col-xs-12 explorerFilters clearfix" ></div>'+

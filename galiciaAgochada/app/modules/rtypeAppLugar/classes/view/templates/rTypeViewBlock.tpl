@@ -33,7 +33,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-10">
-          <img class="img-responsive" alt="Rincóns con estilo" src="/media/img/rinconsIcon.png"></img>
+          <img class="iconTitleBar img-responsive" alt="Rincóns con estilo" src="/media/img/rinconsIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
         <div class="stars col-lg-2">

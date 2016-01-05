@@ -7,7 +7,7 @@
 {block name="bodyContent"}
   <div class="titleBar">
     <div class="container">
-      <img class="img-responsive" alt="Paisaxes Espectaculares" src="/media/img/xantaresIcon.png"></img>
+      <img class="iconTitleBar img-responsive" alt="Paisaxes Espectaculares" src="/media/img/xantaresIcon.png"></img>
       <h1>{t}Sabrosos xantares{/t}</h1>
     </div>
   </div>
