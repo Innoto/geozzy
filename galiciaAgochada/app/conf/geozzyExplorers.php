@@ -3,8 +3,20 @@
 global $GEOZZY_EXPLORERS;
 
 
-$GEOZZY_EXPLORERS['default'] = array(
-  'module' => 'explorer',
-  'controllerFile' => 'controller/DefaultExplorerController.php',
-  'controllerName' => 'DefaultExplorerController'
+$GEOZZY_EXPLORERS = array(
+  'default' => array(
+    'module' => 'explorer',
+    'controllerFile' => 'controller/DefaultExplorerController.php',
+    'controllerName' => 'DefaultExplorerController'
+  ),
+  'paisaxes' => array(
+    'module' => 'explorer',
+    'controllerFile' => 'controller/PaisaxesExplorerController.php',
+    'controllerName' => 'PaisaxesExplorerController'
+  ),
+  'xantares' => array(
+    'module' => 'explorer',
+    'controllerFile' => 'controller/XantaresExplorerController.php',
+    'controllerName' => 'XantaresExplorerController'
+  )
 );
