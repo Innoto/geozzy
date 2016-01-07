@@ -57,11 +57,6 @@
 
 
 
-      // METRICAS
-
-      explorer.setMetricsExplorer( new geozzy.biMetrics.controller.explorer() );
-      explorer.setMetricsResource( new geozzy.biMetrics.controller.resource() );
-
 
 
       // DISPLAYS
