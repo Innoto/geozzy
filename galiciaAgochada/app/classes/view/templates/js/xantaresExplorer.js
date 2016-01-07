@@ -181,8 +181,8 @@
       var filterContainer = $(explorerclass+' .explorer-container-filter');
       console.log(filterContainer);
       var filterInterface = '<div class="filters_fixed"></div>';
-      filterInterface += '<div class="filters_openFilters"></div>';
-      filterInterface += '<div class="filters_advanced"></div>';
-      filterInterface += '<div class="filters_resume"></div>';
+      filterInterface += '<div class="filters_openFilters">Filtros avanzados</div>';
+      filterInterface += '<div class="filters_advanced">advanced</div>';
+      filterInterface += '<div class="filters_resume">resume</div>';
       filterContainer.html(filterInterface);
     }
