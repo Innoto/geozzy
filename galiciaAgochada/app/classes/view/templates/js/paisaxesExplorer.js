@@ -147,6 +147,7 @@ $(explorerclass+' .explorer-container-filter .explorerFilters').append(filterMap
 $('#filter_gal_map').zonaMap({
   width: 358,
   height: 383,
+  htmlIconArrow: '<i class="fa fa-caret-down"></i>',
   imgSrc: '/media/module/rextAppZona/img/gal.svg',
   imgTransparent: '/media/module/rextAppZona/img/transparent.png'
 });
