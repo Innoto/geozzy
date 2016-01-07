@@ -24,11 +24,13 @@
       {block name="bodyContent"}{if $bodyContent}{$bodyContent}{/if}{/block}
     </section>
 
-    <footer class="footerContent">
-      {block name="footerContent"}
-        {include file="footer.tpl"}
-      {/block}
-    </footer>
+
+    {block name="footerContent"}
+      <footer class="footerContent">
+      {include file="footer.tpl"}
+      </footer>
+    {/block}
+
   </article>
 </body>
 </html>
