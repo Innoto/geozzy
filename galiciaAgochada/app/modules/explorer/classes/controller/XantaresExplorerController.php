@@ -6,8 +6,8 @@ class XantaresExplorerController extends ExplorerController {
 
   public function serveMinimal( $updatedFrom = false ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/PaisaxesExplorerModel.php');
-    $resourceModel = new PaisaxesExplorerModel();
+    explorer::load('model/XantaresExplorerModel.php');
+    $resourceModel = new XantaresExplorerModel();
 
 
     if( $updatedFrom ) {
@@ -19,7 +19,7 @@ class XantaresExplorerController extends ExplorerController {
 
 
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image', 'averagePrice'), 'filters'=> $filters ) );
 
     $coma = '';
 
@@ -48,6 +48,10 @@ class XantaresExplorerController extends ExplorerController {
         if( isset($resourceDataArray['image']) ) {
           $row['img'] = $resourceDataArray['image'];
         }
+        if( isset($resourceDataArray['averagePrice']) ) {
+          $row['averagePrice'] = $resourceDataArray['averagePrice'];
+        }
+
 
 
         echo json_encode( $row );
