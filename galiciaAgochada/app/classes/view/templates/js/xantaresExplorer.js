@@ -38,6 +38,7 @@
       // EXPLORADOR
       var explorer = new geozzy.explorer({
         debug:false,
+        explorerId:'xantares',        
         explorerSectionName:'Paisaxes espectaculares',
         resourceAccess: function(id) {
           //alert('mecagoenmimaquina'+id)
