@@ -84,8 +84,15 @@ class DefaultExplorerController extends ExplorerController {
 
 
         $row['id'] = $resourceDataArray['id'];
-        $row['title'] = $resourceDataArray['title_es'];
-        $row['description'] = $resourceDataArray['shortDescription_es'];
+
+
+        if($row['title'] = $resourceDataArray['title_es'];) {
+          $row['title'] = $resourceDataArray['title_es'];;          
+        }
+        if($resourceDataArray['shortDescription_es']) {
+          $row['description'] = $resourceDataArray['shortDescription_es'];
+        }
+
 
 
 
