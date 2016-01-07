@@ -24,6 +24,13 @@
 </style>
 {/block}
 
+{block name="socialMeta" append}
+  <meta property="og:url" content="http://www.eldiario.es/zonacritica/Lagrimas-negras_6_470762933.html" />
+  <meta property="og:image" content="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
+  <meta property="og:description" content="{$res.ext.rextSocialNetwork.data.textFb}" />
+  <meta name="description" content="{$res.ext.rextSocialNetwork.data.textFb}" />
+{/block}
+
 <!-- rTypeViewBlock.tpl en rTypeEspazoNatural module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
@@ -66,7 +73,25 @@
       {/if}
       <ul class="social col-lg-2">
         <li class="elementShare">
-          <i class="fa fa-share-alt"></i>
+          {if isset($res.ext.rextSocialNetwork)}
+          <div class="share"><i class="fa fa-share-alt"></i></div>
+          <div class="share-open" style="display:none;">
+            {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}
+              <div class="share-net fb">
+                <a class="icon-share facebook" target="_blank" rel="nofollow" href='http://www.facebook.com/sharer/sharer.php?u={$res.data["urlAlias_$GLOBAL_C_LANG"]}'>
+                  <i class="fa fa-facebook-square"></i>
+                </a>
+              </div>
+            {/if}
+            {if isset($res.ext.rextSocialNetwork.data.activeTwitter) && $res.ext.rextSocialNetwork.data.activeTwitter}
+              <div class="share-net twitter">
+                <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$res.data["urlAlias_$GLOBAL_C_LANG"]}&text={$res.ext.rextSocialNetwork.data.textTwitter}">
+                  <i class="fa fa-twitter-square"></i>
+                </a>
+              </div>
+            {/if}
+          </div>
+          {/if}
         </li>
         <li class="elementFav">
           <i class="fa fa-heart-o"></i>

@@ -17,6 +17,18 @@ $(document).ready(function(){
     })
   });
 
+  $('.elementShare').hover(
+    function(){ //mouseenter
+      $('.share').css('visibility','hidden');
+      $('.share-open').show();
+    },
+    function(){ //mouseleave
+      $('.share-open').hide();
+      $('.share').css('visibility','visible');
+    }
+  );
+
+
   $.each(idGallery, function(i, elm){
     if ($('#multimediaGallery_'+elm)){
        $('#multimediaGallery_'+elm).unitegallery({

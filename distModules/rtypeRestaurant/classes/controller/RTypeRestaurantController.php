@@ -1,6 +1,7 @@
 <?php
 rextEatAndDrink::autoIncludes();
 rextContact::autoIncludes();
+rextSocialNetwork::autoIncludes();
 rextAppZona::autoIncludes();
 
 class RTypeRestaurantController extends RTypeController implements RTypeInterface {
@@ -41,10 +42,15 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $rTypeExtNames[] = 'rextContact';
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
-
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
+
+    // Extensión social network
+    $rTypeExtNames[] = 'rextSocialNetwork';
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $rExtFieldNames = $this->socialCtrl->manipulateForm( $form );
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // Extensión Zona
     $rTypeExtNames[] = 'rextAppZona';
@@ -89,6 +95,10 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $this->contactCtrl = new RExtContactController( $this );
     $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialViewInfo = $this->socialCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
 
     $this->zonaCtrl = new RExtAppZonaController( $this );
     $zonaViewInfo = $this->zonaCtrl->getFormBlockInfo( $form );
@@ -157,6 +167,14 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['contact']->assign( 'title', __( 'Contact' ) );
     $templates['contact']->setBlock( 'blockContent', $contactViewInfo['template']['basic'] );
+
+    // TEMPLATE panel social network
+    $templates['social'] = new Template();
+    $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['social']->assign( 'title', __( 'Social Networks' ) );
+    $templates['social']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = $this->socialCtrl->prefixArray(array( 'activeFb', 'activeTwitter', 'textFb', 'textTwitter' ));
+    $templates['social']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();
@@ -229,6 +247,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
@@ -349,6 +368,9 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
       $this->contactCtrl = new RExtContactController( $this );
       $this->contactCtrl->resFormRevalidate( $form );
+
+      $this->socialCtrl = new RExtSocialNetworkController( $this );
+      $this->socialCtrl->resFormRevalidate( $form );
     }
 
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
@@ -367,6 +389,9 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
       $this->contactCtrl = new RExtContactController( $this );
       $this->contactCtrl->resFormProcess( $form, $resource );
 
+      $this->socialCtrl = new RExtSocialNetworkController( $this );
+      $this->socialCtrl->resFormProcess( $form, $resource );
+
       $this->zonaCtrl = new RExtAppZonaController( $this );
       $this->zonaCtrl->resFormProcess( $form, $resource );
     }
@@ -384,6 +409,9 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
     $this->contactCtrl = new RExtContactController( $this );
     $this->contactCtrl->resFormSuccess( $form, $resource );
+
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $this->socialCtrl->resFormSuccess( $form, $resource );
   }
 
 
@@ -404,6 +432,9 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $this->contactCtrl = new RExtContactController( $this );
     $contactBlock = $this->contactCtrl->getViewBlock( $resBlock );
 
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialBlock = $this->socialCtrl->getViewBlock( $resBlock );
+
     if( $eatBlock ) {
       $template->addToBlock( 'rextEatAndDrink', $eatBlock );
       $template->assign( 'rExtBlockNames', array( 'rextEatAndDrink' ) );
@@ -422,6 +453,14 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
       $template->assign( 'rExtContactBlockNames', false );
     }
 
+    if( $socialBlock ) {
+      $template->addToBlock( 'rextSocialNetwork', $socialBlock );
+      $template->assign( 'rExtSocialNetworkBlockNames', array( 'rextSocialNetwork' ) );
+    }
+    else {
+      $template->assign( 'rextContact', false );
+      $template->assign( 'rExtContactBlockNames', false );
+    }
 
     return $template;
   }
@@ -451,6 +490,10 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
+
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
     $resData = $this->defResCtrl->getResourceData( false, true );
@@ -475,6 +518,17 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     }
     else {
       $template->assign( 'rextContactBlock', false );
+    }
+
+    if( $socialViewInfo ) {
+      if( $socialViewInfo['template'] ) {
+        foreach( $socialViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextSocialNetworkBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextSocialNetworkBlock', false );
     }
 
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );

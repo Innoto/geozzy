@@ -141,7 +141,8 @@ $C_REXT_MODULES = array(
   'rextFile',
   'rextAppLugar',
   'rextAppEspazoNatural',
-  'rextAppZona'
+  'rextAppZona',
+  'rextSocialNetwork'
 );
 
 // resource Types
