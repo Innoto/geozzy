@@ -67,7 +67,7 @@
       // DISPLAYS
 
       var infowindow = new geozzy.explorerDisplay.mapInfoView();
-      var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
+      var listaPasiva = new geozzy.explorerDisplay.activeListTinyView({ el:$('.explorer-container-gallery')});
       var mapa = new geozzy.explorerDisplay.mapView({
           map: resourceMap,
           clusterize:false,
