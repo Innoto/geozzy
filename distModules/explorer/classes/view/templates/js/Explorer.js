@@ -31,8 +31,8 @@ geozzy.explorer = function( opts ) {
 
   // metrics
 
-  that.metricsExplorerController = false;
-  that.metricsResourceController = false;
+  that.metricsExplorerController = geozzy.biMetricsInstances.explorer;
+  that.metricsResourceController = geozzy.biMetricsInstances.resource;
 
 
   // router
@@ -214,6 +214,7 @@ geozzy.explorer = function( opts ) {
     }
 
     if(that.displays.activeList) {
+      that.displays.pasiveList.currentPage = 0;
       resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
     }
 

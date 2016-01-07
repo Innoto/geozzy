@@ -2,12 +2,12 @@
 
 explorer::load('controller/ExplorerController.php');
 
-class DefaultExplorerController extends ExplorerController {
+class XantaresExplorerController extends ExplorerController {
 
   public function serveMinimal( $updatedFrom = false ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/GenericExplorerModel.php');
-    $resourceModel = new GenericExplorerModel();
+    explorer::load('model/XantaresExplorerModel.php');
+    $resourceModel = new XantaresExplorerModel();
 
 
     if( $updatedFrom ) {
@@ -19,7 +19,7 @@ class DefaultExplorerController extends ExplorerController {
 
 
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc', 'terms', 'image'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image', 'averagePrice'), 'filters'=> $filters ) );
 
     $coma = '';
 
@@ -33,7 +33,7 @@ class DefaultExplorerController extends ExplorerController {
 
 
         $row['id'] = $resourceDataArray['id'];
-
+        $row['rtype'] = $resourceDataArray['rtype'];
         if( isset($resourceDataArray['loc']) ) {
           $loc = DBUtils::decodeGeometry( $resourceDataArray['loc'] );
           $row['lat'] = floatval( $loc['data'][0] );
@@ -48,6 +48,10 @@ class DefaultExplorerController extends ExplorerController {
         if( isset($resourceDataArray['image']) ) {
           $row['img'] = $resourceDataArray['image'];
         }
+        if( isset($resourceDataArray['averagePrice']) ) {
+          $row['averagePrice'] = $resourceDataArray['averagePrice'];
+        }
+
 
 
         echo json_encode( $row );
@@ -61,8 +65,8 @@ class DefaultExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/GenericExplorerModel.php');
-    $resourceModel = new GenericExplorerModel();
+    explorer::load('model/XantaresExplorerModel.php');
+    $resourceModel = new XantaresExplorerModel();
 
     $ids = false;
 
@@ -84,15 +88,8 @@ class DefaultExplorerController extends ExplorerController {
 
 
         $row['id'] = $resourceDataArray['id'];
-
-
-        if( isset($row['title'] ) ) {
-          $row['title'] = $resourceDataArray['title_es'];
-        }
-        if( isset( $resourceDataArray['shortDescription_es']) ) {
-          $row['description'] = $resourceDataArray['shortDescription_es'];
-        }
-
+        $row['title'] = $resourceDataArray['title_es'];
+        $row['description'] = $resourceDataArray['shortDescription_es'];
 
 
 

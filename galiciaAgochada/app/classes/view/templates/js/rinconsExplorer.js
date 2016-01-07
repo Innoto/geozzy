@@ -49,7 +49,7 @@
         '<div class="container titleBar">'+
           '<div class="row">'+
             '<div class="col-md-6 col-sm-4 hidden-xs explorerTitle" >'+
-              '<img class="img-responsive" alt="rincons Espectaculares" src="/media/img/rinconsIcon.png"></img>'+
+              '<img class="iconTitleBar img-responsive" alt="rincons Espectaculares" src="/media/img/rinconsIcon.png"></img>'+
               '<h1>Rincons Espectaculares</h1>'+
             '</div>'+
             '<div class="col-md-6 col-sm-8 col-xs-12 explorerFilters clearfix" ></div>'+

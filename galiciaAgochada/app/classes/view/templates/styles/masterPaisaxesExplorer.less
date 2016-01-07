@@ -36,9 +36,15 @@
 
         .filterZonaMapContainer{
           .filterZonaMap_openFilter{
+            .filterZonaMap_arrow{
+              font-size: 28px;
+            }
+            .filterZonaMap_selected{
+              text-transform: uppercase;
+            }
             svg{
-              width: 36px;
-              height: 36px;
+              width: 30px;
+              height: 30px;
               path{
                 fill: @gzzColor-paisaxes !important;
               }
@@ -47,17 +53,8 @@
           .filterZonaMap_opts{
             right: 15px;
             z-index: 2;
-            border: 1px solid #000;
-            display: none;
-            -webkit-border-radius: 25px;
-            -moz-border-radius: 25px;
-            border-radius: 25px;
 
             .zonaMap{
-              position: absolute;
-              z-index: 1;
-              display:none;
-
               path{
                 fill: @gzzColor-paisaxes !important;
               }
@@ -109,7 +106,7 @@
               top: 0px;
               left: 25px;
               background-color: rgba( 255, 255, 255, 0.7);
-              padding: 15px;
+              padding: 10px;
               font-size: 24px;
               display: none;
               .commonFav;

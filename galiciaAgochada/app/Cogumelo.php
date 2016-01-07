@@ -62,7 +62,7 @@ class Cogumelo extends CogumeloClass
       "id" =>"zonaMap",
       "params" => array("zonaMap"),
       "installer" => "bower",
-      "includes" => array("zonaMap.js","zonaMap.less")
+      "includes" => array("zonaMap.js","zonaMap.css")
     )
 
   );
