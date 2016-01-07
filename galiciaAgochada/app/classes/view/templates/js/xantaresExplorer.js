@@ -126,7 +126,7 @@
 
         var tempElemHtml = '<div data-resource-id="" class="col-md-12 element">'+
           '<div class="elementImg">'+
-            '<img class="img-responsive" src="http://lorempixelº.com/530/213/food/'+i+'" />'+
+            '<img class="img-responsive" src="http://lorempixel.com/530/213/food/'+i+'" />'+
             '<ul class="elementOptions container-fluid">'+
               '<li class="elementOpt elementFav">'+
                 '<i class="fa fa-heart-o"></i>'+
