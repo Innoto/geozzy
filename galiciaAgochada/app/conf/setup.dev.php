@@ -294,5 +294,6 @@ $MEDIASERVER_SMARTY_CONSTANTS = array(
   'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
   'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
   'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
+  'site_host' => SITE_HOST,
   // 'var1' => 5, 'var2'=>array('a',true,5, array(1,2) ), 'var3' => true, 'comilla' => "ola'tu"
 );
