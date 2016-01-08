@@ -103,6 +103,7 @@
 
         ul.social{
           height:50px;
+          position:relative;
 
           li{
             margin-top:12px;
@@ -118,6 +119,23 @@
            li.elementShare{
             list-style: none;
             float:right;
+
+
+            .share-open{
+              padding:4px 6px;
+              background-color:#fff;
+              border:1px solid #777;
+              border-radius:3px;
+              position:absolute;
+              top:8px;
+              right:0px;
+
+              .share-net {
+                padding:2px;
+                .fa-facebook-square{color:#355089;}
+                .fa-twitter-square{color:#55ACEE;}
+              }
+            }
            }
          }
 

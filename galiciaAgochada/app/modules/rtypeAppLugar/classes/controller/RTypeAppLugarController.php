@@ -2,6 +2,7 @@
 rextAppLugar::autoIncludes();
 rextContact::autoIncludes();
 rextAppZona::autoIncludes();
+rextSocialNetwork::autoIncludes();
 
 class RTypeAppLugarController extends RTypeController implements RTypeInterface {
 
@@ -40,6 +41,12 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $rTypeExtNames[] = 'rextContact';
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
+
+    // Extensión redes sociales
+    $rTypeExtNames[] = 'rextSocialNetwork';
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $rExtFieldNames = $this->socialCtrl->manipulateForm( $form );
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
@@ -86,6 +93,10 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $this->contactCtrl = new RExtContactController( $this );
     $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialViewInfo = $this->socialCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
 
     $this->zonaCtrl = new RExtAppZonaController( $this );
     $zonaViewInfo = $this->zonaCtrl->getFormBlockInfo( $form );
@@ -154,6 +165,14 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['contact']->assign( 'title', __( 'Contact' ) );
     $templates['contact']->setBlock( 'blockContent', $contactViewInfo['template']['basic'] );
+
+    // TEMPLATE panel social network
+    $templates['social'] = new Template();
+    $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['social']->assign( 'title', __( 'Social Networks' ) );
+    $templates['social']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = $this->socialCtrl->prefixArray(array( 'activeFb', 'activeTwitter', 'textFb', 'textTwitter' ));
+    $templates['social']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();
@@ -226,6 +245,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
@@ -335,6 +355,9 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
 
       $this->contactCtrl = new RExtContactController( $this );
       $this->contactCtrl->resFormRevalidate( $form );
+
+      $this->socialCtrl = new RExtSocialNetworkController( $this );
+      $this->socialCtrl->resFormRevalidate( $form );
     }
   }
 
@@ -352,6 +375,9 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
       $this->contactCtrl = new RExtContactController( $this );
       $this->contactCtrl->resFormProcess( $form, $resource );
 
+      $this->socialCtrl = new RExtSocialNetworkController( $this );
+      $this->socialCtrl->resFormProcess( $form, $resource );
+
       $this->zonaCtrl = new RExtAppZonaController( $this );
       $this->zonaCtrl->resFormProcess( $form, $resource );
     }
@@ -366,6 +392,9 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
 
     $this->rExtCtrl = new RExtAppLugarController( $this );
     $this->rExtCtrl->resFormSuccess( $form, $resource );
+
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $this->socialCtrl->resFormSuccess( $form, $resource );
   }
 
 
@@ -383,6 +412,9 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $this->rExtCtrl = new RExtAppLugarController( $this );
     $rExtBlock = $this->rExtCtrl->getViewBlock( $resBlock );
 
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialBlock = $this->socialCtrl->getViewBlock( $resBlock );
+
     if( $rExtBlock ) {
       $template->addToBlock( 'rextAppLugar', $rExtBlock );
       $template->assign( 'rExtBlockNames', array( 'rextAppLugar' ) );
@@ -390,6 +422,19 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     else {
       $template->assign( 'rextAppLugar', false );
       $template->assign( 'rExtBlockNames', false );
+    }
+
+    if( $socialBlock ) {
+      $template->addToBlock( 'rextSocialNetwork', $socialBlock );
+      $template->assign( 'rextSocialNetwork_activeFb', $socialBlock->tpl_vars['rextSocialNetwork_activeFb']->value );
+      $template->assign( 'rextSocialNetwork_textFb', $socialBlock->tpl_vars['rextSocialNetwork_textFb_'.LANG_DEFAULT]->value );
+      $template->assign( 'rextSocialNetwork_activeTwitter', $socialBlock->tpl_vars['rextSocialNetwork_activeTwitter']->value );
+      $template->assign( 'rextSocialNetwork_textTwitter', $socialBlock->tpl_vars['rextSocialNetwork_textTwitter_'.LANG_DEFAULT]->value );
+      $template->assign( 'rExtSocialNetworkBlockNames', array( 'rextSocialNetwork' ) );
+    }
+    else {
+      $template->assign( 'rextSocialNetwork', false );
+      $template->assign( 'rExtSocialNetworkBlockNames', false );
     }
 
     return $template;
@@ -420,6 +465,10 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
+
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
     $resData = $this->defResCtrl->getResourceData( false, true );
@@ -445,6 +494,17 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     else {
       $template->assign( 'rextContactBlock', false );
     }
+
+    if( $socialViewInfo ) {
+      if( $socialViewInfo['template'] ) {
+        foreach( $socialViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextSocialNetworkBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextSocialNetworkBlock', false );
+    }    
 
     /* Cargamos los bloques de colecciones */
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );

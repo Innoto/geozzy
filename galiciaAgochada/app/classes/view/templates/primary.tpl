@@ -8,7 +8,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <title>{block name="headTitle"}galiciaagochada{/block}</title>
-
+  {block name="socialMeta"}{/block}
   {block name="headClientIncludes"}{$client_includes}{/block}
 
 </head>
@@ -27,7 +27,7 @@
 
     {block name="footerContent"}
       <footer class="footerContent">
-      {include file="footer.tpl"}
+        {include file="footer.tpl"}
       </footer>
     {/block}
 
