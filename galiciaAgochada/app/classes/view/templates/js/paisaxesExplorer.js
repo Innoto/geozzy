@@ -11,6 +11,10 @@
       explorador.exec();
     });
 
+    $(window).bind("load resize", function() {
+      explorador.layoutDistributeSize();
+    });
+
   });
 
 
@@ -21,7 +25,9 @@
 
 
 
-
+  /****************************
+    paisaxesExplorer
+   ****************************/
   paisaxesExplorer = function() {
     var that = this;
 
@@ -30,7 +36,7 @@
     that.espazoNaturalCategories = false;
 
     that.infowindow = false;
-    that.listaPasiva = false;
+    that.listaMini = false;
     that.mapa = false;
 
 
@@ -100,7 +106,7 @@
     that.setDisplays = function() {
 
       that.infowindow = new geozzy.explorerDisplay.mapInfoView();
-      that.listaPasiva = new geozzy.explorerDisplay.activeListTinyView({ el:$('.explorer-container-gallery')});
+      that.listaMini = new geozzy.explorerDisplay.activeListTinyView({ el:$('.explorer-container-gallery')});
       that.mapa = new geozzy.explorerDisplay.mapView({
           map: resourceMap,
           clusterize:false,
@@ -127,7 +133,7 @@
       });
 
 
-      that.explorer.addDisplay( that.listaPasiva );
+      that.explorer.addDisplay( that.listaMini );
       that.explorer.addDisplay( that.mapa );
       that.explorer.addDisplay( that.infowindow );
 
@@ -156,6 +162,8 @@
           '</div>'+
         '</div>'
       );
+
+
       /*TEMP ADD FILTER MAP*-----------------------------------------------------------------------------------------------------------------------*/
       var filterMap = '<div class="explorerFilterElement filterZona"><select id="filter_gal_map" name="filter_gal_map">'+
         '<option value="">Todas</option>'+
@@ -219,8 +227,6 @@
          templateResult: that.formatState
       });
 
-      //LAYOUT
-      that.layoutDistributeSize();
     }
 
 
