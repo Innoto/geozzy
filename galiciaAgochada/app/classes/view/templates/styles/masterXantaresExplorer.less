@@ -5,7 +5,7 @@
   //.mixinDevel();
   .explorerBase( );
   .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 60%, @explMap-h: calc(~"100% - "@headerTitleBarHeight ), @explFilter-w: 300px,
-     @explFilter-h: 150px, @explGallery-w: 40%, @explGallery-h: calc(~"100% - "@headerTitleBarHeight ) );
+     @explFilter-h: auto, @explGallery-w: 40%, @explGallery-h: calc(~"100% - "@headerTitleBarHeight ) );
 }
 
 .xantaresExplorer{
@@ -40,7 +40,7 @@
           }
         }
         .filterZonaMap_opts{
-          right: 15px;
+          right: 0px;
           z-index: 2;
 
           .zonaMap{
@@ -62,15 +62,34 @@
       background-color: @gzzColor-bck-8;
       height: 65px;
     }
-    .filters_openFilters{
-      background-color: @gzzColor-bck-1;
+    .filters_advancedContainer{
+      .filters_openFilters{
+        background-color: @gzzColor-bck-1;
+        .fa-caret-up{ display:none; }
+        .fa-caret-down{ display:inline; }
+      }
+      .filters_advancedFilters{
+        background-color: @gzzColor-bck-1;
+        height: 300px;
+        display:none;
+      }
+      .filters_resume{
+        background-color: @gzzColor-bck-2;
+      }
 
-    }
-    .filters_advanced{
-      background-color: @gzzColor-bck-1;
-    }
-    .filters_resume{
-      background-color: @gzzColor-bck-1;
+      &:hover{
+        .filters_openFilters{
+          .fa-caret-up{ display: inline; }
+          .fa-caret-down{ display:none; }
+        }
+        .filters_advancedFilters{
+          display:block;
+
+        }
+        .filters_resume{
+          display:none;
+        }
+      }
     }
   }
   .explorer-container-gallery{

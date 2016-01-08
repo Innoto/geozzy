@@ -133,7 +133,11 @@ geozzy.explorer = function( opts ) {
     that.resourceIndex.removePagination();
 
     // Set filters for current index
+
     that.resourceIndex.filterBy( function(model) {
+
+
+
       var matches = 0;
       var ret = false;
 

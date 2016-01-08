@@ -50,7 +50,7 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
           "event_ID":0,
           "name": metric.event,
        },
-       "metricTime": that.getTimesTamp()
+       "metricTime": that.getTimesTamp().toString()
     };
 
   },
