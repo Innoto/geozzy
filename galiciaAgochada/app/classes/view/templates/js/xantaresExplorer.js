@@ -115,7 +115,7 @@
         )
       );
 
-/*TEMP ADD FILTER MAP*-----------------------------------------------------------------------------------------------------------------------*/		 
+/*TEMP ADD FILTER MAP*-----------------------------------------------------------------------------------------------------------------------*/
 var filterMap = '<div class="explorerFilterElement filterZona"><select id="filter_gal_map" name="filter_gal_map">'+
   '<option value="">Todas</option>'+
   '<option value="baixominoVigo" data-coords="57,327,59,372,78,357,92,341,108,333,133,331,158,313,158,298,151,301,144,296,146,285,136,280,137,275,129,275,118,276,116,279,106,281,103,275,97,280,96,290,90,290,77,300" data-img="/media/module/rextAppZona/img/baixominoVigo.svg">Baixo Miño Vigo</option>'+
@@ -195,9 +195,11 @@ $('#filter_gal_map').zonaMap({
       var filterContainer = $(explorerclass+' .explorer-container-filter');
       console.log(filterContainer);
       var filterInterface = '<div class="filters_fixed"></div>';
-      filterInterface += '<div class="filters_openFilters">Filtros avanzados</div>';
-      filterInterface += '<div class="filters_advanced">advanced</div>';
-      filterInterface += '<div class="filters_resume">resume</div>';
+      filterInterface += '<div class="filters_advancedContainer">';
+        filterInterface += '<div class="filters_openFilters">Filtros avanzados <i class="fa fa-caret-up"></i> <i class="fa fa-caret-down"></i></div>';
+        filterInterface += '<div class="filters_advancedFilters">advanced</div>';
+        filterInterface += '<div class="filters_resume">resume</div>';
+      filterInterface += '</div>';
       filterContainer.html(filterInterface);
 
     }
