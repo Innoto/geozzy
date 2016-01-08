@@ -9,6 +9,7 @@
       explorador.setDisplays();
       explorador.setFilters();
       explorador.exec();
+      explorador.layoutDistributeSize();
     });
 
     $(window).bind("load resize", function() {
@@ -31,7 +32,9 @@
   paisaxesExplorer = function() {
     var that = this;
 
+
     that.explorerclass = '.paisaxesExplorer';
+    that.mapOptions = false;
     that.resourceMap  = false;
     that.espazoNaturalCategories = false;
 
@@ -46,11 +49,11 @@
       setInitialData. Preset objects and get values for the filters
      */
     that.setInitialData = function( doneFunction ){
-      var mapOptions = {
+      that.mapOptions = {
         center: { lat: 43.1, lng: -7.36 },
         zoom: 8
       };
-      resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), mapOptions);
+      resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
 
 
       that.espazoNaturalCategories = new geozzy.collection.CategorytermCollection();
