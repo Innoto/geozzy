@@ -266,7 +266,7 @@
       var hExplorerLayout = $('.paisaxesExplorer').height();
       var hExplorerFilters = $('.paisaxesExplorer .explorer-container-filter').height();
       var hExplorerGallery = $('.paisaxesExplorer .explorer-container-gallery').height();
-      var hHeader = 100;
+      var hHeader = 60;
       var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
 
       $('.paisaxesExplorer .explorer-container-map').height( hExplorerMap );
