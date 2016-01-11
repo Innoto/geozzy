@@ -271,9 +271,9 @@ class RExtContactController extends RExtController implements RExtInterface {
       // TODO: esto será un campo da BBDD
       $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
 
-      if (!isset($rExtViewBlockInfo['data']['city']) && $rExtViewBlockInfo['data']['province']=='' && $rExtViewBlockInfo['data']['cp']==''
-          && $rExtViewBlockInfo['data']['phone']==''&& $rExtViewBlockInfo['data']['email']=='' && $rExtViewBlockInfo['data']['url']==''
-          && $rExtViewBlockInfo['data']['directions']=='' && $rExtViewBlockInfo['data']['timetable']==''){
+      if (!isset($rExtViewBlockInfo['data']['city']) && !isset($rExtViewBlockInfo['data']['province']) && !isset($rExtViewBlockInfo['data']['cp'])
+          && !isset($rExtViewBlockInfo['data']['phone']) && !isset($rExtViewBlockInfo['data']['email']) && !isset($rExtViewBlockInfo['data']['url'])
+          && !isset($rExtViewBlockInfo['data']['directions']) && !isset($rExtViewBlockInfo['data']['timetable'])){
             $rExtViewBlockInfo = false;
       }
       else{
