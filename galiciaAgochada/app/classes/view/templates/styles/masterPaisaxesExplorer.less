@@ -9,7 +9,7 @@
 
 .paisaxesExplorer{
   position: fixed;
-  top:100px;
+  top:60px;
   width: 100%;
 
   .explorerMap{
@@ -213,7 +213,16 @@
 
 } /*1200px*/
 @media screen and (max-width: 1199px) {
-
+  .explorerListPager{
+    top: 50% !important;
+    -ms-transform: translateY(-50%); /* IE 9 */
+    -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+    transform: translateY(-50%);
+    .previous,
+    .next{
+      display:none;
+    }
+  }
 }/*1199px*/
 @media screen and (max-width: 991px) {
 
