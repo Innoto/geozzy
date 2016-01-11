@@ -63,7 +63,8 @@
     that.explorerclass = '.xantaresExplorer';
     that.mapOptions = false;
     that.resourceMap  = false;
-    that.espazoNaturalCategories = false;
+    that.eatAndDrinkTypes = false;
+    that.eatAndDrinkSpecialities = false;
 
     that.infowindow = false;
     that.listaMini = false;
@@ -83,12 +84,16 @@
       resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
 
 
-      that.espazoNaturalCategories = new geozzy.collection.CategorytermCollection();
-      that.espazoNaturalCategories.setUrlByIdName('eatanddrinkType');
+      that.eatAndDrinkTypes = new geozzy.collection.CategorytermCollection();
+      that.eatAndDrinkTypes.setUrlByIdName('eatanddrinkType');
+
+      that.eatAndDrinkSpecialities = new geozzy.collection.CategorytermCollection();
+      that.eatAndDrinkSpecialities.setUrlByIdName('eatAndDrinkSpecialities');
+
 
 
       // Multiple data fetch
-      $.when( that.espazoNaturalCategories.fetch() ).done(function() {
+      $.when( that.eatAndDrinkTypes.fetch(), that.eatAndDrinkSpecialities.fetch() ).done(function() {
         doneFunction();
       });
     }
@@ -143,7 +148,7 @@
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
 
-            that.espazoNaturalCategories.each( function(e){
+            that.eatAndDrinkTypes.each( function(e){
               //console.log(e.get('id'))
               //console.debug(markerData.get('terms'))
 
@@ -216,17 +221,37 @@
       //--------------------------------------------------------------------------------------------------------------------------------------------
 
 
+      var filtroTipos = new geozzy.filters.filterSelectSimpleView(
+        {
+          mainCotainerClass: that.explorerclass+' .filters_fixed',
+          containerClass: 'tipoEatandDrink',
+          defaultOption: { icon: false, title: 'Todos os tipos', value:'*' },
+          data: that.eatAndDrinkTypes
+        }
+      )
+
 
       that.explorer.addFilter(
-        new geozzy.filters.filterSelectSimpleView(
-          {
-            mainCotainerClass: that.explorerclass+' .filters_fixed',
-            containerClass: 'tipoEatandDrink',
-            defaultOption: { icon: false, title: 'Todos os tipos', value:'*' },
-            data: that.espazoNaturalCategories
-          }
-        )
+        filtroTipos
       );
+
+
+
+      var filtroEspecialidades = new geozzy.filters.filterSelectSimpleView(
+        {
+          mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
+          containerClass: 'especialidadeEatandDrink',
+            defaultOption: { icon: false, title: 'Todas as especialidades', value:'*' },
+          data: that.eatAndDrinkSpecialities
+        }
+      )
+
+
+      that.explorer.addFilter(
+        filtroEspecialidades
+      );
+
+
     }
 
 
