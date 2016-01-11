@@ -1566,7 +1566,7 @@ class ResourceController {
 
 print('prueba');
       var_dump($resCollectionList);
-
+/*
       while ( $collection = $resCollectionList->fetch() )
       {
         $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
@@ -1623,9 +1623,9 @@ print('prueba');
             }
           }
         }
-      }
+      }*/
     }
-    return($collectionResources);
+    return(true);
   }
 
   // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
