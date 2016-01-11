@@ -1564,10 +1564,6 @@ class ResourceController {
         )
       );
 
-      print('LLEGA');
-      error_log('ENTRA');
-      error_log($resCollectionList);
-
       while ( $collection = $resCollectionList->fetch() )
       {
         $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
