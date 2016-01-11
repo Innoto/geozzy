@@ -1563,63 +1563,64 @@ class ResourceController {
           'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias')
         )
       );
+      if ($collection){
+        while ( $collection = $resCollectionList->fetch() )
+        {
+          $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
+          'title' => $collection->getter('title_'.$this->actLang),
+          'image' => $collection->getter('image'), 'multimedia' => $collection->getter('multimedia'));
+          $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
 
-      while ( $collection = $resCollectionList->fetch() )
-      {
-        $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
-        'title' => $collection->getter('title_'.$this->actLang),
-        'image' => $collection->getter('image'), 'multimedia' => $collection->getter('multimedia'));
-        $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
+          $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
+          if ($collection->getter('multimedia')){
+            if ($resources){
+              foreach($resources as $resVal){
 
-        $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
-        if ($collection->getter('multimedia')){
-          if ($resources){
-            foreach($resources as $resVal){
+                $thumbSettings = array(
+                 'image' => $resVal->getter( 'image' ),
+                 'profile' => 'typeIconMini'
+                );
+                $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
+                $multimediaUrl = false;
+                if( $resDataExt = $resDataExtArray[0]){
+                 $thumbSettings['url'] = $resDataExt->getter('url');
+                 $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
+                 $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+                 if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
+                  $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
+                 }
+                }
+                $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+                $thumbSettings['profile'] = 'hdpi4';
+                $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
-              $thumbSettings = array(
-               'image' => $resVal->getter( 'image' ),
-               'profile' => 'typeIconMini'
-              );
-              $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-              $multimediaUrl = false;
-              if( $resDataExt = $resDataExtArray[0]){
-               $thumbSettings['url'] = $resDataExt->getter('url');
-               $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
-               $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-               if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
-                $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
-               }
+                $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
+                  array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
+                        'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
+                        'multimediaUrl' => $multimediaUrl, 'image' => $imgUrl, 'image_big' => $imgUrl2);
               }
-              $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-              $thumbSettings['profile'] = 'hdpi4';
-              $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
-
-              $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
-                array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
-                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
-                      'multimediaUrl' => $multimediaUrl, 'image' => $imgUrl, 'image_big' => $imgUrl2);
             }
           }
-        }
-        else{
-          if ($resources){
-            foreach($resources as $resVal){
-              $thumbSettings = array(
-               'image' => $resVal->getter( 'image' ),
-               'profile' => 'fast_cut'
-              );
-              $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-              if( $resDataExt = $resDataExtArray[0]){
-               $thumbSettings['url'] = $resDataExt->getter('url');
-              }
-              $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+          else{
+            if ($resources){
+              foreach($resources as $resVal){
+                $thumbSettings = array(
+                 'image' => $resVal->getter( 'image' ),
+                 'profile' => 'fast_cut'
+                );
+                $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
+                if( $resDataExt = $resDataExtArray[0]){
+                 $thumbSettings['url'] = $resDataExt->getter('url');
+                }
+                $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
-              $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
-                array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
-                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl);
+                $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
+                  array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
+                        'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl);
+              }
             }
-          }
-        }
+          } //if
+        } //while
       }
     }
     return($collectionResources);
