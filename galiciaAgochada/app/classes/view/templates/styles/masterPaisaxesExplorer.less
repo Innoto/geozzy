@@ -147,7 +147,7 @@
     }//.explorerListContent
     .explorerListPager{
       position: absolute;
-      top: 20px;
+      top: 5px;
       right: 25px;
       font-size: 22px;
       color: @gzzColor-bck-3;
@@ -213,14 +213,19 @@
 
 } /*1200px*/
 @media screen and (max-width: 1199px) {
-  .explorerListPager{
-    top: 50% !important;
-    -ms-transform: translateY(-50%); /* IE 9 */
-    -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
-    transform: translateY(-50%);
-    .previous,
-    .next{
-      display:none;
+  .paisaxesExplorer{
+
+    .explorer-container-gallery{
+      .explorerListPager{
+        top: 50%;
+        -ms-transform: translateY(-50%); /* IE 9 */
+        -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+        transform: translateY(-50%);
+        .previous,
+        .next{
+          display:none;
+        }
+      }
     }
   }
 }/*1199px*/
