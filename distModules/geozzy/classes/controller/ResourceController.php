@@ -1564,6 +1564,7 @@ class ResourceController {
         )
       );
 
+print('prueba');
       var_dump($resCollectionList);
 
       while ( $collection = $resCollectionList->fetch() )
