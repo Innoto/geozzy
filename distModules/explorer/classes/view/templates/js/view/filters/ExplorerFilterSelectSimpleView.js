@@ -2,6 +2,13 @@ var geozzy = geozzy || {};
 if(!geozzy.filters) geozzy.filters={};
 
 geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
+
+
+  attributes: {},
+  initialize: function(options){
+    this.attributes = {};
+  },
+
   isTaxonomyFilter: true,
   template: _.template(
                           " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
@@ -13,9 +20,9 @@ geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
   templateOption: _.template("<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"),
 
   initialize: function( opts ) {
-    this.options.defaultOption = false;
+    var that = this;
 
-    $.extend(true, this.options, opts);
+    that.options = opts
 
   },
 
