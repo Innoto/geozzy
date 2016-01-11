@@ -1563,7 +1563,7 @@ class ResourceController {
           'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias')
         )
       );
-      if ($collection){
+      if (isset($resCollectionList)){
         while ( $collection = $resCollectionList->fetch() )
         {
           $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
