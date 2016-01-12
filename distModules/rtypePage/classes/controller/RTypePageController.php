@@ -1,6 +1,7 @@
 <?php
 rextView::autoIncludes();
 rextContact::autoIncludes();
+rextSocialNetwork::autoIncludes();
 
 class RTypePageController extends RTypeController implements RTypeInterface {
 
@@ -36,6 +37,12 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
 
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Extensión social network
+    $rTypeExtNames[] = 'rextSocialNetwork';
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $rExtFieldNames = $this->socialCtrl->manipulateForm( $form );
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // cambiamos el tipo de topics y starred para que no se muestren

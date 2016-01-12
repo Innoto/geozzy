@@ -1,21 +1,18 @@
-<!-- rExtViewBlock.tpl en rExtSocial module -->
+<!-- rExtFormBasic.tpl en rExtContact module -->
 
-<p> --- rExtViewBlock.tpl en rExtFile module</p>
-UHHHHHHHHHHHHHHHHH
-<div class="rExtSocial">
-
-  Modulo RRSS
-  {if isset( $rExt.data )}
-  <div class="socialNet">
-    <label>{t}Enable Facebook{/t}</label>
-    {$rExt.data.activeFb}
-  </div>
-  <div class="socialNet">
-    <label>{t}Text for facebook{/t}</label>
-    {$rExt.data.textfb}
-  </div>
-  {/if}
-
+<div class="rExtContact formBlock formBasic">
+{$rExt.dataForm.formFieldsArray['rExtSocialNetwork_activeFb']}
+{foreach $textFb as $text}
+  {$rExt.dataForm.formFieldsArray[$text]}
+{/foreach}
+<div class="defaultFb-box">
+  {$defaultFb["$GLOBAL_C_LANG"]}
+</div>
+{$rExt.dataForm.formFieldsArray['rExtSocialNetwork_activeTwitter']}
+{foreach $textTwitter as $text}
+  {$rExt.dataForm.formFieldsArray[$text]}
+{/foreach}
+<div class="defaultFb-box">{$default_textTwitter}</div>
 </div>
 
-<!-- /rExtViewBlock.tpl en rExtSocial module -->
+<!-- /rExtFormBasic.tpl en rExtContact module -->

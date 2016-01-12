@@ -52,25 +52,41 @@ $IMAGE_PROFILES = array(
 
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR----------------------------------------*/
   'typeIcon' => array(
-    'width' => 32, 'height' => 32,
-    'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 8,
+    'saveName' => 'icon.png',
     'saveFormat' => 'PNG' ),
   'typeIconHover' => array(
-    'width' => 32, 'height' => 32,
-    'backgroundColor' => '#00000000', 'rasterColor' => '#ff0000',
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRestHover36x36.png',
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 8,
+    'saveName' => 'iconHover.png',
     'saveFormat' => 'PNG' ),
   'typeIconSelected' => array(
-    'width' => 32, 'height' => 32,
-    'backgroundColor' => '#00000000', 'rasterColor' => '#00ff00',
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRest36x36.png',
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 8,
+    'saveName' => 'iconSelected.png',
     'saveFormat' => 'PNG' ),
 
 /*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
 
   'explorerMarker' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/chapa_paisaxes.png',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+  /*
+  'explorerMarker' => array(
     'width' => 32, 'height' => 32, 'cut' => false,
     'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
-
+  */
   'resourceLg' => array( 'width' => 1200, 'height' => 500),
   'resourceMd' => array( 'width' => 992, 'height' => 400),
   'resourceSm' => array( 'width' => 768, 'height' => 300),

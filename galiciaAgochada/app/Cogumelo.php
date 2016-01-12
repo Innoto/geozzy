@@ -5,6 +5,12 @@ class Cogumelo extends CogumeloClass
 {
   public $dependences = array(
     array(
+      "id" => "jquery",
+      "params" => array("jQuery#2.1.4"),
+      "installer" => "bower",
+      "includes" => array("dist/jquery.js")
+    ),
+    array(
      "id" => "bootstrap",
      "params" => array("bootstrap"),
      "installer" => "bower",

@@ -47,17 +47,19 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
 
     $fieldsInfo = array(
       'activeFb' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activar facebook') ))
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activar compartir en facebook') ))
       ),
       'textFb' => array(
-        'params' => array( 'label' => __( 'Text to share on facebook' ), 'type' => 'textarea' ),
+        'translate' => true,
+        'params' => array( 'label' => __( 'Text to share on facebook' ), 'type' => 'textarea', 'placeholder' => 'Recomiendo que visites #TITLE#. Lo he visto en #URL#' ),
         'rules' => array( 'maxlength' => '2000' )
       ),
       'activeTwitter' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Activar twitter' ))
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Activar compartir en twitter' ))
       ),
       'textTwitter' => array(
-        'params' => array( 'label' => __( 'Text to share on twitter' ), 'type' => 'textarea' ),
+        'translate' => true,
+        'params' => array( 'label' => __( 'Text to share on twitter' ), 'type' => 'textarea', 'placeholder' => 'Me ha gustado este sitio: #TITLE# vía #URL#' ),
         'rules' => array( 'maxlength' => '2000' )
       )
 
@@ -111,6 +113,8 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
   */
   public function getFormBlockInfo( FormController $form ) {
 
+    error_log( "RExtContactController: getFormBlockInfo()" );
+
     $formBlockInfo = array(
       'template' => false,
       'data' => false,
@@ -128,6 +132,13 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     if( $form->getFieldValue( 'id' ) ) {
       $formBlockInfo['data'] = $this->getRExtData();
     }
+
+    $templates['basic'] = new Template();
+    $templates['basic']->setTpl( 'rExtFormBasic.tpl', 'rextSocialNetwork' );
+    $templates['basic']->assign( 'rExt', $formBlockInfo );
+    $templates['basic']->assign('textFb', $form->multilangFieldNames( 'rExtSocialNetwork_textFb' ));
+    $templates['basic']->assign('textTwitter', $form->multilangFieldNames( 'rExtSocialNetwork_textTwitter' ));
+
 
     $templates['full'] = new Template();
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
@@ -154,13 +165,32 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     error_log( "RExtSocialNetworkController: resFormProcess()" );
 
+
+
     if( !$form->existErrors() ) {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
       // error_log( 'NEW RExtSocialNetworkModel: ' . print_r( $valuesArray, true ) );
+
+      $textFb = $form->multilangFieldNames( 'textFb' );
+      foreach ($textFb as $text){
+        if ($valuesArray[$text]==""){
+          $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
+          $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
+        }
+      }
+      $twitterFb = $form->multilangFieldNames( 'textTwitter' );
+      foreach ($twitterFb as $text){
+        if ($valuesArray[$text]==""){
+          $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
+          $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
+        }
+      }
+
       $rExtModel = new RExtSocialNetworkModel( $valuesArray );
+
       if( $rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
@@ -185,11 +215,11 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
   }
 
 
-
   /**
     Visualizamos el Recurso
    */
   public function getViewBlock( Template $resBlock ) {
+
     // error_log( "RExtSocialNetworkController: getViewBlock()" );
     $template = false;
 
@@ -218,21 +248,6 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
         }
       }
 
-      // Procesamos as taxonomías asociadas para mostralas en CSV
-      foreach( $this->taxonomies as $tax ) {
-        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-        $taxFieldValue = '';
-
-        if( isset( $rExtDataPrefixed[ $taxFieldName ] ) ) {
-          $terms = array();
-          foreach( $rExtDataPrefixed[ $taxFieldName ] as $termInfo ) {
-            $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
-          }
-          $taxFieldValue = implode( ', ', $terms );
-        }
-        $template->assign( $taxFieldName, $taxFieldValue );
-      }
-
       $template->assign( 'rExtFieldNames', array_keys( $rExtDataPrefixed ) );
       $template->setTpl( 'rExtViewBlock.tpl', 'rextSocialNetwork' );
 
@@ -240,7 +255,6 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
 
     return $template;
   }
-
 
 
   /**
@@ -257,36 +271,14 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
 
-      $rExtViewBlockInfo['data']['externalSocialNetwork'] = $resId = $this->defResCtrl->resObj->getter('externalSocialNetwork');
+      foreach ($rExtViewBlockInfo['data'] as $key=>$socialField){
+        $text[$key] = str_replace('#TITLE#', $this->defResCtrl->resObj->getter('title'), $socialField );
+        $text2[$key] = str_replace('#URL#', SITE_HOST.$this->defResCtrl->resData['urlAlias'], $text[$key] );
+        $rExtViewBlockInfo['data'][$key] = $text2[$key];
+      }
 
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
       $template->setTpl( 'rExtViewBlock.tpl', 'rextSocialNetwork' );
-      if( isset( $rExtViewBlockInfo['data'][ 'socialNetworkContentType' ] ) ) {
-        $socialNetworkContentType = array_pop( $rExtViewBlockInfo['data'][ 'socialNetworkContentType' ] );
-        $socialNetworkContentType = $socialNetworkContentType[ 'idName' ];
-        error_log( 'socialNetworkContentType: ' . $socialNetworkContentType );
-        switch( $socialNetworkContentType ) {
-          case 'page':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextSocialNetwork' );
-            break;
-          case 'file':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextSocialNetwork' );
-            break;
-          case 'media':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextSocialNetwork' );
-            break;
-          case 'image':
-            $template->setTpl( 'rExtViewBlockImage.tpl', 'rextSocialNetwork' );
-            break;
-          case 'audio':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextSocialNetwork' );
-            break;
-          case 'video':
-            $template->setTpl( 'rExtViewBlockVideo.tpl', 'rextSocialNetwork' );
-            break;
-        }
-      }
 
       $rExtViewBlockInfo['template'] = array( 'full' => $template );
     }
