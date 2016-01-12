@@ -166,9 +166,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $templates['social'] = new Template();
     $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['social']->assign( 'title', __( 'Social Networks' ) );
-    $templates['social']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->socialCtrl->prefixArray(array( 'activeFb', 'activeTwitter', 'textFb', 'textTwitter' ));
-    $templates['social']->assign( 'formFieldsNames', $formFieldsNames );
+    $templates['social']->setBlock( 'blockContent', $socialViewInfo['template']['basic'] );
 
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();
@@ -404,6 +402,9 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
     $rExtBlock = $this->rExtCtrl->getViewBlock( $resBlock );
 
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialBlock = $this->socialCtrl->getViewBlock( $resBlock );
+
     if( $rExtBlock ) {
       $template->addToBlock( 'rextAppEspazoNatural', $rExtBlock );
       $template->assign( 'rExtBlockNames', array( 'rextAppEspazoNatural' ) );
@@ -412,6 +413,20 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
       $template->assign( 'rextAppEspazoNatural', false );
       $template->assign( 'rExtBlockNames', false );
     }
+
+    if( $socialBlock ) {
+      $template->addToBlock( 'rextSocialNetwork', $socialBlock );
+      $template->assign( 'rextSocialNetwork_activeFb', $socialBlock->tpl_vars['rextSocialNetwork_activeFb']->value );
+      $template->assign( 'rextSocialNetwork_textFb', $socialBlock->tpl_vars['rextSocialNetwork_textFb_'.LANG_DEFAULT]->value );
+      $template->assign( 'rextSocialNetwork_activeTwitter', $socialBlock->tpl_vars['rextSocialNetwork_activeTwitter']->value );
+      $template->assign( 'rextSocialNetwork_textTwitter', $socialBlock->tpl_vars['rextSocialNetwork_textTwitter_'.LANG_DEFAULT]->value );
+      $template->assign( 'rExtSocialNetworkBlockNames', array( 'rextSocialNetwork' ) );
+    }
+    else {
+      $template->assign( 'rextSocialNetwork', false );
+      $template->assign( 'rExtSocialNetworkBlockNames', false );
+    }
+
 
     return $template;
   }
@@ -481,7 +496,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     else {
       $template->assign( 'rextSocialNetworkBlock', false );
     }
-    
+
 
     /* Cargamos los bloques de colecciones */
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );

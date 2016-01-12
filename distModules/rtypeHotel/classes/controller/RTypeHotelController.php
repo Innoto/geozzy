@@ -10,6 +10,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     error_log( 'RTypeHotelController::__construct' );
 
     parent::__construct( $defResCtrl, new rtypeHotel() );
+
   }
 
 
@@ -183,9 +184,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $templates['social'] = new Template();
     $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['social']->assign( 'title', __( 'Social Networks' ) );
-    $templates['social']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->socialCtrl->prefixArray(array( 'activeFb', 'activeTwitter', 'textFb', 'textTwitter' ));
-    $templates['social']->assign( 'formFieldsNames', $formFieldsNames );
+    $templates['social']->setBlock( 'blockContent', $socialViewInfo['template']['basic'] );
 
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();

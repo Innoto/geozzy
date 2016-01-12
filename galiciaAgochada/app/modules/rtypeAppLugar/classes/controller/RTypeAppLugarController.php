@@ -46,7 +46,6 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $rTypeExtNames[] = 'rextSocialNetwork';
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $rExtFieldNames = $this->socialCtrl->manipulateForm( $form );
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
@@ -170,9 +169,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $templates['social'] = new Template();
     $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['social']->assign( 'title', __( 'Social Networks' ) );
-    $templates['social']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->socialCtrl->prefixArray(array( 'activeFb', 'activeTwitter', 'textFb', 'textTwitter' ));
-    $templates['social']->assign( 'formFieldsNames', $formFieldsNames );
+    $templates['social']->setBlock( 'blockContent', $socialViewInfo['template']['basic'] );
 
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();
@@ -504,7 +501,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     }
     else {
       $template->assign( 'rextSocialNetworkBlock', false );
-    }    
+    }
 
     /* Cargamos los bloques de colecciones */
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
