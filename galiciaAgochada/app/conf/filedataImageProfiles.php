@@ -52,14 +52,28 @@ $IMAGE_PROFILES = array(
 
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR----------------------------------------*/
   'typeIcon' => array(
-    'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
-    'width' => 32, 'height' => 32, 'saveFormat' => 'PNG' ),
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 8,
+    'saveName' => 'icon.png',
+    'saveFormat' => 'PNG' ),
   'typeIconHover' => array(
-    'backgroundColor' => '#00000000', 'rasterColor' => '#ff0000',
-    'width' => 32, 'height' => 32, 'saveFormat' => 'PNG' ),
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRestHover36x36.png',
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 8,
+    'saveName' => 'iconHover.png',
+    'saveFormat' => 'PNG' ),
   'typeIconSelected' => array(
-    'backgroundColor' => '#00000000', 'rasterColor' => '#00ff00',
-    'width' => 32, 'height' => 32, 'saveFormat' => 'PNG' ),
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRest36x36.png',
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 8,
+    'saveName' => 'iconSelected.png',
+    'saveFormat' => 'PNG' ),
 
 /*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
 
