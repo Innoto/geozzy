@@ -59,22 +59,66 @@
   }
   .explorer-container-filter{
     .filters_fixed{
-      background-color: @gzzColor-bck-8;
+      position: relative;
+      background-color: @gzzColor-bck-9;
       height: 65px;
+      ul{
+        padding: 10px;
+        list-style: none;
+        li{
+          cursor:pointer;
+          list-style: none;
+          float: left;
+          margin: 5px;
+          height: 36px;
+          width: 36px;
+          .icon{}
+          .iconHover{ display: none;}
+          .iconSelected{ display:none;}
+          .title{
+            display:none;
+            position: absolute;
+            left: 0;
+            bottom: 1px;
+            width: 100%;
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
+            color: @gzzColor-text-light;
+          }
+
+          &:hover{
+            .icon{ display: none;}
+            .iconHover{ display: block;}
+            .title{ display:block; }
+          }
+          &.selected{
+            .icon{ display: none;}
+            .iconHover{ display: none;}
+            .iconSelected{ display: block;}
+          }
+        }
+      }
     }
     .filters_advancedContainer{
+      padding: 5px 20px;
+      background-color: @gzzColor-bck-1;
       .filters_openFilters{
-        background-color: @gzzColor-bck-1;
-        .fa-caret-up{ display:none; }
-        .fa-caret-down{ display:inline; }
+        padding: 5px 0px;
+        text-transform: uppercase;
+        font-size: 14px;
+        border-bottom: 1px solid @gzzColor-bck-8;
+        .fa-caret-up{ display:none; font-size: 24px; color: @gzzColor-xantares; float: right; margin-top: -3px;}
+        .fa-caret-down{ display:inline; font-size: 24px; color: @gzzColor-xantares; float: right; margin-top: -3px; }
       }
       .filters_advancedFilters{
+        padding: 5px 0px;
         background-color: @gzzColor-bck-1;
         height: 300px;
         display:none;
       }
       .filters_resume{
-        background-color: @gzzColor-bck-2;
+        padding: 5px 0px;
       }
 
       &:hover{
