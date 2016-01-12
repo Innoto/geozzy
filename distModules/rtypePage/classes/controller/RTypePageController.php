@@ -1,5 +1,4 @@
 <?php
-rextView::autoIncludes();
 rextContact::autoIncludes();
 rextSocialNetwork::autoIncludes();
 
@@ -12,10 +11,6 @@ class RTypePageController extends RTypeController implements RTypeInterface {
   }
 
 
-  private function newRExtContr() {
-
-    return new RExtViewController( $this );
-  }
 
   /**
     Defino el formulario
@@ -26,18 +21,19 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
-    $rTypeExtNames[] = 'rextView';
-    $this->rExtCtrl = $this->newRExtContr();
-    $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
-
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+    // cambiamos el tipo de topics y starred para que no se muestren
+    $form->setFieldParam('topics', 'type', 'reserved');
+    $form->setFieldParam('starred', 'type', 'reserved');
+    $form->removeValidationRules('topics');
+    $form->removeValidationRules('starred');
 
     // Extensión contacto
     $rTypeExtNames[] = 'rextContact';
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
-
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
 
     // Extensión social network
     $rTypeExtNames[] = 'rextSocialNetwork';
@@ -45,89 +41,183 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $rExtFieldNames = $this->socialCtrl->manipulateForm( $form );
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
-    // cambiamos el tipo de topics y starred para que no se muestren
-    $form->setFieldParam('topics', 'type', 'reserved');
-    $form->setFieldParam('starred', 'type', 'reserved');
-    $form->removeValidationRules('topics');
-    $form->removeValidationRules('starred');
-
-    $form->removeField('externalUrl');
-    $form->removeField('rExtContact_email');
-
     return( $rTypeFieldNames );
   } // function manipulateForm()
 
-  /**
-   * Cambios en el reparto de elementos para las distintas columnas del Template de Admin
-   *
-   * @param $formBlock Template Contiene el form y los datos cargados
-   * @param $template Template Contiene la estructura de columnas para Admin
-   * @param $adminViewResource AdminViewResource Acceso a los métodos usados en Admin
-   * @param $adminColsInfo Array Organización de elementos establecida por defecto
-   *
-   * @return Array Información de los elementos de cada columna
-   */
-  public function manipulateAdminFormColumns( Template $formBlock, Template $template, AdminViewResource $adminViewResource, Array $adminColsInfo ) {
 
-    $formUtils = new FormController();
+  public function getFormBlockInfo( FormController $form ) {
+    error_log( "RTypePageController: getFormBlockInfo()" );
 
-    // Extraemos los campos de la extensión Vista
-    $viewAlternativeMode = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtView_viewAlternativeMode') );
-    if( $viewAlternativeMode ) {
-      $formPartBlock = $this->defResCtrl->setBlockPartTemplate($viewAlternativeMode);
-      $adminColsInfo['col4']['mode'] = array( $formPartBlock, __( 'View alternative mode' ), false );
+    $formBlockInfo = array(
+      'template' => false,
+      'data' => false,
+      'dataForm' => false,
+      'ext' => array()
+    );
+
+    $formBlockInfo['dataForm'] = array(
+      'formOpen' => $form->getHtmpOpen(),
+      'formFieldsArray' => $form->getHtmlFieldsArray(),
+      'formFieldsHiddenArray' => array(),
+      'formFields' => $form->getHtmlFieldsAndGroups(),
+      'formClose' => $form->getHtmlClose(),
+      'formValidations' => $form->getScriptCode()
+    );
+
+    if( $resId = $form->getFieldValue( 'id' ) ) {
+      $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
 
-    // Extraemos los campos de la extensión Contacto que irán a la otra columna y los desasignamos
-    $formContact1 = $adminViewResource->extractFormBlockFields( $formBlock, array( 'rExtContact_address',
-      'rExtContact_city', 'rExtContact_cp', 'rExtContact_province', 'rExtContact_phone',
-      'rExtContact_email', 'externalUrl', 'rExtContact_timetable') );
-    $formContact2 = $adminViewResource->extractFormBlockFields( $formBlock, $formUtils->multilangFieldNames( 'rExtContact_directions' ) );
-    $adminColsInfo['col8']['contact1'] = array();
+    $this->contactCtrl = new RExtContactController( $this );
+    $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
-    if( $formContact1 ) {
-      $formPartBlock = $this->defResCtrl->setBlockPartTemplate( $formContact1 );
-      $adminColsInfo['col8']['contact1'] = array( $formPartBlock, __( 'Contact' ), false );
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialViewInfo = $this->socialCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
+
+    // TEMPLATE panel principa del form. Contiene los elementos globales del form.
+    $templates['formBase'] = new Template();
+    $templates['formBase']->setTpl( 'rTypeFormBase.tpl', 'geozzy' );
+    $templates['formBase']->assign( 'title', __('Main Resource information') );
+    $templates['formBase']->assign( 'res', $formBlockInfo );
+
+    $formFieldsNames = array_merge(
+      $form->multilangFieldNames( 'title' ),
+      $form->multilangFieldNames( 'shortDescription' ),
+      $form->multilangFieldNames( 'mediumDescription' ),
+      $form->multilangFieldNames( 'content' )
+    );
+    $formFieldsNames[] = 'externalUrl';
+    $formFieldsNames[] = 'topics';
+    $formFieldsNames[] = 'starred';
+    $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel estado de publicacion
+    $templates['publication'] = new Template();
+    $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['publication']->assign( 'title', __( 'Publication' ) );
+    $templates['publication']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'published', 'weight' );
+    $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel SEO
+    $templates['seo'] = new Template();
+    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['seo']->assign( 'title', __( 'SEO' ) );
+    $templates['seo']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array_merge(
+      $form->multilangFieldNames( 'urlAlias' ),
+      $form->multilangFieldNames( 'headKeywords' ),
+      $form->multilangFieldNames( 'headDescription' ),
+      $form->multilangFieldNames( 'headTitle' )
+    );
+    $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel contacto
+    $templates['location'] = new Template();
+    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
+    $templates['location']->assign( 'title', __( 'Location' ) );
+    $templates['location']->assign( 'res', $formBlockInfo );
+    $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
+
+    // TEMPLATE panel localización
+    $templates['contact'] = new Template();
+    $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['contact']->assign( 'title', __( 'Contact' ) );
+    $templates['contact']->setBlock( 'blockContent', $contactViewInfo['template']['basic'] );
+
+    // TEMPLATE panel social network
+    $templates['social'] = new Template();
+    $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['social']->assign( 'title', __( 'Social Networks' ) );
+    $templates['social']->setBlock( 'blockContent', $socialViewInfo['template']['basic'] );
+
+    // TEMPLATE panel multimedia
+    $templates['multimedia'] = new Template();
+    $templates['multimedia']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['multimedia']->assign( 'title', __( 'Multimedia galleries' ) );
+    $templates['multimedia']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'multimediaGalleries', 'addMultimediaGalleries' );
+    $templates['multimedia']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel collections
+    $templates['collections'] = new Template();
+    $templates['collections']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['collections']->assign( 'title', __( 'Collections of related resources' ) );
+    $templates['collections']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'collections', 'addCollections' );
+    $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel image
+    $templates['image'] = new Template();
+    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['image']->assign( 'title', __( 'Select a image' ) );
+    $templates['image']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'image' );
+    $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel cuadro informativo
+    $templates['info'] = new Template();
+    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'geozzy' );
+    $templates['info']->assign( 'title', __( 'Information' ) );
+    $templates['info']->assign( 'res', $formBlockInfo );
+
+    $resourceType = new ResourcetypeModel();
+    $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
+    if ($type){
+      $templates['info']->assign( 'rType', $type->getter('name_es') );
     }
+    $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
+    $templates['info']->assign( 'timeCreation', $timeCreation );
+    if (isset($formBlockInfo['data']['userUpdate'])){
+      $userModel = new UserModel();
+      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
+      $userUpdateName = $userUpdate->getter('name');
+      $timeLastUpdate = date('d/m/Y', time($formBlockInfo['data']['timeLastUpdate']));
+      $templates['info']->assign( 'timeLastUpdate', $timeLastUpdate.' ('.$userUpdateName.')' );
+    }
+    if (isset($formBlockInfo['data']['averageVotes'])){
+      $templates['info']->assign( 'averageVotes', $formBlockInfo['data']['averageVotes']);
+    }
+    /* Temáticas */
+    if (isset($formBlockInfo['data']['topicsName'])){
+      $templates['info']->assign( 'resourceTopicList', $formBlockInfo['data']['topicsName']);
+    }
+    $templates['info']->assign( 'res', $formBlockInfo );
+    $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
 
-    // Componemos el bloque geolocalización
-    $templateBlock = $formBlock->getTemplateVars('formFieldsArray');
-    $resourceLocLat = $templateBlock['locLat'];
-    $resourceLocLon = $templateBlock['locLon'];
-    $resourceDefaultZoom = $templateBlock['defaultZoom'];
-    $resourceDirections = implode( "\n", $formContact2 ); // $templateBlock['rExtContact_directions'];
+    // TEMPLATE con todos los paneles
+    $templates['adminFull'] = new Template();
+    $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
+    $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
 
-    $locationData = '<div class="row">'.$resourceLocLat.'</div>'.
-      '<div class="row">'.$resourceLocLon.'</div>'.
-      '<div class="row">'.$resourceDefaultZoom.'</div>'.
-      '<div class="row btn btn-primary col-md-offset-3">'.__("Automatic Location").'</div>';
+    // COL8
+    $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
+    // COL4
+    $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 
-    $locAll = '<div class="location">'.
-      '<div class="row">'.
-      '<div class="col-lg-6 mapContainer"><div class="descMap">Haz click en el lugar donde se ubica el recurso<br>Podrás arrastrar y soltar la localización</div></div>'.
-      '<div class="col-lg-6 locationData">'.$locationData.'</div></div>'.
-      '<div class="locationDirections">'.$resourceDirections.'</div>'.
-      '</div>';
 
-    $adminColsInfo['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
+    // TEMPLATE en bruto con todos los elementos del form
+    $templates['full'] = new Template();
+    $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );
+    $templates['full']->assign( 'res', $formBlockInfo );
 
-    // Resordenamos los bloques de acuerdo al diseño
-    $adminColsInfoOrd = array();
-    $adminColsInfoOrd['col8']['main'] = $adminColsInfo['col8']['main'];
-    $adminColsInfoOrd['col8']['location'] = $adminColsInfo['col8']['location'];
-    $adminColsInfoOrd['col8']['multimedia'] = $adminColsInfo['col8']['multimedia'];
-    $adminColsInfoOrd['col8']['collections'] = $adminColsInfo['col8']['collections'];
-    $adminColsInfoOrd['col8']['seo'] = $adminColsInfo['col8']['seo'];
 
-    $adminColsInfoOrd['col4']['publication'] = $adminColsInfo['col4']['publication'];
-    $adminColsInfoOrd['col4']['mode'] = $adminColsInfo['col4']['mode'];
-    $adminColsInfoOrd['col4']['image'] = $adminColsInfo['col4']['image'];
-    $adminColsInfoOrd['col4']['info'] = $adminColsInfo['col4']['info'];
+    $formBlockInfo['template'] = $templates;
 
-    return $adminColsInfoOrd;
+    return $formBlockInfo;
   }
-
-
 
   /**
     Validaciones extra previas a usar los datos del recurso base
@@ -136,8 +226,11 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     // error_log( "RTypePageController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
-      $this->rExtCtrl = $this->newRExtContr();
-      $this->rExtCtrl->resFormRevalidate( $form );
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormRevalidate( $form );
+
+      $this->socialCtrl = new RExtSocialNetworkController( $this );
+      $this->socialCtrl->resFormRevalidate( $form );
     }
 
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
@@ -149,10 +242,12 @@ class RTypePageController extends RTypeController implements RTypeInterface {
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RTypePageController: resFormProcess()" );
-
     if( !$form->existErrors() ) {
-      $this->rExtCtrl = $this->newRExtContr();
-      $this->rExtCtrl->resFormProcess( $form, $resource );
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormProcess( $form, $resource );
+
+      $this->socialCtrl = new RExtSocialNetworkController( $this );
+      $this->socialCtrl->resFormProcess( $form, $resource );
     }
   }
 
@@ -163,8 +258,11 @@ class RTypePageController extends RTypeController implements RTypeInterface {
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
     // error_log( "RTypePageController: resFormSuccess()" );
 
-    $this->rExtCtrl = $this->newRExtContr();
-    $this->rExtCtrl->resFormSuccess( $form, $resource );
+    $this->contactCtrl = new RExtContactController( $this );
+    $this->contactCtrl->resFormSuccess( $form, $resource );
+
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $this->socialCtrl->resFormSuccess( $form, $resource );
   }
 
 
@@ -179,18 +277,32 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $template = $resBlock;
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypePage' );
 
-    $this->rExtCtrl = $this->newRExtContr();
-    $viewBlock = $this->rExtCtrl->getViewBlock( $template );
-    // IMPORTANTE: rExtView seguramente cambie o .tpl de $template
-    // pasando de rTypeViewBlock.tpl de rtypePage
+    $this->contactCtrl = new RExtContactController( $this );
+    $contactBlock = $this->contactCtrl->getViewBlock( $resBlock );
 
-    if( $viewBlock ) {
-      $template->addToBlock( 'rextView', $viewBlock );
-      $template->assign( 'rExtBlockNames', array( 'rextView' ) );
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialBlock = $this->socialCtrl->getViewBlock( $resBlock );
+
+    if( $contactBlock ) {
+      $template->addToBlock( 'rextContact', $contactBlock );
+      $template->assign( 'rExtContactBlockNames', array( 'rextContact' ) );
     }
     else {
-      $template->assign( 'rextView', false );
-      $template->assign( 'rExtBlockNames', false );
+      $template->assign( 'rextContact', false );
+      $template->assign( 'rExtContactBlockNames', false );
+    }
+
+    if( $socialBlock ) {
+      $template->addToBlock( 'rextSocialNetwork', $socialBlock );
+      $template->assign( 'rextSocialNetwork_activeFb', $socialBlock->tpl_vars['rextSocialNetwork_activeFb']->value );
+      $template->assign( 'rextSocialNetwork_textFb', $socialBlock->tpl_vars['rextSocialNetwork_textFb_'.LANG_DEFAULT]->value );
+      $template->assign( 'rextSocialNetwork_activeTwitter', $socialBlock->tpl_vars['rextSocialNetwork_activeTwitter']->value );
+      $template->assign( 'rextSocialNetwork_textTwitter', $socialBlock->tpl_vars['rextSocialNetwork_textTwitter_'.LANG_DEFAULT]->value );
+      $template->assign( 'rExtSocialNetworkBlockNames', array( 'rextSocialNetwork' ) );
+    }
+    else {
+      $template->assign( 'rextSocialNetwork', false );
+      $template->assign( 'rExtSocialNetworkBlockNames', false );
     }
 
     return $template;
@@ -210,27 +322,75 @@ class RTypePageController extends RTypeController implements RTypeInterface {
       'ext' => array()
     );
 
-    // TODO: COIDADO!!! - ESTE RTYPE é especial en canto a visualizacion!!!
-
     $template = new Template();
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypePage' );
 
-    $this->rExtCtrl = $this->newRExtContr();
-    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
+    $this->contactCtrl = new RExtContactController( $this );
+    $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
 
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
-    if( $rExtViewInfo ) {
-      if( $rExtViewInfo['template'] ) {
-        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextViewBlock', $templateBlock );
+    $resData = $this->defResCtrl->getResourceData( false, true );
+
+    if( $contactViewInfo ) {
+      if( $contactViewInfo['template'] ) {
+        foreach( $contactViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextContactBlock', $templateBlock );
         }
       }
     }
     else {
-      $template->assign( 'rextViewBlock', false );
+      $template->assign( 'rextContactBlock', false );
     }
+
+    if( $socialViewInfo ) {
+      if( $socialViewInfo['template'] ) {
+        foreach( $socialViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextSocialNetworkBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextSocialNetworkBlock', false );
+    }
+
+    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
+
+    if ($collectionArrayInfo){
+      $multimediaArray = $collectionArray = false;
+      foreach ($collectionArrayInfo as $key => $collectionInfo){
+        if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
+            $multimediaArray[$key] = $collectionInfo;
+        }
+        else{ // resto de colecciones
+            $collectionArray[$key] = $collectionInfo;
+        }
+      }
+
+      if ($multimediaArray){
+        $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
+        if ($arrayMultimediaBlock){
+          foreach ($arrayMultimediaBlock as $multimediaBlock){
+            $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+          }
+        }
+      }
+
+      if ($collectionArray){
+        $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
+        if ($arrayCollectionBlock){
+          foreach ($arrayCollectionBlock as $collectionBlock){
+            $template->addToBlock( 'collections', $collectionBlock );
+          }
+        }
+      }
+    }
+
 
     $viewBlockInfo['template'] = array( 'full' => $template );
 
