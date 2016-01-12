@@ -96,7 +96,7 @@
       </ul>
       {/if}
 
-      <ul class="social col-lg-2">
+      <ul class="social col-lg-2 cleafix">
         <li class="elementShare">
           {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
             <div class="share"><i class="fa fa-share-alt"></i></div>
@@ -124,7 +124,6 @@
         </li>
       </ul>
     </div>
-
 
     <div class="shortDescription">
       {$res.data.mediumDescription|escape:'htmlall'}
