@@ -155,15 +155,17 @@
         {/foreach}
 
         {foreach $allFacilities as $termId => $term}
-          {if $termId|array_key_exists:$res.data.accommodationFacilities}
-            <div class="icon">
-              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
-            </div>
-          {else}
-            <div class="icon light">
-              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
-            </div>
-          {/if}
+          {if isset($term.icon)}
+            {if $termId|array_key_exists:$res.data.accommodationFacilities}
+              <div class="icon">
+                <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
+              </div>
+            {else}
+              <div class="icon light">
+                <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
+              </div>
+            {/if}
+          {/if}  
         {/foreach}
       </div>
     </div>
