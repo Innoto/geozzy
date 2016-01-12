@@ -34,7 +34,7 @@ $( document ).ready(function(){
 function initEffectNavs(){
   $('a.page-scroll').bind('click', function scrollSuave(event) {
     var hrefText = $(this).attr('href');
-    if( hrefText.indexOf( '#' ) === 0 ) {
+    if( hrefText.indexOf( '#' ) === 0) {
       var $anchor = $( hrefText );
       if( $anchor.length > 0) {
         $('html, body').stop().animate({
