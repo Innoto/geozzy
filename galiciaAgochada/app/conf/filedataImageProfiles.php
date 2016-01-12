@@ -55,7 +55,7 @@ $IMAGE_PROFILES = array(
     'rasterColor' => '#ffffff',
     'width' => 36, 'height' => 36,
     'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 8,
+    'padding' => 5,
     'saveName' => 'icon.png',
     'saveFormat' => 'PNG' ),
   'typeIconHover' => array(
@@ -63,7 +63,7 @@ $IMAGE_PROFILES = array(
     'width' => 36, 'height' => 36,
     'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRestHover36x36.png',
     'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 8,
+    'padding' => 5,
     'saveName' => 'iconHover.png',
     'saveFormat' => 'PNG' ),
   'typeIconSelected' => array(
@@ -71,7 +71,7 @@ $IMAGE_PROFILES = array(
     'width' => 36, 'height' => 36,
     'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRest36x36.png',
     'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 8,
+    'padding' => 5,
     'saveName' => 'iconSelected.png',
     'saveFormat' => 'PNG' ),
 
