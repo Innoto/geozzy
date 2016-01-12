@@ -52,25 +52,27 @@ $IMAGE_PROFILES = array(
 
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR----------------------------------------*/
   'typeIcon' => array(
-    'width' => 32, 'height' => 32,
     'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
-    'saveFormat' => 'PNG' ),
+    'width' => 32, 'height' => 32, 'saveFormat' => 'PNG' ),
   'typeIconHover' => array(
-    'width' => 32, 'height' => 32,
     'backgroundColor' => '#00000000', 'rasterColor' => '#ff0000',
-    'saveFormat' => 'PNG' ),
+    'width' => 32, 'height' => 32, 'saveFormat' => 'PNG' ),
   'typeIconSelected' => array(
-    'width' => 32, 'height' => 32,
     'backgroundColor' => '#00000000', 'rasterColor' => '#00ff00',
-    'saveFormat' => 'PNG' ),
+    'width' => 32, 'height' => 32, 'saveFormat' => 'PNG' ),
 
 /*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
 
   'explorerMarker' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/chapa_paisaxes.png',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+  /*
+  'explorerMarker' => array(
     'width' => 32, 'height' => 32, 'cut' => false,
     'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
-
+  */
   'resourceLg' => array( 'width' => 1200, 'height' => 500),
   'resourceMd' => array( 'width' => 992, 'height' => 400),
   'resourceSm' => array( 'width' => 768, 'height' => 300),
