@@ -172,9 +172,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $templates['social'] = new Template();
     $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['social']->assign( 'title', __( 'Social Networks' ) );
-    $templates['social']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->socialCtrl->prefixArray(array( 'activeFb', 'activeTwitter', 'textFb', 'textTwitter' ));
-    $templates['social']->assign( 'formFieldsNames', $formFieldsNames );
+    $templates['social']->setBlock( 'blockContent', $socialViewInfo['template']['basic'] );
 
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();
@@ -455,11 +453,15 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
     if( $socialBlock ) {
       $template->addToBlock( 'rextSocialNetwork', $socialBlock );
+      $template->assign( 'rextSocialNetwork_activeFb', $socialBlock->tpl_vars['rextSocialNetwork_activeFb']->value );
+      $template->assign( 'rextSocialNetwork_textFb', $socialBlock->tpl_vars['rextSocialNetwork_textFb_'.LANG_DEFAULT]->value );
+      $template->assign( 'rextSocialNetwork_activeTwitter', $socialBlock->tpl_vars['rextSocialNetwork_activeTwitter']->value );
+      $template->assign( 'rextSocialNetwork_textTwitter', $socialBlock->tpl_vars['rextSocialNetwork_textTwitter_'.LANG_DEFAULT]->value );
       $template->assign( 'rExtSocialNetworkBlockNames', array( 'rextSocialNetwork' ) );
     }
     else {
-      $template->assign( 'rextContact', false );
-      $template->assign( 'rExtContactBlockNames', false );
+      $template->assign( 'rextSocialNetwork', false );
+      $template->assign( 'rExtSocialNetworkBlockNames', false );
     }
 
     return $template;

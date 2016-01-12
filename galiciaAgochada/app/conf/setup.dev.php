@@ -227,7 +227,6 @@ $LANG_AVAILABLE = array(
 );
 define( 'LANG_DEFAULT', 'es' );
 
-
 //
 //  Form Mod
 //

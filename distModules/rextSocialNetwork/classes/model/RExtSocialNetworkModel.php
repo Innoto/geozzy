@@ -16,20 +16,22 @@ class RExtSocialNetworkModel extends Model {
       'type'=>'FOREIGN',
       'vo' => 'ResourceModel',
       'key' => 'id'
-    ),    
+    ),
     'activeFb' => array(
       'type' => 'INT'
     ),
     'textFb' => array(
       'type' => 'VARCHAR',
-      'size' => 2000
+      'size' => 2000,
+      'multilang' => true
     ),
     'activeTwitter' => array(
       'type' => 'INT'
     ),
     'textTwitter' => array(
       'type' => 'VARCHAR',
-      'size' => 2000
+      'size' => 2000,
+      'multilang' => true
     )
   );
 
