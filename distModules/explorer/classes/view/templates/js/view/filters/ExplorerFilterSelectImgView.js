@@ -16,9 +16,9 @@ geozzy.filters.filterSelectImgView = geozzy.filterView.extend({
       "<% if(defaultOption){ %> "+
         "<li data-resourceid='<%- defaultOption.value %>' > "+
           "<div class='title'><%- defaultOption.title %></div> "+
-          "<img class='icon' src='/cgmlImg/<%- defaultOption.icon %>/explorerMarker/icon.png'> " +
-          "<img class='iconHover' src='/cgmlImg/<%- defaultOption.icon %>/explorerMarker/iconHover.png'> " +
-          "<img class='iconSelected' src='/cgmlImg/<%- defaultOption.icon %>/explorerMarker/iconSelected.png'> " +
+          "<img class='icon' src='/cgmlImg/<%- defaultOption.icon %>/typeIcon/icon.png'> " +
+          "<img class='iconHover' src='/cgmlImg/<%- defaultOption.icon %>/typeIconHover/iconHover.png'> " +
+          "<img class='iconSelected' src='/cgmlImg/<%- defaultOption.icon %>/typeIconSelected/iconSelected.png'> " +
         "</li>"+
       "<%}%>"+
       "<%= options %>"+
@@ -28,9 +28,9 @@ geozzy.filters.filterSelectImgView = geozzy.filterView.extend({
   templateOption: _.template(
     "<li data-resourceid='<%- id %>'>"+
       "<div class='title'><%- name_es %></div> "+
-      "<img class='icon' src='/cgmlImg/<%- icon %>/explorerMarker/icon.png'> " +
-      "<img class='iconHover' src='/cgmlImg/<%- icon %>/explorerMarker/iconHover.png'> " +
-      "<img class='iconSelected' src='/cgmlImg/<%- icon %>/explorerMarker/iconSelected.png'> " +
+      "<img class='icon' src='/cgmlImg/<%- icon %>/typeIcon/icon.png'> " +
+      "<img class='iconHover' src='/cgmlImg/<%- icon %>/typeIconHover/iconHover.png'> " +
+      "<img class='iconSelected' src='/cgmlImg/<%- icon %>/typeIconSelected/iconSelected.png'> " +
     "</li>"
   ),
 
