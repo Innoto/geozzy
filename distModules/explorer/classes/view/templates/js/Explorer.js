@@ -31,8 +31,8 @@ geozzy.explorer = function( opts ) {
 
   // metrics
 
-  that.metricsExplorerController = false;
-  that.metricsResourceController = false;
+  that.metricsExplorerController = geozzy.biMetricsInstances.explorer;
+  that.metricsResourceController = geozzy.biMetricsInstances.resource;
 
 
   // router
@@ -133,7 +133,11 @@ geozzy.explorer = function( opts ) {
     that.resourceIndex.removePagination();
 
     // Set filters for current index
+
     that.resourceIndex.filterBy( function(model) {
+
+
+
       var matches = 0;
       var ret = false;
 
@@ -214,6 +218,7 @@ geozzy.explorer = function( opts ) {
     }
 
     if(that.displays.activeList) {
+      that.displays.pasiveList.currentPage = 0;
       resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
     }
 

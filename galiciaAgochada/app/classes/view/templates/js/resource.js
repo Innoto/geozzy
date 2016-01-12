@@ -17,6 +17,18 @@ $(document).ready(function(){
     })
   });
 
+  $('.elementShare').hover(
+    function(){ //mouseenter
+      $('.share').css('visibility','hidden');
+      $('.share-open').show();
+    },
+    function(){ //mouseleave
+      $('.share-open').hide();
+      $('.share').css('visibility','visible');
+    }
+  );
+
+
   $.each(idGallery, function(i, elm){
     if ($('#multimediaGallery_'+elm)){
        $('#multimediaGallery_'+elm).unitegallery({
@@ -51,15 +63,15 @@ $(document).ready(function(){
     margin:10,
     nav:true,
     responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:4
-        }
+      0:{
+          items:1
+      },
+      767:{
+          items:3
+      },
+      1200:{
+          items:4
+      }
     }
   });
 

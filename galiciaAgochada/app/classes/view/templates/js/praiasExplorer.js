@@ -48,7 +48,7 @@
         '<div class="container titleBar">'+
           '<div class="row">'+
             '<div class="col-md-6 col-sm-4 hidden-xs explorerTitle" >'+
-              '<img class="img-responsive" alt="praias Espectaculares" src="/media/img/praiasIcon.png"></img>'+
+              '<img class="iconTitleBar img-responsive" alt="praias Espectaculares" src="/media/img/praiasIcon.png"></img>'+
               '<h1>Praias Espectaculares</h1>'+
             '</div>'+
             '<div class="col-md-6 col-sm-8 col-xs-12 explorerFilters clearfix" ></div>'+
@@ -98,7 +98,7 @@
       var hExplorerLayout = $('.praiasExplorer').height();
       var hExplorerFilters = $('.praiasExplorer .explorer-container-filter').height();
       var hExplorerGallery = $('.praiasExplorer .explorer-container-gallery').height();
-      var hHeader = 100;
+      var hHeader = 60;
       var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
 
       $('.praiasExplorer .explorer-container-map').height( hExplorerMap );

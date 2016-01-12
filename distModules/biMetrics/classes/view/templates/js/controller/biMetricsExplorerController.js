@@ -12,7 +12,7 @@ geozzy.biMetrics.controller.explorer = geozzy.biMetrics.controller.biMetricsCont
        "explorer_ID":3,
        "bounds":metric.bounds,
        "filters": metric.filters,
-       "metricTime": that.getTimesTamp()
+       "metricTime": that.getTimesTamp().toString()
     };
 
   },

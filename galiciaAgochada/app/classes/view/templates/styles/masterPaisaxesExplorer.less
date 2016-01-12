@@ -9,7 +9,7 @@
 
 .paisaxesExplorer{
   position: fixed;
-  top:100px;
+  top:60px;
   width: 100%;
 
   .explorerMap{
@@ -36,6 +36,12 @@
 
         .filterZonaMapContainer{
           .filterZonaMap_openFilter{
+            .filterZonaMap_arrow{
+              font-size: 28px;
+            }
+            .filterZonaMap_selected{
+              text-transform: uppercase;
+            }
             svg{
               width: 30px;
               height: 30px;
@@ -100,7 +106,7 @@
               top: 0px;
               left: 25px;
               background-color: rgba( 255, 255, 255, 0.7);
-              padding: 15px;
+              padding: 10px;
               font-size: 24px;
               display: none;
               .commonFav;
@@ -113,9 +119,11 @@
         .elementInfo{
           font-size: 14px;
           line-height: 20px;
-          height: 40px;
+          height: 20px;
+          width: 100%;
           overflow: hidden;
           text-overflow: ellipsis;
+          white-space:nowrap;
         }
         &:hover{
           .elementImg img{
@@ -139,7 +147,7 @@
     }//.explorerListContent
     .explorerListPager{
       position: absolute;
-      top: 20px;
+      top: 5px;
       right: 25px;
       font-size: 22px;
       color: @gzzColor-bck-3;
@@ -194,4 +202,47 @@
       }
     }//.gempiInfo
   }//.gempiContent
+}
+
+/**************************************************************************************/
+/**************************************************************************************/
+/**********************  RESPONSIVE MEDIA QUERIES  ************************************/
+/**************************************************************************************/
+/**************************************************************************************/
+@media screen and (min-width: 1200px) {
+
+} /*1200px*/
+@media screen and (max-width: 1199px) {
+  .paisaxesExplorer{
+
+    .explorer-container-gallery{
+      .explorerListPager{
+        top: 50%;
+        -ms-transform: translateY(-50%); /* IE 9 */
+        -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+        transform: translateY(-50%);
+        .previous,
+        .next{
+          display:none;
+        }
+      }
+    }
+  }
+}/*1199px*/
+@media screen and (max-width: 991px) {
+
+}/*991px*/
+@media screen and (max-width: 767px) {
+
+} /*767px*/
+@media screen and (max-width:1024px) and (orientation:portrait){
+  .paisaxesExplorer{
+    .explorer-container-gallery{
+      .explorerListContent{
+        .element{
+          width: 33.33% !important;
+        }//.element
+      }//.explorerListContent
+    }//.explorer-container-gallery
+  }//.paisaxesExplorer
 }

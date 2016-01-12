@@ -9,34 +9,35 @@ class PaisaxesExplorerModel extends Model
 {
   var $notCreateDBTable = true;
   var $rcSQL = "
-                DROP VIEW IF EXISTS geozzy_paisaxes_explorer_index;
-                CREATE VIEW geozzy_paisaxes_explorer_index AS
-                  SELECT
-                    geozzy_resource.id as id,
-                    geozzy_resourcetype.idName as rtype,
-                    geozzy_resource.title_en as title_en,
-                    geozzy_resource.title_es as title_es,
-                    geozzy_resource.title_gl as title_gl,
-                    geozzy_resource.image as image,
-                    geozzy_resource.shortDescription_es as shortDescription_es,
-                    geozzy_resource.shortDescription_en as shortDescription_en,
-                    geozzy_resource.shortDescription_gl as shortDescription_gl,
-                    geozzy_resource.loc as loc,
-                    geozzy_resource.timeLastUpdate as timeLastUpdate,
-                    group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
-                  FROM geozzy_resource
-                  LEFT JOIN geozzy_resource_taxonomyterm
-                  ON geozzy_resource.id = geozzy_resource_taxonomyterm.resource
-                  LEFT JOIN geozzy_resourcetype
-                  ON geozzy_resource.rTypeId = geozzy_resourcetype.id
+            DROP VIEW IF EXISTS geozzy_paisaxes_explorer_index;
+            CREATE VIEW geozzy_paisaxes_explorer_index AS
+            SELECT
+              geozzy_resource.id as id,
+              geozzy_resourcetype.idName as rtype,
+              geozzy_resource.title_en as title_en,
+              geozzy_resource.title_es as title_es,
+              geozzy_resource.title_gl as title_gl,
+              geozzy_resource.image as image,
+              geozzy_resource.shortDescription_es as shortDescription_es,
+              geozzy_resource.shortDescription_en as shortDescription_en,
+              geozzy_resource.shortDescription_gl as shortDescription_gl,
+              geozzy_resource.loc as loc,
+              geozzy_resource.timeLastUpdate as timeLastUpdate,
+              group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
+            FROM geozzy_resource
+            LEFT JOIN geozzy_resource_taxonomyterm
+            ON geozzy_resource.id = geozzy_resource_taxonomyterm.resource
+            LEFT JOIN geozzy_resourcetype
+            ON geozzy_resource.rTypeId = geozzy_resourcetype.id
+            LEFT JOIN geozzy_resource_topic
+            ON geozzy_resource.id = geozzy_resource_topic.resource
+            LEFT JOIN geozzy_topic
+            ON geozzy_resource_topic.topic = geozzy_topic.id
 
-                  WHERE
-                    geozzy_resource.published = 1 AND
-                    (
-                      geozzy_resourcetype.idName = 'rtypeAppEspazoNatural' OR
-                      geozzy_resourcetype.idName = 'rtypeRuta'
-                    )
-                  group by geozzy_resource.id;
+            WHERE
+              geozzy_resource.published = 1 AND
+              geozzy_topic.idName = 'PaisaxesEspectaculares'
+            group by geozzy_resource.id;
               ";
 
   static $tableName = 'geozzy_paisaxes_explorer_index';

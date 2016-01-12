@@ -21,7 +21,7 @@ body {
     background: transparent;
     border:none;
     margin-bottom: 0;
-    padding-top: 28px;
+    padding-top: 5px;
 
     .logo{
       margin: 0 5px;
@@ -81,7 +81,7 @@ body {
     height: @titleBarHeight;
     position:fixed;
     width:100%;
-    top: 100px;
+    top: @headerHeight;
     background-color:@gzzColor-bck-1;
     border-bottom: 1px solid @gzzColor-bck-3;
     z-index: 101;
@@ -89,13 +89,11 @@ body {
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
 
-    img{
-      /*
+    img.iconTitleBar{
       position: absolute;
       z-index: 110;
       height: 64px;
       width: 64px;
-      */
     }
     h1{
       font-size: 22px;
