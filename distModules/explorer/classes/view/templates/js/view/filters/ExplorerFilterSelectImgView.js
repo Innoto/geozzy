@@ -14,7 +14,7 @@ geozzy.filters.filterSelectImgView = geozzy.filterView.extend({
     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
     "<ul class='<%= filterClass %>'>"+
       "<% if(defaultOption){ %> "+
-        "<li data-resourceid='<%- defaultOption.value %>' > "+
+        "<li data-term-id='<%- defaultOption.value %>' > "+
           "<div class='title'><%- defaultOption.title %></div> "+
           "<img class='icon' src='/cgmlImg/<%- defaultOption.icon %>/typeIcon/icon.png'> " +
           "<img class='iconHover' src='/cgmlImg/<%- defaultOption.icon %>/typeIconHover/iconHover.png'> " +
@@ -26,7 +26,7 @@ geozzy.filters.filterSelectImgView = geozzy.filterView.extend({
   ),
 
   templateOption: _.template(
-    "<li data-resourceid='<%- id %>'>"+
+    "<li data-term-id='<%- id %>'>"+
       "<div class='title'><%- name_es %></div> "+
       "<img class='icon' src='/cgmlImg/<%- icon %>/typeIcon/icon.png'> " +
       "<img class='iconHover' src='/cgmlImg/<%- icon %>/typeIconHover/iconHover.png'> " +
@@ -87,6 +87,41 @@ geozzy.filters.filterSelectImgView = geozzy.filterView.extend({
 
       $( that.options.mainCotainerClass+' ' + containerClassDots ).html( filterHtml );
     }
+
+
+
+    $( that.options.mainCotainerClass + ' ' + containerClassDots + ' ul li').bind('click', function(el) {
+      var termid = false;
+      var termLi = false;
+
+      if( typeof $(el.target).attr('data-term-id') !== "undefined"){
+        termLi = $(el.target)
+        termid = termLi.attr('data-term-id');
+
+      }
+      else
+      if( typeof $(el.target).parent().attr('data-term-id') !== "undefined" ) {
+        termLi = $(el.target).parent();
+        termid = termLi.attr('data-term-id');
+      }
+
+      if( termid == '*' ) {
+        that.selectedTerms = false;
+      }
+      else {
+        //that.selectedTerms = false;
+        that.selectedTerms = [ parseInt( termid ) ];
+        $( that.options.mainCotainerClass + ' ' + containerClassDots + ' ul li').removeClass('selected');
+        termLi.addClass('selected');
+
+
+      }
+
+      that.parentExplorer.applyFilters();
+
+    });
+
+
 /*
 
     $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
@@ -103,7 +138,7 @@ geozzy.filters.filterSelectImgView = geozzy.filterView.extend({
     });
 */
 
-  
+
 
   }
 
