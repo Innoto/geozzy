@@ -221,11 +221,11 @@
       //--------------------------------------------------------------------------------------------------------------------------------------------
 
 
-      var filtroTipos = new geozzy.filters.filterSelectSimpleView(
+      var filtroTipos = new geozzy.filters.filterSelectImgView(
         {
           mainCotainerClass: that.explorerclass+' .filters_fixed',
           containerClass: 'tipoEatandDrink',
-          defaultOption: { icon: false, title: 'Todos os tipos', value:'*' },
+          //defaultOption: { icon: false, title: 'Todos os tipos', value:'*' },
           data: that.eatAndDrinkTypes
         }
       )
