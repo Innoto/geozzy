@@ -318,8 +318,8 @@
       var filterInterface = '<div class="filters_fixed"></div>';
       filterInterface += '<div class="filters_advancedContainer">';
         filterInterface += '<div class="filters_openFilters">Filtros avanzados <i class="fa fa-caret-up"></i> <i class="fa fa-caret-down"></i></div>';
-        filterInterface += '<div class="filters_advancedFilters">advanced</div>';
-        filterInterface += '<div class="filters_resume">resume</div>';
+        filterInterface += '<div class="filters_advancedFilters"></div>';
+        filterInterface += '<div class="filters_resume"></div>';
       filterInterface += '</div>';
       filterContainer.html(filterInterface);
 

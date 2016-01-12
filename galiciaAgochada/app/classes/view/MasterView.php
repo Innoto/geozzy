@@ -216,7 +216,7 @@ class MasterView extends View
     $this->template->assign('rdAutenticaGastronomia', $resDest);
     // end
 
-
+    $this->template->assign('isFront', true);
     $this->template->addClientScript('js/portada.js');
     $this->template->addClientStyles('styles/masterPortada.less');
     $this->template->setTpl('portada.tpl');
