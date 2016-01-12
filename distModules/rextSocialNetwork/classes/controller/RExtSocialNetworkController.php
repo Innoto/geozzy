@@ -25,7 +25,9 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
 
     $rExtModel = new RExtSocialNetworkModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
-    $rExtObj = $rExtList->fetch();
+    if ($rExtList){
+      $rExtObj = $rExtList->fetch();
+    }
 
     if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
