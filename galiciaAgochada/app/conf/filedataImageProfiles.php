@@ -48,10 +48,24 @@ $IMAGE_PROFILES = array(
   'square_cut' => array( 'width' => 128, 'height' => 128, 'cut' => true ),
   'exp1' => array( 'width' => 200, 'height' => 150 ),
   'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
+
+
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR----------------------------------------*/
   'typeIcon' => array(
-    'width' => 64, 'height' => 64,
+    'width' => 32, 'height' => 32,
     'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
     'saveFormat' => 'PNG' ),
+  'typeIconHover' => array(
+    'width' => 32, 'height' => 32,
+    'backgroundColor' => '#00000000', 'rasterColor' => '#ff0000',
+    'saveFormat' => 'PNG' ),
+  'typeIconSelected' => array(
+    'width' => 32, 'height' => 32,
+    'backgroundColor' => '#00000000', 'rasterColor' => '#00ff00',
+    'saveFormat' => 'PNG' ),
+
+/*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
+
   'explorerMarker' => array(
     'width' => 32, 'height' => 32, 'cut' => false,
     'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
