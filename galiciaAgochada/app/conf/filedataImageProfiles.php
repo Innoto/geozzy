@@ -65,11 +65,28 @@ $IMAGE_PROFILES = array(
 
   // TEST
   'svgTest' => array(
-    'width' => 320, 'height' => 240,
+    'width' => 100, 'height' => 64,
     'cut' => false,
-    'backgroundColor' => '#80000040',
+    'rasterColor' => '#00FF00',
     //'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => array( 0, 18, 0, 18 ),
+    'backgroundColor' => '#F000F0',
+    'saveFormat' => 'PNG', 'cache' => false
+  ),
+
+
+
+  // CHAPA TEST
+  'chapaTest' => array(
+    'width' => 24, 'height' => 24,
+    'cut' => false,
     'rasterColor' => '#FFFFFF',
+    'padding' => 5,
+    //'padding' => array( 5, 5, 5, 5 ),
+    'backgroundColor' => '#F000F0',
+    'backgroundImg' => '/chapa_paisaxes.png',
+    //'backgroundImg' => '/module/MODULENAME/chapa_paisaxes.png',
+    //'backgroundImg' => '/app/classes/view/templates/img/chapa_paisaxes.png',
     'saveFormat' => 'PNG', 'cache' => false
   ),
 
