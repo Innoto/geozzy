@@ -87,7 +87,7 @@ geozzy.filters.filterSelectImgView = geozzy.filterView.extend({
 
       $( that.options.mainCotainerClass+' ' + containerClassDots ).html( filterHtml );
     }
-
+/*
 
     $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
       var val = $(el.target).val();
@@ -101,7 +101,9 @@ geozzy.filters.filterSelectImgView = geozzy.filterView.extend({
 
       that.parentExplorer.applyFilters();
     });
+*/
 
+  
 
   }
 
