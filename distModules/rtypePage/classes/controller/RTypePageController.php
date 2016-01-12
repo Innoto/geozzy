@@ -362,6 +362,7 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
 
     if ($collectionArrayInfo){
+      $multimediaArray = $collectionArray = false;
       foreach ($collectionArrayInfo as $key => $collectionInfo){
         if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
             $multimediaArray[$key] = $collectionInfo;
@@ -371,17 +372,21 @@ class RTypePageController extends RTypeController implements RTypeInterface {
         }
       }
 
-      $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
-      if ($arrayMultimediaBlock){
-        foreach ($arrayMultimediaBlock as $multimediaBlock){
-          $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+      if ($multimediaArray){
+        $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
+        if ($arrayMultimediaBlock){
+          foreach ($arrayMultimediaBlock as $multimediaBlock){
+            $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+          }
         }
       }
 
-      $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
-      if ($arrayCollectionBlock){
-        foreach ($arrayCollectionBlock as $collectionBlock){
-          $template->addToBlock( 'collections', $collectionBlock );
+      if ($collectionArray){
+        $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
+        if ($arrayCollectionBlock){
+          foreach ($arrayCollectionBlock as $collectionBlock){
+            $template->addToBlock( 'collections', $collectionBlock );
+          }
         }
       }
     }
