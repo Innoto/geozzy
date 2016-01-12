@@ -16,10 +16,10 @@ $( document ).ready(function(){
         0:{
             items:1
         },
-        600:{
+        767:{
             items:3
         },
-        1000:{
+        1200:{
             items:4
         }
     }
@@ -34,7 +34,7 @@ $( document ).ready(function(){
 function initEffectNavs(){
   $('a.page-scroll').bind('click', function scrollSuave(event) {
     var hrefText = $(this).attr('href');
-    if( hrefText.indexOf( '#' ) === 0 ) {
+    if( hrefText.indexOf( '#' ) === 0) {
       var $anchor = $( hrefText );
       if( $anchor.length > 0) {
         $('html, body').stop().animate({

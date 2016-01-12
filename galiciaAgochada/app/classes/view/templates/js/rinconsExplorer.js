@@ -98,7 +98,7 @@
       var hExplorerLayout = $('.rinconsExplorer').height();
       var hExplorerFilters = $('.rinconsExplorer .explorer-container-filter').height();
       var hExplorerGallery = $('.rinconsExplorer .explorer-container-gallery').height();
-      var hHeader = 100;
+      var hHeader = 60;
       var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
 
       $('.rinconsExplorer .explorer-container-map').height( hExplorerMap );

@@ -1,8 +1,18 @@
 @import "primary.less";
 
 .headContent{
+  height: 63px;
+  border-bottom: 3px solid #fff;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
   &.transparent{
     background: transparent;
+    border-bottom: 3px solid transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
   }
 }
 
@@ -201,6 +211,7 @@
       .propose{
         padding: 20px 0;
         select{
+          margin:10px 0;
           width: 100%;
           background-color: @gzzColor-bck-1;
           border: 2px solid @gzzColor-bck-8;
@@ -218,6 +229,7 @@
           }
         }
         button{
+          margin:10px 0;
           height: 50px;
           padding: 10px 40px;
           background-color: @gzzColor-bck-8;
@@ -282,7 +294,6 @@
                 margin: 0;
                 font-size: 16px;
                 margin-bottom: 10px;
-                text-transform: uppercase;
               }
             }
 
@@ -367,3 +378,73 @@
     }//.secRecomendamos
   }//.gzzSec
 }//bodyContent
+
+
+/**************************************************************************************/
+/**************************************************************************************/
+/**********************  RESPONSIVE MEDIA QUERIES  ************************************/
+/**************************************************************************************/
+/**************************************************************************************/
+@media screen and (min-width: 1200px) {
+
+} /*1200px*/
+@media screen and (max-width: 1199px) {
+
+}/*1199px*/
+@media screen and (max-width: 991px) {
+  .bodyContent{
+    .gzzSec{
+      &.secImage{
+        .intro{
+          -ms-transform: translateY(-50%); /* IE 9 */
+          -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+          transform: translateY(-50%);
+          margin-right: 15px;
+        }
+        .introLinkSegredos{
+          bottom: 10px;
+        }
+      }
+      &.secSegredos{
+        .segredoItem{
+          .segredoItemImg{
+            &:hover{
+              .icon{
+                top: 30%;
+              }
+            }
+          }
+        }
+      }//&.secSegredos
+    }
+  }
+}/*991px*/
+@media screen and (max-width: 767px) {
+
+  .bodyContent{
+    .gzzSec{
+       &.secImage{
+        .intro{
+          h2{
+            font-size: 36px;
+          }
+          p{
+            font-size: 16px;
+          }
+        }
+      }
+      &.secSegredos{
+        .segredoItem{
+          .segredoItemImg{
+            &:hover{
+              .icon{
+                top: 20%;
+              }
+            }
+          }
+        }
+      }//&.secSegredos
+    }//gzzSec
+  }//bodyContent
+
+} /*767px*/

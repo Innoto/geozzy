@@ -48,15 +48,45 @@ $IMAGE_PROFILES = array(
   'square_cut' => array( 'width' => 128, 'height' => 128, 'cut' => true ),
   'exp1' => array( 'width' => 200, 'height' => 150 ),
   'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
+
+
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR----------------------------------------*/
   'typeIcon' => array(
-    'width' => 64, 'height' => 64,
-    'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 8,
+    'saveName' => 'icon.png',
     'saveFormat' => 'PNG' ),
+  'typeIconHover' => array(
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRestHover36x36.png',
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 8,
+    'saveName' => 'iconHover.png',
+    'saveFormat' => 'PNG' ),
+  'typeIconSelected' => array(
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRest36x36.png',
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 8,
+    'saveName' => 'iconSelected.png',
+    'saveFormat' => 'PNG' ),
+
+/*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
+
+  'explorerMarker' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/chapa_paisaxes.png',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+  /*
   'explorerMarker' => array(
     'width' => 32, 'height' => 32, 'cut' => false,
     'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
-
+  */
   'resourceLg' => array( 'width' => 1200, 'height' => 500),
   'resourceMd' => array( 'width' => 992, 'height' => 400),
   'resourceSm' => array( 'width' => 768, 'height' => 300),
@@ -65,11 +95,28 @@ $IMAGE_PROFILES = array(
 
   // TEST
   'svgTest' => array(
-    'width' => 320, 'height' => 240,
+    'width' => 100, 'height' => 64,
     'cut' => false,
-    'backgroundColor' => '#80000040',
+    'rasterColor' => '#00FF00',
     //'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => array( 0, 18, 0, 18 ),
+    'backgroundColor' => '#F000F0',
+    'saveFormat' => 'PNG', 'cache' => false
+  ),
+
+
+
+  // CHAPA TEST
+  'chapaTest' => array(
+    'width' => 24, 'height' => 24,
+    'cut' => false,
     'rasterColor' => '#FFFFFF',
+    'padding' => 5,
+    //'padding' => array( 5, 5, 5, 5 ),
+    'backgroundColor' => '#F000F0',
+    'backgroundImg' => '/chapa_paisaxes.png',
+    //'backgroundImg' => '/module/MODULENAME/chapa_paisaxes.png',
+    //'backgroundImg' => '/app/classes/view/templates/img/chapa_paisaxes.png',
     'saveFormat' => 'PNG', 'cache' => false
   ),
 

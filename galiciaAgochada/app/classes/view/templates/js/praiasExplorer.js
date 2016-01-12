@@ -98,7 +98,7 @@
       var hExplorerLayout = $('.praiasExplorer').height();
       var hExplorerFilters = $('.praiasExplorer .explorer-container-filter').height();
       var hExplorerGallery = $('.praiasExplorer .explorer-container-gallery').height();
-      var hHeader = 100;
+      var hHeader = 60;
       var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
 
       $('.praiasExplorer .explorer-container-map').height( hExplorerMap );

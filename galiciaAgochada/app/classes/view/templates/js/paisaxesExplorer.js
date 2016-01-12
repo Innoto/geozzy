@@ -156,11 +156,11 @@
         '<div class="titleBar">'+
           '<div class="container">'+
             '<div class="row">'+
-              '<div class="col-md-6 col-sm-4 hidden-xs explorerTitle" >'+
+              '<div class="col-md-6 col-sm-1 hidden-xs explorerTitle" >'+
                 '<img class="iconTitleBar img-responsive" alt="Paisaxes Espectaculares" src="/media/img/paisaxesIcon.png"></img>'+
                 '<h1>Paisaxes Espectaculares</h1>'+
               '</div>'+
-              '<div class="col-md-6 col-sm-8 col-xs-12 explorerFilters clearfix" ></div>'+
+              '<div class="col-md-6 col-sm-11 col-xs-12 explorerFilters clearfix" ></div>'+
             '</div>'+
           '</div>'+
         '</div>'
@@ -266,7 +266,7 @@
       var hExplorerLayout = $('.paisaxesExplorer').height();
       var hExplorerFilters = $('.paisaxesExplorer .explorer-container-filter').height();
       var hExplorerGallery = $('.paisaxesExplorer .explorer-container-gallery').height();
-      var hHeader = 100;
+      var hHeader = 60;
       var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
 
       $('.paisaxesExplorer .explorer-container-map').height( hExplorerMap );

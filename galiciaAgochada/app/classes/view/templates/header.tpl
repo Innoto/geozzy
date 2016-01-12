@@ -9,20 +9,33 @@
         <span class="icon-bar"></span>
       </button>
       <!-- LOGO in brand section -->
-      <a href="#home" class="navbar-brand page-scroll">
-        <!-- Logo -->
+      {if isset($isFront) && $isFront}
+      <a href="#inicio" class="navbar-brand page-scroll">
         <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"></img>
       </a>
+      {else}
+      <a href="{$site_host}#inicio" class="navbar-brand page-scroll">
+        <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"></img>
+      </a>
+      {/if}
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse ">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#inicio" class="page-scroll">{t}Inicio{/t}</a></li>
-        <li><a href="#segredos" class="page-scroll">{t}Segredos{/t}</a></li>
-        <li><a href="#participa" class="page-scroll">{t}Participa{/t}</a></li>
-        <li><a href="#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
-        <li><a href="#" class="page-scroll">{t}Acerca de{/t}</a></li>
+        {if isset($isFront) && $isFront}
+          <li><a href="#inicio" class="page-scroll">{t}Inicio{/t}</a></li>
+          <li><a href="#segredos" class="page-scroll">{t}Segredos{/t}</a></li>
+          <li><a href="#participa" class="page-scroll">{t}Participa{/t}</a></li>
+          <li><a href="#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
+          <li><a href="#" class="page-scroll">{t}Acerca de{/t}</a></li>
+        {else}
+          <li><a href="{$site_host}#inicio" class="page-scroll">{t}Inicio{/t}</a></li>
+          <li><a href="{$site_host}#segredos" class="page-scroll">{t}Segredos{/t}</a></li>
+          <li><a href="{$site_host}#participa" class="page-scroll">{t}Participa{/t}</a></li>
+          <li><a href="{$site_host}#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
+          <li><a href="{$site_host}#" class="page-scroll">{t}Acerca de{/t}</a></li>
+        {/if}
       </ul>
     </div>
   </div>

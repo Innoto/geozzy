@@ -9,7 +9,7 @@
 
 .paisaxesExplorer{
   position: fixed;
-  top:100px;
+  top:60px;
   width: 100%;
 
   .explorerMap{
@@ -65,20 +65,8 @@
             }
           }
         }
-
-
-
-
-
-
-
-
-
       }
     }
-
-
-
   }
   .explorer-container-gallery{
     position: relative;
@@ -119,9 +107,11 @@
         .elementInfo{
           font-size: 14px;
           line-height: 20px;
-          height: 40px;
+          height: 20px;
+          width: 100%;
           overflow: hidden;
           text-overflow: ellipsis;
+          white-space:nowrap;
         }
         &:hover{
           .elementImg img{
@@ -145,7 +135,7 @@
     }//.explorerListContent
     .explorerListPager{
       position: absolute;
-      top: 20px;
+      top: 5px;
       right: 25px;
       font-size: 22px;
       color: @gzzColor-bck-3;
@@ -176,7 +166,7 @@
 #geozzyExplorerMapInfo{
   width: 100%;
   max-width: 270px;
-  max-height: 400px;
+  height: 340px;
   border: 5px solid rgba( 255, 255, 255, 0.4);
   overflow: hidden;
 
@@ -190,14 +180,71 @@
         background: @gzzColor-bck-1;
       }
       .gempiTitle{
+        text-align: justify;
         color: #555;
-        font-size: 17px;
+        font-size: 16px;
+        height: 48px;
         line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .gempiDescription{
+        text-align: justify;
         font-size: 13px;
         line-height: 15px;
+        height: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }//.gempiInfo
   }//.gempiContent
+}
+
+/**************************************************************************************/
+/**************************************************************************************/
+/**********************  RESPONSIVE MEDIA QUERIES  ************************************/
+/**************************************************************************************/
+/**************************************************************************************/
+@media screen and (min-width: 1200px) {
+
+} /*1200px*/
+@media screen and (max-width: 1199px) {
+  .paisaxesExplorer{
+
+    .explorer-container-gallery{
+      .explorerListPager{
+        /*top: 50%;
+        -ms-transform: translateY(-50%); /* IE 9 */
+        /*-webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+        /*transform: translateY(-50%);*/
+        .previous,
+        .next{
+          display:none;
+        }
+      }
+    }
+  }
+}/*1199px*/
+@media screen and (max-width: 991px) {
+
+}/*991px*/
+@media screen and (max-width: 767px) {
+
+} /*767px*/
+@media screen and (max-width:1024px) and (orientation:portrait){
+  .paisaxesExplorer{
+    .explorer-container-gallery{
+      .explorerListContent{
+        .element{
+          width: 33.33% !important;
+        }//.element
+      }//.explorerListContent
+      .explorerListPager{
+        .previous,
+        .next{
+          display:block;
+        }
+      }
+    }//.explorer-container-gallery
+  }//.paisaxesExplorer
 }

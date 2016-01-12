@@ -1,6 +1,4 @@
-//Estilos para todas la paginas estáticas
-@import "primary.less";
-
+@grid-float-breakpoint: @screen-md-min;
 /**************************************************************************************/
 /**************************************************************************************/
 /**********************  RESPONSIVE MEDIA QUERIES  ************************************/
@@ -11,9 +9,32 @@
 } /*1200px*/
 @media screen and (max-width: 1199px) {
 
+
 }/*1199px*/
 @media screen and (max-width: 991px) {
 
+  .headContent{
+    .navbar{
+      .logo{
+        width: 240px;
+      }
+      .navbar-collapse{
+        background-color: rgba( 66, 84, 81, 0.9);
+      }
+    }
+  }
+  .bodyContent{
+    width: 100%;
+    padding-top: @headerTitleBarHeight;
+
+    .gzzSec{
+      h2{
+        margin: 10px 0;
+        text-transform: uppercase;
+        font-size: 24px;
+      }
+    }
+  }
 }/*991px*/
 @media screen and (max-width: 767px) {
 

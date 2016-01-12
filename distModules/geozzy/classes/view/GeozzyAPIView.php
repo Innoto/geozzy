@@ -133,7 +133,7 @@ class geozzyAPIView extends View
                                 {
                                   "name": "rextmodels",
                                   "description": "extension Models",
-                                  "dataType": "string",
+                                  "dataType": "boolean",
                                   "paramType": "path",
                                   "defaultValue": "false",
                                   "required": false
@@ -566,9 +566,10 @@ class geozzyAPIView extends View
 
           $rexData = array();
           $rexData['MODELNAME'] = $relModelIdName;
-
-          $rexData = array_merge($rexData, $relModel->getAllData('onlydata') );
-          $allData['rextmodels'][] = $rexData;
+          if( method_exists ( $relModel , "getAllData" ) ) {
+            $rexData = array_merge($rexData, $relModel->getAllData('onlydata') );
+            $allData['rextmodels'][] = $rexData;
+          }
         }
       }
 

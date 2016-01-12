@@ -10,7 +10,7 @@
 
 .xantaresExplorer{
   position: fixed;
-  top:150px;
+  top: @headerTitleBarHeight;
   width: 100%;
 
   .explorer-container-map{
@@ -59,22 +59,66 @@
   }
   .explorer-container-filter{
     .filters_fixed{
-      background-color: @gzzColor-bck-8;
+      position: relative;
+      background-color: @gzzColor-bck-9;
       height: 65px;
+      ul{
+        padding: 5px 10px;
+        list-style: none;
+        li{
+          cursor:pointer;
+          list-style: none;
+          float: left;
+          margin: 5px;
+          height: 36px;
+          width: 36px;
+          .icon{}
+          .iconHover{ display: none;}
+          .iconSelected{ display:none;}
+          .title{
+            display:none;
+            position: absolute;
+            left: 0;
+            bottom: 1px;
+            width: 100%;
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
+            color: @gzzColor-text-light;
+          }
+
+          &:hover{
+            .icon{ display: none;}
+            .iconHover{ display: block;}
+            .title{ display:block; }
+          }
+          &.selected{
+            .icon{ display: none;}
+            .iconHover{ display: none;}
+            .iconSelected{ display: block;}
+          }
+        }
+      }
     }
     .filters_advancedContainer{
+      cursor: pointer;
+      padding: 5px 20px;
+      background-color: @gzzColor-bck-1;
       .filters_openFilters{
-        background-color: @gzzColor-bck-1;
-        .fa-caret-up{ display:none; }
-        .fa-caret-down{ display:inline; }
+        padding: 5px 0px;
+        text-transform: uppercase;
+        font-size: 14px;
+        .fa-caret-up{ display:none; font-size: 24px; color: @gzzColor-xantares; float: right; margin-top: -3px;}
+        .fa-caret-down{ display:inline; font-size: 24px; color: @gzzColor-xantares; float: right; margin-top: -3px; }
       }
       .filters_advancedFilters{
+        border-top: 1px solid @gzzColor-bck-8;
+        padding: 5px 0px;
         background-color: @gzzColor-bck-1;
         height: 300px;
         display:none;
       }
       .filters_resume{
-        background-color: @gzzColor-bck-2;
       }
 
       &:hover{
@@ -173,10 +217,11 @@
 }
 
 
+
 #geozzyExplorerMapInfo{
   width: 100%;
   max-width: 270px;
-  max-height: 400px;
+  height: 340px;
   border: 5px solid rgba( 255, 255, 255, 0.4);
   overflow: hidden;
 
@@ -190,14 +235,41 @@
         background: @gzzColor-bck-1;
       }
       .gempiTitle{
+        text-align: justify;
         color: #555;
-        font-size: 17px;
+        font-size: 16px;
+        height: 48px;
         line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .gempiDescription{
+        text-align: justify;
         font-size: 13px;
         line-height: 15px;
+        height: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }//.gempiInfo
   }//.gempiContent
 }
+
+
+/**************************************************************************************/
+/**************************************************************************************/
+/**********************  RESPONSIVE MEDIA QUERIES  ************************************/
+/**************************************************************************************/
+/**************************************************************************************/
+@media screen and (min-width: 1200px) {
+
+} /*1200px*/
+@media screen and (max-width: 1199px) {
+
+}/*1199px*/
+@media screen and (max-width: 991px) {
+
+}/*991px*/
+@media screen and (max-width: 767px) {
+
+} /*767px*/

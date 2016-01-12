@@ -54,7 +54,7 @@ define( 'DB_USER', 'galiciaagochada');
 define( 'DB_PASSWORD', 'q7w8e9r');
 define( 'DB_NAME', 'galiciaagochada');
 
-define( 'DB_MYSQL_GROUPCONCAT_MAX_LEN', 1844674407370954751); //max 	4294967295 (in 32 bits) , 18446744073709547520 (in 64 bits)
+define( 'DB_MYSQL_GROUPCONCAT_MAX_LEN', 4294967295); //max 	4294967295 (in 32 bits) , 18446744073709547520 (in 64 bits)
 
 // allow cache with memcached
 define( 'DB_ALLOW_CACHE', true );

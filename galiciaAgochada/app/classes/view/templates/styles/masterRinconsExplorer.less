@@ -9,7 +9,7 @@
 
 .rinconsExplorer{
   position: fixed;
-  top:100px;
+  top: @headerHeight;
   width: 100%;
 
   .explorerMap{
@@ -124,10 +124,11 @@
   .select2ListTheme();
 }
 
+
 #geozzyExplorerMapInfo{
   width: 100%;
   max-width: 270px;
-  max-height: 400px;
+  height: 340px;
   border: 5px solid rgba( 255, 255, 255, 0.4);
   overflow: hidden;
 
@@ -141,14 +142,42 @@
         background: @gzzColor-bck-1;
       }
       .gempiTitle{
+        text-align: justify;
         color: #555;
-        font-size: 17px;
+        font-size: 16px;
+        height: 48px;
         line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .gempiDescription{
+        text-align: justify;
         font-size: 13px;
         line-height: 15px;
+        height: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }//.gempiInfo
   }//.gempiContent
 }
+
+
+
+/**************************************************************************************/
+/**************************************************************************************/
+/**********************  RESPONSIVE MEDIA QUERIES  ************************************/
+/**************************************************************************************/
+/**************************************************************************************/
+@media screen and (min-width: 1200px) {
+
+} /*1200px*/
+@media screen and (max-width: 1199px) {
+
+}/*1199px*/
+@media screen and (max-width: 991px) {
+
+}/*991px*/
+@media screen and (max-width: 767px) {
+
+} /*767px*/
