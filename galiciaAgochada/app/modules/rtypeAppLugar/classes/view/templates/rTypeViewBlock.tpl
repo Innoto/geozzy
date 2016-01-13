@@ -162,9 +162,18 @@
     </div>
 
     {if isset( $res.data.loc )}
+    <script type="text/javascript">
+      var resourceMapData = {
+        lat: {$res.data.locLat},
+        lon: {$res.data.locLon},
+        zoom: {$res.data.defaultZoom},
+        container: '.locationSec .map .container'
+      };
+    </script>
+    {$res.data.loc}
     <div class="map">
       <div class="container">
-
+        <!-- google.map -->
       </div>
     </div>
     {/if}
