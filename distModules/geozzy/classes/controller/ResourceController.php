@@ -137,6 +137,14 @@ class ResourceController {
         $resourceData = $this->resObj->getAllData( 'onlydata' );
       }
 
+      // Geograpic Location
+      Cogumelo::load('coreModel/DBUtils.php');
+      if( isset( $resourceData['loc'] ) ) {
+        $geoLocation = DBUtils::decodeGeometry( $resourceData['loc'] );
+        $resourceData['locLat'] = $geoLocation['data'][0];
+        $resourceData['locLon'] = $geoLocation['data'][1];
+      }
+
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $this->resObj->getterDependence( 'id', 'UrlAliasModel' );
       if( $urlAliasDep !== false ) {

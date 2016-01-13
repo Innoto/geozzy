@@ -20,7 +20,7 @@
     });
 
 
-
+/*
 
           for (var i = 0; i < 12; i++) {
 
@@ -41,7 +41,7 @@
             '</div>';
             $('.explorer-container-gallery').append(tempElemHtml);
           }
-
+*/
 
   });
 
@@ -141,7 +141,7 @@
     that.setDisplays = function() {
 
       that.infowindow = new geozzy.explorerDisplay.mapInfoView();
-      //that.listaMini = new geozzy.explorerDisplay.activeListTinyView({ el:$('.explorer-container-gallery')});
+      that.listaMini = new geozzy.explorerDisplay.activeListView({ el:$('.explorer-container-gallery')});
       that.mapa = new geozzy.explorerDisplay.mapView({
           map: resourceMap,
           clusterize:false,
@@ -168,7 +168,7 @@
       });
 
 
-      //that.explorer.addDisplay( that.listaMini );
+      that.explorer.addDisplay( that.listaMini );
       that.explorer.addDisplay( that.mapa );
       that.explorer.addDisplay( that.infowindow );
 
@@ -229,16 +229,17 @@
           //defaultOption: { icon: false, title: 'Todos os tipos', value:'*' },
           data: that.eatAndDrinkTypes
         }
-      )
+      );
 
       var filtroEspecialidades = new geozzy.explorerComponents.filters.filterComboView(
         {
+          title:'Especialidade',
           mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'especialidadeEatandDrink',
           defaultOption: { icon: false, title: 'Todas as especialidades', value:'*' },
           data: that.eatAndDrinkSpecialities
         }
-      )
+      );
 
       var filtroPrezo = new geozzy.explorerComponents.filters.filterSliderView(
         {
@@ -247,12 +248,22 @@
           containerClass: 'xantaresPrice',
           values:  [10]
         }
-      )
+      );
+
+      var filtroReset = new geozzy.explorerComponents.filters.filterResetView(
+        {
+          title:'Ver todo',
+          mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
+          containerClass: 'resetFilters'
+        }
+      );
 
 
       that.explorer.addFilter( filtroEspecialidades );
       that.explorer.addFilter( filtroTipos );
       that.explorer.addFilter( filtroPrezo );
+      that.explorer.addFilter( filtroReset );
+
 
     }
 
@@ -320,8 +331,8 @@
       var filterInterface = '<div class="filters_fixed"></div>';
       filterInterface += '<div class="filters_advancedContainer">';
         filterInterface += '<div class="filters_openFilters">Filtros avanzados <i class="fa fa-caret-up"></i> <i class="fa fa-caret-down"></i></div>';
-        filterInterface += '<div class="filters_advancedFilters">advanced</div>';
-        filterInterface += '<div class="filters_resume">resume</div>';
+        filterInterface += '<div class="filters_advancedFilters"></div>';
+        filterInterface += '<div class="filters_resume"></div>';
       filterInterface += '</div>';
       filterContainer.html(filterInterface);
 

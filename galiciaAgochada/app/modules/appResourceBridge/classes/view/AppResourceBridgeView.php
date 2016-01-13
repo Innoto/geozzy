@@ -27,6 +27,9 @@ class AppResourceBridgeView extends MasterView {
         $this->template->addToBlock( 'resTemplateBlock', $templateBlock );
       }
     }
+
+    
+
     $this->template->assign( 'res', array( 'data' => $resViewBlockInfo['data'], 'ext' => $resViewBlockInfo['ext'] ) );
 
     $this->template->addClientStyles('styles/masterResource.less');

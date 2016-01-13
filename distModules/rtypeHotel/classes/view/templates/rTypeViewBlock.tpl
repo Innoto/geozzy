@@ -31,6 +31,10 @@
   <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
 {/block}
 
+<script>
+
+</script>
+
 <!-- rTypeViewBlock.tpl en rTypeHotel module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 

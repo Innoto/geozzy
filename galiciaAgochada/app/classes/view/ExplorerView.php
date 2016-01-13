@@ -27,6 +27,10 @@ class ExplorerView extends MasterView
     $this->template->exec();
   }
   function rinconsExplorer(){
+    // cogemos la url actual para el idioma (hasta que sea recurso)
+    $url = $this->commonLayout();
+    $this->template->assign('url', $url);
+
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterRinconsExplorer.less');
@@ -90,5 +94,18 @@ class ExplorerView extends MasterView
     $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
     $this->template->setTpl('Example_explorerLayoutSection.tpl');
     $this->template->exec();
+  }
+
+  // función común a todos los exploradores
+  function commonLayout(){
+
+    $url_parts = explode('/', $_SERVER["REQUEST_URI"]);
+    if(sizeof($url_parts)>2){
+      $url = '/'.$url_parts[2];
+    }
+    else {
+      $url = $url_parts[1];
+    }
+    return $url;
   }
 }

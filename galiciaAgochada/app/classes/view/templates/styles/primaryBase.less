@@ -45,17 +45,30 @@ body {
           background: transparent;
           &:focus{ color: @gzzColor-text-light;  }
         }
-        &.dropdown.open{
-          .dropdown-menu {
-            padding: 10px;
-            border: 3px solid #374643;
-            background: #435553;
 
+        &.dropdown.open{
+          & > a:focus{color:@gzzColor-text-light;}
+          .dropdown-menu {
+            padding: 5px;
+            border: 2px solid #374643;
+            background: #435553;
+            min-width:30px;
             li{ margin: 0px; }
             a{ color: @gzzColor-text-light;  font-size: 14px;}
           }
           a{
            background: none;
+          }
+        }
+        &.langSelector{
+          margin-left:20px;
+          a{
+            .fa{font-size:16px;}
+          }
+          &.dropdown.open{
+            .dropdown-menu {
+              a{text-transform:lowercase;font-size:13px;}
+            }
           }
         }
       }//li
