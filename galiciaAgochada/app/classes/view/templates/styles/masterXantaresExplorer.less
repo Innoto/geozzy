@@ -57,6 +57,9 @@
     }
   }
   .explorer-container-filter{
+    top:20px !important;
+    left:20px !important;
+
     .filters_fixed{
       position: relative;
       background-color: @gzzColor-bck-9;
@@ -264,11 +267,73 @@
 
 } /*1200px*/
 @media screen and (max-width: 1199px) {
-
+  .xantaresExplorer{
+    .explorer-container-gallery{
+      padding: 10px;
+      .element{
+        .elementInfo{
+          .elementTitle{
+            font-size: 16px;
+            padding-right: 130px;
+          }
+          .elementType{
+            font-size: 12px;
+            padding-right: 130px;
+          }
+          .elementPrice{
+            font-size: 24px;
+          }
+        }//elementInfo
+      }//.element
+    }//.explorer-container-gallery
+  }//.xantaresExplorer
 }/*1199px*/
 @media screen and (max-width: 991px) {
+  .xantaresExplorer{
+    .explorer-container-gallery{
+      padding: 10px 0;
+      .element{
+        .elementImg{
+          img{
+            -webkit-filter: brightness(0.8);
+             filter: brightness(0.8);
+          }
+          .elementOptions{
+            li.elementFav{
+              left: 5px;
+            }//li.elementFav
+          }//.elementOptions
+        }//.elementImg
+        .elementInfo{
+          .elementTitle{
+            font-size: 14px;
+            padding-right: 0px;
+          }
+          .elementType{
+            font-size: 10px;
+            padding-right: 0px;
+          }
+          .elementPrice{
+            font-size: 18px;
+            top: -40px;
+            right: 5px;
+            padding: 5px;
+            color: @gzzColor-text-light;
+            text-shadow: 2px 0 4px rgba(0, 0, 0, 0.8);
+          }
 
+        }//elementInfo
+      }//.element
+    }//.explorer-container-gallery
+  }//.xantaresExplorer
 }/*991px*/
-@media screen and (max-width: 767px) {
 
+@media screen and (max-width: 767px) {
+  .xantaresExplorer{
+    .explorer-container-map{
+      .explorerFilterElement.filterZona{
+        display:none;
+      }
+    }
+  }
 } /*767px*/
