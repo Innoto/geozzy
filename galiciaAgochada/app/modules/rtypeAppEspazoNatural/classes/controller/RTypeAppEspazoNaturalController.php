@@ -511,20 +511,24 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
         }
       }
 
-      $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
-      if ($arrayMultimediaBlock){
-        foreach ($arrayMultimediaBlock as $multimediaBlock){
-          $multimediaBlock->assign( 'max', 6 );
-          $multimediaBlock->setTpl('appEspazoNaturalMultimediaViewBlock.tpl', 'rtypeAppEspazoNatural');
-          $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+      if ($multimediaArray){
+        $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
+        if ($arrayMultimediaBlock){
+          foreach ($arrayMultimediaBlock as $multimediaBlock){
+            $multimediaBlock->assign( 'max', 6 );
+            $multimediaBlock->setTpl('appEspazoNaturalMultimediaViewBlock.tpl', 'rtypeAppEspazoNatural');
+            $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+          }
         }
       }
 
-      $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
-      if ($arrayCollectionBlock){
-        foreach ($arrayCollectionBlock as $collectionBlock){
-          $collectionBlock->setTpl('appEspazoNaturalCollectionViewBlock.tpl', 'rtypeAppEspazoNatural');
-          $template->addToBlock( 'collections', $collectionBlock );
+      if ($collectionArray){
+        $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
+        if ($arrayCollectionBlock){
+          foreach ($arrayCollectionBlock as $collectionBlock){
+            $collectionBlock->setTpl('appEspazoNaturalCollectionViewBlock.tpl', 'rtypeAppEspazoNatural');
+            $template->addToBlock( 'collections', $collectionBlock );
+          }
         }
       }
     }
