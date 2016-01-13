@@ -1571,14 +1571,15 @@ class ResourceController {
       {
         $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
         'title' => $collection->getter('title_'.$this->actLang),
-        'image' => $collection->getter('image'), 'multimedia' => $collection->getter('multimedia'));
+        'image' => $collection->getter('image'),
+        'multimedia' => $collection->getter('multimedia'));
         $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
+
 
         $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
         if ($collection->getter('multimedia')){
           if ($resources){
             foreach($resources as $resVal){
-
               $thumbSettings = array(
                'image' => $resVal->getter( 'image' ),
                'profile' => 'typeIconMini'
@@ -1597,10 +1598,12 @@ class ResourceController {
               $thumbSettings['profile'] = 'hdpi4';
               $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
+              $urlAlias = $this->getUrlAlias($resVal->getter('id'));
+
               $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
                 array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
                       'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
-                      'multimediaUrl' => $multimediaUrl, 'image' => $imgUrl, 'image_big' => $imgUrl2);
+                      'multimediaUrl' => $multimediaUrl, 'image' => $imgUrl, 'image_big' => $imgUrl2, 'urlAlias' => $urlAlias);
             }
           }
         }
@@ -1617,9 +1620,11 @@ class ResourceController {
               }
               $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
+              $urlAlias = $this->getUrlAlias($resVal->getter('id'));
+
               $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
                 array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
-                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl);
+                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl, 'urlAlias' => $urlAlias);
             }
           }
         }
@@ -1665,6 +1670,24 @@ class ResourceController {
     $template->assign( 'multimediaAll', $multimedia );
     $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
     return $template;
+  }
+
+  // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
+  public function getUrlAlias($resId, $lang = false){
+    $urlAliasModel = new UrlAliasModel();
+
+    if ($lang){
+      $langId = $lang;
+    }
+    else{
+      $langId = $this->actLang;
+    }
+    $urlAlias = false;
+    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'resource' => $resId, 'lang' => $langId ) ) )->fetch();
+    if ($urlAliasList){
+      $urlAlias = $langId.$urlAliasList->getter('urlFrom');
+    }
+    return $urlAlias;
   }
 
 }
