@@ -41,8 +41,13 @@ class explorer extends Module
      "params" => array("marker-clusterer-v3-innoto"),
      "installer" => "bower",
      "includes" => array("src/markerclusterer.js")
-   )
-
+   ),
+    array(
+     "id" =>"ionrangeslider",
+     "params" => array("ionrangeslider"),
+     "installer" => "bower",
+     "includes" => array("js/ion.rangeSlider.js", "css/ion.rangeSlider.css",  "css/ion.rangeSlider.skinHTML5.css")
+    )
 
 
   );
@@ -57,7 +62,8 @@ class explorer extends Module
     'js/collection/ExplorerResourcePartialCollection.js',
     'js/view/ExplorerFilterView.js',
     'js/view/filters/ExplorerFilterSelectSimpleView.js',
-        'js/view/filters/ExplorerFilterSelectImgView.js',
+    'js/view/filters/ExplorerFilterSelectImgView.js',
+    'js/view/filters/ExplorerFilterValueView.js',
     'js/view/ExplorerActiveListView.js',
     'js/view/ExplorerActiveListTinyView.js',
     'js/view/ExplorerPasiveListView.js',
