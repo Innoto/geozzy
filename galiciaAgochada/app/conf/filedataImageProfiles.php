@@ -50,7 +50,7 @@ $IMAGE_PROFILES = array(
   'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
 
 
-/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR----------------------------------------*/
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
   'typeIcon' => array(
     'rasterColor' => '#ffffff',
     'width' => 36, 'height' => 36,
@@ -74,6 +74,16 @@ $IMAGE_PROFILES = array(
     'padding' => 5,
     'saveName' => 'iconSelected.png',
     'saveFormat' => 'PNG' ),
+
+  'explorerXantaresMarker' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares.png',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
+'explorerPaisaxesMarker' => array(
+  'width' => 24, 'height' => 24, 'cut' => false,
+  'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaPaisaxes.png',
+  'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
 
 /*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
 
