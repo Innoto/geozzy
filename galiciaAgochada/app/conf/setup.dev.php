@@ -217,13 +217,13 @@ global $LANG_AVAILABLE;
 $LANG_AVAILABLE = array(
   'es' => array(
     'i18n' => 'es_ES',
-    'name' => 'Español' ),
+    'name' => 'castellano' ),
   'gl' => array(
     'i18n' => 'gl_ES',
-    'name' => 'Galego' ),
+    'name' => 'galego' ),
   'en' => array(
     'i18n' => 'en_US',
-    'name' => 'English' ),
+    'name' => 'english' ),
 );
 define( 'LANG_DEFAULT', 'es' );
 
