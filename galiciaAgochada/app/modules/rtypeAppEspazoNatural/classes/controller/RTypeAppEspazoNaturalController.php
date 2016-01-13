@@ -501,6 +501,8 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     /* Cargamos los bloques de colecciones */
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
 
+    $multimediaArray = false;
+    $collectionArray = false;
     if ($collectionArrayInfo){
       foreach ($collectionArrayInfo as $key => $collectionInfo){
         if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia

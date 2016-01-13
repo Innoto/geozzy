@@ -506,7 +506,8 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     /* Cargamos los bloques de colecciones */
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
 
-    $multimediaArray = $collectionArray = false;
+    $multimediaArray = false;
+    $collectionArray = false;
     if ($collectionArrayInfo){
       foreach ($collectionArrayInfo as $key => $collectionInfo){
         if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
