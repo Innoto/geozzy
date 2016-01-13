@@ -41,9 +41,21 @@
         <li class="dropdown langSelector">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$GLOBAL_C_LANG}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
-              {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}" class="page-scroll">{$k}</a></li>{/if}
-            {/foreach}
+            {if isset($res.data) && $res.data} <!-- recurso -->
+              {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
+                {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}{$res.data["urlAlias_$k"]}" class="page-scroll">{$k}</a></li>{/if}
+              {/foreach}
+            {else} <!-- sitios donde no hay recurso aún (portada y exploradores) -->
+              {if isset($isFront) && $isFront}
+                {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
+                  {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}#" class="page-scroll">{$k}</a></li>{/if}
+                {/foreach}
+              {else}
+                {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
+                  {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}{$url}" class="page-scroll">{$k}</a></li>{/if}
+                {/foreach}
+              {/if}
+            {/if}
           </ul>
         </li>
 
