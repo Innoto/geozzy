@@ -23,6 +23,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse ">
       <ul class="nav navbar-nav navbar-right">
+
         {if isset($isFront) && $isFront}
           <li><a href="#inicio" class="page-scroll">{t}Inicio{/t}</a></li>
           <li><a href="#segredos" class="page-scroll">{t}Segredos{/t}</a></li>
@@ -36,6 +37,16 @@
           <li><a href="{$site_host}#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
           <li><a href="{$site_host}#" class="page-scroll">{t}Acerca de{/t}</a></li>
         {/if}
+
+        <li class="dropdown langSelector">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$GLOBAL_C_LANG}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
+              {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}" class="page-scroll">{$k}</a></li>{/if}
+            {/foreach}
+          </ul>
+        </li>
+
       </ul>
     </div>
   </div>
