@@ -201,7 +201,7 @@
 
 
       that.explorer.addFilter(
-        new geozzy.filters.filterSelectComboView(
+        new geozzy.explorerComponents.filters.filterSelectComboView(
           {
             mainCotainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'tipoPaisaxe select2GeozzyCustom',
