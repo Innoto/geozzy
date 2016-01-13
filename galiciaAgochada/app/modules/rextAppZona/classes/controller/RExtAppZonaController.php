@@ -49,10 +49,13 @@ class RExtAppZonaController extends RExtController implements RExtInterface {
     // error_log( "RExtAppZonaController: manipulateForm()" );
 
     $rExtFieldNames = array();
-
+/*
+    $optionsTaxZones = $this->defResCtrl->getOptionsTax( 'rextAppZonaType' );
+    Cogumelo::console($this->defResCtrl->getOptionsTax( 'rextAppZonaType' ));
+*/
     $fieldsInfo = array(
       'rextAppZonaType' => array(
-        'params' => array( 'label' => __( 'Zona' ), 'type' => 'select', 'multiple' => true,
+        'params' => array( 'label' => __( 'Zona' ), 'type' => 'select',
           'options' => $this->defResCtrl->getOptionsTax( 'rextAppZonaType' )
         )
       )
