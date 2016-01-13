@@ -22,7 +22,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
         '<%-title%>'+
       '</div>'+
     '</div>'),*/
-    '<div data-resource-id="" class="col-md-12 element">'+
+    '<div data-resource-id="<%- id %>" class="accessButton col-md-12 element">'+
       '<div class="elementImg">'+
         '<img class="img-responsive" src="/cgmlImg/<%- img %>/explorerXantaresImg/.jpg" />'+
         '<ul class="elementOptions container-fluid">'+
