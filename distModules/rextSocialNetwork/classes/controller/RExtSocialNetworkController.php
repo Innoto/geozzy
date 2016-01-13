@@ -49,19 +49,19 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
 
     $fieldsInfo = array(
       'activeFb' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activar compartir en facebook') ))
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activate share on facebook') ))
       ),
       'textFb' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Text to share on facebook' ), 'type' => 'textarea', 'placeholder' => 'Recomiendo que visites #TITLE#. Lo he visto en #URL#' ),
+        'params' => array( 'label' => __( 'Text to share on facebook' ), 'type' => 'textarea', 'placeholder' => 'I reccomend you visit #TITLE#. Seen in en #URL#' ),
         'rules' => array( 'maxlength' => '2000' )
       ),
       'activeTwitter' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Activar compartir en twitter' ))
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Activate share on twitter' ))
       ),
       'textTwitter' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Text to share on twitter' ), 'type' => 'textarea', 'placeholder' => 'Me ha gustado este sitio: #TITLE# vía #URL#' ),
+        'params' => array( 'label' => __( 'Text to share on twitter' ), 'type' => 'textarea', 'placeholder' => 'I liked this place: #TITLE# via #URL#' ),
         'rules' => array( 'maxlength' => '2000' )
       )
 
