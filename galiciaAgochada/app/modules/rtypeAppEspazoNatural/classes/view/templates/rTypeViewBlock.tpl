@@ -39,11 +39,11 @@
   <div class="titleBar">
     <div class="container">
       <div class="row">
-        <div class="col-lg-10">
+        <div class="col-xs-12 col-sm-9 col-md-10">
           <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="/media/img/paisaxesIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
-        <div class="stars col-lg-2">
+        <div class="stars hidden-xs col-sm-3 col-md-2">
           <i class="fa fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
@@ -61,17 +61,17 @@
   <section class="contentSec container gzSection">
     <div class="typeBar row">
       {if isset($res.data.rextAppEspazoNaturalType)}
-      <ul class="type col-lg-10">
+      <ul class="type col-xs-6 col-sm-6 col-md-6 clearfix">
         {foreach from=$res.data.rextAppEspazoNaturalType item=termInfo}
           <li>
-            <img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
+            <img width="16" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
             <div class="name">{$termInfo.name_es}</div>
           </li>
           {break}
         {/foreach}
       </ul>
       {/if}
-      <ul class="social col-lg-2">
+      <ul class="social col-xs-6 col-sm-6 col-md-6 clearfix">
         <li class="elementShare">
           {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
             <div class="share"><i class="fa fa-share-alt"></i></div>
@@ -100,22 +100,21 @@
       </ul>
     </div>
 
-    <div class="shortDescription">
+    <div class="mediumDescription">
       {if $res.data.mediumDescription}
         {$res.data.mediumDescription|escape:'htmlall'}
       {else}
         {$res.data.shortDescription|escape:'htmlall'}
       {/if}
     </div>
-
-
-    {if isset($multimediaGalleries)}
-      <section class="multimediaSec container gzSection">
-        {$multimediaGalleries}
-      </section>
-    {/if}
-
-    <div class="mediumDescription">
+  </section>
+  {if isset($multimediaGalleries)}
+    <section class="multimediaSec container gzSection">
+      {$multimediaGalleries}
+    </section>
+  {/if}
+  <section class="contentSec container gzSection">
+    <div class="content">
       {$res.data.content}
     </div>
   </section>
