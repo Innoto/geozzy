@@ -20,7 +20,7 @@
     });
 
 
-
+/*
 
           for (var i = 0; i < 12; i++) {
 
@@ -41,7 +41,7 @@
             '</div>';
             $('.explorer-container-gallery').append(tempElemHtml);
           }
-
+*/
 
   });
 
@@ -141,7 +141,7 @@
     that.setDisplays = function() {
 
       that.infowindow = new geozzy.explorerDisplay.mapInfoView();
-      //that.listaMini = new geozzy.explorerDisplay.activeListTinyView({ el:$('.explorer-container-gallery')});
+      that.listaMini = new geozzy.explorerDisplay.activeListView({ el:$('.explorer-container-gallery')});
       that.mapa = new geozzy.explorerDisplay.mapView({
           map: resourceMap,
           clusterize:false,
@@ -168,7 +168,7 @@
       });
 
 
-      //that.explorer.addDisplay( that.listaMini );
+      that.explorer.addDisplay( that.listaMini );
       that.explorer.addDisplay( that.mapa );
       that.explorer.addDisplay( that.infowindow );
 
