@@ -1,7 +1,8 @@
 var geozzy = geozzy || {};
-if(!geozzy.filters) geozzy.filters={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
+if(!geozzy.explorerComponents.filters) geozzy.explorerComponents.filters={};
 
-geozzy.filters.filterSelectSimpleView = geozzy.filterView.extend({
+geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
 
   attributes: {},

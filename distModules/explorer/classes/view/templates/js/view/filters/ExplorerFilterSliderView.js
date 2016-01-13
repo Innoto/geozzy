@@ -1,10 +1,8 @@
 var geozzy = geozzy || {};
-if(!geozzy.filters) geozzy.filters={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
+if(!geozzy.explorerComponents.filters) geozzy.explorerComponents.filters={};
 
-geozzy.filters.filterValueView = geozzy.filterView.extend({
-
-
-
+geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     isTaxonomyFilter: true,
     template: _.template(

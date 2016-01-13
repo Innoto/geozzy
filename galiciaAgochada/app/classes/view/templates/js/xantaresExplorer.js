@@ -221,7 +221,8 @@
       //--------------------------------------------------------------------------------------------------------------------------------------------
 
 
-      var filtroTipos = new geozzy.filters.filterSelectImgView(
+
+      var filtroTipos = new geozzy.explorerComponents.filters.filterButtonsView(
         {
           mainCotainerClass: that.explorerclass+' .filters_fixed',
           containerClass: 'tipoEatandDrink',
@@ -230,7 +231,7 @@
         }
       )
 
-      var filtroEspecialidades = new geozzy.filters.filterSelectSimpleView(
+      var filtroEspecialidades = new geozzy.explorerComponents.filters.filterComboView(
         {
           mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'especialidadeEatandDrink',
@@ -239,7 +240,7 @@
         }
       )
 
-      var filtroPrezo = new geozzy.filters.filterValueView(
+      var filtroPrezo = new geozzy.explorerComponents.filters.filterSliderView(
         {
           title:'Precio',
           mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
