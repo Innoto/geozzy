@@ -50,6 +50,9 @@ $IMAGE_PROFILES = array(
   'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
 
 
+  'explorerXantaresImg' => array( 'width' => 530, 'height' => 213, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+
+
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
   'typeIcon' => array(
     'rasterColor' => '#ffffff',
