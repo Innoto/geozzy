@@ -155,7 +155,7 @@
               if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
 
                 if( jQuery.isNumeric( e.get('icon') )  ){
-                  iconUrl = '/cgmlImg/'+e.get('icon')+'/explorerMarker/marker.png';
+                  iconUrl = '/cgmlImg/'+e.get('icon')+'/explorerXantaresMarker/marker.png';
                   return false;
                 }
 

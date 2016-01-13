@@ -4,7 +4,7 @@
 .explorerLayout{
   //.mixinDevel();
   .explorerBase( );
-  .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 60%, @explMap-h: calc(~"100% - "@headerTitleBarHeight ), @explFilter-w: 300px,
+  .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 60%, @explMap-h: calc(~"100% - "@headerTitleBarHeight ), @explFilter-w: 290px,
      @explFilter-h: auto, @explGallery-w: 40%, @explGallery-h: calc(~"100% - "@headerTitleBarHeight ) );
 }
 
@@ -60,9 +60,9 @@
     .filters_fixed{
       position: relative;
       background-color: @gzzColor-bck-9;
-      height: 65px;
+      height: 60px;
       ul{
-        padding: 5px 10px;
+        padding: 5px;
         list-style: none;
         li{
           cursor:pointer;
@@ -78,7 +78,7 @@
             display:none;
             position: absolute;
             left: 0;
-            bottom: 1px;
+            bottom: 0px;
             width: 100%;
             text-align: center;
             font-size: 11px;
@@ -101,12 +101,13 @@
     }
     .filters_advancedContainer{
       cursor: pointer;
-      padding: 5px 20px;
+      padding: 0px 20px;
       background-color: @gzzColor-bck-1;
       .filters_openFilters{
         padding: 5px 0px;
         text-transform: uppercase;
         font-size: 14px;
+        font-weight: 500;
         .fa-caret-up{ display:none; font-size: 24px; color: @gzzColor-xantares; float: right; margin-top: -3px;}
         .fa-caret-down{ display:inline; font-size: 24px; color: @gzzColor-xantares; float: right; margin-top: -3px; }
       }
