@@ -125,9 +125,7 @@
       </ul>
     </div>
 
-    <div class="shortDescription">
-      {$res.data.mediumDescription|escape:'htmlall'}
-    </div>
+
 
     <div class="taxonomyBar row">
       <div class="taxStars col-lg-2">
@@ -165,9 +163,13 @@
                 <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
               </div>
             {/if}
-          {/if}  
+          {/if}
         {/foreach}
       </div>
+    </div>
+
+    <div class="shortDescription">
+      {$res.data.mediumDescription|escape:'htmlall'}
     </div>
 
     <div class="mediumDescription">
