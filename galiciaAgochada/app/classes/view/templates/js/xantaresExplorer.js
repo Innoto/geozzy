@@ -229,7 +229,7 @@
           //defaultOption: { icon: false, title: 'Todos os tipos', value:'*' },
           data: that.eatAndDrinkTypes
         }
-      )
+      );
 
       var filtroEspecialidades = new geozzy.explorerComponents.filters.filterComboView(
         {
@@ -238,7 +238,7 @@
           defaultOption: { icon: false, title: 'Todas as especialidades', value:'*' },
           data: that.eatAndDrinkSpecialities
         }
-      )
+      );
 
       var filtroPrezo = new geozzy.explorerComponents.filters.filterSliderView(
         {
@@ -247,12 +247,22 @@
           containerClass: 'xantaresPrice',
           values:  [10]
         }
-      )
+      );
+
+      var filtroReset = new geozzy.explorerComponents.filters.filterResetView(
+        {
+          title:'Ver todo',
+          mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
+          containerClass: 'resetFilters'
+        }
+      );
 
 
       that.explorer.addFilter( filtroEspecialidades );
       that.explorer.addFilter( filtroTipos );
       that.explorer.addFilter( filtroPrezo );
+      that.explorer.addFilter( filtroReset );
+
 
     }
 
