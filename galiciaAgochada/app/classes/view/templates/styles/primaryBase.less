@@ -50,7 +50,7 @@ body {
           & > a:focus{color:@gzzColor-text-light;}
           .dropdown-menu {
             padding: 5px;
-            border: 3px solid #374643;
+            border: 2px solid #374643;
             background: #435553;
             min-width:30px;
             li{ margin: 0px; }
@@ -58,6 +58,17 @@ body {
           }
           a{
            background: none;
+          }
+        }
+        &.langSelector{
+          margin-left:20px;
+          a{
+            .fa{font-size:16px;}
+          }
+          &.dropdown.open{
+            .dropdown-menu {
+              a{text-transform:lowercase;font-size:13px;}
+            }
           }
         }
       }//li
