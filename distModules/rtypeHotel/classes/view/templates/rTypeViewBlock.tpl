@@ -96,7 +96,7 @@
       </ul>
       {/if}
 
-      <ul class="social col-lg-2">
+      <ul class="social col-lg-2 cleafix">
         <li class="elementShare">
           {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
             <div class="share"><i class="fa fa-share-alt"></i></div>
@@ -110,7 +110,7 @@
               {/if}
               {if isset($res.ext.rextSocialNetwork.data.activeTwitter) && $res.ext.rextSocialNetwork.data.activeTwitter}
                 <div class="share-net twitter">
-                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$res.data["urlAlias_$GLOBAL_C_LANG"]}&text={$res.ext.rextSocialNetwork.data["textTwitter_$GLOBAL_C_LANG"]} {$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}">
+                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$res.data["urlAlias_$GLOBAL_C_LANG"]}&text={$res.ext.rextSocialNetwork.data["textTwitter_$GLOBAL_C_LANG"]}">
                     <i class="fa fa-twitter-square"></i>
                   </a>
                 </div>
@@ -124,7 +124,6 @@
         </li>
       </ul>
     </div>
-
 
     <div class="shortDescription">
       {$res.data.mediumDescription|escape:'htmlall'}
@@ -156,15 +155,17 @@
         {/foreach}
 
         {foreach $allFacilities as $termId => $term}
-          {if $termId|array_key_exists:$res.data.accommodationFacilities}
-            <div class="icon">
-              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
-            </div>
-          {else}
-            <div class="icon light">
-              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
-            </div>
-          {/if}
+          {if isset($term.icon)}
+            {if $termId|array_key_exists:$res.data.accommodationFacilities}
+              <div class="icon">
+                <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
+              </div>
+            {else}
+              <div class="icon light">
+                <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
+              </div>
+            {/if}
+          {/if}  
         {/foreach}
       </div>
     </div>
