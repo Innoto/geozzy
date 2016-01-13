@@ -53,6 +53,10 @@ geozzy.filterView = Backbone.View.extend({
     return retTerms;
   },
 
+  reset: function() {
+
+  },
+
   render: function() {
 
   },

@@ -66,16 +66,16 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           from: 50,
           keyboard: true,
           onStart: function (data) {
-              console.log("onStart");
+              //console.log("onStart");
           },
           onChange: function (data) {
-              console.log("onChange");
+              //console.log("onChange");
           },
           onFinish: function (data) {
-              console.log("onFinish");
+              //console.log("onFinish");
           },
           onUpdate: function (data) {
-              console.log("onUpdate");
+              //console.log("onUpdate");
           }
       });
 
@@ -94,5 +94,10 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       });
 */
 
+    },
+
+    reset: function() {
+
     }
+
 });
