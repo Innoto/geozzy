@@ -4,10 +4,8 @@ if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 geozzy.explorerDisplay.activeListView = Backbone.View.extend({
 
   tpl: _.template(
-    '<div class="explorerListContent container-fluid">'+
-      '<div class="">'+
+    '<div class="explorerActiveListContent">'+
         '<%=content%>'+
-      '</div>'+
     '</div>'),
   tplElement: _.template(
     /*
@@ -34,7 +32,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       '<div class="elementInfo">'+
         '<div class="elementTitle"><%-title%></div>'+
         '<div class="elementType"><i class="fa fa-cutlery"></i> Furancho</div>'+
-        '<div class="elementPrice"><%- id %>€<span>/persona</span></div>'+
+        '<% if( averagePrice ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> <span>/persona</span></div> <%}%>'+
       '</div>'+
     '</div>'),
 
@@ -51,9 +49,9 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
   events: {
 
       // resource events
-      "click .explorerListContent .accessButton": "resourceClick",
-      "mouseenter .explorerListContent .element": "resourceHover",
-      "mouseleave .explorerListContent": "resourceOut",
+      "click .explorerActiveListContent .accessButton": "resourceClick",
+      "mouseenter .explorerActiveListContent .element": "resourceHover",
+      "mouseleave .explorerActiveListContent": "resourceOut",
   },
 
   initialize: function( opts ) {
@@ -107,7 +105,8 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
         title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
         id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
         inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible'),
-        img: that.parentExplorer.resourceMinimalList.get( e ).get('img')
+        img: that.parentExplorer.resourceMinimalList.get( e ).get('img'),
+        averagePrice: that.parentExplorer.resourceMinimalList.get( e ).get('averagePrice')
       };
 
 
