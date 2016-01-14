@@ -152,7 +152,7 @@
 
         {foreach $allFacilities as $termId => $term}
             <div class="icon clearfix {if !$termId|array_key_exists:$res.data.accommodationServices}light{/if}">
-              <img width="32" src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
+              <img alt="{$term.name}" title="{$term.name}" src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
             </div>
         {/foreach}
       </div>
