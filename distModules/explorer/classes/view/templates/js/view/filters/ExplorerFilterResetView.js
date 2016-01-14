@@ -45,8 +45,9 @@ geozzy.explorerComponents.filters.filterResetView = geozzy.filterView.extend({
     actionResetAllFilters: function() {
       var that = this;
       $.each( that.parentExplorer.filters, function(i,e) {
-        alert('');
+        e.reset();
       });
+      that.parentExplorer.applyFilters();
     }
 
 });
