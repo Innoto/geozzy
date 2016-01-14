@@ -55,7 +55,6 @@
   </div>
 
   <section class="imageSec gzSection">
-
   </section>
 
   <section class="contentSec container gzSection">
@@ -163,17 +162,28 @@
     </div>
 
     {if isset( $res.data.loc )}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
     <script type="text/javascript">
       var resourceMapData = {
         lat: {$res.data.locLat},
         lon: {$res.data.locLon},
         zoom: {$res.data.defaultZoom},
-        container: '.locationSec .map .container'
+        wrapper: '.locationSec .map .resMapContainer',
+        wrapperRoute: '.locationSec .mapRoute .container'
       };
     </script>
-    {$res.data.loc}
-    <div class="map">
+    <div class="mapRoute">
       <div class="container">
+        <p>Teclea una dirección o marca en el mapa el lugar de partida</p>
+        <form class="mapRouteForm">
+          <input name="mapRouteOrigin">
+          <button type="submit">Calcular ruta</button>
+        </form>
+        <div id="comollegarListado" style="height:30px;"></div>
+      </div>
+    </div>
+    <div class="map">
+      <div class="resMapContainer" style="width:100%; height:100%;">
         <!-- google.map -->
       </div>
     </div>
