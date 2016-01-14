@@ -145,15 +145,9 @@
       </div>
       <div class="taxIcons col-xs-12 col-sm-10">
         {foreach $allServices as $termId => $term}
-          {if $termId|array_key_exists:$res.data.accommodationServices}
-            <div class="icon clearfix">
-              <img alt="{$term.name}" title="{$term.name}" src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.svg" />
+            <div class="icon clearfix {if !$termId|array_key_exists:$res.data.accommodationServices}light{/if}">
+              <img alt="{$term.name}" title="{$term.name}" src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
             </div>
-          {else}
-            <div class="icon light clearfix">
-              <img alt="{$term.name}" title="{$term.name}" src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.svg" />
-            </div>
-          {/if}
         {/foreach}
 
         {foreach $allFacilities as $termId => $term}

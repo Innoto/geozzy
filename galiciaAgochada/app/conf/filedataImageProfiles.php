@@ -62,6 +62,11 @@ $IMAGE_PROFILES = array(
     'height' => 32,
     'saveFormat' => 'PNG' ),
 
+'imgMultimediaGallery' => array(
+    'width' => 700,
+    'height' => 400,
+    'cut' => false ),
+
 
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
   'typeIcon' => array(
