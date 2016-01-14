@@ -54,8 +54,8 @@ $IMAGE_PROFILES = array(
 
 /* PERFILES PARA FICHA DE RECURSO */
 'typeIconMini' => array(
-  'width' => 16,
-  'height' => 16,
+  'width' => 24,
+  'height' => 24,
   'saveFormat' => 'PNG' ),
 'typeIconCategory' => array(
     'width' => 32,
