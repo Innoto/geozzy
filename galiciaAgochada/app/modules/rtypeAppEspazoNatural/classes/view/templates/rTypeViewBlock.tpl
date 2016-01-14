@@ -25,7 +25,7 @@
 {/block}
 
 {block name="socialMeta" append}
-  <meta property="og:url" content="http://www.eldiario.es/zonacritica/Lagrimas-negras_6_470762933.html" />
+  <meta property="og:url" content="{$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}" />
   <meta property="og:image" content="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
   <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
   <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
@@ -39,11 +39,11 @@
   <div class="titleBar">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-10">
+        <div class="col-lg-10">
           <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="/media/img/paisaxesIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
-        <div class="stars hidden-xs col-sm-3 col-md-2">
+        <div class="stars col-lg-2">
           <i class="fa fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
@@ -61,22 +61,17 @@
   <section class="contentSec container gzSection">
     <div class="typeBar row">
       {if isset($res.data.rextAppEspazoNaturalType)}
-      <ul class="type col-xs-6 col-sm-6 col-md-6 clearfix">
+      <ul class="type col-lg-10">
         {foreach from=$res.data.rextAppEspazoNaturalType item=termInfo}
           <li>
-<<<<<<< HEAD
-            <img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
+            {if isset($termInfo.icon)}<img src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
             <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
-=======
-            <img width="16" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
-            <div class="name">{$termInfo.name_es}</div>
->>>>>>> c609af831ae53f747812cef53176327ee2001a97
           </li>
           {break}
         {/foreach}
       </ul>
       {/if}
-      <ul class="social col-xs-6 col-sm-6 col-md-6 clearfix">
+      <ul class="social col-lg-2">
         <li class="elementShare">
           {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
             <div class="share"><i class="fa fa-share-alt"></i></div>
@@ -90,7 +85,7 @@
               {/if}
               {if isset($res.ext.rextSocialNetwork.data.activeTwitter) && $res.ext.rextSocialNetwork.data.activeTwitter}
                 <div class="share-net twitter">
-                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$res.data["urlAlias_$GLOBAL_C_LANG"]}&text={$res.ext.rextSocialNetwork.data["textTwitter_$GLOBAL_C_LANG"]}">
+                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}&text={$res.ext.rextSocialNetwork.data["textTwitter_$GLOBAL_C_LANG"]}">
                     <i class="fa fa-twitter-square"></i>
                   </a>
                 </div>
@@ -105,21 +100,22 @@
       </ul>
     </div>
 
-    <div class="mediumDescription">
+    <div class="shortDescription">
       {if $res.data.mediumDescription}
         {$res.data.mediumDescription|escape:'htmlall'}
       {else}
         {$res.data.shortDescription|escape:'htmlall'}
       {/if}
     </div>
-  </section>
-  {if isset($multimediaGalleries)}
-    <section class="multimediaSec container gzSection">
-      {$multimediaGalleries}
-    </section>
-  {/if}
-  <section class="contentSec container gzSection">
-    <div class="content">
+
+
+    {if isset($multimediaGalleries)}
+      <section class="multimediaSec container gzSection">
+        {$multimediaGalleries}
+      </section>
+    {/if}
+
+    <div class="mediumDescription">
       {$res.data.content}
     </div>
   </section>

@@ -87,7 +87,7 @@
       <ul class="type type col-xs-6 col-sm-6 col-md-6 clearfix">
         {foreach from=$res.data.eatanddrinkType item=termInfo}
           <li>
-            <img width="16" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
+            <img src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
             <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
           </li>
           {break}
