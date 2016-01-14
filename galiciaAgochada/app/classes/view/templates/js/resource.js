@@ -1,3 +1,6 @@
+var geozzy = geozzy || {};
+
+
 firstLoad = firstLoadAll = true;
 var idGallery = [];
 var multimedia = [];
@@ -28,11 +31,14 @@ $(document).ready(function(){
     }
   );
 
+  geozzy.resourceMapController.prepareMap( resourceMapData.lat, resourceMapData.lon, resourceMapData.zoom, resourceMapData.wrapper );
+
+  geozzy.resourceMapController.prepareRoutes( resourceMapData.wrapperRoute );
 
   $.each(idGallery, function(i, elm){
     if ($('#multimediaGallery_'+elm)){
-       $('#multimediaGallery_'+elm).unitegallery({
-         gallery_theme: "tiles",
+      $('#multimediaGallery_'+elm).unitegallery({
+        gallery_theme: "tiles",
      		tiles_type: "justified"
       });
 
@@ -58,7 +64,6 @@ $(document).ready(function(){
     }
   });
 
-
   $('.owl-carousel').owlCarousel({
     margin:10,
     nav:true,
@@ -83,9 +88,9 @@ $(document).ready(function(){
 });
 
 function getCollection(id){
-     return $.grep(multimedia, function(e){
-       return e.id == id;
-     })[0];
+  return $.grep(multimedia, function(e){
+    return e.id == id;
+  })[0];
 }
 
 
