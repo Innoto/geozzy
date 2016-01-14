@@ -4,11 +4,9 @@ if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 geozzy.explorerDisplay.activeListView = Backbone.View.extend({
 
   tpl: _.template(
-    '<div class="explorerListContent container-fluid">'+
-      '<div class="">'+
-        '<%=content%>'+
-      '</div>'+
-    '</div>'),
+
+        '<%=content%>'),
+
   tplElement: _.template(
     /*
     '<div data-resource-id="<%- id %>" class="accessButton col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
