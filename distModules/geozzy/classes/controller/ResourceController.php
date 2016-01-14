@@ -1674,7 +1674,7 @@ class ResourceController {
   public function getMultimediaBlock($multimedia){
     $template = new Template();
     $template->assign( 'id', $multimedia['col']['id'] );
-    $template->assign( 'max', 4 );
+    $template->assign( 'max', 6 );
     $template->assign( 'multimediaAll', $multimedia );
     $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
     return $template;
