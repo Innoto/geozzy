@@ -17,6 +17,7 @@
     $(window).bind("load resize", function() {
 
       explorador.layoutDistributeSize();
+      $( '.explorerFilterElement .especialidadeEatandDrink').select2();
     });
 
 
@@ -263,6 +264,9 @@
       that.explorer.addFilter( filtroTipos );
       that.explorer.addFilter( filtroPrezo );
       that.explorer.addFilter( filtroReset );
+
+
+
 
 
     }
