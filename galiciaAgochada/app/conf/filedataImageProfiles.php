@@ -97,11 +97,24 @@ $IMAGE_PROFILES = array(
     'width' => 24, 'height' => 24, 'cut' => false,
     'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares.png',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
-'explorerPaisaxesMarker' => array(
-  'width' => 24, 'height' => 24, 'cut' => false,
-  'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaPaisaxes.png',
-  'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+  'explorerPaisaxesMarker' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaPaisaxes.png',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
+    'filterTypePaisaxes' => array(
+      'width' => 32, 'height' => 32, 'cut' => false,
+      'rasterColor' => '#FFFFFF', 'padding' => 0,
+      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+
+    'filterTypePaisaxes2' => array(
+      'width' => 24, 'height' => 24, 'cut' => false,
+      'rasterColor' => '#95C131', 'padding' => 0,
+      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+
+
 
 /*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
 
