@@ -18,9 +18,9 @@ class PaisaxesExplorerModel extends Model
               geozzy_resource.title_es as title_es,
               geozzy_resource.title_gl as title_gl,
               geozzy_resource.image as image,
-              geozzy_resource.shortDescription_es as shortDescription_es,
-              geozzy_resource.shortDescription_en as shortDescription_en,
-              geozzy_resource.shortDescription_gl as shortDescription_gl,
+              geozzy_resource.mediumDescription_es as mediumDescription_es,
+              geozzy_resource.mediumDescription_en as mediumDescription_en,
+              geozzy_resource.mediumDescription_gl as mediumDescription_gl,
               geozzy_resource.loc as loc,
               geozzy_resource.timeLastUpdate as timeLastUpdate,
               group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
@@ -53,7 +53,7 @@ class PaisaxesExplorerModel extends Model
       'type' => 'VARCHAR',
       'multilang' => true
     ),
-    'shortDescription' => array(
+    'mediumDescription' => array(
       'type' => 'VARCHAR',
       'multilang' => true
     ),

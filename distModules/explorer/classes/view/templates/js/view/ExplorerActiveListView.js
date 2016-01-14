@@ -32,7 +32,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
         '</ul>'+
       '</div>'+
       '<div class="elementInfo">'+
-        '<div class="elementTitle">Lorem ipsum dolor sit amet, consectetur</div>'+
+        '<div class="elementTitle"><%-title%></div>'+
         '<div class="elementType"><i class="fa fa-cutlery"></i> Furancho</div>'+
         '<div class="elementPrice"><%- id %>€<span>/persona</span></div>'+
       '</div>'+
