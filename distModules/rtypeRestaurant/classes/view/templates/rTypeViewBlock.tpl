@@ -39,11 +39,11 @@
   <div class="titleBar">
     <div class="container">
       <div class="row">
-        <div class="col-lg-10">
+        <div class="col-xs-12 col-sm-9 col-md-10">
           <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="/media/img/xantaresIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
-        <div class="stars col-lg-2">
+        <div class="stars hidden-xs col-sm-3 col-md-2">
           <i class="fa fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
@@ -63,7 +63,7 @@
     {if $res.ext.rextEatAndDrink.data.averagePrice}
     <div class="reservationSec container">
       <div class="reservationBox">
-        <div class="priceText">{t}Average night prize{/t}</div>
+        <div class="priceText">{t}Average night price{/t}</div>
         <div class="priceAmount"><span class="num">{$res.ext.rextEatAndDrink.data.averagePrice|escape:'htmlall'}</span><span class="unit"> €</span></div>
         <div class="reservationBtb">
           {if $res.ext.rextEatAndDrink.data.reservationURL}
@@ -84,7 +84,7 @@
   <section class="contentSec container gzSection">
     <div class="typeBar row">
       {if isset($res.data.eatanddrinkType)}
-      <ul class="type col-lg-10">
+      <ul class="type type col-xs-6 col-sm-6 col-md-6 clearfix">
         {foreach from=$res.data.eatanddrinkType item=termInfo}
           <li>
             <img width="16" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
@@ -94,7 +94,7 @@
         {/foreach}
       </ul>
       {/if}
-      <ul class="social col-lg-2">
+      <ul class="social col-xs-6 col-sm-6 col-md-6 clearfix">
         <li class="elementShare">
           {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
             <div class="share"><i class="fa fa-share-alt"></i></div>
@@ -123,11 +123,11 @@
       </ul>
     </div>
 
-    <div class="shortDescription">
+    <div class="mediumDescription">
       {$res.data.mediumDescription|escape:'htmlall'}
     </div>
 
-    <div class="mediumDescription">
+    <div class="content">
       {$res.data.content}
     </div>
   </section>

@@ -28,7 +28,7 @@
     font-size:16px;
 
     .imageSec{
-
+      margin-bottom: 10px;
       .reservationSec{
         position:relative;
         height:100%;
@@ -82,10 +82,11 @@
       text-align:justify;
 
       .typeBar{
-        height:60px;
+        height:50px;
 
         ul.type{
-
+          margin-bottom: 0px;
+          height:50px;
           li{
             list-style: none;
             margin-top:10px;
@@ -103,6 +104,7 @@
         }
 
         ul.social{
+          margin-bottom: 0px;
           height:50px;
           position:relative;
 
@@ -143,28 +145,24 @@
       }
 
       .taxonomyBar{
-        height:50px;
-        padding: 10px 0px;
-
         .taxIcons{
           .icon{
             display:inline;
             float:right;
             margin-left:20px;
           }
-
           .light{
             opacity:0.3;
           }
         }
       }
 
-      .shortDescription{
+      .mediumDescription{
         font-weight:bold;
-        margin:25px 0px;
+        margin:15px 0px;
       }
 
-      .mediumDescription{
+      .content{
         margin-top:22px;
         text-align:justify;
       }
@@ -482,5 +480,22 @@
 
 }/*991px*/
 @media screen and (max-width: 767px) {
-
+  .bodyContent{
+    .resource{
+      .contentSec{
+        .taxonomyBar{
+          .taxIcons{
+            margin-top: 10px;
+            .icon{
+              display:inline;
+              float:left;
+              margin-right:20px;
+              margin-left: 0px;
+              margin-top: 10px;
+            }
+          }//.taxIcons
+        }//.taxonomyBar
+      }//.contentSec
+    }//.resource
+  }//.bodyContent
 } /*767px*/
