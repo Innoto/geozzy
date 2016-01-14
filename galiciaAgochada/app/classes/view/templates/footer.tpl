@@ -39,9 +39,24 @@
     </div>
     <div class="col-lg-4 col-sm-6 col-xs-12">
       <input class="footerSearch" type="text" placeholder="{t}Busca directamente un segredo{/t}"></input>
-      <div class="poweredGzzy clearfix">        
-        <img class="logoGzzy img-responsive" src="/media/img/logoGzzy.png">
-        <span>powered by</span>
+      <div class="row">
+        <div class="powered col-xs-6">
+          <span>powered by</span>
+          <div class="poweredGzzy clearfix">
+            <img class="logoGzzy img-responsive" src="/media/img/logoGzzy.png">
+          </div>
+        </div>
+        <div class="supported col-xs-6">
+          <span>supported by</span>
+          <div class="row">
+            <div class="supportEnisa col-xs-6 clearfix">
+              <img class="logoEnisa img-responsive" src="/media/img/ENISA.png">
+            </div>
+            <div class="supportFeder col-xs-6 clearfix">
+              <img class="logoFeder img-responsive" src="/media/img/FEDER.png">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
