@@ -17,7 +17,7 @@
     $(window).bind("load resize", function() {
 
       explorador.layoutDistributeSize();
-      $( '.explorerFilterElement .especialidadeEatandDrink').select2();
+      //$( '.explorerFilterElement .especialidadeEatandDrink').select2();
     });
 
 

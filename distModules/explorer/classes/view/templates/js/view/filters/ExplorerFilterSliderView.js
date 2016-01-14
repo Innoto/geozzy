@@ -98,7 +98,8 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
     },
 
     reset: function() {
-
+      var that = this;
+      $( ".explorerFilterElement ."+that.options.containerClass+" input" ).val(10)
     }
 
 });
