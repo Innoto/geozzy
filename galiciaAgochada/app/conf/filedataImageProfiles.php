@@ -118,6 +118,12 @@ $IMAGE_PROFILES = array(
 
 /*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
 
+
+  'explorerTypicalMarker' => array(
+    'width' => 32, 'height' => 32, 'cut' => false,
+    'rasterColor' => '#555555', 'padding' => 5,
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
   'explorerMarker' => array(
     'width' => 24, 'height' => 24, 'cut' => false,
     'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/chapa_paisaxes.png',
