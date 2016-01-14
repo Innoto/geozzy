@@ -64,6 +64,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           min: 0,
           max: 100,
           from: 50,
+          postfix: "€",
           keyboard: true,
           onStart: function (data) {
               //console.log("onStart");
