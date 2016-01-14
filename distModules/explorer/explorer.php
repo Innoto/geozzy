@@ -46,7 +46,7 @@ class explorer extends Module
      "id" =>"ionrangeslider",
      "params" => array("ionrangeslider"),
      "installer" => "bower",
-     "includes" => array("js/ion.rangeSlider.js", "css/ion.rangeSlider.css",  "css/ion.rangeSlider.skinHTML5.css")
+     "includes" => array("js/ion.rangeSlider.js", "css/ion.rangeSlider.css")
     )
 
 
