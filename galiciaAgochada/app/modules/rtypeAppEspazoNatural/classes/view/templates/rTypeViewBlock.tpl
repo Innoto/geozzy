@@ -65,7 +65,7 @@
         {foreach from=$res.data.rextAppEspazoNaturalType item=termInfo}
           <li>
             <img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
-            <div class="name">{$termInfo.name_es}</div>
+            <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
           </li>
           {break}
         {/foreach}
