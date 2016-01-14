@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="row">
-      <div class="col-md-3 col-lg-3">
+      <div class="col-sm-12 col-md-3 col-lg-3">
       <div class="navbar-header">
         <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
           <span class="sr-only">Toggle navigation</span>
