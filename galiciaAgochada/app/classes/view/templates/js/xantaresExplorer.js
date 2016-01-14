@@ -12,10 +12,10 @@
       explorador.setFilters();
       explorador.exec();
       explorador.layoutDistributeSize();
+      //$( '.explorerFilterElement .especialidadeEatandDrink').select2();
     });
 
     $(window).bind("load resize", function() {
-
       explorador.layoutDistributeSize();
     });
 
@@ -263,6 +263,9 @@
       that.explorer.addFilter( filtroTipos );
       that.explorer.addFilter( filtroPrezo );
       that.explorer.addFilter( filtroReset );
+
+
+
 
 
     }
