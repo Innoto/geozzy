@@ -64,8 +64,13 @@
       <ul class="type col-xs-6 col-sm-6 col-md-6 clearfix">
         {foreach from=$res.data.rextAppEspazoNaturalType item=termInfo}
           <li>
+<<<<<<< HEAD
+            <img width="32" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
+            <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
+=======
             <img width="16" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
             <div class="name">{$termInfo.name_es}</div>
+>>>>>>> c609af831ae53f747812cef53176327ee2001a97
           </li>
           {break}
         {/foreach}
