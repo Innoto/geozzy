@@ -50,6 +50,24 @@ $IMAGE_PROFILES = array(
   'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
 
 
+  'explorerXantaresImg' => array( 'width' => 530, 'height' => 213, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+
+/* PERFILES PARA FICHA DE RECURSO */
+'typeIconMini' => array(
+  'width' => 24,
+  'height' => 24,
+  'saveFormat' => 'PNG' ),
+'typeIconCategory' => array(
+    'width' => 32,
+    'height' => 32,
+    'saveFormat' => 'PNG' ),
+
+'imgMultimediaGallery' => array(
+    'width' => 700,
+    'height' => 400,
+    'cut' => false ),
+
+
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
   'typeIcon' => array(
     'rasterColor' => '#ffffff',
@@ -79,11 +97,24 @@ $IMAGE_PROFILES = array(
     'width' => 24, 'height' => 24, 'cut' => false,
     'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares.png',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
-'explorerPaisaxesMarker' => array(
-  'width' => 24, 'height' => 24, 'cut' => false,
-  'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaPaisaxes.png',
-  'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+  'explorerPaisaxesMarker' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaPaisaxes.png',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
+    'filterTypePaisaxes' => array(
+      'width' => 32, 'height' => 32, 'cut' => false,
+      'rasterColor' => '#FFFFFF', 'padding' => 0,
+      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+
+    'filterTypePaisaxes2' => array(
+      'width' => 24, 'height' => 24, 'cut' => false,
+      'rasterColor' => '#95C131', 'padding' => 0,
+      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+
+
 
 /*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
 

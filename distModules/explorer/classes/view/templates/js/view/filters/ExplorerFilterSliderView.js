@@ -5,6 +5,12 @@ if(!geozzy.explorerComponents.filters) geozzy.explorerComponents.filters={};
 geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     isTaxonomyFilter: true,
+    slider: false,
+
+    valueMin: 3,
+    valueMax: 100,
+    valueFrom: 20,
+
     template: _.template(
 
                     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
@@ -58,26 +64,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
         $( that.options.mainCotainerClass+' ' + containerClassDots ).html( filterHtml );
       }
-
-      $( ".explorerFilterElement ."+that.options.containerClass+" input" ).ionRangeSlider({
-          type: "single",
-          min: 0,
-          max: 100,
-          from: 50,
-          keyboard: true,
-          onStart: function (data) {
-              console.log("onStart");
-          },
-          onChange: function (data) {
-              console.log("onChange");
-          },
-          onFinish: function (data) {
-              console.log("onFinish");
-          },
-          onUpdate: function (data) {
-              console.log("onUpdate");
-          }
-      });
+      that.instanceSlider();
 
 /*
       $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
@@ -94,5 +81,42 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       });
 */
 
+    },
+
+
+    instanceSlider: function() {
+      var that = this;
+      $( ".explorerFilterElement ."+that.options.containerClass+" input" ).ionRangeSlider({
+          type: "single",
+          min: that.valueMin,
+          max: that.valueMax,
+          from: that.valueFrom,
+          postfix: "€",
+          keyboard: true,
+          onStart: function (data) {
+              //console.log("onStart");
+          },
+          onChange: function (data) {
+              //console.log("onChange");
+          },
+          onFinish: function (data) {
+              //console.log("onFinish");
+          },
+          onUpdate: function (data) {
+              //console.log("onUpdate");
+          }
+      });
+      that.slider = $( ".explorerFilterElement ."+that.options.containerClass+" input" ).data("ionRangeSlider");
+
+    },
+
+    reset: function() {
+      var that = this;
+
+      that.slider.reset();
+      //that.slider.destroy();
+      //$( ".explorerFilterElement ."+that.options.containerClass+" input" ).val(10);
+      //that.instanceSlider();
     }
+
 });

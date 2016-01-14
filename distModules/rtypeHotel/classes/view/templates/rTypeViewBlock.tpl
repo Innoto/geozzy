@@ -25,11 +25,15 @@
 {/block}
 
 {block name="socialMeta" append}
-  <meta property="og:url" content="http://www.eldiario.es/zonacritica/Lagrimas-negras_6_470762933.html" />
+  <meta property="og:url" content="{$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}" />
   <meta property="og:image" content="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
   <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
   <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
 {/block}
+
+<script>
+
+</script>
 
 <!-- rTypeViewBlock.tpl en rTypeHotel module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
@@ -39,11 +43,11 @@
   <div class="titleBar">
     <div class="container">
       <div class="row">
-        <div class="col-lg-10">
+        <div class="col-xs-12 col-sm-9 col-md-10">
           <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="/media/img/aloxamentosIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
-        <div class="stars col-lg-2">
+        <div class="stars hidden-xs col-sm-3 col-md-2">
           <i class="fa fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
@@ -56,7 +60,7 @@
 
   <section class="imageSec gzSection">
 
-    {if isset($res.ext.rextAccommodation.data.averagePrice)}
+    {if isset($res.ext.rextAccommodation.data.averagePrice) && $res.ext.rextAccommodation.data.averagePrice}
     <div class="reservationSec container">
       <div class="reservationBox">
         <div class="priceText">{t}Average night rate{/t}</div>
@@ -85,10 +89,10 @@
   <section class="contentSec container gzSection">
     <div class="typeBar row">
       {if isset($res.data.accommodationType)}
-      <ul class="type col-lg-10">
+      <ul class="type col-xs-6 col-sm-6 col-md-6 clearfix">
         {foreach from=$res.data.accommodationType item=termInfo}
           <li>
-            {if isset($termInfo.icon)}<img width="16" src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
+            {if isset($termInfo.icon)}<img src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
             <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
           </li>
           {break}
@@ -96,21 +100,21 @@
       </ul>
       {/if}
 
-      <ul class="social col-lg-2 cleafix">
+      <ul class="social col-xs-6 col-sm-6 col-md-6 clearfix">
         <li class="elementShare">
           {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
             <div class="share"><i class="fa fa-share-alt"></i></div>
             <div class="share-open" style="display:none;">
               {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}
                 <div class="share-net fb">
-                  <a class="icon-share facebook" target="_blank" rel="nofollow" href='http://www.facebook.com/sharer/sharer.php?u={$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}'>
+                  <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer/sharer.php?u={$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}">
                     <i class="fa fa-facebook-square"></i>
                   </a>
                 </div>
               {/if}
               {if isset($res.ext.rextSocialNetwork.data.activeTwitter) && $res.ext.rextSocialNetwork.data.activeTwitter}
                 <div class="share-net twitter">
-                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$res.data["urlAlias_$GLOBAL_C_LANG"]}&text={$res.ext.rextSocialNetwork.data["textTwitter_$GLOBAL_C_LANG"]}">
+                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}&text={$res.ext.rextSocialNetwork.data["textTwitter_$GLOBAL_C_LANG"]}">
                     <i class="fa fa-twitter-square"></i>
                   </a>
                 </div>
@@ -127,8 +131,8 @@
 
 
 
-    <div class="taxonomyBar row">
-      <div class="taxStars col-lg-2">
+    <div class="taxonomyBar row clearfix">
+      <div class="taxStars col-xs-12 col-sm-2">
         {if isset($res.data.accommodationCategory)}
           <div class="taxStarsBox">
           {foreach from=$res.data.accommodationCategory item=termInfo}
@@ -139,40 +143,26 @@
         {/foreach}
         {/if}
       </div>
-      <div class="taxIcons col-lg-10">
+      <div class="taxIcons col-xs-12 col-sm-10">
         {foreach $allServices as $termId => $term}
-          {if $termId|array_key_exists:$res.data.accommodationServices}
-            <div class="icon">
-              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
+            <div class="icon clearfix {if !$termId|array_key_exists:$res.data.accommodationServices}light{/if}">
+              <img alt="{$term.name}" title="{$term.name}" src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
             </div>
-          {else}
-            <div class="icon light">
-              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
-            </div>
-          {/if}
         {/foreach}
 
         {foreach $allFacilities as $termId => $term}
-          {if isset($term.icon)}
-            {if $termId|array_key_exists:$res.data.accommodationFacilities}
-              <div class="icon">
-                <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
-              </div>
-            {else}
-              <div class="icon light">
-                <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
-              </div>
-            {/if}
-          {/if}
+            <div class="icon clearfix {if !$termId|array_key_exists:$res.data.accommodationServices}light{/if}">
+              <img alt="{$term.name}" title="{$term.name}" src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
+            </div>
         {/foreach}
       </div>
     </div>
 
-    <div class="shortDescription">
+    <div class="mediumDescription">
       {$res.data.mediumDescription|escape:'htmlall'}
     </div>
 
-    <div class="mediumDescription">
+    <div class="content">
       {$res.data.content}
     </div>
   </section>

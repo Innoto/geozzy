@@ -39,11 +39,11 @@
   <div class="titleBar">
     <div class="container">
       <div class="row">
-        <div class="col-lg-10">
+        <div class="col-xs-12 col-sm-9 col-md-10">
           <img class="iconTitleBar img-responsive" alt="Páxina xeral" src="/media/img/paxinaIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
-        <div class="stars col-lg-2">
+        <div class="stars hidden-xs col-sm-3 col-md-2">
           <i class="fa fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
@@ -59,7 +59,7 @@
 
   <section class="contentSec container gzSection">
     <div class="typeBar row">
-      <ul class="social col-lg-12">
+      <ul class="social col-xs-12 col-sm-12 col-md-12 clearfix">
         <li class="elementShare">
           {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
             <div class="share"><i class="fa fa-share-alt"></i></div>
@@ -88,11 +88,11 @@
       </ul>
     </div>
 
-    <div class="shortDescription">
+    <div class="mediumDescription">
       {$res.data.mediumDescription|escape:'htmlall'}
     </div>
 
-    <div class="mediumDescription">
+    <div class="content">
       {$res.data.content}
     </div>
   </section>

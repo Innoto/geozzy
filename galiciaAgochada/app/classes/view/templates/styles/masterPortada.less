@@ -13,6 +13,17 @@
     -moz-box-shadow: none;
     box-shadow: none;
 
+    .navbar-nav{
+      li{
+        &.dropdown.open{
+          .dropdown-menu {
+            border: 2px solid #fff;
+            background: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }//li
+    }//.navbar-nav
+
   }
 }
 
@@ -389,9 +400,6 @@
 
 } /*1200px*/
 @media screen and (max-width: 1199px) {
-
-}/*1199px*/
-@media screen and (max-width: 991px) {
   .bodyContent{
     .gzzSec{
       &.secImage{
@@ -401,10 +409,18 @@
           transform: translateY(-50%);
           margin-right: 15px;
         }
+      }
+      &.secImage{
         .introLinkSegredos{
           bottom: 10px;
         }
       }
+    }
+  }
+}/*1199px*/
+@media screen and (max-width: 991px) {
+  .bodyContent{
+    .gzzSec{
       &.secSegredos{
         .segredoItem{
           .segredoItemImg{

@@ -341,18 +341,22 @@ label { display: block; }
     padding: 1px 0.5em;
     cursor: pointer;
     font-weight: bold;
-    color: @gzzColor-text-dest;
+    color: @gzzColor-text-light2;
+    background: transparent;
     line-height: 18px;
     text-transform: uppercase;
+    &:hover{
+      color: @gzzColor-text-dark;
+    }
   }
   &:hover li{
     display: inline;
   }
   .langActive {
-    background-color: @gzzColor-bck-3;
+    color: @gzzColor-text-dest;
   }
 }
-.langSwitchIcon { margin-top:-4px; font-size: 20px; color: @gzzColor-text-dest; }
+.langSwitchIcon { margin-top:-4px; font-size: 20px; color: @gzzColor-text-dark; }
 
 .select2-container,
 select.cgmMForm-field{ width: 100% !important; }

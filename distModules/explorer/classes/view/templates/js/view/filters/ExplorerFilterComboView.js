@@ -89,6 +89,16 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     });
 
 
+  },
+
+  reset: function() {
+    var that = this;
+    var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
+    $select = $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select' );
+
+    $select.val( "*" );
+
+    that.selectedTerms = false;
   }
 
 });

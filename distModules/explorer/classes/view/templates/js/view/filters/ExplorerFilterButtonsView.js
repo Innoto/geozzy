@@ -111,11 +111,9 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
       }
       else {
         //that.selectedTerms = false;
+        that.reset();
         that.selectedTerms = [ parseInt( termid ) ];
-        $( that.options.mainCotainerClass + ' ' + containerClassDots + ' ul li').removeClass('selected');
         termLi.addClass('selected');
-
-
       }
 
       that.parentExplorer.applyFilters();
@@ -141,6 +139,13 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
 
 
+  },
+
+  reset: function() {
+    var that = this;
+    var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
+    $( that.options.mainCotainerClass + ' ' + containerClassDots + ' ul li').removeClass('selected');
+    that.selectedTerms = false;
   }
 
 });
