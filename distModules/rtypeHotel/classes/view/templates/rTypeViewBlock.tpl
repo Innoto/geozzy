@@ -25,7 +25,7 @@
 {/block}
 
 {block name="socialMeta" append}
-  <meta property="og:url" content="{$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}" />
+  <meta property="og:url" content="http://www.eldiario.es/zonacritica/Lagrimas-negras_6_470762933.html" />
   <meta property="og:image" content="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
   <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
   <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
@@ -114,7 +114,7 @@
               {/if}
               {if isset($res.ext.rextSocialNetwork.data.activeTwitter) && $res.ext.rextSocialNetwork.data.activeTwitter}
                 <div class="share-net twitter">
-                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}&text={$res.ext.rextSocialNetwork.data["textTwitter_$GLOBAL_C_LANG"]}">
+                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$res.data["urlAlias_$GLOBAL_C_LANG"]}&text={$res.ext.rextSocialNetwork.data["textTwitter_$GLOBAL_C_LANG"]}">
                     <i class="fa fa-twitter-square"></i>
                   </a>
                 </div>
@@ -147,11 +147,11 @@
         {foreach $allServices as $termId => $term}
           {if $termId|array_key_exists:$res.data.accommodationServices}
             <div class="icon">
-              <img src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.svg" />
+              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
             </div>
           {else}
             <div class="icon light">
-              <img src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.svg" />
+              <img width="32" src="/cgmlImg/{$term.icon}/typeIconMini/{$term.icon}.svg" />
             </div>
           {/if}
         {/foreach}
