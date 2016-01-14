@@ -1590,7 +1590,7 @@ class ResourceController {
             foreach($resources as $resVal){
               $thumbSettings = array(
                'image' => $resVal->getter( 'image' ),
-               'profile' => 'typeIconMini'
+               'profile' => 'imgMultimediaGallery'
               );
               $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
               $multimediaUrl = false;
