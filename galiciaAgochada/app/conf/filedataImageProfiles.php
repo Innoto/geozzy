@@ -52,6 +52,16 @@ $IMAGE_PROFILES = array(
 
   'explorerXantaresImg' => array( 'width' => 530, 'height' => 213, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
 
+/* PERFILES PARA FICHA DE RECURSO */
+'typeIconMini' => array(
+  'width' => 24,
+  'height' => 24,
+  'saveFormat' => 'PNG' ),
+'typeIconCategory' => array(
+    'width' => 32,
+    'height' => 32,
+    'saveFormat' => 'PNG' ),
+
 
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
   'typeIcon' => array(

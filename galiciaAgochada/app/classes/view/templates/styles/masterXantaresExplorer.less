@@ -1,4 +1,5 @@
 @import "primary.less";
+@import "ionSliderGATheme.less";
 @import "/explorer/classes/view/templates/styles/explorerMixins.less";
 
 .explorerLayout{
@@ -104,6 +105,33 @@
       cursor: pointer;
       padding: 0px 20px;
       background-color: @gzzColor-bck-1;
+
+      label{
+        margin-top: 10px;
+        margin-bottom: 0px;
+        font-size: 14px;
+      }
+      .resetFilters{
+        button{
+          display: block;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          background: @gzzColor-xantares;
+          border: 0;
+          padding: 5px 15px;
+          color: @gzzColor-text-light;
+          margin: 5px auto;
+          text-transform: uppercase;
+          -webkit-border-radius: 25px;
+          -moz-border-radius: 25px;
+          border-radius: 25px;
+          &:hover{
+            background: @gzzColor-xantares-hover;
+          }
+        }
+
+      }
       .filters_openFilters{
         padding: 5px 0px;
         text-transform: uppercase;
@@ -117,6 +145,12 @@
         padding: 5px 0px;
         background-color: @gzzColor-bck-1;
         display:none;
+        .xantaresPrice{
+          .ionSliderTheme();
+          .irs-min, .irs-max{
+            display: none;
+          }
+        }//xantaresPrice
       }
       .filters_resume{
       }
