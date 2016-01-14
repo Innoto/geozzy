@@ -708,7 +708,8 @@ class geozzyAPIView extends View
     {
       $starData = $starred->getAllData('onlydata');
 
-      $starredResources = (new StarredResourcesModel)->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']), 'order'=>array('weight'=>1)) );
+      $starredResourceModel = new StarredResourcesModel();
+      $starredResources = $starredResourceModel->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']), 'order'=>array('weight'=>1)) );
 
       while( $starredResource = $starredResources->fetch() ){
         $starData['resources'][] = $starredResource->getAllData('onlydata');

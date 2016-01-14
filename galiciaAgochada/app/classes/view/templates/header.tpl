@@ -35,7 +35,7 @@
           <li><a href="{$site_host}#segredos" class="page-scroll">{t}Segredos{/t}</a></li>
           <li><a href="{$site_host}#participa" class="page-scroll">{t}Participa{/t}</a></li>
           <li><a href="{$site_host}#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
-          <li><a href="{$site_host}#" class="page-scroll">{t}Acerca de{/t}</a></li>
+          <li><a href="{$site_host}/{$GLOBAL_C_LANG}/sobre-nosotros" class="page-scroll">{t}Acerca de{/t}</a></li>
         {/if}
 
         <li class="dropdown langSelector">
