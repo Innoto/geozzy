@@ -1,4 +1,9 @@
 <script>
+  if ( typeof idGallery === 'undefined' ) {
+    var idGallery = [];
+    var multimedia = [];
+  }
+
   idGallery.push('{$id}');
   data = '';
   {foreach $multimediaAll.res as $multimedia}

@@ -1,9 +1,5 @@
 var geozzy = geozzy || {};
-
-
 firstLoad = firstLoadAll = true;
-var idGallery = [];
-var multimedia = [];
 
 $(document).ready(function(){
 
@@ -30,12 +26,6 @@ $(document).ready(function(){
       $('.share').css('visibility','visible');
     }
   );
-
-  if( typeof geozzy.resourceMapController !== 'undefined' ) {
-    geozzy.resourceMapController.prepareMap( resourceMapData.lat, resourceMapData.lon, resourceMapData.zoom, resourceMapData.wrapper );
-
-    geozzy.resourceMapController.prepareRoutes( resourceMapData.wrapperRoute );
-  };
 
   $.each(idGallery, function(i, elm){
     if ($('#multimediaGallery_'+elm)){

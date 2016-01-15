@@ -1,4 +1,7 @@
 {block name="headCssIncludes" append}
+
+<!-- rTypeViewBlock.tpl en rTypeLugar module -->
+
 <style type="text/css">
   .imageSec{
     background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
@@ -31,7 +34,6 @@
   <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
 {/block}
 
-<!-- rTypeViewBlock.tpl en rTypeLugar module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
@@ -159,35 +161,12 @@
         </div>
       </div>
       {/if}
-    </div>
 
-    {if isset( $res.data.loc )}
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-    <script type="text/javascript">
-      var resourceMapData = {
-        lat: {$res.data.locLat},
-        lon: {$res.data.locLon},
-        zoom: {$res.data.defaultZoom},
-        wrapper: '.locationSec .map .resMapContainer',
-        wrapperRoute: '.locationSec .mapRoute .container'
-      };
-    </script>
-    <div class="mapRoute">
-      <div class="container">
-        <p>Teclea una dirección o marca en el mapa el lugar de partida</p>
-        <form class="mapRouteForm">
-          <input name="mapRouteOrigin">
-          <button type="submit">Calcular ruta</button>
-        </form>
-        <div id="comollegarListado" style="height:30px;"></div>
-      </div>
+      {if isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data}
+      {$rextMapDirectionsBlock}
+      {/if}
+
     </div>
-    <div class="map">
-      <div class="resMapContainer" style="width:100%; height:100%;">
-        <!-- google.map -->
-      </div>
-    </div>
-    {/if}
 
     {if isset($collections)}
       <div class="grey-bar"></div>
@@ -201,4 +180,4 @@
   {/if}
 
 </div><!-- /.resource .resViewBlock -->
-<!-- /rTypeViewBlock.tpl en rTypeRestaurant module -->
+<!-- /rTypeViewBlock.tpl en rTypeLugar module -->

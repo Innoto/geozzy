@@ -43,16 +43,7 @@
           {/if}
 
           <li class="dropdown langSelector">
-            <!--
-            {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
-              {if $GLOBAL_C_LANG==$k}
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$lang.name}<span class="caret"></span></a>
-              {/if}
-            {/foreach}-->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe"></i>&nbsp;{$GLOBAL_C_LANG}</span></a>
-
-
-
             <ul class="dropdown-menu">
               {if isset($res.data) && $res.data} <!-- recurso -->
                 {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
@@ -61,11 +52,11 @@
               {else} <!-- sitios donde no hay recurso aún (portada y exploradores) -->
                 {if isset($isFront) && $isFront}
                   {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
-                    {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}#" class="page-scroll">{$lang.name}</a></li>{/if}
+                    {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}" class="page-scroll">{$lang.name}</a></li>{/if}
                   {/foreach}
                 {else}
                   {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
-                    {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}{$url}" class="page-scroll">{$lang.name}</a></li>{/if}
+                    {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}/{$url}" class="page-scroll">{$lang.name}</a></li>{/if}
                   {/foreach}
                 {/if}
               {/if}
