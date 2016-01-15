@@ -31,9 +31,11 @@ $(document).ready(function(){
     }
   );
 
-  geozzy.resourceMapController.prepareMap( resourceMapData.lat, resourceMapData.lon, resourceMapData.zoom, resourceMapData.wrapper );
+  if( geozzy.resourceMapController ) {
+    geozzy.resourceMapController.prepareMap( resourceMapData.lat, resourceMapData.lon, resourceMapData.zoom, resourceMapData.wrapper );
 
-  geozzy.resourceMapController.prepareRoutes( resourceMapData.wrapperRoute );
+    geozzy.resourceMapController.prepareRoutes( resourceMapData.wrapperRoute );
+  };
 
   $.each(idGallery, function(i, elm){
     if ($('#multimediaGallery_'+elm)){
