@@ -1,9 +1,5 @@
 var geozzy = geozzy || {};
-
-
 firstLoad = firstLoadAll = true;
-var idGallery = [];
-var multimedia = [];
 
 $(document).ready(function(){
 

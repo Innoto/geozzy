@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2016-01-14T19:09:40+01:00\n"
-"PO-Revision-Date: 2016-01-14T19:09:41+01:00\n"
+"POT-Creation-Date: 2016-01-15T11:42:50+01:00\n"
+"PO-Revision-Date: 2016-01-15T11:42:51+01:00\n"
 "Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 2.91.6\n"
@@ -1104,3 +1104,7 @@ msgstr "Especialidades"
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_galiciaAgochada_app__modules_rextAppLugar_classes_view_templates_rExtViewBlock.tpl:8
 msgid "Lugar type"
 msgstr "Tipo de lugar"
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/cogumelo_coreModules_devel_enCoreModules.tpl:4
+msgid "estou dentro do CoreModules"
+msgstr ""
