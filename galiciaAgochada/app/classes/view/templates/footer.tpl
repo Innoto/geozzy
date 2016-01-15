@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-7 col-sm-12">
       <nav>
         <div class="row">
           <div class="col-sm-4">
@@ -37,25 +37,18 @@
         </div>
       </nav>
     </div>
-    <div class="col-md-4 col-sm-8 col-xs-12">
+    <div class="col-md-5 col-sm-8 col-xs-12">
       <input class="footerSearch" type="text" placeholder="{t}Busca directamente un segredo{/t}"></input>
-      <div class="row">
-        <div class="powered col-xs-6">
+      <div class="row logosFooter">
+        <div class="col-xs-4 poweredGzzy clearfix">
           <span>powered by</span>
-          <div class="poweredGzzy clearfix">
-            <img class="logoGzzy img-responsive" src="/media/img/logoGzzy.png">
-          </div>
+          <img class="logoGzzy img-responsive" src="/media/img/logoGzzy.png">
         </div>
-        <div class="supported col-xs-6">
-          <span>supported by</span>
-          <div class="row">
-            <div class="supportEnisa col-xs-6 clearfix">
-              <img class="logoEnisa img-responsive" src="/media/img/ENISA.png">
-            </div>
-            <div class="supportFeder col-xs-6 clearfix">
-              <img class="logoFeder img-responsive" src="/media/img/FEDER.png">
-            </div>
-          </div>
+        <div class="supportEnisa col-xs-4 clearfix">
+          <img class="logoEnisa img-responsive" src="/media/img/ENISA.png">
+        </div>
+        <div class="supportFeder col-xs-4 clearfix">
+          <img class="logoFeder img-responsive" src="/media/img/FEDER.png">
         </div>
       </div>
     </div>
