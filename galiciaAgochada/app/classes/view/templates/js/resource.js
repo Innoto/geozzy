@@ -31,7 +31,7 @@ $(document).ready(function(){
     }
   );
 
-  if( geozzy.resourceMapController ) {
+  if( typeof geozzy.resourceMapController !== 'undefined' ) {
     geozzy.resourceMapController.prepareMap( resourceMapData.lat, resourceMapData.lon, resourceMapData.zoom, resourceMapData.wrapper );
 
     geozzy.resourceMapController.prepareRoutes( resourceMapData.wrapperRoute );
