@@ -218,7 +218,7 @@ geozzy.explorer = function( opts ) {
     }
 
     if(that.displays.activeList) {
-      that.displays.pasiveList.currentPage = 0;
+      that.displays.activeList.currentPage = 0;
       resourcesToLoad = $.merge( that.displays.activeList.getVisibleResourceIds() , resourcesToLoad);
     }
 

@@ -73,9 +73,6 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
 
     var visibleResources = that.parentExplorer.resourceIndex.setPerPage(100000);
 
-    that.parentExplorer.resourceIndex.filterBy( function(e) {
-      return true;
-    });
 
     visibleResources.setSort('mapVisible', 'desc');
 
