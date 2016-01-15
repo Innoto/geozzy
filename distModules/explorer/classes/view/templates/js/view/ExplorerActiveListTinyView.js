@@ -202,7 +202,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
     var that = this;
     if( that.parentExplorer.displays.map ) {
 
-      that.parentExplorer.explorerRouter.navigate( 'resource/' + $(element.currentTarget).attr('data-resource-id') );
+      that.parentExplorer.explorerRouter.navigate( 'resource/' + $(element.currentTarget).attr('data-resource-id'), {trigger:true} );
     }
     else {
       that.parentExplorer.options.resourceAccess( id, {trigger:true} )

@@ -32,7 +32,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       '<div class="elementInfo">'+
         '<div class="elementTitle"><%-title%></div>'+
         '<div class="elementType"><img src="/cgmlImg/<%- category.icon %>/typeIconMini/marker.png"/></i> <%- category.name_es %></div>'+
-        '<% if( averagePrice ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> <span>/persona</span></div> <%}%>'+
+        '<% if( averagePrice ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
       '</div>'+
     '</div>'),
 
@@ -199,7 +199,8 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     var that = this;
     if( that.parentExplorer.displays.map ) {
 
-      that.parentExplorer.explorerRouter.navigate( 'resource/' + $(element.currentTarget).attr('data-resource-id') );
+      that.parentExplorer.explorerRouter.navigate( 'resource/' + $(element.currentTarget).attr('data-resource-id'), {trigger:true} );
+
     }
     else {
       that.parentExplorer.options.resourceAccess( id, {trigger:true} )

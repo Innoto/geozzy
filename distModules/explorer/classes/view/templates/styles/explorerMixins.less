@@ -22,11 +22,20 @@
 
     &.explorer-container-du{
       position: absolute;
-      z-index: 102;
+      z-index: 103;
       width: @explDu-w;
       height: @explDu-h;
       display:none;
       overflow: auto;
+    }
+    &.explorer-loading{
+      position: absolute;
+      top:0px;
+      left: 0px;
+      z-index: 101;
+      width: 100%;
+      height: 100%;
+      display:none;
     }
     &.explorer-container-map{
       width: @explMap-w;

@@ -12,7 +12,7 @@ body {
 
 .headContent{
   position: fixed;
-  z-index: 102;
+  z-index: 104;
   width: 100%;
   height: @headerHeight;
   background: url('/media/img/cabecera.png') repeat-x;
@@ -97,7 +97,7 @@ body {
     top: @headerHeight;
     background-color:@gzzColor-bck-1;
     border-bottom: 1px solid @gzzColor-bck-3;
-    z-index: 101;
+    z-index: 102;
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 5px rgba(0, 0, 0, 0.075);
@@ -162,10 +162,16 @@ body {
     font-size: 18px;
     padding: 5px 20px;
   }
-  .supported,
-  .powered{
+
+  .logosFooter{
     margin-top : 30px;
-    img{ max-height: 62px;}
+    img{
+      max-height: 82px;
+      display: block;
+      &.logoGzzy{ }
+      &.logoEnisa{ margin: 0 auto;}
+      &.logoFeder{ float:right; text-align: right; }
+    }
     span{
       font-size: 14px;
       margin-bottom: 10px;

@@ -14,6 +14,17 @@
   top: @headerTitleBarHeight;
   width: 100%;
 
+  .explorer-loading{
+    position: relative;
+    background: rgba( 255, 255, 255, 0.7);
+   .fa{
+     font-size: 72px;
+     position: absolute;
+     top: 40%;
+     left: 50%;
+     display: block !important;
+   }
+  }
   .explorer-container-map{
     position: relative;
     .explorerMap{
@@ -247,7 +258,12 @@
           padding-right: 160px;
         }
         .elementType{
+          margin-top: 5px;
+          img{
+            margin-top: -10px;
+          }
           padding-right: 160px;
+          font-size: 14px;
         }
         .elementPrice{
           position: absolute;
