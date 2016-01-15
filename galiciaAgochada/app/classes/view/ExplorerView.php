@@ -12,6 +12,10 @@ class ExplorerView extends MasterView
   }
 
   function paisaxesExplorer(){
+    // cogemos la url actual para el idioma (hasta que sea recurso)
+    $url = $this->commonLayout();
+    $this->template->assign('url', $url);
+
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     $this->template->addClientScript('js/model/TaxonomygroupModel.js', 'geozzy');
 
@@ -39,6 +43,10 @@ class ExplorerView extends MasterView
     $this->template->exec();
   }
   function praiasExplorer(){
+    // cogemos la url actual para el idioma (hasta que sea recurso)
+    $url = $this->commonLayout();
+    $this->template->assign('url', $url);
+
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterPraiasExplorer.less');
@@ -47,6 +55,10 @@ class ExplorerView extends MasterView
     $this->template->exec();
   }
   function xantaresExplorer(){
+    // cogemos la url actual para el idioma (hasta que sea recurso)
+    $url = $this->commonLayout();
+    $this->template->assign('url', $url);
+
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     $this->template->addClientScript('js/model/TaxonomygroupModel.js', 'geozzy');
 
@@ -61,6 +73,10 @@ class ExplorerView extends MasterView
     $this->template->exec();
   }
   function aloxamentosExplorer(){
+    // cogemos la url actual para el idioma (hasta que sea recurso)
+    $url = $this->commonLayout();
+    $this->template->assign('url', $url);
+    
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterAloxamentosExplorer.less');

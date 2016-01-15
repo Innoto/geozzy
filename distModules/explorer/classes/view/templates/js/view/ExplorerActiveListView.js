@@ -31,7 +31,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       '</div>'+
       '<div class="elementInfo">'+
         '<div class="elementTitle"><%-title%></div>'+
-        '<div class="elementType"><i class="fa fa-cutlery"></i> Furancho</div>'+
+        '<div class="elementType"><img src="/cgmlImg/<%- category.icon %>/explorerTypicalMarker/marker.png"/></i> <%- category.name_es %></div>'+
         '<% if( averagePrice ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> <span>/persona</span></div> <%}%>'+
       '</div>'+
     '</div>'),
@@ -58,8 +58,10 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     var that = this;
     that.options = new Object({
       showInBuffer: true,
-      showOutMapAndBuffer: false
+      showOutMapAndBuffer: false,
+      cateogories: false
     });
+
     $.extend(true, that.options, opts);
 
   },
@@ -100,13 +102,44 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     var contentHtml = '';
     $.each(  this.visibleResources, function(i,e){
 
+      //that.options.categories
+    //  console.log( that.parentExplorer.resourceMinimalList.toJSON/ )
+
+      var elementCategory = false;
+
+      that.options.categories.each( function(e2){
+        //console.log(e.get('id'))
+        //console.debug(markerData.get('terms'))
+
+        if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
+
+          elementCategory = e2;
+          if(e2) {
+            elementCategory = e2.toJSON()
+          }
+          return false;
+/*
+          if( jQuery.isNumeric( e2.get('icon') )  ){
+
+            return false;
+          }*/
+
+        }
+
+      });
+
+
+
+
       var element = {
         contador: contador,
         title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
         id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
         inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible'),
         img: that.parentExplorer.resourceMinimalList.get( e ).get('img'),
-        averagePrice: that.parentExplorer.resourceMinimalList.get( e ).get('averagePrice')
+        averagePrice: that.parentExplorer.resourceMinimalList.get( e ).get('averagePrice'),
+        category: elementCategory
+
       };
 
 

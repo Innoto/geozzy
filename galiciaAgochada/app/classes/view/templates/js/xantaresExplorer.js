@@ -141,7 +141,10 @@
     that.setDisplays = function() {
 
       that.infowindow = new geozzy.explorerDisplay.mapInfoView();
-      that.listaMini = new geozzy.explorerDisplay.activeListView({ el:$('.explorer-container-gallery')});
+      that.listaMini = new geozzy.explorerDisplay.activeListView({
+          el:$('.explorer-container-gallery'),
+          categories: that.eatAndDrinkTypes
+      });
       that.mapa = new geozzy.explorerDisplay.mapView({
           map: resourceMap,
           clusterize:false,

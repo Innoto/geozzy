@@ -30,8 +30,8 @@
             data-image="{$multimedia.image_big}"
             data-description="{$multimedia.title}">
         {/if}
-        {capture assign=counter}{$counter+1}{/capture}
       {/if}
+      {capture assign=counter}{$counter+1}{/capture}
     {/foreach}
   </div>
   {if $counter>$max}
