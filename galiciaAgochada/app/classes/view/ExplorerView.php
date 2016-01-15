@@ -76,7 +76,7 @@ class ExplorerView extends MasterView
     // cogemos la url actual para el idioma (hasta que sea recurso)
     $url = $this->commonLayout();
     $this->template->assign('url', $url);
-    
+
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterAloxamentosExplorer.less');
@@ -117,7 +117,7 @@ class ExplorerView extends MasterView
 
     $url_parts = explode('/', $_SERVER["REQUEST_URI"]);
     if(sizeof($url_parts)>2){
-      $url = '/'.$url_parts[2];
+      $url = $url_parts[2];
     }
     else {
       $url = $url_parts[1];

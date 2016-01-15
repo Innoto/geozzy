@@ -79,18 +79,18 @@
         explorerId:'paisaxes',
         explorerSectionName:'Paisaxes espectaculares',
         resourceAccess: function(id) {
-          //alert('mecagoenmimaquina'+id)
+          $(".explorerContainer.explorer-loading").show();
           $(".explorerContainer.explorer-container-du").load(
             '/resource/'+id,
             { pf: 'blk' },
             function() {
+              $(".explorerContainer.explorer-loading").hide();
               $(".explorerContainer.explorer-container-du").show();
             }
           );
 
         },
         resourceQuit: function() {
-
           $(".explorerContainer.explorer-container-du").hide();
           $(".explorerContainer.explorer-container-du").html('');
         }
@@ -152,13 +152,15 @@
      */
     that.setFilters = function() {
 
+      name = 'Paisaxes Espectaculares';
+
       $( that.explorerclass+' .explorer-container-filter').html(
         '<div class="titleBar">'+
           '<div class="container">'+
             '<div class="row">'+
               '<div class="col-md-6 col-sm-1 hidden-xs explorerTitle" >'+
                 '<img class="iconTitleBar img-responsive" alt="Paisaxes Espectaculares" src="/media/img/paisaxesIcon.png"></img>'+
-                '<h1>Paisaxes Espectaculares</h1>'+
+                '<h1>'+name+'</h1>'+
               '</div>'+
               '<div class="col-md-6 col-sm-11 col-xs-12 explorerFilters clearfix" ></div>'+
             '</div>'+
