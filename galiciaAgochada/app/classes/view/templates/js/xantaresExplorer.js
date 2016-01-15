@@ -111,18 +111,18 @@
         explorerId:'xantares',
         explorerSectionName:'Paisaxes espectaculares',
         resourceAccess: function(id) {
-          //alert('mecagoenmimaquina'+id)
+          $(".explorerContainer.explorer-loading").show();
           $(".explorerContainer.explorer-container-du").load(
             '/resource/'+id,
             { pf: 'blk' },
             function() {
+              $(".explorerContainer.explorer-loading").hide();
               $(".explorerContainer.explorer-container-du").show();
             }
           );
 
         },
-        resourceQuit: function() {
-
+        resourceQuit: function() {          
           $(".explorerContainer.explorer-container-du").hide();
           $(".explorerContainer.explorer-container-du").html('');
         }

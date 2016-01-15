@@ -7,4 +7,6 @@
   <div class="explorerContainer explorer-container-map">  <div class="explorerMap"></div> </div>
   <!--galleryContainer -->
   <div class="explorerContainer explorer-container-gallery"></div>
+  <!--galleryContainer -->
+  <div class="explorerContainer explorer-loading" style="display:none;"><i class="fa  fa-compass fa-spin"></i></div>
 </div>
