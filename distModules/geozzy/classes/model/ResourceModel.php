@@ -15,7 +15,7 @@ class ResourceModel extends Model {
     ),
     'rTypeId' => array(
       'type'=>'FOREIGN',
-      'vo' => 'ResourceTypeModel',
+      'vo' => 'ResourcetypeModel',
       'key'=> 'id'
     ),
     'user' => array(
