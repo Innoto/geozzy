@@ -1,7 +1,19 @@
 var geozzy = geozzy || {};
 
 
-geozzy.resourceMapController = {
+$(document).ready( function() {
+  geozzy.rExtMapDirectionsController.prepareMap(
+    geozzy.rExtMapDirectionsData.lat,
+    geozzy.rExtMapDirectionsData.lon,
+    geozzy.rExtMapDirectionsData.zoom,
+    geozzy.rExtMapDirectionsData.wrapper
+  );
+
+  geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData.wrapperRoute );
+});
+
+
+geozzy.rExtMapDirectionsController = {
   resourceData: {
     name: 'Nome do recurso',
     city: 'A Coruña'
@@ -14,6 +26,8 @@ geozzy.resourceMapController = {
   resourceMarker: false,
   resourceMapInfo: false,
   resourceMapOptions: false,
+
+  routeFormContainer:false,
 
   resourceRoutes: [],
   resourceLastroute: [],
@@ -94,9 +108,9 @@ geozzy.resourceMapController = {
     var that = this;
 
     // Prepare Form
-    var $routeContainer = $(wrapper);
-    if( $routeContainer.length === 1 ) {
-      $routeContainer.find('form').on( 'submit', function( evt ) {
+    this.routeFormContainer = $( wrapper );
+    if( this.routeFormContainer.length === 1 ) {
+      this.routeFormContainer.find('form').on( 'submit', function( evt ) {
         evt.preventDefault();
         destination = $( evt.target ).find('input').val();
         console.log( 'FORM SUBMIT', destination );
@@ -134,16 +148,21 @@ geozzy.resourceMapController = {
     // click en mapa
     this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
       inputComollegar = '';
+      that.clearRoute();
+      that.resetForm();
+
       that.loadroute( ev.latLng.lat()+', '+ev.latLng.lng(), false);
     });
-    // click en marker evento
-    /*
-      this.eventClickEvent = new google.maps.event.addListener( eventMarker, 'click', function(ev){
-        inputComollegar = '';
 
-        thisComollegar.loadroute( ev.latLng.lat()+', '+ev.latLng.lng(), resourceData.name );
-      });
-    */
+    // click en marker evento
+    //this.eventClickEvent = new google.maps.event.addListener( eventMarker, 'click', function(ev){
+    //  inputComollegar = '';
+    //  thisComollegar.loadroute( ev.latLng.lat()+', '+ev.latLng.lng(), resourceData.name );
+    //});
+  },
+
+  resetForm: function resetForm() {
+    this.routeFormContainer.find('input').val('');
   },
 
   resetFromTo: function resetFromTo() {

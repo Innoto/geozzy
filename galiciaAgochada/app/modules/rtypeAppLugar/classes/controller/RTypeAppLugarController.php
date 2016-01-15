@@ -1,6 +1,7 @@
 <?php
 rextAppLugar::autoIncludes();
 rextContact::autoIncludes();
+rextMapDirections::autoIncludes();
 rextAppZona::autoIncludes();
 rextSocialNetwork::autoIncludes();
 
@@ -462,6 +463,11 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
+    $this->mapDirCtrl = new RExtMapDirectionsController( $this );
+    $mapDirViewInfo = $this->mapDirCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->mapDirCtrl->rExtName ] = $mapDirViewInfo;
+    error_log( 'viewBlockInfo ext '. $this->mapDirCtrl->rExtName .' = '. print_r( $mapDirViewInfo, true ) );
+
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
@@ -492,6 +498,17 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
       $template->assign( 'rextContactBlock', false );
     }
 
+    if( $mapDirViewInfo ) {
+      if( $mapDirViewInfo['template'] ) {
+        foreach( $mapDirViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextMapDirectionsBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextMapDirectionsBlock', false );
+    }
+
     if( $socialViewInfo ) {
       if( $socialViewInfo['template'] ) {
         foreach( $socialViewInfo['template'] as $nameBlock => $templateBlock ) {
@@ -509,7 +526,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $multimediaArray = false;
     $collectionArray = false;
     if ($collectionArrayInfo){
-      foreach ($collectionArrayInfo as $key => $collectionInfo){
+      foreach( $collectionArrayInfo as $key => $collectionInfo ) {
         if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
             $multimediaArray[$key] = $collectionInfo;
         }
@@ -521,7 +538,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
       if ($multimediaArray){
         $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
         if ($arrayMultimediaBlock){
-          foreach ($arrayMultimediaBlock as $multimediaBlock){
+          foreach( $arrayMultimediaBlock as $multimediaBlock ) {
             $multimediaBlock->assign( 'max', 6 );
             $multimediaBlock->setTpl('appEspazoNaturalMultimediaViewBlock.tpl', 'rtypeAppEspazoNatural');
             $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
@@ -532,7 +549,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
       if ($collectionArray){
         $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
         if ($arrayCollectionBlock){
-          foreach ($arrayCollectionBlock as $collectionBlock){
+          foreach( $arrayCollectionBlock as $collectionBlock ) {
             $collectionBlock->setTpl('appEspazoNaturalCollectionViewBlock.tpl', 'rtypeAppEspazoNatural');
             $template->addToBlock( 'collections', $collectionBlock );
           }

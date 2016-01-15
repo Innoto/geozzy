@@ -31,12 +31,6 @@ $(document).ready(function(){
     }
   );
 
-  if( typeof geozzy.resourceMapController !== 'undefined' ) {
-    geozzy.resourceMapController.prepareMap( resourceMapData.lat, resourceMapData.lon, resourceMapData.zoom, resourceMapData.wrapper );
-
-    geozzy.resourceMapController.prepareRoutes( resourceMapData.wrapperRoute );
-  };
-
   $.each(idGallery, function(i, elm){
     if ($('#multimediaGallery_'+elm)){
       $('#multimediaGallery_'+elm).unitegallery({
