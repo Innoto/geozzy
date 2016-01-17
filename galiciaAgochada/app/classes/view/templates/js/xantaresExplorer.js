@@ -217,6 +217,8 @@
           title:'Especialidade',
           mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'especialidadeEatandDrink',
+          titleSummary: 'Filtrado por tipo',
+          summaryContainerClass: 'filters_summary_xantarestipos',
           defaultOption: { icon: false, title: 'Todas as especialidades', value:'*' },
           data: that.eatAndDrinkSpecialities
         }
@@ -316,7 +318,7 @@
       filterInterface += '<div class="filters_advancedContainer">';
         filterInterface += '<div class="filters_openFilters">Filtros avanzados <i class="fa fa-caret-up"></i> <i class="fa fa-caret-down"></i></div>';
         filterInterface += '<div class="filters_advancedFilters"></div>';
-        filterInterface += '<div class="filters_resume"></div>';
+        filterInterface += '<div class="filters_summary"><div class="filters_summary_xantarestipos"></div></div>';
       filterInterface += '</div>';
       filterContainer.html(filterInterface);
 

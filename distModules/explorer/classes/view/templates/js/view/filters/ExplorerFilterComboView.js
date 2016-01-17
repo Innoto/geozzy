@@ -8,13 +8,25 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
   isTaxonomyFilter: true,
   template: _.template(
-                          " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-                          "<select class='<%= filterClass %>'>"+
-                            "<% if(defaultOption){ %> <option value='<%- defaultOption.value %>' icon='<%- defaultOption.icon %>'><%- defaultOption.title %></option> <%}%>"+
-                            "<%= options %>"+
-                          "</select>"
-                      ),
-  templateOption: _.template("<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"),
+    " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+    "<select class='<%= filterClass %>'>"+
+      "<% if(defaultOption){ %> <option value='<%- defaultOption.value %>' icon='<%- defaultOption.icon %>'><%- defaultOption.title %></option> <%}%>"+
+      "<%= options %>"+
+    "</select>"
+  ),
+
+  templateOption: _.template(
+    "<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"
+  ),
+
+  templateSummary: _.template(
+    " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+    "<div class='<%= filterClass %>-Summary'>"+
+      //"<div class='icon'> <img class='icon' src='/cgmlImg/<%- icon %>/typeIcon/icon.png'> </div>" +
+      //"<div class='name'> <%- name_es %> </div>" +
+    "</div>"
+  ),
+
 
   initialize: function( opts ) {
     var that = this;
@@ -22,8 +34,9 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     var options = {
       title: false,
       mainCotainerClass: false,
-      resumeContainerClass: false,
       containerClass: false,
+      titleSummary: false,
+      summaryContainerClass: false,
       defaultOption: false,
       data: false
     };
@@ -90,17 +103,35 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
       }
 
       that.parentExplorer.applyFilters();
+
+      // Filter summaries
+      if(that.options.summaryContainerClass) {
+        var selectedOption =  false;
+
+        
+
+        that.renderSummary( selectedOption );
+      }
     });
 
 
-    // Filter Resumes
-    if(that.resumeContainerClass) {
-      that.renderResume();
-    }
+
 
   },
 
-  renderResume: function() {
+  renderSummary: function( selectedOption ) {
+    var that = this;
+    var containerClassDots = '.'+that.options.summaryContainerClass.split(' ').join('.');
+
+
+    if( selectedOption ) { 
+      var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary  } );
+      $( containerClassDots ).html( summaryHtml );
+    }
+    else {
+      $( containerClassDots ).html( "" );
+    }
+
 
   },
 
