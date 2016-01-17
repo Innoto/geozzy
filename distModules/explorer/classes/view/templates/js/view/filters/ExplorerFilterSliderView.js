@@ -6,10 +6,9 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     isTaxonomyFilter: true,
     slider: false,
-
+    filteredValue: 100,
     valueMin: 3,
     valueMax: 100,
-    valueFrom: 20,
 
     template: _.template(
 
@@ -29,23 +28,26 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
     },
 
     filterAction: function( model ) {
+      var that = this;
       var ret = true;
 
 
-/*
-      if( this.selectedTerms != false ) {
+      var price =  model.get('averagePrice');
 
-        var terms =  model.get('terms');
-
-        var diff = $( terms ).not( this.selectedTerms );
-
-        //console.log(diff.length, terms.length)
-        ret = (diff.length != terms.length );
+      if(typeof price != "undefined" ) {
+        if( price <= that.filteredValue) {
+          ret = true;
+        } 
+        else
+        {
+          ret = false;
+        }
       }
-      else {
+      else{
         ret = true;
       }
-*/
+
+
 
       return ret;
     },
@@ -90,16 +92,19 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           type: "single",
           min: that.valueMin,
           max: that.valueMax,
-          from: that.valueFrom,
+          from: that.filteredValue,
           postfix: "€",
           keyboard: true,
           onStart: function (data) {
               //console.log("onStart");
           },
           onChange: function (data) {
-              //console.log("onChange");
+
           },
           onFinish: function (data) {
+
+            that.filteredValue = data.from;
+            that.parentExplorer.applyFilters();
               //console.log("onFinish");
           },
           onUpdate: function (data) {
