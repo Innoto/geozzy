@@ -20,28 +20,6 @@
     });
 
 
-/*
-
-          for (var i = 0; i < 12; i++) {
-
-            var tempElemHtml = '<div data-resource-id="" class="col-md-12 element">'+
-              '<div class="elementImg">'+
-                '<img class="img-responsive" src="http://lorempixel.com/530/213/food/'+i+'" />'+
-                '<ul class="elementOptions container-fluid">'+
-                  '<li class="elementOpt elementFav">'+
-                    '<i class="fa fa-heart-o"></i>'+
-                    '<i class="fa fa-heart"></i></li>'+
-                '</ul>'+
-              '</div>'+
-              '<div class="elementInfo">'+
-                '<div class="elementTitle">Lorem ipsum dolor sit amet, consectetur</div>'+
-                '<div class="elementType"><i class="fa fa-cutlery"></i> Furancho</div>'+
-                '<div class="elementPrice">'+(i*103)+'€<span>/persona</span></div>'+
-              '</div>'+
-            '</div>';
-            $('.explorer-container-gallery').append(tempElemHtml);
-          }
-*/
 
   });
 
