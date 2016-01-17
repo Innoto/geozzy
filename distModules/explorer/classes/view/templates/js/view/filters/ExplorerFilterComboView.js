@@ -5,10 +5,6 @@ if(!geozzy.explorerComponents.filters) geozzy.explorerComponents.filters={};
 geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
 
-  attributes: {},
-  initialize: function(options){
-    this.attributes = {};
-  },
 
   isTaxonomyFilter: true,
   template: _.template(
@@ -22,8 +18,17 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
   initialize: function( opts ) {
     var that = this;
-    that.options = $.extend(true, {}, that.options, opts);
 
+    var options = {
+      title: false,
+      mainCotainerClass: false,
+      resumeContainerClass: false,
+      containerClass: false,
+      defaultOption: false,
+      data: false
+    };
+
+    that.options = $.extend(true, {}, options, opts);
   },
 
   filterAction: function( model ) {
@@ -87,6 +92,15 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
       that.parentExplorer.applyFilters();
     });
 
+
+    // Filter Resumes
+    if(that.resumeContainerClass) {
+      that.renderResume();
+    }
+
+  },
+
+  renderResume: function() {
 
   },
 
