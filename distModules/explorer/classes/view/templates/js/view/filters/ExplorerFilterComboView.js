@@ -33,11 +33,11 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     if( this.selectedTerms != false ) {
 
       var terms =  model.get('terms');
-
-      var diff = $( terms ).not( this.selectedTerms );
-
-      //console.log(diff.length, terms.length)
-      ret = (diff.length != terms.length );
+      if( typeof terms != "undefined") {
+        var diff = $( terms ).not( this.selectedTerms );
+        //console.log(diff.length, terms.length)
+        ret = (diff.length != terms.length );
+      }
     }
     else {
       ret = true;

@@ -48,11 +48,14 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
     if( this.selectedTerms != false ) {
 
       var terms =  model.get('terms');
+      
+      if( typeof terms != "undefined") {
+        var diff = $( terms ).not( this.selectedTerms );
 
-      var diff = $( terms ).not( this.selectedTerms );
+        //console.log(diff.length, terms.length)
+        ret = (diff.length != terms.length );
+      }
 
-      //console.log(diff.length, terms.length)
-      ret = (diff.length != terms.length );
     }
     else {
       ret = true;
