@@ -13,7 +13,7 @@ geozzy.explorerComponents.filters.filterResetView = geozzy.filterView.extend({
 
     initialize: function( opts ) {
       var that = this;
-      that.options = opts
+      that.options = $.extend(true, {}, that.options, opts);
     },
 
     filterAction: function( model ) {
