@@ -13,11 +13,11 @@
         <!-- LOGO in brand section -->
         {if isset($isFront) && $isFront}
         <a href="#inicio" class="navbar-brand page-scroll">
-          <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"></img>
+          <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"/>
         </a>
         {else}
         <a href="{$site_host}#inicio" class="navbar-brand page-scroll">
-          <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"></img>
+          <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"/>
         </a>
         {/if}
       </div>
@@ -43,7 +43,7 @@
           {/if}
 
           <li class="dropdown langSelector">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe"></i>&nbsp;{$GLOBAL_C_LANG}</span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe"></i>&nbsp;{$GLOBAL_C_LANG}</a>
             <ul class="dropdown-menu">
               {if isset($res.data) && $res.data} <!-- recurso -->
                 {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
