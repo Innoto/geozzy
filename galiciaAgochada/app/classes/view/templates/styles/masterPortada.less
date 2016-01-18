@@ -274,6 +274,28 @@
 /**********************  RESPONSIVE MEDIA QUERIES  ************************************/
 /**************************************************************************************/
 /**************************************************************************************/
+.touchevents{
+  .bodyContent{
+    .gzzSec{
+      &.secSegredos{
+        .segredoItem{
+          .segredoItemImg{
+            .icon{
+              top: 40%;
+            }
+            .trama{
+              display: block;
+            }
+            .info{
+              opacity: 1;
+            }
+          }//.segredoItemImg
+        }//.segredoItem
+      }//.secSegredos
+    }
+  }
+}
+
 @media screen and (min-width: 1200px) {
 
 } /*1200px*/
@@ -302,10 +324,8 @@
       &.secSegredos{
         .segredoItem{
           .segredoItemImg{
-            &:hover{
-              .icon{
-                top: 30%;
-              }
+            .icon{
+              top: 30% !important;
             }
           }
         }
