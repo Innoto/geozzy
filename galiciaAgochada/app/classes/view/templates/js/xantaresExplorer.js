@@ -10,12 +10,7 @@
       explorador.setDisplays();
       explorador.setFilters();
       explorador.exec();
-      explorador.layoutDistributeSize();
       //$( '.explorerFilterElement .especialidadeEatandDrink').select2();
-    });
-
-    $(window).bind("load resize", function() {
-      explorador.layoutDistributeSize();
     });
 
     // autodetección de idioma
