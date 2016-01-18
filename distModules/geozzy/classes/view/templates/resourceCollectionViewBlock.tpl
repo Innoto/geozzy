@@ -4,14 +4,15 @@
     {foreach $collectionResources.res as $resId => $res}
       <div class="item">
         <div class="itemImage">
-          <div class="trama"></div>
-          <img class="img-responsive" alt="{$res.title}" src="{$res.image}" data-image="{$res.image_big}" data-description="{$res.title}">
-          <div class="destResourceMoreInfo">
-            <a target="_blank" href="/{$res.urlAlias}">
-              <p>{$res.shortDescription}</p>
-            </a>
-            <a class="btn btn-primary" target="_blank" href="/{$res.urlAlias}">{t}Coñéceo{/t}</a>
-          </div>
+
+            <img class="img-responsive" alt="{$res.title}" src="{$res.image}" data-image="{$res.image_big}" data-description="{$res.title}">
+            <div class="trama">
+                <div class="destResourceMoreInfo">
+                  <p>{$res.shortDescription}</p>
+                  <a class="btn btn-primary" href="/{$res.urlAlias}">{t}Descúbreo{/t}</a>
+                </div>
+            </div>
+
         </div>
         <div class="itemTitle">
           <a target="_blank" href="/{$res.urlAlias}">

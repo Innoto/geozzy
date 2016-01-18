@@ -1,4 +1,5 @@
 @import "primary.less";
+@import "owlGalleryGATheme.less";
 
 .bodyContent{
   background-color: @gzzColor-text-light;
@@ -265,130 +266,7 @@
     } /*locationSec*/
 
     .collectionSec{
-      .owl-carousel{
-        position: relative;
-        .item{
-          position: relative;
-          overflow: hidden;
-
-          .itemImage{
-            position: relative;
-            overflow: hidden;
-            .destResourceMoreInfo{
-              opacity: 0;
-              transition: opacity .45s ease-in-out;
-              -moz-transition: opacity .45s ease-in-out;
-              -webkit-transition: opacity .45s ease-in-out;
-              padding: 20px;
-              position: absolute;
-              z-index: 101;
-              bottom: 0;
-              left: 0;
-              text-align: center;
-              width: 100%;
-              a{ color: @gzzColor-text-light; text-decoration: none; }
-            }
-            .trama{
-              background: rgba(0, 0, 0, 0.6);
-              position: absolute;
-              top: 0px;
-              left: 0px;
-              z-index: 100;
-              width: 100%;
-              height: 100%;
-              display: none;
-            }
-          }
-          .itemTitle{
-            padding: 10px 0;
-            a{
-              text-decoration: none;
-              color: @gzzColor-text-dark;
-            }
-            h3{
-              margin: 0;
-              font-size: 16px;
-              margin-bottom: 10px;
-            }
-          }
-
-          img{
-            -webkit-transform: scale(1, 1); /* Saf3.1+, Chrome */
-            -moz-transform: scale(1, 1); /* FF3.5+ */
-            -ms-transform: scale(1, 1); /* IE9 */
-             -o-transform: scale(1, 1); /* Opera 10.5+ */
-                transform: scale(1, 1);
-            transition-duration: 450ms;
-            transition-timing-function: ease-out;
-          }
-          &:hover{
-            .itemImage{
-              .trama{ display:block; }
-              .destResourceMoreInfo{
-                opacity: 1;
-              }
-            }
-
-            img{
-              -webkit-transform: scale(1.08, 1.1); /* Saf3.1+, Chrome */
-              -moz-transform: scale(1.08, 1.1); /* FF3.5+ */
-              -ms-transform: scale(1.08, 1.1); /* IE9 */
-               -o-transform: scale(1.08, 1.1); /* Opera 10.5+ */
-                  transform: scale(1.08, 1.1);
-              transition-duration: 450ms;
-              transition-timing-function: ease-out;
-            }
-          }
-        }
-        .owl-nav{
-          .owl-prev{
-            position: absolute;
-            top:32%;
-            left: -15px;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            vertical-align: center;
-            background: @gzzColor-bck-8;
-            color: @gzzColor-text-light;
-            -ms-transform: translateY(-32%); /* IE 9 */
-            -webkit-transform: translateY(-32%); /* Chrome, Safari, Opera */
-            transform: translateY(-32%);
-            text-align: center;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            border-radius: 50%;
-            font-size: 22px;
-
-            &:hover{
-              background: @gzzColor-bck-6;
-            }
-          }
-          .owl-next{
-            position: absolute;
-            top:32%;
-            right: -15px;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            vertical-align: center;
-            background: @gzzColor-bck-8;
-            color: @gzzColor-text-light;
-            -ms-transform: translateY(-32%); /* IE 9 */
-            -webkit-transform: translateY(-32%); /* Chrome, Safari, Opera */
-            transform: translateY(-32%);
-            text-align: center;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            border-radius: 50%;
-            font-size: 22px;
-
-            &:hover{
-              background: @gzzColor-bck-6;
-            }
-          }
-        }
-      }
+      .owlGalleryGATheme();
     }
     .multimediaSec{
 
