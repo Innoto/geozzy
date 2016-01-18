@@ -4,14 +4,6 @@
   {$client_includes}
 {/block}
 
-{block name="headTitle" append}
-  {$res.data.headTitle}
-{/block}
-
-{block name="socialMeta" append}
-  <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
-{/block}
-
 <section class="bodyContentBlock">
   {$resTemplateBlock}
 </section>
