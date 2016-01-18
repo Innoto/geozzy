@@ -2,14 +2,14 @@ var geozzy = geozzy || {};
 
 
 $(document).ready( function() {
-  geozzy.rExtMapDirectionsController.prepareMap(
-    geozzy.rExtMapDirectionsData.lat,
-    geozzy.rExtMapDirectionsData.lon,
-    geozzy.rExtMapDirectionsData.zoom,
-    geozzy.rExtMapDirectionsData.wrapper
-  );
+  if( typeof geozzy.rExtMapDirectionsData !== 'undefined' ) {
+    geozzy.rExtMapDirectionsController.prepareMap( geozzy.rExtMapDirectionsData );
+  }
 
-  geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData.wrapperRoute );
+
+  if( typeof geozzy.rExtMapDirectionsData.wrapperRoute !== 'undefined' ) {
+    geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData.wrapperRoute );
+  }
 });
 
 
@@ -57,31 +57,37 @@ geozzy.rExtMapDirectionsController = {
   tramoExtraFin: false,
 
 
-  prepareMap: function prepareMap( lat, lon, zoom, wrapper ) {
-    console.log( 'loadMap', lat, lon, zoom, wrapper );
+  prepareMap: function prepareMap( directionsData ) {
+    console.log( 'loadMap', directionsData );
     var that = this;
 
+    directionsData.lat,
+    directionsData.lon,
+    directionsData.zoom,
+    directionsData.wrapper
+
     this.resourceMapInfo = {
-      lat: lat,
-      lng: lon,
-      zoom: zoom,
-      wrapper: wrapper
+      title: directionsData.title,
+      lat: directionsData.lat,
+      lng: directionsData.lon,
+      zoom: directionsData.zoom,
+      wrapper: directionsData.wrapper
     };
 
-    var $mapContainer = $(wrapper);
+    var $mapContainer = $( this.resourceMapInfo.wrapper );
     if( $mapContainer.length === 1 ) {
       // gmaps init
       this.resourceMapOptions = {
-        center: { lat: lat, lng: lon },
-        zoom: zoom,
+        center: { lat: this.resourceMapInfo.lat, lng: this.resourceMapInfo.lng },
+        zoom: this.resourceMapInfo.zoom,
         scrollwheel: false
       };
       this.resourceMap = new google.maps.Map( $mapContainer.get(0), this.resourceMapOptions );
 
       // add marker
-      that.resourceMarker = new google.maps.Marker({
+      this.resourceMarker = new google.maps.Marker({
         map: this.resourceMap,
-        position: new google.maps.LatLng( lat, lon ),
+        position: new google.maps.LatLng( this.resourceMapInfo.lat, this.resourceMapInfo.lon ),
         // title: 'Resource location',
         icon: {
           url: media+'/module/admin/img/geozzy_marker.png', // This marker is 20 pixels wide by 36 pixels high.
@@ -103,12 +109,12 @@ geozzy.rExtMapDirectionsController = {
 
 
 
-  prepareRoutes: function prepareRoutes( wrapper ) {
-    console.log( 'loadRoute', wrapper );
+  prepareRoutes: function prepareRoutes( directionsData ) {
+    console.log( 'loadRoute', directionsData );
     var that = this;
 
     // Prepare Form
-    this.routeFormContainer = $( wrapper );
+    this.routeFormContainer = $( directionsData.wrapper );
     if( this.routeFormContainer.length === 1 ) {
       this.routeFormContainer.find('form').on( 'submit', function( evt ) {
         evt.preventDefault();
@@ -139,11 +145,11 @@ geozzy.rExtMapDirectionsController = {
 
 
     this.routeTo.latlng = this.resourceMapInfo.lat + ',' + this.resourceMapInfo.lng;
-    if( this.resourceData.name ) {
-      this.routeTo.title = this.resourceData.name;
+    if( typeof directionsData.title !== 'undefined' && directionsData.title !== '' ) {
+      this.routeTo.title = directionsData.title;
     }
 
-    // this.loadroute( latitude+','+longitude, this.resourceData.name );
+    // this.loadroute( latitude+','+longitude, directionsData.title );
 
     // click en mapa
     this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
