@@ -100,7 +100,7 @@
 
       that.explorer = new geozzy.explorer({
         debug: false,
-        explorerId:'xantares',
+        explorerId:'todosSegredos',
         explorerSectionName:'Todos os segredos',
         resourceAccess: function(id) {
           $(".explorerContainer.explorer-loading").show();
