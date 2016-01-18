@@ -83,15 +83,16 @@ $geozzyTopicsInfo = array(
       'gl' => 'Auténtica gastronomía'
     ),
     'resourceTypes' => array(
-      'rtypeHotel' => array(
+      /*'rtypeHotel' => array(
         'weight' => 2
-      ),
+      ),*/
       'rtypeRestaurant' => array(
         'weight' => 2
-      ),
+      )
+      /*,
       'rtypeAppFestaPopular' => array(
         'weight' => 2
-      )
+      )*/
     ),
     'table' => array(
       'actions' => array(

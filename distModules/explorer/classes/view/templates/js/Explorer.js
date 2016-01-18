@@ -16,7 +16,7 @@ geozzy.explorer = function( opts ) {
     explorerId: 'default',
 
     // cache times (in seconds)
-    cacheTimeIndex: 120,
+    cacheTimeIndex: 20,
 
     debug: false,
 

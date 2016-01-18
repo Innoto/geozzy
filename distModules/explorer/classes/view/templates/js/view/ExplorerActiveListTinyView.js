@@ -30,7 +30,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       '<% if(c==v.currentPage){ %>'+
         '<div><span class="currentPage"><i class="fa fa-square-o"></i></span></div>'+
       '<% }else{ %>'+
-        '<div><span><i class="fa fa-square"></i></span></div>'+
+        '<div><span><i class="fa fa-square pageNum" data-page-num="<%- c %>"></i></span></div>'+
       '<% } %>'+
     '<% } %>'+
     '<div class="next"><i class="fa fa-sort-desc"></i></div>'),
@@ -40,12 +40,14 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
   visibleResources: [],
   currentPage: 0,
   endPage: 3,
+  itemsEachPage: 6,
   totalPages: false,
 
 
   events: {
       "click .explorerListPager .next" : "nextPage",
       "click .explorerListPager .previous" : "previousPage",
+      "click .explorerListPager .pageNum" : "setPageClick",
 
       // resource events
       "click .explorerListContent .accessButton": "resourceClick",
@@ -69,7 +71,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
     var that = this;
     this.parentExplorer.resourceIndex.removePagination();
 
-    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(6);
+    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.itemsEachPage);
 /*
     that.parentExplorer.resourceIndex.filterBy( function(e) {
       var ret = false;
@@ -135,7 +137,6 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       contador++;
     });
 
-
     that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) )
 
   },
@@ -143,14 +144,15 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
   renderPager() {
     var that = this;
 
-    var pages = that.endPage;
+
+    var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.itemsEachPage );
 
     if( that.limitPages < that.totalPages && that.endPage) {
       pages = that.endPage;
     }
 
 
-    return this.tplPager({ v:that, pages:pages } );
+    return this.tplPager({ v:that, pages:pages-1 } );
   },
 
   setPage: function( pageNum ) {
@@ -188,10 +190,24 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
 
   },
 
+  setPageClick: function( elemento ) {
+    var that = this;
+
+    that.setPage( $(elemento.target).attr('data-page-num')  );
+  },
+
 
   nextPage: function() {
     var that =  this;
-    that.setPage(that.currentPage+1);
+
+    var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.itemsEachPage );
+    var nextPage = that.currentPage+1;
+
+    if( nextPage > pages-1 ) {
+      nextPage = pages-1;
+    }
+
+    that.setPage(nextPage);
   },
 
   previousPage: function( ){
