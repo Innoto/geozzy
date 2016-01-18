@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <title>{block name="headTitle"}Galicia Agochada |{/block}</title>
+  <title>{block name="headTitle"}Galicia Agochada | {/block}</title>
   {block name="socialMeta"}{/block}
   {block name="headClientIncludes"}{$client_includes}{/block}
 
