@@ -30,7 +30,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       '<% if(c==v.currentPage){ %>'+
         '<div><span class="currentPage"><i class="fa fa-square-o"></i></span></div>'+
       '<% }else{ %>'+
-        '<div><span><i class="fa fa-square"></i></span></div>'+
+        '<div><span><i class="fa fa-square pageNum" data-page-num="<%- c %>"></i></span></div>'+
       '<% } %>'+
     '<% } %>'+
     '<div class="next"><i class="fa fa-sort-desc"></i></div>'),
@@ -46,6 +46,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
   events: {
       "click .explorerListPager .next" : "nextPage",
       "click .explorerListPager .previous" : "previousPage",
+      "click .explorerListPager .pageNum" : "setPageClick",
 
       // resource events
       "click .explorerListContent .accessButton": "resourceClick",
@@ -186,6 +187,12 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       }
     );
 
+  },
+
+  setPageClick: function( elemento ) {
+    var that = this;
+
+    that.setPage( $(elemento.target).attr('data-page-num')  );
   },
 
 
