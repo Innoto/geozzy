@@ -37,7 +37,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       if(typeof price != "undefined" ) {
         if( price <= that.filteredValue) {
           ret = true;
-        } 
+        }
         else
         {
           ret = false;

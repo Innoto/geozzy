@@ -20,7 +20,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   },
 
   initialize: function( opts ) {
-
+    var that = this;
     var options = new Object({
       map : false,
       clusterize: false,
