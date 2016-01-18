@@ -9,7 +9,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
     filteredValue: false,
     valueMin: 3,
     valueMax: 100,
-    firstValue: 100,
+    firstValue: 0,
     template: _.template(
 
                     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+

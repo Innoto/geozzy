@@ -141,6 +141,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     $select.val( "*" );
 
     that.selectedTerms = false;
+    that.renderSummary( false );
   }
 
 });
