@@ -147,9 +147,10 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
 
     var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.itemsEachPage );
 
-    if( that.limitPages < that.totalPages && that.endPage) {
+    if( that.endPage < that.totalPages ) {
       pages = that.endPage;
     }
+
 
 
     return this.tplPager({ v:that, pages:pages-1 } );
