@@ -55,11 +55,12 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
 
   initialize: function( opts ) {
     var that = this;
-    that.options = new Object({
+    var options = new Object({
       showInBuffer: true,
       showOutMapAndBuffer: false
     });
-    $.extend(true, that.options, opts);
+
+    that.options = $.extend(true, {}, options, opts);
 
   },
 
