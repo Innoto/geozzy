@@ -88,7 +88,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
 
 
     $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
-      alert('')
+
       var val = $(el.target).val();
       if( val == '*' ) {
         that.selectedTerms = false;
