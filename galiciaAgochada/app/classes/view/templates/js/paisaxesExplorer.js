@@ -217,7 +217,7 @@
           {
             mainCotainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'zonasMapa',
-            defaultOption: { icon: false, title: 'Todos os xeodestinos', value:'*' },
+            defaultOption: { icon: false, title: '', value:'*' },
             data: that.zonaCategories
           }
         )
