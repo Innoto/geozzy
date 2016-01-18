@@ -124,7 +124,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
 
 
 
-    $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').show()
+
 
 
   },
