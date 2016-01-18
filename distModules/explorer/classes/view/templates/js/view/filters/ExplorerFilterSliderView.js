@@ -6,46 +6,62 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     isTaxonomyFilter: true,
     slider: false,
-
+    filteredValue: false,
     valueMin: 3,
     valueMax: 100,
-    valueFrom: 20,
-
+    firstValue: 100,
     template: _.template(
 
                     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
                     "<div class='<%= filterClass %>'>"+
-                      //"<% if(defaultOption){ %> <option value='<%- defaultOption.value %>' icon='<%- defaultOption.icon %>'><%- defaultOption.title %></option> <%}%>"+
-                      //"<%= options %>"+
                       "<input type='text'> "+
                     "</div>"
                   ),
     templateOption: _.template("<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"),
 
+    templateSummary: _.template(
+      " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+      "<span class='<%= filterClass %>-Summary'><%= value %>€</span>"
+    ),
+
 
     initialize: function( opts ) {
       var that = this;
-      that.options = opts
+      var options = {
+        title: false,
+        mainCotainerClass: false,
+        containerClass: false,
+        titleSummary: false,
+        summaryContainerClass: false,
+        values:  []
+      }
+
+
+
+      that.options = $.extend(true, {}, options, opts);
     },
 
     filterAction: function( model ) {
+      var that = this;
       var ret = true;
 
 
-/*
-      if( this.selectedTerms != false ) {
+      var price =  model.get('averagePrice');
 
-        var terms =  model.get('terms');
-
-        var diff = $( terms ).not( this.selectedTerms );
-
-        //console.log(diff.length, terms.length)
-        ret = (diff.length != terms.length );
+      if(typeof price != "undefined" ) {
+        if( price <= that.filteredValue) {
+          ret = true;
+        }
+        else
+        {
+          ret = false;
+        }
       }
-      else {
+      else{
         ret = true;
       }
-*/
+
+
 
       return ret;
     },
@@ -66,21 +82,6 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       }
       that.instanceSlider();
 
-/*
-      $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
-        var val = $(el.target).val();
-        if( val == '*' ) {
-          that.selectedTerms = false;
-        }
-        else {
-          //that.selectedTerms = false;
-          that.selectedTerms = [ parseInt( $(el.target).val() ) ];
-        }
-
-        that.parentExplorer.applyFilters();
-      });
-*/
-
     },
 
 
@@ -90,17 +91,28 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           type: "single",
           min: that.valueMin,
           max: that.valueMax,
-          from: that.valueFrom,
+          from: that.firstValue,
           postfix: "€",
           keyboard: true,
           onStart: function (data) {
               //console.log("onStart");
           },
           onChange: function (data) {
-              //console.log("onChange");
+
           },
           onFinish: function (data) {
-              //console.log("onFinish");
+
+            that.filteredValue = data.from;
+            that.parentExplorer.applyFilters();
+
+
+            // Filter summaries
+            if(that.options.summaryContainerClass) {
+              that.renderSummary();
+            }
+
+
+
           },
           onUpdate: function (data) {
               //console.log("onUpdate");
@@ -110,9 +122,29 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     },
 
+    renderSummary: function(  ) {
+      var that = this;
+      var containerClassDots = '.'+that.options.summaryContainerClass.split(' ').join('.');
+
+
+      if(  that.filteredValue  ) {
+
+        var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary, value:  that.filteredValue   } );
+        $( containerClassDots ).html( summaryHtml );
+
+      }
+      else {
+        $( containerClassDots ).html( "" );
+      }
+
+
+    },
+
+
     reset: function() {
       var that = this;
-
+      that.filteredValue = false;
+      that.renderSummary();
       that.slider.reset();
       //that.slider.destroy();
       //$( ".explorerFilterElement ."+that.options.containerClass+" input" ).val(10);

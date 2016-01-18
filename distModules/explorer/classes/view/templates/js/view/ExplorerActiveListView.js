@@ -56,13 +56,14 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
 
   initialize: function( opts ) {
     var that = this;
-    that.options = new Object({
+    
+    var options = new Object({
       showInBuffer: true,
       showOutMapAndBuffer: false,
       cateogories: false
     });
 
-    $.extend(true, that.options, opts);
+    that.options = $.extend(true, {}, options, opts);
 
   },
 
@@ -73,9 +74,6 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
 
     var visibleResources = that.parentExplorer.resourceIndex.setPerPage(100000);
 
-    that.parentExplorer.resourceIndex.filterBy( function(e) {
-      return true;
-    });
 
     visibleResources.setSort('mapVisible', 'desc');
 

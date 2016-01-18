@@ -18,7 +18,9 @@ geozzy.filterView = Backbone.View.extend({
   },
 
   initialize: function( opts ) {
-    $.extend(true, this.options, opts);
+    var that = this;
+    var options = {};
+    that.options = $.extend(true, {}, options, opts);
   },
 
   filterAction: function() {
@@ -58,6 +60,10 @@ geozzy.filterView = Backbone.View.extend({
   },
 
   render: function() {
+
+  },
+
+  renderSummary: function() {
 
   },
 

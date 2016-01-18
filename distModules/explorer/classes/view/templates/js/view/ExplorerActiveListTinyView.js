@@ -55,11 +55,12 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
 
   initialize: function( opts ) {
     var that = this;
-    that.options = new Object({
+    var options = new Object({
       showInBuffer: true,
       showOutMapAndBuffer: false
     });
-    $.extend(true, that.options, opts);
+
+    that.options = $.extend(true, {}, options, opts);
 
   },
 
@@ -69,7 +70,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
     this.parentExplorer.resourceIndex.removePagination();
 
     var visibleResources = that.parentExplorer.resourceIndex.setPerPage(6);
-
+/*
     that.parentExplorer.resourceIndex.filterBy( function(e) {
       var ret = false;
       var mapVisible = e.get('mapVisible');
@@ -88,7 +89,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       //console.log(mapVisible, ret)
 
       return ret;
-    });
+    });*/
 
     visibleResources.setSort('mapVisible', 'desc');
 
