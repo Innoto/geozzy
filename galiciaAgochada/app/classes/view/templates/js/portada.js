@@ -1,5 +1,4 @@
 $( document ).ready(function(){
-  Modernizr.load({ "classPrefix": "foo-", "feature-detects": ["dom/hidden"] });
   $('.headContent').addClass('transparent');
   $(window).bind("scroll", function(e) {
     if($(this).scrollTop() > 0){
