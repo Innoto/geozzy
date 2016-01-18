@@ -21,7 +21,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     templateSummary: _.template(
       " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-      "<div class='<%= filterClass %>-Summary'><%= value %>€</div>"
+      "<span class='<%= filterClass %>-Summary'><%= value %>€</span>"
     ),
 
 
@@ -108,7 +108,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
             // Filter summaries
             if(that.options.summaryContainerClass) {
-              that.renderSummary( that.filteredValue );
+              that.renderSummary();
             }
 
 
@@ -122,16 +122,16 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     },
 
-    renderSummary: function( filteredValue ) {
+    renderSummary: function(  ) {
       var that = this;
       var containerClassDots = '.'+that.options.summaryContainerClass.split(' ').join('.');
 
 
-      if( filteredValue ) {
+      if(  that.filteredValue  ) {
 
-        var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary, value: filteredValue  } );
+        var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary, value:  that.filteredValue   } );
         $( containerClassDots ).html( summaryHtml );
-        
+
       }
       else {
         $( containerClassDots ).html( "" );
@@ -143,7 +143,8 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     reset: function() {
       var that = this;
-
+      that.filteredValue = false;
+      that.renderSummary();
       that.slider.reset();
       //that.slider.destroy();
       //$( ".explorerFilterElement ."+that.options.containerClass+" input" ).val(10);
