@@ -100,7 +100,7 @@
           );
 
         },
-        resourceQuit: function() {          
+        resourceQuit: function() {
           $(".explorerContainer.explorer-container-du").hide();
           $(".explorerContainer.explorer-container-du").html('');
         }
@@ -229,6 +229,8 @@
           title:'Precio',
           mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'xantaresPrice',
+          titleSummary: 'Cun prezo inferior a',
+          summaryContainerClass: 'filters_summary_xantaresprezo',
           values:  [10]
         }
       );
@@ -318,7 +320,7 @@
       filterInterface += '<div class="filters_advancedContainer">';
         filterInterface += '<div class="filters_openFilters">Filtros avanzados <i class="fa fa-caret-up"></i> <i class="fa fa-caret-down"></i></div>';
         filterInterface += '<div class="filters_advancedFilters"></div>';
-        filterInterface += '<div class="filters_summary"><div class="filters_summary_xantarestipos"></div></div>';
+        filterInterface += '<div class="filters_summary"><div class="filters_summary_xantarestipos"></div><div class="filters_summary_xantaresprezo"></div></div>';
       filterInterface += '</div>';
       filterContainer.html(filterInterface);
 
@@ -326,4 +328,3 @@
 
 
   }
-

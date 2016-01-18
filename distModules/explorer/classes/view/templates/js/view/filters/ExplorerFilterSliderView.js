@@ -6,10 +6,10 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     isTaxonomyFilter: true,
     slider: false,
-    filteredValue: 100,
+    filteredValue: false,
     valueMin: 3,
     valueMax: 100,
-
+    firstValue: 100,
     template: _.template(
 
                     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
@@ -19,10 +19,26 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
                   ),
     templateOption: _.template("<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"),
 
+    templateSummary: _.template(
+      " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+      "<div class='<%= filterClass %>-Summary'><%= value %>€</div>"
+    ),
+
 
     initialize: function( opts ) {
       var that = this;
-      that.options = $.extend(true, {}, that.options, opts);
+      var options = {
+        title: false,
+        mainCotainerClass: false,
+        containerClass: false,
+        titleSummary: false,
+        summaryContainerClass: false,
+        values:  []
+      }
+
+
+
+      that.options = $.extend(true, {}, options, opts);
     },
 
     filterAction: function( model ) {
@@ -75,7 +91,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           type: "single",
           min: that.valueMin,
           max: that.valueMax,
-          from: that.filteredValue,
+          from: that.firstValue,
           postfix: "€",
           keyboard: true,
           onStart: function (data) {
@@ -88,7 +104,15 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
             that.filteredValue = data.from;
             that.parentExplorer.applyFilters();
-              //console.log("onFinish");
+
+
+            // Filter summaries
+            if(that.options.summaryContainerClass) {
+              that.renderSummary( that.filteredValue );
+            }
+
+
+
           },
           onUpdate: function (data) {
               //console.log("onUpdate");
@@ -97,6 +121,25 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       that.slider = $( ".explorerFilterElement ."+that.options.containerClass+" input" ).data("ionRangeSlider");
 
     },
+
+    renderSummary: function( filteredValue ) {
+      var that = this;
+      var containerClassDots = '.'+that.options.summaryContainerClass.split(' ').join('.');
+
+
+      if( filteredValue ) {
+
+        var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary, value: filteredValue  } );
+        $( containerClassDots ).html( summaryHtml );
+        
+      }
+      else {
+        $( containerClassDots ).html( "" );
+      }
+
+
+    },
+
 
     reset: function() {
       var that = this;

@@ -122,7 +122,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
 
     if( selectedOption ) {
-      console.log(selectedOption)
+
       var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary, option: selectedOption  } );
       $( containerClassDots ).html( summaryHtml );
     }
