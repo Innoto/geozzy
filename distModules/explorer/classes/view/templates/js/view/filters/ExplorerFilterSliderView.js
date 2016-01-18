@@ -6,17 +6,15 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     isTaxonomyFilter: true,
     slider: false,
-    filteredValue: false,
+    filteredValue: 100,
     valueMin: 3,
     valueMax: 100,
-    firstValue: 0,
     template: _.template(
-
-                    " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-                    "<div class='<%= filterClass %>'>"+
-                      "<input type='text'> "+
-                    "</div>"
-                  ),
+      " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+      "<div class='<%= filterClass %>'>"+
+        "<input type='text'> "+
+      "</div>"
+    ),
     templateOption: _.template("<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"),
 
     templateSummary: _.template(
@@ -91,7 +89,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           type: "single",
           min: that.valueMin,
           max: that.valueMax,
-          from: that.firstValue,
+          from: that.filteredValue,
           postfix: "€",
           keyboard: true,
           onStart: function (data) {
