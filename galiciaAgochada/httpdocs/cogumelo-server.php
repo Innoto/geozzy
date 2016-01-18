@@ -56,6 +56,16 @@ if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] )
         }
       }
 
+      $dir = MEDIASERVER_TMP_CACHE_PATH;
+      $dirElements = scandir( $dir );
+      if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {
+        foreach( $dirElements as $dirElement ) {
+          if( $dirElement != '.' && $dirElement != '..' && is_dir( $dir.'/'.$dirElement ) ) {
+            rmdirRec( $dir.'/'.$dirElement );
+          }
+        }
+      }
+
       /*
       $dirHandle = opendir( $dir );
       while( $file = readdir( $dirHandle ) ) {
