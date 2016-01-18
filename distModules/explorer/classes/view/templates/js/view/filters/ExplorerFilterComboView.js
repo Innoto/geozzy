@@ -22,8 +22,8 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
   templateSummary: _.template(
     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
     "<div class='<%= filterClass %>-Summary'>"+
-      //"<div class='icon'> <img class='icon' src='/cgmlImg/<%- icon %>/typeIcon/icon.png'> </div>" +
-      //"<div class='name'> <%- name_es %> </div>" +
+      "<div class='icon'> <img class='icon' src='/cgmlImg/<%- option.icon %>/typeIcon/icon.png'> </div>" +
+      "<div class='name'> <%- option.name_es %> </div>" +
     "</div>"
   ),
 
@@ -71,14 +71,9 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
 
 
-
-
     $.each(that.options.data.toJSON(), function(i,e){
       filterOptions += that.templateOption(e);
     });
-
-
-
 
     var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.options.title, defaultOption: that.options.defaultOption, options: filterOptions } );
 
@@ -108,7 +103,9 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
       if(that.options.summaryContainerClass) {
         var selectedOption =  false;
 
-        
+        if(typeof that.selectedTerms[0] != 'undefined') {
+          selectedOption = that.options.data.get( that.selectedTerms[0] ).toJSON();
+        }
 
         that.renderSummary( selectedOption );
       }
@@ -124,8 +121,9 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     var containerClassDots = '.'+that.options.summaryContainerClass.split(' ').join('.');
 
 
-    if( selectedOption ) { 
-      var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary  } );
+    if( selectedOption ) {
+      console.log(selectedOption)
+      var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary, option: selectedOption  } );
       $( containerClassDots ).html( summaryHtml );
     }
     else {
