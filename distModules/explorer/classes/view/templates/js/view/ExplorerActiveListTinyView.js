@@ -40,6 +40,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
   visibleResources: [],
   currentPage: 0,
   endPage: 3,
+  itemsEachPage: 6,
   totalPages: false,
 
 
@@ -70,7 +71,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
     var that = this;
     this.parentExplorer.resourceIndex.removePagination();
 
-    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(6);
+    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.itemsEachPage);
 /*
     that.parentExplorer.resourceIndex.filterBy( function(e) {
       var ret = false;
@@ -136,7 +137,6 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       contador++;
     });
 
-
     that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) )
 
   },
@@ -144,14 +144,15 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
   renderPager() {
     var that = this;
 
-    var pages = that.endPage;
+
+    var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.itemsEachPage );
 
     if( that.limitPages < that.totalPages && that.endPage) {
       pages = that.endPage;
     }
 
 
-    return this.tplPager({ v:that, pages:pages } );
+    return this.tplPager({ v:that, pages:pages-1 } );
   },
 
   setPage: function( pageNum ) {
@@ -198,7 +199,15 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
 
   nextPage: function() {
     var that =  this;
-    that.setPage(that.currentPage+1);
+
+    var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.itemsEachPage );
+    var nextPage = that.currentPage+1;
+
+    if( nextPage > pages-1 ) {
+      nextPage = pages-1;
+    }
+
+    that.setPage(nextPage);
   },
 
   previousPage: function( ){
