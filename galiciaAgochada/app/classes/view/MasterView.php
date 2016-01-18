@@ -14,6 +14,8 @@ class MasterView extends View
 
   public function __construct( $baseDir ) {
     parent::__construct( $baseDir );
+    global $C_LANG;
+    $this->actLang = $C_LANG;
   }
 
   /**
@@ -79,12 +81,20 @@ class MasterView extends View
     );
     $resDest = array();
     while ( $dRes = $dList->fetch() ) {
+
       $resource = $dRes->getterDependence('resource');
+
       if($resource){
         $resDest = array_merge( $resDest, $resource );
+        foreach ($resDest as $res){
+          $urlAlias = $this->getUrlAlias($res->getter('id'));
+          $resourceArrayRecantos[$res->getter('id')]['urlAlias'] = $urlAlias;
+          $resData = $res->getAllData();
+          $resourceArrayRecantos[$res->getter('id')]['data'] = $resData['data'];
+        }
       }
     }
-    $this->template->assign('rdRecantosConEstilo', $resDest);
+    $this->template->assign('rdRecantosConEstilo', $resourceArrayRecantos);
     // end
 
     /**
@@ -108,9 +118,15 @@ class MasterView extends View
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
+        foreach ($resDest as $res){
+          $urlAlias = $this->getUrlAlias($res->getter('id'));
+          $resourceArrayFesta[$res->getter('id')]['urlAlias'] = $urlAlias;
+          $resData = $res->getAllData();
+          $resourceArrayFesta[$res->getter('id')]['data'] = $resData['data'];
+        }
       }
     }
-    $this->template->assign('rdFestaRachada', $resDest);
+    $this->template->assign('rdFestaRachada', $resourceArrayFesta);
     // end
 
     /**
@@ -134,9 +150,15 @@ class MasterView extends View
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
+        foreach ($resDest as $res){
+          $urlAlias = $this->getUrlAlias($res->getter('id'));
+          $resourceArrayPraias[$res->getter('id')]['urlAlias'] = $urlAlias;
+          $resData = $res->getAllData();
+          $resourceArrayPraias[$res->getter('id')]['data'] = $resData['data'];
+        }
       }
     }
-    $this->template->assign('rdPraiasDeEnsono', $resDest);
+    $this->template->assign('rdPraiasDeEnsono', $resourceArrayPraias);
     // end
 
     /**
@@ -160,9 +182,15 @@ class MasterView extends View
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
+        foreach ($resDest as $res){
+          $urlAlias = $this->getUrlAlias($res->getter('id'));
+          $resourceArrayPaisaxes[$res->getter('id')]['urlAlias'] = $urlAlias;
+          $resData = $res->getAllData();
+          $resourceArrayPaisaxes[$res->getter('id')]['data'] = $resData['data'];
+        }
       }
     }
-    $this->template->assign('rdPaisaxesEspectaculares', $resDest);
+    $this->template->assign('rdPaisaxesEspectaculares', $resourceArrayPaisaxes);
     // end
 
     /**
@@ -186,9 +214,15 @@ class MasterView extends View
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
+        foreach ($resDest as $res){
+          $urlAlias = $this->getUrlAlias($res->getter('id'));
+          $resourceArrayAloxamentos[$res->getter('id')]['urlAlias'] = $urlAlias;
+          $resData = $res->getAllData();
+          $resourceArrayAloxamentos[$res->getter('id')]['data'] = $resData['data'];
+        }
       }
     }
-    $this->template->assign('rdAloxamentoConEncanto', $resDest);
+    $this->template->assign('rdAloxamentoConEncanto', $resourceArrayAloxamentos);
     // end
 
     /**
@@ -212,9 +246,15 @@ class MasterView extends View
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
+        foreach ($resDest as $res){
+          $urlAlias = $this->getUrlAlias($res->getter('id'));
+          $resourceArrayGastronomia[$res->getter('id')]['urlAlias'] = $urlAlias;
+          $resData = $res->getAllData();
+          $resourceArrayGastronomia[$res->getter('id')]['data'] = $resData['data'];
+        }
       }
     }
-    $this->template->assign('rdAutenticaGastronomia', $resDest);
+    $this->template->assign('rdAutenticaGastronomia', $resourceArrayGastronomia);
     // end
 
     $this->template->assign('isFront', true);
@@ -227,6 +267,27 @@ class MasterView extends View
   public function exampleComarca() {
     $this->template->setTpl('zonaMap.tpl','rextAppZona');
     $this->template->exec();
+  }
+
+  // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
+  public function getUrlAlias($resId, $lang = false){
+    $urlAliasModel = new UrlAliasModel();
+
+    if ($lang){
+      $langId = $lang;
+    }
+    else{
+      $langId = $this->actLang;
+    }
+    $urlAlias = false;
+    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'resource' => $resId, 'lang' => $langId ) ) )->fetch();
+
+    if ($urlAliasList){
+      $urlAlias = $langId.$urlAliasList->getter('urlFrom');
+    }
+
+
+    return $urlAlias;
   }
 
 }

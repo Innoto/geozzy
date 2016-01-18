@@ -145,6 +145,7 @@
     </div>
   </section>
 
+
   <span class="anchor" id="recomendamos"></span>
   <section class="gzzSec secRecomendamos">
     <div class="container">
@@ -155,17 +156,17 @@
             {foreach from=$rdRecantosConEstilo item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                  <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                       <div class="destResourceMoreInfo">
-                        <p>{$rd->getter('shortDescription', 'es')}</p>
-                        <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                        <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                        <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                       </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/resource/{$rd->getter('id')}">
-                    <h3>{$rd->getter('title', 'es')} </h3>
+                  <a href="/{$rd.data.urlAlias}">
+                    <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
                   </a>
                 </div>
               </div>
@@ -180,17 +181,17 @@
             {foreach from=$rdFestaRachada item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                  <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama" >
                     <div class="destResourceMoreInfo">
-                      <p>{$rd->getter('shortDescription', 'es')}</p>
-                      <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                      <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                      <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/resource/{$rd->getter('id')}">
-                    <h3>{$rd->getter('title', 'es')} </h3>
+                  <a href="/{$rd.urlAlias}">
+                    <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
                   </a>
                 </div>
               </div>
@@ -205,17 +206,17 @@
             {foreach from=$rdPraiasDeEnsono item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                  <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                     <div class="destResourceMoreInfo">
-                      <p>{$rd->getter('shortDescription', 'es')}</p>
-                      <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                      <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                      <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/resource/{$rd->getter('id')}">
-                    <h3>{$rd->getter('title', 'es')} </h3>
+                  <a href="/{$rd.urlAlias}">
+                    <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
                   </a>
                 </div>
               </div>
@@ -231,17 +232,17 @@
             {foreach from=$rdPaisaxesEspectaculares item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                  <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                     <div class="destResourceMoreInfo">
-                      <p>{$rd->getter('shortDescription', 'es')}</p>
-                      <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                      <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                      <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/resource/{$rd->getter('id')}">
-                    <h3>{$rd->getter('title', 'es')} </h3>
+                  <a href="/{$rd.urlAlias}">
+                    <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
                   </a>
                 </div>
               </div>
@@ -256,17 +257,17 @@
             {foreach from=$rdAloxamentoConEncanto item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                  <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                     <div class="destResourceMoreInfo">
-                      <p>{$rd->getter('shortDescription', 'es')}</p>
-                      <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                      <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                      <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/resource/{$rd->getter('id')}">
-                    <h3>{$rd->getter('title', 'es')} </h3>
+                  <a href="/{$rd.urlAlias}">
+                    <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
                   </a>
                 </div>
               </div>
@@ -281,17 +282,17 @@
           {foreach from=$rdAutenticaGastronomia item=rd}
             <div class="item">
               <div class="itemImage">
-                <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
+                <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                 <div class="trama">
                   <div class="destResourceMoreInfo">
-                    <p>{$rd->getter('shortDescription', 'es')}</p>
-                    <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                    <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                    <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                   </div>
                 </div>
               </div>
               <div class="itemTitle">
-                <a href="/resource/{$rd->getter('id')}">
-                  <h3>{$rd->getter('title', 'es')} </h3>
+                <a href="/{$rd.urlAlias}">
+                  <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
                 </a>
               </div>
             </div>
