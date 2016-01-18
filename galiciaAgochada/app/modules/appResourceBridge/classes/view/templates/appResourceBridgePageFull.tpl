@@ -1,7 +1,7 @@
 {extends file="primary.tpl"}
 
 {block name="headClientIncludes" append}
-  <script rel="false" type="text/javascript" src="/mediaCache/js/resource.js"></script>
+  <script rel="false" type="text/javascript" src="/media/js/resource.js"></script>
 {/block}
 
 {block name="bodyContent"}
