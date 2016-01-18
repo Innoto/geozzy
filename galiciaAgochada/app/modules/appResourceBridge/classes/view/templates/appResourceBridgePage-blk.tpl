@@ -3,6 +3,7 @@
 {block name="headClientIncludes"}
   {$client_includes}
 {/block}
+
 <section class="bodyContentBlock">
   {$resTemplateBlock}
 </section>

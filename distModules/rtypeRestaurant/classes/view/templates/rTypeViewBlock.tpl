@@ -31,8 +31,15 @@
   <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
   <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
 {/block}
-
 -->
+
+{block name="headTitle" append}
+  {$res.data["headTitle_$GLOBAL_C_LANG"]}
+{/block}
+
+{block name="socialMeta" append}
+  <meta name="description" content="{$res.data["mediumDescription_$GLOBAL_C_LANG"]}" />
+{/block}
 
 <!-- rTypeViewBlock.tpl en rTypeRestaurant module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
