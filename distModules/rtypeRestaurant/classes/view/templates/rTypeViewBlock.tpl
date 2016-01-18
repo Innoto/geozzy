@@ -105,7 +105,7 @@
               {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}
                 <div class="share-net fb">
                   <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer.php?u={$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}&t={$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}">
-                    <i class="fa fa-facebook-square"></i>
+                      <i class="fa fa-facebook-square"></i>
                   </a>
                 </div>
               {/if}
