@@ -13,9 +13,11 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       '</div>'+
     '</div>'),
   tplElement: _.template(
-    '<div data-resource-id="<%- id %>" class="accessButton col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
+    '<div data-resource-id="<%- id %>" class="col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
       '<div class="elementImg">'+
         '<img class="img-responsive" src="/cgmlImg/<%- img %>/fast_cut/.jpg" />'+
+      '</div>'+
+      '<div class="elementHover accessButton">'+
         '<ul class="elementOptions container-fluid">'+
           '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
         '</ul>'+
@@ -147,9 +149,10 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
 
     var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.itemsEachPage );
 
-    if( that.limitPages < that.totalPages && that.endPage) {
+    if( that.endPage < that.totalPages ) {
       pages = that.endPage;
     }
+
 
 
     return this.tplPager({ v:that, pages:pages-1 } );
@@ -203,7 +206,11 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
     var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.itemsEachPage );
     var nextPage = that.currentPage+1;
 
-    if( nextPage > pages-1 ) {
+    if( nextPage > that.endPage-1 ) {
+      nextPage = that.endPage-1;
+    }
+    else
+    if( nextPage > pages-1  ) {
       nextPage = pages-1;
     }
 
