@@ -20,14 +20,14 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
         '<%-title%>'+
       '</div>'+
     '</div>'),*/
-    '<div data-resource-id="<%- id %>" class="accessButton col-md-12 element">'+
+    '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
       '<div class="elementImg">'+
         '<img class="img-responsive" src="/cgmlImg/<%- img %>/explorerXantaresImg/.jpg" />'+
-        '<ul class="elementOptions container-fluid">'+
-          '<li class="elementOpt elementFav">'+
-            '<i class="fa fa-heart-o"></i>'+
-            '<i class="fa fa-heart"></i></li>'+
-        '</ul>'+
+        '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
+          '<ul class="elementOptions container-fluid">'+
+            '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
+          '</ul>'+
+        '</div>'+
       '</div>'+
       '<div class="elementInfo">'+
         '<div class="elementTitle"><%-title%></div>'+
@@ -56,7 +56,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
 
   initialize: function( opts ) {
     var that = this;
-    
+
     var options = new Object({
       showInBuffer: true,
       showOutMapAndBuffer: false,
