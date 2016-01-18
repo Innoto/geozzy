@@ -86,11 +86,13 @@ class MasterView extends View
 
       if($resource){
         $resDest = array_merge( $resDest, $resource );
-        foreach ($resDest as $res){
-          $urlAlias = $this->getUrlAlias($res->getter('id'));
-          $resourceArrayRecantos[$res->getter('id')]['urlAlias'] = $urlAlias;
-          $resData = $res->getAllData();
-          $resourceArrayRecantos[$res->getter('id')]['data'] = $resData['data'];
+        if($resDest){
+          foreach ($resDest as $res){
+            $urlAlias = $this->getUrlAlias($res->getter('id'));
+            $resourceArrayRecantos[$res->getter('id')]['urlAlias'] = $urlAlias;
+            $resData = $res->getAllData();
+            $resourceArrayRecantos[$res->getter('id')]['data'] = $resData['data'];
+          }
         }
       }
     }
@@ -118,11 +120,13 @@ class MasterView extends View
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
-        foreach ($resDest as $res){
-          $urlAlias = $this->getUrlAlias($res->getter('id'));
-          $resourceArrayFesta[$res->getter('id')]['urlAlias'] = $urlAlias;
-          $resData = $res->getAllData();
-          $resourceArrayFesta[$res->getter('id')]['data'] = $resData['data'];
+        if($resDest){
+          foreach ($resDest as $res){
+            $urlAlias = $this->getUrlAlias($res->getter('id'));
+            $resourceArrayFesta[$res->getter('id')]['urlAlias'] = $urlAlias;
+            $resData = $res->getAllData();
+            $resourceArrayFesta[$res->getter('id')]['data'] = $resData['data'];
+          }
         }
       }
     }
@@ -150,11 +154,13 @@ class MasterView extends View
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
-        foreach ($resDest as $res){
-          $urlAlias = $this->getUrlAlias($res->getter('id'));
-          $resourceArrayPraias[$res->getter('id')]['urlAlias'] = $urlAlias;
-          $resData = $res->getAllData();
-          $resourceArrayPraias[$res->getter('id')]['data'] = $resData['data'];
+        if($resDest){
+          foreach ($resDest as $res){
+            $urlAlias = $this->getUrlAlias($res->getter('id'));
+            $resourceArrayPraias[$res->getter('id')]['urlAlias'] = $urlAlias;
+            $resData = $res->getAllData();
+            $resourceArrayPraias[$res->getter('id')]['data'] = $resData['data'];
+          }
         }
       }
     }
@@ -177,16 +183,19 @@ class MasterView extends View
       )
     );
     $resDest = array();
+    $resourceArrayPaisaxes = array();
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
-        foreach ($resDest as $res){
-          $urlAlias = $this->getUrlAlias($res->getter('id'));
-          $resourceArrayPaisaxes[$res->getter('id')]['urlAlias'] = $urlAlias;
-          $resData = $res->getAllData();
-          $resourceArrayPaisaxes[$res->getter('id')]['data'] = $resData['data'];
+        if($resDest){
+          foreach ($resDest as $res){
+            $urlAlias = $this->getUrlAlias($res->getter('id'));
+            $resourceArrayPaisaxes[$res->getter('id')]['urlAlias'] = $urlAlias;
+            $resData = $res->getAllData();
+            $resourceArrayPaisaxes[$res->getter('id')]['data'] = $resData['data'];
+          }
         }
       }
     }
@@ -209,16 +218,19 @@ class MasterView extends View
       )
     );
     $resDest = array();
+    $resourceArrayAloxamentos = array();
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
-        foreach ($resDest as $res){
-          $urlAlias = $this->getUrlAlias($res->getter('id'));
-          $resourceArrayAloxamentos[$res->getter('id')]['urlAlias'] = $urlAlias;
-          $resData = $res->getAllData();
-          $resourceArrayAloxamentos[$res->getter('id')]['data'] = $resData['data'];
+        if($resDest){
+          foreach ($resDest as $res){
+            $urlAlias = $this->getUrlAlias($res->getter('id'));
+            $resourceArrayAloxamentos[$res->getter('id')]['urlAlias'] = $urlAlias;
+            $resData = $res->getAllData();
+            $resourceArrayAloxamentos[$res->getter('id')]['data'] = $resData['data'];
+          }
         }
       }
     }
@@ -241,16 +253,19 @@ class MasterView extends View
       )
     );
     $resDest = array();
+    $resourceArrayGastronomia = array();
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');
       if($resource){
         $resDest = array_merge( $resDest, $resource );
-        foreach ($resDest as $res){
-          $urlAlias = $this->getUrlAlias($res->getter('id'));
-          $resourceArrayGastronomia[$res->getter('id')]['urlAlias'] = $urlAlias;
-          $resData = $res->getAllData();
-          $resourceArrayGastronomia[$res->getter('id')]['data'] = $resData['data'];
+        if($resDest){
+          foreach ($resDest as $res){
+            $urlAlias = $this->getUrlAlias($res->getter('id'));
+            $resourceArrayGastronomia[$res->getter('id')]['urlAlias'] = $urlAlias;
+            $resData = $res->getAllData();
+            $resourceArrayGastronomia[$res->getter('id')]['data'] = $resData['data'];
+          }
         }
       }
     }
