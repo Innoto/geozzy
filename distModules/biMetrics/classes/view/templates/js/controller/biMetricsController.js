@@ -56,7 +56,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
     return {
        "user_ID":283,
        "language": GLOBAL_C_LANG,
-       "session_ID":"0Eca798C0EfD46CA3de2827B8ed6DA",
+       "session_ID": GLOBAL_C_SESSION_ID,
        "observationTime": that.packageTimestamp ,
        "device":{
           "type":"mob",

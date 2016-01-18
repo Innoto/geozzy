@@ -478,7 +478,7 @@ class ResourceController {
       $user = $userModel->listItems( array( 'filters' => array('id' => $this->resData['user']) ) )->fetch();
       $userName = $user->getter('name');
 
-      $timeCreation = date('d/m/Y', time($this->resData['timeCreation']));
+      $timeCreation = gmdate('d/m/Y', time($this->resData['timeCreation']));
 
       $template->assign( 'resourceId', $this->resData['id']);
       $template->assign( 'rTypeName', $rTypeName);
@@ -488,7 +488,7 @@ class ResourceController {
       if (isset($this->resData['userUpdate'])){
         $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $this->resData['userUpdate']) ) )->fetch();
         $userUpdateName = $userUpdate->getter('name');
-        $timeLastUpdate = date('d/m/Y', time($this->resData['timeLastUpdate']));
+        $timeLastUpdate = gmdate('d/m/Y', time($this->resData['timeLastUpdate']));
         $template->assign( 'timeLastUpdate', $timeLastUpdate);
         $template->assign( 'userUpdate', $userUpdateName);
       }
@@ -783,12 +783,12 @@ class ResourceController {
 
       if( $form->isFieldDefined( 'id' ) && is_numeric( $form->getFieldValue( 'id' ) ) ) {
         $valuesArray[ 'userUpdate' ] = $user->getter( 'id' );
-        $valuesArray[ 'timeLastUpdate' ] = date( "Y-m-d H:i:s", time() );
+        $valuesArray[ 'timeLastUpdate' ] = gmdate( "Y-m-d H:i:s", time() );
         unset( $valuesArray[ 'image' ] );
       }
       else {
         $valuesArray[ 'user' ] = $user->getter( 'id' );
-        $valuesArray[ 'timeCreation' ] = date( "Y-m-d H:i:s", time() );
+        $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
       }
 
       //Resource LOCATION
