@@ -13,9 +13,11 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       '</div>'+
     '</div>'),
   tplElement: _.template(
-    '<div data-resource-id="<%- id %>" class="accessButton col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
+    '<div data-resource-id="<%- id %>" class="col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
       '<div class="elementImg">'+
         '<img class="img-responsive" src="/cgmlImg/<%- img %>/fast_cut/.jpg" />'+
+      '</div>'+
+      '<div class="elementHover accessButton">'+
         '<ul class="elementOptions container-fluid">'+
           '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
         '</ul>'+
