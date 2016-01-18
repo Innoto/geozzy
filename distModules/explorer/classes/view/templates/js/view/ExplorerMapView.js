@@ -20,13 +20,14 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   },
 
   initialize: function( opts ) {
-
-    this.options = new Object({
+    var that = this;
+    var options = new Object({
       map : false,
       clusterize: false,
       chooseMarkerIcon: function() {return false}
     });
-    $.extend(true, this.options, opts);
+
+    that.options = $.extend(true, {}, options, opts);
 
     this.setMap( this.options.map );
   },

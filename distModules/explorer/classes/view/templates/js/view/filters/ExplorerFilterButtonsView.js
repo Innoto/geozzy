@@ -37,22 +37,24 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
   initialize: function( opts ) {
     var that = this;
-
-    that.options = opts
-
+    that.options = $.extend(true, {}, that.options, opts);
   },
 
   filterAction: function( model ) {
+    var that = this;
     var ret = false;
 
-    if( this.selectedTerms != false ) {
+    if( that.selectedTerms != false ) {
 
       var terms =  model.get('terms');
+      
+      if( typeof terms != "undefined") {
+        var diff = $( terms ).not( that.selectedTerms );
 
-      var diff = $( terms ).not( this.selectedTerms );
+        //console.log(diff.length, terms.length)
+        ret = (diff.length != terms.length );
+      }
 
-      //console.log(diff.length, terms.length)
-      ret = (diff.length != terms.length );
     }
     else {
       ret = true;
