@@ -68,21 +68,6 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       }
       that.instanceSlider();
 
-/*
-      $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
-        var val = $(el.target).val();
-        if( val == '*' ) {
-          that.selectedTerms = false;
-        }
-        else {
-          //that.selectedTerms = false;
-          that.selectedTerms = [ parseInt( $(el.target).val() ) ];
-        }
-
-        that.parentExplorer.applyFilters();
-      });
-*/
-
     },
 
 
