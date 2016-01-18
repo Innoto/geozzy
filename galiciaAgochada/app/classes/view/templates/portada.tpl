@@ -155,13 +155,12 @@
             {foreach from=$rdRecantosConEstilo item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <div class="trama"></div>
                   <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
-                  <div class="destResourceMoreInfo">
-                    <a href="/resource/{$rd->getter('id')}">
-                      <p>{$rd->getter('shortDescription', 'es')}</p>
-                    </a>
-                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                  <div class="trama">
+                      <div class="destResourceMoreInfo">
+                        <p>{$rd->getter('shortDescription', 'es')}</p>
+                        <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                      </div>
                   </div>
                 </div>
                 <div class="itemTitle">
@@ -181,13 +180,12 @@
             {foreach from=$rdFestaRachada item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <div class="trama"></div>
                   <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
-                  <div class="destResourceMoreInfo">
-                    <a href="/resource/{$rd->getter('id')}">
+                  <div class="trama" >
+                    <div class="destResourceMoreInfo">
                       <p>{$rd->getter('shortDescription', 'es')}</p>
-                    </a>
-                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                      <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                    </div>
                   </div>
                 </div>
                 <div class="itemTitle">
@@ -207,13 +205,12 @@
             {foreach from=$rdPraiasDeEnsono item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <div class="trama"></div>
                   <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
-                  <div class="destResourceMoreInfo">
-                    <a href="/resource/{$rd->getter('id')}">
+                  <div class="trama">
+                    <div class="destResourceMoreInfo">
                       <p>{$rd->getter('shortDescription', 'es')}</p>
-                    </a>
-                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                      <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                    </div>
                   </div>
                 </div>
                 <div class="itemTitle">
@@ -234,13 +231,12 @@
             {foreach from=$rdPaisaxesEspectaculares item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <div class="trama"></div>
                   <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
-                  <div class="destResourceMoreInfo">
-                    <a href="/resource/{$rd->getter('id')}">
+                  <div class="trama">
+                    <div class="destResourceMoreInfo">
                       <p>{$rd->getter('shortDescription', 'es')}</p>
-                    </a>
-                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                      <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                    </div>
                   </div>
                 </div>
                 <div class="itemTitle">
@@ -260,13 +256,12 @@
             {foreach from=$rdAloxamentoConEncanto item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <div class="trama"></div>
                   <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
-                  <div class="destResourceMoreInfo">
-                    <a href="/resource/{$rd->getter('id')}">
+                  <div class="trama">
+                    <div class="destResourceMoreInfo">
                       <p>{$rd->getter('shortDescription', 'es')}</p>
-                    </a>
-                    <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                      <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                    </div>
                   </div>
                 </div>
                 <div class="itemTitle">
@@ -286,13 +281,12 @@
           {foreach from=$rdAutenticaGastronomia item=rd}
             <div class="item">
               <div class="itemImage">
-                <div class="trama"></div>
                 <img class="img-responsive" src="/cgmlImg/{$rd->getter('image')}/fast_cut/{$rd->getter('image')}.jpg">
-                <div class="destResourceMoreInfo">
-                  <a href="/resource/{$rd->getter('id')}">
+                <div class="trama">
+                  <div class="destResourceMoreInfo">
                     <p>{$rd->getter('shortDescription', 'es')}</p>
-                  </a>
-                  <a class="btn btn-primary" href="/resource/{$rd->getter('id')}">{t}Coñéceo{/t}</a>
+                    <a href="/resource/{$rd->getter('id')}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                  </div>
                 </div>
               </div>
               <div class="itemTitle">
