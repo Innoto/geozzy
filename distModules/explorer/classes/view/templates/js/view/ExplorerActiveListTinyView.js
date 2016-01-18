@@ -17,7 +17,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       '<div class="elementImg">'+
         '<img class="img-responsive" src="/cgmlImg/<%- img %>/fast_cut/.jpg" />'+
       '</div>'+
-      '<div class="elementHover accessButton">'+
+      '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
         '<ul class="elementOptions container-fluid">'+
           '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
         '</ul>'+
