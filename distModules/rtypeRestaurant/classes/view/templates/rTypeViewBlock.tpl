@@ -24,12 +24,15 @@
 </style>
 {/block}
 
+<!--
 {block name="socialMeta" append}
   <meta property="og:url" content="{$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}" />
   <meta property="og:image" content="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
   <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
   <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
 {/block}
+-->
+
 
 <!-- rTypeViewBlock.tpl en rTypeRestaurant module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
@@ -101,7 +104,7 @@
             <div class="share-open" style="display:none;">
               {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}
                 <div class="share-net fb">
-                  <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer/sharer.php?u={$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}">
+                  <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer.php?u={$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}&t={$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}">
                     <i class="fa fa-facebook-square"></i>
                   </a>
                 </div>
