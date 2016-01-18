@@ -34,7 +34,7 @@
 -->
 
 {block name="headTitle" append}
-  {$res.data["headTitle_$GLOBAL_C_LANG"]}
+  Mi sección
 {/block}
 
 {block name="socialMeta" append}
