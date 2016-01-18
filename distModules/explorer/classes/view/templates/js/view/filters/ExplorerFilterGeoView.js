@@ -2,7 +2,7 @@ var geozzy = geozzy || {};
 if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 if(!geozzy.explorerComponents.filters) geozzy.explorerComponents.filters={};
 
-geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
+geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
 
 
 
@@ -21,7 +21,10 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
   templateSummary: _.template(
     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-    "<span class='<%= filterClass %>-Summary'><img class='icon' src='/cgmlImg/<%- option.icon %>/typeIcon/icon.png'> <%- option.name_es %> </span>"
+    "<div class='<%= filterClass %>-Summary'>"+
+      "<div class='icon'> <img class='icon' src='/cgmlImg/<%- option.icon %>/typeIcon/icon.png'> </div>" +
+      "<div class='name'> <%- option.name_es %> </div>" +
+    "</div>"
   ),
 
 

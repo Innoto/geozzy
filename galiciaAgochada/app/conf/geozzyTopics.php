@@ -83,16 +83,9 @@ $geozzyTopicsInfo = array(
       'gl' => 'Auténtica gastronomía'
     ),
     'resourceTypes' => array(
-      /*'rtypeHotel' => array(
-        'weight' => 2
-      ),*/
       'rtypeRestaurant' => array(
         'weight' => 2
       )
-      /*,
-      'rtypeAppFestaPopular' => array(
-        'weight' => 2
-      )*/
     ),
     'table' => array(
       'actions' => array(
@@ -112,9 +105,6 @@ $geozzyTopicsInfo = array(
     ),
     'resourceTypes' => array(
       'rtypeHotel' => array(
-        'weight' => 1
-      ),
-      'rtypeRestaurant' => array(
         'weight' => 1
       )
     ),
@@ -137,6 +127,48 @@ $geozzyTopicsInfo = array(
     'resourceTypes' => array(
       'rtypeAppFestaPopular' => array(
         'weight' => 1
+      )
+    ),
+    'table' => array(
+      'actions' => array(
+        'viewHtml' => 'auto',
+        'action' => 'auto'
+      ),
+    ),
+    'taxgroup' => 12,
+    'icon' => '',
+    'weight' => 1
+  ),
+  'FestaRachada' => array(
+    'name' => array(
+      'es' => 'Fiesta',
+      'en' => 'Party',
+      'gl' => 'Festa rachada'
+    ),
+    'resourceTypes' => array(
+      'rtypeAppFestaPopular' => array(
+        'weight' => 1
+      )
+    ),
+    'table' => array(
+      'actions' => array(
+        'viewHtml' => 'auto',
+        'action' => 'auto'
+      ),
+    ),
+    'taxgroup' => 12,
+    'icon' => '',
+    'weight' => 1
+  ),
+  'probasTopic' => array(
+    'name' => array(
+      'es' => 'Pruebas',
+      'en' => 'Tests',
+      'gl' => 'Probas'
+    ),
+    'resourceTypes' => array(
+      'rtypeRestaurant' => array(
+        'weight' => 2
       )
     ),
     'table' => array(

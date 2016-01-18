@@ -90,6 +90,25 @@ class ExplorerView extends MasterView
     $this->template->exec();
   }
 
+  function todosSegredosExplorer(){
+    // cogemos la url actual para el idioma (hasta que sea recurso)
+    $url = $this->commonLayout();
+    $this->template->assign('url', $url);
+
+    $this->template->addClientScript('js/TimeDebuger.js', 'common');
+    $this->template->addClientScript('js/model/TaxonomygroupModel.js', 'geozzy');
+    $this->template->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');
+    $this->template->addClientScript('js/collection/CategoryCollection.js', 'geozzy');
+    $this->template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
+    biMetrics::autoIncludes();
+    explorer::autoIncludes();
+    $this->template->addClientStyles('styles/masterTodosSegredosExplorer.less');
+    $this->template->addClientScript('js/allExplorer.js');
+    $this->template->addClientScript('js/todosSegredosExplorer.js');
+    $this->template->setTpl('todosSegredosExplorer.tpl');
+    $this->template->exec();
+  }
+
 /*Examples*/
   function explorerLayout( $urlParams = false ){
 
