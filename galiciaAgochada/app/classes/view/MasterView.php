@@ -21,9 +21,6 @@ class MasterView extends View
   * @return bool : true -> Access allowed
   */
   public function accessCheck() {
-
-    return true;
-
     $accessValid = false;
 
     $validIp = array(
