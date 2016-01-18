@@ -16,7 +16,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
   ),
 
   templateOption: _.template(
-    "<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"
+    "<option value='<%- id %>' data-img='<%- dataImg %>' data-coords='<%- dataCoords %>'  ><%- name_es %></option>"
   ),
 
   templateSummary: _.template(
@@ -88,6 +88,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
 
 
     $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
+      alert('')
       var val = $(el.target).val();
       if( val == '*' ) {
         that.selectedTerms = false;
@@ -112,6 +113,18 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
     });
 
 
+
+    $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').zonaMap({
+      width: 358,
+      height: 383,
+      htmlIconArrow: '<i class="fa fa-caret-down"></i>',
+      imgSrc: '/media/module/rextAppZona/img/gal.svg',
+      imgTransparent: '/media/module/rextAppZona/img/transparent.png'
+    });
+
+
+
+    $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').show()
 
 
   },
