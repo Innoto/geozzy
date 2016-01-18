@@ -26,7 +26,7 @@
         <p>{t}Das postas do sol en Lapamán ás vistas de Saiáns{/t}</p>
         <p>{t}Ruta polos mellores chiringuitos de Galicia{/t}</p>
       </div>
-      <a class="introLinkSegredos" href="/segredos">{t}Descubre os nosos segredos{/t} <i class="fa fa-caret-down"></i></a>
+      <a class="introLinkSegredos" href="#segredos">{t}Descubre os nosos segredos{/t} <i class="fa fa-caret-down"></i></a>
     </div>
   </section>
 
@@ -114,7 +114,7 @@
           </a>
         </div>
       </div>
-      <a class="segredosAll" href="#">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
+      <a class="segredosAll" href="/segredos">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
     </div>
   </section>
 
