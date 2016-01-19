@@ -163,6 +163,11 @@ class TestDataGenerator extends View
             $taxtermNum = rand(1,$m-1);
             if (!in_array($taxtermArray[$taxtermNum],$usedTaxterm)){
               $usedTaxterm[$c] = $taxtermArray[$taxtermNum];
+
+echo '<pre>';
+              var_dump($taxtermArray[$taxtermNum]);
+              echo '</pre>';
+
               $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxtermArray[$taxtermNum])) );
             }
         }
