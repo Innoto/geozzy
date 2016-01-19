@@ -16,7 +16,6 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
 
   biApiConf: false,
 
-  biMetricsName: 'Resource',
   hoverStack: [],
   printedResources:[],
   pendingMetrics: [],

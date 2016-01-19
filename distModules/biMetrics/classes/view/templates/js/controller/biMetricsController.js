@@ -89,8 +89,6 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
   sync: function() {
     var that = this;
 
-    console.log(that.biMetricsName);
-
 
     if( that.pendingMetrics.length > 0 ) {
 
