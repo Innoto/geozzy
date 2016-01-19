@@ -121,6 +121,7 @@ geozzy.rExtMapDirectionsController = {
         return false;
       });
       this.routePanelContainer.find('.tabList' ).on( 'click', function togglePanelMap() {
+        $(this).find('i').toggle();
         $( '#comollegarListado' ).toggle();
       } );
       this.routePanelContainer.find( '.routeModeButton' ).on( 'click', function setRouteMode( evt ) {

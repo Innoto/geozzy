@@ -4,7 +4,7 @@ firstLoad = firstLoadAll = true;
 $(document).ready(function(){
 
   $('.resource .directions .title').click(function(){
-    //this.find('i').toggle();
+    $(this).find('i').toggle();
     $('.directions .indications').toggle();
     $('.rExtMapDirections .mapRoute').toggle();
   });
