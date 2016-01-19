@@ -195,10 +195,6 @@
         { idName: "ferrolTerra", dataCoords:"137,45,154,33,179,11,202,2,201,15,228,-1,224,14,218,47,207,76,199,74,197,80,196,88,192,100,178,96,171,88,170,80,156,80,142,68,133,59,135,54", dataImg:"/media/module/rextAppZona/img/ferrolTerra.svg"},
         { idName: "aCorunaAsMarinas", dataCoords: "123,81,129,88,133,78,139,74,151,91,151,76,157,81,166,78,177,96,189,100,193,102,185,121,166,124,157,132,149,127,136,122,132,127,125,119,125,111,110,101,107,105,100,101,100,92,108,93", dataImg:"/media/module/rextAppZona/img/aCorunaAsMarinas.svg"}
       ];
-
-
-
-
       that.zonaCategories.each( function(e,i){
 
         $.each(Coords, function(i2,e2){
@@ -207,11 +203,7 @@
             e.set('dataImg', e2.dataImg);
           }
         });
-
       });
-
-
-
       that.explorer.addFilter(
         new geozzy.explorerComponents.filters.filterGeoView(
           {
