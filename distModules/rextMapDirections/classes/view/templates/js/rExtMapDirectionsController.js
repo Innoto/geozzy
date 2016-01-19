@@ -8,7 +8,7 @@ $(document).ready( function() {
 
 
   if( typeof geozzy.rExtMapDirectionsData.wrapperRoute !== 'undefined' ) {
-    geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData.wrapperRoute );
+    geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData );
   }
 });
 
@@ -27,7 +27,7 @@ geozzy.rExtMapDirectionsController = {
   resourceMapInfo: false,
   resourceMapOptions: false,
 
-  routeFormContainer:false,
+  routePanelContainer:false,
 
   resourceRoutes: [],
   resourceLastroute: [],
@@ -110,65 +110,72 @@ geozzy.rExtMapDirectionsController = {
 
 
   prepareRoutes: function prepareRoutes( directionsData ) {
-    console.log( 'loadRoute', directionsData );
+    console.log( 'prepareRoutes', directionsData );
     var that = this;
 
     // Prepare Form
-    this.routeFormContainer = $( directionsData.wrapper );
-    if( this.routeFormContainer.length === 1 ) {
-      this.routeFormContainer.find('form').on( 'submit', function( evt ) {
+    this.routePanelContainer = $( directionsData.wrapperRoute );
+    if( this.routePanelContainer.length === 1 ) {
+      this.routePanelContainer.find('form').on( 'submit', function( evt ) {
         evt.preventDefault();
         destination = $( evt.target ).find('input').val();
         console.log( 'FORM SUBMIT', destination );
         that.resetMap();
         that.clearRoute();
-        that.loadroute( destination, false);
+        that.loadRoute( destination, false);
         return false;
       });
+      this.routePanelContainer.find('.tabList' ).on( 'click', function togglePanelMap() {
+        $( '#comollegarListado' ).toggle();
+      } );
+      this.routePanelContainer.find( '.routeModeButton' ).on( 'click', function setRouteMode( evt ) {
+        that.loadRoute( false, false, $( evt.target ).data( 'route-mode' ) );
+      } );
+
+      // Prepare Routes controller
+      this.directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
+      this.directionsService = new google.maps.DirectionsService();
+
+      this.opened = true;
+      this.blockCloseButton = true;
+
+      this.resourceRoutes[0] = [];
+      this.resourceRoutes[1] = [];
+      this.resourceRoutes[2] = [];
+      this.resourceRoutes[3] = [];
+
+      this.resetFromTo();
+      $('#comollegarListado').html('');
+      var inputComollegar = '';
+
+
+      this.routeTo.latlng = this.resourceMapInfo.lat + ',' + this.resourceMapInfo.lng;
+      if( typeof directionsData.title !== 'undefined' && directionsData.title !== '' ) {
+        this.routeTo.title = directionsData.title;
+      }
+
+      // this.loadRoute( latitude+','+longitude, directionsData.title );
+
+      // click en mapa
+      this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
+        inputComollegar = '';
+        that.clearRoute();
+        that.resetForm();
+
+        that.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), false);
+      });
+
+      // click en marker evento
+      //this.eventClickEvent = new google.maps.event.addListener( eventMarker, 'click', function(ev){
+      //  inputComollegar = '';
+      //  thisComollegar.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), resourceData.name );
+      //});
+
     }
-
-    // Prepare Routes controller
-    this.directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
-    this.directionsService = new google.maps.DirectionsService();
-
-    this.opened = true;
-    this.blockCloseButton = true;
-
-    this.resourceRoutes[0] = [];
-    this.resourceRoutes[1] = [];
-    this.resourceRoutes[2] = [];
-    this.resourceRoutes[3] = [];
-
-    this.resetFromTo();
-    $('#comollegarListado').html('');
-    var inputComollegar = '';
-
-
-    this.routeTo.latlng = this.resourceMapInfo.lat + ',' + this.resourceMapInfo.lng;
-    if( typeof directionsData.title !== 'undefined' && directionsData.title !== '' ) {
-      this.routeTo.title = directionsData.title;
-    }
-
-    // this.loadroute( latitude+','+longitude, directionsData.title );
-
-    // click en mapa
-    this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
-      inputComollegar = '';
-      that.clearRoute();
-      that.resetForm();
-
-      that.loadroute( ev.latLng.lat()+', '+ev.latLng.lng(), false);
-    });
-
-    // click en marker evento
-    //this.eventClickEvent = new google.maps.event.addListener( eventMarker, 'click', function(ev){
-    //  inputComollegar = '';
-    //  thisComollegar.loadroute( ev.latLng.lat()+', '+ev.latLng.lng(), resourceData.name );
-    //});
   },
 
   resetForm: function resetForm() {
-    this.routeFormContainer.find('input').val('');
+    this.routePanelContainer.find('input').val('');
   },
 
   resetFromTo: function resetFromTo() {
@@ -184,18 +191,26 @@ geozzy.rExtMapDirectionsController = {
       distance: 0,
       time: 0
     };
+    this.transport = 0;
+    this.routePanelContainer.find( '.routeInfo' ).html('');
   },
 
-  loadroute: function loadroute( from, fromTitle ) {
+  loadRoute: function loadRoute( from, fromTitle, routeMode = false ) {
+    console.log( 'loadRoute:', from, fromTitle );
     var that = this;
 
-    this.routeFrom.latlng = from;
+    if( from ) {
+      this.routeFrom.latlng = from;
+    }
     if( fromTitle ) {
       this.routeFrom.title = fromTitle;
     }
+    if( routeMode !== false ) {
+      this.transport = routeMode;
+    }
 
-    this.traceRoute( 0, from, this.routeTo.latlng, this.transport , false, function() {
-      console.log( that.resourceLastroute.routes[0] );
+    this.traceRoute( 0, this.routeFrom.latlng, this.routeTo.latlng, this.transport , false, function() {
+      console.log( 'traceRoute thenFunction:', that.resourceLastroute.routes[0] );
 
       that.routeFrom.dir = that.resourceLastroute.routes[0].legs[0].startAddress;
       that.routeTo.dir = that.resourceLastroute.routes[0].legs[0].endAddress;
@@ -215,12 +230,17 @@ geozzy.rExtMapDirectionsController = {
       that.tramoExtraIni = that.tramoExtra( that.routeFrom.latlng, that.resourceLastroute.routes[0].legs[0].start_location, false );
       that.tramoExtraFin = that.tramoExtra( that.routeTo.latlng, that.resourceLastroute.routes[0].legs[0].end_location, true );
 
+      that.routePanelContainer.find('.tabList' ).show();
+      that.routePanelContainer.find('.routeMode' ).show();
+
       // desbloquea boton de cerrar
       that.blockCloseButton = false;
+
     });
   },
 
   clearRoute: function clearRoute() {
+    console.log( 'clearRoute:' );
     // borra ruta del mapa
     if( this.directionsDisplay ) {
       this.directionsDisplay.setDirections( {routes: []} );
@@ -233,10 +253,46 @@ geozzy.rExtMapDirectionsController = {
       this.tramoExtraFin.setMap( null );
       this.tramoExtraFin = false;
     }
+    this.routePanelContainer.find( '.tabList' ).hide();
+    this.routePanelContainer.find( '.routeMode' ).hide();
+    this.routePanelContainer.find( '#comollegarListado' ).hide();
+  },
+
+  setRoutePanelInfo: function setRoutePanelInfo( travelInfo ) {
+    var sec = travelInfo.seconds;
+    var s = sec % 60;
+    sec = ( sec - s ) / 60;
+    var m = sec % 60;
+    var h = ( sec - m ) / 60;
+    var timeStr = h+':'+m;
+
+    var km = Math.round( travelInfo.meters / 100 ) / 10;
+
+    var modeNum = 0;
+    switch( travelInfo.mode ) {
+      case 'DRIVING':
+        modeNum = 0;
+        break;
+      case 'WALKING':
+        modeNum = 1;
+        break;
+      case 'TRANSIT':
+        modeNum = 2;
+        break;
+      case 'BICYCLING':
+        modeNum = 3;
+        break;
+    }
+
+    this.routePanelContainer.find( '.routeInfo' ).html( 'Mode: '+travelInfo.mode+' Distance: '+km+' Km Time: '+ timeStr );
+
+    this.routePanelContainer.find( '.routeModeButton' ).removeClass( 'active' );
+    this.routePanelContainer.find( '.routeMode [data-route-mode="'+modeNum+'"]').addClass( 'active' );
   },
 
   // traceRoute(0, from, this.to.latlng, this.transport , false, function(){
   traceRoute: function traceRoute( id, from, to, mode, cache, thenFunction ) {
+    console.log( 'traceRoute:', id, from, to, mode, cache, 'thenFunction' );
     var that = this;
 
     var modeString = 'DRIVING';
@@ -265,6 +321,13 @@ geozzy.rExtMapDirectionsController = {
       this.directionsService.route( route, function( result, status ) {
         if( status === google.maps.DirectionsStatus.OK ) {
           console.debug( '<p>'+ route.travelMode +' Metros: '+result.routes[0].legs[0].distance.value+' Segundos: '+result.routes[0].legs[0].duration.value+'</p>' );
+
+          travelInfo = {
+            mode: route.travelMode,
+            meters: result.routes[0].legs[0].distance.value,
+            seconds: result.routes[0].legs[0].duration.value
+          };
+          that.setRoutePanelInfo( travelInfo );
           //directionsDisplay.setDirections(result);
 
           that.resourceLastroute = result;
@@ -288,6 +351,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   tramoExtra: function tramoExtra( solicitada, resultado, reves ) {
+    console.log( 'tramoExtra:', solicitada, resultado, reves );
     var tramo = false;
     var latLng = solicitada.split(',');
     var diferencia = Math.abs(latLng['0'] - resultado.lat()) + Math.abs(latLng['1'] - resultado.lng());
