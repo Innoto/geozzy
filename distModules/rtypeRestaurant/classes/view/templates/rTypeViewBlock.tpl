@@ -76,8 +76,8 @@
 
   <section class="contentSec container gzSection">
     <div class="typeBar row">
-      {if isset($res.data.eatanddrinkType)}
       <ul class="type type col-xs-6 col-sm-6 col-md-6 clearfix">
+        {if isset($res.data.eatanddrinkType)}
         {foreach from=$res.data.eatanddrinkType item=termInfo}
           <li>
             <img src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
@@ -85,8 +85,9 @@
           </li>
           {break}
         {/foreach}
+        {/if}
       </ul>
-      {/if}
+
       <ul class="social col-xs-6 col-sm-6 col-md-6 clearfix">
         <li class="elementShare">
           {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
