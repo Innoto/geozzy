@@ -1,19 +1,5 @@
 <!-- rExtViewBlock.tpl en rExtMapDirections module -->
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?language={$GLOBAL_LANG_AVAILABLE[$GLOBAL_C_LANG].i18n}"></script>
-<script type="text/javascript">
-  var geozzy = geozzy || {};
-
-  geozzy.rExtMapDirectionsData = {
-    title: '{$rExt.data.title}',
-    lat: {$rExt.data.locLat},
-    lon: {$rExt.data.locLon},
-    zoom: {$rExt.data.defaultZoom},
-    wrapper: '.rExtMapDirections .resMapContainer',
-    wrapperRoute: '.rExtMapDirections .resDirContainer'
-  };
-</script>
-
 <style type="text/css">
   .rExtMapDirections .resDirContainer {
   }
@@ -78,5 +64,32 @@
     </div>
   </div>
 </div>
+
+
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?language={$GLOBAL_LANG_AVAILABLE[$GLOBAL_C_LANG].i18n}"></script>-->
+<script type="text/javascript">
+var geozzy = geozzy || {};
+
+geozzy.rExtMapDirectionsData = {
+  title: '{$rExt.data.title}',
+  lat: {$rExt.data.locLat},
+  lon: {$rExt.data.locLon},
+  zoom: {$rExt.data.defaultZoom},
+  wrapper: '.rExtMapDirections .resMapContainer',
+  wrapperRoute: '.rExtMapDirections .resDirContainer'
+};
+
+$(document).ready( function() {
+  if( typeof geozzy.rExtMapDirectionsData !== 'undefined' ) {
+    geozzy.rExtMapDirectionsController.prepareMap( geozzy.rExtMapDirectionsData );
+  }
+
+
+  if( typeof geozzy.rExtMapDirectionsData.wrapperRoute !== 'undefined' ) {
+    geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData );
+  }
+});
+
+</script>
 
 <!-- /rExtViewBlock.tpl en rExtMapDirections module -->
