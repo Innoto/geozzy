@@ -60,7 +60,7 @@
         <!-- img data-route-mode="1" class="routeModeButton" src="/media/module/rextMapDirections/img/route-mode-1.png" -->
         <span class="routeInfo">{t}Route info{/t}</span>
       </div>
-      <div class="tabList">{t}Mostrar la descripción de la ruta{/t} <i class="fa fa-sort-down"></i><i class="fa fa-sort-up" style="display:none;"></div>
+      <div class="tabList">{t}Mostrar la descripción de la ruta{/t} <i class="fa fa-sort-down"></i><i class="fa fa-sort-up" style="display:none;"></i></div>
       <div id="comollegarListado"></div>
     </div>
   </div>

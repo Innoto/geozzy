@@ -81,8 +81,8 @@
 
   <section class="contentSec container gzSection">
     <div class="typeBar row">
-      {if isset($res.data.accommodationType)}
       <ul class="type col-xs-6 col-sm-6 col-md-6 clearfix">
+        {if isset($res.data.accommodationType)}
         {foreach from=$res.data.accommodationType item=termInfo}
           <li>
             {if isset($termInfo.icon)}<img src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
@@ -90,8 +90,8 @@
           </li>
           {break}
         {/foreach}
+        {/if}
       </ul>
-      {/if}
 
       <ul class="social col-xs-6 col-sm-6 col-md-6 clearfix">
         <li class="elementShare">
@@ -174,33 +174,25 @@
     </div>
 
     <div class="locationDark">
-      {if isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== ""}
-      <div class="directions">
-        <div class="container">
-          <div class="title">
-            {t}See indications{/t} <i class="fa fa-sort-desc"></i>
-          </div>
-          {if isset( $res.data.loc )}
-          <div class="indications row" style="display:none;">
-            <div class="col-lg-8">
-              {$res.ext.rextContact.data.directions|escape:'htmlall'}
+      {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")
+      || ( isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data !=="")}
+        <div class="directions">
+          <div class="container">
+            <div class="title">
+              {t}See indications{/t} <i class="fa fa-sort-down"></i><i class="fa fa-sort-up" style="display:none;"></i>
             </div>
-            <div class="col-lg-4">
-              <div class="search">
-                {t}How to arrive from?{/t} <i class="fa fa-search"></i>
+            {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")}
+              <div class="indications row" style="display:none;">
+                <div class="col-md-12">
+                  {$res.ext.rextContact.data.directions|escape:'htmlall'}
+                </div>
               </div>
-            </div>
+            {/if}
           </div>
-          {else}
-          <div class="indications" style="display:none;">
-              {$res.ext.rextContact.data.directions|escape:'htmlall'}
-          </div>
-          {/if}
         </div>
-      </div>
-      {/if}
-      {if isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data}
-      {$rextMapDirectionsBlock}
+        {if isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data}
+          {$rextMapDirectionsBlock}
+        {/if}
       {/if}
     </div>
 
