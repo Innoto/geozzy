@@ -165,7 +165,6 @@
       {if isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data}
       {$rextMapDirectionsBlock}
       {/if}
-
     </div>
 
     {if isset($collections)}

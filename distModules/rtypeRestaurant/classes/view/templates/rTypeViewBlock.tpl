@@ -165,12 +165,8 @@
       {/if}
     </div>
 
-    {if isset( $res.data.loc )}
-    <div class="map">
-      <div class="container">
-
-      </div>
-    </div>
+    {if isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data}
+    {$rextMapDirectionsBlock}
     {/if}
 
     {if (isset($collections) || isset($multimediaGalleries)) }
