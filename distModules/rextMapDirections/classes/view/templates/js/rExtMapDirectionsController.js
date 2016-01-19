@@ -74,7 +74,14 @@ geozzy.rExtMapDirectionsController = {
         zoom: this.resourceMapInfo.zoom,
         scrollwheel: false
       };
+
       this.resourceMap = new google.maps.Map( $mapContainer.get(0), this.resourceMapOptions );
+
+      setTimeout(
+        function(){
+          google.maps.event.trigger(that.resourceMap, "resize");
+        },
+      100);
 
       // add marker
       this.resourceMarker = new google.maps.Marker({
@@ -121,7 +128,6 @@ geozzy.rExtMapDirectionsController = {
         return false;
       });
       this.routePanelContainer.find('.tabList' ).on( 'click', function togglePanelMap() {
-        $(this).find('i').toggle();
         $( '#comollegarListado' ).toggle();
       } );
       this.routePanelContainer.find( '.routeModeButton' ).on( 'click', function setRouteMode( evt ) {
@@ -272,7 +278,7 @@ geozzy.rExtMapDirectionsController = {
       var h = ( sec - m ) / 60;
       s = (s<10) ? '0'+s : s;
       m = (m<10) ? '0'+m : m;
-      var timeStr = (h === 0) ? m+' min.' : h+' h. '+m+' min.';
+      var timeStr = h+':'+m;
 
       var km = Math.round( travelInfo.meters / 100 ) / 10;
 
@@ -291,7 +297,7 @@ geozzy.rExtMapDirectionsController = {
           modeNum = 3;
           break;
       }
-      this.routePanelContainer.find( '.routeInfo' ).html( timeStr +' ('+km+' Km)' );
+      this.routePanelContainer.find( '.routeInfo' ).html( 'Distance: '+km+' Km Time: '+ timeStr );
     }
     else {
       this.routePanelContainer.find( '.routeInfo' ).html( '' );
