@@ -16,17 +16,17 @@
 
 <style type="text/css">
   .rExtMapDirections .resDirContainer {
-    color:blue;
   }
   .rExtMapDirections .resDirContainer .tabList {
-    border: medium solid cian;
     display: none;
   }
   .rExtMapDirections .resDirContainer #comollegarListado {
-    border: medium solid red;
     display: none;
     height: 250px;
     overflow: auto;
+  }
+  .rExtMapDirections .resDirContainer #comollegarListado .adp-directions {
+    width: 100%;
   }
   .rExtMapDirections .resDirContainer .routeMode {
     display: none;

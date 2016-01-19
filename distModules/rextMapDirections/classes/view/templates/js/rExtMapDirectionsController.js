@@ -14,11 +14,6 @@ $(document).ready( function() {
 
 
 geozzy.rExtMapDirectionsController = {
-  resourceData: {
-    name: 'Nome do recurso',
-    city: 'A Coruña'
-  },
-
   directionsDisplay: false,
   directionsService: false,
 
@@ -233,6 +228,13 @@ geozzy.rExtMapDirectionsController = {
       that.routePanelContainer.find('.tabList' ).show();
       that.routePanelContainer.find('.routeMode' ).show();
 
+      travelInfo = {
+        mode: that.resourceLastroute.request.travelMode,
+        meters: that.resourceLastroute.routes[0].legs[0].distance.value,
+        seconds: that.resourceLastroute.routes[0].legs[0].duration.value
+      };
+      that.setRoutePanelInfo( travelInfo );
+
       // desbloquea boton de cerrar
       that.blockCloseButton = false;
 
@@ -256,35 +258,43 @@ geozzy.rExtMapDirectionsController = {
     this.routePanelContainer.find( '.tabList' ).hide();
     this.routePanelContainer.find( '.routeMode' ).hide();
     this.routePanelContainer.find( '#comollegarListado' ).hide();
+    this.setRoutePanelInfo( false );
   },
 
   setRoutePanelInfo: function setRoutePanelInfo( travelInfo ) {
-    var sec = travelInfo.seconds;
-    var s = sec % 60;
-    sec = ( sec - s ) / 60;
-    var m = sec % 60;
-    var h = ( sec - m ) / 60;
-    var timeStr = h+':'+m;
+    console.log( 'setRoutePanelInfo:', travelInfo );
+    if( travelInfo !== false ) {
+      var sec = travelInfo.seconds;
+      var s = sec % 60;
+      sec = ( sec - s ) / 60;
+      var m = sec % 60;
+      var h = ( sec - m ) / 60;
+      s = (s<10) ? '0'+s : s;
+      m = (m<10) ? '0'+m : m;
+      var timeStr = h+':'+m;
 
-    var km = Math.round( travelInfo.meters / 100 ) / 10;
+      var km = Math.round( travelInfo.meters / 100 ) / 10;
 
-    var modeNum = 0;
-    switch( travelInfo.mode ) {
-      case 'DRIVING':
-        modeNum = 0;
-        break;
-      case 'WALKING':
-        modeNum = 1;
-        break;
-      case 'TRANSIT':
-        modeNum = 2;
-        break;
-      case 'BICYCLING':
-        modeNum = 3;
-        break;
+      var modeNum = 0;
+      switch( travelInfo.mode ) {
+        case 'DRIVING':
+          modeNum = 0;
+          break;
+        case 'WALKING':
+          modeNum = 1;
+          break;
+        case 'TRANSIT':
+          modeNum = 2;
+          break;
+        case 'BICYCLING':
+          modeNum = 3;
+          break;
+      }
+      this.routePanelContainer.find( '.routeInfo' ).html( 'Distance: '+km+' Km Time: '+ timeStr );
     }
-
-    this.routePanelContainer.find( '.routeInfo' ).html( 'Mode: '+travelInfo.mode+' Distance: '+km+' Km Time: '+ timeStr );
+    else {
+      this.routePanelContainer.find( '.routeInfo' ).html( '' );
+    }
 
     this.routePanelContainer.find( '.routeModeButton' ).removeClass( 'active' );
     this.routePanelContainer.find( '.routeMode [data-route-mode="'+modeNum+'"]').addClass( 'active' );
@@ -320,15 +330,9 @@ geozzy.rExtMapDirectionsController = {
     if( typeof this.resourceRoutes[ mode ][ id ] === 'undefined' || !cache ) {
       this.directionsService.route( route, function( result, status ) {
         if( status === google.maps.DirectionsStatus.OK ) {
-          console.debug( '<p>'+ route.travelMode +' Metros: '+result.routes[0].legs[0].distance.value+' Segundos: '+result.routes[0].legs[0].duration.value+'</p>' );
-
-          travelInfo = {
-            mode: route.travelMode,
-            meters: result.routes[0].legs[0].distance.value,
-            seconds: result.routes[0].legs[0].duration.value
-          };
-          that.setRoutePanelInfo( travelInfo );
-          //directionsDisplay.setDirections(result);
+          // console.debug( '<p>'+ route.travelMode +' Metros: '+result.routes[0].legs[0].distance.value+' Segundos: '+result.routes[0].legs[0].duration.value+'</p>' );
+          // directionsDisplay.setDirections(result);
+          console.log( 'DirectionsStatus.OK', result, status );
 
           that.resourceLastroute = result;
           if( cache ) {
