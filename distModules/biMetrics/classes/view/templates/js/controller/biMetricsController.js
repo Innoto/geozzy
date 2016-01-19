@@ -6,23 +6,13 @@ if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
 
 geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
 
-
-  options: false,
-  packageTimestamp: false,
-  pendingMetrics: [],
-  syncInterval: false,
-  metricsUrl: false,
-
-  biApiConf: false,
-
-
   initialize: function( options ) {
     var that = this;
     var opts = {
       syncPeriod: 10000 // in miliseconds
     }
 
-    that.options = $.extend(true, opts, options );
+    that.options = $.extend(true, {}, opts, options );
 
 
     that.packageTimestamp = that.getTimesTamp();
@@ -98,6 +88,8 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
 
   sync: function() {
     var that = this;
+
+    console.log(that.biMetricsName);
 
 
     if( that.pendingMetrics.length > 0 ) {
