@@ -1,8 +1,9 @@
 <?php
 rextEatAndDrink::autoIncludes();
 rextContact::autoIncludes();
-rextSocialNetwork::autoIncludes();
+rextMapDirections::autoIncludes();
 rextAppZona::autoIncludes();
+rextSocialNetwork::autoIncludes();
 
 class RTypeRestaurantController extends RTypeController implements RTypeInterface {
 
@@ -492,6 +493,11 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
+    $this->mapDirCtrl = new RExtMapDirectionsController( $this );
+    $mapDirViewInfo = $this->mapDirCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->mapDirCtrl->rExtName ] = $mapDirViewInfo;
+    error_log( 'viewBlockInfo ext '. $this->mapDirCtrl->rExtName .' = '. print_r( $mapDirViewInfo, true ) );
+
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
@@ -520,6 +526,17 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     }
     else {
       $template->assign( 'rextContactBlock', false );
+    }
+
+    if( $mapDirViewInfo ) {
+      if( $mapDirViewInfo['template'] ) {
+        foreach( $mapDirViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextMapDirectionsBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextMapDirectionsBlock', false );
     }
 
     if( $socialViewInfo ) {
