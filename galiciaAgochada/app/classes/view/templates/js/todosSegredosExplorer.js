@@ -102,6 +102,7 @@
         debug: false,
         explorerId:'todosSegredos',
         explorerSectionName:'Todos os segredos',
+
         resourceAccess: function(id) {
           $(".explorerContainer.explorer-loading").show();
           $(".explorerContainer.explorer-container-du").load(
@@ -139,7 +140,7 @@
       });
       that.mapa = new geozzy.explorerDisplay.mapView({
           map: resourceMap,
-          clusterize:false,
+          clusterize:true,
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
 
