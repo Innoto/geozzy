@@ -10,10 +10,8 @@
   }
 
   .titleBar{
-
     .stars{
       margin-top:12px;
-
       .fa{
         font-size:18px;
         float:right;
@@ -67,15 +65,12 @@
             a{
               color:@gzzColor-bck-1;
             }
-
           }
         }
         .reservationData{
           .reservationBtb{font-size:13px;}
         }
-
       }
-
     }
 
     .contentSec{
@@ -142,7 +137,6 @@
             }
            }
          }
-
       }
 
       .taxonomyBar{
@@ -170,7 +164,6 @@
     }
 
     .locationSec{
-
       .locationLight{
         background: url('../img/light_trama.png') repeat;
         padding-bottom:8px;
@@ -178,12 +171,9 @@
       .locationDark{
         background: url('../img/dark_trama.png') repeat;
       }
-
       .directions{
         border-top:2px solid @gzzColor-text-light;
-
         .container{
-
           .title{
             font-size: @medium-title;
             line-height:70px;
@@ -195,12 +185,10 @@
               margin-left:15px;
             }
           }
-
           .indications{
             margin-bottom:20px;
             text-align:justify;
           }
-
           .search{
             border:1px solid;
             border-radius: 50px;
@@ -223,16 +211,80 @@
           }
         }
       }
-
+      .rExtMapDirections{
+        .mapRoute{
+          padding-bottom: 20px;
+          .resDirContainer{
+            p{
+              font-weight: bold;
+              margin-bottom: 0px;
+            }
+            .mapRouteForm{
+              padding-bottom: 20px;
+              input{
+                margin:10px 0;
+                width: 100%;
+                background-color: @gzzColor-bck-1;
+                border: 2px solid @gzzColor-bck-8;
+                padding: 10px;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                appearance: none;
+                height: 38px;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                option{
+                  padding: 5px 10px;
+                }
+              }
+              button{
+                margin:10px 0;
+                height: 38px;
+                padding: 0px 40px;
+                background-color: @gzzColor-bck-8;
+                border: 2px solid @gzzColor-bck-8;
+                color: @gzzColor-text-light;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                text-transform: uppercase;
+                display: block;
+                font-size: 18px;
+              }
+            }//mapRouteForm
+            .routeMode{
+              border-top: 1px solid @gzzColor-bck-8;
+              padding: 20px 0;
+              .routeInfo{ margin-left: 10px; }
+              .routeModeButton{
+                font-size: 21px;
+                background: @gzzColor-bck-1;
+                &.active{
+                  border-color: @gzzColor-bck-8;
+                  color: @gzzColor-text-light;
+                  background: @gzzColor-bck-8;
+                }
+              }
+            }//routeMode
+            #comollegarListado{
+              background: @gzzColor-bck-1;
+              margin: 20px 0;
+              padding: 20px;
+            }
+            .tabList{
+              font-size: 20px;
+            }
+          }//resDirContainer
+        }//mapRoute
+      }//rExtMapDirections
       .location{
         padding:10px;
         margin-bottom:10px;
-
         .title{
           margin-top:25px;
           font-size: @medium-title;
         }
-
         .rExtContact{
           label{display:none;}
           div{

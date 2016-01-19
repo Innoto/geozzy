@@ -271,7 +271,7 @@ geozzy.rExtMapDirectionsController = {
       var h = ( sec - m ) / 60;
       s = (s<10) ? '0'+s : s;
       m = (m<10) ? '0'+m : m;
-      var timeStr = h+':'+m;
+      var timeStr = (h === 0) ? m+' min.' : h+' h. '+m+' min.';
 
       var km = Math.round( travelInfo.meters / 100 ) / 10;
 
@@ -290,7 +290,7 @@ geozzy.rExtMapDirectionsController = {
           modeNum = 3;
           break;
       }
-      this.routePanelContainer.find( '.routeInfo' ).html( 'Distance: '+km+' Km Time: '+ timeStr );
+      this.routePanelContainer.find( '.routeInfo' ).html( timeStr +' ('+km+' Km)' );
     }
     else {
       this.routePanelContainer.find( '.routeInfo' ).html( '' );
