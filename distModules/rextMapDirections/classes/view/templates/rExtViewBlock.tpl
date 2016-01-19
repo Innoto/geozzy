@@ -72,7 +72,7 @@
       <div id="comollegarListado"></div>
     </div>
   </div>
-  <div class="container resMapWrapper">
+  <div class="resMapWrapper">
     <div class="resMapContainer" style="">
       <!-- google.map -->
     </div>

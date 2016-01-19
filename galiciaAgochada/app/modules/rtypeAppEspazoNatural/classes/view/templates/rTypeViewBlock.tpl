@@ -159,15 +159,11 @@
         </div>
       </div>
       {/if}
-    </div>
 
-    {if isset( $res.data.loc )}
-    <div class="map">
-      <div class="container">
-
-      </div>
+      {if isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data}
+      {$rextMapDirectionsBlock}
+      {/if}
     </div>
-    {/if}
 
     {if isset($collections)}
       <div class="grey-bar"></div>

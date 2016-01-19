@@ -18,9 +18,6 @@ class MasterView extends View
     parent::__construct( $baseDir );
     global $C_LANG;
     $this->actLang = $C_LANG;
-    // Autodetección idioma 
-    $i18nCtrl = new I18nController();
-    $i18nCtrl->redirectLang();
   }
 
   /**
@@ -67,6 +64,11 @@ class MasterView extends View
 
 
   public function home() {
+
+    // Autodetección idioma
+    $i18nCtrl = new I18nController();
+    $i18nCtrl->redirectLang('home');
+
     $resourceTaxAllModel = new ResourceTaxonomyAllModel( );
 
     /**
