@@ -8,6 +8,13 @@ geozzy.biMetrics.controller.explorer = geozzy.biMetrics.controller.biMetricsCont
 
   metricTemplate: function( metric ) {
     var that = this;
+    console.log({
+       "explorer_ID":3,
+       "bounds":metric.bounds,
+       "filters": metric.filters,
+       "metricTime": that.getTimesTamp().toString()
+    })
+
     return {
        "explorer_ID":3,
        "bounds":metric.bounds,

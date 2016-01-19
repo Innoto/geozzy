@@ -1,10 +1,12 @@
 <?php
 
 Cogumelo::load('coreView/View.php');
-
+Cogumelo::load('coreController/I18nController.php');
 common::autoIncludes();
 geozzy::autoIncludes();
 Cogumelo::autoIncludes();
+
+
 
 /**
 * Clase Master to extend other application methods
@@ -16,6 +18,9 @@ class MasterView extends View
     parent::__construct( $baseDir );
     global $C_LANG;
     $this->actLang = $C_LANG;
+    // Autodetección idioma 
+    $i18nCtrl = new I18nController();
+    $i18nCtrl->redirectLang();
   }
 
   /**
@@ -80,6 +85,7 @@ class MasterView extends View
       )
     );
     $resDest = array();
+    $resourceArrayRecantos = array();
     while ( $dRes = $dList->fetch() ) {
 
       $resource = $dRes->getterDependence('resource');
@@ -115,6 +121,7 @@ class MasterView extends View
       )
     );
     $resDest = array();
+    $resourceArrayFesta = array();
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');
@@ -149,6 +156,7 @@ class MasterView extends View
       )
     );
     $resDest = array();
+    $resourceArrayPraias = array();
     while ( $dRes = $dList->fetch() )
     {
       $resource = $dRes->getterDependence('resource');

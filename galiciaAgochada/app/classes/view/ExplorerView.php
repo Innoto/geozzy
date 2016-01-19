@@ -1,7 +1,6 @@
 <?php
 Cogumelo::load('view/MasterView.php');
 
-
 class ExplorerView extends MasterView
 {
   public function __construct( $baseDir ) {
@@ -26,7 +25,6 @@ class ExplorerView extends MasterView
     biMetrics::autoIncludes();
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
-    $this->template->addClientScript('js/allExplorer.js');
     $this->template->addClientScript('js/paisaxesExplorer.js');
     $this->template->setTpl('paisaxesExplorer.tpl');
     $this->template->exec();
@@ -39,7 +37,6 @@ class ExplorerView extends MasterView
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterRinconsExplorer.less');
-    $this->template->addClientScript('js/allExplorer.js');
     $this->template->addClientScript('js/rinconsExplorer.js');
     $this->template->setTpl('rinconsExplorer.tpl');
     $this->template->exec();
@@ -52,7 +49,6 @@ class ExplorerView extends MasterView
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterPraiasExplorer.less');
-    $this->template->addClientScript('js/allExplorer.js');
     $this->template->addClientScript('js/praiasExplorer.js');
     $this->template->setTpl('praiasExplorer.tpl');
     $this->template->exec();
@@ -71,7 +67,6 @@ class ExplorerView extends MasterView
     biMetrics::autoIncludes();
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterXantaresExplorer.less');
-    $this->template->addClientScript('js/allExplorer.js');
     $this->template->addClientScript('js/xantaresExplorer.js');
     $this->template->setTpl('xantaresExplorer.tpl');
     $this->template->exec();
@@ -84,7 +79,6 @@ class ExplorerView extends MasterView
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterAloxamentosExplorer.less');
-    $this->template->addClientScript('js/allExplorer.js');
     $this->template->addClientScript('js/aloxamentosExplorer.js');
     $this->template->setTpl('aloxamentosExplorer.tpl');
     $this->template->exec();
@@ -103,7 +97,6 @@ class ExplorerView extends MasterView
     biMetrics::autoIncludes();
     explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterTodosSegredosExplorer.less');
-    $this->template->addClientScript('js/allExplorer.js');
     $this->template->addClientScript('js/todosSegredosExplorer.js');
     $this->template->setTpl('todosSegredosExplorer.tpl');
     $this->template->exec();

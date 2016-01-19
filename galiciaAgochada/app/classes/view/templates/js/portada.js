@@ -30,19 +30,6 @@ $( document ).ready(function(){
 
   initEffectNavs();
 
-  // autodetección de idioma
-  path = window.location.pathname.split('/');
-  if(path[1]===''){ // url sen idioma
-    if (navigator.appName == 'Netscape' || 'Microsoft Internet Explorer' || 'Opera')
-      var idioma = navigator.language;
-    else
-      var idioma = navigator.browserLanguage;
-
-    lang_array = idioma.split('-');
-    lang = lang_array[0];
-    window.location = window.location.pathname + lang;
-  }
-
 });
 
 function initEffectNavs(){
