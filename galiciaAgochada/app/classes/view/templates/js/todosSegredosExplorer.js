@@ -2,7 +2,8 @@
 
 
   $(document).ready(function(){
-    explorador = new xantaresExplorer();
+    explorador = new todosSegredosExplorer();
+
     explorador.interfaceFilters();
 
     explorador.setInitialData( function() {
@@ -47,11 +48,11 @@
   /****************************
     paisaxesExplorer
    ****************************/
-  xantaresExplorer = function() {
+  todosSegredosExplorer = function() {
     var that = this;
 
 
-    that.explorerclass = '.xantaresExplorer';
+    that.explorerclass = '.todosSegredosExplorer';
     that.mapOptions = false;
     that.resourceMap  = false;
     that.eatAndDrinkTypes = false;
@@ -99,8 +100,9 @@
 
       that.explorer = new geozzy.explorer({
         debug: false,
-        explorerId:'xantares',
-        explorerSectionName:'Sabrosos xantares',
+        explorerId:'todosSegredos',
+        explorerSectionName:'Todos os segredos',
+
         resourceAccess: function(id) {
           $(".explorerContainer.explorer-loading").show();
           $(".explorerContainer.explorer-container-du").load(
@@ -138,7 +140,7 @@
       });
       that.mapa = new geozzy.explorerDisplay.mapView({
           map: resourceMap,
-          clusterize:false,
+          clusterize:true,
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
 

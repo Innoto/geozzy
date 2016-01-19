@@ -2,7 +2,7 @@ var geozzy = geozzy || {};
 if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 if(!geozzy.explorerComponents.filters) geozzy.explorerComponents.filters={};
 
-geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
+geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
 
 
 
@@ -16,12 +16,15 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
   ),
 
   templateOption: _.template(
-    "<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"
+    "<option value='<%- id %>' data-img='<%- dataImg %>' data-coords='<%- dataCoords %>'  ><%- name_es %></option>"
   ),
 
   templateSummary: _.template(
     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-    "<span class='<%= filterClass %>-Summary'><img class='icon' src='/cgmlImg/<%- option.icon %>/typeIcon/icon.png'> <%- option.name_es %> </span>"
+    "<div class='<%= filterClass %>-Summary'>"+
+      "<div class='icon'> <img class='icon' src='/cgmlImg/<%- option.icon %>/typeIcon/icon.png'> </div>" +
+      "<div class='name'> <%- option.name_es %> </div>" +
+    "</div>"
   ),
 
 
@@ -85,6 +88,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
 
     $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
+
       var val = $(el.target).val();
       if( val == '*' ) {
         that.selectedTerms = false;
@@ -107,6 +111,18 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
         that.renderSummary( selectedOption );
       }
     });
+
+
+
+    $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').zonaMap({
+      width: 358,
+      height: 383,
+      htmlIconArrow: '<i class="fa fa-caret-down"></i>',
+      imgSrc: '/media/module/rextAppZona/img/gal.svg',
+      imgTransparent: '/media/module/rextAppZona/img/transparent.png'
+    });
+
+
 
 
 

@@ -106,6 +106,7 @@ class Cogumelo extends CogumeloClass
     $this->addUrlPatterns( '#^praias-ensono#', 'view:ExplorerView::praiasExplorer' );
     $this->addUrlPatterns( '#^sabrosos-xantares#', 'view:ExplorerView::xantaresExplorer' );
     $this->addUrlPatterns( '#^aloxamentos-con-encanto#', 'view:ExplorerView::aloxamentosExplorer' );
+    $this->addUrlPatterns( '#^segredos#', 'view:ExplorerView::todosSegredosExplorer' );
 
     /*MasterView*/
     $this->addUrlPatterns( '#^$#', 'view:MasterView::home' );

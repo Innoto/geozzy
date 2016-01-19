@@ -18,5 +18,10 @@ $GEOZZY_EXPLORERS = array(
     'module' => 'explorer',
     'controllerFile' => 'controller/XantaresExplorerController.php',
     'controllerName' => 'XantaresExplorerController'
+  ),
+  'todosSegredos' => array(
+    'module' => 'explorer',
+    'controllerFile' => 'controller/TodosSegredosExplorerController.php',
+    'controllerName' => 'TodosSegredosExplorerController'
   )
 );
