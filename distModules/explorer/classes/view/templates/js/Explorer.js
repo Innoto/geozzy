@@ -230,7 +230,7 @@ geozzy.explorer = function( opts ) {
 
 
     $.each(that.filters, function(i,e) {
-      metricData.filters = $.merge( [false], e.getSelectedTerms() );
+      metricData.filters = $.merge( metricData.filters, e.getSelectedTerms() );
 
     });
     // add metric
