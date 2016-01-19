@@ -19,6 +19,9 @@
   .explorer-loading{
     position: relative;
     background: rgba( 255, 255, 255, 0.7);
+    top:-@headerHeight;
+    padding-top: @headerHeight;
+
    .fa{
      font-size: 72px;
      position: absolute;
@@ -173,6 +176,12 @@
         &:hover{ color: @gzzColor-paisaxes; }
       }
     }
+  }
+
+  .explorer-container-du{
+    top:-@headerHeight;
+    padding-top: @headerHeight;
+    background-color: @gzzColor-bck-1;
   }
 }
 
