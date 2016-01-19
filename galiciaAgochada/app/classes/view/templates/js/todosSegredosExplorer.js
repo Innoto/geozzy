@@ -231,7 +231,7 @@
           title:'Especialidade',
           mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'especialidadeEatandDrink',
-          titleSummary: 'Filtrado por tipo',
+          titleSummary: 'Especialidade',
           summaryContainerClass: 'filters_summary_xantarestipos',
           defaultOption: { icon: false, title: 'Todas as especialidades', value:'*' },
           data: that.eatAndDrinkSpecialities
@@ -252,7 +252,7 @@
       var filtroReset = new geozzy.explorerComponents.filters.filterResetView(
         {
           title:'Ver todo',
-          mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
+          mainCotainerClass: that.explorerclass+' .filters_advancedContainer',
           containerClass: 'resetFilters'
         }
       );
