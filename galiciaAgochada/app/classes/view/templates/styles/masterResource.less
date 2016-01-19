@@ -181,9 +181,12 @@
 
             .fa{
               font-size:30px;
-              vertical-align:2px;
               margin-left:15px;
+              vertical-align: middle;
+              &.fa-sort-up{ margin-top: 15px; }
+              &.fa-sort-down{ margin-bottom: 15px; }
             }
+
           }
           .indications{
             margin-bottom:20px;
@@ -274,6 +277,11 @@
             }
             .tabList{
               font-size: 20px;
+              vertical-align: middle;
+              .fa{
+                &.fa-sort-up{ margin-top: 15px; }
+                &.fa-sort-down{ margin-bottom: 15px; }
+              }
             }
           }//resDirContainer
         }//mapRoute
