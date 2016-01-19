@@ -29,35 +29,22 @@ class RealDataGenerator extends View
     $topicArray[0]['idName'] = 'Probas';
 
     // Taxonomías:
-    $taxgroupArray[0] = 'eatanddrinkType';
-    $taxgroupArray[1] = 'eatanddrinkSpecialities';
+    $taxgroupArray[1] = 'eatanddrinkType';
+    $taxgroupArray[2] = 'eatanddrinkSpecialities';
     $taxgroupArray[3] = 'starred';
 
-    // Cargamos as taxonomías (incluídas destacados)
-    $taxTermModel = new TaxonomytermModel();
-    foreach($taxgroupArray as $t=>$tax){
-      $taxTermList[$tax] = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $tax ),
-        'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
-        $i=1;
-        while( $taxTerm = $taxTermList[$tax]->fetch() ){
 
-          echo '<pre>';
-
-          $taxTermArray[$i] = $taxTerm;
-          $i = $i+1;
-        }
-    }
 
     // Miramos se existen as carpetas, e se non existen as creamos
+
+/*
     if (!is_dir(MOD_FORM_FILES_APP_PATH.'/testData/')){
       mkdir(MOD_FORM_FILES_APP_PATH.'/testData/');
     }
-
-    // Cargamos unhas imaxes
     exec('cp '.COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/* '.MOD_FORM_FILES_APP_PATH.'/testData/');
 
     Cogumelo::disableLogs();
-
+*/
     // Cargamos el array de datos
     $data = array();
     $j = 1;
@@ -108,21 +95,40 @@ class RealDataGenerator extends View
       $t = rand(0,sizeof($tiposArray)-1);
       $resource->setter('rTypeId', $tiposArray[$t]);
 
-      // asignamos taxonomías ao recurso
+      // Cargamos as taxonomías (incluídas destacados)
+      $taxTermModel = new TaxonomytermModel();
+      $a=1; $b=1;
+      foreach($taxgroupArray as $t=>$tax){
+        $taxTermList[$tax] = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $tax ),
+          'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
+
+          while( $taxTerm = $taxTermList[$tax]->fetch() ){
+            if ($tax == 'eatanddrinkType'){
+              $termTypeArray[$a] = $taxTerm;
+              $a = $a+1;
+            }
+            else{
+              $taxTermArray[$b] = $taxTerm;
+              $b = $b+1;
+            }
+          }
+      }
+      $randType = rand(1, $a-1);
+      $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $termTypeArray[$randType]->getter('id'), 'weight' => 1)) );
+
+      // asignamos especialidades ao recurso
       $usedTaxterm = array();
       if ($taxTermArray){
-
-        $taxtermTimes = rand(1,sizeof($taxTermArray));
+        $taxtermTimes = rand(1,$b-1);
         for ($c=1; $c<=$taxtermTimes; $c++){
-            $taxtermNum = rand(1,sizeof($taxTermArray));
-            if (!in_array($taxTermArray[$taxtermNum],$usedTaxterm)){
-              $usedTaxterm[$c] = $taxTermArray[$taxtermNum];
+            $taxtermNum = rand(1,$b-1);
+            if (!in_array($taxTermArray[$taxtermNum]->getter('id'),$usedTaxterm)){
+              $usedTaxterm[$c] = $taxTermArray[$taxtermNum]->getter('id');
               $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxTermArray[$taxtermNum]->getter('id'), 'weight' => 1)) );
             }
         }
       }
 
-      // Grabamos las dependencias
      $resource->save(array('affectsDependences' => true));
 
      $price = rand(8,140);
