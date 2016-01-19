@@ -1,6 +1,6 @@
 <!-- rExtViewBlock.tpl en rExtMapDirections module -->
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?language={$GLOBAL_LANG_AVAILABLE[$GLOBAL_C_LANG].i18n}"></script>
 <script type="text/javascript">
   var geozzy = geozzy || {};
 
@@ -18,8 +18,31 @@
   .rExtMapDirections .resDirContainer {
     color:blue;
   }
+  .rExtMapDirections .resDirContainer .tabList {
+    border: medium solid cian;
+    display: none;
+  }
   .rExtMapDirections .resDirContainer #comollegarListado {
-    height:30px;
+    border: medium solid red;
+    display: none;
+    height: 250px;
+    overflow: auto;
+  }
+  .rExtMapDirections .resDirContainer .routeMode {
+    display: none;
+  }
+  .rExtMapDirections .resDirContainer .routeModeButton {
+    display: inline-block;
+    padding: 1px 2px;
+    border: 2px solid #444;
+    border-radius: 0.2em;
+    font-size: 18px;
+    color: #444;
+    cursor: pointer;
+  }
+  .rExtMapDirections .resDirContainer .routeModeButton.active {
+    color: #44F;
+    border-color: #44F;
   }
   .rExtMapDirections .resMapWrapper {
     height:400px;
@@ -38,6 +61,14 @@
         <input name="mapRouteOrigin">
         <button type="submit">Calcular ruta</button>
       </form>
+      <div class="routeMode">
+        <div data-route-mode="0" class="routeModeButton active"><i data-route-mode="0" class="fa fa-car fa-fw"></i></div>
+        <div data-route-mode="1" class="routeModeButton"><i data-route-mode="1" class="fa fa-male fa-fw"></i></div>
+        <div data-route-mode="2" class="routeModeButton"><i data-route-mode="2" class="fa fa-bus fa-fw"></i></div>
+        <!-- img data-route-mode="1" class="routeModeButton" src="/media/module/rextMapDirections/img/route-mode-1.png" -->
+        <span class="routeInfo">Route info</span>
+      </div>
+      <div class="tabList">Mostrar la descripción de la ruta</div>
       <div id="comollegarListado"></div>
     </div>
   </div>
