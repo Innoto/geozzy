@@ -138,7 +138,8 @@
       </div>
       <div class="taxIcons col-xs-12 col-sm-10">
         {foreach $allServices as $termId => $term}
-            <div class="icon clearfix {if !$termId|array_key_exists:$res.data.accommodationServices}light{/if}">
+
+            <div class="icon clearfix {if !is_array($res.data.accommodationServices) || !$termId|array_key_exists:$res.data.accommodationServices}light{/if}">
               <img alt="{$term.name}" title="{$term.name}" src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
             </div>
         {/foreach}
