@@ -207,6 +207,7 @@ geozzy.explorer = function( opts ) {
       if( that.displays.map.isReady() ){
 
         var mapbounds = that.displays.map.getMapBounds();
+
         metricData.bounds = [ [mapbounds[0].lat(), mapbounds[0].lng()], [mapbounds[1].lat(), mapbounds[1].lng()] ];
 
         resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
@@ -229,7 +230,7 @@ geozzy.explorer = function( opts ) {
 
 
     $.each(that.filters, function(i,e) {
-      metricData.filters = $.merge( metricData.filters, e.getSelectedTerms() );
+      metricData.filters = $.merge( [false], e.getSelectedTerms() );
 
     });
     // add metric
