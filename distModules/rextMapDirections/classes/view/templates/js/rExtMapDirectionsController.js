@@ -1,6 +1,7 @@
 var geozzy = geozzy || {};
 
-
+/*
+Movido a TPL
 $(document).ready( function() {
   if( typeof geozzy.rExtMapDirectionsData !== 'undefined' ) {
     geozzy.rExtMapDirectionsController.prepareMap( geozzy.rExtMapDirectionsData );
@@ -11,7 +12,7 @@ $(document).ready( function() {
     geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData );
   }
 });
-
+*/
 
 geozzy.rExtMapDirectionsController = {
   directionsDisplay: false,
@@ -53,13 +54,8 @@ geozzy.rExtMapDirectionsController = {
 
 
   prepareMap: function prepareMap( directionsData ) {
-    console.log( 'loadMap', directionsData );
+    console.log( 'prepareMap:', directionsData );
     var that = this;
-
-    directionsData.lat,
-    directionsData.lon,
-    directionsData.zoom,
-    directionsData.wrapper
 
     this.resourceMapInfo = {
       title: directionsData.title,
@@ -71,6 +67,7 @@ geozzy.rExtMapDirectionsController = {
 
     var $mapContainer = $( this.resourceMapInfo.wrapper );
     if( $mapContainer.length === 1 ) {
+      console.log( 'prepareMap - OK: ATOPADO O WRAPPER DO MAPA!!!' );
       // gmaps init
       this.resourceMapOptions = {
         center: { lat: this.resourceMapInfo.lat, lng: this.resourceMapInfo.lng },
@@ -93,6 +90,9 @@ geozzy.rExtMapDirectionsController = {
         draggable: false
       });
     } // if( $mapContainer.length )
+    else {
+      console.log( 'prepareMap - ERROR: NON ENCONTRO O WRAPPER DO MAPA!!!' );
+    }
   },
 
   resetMap: function resetMap() {
