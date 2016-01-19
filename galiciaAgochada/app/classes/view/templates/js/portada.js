@@ -7,6 +7,9 @@ $( document ).ready(function(){
       $('.headContent').addClass('transparent');
     }
   });
+  $('.nav a').on('click', function(){
+    $('.navbar-toggle').click();
+  });
 
   $('.owl-carousel').owlCarousel({
     loop: true,
