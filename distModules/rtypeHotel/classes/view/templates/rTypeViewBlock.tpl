@@ -199,11 +199,12 @@
         </div>
       </div>
       {/if}
+      {if isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data}
+      {$rextMapDirectionsBlock}
+      {/if}
     </div>
 
-    {if isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data}
-    {$rextMapDirectionsBlock}
-    {/if}
+
 
     {if (isset($collections) || isset($multimediaGalleries)) }
       <div class="grey-bar"></div>

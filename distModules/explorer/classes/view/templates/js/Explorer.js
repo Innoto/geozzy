@@ -199,7 +199,7 @@ geozzy.explorer = function( opts ) {
   that.render = function( dontRenderMap ) {
 
     var resourcesToLoad = [];
-    var metricData = {bounds:[], filters:[]};
+    var metricData = {bounds:[], filters:[0]};
 
 
     if(that.displays.map ) {
@@ -207,9 +207,18 @@ geozzy.explorer = function( opts ) {
       if( that.displays.map.isReady() ){
 
         var mapbounds = that.displays.map.getMapBounds();
+
         metricData.bounds = [ [mapbounds[0].lat(), mapbounds[0].lng()], [mapbounds[1].lat(), mapbounds[1].lng()] ];
 
         resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
+
+        $.each(that.filters, function(i,e) {
+          metricData.filters = $.merge( metricData.filters, e.getSelectedTerms() );
+
+        });
+
+        // add metric
+        that.metricsExplorerController.addMetric(metricData);
       }
 
       if( !dontRenderMap ) {
@@ -226,14 +235,6 @@ geozzy.explorer = function( opts ) {
       that.displays.pasiveList.currentPage = 0;
       resourcesToLoad = $.merge( that.displays.pasiveList.getVisibleResourceIds() , resourcesToLoad);
     }
-
-
-    $.each(that.filters, function(i,e) {
-      metricData.filters = $.merge( metricData.filters, e.getSelectedTerms() );
-
-    });
-    // add metric
-    that.metricsExplorerController.addMetric(metricData);
 
 
     // Advanced Fetch

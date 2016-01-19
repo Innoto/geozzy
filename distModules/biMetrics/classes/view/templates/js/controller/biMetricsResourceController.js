@@ -6,9 +6,19 @@ if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
 
 geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsController.extend( {
 
+  biMetricsName: false,
+
+  options: false,
+  packageTimestamp: false,
+
+  syncInterval: false,
+  metricsUrl: false,
+
+  biApiConf: false,
+
   hoverStack: [],
   printedResources:[],
-
+  pendingMetrics: [],
   metricTemplate: function( metric ) {
     var that = this;
     /*

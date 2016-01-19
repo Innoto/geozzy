@@ -4,8 +4,11 @@ firstLoad = firstLoadAll = true;
 $(document).ready(function(){
 
   $('.resource .directions .title').click(function(){
+    $(this).find('i').toggle();
     $('.directions .indications').toggle();
+    $('.rExtMapDirections .mapRoute').toggle();
   });
+  $('.rExtMapDirections .mapRoute').hide();
 
   $('.rtypeHotel .reservationSec .reservationBox .reservationBtb .showReservation').click(function(){
     $('.rtypeHotel .reservationSec .reservationBox').hide();
