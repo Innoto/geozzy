@@ -29,7 +29,7 @@
   <div class="col-lg-6">
     <div class="web">
       <i class="fa fa-globe"></i>
-      {$rExt.data.url|escape:'htmlall'}
+      <a href="{$rExt.data.url|escape:'htmlall'}" target="blank">{$rExt.data.url|escape:'htmlall'}</a>
     </div>
   </div>
   {/if}
