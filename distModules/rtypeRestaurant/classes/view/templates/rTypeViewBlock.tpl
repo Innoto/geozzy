@@ -133,7 +133,7 @@
           {t}Contact{/t}
         </div>
         <div class="{$res.data.rTypeIdName} accommodation">
-          {$rextContactBlock}
+          {if isset($rextContactBlock)}{$rextContactBlock}{/if}
         </div>
       </div>
     </div>
