@@ -40,8 +40,8 @@
     {/foreach}
   </div>
   {if $counter>$max}
-    <div id="more_{$id}" class="more">{t}Ver más...{/t}</div>
+    <div id="more_{$id}" class="more">{t}See more...{/t}</div>
     <div id="multimediaAllGallery_{$id}" style="display:none;"></div>
-    <div id="less_{$id}" class="less" style="display:none;">{t}Ver menos{/t}</div>
+    <div id="less_{$id}" class="less" style="display:none;">{t}Less{/t}</div>
   {/if}
 </div>
