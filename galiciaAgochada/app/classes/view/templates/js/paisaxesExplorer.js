@@ -310,40 +310,9 @@
 
 
     that.chooseFTLayer =  function( val ) {
-      var capa = false;
 
-      if(val != '*') {
-        capa =  that.zonaCategories.get( val ).get('idName');
-      }
-
-
-      if( that.fussFTLayer) {
-        that.fussFTLayer.setMap(null);
-      }
-
-      that.fussFTLayer = new google.maps.FusionTablesLayer({
-        query: {
-          select: 'geometry',
-          from: '1LpVhgltBt03Egd5pJR2oxvLinrsEVqRcG_eA1sV4',
-          where: " id = '"+capa+"'"
-        },
-        styles: [{
-            polygonOptions: {
-            fillColor: '#000000',
-            fillOpacity: 0.6
-          }
-         }]
-
-      });
-
-
-
-
-      if( capa ){
-        that.fussFTLayer.setMap(that.resourceMap);
-      }
-
-
-
+      chooseFTLayer( val, that.zonaCategories,  that.resourceMap, that.mapOptions );
     }
+
+
   }
