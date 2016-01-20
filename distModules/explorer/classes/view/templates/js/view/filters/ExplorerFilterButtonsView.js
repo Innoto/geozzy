@@ -13,7 +13,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   isTaxonomyFilter: true,
   template: _.template(
     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-    "<ul class='<%= filterClass %>'>"+
+    "<ul class='<%= filterClass %> clearfix'>"+
       "<% if(defaultOption){ %> "+
         "<li data-term-id='<%- defaultOption.value %>' > "+
           "<div class='title'><%- defaultOption.title %></div> "+

@@ -24,7 +24,7 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
     '</div>'
   ),
 
-  marginX: 60,
+  marginX: 30,
   marginY: 20,
 
   ready: true,
