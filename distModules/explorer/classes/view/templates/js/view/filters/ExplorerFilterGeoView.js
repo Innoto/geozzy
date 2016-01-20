@@ -39,7 +39,8 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
       summaryContainerClass: false,
       defaultOption: false,
       data: false,
-      textReset: 'All'
+      textReset: 'All',
+      onChange: function( value ){}
     };
 
     that.options = $.extend(true, {}, options, opts);
@@ -111,6 +112,8 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
 
         that.renderSummary( selectedOption );
       }
+
+      that.options.onChange( val );
     });
 
 
