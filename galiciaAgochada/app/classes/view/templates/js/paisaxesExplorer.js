@@ -326,7 +326,14 @@
           select: 'geometry',
           from: '1LpVhgltBt03Egd5pJR2oxvLinrsEVqRcG_eA1sV4',
           where: " id = '"+capa+"'"
-        }
+        },
+        styles: [{
+            polygonOptions: {
+            fillColor: '#000000',
+            fillOpacity: 0.6
+          }
+         }]
+
       });
 
 
