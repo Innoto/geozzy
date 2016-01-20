@@ -48,7 +48,7 @@
     <div class="timetable">
       <i class="fa fa-clock-o icon"></i>
       <div class="data">
-        {$rExt.data.timetable|escape:'htmlall'}
+        {$rExt.data.timetable|nl2br}
       </div>
     </div>
   </div>
