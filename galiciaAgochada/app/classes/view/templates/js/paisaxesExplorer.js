@@ -36,6 +36,7 @@
     that.explorerclass = '.paisaxesExplorer';
     that.mapOptions = false;
     that.resourceMap  = false;
+    that.fussFTLayer = false;
     that.espazoNaturalCategories = false;
 
     that.infowindow = false;
@@ -53,7 +54,7 @@
         center: { lat: 43.1, lng: -7.36 },
         zoom: 8
       };
-      resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
+      that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
 
 
       that.espazoNaturalCategories = new geozzy.collection.CategorytermCollection();
@@ -114,7 +115,7 @@
       that.infowindow = new geozzy.explorerDisplay.mapInfoView();
       that.listaMini = new geozzy.explorerDisplay.activeListTinyView({ el:$('.explorer-container-gallery')});
       that.mapa = new geozzy.explorerDisplay.mapView({
-          map: resourceMap,
+          map: that.resourceMap,
           clusterize:false,
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
@@ -211,7 +212,8 @@
             containerClass: 'zonasMapa',
             defaultOption: { icon: false, title: '', value:'*' },
             textReset: 'Toda Galicia',
-            data: that.zonaCategories
+            data: that.zonaCategories,
+            onChange: that.chooseFTLayer
           }
         )
       );
@@ -307,5 +309,37 @@
     }
 
 
+    that.chooseFTLayer =  function( val ) {
+      var capa = false;
 
+      if(val != '*') {
+        capa =  that.zonaCategories.get( val ).get('idName');
+      }
+
+
+      if( that.fussFTLayer) {
+        that.fussFTLayer.setMap(null);
+      }
+
+      that.fussFTLayer = new google.maps.FusionTablesLayer({
+        query: {
+          select: 'geometry',
+          from: '1LpVhgltBt03Egd5pJR2oxvLinrsEVqRcG_eA1sV4',
+          where: " id = '"+capa+"'"
+        },
+        styles: [{
+            polygonOptions: {
+            fillColor: '#000000',
+            fillOpacity: 0.6
+          }
+         }]
+
+      });
+
+
+      if( capa ){
+        that.fussFTLayer.setMap(that.resourceMap);
+      }
+
+    }
   }

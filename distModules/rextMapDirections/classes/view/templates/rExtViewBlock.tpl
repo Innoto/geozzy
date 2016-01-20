@@ -42,14 +42,14 @@
 <div class="rExtMapDirections">
   <div class="mapRoute">
     <div class="container resDirContainer">
-      <p>{t}Teclea una dirección o marca en el mapa el lugar de partida{/t}:</p>
+      <p>{t}Type an address or mark on the map the place of departure{/t}:</p>
       <form class="mapRouteForm">
         <div class="row">
           <div class="col-md-4">
             <input name="mapRouteOrigin">
           </div>
           <div class="col-md-4">
-            <button type="submit">{t}Calcular ruta{/t}</button>
+            <button type="submit">{t}Get directions{/t}</button>
           </div>
         </div>
       </form>
@@ -58,9 +58,9 @@
         <div data-route-mode="1" class="routeModeButton"><i data-route-mode="1" class="fa fa-male fa-fw"></i></div>
         <div data-route-mode="2" class="routeModeButton"><i data-route-mode="2" class="fa fa-bus fa-fw"></i></div>
         <!-- img data-route-mode="1" class="routeModeButton" src="/media/module/rextMapDirections/img/route-mode-1.png" -->
-        <span class="routeInfo">{t}Route info{/t}</span>
+        <span class="routeInfo">{t}Route information{/t}</span>
       </div>
-      <div class="tabList">{t}Mostrar la descripción de la ruta{/t} <i class="fa fa-sort-down"></i><i class="fa fa-sort-up" style="display:none;"></i></div>
+      <div class="tabList">{t}Show route description{/t} <i class="fa fa-sort-down"></i><i class="fa fa-sort-up" style="display:none;"></i></div>
       <div id="comollegarListado"></div>
     </div>
   </div>
