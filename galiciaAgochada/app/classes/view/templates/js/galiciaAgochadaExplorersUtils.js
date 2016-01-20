@@ -22,7 +22,7 @@ function chooseFTLayer( val, zonaCategories, mapa, mapOptions ) {
     styles: [{
         polygonOptions: {
         fillColor: '#000000',
-        fillOpacity: 0.6
+        fillOpacity: 0.2
       }
      }]
 
