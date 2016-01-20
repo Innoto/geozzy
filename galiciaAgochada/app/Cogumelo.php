@@ -5,18 +5,18 @@ class Cogumelo extends CogumeloClass
 {
   public $dependences = array(
 
-    array(
+    /*array(
       "id" =>"modernizr",
       "params" => array("modernizr"),
       "installer" => "manual",
       "includes" => array('modernizr.js')
-    ),
-    /*array(
-      "id" =>"modernizrBower",
-      "params" => array("modernizr"),
-      "installer" => "bower",
-      "includes" => array( "src/ModernizrProto.js", "src/Modernizr.js")
     ),*/
+    array(
+      "id" =>"featurejs",
+      "params" => array("feature.js"),
+      "installer" => "bower",
+      "includes" => array('feature.min.js')
+    ),
     array(
      "id" => "bootstrap",
      "params" => array("bootstrap"),

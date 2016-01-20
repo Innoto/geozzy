@@ -1,4 +1,6 @@
 $( document ).ready(function(){
+  feature.testAll();
+  
   $('.headContent').addClass('transparent');
   $(window).bind("scroll", function(e) {
     if($(this).scrollTop() > 0){
