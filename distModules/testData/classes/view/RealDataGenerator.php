@@ -23,28 +23,39 @@ class RealDataGenerator extends View
   public function generateResources(){
 
     // Tipo: restaurante
-    $type = 11;
+    $rTypeModel = new ResourcetypeModel();
+    $rTypeObj = $rTypeModel->listItems( array( 'filters' => array( 'idName' => 'rtypeRestaurant' )))->fetch();
+    $rTypeId = $rTypeObj->getter('id');
 
-    $topicArray[0]['id'] = 12;
-    $topicArray[0]['idName'] = 'Probas';
+    // Temática: probas
+    $topicModel = new TopicModel();
+    $topicObj = $topicModel->listItems( array( 'filters' => array( 'idName' => 'probasTopic' )))->fetch();
+    $topicArray[0]['id'] = $topicObj->getter('id');
+    $topicArray[0]['idName'] = 'probasTopic';
 
     // Taxonomías:
     $taxgroupArray[1] = 'eatanddrinkType';
     $taxgroupArray[2] = 'eatanddrinkSpecialities';
     $taxgroupArray[3] = 'starred';
 
+    // user: establecemos 12 para poder buscar por este campo e borrar os recursos xerados aqui
+    $user = 12;
 
+    // texto aleatorio para o contido
+    include 'randomText.php';
+    $contentLength = rand(3,5000);
+    $contentIni = rand(0,500);
+    $contentRandom = substr($randomText, $contentIni, $contentLength);
 
     // Miramos se existen as carpetas, e se non existen as creamos
 
-/*
     if (!is_dir(MOD_FORM_FILES_APP_PATH.'/testData/')){
       mkdir(MOD_FORM_FILES_APP_PATH.'/testData/');
     }
     exec('cp '.COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/* '.MOD_FORM_FILES_APP_PATH.'/testData/');
 
     Cogumelo::disableLogs();
-*/
+
     // Cargamos el array de datos
     $data = array();
     $j = 1;
@@ -67,8 +78,25 @@ class RealDataGenerator extends View
 
          $rand1 = rand(500000,900000);
          $timeCreation = date( "Y-m-d H:i:s", time()-$rand1 );
-         $dataRes[$datos[0]] = array('title_'.LANG_DEFAULT => $data[$datos[0]]['title'], 'rTypeId' => $type, 'published' => 1, 'mediumDescription_'.LANG_DEFAULT => $data[$datos[0]]['mediumDescription'], 'user' =>  12,
-          'loc' => $loc, 'defaultZoom' => $zoom, 'timeCreation' => $timeCreation);
+         $dataRes[$datos[0]] = array(
+           'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+           'title_en' => $data[$datos[0]]['title'],
+           'title_gl' => $data[$datos[0]]['title'],
+           'rTypeId' => $rTypeId, 'published' => 1,
+           'shortDescription_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+           'shortDescription_en' => $data[$datos[0]]['title'],
+           'shortDescription_gl' => $data[$datos[0]]['title'],
+           'mediumDescription_'.LANG_DEFAULT => $data[$datos[0]]['mediumDescription'],
+           'mediumDescription_en' => $data[$datos[0]]['mediumDescription'],
+           'mediumDescription_gl' => $data[$datos[0]]['mediumDescription'],
+           'content_'.LANG_DEFAULT => $contentRandom,
+           'content_en' => $contentRandom,
+           'content_gl' => $contentRandom,
+           'user' =>  $user,
+          'loc' => $loc,
+          'defaultZoom' => $zoom,
+          'timeCreation' => $timeCreation
+        );
 
           $j = $j+1;
        }
