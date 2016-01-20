@@ -56,18 +56,18 @@
     {if isset($res.ext.rextEatAndDrink.data.averagePrice) && $res.ext.rextEatAndDrink.data.averagePrice}
     <div class="reservationSec container">
       <div class="reservationBox">
-        <div class="priceText">{t}Average night price{/t}</div>
+        <div class="priceText">{t}Average menu price{/t}</div>
         <div class="priceAmount"><span class="num">{$res.ext.rextEatAndDrink.data.averagePrice|escape:'htmlall'}</span><span class="unit"> €</span></div>
         <div class="reservationBtb">
-          {if $res.ext.rextEatAndDrink.data.reservationURL}
+          {if isset($res.ext.rextEatAndDrink.data.reservationURL) && $res.ext.rextEatAndDrink.data.reservationURL}
           <a href="{$res.ext.rextEatAndDrink.data.reservationURL}" target="blank">{t}Reserve{/t}</a>
-          {elseif $res.ext.rextEatAndDrink.data.reservationPhone}
+          {elseif isset($res.ext.rextEatAndDrink.data.reservationPhone) && $res.ext.rextEatAndDrink.data.reservationPhone}
           <div class="showReservation">{t}Reserve{/t}</div>
           {/if}
         </div>
       </div>
       <div class="reservationData" style="display:none;">
-        <div class="priceText">{t}Teléfono para reservas{/t}</div>
+        <div class="priceText">{t}Reservation phone{/t}</div>
         <div class="priceAmount"><span class="num">{$res.ext.rextEatAndDrink.data.reservationPhone|escape:'htmlall'}</span></div>
       </div>
     </div>
