@@ -70,217 +70,151 @@ class MasterView extends View
     $i18nCtrl->redirectLang('home');
 
     $resourceTaxAllModel = new ResourceTaxonomyAllModel( );
+    $resourceModel = new ResourceModel( );
 
     /**
     Destacados de RecantosConEstilo
     **/
-    $dList = $resourceTaxAllModel->listItems(
+
+    $resList = $resourceModel->listItems(
       array(
-        'filters' => array(
-          'idName' => 'RecantosConEstilo',
-          'idNameTaxgroup' => 'starred'
+        'filters'=> array(
+          'ResourceTaxonomyAllModel.idName' => 'RecantosConEstilo',
+          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
         ),
-        'order' => array(
-          'weightResTAxTerm' => '-1'
-        ),
-        'affectsDependences' => array('ResourceModel','UrlAliasModel')
+        'affectsDependences' => array('ResourceTaxonomyAllModel'),
+        'joinType' => 'RIGHT'
       )
     );
-    $resDest = array();
     $resourceArrayRecantos = array();
-    while ( $dRes = $dList->fetch() ) {
-
-      $resource = $dRes->getterDependence('resource');
-
-      if($resource){
-        $resDest = array_merge( $resDest, $resource );
-        if($resDest){
-          foreach ($resDest as $res){
-            $urlAlias = $this->getUrlAlias($res->getter('id'));
-            $resourceArrayRecantos[$res->getter('id')]['urlAlias'] = $urlAlias;
-            $resData = $res->getAllData();
-            $resourceArrayRecantos[$res->getter('id')]['data'] = $resData['data'];
-          }
-        }
-      }
+    while ( $res = $resList->fetch() ) {
+      $resAll = $res->getAllData();
+      $resourceArrayRecantos[$res->getter('id')]['data'] = $resAll['data'];
+      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $resourceArrayRecantos[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
+
     $this->template->assign('rdRecantosConEstilo', $resourceArrayRecantos);
-    // end
 
     /**
     Destacados de Festa Rachada
     **/
-    $dList = $resourceTaxAllModel->listItems(
+
+    $resList = $resourceModel->listItems(
       array(
-        'filters' => array(
-          'idName' => 'FestaRachada',
-          'idNameTaxgroup' => 'starred'
+        'filters'=> array(
+          'ResourceTaxonomyAllModel.idName' => 'FestaRachada',
+          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
         ),
-        'order' => array(
-          'weightResTAxTerm' => '-1'
-        ),
-        'affectsDependences' => array('ResourceModel')
+        'affectsDependences' => array('ResourceTaxonomyAllModel'),
+        'joinType' => 'RIGHT'
       )
     );
-    $resDest = array();
     $resourceArrayFesta = array();
-    while ( $dRes = $dList->fetch() )
-    {
-      $resource = $dRes->getterDependence('resource');
-      if($resource){
-        $resDest = array_merge( $resDest, $resource );
-        if($resDest){
-          foreach ($resDest as $res){
-            $urlAlias = $this->getUrlAlias($res->getter('id'));
-            $resourceArrayFesta[$res->getter('id')]['urlAlias'] = $urlAlias;
-            $resData = $res->getAllData();
-            $resourceArrayFesta[$res->getter('id')]['data'] = $resData['data'];
-          }
-        }
-      }
+    while ( $res = $resList->fetch() ) {
+      $resAll = $res->getAllData();
+      $resourceArrayFesta[$res->getter('id')]['data'] = $resAll['data'];
+      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $resourceArrayFesta[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
+
     $this->template->assign('rdFestaRachada', $resourceArrayFesta);
-    // end
 
     /**
     Destacados de PraiasDeEnsono
     **/
-    $dList = $resourceTaxAllModel->listItems(
+
+    $resList = $resourceModel->listItems(
       array(
-        'filters' => array(
-          'idName' => 'PraiasDeEnsono',
-          'idNameTaxgroup' => 'starred'
+        'filters'=> array(
+          'ResourceTaxonomyAllModel.idName' => 'PraiasDeEnsono',
+          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
         ),
-        'order' => array(
-          'weightResTAxTerm' => '-1'
-        ),
-        'affectsDependences' => array('ResourceModel')
+        'affectsDependences' => array('ResourceTaxonomyAllModel'),
+        'joinType' => 'RIGHT'
       )
     );
-    $resDest = array();
     $resourceArrayPraias = array();
-    while ( $dRes = $dList->fetch() )
-    {
-      $resource = $dRes->getterDependence('resource');
-      if($resource){
-        $resDest = array_merge( $resDest, $resource );
-        if($resDest){
-          foreach ($resDest as $res){
-            $urlAlias = $this->getUrlAlias($res->getter('id'));
-            $resourceArrayPraias[$res->getter('id')]['urlAlias'] = $urlAlias;
-            $resData = $res->getAllData();
-            $resourceArrayPraias[$res->getter('id')]['data'] = $resData['data'];
-          }
-        }
-      }
+    while ( $res = $resList->fetch() ) {
+      $resAll = $res->getAllData();
+      $resourceArrayPraias[$res->getter('id')]['data'] = $resAll['data'];
+      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $resourceArrayPraias[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
+
     $this->template->assign('rdPraiasDeEnsono', $resourceArrayPraias);
-    // end
 
     /**
     Destacados de PaisaxesEspectaculares
     **/
-    $dList = $resourceTaxAllModel->listItems(
+
+    $resList = $resourceModel->listItems(
       array(
-        'filters' => array(
-          'idName' => 'PaisaxesEspectaculares',
-          'idNameTaxgroup' => 'starred'
+        'filters'=> array(
+          'ResourceTaxonomyAllModel.idName' => 'PaisaxesEspectaculares',
+          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
         ),
-        'order' => array(
-          'weightResTAxTerm' => '-1'
-        ),
-        'affectsDependences' => array('ResourceModel')
+        'affectsDependences' => array('ResourceTaxonomyAllModel'),
+        'joinType' => 'RIGHT'
       )
     );
-    $resDest = array();
     $resourceArrayPaisaxes = array();
-    while ( $dRes = $dList->fetch() )
-    {
-      $resource = $dRes->getterDependence('resource');
-      if($resource){
-        $resDest = array_merge( $resDest, $resource );
-        if($resDest){
-          foreach ($resDest as $res){
-            $urlAlias = $this->getUrlAlias($res->getter('id'));
-            $resourceArrayPaisaxes[$res->getter('id')]['urlAlias'] = $urlAlias;
-            $resData = $res->getAllData();
-            $resourceArrayPaisaxes[$res->getter('id')]['data'] = $resData['data'];
-          }
-        }
-      }
+    while ( $res = $resList->fetch() ) {
+      $resAll = $res->getAllData();
+      $resourceArrayPaisaxes[$res->getter('id')]['data'] = $resAll['data'];
+      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $resourceArrayPaisaxes[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
+
     $this->template->assign('rdPaisaxesEspectaculares', $resourceArrayPaisaxes);
-    // end
 
     /**
     Destacados de AloxamentoConEncantos
     **/
-    $dList = $resourceTaxAllModel->listItems(
+
+    $resList = $resourceModel->listItems(
       array(
-        'filters' => array(
-          'idName' => 'AloxamentoConEncanto',
-          'idNameTaxgroup' => 'starred'
+        'filters'=> array(
+          'ResourceTaxonomyAllModel.idName' => 'AloxamentoConEncanto',
+          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
         ),
-        'order' => array(
-          'weightResTAxTerm' => '-1'
-        ),
-        'affectsDependences' => array('ResourceModel')
+        'affectsDependences' => array('ResourceTaxonomyAllModel'),
+        'joinType' => 'RIGHT'
       )
     );
-    $resDest = array();
     $resourceArrayAloxamentos = array();
-    while ( $dRes = $dList->fetch() )
-    {
-      $resource = $dRes->getterDependence('resource');
-      if($resource){
-        $resDest = array_merge( $resDest, $resource );
-        if($resDest){
-          foreach ($resDest as $res){
-            $urlAlias = $this->getUrlAlias($res->getter('id'));
-            $resourceArrayAloxamentos[$res->getter('id')]['urlAlias'] = $urlAlias;
-            $resData = $res->getAllData();
-            $resourceArrayAloxamentos[$res->getter('id')]['data'] = $resData['data'];
-          }
-        }
-      }
+    while ( $res = $resList->fetch() ) {
+      $resAll = $res->getAllData();
+      $resourceArrayAloxamentos[$res->getter('id')]['data'] = $resAll['data'];
+      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $resourceArrayAloxamentos[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
+
     $this->template->assign('rdAloxamentoConEncanto', $resourceArrayAloxamentos);
-    // end
 
     /**
     Destacados de AutenticaGastronomia
     **/
-    $dList = $resourceTaxAllModel->listItems(
+
+    $resList = $resourceModel->listItems(
       array(
-        'filters' => array(
-          'idName' => 'AutenticaGastronomia',
-          'idNameTaxgroup' => 'starred'
+        'filters'=> array(
+          'ResourceTaxonomyAllModel.idName' => 'AutenticaGastronomia',
+          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
         ),
-        'order' => array(
-          'weightResTAxTerm' => '-1'
-        ),
-        'affectsDependences' => array('ResourceModel')
+        'affectsDependences' => array('ResourceTaxonomyAllModel'),
+        'joinType' => 'RIGHT'
       )
     );
-    $resDest = array();
     $resourceArrayGastronomia = array();
-    while ( $dRes = $dList->fetch() )
-    {
-      $resource = $dRes->getterDependence('resource');
-      if($resource){
-        $resDest = array_merge( $resDest, $resource );
-        if($resDest){
-          foreach ($resDest as $res){
-            $urlAlias = $this->getUrlAlias($res->getter('id'));
-            $resourceArrayGastronomia[$res->getter('id')]['urlAlias'] = $urlAlias;
-            $resData = $res->getAllData();
-            $resourceArrayGastronomia[$res->getter('id')]['data'] = $resData['data'];
-          }
-        }
-      }
+    while ( $res = $resList->fetch() ) {
+      $resAll = $res->getAllData();
+      $resourceArrayGastronomia[$res->getter('id')]['data'] = $resAll['data'];
+      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $resourceArrayGastronomia[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
+
     $this->template->assign('rdAutenticaGastronomia', $resourceArrayGastronomia);
-    // end
 
     $this->template->assign('isFront', true);
     $this->template->addClientScript('js/portada.js');
@@ -310,7 +244,6 @@ class MasterView extends View
     if ($urlAliasList){
       $urlAlias = $langId.$urlAliasList->getter('urlFrom');
     }
-
 
     return $urlAlias;
   }
