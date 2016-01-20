@@ -9,7 +9,14 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <title>{block name="headTitle"}Galicia Agochada | {/block}</title>
   {block name="socialMeta"}{/block}
-  {block name="headClientIncludes"}{$client_includes}{/block}
+  {block name="headClientIncludes"}
+    {$client_includes}
+    <script type="text/javascript">
+      $( document ).ready(function(){
+        feature.testAll();
+      });
+    </script>
+  {/block}
 
 </head>
 <body data-spy="scroll" data-target=".headContent">

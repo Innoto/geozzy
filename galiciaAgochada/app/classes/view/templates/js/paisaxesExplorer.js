@@ -337,9 +337,13 @@
       });
 
 
+
+
       if( capa ){
         that.fussFTLayer.setMap(that.resourceMap);
       }
+
+
 
     }
   }
