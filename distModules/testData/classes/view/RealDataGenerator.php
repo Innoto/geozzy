@@ -93,9 +93,9 @@ class RealDataGenerator extends View
            'content_en' => $contentRandom,
            'content_gl' => $contentRandom,
            'user' =>  $user,
-          'loc' => $loc,
-          'defaultZoom' => $zoom,
-          'timeCreation' => $timeCreation
+           'loc' => $loc,
+           'defaultZoom' => $zoom,
+           'timeCreation' => $timeCreation
         );
 
           $j = $j+1;
