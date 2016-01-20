@@ -34,14 +34,7 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
        "seconds": metric.duration,
        "section": metric.section,
        "resource":{
-          "term":[
-             34,
-             26,
-             30,
-             25,
-             33,
-             32
-          ],
+          "term":[0],
           "name":"Recurso 1793",
           "resource_ID": metric.resourceId,
           "topic":[
@@ -60,7 +53,7 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
           "event_ID":0,
           "name": metric.event,
        },
-       "metricTime": that.getTimesTamp().toString()
+       "metricTime": that.getTimesTamp()
     };
 
   },
