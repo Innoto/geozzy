@@ -149,6 +149,8 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
   },
 
   reset: function() {
+    console.log('gEO')
+    /*
     var that = this;
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
     $select = $( that.options.mainContainerClass + ' ' + containerClassDots + ' select' );
@@ -156,7 +158,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
     $select.val( "*" );
 
     that.selectedTerms = false;
-    that.renderSummary( false );
+    that.renderSummary( false );*/
   }
 
 });
