@@ -66,7 +66,7 @@
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: explorerclass+' .explorer-container-filter',
+            mainContainerClass: explorerclass+' .explorer-container-filter',
             containerClass: 'filtro1',
             title:'Tipo de cociña',
             data: dataFilter1
@@ -76,7 +76,7 @@
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: explorerclass+' .explorer-container-filter',
+            mainContainerClass: explorerclass+' .explorer-container-filter',
             containerClass: 'filtro2',
             title:'Idades',
             data: dataFilter2
@@ -86,7 +86,7 @@
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: explorerclass+' .explorer-container-filter',
+            mainContainerClass: explorerclass+' .explorer-container-filter',
             containerClass: 'filtro3',
             title:'Horario de apertura',
             data: dataFilter3

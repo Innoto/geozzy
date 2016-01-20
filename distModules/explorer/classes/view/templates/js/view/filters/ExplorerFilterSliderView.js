@@ -27,7 +27,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       var that = this;
       var options = {
         title: false,
-        mainCotainerClass: false,
+        mainContainerClass: false,
         containerClass: false,
         titleSummary: false,
         summaryContainerClass: false,
@@ -71,12 +71,12 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.options.title } );
 
       // Print filter html into div
-      if( !$(  that.options.mainCotainerClass+' .' +that.options.containerClass ).length ) {
-        $( that.options.mainCotainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
+      if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
+        $( that.options.mainContainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
       }
       else {
 
-        $( that.options.mainCotainerClass+' ' + containerClassDots ).html( filterHtml );
+        $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
       }
       that.instanceSlider();
 

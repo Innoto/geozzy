@@ -214,15 +214,16 @@
       //--------------------------------------------------------------------------------------------------------------------------------------------
       var filtroZona = new geozzy.explorerComponents.filters.filterGeoView(
         {
-          mainCotainerClass: that.explorerclass+' .explorer-container-map',
+          mainContainerClass: that.explorerclass+' .explorer-container-map',
           containerClass: 'filterZona',
+          textReset: 'Toda Galicia',
           defaultOption: { icon: false, title: '', value:'*' },
           data: that.zonaCategories
         }
       );
       var filtroTipos = new geozzy.explorerComponents.filters.filterButtonsView(
         {
-          mainCotainerClass: that.explorerclass+' .filters_fixed',
+          mainContainerClass: that.explorerclass+' .filters_fixed',
           containerClass: 'tipoEatandDrink',
           //defaultOption: { icon: false, title: 'Todos os tipos', value:'*' },
           data: that.eatAndDrinkTypes
@@ -232,7 +233,7 @@
       var filtroEspecialidades = new geozzy.explorerComponents.filters.filterComboView(
         {
           title:'Especialidade',
-          mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
+          mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'especialidadeEatandDrink',
           titleSummary: 'Especialidade',
           summaryContainerClass: 'filters_summary_xantarestipos',
@@ -244,7 +245,7 @@
       var filtroPrezo = new geozzy.explorerComponents.filters.filterSliderView(
         {
           title:'Precio',
-          mainCotainerClass: that.explorerclass+' .filters_advancedFilters',
+          mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'xantaresPrice',
           titleSummary: 'Cun prezo inferior a',
           summaryContainerClass: 'filters_summary_xantaresprezo',
@@ -255,7 +256,7 @@
       var filtroReset = new geozzy.explorerComponents.filters.filterResetView(
         {
           title:'Ver todo',
-          mainCotainerClass: that.explorerclass+' .filters_advancedContainer',
+          mainContainerClass: that.explorerclass+' .filters_advancedContainer',
           containerClass: 'resetFilters'
         }
       );
