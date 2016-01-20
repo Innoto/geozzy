@@ -51,7 +51,6 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       "click .explorerListPager .next" : "nextPage",
       "click .explorerListPager .previous" : "previousPage",
       "click .explorerListPager .pageNum" : "setPageClick",
-
       // resource events
       "click .explorerListContent .accessButton": "resourceClick",
       "mouseenter .explorerListContent .element": "resourceHover",
@@ -226,7 +225,6 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
   resourceClick: function( element ) {
     var that = this;
     if( that.parentExplorer.displays.map ) {
-
       that.parentExplorer.explorerRouter.navigate( 'resource/' + $(element.currentTarget).attr('data-resource-id'), {trigger:true} );
     }
     else {
