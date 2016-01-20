@@ -144,6 +144,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   },
 
   reset: function() {
+
     var that = this;
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
     $( that.options.mainContainerClass + ' ' + containerClassDots + ' ul li').removeClass('selected');
