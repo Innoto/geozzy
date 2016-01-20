@@ -33,7 +33,7 @@
   <span class="anchor" id="segredos"></span>
   <section class="gzzSec secSegredos">
     <div class="container">
-      <h2>{t}Os segredos de galicia{/t}</h2>
+      <h2>{t}Os segredos de Galicia{/t}</h2>
       <div class="row">
         <div class="segredoItem segredoRincons col-lg-4 col-sm-6">
           <a href="/rincons-con-encanto">
@@ -42,7 +42,7 @@
               <div class="trama"></div>
               <img class="img-responsive" src="/media/img/rincons.png">
               <div class="info">
-                <h3>{t}Rincons con encanto{/t}</h3>
+                <h3>{t}Rincóns con encanto{/t}</h3>
                 <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
               </div>
             </div>
@@ -55,7 +55,7 @@
               <div class="trama"></div>
               <img class="img-responsive" src="/media/img/paisaxes.png">
               <div class="info">
-                <h3>{t}Paisaxes Espectaculares{/t}</h3>
+                <h3>{t}Paisaxes espectaculares{/t}</h3>
                 <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
               </div>
             </div>
@@ -81,7 +81,7 @@
               <div class="trama"></div>
               <img class="img-responsive" src="/media/img/xantares.png">
               <div class="info">
-                <h3>{t}Sabrosos Xantares{/t}</h3>
+                <h3>{t}Sabrosos xantares{/t}</h3>
                 <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
               </div>
             </div>
@@ -121,7 +121,7 @@
   <span class="anchor" id="participa"></span>
   <section class="gzzSec secParticipa">
     <div class="container">
-      <h2>{t}¿Algún outro segredo?{/t} <span>{t}¡Somos todo oídos!{/t}</span></h2>
+      <h2>{t}Algún outro segredo?{/t} <span>{t}Somos todo ouvidos!{/t}</span></h2>
       <p>{t}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec justo et odio tempus eleifend. Sed gravida pharetra sagittis. Aliquam vel tempus lacus. Morbi a nibh convallis, laoreet massa eget, consectetur lorem. {/t}</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec justo et odio tempus eleifend.</p>
 
@@ -137,7 +137,7 @@
           </div>
           <div class="col-lg-6">
             <button>{t}Propoñer{/t}</button>
-            <span>(?) {t}qué lugares podo suxerir{/t}</span>
+            <span>(?) {t}Qué lugares podo suxerir?{/t}</span>
           </div>
         </div>
 
@@ -252,7 +252,7 @@
       {/if}
       {if isset($rdAloxamentoConEncanto) }
         <div class="destContainer destAloxamentoConEncanto">
-          <h2>{t}Aloxamento con Encanto{/t}</h2>
+          <h2>{t}Aloxamentos con Encanto{/t}</h2>
           <div class="owl-carousel">
             {foreach from=$rdAloxamentoConEncanto item=rd}
               <div class="item">
@@ -277,7 +277,7 @@
       {/if}
       {if isset($rdAutenticaGastronomia) }
       <div class="destContainer destAutenticaGastronomia">
-        <h2>{t}Autentica Gastronomia{/t}</h2>
+        <h2>{t}Auténtica Gastronomía{/t}</h2>
         <div class="owl-carousel">
           {foreach from=$rdAutenticaGastronomia item=rd}
             <div class="item">
