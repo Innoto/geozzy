@@ -29,7 +29,7 @@
   <div class="col-lg-6">
     <div class="web">
       <i class="fa fa-globe"></i>
-      {$rExt.data.url|escape:'htmlall'}
+      <a href="{$rExt.data.url|escape:'htmlall'}" target="blank">{$rExt.data.url|escape:'htmlall'}</a>
     </div>
   </div>
   {/if}
@@ -48,7 +48,7 @@
     <div class="timetable">
       <i class="fa fa-clock-o icon"></i>
       <div class="data">
-        {$rExt.data.timetable|escape:'htmlall'}
+        {$rExt.data.timetable|nl2br}
       </div>
     </div>
   </div>
