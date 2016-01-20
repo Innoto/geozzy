@@ -9,7 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2016-01-20T16:27:24+01:00\n"
 "PO-Revision-Date: 2016-01-20T16:27:25+01:00\n"
-"Language: \n"
+"Language: english\n"
 
 #: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:59
 #: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:68

@@ -9,7 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2016-01-20T16:27:23+01:00\n"
 "PO-Revision-Date: 2016-01-20T16:27:24+01:00\n"
-"Language: \n"
+"Language: galego\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 2.91.6\n"
 
@@ -1360,32 +1360,32 @@ msgstr ""
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:45
 msgid "Type an address or mark on the map the place of departure"
-msgstr ""
+msgstr "escribe un enderezo ou sinala no mapa o punto de saída"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:52
 msgid "Get directions"
-msgstr ""
+msgstr "Obter ruta"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:61
 msgid "Route information"
-msgstr ""
+msgstr "Información da ruta"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:63
 msgid "Show route description"
-msgstr ""
+msgstr "Ver descripción da ruta"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:2
 msgid "Here are some resources we think you might be interested"
-msgstr ""
+msgstr "Algúns recursos que pensamos que poden interesarte"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:12
 msgid "Find out!"
-msgstr ""
+msgstr "Descúbreo"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:43
 msgid "See more..."
-msgstr ""
+msgstr "Ver máis..."
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:45
 msgid "Less"
-msgstr ""
+msgstr "Menos"
