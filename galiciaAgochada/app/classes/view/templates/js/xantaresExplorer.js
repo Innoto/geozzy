@@ -72,7 +72,7 @@
         center: { lat: 43.1, lng: -7.36 },
         zoom: 8
       };
-      resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
+      that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
 
 
       that.eatAndDrinkTypes = new geozzy.collection.CategorytermCollection();
@@ -138,7 +138,7 @@
           categories: that.eatAndDrinkTypes
       });
       that.mapa = new geozzy.explorerDisplay.mapView({
-          map: resourceMap,
+          map: that.resourceMap,
           clusterize:false,
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
@@ -218,7 +218,8 @@
           containerClass: 'filterZona',
           textReset: 'Toda Galicia',
           defaultOption: { icon: false, title: '', value:'*' },
-          data: that.zonaCategories
+          data: that.zonaCategories,
+          onChange: that.chooseFTLayer
         }
       );
       var filtroTipos = new geozzy.explorerComponents.filters.filterButtonsView(
@@ -323,11 +324,15 @@
       filterInterface += '<div class="filters_fixed"></div>';
       filterInterface += '<div class="filters_summary"><div class="filters_summary_xantarestipos"></div><div class="filters_summary_xantaresprezo"></div></div>';
       filterInterface += '<div class="filters_openFilters"><i class="fa fa-caret-down"></i></div>';
-      filterInterface += '<div class="filters_advancedFilters"></div>';        
+      filterInterface += '<div class="filters_advancedFilters"></div>';
       filterInterface += '</div>';
       filterContainer.html(filterInterface);
 
     }
 
+
+    that.chooseFTLayer =  function( val ) {
+      chooseFTLayer( val, that.zonaCategories,  that.resourceMap, that.mapOptions );
+    }
 
   }

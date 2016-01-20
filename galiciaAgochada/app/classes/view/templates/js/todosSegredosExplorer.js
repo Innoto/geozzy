@@ -73,7 +73,7 @@
         center: { lat: 43.1, lng: -7.36 },
         zoom: 8
       };
-      resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
+      that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
 
 
       that.eatAndDrinkTypes = new geozzy.collection.CategorytermCollection();
@@ -140,7 +140,7 @@
           categories: that.eatAndDrinkTypes
       });
       that.mapa = new geozzy.explorerDisplay.mapView({
-          map: resourceMap,
+          map: that.resourceMap,
           clusterize:true,
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
@@ -220,7 +220,8 @@
           containerClass: 'filterZona',
           textReset: 'Toda Galicia',
           defaultOption: { icon: false, title: '', value:'*' },
-          data: that.zonaCategories
+          data: that.zonaCategories,
+          onChange: that.chooseFTLayer
         }
       );
 
@@ -328,5 +329,9 @@
 
     }
 
+
+    that.chooseFTLayer =  function( val ) {
+      chooseFTLayer( val, that.zonaCategories,  that.resourceMap, that.mapOptions );
+    }
 
   }
