@@ -13,7 +13,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   isTaxonomyFilter: true,
   template: _.template(
     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-    "<ul class='<%= filterClass %>'>"+
+    "<ul class='<%= filterClass %> clearfix'>"+
       "<% if(defaultOption){ %> "+
         "<li data-term-id='<%- defaultOption.value %>' > "+
           "<div class='title'><%- defaultOption.title %></div> "+
@@ -47,7 +47,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
     if( that.selectedTerms != false ) {
 
       var terms =  model.get('terms');
-      
+
       if( typeof terms != "undefined") {
         var diff = $( terms ).not( that.selectedTerms );
 

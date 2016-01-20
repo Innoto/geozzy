@@ -319,11 +319,11 @@
     that.interfaceFilters = function(){
       var filterContainer = $(that.explorerclass+' .explorer-container-filter');
 
-      var filterInterface = '<div class="filters_fixed"></div>';
-      filterInterface += '<div class="filters_advancedContainer">';
-        filterInterface += '<div class="filters_openFilters">Filtros avanzados <i class="fa fa-caret-up"></i> <i class="fa fa-caret-down"></i></div>';
-        filterInterface += '<div class="filters_advancedFilters"></div>';
-        filterInterface += '<div class="filters_summary"><div class="filters_summary_xantarestipos"></div><div class="filters_summary_xantaresprezo"></div></div>';
+      var filterInterface = '<div class="filters_advancedContainer">';
+      filterInterface += '<div class="filters_fixed"></div>';
+      filterInterface += '<div class="filters_summary"><div class="filters_summary_xantarestipos"></div><div class="filters_summary_xantaresprezo"></div></div>';
+      filterInterface += '<div class="filters_openFilters"><i class="fa fa-caret-down"></i></div>';
+      filterInterface += '<div class="filters_advancedFilters"></div>';        
       filterInterface += '</div>';
       filterContainer.html(filterInterface);
 

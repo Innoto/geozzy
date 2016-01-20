@@ -5,7 +5,7 @@
 .explorerLayout{
   //.mixinDevel();
   .explorerBase( );
-  .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 60%, @explMap-h: calc(~"100% - "@headerTitleBarHeight ), @explFilter-w: 290px,
+  .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 60%, @explMap-h: calc(~"100% - "@headerTitleBarHeight ), @explFilter-w: 260px,
      @explFilter-h: auto, @explGallery-w: 40%, @explGallery-h: calc(~"100% - "@headerTitleBarHeight ) );
 }
 
@@ -71,40 +71,48 @@
     }
   }
   .explorer-container-filter{
-
+    position: relative;
     .filters_fixed{
-      position: relative;
       background-color: @gzzColor-bck-9;
-      height: 60px;
+      height: 46px;
       ul{
+        margin:0px;
         padding: 5px;
         list-style: none;
         li{
           cursor:pointer;
           list-style: none;
           float: left;
-          margin: 5px;
+          margin: 0px 0px 0px 5px;
           height: 36px;
           width: 36px;
           .icon{}
           .iconHover{ display: none;}
           .iconSelected{ display:none;}
           .title{
-            display:none;
             position: absolute;
+            background-color: @gzzColor-bck-9;
             left: 0;
-            bottom: 0px;
+            top: 42px;
             width: 100%;
             text-align: center;
             font-size: 11px;
             font-weight: bold;
             color: @gzzColor-text-light;
+            opacity: 0;
+            transition: opacity .25s ease-in-out;
+            -moz-transition: opacity .25s ease-in-out;
+            -webkit-transition: opacity .25s ease-in-out;
+            -webkit-animation-delay: -2s; /* Chrome, Safari, Opera */
+            animation-delay: -2s;
           }
 
           &:hover{
             .icon{ display: none;}
             .iconHover{ display: block;}
-            .title{ display:block; }
+            .title{
+              opacity: 1;
+             }
           }
           &.selected{
             .icon{ display: none;}
@@ -160,17 +168,17 @@
         }
       }
       .filters_openFilters{
-        padding: 5px 20px;
+        padding: 0px 20px;
+        margin-top: -10px;
         text-transform: uppercase;
         font-size: 14px;
         font-weight: 500;
-        .fa-caret-up{ display:none; font-size: 24px; color: @gzzColor-xantares; float: right; margin-top: -3px;}
-        .fa-caret-down{ display:inline; font-size: 24px; color: @gzzColor-xantares; float: right; margin-top: -3px; }
+        text-align: center;
+        .fa-caret-down{ display:inline; font-size: 24px; color: @gzzColor-xantares; margin-top: -5px; }
       }
       .filters_advancedFilters{
-        padding: 5px 0px;
+        padding: 10px 0px;
         margin: 0px 20px;
-        border-top: 1px solid @gzzColor-bck-8;
         background-color: @gzzColor-bck-1;
         display:none;
         .xantaresPrice{
@@ -197,7 +205,7 @@
           }
       }
       .filters_summary{
-        padding: 0 20px 0 30px;
+        padding: 5px 20px;
         font-size: 14px;
         label{
          margin: 0;
@@ -207,8 +215,7 @@
 
       &:hover{
         .filters_openFilters{
-          .fa-caret-up{ display: inline; }
-          .fa-caret-down{ display:none; }
+          display: none;
         }
         .filters_advancedFilters{
           display:block;
@@ -222,6 +229,7 @@
       }
     }
   }
+
   .explorer-container-gallery{
     border-top: 1px solid @gzzColor-bck-4;
     border-left: 5px solid @gzzColor-bck-4;
@@ -328,7 +336,7 @@
 
 #geozzyExplorerMapInfo{
   width: 100%;
-  max-width: 270px;
+  max-width: 260px;
   height: 340px;
   border: 5px solid rgba( 255, 255, 255, 0.4);
   overflow: hidden;
