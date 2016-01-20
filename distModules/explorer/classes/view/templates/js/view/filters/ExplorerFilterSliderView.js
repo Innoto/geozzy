@@ -47,7 +47,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       var price =  model.get('averagePrice');
 
       if(typeof price != "undefined" ) {
-        if( price <= that.filteredValue) {
+        if( price <= that.filteredValue || that.filteredValue == false ) {
           ret = true;
         }
         else
