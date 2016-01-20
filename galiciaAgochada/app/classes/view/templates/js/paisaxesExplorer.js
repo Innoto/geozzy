@@ -335,9 +335,126 @@
          }]
 
       });
+console.log(capa);
+      switch(capa) {
+
+        case 'baixominoVigo':
+           that.resourceMap.setZoom( 10 );
+           that.resourceMap.setCenter( new google.maps.LatLng(42.20,-8.55) );
+           break;
+
+        case 'terrasDePontevedra':
+          that.resourceMap.setZoom( 11 );
+          that.resourceMap.setCenter( new google.maps.LatLng(42.45,-8.55) );
+          break;
+
+        case 'arousa':
+           that.resourceMap.setZoom( 10 );
+           that.resourceMap.setCenter( new google.maps.LatLng(42.60,-8.83) );
+           break;
+
+        case 'costaDaMorte':
+          that.resourceMap.setZoom( 10 );
+          that.resourceMap.setCenter( new google.maps.LatLng(43.15,-8.95) );
+          break;
+
+
+        case 'aMarinaLucense':
+          that.resourceMap.setZoom( 11 );
+          that.resourceMap.setCenter( new google.maps.LatLng(43.53,-7.35) );
+          break;
+
+        case 'ancaresCourel':
+           that.resourceMap.setZoom( 10 );
+           that.resourceMap.setCenter( new google.maps.LatLng(42.85,-7.10) );
+           break;
+
+
+        case 'manzanedaTrevinca':
+          that.resourceMap.setZoom( 10 );
+          that.resourceMap.setCenter( new google.maps.LatLng(42.35,-7.05) );
+          break;
+
+        case 'ribeiraSacra':
+           that.resourceMap.setZoom( 10 );
+           that.resourceMap.setCenter( new google.maps.LatLng(42.50,-7.55) );
+           break;
+
+        case 'verinViana':
+          that.resourceMap.setZoom( 10 );
+          that.resourceMap.setCenter( new google.maps.LatLng(42.05,-7.30) );
+          break;
+
+
+        case 'celanovaAlimia':
+          that.resourceMap.setZoom( 11 );
+          that.resourceMap.setCenter( new google.maps.LatLng(42.05,-7.90) );
+          break;
+
+        case 'terrasDeOurenseAllariz':
+          that.resourceMap.setZoom( 11 );
+          that.resourceMap.setCenter( new google.maps.LatLng(42.28,-7.80) );
+          break;
+
+        case 'oRibeiro':
+          that.resourceMap.setZoom( 11 );
+          that.resourceMap.setCenter( new google.maps.LatLng(42.410,-8.140) );
+          break;
+
+        case 'ancaresCourel':
+           that.resourceMap.setZoom( 10 );
+           that.resourceMap.setCenter( new google.maps.LatLng(42.410,-8.140) );
+           break;
+
+        case 'dezaTabeiros':
+          that.resourceMap.setZoom( 11 );
+          that.resourceMap.setCenter( new google.maps.LatLng(42.686,-8.215) );
+          break;
+
+        case 'lugoTerraCha':
+           that.resourceMap.setZoom( 10 );
+           that.resourceMap.setCenter( new google.maps.LatLng(43.10,-8.595) );
+           break;
+
+        case 'terrasDeSantiago':
+          that.resourceMap.setZoom( 11 );
+          that.resourceMap.setCenter( new google.maps.LatLng(42.96,-8.46) );
+          break;
+
+        case 'murosNoia':
+          that.resourceMap.setZoom( 11 );
+          that.resourceMap.setCenter( new google.maps.LatLng(42.79,-8.94) );
+          break;
+
+        case 'ferrolTerra':
+          that.resourceMap.setZoom( 10 );
+          that.resourceMap.setCenter( new google.maps.LatLng(43.525,-8.00) );
+          break;
+
+        case 'aCorunaAsMarinas':
+          that.resourceMap.setZoom( 11 );
+          that.resourceMap.setCenter( new google.maps.LatLng(43.29,-8.20) );
+          break;
 
 
 
+
+
+
+        default:
+          that.mapOptions
+          that.resourceMap.setZoom( that.mapOptions.zoom );
+          that.resourceMap.setCenter( new google.maps.LatLng( that.mapOptions.center.lat , that.mapOptions.center.lng ) );
+          break;
+      }
+
+
+/*
+
+      murosNoia,11,42.79,-8.94
+      ferrolTerra,10,43.525,-8.00
+      aCorunaAsMarinas,11,43.29,-8.20
+*/
 
       if( capa ){
         that.fussFTLayer.setMap(that.resourceMap);
