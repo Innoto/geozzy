@@ -7,7 +7,7 @@ class ExplorerView extends MasterView
     parent::__construct( $baseDir );
 
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
-
+    $this->template->addClientScript('js/galiciaAgochadaExplorersUtils.js');
   }
 
   function paisaxesExplorer(){
