@@ -262,7 +262,7 @@ define( 'MEDIASERVER_TMP_CACHE_PATH', APP_TMP_PATH.'/mediaCache' );
 define( 'MOD_MEDIASERVER_URL_DIR', 'media');
 define( 'MEDIASERVER_FINAL_CACHE_PATH', 'mediaCache' );
 define( 'MEDIASERVER_NOT_CACHE_JS', true );
-define( 'MEDIASERVER_PRODUCTION_MODE', false ); // If true, you must compile less manually with ./cogumelo generateClientCaches
+define( 'MEDIASERVER_PRODUCTION_MODE', true ); // If true, you must compile less manually with ./cogumelo generateClientCaches
 define( 'MEDIASERVER_MINIMIFY_FILES', false ); // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
 
 global $MEDIASERVER_LESS_GLOBALS; // Se cargan con el prefijo GLOBAL_
@@ -276,14 +276,14 @@ $MEDIASERVER_LESS_CONSTANTS = array(
 );
 
 global $MEDIASERVER_JAVASCRIPT_GLOBALS; // Se cargan con el prefijo GLOBAL_
-$MEDIASERVER_JAVASCRIPT_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID');
+$MEDIASERVER_JAVASCRIPT_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
 global $MEDIASERVER_JAVASCRIPT_CONSTANTS;
 $MEDIASERVER_JAVASCRIPT_CONSTANTS = array(
   'langDefault' => LANG_DEFAULT,
   'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
   'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
   'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
-  'site_host' => SITE_HOST,
+  'site_host' => SITE_HOST
   // 'var1' => 5, 'var2'=>array('a',true,5, array(1,2) ), 'var3' => true, 'comilla' => "ola'tu"
 );
 
@@ -295,6 +295,6 @@ $MEDIASERVER_SMARTY_CONSTANTS = array(
   'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
   'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
   'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
-  'site_host' => SITE_HOST,
+  'site_host' => SITE_HOST
   // 'var1' => 5, 'var2'=>array('a',true,5, array(1,2) ), 'var3' => true, 'comilla' => "ola'tu"
 );
