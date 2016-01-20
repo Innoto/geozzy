@@ -60,7 +60,7 @@
       explorer.addFilter(
         new geozzy.filters.filterSelectSimpleView(
           {
-            mainCotainerClass: explorerclass+' .explorer-container-filter .explorerFilters',
+            mainContainerClass: explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'tipoPaisaxe select2GeozzyCustom',
             //title:'asdfasfd',
             data: dataFilter1

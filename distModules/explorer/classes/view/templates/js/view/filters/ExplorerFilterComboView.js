@@ -30,7 +30,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
     var options = {
       title: false,
-      mainCotainerClass: false,
+      mainContainerClass: false,
       containerClass: false,
       titleSummary: false,
       summaryContainerClass: false,
@@ -75,16 +75,16 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.options.title, defaultOption: that.options.defaultOption, options: filterOptions } );
 
     // Print filter html into div
-    if( !$(  that.options.mainCotainerClass+' .' +that.options.containerClass ).length ) {
-      $( that.options.mainCotainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
+    if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
+      $( that.options.mainContainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
     }
     else {
 
-      $( that.options.mainCotainerClass+' ' + containerClassDots ).html( filterHtml );
+      $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
     }
 
 
-    $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
+    $( that.options.mainContainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
       var val = $(el.target).val();
       if( val == '*' ) {
         that.selectedTerms = false;
@@ -133,7 +133,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
   reset: function() {
     var that = this;
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-    $select = $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select' );
+    $select = $( that.options.mainContainerClass + ' ' + containerClassDots + ' select' );
 
     $select.val( "*" );
 

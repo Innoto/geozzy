@@ -83,17 +83,17 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
     var filterHtml = that.template( { filterClass: that.options.containerClass, title: that.options.title, defaultOption: that.options.defaultOption, options: filterOptions } );
 
     // Print filter html into div
-    if( !$(  that.options.mainCotainerClass+' .' +that.options.containerClass ).length ) {
-      $( that.options.mainCotainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
+    if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
+      $( that.options.mainContainerClass).append( '<div class="explorerFilterElement '+ that.options.containerClass +'">' + filterHtml + '</div>' );
     }
     else {
 
-      $( that.options.mainCotainerClass+' ' + containerClassDots ).html( filterHtml );
+      $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
     }
 
 
 
-    $( that.options.mainCotainerClass + ' ' + containerClassDots + ' ul li').bind('click', function(el) {
+    $( that.options.mainContainerClass + ' ' + containerClassDots + ' ul li').bind('click', function(el) {
       var termid = false;
       var termLi = false;
 
@@ -125,7 +125,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
 /*
 
-    $( that.options.mainCotainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
+    $( that.options.mainContainerClass + ' ' + containerClassDots + ' select').bind('change', function(el) {
       var val = $(el.target).val();
       if( val == '*' ) {
         that.selectedTerms = false;
@@ -146,7 +146,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   reset: function() {
     var that = this;
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-    $( that.options.mainCotainerClass + ' ' + containerClassDots + ' ul li').removeClass('selected');
+    $( that.options.mainContainerClass + ' ' + containerClassDots + ' ul li').removeClass('selected');
     that.selectedTerms = false;
   }
 

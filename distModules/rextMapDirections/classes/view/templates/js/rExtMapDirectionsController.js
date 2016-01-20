@@ -85,8 +85,8 @@ geozzy.rExtMapDirectionsController = {
 
       // add marker
       this.resourceMarker = new google.maps.Marker({
-        map: this.resourceMap,
-        position: new google.maps.LatLng( this.resourceMapInfo.lat, this.resourceMapInfo.lon ),
+        map: that.resourceMap,
+        position: new google.maps.LatLng( that.resourceMapInfo.lat, that.resourceMapInfo.lon ),
         // title: 'Resource location',
         icon: {
           url: media+'/module/admin/img/geozzy_marker.png', // This marker is 20 pixels wide by 36 pixels high.

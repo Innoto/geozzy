@@ -207,9 +207,10 @@
       that.explorer.addFilter(
         new geozzy.explorerComponents.filters.filterGeoView(
           {
-            mainCotainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
+            mainContainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'zonasMapa',
             defaultOption: { icon: false, title: '', value:'*' },
+            textReset: 'Toda Galicia',
             data: that.zonaCategories
           }
         )
@@ -219,7 +220,7 @@
       that.explorer.addFilter(
         new geozzy.explorerComponents.filters.filterComboView(
           {
-            mainCotainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
+            mainContainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'tipoPaisaxe select2GeozzyCustom',
             defaultOption: { icon: false, title: 'Todas as paisaxes', value:'*' },
             data: that.espazoNaturalCategories
