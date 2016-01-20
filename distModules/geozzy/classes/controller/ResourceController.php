@@ -1489,7 +1489,7 @@ class ResourceController {
   }
 
 
-  public function setUrl( $resId, $langId, $urlAlias ) {
+  public function setUrl( $resId, $langId = false, $urlAlias = false ) {
     error_log( "setUrl( $resId, $langId, $urlAlias )" );
     $result = true;
 
