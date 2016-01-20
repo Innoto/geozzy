@@ -36,7 +36,7 @@ class RealDataGenerator extends View
     // Taxonomías:
     $taxgroupArray[1] = 'eatanddrinkType';
     $taxgroupArray[2] = 'eatanddrinkSpecialities';
-    $taxgroupArray[3] = 'starred';
+    //$taxgroupArray[3] = 'starred';
 
     // user: establecemos 12 para poder buscar por este campo e borrar os recursos xerados aqui
     $user = 12;
