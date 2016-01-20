@@ -145,7 +145,6 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       that.slider.reset();
       that.filteredValue = false;
       that.renderSummary();
-
       //that.slider.destroy();
       //$( ".explorerFilterElement ."+that.options.containerClass+" input" ).val(10);
       //that.instanceSlider();
