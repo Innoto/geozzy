@@ -29,8 +29,8 @@ geozzy.explorer = function( opts ) {
   }
   $.extend(true, that.options, opts);
 
+  that.explorerTouchDevice = $('html').hasClass('touch');
   // metrics
-
   that.metricsExplorerController = geozzy.biMetricsInstances.explorer;
   that.metricsResourceController = geozzy.biMetricsInstances.resource;
 
