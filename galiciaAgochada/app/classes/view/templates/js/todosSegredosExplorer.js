@@ -220,7 +220,8 @@
           containerClass: 'filterZona',
           textReset: 'Toda Galicia',
           defaultOption: { icon: false, title: '', value:'*' },
-          data: that.zonaCategories
+          data: that.zonaCategories,
+          onChange: that.chooseFTLayer
         }
       );
 
@@ -328,5 +329,9 @@
 
     }
 
+
+    that.chooseFTLayer =  function( val ) {
+      chooseFTLayer( val, that.zonaCategories,  that.resourceMap, that.mapOptions );
+    }
 
   }
