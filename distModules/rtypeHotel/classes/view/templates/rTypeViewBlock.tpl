@@ -162,16 +162,18 @@
   </section>
 
   <section class="locationSec gzSection">
+    {if (isset($rextContactBlock) && $rextContactBlock!="")}
     <div class="locationLight">
       <div class="location container">
         <div class="title">
           {t}Contact{/t}
         </div>
         <div class="{$res.data.rTypeIdName} accommodation">
-          {if isset($rextContactBlock)}{$rextContactBlock}{/if}
+          {$rextContactBlock}
         </div>
       </div>
     </div>
+    {/if}
 
     <div class="locationDark">
       {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")

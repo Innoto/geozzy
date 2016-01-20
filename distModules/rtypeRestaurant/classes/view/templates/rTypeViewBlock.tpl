@@ -69,6 +69,9 @@
       <div class="reservationData" style="display:none;">
         <div class="priceText">{t}Reservation phone{/t}</div>
         <div class="priceAmount"><span class="num">{$res.ext.rextEatAndDrink.data.reservationPhone|escape:'htmlall'}</span></div>
+        <div class="reservationBtb">
+            <div class="showAverageRate">{t}Show average rate{/t}</div>
+        </div>
       </div>
     </div>
     {/if}
@@ -127,16 +130,18 @@
   </section>
 
   <section class="locationSec gzSection">
+    {if (isset($rextContactBlock) && $rextContactBlock!="")}
     <div class="locationLight">
       <div class="location container">
         <div class="title">
           {t}Contact{/t}
         </div>
         <div class="{$res.data.rTypeIdName} accommodation">
-          {if isset($rextContactBlock)}{$rextContactBlock}{/if}
+          {$rextContactBlock}
         </div>
       </div>
     </div>
+    {/if}
 
     <div class="locationDark">
       {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")
