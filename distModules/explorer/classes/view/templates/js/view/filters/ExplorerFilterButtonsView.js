@@ -47,7 +47,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
     if( that.selectedTerms != false ) {
 
       var terms =  model.get('terms');
-      
+
       if( typeof terms != "undefined") {
         var diff = $( terms ).not( that.selectedTerms );
 
@@ -144,6 +144,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   },
 
   reset: function() {
+
     var that = this;
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
     $( that.options.mainContainerClass + ' ' + containerClassDots + ' ul li').removeClass('selected');

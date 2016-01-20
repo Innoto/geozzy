@@ -140,6 +140,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
 
     reset: function() {
+
       var that = this;
       that.filteredValue = false;
       that.renderSummary();

@@ -34,7 +34,7 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
     var options = new Object({
 
     });
-    
+
     that.options = $.extend(true, {}, options, opts);
 
 
