@@ -52,9 +52,12 @@
   </div>
 
   <section class="imageSec gzSection">
-
-    {if isset($res.ext.rextAccommodation.data.averagePrice) && $res.ext.rextAccommodation.data.averagePrice}
     <div class="reservationSec container">
+      <a href="javascript:history.go(-1);" class="backExplorer">
+        <div class="arrow-left"></div>
+        <p>{t}volver{/t}</p>
+      </a>
+      {if isset($res.ext.rextAccommodation.data.averagePrice) && $res.ext.rextAccommodation.data.averagePrice}
       <div class="reservationBox">
         <div class="priceText">{t}Average night rate{/t}</div>
         <div class="priceAmount"><span class="num">{$res.ext.rextAccommodation.data.averagePrice|escape:'htmlall'}</span><span class="unit"> €</span></div>
@@ -67,16 +70,16 @@
             {/if}
           </div>
         {/if}
-      </div>
-      <div class="reservationData" style="display:none;">
-        <div class="priceText">{t}Reservation phone{/t}</div>
-        <div class="priceAmount"><span class="num">{$res.ext.rextAccommodation.data.reservationPhone|escape:'htmlall'}</span></div>
-        <div class="reservationBtb">
-            <div class="showAverageRate">{t}Show average rate{/t}</div>
         </div>
-      </div>
+        <div class="reservationData" style="display:none;">
+          <div class="priceText">{t}Reservation phone{/t}</div>
+          <div class="priceAmount"><span class="num">{$res.ext.rextAccommodation.data.reservationPhone|escape:'htmlall'}</span></div>
+          <div class="reservationBtb">
+              <div class="showAverageRate">{t}Show average rate{/t}</div>
+          </div>
+        </div>
+      {/if}
     </div>
-    {/if}
   </section>
 
   <section class="contentSec container gzSection">

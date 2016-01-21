@@ -55,7 +55,12 @@
   </div>
 
   <section class="imageSec gzSection">
-
+    <div class="reservationSec container">
+      <a href="javascript:history.go(-1);" class="backExplorer">
+        <div class="arrow-left"></div>
+        <p>{t}volver{/t}</p>
+      </a>
+    </div>  
   </section>
 
   <section class="contentSec container gzSection">
