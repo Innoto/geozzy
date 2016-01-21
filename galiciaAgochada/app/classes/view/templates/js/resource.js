@@ -10,12 +10,23 @@ $(document).ready(function(){
   });
   $('.rExtMapDirections .mapRoute').hide();
 
+  // Reservation button HOTEL
   $('.rtypeHotel .reservationSec .reservationBox .reservationBtb .showReservation').click(function(){
     $('.rtypeHotel .reservationSec .reservationBox').hide();
     $('.rtypeHotel .reservationSec .reservationData').show();
     $('.rtypeHotel .reservationSec .reservationData .reservationBtb .showAverageRate').click(function(){
       $('.rtypeHotel .reservationSec .reservationBox').show();
       $('.rtypeHotel .reservationSec .reservationData').hide();
+    })
+  });
+
+  // Reservation button RESTAURANT
+  $('.rtypeRestaurant .reservationSec .reservationBox .reservationBtb .showReservation').click(function(){
+    $('.rtypeRestaurant .reservationSec .reservationBox').hide();
+    $('.rtypeRestaurant .reservationSec .reservationData').show();
+    $('.rtypeRestaurant .reservationSec .reservationData .reservationBtb .showAverageRate').click(function(){
+      $('.rtypeRestaurant .reservationSec .reservationBox').show();
+      $('.rtypeRestaurant .reservationSec .reservationData').hide();
     })
   });
 
