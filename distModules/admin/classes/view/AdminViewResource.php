@@ -300,12 +300,12 @@ class AdminViewResource extends AdminViewMaster {
     $form->setFieldParam('published', 'type', 'reserved');
     $form->setFieldParam('published', 'value', '1');
     $urlAliasLang = $form->multilangFieldNames('urlAlias');
-    foreach ($urlAliasLang as $key => $field) {
+    foreach( $urlAliasLang as $key => $field ) {
       $form->removeField( $field);
     }
     $form->removeField('externalUrl');
     $form->removeValidationRules('published');
-    $form->setValidationRule('rExtFile_file', 'required', true);
+    // $form->setValidationRule('rExtFile_file', 'required', true);
 
     $formBlockInfo['dataForm'] = array(
       'formOpen' => $form->getHtmpOpen(),
