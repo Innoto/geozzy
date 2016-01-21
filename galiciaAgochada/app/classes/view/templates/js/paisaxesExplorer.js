@@ -52,9 +52,8 @@
     that.setInitialData = function( doneFunction ){
       that.mapOptions = {
         center: { lat: 43.1, lng: -7.36 },
-        zoom: 8,
-        mapTypeControl: false
-
+        mapTypeControl: false,
+        zoom: 8
       };
       that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
 
@@ -78,7 +77,7 @@
     /**
       setExplorer. instance the explorer object
      */
-    that.setExplorer = function() {
+    that.setExplorer = function() { zoomControl: false
 
       that.explorer = new geozzy.explorer({
         debug: false,

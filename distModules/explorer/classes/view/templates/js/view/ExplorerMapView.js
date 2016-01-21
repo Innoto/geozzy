@@ -256,6 +256,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     return that.map.getProjection().fromLatLngToPoint( latLng );
   },
 
+  pixelToCoord: function( x, y) {
+    var that = this;
+
+    return that.map.getProjection().fromPointToLatLng( new google.maps.Point( x ,y ) );
+  },
+
+
   isReady: function() {
     return this.ready;
   },
@@ -301,13 +308,95 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   panTo: function( id ) {
     var that = this;
+    var mapVisible = that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible');
 
-    //console.log(that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible'))
-    if( that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible') == 1 || that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible') == 2  ) {
+    //console.log(mapVisible)
+    if( mapVisible == 1 || mapVisible == 2  ) {
       if( that.lastCenter == false ){
         that.lastCenter = that.map.getCenter();
       }
-      that.map.panTo(  that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() );
+
+
+
+
+
+
+
+      var scale = Math.pow(2, that.map.getZoom());
+
+
+
+console.log(scale)
+
+
+
+
+
+
+      // SEMI PANTO
+
+      var toMove = that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() ;
+      var P = that.coordToPixel( toMove )
+
+      var fromMove = that.map.getCenter();
+      var C = that.coordToPixel( fromMove );
+
+
+      //console.log(fromMovePixel)
+    //  console.log(P.x, P.y, C.x, C.y)
+
+      var pVx = P.x-C.x;
+      var pVy = P.y-C.y;
+
+      var Vx = Math.sin( Math.atan2( pVx , pVy  ) );
+      var Vy = Math.cos( Math.atan2( pVx , pVy  ) );
+
+      var diffCPx = P.x-C.x;
+      var diffCPy = P.y-C.y;
+
+
+      //console.log( that.pixelToCoord( 10,20 ).lat() )
+
+//console.log( P.x+Vx*1, P.y+Vy*1 )
+
+
+
+//console.log(P.x, Vx, P.x-Vx)
+
+
+
+that.map.panTo( that.pixelToCoord( P.x, P.y ) );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        that.map.setZoom( that.map.getZoom()-1 )
+
+//      that.map.panTo( that.pixelToCoord( Vx, Vy ) );
+
+    //  var endCoords = that.pixelToCoord( P.x, P.y );
+
+//      console.log( endCoords.lat() )
+//      console.log(    new google.maps.LatLng(endCoords.lat(), endCoords.lng() ) )
+
+
+
     }
     else {
       that.panToLastCenter();
