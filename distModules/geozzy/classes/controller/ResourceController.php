@@ -24,7 +24,6 @@ getViewBlock
 getResourceBlock
 
 getCollectionBlock
-
 **/
 
 
@@ -195,7 +194,7 @@ class ResourceController {
         $resourceData[ 'topic' ] = current( $resourceData[ 'topics' ] );
 
         $topicModel = new TopicModel();
-        foreach ($topicsArray as $i => $topicId){
+        foreach( $topicsArray as $i => $topicId ) {
           $resourceTopicList[$topicId] = $topicModel->listItems( array( 'filters' => array( 'id' => $topicId ) ) )->fetch()->getter('name');
         }
         $resourceData[ 'topicsName' ] = $resourceTopicList;
@@ -252,7 +251,7 @@ class ResourceController {
 
     $form = new FormController( $formName, $urlAction );
 
-    $form->setSuccess( 'accept', __( 'Thank you' ) );
+    // $form->setSuccess( 'accept', __( 'Thank you' ) );
 
     /* Establecemos la página a la que debe retornar */
     if( !isset($valuesArray['topicReturn']) ) {
@@ -927,7 +926,7 @@ class ResourceController {
           // error_log( 'To Model: '.$fileField['status'] );
           // // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField[ 'prev' ], true ) );
           /**
-            TODO: Falta eliminar o ficheiro anterior
+            TODO: Falta ver se eliminamos o ficheiro anterior
           */
           $fileFieldValues = $fileField[ 'values' ];
           break;
@@ -935,7 +934,7 @@ class ResourceController {
           // error_log( 'To Model: '.$fileField['status'] );
           $fileFieldValues = null;
           /**
-            TODO: Falta eliminar o ficheiro anterior
+            TODO: Falta ver se eliminamos o ficheiro anterior
           */
           break;
         case 'EXIST':
@@ -1590,16 +1589,16 @@ class ResourceController {
   */
   public function getTranslatedData( $resData ) {
 
-    foreach ( $resData as $key => $data ){
-        if ( strpos($key,'_'.$this->actLang) ){ // existe en el idioma actual
-          $key_parts = explode('_'.$this->actLang, $key);
-          if ($data && $data !== ""){
-            $resData[$key_parts[0]] = $data;
-          }
-          else{
-            $resData[$key_parts[0]] = $resData[$key_parts[0].'_'.$this->defLang];
-          }
+    foreach ( $resData as $key => $data ) {
+      if( strpos($key,'_'.$this->actLang) ) { // existe en el idioma actual
+        $key_parts = explode('_'.$this->actLang, $key);
+        if( $data && $data !== "") {
+          $resData[$key_parts[0]] = $data;
         }
+        else{
+          $resData[$key_parts[0]] = $resData[$key_parts[0].'_'.$this->defLang];
+        }
+      }
     }
     return $resData;
   }
@@ -1668,13 +1667,13 @@ class ResourceController {
     return $thumbImg;
   }
 
-  public function ytVidId($url) {
+  public function ytVidId( $url ) {
     $p = '#^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$#';
     return (preg_match($p, $url, $coincidencias)) ? $coincidencias[1] : false;
   }
 
   // Carga los datos de todas las colecciones de recursos asociadas al recurso dado
-  public function getCollectionBlockInfo($resId){
+  public function getCollectionBlockInfo( $resId ){
     $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
     $collectionResources = '';
     if( isset( $resId ) ) {
@@ -1698,7 +1697,7 @@ class ResourceController {
         $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
         if ($collection->getter('multimedia')){
           if ($resources){
-            foreach($resources as $resVal){
+            foreach( $resources as $resVal ) {
               $thumbSettings = array(
                'image' => $resVal->getter( 'image' ),
                'profile' => 'imgMultimediaGallery'
@@ -1706,12 +1705,12 @@ class ResourceController {
               $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
               $multimediaUrl = false;
               if( $resDataExt = $resDataExtArray[0]){
-               $thumbSettings['url'] = $resDataExt->getter('url');
-               $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
-               $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-               if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
-                $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
-               }
+                $thumbSettings['url'] = $resDataExt->getter('url');
+                $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
+                $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+                if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
+                  $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
+                }
               }
               $imgUrl = $this->getResourceThumbnail( $thumbSettings );
               $thumbSettings['profile'] = 'hdpi4';
@@ -1727,15 +1726,15 @@ class ResourceController {
           }
         }
         else{
-          if ($resources){
-            foreach($resources as $resVal){
+          if( $resources ) {
+            foreach( $resources as $resVal ) {
               $thumbSettings = array(
                'image' => $resVal->getter( 'image' ),
                'profile' => 'fast_cut'
               );
               $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-              if( $resDataExt = $resDataExtArray[0]){
-               $thumbSettings['url'] = $resDataExt->getter('url');
+              if( $resDataExt = $resDataExtArray[0] ) {
+                $thumbSettings['url'] = $resDataExt->getter('url');
               }
               $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
@@ -1753,9 +1752,9 @@ class ResourceController {
   }
 
   // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
-  public function goOverCollections(array $collections, $multimedia){
+  public function goOverCollections( array $collections, $multimedia ) {
     $collectionBlock = array();
-    foreach($collections as $idCollection => $collection){
+    foreach( $collections as $idCollection => $collection ) {
       if ($multimedia){
         $collectionBlock[$idCollection] = $this->getMultimediaBlock($collection);
       }
@@ -1767,7 +1766,7 @@ class ResourceController {
   }
 
   // Obtiene un bloque de una colección no multimedia dada
-  public function getCollectionBlock($collection){
+  public function getCollectionBlock( $collection ) {
 
     // echo '<pre>';
     // print_r($collection);
@@ -1782,7 +1781,7 @@ class ResourceController {
 
 
   // Obtiene un bloque de una colección multimedia dada
-  public function getMultimediaBlock($multimedia){
+  public function getMultimediaBlock( $multimedia ) {
     $template = new Template();
     $template->assign( 'id', $multimedia['col']['id'] );
     $template->assign( 'max', 6 );
@@ -1792,7 +1791,7 @@ class ResourceController {
   }
 
   // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
-  public function getUrlAlias($resId, $lang = false){
+  public function getUrlAlias( $resId, $lang = false ) {
     $urlAliasModel = new UrlAliasModel();
 
     if ($lang){
