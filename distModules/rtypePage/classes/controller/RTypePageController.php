@@ -5,7 +5,7 @@ rextSocialNetwork::autoIncludes();
 class RTypePageController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypePageController::__construct' );
+    // error_log( 'RTypePageController::__construct' );
 
     parent::__construct( $defResCtrl, new rtypePage() );
   }
@@ -46,7 +46,7 @@ class RTypePageController extends RTypeController implements RTypeInterface {
 
 
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "RTypePageController: getFormBlockInfo()" );
+    // error_log( "RTypePageController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -314,7 +314,7 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    error_log( "RTypePageController: getViewBlockInfo()" );
+    // error_log( "RTypePageController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,

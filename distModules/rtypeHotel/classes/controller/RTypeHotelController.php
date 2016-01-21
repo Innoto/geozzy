@@ -8,7 +8,7 @@ rextSocialNetwork::autoIncludes();
 class RTypeHotelController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeHotelController::__construct' );
+    // error_log( 'RTypeHotelController::__construct' );
 
     parent::__construct( $defResCtrl, new rtypeHotel() );
 
@@ -80,7 +80,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
 
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "RTypeHotelController: getFormBlockInfo()" );
+    // error_log( "RTypeHotelController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -290,7 +290,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
    * Defino la visualizacion del formulario
    */
   public function manipulateFormTemplate( FormController $form, Template $template ) {
-    error_log( "RTypeHotelController: formToTemplate()" );
+    // error_log( "RTypeHotelController: formToTemplate()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
@@ -510,7 +510,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    error_log( "RTypeHotelController: getViewBlockInfo()" );
+    // error_log( "RTypeHotelController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -532,7 +532,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $this->mapDirCtrl = new RExtMapDirectionsController( $this );
     $mapDirViewInfo = $this->mapDirCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->mapDirCtrl->rExtName ] = $mapDirViewInfo;
-    error_log( 'viewBlockInfo ext '. $this->mapDirCtrl->rExtName .' = '. print_r( $mapDirViewInfo, true ) );
+    // error_log( 'viewBlockInfo ext '. $this->mapDirCtrl->rExtName .' = '. print_r( $mapDirViewInfo, true ) );
 
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
@@ -547,7 +547,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $multimediaArray = false;
     $collectionArray = false;
     if ($collectionArrayInfo){
-      foreach ($collectionArrayInfo as $key => $collectionInfo){
+      foreach( $collectionArrayInfo as $key => $collectionInfo ) {
         if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
             $multimediaArray[$key] = $collectionInfo;
         }
@@ -559,7 +559,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
       if ($multimediaArray){
         $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
         if ($arrayMultimediaBlock){
-          foreach ($arrayMultimediaBlock as $multimediaBlock){
+          foreach( $arrayMultimediaBlock as $multimediaBlock ) {
             $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
           }
         }
@@ -568,7 +568,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
       if ($collectionArray){
         $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
         if ($arrayCollectionBlock){
-          foreach ($arrayCollectionBlock as $collectionBlock){
+          foreach( $arrayCollectionBlock as $collectionBlock ) {
             $template->addToBlock( 'collections', $collectionBlock );
           }
         }
@@ -580,7 +580,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     /* Recuperamos todos los términos de la taxonomía servicios*/
     $services = $this->defResCtrl->getOptionsTax( 'accommodationServices' );
-    foreach ($services as $serviceId => $serviceName){
+    foreach( $services as $serviceId => $serviceName ) {
       $service = $taxtermModel->listItems(array('filters'=> array('id' => $serviceId)))->fetch();
       /*Quitamos los términos de la extensión que no se usan en este proyecto*/
       if ($service->getter('idName') !== 'telefono' && $service->getter('idName') !== 'serviciodehabitacions' && $service->getter('idName') !== 'transportepublico'){
@@ -593,7 +593,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
     /* Recuperamos todos los términos de la taxonomía instalaciones*/
     $facilities = $this->defResCtrl->getOptionsTax( 'accommodationFacilities' );
-    foreach ($facilities as $facilityId => $facilityName){
+    foreach( $facilities as $facilityId => $facilityName ) {
       $facility = $taxtermModel->listItems(array('filters'=> array('id' => $facilityId)))->fetch();
       /*Quitamos los términos de la extensión que no se usan en este proyecto*/
       if ($facility->getter('idName') !== 'bar' && $facility->getter('idName') !== 'lavadora'){

@@ -23,7 +23,7 @@ class RTypePageView extends View
     Defino un formulario con su TPL como Bloque
    */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "RTypePageView: getFormBlock()" );
+    // error_log( "RTypePageView: getFormBlock()" );
 
     $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -47,7 +47,7 @@ class RTypePageView extends View
     Proceso formulario
    */
   public function actionResourceForm() {
-    error_log( "RTypePageView: actionResourceForm()" );
+    // error_log( "RTypePageView: actionResourceForm()" );
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
     $form = $this->defResCtrl->resFormLoad();

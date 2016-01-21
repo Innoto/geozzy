@@ -5,7 +5,7 @@ rextFile::autoIncludes();
 class RTypeFileController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeFileController::__construct' );
+    // error_log( 'RTypeFileController::__construct' );
 
     parent::__construct( $defResCtrl, new rtypeFile() );
   }
@@ -41,7 +41,7 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
   } // function manipulateForm()
 
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "RTypeHotelController: getFormBlockInfo()" );
+    // error_log( "RTypeHotelController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -212,7 +212,7 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     }
 
     if( !$form->existErrors() ) {
-//error_log( "rExtCtrl->rExtModel:" . print_r( $this->rExtCtrl->rExtModel, true ) );
+      //error_log( "rExtCtrl->rExtModel:" . print_r( $this->rExtCtrl->rExtModel, true ) );
 
       $valueFile = $form->getFieldValue( $this->rExtCtrl->addPrefix( 'file' ) );
       $valueImage = $form->getFieldValue( 'image' );
@@ -271,7 +271,7 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    error_log( "RTypeFileController: getViewBlockInfo()" );
+    // error_log( "RTypeFileController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,

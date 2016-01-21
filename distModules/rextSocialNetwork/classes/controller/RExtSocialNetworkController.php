@@ -7,7 +7,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
 
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtSocialNetworkController::__construct' );
+    // error_log( 'RExtSocialNetworkController::__construct' );
 
     // $this->numericFields = array( 'averagePrice' );
 
@@ -115,7 +115,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
   */
   public function getFormBlockInfo( FormController $form ) {
 
-    error_log( "RExtContactController: getFormBlockInfo()" );
+    // error_log( "RExtContactController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -124,7 +124,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -165,7 +165,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     Iniciar transaction
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    error_log( "RExtSocialNetworkController: resFormProcess()" );
+    // error_log( "RExtSocialNetworkController: resFormProcess()" );
 
 
 
@@ -177,15 +177,15 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       // error_log( 'NEW RExtSocialNetworkModel: ' . print_r( $valuesArray, true ) );
 
       $textFb = $form->multilangFieldNames( 'textFb' );
-      foreach ($textFb as $text){
+      foreach( $textFb as $text ) {
         if ($valuesArray[$text]==""){
           $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
           $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
         }
       }
       $twitterFb = $form->multilangFieldNames( 'textTwitter' );
-      foreach ($twitterFb as $text){
-        if ($valuesArray[$text]==""){
+      foreach( $twitterFb as $text ) {
+        if( $valuesArray[$text]=="" ) {
           $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
           $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
         }
@@ -237,7 +237,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       $rExtDataPrefixed = $this->prefixArrayKeys( $rExtData );
       foreach( $rExtDataPrefixed as $key => $value ) {
         $template->assign( $key, $rExtDataPrefixed[ $key ] );
-        error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
+        // error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
       }
 
       // Vacio campos numericos NULL
@@ -263,7 +263,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    error_log( "RExtSocialNetworkController: getViewBlockInfo()" );
+    // error_log( "RExtSocialNetworkController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,
@@ -273,7 +273,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
 
-      foreach ($rExtViewBlockInfo['data'] as $key=>$socialField){
+      foreach( $rExtViewBlockInfo['data'] as $key => $socialField ) {
         $text[$key] = str_replace('#TITLE#', $this->defResCtrl->resObj->getter('title'), $socialField );
         $text2[$key] = str_replace('#URL#', SITE_HOST.$this->defResCtrl->resData['urlAlias'], $text[$key] );
         $rExtViewBlockInfo['data'][$key] = $text2[$key];

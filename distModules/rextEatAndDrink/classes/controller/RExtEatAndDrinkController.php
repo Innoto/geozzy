@@ -7,7 +7,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
 
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtEatanddrinkController::__construct' );
+    // error_log( 'RExtEatanddrinkController::__construct' );
 
     $this->numericFields = array( 'averagePrice', 'capacity' );
 
@@ -143,7 +143,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -230,7 +230,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     Visualizamos el Recurso
    */
   public function getViewBlock( Template $resBlock ) {
-    error_log( "RExtEatanddrinkController: getViewBlock()" );
+    // error_log( "RExtEatanddrinkController: getViewBlock()" );
     $template = false;
 
     $resId = $this->defResCtrl->resObj->getter('id');
@@ -241,14 +241,14 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
       $rExtData = $this->prefixArrayKeys( $rExtData );
       foreach( $rExtData as $key => $value ) {
         $template->assign( $key, $rExtData[ $key ] );
-        error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
+        // error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
       }
 
       // Vacio campos numericos NULL
       if( $this->numericFields ) {
         foreach( $this->numericFields as $fieldName ) {
           $fieldName = $this->addPrefix( $fieldName );
-          error_log( 'Borrar? ' . $fieldName );
+          error_log( 'RExtEatanddrinkController: getViewBlock() Borrar? ' . $fieldName );
           if( !isset( $rExtData[ $fieldName ] ) || !$rExtData[ $fieldName ] ) {
             $template->assign( $fieldName, '##NULL-VACIO##' );
           }
@@ -283,7 +283,7 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    error_log( "RExtAccommodationController: getViewBlockInfo()" );
+    // error_log( "RExtAccommodationController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,

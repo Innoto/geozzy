@@ -5,7 +5,7 @@
 class RTypeRutaController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeRutaController::__construct' );
+    // error_log( 'RTypeRutaController::__construct' );
 
     parent::__construct( $defResCtrl, new rtypeRuta() );
   }
@@ -78,7 +78,7 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    error_log( "RTypeRutaController: getViewBlockInfo()" );
+    // error_log( "RTypeRutaController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,

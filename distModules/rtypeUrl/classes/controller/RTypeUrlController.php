@@ -5,7 +5,7 @@ rextUrl::autoIncludes();
 class RTypeUrlController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeUrlController::__construct' );
+    // error_log( 'RTypeUrlController::__construct' );
 
     parent::__construct( $defResCtrl, new rtypeUrl() );
   }
@@ -49,7 +49,7 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
   } // function manipulateForm()
 
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "RTypeHotelController: getFormBlockInfo()" );
+    // error_log( "RTypeHotelController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -253,7 +253,7 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    error_log( "RTypeUrlController: getViewBlockInfo()" );
+    // error_log( "RTypeUrlController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,

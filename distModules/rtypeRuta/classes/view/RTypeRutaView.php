@@ -23,7 +23,7 @@ class RTypeRutaView extends View
     Defino un formulario con su TPL como Bloque
    */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "RTypeRutaView: getFormBlock()" );
+    // error_log( "RTypeRutaView: getFormBlock()" );
 
     $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -47,7 +47,7 @@ class RTypeRutaView extends View
     Proceso formulario
    */
   public function actionResourceForm() {
-    error_log( "RTypeRutaView: actionResourceForm()" );
+    // error_log( "RTypeRutaView: actionResourceForm()" );
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
     $form = $this->defResCtrl->resFormLoad();

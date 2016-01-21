@@ -7,7 +7,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
 
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtAccommodationController::__construct' );
+    // error_log( 'RExtAccommodationController::__construct' );
 
     $this->numericFields = array( 'singleRooms', 'doubleRooms', 'familyRooms', 'beds', 'averagePrice' );
 
@@ -168,7 +168,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
 
 
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "RExtAccommodationController: getFormBlockInfo()" );
+    // error_log( "RExtAccommodationController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -177,7 +177,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -264,7 +264,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     Visualizamos el Recurso (extensión Accommodation)
    */
   public function getViewBlock( Template $resBlock ) {
-    error_log( "RExtAccommodationController: getViewBlock()" );
+    // error_log( "RExtAccommodationController: getViewBlock()" );
     $template = false;
 
     $resId = $this->defResCtrl->resObj->getter('id');
@@ -316,7 +316,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    error_log( "RExtAccommodationController: getViewBlockInfo()" );
+    // error_log( "RExtAccommodationController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,

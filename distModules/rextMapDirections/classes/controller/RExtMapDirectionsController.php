@@ -7,7 +7,7 @@ class RExtMapDirectionsController extends RExtController implements RExtInterfac
 
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtMapDirectionsController::__construct' );
+    // error_log( 'RExtMapDirectionsController::__construct' );
 
     global $C_LANG;
     $this->actLang = $C_LANG;
@@ -39,7 +39,7 @@ class RExtMapDirectionsController extends RExtController implements RExtInterfac
 
 
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "RExtMapDirectionsController: getFormBlockInfo()" );
+    // error_log( "RExtMapDirectionsController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -85,7 +85,7 @@ class RExtMapDirectionsController extends RExtController implements RExtInterfac
     Visualizamos el Recurso
    */
   public function getViewBlock( Template $resBlock ) {
-    error_log( "RExtMapDirectionsController: getViewBlock()" );
+    // error_log( "RExtMapDirectionsController: getViewBlock()" );
     $template = false;
 
     return $template;
@@ -97,7 +97,7 @@ class RExtMapDirectionsController extends RExtController implements RExtInterfac
     Datos y template por defecto de la extension
    */
   public function getViewBlockInfo() {
-    error_log( "RExtMapDirectionsController: getViewBlockInfo()" );
+    // error_log( "RExtMapDirectionsController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,
