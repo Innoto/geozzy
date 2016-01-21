@@ -7,7 +7,11 @@
 {/block}
 
 {block name="headTitle" append}
-  {$res.data.headTitle}
+  {if $res.data.headTitle!='' }
+    {$res.data.headTitle}
+  {else}
+    {$res.data["title"]}
+  {/if}
 {/block}
 
 {block name="socialMeta" append}
