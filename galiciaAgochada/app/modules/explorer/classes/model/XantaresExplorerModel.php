@@ -23,6 +23,7 @@ class XantaresExplorerModel extends Model
             geozzy_resource.mediumDescription_gl as mediumDescription_gl,
             geozzy_resource.loc as loc,
             geozzy_resource_rext_eatanddrink.averagePrice as averagePrice,
+            geozzy_resource_rext_contact.city as city,
             geozzy_resource.timeLastUpdate as timeLastUpdate,
             group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
           FROM geozzy_resource
@@ -36,6 +37,8 @@ class XantaresExplorerModel extends Model
           ON geozzy_resource_topic.topic = geozzy_topic.id
           LEFT JOIN geozzy_resource_rext_eatanddrink
           ON geozzy_resource.id = geozzy_resource_rext_eatanddrink.resource
+          LEFT JOIN geozzy_resource_rext_contact
+          ON geozzy_resource.id = geozzy_resource_rext_contact.resource
 
           WHERE
             geozzy_resource.published = 1 AND
@@ -71,6 +74,9 @@ class XantaresExplorerModel extends Model
     ),
     'averagePrice' => array(
       'type' => 'FLOAT'
+    ),
+    'city' => array(
+      'type' => 'VARCHAR'
     ),
     'timeLastUpdate' => array(
       'type'=>'GEOMETRY'
