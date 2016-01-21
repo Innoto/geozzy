@@ -124,7 +124,7 @@ geozzy.rExtMapDirectionsController = {
         console.log( 'FORM SUBMIT', destination );
         that.resetMap();
         that.clearRoute();
-        that.loadRoute( destination, false);
+        that.loadRoute( destination, false, false );
         return false;
       });
       this.routePanelContainer.find('.tabList' ).on( 'click', function togglePanelMap() {
@@ -156,7 +156,7 @@ geozzy.rExtMapDirectionsController = {
         this.routeTo.title = directionsData.title;
       }
 
-      // this.loadRoute( latitude+','+longitude, directionsData.title );
+      // this.loadRoute( latitude+','+longitude, directionsData.title, false );
 
       // click en mapa
       this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
@@ -164,13 +164,13 @@ geozzy.rExtMapDirectionsController = {
         that.clearRoute();
         that.resetForm();
 
-        that.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), false);
+        that.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), false, false );
       });
 
       // click en marker evento
       //this.eventClickEvent = new google.maps.event.addListener( eventMarker, 'click', function(ev){
       //  inputComollegar = '';
-      //  thisComollegar.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), resourceData.name );
+      //  thisComollegar.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), resourceData.name, false );
       //});
 
     }
@@ -197,8 +197,8 @@ geozzy.rExtMapDirectionsController = {
     this.routePanelContainer.find( '.routeInfo' ).html('');
   },
 
-  loadRoute: function loadRoute( from, fromTitle, routeMode = false ) {
-    console.log( 'loadRoute:', from, fromTitle );
+  loadRoute: function loadRoute( from, fromTitle, routeMode ) {
+    console.log( 'loadRoute:', from, fromTitle, routeMode );
     var that = this;
 
     if( from ) {
@@ -270,6 +270,7 @@ geozzy.rExtMapDirectionsController = {
 
   setRoutePanelInfo: function setRoutePanelInfo( travelInfo ) {
     console.log( 'setRoutePanelInfo:', travelInfo );
+    var modeNum = 0;
     if( travelInfo !== false ) {
       var sec = travelInfo.seconds;
       var s = sec % 60;
@@ -282,7 +283,6 @@ geozzy.rExtMapDirectionsController = {
 
       var km = Math.round( travelInfo.meters / 100 ) / 10;
 
-      var modeNum = 0;
       switch( travelInfo.mode ) {
         case 'DRIVING':
           modeNum = 0;
