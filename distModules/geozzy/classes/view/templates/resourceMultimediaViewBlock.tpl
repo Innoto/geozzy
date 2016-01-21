@@ -1,21 +1,27 @@
 <script>
+
   if ( typeof idGallery === 'undefined' ) {
     var idGallery = [];
     var multimedia = [];
   }
 
-  idGallery.push('{$id}');
-  data = '';
-  {foreach $multimediaAll.res as $multimedia}
-  data = data + '<img alt="{$multimedia.title}" src="{$multimedia.image}" '+
-      'data-image="{$multimedia.image_big}" '+
-      'data-description="{$multimedia.title}">';
-  {/foreach}
-  multimedia.push({
-    id : '{$id}',
-    firstLoad: true,
-    html : data
-  });
+  if (idGallery.indexOf('{$id}') == '-1'){
+    idGallery.push('{$id}');
+
+    data = '';
+    {foreach $multimediaAll.res as $multimedia}
+    data = data + '<img alt="{$multimedia.title}" src="{$multimedia.image}" '+
+        'data-image="{$multimedia.image_big}" '+
+        'data-description="{$multimedia.title}">';
+    {/foreach}
+    multimedia.push({
+      id : '{$id}',
+      firstLoad: true,
+      html : data
+    });
+  }
+
+
 </script>
 
 <div class="galleryBox">
