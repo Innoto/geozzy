@@ -9,7 +9,15 @@
         <div class="address">
           <i class="fa fa-map-marker icon"></i>
           <div class="data">
-          {$rExt.data.address|escape:'htmlall'} <br>{$rExt.data.cp|escape:'htmlall'} {$rExt.data.city|escape:'htmlall'} <br>{$rExt.data.province|escape:'htmlall'}
+            {if $rExt.data.address!==''}
+              <p>{$rExt.data.address|escape:'htmlall'}</p>
+            {/if}
+            {if $rExt.data.cp!=='' || $rExt.data.city!==''}
+              <p>{$rExt.data.cp|escape:'htmlall'} {$rExt.data.city|escape:'htmlall'}</p>
+            {/if}
+            {if $rExt.data.province!==''}
+              <p>{$rExt.data.province|escape:'htmlall'}</p>
+            {/if}
           </div>
         </div>
       </div>
