@@ -1689,6 +1689,7 @@ class ResourceController {
       {
         $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
         'title' => $collection->getter('title_'.$this->actLang),
+        'shortDescription' => $collection->getter('shortDescription_'.$this->actLang),
         'image' => $collection->getter('image'),
         'multimedia' => $collection->getter('multimedia'));
         $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
@@ -1740,9 +1741,12 @@ class ResourceController {
 
               $urlAlias = $this->getUrlAlias($resVal->getter('id'));
 
-              $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
-                array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
-                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl, 'urlAlias' => $urlAlias);
+              $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] = array(
+                'rType' => $resVal->getter('rTypeId'),
+                'title' => $resVal->getter('title_'.$this->actLang),
+                'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
+                'image' => $imgUrl, 'urlAlias' => $urlAlias
+              );
             }
           }
         }
