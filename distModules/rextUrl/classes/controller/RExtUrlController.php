@@ -7,7 +7,7 @@ class RExtUrlController extends RExtController implements RExtInterface {
 
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtUrlController::__construct' );
+    // error_log( 'RExtUrlController::__construct' );
 
     // $this->numericFields = array( 'averagePrice' );
 
@@ -133,7 +133,7 @@ class RExtUrlController extends RExtController implements RExtInterface {
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -158,7 +158,7 @@ class RExtUrlController extends RExtController implements RExtInterface {
     Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( FormController $form ) {
-    error_log( "RExtUrlController: resFormRevalidate()" );
+    // error_log( "RExtUrlController: resFormRevalidate()" );
     $valueEmbed = $form->getFieldValue( $this->addPrefix( 'embed' ) );
     $valueUrl = $form->getFieldValue( $this->addPrefix( 'url' ) );
 
@@ -175,7 +175,7 @@ class RExtUrlController extends RExtController implements RExtInterface {
     Iniciar transaction
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    error_log( "RExtUrlController: resFormProcess()" );
+    // error_log( "RExtUrlController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
@@ -236,7 +236,7 @@ class RExtUrlController extends RExtController implements RExtInterface {
       $rExtDataPrefixed = $this->prefixArrayKeys( $rExtData );
       foreach( $rExtDataPrefixed as $key => $value ) {
         $template->assign( $key, $rExtDataPrefixed[ $key ] );
-        error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
+        // error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
       }
 
       // Vacio campos numericos NULL
@@ -304,7 +304,7 @@ class RExtUrlController extends RExtController implements RExtInterface {
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    error_log( "RExtUrlController: getViewBlockInfo()" );
+    // error_log( "RExtUrlController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,

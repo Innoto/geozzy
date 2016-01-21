@@ -7,7 +7,7 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
 
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtAppEspazoNaturalController::__construct' );
+    // error_log( 'RExtAppEspazoNaturalController::__construct' );
 
     // $this->numericFields = array( 'averagePrice' );
     parent::__construct( $defRTypeCtrl, new rextAppEspazoNatural(), 'rExtAppEspazoNatural_' );
@@ -113,7 +113,7 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -138,7 +138,7 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
     Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( FormController $form ) {
-    error_log( "RExtAppEspazoNaturalController: resFormRevalidate()" );
+    // error_log( "RExtAppEspazoNaturalController: resFormRevalidate()" );
 
   }
 
@@ -147,7 +147,7 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
     Iniciar transaction
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    error_log( "RExtAppEspazoNaturalController: resFormProcess()" );
+    // error_log( "RExtAppEspazoNaturalController: resFormProcess()" );
 
     // TAXs
     if( !$form->existErrors() ) {
@@ -175,7 +175,7 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
     Visualizamos el Recurso
    */
   public function getViewBlock( Template $resBlock ) {
-    error_log( "RExtAppEspazoNaturalController: getViewBlock()" );
+    // error_log( "RExtAppEspazoNaturalController: getViewBlock()" );
     $template = false;
 
     $resId = $this->defResCtrl->resObj->getter('id');
@@ -187,7 +187,7 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
       $rExtDataPrefixed = $this->prefixArrayKeys( $rExtData );
       foreach( $rExtDataPrefixed as $key => $value ) {
         $template->assign( $key, $rExtDataPrefixed[ $key ] );
-        error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
+        // error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
       }
 
       // Vacio campos numericos NULL
@@ -226,7 +226,7 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
     Datos y template por defecto de la extension
    */
   public function getViewBlockInfo() {
-    error_log( "RExtAppEspazoNaturalController: getViewBlockInfo()" );
+    // error_log( "RExtAppEspazoNaturalController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,

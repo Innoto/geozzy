@@ -42,7 +42,6 @@ $(document).ready(function(){
   );
 
   if (typeof idGallery !== 'undefined'){
-
     $.each(idGallery, function(i, elm){
       if ($('#multimediaGallery_'+elm)){
         $('#multimediaGallery_'+elm).unitegallery({

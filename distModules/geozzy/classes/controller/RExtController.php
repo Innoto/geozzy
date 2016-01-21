@@ -37,7 +37,7 @@ class RExtController {
 
 
   public function __construct( $defRTypeCtrl, $rExtModule, $prefix = false ){
-    error_log( 'RExtController::__construct' );
+    // error_log( 'RExtController::__construct' );
 
     $this->defRTypeCtrl = $defRTypeCtrl;
     $this->defResCtrl = $defRTypeCtrl->defResCtrl;
@@ -54,7 +54,7 @@ class RExtController {
 
 
   public function getRExtFormValues( $formValuesArray, $numericFields = false ) {
-    error_log( "RExtController: getRExtFormValues()" );
+    // error_log( "RExtController: getRExtFormValues()" );
     $valuesArray = array();
 
     foreach( $formValuesArray as $key => $value ) {

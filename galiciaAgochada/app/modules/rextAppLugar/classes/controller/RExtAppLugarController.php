@@ -7,7 +7,7 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
 
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtAppLugarController::__construct' );
+    // error_log( 'RExtAppLugarController::__construct' );
 
     // $this->numericFields = array( 'averagePrice' );
     parent::__construct( $defRTypeCtrl, new rextAppLugar(), 'rExtAppLugar_' );
@@ -15,7 +15,7 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
 
 
   public function getRExtData( $resId = false ) {
-    error_log( "RExtAppLugarController: getRExtData( $resId )" );
+    // error_log( "RExtAppLugarController: getRExtData( $resId )" );
     $rExtData = false;
 
     if( $resId === false ) {
@@ -113,7 +113,7 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -138,7 +138,7 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
     Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( FormController $form ) {
-    error_log( "RExtAppLugarController: resFormRevalidate()" );
+    // error_log( "RExtAppLugarController: resFormRevalidate()" );
 
   }
 
@@ -147,7 +147,7 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
     Iniciar transaction
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    error_log( "RExtAppLugarController: resFormProcess()" );
+    // error_log( "RExtAppLugarController: resFormProcess()" );
 
     // TAXs
     if( !$form->existErrors() ) {
@@ -175,7 +175,7 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
     Visualizamos el Recurso
    */
   public function getViewBlock( Template $resBlock ) {
-    error_log( "RExtAppLugarController: getViewBlock()" );
+    // error_log( "RExtAppLugarController: getViewBlock()" );
     $template = false;
 
     $resId = $this->defResCtrl->resObj->getter('id');
@@ -187,7 +187,7 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
       $rExtDataPrefixed = $this->prefixArrayKeys( $rExtData );
       foreach( $rExtDataPrefixed as $key => $value ) {
         $template->assign( $key, $rExtDataPrefixed[ $key ] );
-        error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
+        // error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
       }
 
       // Vacio campos numericos NULL
@@ -228,7 +228,7 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    error_log( "RExtAppLugarController: getViewBlockInfo()" );
+    // error_log( "RExtAppLugarController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,

@@ -191,8 +191,8 @@
 
 #geozzyExplorerMapInfo{
   width: 100%;
-  max-width: 270px;
-  height: 340px;
+  max-width: 280px;
+  height: 370px;
   border: 5px solid rgba( 255, 255, 255, 0.4);
   overflow: hidden;
 
@@ -202,6 +202,7 @@
     padding-bottom: 20px;
     .gempiInfo{
       .gempiTitle,
+      .gempiLocation,
       .gempiDescription{
         padding: 5px 10px;
         background: @gzzColor-bck-1;
@@ -209,17 +210,25 @@
       .gempiTitle{
         text-align: justify;
         color: #555;
-        font-size: 16px;
-        max-height: 48px;
-        line-height: 20px;
+        font-size: 15px;
+        font-weight: bold;
+        height: 26px;
+        line-height: 26px;
         overflow: hidden;
         text-overflow: ellipsis;
+        white-space:nowrap;
+      }
+      .gempiLocation{
+        text-align: justify;
+        font-size: 13px;
+        line-height: 13px;
+        font-style: italic;
       }
       .gempiDescription{
         text-align: justify;
         font-size: 13px;
         line-height: 15px;
-        height: 80px;
+        height: 95px;
         overflow: hidden;
         text-overflow: ellipsis;
       }

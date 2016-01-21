@@ -7,7 +7,7 @@ class RExtFileController extends RExtController implements RExtInterface {
 
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtFileController::__construct' );
+    // error_log( 'RExtFileController::__construct' );
 
     // $this->numericFields = array( 'averagePrice' );
 
@@ -29,7 +29,7 @@ class RExtFileController extends RExtController implements RExtInterface {
 
     if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
-      error_log( "RExtFileController: getRExtData - getAllData:" . print_r( $rExtData, true ) );
+      // error_log( "RExtFileController: getRExtData - getAllData:" . print_r( $rExtData, true ) );
 
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
       $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
@@ -50,7 +50,7 @@ class RExtFileController extends RExtController implements RExtInterface {
       }
     }
 
-    error_log( 'RExtFileController: getRExtData = '.print_r( $rExtData, true ) );
+    // error_log( 'RExtFileController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
@@ -59,7 +59,7 @@ class RExtFileController extends RExtController implements RExtInterface {
     Defino el formulario
    */
   public function manipulateForm( FormController $form ) {
-    error_log( "RExtFileController: manipulateForm()" );
+    // error_log( "RExtFileController: manipulateForm()" );
 
     $rExtFieldNames = array();
 
@@ -134,7 +134,7 @@ class RExtFileController extends RExtController implements RExtInterface {
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -163,7 +163,7 @@ class RExtFileController extends RExtController implements RExtInterface {
     Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( FormController $form ) {
-    error_log( "RExtFileController: resFormRevalidate()" );
+    // error_log( "RExtFileController: resFormRevalidate()" );
 
     /*
     // De entrada, se procesan los campos file en Resource
@@ -181,7 +181,7 @@ class RExtFileController extends RExtController implements RExtInterface {
     Iniciar transaction
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    error_log( "RExtFileController: resFormProcess()" );
+    // error_log( "RExtFileController: resFormProcess()" );
 
 
     if( !$form->existErrors() ) {
@@ -245,7 +245,7 @@ class RExtFileController extends RExtController implements RExtInterface {
       $rExtData = $this->prefixArrayKeys( $rExtData );
       foreach( $rExtData as $key => $value ) {
         $template->assign( $key, $rExtData[ $key ] );
-        error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
+        // error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
       }
 
       // Vacio campos numericos NULL
@@ -303,7 +303,7 @@ class RExtFileController extends RExtController implements RExtInterface {
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    error_log( "RExtFileController: getViewBlockInfo()" );
+    // error_log( "RExtFileController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,

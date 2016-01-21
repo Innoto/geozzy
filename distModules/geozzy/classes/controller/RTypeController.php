@@ -38,7 +38,7 @@ class RTypeController {
 
 
   public function __construct( $defResCtrl, $rTypeModule ){
-    error_log( 'RTypeController::__construct' );
+    // error_log( 'RTypeController::__construct' );
 
     $this->defResCtrl = $defResCtrl;
     // error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );

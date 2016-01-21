@@ -19,12 +19,13 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
       '<div class="gempiImg"><img class="img-responsive" src="/cgmlImg/<%-img%>/fast_cut/.jpg" /></div>'+
       '<div class="gempiInfo">'+
         '<div class="gempiTitle"><%-title%></div>'+
+        '<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+
         '<div class="gempiDescription"><%-description%></div>'+
       '</div>'+
     '</div>'
   ),
 
-  marginX: 30,
+  marginX: 25,
   marginY: 20,
 
   ready: true,
@@ -113,7 +114,8 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
            inMap: that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible'),
            img: that.parentExplorer.resourceMinimalList.get( id ).get('img'),
            title: that.parentExplorer.resourcePartialList.get( id ).get('title'),
-           description: that.parentExplorer.resourcePartialList.get( id ).get('description')
+           description: that.parentExplorer.resourcePartialList.get( id ).get('description'),
+           city: that.parentExplorer.resourcePartialList.get( id ).get('city')
          };
 
 

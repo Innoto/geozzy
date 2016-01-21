@@ -47,34 +47,32 @@
     </div>
   </div>
   <section class="imageSec gzSection">
-  <!--   {if isset( $res.data.image )}
-      <img src="/cgmlImg/{$res.data.image.id}"
-        {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
-    {else}
-      <p>{t}None{/t}</p>
-    {/if} -->
-    {if isset($res.ext.rextEatAndDrink.data.averagePrice) && $res.ext.rextEatAndDrink.data.averagePrice}
     <div class="reservationSec container">
-      <div class="reservationBox">
-        <div class="priceText">{t}Average menu price{/t}</div>
-        <div class="priceAmount"><span class="num">{$res.ext.rextEatAndDrink.data.averagePrice|escape:'htmlall'}</span><span class="unit"> €</span></div>
-        <div class="reservationBtb">
-          {if isset($res.ext.rextEatAndDrink.data.reservationURL) && $res.ext.rextEatAndDrink.data.reservationURL}
-          <a href="{$res.ext.rextEatAndDrink.data.reservationURL}" target="blank">{t}Reserve{/t}</a>
-          {elseif isset($res.ext.rextEatAndDrink.data.reservationPhone) && $res.ext.rextEatAndDrink.data.reservationPhone}
-          <div class="showReservation">{t}Reserve{/t}</div>
-          {/if}
+      <a href="javascript:history.go(-1);" class="backExplorer">
+        <div class="arrow-left"></div>
+        <p>{t}volver{/t}</p>
+      </a>
+      {if isset($res.ext.rextEatAndDrink.data.averagePrice) && $res.ext.rextEatAndDrink.data.averagePrice}
+        <div class="reservationBox">
+          <div class="priceText">{t}Average menu price{/t}</div>
+          <div class="priceAmount"><span class="num">{$res.ext.rextEatAndDrink.data.averagePrice|escape:'htmlall'}</span><span class="unit"> €</span></div>
+          <div class="reservationBtb">
+            {if isset($res.ext.rextEatAndDrink.data.reservationURL) && $res.ext.rextEatAndDrink.data.reservationURL}
+            <a href="{$res.ext.rextEatAndDrink.data.reservationURL}" target="blank">{t}Reserve{/t}</a>
+            {elseif isset($res.ext.rextEatAndDrink.data.reservationPhone) && $res.ext.rextEatAndDrink.data.reservationPhone}
+            <div class="showReservation">{t}Reserve{/t}</div>
+            {/if}
+          </div>
         </div>
-      </div>
-      <div class="reservationData" style="display:none;">
-        <div class="priceText">{t}Reservation phone{/t}</div>
-        <div class="priceAmount"><span class="num">{$res.ext.rextEatAndDrink.data.reservationPhone|escape:'htmlall'}</span></div>
-        <div class="reservationBtb">
-            <div class="showAverageRate">{t}Show average rate{/t}</div>
+        <div class="reservationData" style="display:none;">
+          <div class="priceText">{t}Reservation phone{/t}</div>
+          <div class="priceAmount"><span class="num">{$res.ext.rextEatAndDrink.data.reservationPhone|escape:'htmlall'}</span></div>
+          <div class="reservationBtb">
+              <div class="showAverageRate">{t}Show average rate{/t}</div>
+          </div>
         </div>
-      </div>
+      {/if}
     </div>
-    {/if}
   </section>
 
   <section class="contentSec container gzSection">
@@ -93,7 +91,7 @@
 
       <ul class="social col-xs-6 col-sm-6 col-md-6 clearfix">
         <li class="elementShare">
-          {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
+          {if isset($res.ext.rextSocialNetwork) && ($res.ext.rextSocialNetwork.data.activeFb || $res.ext.rextSocialNetwork.data.activeTwitter)}
             <div class="share"><i class="fa fa-share-alt"></i></div>
             <div class="share-open" style="display:none;">
               {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}

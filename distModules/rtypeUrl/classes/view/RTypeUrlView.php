@@ -23,7 +23,7 @@ class RTypeHotelView extends View
     Defino un formulario con su TPL como Bloque
    */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "RTypeHotelView: getFormBlock()" );
+    // error_log( "RTypeHotelView: getFormBlock()" );
 
     $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -47,7 +47,7 @@ class RTypeHotelView extends View
     Proceso formulario
    */
   public function actionResourceForm() {
-    error_log( "RTypeHotelView: actionResourceForm()" );
+    // error_log( "RTypeHotelView: actionResourceForm()" );
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
     $form = $this->defResCtrl->resFormLoad();

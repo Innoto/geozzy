@@ -26,7 +26,7 @@ class UrlAliasController {
 
     if( $urlAliasList && $urlAlias = $urlAliasList->fetch() ) {
       $aliasData = $urlAlias->getAllData( 'onlydata' );
-      error_log( "Alias: " . print_r( $aliasData, true ) );
+      // error_log( "Alias: " . print_r( $aliasData, true ) );
 
       global $CGMLCONF;
       $baseUrl = '/' . $CGMLCONF['geozzy']['resourceURL'] . '/' . $aliasData[ 'resource' ];

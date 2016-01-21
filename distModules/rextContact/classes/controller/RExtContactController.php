@@ -7,7 +7,7 @@ class RExtContactController extends RExtController implements RExtInterface {
 
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtContactController::__construct' );
+    // error_log( 'RExtContactController::__construct' );
 
     global $C_LANG;
     $this->actLang = $C_LANG;
@@ -33,7 +33,7 @@ class RExtContactController extends RExtController implements RExtInterface {
     }
 
 
-    error_log( 'RExtContactController: getRExtData = '.print_r( $rExtData, true ) );
+    // error_log( 'RExtContactController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
@@ -136,7 +136,7 @@ class RExtContactController extends RExtController implements RExtInterface {
 
 
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "RExtContactController: getFormBlockInfo()" );
+    // error_log( "RExtContactController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -145,7 +145,7 @@ class RExtContactController extends RExtController implements RExtInterface {
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -228,7 +228,7 @@ class RExtContactController extends RExtController implements RExtInterface {
     Visualizamos el Recurso (extensión Contact)
    */
   public function getViewBlock( Template $resBlock ) {
-    error_log( "RExtContactController: getViewBlock()" );
+    // error_log( "RExtContactController: getViewBlock()" );
     $template = false;
 
     $resId = $this->defResCtrl->resObj->getter('id');
@@ -258,7 +258,7 @@ class RExtContactController extends RExtController implements RExtInterface {
     Datos y template por defecto de la extension
    */
   public function getViewBlockInfo() {
-    error_log( "RExtContactController: getViewBlockInfo()" );
+    // error_log( "RExtContactController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,

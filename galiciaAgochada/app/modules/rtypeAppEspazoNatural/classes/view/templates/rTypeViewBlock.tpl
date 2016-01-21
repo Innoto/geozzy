@@ -55,7 +55,12 @@
   </div>
 
   <section class="imageSec gzSection">
-
+    <div class="reservationSec container">
+      <a href="javascript:history.go(-1);" class="backExplorer">
+        <div class="arrow-left"></div>
+        <p>{t}volver{/t}</p>
+      </a>
+    </div>  
   </section>
 
   <section class="contentSec container gzSection">
@@ -74,7 +79,7 @@
 
       <ul class="social col-xs-6 col-sm-6 col-md-6 clearfix">
         <li class="elementShare">
-          {if isset($res.ext.rextSocialNetwork) && (isset($res.ext.rextSocialNetwork.data.activeFb) || isset($res.ext.rextSocialNetwork.data.activeTwitter))}
+          {if isset($res.ext.rextSocialNetwork) && ($res.ext.rextSocialNetwork.data.activeFb || $res.ext.rextSocialNetwork.data.activeTwitter)}
             <div class="share"><i class="fa fa-share-alt"></i></div>
             <div class="share-open" style="display:none;">
               {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}

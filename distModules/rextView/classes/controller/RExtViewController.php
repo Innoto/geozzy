@@ -7,7 +7,7 @@ class RExtViewController extends RExtController implements RExtInterface {
 
 
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtViewController::__construct' );
+    // error_log( 'RExtViewController::__construct' );
 
     // $this->numericFields = array( 'averagePrice' );
 
@@ -116,7 +116,7 @@ class RExtViewController extends RExtController implements RExtInterface {
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -178,7 +178,7 @@ class RExtViewController extends RExtController implements RExtInterface {
     Visualizamos el Recurso
    */
   public function getViewBlock( Template $resBlock ) {
-    // error_log( "RExtViewController: getViewBlock()" );
+    error_log( "RExtViewController: getViewBlock()" );
     $template = false;
 
     $resId = $this->defResCtrl->resObj->getter('id');
@@ -226,7 +226,7 @@ class RExtViewController extends RExtController implements RExtInterface {
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    error_log( "RExtViewController: getViewBlockInfo()" );
+    // error_log( "RExtViewController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,
