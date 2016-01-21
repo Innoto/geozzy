@@ -8,7 +8,7 @@ rextSocialNetwork::autoIncludes();
 class RTypeAppLugarController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeAppLugarController::__construct' );
+    // error_log( 'RTypeAppLugarController::__construct' );
 
     parent::__construct( $defResCtrl, new rtypeAppLugar() );
   }
@@ -64,7 +64,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
 
 
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "RTypeRestaurantController: getFormBlockInfo()" );
+    // error_log( "RTypeRestaurantController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -444,7 +444,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    error_log( "RTypeAppLugarController: getViewBlockInfo()" );
+    // error_log( "RTypeAppLugarController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -466,7 +466,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $this->mapDirCtrl = new RExtMapDirectionsController( $this );
     $mapDirViewInfo = $this->mapDirCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->mapDirCtrl->rExtName ] = $mapDirViewInfo;
-    error_log( 'viewBlockInfo ext '. $this->mapDirCtrl->rExtName .' = '. print_r( $mapDirViewInfo, true ) );
+    // error_log( 'viewBlockInfo ext '. $this->mapDirCtrl->rExtName .' = '. print_r( $mapDirViewInfo, true ) );
 
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
