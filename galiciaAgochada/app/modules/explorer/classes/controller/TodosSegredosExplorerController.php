@@ -74,7 +74,7 @@ class TodosSegredosExplorerController extends ExplorerController {
       $ids = array_map( 'intval',$_POST['ids']);
     }
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'title_es', 'mediumDescription_es'), 'filters' => array( 'ids' => $ids) ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'title_es', 'mediumDescription_es','city'), 'filters' => array( 'ids' => $ids) ) );
 
     $coma = '';
 
@@ -89,7 +89,8 @@ class TodosSegredosExplorerController extends ExplorerController {
 
         $row['id'] = $resourceDataArray['id'];
         $row['title'] = ( isset($resourceDataArray['title_es']) )?$resourceDataArray['title_es']:false;
-        $row['description'] = ( isset($resourceDataArray['mediumDescription_es']) )?$resourceDataArray['mediumDescription_es']:false; ;
+        $row['description'] = ( isset($resourceDataArray['mediumDescription_es']) )?$resourceDataArray['mediumDescription_es']:false;
+        $row['city'] =  ( isset($resourceDataArray['city']) )?$resourceDataArray['city']:false;
 
 
 

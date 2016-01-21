@@ -750,7 +750,10 @@ class geozzyAPIView extends View
 
       geozzy::load('model/TaxonomytermModel.php');
       $taxtermModel = new TaxonomytermModel();
-      $taxtermList = $taxtermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $urlParamsList['idname']  ),'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
+      $taxtermList = $taxtermModel->listItems(
+        array( 'filters' => array( 'TaxonomygroupModel.idName' => $urlParamsList['idname']  )
+        ,'order' => array( 'weight' => 1 )
+        ,'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
 
       $this->syncModelList( $taxtermList );
     }
