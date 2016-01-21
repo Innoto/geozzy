@@ -56,7 +56,8 @@
         zoom: 8
       };
       that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
-
+      mapControlUtils = new mapControlsUtils();
+      mapControlUtils.changeMapControls(that.resourceMap);
 
       that.espazoNaturalCategories = new geozzy.collection.CategorytermCollection();
       that.espazoNaturalCategories.setUrlByIdName('rextAppEspazoNaturalType');

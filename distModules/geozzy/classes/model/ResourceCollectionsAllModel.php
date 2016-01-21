@@ -22,6 +22,11 @@ class ResourceCollectionsAllModel extends Model {
       'size' => 100,
       'multilang' => true
     ),
+    'shortDescription' => array(
+      'type' => 'VARCHAR',
+      'size' => 100,
+      'multilang' => true
+    ),
     'multimedia' => array(
       'type' => 'INT',
     ),

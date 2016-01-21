@@ -1,5 +1,5 @@
 <h4>{$collectionResources.col.title}</h4>
-<div >{t}Here are some resources we think you might be interested{/t}</div>
+<div>{$collectionResources.col.shortDescription}</div>
 <div class="collectionBox owl-carousel">
     {foreach $collectionResources.res as $resId => $res}
       <div class="item">
