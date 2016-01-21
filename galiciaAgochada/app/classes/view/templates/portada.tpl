@@ -36,7 +36,7 @@
       <h2>{t}Os segredos de Galicia{/t}</h2>
       <div class="row">
         <div class="segredoItem segredoRincons col-lg-4 col-sm-6">
-          <a href="/rincons-con-encanto">
+          <a href="/{$GLOBAL_C_LANG}/rincons-con-encanto">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
@@ -49,7 +49,7 @@
           </a>
         </div>
         <div class="segredoItem segredoPaisaxes col-lg-4 col-sm-6">
-          <a href="/paisaxes-espectaculares">
+          <a href="/{$GLOBAL_C_LANG}/paisaxes-espectaculares">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
@@ -62,7 +62,7 @@
           </a>
         </div>
         <div class="segredoItem segredoPraias col-lg-4 col-sm-6">
-          <a href="/praias-ensono">
+          <a href="/{$GLOBAL_C_LANG}/praias-ensono">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
@@ -75,7 +75,7 @@
           </a>
         </div>
         <div class="segredoItem segredoXantares col-lg-4 col-sm-6">
-          <a href="/sabrosos-xantares">
+          <a href="/{$GLOBAL_C_LANG}/sabrosos-xantares">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
@@ -88,7 +88,7 @@
           </a>
         </div>
         <div class="segredoItem segredoAloxamentos col-lg-4 col-sm-6">
-          <a href="/aloxamentos-con-encanto">
+          <a href="/{$GLOBAL_C_LANG}/aloxamentos-con-encanto">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
@@ -114,7 +114,7 @@
           </a>
         </div>
       </div>
-      <a class="segredosAll" href="/segredos">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
+      <a class="segredosAll" href="/{$GLOBAL_C_LANG}/segredos">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
     </div>
   </section>
 

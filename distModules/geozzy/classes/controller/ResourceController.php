@@ -63,12 +63,12 @@ class ResourceController {
    *  Cargando controlador del RType
    */
   public function getRTypeCtrl( $rTypeId = false ) {
-    error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
+    // error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
 
     if( !$this->rTypeCtrl ) {
       $rTypeIdName = $this->getRTypeIdName( $rTypeId );
       if( class_exists( $rTypeIdName ) ) {
-        error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdName" );
+        // error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdName" );
         $rTypeIdName::autoIncludes();
         $rTypeCtrlClassName = $rTypeIdName.'Controller';
         $this->rTypeCtrl = new $rTypeCtrlClassName( $this );
@@ -246,7 +246,7 @@ class ResourceController {
    * @return Obj-Form
    */
   public function getBaseFormObj( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "ResourceController: getBaseFormObj()" );
+    // error_log( "ResourceController: getBaseFormObj()" );
     // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
 
     $form = new FormController( $formName, $urlAction );
@@ -442,7 +442,7 @@ class ResourceController {
    * @return Obj-Form
    */
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "ResourceController: getFormObj()" );
+    // error_log( "ResourceController: getFormObj()" );
 
     // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
     $form = $this->getBaseFormObj( $formName, $urlAction, $valuesArray );
@@ -468,7 +468,7 @@ class ResourceController {
    * @return Template
    */
   public function formToTemplate( $form, $template = false ) {
-    error_log( "ResourceController: formToTemplate()" );
+    // error_log( "ResourceController: formToTemplate()" );
 
     if( !$template ) {
       $template = new Template();
@@ -532,7 +532,7 @@ class ResourceController {
 
 
   public function getFormBlockInfo( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "GeozzyResourceView: getFormBlockInfo()" );
+    // error_log( "GeozzyResourceView: getFormBlockInfo()" );
 
     $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -558,7 +558,7 @@ class ResourceController {
    * @return Template
    */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "GeozzyResourceView: getFormBlock()" );
+    // error_log( "GeozzyResourceView: getFormBlock()" );
 
     $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -908,7 +908,7 @@ class ResourceController {
    */
   public function setFormFiledata( $form, $fieldName, $colName, $resObj ) {
     $fileField = $form->getFieldValue( $fieldName );
-    error_log( 'setFormFiledata fileInfo: '. print_r( $fileField, true ) );
+    // error_log( 'setFormFiledata fileInfo: '. print_r( $fileField, true ) );
     $fileFieldValues = false;
     $error = false;
 
@@ -942,7 +942,7 @@ class ResourceController {
           $fileFieldValues = $fileField[ 'values' ];
           break;
         default:
-          error_log( 'To Model: DEFAULT='.$fileField['status'] );
+          // error_log( 'To Model: DEFAULT='.$fileField['status'] );
           break;
       }
 
@@ -1036,7 +1036,7 @@ class ResourceController {
       $taxTerms[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'taxonomyterm' );
     }
 
-    error_log( "getResTerms( $resId ): ".print_r( $taxTerms, true ) );
+    // error_log( "getResTerms( $resId ): ".print_r( $taxTerms, true ) );
     return( count( $taxTerms ) > 0 ? $taxTerms : false );
   }
 
@@ -1117,7 +1117,7 @@ class ResourceController {
 
 
   public function getCollectionsInfo( $resId ) {
-    error_log( "ResourceController: getCollectionsInfo( $resId )" );
+    // error_log( "ResourceController: getCollectionsInfo( $resId )" );
     $colInfo = array(
       'options' => array(),
       'values' => array()
@@ -1148,7 +1148,7 @@ class ResourceController {
   }
 
   public function getMultimediaInfo( $resId ) {
-    error_log( "ResourceController: getMultimediaInfo( $resId )" );
+    // error_log( "ResourceController: getMultimediaInfo( $resId )" );
     $multimediaInfo = array(
       'options' => array(),
       'values' => array()
@@ -1423,7 +1423,7 @@ class ResourceController {
   }
 
   private function setFormUrlAlias( $form, $fieldName, $resObj ) {
-    error_log( "setFormUrlAlias( form, $fieldName, resObj )" );
+    // error_log( "setFormUrlAlias( form, $fieldName, resObj )" );
     if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
       $resId = $resObj->getter('id');
       foreach( $form->langAvailable as $langId ) {
@@ -1437,7 +1437,7 @@ class ResourceController {
   }
 
   public function getUrlByPattern( $resId, $langId = false ) {
-    error_log( "getUrlByPattern( $resId, $langId )" );
+    // error_log( "getUrlByPattern( $resId, $langId )" );
     global $CGMLCONF;
     $urlAlias = '/'.$CGMLCONF['geozzy']['resourceURL'].'/'.$resId;
 
@@ -1489,7 +1489,7 @@ class ResourceController {
 
 
   public function setUrl( $resId, $langId = false, $urlAlias = false ) {
-    error_log( "setUrl( $resId, $langId, $urlAlias )" );
+    // error_log( "setUrl( $resId, $langId, $urlAlias )" );
     $result = true;
 
     global $CGMLCONF;
@@ -1497,7 +1497,7 @@ class ResourceController {
     if( !isset( $urlAlias ) || $urlAlias === false || $urlAlias === '' ) {
       $urlAlias = $this->getUrlByPattern( $resId, $langId );
       //$urlAlias = '/'.$CGMLCONF['geozzy']['resourceURL'].'/'.$resId;
-      error_log( "setUrl: urlAlias automatico: $urlAlias " );
+      // error_log( "setUrl: urlAlias automatico: $urlAlias " );
     }
 
     $urlAlias = $this->sanitizeUrl( $urlAlias );
@@ -1510,7 +1510,7 @@ class ResourceController {
     $elemsList = $elemModel->listItems( array( 'filters' => array( 'canonical' => 1, 'resource' => $resId,
       'lang' => $langId ) ) );
     if( $elem = $elemsList->fetch() ) {
-      error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
+      // error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
       $aliasArray[ 'id' ] = $elem->getter( 'id' );
     }
 
@@ -1521,7 +1521,7 @@ class ResourceController {
     }
     else {
       $result = $elemModel->getter( 'id' );
-      error_log( 'setUrl: Creada/Actualizada - '.$result );
+      // error_log( 'setUrl: Creada/Actualizada - '.$result );
     }
 
     return $result;
@@ -1538,7 +1538,7 @@ class ResourceController {
     Visualizamos el Recurso
    */
   public function getViewBlock( $resData = false ) {
-    error_log( "GeozzyResourceView: getViewBlock()" );
+    // error_log( "GeozzyResourceView: getViewBlock()" );
 
     if( !$resData ) {
       $resData = $this->getResourceData(); // true -> translated version
@@ -1550,10 +1550,10 @@ class ResourceController {
     $this->getRTypeCtrl( $resData[ 'rTypeId' ] );
 
     if( $this->rTypeCtrl ) {
-      error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlock' );
+      // error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlock' );
       $rTypeBlock = $this->rTypeCtrl->getViewBlock( $resBlock );
       if( $rTypeBlock ) {
-        error_log( 'GeozzyResourceView: resBlock = rTypeBlock' );
+        // error_log( 'GeozzyResourceView: resBlock = rTypeBlock' );
         $resBlock = $rTypeBlock;
       }
     }
@@ -1567,7 +1567,7 @@ class ResourceController {
     Datos y template por defecto del ResourceBlock
    */
   public function getViewBlockInfo( $resId = false ) {
-    error_log( "GeozzyResourceView: getViewBlockInfo()" );
+    // error_log( "GeozzyResourceView: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -1576,7 +1576,7 @@ class ResourceController {
     );
 
     if( $this->getRTypeCtrl() ) {
-      error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlockInfo' );
+      // error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlockInfo' );
       $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
     }
 
@@ -1604,7 +1604,7 @@ class ResourceController {
   }
 
   public function getResourceBlock( $resData ) {
-    error_log( "GeozzyResourceView: getResourceBlock()" );
+    // error_log( "GeozzyResourceView: getResourceBlock()" );
 
     $template = new Template();
 
@@ -1618,7 +1618,7 @@ class ResourceController {
 
 
     $collections = $this->getCollectionsInfo( $resData[ 'id' ] );
-    error_log( "collections = ". print_r( $collections, true ) );
+    // error_log( "collections = ". print_r( $collections, true ) );
 
     if( $collections ) {
       foreach( $collections[ 'values' ] as $collectionId ) {
