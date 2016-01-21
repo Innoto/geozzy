@@ -76,6 +76,8 @@
 <script type="text/javascript">
 var geozzy = geozzy || {};
 
+
+
 geozzy.rExtMapDirectionsData = {
   title: '{$rExt.data.title}',
   lat: {$rExt.data.locLat},
@@ -86,14 +88,17 @@ geozzy.rExtMapDirectionsData = {
 };
 
 $(document).ready( function() {
-  if( typeof geozzy.rExtMapDirectionsData !== 'undefined' ) {
-    geozzy.rExtMapDirectionsController.prepareMap( geozzy.rExtMapDirectionsData );
-  }
+  setTimeout(function(){
+    if( typeof geozzy.rExtMapDirectionsData !== 'undefined' ) {
+      geozzy.rExtMapDirectionsController.prepareMap( geozzy.rExtMapDirectionsData );
+    }
 
+    if( typeof geozzy.rExtMapDirectionsData.wrapperRoute !== 'undefined' ) {
+      geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData );
+    }
 
-  if( typeof geozzy.rExtMapDirectionsData.wrapperRoute !== 'undefined' ) {
-    geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData );
-  }
+  },300);
+
 });
 
 </script>
