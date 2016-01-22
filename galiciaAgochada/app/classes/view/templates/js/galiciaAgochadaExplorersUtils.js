@@ -172,7 +172,7 @@ function chooseFTLayer( val, zonaCategories, mapa, mapOptions ) {
 
     case 'lugoTerraCha':
        mapa.setZoom( 10 );
-       mapa.setCenter( new google.maps.LatLng(43.10,-8.595) );
+       mapa.setCenter( new google.maps.LatLng(43.10,-7.55) );
        break;
 
     case 'terrasDeSantiago':
