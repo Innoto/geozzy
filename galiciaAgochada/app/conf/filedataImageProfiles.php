@@ -62,6 +62,7 @@ $IMAGE_PROFILES = array(
 'typeIconCategory' => array(
     'width' => 32,
     'height' => 32,
+    'padding' => 1,
     'saveFormat' => 'PNG' ),
 
 'imgMultimediaGallery' => array(
