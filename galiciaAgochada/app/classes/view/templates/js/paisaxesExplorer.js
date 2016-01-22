@@ -270,7 +270,6 @@
       }
       else
       if ( $(state.element).attr('icon') != 'false' && typeof state.element != 'undefined' ) {
-        console.log( $(state.element).attr('icon')  );
         $ret = $('<span><img width=24 height=24 src="/cgmlImg/' + $(state.element).attr('icon') + '/filterTypePaisaxes2/icon.png"/></i> ' + state.text + '</span>');
       }
       else {
