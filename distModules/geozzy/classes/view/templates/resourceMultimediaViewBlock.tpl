@@ -26,6 +26,7 @@
 
 <div class="galleryBox">
 <h4>{$multimediaAll.col.title}</h4>
+<div>{$multimediaAll.col.shortDescription}</div>
   <div id="multimediaGallery_{$id}" class="simpleMultimediaGallery" style="display:none;">
     {assign var=counter value=0}
     {foreach $multimediaAll.res as $multimedia}

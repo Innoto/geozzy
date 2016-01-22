@@ -1,5 +1,65 @@
 var capaFussion = false;
 
+mapControlsUtils = function(){
+  var that = this;
+
+  that.controlMapSat = '';
+  that.controlMapRel = '';
+  that.controlMapMap = '';
+
+  that.changeMapControls = function (mapa) {
+    var controlsMapsContainer = document.createElement('div');
+    // Set CSS for the control border.
+    that.controlMapSat = document.createElement('div');
+    $(that.controlMapSat).addClass('controlMapSat controlMapCustom');
+    //controlMapSat.title = 'SAT';
+    controlsMapsContainer.appendChild(that.controlMapSat);
+
+    that.controlMapMap = document.createElement('div');
+    $(that.controlMapMap).addClass('controlMapMap controlMapCustom');
+    controlsMapsContainer.appendChild(that.controlMapMap);
+
+
+    that.controlMapRel = document.createElement('div');
+    $(that.controlMapRel).addClass('controlMapRel controlMapCustom');
+    controlsMapsContainer.appendChild(that.controlMapRel);
+
+    //
+    that.controlMapSat.addEventListener('click', function() {
+      mapa.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+      that.controlMapShow('satellite');
+    });
+
+    that.controlMapMap.addEventListener('click', function() {
+      mapa.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+      that.controlMapShow('roadmap');
+    });
+
+    that.controlMapRel.addEventListener('click', function() {
+      mapa.setMapTypeId(google.maps.MapTypeId.TERRAIN);
+      that.controlMapShow('terrain');
+    });
+
+    mapa.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(controlsMapsContainer);
+    that.controlMapShow(mapa.getMapTypeId());
+  }
+
+  that.controlMapShow = function(activeClass){
+
+    $('.controlMapCustom').removeClass('active');
+    if( activeClass === 'satellite' ){
+      $(that.controlMapSat).addClass('active');
+    }
+    if( activeClass === 'roadmap' ){
+      $(that.controlMapMap).addClass('active');
+    }
+    if( activeClass === 'terrain' ){
+      $(that.controlMapRel).addClass('active');
+    }
+  }
+
+}
+
 function chooseFTLayer( val, zonaCategories, mapa, mapOptions ) {
   var capa = false;
 

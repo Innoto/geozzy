@@ -43,7 +43,9 @@ $IMAGE_PROFILES = array(
   'xhdpi16' => array( 'width' => 1280, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
 
   'big' => array( 'width' => 2000, 'height' => 2000, 'cut' => false, 'enlarge' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
-  'fast' => array( 'width' => 400, 'height' => 300, 'cut' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
+  'fast' => array( 'width' => 400, 'height' => 300, 'cut' => false,
+    'rasterColor' => '#000000', 'backgroundColor' => '#FFFFFF',
+    'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
   'fast_cut' => array( 'width' => 400, 'height' => 300, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
   'square_cut' => array( 'width' => 128, 'height' => 128, 'cut' => true ),
   'exp1' => array( 'width' => 200, 'height' => 150 ),
@@ -60,6 +62,7 @@ $IMAGE_PROFILES = array(
 'typeIconCategory' => array(
     'width' => 32,
     'height' => 32,
+    'padding' => 1,
     'saveFormat' => 'PNG' ),
 
 'imgMultimediaGallery' => array(

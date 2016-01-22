@@ -1571,17 +1571,24 @@ class ResourceController {
 
     $viewBlockInfo = array(
       'template' => false,
-      'data' => $this->getResourceData( $resId, true ),
+      'data' => false,
       'ext' => array()
     );
 
-    if( $this->getRTypeCtrl() ) {
-      // error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlockInfo' );
-      $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
+    if( $this->loadResourceObject( $resId ) && $this->resObj->getter( 'published' ) ) {
+      $viewBlockInfo['data'] = $this->getResourceData( $resId, true );
+      if( $this->getRTypeCtrl() ) {
+        // error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlockInfo' );
+        $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
+      }
     }
+
 
     return( $viewBlockInfo );
   } // function getViewBlockInfo()
+
+
+
 
 
   /**
@@ -1689,6 +1696,7 @@ class ResourceController {
       {
         $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
         'title' => $collection->getter('title_'.$this->actLang),
+        'shortDescription' => $collection->getter('shortDescription_'.$this->actLang),
         'image' => $collection->getter('image'),
         'multimedia' => $collection->getter('multimedia'));
         $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
@@ -1740,9 +1748,12 @@ class ResourceController {
 
               $urlAlias = $this->getUrlAlias($resVal->getter('id'));
 
-              $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
-                array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
-                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang), 'image' => $imgUrl, 'urlAlias' => $urlAlias);
+              $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] = array(
+                'rType' => $resVal->getter('rTypeId'),
+                'title' => $resVal->getter('title_'.$this->actLang),
+                'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
+                'image' => $imgUrl, 'urlAlias' => $urlAlias
+              );
             }
           }
         }

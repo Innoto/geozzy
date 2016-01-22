@@ -8,6 +8,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <title>{block name="headTitle"}Galicia Agochada | {/block}</title>
+  <meta name="description" content="{block name="headDescription"}Galicia Agochada{/block}">
   {block name="socialMeta"}{/block}
   {block name="headClientIncludes"}
     {$client_includes}
