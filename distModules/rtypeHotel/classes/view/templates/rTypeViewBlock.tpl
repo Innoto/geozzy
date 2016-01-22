@@ -128,6 +128,8 @@
 
 
     <div class="taxonomyBar row clearfix">
+
+      {if isset($res.data.accommodationType) && $res.data.accommodationType.idName == 'hoteles'}
       <div class="taxStars col-xs-12 col-sm-2">
         {if isset($res.data.accommodationCategory)}
           <div class="taxStarsBox">
@@ -139,6 +141,8 @@
         {/foreach}
         {/if}
       </div>
+      {/if}
+      
       <div class="taxIcons col-xs-12 col-sm-10">
         {foreach $allServices as $termId => $term}
 

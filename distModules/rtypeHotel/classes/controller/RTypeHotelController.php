@@ -538,6 +538,10 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
 
+    foreach ($viewBlockInfo['data']['accommodationType'] as $type){
+      $viewBlockInfo['data']['accommodationType']['idName'] = $type['idName'];
+    }
+
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
     $resData = $this->defResCtrl->getResourceData( false, true );
