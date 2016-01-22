@@ -117,7 +117,10 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         var marker = e.mapMarker = new google.maps.Marker({
                   position: new google.maps.LatLng( e.get('lat'), e.get('lng') ),
                   icon: that.chooseMarker(e),
-                  map: that.map
+                  map: that.map,
+                  flat: true,
+                  optimized: false,
+                  visible:true
                 });
 
         marker.setVisible(false);
@@ -302,8 +305,25 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   markerBounce: function(id) {
     var that = this;
 
-    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(google.maps.Animation.BOUNCE);
-    setTimeout(function(){ that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(null); }, 800);
+    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setOptions({
+      title: 'selected'
+    });
+    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
+    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+
+    //that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(google.maps.Animation.BOUNCE);
+    //setTimeout(function(){ that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(null); }, 800);
+  },
+
+  markerBounceEnd: function(id) {
+    var that = this;
+    
+    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setOptions({
+      title: ''
+    });
+    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
+    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+
   },
 
   panTo: function( id ) {
