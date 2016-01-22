@@ -49,14 +49,11 @@ class AppResourceBridgeView extends MasterView {
       $this->template->exec();
     }
     else {
-      //header("HTTP/1.0 404 Not Found");
+      header("HTTP/1.0 404 Not Found");
+      $this->template->addClientStyles('styles/masterResource.less');
       $this->template->setTpl( 'appResourceBridgePage404.tpl', 'appResourceBridge');
       $this->template->assign( 'title404', __( 'Página no encontrada' ) );
-      $this->template->assign( 'content404',
-        '<p>'.__( 'La página indicada no existe.' ).'</p>'.
-        '<p>'.__( 'Puede usar los enlaces de la parte superior e inferior para moverse a las distintas secciones de la web.' ).'</p>'
-      );
-
+  
       $this->template->exec();
     }
   }
