@@ -20,7 +20,7 @@ define([], function () {
         filterSeconds = 18;
     // Variables for the both domains to access
     var urlBIserver = "http://test.geozzy.itg.es:10164",
-        urlGeozzy = "http://galiciaagochada.nnt/api";
+        urlGeozzy = "http://test1.geozzy.com/api";
 
     var weekMilis = 7 * 24 * 60 * 60 * 1000;
 
