@@ -74,7 +74,8 @@
         zoom: 8
       };
       that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
-
+      mapControlUtils = new mapControlsUtils();
+      mapControlUtils.changeMapControls(that.resourceMap);
 
       that.eatAndDrinkTypes = new geozzy.collection.CategorytermCollection();
       that.eatAndDrinkTypes.setUrlByIdName('eatanddrinkType');

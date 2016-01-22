@@ -10,9 +10,11 @@
   {if $res.data.headTitle!='' }
     {$res.data.headTitle}
   {else}
-    {$res.data["title"]}
+    {$res.data.title}
   {/if}
 {/block}
+
+{block name="headDescription"}{if $res.data.headDescription!='' }{$res.data.headDescription}{else}{$res.data.shortDescription}{/if}{/block}
 
 {block name="socialMeta" append}
 <meta property="og:title" content="{$res.data.headTitle}" />

@@ -33,7 +33,6 @@
       lang_array = idioma.split('-');
       window.location = lang_array[0] + window.location.pathname;
     }
-
   });
 
 
@@ -74,7 +73,8 @@
         mapTypeControl: false
       };
       that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
-
+      mapControlUtils = new mapControlsUtils();
+      mapControlUtils.changeMapControls(that.resourceMap);
 
       that.eatAndDrinkTypes = new geozzy.collection.CategorytermCollection();
       that.eatAndDrinkTypes.setUrlByIdName('eatanddrinkType');
