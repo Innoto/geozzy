@@ -22,17 +22,14 @@
 </head>
 <body data-spy="scroll" data-target=".headContent">
   <article>
-    <header class="headContent">
-      {block name="headContent"}
+    {block name="headContent"}
+      <header class="headContent">
         {include file="header.tpl"}
-      {/block}
-    </header>
-
+      </header>
+    {/block}
     <section class="bodyContent">
       {block name="bodyContent"}{if $bodyContent}{$bodyContent}{/if}{/block}
     </section>
-
-
     {block name="footerContent"}
       <footer class="footerContent">
         {include file="footer.tpl"}
