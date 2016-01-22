@@ -50,7 +50,7 @@
                   {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}{$res.data["urlAlias_$k"]}" class="page-scroll">{$lang.name}</a></li>{/if}
                 {/foreach}
               {else} <!-- sitios donde no hay recurso aún (portada y exploradores) -->
-                {if isset($isFront) && $isFront}
+                {if !isset($url) || (isset($isFront) && $isFront)}
                   {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
                     {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}" class="page-scroll">{$lang.name}</a></li>{/if}
                   {/foreach}

@@ -1571,17 +1571,24 @@ class ResourceController {
 
     $viewBlockInfo = array(
       'template' => false,
-      'data' => $this->getResourceData( $resId, true ),
+      'data' => false,
       'ext' => array()
     );
 
-    if( $this->getRTypeCtrl() ) {
-      // error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlockInfo' );
-      $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
+    if( $this->loadResourceObject( $resId ) && $this->resObj->getter( 'published' ) ) {
+      $viewBlockInfo['data'] = $this->getResourceData( $resId, true );
+      if( $this->getRTypeCtrl() ) {
+        // error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlockInfo' );
+        $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
+      }
     }
+
 
     return( $viewBlockInfo );
   } // function getViewBlockInfo()
+
+
+
 
 
   /**
