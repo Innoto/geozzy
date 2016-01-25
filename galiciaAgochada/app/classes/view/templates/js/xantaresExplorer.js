@@ -258,7 +258,7 @@
       var filtroReset = new geozzy.explorerComponents.filters.filterResetView(
         {
           title:'Ver todo',
-          mainContainerClass: that.explorerclass+' .filters_advancedContainer',
+          mainContainerClass: that.explorerclass+' .filtersContainer',
           containerClass: 'resetFilters'
         }
       );
@@ -321,7 +321,7 @@
     that.interfaceFilters = function(){
       var filterContainer = $(that.explorerclass+' .explorer-container-filter');
 
-      var filterInterface = '<div class="filters_advancedContainer">';
+      var filterInterface = '<div class="filtersContainer">';
       filterInterface += '<div class="filters_fixed"></div>';
       filterInterface += '<div class="filters_summary"><div class="filters_summary_xantarestipos"></div><div class="filters_summary_xantaresprezo"></div></div>';
       filterInterface += '<div class="filters_openFilters"><i class="fa fa-caret-down"></i></div>';
