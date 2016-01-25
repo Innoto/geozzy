@@ -22,10 +22,10 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       bottom:0
     },
     innerMargin:{
-      left:0,
-      top:0 ,
-      right:0,
-      bottom:0
+      left:500,
+      top:100 ,
+      right:100,
+      bottom:100
     },
   },
 
@@ -217,9 +217,20 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   coordsInMap: function( lat, lng ) {
     var that = this;
 
+    var rt = that.aboutMarkerPosition(lat,lng);
+    return rt.inMap;
+  },
+
+  aboutMarkerPosition: function( lat, lng) {
+    var that = this;
+
     google.maps.event.trigger( that.map, "resize");
 
-    var ret = 0; // NOT IN MAP OR BUFFER
+    var ret = {
+      inMap:0, // NOT IN MAP OR BUFFER
+      outerZone:false
+    }
+
 
     var mb = that.getMapBounds();
 
@@ -244,15 +255,46 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     if( lat < ne.lat() && lng < ne.lng() && lat > sw.lat() && lng > sw.lng() ) {
 
       if( lat < neI.lat() && lng < neI.lng() && lat > swI.lat() && lng > swI.lng() ) {
-        ret = 3; // IN CENTER OF MAP AREA
+        ret.inMap = 3; // ********* IN CENTER OF MAP AREA **********
       }
       else{
-        ret = 2;
+        ret.inMap = 2; // ********* IN INNER MARGIN *******
       }
-
     }
     else if(lat < neO.lat() && lng < neO.lng() && lat > swO.lat() && lng > swO.lng() ) {
-      ret = 1; // NOT IN MAP AREA BUT IN OUTER MARGIN
+      ret.inMap = 1; // ********* IN OUTER MARGIN ********
+
+      if( lat > ne.lat() && lng > ne.lng() ) {
+        ret.outerZone = 'NE';
+      }
+      else
+      if( lat < sw.lat() && lng < sw.lng() ) {
+        ret.outerZone = 'SW';
+      }
+      else
+      if( lat < sw.lat() && lng > ne.lng() ){
+        ret.outerZone = 'NW';
+      }
+      else
+      if( lng < sw.lng() && lat < ne.lat()  ) {
+        ret.outerZone = 'SE';
+      }
+      else
+      if( lng > ne.lng() ) {
+        ret.outerZone = 'N';
+      }
+      else
+      if( lng < sw.lng() ) {
+        ret.outerZone = 'S';
+      }
+      else
+      if( lat < sw.lat() ) {
+        ret.outerZone = 'E';
+      }
+      else
+      if( lat > ne.lat() ) {
+        ret.outerZone = 'W';
+      }
     }
 
     return ret;
