@@ -245,6 +245,20 @@
     background: @gzzColor-bck-1;
     height: 100%;
     padding-bottom: 20px;
+    .gempiImg{
+      position: relative;
+      button{
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        -ms-transform: translateX(-50%); /* IE 9 */
+        -webkit-transform: translateX(-50%); /* Chrome, Safari, Opera */
+        transform: translateX(-50%);
+
+        background-color: @gzzColor-paisaxes;
+        &:hover{ background-color: @gzzColor-paisaxes-hover; } 
+      }
+    }
     .gempiInfo{
       .gempiTitle,
       .gempiLocation,

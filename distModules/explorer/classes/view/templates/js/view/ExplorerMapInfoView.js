@@ -16,7 +16,10 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
   template: _.template(
     '<div class="gempiContent">'+
-      '<div class="gempiImg"><img class="img-responsive" src="/cgmlImg/<%-img%>/fast_cut/.jpg" /></div>'+
+      '<div class="gempiImg">'+
+        '<img class="img-responsive" src="/cgmlImg/<%-img%>/fast_cut/.jpg" />'+
+        '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
+      '</div>'+
       '<div class="gempiInfo">'+
         '<div class="gempiTitle"><%-title%></div>'+
         '<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+
@@ -115,7 +118,8 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
            img: that.parentExplorer.resourceMinimalList.get( id ).get('img'),
            title: that.parentExplorer.resourcePartialList.get( id ).get('title'),
            description: that.parentExplorer.resourcePartialList.get( id ).get('description'),
-           city: that.parentExplorer.resourcePartialList.get( id ).get('city')
+           city: that.parentExplorer.resourcePartialList.get( id ).get('city'),
+           touchAccess: that.parentExplorer.explorerTouchDevice
          };
 
 
