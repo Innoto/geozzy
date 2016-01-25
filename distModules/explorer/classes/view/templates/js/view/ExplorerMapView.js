@@ -346,7 +346,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
 
 
-console.log(scale)
 
 
 
