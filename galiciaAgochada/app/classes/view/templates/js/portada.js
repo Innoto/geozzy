@@ -1,5 +1,5 @@
 $( document ).ready(function(){
-  
+  /*Cambio de cabeceira*/
   $('.headContent').addClass('transparent');
   $(window).bind("scroll", function(e) {
     if($(this).scrollTop() > 0){
@@ -8,10 +8,11 @@ $( document ).ready(function(){
       $('.headContent').addClass('transparent');
     }
   });
+  /*Pechar o cabeceira reducida*/
   $('.nav a').on('click', function(){
     $('.navbar-toggle').click();
   });
-
+  /*Sliders destacados*/
   $('.owl-carousel').owlCarousel({
     loop: true,
     margin:10,
@@ -31,7 +32,7 @@ $( document ).ready(function(){
 
   $('.owl-carousel .owl-nav .owl-prev').html('<i class="fa fa-angle-left"></i>');
   $('.owl-carousel .owl-nav .owl-next').html('<i class="fa fa-angle-right"></i>');
-
+  /*Effect Anchor*/
   initEffectNavs();
 
 });
