@@ -4,7 +4,7 @@
   <span id="inicio"></span>
   <section class="gzzSec secImage">
     <!-- Carousel items -->
-    <div id="carousel" class="s-carousel carousel carousel-fade" data-ride="carousel" data-interval="5000" data-pause="false">
+    <div id="carousel" class="s-carousel carousel slide carousel-fade" data-ride="carousel" data-interval="5000" data-pause="false">
       <!--<ol class="carousel-indicators">
         <li data-target="#carousel" data-slide-to="0" class="active"></li>
         <li data-target="#carousel" data-slide-to="1"></li>
