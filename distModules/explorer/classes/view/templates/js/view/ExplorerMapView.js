@@ -317,7 +317,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   markerBounceEnd: function(id) {
     var that = this;
-    
+
     that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setOptions({
       title: ''
     });
@@ -346,7 +346,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
 
 
-console.log(scale)
 
 
 
@@ -376,16 +375,18 @@ console.log(scale)
 
 
       //console.log( that.pixelToCoord( 10,20 ).lat() )
-
-//console.log( P.x+Vx*1, P.y+Vy*1 )
-
-
-
-//console.log(P.x, Vx, P.x-Vx)
+      //console.log( P.x+Vx*1, P.y+Vy*1 )
+      //console.log(P.x, Vx, P.x-Vx)
 
 
+      if( that.parentExplorer.resourceMinimalList.get(id).get( 'mapVisible' ) == 2) {
+        var toMove = 200;
+      }
+      else {
+        var toMove = 300;
+      }
 
-that.map.panTo( that.pixelToCoord( P.x, P.y ) );
+      that.map.panTo( that.pixelToCoord( C.x + (Vx*toMove/scale), C.y + (Vy*toMove/scale) ) );
 
 
 
