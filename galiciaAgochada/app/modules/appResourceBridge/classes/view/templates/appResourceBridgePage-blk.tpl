@@ -1,15 +1,14 @@
-{extends file="primary.tpl"}
+
 
 <!-- appResourceBridgePage-blk.tpl en appResourceBridge module -->
 
-{block name="headContent"}{/block}
-{block name="headClientIncludes"}
-  {$client_includes}
-{/block}
-
-{block name="bodyContent"}
+{$client_includes}
+<section class="bodyContent">
   {$resTemplateBlock}
-{/block}
+</section>
+<footer class="footerContent">
+  {include file="footer.tpl"}
+</footer>
 
 <script rel="false" type="text/javascript" src="/media/js/resource.js"></script>
 
