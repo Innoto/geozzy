@@ -284,19 +284,23 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     // Get outer position
     if(  lat > neI.lat() && lng < swI.lng() ) {
-      ret.outerZone = 'NE';
+      ret.outerZone = 'NW';
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
     }
     else
     if( lat < swI.lat() && lng > neI.lng() ) {
-      ret.outerZone = 'SW';
+      ret.outerZone = 'SE';
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - swInner.y, 2 )  + Math.pow( markerPixel.x - neInner.x, 2) );
     }
     else
     if( lat > neI.lat() && lng > neI.lng() ){
-      ret.outerZone = 'NW';
+      ret.outerZone = 'NE';
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - neInner.x, 2) );
     }
     else
     if( lat < swI.lat() && lng < swI.lng() ) {
-      ret.outerZone = 'SE';
+      ret.outerZone = 'SW';
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - swInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
     }
     else
     if( lat < swI.lat() ) {
@@ -310,13 +314,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     }
     else
     if( lng < swI.lng() ) {
-      ret.outerZone = 'E';
-      ret.distanceToInnerMargin = -(markerPixel.x - swInner.x);
+      ret.outerZone = 'W';
+      ret.distanceToInnerMargin = -(markerPixel.x -swInner.x);
     }
     else
     if( lng > neI.lng() ) {
-      ret.outerZone = 'W';
-      ret.distanceToInnerMargin = markerPixel.x -neInner.x;
+      ret.outerZone = 'E';
+      ret.distanceToInnerMargin = markerPixel.x - neInner.x;
     }
 
     return ret;
@@ -413,7 +417,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         that.lastCenter = that.map.getCenter();
       }
 
-      console.log(mapDistanceToInnerMargin);
+      console.log(mapDistanceToInnerMargin, mapOuterZone);
       // PANTO
       var toMove = that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() ;
       var P = that.coordToPixel( toMove )
