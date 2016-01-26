@@ -11,7 +11,7 @@
       <h1>{t}Todos os segredos{/t}</h1>
     </div>
   </div>
-  <div class="todosSegredosExplorer">
+  <div class="todosSegredosExplorer explorerCommonSagan">
     {include file="explorer///explorer.tpl"}
   </div>
 {/block}

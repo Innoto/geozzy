@@ -5,7 +5,7 @@
 {/block}
 
 {block name="bodyContent"}
-  <div class="rinconsExplorer">
+  <div class="rinconsExplorer explorerCommonBase">
     {include file="explorer///explorer.tpl"}
   </div>
 {/block}
