@@ -264,9 +264,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     var swI = that.map.getProjection().fromPointToLatLng( swInner );
     var neI = that.map.getProjection().fromPointToLatLng( neInner );
 
-    var oNe = ne;
-    var oSw = sw;
-
     if( lat < ne.lat() && lng < ne.lng() && lat > sw.lat() && lng > sw.lng() ) {
 
       if( lat < neI.lat() && lng < neI.lng() && lat > swI.lat() && lng > swI.lng() ) {
@@ -274,47 +271,50 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       }
       else{
         ret.inMap = 2; // ********* IN INNER MARGIN *******
-        oNe = neI;
-        oSw = swI;
       }
     }
     else if(lat < neO.lat() && lng < neO.lng() && lat > swO.lat() && lng > swO.lng() ) {
       ret.inMap = 1; // ********* IN OUTER MARGIN ********
     }
 
+    oNe = neI;
+    oSw = swI;
+
+
+
     // Get outer position
-    if(  lat > oNe.lat() && lng < oSw.lng() ) {
+    if(  lat > neI.lat() && lng < swI.lng() ) {
       ret.outerZone = 'NE';
     }
     else
-    if( lat < oSw.lat() && lng > oNe.lng() ) {
+    if( lat < swI.lat() && lng > neI.lng() ) {
       ret.outerZone = 'SW';
     }
     else
-    if( lat > oNe.lat() && lng > oNe.lng() ){
+    if( lat > neI.lat() && lng > neI.lng() ){
       ret.outerZone = 'NW';
     }
     else
-    if( lat < oSw.lat() && lng < oSw.lng() ) {
+    if( lat < swI.lat() && lng < swI.lng() ) {
       ret.outerZone = 'SE';
     }
     else
-    if( lat < oSw.lat() ) {
+    if( lat < swI.lat() ) {
       ret.outerZone = 'S';
       ret.distanceToInnerMargin = markerPixel.y - swInner.y;
     }
     else
-    if( lat > oNe.lat() ) {
+    if( lat > neI.lat() ) {
       ret.outerZone = 'N';
       ret.distanceToInnerMargin = -(markerPixel.y -neInner.y);
     }
     else
-    if( lng < oSw.lng() ) {
+    if( lng < swI.lng() ) {
       ret.outerZone = 'E';
       ret.distanceToInnerMargin = -(markerPixel.x - swInner.x);
     }
     else
-    if( lng > oNe.lng() ) {
+    if( lng > neI.lng() ) {
       ret.outerZone = 'W';
       ret.distanceToInnerMargin = markerPixel.x -neInner.x;
     }
