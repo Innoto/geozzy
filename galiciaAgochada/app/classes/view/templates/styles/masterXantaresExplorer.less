@@ -347,6 +347,10 @@
     background: @gzzColor-bck-1;
     height: 100%;
     padding-bottom: 20px;
+    position: relative;
+    .gempiImg{
+      position: relative;
+    }
     .gempiInfo{
       .gempiTitle,
       .gempiLocation,
@@ -389,6 +393,28 @@
 /**********************  RESPONSIVE MEDIA QUERIES  ************************************/
 /**************************************************************************************/
 /**************************************************************************************/
+.touch{
+  #geozzyExplorerMapInfo{
+    height: 405px;
+    .gempiContent{
+      .gempiTouchAccess{
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        -ms-transform: translateX(-50%); /* IE 9 */
+        -webkit-transform: translateX(-50%); /* Chrome, Safari, Opera */
+        transform: translateX(-50%);
+        text-align:center;
+        button{
+          border: none;
+          background-color: @gzzColor-paisaxes;
+          &:hover{ background-color: @gzzColor-paisaxes-hover; }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 1200px) {
 
 } /*1200px*/
