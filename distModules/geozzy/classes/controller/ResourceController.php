@@ -912,57 +912,86 @@ class ResourceController {
     $fileFieldValues = false;
     $error = false;
 
+    $filedataCtrl = new FiledataController();
+    $newFiledataObj = false;
+
     if( isset( $fileField['status'] ) ) {
 
-      // error_log( 'To Model - fileInfo: '. print_r( $fileField[ 'values' ], true ) );
-      // error_log( 'To Model - status: '.$fileField['status'] );
+      error_log( 'To Model - fileInfo: '. print_r( $fileField[ 'values' ], true ) );
+      error_log( 'To Model - status: '.$fileField['status'] );
+      error_log( '========' );error_log( '========' );error_log( '========' );error_log( '========' );
 
       switch( $fileField['status'] ) {
         case 'LOADED':
-          // error_log( 'To Model: '.$fileField['status'] );
-          $fileFieldValues = $fileField[ 'values' ];
+          $fileFieldValues = $fileField['values'];
+
+          $newFiledataObj = $filedataCtrl->createNewFile( $fileFieldValues );
+          error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          if( $newFiledataObj ) {
+            $resObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
+          }
+
           break;
         case 'REPLACE':
-          // error_log( 'To Model: '.$fileField['status'] );
-          // // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField[ 'prev' ], true ) );
-          /**
-            TODO: Falta ver se eliminamos o ficheiro anterior
-          */
-          $fileFieldValues = $fileField[ 'values' ];
+          error_log( 'To Model - fileInfoPrev: '. print_r( $fileField[ 'prev' ], true ) );
+          $fileFieldValues = $fileField['values'];
+
+          $prevFiledataId = $resObj->getter( $colName );
+
+          $newFiledataObj = $filedataCtrl->createNewFile( $fileFieldValues );
+          error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          if( $newFiledataObj ) {
+            $resObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
+            error_log( 'To Model - deleteFile ID: '.$prevFiledataId );
+            $filedataCtrl->deleteFile( $prevFiledataId );
+          }
+
+          // TODO: Falta ver se eliminamos o ficheiro anterior
           break;
         case 'DELETE':
-          // error_log( 'To Model: '.$fileField['status'] );
-          $fileFieldValues = null;
-          /**
-            TODO: Falta ver se eliminamos o ficheiro anterior
-          */
+          // $fileFieldValues = null;
+
+          if( $prevFiledataId = $resObj->getter( $colName ) ) {
+            error_log( 'To Model - prevFiledataId: '.$prevFiledataId );
+            $filedataCtrl->deleteFile( $prevFiledataId );
+            $resObj->setter( $colName, null );
+          }
+
+          // TODO: Falta ver se eliminamos o ficheiro anterior
           break;
         case 'EXIST':
-          // error_log( 'To Model: '.$fileField['status'] );
           $fileFieldValues = $fileField[ 'values' ];
+
+          if( $prevFiledataId = $resObj->getter( $colName ) ) {
+            error_log( 'To Model - UPDATE prevFiledataId: '.$prevFiledataId );
+            $filedataCtrl->updateInfo( $prevFiledataId, $fileFieldValues );
+          }
+
           break;
         default:
           // error_log( 'To Model: DEFAULT='.$fileField['status'] );
           break;
       }
 
-      if( $fileFieldValues !== false ) {
-        if( $fileFieldValues === null ) {
-          $resObj->setter( $colName, null );
-        }
-        else {
-          $newFiledataModel = new FiledataModel( $fileFieldValues );
-          if( $newFiledataModel->save() ) {
-            $resObj->setter( $colName, $newFiledataModel->getter( 'id' ) );
+      /*
+        if( $fileFieldValues !== false ) {
+          if( $fileFieldValues === null ) {
+            $resObj->setter( $colName, null );
           }
           else {
-            $error = 'File save error';
+            $newFiledataModel = new FiledataModel( $fileFieldValues );
+            if( $newFiledataModel->save() ) {
+              $resObj->setter( $colName, $newFiledataModel->getter( 'id' ) );
+            }
+            else {
+              $error = 'File save error';
+            }
           }
         }
-      }
-      else {
-        $error = 'Not file value';
-      }
+        else {
+          $error = 'Not file value';
+        }
+      */
     }
 
     if( $error ) {
