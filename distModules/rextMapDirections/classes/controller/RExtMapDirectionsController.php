@@ -80,19 +80,6 @@ class RExtMapDirectionsController extends RExtController implements RExtInterfac
   }
 
 
-
-  /**
-    Visualizamos el Recurso
-   */
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RExtMapDirectionsController: getViewBlock()" );
-    $template = false;
-
-    return $template;
-  }
-
-
-
   /**
     Datos y template por defecto de la extension
    */

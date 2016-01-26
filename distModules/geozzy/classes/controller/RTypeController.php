@@ -9,8 +9,6 @@ interface RTypeInterface {
   // Defino la visualizacion del formulario
   public function manipulateFormTemplate( FormController $form, Template $template );
 
-  public function manipulateAdminFormColumns( Template $formBlock, Template $template, AdminViewResource $adminViewResource, Array $adminColsInfo );
-
   // Validaciones extra previas a usar los datos del recurso base
   public function resFormRevalidate( FormController $form );
 
@@ -19,9 +17,6 @@ interface RTypeInterface {
 
   // Enviamos el OK-ERROR a la BBDD y al formulario. Finalizar transaction
   public function resFormSuccess( FormController $form, ResourceModel $resource );
-
-  // Visualizamos el Recurso
-  public function getViewBlock( Template $resBlock );
 
   // Preparamos los datos para visualizar el Recurso
   public function getViewBlockInfo();

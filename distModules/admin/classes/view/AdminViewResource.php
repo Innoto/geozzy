@@ -217,30 +217,6 @@ class AdminViewResource extends AdminViewMaster {
     $formBlockInfo['template']['adminFull']->exec();
   }
 
-
-  public function resourceShowForm_PRE( $formName, $formUrl, $recursoData = false, $resCtrl = false ) {
-
-    if( !$resCtrl ) {
-      $resCtrl = new ResourceController();
-    }
-
-    // error_log( 'recursoData para FORM: ' . print_r( $recursoData, true ) );
-    $formBlock = $resCtrl->getFormBlock( $formName, $formUrl, $recursoData );
-
-    // Cambiamos el template del formulario
-    $formBlock->setTpl( 'resourceFormBlockBase.tpl', 'admin' );
-
-    // Template base: Admin 8-4
-    $this->template->assign( 'headTitle', __('Edit Resource') );
-    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
-
-
-    $resCtrl->loadAdminFormColumns( $formBlock, $this->template, $this );
-
-    $this->template->exec();
-  }
-
-
   /**
    * Creacion de Recursos type URL
    */
@@ -319,8 +295,6 @@ class AdminViewResource extends AdminViewMaster {
     $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
     $formBlockInfo['template']['miniFormModal']->exec();
   }
-
-
 
 
   public function sendResourceForm() {

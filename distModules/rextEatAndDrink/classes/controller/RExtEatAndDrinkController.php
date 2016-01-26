@@ -165,10 +165,6 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
   }
 
 
-
-
-
-
   /**
     Validaciones extra previas a usar los datos del recurso base
    */
@@ -223,60 +219,6 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     // error_log( "RExtEatAndDrinkController: resFormSuccess()" );
 
   }
-
-
-
-  /**
-    Visualizamos el Recurso
-   */
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RExtEatanddrinkController: getViewBlock()" );
-    $template = false;
-
-    $resId = $this->defResCtrl->resObj->getter('id');
-    $rExtData = $this->getRExtData( $resId );
-
-    if( $rExtData ) {
-      $template = new Template();
-      $rExtData = $this->prefixArrayKeys( $rExtData );
-      foreach( $rExtData as $key => $value ) {
-        $template->assign( $key, $rExtData[ $key ] );
-        // error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
-      }
-
-      // Vacio campos numericos NULL
-      if( $this->numericFields ) {
-        foreach( $this->numericFields as $fieldName ) {
-          $fieldName = $this->addPrefix( $fieldName );
-          error_log( 'RExtEatanddrinkController: getViewBlock() Borrar? ' . $fieldName );
-          if( !isset( $rExtData[ $fieldName ] ) || !$rExtData[ $fieldName ] ) {
-            $template->assign( $fieldName, '##NULL-VACIO##' );
-          }
-        }
-      }
-
-      // Procesamos as taxonomías asociadas para mostralas en CSV
-      foreach( $this->taxonomies as $tax ) {
-        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-        $taxFieldValue = '';
-
-        if( isset( $rExtData[ $taxFieldName ] ) ) {
-          $terms = array();
-          foreach( $rExtData[ $taxFieldName ] as $termInfo ) {
-            $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
-          }
-          $taxFieldValue = implode( ', ', $terms );
-        }
-        $template->assign( $taxFieldName, $taxFieldValue );
-      }
-
-      $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextEatAndDrink' );
-    }
-
-    return $template;
-  }
-
 
 
   /**
