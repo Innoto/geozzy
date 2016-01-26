@@ -266,50 +266,6 @@ class RTypePageController extends RTypeController implements RTypeInterface {
   }
 
 
-
-  /**
-    Visualizamos el Recurso
-   **/
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RTypePageController: getViewBlock()" );
-    $template = false;
-
-    $template = $resBlock;
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypePage' );
-
-    $this->contactCtrl = new RExtContactController( $this );
-    $contactBlock = $this->contactCtrl->getViewBlock( $resBlock );
-
-    $this->socialCtrl = new RExtSocialNetworkController( $this );
-    $socialBlock = $this->socialCtrl->getViewBlock( $resBlock );
-
-    if( $contactBlock ) {
-      $template->addToBlock( 'rextContact', $contactBlock );
-      $template->assign( 'rExtContactBlockNames', array( 'rextContact' ) );
-    }
-    else {
-      $template->assign( 'rextContact', false );
-      $template->assign( 'rExtContactBlockNames', false );
-    }
-
-    if( $socialBlock ) {
-      $template->addToBlock( 'rextSocialNetwork', $socialBlock );
-      $template->assign( 'rextSocialNetwork_activeFb', $socialBlock->tpl_vars['rextSocialNetwork_activeFb']->value );
-      $template->assign( 'rextSocialNetwork_textFb', $socialBlock->tpl_vars['rextSocialNetwork_textFb_'.LANG_DEFAULT]->value );
-      $template->assign( 'rextSocialNetwork_activeTwitter', $socialBlock->tpl_vars['rextSocialNetwork_activeTwitter']->value );
-      $template->assign( 'rextSocialNetwork_textTwitter', $socialBlock->tpl_vars['rextSocialNetwork_textTwitter_'.LANG_DEFAULT]->value );
-      $template->assign( 'rExtSocialNetworkBlockNames', array( 'rextSocialNetwork' ) );
-    }
-    else {
-      $template->assign( 'rextSocialNetwork', false );
-      $template->assign( 'rExtSocialNetworkBlockNames', false );
-    }
-
-    return $template;
-  }
-
-
-
   /**
     Preparamos los datos para visualizar el Recurso
    **/

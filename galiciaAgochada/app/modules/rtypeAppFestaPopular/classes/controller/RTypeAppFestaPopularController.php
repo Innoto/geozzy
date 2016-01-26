@@ -209,21 +209,6 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
   }
 
 
-
-  /**
-    Visualizamos el Recurso
-   **/
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RTypeAppFestaPopularController: getViewBlock()" );
-    $template = false;
-
-    $template = $resBlock;
-
-    return $template;
-  }
-
-
-
   /**
     Preparamos los datos para visualizar el Recurso
    **/

@@ -22,7 +22,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       bottom:100
     },
     innerMargin:{
-      left:330,
+      left:400,
       top:100 ,
       right:60,
       bottom:100

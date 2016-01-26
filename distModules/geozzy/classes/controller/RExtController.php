@@ -15,9 +15,6 @@ interface RExtInterface {
   // Enviamos el OK-ERROR a la BBDD y al formulario. Finalizar transaction
   public function resFormSuccess( FormController $form, ResourceModel $resource );
 
-  // Visualizamos el Recurso
-  public function getViewBlock( Template $resBlock );
-
   // Preparamos los datos para visualizar el Recurso
   public function getViewBlockInfo();
 
