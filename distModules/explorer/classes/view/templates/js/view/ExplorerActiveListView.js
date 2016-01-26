@@ -51,7 +51,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       // resource events
       "click .explorerActiveListContent .accessButton": "resourceClick",
       "mouseenter .explorerActiveListContent .element": "resourceHover",
-      "mouseleave .explorerActiveListContent": "resourceOut",
+      "mouseleave .explorerActiveListContent .element": "resourceOut",
   },
 
   initialize: function( opts ) {
@@ -72,7 +72,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     var that = this;
     this.parentExplorer.resourceIndex.removePagination();
 
-    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(50);
+    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(30);
 
 
     visibleResources.setSort('mapVisible', 'desc');
@@ -229,6 +229,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
 
     if( that.parentExplorer.displays.map ) {
       that.parentExplorer.displays.map.markerOut( );
+      that.parentExplorer.displays.map.markerBounceEnd( $(element.currentTarget).attr('data-resource-id') );
     }
     else {
       that.parentExplorer.metricsResourceController.eventHoverEnd(

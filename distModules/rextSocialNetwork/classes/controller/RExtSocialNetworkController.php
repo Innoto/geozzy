@@ -218,48 +218,6 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
 
 
   /**
-    Visualizamos el Recurso
-   */
-  public function getViewBlock( Template $resBlock ) {
-
-    // error_log( "RExtSocialNetworkController: getViewBlock()" );
-    $template = false;
-
-    $resId = $this->defResCtrl->resObj->getter('id');
-    $rExtData = $this->getRExtData( $resId );
-
-    if( $rExtData ) {
-      $template = new Template();
-
-      $externalSocialNetwork = $this->defResCtrl->resObj->getter( 'externalSocialNetwork' );
-      $template->assign( 'externalSocialNetwork', $externalSocialNetwork );
-
-      $rExtDataPrefixed = $this->prefixArrayKeys( $rExtData );
-      foreach( $rExtDataPrefixed as $key => $value ) {
-        $template->assign( $key, $rExtDataPrefixed[ $key ] );
-        // error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
-      }
-
-      // Vacio campos numericos NULL
-      if( $this->numericFields ) {
-        foreach( $this->numericFields as $fieldName ) {
-          $fieldName = $this->addPrefix( $fieldName );
-          if( !isset( $rExtDataPrefixed[ $fieldName ] ) || !$rExtDataPrefixed[ $fieldName ] ) {
-            $template->assign( $fieldName, '##NULL-VACIO##' );
-          }
-        }
-      }
-
-      $template->assign( 'rExtFieldNames', array_keys( $rExtDataPrefixed ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextSocialNetwork' );
-
-    }
-
-    return $template;
-  }
-
-
-  /**
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {

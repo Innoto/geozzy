@@ -175,14 +175,6 @@ class RExtAppZonaController extends RExtController implements RExtInterface {
   }
 
   /**
-    Visualizamos el Recurso
-   */
-  public function getViewBlock( Template $resBlock ) {
-
-  }
-
-
-  /**
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {

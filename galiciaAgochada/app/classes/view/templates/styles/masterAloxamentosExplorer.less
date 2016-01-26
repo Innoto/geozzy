@@ -1,36 +1,82 @@
-@import "primary.less";
+@import "primary/primary.less";
+@import "themeLibs/ionSliderGATheme.less";
 @import "/explorer/classes/view/templates/styles/explorerMixins.less";
+@import "common/explorerCommon.less";
+@import "common/explorerCommonSagan.less";
 
 .explorerLayout{
-  .mixinDevel();
+  //.mixinDevel();
   .explorerBase( );
-  .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 60%, @explMap-h: 100%, @explFilter-w: 400px,
-     @explFilter-h: 150px, @explGallery-w: 40%, @explGallery-h: 100% );
+  .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 60%, @explMap-h: calc(~"100% - "@headerTitleBarHeight ), @explFilter-w: 260px,
+     @explFilter-h: auto, @explGallery-w: 40%, @explGallery-h: calc(~"100% - "@headerTitleBarHeight ) );
 }
 
 .aloxamentosExplorer{
-  position: fixed;
-  top:@headerTitleBarHeight;
-  width: 100%;
-
-  .explorerMap{
-    width: 100% !important;
-    height: 100% !important;
+  .explorer-container-map{
+    .explorerFilterElement.filterZona{
+      .filterZonaMapContainer{
+        .filterZonaMap_openFilter{
+          svg{
+            path{
+              fill: @gzzColor-aloxamento !important;
+            }
+          }
+        }
+        .filterZonaMap_opts{
+          .zonaMap{
+            path{
+              fill: @gzzColor-aloxamento !important;
+            }
+          }
+          .zonaMap_reset{
+            color: white;
+            background-color: @gzzColor-aloxamento;
+          }
+        }//filterZonaMap_opts
+      }//.filterZonaMapContainer
+    }
   }
   .explorer-container-filter{
-    background-color: rgba(255, 255, 255, 0.6);
-  }
-  .explorer-container-gallery{
-    border-top:1px solid @gzzColor-bck-4;
-    position: relative;
+    .filtersContainer{
+      .resetFilters{
+        button{
+          background: @gzzColor-aloxamento;
+          color: @gzzColor-text-light;
+          &:hover{
+            background: @gzzColor-aloxamento-hover;
+          }
+        }
+      }
+      .filters_openFilters{
+        .fa-caret-down{ color: @gzzColor-aloxamento; }
+      }
+    }
   }
 }
+
+
 
 /**************************************************************************************/
 /**************************************************************************************/
 /**********************  RESPONSIVE MEDIA QUERIES  ************************************/
 /**************************************************************************************/
 /**************************************************************************************/
+.touch{
+  #geozzyExplorerMapInfo{
+    .gempiContent{
+      .gempiTouchAccess{
+        button{
+          border: none;
+          background-color: @gzzColor-aloxamento;
+          &:hover{ background-color: @gzzColor-aloxamento-hover; }
+        }//button
+      }//.gempiTouchAccess
+    }//.gempiContent
+  }//#geozzyExplorerMapInfo
+}//.touch
+
+
+
 @media screen and (min-width: 1200px) {
 
 } /*1200px*/
@@ -38,8 +84,8 @@
 
 }/*1199px*/
 @media screen and (max-width: 991px) {
+  }/*991px*/
 
-}/*991px*/
 @media screen and (max-width: 767px) {
 
 } /*767px*/

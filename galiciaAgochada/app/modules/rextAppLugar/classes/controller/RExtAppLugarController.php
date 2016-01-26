@@ -170,60 +170,6 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
   }
 
 
-
-  /**
-    Visualizamos el Recurso
-   */
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RExtAppLugarController: getViewBlock()" );
-    $template = false;
-
-    $resId = $this->defResCtrl->resObj->getter('id');
-    $rExtData = $this->getRExtData( $resId );
-
-    if( $rExtData ) {
-      $template = new Template();
-
-      $rExtDataPrefixed = $this->prefixArrayKeys( $rExtData );
-      foreach( $rExtDataPrefixed as $key => $value ) {
-        $template->assign( $key, $rExtDataPrefixed[ $key ] );
-        // error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
-      }
-
-      // Vacio campos numericos NULL
-      if( $this->numericFields ) {
-        foreach( $this->numericFields as $fieldName ) {
-          $fieldName = $this->addPrefix( $fieldName );
-          if( !isset( $rExtDataPrefixed[ $fieldName ] ) || !$rExtDataPrefixed[ $fieldName ] ) {
-            $template->assign( $fieldName, '##NULL-VACIO##' );
-          }
-        }
-      }
-
-      // Procesamos as taxonomías asociadas para mostralas en CSV
-      foreach( $this->taxonomies as $tax ) {
-        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-        $taxFieldValue = '';
-
-        if( isset( $rExtDataPrefixed[ $taxFieldName ] ) ) {
-          $terms = array();
-          foreach( $rExtDataPrefixed[ $taxFieldName ] as $termInfo ) {
-            $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
-          }
-          $taxFieldValue = implode( ', ', $terms );
-        }
-        $template->assign( $taxFieldName, $taxFieldValue );
-      }
-
-      $template->assign( 'rExtFieldNames', array_keys( $rExtDataPrefixed ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextAppLugar' );
-    }
-
-    return $template;
-  }
-
-
-
   /**
     Preparamos los datos para visualizar el Recurso
    */

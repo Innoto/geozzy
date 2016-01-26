@@ -223,37 +223,6 @@ class RExtContactController extends RExtController implements RExtInterface {
   }
 
 
-
-  /**
-    Visualizamos el Recurso (extensión Contact)
-   */
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RExtContactController: getViewBlock()" );
-    $template = false;
-
-    $resId = $this->defResCtrl->resObj->getter('id');
-    $rExtData = $this->getRExtData( $resId );
-
-    $rExtData['web'] = 'Hai que quitar esto e collese a orl do modelo';
-
-    if( $rExtData ) {
-      $template = new Template();
-      $rExtData = $this->prefixArrayKeys( $rExtData );
-      $template->assign( 'rExtContact_timetable', $rExtData['rExtContact_timetable_'.LANG_DEFAULT] );
-      foreach( $rExtData as $key => $value ) {
-        $template->assign( $key, ($value) ? $value : '' );
-        // error_log( $key . ' === ' . print_r( $value, true ) );
-      }
-
-      $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextContact' );
-    }
-
-    return $template;
-  }
-
-
-
   /**
     Datos y template por defecto de la extension
    */

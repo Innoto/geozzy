@@ -1563,32 +1563,32 @@ class ResourceController {
 
 
 
-  /**
-    Visualizamos el Recurso
-   */
-  public function getViewBlock( $resData = false ) {
-    // error_log( "GeozzyResourceView: getViewBlock()" );
-
-    if( !$resData ) {
-      $resData = $this->getResourceData(); // true -> translated version
-    }
-
-    $resBlock = $this->getResourceBlock( $resData );
-    //$resBlock = false;
-
-    $this->getRTypeCtrl( $resData[ 'rTypeId' ] );
-
-    if( $this->rTypeCtrl ) {
-      // error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlock' );
-      $rTypeBlock = $this->rTypeCtrl->getViewBlock( $resBlock );
-      if( $rTypeBlock ) {
-        // error_log( 'GeozzyResourceView: resBlock = rTypeBlock' );
-        $resBlock = $rTypeBlock;
-      }
-    }
-
-    return( $resBlock );
-  } // function getViewBlock( $resData )
+  // /**
+  //   Visualizamos el Recurso
+  //  */
+  // public function getViewBlock( $resData = false ) {
+  //   // error_log( "GeozzyResourceView: getViewBlock()" );
+  //
+  //   if( !$resData ) {
+  //     $resData = $this->getResourceData(); // true -> translated version
+  //   }
+  //
+  //   $resBlock = $this->getResourceBlock( $resData );
+  //   //$resBlock = false;
+  //
+  //   $this->getRTypeCtrl( $resData[ 'rTypeId' ] );
+  //
+  //   if( $this->rTypeCtrl ) {
+  //     // error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlock' );
+  //     $rTypeBlock = $this->rTypeCtrl->getViewBlock( $resBlock );
+  //     if( $rTypeBlock ) {
+  //       // error_log( 'GeozzyResourceView: resBlock = rTypeBlock' );
+  //       $resBlock = $rTypeBlock;
+  //     }
+  //   }
+  //
+  //   return( $resBlock );
+  // } // function getViewBlock( $resData )
 
 
 

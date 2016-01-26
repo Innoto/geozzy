@@ -16,7 +16,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
 
 
   public function getRExtData( $resId = false ) {
-    // error_log( "RExtAccommodationController: getRExtData( $resId )" );
+    //error_log( "RExtAccommodationController: getRExtData( $resId )" );
     $rExtData = false;
 
     if( $resId === false ) {
@@ -50,7 +50,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     Defino el formulario
    */
   public function manipulateForm( FormController $form ) {
-    // error_log( "RExtAccommodationController: manipulateForm()" );
+    //error_log( "RExtAccommodationController: manipulateForm()" );
 
     $rExtFieldNames = array();
 
@@ -165,10 +165,8 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
   } // function manipulateForm()
 
 
-
-
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RExtAccommodationController: getFormBlockInfo()" );
+    //error_log( "RExtAccommodationController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -199,18 +197,11 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
   }
 
 
-
-
-
-
-
   /**
     Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( FormController $form ) {
-    // error_log( "RExtAccommodationController: resFormRevalidate()" );
-
-    // $this->evalFormUrlAlias( $form, 'urlAlias' );
+    //error_log( "RExtAccommodationController: resFormRevalidate()" );
   }
 
   /**
@@ -218,7 +209,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     Iniciar transaction
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtAccommodationController: resFormProcess()" );
+    //error_log( "RExtAccommodationController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
@@ -254,69 +245,15 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     Finalizar transaction
    */
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtAccommodationController: resFormSuccess()" );
-
+    //error_log( "RExtAccommodationController: resFormSuccess()" );
   }
-
-
-
-  /**
-    Visualizamos el Recurso (extensión Accommodation)
-   */
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RExtAccommodationController: getViewBlock()" );
-    $template = false;
-
-    $resId = $this->defResCtrl->resObj->getter('id');
-    $rExtData = $this->getRExtData( $resId );
-
-    if( $rExtData ) {
-      $template = new Template();
-      $rExtData = $this->prefixArrayKeys( $rExtData );
-      foreach( $rExtData as $key => $value ) {
-        $template->assign( $key, ($value) ? $value : '' );
-        // error_log( $key . ' === ' . print_r( $value, true ) );
-      }
-
-      // Vacio campos numericos NULL
-      if( $this->numericFields ) {
-        foreach( $this->numericFields as $fieldName ) {
-          $fieldName = $this->addPrefix( $fieldName );
-          if( !isset( $rExtData[ $fieldName ] ) || !$rExtData[ $fieldName ] ) {
-            $template->assign( $fieldName, '##NULL-VACIO##' );
-          }
-        }
-      }
-
-      // Procesamos as taxonomías asociadas para mostralas en CSV
-      foreach( $this->taxonomies as $tax ) {
-        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-        $taxFieldValue = '';
-
-        if( isset( $rExtData[ $taxFieldName ] ) ) {
-          $terms = array();
-          foreach( $rExtData[ $taxFieldName ] as $termInfo ) {
-            $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
-          }
-          $taxFieldValue = implode( ', ', $terms );
-        }
-        $template->assign( $taxFieldName, $taxFieldValue );
-      }
-
-      $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextAccommodation' );
-    }
-
-    return $template;
-  }
-
 
 
   /**
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    // error_log( "RExtAccommodationController: getViewBlockInfo()" );
+    //error_log( "RExtAccommodationController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,

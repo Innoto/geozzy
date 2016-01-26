@@ -16,16 +16,16 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   mapZones: {
     outerMargin: {
-      left:0,
-      top:0,
-      right:0,
-      bottom:0
+      left:200,
+      top:100,
+      right:200,
+      bottom:100
     },
     innerMargin:{
-      left:0,
-      top:0 ,
-      right:0,
-      bottom:0
+      left:400,
+      top:100 ,
+      right:60,
+      bottom:100
     },
   },
 
@@ -84,7 +84,11 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     that.parentExplorer.resourceMinimalList.each(function(m, index) {
       // Assign values 2:visible in map, 1:not visible in map but present in buffer zone, 0:not in map or buffer
-      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
+      var markerPosition = that.aboutMarkerPosition( m.get('lat'), m.get('lng') );
+
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapOuterZone', markerPosition.outerZone );
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', markerPosition.inMap  );
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapDistanceToInnerMargin', markerPosition.distanceToInnerMargin  );
       //m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
     });
 
@@ -214,12 +218,28 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   },
 
+
+/*
   coordsInMap: function( lat, lng ) {
+    var that = this;
+
+    var rt = that.aboutMarkerPosition(lat,lng);
+    return rt.inMap;
+  },*/
+
+  aboutMarkerPosition: function( lat, lng) {
     var that = this;
 
     google.maps.event.trigger( that.map, "resize");
 
-    var ret = 0; // NOT IN MAP OR BUFFER
+    var markerPixel = that.coordToPixel( new google.maps.LatLng(lat, lng) );
+    that.coordToPixel
+    var ret = {
+      inMap:0, // NOT IN MAP OR BUFFER
+      outerZone:false,
+      distanceToInnerMargin: 0
+    }
+
 
     var mb = that.getMapBounds();
 
@@ -227,6 +247,9 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     var ne = mb[1];
 
     var scale = Math.pow(2, that.map.getZoom());
+
+
+
 
     var swOuter = new google.maps.Point(   that.coordToPixel(sw ).x- that.mapZones.outerMargin.right /scale,   that.coordToPixel(sw).y+ that.mapZones.outerMargin.top /scale );
     var neOuter = new google.maps.Point(   that.coordToPixel(ne ).x+ that.mapZones.outerMargin.left /scale ,   that.coordToPixel(ne).y- that.mapZones.outerMargin.bottom /scale );
@@ -244,15 +267,60 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     if( lat < ne.lat() && lng < ne.lng() && lat > sw.lat() && lng > sw.lng() ) {
 
       if( lat < neI.lat() && lng < neI.lng() && lat > swI.lat() && lng > swI.lng() ) {
-        ret = 3; // IN CENTER OF MAP AREA
+        ret.inMap = 3; // ********* IN CENTER OF MAP AREA **********
       }
       else{
-        ret = 2;
+        ret.inMap = 2; // ********* IN INNER MARGIN *******
       }
-
     }
     else if(lat < neO.lat() && lng < neO.lng() && lat > swO.lat() && lng > swO.lng() ) {
-      ret = 1; // NOT IN MAP AREA BUT IN OUTER MARGIN
+      ret.inMap = 1; // ********* IN OUTER MARGIN ********
+    }
+
+    oNe = neI;
+    oSw = swI;
+
+
+
+    // Get outer position
+    if(  lat > neI.lat() && lng < swI.lng() ) {
+      ret.outerZone = 'NW';
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
+    }
+    else
+    if( lat < swI.lat() && lng > neI.lng() ) {
+      ret.outerZone = 'SE';
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - swInner.y, 2 )  + Math.pow( markerPixel.x - neInner.x, 2) );
+    }
+    else
+    if( lat > neI.lat() && lng > neI.lng() ){
+      ret.outerZone = 'NE';
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - neInner.x, 2) );
+    }
+    else
+    if( lat < swI.lat() && lng < swI.lng() ) {
+      ret.outerZone = 'SW';
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - swInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
+    }
+    else
+    if( lat < swI.lat() ) {
+      ret.outerZone = 'S';
+      ret.distanceToInnerMargin = markerPixel.y - swInner.y;
+    }
+    else
+    if( lat > neI.lat() ) {
+      ret.outerZone = 'N';
+      ret.distanceToInnerMargin = -(markerPixel.y -neInner.y);
+    }
+    else
+    if( lng < swI.lng() ) {
+      ret.outerZone = 'W';
+      ret.distanceToInnerMargin = -(markerPixel.x -swInner.x);
+    }
+    else
+    if( lng > neI.lng() ) {
+      ret.outerZone = 'E';
+      ret.distanceToInnerMargin = markerPixel.x - neInner.x;
     }
 
     return ret;
@@ -339,6 +407,9 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   panTo: function( id ) {
     var that = this;
     var mapVisible = that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible');
+    var mapOuterZone = that.parentExplorer.resourceMinimalList.get( id ).get('mapOuterZone');
+    var mapDistanceToInnerMargin = that.parentExplorer.resourceMinimalList.get( id ).get('mapDistanceToInnerMargin');
+    var scale = Math.pow(2, that.map.getZoom());
 
     //console.log(mapVisible)
     if( mapVisible == 1 || mapVisible == 2  ) {
@@ -346,33 +417,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         that.lastCenter = that.map.getCenter();
       }
 
-
-
-
-
-
-
-      var scale = Math.pow(2, that.map.getZoom());
-
-
-
-
-
-
-
-
-
-      // SEMI PANTO
-
+      console.log(mapDistanceToInnerMargin, mapOuterZone);
+      // PANTO
       var toMove = that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() ;
       var P = that.coordToPixel( toMove )
 
       var fromMove = that.map.getCenter();
       var C = that.coordToPixel( fromMove );
-
-
-      //console.log(fromMovePixel)
-    //  console.log(P.x, P.y, C.x, C.y)
 
       var pVx = P.x-C.x;
       var pVy = P.y-C.y;
@@ -380,53 +431,8 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       var Vx = Math.sin( Math.atan2( pVx , pVy  ) );
       var Vy = Math.cos( Math.atan2( pVx , pVy  ) );
 
-      var diffCPx = P.x-C.x;
-      var diffCPy = P.y-C.y;
 
-
-      //console.log( that.pixelToCoord( 10,20 ).lat() )
-      //console.log( P.x+Vx*1, P.y+Vy*1 )
-      //console.log(P.x, Vx, P.x-Vx)
-
-
-      if( that.parentExplorer.resourceMinimalList.get(id).get( 'mapVisible' ) == 2) {
-        var toMove = 200;
-      }
-      else {
-        var toMove = 300;
-      }
-
-      that.map.panTo( that.pixelToCoord( C.x + (Vx*toMove/scale), C.y + (Vy*toMove/scale) ) );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        that.map.setZoom( that.map.getZoom()-1 )
-
-//      that.map.panTo( that.pixelToCoord( Vx, Vy ) );
-
-    //  var endCoords = that.pixelToCoord( P.x, P.y );
-
-//      console.log( endCoords.lat() )
-//      console.log(    new google.maps.LatLng(endCoords.lat(), endCoords.lng() ) )
-
-
+      that.map.panTo( that.pixelToCoord( C.x + (Vx*mapDistanceToInnerMargin), C.y + (Vy*mapDistanceToInnerMargin) ) );
 
     }
     else {
