@@ -127,7 +127,7 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
          $( '#'+that.divId ).html( that.template( element ) );
 
          if( that.ready == id){
-          $( '#'+that.divId ).show();
+          $( '#'+that.divId ).delay("slow").show();
           that.moveInfoMapDivWhenBehindMouse();
         }
        }
