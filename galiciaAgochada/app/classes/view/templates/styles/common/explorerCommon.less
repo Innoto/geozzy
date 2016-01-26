@@ -1,0 +1,194 @@
+/*EXPLORER COMMON*/
+.controlMapCustom{
+  margin: 0 0 10px 20px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border: 2px solid @gzzColor-bck-1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  -moz-box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  &.controlMapMap{ background: url('/media/img/explorerControls/map-map.png') no-repeat; }
+  &.controlMapSat{ background: url('/media/img/explorerControls/map-sat.png') no-repeat; }
+  &.controlMapRel{ background: url('/media/img/explorerControls/map-rel.png') no-repeat; }
+  &.active{ display:none; }
+}
+
+.explorerLayout{
+  .explorerMap{
+    width: 100% !important;
+    height: 100% !important;
+    div[title="selected"] {
+      -moz-animation: pulsate 0.7s ease-in-out 8;
+      -webkit-animation: pulsate 0.7s ease-in-out 8;
+      border:2px solid grey;
+      border-radius:50%;
+    }
+    @-moz-keyframes pulsate {
+      from {
+        -moz-transform: scale(1);
+        -webkit-transform: scale(1);
+        opacity: 0.6;
+      }
+      95% {
+        -moz-transform: scale(3);
+        -webkit-transform: scale(3);
+        opacity: 0;
+      }
+      to {
+        -moz-transform: scale(2);
+        -webkit-transform: scale(2);
+        opacity: 0;
+      }
+    }
+    @-webkit-keyframes pulsate {
+      from {
+        -moz-transform: scale(1);
+        -webkit-transform: scale(1);
+        opacity: 0.6;
+      }
+      95% {
+        -moz-transform: scale(3);
+        -webkit-transform: scale(3);
+        opacity: 0;
+      }
+      to {
+        -moz-transform: scale(2);
+        -webkit-transform: scale(2);
+        opacity: 0;
+      }
+    }
+  }
+  .explorer-loading{
+    position: relative;
+    background: rgba( 255, 255, 255, 0.7);
+    top:-@titleBarHeight;
+    padding-top: @titleBarHeight;
+   .fa{
+     font-size: 72px;
+     position: absolute;
+     top: 40%;
+     left: 50%;
+     display: block !important;
+   }
+  }
+  .explorer-container-du .bodyContent{
+    padding-top: 0px;
+  }
+}
+
+#geozzyExplorerMapInfo{
+  width: 100%;
+  max-width: 280px;
+  height: 370px;
+  border: 5px solid rgba( 255, 255, 255, 0.4);
+  overflow: hidden;
+
+  .gempiContent{
+    background: @gzzColor-bck-1;
+    height: 100%;
+    padding-bottom: 20px;
+    position: relative;
+    .gempiImg{
+      position: relative;
+      button{
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        -ms-transform: translateX(-50%); /* IE 9 */
+        -webkit-transform: translateX(-50%); /* Chrome, Safari, Opera */
+        transform: translateX(-50%);
+
+        background-color: @gzzColor-paisaxes;
+        &:hover{ background-color: @gzzColor-paisaxes-hover; }
+      }
+    }
+    .gempiInfo{
+      .gempiTitle,
+      .gempiLocation,
+      .gempiDescription{
+        padding: 5px 10px;
+        background: @gzzColor-bck-1;
+      }
+      .gempiTitle{
+        text-align: justify;
+        color: #555;
+        font-size: 15px;
+        font-weight: bold;
+        height: 26px;
+        line-height: 26px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space:nowrap;
+      }
+      .gempiLocation{
+        text-align: justify;
+        font-size: 13px;
+        line-height: 13px;
+        font-style: italic;
+      }
+      .gempiDescription{
+        text-align: justify;
+        font-size: 13px;
+        line-height: 15px;
+        height: 95px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }//.gempiInfo
+  }//.gempiContent
+}
+/**************************************************************************************/
+/**************************************************************************************/
+/**********************  RESPONSIVE MEDIA QUERIES  ************************************/
+/**************************************************************************************/
+/**************************************************************************************/
+.touch{
+  #geozzyExplorerMapInfo{
+    height: 405px;
+    .gempiContent{
+      .gempiImg{
+        .gempiFav{
+            position: absolute;
+            top: 0px;
+            left: 10px;
+            background-color: rgba( 255, 255, 255, 0.7);
+            padding: 5px 10px;
+            font-size: 24px;
+            .commonFav;
+        }
+      }
+      .gempiTouchAccess{
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        -ms-transform: translateX(-50%); /* IE 9 */
+        -webkit-transform: translateX(-50%); /* Chrome, Safari, Opera */
+        transform: translateX(-50%);
+        text-align:center;
+        button{
+          border: none;
+          background-color: @gzzColor-paisaxes;
+          &:hover{ background-color: @gzzColor-paisaxes-hover; }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
+} /*1200px*/
+@media screen and (max-width: 1199px) {
+
+}/*1199px*/
+@media screen and (max-width: 991px) {
+
+}/*991px*/
+
+@media screen and (max-width: 767px) {
+
+} /*767px*/

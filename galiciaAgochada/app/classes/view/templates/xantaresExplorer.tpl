@@ -11,7 +11,7 @@
       <h1>{t}Sabrosos xantares{/t}</h1>
     </div>
   </div>
-  <div class="xantaresExplorer">
+  <div class="xantaresExplorer explorerCommonSagan">
     {include file="explorer///explorer.tpl"}
   </div>
 {/block}

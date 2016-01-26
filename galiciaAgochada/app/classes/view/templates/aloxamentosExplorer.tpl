@@ -11,7 +11,7 @@
       <h1>{t}Aloxamentos con encanto{/t}</h1>
     </div>
   </div>
-  <div class="aloxamentosExplorer">
+  <div class="aloxamentosExplorer explorerCommonSagan">
     {include file="explorer///explorer.tpl"}
   </div>
 {/block}
