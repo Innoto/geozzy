@@ -5,7 +5,7 @@
 {/block}
 
 {block name="bodyContent"}
-  <div class="praiasExplorer">
+  <div class="praiasExplorer explorerCommonBase">
     {include file="explorer///explorer.tpl"}
   </div>
 {/block}
