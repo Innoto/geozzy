@@ -16,10 +16,10 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   mapZones: {
     outerMargin: {
-      left:0,
-      top:0,
-      right:0,
-      bottom:0
+      left:200,
+      top:200,
+      right:200,
+      bottom:200
     },
     innerMargin:{
       left:500,
@@ -84,7 +84,10 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     that.parentExplorer.resourceMinimalList.each(function(m, index) {
       // Assign values 2:visible in map, 1:not visible in map but present in buffer zone, 0:not in map or buffer
-      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
+      var markerPosition = that.aboutMarkerPosition( m.get('lat'), m.get('lng') );
+
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapOuterZone', markerPosition.outerZone );
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', markerPosition.inMap  );
       //m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
     });
 
@@ -214,12 +217,14 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   },
 
+
+/*
   coordsInMap: function( lat, lng ) {
     var that = this;
 
     var rt = that.aboutMarkerPosition(lat,lng);
     return rt.inMap;
-  },
+  },*/
 
   aboutMarkerPosition: function( lat, lng) {
     var that = this;
@@ -252,6 +257,9 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     var swI = that.map.getProjection().fromPointToLatLng( swInner );
     var neI = that.map.getProjection().fromPointToLatLng( neInner );
 
+    var oNe = ne;
+    var oSw = sw;
+
     if( lat < ne.lat() && lng < ne.lng() && lat > sw.lat() && lng > sw.lng() ) {
 
       if( lat < neI.lat() && lng < neI.lng() && lat > swI.lat() && lng > swI.lng() ) {
@@ -259,42 +267,45 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       }
       else{
         ret.inMap = 2; // ********* IN INNER MARGIN *******
+        oNe = neI;
+        oSw = swI;
       }
     }
     else if(lat < neO.lat() && lng < neO.lng() && lat > swO.lat() && lng > swO.lng() ) {
       ret.inMap = 1; // ********* IN OUTER MARGIN ********
+    }
 
-      if( lat > ne.lat() && lng > ne.lng() ) {
-        ret.outerZone = 'NE';
-      }
-      else
-      if( lat < sw.lat() && lng < sw.lng() ) {
-        ret.outerZone = 'SW';
-      }
-      else
-      if( lat < sw.lat() && lng > ne.lng() ){
-        ret.outerZone = 'NW';
-      }
-      else
-      if( lng < sw.lng() && lat < ne.lat()  ) {
-        ret.outerZone = 'SE';
-      }
-      else
-      if( lng > ne.lng() ) {
-        ret.outerZone = 'N';
-      }
-      else
-      if( lng < sw.lng() ) {
-        ret.outerZone = 'S';
-      }
-      else
-      if( lat < sw.lat() ) {
-        ret.outerZone = 'E';
-      }
-      else
-      if( lat > ne.lat() ) {
-        ret.outerZone = 'W';
-      }
+    // Get outer position
+    if(  lat > oNe.lat() && lng < oSw.lng() ) {
+      ret.outerZone = 'NE';
+    }
+    else
+    if( lat < oSw.lat() && lng > oNe.lng() ) {
+      ret.outerZone = 'SW';
+    }
+    else
+    if( lat > oNe.lat() && lng > oNe.lng() ){
+      ret.outerZone = 'NW';
+    }
+    else
+    if( lat < oSw.lat() && lng < oSw.lng() ) {
+      ret.outerZone = 'SE';
+    }
+    else
+    if( lat < oSw.lat() ) {
+      ret.outerZone = 'S';
+    }
+    else
+    if( lat > oNe.lat() ) {
+      ret.outerZone = 'N';
+    }
+    else
+    if( lng < oSw.lng() ) {
+      ret.outerZone = 'E';
+    }
+    else
+    if( lng > oNe.lng() ) {
+      ret.outerZone = 'W';
     }
 
     return ret;
@@ -381,6 +392,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   panTo: function( id ) {
     var that = this;
     var mapVisible = that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible');
+    var mapOuterZone = that.parentExplorer.resourceMinimalList.get( id ).get('mapOuterZone');
 
     //console.log(mapVisible)
     if( mapVisible == 1 || mapVisible == 2  ) {
@@ -431,12 +443,16 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       //console.log(P.x, Vx, P.x-Vx)
 
 
-      if( that.parentExplorer.resourceMinimalList.get(id).get( 'mapVisible' ) == 2) {
+      if( mapVisible == 2 ) {
         var toMove = 200;
       }
-      else {
+      else
+      if( mapVisible == 1 )
+      {
         var toMove = 300;
       }
+
+      console.log(mapOuterZone)
 
       that.map.panTo( that.pixelToCoord( C.x + (Vx*toMove/scale), C.y + (Vy*toMove/scale) ) );
 
