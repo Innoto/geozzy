@@ -5,25 +5,32 @@ class ExplorerView extends MasterView
 {
   public function __construct( $baseDir ) {
     parent::__construct( $baseDir );
+  }
+  // función común a todos los exploradores
+  function commonLayout(){
+    $url_parts = explode('/', $_SERVER["REQUEST_URI"]);
+    if(sizeof($url_parts)>2){
+      $url = $url_parts[2];
+    }
+    else {
+      $url = $url_parts[1];
+    }
 
+    $this->template->assign('url', $url);
     $this->template->addClientScript('js/TimeDebuger.js', 'common');
     $this->template->addClientScript('js/galiciaAgochadaExplorersUtils.js');
-  }
-
-  function paisaxesExplorer(){
-    // cogemos la url actual para el idioma (hasta que sea recurso)
-    $url = $this->commonLayout();
-    $this->template->assign('url', $url);
-
-    $this->template->addClientScript('js/TimeDebuger.js', 'common');
     $this->template->addClientScript('js/model/TaxonomygroupModel.js', 'geozzy');
-
     $this->template->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');
     $this->template->addClientScript('js/collection/CategoryCollection.js', 'geozzy');
     $this->template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
-
     biMetrics::autoIncludes();
     explorer::autoIncludes();
+
+  }
+  function paisaxesExplorer(){
+    // cogemos la url actual para el idioma (hasta que sea recurso)
+    $this->commonLayout();
+
     $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
     $this->template->addClientScript('js/paisaxesExplorer.js');
     $this->template->setTpl('paisaxesExplorer.tpl');
@@ -31,11 +38,8 @@ class ExplorerView extends MasterView
   }
   function rinconsExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
-    $url = $this->commonLayout();
-    $this->template->assign('url', $url);
+    $this->commonLayout();
 
-    $this->template->addClientScript('js/TimeDebuger.js', 'common');
-    explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterRinconsExplorer.less');
     $this->template->addClientScript('js/rinconsExplorer.js');
     $this->template->setTpl('rinconsExplorer.tpl');
@@ -43,11 +47,8 @@ class ExplorerView extends MasterView
   }
   function praiasExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
-    $url = $this->commonLayout();
-    $this->template->assign('url', $url);
+    $this->commonLayout();
 
-    $this->template->addClientScript('js/TimeDebuger.js', 'common');
-    explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterPraiasExplorer.less');
     $this->template->addClientScript('js/praiasExplorer.js');
     $this->template->setTpl('praiasExplorer.tpl');
@@ -55,17 +56,8 @@ class ExplorerView extends MasterView
   }
   function xantaresExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
-    $url = $this->commonLayout();
-    $this->template->assign('url', $url);
+    $this->commonLayout();
 
-    $this->template->addClientScript('js/TimeDebuger.js', 'common');
-    $this->template->addClientScript('js/model/TaxonomygroupModel.js', 'geozzy');
-
-    $this->template->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');
-    $this->template->addClientScript('js/collection/CategoryCollection.js', 'geozzy');
-    $this->template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
-    biMetrics::autoIncludes();
-    explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterXantaresExplorer.less');
     $this->template->addClientScript('js/xantaresExplorer.js');
     $this->template->setTpl('xantaresExplorer.tpl');
@@ -73,11 +65,8 @@ class ExplorerView extends MasterView
   }
   function aloxamentosExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
-    $url = $this->commonLayout();
-    $this->template->assign('url', $url);
+    $this->commonLayout();
 
-    $this->template->addClientScript('js/TimeDebuger.js', 'common');
-    explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterAloxamentosExplorer.less');
     $this->template->addClientScript('js/aloxamentosExplorer.js');
     $this->template->setTpl('aloxamentosExplorer.tpl');
@@ -86,16 +75,8 @@ class ExplorerView extends MasterView
 
   function todosSegredosExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
-    $url = $this->commonLayout();
-    $this->template->assign('url', $url);
+    $this->commonLayout();
 
-    $this->template->addClientScript('js/TimeDebuger.js', 'common');
-    $this->template->addClientScript('js/model/TaxonomygroupModel.js', 'geozzy');
-    $this->template->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');
-    $this->template->addClientScript('js/collection/CategoryCollection.js', 'geozzy');
-    $this->template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
-    biMetrics::autoIncludes();
-    explorer::autoIncludes();
     $this->template->addClientStyles('styles/masterTodosSegredosExplorer.less');
     $this->template->addClientScript('js/todosSegredosExplorer.js');
     $this->template->setTpl('todosSegredosExplorer.tpl');
@@ -127,18 +108,5 @@ class ExplorerView extends MasterView
     $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
     $this->template->setTpl('Example_explorerLayoutSection.tpl');
     $this->template->exec();
-  }
-
-  // función común a todos los exploradores
-  function commonLayout(){
-
-    $url_parts = explode('/', $_SERVER["REQUEST_URI"]);
-    if(sizeof($url_parts)>2){
-      $url = $url_parts[2];
-    }
-    else {
-      $url = $url_parts[1];
-    }
-    return $url;
   }
 }
