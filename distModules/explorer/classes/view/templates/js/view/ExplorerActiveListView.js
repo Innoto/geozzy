@@ -255,11 +255,11 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
           that.parentExplorer.displays.map.markerOut( );
           that.parentExplorer.displays.map.markerBounceEnd( $(element.currentTarget).attr('data-resource-id') );
         }
-        else {
-        /*  that.parentExplorer.metricsResourceController.eventHoverEnd(
-            $(element.currentTarget).attr('data-resource-id')
-          );*/
-        }
+
+        that.parentExplorer.metricsResourceController.eventHoverEnd(
+          $(element.currentTarget).attr('data-resource-id')
+        );
+
       break;
     }
   }
