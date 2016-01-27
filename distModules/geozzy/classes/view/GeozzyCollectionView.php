@@ -34,7 +34,7 @@ class GeozzyCollectionView extends View
 
     $form = new FormController( $formName, $urlAction );
 
-    $form->setSuccess( 'accept', __( 'Thank you' ) );
+    // $form->setSuccess( 'accept', __( 'Thank you' ) );
     // $form->setSuccess( 'redirect', SITE_URL . 'admin#collection/list' );
 
     // Recursos disponibles
@@ -158,7 +158,7 @@ class GeozzyCollectionView extends View
     Proceso formulario
   */
   public function actionForm() {
-    error_log( "GeozzyCollectionView: actionForm()" );
+    // error_log( "GeozzyCollectionView: actionForm()" );
 
     $form = new FormController();
     if( $form->loadPostInput() ) {
@@ -190,54 +190,95 @@ class GeozzyCollectionView extends View
     if( !$form->existErrors() ) {
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
       $collection = new CollectionModel( $valuesArray );
-      if( $collection === false ) {
+      if( $collection !== false ) {
+        $collection->save();
+      }
+      else {
         $form->addFormError( 'No se ha podido guardar el collection.','formError' );
       }
     }
 
-    $saveResult = false;
     $affectsDependences = false;
 
     $imageFile = $form->getFieldValue( 'image' );
     if( !$form->existErrors() && isset( $imageFile['status'] ) ) {
 
-      error_log( 'To Model - fileInfo: '. print_r( $imageFile[ 'values' ], true ) );
+      $filedataCtrl = new FiledataController();
+      $newFiledataObj = false;
 
       switch( $imageFile['status'] ) {
-
         case 'LOADED':
-          error_log( 'To Model: '.$imageFile['status'] );
-          $affectsDependences = true;
-          $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+          $imageFileValues = $imageFile['values'];
+          $newFiledataObj = $filedataCtrl->createNewFile( $imageFileValues );
+          // error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          if( $newFiledataObj ) {
+            $collection->setter( 'image', $newFiledataObj->getter( 'id' ) );
+          }
           break;
         case 'REPLACE':
-          error_log( 'To Model: '.$imageFile['status'] );
           // error_log( 'To Model - fileInfoPrev: '. print_r( $imageFile[ 'prev' ], true ) );
-          $affectsDependences = true;
-
-          // TODO: Falta eliminar o ficheiro anterior
-          $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+          $imageFileValues = $imageFile['values'];
+          $prevFiledataId = $collection->getter( 'image' );
+          $newFiledataObj = $filedataCtrl->createNewFile( $imageFileValues );
+          // error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          if( $newFiledataObj ) {
+            $collection->setter( 'image', $newFiledataObj->getter( 'id' ) );
+            // error_log( 'To Model - deleteFile ID: '.$prevFiledataId );
+            $filedataCtrl->deleteFile( $prevFiledataId );
+          }
           break;
         case 'DELETE':
-          error_log( 'To Model: '.$imageFile['status'] );
-
-          // Apaño
-          $collection->setter( 'image', null );
-
-          /* TODO
-          $affectsDependences = true;
-          $collection->setterDependence( 'image', new FiledataModel( $imageFile['values'] ) );
-          */
+          if( $prevFiledataId = $collection->getter( 'image' ) ) {
+            // error_log( 'To Model - prevFiledataId: '.$prevFiledataId );
+            $filedataCtrl->deleteFile( $prevFiledataId );
+            $collection->setter( 'image', null );
+          }
           break;
         case 'EXIST':
-          error_log( 'To Model: '.$imageFile['status'] );
-          $affectsDependences = true;
-          $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+          $imageFileValues = $imageFile[ 'values' ];
+          if( $prevFiledataId = $collection->getter( 'image' ) ) {
+            // error_log( 'To Model - UPDATE prevFiledataId: '.$prevFiledataId );
+            $filedataCtrl->updateInfo( $prevFiledataId, $imageFileValues );
+          }
           break;
         default:
-          error_log( 'To Model: DEFAULT='.$imageFile['status'] );
+          // error_log( 'To Model: DEFAULT='.$imageFile['status'] );
           break;
       }
+
+      /*
+        switch( $imageFile['status'] ) {
+          case 'LOADED':
+            error_log( 'To Model: '.$imageFile['status'] );
+            $affectsDependences = true;
+            $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+            break;
+          case 'REPLACE':
+            error_log( 'To Model: '.$imageFile['status'] );
+            // error_log( 'To Model - fileInfoPrev: '. print_r( $imageFile[ 'prev' ], true ) );
+            $affectsDependences = true;
+            // TODO: Falta eliminar o ficheiro anterior
+            $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+            break;
+          case 'DELETE':
+            error_log( 'To Model: '.$imageFile['status'] );
+            // Apaño
+            $collection->setter( 'image', null );
+            // TODO
+            // $affectsDependences = true;
+            // $collection->setterDependence( 'image', new FiledataModel( $imageFile['values'] ) );
+            break;
+          case 'EXIST':
+            error_log( 'To Model: '.$imageFile['status'] );
+            $affectsDependences = true;
+            $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
+            break;
+          default:
+            error_log( 'To Model: DEFAULT='.$imageFile['status'] );
+            break;
+        }
+      */
+
     }
 
     // Procesamos o listado de recursos asociados
@@ -310,8 +351,7 @@ class GeozzyCollectionView extends View
 
 
     if( !$form->existErrors()) {
-      $saveResult = $collection->save( array( 'affectsDependences' => $affectsDependences ) );
-      if( $saveResult === false ) {
+      if( $collection->save( array( 'affectsDependences' => $affectsDependences ) ) ) {
         $form->addFormError( 'No se ha podido guardar el collection.','formError' );
       }else{
         $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'", multimedia: "'.$collection->getter('multimedia').'" });' );

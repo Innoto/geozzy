@@ -1,4 +1,6 @@
 <?php
+/*
+
 Cogumelo::load('view/MasterView.php');
 geozzy::load( 'view/GeozzyResourceView.php' );
 
@@ -15,9 +17,7 @@ class RecursoView extends MasterView
   }
 
   // PROBAS !!!!!!
-  /**
-    Defino y muestro un formulario de creacion
-  */
+  // Defino y muestro un formulario de creacion
   // PROBAS !!!!!!
   public function crearForm() {
     error_log( "RecursoView: crearForm()" );
@@ -34,9 +34,7 @@ class RecursoView extends MasterView
 
 
   // PROBAS !!!!!!
-  /**
-    Defino y muestro un formulario de edicion
-  */
+  // Defino y muestro un formulario de edicion
   // PROBAS !!!!!!
   public function editarForm( $urlParams = false ) {
     error_log( "RecursoView: editarForm()". print_r( $urlParams, true ) );
@@ -70,9 +68,7 @@ class RecursoView extends MasterView
 
 
   // PROBAS !!!!!!
-  /**
-    Visualizamos el Recurso
-  */
+  // Visualizamos el Recurso
   // PROBAS !!!!!!
   public function verRecurso( $urlParams = false ) {
     error_log( "RecursoView: showRecurso()" . print_r( $urlParams, true ) );
@@ -136,9 +132,7 @@ class RecursoView extends MasterView
 
 
   // PROBAS !!!!!!
-  /**
-    Proceso formulario crear/editar Recurso
-  */
+  // Proceso formulario crear/editar Recurso
   // PROBAS !!!!!!
   public function actionResourceForm() {
     error_log( "RecursoView: actionResourceForm()" );
@@ -149,6 +143,18 @@ class RecursoView extends MasterView
 
 
 } // class showRecurso
+
+*/
+
+
+
+
+
+
+
+
+
+
 
 
 
