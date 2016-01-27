@@ -917,56 +917,44 @@ class ResourceController {
 
     if( isset( $fileField['status'] ) ) {
 
-      error_log( 'To Model - fileInfo: '. print_r( $fileField[ 'values' ], true ) );
-      error_log( 'To Model - status: '.$fileField['status'] );
-      error_log( '========' );error_log( '========' );error_log( '========' );error_log( '========' );
+      // error_log( 'To Model - fileInfo: '. print_r( $fileField[ 'values' ], true ) );
+      // error_log( 'To Model - status: '.$fileField['status'] );
+      // error_log( '========' );error_log( '========' );error_log( '========' );error_log( '========' );
 
       switch( $fileField['status'] ) {
         case 'LOADED':
           $fileFieldValues = $fileField['values'];
-
           $newFiledataObj = $filedataCtrl->createNewFile( $fileFieldValues );
-          error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          // error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
             $resObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
           }
-
           break;
         case 'REPLACE':
-          error_log( 'To Model - fileInfoPrev: '. print_r( $fileField[ 'prev' ], true ) );
+          // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField[ 'prev' ], true ) );
           $fileFieldValues = $fileField['values'];
-
           $prevFiledataId = $resObj->getter( $colName );
-
           $newFiledataObj = $filedataCtrl->createNewFile( $fileFieldValues );
-          error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          // error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
             $resObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
-            error_log( 'To Model - deleteFile ID: '.$prevFiledataId );
+            // error_log( 'To Model - deleteFile ID: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
           }
-
-          // TODO: Falta ver se eliminamos o ficheiro anterior
           break;
         case 'DELETE':
-          // $fileFieldValues = null;
-
           if( $prevFiledataId = $resObj->getter( $colName ) ) {
-            error_log( 'To Model - prevFiledataId: '.$prevFiledataId );
+            // error_log( 'To Model - prevFiledataId: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
             $resObj->setter( $colName, null );
           }
-
-          // TODO: Falta ver se eliminamos o ficheiro anterior
           break;
         case 'EXIST':
           $fileFieldValues = $fileField[ 'values' ];
-
           if( $prevFiledataId = $resObj->getter( $colName ) ) {
-            error_log( 'To Model - UPDATE prevFiledataId: '.$prevFiledataId );
+            // error_log( 'To Model - UPDATE prevFiledataId: '.$prevFiledataId );
             $filedataCtrl->updateInfo( $prevFiledataId, $fileFieldValues );
           }
-
           break;
         default:
           // error_log( 'To Model: DEFAULT='.$fileField['status'] );

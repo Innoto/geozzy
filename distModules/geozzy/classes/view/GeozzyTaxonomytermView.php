@@ -91,9 +91,9 @@ class GeozzyTaxonomytermView extends View
 
       if( $fileDep !== false ) {
         foreach( $fileDep as $fileModel ) {
-            $fileData = $fileModel->getAllData();
-            $taxtermData[ 'icon' ] = $fileData[ 'data' ];
-          }
+          $fileData = $fileModel->getAllData();
+          $taxtermData[ 'icon' ] = $fileData[ 'data' ];
+        }
       }
       $form->loadArrayValues($taxtermData);
     }
@@ -194,56 +194,99 @@ class GeozzyTaxonomytermView extends View
       $valuesArray = $form->getValuesArray();
 
       $taxterm = new TaxonomytermModel( $valuesArray );
+      $taxterm->save();
 
-      $saveResult = false;
-      $affectsDependences = false;
+      // $saveResult = false;
+      // $affectsDependences = false;
+
       $imageFile = $form->getFieldValue( 'icon' );
       if( !$form->existErrors() && isset( $imageFile['status'] ) ) {
+
+        $filedataCtrl = new FiledataController();
+        $newFiledataObj = false;
+
         switch( $imageFile['status'] ) {
           case 'LOADED':
-            error_log( 'To Model: '.$imageFile['status'] );
-            $fileInfo = $imageFile[ 'values' ];
-            error_log( 'To Model - fileInfo: '. print_r( $fileInfo, true ) );
-            $affectsDependences = true;
-            $taxterm->setterDependence( 'icon', new FiledataModel( $fileInfo ) );
+            $imageFileValues = $imageFile['values'];
+            $newFiledataObj = $filedataCtrl->createNewFile( $imageFileValues );
+            // error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+            if( $newFiledataObj ) {
+              $taxterm->setter( 'icon', $newFiledataObj->getter( 'id' ) );
+            }
             break;
           case 'REPLACE':
-            error_log( 'To Model: '.$imageFile['status'] );
-            $fileInfoPrev = $imageFile[ 'prev' ];
-            $fileInfoNew = $imageFile[ 'values' ];
-            error_log( 'To Model - fileInfoPrev: '. print_r( $fileInfoPrev, true ) );
-            error_log( 'To Model - fileInfoNew: '. print_r( $fileInfoNew, true ) );
-            $affectsDependences = true;
-
-            // TODO: Falta eliminar o ficheiro anterior
-            $taxterm->setterDependence( 'icon', new FiledataModel( $fileInfoNew ) );
+            // error_log( 'To Model - fileInfoPrev: '. print_r( $imageFile[ 'prev' ], true ) );
+            $imageFileValues = $imageFile['values'];
+            $prevFiledataId = $taxterm->getter( 'icon' );
+            $newFiledataObj = $filedataCtrl->createNewFile( $imageFileValues );
+            // error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+            if( $newFiledataObj ) {
+              $taxterm->setter( 'icon', $newFiledataObj->getter( 'id' ) );
+              // error_log( 'To Model - deleteFile ID: '.$prevFiledataId );
+              $filedataCtrl->deleteFile( $prevFiledataId );
+            }
             break;
           case 'DELETE':
-            error_log( 'To Model: '.$imageFile['status'] );
-            $fileInfo = $imageFile[ 'prev' ];
-            error_log( 'To Model - fileInfo: '. print_r( $fileInfo, true ) );
-
-            // Apaño
-            $taxterm->setter( 'icon', null );
-
-
-
-
-            /* PENDIENTE
-            $affectsDependences = true;
-            $taxterm->setterDependence( 'icon', new FiledataModel( $imageFile['values'] ) );
-            */
+            if( $prevFiledataId = $taxterm->getter( 'icon' ) ) {
+              // error_log( 'To Model - prevFiledataId: '.$prevFiledataId );
+              $filedataCtrl->deleteFile( $prevFiledataId );
+              $taxterm->setter( 'icon', null );
+            }
             break;
           case 'EXIST':
-            error_log( 'To Model: '.$imageFile['status'] );
+            $imageFileValues = $imageFile[ 'values' ];
+            if( $prevFiledataId = $taxterm->getter( 'icon' ) ) {
+              // error_log( 'To Model - UPDATE prevFiledataId: '.$prevFiledataId );
+              $filedataCtrl->updateInfo( $prevFiledataId, $imageFileValues );
+            }
             break;
           default:
-            error_log( 'To Model: DEFAULT='.$imageFile['status'] );
+            // error_log( 'To Model: DEFAULT='.$imageFile['status'] );
             break;
         }
+
+
+        /*
+          switch( $imageFile['status'] ) {
+            case 'LOADED':
+              error_log( 'To Model: '.$imageFile['status'] );
+              $fileInfo = $imageFile[ 'values' ];
+              error_log( 'To Model - fileInfo: '. print_r( $fileInfo, true ) );
+              $affectsDependences = true;
+              $taxterm->setterDependence( 'icon', new FiledataModel( $fileInfo ) );
+              break;
+            case 'REPLACE':
+              error_log( 'To Model: '.$imageFile['status'] );
+              $fileInfoPrev = $imageFile[ 'prev' ];
+              $fileInfoNew = $imageFile[ 'values' ];
+              error_log( 'To Model - fileInfoPrev: '. print_r( $fileInfoPrev, true ) );
+              error_log( 'To Model - fileInfoNew: '. print_r( $fileInfoNew, true ) );
+              $affectsDependences = true;
+              // TODO: Falta eliminar o ficheiro anterior
+              $taxterm->setterDependence( 'icon', new FiledataModel( $fileInfoNew ) );
+              break;
+            case 'DELETE':
+              error_log( 'To Model: '.$imageFile['status'] );
+              $fileInfo = $imageFile[ 'prev' ];
+              error_log( 'To Model - fileInfo: '. print_r( $fileInfo, true ) );
+              // Apaño
+              $taxterm->setter( 'icon', null );
+              // PENDIENTE
+              // $affectsDependences = true;
+              // $taxterm->setterDependence( 'icon', new FiledataModel( $imageFile['values'] ) );
+              break;
+            case 'EXIST':
+              error_log( 'To Model: '.$imageFile['status'] );
+              break;
+            default:
+              error_log( 'To Model: DEFAULT='.$imageFile['status'] );
+              break;
+          }
+        */
+
       }
 
-      $taxterm->save( array( 'affectsDependences' => $affectsDependences ) );
+      // $taxterm->save( array( 'affectsDependences' => $affectsDependences ) );
 
       $taxterm->setter( 'idName', $taxterm->getter('id') );
 
