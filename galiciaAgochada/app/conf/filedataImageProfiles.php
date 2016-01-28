@@ -177,6 +177,23 @@ $IMAGE_PROFILES = array(
       'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
 
 
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
+  'explorerRinconsMarker' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRincons.png',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
+    'filterTypeRincons' => array(
+      'width' => 32, 'height' => 32, 'cut' => false,
+      'rasterColor' => '#FFFFFF', 'padding' => 0,
+      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+
+    'filterTypeRincons2' => array(
+      'width' => 24, 'height' => 24, 'cut' => false,
+      'rasterColor' => '#6888C8', 'padding' => 0,
+      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+
+
 
 /*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
 

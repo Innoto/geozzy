@@ -55,3 +55,12 @@ $GEOZZY_STARRED['AloxamentoConEncanto'] = array(
     'gl' => 'Aloxamento con encanto'
   )
 );
+
+$GEOZZY_STARRED['portadaApp'] = array(
+  'idName' => 'portadaApp',
+  'name' => array(
+    'es' => 'Portada App',
+    'en' => 'Home App',
+    'gl' => 'Portada App'
+  )
+);

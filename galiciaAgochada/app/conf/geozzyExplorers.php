@@ -33,5 +33,10 @@ $GEOZZY_EXPLORERS = array(
     'module' => 'explorer',
     'controllerFile' => 'controller/PraiasExplorerController.php',
     'controllerName' => 'PraiasExplorerController'
+  ),
+  'rincons' => array(
+    'module' => 'explorer',
+    'controllerFile' => 'controller/RinconsExplorerController.php',
+    'controllerName' => 'RinconsExplorerController'
   )
 );
