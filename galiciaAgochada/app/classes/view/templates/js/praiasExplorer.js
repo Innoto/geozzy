@@ -1,100 +1,177 @@
 
 
 
+  $(document).ready(function(){
+    explorador = new praiasExplorer();
 
-    $(document).ready(function(){
-
-      var explorerclass = '.praiasExplorer';
-
-
-      // ESTO CHEGARÍA POR CHAMADA AJAX
-      var dataFilter1 = [
-        {value:'*', title: 'Todas'},
-        {value:'10', title: 'Galega swagger'},
-        {value:'11', title: 'Canibal'},
-        {value:'12', title: 'Indo oceánica'}
-      ];
-
-      // GOOGLE MAPS MAPS
-      var mapOptions = {
-        center: { lat: 43.1, lng: -7.36 },
-        zoom: 8
-      };
-
-      var resourceMap = new google.maps.Map( $( explorerclass+' .explorerMap').get( 0 ), mapOptions);
-
-
-
-      // EXPLORADOR
-      var explorer = new geozzy.explorer({debug:false});
-
-
-
-      // DISPLAYS
-      var infowindow = new geozzy.explorerDisplay.mapInfoView();
-      var listaPasiva = new geozzy.explorerDisplay.pasiveListView({ el:$('.explorer-container-gallery')});
-      var mapa = new geozzy.explorerDisplay.mapView({ map: resourceMap, clusterize:false });
-
-
-      explorer.addDisplay( listaPasiva );
-      explorer.addDisplay( mapa );
-      explorer.addDisplay( infowindow );
-
-
-
-      // FILTROS
-
-      $( explorerclass+' .explorer-container-filter').html(
-        '<div class="container titleBar">'+
-          '<div class="row">'+
-            '<div class="col-md-6 col-sm-4 hidden-xs explorerTitle" >'+
-              '<img class="iconTitleBar img-responsive" alt="praias Espectaculares" src="/media/img/praiasIcon.png"></img>'+
-              '<h1>Praias Espectaculares</h1>'+
-            '</div>'+
-            '<div class="col-md-6 col-sm-8 col-xs-12 explorerFilters clearfix" ></div>'+
-          '</div>'+
-        '</div>'
-      );
-
-
-      explorer.addFilter(
-        new geozzy.filters.filterSelectSimpleView(
-          {
-            mainContainerClass: explorerclass+' .explorer-container-filter .explorerFilters',
-            containerClass: 'tipoPaisaxe select2GeozzyCustom',
-            //title:'asdfasfd',
-            data: dataFilter1
-          }
-        )
-      );
-
-
-      // EXECUCIÓN EXPLORADOR
-      explorer.exec();
-
-
-      $('select.select2GeozzyCustom').select2({
-         minimumResultsForSearch: -1,
-         templateSelection: formatState,
-         templateResult: formatState
-      });
-      //LAYOUT
-      layoutDistributeSize();
+    explorador.setInitialData( function() {
+      explorador.setExplorer();
+      explorador.setDisplays();
+      explorador.setFilters();
+      explorador.exec();
+      explorador.layoutDistributeSize();
     });
 
     $(window).bind("load resize", function() {
-      layoutDistributeSize();
+      explorador.layoutDistributeSize();
     });
 
-    function formatState (state) {
-      if (!state.id) { return state.text; }
-      var $state = $(
-        '<span><i class="fa fa-tree"></i> ' + state.text + '</span>'
-      );
-      return $state;
-    };
+  });
 
-    function layoutDistributeSize(){
+
+
+
+
+
+
+
+
+  /****************************
+    paisaxesExplorer
+   ****************************/
+  praiasExplorer = function() {
+    var that = this;
+
+
+    that.explorerclass = '.praiasExplorer';
+    that.mapOptions = false;
+    that.resourceMap  = false;
+    that.fussFTLayer = false;
+
+    that.infowindow = false;
+    that.listaMini = false;
+    that.mapa = false;
+
+
+
+
+    /**
+      setInitialData. Preset objects and get values for the filters
+     */
+    that.setInitialData = function( doneFunction ){
+      that.mapOptions = {
+        center: { lat: 43.1, lng: -7.36 },
+        mapTypeControl: false,
+        zoom: 8
+      };
+      that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
+      mapControlUtils = new mapControlsUtils();
+      mapControlUtils.changeMapControls(that.resourceMap);
+
+      // Multiple data fetch
+      doneFunction();
+    }
+
+
+
+
+    /**
+      setExplorer. instance the explorer object
+     */
+    that.setExplorer = function() { zoomControl: false
+
+      that.explorer = new geozzy.explorer({
+        debug: false,
+        explorerId:'praias',
+        explorerSectionName:'Praias de ensono',
+        resourceAccess: function(id) {
+          $(".explorerContainer.explorer-loading").show();
+          $(".explorerContainer.explorer-container-du").load(
+            '/'+ GLOBAL_C_LANG +'/resource/'+id,
+            { pf: 'blk' },
+            function() {
+              $(".explorerContainer.explorer-loading").hide();
+              $(".explorerContainer.explorer-container-du").show();
+            }
+          );
+
+        },
+        resourceQuit: function() {
+          $(".explorerContainer.explorer-container-du").hide();
+          $(".explorerContainer.explorer-container-du").html('');
+        }
+
+      });
+
+    }
+
+
+
+
+
+    /**
+      setDisplays. set explorer display objects
+     */
+    that.setDisplays = function() {
+
+      that.infowindow = new geozzy.explorerDisplay.mapInfoView();
+      that.listaMini = new geozzy.explorerDisplay.activeListTinyView({ el:$('.explorer-container-gallery')});
+      that.mapa = new geozzy.explorerDisplay.mapView({
+          map: that.resourceMap,
+          clusterize:false,
+          chooseMarkerIcon: function( markerData ) {
+            var iconUrl = false;
+            var retObj = false;
+
+            retObj = {
+              url: '/media/img/chapas/chapaPraias.png',
+              // This marker is 20 pixels wide by 36 pixels high.
+              size: new google.maps.Size(24, 24),
+              // The origin for this image is (0, 0).
+              origin: new google.maps.Point(0, 0),
+              // The anchor for this image is the base of the flagpole at (0, 36).
+              anchor: new google.maps.Point(12, 12)
+            }
+
+
+            return retObj;
+          }
+      });
+
+
+      that.explorer.addDisplay( that.listaMini );
+      that.explorer.addDisplay( that.mapa );
+      that.explorer.addDisplay( that.infowindow );
+
+    }
+
+
+
+
+
+
+    /**
+      setFilters. set explorer filter objects
+     */
+    that.setFilters = function() {
+
+      name = 'Praias de Ensono';
+
+      $( that.explorerclass+' .explorer-container-filter').html(
+        '<div class="titleBar">'+
+          '<div class="container">'+
+            '<div class="row">'+
+              '<div class="col-md-12 explorerTitle" >'+
+                '<img class="iconTitleBar img-responsive" alt="'+name+'" src="/media/img/praiasIcon.png"></img>'+
+                '<h1>'+name+'</h1>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+        '</div>'
+      );
+    }
+
+    /**
+      exec. execs the explorer
+     */
+    that.exec = function(){
+      that.explorer.exec();
+    }
+
+    /**
+      layoutDistributeSize. util method
+     */
+    that.layoutDistributeSize = function(){
       var hExplorerLayout = $('.praiasExplorer').height();
       var hExplorerFilters = $('.praiasExplorer .explorer-container-filter').height();
       var hExplorerGallery = $('.praiasExplorer .explorer-container-gallery').height();
@@ -102,9 +179,5 @@
       var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
 
       $('.praiasExplorer .explorer-container-map').height( hExplorerMap );
-
-      console.log('hExplorerLayout: ', hExplorerLayout );
-      console.log('hExplorerFilters: ', hExplorerFilters );
-      console.log('hExplorerGallery: ', hExplorerGallery );
-      console.log('hExplorerMap: ', hExplorerMap );
     }
+  }

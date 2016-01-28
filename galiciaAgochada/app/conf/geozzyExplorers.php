@@ -28,5 +28,10 @@ $GEOZZY_EXPLORERS = array(
     'module' => 'explorer',
     'controllerFile' => 'controller/AloxamentosExplorerController.php',
     'controllerName' => 'AloxamentosExplorerController'
+  ),
+  'praias' => array(
+    'module' => 'explorer',
+    'controllerFile' => 'controller/PraiasExplorerController.php',
+    'controllerName' => 'PraiasExplorerController'
   )
 );
