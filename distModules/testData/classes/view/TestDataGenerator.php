@@ -54,26 +54,18 @@ class TestDataGenerator extends View
       }
     }
 
-
-    // Miramos se existen as carpetas, e se non existen as creamos
-    if (!is_dir(MOD_FORM_FILES_APP_PATH.'/testData/')){
-      mkdir(MOD_FORM_FILES_APP_PATH.'/testData/');
-    }
-
-
-    // Cargamos unhas imaxes
-    exec('cp '.COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/* '.MOD_FORM_FILES_APP_PATH.'/testData/');
+    $fileControl = new FiledataController();
 
     $filedataArray[1] = array('name' => '14420258.jpg', 'originalName' => '14420258.jpg',
-                                   'absLocation' => '/testData/14420258.jpg',
-                                   'type' => 'image/jpeg', 'size' => '38080');
+                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/test/14420258.jpg',
+                                   'type' => 'image/jpeg', 'size' => '38080', 'destDir' => '/testData/');
     $filedataArray[2] = array('name' => 'hotel-inglaterra_1.jpg', 'originalName' => 'hotel-inglaterra_1.jpg',
-                                   'absLocation' => '/testData/hotel-inglaterra_1.jpg',
-                                   'type' => 'image/jpeg', 'size' => '22370');
+                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/test/hotel-inglaterra_1.jpg',
+                                   'type' => 'image/jpeg', 'size' => '22370', 'destDir' => '/testData/');
     $filedataArray[3] = array('name' => 'Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
                                    'originalName' => 'Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
-                                   'absLocation' => '/testData/Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
-                                   'type' => 'image/jpeg', 'size' => '22370');
+                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/test/Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
+                                   'type' => 'image/jpeg', 'size' => '22370', 'destDir' => '/testData/');
 
 
     // Creamos un array de alias de url
@@ -163,11 +155,6 @@ class TestDataGenerator extends View
             $taxtermNum = rand(1,$m-1);
             if (!in_array($taxtermArray[$taxtermNum],$usedTaxterm)){
               $usedTaxterm[$c] = $taxtermArray[$taxtermNum];
-
-echo '<pre>';
-              var_dump($taxtermArray[$taxtermNum]);
-              echo '</pre>';
-
               $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxtermArray[$taxtermNum])) );
             }
         }
@@ -198,7 +185,9 @@ echo '<pre>';
       // asignamos unha imaxe ao recurso
       if ($filedataArray){
         $filedataNum = rand(1,3);
-        $resource->setterDependence( 'image', new FiledataModel( $filedataArray[$filedataNum] ) );
+        // asignamos unha imaxe ao recurso
+        $file = $fileControl->createNewFile( $filedataArray[$filedataNum] );
+        $resource->setterDependence( 'image', $file );
       }
 
       // asignamos url

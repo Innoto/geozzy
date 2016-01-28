@@ -47,12 +47,7 @@ class RealDataGenerator extends View
     $contentIni = rand(0,500);
     $contentRandom = substr($randomText, $contentIni, $contentLength);
 
-    // Miramos se existen as carpetas, e se non existen as creamos
-
-    if (!is_dir(MOD_FORM_FILES_APP_PATH.'/testData/')){
-      mkdir(MOD_FORM_FILES_APP_PATH.'/testData/');
-    }
-    exec('cp '.COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/* '.MOD_FORM_FILES_APP_PATH.'/testData/');
+    $fileControl = new FiledataController();
 
     Cogumelo::disableLogs();
 
@@ -68,37 +63,82 @@ class RealDataGenerator extends View
          $data[$datos[0]]['title'] = $datos[4];
          $data[$datos[0]]['mediumDescription'] = $datos[5];
 
-         $filedataArray[$datos[0]] = array('name' => $datos[3], 'originalName' => $datos[3],
-                                        'absLocation' => '/testData/'.$datos[3],
-                                        'type' => 'image/jpeg', 'size' => '38080');
+         $filedataArray[$datos[0]] = array(
+                                        'name' => $datos[3],
+                                        'originalName' => $datos[3],
+                                        'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/'.$datos[3],
+                                        'type' => 'image/jpeg', 'size' => '38080',
+                                        'destDir' => '/testData/'
+                                      );
 
          $loc = DBUtils::encodeGeometry( array('type'=>'POINT', 'data'=> array($data[$datos[0]]['lat'] , $data[$datos[0]]['lon']) ) );
          $zoom = 10;
 
 
          $rand1 = rand(500000,900000);
+         $rand2 = rand(0,500000);
          $timeCreation = date( "Y-m-d H:i:s", time()-$rand1 );
-         $dataRes[$datos[0]] = array(
-           'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
-           'title_en' => $data[$datos[0]]['title'],
-           'title_gl' => $data[$datos[0]]['title'],
-           'rTypeId' => $rTypeId, 'published' => 1,
-           'shortDescription_'.LANG_DEFAULT => $data[$datos[0]]['title'],
-           'shortDescription_en' => $data[$datos[0]]['title'],
-           'shortDescription_gl' => $data[$datos[0]]['title'],
-           'mediumDescription_'.LANG_DEFAULT => $data[$datos[0]]['mediumDescription'],
-           'mediumDescription_en' => $data[$datos[0]]['mediumDescription'],
-           'mediumDescription_gl' => $data[$datos[0]]['mediumDescription'],
-           'content_'.LANG_DEFAULT => $contentRandom,
-           'content_en' => $contentRandom,
-           'content_gl' => $contentRandom,
-           'user' =>  $user,
-           'loc' => $loc,
-           'defaultZoom' => $zoom,
-           'timeCreation' => $timeCreation
-        );
+         $timeLastUpdate = date( "Y-m-d H:i:s", time()-$rand2 );
+         $randUpdate = rand(0,1);
+         $user = 10;
+         $userUpdate = 10;
+         // Publicado
+         if ($randPublished = rand(1,8)){
+           if ($randPublished == 3 || $randPublished == 5)
+             $published = 0;
+           else
+             $published = 1;
+         }
 
-          $j = $j+1;
+         // creación del recurso
+         if ($randUpdate == 1){
+           $dataRes[$datos[0]] = array(
+             'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+             'title_en' => $data[$datos[0]]['title'],
+             'title_gl' => $data[$datos[0]]['title'],
+             'rTypeId' => $rTypeId, 
+             'shortDescription_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+             'shortDescription_en' => $data[$datos[0]]['title'],
+             'shortDescription_gl' => $data[$datos[0]]['title'],
+             'mediumDescription_'.LANG_DEFAULT => $data[$datos[0]]['mediumDescription'],
+             'mediumDescription_en' => $data[$datos[0]]['mediumDescription'],
+             'mediumDescription_gl' => $data[$datos[0]]['mediumDescription'],
+             'content_'.LANG_DEFAULT => $contentRandom,
+             'content_en' => $contentRandom,
+             'content_gl' => $contentRandom,
+             'user' =>  $user,
+             'loc' => $loc,
+             'defaultZoom' => $zoom,
+             'timeCreation' => $timeCreation,
+             'timeLastUpdate' => $timeLastUpdate,
+             'userUpdate' => $userUpdate,
+             'published' => $published
+          );
+        }
+        else{
+          $dataRes[$datos[0]] = array(
+            'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+            'title_en' => $data[$datos[0]]['title'],
+            'title_gl' => $data[$datos[0]]['title'],
+            'rTypeId' => $rTypeId,
+            'shortDescription_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+            'shortDescription_en' => $data[$datos[0]]['title'],
+            'shortDescription_gl' => $data[$datos[0]]['title'],
+            'mediumDescription_'.LANG_DEFAULT => $data[$datos[0]]['mediumDescription'],
+            'mediumDescription_en' => $data[$datos[0]]['mediumDescription'],
+            'mediumDescription_gl' => $data[$datos[0]]['mediumDescription'],
+            'content_'.LANG_DEFAULT => $contentRandom,
+            'content_en' => $contentRandom,
+            'content_gl' => $contentRandom,
+            'user' =>  $user,
+            'loc' => $loc,
+            'defaultZoom' => $zoom,
+            'timeCreation' => $timeCreation,
+            'published' => $published
+         );
+        }
+
+        $j = $j+1;
        }
     }
 
@@ -108,7 +148,8 @@ class RealDataGenerator extends View
       $resource =  new ResourceModel($dataRes[$k]);
 
       // asignamos unha imaxe ao recurso
-      $resource->setterDependence( 'image', new FiledataModel( $filedataArray[$i] ) );
+      $file = $fileControl->createNewFile( $filedataArray[$k] );
+      $resource->setterDependence( 'image', $file );
 
       // asignamos temáticas ao recurso
       $resourcetype =  new ResourcetypeModel();
