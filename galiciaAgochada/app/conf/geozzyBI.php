@@ -23,9 +23,14 @@ $BI_GEOZZY_UI_EVENTS = array(
   'improved' => array('desc' => 'Improve')
 );
 
-
-$BI_METRICS_EXPLORER = 'http://test.geozzy.itg.es:10163/observation/explorer';
-$BI_METRICS_RESOURCE = 'http://test.geozzy.itg.es:10163/observation/resource';
+if( IS_DEVEL_ENV ) {
+  $BI_METRICS_EXPLORER = '';
+  $BI_METRICS_RESOURCE = '';
+}
+else {
+  $BI_METRICS_EXPLORER = 'http://test.geozzy.itg.es:10163/observation/explorer';
+  $BI_METRICS_RESOURCE = 'http://test.geozzy.itg.es:10163/observation/resource';
+}
 
 $BI_SITE_SECTIONS = array(
   'landing-carrousel1' => array('name'=> 'Primer carrusel Landing'),
