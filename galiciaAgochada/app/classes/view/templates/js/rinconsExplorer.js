@@ -37,7 +37,8 @@
     that.mapOptions = false;
     that.resourceMap  = false;
     that.fussFTLayer = false;
-    that.espazoNaturalCategories = false;
+
+    that.lugaresType = false;
 
     that.infowindow = false;
     that.listaMini = false;
@@ -59,14 +60,14 @@
       mapControlUtils = new mapControlsUtils();
       mapControlUtils.changeMapControls(that.resourceMap);
 
-      that.espazoNaturalCategories = new geozzy.collection.CategorytermCollection();
-      that.espazoNaturalCategories.setUrlByIdName('rextAppEspazoNaturalType');
+      that.lugaresType = new geozzy.collection.CategorytermCollection();
+      that.lugaresType.setUrlByIdName('rextAppLugarType');
 
       that.zonaCategories = new geozzy.collection.CategorytermCollection();
       that.zonaCategories.setUrlByIdName('rextAppZonaType');
 
       // Multiple data fetch
-      $.when( that.espazoNaturalCategories.fetch(), that.zonaCategories.fetch() ).done(function() {
+      $.when( that.lugaresType.fetch(), that.zonaCategories.fetch() ).done(function() {
         doneFunction();
       });
     }
@@ -123,7 +124,7 @@
             var retObj = false;
 
 
-            that.espazoNaturalCategories.each( function(e){
+            that.lugaresType.each( function(e){
               //console.log(e.get('id'))
               //console.debug(markerData.get('terms'))
 
@@ -239,9 +240,9 @@
         new geozzy.explorerComponents.filters.filterComboView(
           {
             mainContainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
-            containerClass: 'tipoPaisaxe select2GeozzyCustom',
-            defaultOption: { icon: false, title: 'Todas as paisaxes', value:'*' },
-            data: that.espazoNaturalCategories
+            containerClass: 'tipoLugar select2GeozzyCustom',
+            defaultOption: { icon: false, title: 'Todos os lugares', value:'*' },
+            data: that.lugaresType
           }
         )
       );
