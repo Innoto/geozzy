@@ -23,5 +23,20 @@ $GEOZZY_EXPLORERS = array(
     'module' => 'explorer',
     'controllerFile' => 'controller/TodosSegredosExplorerController.php',
     'controllerName' => 'TodosSegredosExplorerController'
+  ),
+  'aloxamentos' => array(
+    'module' => 'explorer',
+    'controllerFile' => 'controller/AloxamentosExplorerController.php',
+    'controllerName' => 'AloxamentosExplorerController'
+  ),
+  'praias' => array(
+    'module' => 'explorer',
+    'controllerFile' => 'controller/PraiasExplorerController.php',
+    'controllerName' => 'PraiasExplorerController'
+  ),
+  'rincons' => array(
+    'module' => 'explorer',
+    'controllerFile' => 'controller/RinconsExplorerController.php',
+    'controllerName' => 'RinconsExplorerController'
   )
 );

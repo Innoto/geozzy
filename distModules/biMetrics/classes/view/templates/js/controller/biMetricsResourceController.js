@@ -66,6 +66,7 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
 
 
   eventHoverStart: function( id, section ) {
+
     var that = this;
 
     that.hoverStack.push({
@@ -79,9 +80,10 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
   eventHoverEnd: function( id ) {
     var that = this;
 
+
     $.each( that.hoverStack, function( i, e ){
 
-      if( e.resourceId == id ) {
+      if( e.resourceId == id && typeof id != 'undefined') {
 
         that.hoverStack[i] = false;
 
@@ -100,9 +102,10 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
     var that = this;
 
     that.addMetric({
-          resourceId: id,
-          section: section,
-          event: 'clicked'
+      duration:0,
+      resourceId: id,
+      section: section,
+      event: 'clicked'
     });
   },
 
@@ -110,12 +113,14 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
     var that = this;
 
     if( $.inArray(id , that.printedResources)  == -1) {
+
       that.printedResources.push( id );
 
       that.addMetric({
-            resourceId: id,
-            section: section,
-            event: 'printed'
+        duration:0,
+        resourceId: id,
+        section: section,
+        event: 'printed'
       });
     }
 

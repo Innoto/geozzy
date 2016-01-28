@@ -121,6 +121,8 @@
           clusterize:false,
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
+            var retObj = false;
+
 
             that.espazoNaturalCategories.each( function(e){
               //console.log(e.get('id'))
@@ -137,7 +139,20 @@
 
             });
 
-            return iconUrl;
+            if(iconUrl) {
+
+              retObj = {
+                url: iconUrl,
+                // This marker is 20 pixels wide by 36 pixels high.
+                size: new google.maps.Size(24, 24),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 36).
+                anchor: new google.maps.Point(12, 12)
+              }
+            }
+
+            return retObj;
           }
       });
 

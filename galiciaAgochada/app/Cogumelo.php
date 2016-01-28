@@ -17,6 +17,15 @@ class Cogumelo extends CogumeloClass
       "installer" => "bower",
       "includes" => array('feature.min.js')
     ),
+
+    array(
+      "id" =>"devicejs",
+      "params" => array("devicejs"),
+      "installer" => "bower",
+      "includes" => array('lib/device.min.js')
+    ),
+
+
     array(
      "id" => "bootstrap",
      "params" => array("bootstrap"),

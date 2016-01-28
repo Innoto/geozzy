@@ -71,7 +71,8 @@ $IMAGE_PROFILES = array(
     'cut' => false ),
 
 
-/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
+
+/*-----------------------------------------TEMP ----------------------------------------------------------------------*/
   'typeIcon' => array(
     'rasterColor' => '#ffffff',
     'width' => 36, 'height' => 36,
@@ -82,7 +83,7 @@ $IMAGE_PROFILES = array(
   'typeIconHover' => array(
     'rasterColor' => '#ffffff',
     'width' => 36, 'height' => 36,
-    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRestHover36x36.png',
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaFilterHover36x36.png',
     'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
     'padding' => 5,
     'saveName' => 'iconHover.png',
@@ -96,10 +97,68 @@ $IMAGE_PROFILES = array(
     'saveName' => 'iconSelected.png',
     'saveFormat' => 'PNG' ),
 
+
+
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
+  'typeIconXantares' => array(
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 5,
+    'saveName' => 'icon.png',
+    'saveFormat' => 'PNG' ),
+  'typeIconXantaresHover' => array(
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaFilterHover36x36.png',
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 5,
+    'saveName' => 'iconHover.png',
+    'saveFormat' => 'PNG' ),
+  'typeIconXantaresSelected' => array(
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRest36x36.png',
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 5,
+    'saveName' => 'iconSelected.png',
+    'saveFormat' => 'PNG' ),
+
   'explorerXantaresMarker' => array(
     'width' => 24, 'height' => 24, 'cut' => false,
     'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares.png',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR ALOXAMENTOS----------------------------------------*/
+  'typeIconAloxamentos' => array(
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 5,
+    'saveName' => 'icon.png',
+    'saveFormat' => 'PNG' ),
+  'typeIconAloxamentosHover' => array(
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaFilterHover36x36.png',
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 5,
+    'saveName' => 'iconHover.png',
+    'saveFormat' => 'PNG' ),
+  'typeIconAloxamentosSelected' => array(
+    'rasterColor' => '#ffffff',
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaAloxamentos36x36.png',
+    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 5,
+    'saveName' => 'iconSelected.png',
+    'saveFormat' => 'PNG' ),
+
+  'explorerAloxamentosMarker' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaAloxamentos.png',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
 
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
   'explorerPaisaxesMarker' => array(
@@ -115,6 +174,23 @@ $IMAGE_PROFILES = array(
     'filterTypePaisaxes2' => array(
       'width' => 24, 'height' => 24, 'cut' => false,
       'rasterColor' => '#95C131', 'padding' => 0,
+      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+
+
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
+  'explorerRinconsMarker' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRincons.png',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
+    'filterTypeRincons' => array(
+      'width' => 32, 'height' => 32, 'cut' => false,
+      'rasterColor' => '#FFFFFF', 'padding' => 0,
+      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+
+    'filterTypeRincons2' => array(
+      'width' => 24, 'height' => 24, 'cut' => false,
+      'rasterColor' => '#6888C8', 'padding' => 0,
       'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
 
 

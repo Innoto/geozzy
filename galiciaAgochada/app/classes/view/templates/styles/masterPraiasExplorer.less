@@ -10,40 +10,6 @@
 }
 
 .praiasExplorer{
-  .explorer-container-filter{
-    .explorerFilters{
-      .explorerFilterElement{
-        &.select2GeozzyCustom{
-          img{
-            width: 32px;
-            height: 32px;
-            position: static;
-          }
-          .select2Theme( @width: 260px, @height: 42px, @bckHeader: @gzzColor-praias, @colorHeader: @gzzColor-bck-1);
-        }//.select2GeozzyCustom
-        .filterZonaMapContainer{
-          .filterZonaMap_openFilter{
-            svg{
-              path{
-                fill: @gzzColor-praias !important;
-              }
-            }
-          }
-          .filterZonaMap_opts{
-            .zonaMap{
-              path{
-                fill: @gzzColor-praias !important;
-              }
-            }
-            .zonaMap_reset{
-              color: white;
-              background-color: @gzzColor-praias;
-            }
-          }
-        }
-      }
-    }
-  }
   .explorer-container-gallery{
     .explorerListPager{
       div{
@@ -65,6 +31,19 @@
 /**********************  RESPONSIVE MEDIA QUERIES  ************************************/
 /**************************************************************************************/
 /**************************************************************************************/
+.touch{
+  #geozzyExplorerMapInfo{
+    .gempiContent{
+      .gempiTouchAccess{
+        button{
+          border: none;
+          background-color: @gzzColor-praias;
+            &:hover{ background-color: @gzzColor-praias-hover; }
+        }//button
+      }//.gempiTouchAccess
+    }//.gempiContent
+  }//#geozzyExplorerMapInfo
+}//.touch
 
 @media screen and (min-width: 1200px) {
 

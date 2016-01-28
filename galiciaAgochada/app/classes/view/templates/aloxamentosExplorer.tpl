@@ -1,13 +1,13 @@
 {extends file="primary.tpl"}
 
 {block name="headClientIncludes" append}
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?language={$GLOBAL_LANG_AVAILABLE[$GLOBAL_C_LANG].i18n}"></script>
 {/block}
 
 {block name="bodyContent"}
   <div class="titleBar">
     <div class="container">
-      <img class="iconTitleBar img-responsive" alt="Paisaxes Espectaculares" src="/media/img/aloxamentosIcon.png"></img>
+      <img class="iconTitleBar img-responsive" alt="{t}Aloxamentos con encanto{/t}" src="/media/img/aloxamentosIcon.png"></img>
       <h1>{t}Aloxamentos con encanto{/t}</h1>
     </div>
   </div>

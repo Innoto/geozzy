@@ -128,9 +128,9 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     if( !that.markersCreated ) {
       that.parentExplorer.resourceMinimalList.each( function(e) {
 
+//console.log(that.chooseMarker(e))
         var marker = e.mapMarker = new google.maps.Marker({
                   position: new google.maps.LatLng( e.get('lat'), e.get('lng') ),
-                  icon: that.chooseMarker(e),
                   map: that.map,
                   flat: true,
                   optimized: false,
@@ -174,7 +174,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     that.hideAllMarkers();
 
     that.parentExplorer.resourceIndex.each( function(e) {
-      e.mapMarker.setIcon( that.chooseMarkerIcon(e) );
+      e.mapMarker.setIcon( that.chooseMarker(e) );
       e.mapMarker.setVisible(true);
     });
 
@@ -348,36 +348,35 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     return this.ready;
   },
 
-  chooseMarkerIcon: function( e ) {
-    var that = this;
-
-    var iconUrl = '/mediaCache/module/admin/img/geozzy_marker.png';
-    var newIconUrl = that.options.chooseMarkerIcon(e);
-
-
-    if( newIconUrl ) {
-      console.log(newIconUrl);
-      iconUrl = newIconUrl
-    }
-
-    return iconUrl;
-  },
 
   chooseMarker: function( e ) {
 
     var that = this;
 
 
+    var that = this;
+    var retObj;
 
-    return {
-      url: that.chooseMarkerIcon(e),
-      // This marker is 20 pixels wide by 36 pixels high.
-      size: new google.maps.Size(30, 36),
-      // The origin for this image is (0, 0).
-      origin: new google.maps.Point(0, 0),
-      // The anchor for this image is the base of the flagpole at (0, 36).
-      anchor: new google.maps.Point(13, 36)
-    };
+    var iconOptions = that.options.chooseMarkerIcon(e);
+    if(iconOptions) {
+      retObj = iconOptions;
+    }
+    else {
+      retObj = {
+        url: '/mediaCache/module/admin/img/geozzy_marker.png',
+        // This marker is 20 pixels wide by 36 pixels high.
+        size: new google.maps.Size(30, 36),
+        // The origin for this image is (0, 0).
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at (0, 36).
+        anchor: new google.maps.Point(13, 36)
+      };
+    }
+
+    return retObj;
+
+
+
   },
 
   markerBounce: function(id) {
