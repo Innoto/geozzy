@@ -256,6 +256,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
   },
   resourceEvent: function ( element, eventType ){
     var that = this;
+
     switch (eventType) {
       case 'click':
         if( that.parentExplorer.displays.map ) {
@@ -281,16 +282,17 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
         }
       break;
       case 'mouseleave':
+
         if( that.parentExplorer.displays.map ) {
           that.parentExplorer.displays.map.markerOut( );
           that.parentExplorer.displays.map.markerBounceEnd( $(element.currentTarget).attr('data-resource-id') );
 
         }
-        else {
-          that.parentExplorer.metricsResourceController.eventHoverEnd(
-            $(element.currentTarget).attr('data-resource-id')
-          );
-        }
+
+        that.parentExplorer.metricsResourceController.eventHoverEnd(
+          $(element.currentTarget).attr('data-resource-id')
+        );
+
       break;
     }
   }

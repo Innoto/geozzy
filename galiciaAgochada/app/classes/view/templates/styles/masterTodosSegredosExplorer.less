@@ -38,6 +38,14 @@
   }
   .explorer-container-filter{
     .filtersContainer{
+      .filters_advancedFilters{
+        .xantaresPrice{
+          .ionSliderTheme( @gzzColor-xantares );
+          .irs-min, .irs-max{
+            display: none;
+          }
+        }//xantaresPrice
+      }
       .resetFilters{
         button{
           background: @gzzColor-xantares;
@@ -61,6 +69,19 @@
 /**********************  RESPONSIVE MEDIA QUERIES  ************************************/
 /**************************************************************************************/
 /**************************************************************************************/
+.touch{
+  #geozzyExplorerMapInfo{
+    .gempiContent{
+      .gempiTouchAccess{
+        button{
+          border: none;
+          background-color: @gzzColor-xantares;
+          &:hover{ background-color: @gzzColor-xantares-hover; }
+        }//button
+      }//.gempiTouchAccess
+    }//.gempiContent
+  }//#geozzyExplorerMapInfo
+}//.touch
 
 @media screen and (min-width: 1200px) {
 

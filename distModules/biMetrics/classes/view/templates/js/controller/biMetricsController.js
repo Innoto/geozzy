@@ -49,7 +49,7 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
        "session_ID": GLOBAL_C_SESSION_ID,
        "observationTime": that.packageTimestamp ,
        "device":{
-          "type":"mob",
+          "type": that.getDevice(),
           "device_ID":0
        },
        "metrics": that.pendingMetrics
@@ -140,6 +140,24 @@ geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
     var that = this;
 
     return new Date().getTime()
+  },
+
+  getDevice: function() {
+    var that = this;
+    var d = 'desk';
+
+
+    if( $('html').hasClass('tablet') ) {
+      d = 'tablet';
+    }
+    else
+    if(  $('html').hasClass('mobile')  ) {
+      d = 'mob';
+    }
+
+    return d;
   }
+
+
 
 });

@@ -60,11 +60,27 @@
   }
 }
 
+.select2-container--default .select2-results > .select2-results__options{
+  max-height: none;
+}
 /**************************************************************************************/
 /**************************************************************************************/
 /**********************  RESPONSIVE MEDIA QUERIES  ************************************/
 /**************************************************************************************/
 /**************************************************************************************/
+.touch{
+  #geozzyExplorerMapInfo{
+    .gempiContent{
+      .gempiTouchAccess{
+        button{
+          border: none;
+          background-color: @gzzColor-rincons;
+          &:hover{ background-color: @gzzColor-rincons-hover; }
+        }//button
+      }//.gempiTouchAccess
+    }//.gempiContent
+  }//#geozzyExplorerMapInfo
+}//.touch
 
 @media screen and (min-width: 1200px) {
 

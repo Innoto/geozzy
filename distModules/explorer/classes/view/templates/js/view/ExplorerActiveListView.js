@@ -49,7 +49,9 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
   events: {
 
       // resource events
+
       "click .explorerActiveListContent .accessButton": "resourceClick",
+      "touchend .explorerActiveListContent .element": "resourceTouch",
       "mouseenter .explorerActiveListContent .element": "resourceHover",
       "mouseleave .explorerActiveListContent .element": "resourceOut",
   },
@@ -72,7 +74,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     var that = this;
     this.parentExplorer.resourceIndex.removePagination();
 
-    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(50);
+    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(30);
 
 
     visibleResources.setSort('mapVisible', 'desc');
@@ -195,48 +197,70 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
 
   resourceClick: function( element ) {
     var that = this;
-    if( that.parentExplorer.displays.map ) {
-
-      that.parentExplorer.explorerRouter.navigate( 'resource/' + $(element.currentTarget).attr('data-resource-id'), {trigger:true} );
-
+    if(!that.parentExplorer.explorerTouchDevice){
+      that.resourceEvent( element, 'click');
     }
-    else {
-      that.parentExplorer.options.resourceAccess( id, {trigger:true} )
-      // call metrics event
-      that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
-    }
+  },
 
+  resourceTouch: function( element ) {
+    var that = this;
+
+    if(that.parentExplorer.explorerTouchDevice){
+      that.resourceEvent( element, 'mouseenter');
+    }
   },
 
   resourceHover: function( element ) {
     var that = this;
-
-    if( that.parentExplorer.displays.map ) {
-      that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
-      that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('data-resource-id') );
-      that.parentExplorer.displays.map.markerHover( $(element.currentTarget).attr('data-resource-id') );
-    }
-    else {
-      that.parentExplorer.metricsResourceController.eventHoverStart(
-        $(element.currentTarget).attr('data-resource-id') ,
-        'Explorer: '+that.parentExplorer.options.explorerSectionName
-      );
+    if(!that.parentExplorer.explorerTouchDevice){
+      that.resourceEvent( element, 'mouseenter');
     }
   },
 
   resourceOut: function( element ) {
     var that = this;
-
-    if( that.parentExplorer.displays.map ) {
-      that.parentExplorer.displays.map.markerOut( );
-      that.parentExplorer.displays.map.markerBounceEnd( $(element.currentTarget).attr('data-resource-id') );
-    }
-    else {
-      that.parentExplorer.metricsResourceController.eventHoverEnd(
-        $(element.currentTarget).attr('data-resource-id')
-      );
+    if(!that.parentExplorer.explorerTouchDevice){
+      that.resourceEvent( element, 'mouseleave');
     }
 
+  },
+  resourceEvent: function ( element, eventType ){
+    var that = this;
+    switch (eventType) {
+      case 'click':
+        if( that.parentExplorer.displays.map ) {
+          that.parentExplorer.explorerRouter.navigate( 'resource/' + $(element.currentTarget).attr('data-resource-id'), {trigger:true} );
+        }
+        else {
+          that.parentExplorer.options.resourceAccess( id, {trigger:true} )
+          // call metrics event
+          that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
+        }
+      break;
+      case 'mouseenter':
+        if( that.parentExplorer.displays.map ) {
+          that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
+          that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('data-resource-id') );
+          that.parentExplorer.displays.map.markerHover( $(element.currentTarget).attr('data-resource-id') );
+        }
+        else {
+          that.parentExplorer.metricsResourceController.eventHoverStart(
+            $(element.currentTarget).attr('data-resource-id') ,
+            'Explorer: '+that.parentExplorer.options.explorerSectionName
+          );
+        }
+      break;
+      case 'mouseleave':
+        if( that.parentExplorer.displays.map ) {
+          that.parentExplorer.displays.map.markerOut( );
+          that.parentExplorer.displays.map.markerBounceEnd( $(element.currentTarget).attr('data-resource-id') );
+        }
 
+        that.parentExplorer.metricsResourceController.eventHoverEnd(
+          $(element.currentTarget).attr('data-resource-id')
+        );
+
+      break;
+    }
   }
 });

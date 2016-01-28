@@ -109,8 +109,8 @@ define( 'TPL_TMP', APP_TMP_PATH.'/tpl' );
 //
 global $C_ENABLED_MODULES;
 $C_ENABLED_MODULES = array(
-  'mediaserver',
   'i18nGetLang',
+  'mediaserver',
   'common',
   'devel',
   'user',
@@ -167,8 +167,8 @@ $C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_
 // before app/Cogumelo.php execution
 global $C_INDEX_MODULES;
 $C_INDEX_MODULES  = array(
-  'mediaserver',
   'i18nGetLang',
+  'mediaserver',
   'user',
   'filedata',
   'geozzy',
