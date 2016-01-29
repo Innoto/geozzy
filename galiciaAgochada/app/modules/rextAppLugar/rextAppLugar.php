@@ -48,6 +48,15 @@ class rextAppLugar extends Module {
             'es' => 'Rincones históricos',
             'gl' => 'rincóns históricos'
           )
+        ),
+        array(
+          'idName' => 'rinconesnaturales',
+          'icon' => 'view/categoryIcons/rinconesnaturales.svg',
+          'name' => array(
+            'en' => 'Natural places',
+            'es' => 'Rincones naturales',
+            'gl' => 'Rincóns naturais'
+          )
         )
       )
     )

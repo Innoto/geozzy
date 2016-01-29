@@ -7,7 +7,6 @@ $(document).ready( function() {
     geozzy.rExtMapDirectionsController.prepareMap( geozzy.rExtMapDirectionsData );
   }
 
-
   if( typeof geozzy.rExtMapDirectionsData.wrapperRoute !== 'undefined' ) {
     geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData );
   }
@@ -212,34 +211,38 @@ geozzy.rExtMapDirectionsController = {
     }
 
     this.traceRoute( 0, this.routeFrom.latlng, this.routeTo.latlng, this.transport , false, function() {
-      console.log( 'traceRoute thenFunction:', that.resourceLastroute.routes[0] );
+      console.log( 'traceRoute thenFunction:', that.resourceLastroute );
 
-      that.routeFrom.dir = that.resourceLastroute.routes[0].legs[0].startAddress;
-      that.routeTo.dir = that.resourceLastroute.routes[0].legs[0].endAddress;
-      if( fromTitle ) {
-        that.routeFrom.title = fromTitle;
-      }
-      that.routeTo.time = that.resourceLastroute.routes[0].legs[0].duration.value;
-      that.routeTo.distance = that.resourceLastroute.routes[0].legs[0].distance.value;
-
-      that.directionsDisplay.setMap( that.resourceMap );
-      that.directionsDisplay.setPanel( document.getElementById( 'comollegarListado' ) );
-
+      travelInfo = false;
       that.clearRoute();
 
-      // dibuja ruta
-      that.directionsDisplay.setDirections( that.resourceLastroute );
-      that.tramoExtraIni = that.tramoExtra( that.routeFrom.latlng, that.resourceLastroute.routes[0].legs[0].start_location, false );
-      that.tramoExtraFin = that.tramoExtra( that.routeTo.latlng, that.resourceLastroute.routes[0].legs[0].end_location, true );
+      if( that.resourceLastroute ) {
+        that.routeFrom.dir = that.resourceLastroute.routes[0].legs[0].startAddress;
+        that.routeTo.dir = that.resourceLastroute.routes[0].legs[0].endAddress;
+        that.routeTo.time = that.resourceLastroute.routes[0].legs[0].duration.value;
+        that.routeTo.distance = that.resourceLastroute.routes[0].legs[0].distance.value;
+
+        that.directionsDisplay.setMap( that.resourceMap );
+        that.directionsDisplay.setPanel( that.routePanelContainer.find( '#comollegarListado' ).get(0) );
+
+        // dibuja ruta
+        that.directionsDisplay.setDirections( that.resourceLastroute );
+        that.tramoExtraIni = that.tramoExtra( that.routeFrom.latlng, that.resourceLastroute.routes[0].legs[0].start_location, false );
+        that.tramoExtraFin = that.tramoExtra( that.routeTo.latlng, that.resourceLastroute.routes[0].legs[0].end_location, true );
+
+        travelInfo = {
+          mode: that.resourceLastroute.request.travelMode,
+          meters: that.resourceLastroute.routes[0].legs[0].distance.value,
+          seconds: that.resourceLastroute.routes[0].legs[0].duration.value
+        };
+      }
+      else {
+        travelInfo = 'No se ha podido localizar una ruta.';
+      }
 
       that.routePanelContainer.find('.tabList' ).show();
       that.routePanelContainer.find('.routeMode' ).show();
 
-      travelInfo = {
-        mode: that.resourceLastroute.request.travelMode,
-        meters: that.resourceLastroute.routes[0].legs[0].distance.value,
-        seconds: that.resourceLastroute.routes[0].legs[0].duration.value
-      };
       that.setRoutePanelInfo( travelInfo );
 
       // desbloquea boton de cerrar
@@ -269,42 +272,32 @@ geozzy.rExtMapDirectionsController = {
   },
 
   setRoutePanelInfo: function setRoutePanelInfo( travelInfo ) {
-    console.log( 'setRoutePanelInfo:', travelInfo );
-    var modeNum = 0;
+    console.log( 'setRoutePanelInfo:', typeof( travelInfo ) );
+    var htmlMsg = '';
+    //var modeNum = 0;
+
     if( travelInfo !== false ) {
-      var sec = travelInfo.seconds;
-      var s = sec % 60;
-      sec = ( sec - s ) / 60;
-      var m = sec % 60;
-      var h = ( sec - m ) / 60;
-      s = (s<10) ? '0'+s : s;
-      m = (m<10) ? '0'+m : m;
-      var timeStr = h+':'+m;
-
-      var km = Math.round( travelInfo.meters / 100 ) / 10;
-
-      switch( travelInfo.mode ) {
-        case 'DRIVING':
-          modeNum = 0;
-          break;
-        case 'WALKING':
-          modeNum = 1;
-          break;
-        case 'TRANSIT':
-          modeNum = 2;
-          break;
-        case 'BICYCLING':
-          modeNum = 3;
-          break;
+      if( typeof( travelInfo ) === 'string' ) {
+        htmlMsg = travelInfo;
       }
-      this.routePanelContainer.find( '.routeInfo' ).html( 'Distance: '+km+' Km Time: '+ timeStr );
-    }
-    else {
-      this.routePanelContainer.find( '.routeInfo' ).html( '' );
+      else {
+        var sec = travelInfo.seconds;
+        var s = sec % 60;
+        sec = ( sec - s ) / 60;
+        var m = sec % 60;
+        var h = ( sec - m ) / 60;
+        s = (s<10) ? '0'+s : s;
+        m = (m<10) ? '0'+m : m;
+        var timeStr = h+':'+m;
+
+        var km = Math.round( travelInfo.meters / 100 ) / 10;
+        htmlMsg = 'Distance: '+km+' Km Time: '+ timeStr;
+      }
     }
 
+    this.routePanelContainer.find( '.routeInfo' ).html( htmlMsg );
     this.routePanelContainer.find( '.routeModeButton' ).removeClass( 'active' );
-    this.routePanelContainer.find( '.routeMode [data-route-mode="'+modeNum+'"]').addClass( 'active' );
+    this.routePanelContainer.find( '.routeMode [data-route-mode="' + this.transport + '"]').addClass( 'active' );
   },
 
   // traceRoute(0, from, this.to.latlng, this.transport , false, function(){
@@ -348,11 +341,12 @@ geozzy.rExtMapDirectionsController = {
           thenFunction();
         }
         else {
-          console.debug( '<p>Desconocido</p>' );
+          console.log( 'DirectionsStatus.FAIL', result, status );
           that.resourceLastroute = false;
           if( cache ) {
             that.resourceRoutes[ mode ][ id ] = false;
           }
+          thenFunction();
         }
       });
     }
@@ -396,13 +390,7 @@ geozzy.rExtMapDirectionsController = {
 
 
 
-
-
-
-
-
-
-  eventHoverStart: function( id, section ) {
+  eventHoverStart: function eventHoverStart( id, section ) {
     var that = this;
 
     that.hoverStack.push({
@@ -413,7 +401,7 @@ geozzy.rExtMapDirectionsController = {
     });
   },
 
-  eventPrint: function(id, section) {
+  eventPrint: function eventPrint(id, section) {
     var that = this;
 
     if( $.inArray(id , that.printedResources)  == -1) {
