@@ -35,7 +35,7 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
        "section": metric.section,
        "resource":{
           "term":[0],
-          "name":"Recurso 1793",
+          "name":"Recurso " + metric.resourceId,
           "resource_ID": metric.resourceId,
           "topic":[
              1
