@@ -195,8 +195,20 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     }
     that.hideAllMarkers();
 
+/*
+
+    that.parentExplorer.resourceIndex.each( function(e) {
+      e.mapMarker.setIcon( that.chooseMarker(e) );
+      e.mapMarker.setVisible(true);
+    });
+
+*/
+
+
 
     that.parentExplorer.resourceIndex.each( function( e ) {
+      e.mapMarker.setIcon( that.chooseMarker(e) );
+      e.mapMarker.setVisible(true);
       that.markers.push( e.mapMarker );
     });
 
