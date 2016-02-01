@@ -34,6 +34,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     var options = new Object({
       map : false,
       clusterize: false,
+      clustererStyles: false,
       chooseMarkerIcon: function() {return false}
     });
 
@@ -215,10 +216,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     if( that.markerClusterer == false ) {
 
+
+
       that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
         maxZoom: 15,
         gridSize: 45,
-        zoomOnClick: false
+        zoomOnClick: true,
+        styles: that.options.clustererStyles
       });
 
     }
