@@ -220,7 +220,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
       that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
         maxZoom: 15,
-        gridSize: 45,
+        gridSize: 70,
         zoomOnClick: true,
         styles: that.options.clustererStyles
       });
