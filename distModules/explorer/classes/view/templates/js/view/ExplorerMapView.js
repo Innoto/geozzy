@@ -50,25 +50,30 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   setMapEvents: function() {
     var that = this;
-/*
+
     // drag event on map
     google.maps.event.addListener(this.map, "dragend", function() {
-      that.ready = true;
-      that.parentExplorer.render(true);
+      //that.ready = true;
+      //console.log('dragend')
+      //that.parentExplorer.render(true);
     });
 
     // zoom event on map
     google.maps.event.addListener(this.map, "zoom_changed", function() {
-      that.ready = true;
-      that.parentExplorer.render(true);
+      //that.ready = true;
+      //that.parentExplorer.render(true);
     });
-*/
+
 
 
     // map first load
     google.maps.event.addListener(this.map, "idle", function() {
+      console.log('render')
       if( that.ready !== true) {
         that.ready = true;
+        that.parentExplorer.render(true);
+      }
+      else {
         that.parentExplorer.render(true);
       }
 
@@ -220,7 +225,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
       that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
         maxZoom: 15,
-        gridSize: 70,
+        gridSize: 90,
         zoomOnClick: true,
         styles: that.options.clustererStyles
       });
