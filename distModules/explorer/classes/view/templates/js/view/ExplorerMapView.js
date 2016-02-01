@@ -53,15 +53,14 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     // drag event on map
     google.maps.event.addListener(this.map, "dragend", function() {
-      //that.ready = true;
-      //console.log('dragend')
-      //that.parentExplorer.render(true);
+      that.ready = true;
+      that.parentExplorer.render(true);
     });
 
     // zoom event on map
     google.maps.event.addListener(this.map, "zoom_changed", function() {
-      //that.ready = true;
-      //that.parentExplorer.render(true);
+      that.ready = true;
+      that.parentExplorer.render(true);
     });
 
 
@@ -71,9 +70,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       console.log('render')
       if( that.ready !== true) {
         that.ready = true;
-        that.parentExplorer.render(true);
-      }
-      else {
         that.parentExplorer.render(true);
       }
 
