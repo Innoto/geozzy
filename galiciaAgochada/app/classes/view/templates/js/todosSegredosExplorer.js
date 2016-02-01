@@ -165,9 +165,9 @@
           },
 
           clustererStyles: [{
-                url: "/media/img/segredosClusterIcon.png",
-                height: 32,
-                width: 32,
+                url: "/media/img/segredosClusterIconSmall.png",
+                height: 28,
+                width: 28,
                 textColor: '#FFFFFF',
                 textSize: 15
               },
@@ -176,7 +176,7 @@
                 height: 32,
                 width: 32,
                 textColor: '#FFFFFF',
-                textSize: 20
+                textSize: 17
               }]
       });
 
