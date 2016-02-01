@@ -50,7 +50,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
   setMapEvents: function() {
     var that = this;
-
+/*
     // drag event on map
     google.maps.event.addListener(this.map, "dragend", function() {
       that.ready = true;
@@ -62,7 +62,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       that.ready = true;
       that.parentExplorer.render(true);
     });
-
+*/
 
 
     // map first load
