@@ -85,24 +85,6 @@ class geozzy extends Module {
 
 
     /**
-    Creacion de Roles de Geozzy
-    */
-
-    $roleData = array(
-      'name' => 'administrador',
-      'description' => 'Role Usuario'
-    );
-    $role = new RoleModel($roleData);
-    $role->save();
-
-    $roleData = array(
-      'name' => 'Gestor',
-      'description' => 'Role Gestor'
-    );
-    $role = new RoleModel($roleData);
-    $role->save();
-
-    /**
     Crea un usuario superAdmin para Geozzy
     */
     $passwd = false;

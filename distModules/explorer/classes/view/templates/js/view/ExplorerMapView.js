@@ -51,6 +51,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   setMapEvents: function() {
     var that = this;
 
+
     // drag event on map
     google.maps.event.addListener(this.map, "dragend", function() {
       that.ready = true;
@@ -63,10 +64,9 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       that.parentExplorer.render(true);
     });
 
-
-
     // map first load
     google.maps.event.addListener(this.map, "idle", function() {
+
       if( that.ready !== true) {
         that.ready = true;
         that.parentExplorer.render(true);
@@ -83,9 +83,17 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     var visibleResources = [];
 
+    google.maps.event.trigger( that.map, "resize");
+    
     that.parentExplorer.resourceMinimalList.each(function(m, index) {
       // Assign values 2:visible in map, 1:not visible in map but present in buffer zone, 0:not in map or buffer
+
       var markerPosition = that.aboutMarkerPosition( m.get('lat'), m.get('lng') );
+      /*var markerPosition = {
+        outerZone: false,
+        inMap: 3,
+        distanceToInnerMargin: false
+      };*/
 
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapOuterZone', markerPosition.outerZone );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', markerPosition.inMap  );
@@ -217,13 +225,26 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     if( that.markerClusterer == false ) {
 
 
-
       that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
         maxZoom: 15,
-        gridSize: 45,
+        gridSize: 90,
         zoomOnClick: true,
         styles: that.options.clustererStyles
       });
+
+      that.markerClusterer.setMouseover(
+        function( markers ) {
+          //alert('ÑOL')
+          //console.log( markers );
+        }
+      );
+
+      that.markerClusterer.setMouseout(
+        function() {
+
+        }
+      );
+
 
     }
     else {
@@ -246,7 +267,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   aboutMarkerPosition: function( lat, lng) {
     var that = this;
 
-    google.maps.event.trigger( that.map, "resize");
+    //google.maps.event.trigger( that.map, "resize");
 
     var markerPixel = that.coordToPixel( new google.maps.LatLng(lat, lng) );
     that.coordToPixel
