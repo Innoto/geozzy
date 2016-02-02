@@ -210,7 +210,8 @@ geozzy.explorer = function( opts ) {
 
         metricData.bounds = [ [mapbounds[0].lat(), mapbounds[0].lng()], [mapbounds[1].lat(), mapbounds[1].lng()] ];
 
-        resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
+        resourcesToLoad = that.displays.map.getVisibleResourceIds();
+        //resourcesToLoad = $.merge( that.displays.map.getVisibleResourceIds() , resourcesToLoad);
 
         $.each(that.filters, function(i,e) {
           metricData.filters = $.merge( metricData.filters, e.getSelectedTerms() );
@@ -240,7 +241,6 @@ geozzy.explorer = function( opts ) {
     // Advanced Fetch
     that.timeDebugerExtended.log('Starting second data fetch at')
 
-
     that.fetchPartialList(
       resourcesToLoad,
       function() {
@@ -259,6 +259,7 @@ geozzy.explorer = function( opts ) {
       }
 
     );
+
   },
 
 
