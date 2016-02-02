@@ -40,7 +40,7 @@ addToCGMLCONF( $path, $value ) {
 
 $CGMLCONF = array(
   'geozzy' => array(
-    'resourceURL' => 'resource'
+    'resourceURL' => 'resource' // Parte inicial de la URL para acceder directamente a un recurso por ID
   )
 );
 

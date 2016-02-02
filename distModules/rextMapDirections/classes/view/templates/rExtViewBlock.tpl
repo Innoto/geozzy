@@ -84,7 +84,8 @@ geozzy.rExtMapDirectionsData = {
   lon: {$rExt.data.locLon},
   zoom: {$rExt.data.defaultZoom},
   wrapper: '.rExtMapDirections .resMapContainer',
-  wrapperRoute: '.rExtMapDirections .resDirContainer'
+  wrapperRoute: '.rExtMapDirections .mapRoute',
+  scrollTopMargin: 130
 };
 
 $(document).ready( function() {

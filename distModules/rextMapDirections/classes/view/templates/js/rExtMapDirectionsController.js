@@ -117,21 +117,50 @@ geozzy.rExtMapDirectionsController = {
     // Prepare Form
     this.routePanelContainer = $( directionsData.wrapperRoute );
     if( this.routePanelContainer.length === 1 ) {
-      this.routePanelContainer.find('form').on( 'submit', function( evt ) {
+
+      // Input de direcciones
+      this.routePanelContainer.find( 'form' ).on( 'submit', function( evt ) {
         evt.preventDefault();
-        destination = $( evt.target ).find('input').val();
-        // console.log( 'FORM SUBMIT', destination );
         that.resetMap();
         that.clearRoute();
+        var destination = $( evt.target ).find('input').val();
         that.loadRoute( destination, false, false );
         return false;
       });
+      this.autocomplete = new google.maps.places.Autocomplete( that.routePanelContainer.find( 'input[name=mapRouteOrigin]' ).get(0) );
+      this.autocomplete.bindTo( 'bounds', this.resourceMap );
+      this.autocomplete.addListener( 'place_changed', function() {
+        var place = that.autocomplete.getPlace();
+        var destination = '';
+        if( place.geometry && place.geometry.location ) {
+          destination = place.geometry.location.lat()+', '+place.geometry.location.lng();
+        }
+        else {
+          destination = that.routePanelContainer.find( 'input[name=mapRouteOrigin]' ).val();
+        }
+        that.loadRoute( destination, false, false );
+      });
+
+      // Panel de listado de rutas
       this.routePanelContainer.find('.tabList' ).on( 'click', function togglePanelMap() {
         $( '#comollegarListado' ).toggle();
       } );
+
+      // Botones de modo de ruta
       this.routePanelContainer.find( '.routeModeButton' ).on( 'click', function setRouteMode( evt ) {
         that.loadRoute( false, false, $( evt.target ).data( 'route-mode' ) );
       } );
+
+      // Click en mapa
+      this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
+        inputComollegar = '';
+        that.clearRoute();
+        that.resetForm();
+        that.setMarkerFrom( ev.latLng );
+        that.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), false, false );
+      });
+
+
 
       // Prepare Routes controller
       this.directionsDisplay = new google.maps.DirectionsRenderer( { suppressMarkers: true } );
@@ -156,15 +185,6 @@ geozzy.rExtMapDirectionsController = {
       }
 
       // this.loadRoute( latitude+','+longitude, directionsData.title, false );
-
-      // click en mapa
-      this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
-        inputComollegar = '';
-        that.clearRoute();
-        that.resetForm();
-        that.setMarkerFrom( ev.latLng );
-        that.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), false, false );
-      });
 
       // click en marker evento
       //this.eventClickEvent = new google.maps.event.addListener( eventMarker, 'click', function(ev){
@@ -271,8 +291,11 @@ geozzy.rExtMapDirectionsController = {
         travelInfo = 'No se ha podido localizar una ruta.';
       }
 
+      that.routePanelContainer.show();
       that.routePanelContainer.find('.tabList' ).show();
       that.routePanelContainer.find('.routeMode' ).show();
+
+      that.scrollTopWrapper( that.routePanelContainer );
 
       that.setRoutePanelInfo( travelInfo );
 
@@ -280,6 +303,15 @@ geozzy.rExtMapDirectionsController = {
       that.blockCloseButton = false;
 
     });
+  },
+
+  scrollTopWrapper: function scrollTopWrapper( $elem ) {
+    var scrollTo = $elem.position().top;
+    console.log( 'scrollTopWrapper: ', $elem, scrollTo );
+
+    $( 'html, body' ).animate( {
+      scrollTop: $elem.position().top - geozzy.rExtMapDirectionsData.scrollTopMargin
+    }, 1000 );
   },
 
   clearRoute: function clearRoute() {

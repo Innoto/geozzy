@@ -34,6 +34,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     var options = new Object({
       map : false,
       clusterize: false,
+      clustererStyles: false,
       chooseMarkerIcon: function() {return false}
     });
 
@@ -66,6 +67,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
     // map first load
     google.maps.event.addListener(this.map, "idle", function() {
+      console.log('render')
       if( that.ready !== true) {
         that.ready = true;
         that.parentExplorer.render(true);
@@ -195,18 +197,33 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     }
     that.hideAllMarkers();
 
+/*
+
+    that.parentExplorer.resourceIndex.each( function(e) {
+      e.mapMarker.setIcon( that.chooseMarker(e) );
+      e.mapMarker.setVisible(true);
+    });
+
+*/
+
+
 
     that.parentExplorer.resourceIndex.each( function( e ) {
+      e.mapMarker.setIcon( that.chooseMarker(e) );
+      e.mapMarker.setVisible(true);
       that.markers.push( e.mapMarker );
     });
 
 
     if( that.markerClusterer == false ) {
 
+
+
       that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
         maxZoom: 15,
-        gridSize: 45,
-        zoomOnClick: false
+        gridSize: 90,
+        zoomOnClick: true,
+        styles: that.options.clustererStyles
       });
 
     }
