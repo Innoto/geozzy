@@ -5,7 +5,6 @@
  * WEB_BASE_PATH - Apache DocumentRoot (declarado en index.php)
  * APP_BASE_PATH - App Path (declarado en index.php)
  * SITE_PATH - App Path (declarado en index.php)
- *
  * IS_DEVEL_ENV - Indica si estamos en el entorno de desarrollo (declarado en setup.php)
  *
  *
@@ -29,23 +28,10 @@ ini_set( 'session.cookie_lifetime', 86400 );
 ini_set( 'session.gc_maxlifetime', 86400 );
 
 
-global $CGMLCONF;
+setCogumeloSetupConf( 'geozzy:resource:directUrl', 'resource' );
 
-/*
-addToCGMLCONF( $path, $value ) {
-  global $CGMLCONF;
-  // Preparar como atajo
-}
-*/
-
-$CGMLCONF = array(
-  'geozzy' => array(
-    'resourceURL' => 'resource' // Parte inicial de la URL para acceder directamente a un recurso por ID
-  )
-);
-
-$CGMLCONF['geozzy']['resource'] = array(
-  'urlAliasPatterns' => array(
+setCogumeloSetupConf( 'geozzy:resource:urlAliasPatterns',
+  array(
     'default' => '/',
     'rtypeHotel' => array(
       'default' => '/alojamientos/',
@@ -69,13 +55,5 @@ $CGMLCONF['geozzy']['resource'] = array(
   )
 );
 
-
-
-
-
-
-
-
-
-
-
+//var_dump( getCogumeloSetupConf( 'geozzy:resource:urlAliasPatterns:rtypeAppEspazoNatural:gl' ) );
+//var_dump( Cogumelo::getSetupValue( 'geozzy:resource:urlAliasPatterns:rtypeAppEspazoNatural:gl' ) );
