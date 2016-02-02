@@ -57,14 +57,14 @@ class TestDataGenerator extends View
     $fileControl = new FiledataController();
 
     $filedataArray[1] = array('name' => '14420258.jpg', 'originalName' => '14420258.jpg',
-                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/test/14420258.jpg',
+                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/imagetest/14420258.jpg',
                                    'type' => 'image/jpeg', 'size' => '38080', 'destDir' => '/testData/');
     $filedataArray[2] = array('name' => 'hotel-inglaterra_1.jpg', 'originalName' => 'hotel-inglaterra_1.jpg',
-                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/test/hotel-inglaterra_1.jpg',
+                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/imagetest/hotel-inglaterra_1.jpg',
                                    'type' => 'image/jpeg', 'size' => '22370', 'destDir' => '/testData/');
     $filedataArray[3] = array('name' => 'Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
                                    'originalName' => 'Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
-                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/test/Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
+                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/imagetest/Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
                                    'type' => 'image/jpeg', 'size' => '22370', 'destDir' => '/testData/');
 
 
