@@ -173,14 +173,14 @@
      */
     that.setFilters = function() {
 
-      name = 'Paisaxes Espectaculares';
+      name = __('Paisaxes Espectaculares');
 
       $( that.explorerclass+' .explorer-container-filter').html(
         '<div class="titleBar">'+
           '<div class="container">'+
             '<div class="row">'+
               '<div class="col-md-6 col-sm-1 hidden-xs explorerTitle" >'+
-                '<img class="iconTitleBar img-responsive" alt="Paisaxes Espectaculares" src="/media/img/paisaxesIcon.png"></img>'+
+                '<img class="iconTitleBar img-responsive" alt="'+name+'" src="/media/img/paisaxesIcon.png"></img>'+
                 '<h1>'+name+'</h1>'+
               '</div>'+
               '<div class="col-md-6 col-sm-11 col-xs-12 explorerFilters clearfix" ></div>'+
@@ -228,7 +228,7 @@
             mainContainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'zonasMapa',
             defaultOption: { icon: false, title: '', value:'*' },
-            textReset: 'Toda Galicia',
+            textReset: __('Toda Galicia'),
             data: that.zonaCategories,
             onChange: that.chooseFTLayer
           }
@@ -241,7 +241,7 @@
           {
             mainContainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'tipoPaisaxe select2GeozzyCustom',
-            defaultOption: { icon: false, title: 'Todas as paisaxes', value:'*' },
+            defaultOption: { icon: false, title: __('Todas as paisaxes'), value:'*' },
             data: that.espazoNaturalCategories
           }
         )

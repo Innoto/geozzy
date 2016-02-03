@@ -232,7 +232,7 @@
         {
           mainContainerClass: that.explorerclass+' .explorer-container-map',
           containerClass: 'filterZona',
-          textReset: 'Toda Galicia',
+          textReset: __('Toda Galicia'),
           defaultOption: { icon: false, title: '', value:'*' },
           data: that.zonaCategories,
           onChange: that.chooseFTLayer
@@ -249,22 +249,22 @@
 
       var filtroEspecialidades = new geozzy.explorerComponents.filters.filterComboView(
         {
-          title:'Especialidade',
+          title:__('Especialidade'),
           mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'especialidadeEatandDrink',
-          titleSummary: 'Especialidade',
+          titleSummary: __('Especialidade'),
           summaryContainerClass: 'filters_summary_xantarestipos',
-          defaultOption: { icon: false, title: 'Todas as especialidades', value:'*' },
+          defaultOption: { icon: false, title: __('Todas as especialidades'), value:'*' },
           data: that.eatAndDrinkSpecialities
         }
       );
 
       var filtroPrezo = new geozzy.explorerComponents.filters.filterSliderView(
         {
-          title:'Precio',
+          title:__('Precio'),
           mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'xantaresPrice',
-          titleSummary: 'Cun prezo inferior a',
+          titleSummary: __('Cun prezo inferior a'),
           summaryContainerClass: 'filters_summary_xantaresprezo',
           values:  [10]
         }
@@ -272,7 +272,7 @@
 
       var filtroReset = new geozzy.explorerComponents.filters.filterResetView(
         {
-          title:'Ver todo',
+          title:__('Ver todo'),
           mainContainerClass: that.explorerclass+' .filtersContainer',
           containerClass: 'resetFilters'
         }

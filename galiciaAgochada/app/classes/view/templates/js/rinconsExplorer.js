@@ -173,7 +173,7 @@
      */
     that.setFilters = function() {
 
-      name = 'Rincons con Encanto';
+      name = __('Rincons con Encanto');
 
       $( that.explorerclass+' .explorer-container-filter').html(
         '<div class="titleBar">'+
@@ -228,7 +228,7 @@
             mainContainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'zonasMapa',
             defaultOption: { icon: false, title: '', value:'*' },
-            textReset: 'Toda Galicia',
+            textReset: __('Toda Galicia'),
             data: that.zonaCategories,
             onChange: that.chooseFTLayer
           }
@@ -241,7 +241,7 @@
           {
             mainContainerClass: that.explorerclass+' .explorer-container-filter .explorerFilters',
             containerClass: 'tipoLugar select2GeozzyCustom',
-            defaultOption: { icon: false, title: 'Todos os lugares', value:'*' },
+            defaultOption: { icon: false, title: __('Todos os lugares'), value:'*' },
             data: that.lugaresType
           }
         )

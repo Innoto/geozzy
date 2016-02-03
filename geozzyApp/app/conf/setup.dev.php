@@ -50,25 +50,22 @@ define( 'COGUMELO_DIST_LOCATION', '/home/proxectos/geozzy');
 define( 'DB_ENGINE', 'mysql' );
 define( 'DB_HOSTNAME', 'localhost');
 define( 'DB_PORT', '3306');
-define( 'DB_USER', 'galiciaagochada');
+define( 'DB_USER', 'geozzyapp');
 define( 'DB_PASSWORD', 'q7w8e9r');
-define( 'DB_NAME', 'galiciaagochada');
+define( 'DB_NAME', 'geozzyapp');
 
-define( 'DB_MYSQL_GROUPCONCAT_MAX_LEN', 4294967295); //max 	4294967295 (in 32 bits) , 18446744073709547520 (in 64 bits)
+define( 'DB_MYSQL_GROUPCONCAT_MAX_LEN', 1844674407370954751); //max 	4294967295 (in 32 bits) , 18446744073709547520 (in 64 bits)
 
 // allow cache with memcached
 define( 'DB_ALLOW_CACHE', true );
 require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
 
-// Public Access User
-define( 'GA_ACCESS_USER', 'gaUser' );
-define( 'GA_ACCESS_PASSWORD', 'gz15005' );
 
 //
 //  Url settings
 //
 // TODO: Cuidado porque no se admite un puerto
-define( 'COGUMELO_ADMINSCRIPT_URL', 'http://galiciaagochada/cogumelo-server.php');
+define( 'COGUMELO_ADMINSCRIPT_URL', 'http://geozzyapp/cogumelo-server.php');
 define( 'SITE_PROTOCOL', isset( $_SERVER['HTTPS'] ) ? 'https' : 'http' );
 define( 'SITE_HOST', SITE_PROTOCOL.'://'.$_SERVER['HTTP_HOST']);  // solo HOST sin ('/')
 define( 'SITE_FOLDER', '/' );  // SITE_FOLDER STARTS AND ENDS WITH SLASH ('/')
@@ -109,18 +106,16 @@ define( 'TPL_TMP', APP_TMP_PATH.'/tpl' );
 //
 global $C_ENABLED_MODULES;
 $C_ENABLED_MODULES = array(
+  'mediaserver',
   'i18nGetLang',
   'i18nServer',
-  'mediaserver',
   'common',
   'devel',
   'user',
   'geozzyAPI',
   'filedata',
   'geozzy',
-  'appResourceBridge',
   'bi',
-  'biMetrics',
   'admin',
   'form',
   'Blocks',
@@ -137,14 +132,9 @@ $C_REXT_MODULES = array(
   'rextAccommodation',
   'rextEatAndDrink',
   'rextContact',
-  'rextMapDirections',
   'rextUrl',
   'rextView',
-  'rextFile',
-  'rextAppLugar',
-  'rextAppEspazoNatural',
-  'rextAppZona',
-  'rextSocialNetwork'
+  'rextFile'
 );
 
 // resource Types
@@ -155,10 +145,7 @@ $C_RTYPE_MODULES = array(
   'rtypeUrl',
   'rtypePage',
   'rtypeFile',
-  'rtypeRuta',
-  'rtypeAppLugar',
-  'rtypeAppEspazoNatural',
-  'rtypeAppFestaPopular'
+  'rtypeRuta'
 );
 
 // Merge all modules
@@ -168,13 +155,12 @@ $C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_
 // before app/Cogumelo.php execution
 global $C_INDEX_MODULES;
 $C_INDEX_MODULES  = array(
+  'mediaserver',
   'i18nGetLang',
   'i18nServer',
-  'mediaserver',
   'user',
   'filedata',
   'geozzy',
-  'appResourceBridge',
   'form',
   'admin',
   'Blocks',
@@ -220,19 +206,21 @@ global $LANG_AVAILABLE;
 $LANG_AVAILABLE = array(
   'es' => array(
     'i18n' => 'es_ES',
-    'name' => 'castellano' ),
+    'name' => 'Español' ),
   'gl' => array(
     'i18n' => 'gl_ES',
-    'name' => 'galego' ),
+    'name' => 'Galego' ),
   'en' => array(
     'i18n' => 'en_US',
-    'name' => 'english' ),
+    'name' => 'English' ),
 );
 define( 'LANG_DEFAULT', 'es' );
+
 
 //
 //  Form Mod
 //
+ini_set( 'session.gc_maxlifetime', 86400 );
 define( 'MOD_FORM_CSS_PRE', 'cgmMForm' );
 define( 'MOD_FORM_FILES_TMP_PATH', APP_TMP_PATH.'/formFiles' );
 define( 'MOD_FORM_FILES_APP_PATH', APP_BASE_PATH.'/../formFiles' );
@@ -242,7 +230,7 @@ define( 'MOD_FORM_FILES_APP_PATH', APP_BASE_PATH.'/../formFiles' );
 //
 define( 'MOD_FILEDATA_APP_PATH', MOD_FORM_FILES_APP_PATH  );
 define( 'MOD_FILEDATA_CACHE_PATH', WEB_BASE_PATH.'/cgmlImg' );
-include 'filedataImageProfiles.php';
+// include 'filedataImageProfiles.php';
 
 
 //
@@ -277,25 +265,23 @@ $MEDIASERVER_LESS_CONSTANTS = array(
 );
 
 global $MEDIASERVER_JAVASCRIPT_GLOBALS; // Se cargan con el prefijo GLOBAL_
-$MEDIASERVER_JAVASCRIPT_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
+$MEDIASERVER_JAVASCRIPT_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG' );
 global $MEDIASERVER_JAVASCRIPT_CONSTANTS;
 $MEDIASERVER_JAVASCRIPT_CONSTANTS = array(
   'langDefault' => LANG_DEFAULT,
   'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
   'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
-  'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
-  'site_host' => SITE_HOST
+  'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR
   // 'var1' => 5, 'var2'=>array('a',true,5, array(1,2) ), 'var3' => true, 'comilla' => "ola'tu"
 );
 
 global $MEDIASERVER_SMARTY_GLOBALS; // Se cargan con el prefijo GLOBAL_
-$MEDIASERVER_SMARTY_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
+$MEDIASERVER_SMARTY_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG' );
 global $MEDIASERVER_SMARTY_CONSTANTS;
 $MEDIASERVER_SMARTY_CONSTANTS = array(
   'langDefault' => LANG_DEFAULT,
   'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
   'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
   'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
-  'site_host' => SITE_HOST
   // 'var1' => 5, 'var2'=>array('a',true,5, array(1,2) ), 'var3' => true, 'comilla' => "ola'tu"
 );
