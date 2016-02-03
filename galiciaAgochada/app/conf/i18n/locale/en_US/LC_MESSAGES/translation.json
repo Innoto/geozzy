@@ -1,17 +1,1 @@
-{
-    "Paisaxes Espectaculares": "Spectacular Landscapes",
-    "Toda Galicia": "All Galicia",
-    "Todas as paisaxes": "All landscapes",
-    "Categoria": "Category",
-    "Todas as categorias": "All categories",
-    "Instalacións": "",
-    "Todas as instalacións": "",
-    "Servizos": "",
-    "Todos os servizos": "",
-    "Precio": "",
-    "Cun prezo inferior a)": "",
-    "Ver todo": "See all",
-    "Praias de Ensono": "Dreamlike beaches",
-    "Tradúceme si te atreves": "",
-    "Proba": "Test"
-}
+l10n = {"Paisaxes Espectaculares":"Spectacular Landscapes","Toda Galicia":"All Galicia","Todas as paisaxes":"All landscapes","Especialidade":"Specialty","Todas as especialidades":"All specialty","Precio":"Price","Cun prezo inferior a":"With a price below","Ver todo":"See all","Categor\u00eda":"Category","Todas as categor\u00edas":"All categories","Instalaci\u00f3ns":"Facilities","Todas as instalaci\u00f3ns":"All facilities","Servizos":"Services","Todos os servizos":"All services","Rinc\u00f3ns con Encanto":"Charming places","Todos os lugares":"All places","Praias de Ensono":"Dreamlike beaches"}

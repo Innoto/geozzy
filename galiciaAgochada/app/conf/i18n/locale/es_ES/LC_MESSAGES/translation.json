@@ -1,17 +1,1 @@
-{
-    "Paisaxes Espectaculares": "",
-    "Toda Galicia": "",
-    "Todas as paisaxes": "",
-    "Categoria": "",
-    "Todas as categorias": "",
-    "Instalacións": "",
-    "Todas as instalacións": "",
-    "Servizos": "",
-    "Todos os servizos": "",
-    "Precio": "",
-    "Cun prezo inferior a)": "",
-    "Ver todo": "",
-    "Praias de Ensono": "",
-    "Tradúceme si te atreves": "",
-    "Proba": ""
-}
+l10n = {"Paisaxes Espectaculares":"Paisajes Espectaculares","Toda Galicia":"Toda Galicia","Todas as paisaxes":"Todos los paisajes","Especialidade":"Especialidad","Todas as especialidades":"Todas las especialidades","Precio":"Precio","Cun prezo inferior a":"Con un precio inferior a","Ver todo":"Ver todo","Categor\u00eda":"Categor\u00eda","Todas as categor\u00edas":"Todas las categor\u00edas","Instalaci\u00f3ns":"Instalaciones","Todas as instalaci\u00f3ns":"Todas las instalaciones","Servizos":"Servicios","Todos os servizos":"Todos los servicios","Rinc\u00f3ns con Encanto":"Rincones con Encanto","Todos os lugares":"Todos los lugares","Praias de Ensono":"Playas de ensue\u00f1o"}
