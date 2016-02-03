@@ -84,7 +84,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     var visibleResources = [];
 
     google.maps.event.trigger( that.map, "resize");
-    
+
     that.parentExplorer.resourceMinimalList.each(function(m, index) {
       // Assign values 2:visible in map, 1:not visible in map but present in buffer zone, 0:not in map or buffer
 
@@ -232,8 +232,12 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         styles: that.options.clustererStyles
       });
 
+
+
       that.markerClusterer.setMouseover(
         function( markers ) {
+
+          markers[0].setMap( that.map );
           //alert('ÑOL')
           //console.log( markers );
         }
