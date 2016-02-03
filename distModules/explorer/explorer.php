@@ -1,15 +1,10 @@
 <?php
 
-
 Cogumelo::load("coreController/Module.php");
 
-
-class explorer extends Module
-{
+class explorer extends Module {
   public $name = "explorer";
   public $version = "1.0";
-
-
 
   public $dependences = array(
     array(
@@ -17,7 +12,7 @@ class explorer extends Module
      "params" => array("underscore#1.8.3"),
      "installer" => "bower",
      "includes" => array("underscore-min.js")
-   ),
+    ),
     array(
      "id" =>"backbonejs",
      "params" => array("backbone#1.1.2"),
@@ -30,7 +25,7 @@ class explorer extends Module
      "installer" => "bower",
      "includes" => array("backbone.fetch-cache.min.js")
     ),
-     array(
+    array(
       "id" =>"backbone.obscura",
       "params" => array("backbone.obscura#1.0.1"),
       "installer" => "bower",
@@ -41,18 +36,14 @@ class explorer extends Module
      "params" => array("marker-clusterer-v3-innoto"),
      "installer" => "bower",
      "includes" => array("src/markerclusterer.js")
-   ),
+    ),
     array(
      "id" =>"ionrangeslider",
      "params" => array("ionrangeslider"),
      "installer" => "bower",
      "includes" => array("js/ion.rangeSlider.js", "css/ion.rangeSlider.css")
     )
-
-
   );
-
-
 
   public $includesCommon = array(
     'js/router/ExplorerRouter.js',
@@ -63,7 +54,7 @@ class explorer extends Module
     'js/view/ExplorerFilterView.js',
     'js/view/filters/ExplorerFilterButtonsView.js',
     'js/view/filters/ExplorerFilterComboView.js',
-    'js/view/filters/ExplorerFilterGeoView.js',    
+    'js/view/filters/ExplorerFilterGeoView.js',
     'js/view/filters/ExplorerFilterSliderView.js',
     'js/view/filters/ExplorerFilterResetView.js',
     'js/view/ExplorerActiveListView.js',
@@ -75,7 +66,7 @@ class explorer extends Module
   );
 
 
-  function __construct() {
+  public function __construct() {
     $this->addUrlPatterns( '#^api/explorer/(.*)#', 'view:ExplorerAPIView::explorer' );
     $this->addUrlPatterns( '#^api/explorer.json#', 'view:ExplorerAPIView::explorerJson' ); // Main swagger JSON
     $this->addUrlPatterns( '#^api/explorerList$#', 'view:ExplorerAPIView::explorerList' );

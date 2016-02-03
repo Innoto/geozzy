@@ -8,25 +8,23 @@ Cogumelo::load('coreView/View.php');
 */
 class ExplorerAPIView extends View
 {
-  function __construct($baseDir){
-    parent::__construct($baseDir);
+  public function __construct( $baseDir ) {
+    parent::__construct( $baseDir );
   }
 
   /**
   * Evaluate the access conditions and report if can continue
   * @return bool : true -> Access allowed
   */
-  function accessCheck() {
+  public function accessCheck() {
     if( GEOZZY_API_ACTIVE ){
-     return true;
+      return( true );
     }
   }
 
 
-  function explorerJson() {
+  public function explorerJson() {
     header('Content-type: application/json');
-
-
     ?>
     {
         "resourcePath": "/explorer.json",
@@ -45,11 +43,9 @@ class ExplorerAPIView extends View
                                 "code": 404
                             }
                         ],
-
                         "httpMethod": "GET",
                         "nickname": "explorer",
                         "parameters": [
-
                           {
                             "name": "explorer",
                             "description": "explorer name",
@@ -89,10 +85,8 @@ class ExplorerAPIView extends View
     <?php
   }
 
-  function explorerListJson() {
+  public function explorerListJson() {
     header('Content-type: application/json');
-
-
     ?>
     {
         "resourcePath": "/explorerList.json",
@@ -111,7 +105,6 @@ class ExplorerAPIView extends View
                                 "code": 404
                             }
                         ],
-
                         "httpMethod": "GET",
                         "nickname": "explorerlist",
                         "parameters": [
@@ -123,22 +116,16 @@ class ExplorerAPIView extends View
                 "description": ""
             }
         ]
-
     }
-
     <?php
   }
 
 
 
-
   // explorer
-
-  function explorer( $urlParams ) {
-
+  public function explorer( $urlParams ) {
     require_once APP_BASE_PATH."/conf/geozzyExplorers.php";
     global $GEOZZY_EXPLORERS;
-
 
     $validation = array(
       'explorer'=> '#(.*)#',
@@ -147,12 +134,8 @@ class ExplorerAPIView extends View
     );
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
-
     if( isset($urlParamsList['request']) && isset($urlParamsList['explorer']) && isset( $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ] ) ) {
-
       $explorerConf = $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ];
-      header('Content-type: application/json');
-
 
       // Include controller
       eval( $explorerConf['module'].'::load("'.$explorerConf['controllerFile'].'");' );
@@ -160,57 +143,42 @@ class ExplorerAPIView extends View
       // constructor;
       $explorer = new $explorerConf['controllerName']();
 
-
       if( $urlParamsList['request'] == 'minimal' ) {
         if( isset($urlParamsList['updatedfrom']) ) {
+          header('Content-type: application/json');
           $explorer->serveMinimal( $urlParamsList['updatedfrom'] );
         }
         else {
-          $explorer->serveMinimal( );
+          header('Content-type: application/json');
+          $explorer->serveMinimal();
         }
-
-      }
-      else
-      if( $urlParamsList['request'] == 'partial' ) {
-        $explorer->servePartial();
       }
       else {
-        header("HTTP/1.0 404 Not Found");
+        if( $urlParamsList['request'] == 'partial' ) {
+          header('Content-type: application/json');
+          $explorer->servePartial();
+        }
+        else {
+          header("HTTP/1.0 404 Not Found");
+        }
       }
-
-
-
-
-
     }
     else {
       header("HTTP/1.0 404 Not Found");
     }
-
-
   }
 
-
   // explorer list
-
-  function explorerList(  ) {
-
+  public function explorerList() {
     require_once APP_BASE_PATH."/conf/geozzyExplorers.php";
     global $GEOZZY_EXPLORERS;
 
-
-
-
-    if( sizeof( $GEOZZY_EXPLORERS ) > 0 ) {
+    if( count( $GEOZZY_EXPLORERS ) > 0 ) {
       header('Content-type: application/json');
-      echo json_encode($GEOZZY_EXPLORERS);
+      echo json_encode( $GEOZZY_EXPLORERS );
     }
     else {
       header("HTTP/1.0 404 Not Found");
     }
-
-
   }
-
-
 }
