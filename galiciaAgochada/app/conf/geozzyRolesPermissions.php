@@ -25,6 +25,8 @@ global $CGMLCONF;
   'starred:list',
   'starred:assign',
 
+  'user:all',
+
   'admin:access',
   'admin:full'
 )
@@ -64,6 +66,8 @@ $CGMLCONF['user']['roles']['gestor'] = array(
 
     'starred:list',
     'starred:assign',
+
+    'user:all',
 
     'admin:access'
   )

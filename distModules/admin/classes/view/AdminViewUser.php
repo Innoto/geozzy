@@ -137,6 +137,9 @@ class AdminViewUser extends AdminViewMaster
   * Section edit user
   **/
   public function editUser( $urlParams ) {
+    $useraccesscontrol = new UserAccessController();
+    $useraccesscontrol->checkPermissions();
+
 
     $validation = array( 'id'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );

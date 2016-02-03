@@ -9,15 +9,15 @@
           <ul class="userInfo nav">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  {if $user->getter('avatar')}
-                    <img class="userAvatar img-responsive" src="/cgmlImg/{$user->getter('avatar')}">
+                  {if array_key_exists('avatar', $user['data'])}
+                    <img class="userAvatar img-responsive" src="/cgmlImg/{$user['data']['avatar']}">
                   {/if}
-                  {$user->getter('login')}
+                  {$user['data']['login']}
                   <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="/admin#user/show"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-                    <li><a href="/admin#user/edit/id/{$user->getter('id')}"><i class="fa fa-edit fa-fw"></i> Edit Profile</a></li>
+                    <li><a href="/admin#user/edit/id/{$user['data']['id']}"><i class="fa fa-edit fa-fw"></i> Edit Profile</a></li>
                     <li class="divider"></li>
                     <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                 </ul>
