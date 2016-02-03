@@ -1,6 +1,6 @@
 <?php
 define( 'IS_DEVEL_ENV', !file_exists( APP_BASE_PATH . '/conf/setup.final.php' ) );
-require_once( 'setup.api.php' );
+require_once( 'setup.utils.php' );
 
 // Configuracion inicial
 require_once( 'setup.default.php' );
