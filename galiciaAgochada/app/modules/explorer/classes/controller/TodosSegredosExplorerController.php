@@ -98,11 +98,6 @@ class TodosSegredosExplorerController extends ExplorerController {
         $row['description'] = ( isset($resourceDataArray['mediumDescription_es']) )?$resourceDataArray['mediumDescription_es']:false;
         $row['city'] =  ( isset($resourceDataArray['city']) )?$resourceDataArray['city']:false;
 
-        $limite_temporal--;
-
-        if($limite_temporal <= 0 ) {
-          break;
-        }
 
         echo json_encode( $row );
 
