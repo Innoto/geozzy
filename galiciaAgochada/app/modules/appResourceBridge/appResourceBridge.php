@@ -13,10 +13,8 @@ class appResourceBridge extends Module {
 
 
   public function __construct() {
-    global $CGMLCONF;
-
     // geozzy show Resource
-    $this->addUrlPatterns( '#^'.$CGMLCONF['geozzy']['resourceURL'].'/(\d+)(.*)$#', 'view:AppResourceBridgeView::showResourcePage' );
+    $this->addUrlPatterns( '#^'.Cogumelo::getSetupValue('geozzy:resource:directUrl').'/(\d+)(.*)$#', 'view:AppResourceBridgeView::showResourcePage' );
   }
 
 

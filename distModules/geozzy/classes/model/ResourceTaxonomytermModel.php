@@ -25,7 +25,7 @@ class ResourceTaxonomytermModel extends Model {
     ),
     'weight' => array(
       'type' => 'SMALLINT',
-      'default' => 0      
+      'default' => 0
     )
   );
 

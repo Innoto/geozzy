@@ -3,13 +3,13 @@
 
 class apiFiltersController {
 
-	static function resourceListOptions( $param ) {
-		geozzy::load('model/ResourceModel.php');
-		$rModel = new ResourceModel();
+  /*
+  public static function resourceListOptions( $param ) {
+    geozzy::load('model/ResourceModel.php');
+    $rModel = new ResourceModel();
 
     // extract parameters
     $params = explode('/', $param[1]);
-
 
     $options = array( );
 
@@ -17,56 +17,46 @@ class apiFiltersController {
     // Resource type
     //$options['affectsDependences'] = false;
 
-    if( $params[5] == 'rtype' && $params[6] != 'false') {
+    if( $params[5] === 'rtype' && $params[6] !== 'false') {
       $options['affectsDependences'] = $rModel->dependencesByResourcetype( $params[6] ) ;
-
     }
 
     //
     // fields
-    if( $params[1] == 'fields' && $params[2] != 'false' ) {
-
+    if( $params[1] === 'fields' && $params[2] !== 'false' ) {
       $options['fields'] = self::clearFields( explode(',', urldecode( $params[2] ) ) );
     }
 
     //
     // fields and fieldvalues
     if(
-      ( $params[3] == 'filters' && $params[4] != 'false' ) &&
-      ( $params[3] == 'filtervalues' && $params[4] != 'false' )
+      ( $params[3] === 'filters' && $params[4] !== 'false' ) &&
+      ( $params[3] === 'filtervalues' && $params[4] !== 'false' )
     ) {
       $options['filters'] = array('id' => 10);
     }
-		$options['filters']['published'] = 1;
-
+    $options['filters']['published'] = 1;
 
     // filters
     return $options;
-	}
+  }
+  */
 
-
-  static function clearFilters() {
-
+  public static function clearFilters() {
   }
 
-  static function clearFields( $fields ) {
+  public static function clearFields( $fields ) {
     geozzy::load('model/ResourceModel.php');
     $rModel = new ResourceModel();
     $voKeys = $rModel->getCols( true );
 
     $retKeys = array();
-    foreach( $fields  as $kkey => $kVal ) {
-
+    foreach( $fields as $kkey => $kVal ) {
       if( in_array( $kVal, array_keys( $voKeys ) ) ) {
-
         $retKeys[] = $kVal;
       }
     }
 
     return $retKeys;
-
   }
-
-
-
 }

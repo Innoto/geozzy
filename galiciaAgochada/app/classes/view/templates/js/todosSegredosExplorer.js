@@ -101,7 +101,7 @@
     that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
-        debug: false,
+        debug: true,
         explorerId:'todosSegredos',
         explorerSectionName:'Todos os segredos',
 

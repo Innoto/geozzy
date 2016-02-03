@@ -1,15 +1,13 @@
 <?php
+define( 'IS_DEVEL_ENV', !file_exists( APP_BASE_PATH . '/conf/setup.final.php' ) );
+require_once( 'setup.utils.php' );
 
 // Configuracion inicial
-require_once('setup.default.php');
+require_once( 'setup.default.php' );
 
-
-if( file_exists( APP_BASE_PATH . '/conf/setup.final.php' ) ) {
-  define( 'IS_DEVEL_ENV', false );
-  require_once('setup.final.php');
+if( IS_DEVEL_ENV ) {
+  require_once( 'setup.dev.php' );
 }
 else {
-  define( 'IS_DEVEL_ENV', true );
-  require_once('setup.dev.php');
+  require_once( 'setup.final.php' );
 }
-

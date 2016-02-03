@@ -35,7 +35,6 @@ class geozzy extends Module {
   public function __construct() {
     $this->addUrlPatterns( '#^'.MOD_GEOZZY_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
 
-
     // geozzy core api doc
     $this->addUrlPatterns( '#^api/bi.json$#', 'view:GeozzyAPIView::biJson' );
     $this->addUrlPatterns( '#^api/resources.json$#', 'view:GeozzyAPIView::resourcesJson' );
@@ -49,7 +48,7 @@ class geozzy extends Module {
 
 
     // geozzy api environment
-    $this->addUrlPatterns( '#^api/core/bi#', 'view:GeozzyAPIView::bi' );
+    $this->addUrlPatterns( '#^api/core/bi(|/.*)$#', 'view:GeozzyAPIView::bi' );
 
     // geozzy api resources
     $this->addUrlPatterns( '#^api/core/starred$#', 'view:GeozzyAPIView::starred' );
@@ -63,6 +62,8 @@ class geozzy extends Module {
 
     // geozzy api Topics
     $this->addUrlPatterns( '#^api/core/topiclist$#', 'view:GeozzyAPIView::topicList' );
+
+    // geozzy api Users
 
     // geozzy api UI events
 //    $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
@@ -83,24 +84,6 @@ class geozzy extends Module {
     geozzy::load('model/ResourcetypeModel.php');
     geozzy::load('model/ResourcetypeTopicModel.php');
 
-
-    /**
-    Creacion de Roles de Geozzy
-    */
-
-    $roleData = array(
-      'name' => 'administrador',
-      'description' => 'Role Usuario'
-    );
-    $role = new RoleModel($roleData);
-    $role->save();
-
-    $roleData = array(
-      'name' => 'Gestor',
-      'description' => 'Role Gestor'
-    );
-    $role = new RoleModel($roleData);
-    $role->save();
 
     /**
     Crea un usuario superAdmin para Geozzy

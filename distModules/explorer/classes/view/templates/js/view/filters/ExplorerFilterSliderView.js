@@ -6,7 +6,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     isTaxonomyFilter: true,
     slider: false,
-    filteredValue: 100,
+    filteredValue: false,
     valueMin: 3,
     valueMax: 100,
     template: _.template(

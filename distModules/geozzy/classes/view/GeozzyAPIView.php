@@ -4,68 +4,75 @@ require_once APP_BASE_PATH."/conf/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
 
 /**
-* Clase Master to extend other application methods
-*/
-class geozzyAPIView extends View
-{
+ * Clase Master to extend other application methods
+ */
+class geozzyAPIView extends View {
 
-  function __construct($baseDir){
+  public function __construct( $baseDir ) {
     parent::__construct($baseDir);
   }
 
   /**
-  * Evaluate the access conditions and report if can continue
-  * @return bool : true -> Access allowed
-  */
-  function accessCheck() {
+   * Evaluate the access conditions and report if can continue
+   * @return bool : true -> Access allowed
+   */
+  public function accessCheck() {
     if( GEOZZY_API_ACTIVE ){
-     return true;
+      return true;
     }
   }
 
 
-  function biJson() {
+  public function biJson() {
     header('Content-type: application/json');
-
-
     ?>
-          {
-              "resourcePath": "/bi.json",
-              "basePath": "/api",
-              "apis": [
-                  {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "Utils  for BI dashboard",
-                                      "code": 200
-                                  }
-                              ],
-
-                              "httpMethod": "GET",
-                              "nickname": "resource",
-                              "parameters": [
-                              ],
-                              "summary": ""
-                          }
-                      ],
-                      "path": "/core/bi",
-                      "description": ""
-                  }
-              ]
-
-          }
-
-        <?php
+    {
+      "resourcePath": "/bi.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
+            {
+              "errorResponses": [
+                {
+                  "reason": "Utils  for BI dashboard",
+                  "code": 200
+                }
+              ],
+              "httpMethod": "GET",
+              "nickname": "resource",
+              "parameters": [
+                {
+                  "name": "users",
+                  "description": "Users list",
+                  "dataType": "boolean",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
+                  "name": "virtualBags",
+                  "description": "Virtual bags list",
+                  "dataType": "boolean",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                }
+              ],
+              "summary": ""
+            }
+          ],
+          "path": "/core/bi/users/{users}/virtualBags/{virtualBags}",
+          "description": ""
+        }
+      ]
+    }
+    <?php
   }
 
 
-
-  function resourcesJson() {
+  public function resourcesJson() {
     header('Content-type: application/json');
-
-
     ?>
           {
               "resourcePath": "/resources.json",
@@ -137,13 +144,21 @@ class geozzyAPIView extends View
                                   "paramType": "path",
                                   "defaultValue": "false",
                                   "required": false
+                                },
+                                {
+                                  "name": "category",
+                                  "description": "Category Ids and Topic Ids",
+                                  "dataType": "boolean",
+                                  "paramType": "path",
+                                  "defaultValue": "false",
+                                  "required": false
                                 }
 
                               ],
                               "summary": "Fetches resource list"
                           }
                       ],
-                      "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}",
+                      "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}",
                       "description": ""
                   }
               ]
@@ -154,86 +169,79 @@ class geozzyAPIView extends View
   }
 
 
-
-    function resourceIndexJson() {
-      header('Content-type: application/json');
-
-
-      ?>
-            {
-                "resourcePath": "/resources.json",
-                "basePath": "/api",
-                "apis": [
-                    {
-                        "operations": [
-                            {
-                                "errorResponses": [
-                                    {
-                                        "reason": "The resource index",
-                                        "code": 200
-                                    }
-                                ],
-
-                                "httpMethod": "GET",
-                                "nickname": "resourceIndex",
-                                "parameters": [
-
-
-                                    {
-                                      "name": "taxonomyTerms",
-                                      "description": "ids (separed by comma)",
-                                      "dataType": "string",
-                                      "paramType": "path",
-                                      "defaultValue": "false",
-                                      "required": false
-                                    },
-                                    {
-                                      "name": "types",
-                                      "description": "ids (separed by comma)",
-                                      "dataType": "string",
-                                      "paramType": "path",
-                                      "defaultValue": "false",
-                                      "required": false
-                                    },
-                                    {
-                                      "name": "topics",
-                                      "description": "ids (separed by comma)",
-                                      "dataType": "string",
-                                      "paramType": "path",
-                                      "defaultValue": "false",
-                                      "required": false
-                                    },
-                                    {
-                                      "name": "bounds",
-                                      "description": "lat,lng",
-                                      "dataType": "string",
-                                      "paramType": "path",
-                                      "defaultValue": "false",
-                                      "required": false
-                                    }
-
-
-                                ],
-                                "summary": "Fetches resource list"
-                            }
-                        ],
-                        "path": "/core/resourceIndex/taxonomyTerms/{taxonomyTerms}/types/{types}/topics/{topics}/bounds/{bounds}",
-                        "description": ""
-                    }
-                ]
-
-            }
-
-          <?php
-    }
-
-
-
-
-  function resourceTypesJson() {
+  public function resourceIndexJson() {
     header('Content-type: application/json');
+    ?>
+          {
+              "resourcePath": "/resources.json",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "The resource index",
+                                      "code": 200
+                                  }
+                              ],
+
+                              "httpMethod": "GET",
+                              "nickname": "resourceIndex",
+                              "parameters": [
 
 
+                                  {
+                                    "name": "taxonomyTerms",
+                                    "description": "ids (separed by comma)",
+                                    "dataType": "string",
+                                    "paramType": "path",
+                                    "defaultValue": "false",
+                                    "required": false
+                                  },
+                                  {
+                                    "name": "types",
+                                    "description": "ids (separed by comma)",
+                                    "dataType": "string",
+                                    "paramType": "path",
+                                    "defaultValue": "false",
+                                    "required": false
+                                  },
+                                  {
+                                    "name": "topics",
+                                    "description": "ids (separed by comma)",
+                                    "dataType": "string",
+                                    "paramType": "path",
+                                    "defaultValue": "false",
+                                    "required": false
+                                  },
+                                  {
+                                    "name": "bounds",
+                                    "description": "lat,lng",
+                                    "dataType": "string",
+                                    "paramType": "path",
+                                    "defaultValue": "false",
+                                    "required": false
+                                  }
+
+
+                              ],
+                              "summary": "Fetches resource list"
+                          }
+                      ],
+                      "path": "/core/resourceIndex/taxonomyTerms/{taxonomyTerms}/types/{types}/topics/{topics}/bounds/{bounds}",
+                      "description": ""
+                  }
+              ]
+
+          }
+
+        <?php
+  }
+
+
+  public function resourceTypesJson() {
+    header('Content-type: application/json');
     ?>
           {
               "resourcePath": "/resourceTypes.json",
@@ -268,8 +276,7 @@ class geozzyAPIView extends View
   }
 
 
-
-  function starredJson() {
+  public function starredJson() {
     header('Content-type: application/json');
     ?>
     {
@@ -309,12 +316,8 @@ class geozzyAPIView extends View
   }
 
 
-
-
-  function categoryListJson() {
+  public function categoryListJson() {
     header('Content-type: application/json');
-
-
     ?>
           {
               "resourcePath": "/categoryList.json",
@@ -347,10 +350,9 @@ class geozzyAPIView extends View
         <?php
   }
 
-  function categoryTermsJson() {
+
+  public function categoryTermsJson() {
     header('Content-type: application/json');
-
-
     ?>
           {
               "resourcePath": "/categoryTerms.json",
@@ -402,11 +404,8 @@ class geozzyAPIView extends View
   }
 
 
-
-  function topicListJson() {
+  public function topicListJson() {
     header('Content-type: application/json');
-
-
     ?>
           {
               "resourcePath": "/topicList.json",
@@ -439,9 +438,9 @@ class geozzyAPIView extends View
 
         <?php
   }
-/*
 
-  function uiEventListJson() {
+  /*
+  public function uiEventListJson() {
     header('Content-type: application/json');
 
 
@@ -477,139 +476,194 @@ class geozzyAPIView extends View
 
         <?php
   }
-*/
+  */
 
 
-    // resources
+  // BI data
+  public function bi( $urlParams ) {
+    require_once APP_BASE_PATH."/conf/geozzyBI.php";
+    header('Content-type: application/json');
+    global $LANG_AVAILABLE, $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS;
 
-    function bi(  ) {
-      require_once APP_BASE_PATH."/conf/geozzyBI.php";
-      header('Content-type: application/json');
-      global $LANG_AVAILABLE, $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS;
+    $langs = array(
+      'default'=> LANG_DEFAULT,
+      'available'=> $LANG_AVAILABLE
+    );
 
-      $langs = array(
-        'default'=> LANG_DEFAULT,
-        'available'=> $LANG_AVAILABLE
-      );
+    $biData = array(
+      'languages' => $langs,
+      'devices' => $BI_DEVICES,
+      'sections' => $BI_SITE_SECTIONS,
+      'ui_events' => $BI_GEOZZY_UI_EVENTS,
+      'metrics' => array(
+        'explorer' => $BI_METRICS_EXPLORER,
+        'resource' => $BI_METRICS_RESOURCE
+      )
+    );
 
-      echo json_encode(
-        array(
-          'languages' => $langs,
-          'devices' => $BI_DEVICES,
-          'sections' => $BI_SITE_SECTIONS,
-          'ui_events' => $BI_GEOZZY_UI_EVENTS,
-          'metrics' => array(
-            'explorer' => $BI_METRICS_EXPLORER,
-            'resource' => $BI_METRICS_RESOURCE
-          )
-        )
-      );
+    // /users/{users}/virtualBags/{virtualBags}
+    $validation = array(
+      'users' => '#(true|false)#',
+      'virtualBags'=> '#(true|false)#'
+    );
+    $extraParams = RequestController::processUrlParams( $urlParams, $validation );
+    //error_log( 'urlParams: '. print_r( $urlParams, true ) );
+    //error_log( 'extraParams: '. print_r( $extraParams, true ) );
 
+    if( isset( $extraParams['users'] ) && $extraParams['users'] === 'true' ) {
+      $userMod =  new UserModel();
+      $userList = $userMod->listItems( array( 'filters' => array('active' => 1) ) );
+      $biData['users'] = array();
+      if( $userList ) {
+        while( $userVo = $userList->fetch() ) {
+          $biData['users'][] = array(
+            'id' => $userVo->getter('id'),
+            'login' => $userVo->getter('login')
+          );
+        }
+      }
     }
 
+    if( isset( $extraParams['virtualBags'] ) && $extraParams['virtualBags'] === 'true' ) {
+      $userMod =  new UserModel();
+      $userList = $userMod->listItems( array( 'filters' => array('active' => 1) ) );
+      $biData['virtualBags'] = array();
+      if( $userList ) {
+        while( $userVo = $userList->fetch() ) {
+          $biData['virtualBags'][] = array(
+            'userId' => $userVo->getter('id'),
+            'virtualBags' => array()
+          );
+        }
+      }
+    }
+
+    echo json_encode( $biData );
+  }
 
 
   // resources
-
-  function resourceList( $param ) {
-
+  public function resourceList( $param ) {
     Cogumelo::load('coreModel/DBUtils.php');
     geozzy::load('model/ResourceModel.php');
     geozzy::load('controller/apiFiltersController.php');
 
-
+    // Params: /fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}
     $validation = array(
-      'rextmodels'=> '#(.*)#',
-      'loc'=> '#(.*)#',
-      'type'=> '#(.*)#',
-      'filters'=> '#(.*)#',
       'fields' => '#(.*)#',
-      'rtype' => '#(.*)#'
-
+      'filters'=> '#(.*)#',
+      'filtervalues'=> '#(.*)#',
+      'rtype' => '#(.*)#',
+      'rextmodels'=> '#(.*)#',
+      'category'=> '#(.*)#'
     );
 
-    $extraParams = RequestController::processUrlParams($param, $validation);
+    $extraParams = RequestController::processUrlParams( $param, $validation );
 
-    $queryParameters = apiFiltersController::resourceListOptions($param);
-
-    if( isset($_POST['ids']) ) {
-      if( is_array($_POST['ids']) ) {
-        $queryParameters['filters']['ids'] = array_map( 'intval',$_POST['ids']);
-      }
-      else if( intval( $_POST['ids'] ) ) {
-          $queryParameters['filters']['ids'] = $_POST['ids'];
-
-      }
-
-    }
-
+    //$queryParameters = apiFiltersController::resourceListOptions( $param );
 
     $resourceModel = new ResourceModel();
-    $resourceList = $resourceModel->listItems( $queryParameters  );
+    $queryParameters = array( );
 
+    // Resource type
+    if( isset( $extraParams['rtype'] ) && $extraParams['rtype'] !== 'false' ) {
+      $queryParameters['affectsDependences'] = $resourceModel->dependencesByResourcetype( $extraParams['rtype'] ) ;
+    }
+
+    // Category
+    if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
+      $queryParameters['affectsDependences'][] = 'ResourceTaxonomytermModel';
+      $queryParameters['affectsDependences'][] = 'ResourceTopicModel';
+    }
+
+    // fields
+    if( isset( $extraParams['fields'] ) && $extraParams['fields'] !== 'false' ) {
+      $queryParameters['fields'] = apiFiltersController::clearFields( explode( ',', $extraParams['fields'] ) );
+    }
+
+    // fields and fieldvalues
+    if( isset( $extraParams['filters'], $extraParams['filtervalues'] ) && $extraParams['filters'] !== 'false' && $extraParams['filtervalues'] !== 'false' ) {
+      // $queryParameters['filters'] = array('id' => 10);
+    }
+    $queryParameters['filters']['published'] = 1;
+
+    if( isset( $_POST['ids'] ) ) {
+      if( is_array( $_POST['ids'] ) ) {
+        $queryParameters['filters']['ids'] = array_map( 'intval', $_POST['ids'] );
+      }
+      else if( intval( $_POST['ids'] ) ) {
+        $queryParameters['filters']['ids'] = $_POST['ids'];
+      }
+    }
+
+    $resourceList = $resourceModel->listItems( $queryParameters );
 
     header('Content-type: application/json');
     echo '[';
     $c = '';
-    while ($valueobject = $resourceList->fetch() )
-    {
-      $allData = $valueobject->getAllData('onlydata');
+    while( $valueobject = $resourceList->fetch() ) {
+      $allData = $valueobject->getAllData( 'onlydata' );
+
+      // Cargo los datos de Term dentro del recurso
+      $termsDep = $valueobject->getterDependence( 'id', 'ResourceTaxonomytermModel' );
+      if( $termsDep !== false ) {
+        $allData['categoryIds'] = array();
+        foreach( $termsDep as $termVo ) {
+          $allData['categoryIds'][] = $termVo->getter( 'taxonomyterm' );
+        }
+      }
+
+      // Cargo los datos de Topic dentro del recurso
+      $topicsDep = $valueobject->getterDependence( 'id', 'ResourceTopicModel' );
+      if( $topicsDep !== false ) {
+        $allData['topicIds'] = array();
+        foreach( $topicsDep as $topicVo ) {
+          $allData['topicIds'][] = $topicVo->getter( 'topic' );
+        }
+      }
 
 
-      if( $extraParams['rextmodels'] == 'true') {
+      if( $extraParams['rextmodels'] === 'true') {
         // Remove all REXT related models
-
         $relatedModels = $valueobject->getRextModels();
 
-
         foreach( $relatedModels as $relModelIdName => $relModel ) {
-
-          $rexData = array();
-          $rexData['MODELNAME'] = $relModelIdName;
-          if( method_exists ( $relModel , "getAllData" ) ) {
-            $rexData = array_merge($rexData, $relModel->getAllData('onlydata') );
+          $rexData = array( 'MODELNAME' => $relModelIdName );
+          if( method_exists( $relModel , "getAllData" ) ) {
+            $rexData = array_merge( $rexData, $relModel->getAllData('onlydata') );
             $allData['rextmodels'][] = $rexData;
           }
         }
       }
 
+      /*
+        // Remove all REXT related models
+        $relatedModels = $this->getRextModels();
 
-
-/*
-
-      // Remove all REXT related models
-      $relatedModels = $this->getRextModels();
-
-      foreach( $relatedModels as $relModelIdName => $relModel ) {
-        if($relModel) {
-          $relModel->delete();
+        foreach( $relatedModels as $relModelIdName => $relModel ) {
+          if($relModel) {
+            $relModel->delete();
+          }
         }
-      }
-*/
+      */
 
-      if( isset($allData['loc']) ) {
+      if( isset( $allData['loc'] ) ) {
         $loc = DBUtils::decodeGeometry( $allData['loc'] );
         $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
       }
       echo $c.json_encode( $allData );
 
-
-      if($c === ''){$c=',';}
-    }
+      if( $c === '' ) {
+        $c=',';
+      }
+    } // while
     echo ']';
-
-
-
-
-
   }
 
 
-
-  function resourceIndex( $urlParams ) {
+  public function resourceIndex( $urlParams ) {
     geozzyAPI::load('model/ResourceIndexModel.php');
     $resourceIndexModel = new ResourceIndexModel();
-
 
     $validation = array(
       'taxonomyterms'=> '#(.*)#',
@@ -619,10 +673,6 @@ class geozzyAPIView extends View
     );
 
     $queryFilters = RequestController::processUrlParams($urlParams, $validation);
-
-
-
-
 
     // taxonomy terms
     if( isset($queryFilters['taxonomyterms']) ) {
@@ -639,29 +689,21 @@ class geozzyAPIView extends View
       $queryFilters['topics'] = array_map('intval', explode(',', $queryFilters['topics'] ) );
     }
 
-
-
-
-    if(
-      isset($queryFilters['bounds']) &&
-      preg_match(
-        '#(.*)\ (.*)\,(.*)\ (.*)#',
+    if( isset($queryFilters['bounds']) &&
+      preg_match( '#(.*)\ (.*)\,(.*)\ (.*)#',
         urldecode( $queryFilters['bounds'] ),
         $bounds
-      )
-    ) {
-
-        if( is_numeric($bounds[1]) && is_numeric($bounds[2]) &&
-            is_numeric($bounds[3]) && is_numeric($bounds[4])
-        ) {
-
-          $queryFilters['bounds']=  $bounds[1].' '.$bounds[2].','.
-                                    $bounds[1].' '.$bounds[4].','.
-                                    $bounds[3].' '.$bounds[4].','.
-                                    $bounds[3].' '.$bounds[2].','.
-                                    $bounds[1].' '.$bounds[2];
-        }
-
+      ))
+    {
+      if( is_numeric($bounds[1]) && is_numeric($bounds[2]) &&
+          is_numeric($bounds[3]) && is_numeric($bounds[4]) )
+      {
+        $queryFilters['bounds'] = $bounds[1].' '.$bounds[2].','.
+                                  $bounds[1].' '.$bounds[4].','.
+                                  $bounds[3].' '.$bounds[4].','.
+                                  $bounds[3].' '.$bounds[2].','.
+                                  $bounds[1].' '.$bounds[2];
+      }
     }
 
 
@@ -674,10 +716,11 @@ class geozzyAPIView extends View
     header('Content-type: application/json');
     echo '[';
     $c = '';
-    while ($valueobject = $resourceList->fetch() )
-    {
+    while( $valueobject = $resourceList->fetch() ) {
       echo $c.$valueobject->getter('id');
-      if($c === ''){$c=',';}
+      if( $c === '' ) {
+        $c=',';
+      }
     }
     echo ']';
 
@@ -685,7 +728,7 @@ class geozzyAPIView extends View
 
   }
 
-  function resourceTypes() {
+  public function resourceTypes() {
     geozzy::load('model/ResourcetypeModel.php');
     $resourcetypeModel = new ResourcetypeModel( );
     $resourcetypeList = $resourcetypeModel->listItems( ) ;
@@ -694,7 +737,7 @@ class geozzyAPIView extends View
 
   // Starred
 
-  function starred() {
+  public function starred() {
     $taxtermModel = new TaxonomytermModel();
     $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
 
@@ -704,8 +747,7 @@ class geozzyAPIView extends View
     echo '[';
 
     $c = '';
-    while ($starred = $starredList->fetch() )
-    {
+    while( $starred = $starredList->fetch() ) {
       $starData = $starred->getAllData('onlydata');
 
       $starredResourceModel = new StarredResourcesModel();
@@ -716,16 +758,17 @@ class geozzyAPIView extends View
       }
 
       echo $c.json_encode( $starData );
-      if($c === ''){$c=',';}
+      if( $c === '' ) {
+        $c=',';
+      }
     }
     echo ']';
-
   }
 
 
   // Categories
 
-  function categoryList() {
+  public function categoryList() {
     geozzy::load('model/TaxonomygroupModel.php');
     $taxgroupModel = new TaxonomygroupModel();
     $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
@@ -733,9 +776,7 @@ class geozzyAPIView extends View
 
   }
 
-  function categoryTerms( $urlParams ) {
-
-
+  public function categoryTerms( $urlParams ) {
     $validation = array('id'=> '#\d+$#', 'idname'=>'#(.*)#');
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
@@ -765,48 +806,41 @@ class geozzyAPIView extends View
   }
 
   // Topics
-  function topicList() {
+  public function topicList() {
     geozzy::load('model/TopicModel.php');
     $topicModel = new TopicModel();
     $topicList = $topicModel->listItems( );
     $this->syncModelList( $topicList );
   }
 
-/*
+  /*
   // UI events
-  function uiEventList() {
+  public function uiEventList() {
     require_once APP_BASE_PATH."/conf/geozzyUIEvents.php";
     global  $GEOZZY_UI_EVENTS;
 
     header('Content-type: application/json');
     echo json_encode( $GEOZZY_UI_EVENTS );
   }
-*/
+  */
 
-  function syncModelList( $result ) {
-
+  public function syncModelList( $result ) {
     header('Content-type: application/json');
     echo '[';
     $c = '';
-    while ($valueobject = $result->fetch() )
-    {
+    while ($valueobject = $result->fetch() ) {
       $allData = $valueobject->getAllData('onlydata');
       echo $c.json_encode( $allData);
-      if($c === ''){$c=',';}
+      $c=',';
     }
     echo ']';
   }
 
-
-  function syncModel( $model ) {
+  public function syncModel( $model ) {
     header('Content-type: application/json');
     $data = $model->getAllData('onlydata');
     echo json_encode( $data );
 
 
   }
-
-
-
-
 }

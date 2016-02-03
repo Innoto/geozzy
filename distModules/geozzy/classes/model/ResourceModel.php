@@ -102,12 +102,12 @@ class ResourceModel extends Model {
   );
 
   static $extraFilters = array(
-    'find' => " UPPER(title)  LIKE CONCAT( '%', UPPER(?), '%' ) ",
-    'nottopic' => ' id NOT IN ( select resource from geozzy_resource_topic where topic=? ) ',
-    'notintaxonomyterm' => ' id NOT IN ( select resource from geozzy_resource_taxonomyterm where taxonomyterm=? )',
-    'inRtype' => ' rTypeId IN (?) ',
-    'notInRtype' => ' rTypeId NOT IN (?) ',
-    'ids' => ' id IN (?)'
+    'find' => " UPPER( geozzy_resource.title )  LIKE CONCAT( '%', UPPER(?), '%' ) ",
+    'nottopic' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+    'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
+    'inRtype' => ' geozzy_resource.rTypeId IN (?) ',
+    'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
+    'ids' => ' geozzy_resource.id IN (?)'
   );
 
 
@@ -177,13 +177,13 @@ class ResourceModel extends Model {
 
 
   /**
-  * delete item (This method is a mod from Model::delete)
-  *
-  * @param array $parameters array of filters
-  *
-  * @return boolean
-  */
-  function delete( array $parameters = array() ) {
+   * Delete item (This method is a mod from Model::delete)
+   *
+   * @param array $parameters array of filters
+   *
+   * @return boolean
+   */
+  public function delete( array $parameters = array() ) {
 
 
     Cogumelo::debug( 'Called custom delete on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
@@ -244,7 +244,7 @@ class ResourceModel extends Model {
 
 
 
-  public function getRextModels( ) {
+  public function getRextModels() {
 
     $rextModelArray = array();
 
