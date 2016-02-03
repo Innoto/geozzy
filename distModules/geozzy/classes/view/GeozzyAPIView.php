@@ -26,35 +26,48 @@ class geozzyAPIView extends View {
   public function biJson() {
     header('Content-type: application/json');
     ?>
-          {
-              "resourcePath": "/bi.json",
-              "basePath": "/api",
-              "apis": [
-                  {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "Utils  for BI dashboard",
-                                      "code": 200
-                                  }
-                              ],
-
-                              "httpMethod": "GET",
-                              "nickname": "resource",
-                              "parameters": [
-                              ],
-                              "summary": ""
-                          }
-                      ],
-                      "path": "/core/bi",
-                      "description": ""
-                  }
-              ]
-
-          }
-
-        <?php
+    {
+      "resourcePath": "/bi.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
+            {
+              "errorResponses": [
+                {
+                  "reason": "Utils  for BI dashboard",
+                  "code": 200
+                }
+              ],
+              "httpMethod": "GET",
+              "nickname": "resource",
+              "parameters": [
+                {
+                  "name": "users",
+                  "description": "Users list",
+                  "dataType": "boolean",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
+                  "name": "virtualBags",
+                  "description": "Virtual bags list",
+                  "dataType": "boolean",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                }
+              ],
+              "summary": ""
+            }
+          ],
+          "path": "/core/bi/users/{users}/virtualBags/{virtualBags}",
+          "description": ""
+        }
+      ]
+    }
+    <?php
   }
 
 
@@ -466,9 +479,8 @@ class geozzyAPIView extends View {
   */
 
 
-  // resources
-
-  public function bi() {
+  // BI data
+  public function bi( $urlParams ) {
     require_once APP_BASE_PATH."/conf/geozzyBI.php";
     header('Content-type: application/json');
     global $LANG_AVAILABLE, $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS;
@@ -478,18 +490,55 @@ class geozzyAPIView extends View {
       'available'=> $LANG_AVAILABLE
     );
 
-    echo json_encode(
-      array(
-        'languages' => $langs,
-        'devices' => $BI_DEVICES,
-        'sections' => $BI_SITE_SECTIONS,
-        'ui_events' => $BI_GEOZZY_UI_EVENTS,
-        'metrics' => array(
-          'explorer' => $BI_METRICS_EXPLORER,
-          'resource' => $BI_METRICS_RESOURCE
-        )
+    $biData = array(
+      'languages' => $langs,
+      'devices' => $BI_DEVICES,
+      'sections' => $BI_SITE_SECTIONS,
+      'ui_events' => $BI_GEOZZY_UI_EVENTS,
+      'metrics' => array(
+        'explorer' => $BI_METRICS_EXPLORER,
+        'resource' => $BI_METRICS_RESOURCE
       )
     );
+
+    // /users/{users}/virtualBags/{virtualBags}
+    $validation = array(
+      'users' => '#(true|false)#',
+      'virtualBags'=> '#(true|false)#'
+    );
+    $extraParams = RequestController::processUrlParams( $urlParams, $validation );
+    //error_log( 'urlParams: '. print_r( $urlParams, true ) );
+    //error_log( 'extraParams: '. print_r( $extraParams, true ) );
+
+    if( isset( $extraParams['users'] ) && $extraParams['users'] === 'true' ) {
+      $userMod =  new UserModel();
+      $userList = $userMod->listItems( array( 'filters' => array('active' => 1) ) );
+      $biData['users'] = array();
+      if( $userList ) {
+        while( $userVo = $userList->fetch() ) {
+          $biData['users'][] = array(
+            'id' => $userVo->getter('id'),
+            'login' => $userVo->getter('login')
+          );
+        }
+      }
+    }
+
+    if( isset( $extraParams['virtualBags'] ) && $extraParams['virtualBags'] === 'true' ) {
+      $userMod =  new UserModel();
+      $userList = $userMod->listItems( array( 'filters' => array('active' => 1) ) );
+      $biData['virtualBags'] = array();
+      if( $userList ) {
+        while( $userVo = $userList->fetch() ) {
+          $biData['virtualBags'][] = array(
+            'userId' => $userVo->getter('id'),
+            'virtualBags' => array()
+          );
+        }
+      }
+    }
+
+    echo json_encode( $biData );
   }
 
 
@@ -764,7 +813,7 @@ class geozzyAPIView extends View {
     $this->syncModelList( $topicList );
   }
 
-/*
+  /*
   // UI events
   public function uiEventList() {
     require_once APP_BASE_PATH."/conf/geozzyUIEvents.php";
@@ -773,7 +822,7 @@ class geozzyAPIView extends View {
     header('Content-type: application/json');
     echo json_encode( $GEOZZY_UI_EVENTS );
   }
-*/
+  */
 
   public function syncModelList( $result ) {
     header('Content-type: application/json');
@@ -782,9 +831,7 @@ class geozzyAPIView extends View {
     while ($valueobject = $result->fetch() ) {
       $allData = $valueobject->getAllData('onlydata');
       echo $c.json_encode( $allData);
-      if( $c === '' ) {
-        $c=',';
-      }
+      $c=',';
     }
     echo ']';
   }
