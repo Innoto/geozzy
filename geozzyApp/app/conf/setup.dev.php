@@ -108,6 +108,7 @@ global $C_ENABLED_MODULES;
 $C_ENABLED_MODULES = array(
   'mediaserver',
   'i18nGetLang',
+  'i18nServer',
   'common',
   'devel',
   'user',
@@ -156,6 +157,7 @@ global $C_INDEX_MODULES;
 $C_INDEX_MODULES  = array(
   'mediaserver',
   'i18nGetLang',
+  'i18nServer',
   'user',
   'filedata',
   'geozzy',

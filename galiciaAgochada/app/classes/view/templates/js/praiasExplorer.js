@@ -145,7 +145,7 @@
      */
     that.setFilters = function() {
 
-      name = 'Praias de Ensono';
+      name = __('Praias de Ensono');
 
       $( that.explorerclass+' .explorer-container-filter').html(
         '<div class="titleBar">'+

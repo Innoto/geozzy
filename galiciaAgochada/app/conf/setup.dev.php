@@ -110,6 +110,7 @@ define( 'TPL_TMP', APP_TMP_PATH.'/tpl' );
 global $C_ENABLED_MODULES;
 $C_ENABLED_MODULES = array(
   'i18nGetLang',
+  'i18nServer',
   'mediaserver',
   'common',
   'devel',
@@ -168,6 +169,7 @@ $C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_
 global $C_INDEX_MODULES;
 $C_INDEX_MODULES  = array(
   'i18nGetLang',
+  'i18nServer',
   'mediaserver',
   'user',
   'filedata',

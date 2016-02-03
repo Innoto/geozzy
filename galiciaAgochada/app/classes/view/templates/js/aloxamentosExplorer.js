@@ -224,7 +224,7 @@
         {
           mainContainerClass: that.explorerclass+' .explorer-container-map',
           containerClass: 'filterZona',
-          textReset: 'Toda Galicia',
+          textReset: __('Toda Galicia'),
           defaultOption: { icon: false, title: '', value:'*' },
           data: that.zonaCategories,
           onChange: that.chooseFTLayer
@@ -241,46 +241,46 @@
 
       var filtroCategoria = new geozzy.explorerComponents.filters.filterComboView(
         {
-          title:'Categoria',
+          title:__('Categoria'),
           mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'categoriaAcommodation',
-          titleSummary: 'Categoria',
+          titleSummary: __('Categoria'),
           summaryContainerClass: 'filters_summary_aloxamentosCategoria',
-          defaultOption: { icon: false, title: 'Todas as categorias', value:'*' },
+          defaultOption: { icon: false, title: __('Todas as categorias'), value:'*' },
           data: that.accommodationCategories
         }
       );
 
       var filtroInstalaciones = new geozzy.explorerComponents.filters.filterComboView(
         {
-          title:'Instalacións',
+          title:__('Instalacións'),
           mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'instalacionsAcommodation',
-          titleSummary: 'Instalacións',
+          titleSummary: __('Instalacións'),
           summaryContainerClass: 'filters_summary_aloxamentosInstalaciones',
-          defaultOption: { icon: false, title: 'Todas as instalacións', value:'*' },
+          defaultOption: { icon: false, title: __('Todas as instalacións'), value:'*' },
           data: that.accommodationFacilities
         }
       );
 
       var filtroServicios = new geozzy.explorerComponents.filters.filterComboView(
         {
-          title:'Servizos',
+          title:__('Servizos'),
           mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'servizosAcommodation',
-          titleSummary: 'Servizos',
+          titleSummary: __('Servizos'),
           summaryContainerClass: 'filters_summary_aloxamentosServizos',
-          defaultOption: { icon: false, title: 'Todos os servizos', value:'*' },
+          defaultOption: { icon: false, title: __('Todos os servizos'), value:'*' },
           data: that.accommodationServices
         }
       );
 
       var filtroPrezo = new geozzy.explorerComponents.filters.filterSliderView(
         {
-          title:'Precio',
+          title:__('Precio'),
           mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'aloxamentosPrice',
-          titleSummary: 'Cun prezo inferior a',
+          titleSummary: __('Cun prezo inferior a'),
           summaryContainerClass: 'filters_summary_aloxamentosPrezo',
           values:  [10]
         }
@@ -288,7 +288,7 @@
 
       var filtroReset = new geozzy.explorerComponents.filters.filterResetView(
         {
-          title:'Ver todo',
+          title:__('Ver todo'),
           mainContainerClass: that.explorerclass+' .filtersContainer',
           containerClass: 'resetFilters'
         }

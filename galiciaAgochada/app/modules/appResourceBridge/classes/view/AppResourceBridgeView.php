@@ -32,6 +32,8 @@ class AppResourceBridgeView extends MasterView {
 
       $this->template->assign( 'res', array( 'data' => $resViewBlockInfo['data'], 'ext' => $resViewBlockInfo['ext'] ) );
 
+      $this->template->assign('i18nlocale', I18N_LOCALE);
+
       $this->template->addClientStyles('styles/masterResource.less');
       //$this->template->addClientScript('js/resource.js');
 
@@ -53,7 +55,7 @@ class AppResourceBridgeView extends MasterView {
       $this->template->addClientStyles('styles/masterResource.less');
       $this->template->setTpl( 'appResourceBridgePage404.tpl', 'appResourceBridge');
       $this->template->assign( 'title404', __( 'Página no encontrada' ) );
-  
+
       $this->template->exec();
     }
   }
