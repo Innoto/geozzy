@@ -241,12 +241,12 @@
 
       var filtroCategoria = new geozzy.explorerComponents.filters.filterComboView(
         {
-          title:__('Categoria'),
+          title:__('Categoría'),
           mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'categoriaAcommodation',
-          titleSummary: __('Categoria'),
+          titleSummary: __('Categoría'),
           summaryContainerClass: 'filters_summary_aloxamentosCategoria',
-          defaultOption: { icon: false, title: __('Todas as categorias'), value:'*' },
+          defaultOption: { icon: false, title: __('Todas as categorías'), value:'*' },
           data: that.accommodationCategories
         }
       );
