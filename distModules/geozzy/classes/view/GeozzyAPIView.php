@@ -74,98 +74,103 @@ class geozzyAPIView extends View {
   public function resourcesJson() {
     header('Content-type: application/json');
     ?>
-          {
-              "resourcePath": "/resources.json",
-              "basePath": "/api",
-              "apis": [
-                  {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "The resource",
-                                      "code": 200
-                                  },
-                                  {
-                                      "reason": "Resource not found",
-                                      "code": 404
-                                  }
-                              ],
+    {
+      "resourcePath": "/resources.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
+            {
+              "errorResponses": [
+                {
+                  "reason": "The resource",
+                  "code": 200
+                },
+                {
+                  "reason": "Resource not found",
+                  "code": 404
+                }
+              ],
 
-                              "httpMethod": "POST",
-                              "nickname": "resource",
-                              "parameters": [
-                                {
-                                  "name": "ids",
-                                  "description": "fields (separed by comma)",
-                                  "type": "array",
-                                  "items": {
-                                    "type": "integer"
-                                  },
-                                  "paramType": "form",
-                                  "required": false
-                                },
-                                {
-                                  "name": "fields",
-                                  "description": "fields (separed by comma)",
-                                  "dataType": "string",
-                                  "paramType": "path",
-                                  "defaultValue": "false",
-                                  "required": false
-                                },
-                                {
-                                  "name": "filters",
-                                  "description": "filters (separed by comma)",
-                                  "dataType": "string",
-                                  "paramType": "path",
-                                  "defaultValue": "false",
-                                  "required": false
-                                },
-                                {
-                                  "name": "filtervalues",
-                                  "description": "filtervalues (separed by comma)",
-                                  "dataType": "string",
-                                  "paramType": "path",
-                                  "defaultValue": "false",
-                                  "required": false
-                                },
-                                {
-                                  "name": "rtype",
-                                  "description": "Resource Type",
-                                  "dataType": "string",
-                                  "paramType": "path",
-                                  "defaultValue": "false",
-                                  "required": false
-                                },
-                                {
-                                  "name": "rextmodels",
-                                  "description": "extension Models",
-                                  "dataType": "boolean",
-                                  "paramType": "path",
-                                  "defaultValue": "false",
-                                  "required": false
-                                },
-                                {
-                                  "name": "category",
-                                  "description": "Category Ids and Topic Ids",
-                                  "dataType": "boolean",
-                                  "paramType": "path",
-                                  "defaultValue": "false",
-                                  "required": false
-                                }
-
-                              ],
-                              "summary": "Fetches resource list"
-                          }
-                      ],
-                      "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}",
-                      "description": ""
-                  }
-              ]
-
-          }
-
-        <?php
+              "httpMethod": "POST",
+              "nickname": "resource",
+              "parameters": [
+                {
+                  "name": "ids",
+                  "description": "fields (separed by comma)",
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "paramType": "form",
+                  "required": false
+                },
+                {
+                  "name": "fields",
+                  "description": "fields (separed by comma)",
+                  "dataType": "string",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
+                  "name": "filters",
+                  "description": "filters (separed by comma)",
+                  "dataType": "string",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
+                  "name": "filtervalues",
+                  "description": "filtervalues (separed by comma)",
+                  "dataType": "string",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
+                  "name": "rtype",
+                  "description": "Resource Type",
+                  "dataType": "string",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
+                  "name": "rextmodels",
+                  "description": "extension Models",
+                  "dataType": "boolean",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
+                  "name": "category",
+                  "description": "Category Ids and Topic Ids",
+                  "dataType": "boolean",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
+                  "name": "updatedfrom",
+                  "description": "updated from (UTC timestamp)",
+                  "dataType": "int",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                }
+              ],
+              "summary": "Fetches resource list"
+            }
+          ],
+          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/updatedfrom/{updatedfrom}",
+          "description": ""
+        }
+      ]
+    }
+    <?php
   }
 
 
@@ -503,8 +508,8 @@ class geozzyAPIView extends View {
 
     // /users/{users}/virtualBags/{virtualBags}
     $validation = array(
-      'users' => '#(true|false)#',
-      'virtualBags'=> '#(true|false)#'
+      'users' => '#^(true|false)$#',
+      'virtualBags'=> '#^(true|false)$#'
     );
     $extraParams = RequestController::processUrlParams( $urlParams, $validation );
     //error_log( 'urlParams: '. print_r( $urlParams, true ) );
@@ -554,8 +559,9 @@ class geozzyAPIView extends View {
       'filters'=> '#(.*)#',
       'filtervalues'=> '#(.*)#',
       'rtype' => '#(.*)#',
-      'rextmodels'=> '#(.*)#',
-      'category'=> '#(.*)#'
+      'rextmodels'=> '#^(true|false)$#',
+      'category'=> '#^(true|false)$#',
+      'updatedfrom' => '#^(\d+)$#'
     );
 
     $extraParams = RequestController::processUrlParams( $param, $validation );
@@ -581,11 +587,17 @@ class geozzyAPIView extends View {
       $queryParameters['fields'] = apiFiltersController::clearFields( explode( ',', $extraParams['fields'] ) );
     }
 
+    $queryParameters['filters']['published'] = 1;
+
+    // updatedfrom
+    if( isset( $extraParams['updatedfrom'] ) ) {
+      $queryParameters['filters']['updatedfrom'] = gmdate( 'Y-m-d H:i:s', $extraParams['updatedfrom'] );
+    }
+
     // fields and fieldvalues
     if( isset( $extraParams['filters'], $extraParams['filtervalues'] ) && $extraParams['filters'] !== 'false' && $extraParams['filtervalues'] !== 'false' ) {
       // $queryParameters['filters'] = array('id' => 10);
     }
-    $queryParameters['filters']['published'] = 1;
 
     if( isset( $_POST['ids'] ) ) {
       if( is_array( $_POST['ids'] ) ) {
@@ -596,6 +608,7 @@ class geozzyAPIView extends View {
       }
     }
 
+    // error_log( '$queryParameters = '.print_r( $queryParameters, true ) );
     $resourceList = $resourceModel->listItems( $queryParameters );
 
     header('Content-type: application/json');
