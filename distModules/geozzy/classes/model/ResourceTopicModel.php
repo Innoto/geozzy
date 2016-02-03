@@ -30,7 +30,7 @@ class ResourceTopicModel extends Model {
     ),
     'weight' => array(
       'type' => 'SMALLINT',
-      'default' => 0      
+      'default' => 0
     )
   );
 
