@@ -173,7 +173,7 @@
      */
     that.setFilters = function() {
 
-      name = __('Rincons con Encanto');
+      name = __('Rincóns con Encanto');
 
       $( that.explorerclass+' .explorer-container-filter').html(
         '<div class="titleBar">'+
