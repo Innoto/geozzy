@@ -16,14 +16,14 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
   ),
 
   templateOption: _.template(
-    "<option value='<%- id %>' data-img='<%- dataImg %>' data-coords='<%- dataCoords %>'  ><%- name_es %></option>"
+    "<option value='<%- id %>' data-img='<%- dataImg %>' data-coords='<%- dataCoords %>'  ><%- name %></option>"
   ),
 
   templateSummary: _.template(
     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
     "<div class='<%= filterClass %>-Summary'>"+
       "<div class='icon'> <img class='icon' src='/cgmlImg/<%- option.icon %>/typeIcon/icon.png'> </div>" +
-      "<div class='name'> <%- option.name_es %> </div>" +
+      "<div class='name'> <%- option.name %> </div>" +
     "</div>"
   ),
 

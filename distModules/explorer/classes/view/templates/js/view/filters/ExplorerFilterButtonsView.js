@@ -28,7 +28,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
   templateOption: _.template(
     "<li data-term-id='<%- id %>'>"+
-      "<div class='title'><%- name_es %></div> "+
+      "<div class='title'><%- name %></div> "+
       "<img class='icon' src='/cgmlImg/<%- icon %>/typeIcon/icon.png'> " +
       "<img class='iconHover' src='/cgmlImg/<%- icon %>/typeIconHover/iconHover.png'> " +
       "<img class='iconSelected' src='/cgmlImg/<%- icon %>/typeIconSelected/iconSelected.png'> " +

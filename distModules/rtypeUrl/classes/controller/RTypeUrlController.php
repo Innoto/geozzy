@@ -137,13 +137,13 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     if ($type){
       $templates['info']->assign( 'rType', $type->getter('name_es') );
     }
-    $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
+    $timeCreation = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeCreation']));
     $templates['info']->assign( 'timeCreation', $timeCreation );
     if (isset($formBlockInfo['data']['userUpdate'])){
       $userModel = new UserModel();
       $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
       $userUpdateName = $userUpdate->getter('name');
-      $timeLastUpdate = date('d/m/Y', time($formBlockInfo['data']['timeLastUpdate']));
+      $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
       $templates['info']->assign( 'timeLastUpdate', $timeLastUpdate.' ('.$userUpdateName.')' );
     }
     if (isset($formBlockInfo['data']['averageVotes'])){

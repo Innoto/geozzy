@@ -82,8 +82,8 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setSearchRefId('tableSearch');
 
     // set table Actions
-    $tabla->setActionMethod('Activar', 'changeStatusActive', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=>1 ))');
-    $tabla->setActionMethod('Bloquear', 'changeStatusLock', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=> 0 ))');
+    $tabla->setActionMethod(__('Active'), 'changeStatusActive', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=>1 ))');
+    $tabla->setActionMethod(__('Inactive'), 'changeStatusLock', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=> 0 ))');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
@@ -94,16 +94,17 @@ class AdminViewUser extends AdminViewMaster
     $tabla->setNewItemUrl('/admin#user/create');
 
     // Nome das columnas
-    $tabla->setCol('id', 'Id');
-    $tabla->setCol('login', 'Login');
-    $tabla->setCol('name', 'Name');
-    $tabla->setCol('surname', 'Surname');
-    $tabla->setCol('email', 'Email');
+    $tabla->setCol('id', __('Id'));
+    $tabla->setCol('login', __('Login'));
+    $tabla->setCol('name', __('Name'));
+    $tabla->setCol('surname', __('Surname'));
+    $tabla->setCol('email', __('Email'));
+    $tabla->setCol('active', __('Active'));
     //$tabla->setCol('role', 'Role');
 
-    // establecer reglas a campo concreto con expresions regulares
-    //$tabla->colRule('role', '#10#', 'SuperAdmin');
-    //$tabla->colRule('role', '#11#', 'User');
+    // Contido especial
+    $tabla->colRule('active', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
+    $tabla->colRule('active', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
 
     // imprimimos o JSON da taboa
     $tabla->exec();
