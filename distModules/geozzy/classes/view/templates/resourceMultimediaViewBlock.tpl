@@ -10,9 +10,18 @@
 
     data = '';
     {foreach $multimediaAll.res as $multimedia}
-    data = data + '<img alt="{$multimedia.title}" src="{$multimedia.image}" '+
-        'data-image="{$multimedia.image_big}" '+
-        'data-description="{$multimedia.title}">';
+      {if $multimedia.multimediaUrl}
+        data = data + '<img alt="Youtube Without Images" src="{$multimedia.image}"'+
+          'data-type="youtube"'+
+          'data-image="{$multimedia.image_big}"'+
+          'data-videoid="{$multimedia.multimediaUrl}"'+
+          'data-description="Youtube video description">';
+      {else}
+        data = data + '<img alt="{$multimedia.title}" src="{$multimedia.image}" '+
+          'data-image="{$multimedia.image_big}" '+
+          'data-description="{$multimedia.title}">';
+      {/if}
+
     {/foreach}
     multimedia.push({
       id : '{$id}',
