@@ -12,6 +12,8 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   markersCreated: false,
   markerClusterer: false,
 
+  markerClustererHover: false,
+
   lastCenter: false,
 
   mapZones: {
@@ -236,10 +238,72 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
       that.markerClusterer.setMouseover(
         function( markers ) {
+          ///
+          ///
+          ///
+          ///
+          ///
+          ///
+          if( markers.length > 0 ) {
 
-          markers[0].setMap( that.map );
-          //alert('ÑOL')
-          //console.log( markers );
+            var overlay = new google.maps.OverlayView();
+            overlay.draw = function() {};
+            overlay.setMap(that.map);
+            var proj = overlay.getProjection();
+            var pos = markers[0].getPosition();
+            var p = proj.fromLatLngToContainerPixel(pos);
+
+
+
+
+            //$( xapita ).css('z-index','12222222');
+            //$( xapita ).css({borderRadius: '10%'});
+
+            if( !that.markerClustererHover ) {
+              that.markerClustererHover = document.createElement("div");
+              that.markerClustererHover.style.position = "absolute";
+              that.markerClustererHover.style.width = "40px";
+              that.markerClustererHover.style.height = "40px";
+              that.markerClustererHover.style.background = "#EC3440";
+              $( that.markerClustererHover ).hide();
+
+              $( that.markerClustererHover ).bind('mouseout', function() {
+                $( that.markerClustererHover ).hide();
+              });
+
+              $('body').append(that.markerClustererHover);
+
+
+
+            }
+
+
+            var top = ( $( that.map.getDiv() ).offset().top + p.y ) - $( that.markerClustererHover ).height()/2;
+            var left = ( $( that.map.getDiv() ).offset().left + p.x ) - $( that.markerClustererHover ).width()/2;
+
+            $( that.markerClustererHover ).css("top", top+'px' );
+            $( that.markerClustererHover ).css("left", left+'px' );
+            $( that.markerClustererHover ).css("border-radius",$( that.markerClustererHover ).width()/2);
+            $( that.markerClustererHover ).show();
+
+
+            //$( that.map.getDiv() ).offset().top ;
+
+//console.log( $(that.map.getDiv()) )
+
+
+
+
+            //markers[0].setMap( that.map );
+          }
+
+          ///
+          ///
+          ///
+          ///
+          ///
+          ///
+
         }
       );
 
@@ -274,7 +338,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     //google.maps.event.trigger( that.map, "resize");
 
     var markerPixel = that.coordToPixel( new google.maps.LatLng(lat, lng) );
-    that.coordToPixel
+
     var ret = {
       inMap:0, // NOT IN MAP OR BUFFER
       outerZone:false,
