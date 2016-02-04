@@ -15,7 +15,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         "<input type='text'> "+
       "</div>"
     ),
-    templateOption: _.template("<option value='<%- id %>' icon='<%- icon %>'><%- name_es %></option>"),
+    templateOption: _.template("<option value='<%- id %>' icon='<%- icon %>'><%- name %></option>"),
 
     templateSummary: _.template(
       " <% if(title){ %> <label><%= title %>:</label><%}%>  "+

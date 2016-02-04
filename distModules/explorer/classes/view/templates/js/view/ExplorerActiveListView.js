@@ -31,7 +31,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       '</div>'+
       '<div class="elementInfo">'+
         '<div class="elementTitle"><%-title%></div>'+
-        '<div class="elementType"><img src="/cgmlImg/<%- category.icon %>/typeIconMini/marker.png"/></i> <%- category.name_es %></div>'+
+        '<div class="elementType"><img src="/cgmlImg/<%- category.icon %>/typeIconMini/marker.png"/></i> <%- category.name %></div>'+
         '<% if( averagePrice ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
       '</div>'+
     '</div>'),

@@ -790,6 +790,7 @@ class geozzyAPIView extends View {
   }
 
   public function categoryTerms( $urlParams ) {
+
     $validation = array('id'=> '#\d+$#', 'idname'=>'#(.*)#');
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
@@ -837,12 +838,18 @@ class geozzyAPIView extends View {
   }
   */
 
-  public function syncModelList( $result ) {
+  public function syncModelList( $result, $lang = false ) {
     header('Content-type: application/json');
     echo '[';
     $c = '';
+    global $C_LANG;
+
     while ($valueobject = $result->fetch() ) {
-      $allData = $valueobject->getAllData('onlydata');
+
+      $allData = array('id' => $valueobject->getter('id'), 'idName' => $valueobject->getter('idName'),
+                       'name' => $valueobject->getter('name'), 'taxgroup' => $valueobject->getter('taxgroup'),
+                       'icon' => $valueobject->getter('icon'), 'weight' => $valueobject->getter('weight'));
+      //$allData = $valueobject->getAllData('onlydata');
       echo $c.json_encode( $allData);
       $c=',';
     }
