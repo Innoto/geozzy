@@ -16,7 +16,7 @@
           <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"/>
         </a>
         {else}
-        <a href="{$site_host}#inicio" class="navbar-brand page-scroll">
+        <a href="/{$GLOBAL_C_LANG}/#inicio" class="navbar-brand page-scroll">
           <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"/>
         </a>
         {/if}
@@ -35,11 +35,11 @@
             <li><a href="#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
             <li><a href="#" class="page-scroll">{t}Acerca de{/t}</a></li>
           {else}
-            <li><a href="{$site_host}#inicio" class="page-scroll">{t}Inicio{/t}</a></li>
-            <li><a href="{$site_host}#segredos" class="page-scroll">{t}Segredos{/t}</a></li>
-            <li><a href="{$site_host}#participa" class="page-scroll">{t}Participa{/t}</a></li>
-            <li><a href="{$site_host}#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
-            <li><a href="{$site_host}/{$GLOBAL_C_LANG}/sobre-nosotros" class="page-scroll">{t}Acerca de{/t}</a></li>
+            <li><a href="/{$GLOBAL_C_LANG}/#inicio" class="page-scroll">{t}Inicio{/t}</a></li>
+            <li><a href="/{$GLOBAL_C_LANG}/#segredos" class="page-scroll">{t}Segredos{/t}</a></li>
+            <li><a href="/{$GLOBAL_C_LANG}/#participa" class="page-scroll">{t}Participa{/t}</a></li>
+            <li><a href="/{$GLOBAL_C_LANG}/#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
+            <li><a href="/{$GLOBAL_C_LANG}/#sobre-nosotros" class="page-scroll">{t}Acerca de{/t}</a></li>
           {/if}
 
           <li class="dropdown langSelector">
@@ -47,16 +47,16 @@
             <ul class="dropdown-menu">
               {if isset($res.data) && $res.data} <!-- recurso -->
                 {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
-                  {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}{$res.data["urlAlias_$k"]}" class="page-scroll">{$lang.name}</a></li>{/if}
+                  {if $GLOBAL_C_LANG!=$k}<li><a href="/{$k}{$res.data["urlAlias_$k"]}" class="page-scroll">{$lang.name}</a></li>{/if}
                 {/foreach}
               {else} <!-- sitios donde no hay recurso aún (portada y exploradores) -->
                 {if !isset($url) || (isset($isFront) && $isFront)}
                   {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
-                    {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}" class="page-scroll">{$lang.name}</a></li>{/if}
+                    {if $GLOBAL_C_LANG!=$k}<li><a href="/{$k}" class="page-scroll">{$lang.name}</a></li>{/if}
                   {/foreach}
                 {else}
                   {foreach key=k item=lang from=$GLOBAL_LANG_AVAILABLE}
-                    {if $GLOBAL_C_LANG!=$k}<li><a href="{$site_host}/{$k}/{$url}" class="page-scroll">{$lang.name}</a></li>{/if}
+                    {if $GLOBAL_C_LANG!=$k}<li><a href="/{$k}/{$url}" class="page-scroll">{$lang.name}</a></li>{/if}
                   {/foreach}
                 {/if}
               {/if}
