@@ -27,61 +27,58 @@ class ExplorerAPIView extends View
     header('Content-type: application/json');
     ?>
     {
-        "resourcePath": "/explorer.json",
-        "basePath": "/api",
-        "apis": [
+      "resourcePath": "/explorer.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
             {
-                "operations": [
-                    {
-                        "errorResponses": [
-                            {
-                                "reason": "The explorer",
-                                "code": 200
-                            },
-                            {
-                                "reason": "Explorer not found",
-                                "code": 404
-                            }
-                        ],
-                        "httpMethod": "GET",
-                        "nickname": "explorer",
-                        "parameters": [
-                          {
-                            "name": "explorer",
-                            "description": "explorer name",
-                            "dataType": "string",
-                            "paramType": "path",
-                            "defaultValue": "default",
-                            "required": false
-                          },
-                          {
-                            "name": "request",
-                            "description": "( minimal | partial )",
-                            "dataType": "string",
-                            "paramType": "path",
-                            "defaultValue": "minimal",
-                            "required": true
-                          },
-                          {
-                            "name": "updatedfrom",
-                            "description": "updated from (UTC timestamp)",
-                            "dataType": "int",
-                            "paramType": "path",
-                            "defaultValue": "false",
-                            "required": true
-                          }
-
-                        ],
-                        "summary": "Fetches explorer data"
-                    }
-                ],
-                "path": "/explorer/explorer/{explorer}/request/{request}/updatedfrom/{updatedfrom}",
-                "description": ""
+              "errorResponses": [
+                {
+                  "reason": "The explorer",
+                  "code": 200
+                },
+                {
+                  "reason": "Explorer not found",
+                  "code": 404
+                }
+              ],
+              "httpMethod": "GET",
+              "nickname": "explorer",
+              "parameters": [
+                {
+                  "name": "explorer",
+                  "description": "explorer name",
+                  "dataType": "string",
+                  "paramType": "path",
+                  "defaultValue": "default",
+                  "required": false
+                },
+                {
+                  "name": "request",
+                  "description": "( minimal | partial )",
+                  "dataType": "string",
+                  "paramType": "path",
+                  "defaultValue": "minimal",
+                  "required": true
+                },
+                {
+                  "name": "updatedfrom",
+                  "description": "updated from (UTC timestamp)",
+                  "dataType": "int",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": true
+                }
+              ],
+              "summary": "Fetches explorer data"
             }
-        ]
-
+          ],
+          "path": "/explorer/explorer/{explorer}/request/{request}/updatedfrom/{updatedfrom}",
+          "description": ""
+        }
+      ]
     }
-
     <?php
   }
 
@@ -89,33 +86,33 @@ class ExplorerAPIView extends View
     header('Content-type: application/json');
     ?>
     {
-        "resourcePath": "/explorerList.json",
-        "basePath": "/api",
-        "apis": [
+      "resourcePath": "/explorerList.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
             {
-                "operations": [
-                    {
-                        "errorResponses": [
-                            {
-                                "reason": "The explorer list",
-                                "code": 200
-                            },
-                            {
-                                "reason": "Explorer list not found",
-                                "code": 404
-                            }
-                        ],
-                        "httpMethod": "GET",
-                        "nickname": "explorerlist",
-                        "parameters": [
-                        ],
-                        "summary": "Fetches explorer list"
-                    }
-                ],
-                "path": "/explorerList",
-                "description": ""
+              "errorResponses": [
+                {
+                  "reason": "The explorer list",
+                  "code": 200
+                },
+                {
+                  "reason": "Explorer list not found",
+                  "code": 404
+                }
+              ],
+              "httpMethod": "GET",
+              "nickname": "explorerlist",
+              "parameters": [
+              ],
+              "summary": "Fetches explorer list"
             }
-        ]
+          ],
+          "path": "/explorerList",
+          "description": ""
+        }
+      ]
     }
     <?php
   }
@@ -124,7 +121,7 @@ class ExplorerAPIView extends View
 
   // explorer
   public function explorer( $urlParams ) {
-    require_once APP_BASE_PATH."/conf/geozzyExplorers.php";
+    require_once APP_BASE_PATH."/conf/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
     global $GEOZZY_EXPLORERS;
 
     $validation = array(
@@ -170,12 +167,21 @@ class ExplorerAPIView extends View
 
   // explorer list
   public function explorerList() {
-    require_once APP_BASE_PATH."/conf/geozzyExplorers.php";
+    require_once APP_BASE_PATH."/conf/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
     global $GEOZZY_EXPLORERS;
 
     if( count( $GEOZZY_EXPLORERS ) > 0 ) {
+      $explListInfo = array();
+      foreach( $GEOZZY_EXPLORERS as $explId => $explInfo ) {
+        $explListInfo[ $explId ] = array(
+          'name' => $explInfo[ 'name' ],
+          'mapBounds' => isset( $explInfo[ 'mapBounds' ] ) ? $explInfo[ 'mapBounds' ] : false,
+          'filters' => isset( $explInfo[ 'filters' ] ) ? $explInfo[ 'filters' ] : false
+        );
+      }
+
       header('Content-type: application/json');
-      echo json_encode( $GEOZZY_EXPLORERS );
+      echo json_encode( $explListInfo );
     }
     else {
       header("HTTP/1.0 404 Not Found");
