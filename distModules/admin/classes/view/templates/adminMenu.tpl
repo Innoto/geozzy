@@ -59,26 +59,25 @@
                 <!-- END TOPICS -->
               </ul>
           </li>
+          {if $superAdminPermission}
           <li class="contents">
             <a href="/admin#resource/list"><i class="fa fa-indent fa-fw"></i> {t}Contents{/t} </a>
           </li>
+          {/if}
           <!-- Categories -->
           <li class="categories">
             <a href="#"><i class="fa fa-tags fa-fw"></i> Categories <span class="fa arrow"></span></a>
               <ul class="nav nav-second-level categoriesList">
                 <script type="text/template" id="menuCategoryElement">
-
                   <% for(var categoryK in categories) { %>
                     <li class="category_<%- categories[categoryK].id %>">
                       <a href="/admin#category/<%- categories[categoryK].id %>"><i class="fa fa-tag fa-fw"></i> <%- categories[categoryK].name_{$langDefault} %> </a>
                     </li>
                   <% } %>
-
                 </script>
               </ul>
               <!-- /.nav-second-level -->
           </li>
-
           <!-- Settings -->
           <li>
             <a href="#"><i class="fa fa-cog fa-fw"></i> {t}Settings{/t} <span class="fa arrow"></span></a>
@@ -86,7 +85,7 @@
               <li class="menu">
                 <a href="/admin#"><i class="fa fa-bars fa-fw"></i> {t}Menu{/t} </a>
               </li>
-
+              {if $userPermission}
               <li>
                 <a href="#"><i class="fa fa-users fa-fw"></i> {t}Users{/t} <span class="fa arrow"></span></a>
                   <ul class="nav nav-third-level">
@@ -100,6 +99,7 @@
                   </ul>
                   <!-- /.nav-third-level -->
               </li>
+              {/if}
             </ul>
             <!-- /.nav-second-level -->
           </li>

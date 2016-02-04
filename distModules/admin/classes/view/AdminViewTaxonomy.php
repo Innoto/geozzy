@@ -84,6 +84,14 @@ class AdminViewTaxonomy extends AdminViewMaster
   }
 
   public function categoryForm( $request ){
+
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions( array('category:edit', 'category:create'), 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
     $geozzyTaxtermView = new GeozzyTaxonomytermView();
 
     $catId = $request[1];

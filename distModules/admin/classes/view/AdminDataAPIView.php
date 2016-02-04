@@ -43,6 +43,15 @@ class AdminDataAPIView extends View
 
   function categoryTerms( $urlParams ) {
 
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions( array('category:list', 'category:edit', 'category:delete' ), 'admin:full');
+    if(!$access){
+      header("HTTP/1.0 403 Forbidden");
+      header('Content-type: application/json');
+      echo '{}';
+      exit;
+    }
+
 
     $validation = array('id'=> '#\d+$#');
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
@@ -330,6 +339,15 @@ class AdminDataAPIView extends View
   }
 
   function resourcesTerm( $request ) {
+
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('starred:list', 'admin:full');
+    if(!$access){
+      header("HTTP/1.0 403 Forbidden");
+      header('Content-type: application/json');
+      echo '{}';
+      exit;
+    }
 
     $dataRequest = explode("/", $request[1]);
 

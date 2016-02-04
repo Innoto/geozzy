@@ -7,9 +7,6 @@ global $CGMLCONF;
   'category:create',
   'category:edit',
   'category:delete',
-  'category:publish',
-  'category:unpublish',
-  'category:edit',
 
   'resource:mylist',
   'resource:list',
@@ -17,7 +14,6 @@ global $CGMLCONF;
   'resource:edit',
   'resource:delete',
   'resource:publish',
-  'resource:unpublish',
 
   'topic:list',
   'topic:assign',
@@ -49,9 +45,6 @@ $CGMLCONF['user']['roles']['gestor'] = array(
     'category:create',
     'category:edit',
     'category:delete',
-    'category:publish',
-    'category:unpublish',
-    'category:edit',
 
     'resource:mylist',
     'resource:list',
@@ -59,7 +52,6 @@ $CGMLCONF['user']['roles']['gestor'] = array(
     'resource:edit',
     'resource:delete',
     'resource:publish',
-    'resource:unpublish',
 
     'topic:list',
     'topic:assign',
@@ -82,9 +74,6 @@ $CGMLCONF['user']['roles']['gestorNotAccess'] = array(
     'category:create',
     'category:edit',
     'category:delete',
-    'category:publish',
-    'category:unpublish',
-    'category:edit',
 
     'resource:mylist',
     'resource:list',
@@ -92,7 +81,6 @@ $CGMLCONF['user']['roles']['gestorNotAccess'] = array(
     'resource:edit',
     'resource:delete',
     'resource:publish',
-    'resource:unpublish',
 
     'topic:list',
     'topic:assign',
@@ -112,7 +100,6 @@ $CGMLCONF['user']['roles']['gestorEdit'] = array(
     'resource:edit',
     'resource:delete',
     'resource:publish',
-    'resource:unpublish',
 
     'topic:list',
     'topic:assign',
@@ -130,9 +117,6 @@ $CGMLCONF['user']['roles']['gestorNotPublished'] = array(
     'category:create',
     'category:edit',
     'category:delete',
-    'category:publish',
-    'category:unpublish',
-    'category:edit',
 
     'resource:mylist',
     'resource:list',

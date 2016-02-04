@@ -14,6 +14,13 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
   **/
   public function listResourcesOutTopic( $urlParams ) {
 
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('topic:assign', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
     $validation = array('topic'=> '#\d+$#');
     $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
 

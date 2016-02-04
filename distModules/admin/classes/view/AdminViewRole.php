@@ -15,6 +15,12 @@ class AdminViewRole extends AdminViewMaster
   **/
 
   function listRoles() {
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('user:all', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
 
     $template = new Template( $this->baseDir );
     $template->assign('roleTable', table::getTableHtml('AdminViewRole', '/admin/role/table') );
@@ -59,6 +65,12 @@ class AdminViewRole extends AdminViewMaster
   **/
 
   function createRole() {
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('user:all', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
 
     $roleView = new RoleView();
 
@@ -83,6 +95,12 @@ class AdminViewRole extends AdminViewMaster
   **/
 
   function editRole( $urlParams ) {
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('user:all', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
 
     $validation = array( 'id'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );

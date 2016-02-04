@@ -15,6 +15,13 @@ class AdminViewStarred extends AdminViewMaster
   **/
   public function listAssignStarred( $urlParams ) {
 
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('starred:list', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
     $validation = array('star'=> '#\d+$#');
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
     $starredId = $urlParamsList['star'];

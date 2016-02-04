@@ -5,6 +5,7 @@ var AdminRouter = Backbone.Router.extend({
 
   routes: {
     "" : "default",
+    "403" : "accessDenied",
     "charts" : "charts",
     "multiList" : "multiList",
     "category/:id" : "categoryEdit",
@@ -36,7 +37,9 @@ var AdminRouter = Backbone.Router.extend({
     app.router.navigate("resource/list", {trigger: true});
   },
 
-  // charts
+  accessDenied: function() {
+    app.mainView.loadAjaxContent( '/admin/403' );
+  },
 
   charts: function() {
     app.mainView.loadAjaxContent( '/admin/charts' );

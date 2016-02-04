@@ -43,12 +43,27 @@ class AdminViewMaster extends View
     return $res;
   }
 
+  public function accessDenied(){
+    $template = new Template( $this->baseDir );
+    $template->setTpl('admin403.tpl', 'admin');
+
+    $this->template->addToBlock( 'col12', $template );
+    $this->template->assign( 'headTitle', __('Access denied') );
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
+    $this->template->exec();
+  }
 
   public function commonAdminInterface(){
     $this->template->setTpl('adminMaster.tpl', 'admin');
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
     $this->template->assign( 'user' , $user);
+    //Control menu
+    $superAdminPermission = $useraccesscontrol->checkPermissions();
+    $this->template->assign( 'superAdminPermission' , $superAdminPermission);
+    $userPermission = $useraccesscontrol->checkPermissions('user:all', 'admin:full');
+    $this->template->assign( 'userPermission' , $userPermission);
+    //
     $this->template->exec();
   }
 
