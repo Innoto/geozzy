@@ -12,6 +12,8 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   markersCreated: false,
   markerClusterer: false,
 
+  markerClustererHover: false,
+
   lastCenter: false,
 
   mapZones: {
@@ -84,7 +86,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     var visibleResources = [];
 
     google.maps.event.trigger( that.map, "resize");
-    
+
     that.parentExplorer.resourceMinimalList.each(function(m, index) {
       // Assign values 2:visible in map, 1:not visible in map but present in buffer zone, 0:not in map or buffer
 
@@ -232,10 +234,84 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         styles: that.options.clustererStyles
       });
 
+
+
       that.markerClusterer.setMouseover(
         function( markers ) {
-          //alert('ÑOL')
-          //console.log( markers );
+          ///
+          ///
+          ///
+          ///
+          ///
+          ///
+          if( markers.length > 0 ) {
+
+            var overlay = new google.maps.OverlayView();
+            overlay.draw = function() {};
+            overlay.setMap(that.map);
+            var proj = overlay.getProjection();
+            var pos = markers[0].getPosition();
+            var p = proj.fromLatLngToContainerPixel(pos);
+
+
+
+
+            //$( xapita ).css('z-index','12222222');
+            //$( xapita ).css({borderRadius: '10%'});
+
+            if( !that.markerClustererHover ) {
+              var insideDiv = $('<div></div>');
+              that.markerClustererHover = $("<div></div>");
+              that.markerClustererHover.css('position', 'absolute');
+              //that.markerClustererHover.css('background', 'green');
+
+
+
+              insideDiv.css('background', '#EC3440');
+              insideDiv.css('width', '40px');
+              insideDiv.css('height', '40px');
+              insideDiv.css('margin', '30px');
+              insideDiv.css("border-radius", insideDiv.width()/2);
+
+              that.markerClustererHover.append( insideDiv );
+              that.markerClustererHover.hide();
+
+
+              $('body').append(that.markerClustererHover);
+
+
+
+              that.markerClustererHover.css("border-radius",  that.markerClustererHover.width()/2);
+              // alert(that.markerClustererHover.height())
+              // hide event!
+              $( that.markerClustererHover ).bind('mouseleave', function() {
+                $( that.markerClustererHover ).hide();
+              });
+            }
+
+            var top = ( $( that.map.getDiv() ).offset().top + p.y ) - that.markerClustererHover.height()/2;
+            var left = ( $( that.map.getDiv() ).offset().left + p.x ) - that.markerClustererHover.width()/2;
+
+            $( that.markerClustererHover ).css("top", top+'px' );
+            $( that.markerClustererHover ).css("left", left+'px' );
+
+            $( that.markerClustererHover ).show();
+
+
+
+
+
+
+            //markers[0].setMap( that.map );
+          }
+
+          ///
+          ///
+          ///
+          ///
+          ///
+          ///
+
         }
       );
 
@@ -270,7 +346,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     //google.maps.event.trigger( that.map, "resize");
 
     var markerPixel = that.coordToPixel( new google.maps.LatLng(lat, lng) );
-    that.coordToPixel
+
     var ret = {
       inMap:0, // NOT IN MAP OR BUFFER
       outerZone:false,

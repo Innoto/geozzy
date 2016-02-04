@@ -71,6 +71,7 @@
     that.setInitialData = function( doneFunction ){
       that.mapOptions = {
         center: { lat: 43.1, lng: -7.36 },
+        mapTypeControl: false,
         zoom: 8
       };
       that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
@@ -101,7 +102,7 @@
     that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
-        debug: true,
+        debug: false,
         explorerId:'todosSegredos',
         explorerSectionName:'Todos os segredos',
 
@@ -144,7 +145,9 @@
           map: that.resourceMap,
           clusterize:true,
           chooseMarkerIcon: function( markerData ) {
+
             var iconUrl = false;
+            var retObj = false;
 
             that.eatAndDrinkTypes.each( function(e){
               //console.log(e.get('id'))
@@ -161,7 +164,21 @@
 
             });
 
-            return iconUrl;
+            if(iconUrl) {
+
+              retObj = {
+                url: iconUrl,
+                // This marker is 20 pixels wide by 36 pixels high.
+                size: new google.maps.Size(24, 24),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 36).
+                anchor: new google.maps.Point(12, 12)
+              }
+            }
+
+            return retObj;
+
           },
 
           clustererStyles: [{
@@ -169,6 +186,7 @@
                 height: 28,
                 width: 28,
                 textColor: '#FFFFFF',
+                anchor:[0,100],
                 textSize: 15
               },
               {
@@ -176,6 +194,7 @@
                 height: 32,
                 width: 32,
                 textColor: '#FFFFFF',
+                anchor:[0,100],
                 textSize: 17
               }]
       });
@@ -234,7 +253,7 @@
         {
           mainContainerClass: that.explorerclass+' .explorer-container-map',
           containerClass: 'filterZona',
-          textReset: 'Toda Galicia',
+          textReset: __('Toda Galicia'),
           defaultOption: { icon: false, title: '', value:'*' },
           data: that.zonaCategories,
           onChange: that.chooseFTLayer
@@ -253,22 +272,22 @@
 
       var filtroEspecialidades = new geozzy.explorerComponents.filters.filterComboView(
         {
-          title:'Especialidade',
+          title:__('Especialidade'),
           mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'especialidadeEatandDrink',
-          titleSummary: 'Especialidade',
+          titleSummary: __('Especialidade'),
           summaryContainerClass: 'filters_summary_xantarestipos',
-          defaultOption: { icon: false, title: 'Todas as especialidades', value:'*' },
+          defaultOption: { icon: false, title: __('Todas as especialidades'), value:'*' },
           data: that.eatAndDrinkSpecialities
         }
       );
 
       var filtroPrezo = new geozzy.explorerComponents.filters.filterSliderView(
         {
-          title:'Precio',
+          title:__('Precio'),
           mainContainerClass: that.explorerclass+' .filters_advancedFilters',
           containerClass: 'xantaresPrice',
-          titleSummary: 'Cun prezo inferior a',
+          titleSummary: __('Cun prezo inferior a'),
           summaryContainerClass: 'filters_summary_xantaresprezo',
           values:  [10]
         }
@@ -276,7 +295,7 @@
 
       var filtroReset = new geozzy.explorerComponents.filters.filterResetView(
         {
-          title:'Ver todo',
+          title:__('Ver todo'),
           mainContainerClass: that.explorerclass+' .filtersContainer',
           containerClass: 'resetFilters'
         }

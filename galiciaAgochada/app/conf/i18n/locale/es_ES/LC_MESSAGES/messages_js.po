@@ -7,13 +7,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2016-02-03T11:39:40+01:00\n"
-"PO-Revision-Date: 2016-02-03T11:39:41+01:00\n"
+"POT-Creation-Date: 2016-02-03T17:36:39+01:00\n"
+"PO-Revision-Date: 2016-02-03T17:36:40+01:00\n"
 "Language: \n"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:176
 msgid "Paisaxes Espectaculares"
-msgstr ""
+msgstr "Paisajes Espectaculares"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:231
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:235
@@ -24,16 +24,16 @@ msgstr ""
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:244
 msgid "Todas as paisaxes"
-msgstr ""
+msgstr "Todos los paisajes"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:252
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:255
 msgid "Especialidade"
-msgstr ""
+msgstr "Especialidad"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:257
 msgid "Todas as especialidades"
-msgstr ""
+msgstr "Todas las especialidades"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:264
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:280
@@ -43,7 +43,7 @@ msgstr ""
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:267
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:283
 msgid "Cun prezo inferior a"
-msgstr ""
+msgstr "Con un precio inferior a"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:275
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:291
@@ -52,51 +52,39 @@ msgstr ""
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:244
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:247
-msgid "Categoria"
+msgid "Categoría"
 msgstr ""
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:249
-msgid "Todas as categorias"
-msgstr ""
+msgid "Todas as categorías"
+msgstr "Todas las categorías"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:256
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:259
 msgid "Instalacións"
-msgstr ""
+msgstr "Instalaciones"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:261
 msgid "Todas as instalacións"
-msgstr ""
+msgstr "Todas las instalaciones"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:268
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:271
 msgid "Servizos"
-msgstr ""
+msgstr "Servicios"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:273
 msgid "Todos os servizos"
-msgstr ""
+msgstr "Todos los servicios"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:176
-msgid "Rincons con Encanto"
-msgstr ""
+msgid "Rincóns con Encanto"
+msgstr "Rincones con Encanto"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:244
 msgid "Todos os lugares"
-msgstr ""
+msgstr "Todos los lugares"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/praiasExplorer.js:148
 msgid "Praias de Ensono"
-msgstr ""
-
-#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:283
-msgid "Cun prezo inferior a)"
-msgstr ""
-
-#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/resource.js:6
-msgid "Tradúceme si te atreves"
-msgstr ""
-
-#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/resource.js:7
-msgid "Proba"
-msgstr ""
+msgstr "Playas de ensueño"

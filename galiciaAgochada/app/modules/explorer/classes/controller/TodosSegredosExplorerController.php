@@ -24,7 +24,7 @@ class TodosSegredosExplorerController extends ExplorerController {
     $coma = '';
 
     echo '[';
-    $limite_temporal   = 4000;
+    $limite_temporal   = 1000;
     while( $resource = $resources->fetch() ){
         echo $coma;
         $row = array();

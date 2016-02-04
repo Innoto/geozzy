@@ -8,137 +8,121 @@ Cogumelo::load('coreView/View.php');
 */
 class ExplorerAPIView extends View
 {
-  function __construct($baseDir){
-    parent::__construct($baseDir);
+  public function __construct( $baseDir ) {
+    parent::__construct( $baseDir );
   }
 
   /**
   * Evaluate the access conditions and report if can continue
   * @return bool : true -> Access allowed
   */
-  function accessCheck() {
+  public function accessCheck() {
     if( GEOZZY_API_ACTIVE ){
-     return true;
+      return( true );
     }
   }
 
 
-  function explorerJson() {
+  public function explorerJson() {
     header('Content-type: application/json');
-
-
     ?>
     {
-        "resourcePath": "/explorer.json",
-        "basePath": "/api",
-        "apis": [
+      "resourcePath": "/explorer.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
             {
-                "operations": [
-                    {
-                        "errorResponses": [
-                            {
-                                "reason": "The explorer",
-                                "code": 200
-                            },
-                            {
-                                "reason": "Explorer not found",
-                                "code": 404
-                            }
-                        ],
-
-                        "httpMethod": "GET",
-                        "nickname": "explorer",
-                        "parameters": [
-
-                          {
-                            "name": "explorer",
-                            "description": "explorer name",
-                            "dataType": "string",
-                            "paramType": "path",
-                            "defaultValue": "default",
-                            "required": false
-                          },
-                          {
-                            "name": "request",
-                            "description": "( minimal | partial )",
-                            "dataType": "string",
-                            "paramType": "path",
-                            "defaultValue": "minimal",
-                            "required": true
-                          },
-                          {
-                            "name": "updatedfrom",
-                            "description": "updated from (UTC timestamp)",
-                            "dataType": "int",
-                            "paramType": "path",
-                            "defaultValue": "false",
-                            "required": true
-                          }
-
-                        ],
-                        "summary": "Fetches explorer data"
-                    }
-                ],
-                "path": "/explorer/explorer/{explorer}/request/{request}/updatedfrom/{updatedfrom}",
-                "description": ""
+              "errorResponses": [
+                {
+                  "reason": "The explorer",
+                  "code": 200
+                },
+                {
+                  "reason": "Explorer not found",
+                  "code": 404
+                }
+              ],
+              "httpMethod": "GET",
+              "nickname": "explorer",
+              "parameters": [
+                {
+                  "name": "explorer",
+                  "description": "explorer name",
+                  "dataType": "string",
+                  "paramType": "path",
+                  "defaultValue": "default",
+                  "required": false
+                },
+                {
+                  "name": "request",
+                  "description": "( minimal | partial )",
+                  "dataType": "string",
+                  "paramType": "path",
+                  "defaultValue": "minimal",
+                  "required": true
+                },
+                {
+                  "name": "updatedfrom",
+                  "description": "updated from (UTC timestamp)",
+                  "dataType": "int",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": true
+                }
+              ],
+              "summary": "Fetches explorer data"
             }
-        ]
-
+          ],
+          "path": "/explorer/explorer/{explorer}/request/{request}/updatedfrom/{updatedfrom}",
+          "description": ""
+        }
+      ]
     }
-
     <?php
   }
 
-  function explorerListJson() {
+  public function explorerListJson() {
     header('Content-type: application/json');
-
-
     ?>
     {
-        "resourcePath": "/explorerList.json",
-        "basePath": "/api",
-        "apis": [
+      "resourcePath": "/explorerList.json",
+      "basePath": "/api",
+      "apis": [
+        {
+          "operations": [
             {
-                "operations": [
-                    {
-                        "errorResponses": [
-                            {
-                                "reason": "The explorer list",
-                                "code": 200
-                            },
-                            {
-                                "reason": "Explorer list not found",
-                                "code": 404
-                            }
-                        ],
-
-                        "httpMethod": "GET",
-                        "nickname": "explorerlist",
-                        "parameters": [
-                        ],
-                        "summary": "Fetches explorer list"
-                    }
-                ],
-                "path": "/explorerList",
-                "description": ""
+              "errorResponses": [
+                {
+                  "reason": "The explorer list",
+                  "code": 200
+                },
+                {
+                  "reason": "Explorer list not found",
+                  "code": 404
+                }
+              ],
+              "httpMethod": "GET",
+              "nickname": "explorerlist",
+              "parameters": [
+              ],
+              "summary": "Fetches explorer list"
             }
-        ]
-
+          ],
+          "path": "/explorerList",
+          "description": ""
+        }
+      ]
     }
-
     <?php
   }
-
 
 
 
   // explorer
-
-  function explorer( $urlParams ) {
-
-    require_once APP_BASE_PATH."/conf/geozzyExplorers.php";
+  public function explorer( $urlParams ) {
+    require_once APP_BASE_PATH."/conf/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
     global $GEOZZY_EXPLORERS;
-
 
     $validation = array(
       'explorer'=> '#(.*)#',
@@ -147,12 +131,8 @@ class ExplorerAPIView extends View
     );
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
-
     if( isset($urlParamsList['request']) && isset($urlParamsList['explorer']) && isset( $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ] ) ) {
-
       $explorerConf = $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ];
-      header('Content-type: application/json');
-
 
       // Include controller
       eval( $explorerConf['module'].'::load("'.$explorerConf['controllerFile'].'");' );
@@ -160,57 +140,51 @@ class ExplorerAPIView extends View
       // constructor;
       $explorer = new $explorerConf['controllerName']();
 
-
       if( $urlParamsList['request'] == 'minimal' ) {
         if( isset($urlParamsList['updatedfrom']) ) {
+          header('Content-type: application/json');
           $explorer->serveMinimal( $urlParamsList['updatedfrom'] );
         }
         else {
-          $explorer->serveMinimal( );
+          header('Content-type: application/json');
+          $explorer->serveMinimal();
         }
-
-      }
-      else
-      if( $urlParamsList['request'] == 'partial' ) {
-        $explorer->servePartial();
       }
       else {
-        header("HTTP/1.0 404 Not Found");
+        if( $urlParamsList['request'] == 'partial' ) {
+          header('Content-type: application/json');
+          $explorer->servePartial();
+        }
+        else {
+          header("HTTP/1.0 404 Not Found");
+        }
       }
-
-
-
-
-
     }
     else {
       header("HTTP/1.0 404 Not Found");
     }
-
-
   }
-
 
   // explorer list
-
-  function explorerList(  ) {
-
-    require_once APP_BASE_PATH."/conf/geozzyExplorers.php";
+  public function explorerList() {
+    require_once APP_BASE_PATH."/conf/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
     global $GEOZZY_EXPLORERS;
 
+    if( count( $GEOZZY_EXPLORERS ) > 0 ) {
+      $explListInfo = array();
+      foreach( $GEOZZY_EXPLORERS as $explId => $explInfo ) {
+        $explListInfo[ $explId ] = array(
+          'name' => $explInfo[ 'name' ],
+          'mapBounds' => isset( $explInfo[ 'mapBounds' ] ) ? $explInfo[ 'mapBounds' ] : false,
+          'filters' => isset( $explInfo[ 'filters' ] ) ? $explInfo[ 'filters' ] : false
+        );
+      }
 
-
-
-    if( sizeof( $GEOZZY_EXPLORERS ) > 0 ) {
       header('Content-type: application/json');
-      echo json_encode($GEOZZY_EXPLORERS);
+      echo json_encode( $explListInfo );
     }
     else {
       header("HTTP/1.0 404 Not Found");
     }
-
-
   }
-
-
 }

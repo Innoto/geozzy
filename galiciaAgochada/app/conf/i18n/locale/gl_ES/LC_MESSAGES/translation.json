@@ -1,17 +1,1 @@
-{
-    "Paisaxes Espectaculares": "",
-    "Toda Galicia": "",
-    "Todas as paisaxes": "",
-    "Categoria": "",
-    "Todas as categorias": "",
-    "Instalacións": "",
-    "Todas as instalacións": "",
-    "Servizos": "",
-    "Todos os servizos": "",
-    "Precio": "",
-    "Cun prezo inferior a)": "",
-    "Ver todo": "",
-    "Praias de Ensono": "",
-    "Tradúceme si te atreves": "",
-    "Proba": ""
-}
+l10n = {"Paisaxes Espectaculares":"Paisaxes Espectaculares","Toda Galicia":"Toda Galicia","Todas as paisaxes":"Todas as paisaxes","Especialidade":"Especialidade","Todas as especialidades":"Todas as especialidades","Precio":"Precio","Cun prezo inferior a":"Cun prezo inferior a","Ver todo":"Ver todo","Categor\u00eda":"Categor\u00eda","Todas as categor\u00edas":"Todas as categor\u00edas","Instalaci\u00f3ns":"Instalaci\u00f3ns","Todas as instalaci\u00f3ns":"Todas as instalaci\u00f3ns","Servizos":"Servizos","Todos os servizos":"Todos os servizos","Rinc\u00f3ns con Encanto":"Rinc\u00f3ns con Encanto","Todos os lugares":"Todos os lugares","Praias de Ensono":"Praias de Ensono","Categoria":"Categoria","Todas as categorias":"Todas as categorias","Rincons con Encanto":"Rincons con Encanto","Cun prezo inferior a)":"Cun prezo inferior a)","Trad\u00faceme si te atreves":"Trad\u00faceme si te atreves","Proba":"Proba"}

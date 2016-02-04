@@ -458,96 +458,6 @@ class ResourceController {
     return( $form );
   }
 
-
-  /**
-   * Defino el formulario y creo su Bloque con su TPL
-   *
-   * @param $form object Form
-   * @param $template object
-   *
-   * @return Template
-   */
-  public function formToTemplate( $form, $template = false ) {
-    // error_log( "ResourceController: formToTemplate()" );
-
-    if( !$template ) {
-      $template = new Template();
-      $template->addClientStyles( 'masterResource.less');
-      $template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
-    }
-
-    $template->assign( 'formOpen', $form->getHtmpOpen() );
-    $template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
-    $template->assign( 'formFieldsHiddenArray', array() );
-    $template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
-    $template->assign( 'formClose', $form->getHtmlClose() );
-    $template->assign( 'formValidations', $form->getScriptCode() );
-
-    /* Cuadro información de recurso */
-    if ($this->resData){
-      $rtypeModel = new ResourcetypeModel();
-      $rType = $rtypeModel->listItems( array( 'filters' => array('id' => $this->resData['rTypeId']) ) )->fetch();
-      $rTypeName = $rType->getter('name_'.LANG_DEFAULT);
-
-      $userModel = new UserModel();
-      $user = $userModel->listItems( array( 'filters' => array('id' => $this->resData['user']) ) )->fetch();
-      $userName = $user->getter('name');
-
-      $timeCreation = gmdate('d/m/Y', time($this->resData['timeCreation']));
-
-      $template->assign( 'resourceId', $this->resData['id']);
-      $template->assign( 'rTypeName', $rTypeName);
-      $template->assign( 'timeCreation', $timeCreation);
-      $template->assign( 'userName', $userName);
-
-      if (isset($this->resData['userUpdate'])){
-        $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $this->resData['userUpdate']) ) )->fetch();
-        $userUpdateName = $userUpdate->getter('name');
-        $timeLastUpdate = gmdate('d/m/Y', time($this->resData['timeLastUpdate']));
-        $template->assign( 'timeLastUpdate', $timeLastUpdate);
-        $template->assign( 'userUpdate', $userUpdateName);
-      }
-
-      if (isset($this->resData['averageVotes'])){
-        $template->assign( 'averageVotes', $this->resData['averageVotes']);
-      }
-    }
-
-    $this->rTypeCtrl = $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) );
-    if( $this->rTypeCtrl ) {
-      $rTypeTemplate = $this->rTypeCtrl->manipulateFormTemplate( $form, $template );
-      if( $rTypeTemplate ) {
-        $template = $rTypeTemplate;
-      }
-    }
-
-    return( $template );
-  }
-
-
-
-
-
-
-
-
-  public function getFormBlockInfo( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "GeozzyResourceView: getFormBlockInfo()" );
-
-    $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
-
-    $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
-    $formBlockInfo['objForm'] =  $form;
-
-    return( $formBlockInfo );
-  }
-
-
-
-
-
-
-
   /**
    * Defino el formulario y creo su Bloque con su TPL
    *
@@ -557,14 +467,15 @@ class ResourceController {
    *
    * @return Template
    */
-  public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "GeozzyResourceView: getFormBlock()" );
+  public function getFormBlockInfo( $formName, $urlAction, $valuesArray = false ) {
+    // error_log( "GeozzyResourceView: getFormBlockInfo()" );
 
     $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
 
-    $template = $this->formToTemplate( $form );
+    $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
+    $formBlockInfo['objForm'] =  $form;
 
-    return( $template );
+    return( $formBlockInfo );
   }
 
 
