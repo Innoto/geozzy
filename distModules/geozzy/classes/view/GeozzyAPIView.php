@@ -177,107 +177,95 @@ class geozzyAPIView extends View {
   public function resourceIndexJson() {
     header('Content-type: application/json');
     ?>
+      {
+        "resourcePath": "/resources.json",
+        "basePath": "/api",
+        "apis": [
           {
-              "resourcePath": "/resources.json",
-              "basePath": "/api",
-              "apis": [
+            "operations": [
+              {
+                "errorResponses": [
                   {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "The resource index",
-                                      "code": 200
-                                  }
-                              ],
-
-                              "httpMethod": "GET",
-                              "nickname": "resourceIndex",
-                              "parameters": [
-
-
-                                  {
-                                    "name": "taxonomyTerms",
-                                    "description": "ids (separed by comma)",
-                                    "dataType": "string",
-                                    "paramType": "path",
-                                    "defaultValue": "false",
-                                    "required": false
-                                  },
-                                  {
-                                    "name": "types",
-                                    "description": "ids (separed by comma)",
-                                    "dataType": "string",
-                                    "paramType": "path",
-                                    "defaultValue": "false",
-                                    "required": false
-                                  },
-                                  {
-                                    "name": "topics",
-                                    "description": "ids (separed by comma)",
-                                    "dataType": "string",
-                                    "paramType": "path",
-                                    "defaultValue": "false",
-                                    "required": false
-                                  },
-                                  {
-                                    "name": "bounds",
-                                    "description": "lat,lng",
-                                    "dataType": "string",
-                                    "paramType": "path",
-                                    "defaultValue": "false",
-                                    "required": false
-                                  }
-
-
-                              ],
-                              "summary": "Fetches resource list"
-                          }
-                      ],
-                      "path": "/core/resourceIndex/taxonomyTerms/{taxonomyTerms}/types/{types}/topics/{topics}/bounds/{bounds}",
-                      "description": ""
+                    "reason": "The resource index",
+                    "code": 200
                   }
-              ]
-
+                ],
+                "httpMethod": "GET",
+                "nickname": "resourceIndex",
+                "parameters": [
+                  {
+                    "name": "taxonomyterms",
+                    "description": "ids (separed by comma)",
+                    "dataType": "string",
+                    "paramType": "path",
+                    "defaultValue": "false",
+                    "required": false
+                  },
+                  {
+                    "name": "types",
+                    "description": "ids (separed by comma)",
+                    "dataType": "string",
+                    "paramType": "path",
+                    "defaultValue": "false",
+                    "required": false
+                  },
+                  {
+                    "name": "topics",
+                    "description": "ids (separed by comma)",
+                    "dataType": "string",
+                    "paramType": "path",
+                    "defaultValue": "false",
+                    "required": false
+                  },
+                  {
+                    "name": "bounds",
+                    "description": "lat,lng",
+                    "dataType": "string",
+                    "paramType": "path",
+                    "defaultValue": "false",
+                    "required": false
+                  }
+                ],
+                "summary": "Fetches resource list"
+              }
+            ],
+            "path": "/core/resourceIndex/taxonomyterms/{taxonomyterms}/types/{types}/topics/{topics}/bounds/{bounds}",
+            "description": ""
           }
-
-        <?php
+        ]
+      }
+    <?php
   }
 
 
   public function resourceTypesJson() {
     header('Content-type: application/json');
     ?>
+      {
+        "resourcePath": "/resourceTypes.json",
+        "basePath": "/api",
+        "apis": [
           {
-              "resourcePath": "/resourceTypes.json",
-              "basePath": "/api",
-              "apis": [
+            "operations": [
+              {
+                "errorResponses": [
                   {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "Not found",
-                                      "code": 404
-                                  }
-                              ],
-                              "httpMethod": "GET",
-                              "nickname": "resource",
-                              "parameters": [
-
-                              ],
-                              "summary": "Fetches resource type list"
-                          }
-                      ],
-                      "path": "/core/resourcetypes",
-                      "description": ""
+                    "reason": "Not found",
+                    "code": 404
                   }
-              ]
-
-
+                ],
+                "httpMethod": "GET",
+                "nickname": "resource",
+                "parameters": [],
+                "summary": "Fetches resource type list"
+              }
+            ],
+            "path": "/core/resourcetypes",
+            "description": ""
           }
-
-        <?php
+        ]
+      }
+    <?php
   }
 
 
@@ -324,163 +312,145 @@ class geozzyAPIView extends View {
   public function categoryListJson() {
     header('Content-type: application/json');
     ?>
+      {
+        "resourcePath": "/categoryList.json",
+        "basePath": "/api",
+        "apis": [
           {
-              "resourcePath": "/categoryList.json",
-              "basePath": "/api",
-              "apis": [
+            "operations": [
+              {
+                "errorResponses": [
                   {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "Not found",
-                                      "code": 404
-                                  }
-                              ],
-                              "httpMethod": "GET",
-                              "nickname": "resource",
-                              "parameters": [
-                              ],
-                              "summary": "Fetches all category groups"
-                          }
-                      ],
-                      "path": "/core/categorylist",
-                      "description": ""
+                    "reason": "Not found",
+                    "code": 404
                   }
-              ]
-
-
+                ],
+                "httpMethod": "GET",
+                "nickname": "resource",
+                "parameters": [],
+                "summary": "Fetches all category groups"
+              }
+            ],
+            "path": "/core/categorylist",
+            "description": ""
           }
-
-        <?php
+        ]
+      }
+    <?php
   }
 
 
   public function categoryTermsJson() {
     header('Content-type: application/json');
     ?>
+      {
+        "resourcePath": "/categoryTerms.json",
+        "basePath": "/api",
+        "apis": [
           {
-              "resourcePath": "/categoryTerms.json",
-              "basePath": "/api",
-              "apis": [
+            "operations": [
+              {
+                "errorResponses": [
                   {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "Not found",
-                                      "code": 404
-                                  }
-                              ],
-                              "httpMethod": "GET",
-                              "nickname": "resource",
-                              "parameters": [
-                                {
-                                  "required": false,
-                                  "dataType": "int",
-                                  "name": "id",
-                                  "paramType": "path",
-                                  "allowMultiple": false,
-                                  "defaultValue": "false",
-                                  "description": "group id"
-                                },
-                                {
-                                  "required": false,
-                                  "dataType": "string",
-                                  "name": "name",
-                                  "paramType": "path",
-                                  "allowMultiple": false,
-                                  "defaultValue": "false",
-                                  "description": "group idName"
-                                }
-                              ],
-                              "summary": "Fetches category terms"
-                          }
-                      ],
-                      "path": "/core/categoryterms/id/{id}/idname/{name}",
-                      "description": ""
+                    "reason": "Not found",
+                    "code": 404
                   }
-              ]
-
-
+                ],
+                "httpMethod": "GET",
+                "nickname": "resource",
+                "parameters": [
+                  {
+                    "required": false,
+                    "dataType": "int",
+                    "name": "id",
+                    "paramType": "path",
+                    "allowMultiple": false,
+                    "defaultValue": "false",
+                    "description": "group id"
+                  },
+                  {
+                    "required": false,
+                    "dataType": "string",
+                    "name": "name",
+                    "paramType": "path",
+                    "allowMultiple": false,
+                    "defaultValue": "false",
+                    "description": "group idName"
+                  }
+                ],
+                "summary": "Fetches category terms"
+              }
+            ],
+            "path": "/core/categoryterms/id/{id}/idname/{name}",
+            "description": ""
           }
-
-        <?php
+        ]
+      }
+    <?php
   }
 
 
   public function topicListJson() {
     header('Content-type: application/json');
     ?>
+      {
+        "resourcePath": "/topicList.json",
+        "basePath": "/api",
+        "apis": [
           {
-              "resourcePath": "/topicList.json",
-              "basePath": "/api",
-              "apis": [
+            "operations": [
+              {
+                "errorResponses": [
                   {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "Not found",
-                                      "code": 404
-                                  }
-                              ],
-                              "httpMethod": "GET",
-                              "nickname": "resource",
-                              "parameters": [
-
-                              ],
-                              "summary": "Fetches topics"
-                          }
-                      ],
-                      "path": "/core/topiclist",
-                      "description": ""
+                    "reason": "Not found",
+                    "code": 404
                   }
-              ]
-
-
+                ],
+                "httpMethod": "GET",
+                "nickname": "resource",
+                "parameters": [],
+                "summary": "Fetches topics"
+              }
+            ],
+            "path": "/core/topiclist",
+            "description": ""
           }
-
-        <?php
+        ]
+      }
+    <?php
   }
 
   /*
-  public function uiEventListJson() {
-    header('Content-type: application/json');
-
-
-    ?>
-          {
-              "resourcePath": "/uieventList.json",
-              "basePath": "/api",
-              "apis": [
-                  {
-                      "operations": [
-                          {
-                              "errorResponses": [
-                                  {
-                                      "reason": "Not found",
-                                      "code": 404
-                                  }
-                              ],
-                              "httpMethod": "GET",
-                              "nickname": "resource",
-                              "parameters": [
-
-                              ],
-                              "summary": "Event type list"
-                          }
-                      ],
-                      "path": "/core/uieventlist",
-                      "description": ""
-                  }
-              ]
-
-
-          }
-
-        <?php
-  }
+    public function uiEventListJson() {
+      header('Content-type: application/json');
+      ?>
+            {
+                "resourcePath": "/uieventList.json",
+                "basePath": "/api",
+                "apis": [
+                    {
+                        "operations": [
+                            {
+                                "errorResponses": [
+                                    {
+                                        "reason": "Not found",
+                                        "code": 404
+                                    }
+                                ],
+                                "httpMethod": "GET",
+                                "nickname": "resource",
+                                "parameters": [
+                                ],
+                                "summary": "Event type list"
+                            }
+                        ],
+                        "path": "/core/uieventlist",
+                        "description": ""
+                    }
+                ]
+            }
+      <?php
+    }
   */
 
 
@@ -577,10 +547,16 @@ class geozzyAPIView extends View {
     }
 
     // Category
-    if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
-      $queryParameters['affectsDependences'][] = 'ResourceTaxonomytermModel';
-      $queryParameters['affectsDependences'][] = 'ResourceTopicModel';
-    }
+    //if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
+    //  $queryParameters['affectsDependences'][] = 'ResourceTaxonomytermModel';
+    //  $queryParameters['affectsDependences'][] = 'ResourceTopicModel';
+    //}
+
+
+
+    // $queryParameters['affectsDependences'][] = 'ResourceTopicModel';
+
+
 
     // fields
     if( isset( $extraParams['fields'] ) && $extraParams['fields'] !== 'false' ) {
@@ -595,9 +571,11 @@ class geozzyAPIView extends View {
     }
 
     // fields and fieldvalues
-    if( isset( $extraParams['filters'], $extraParams['filtervalues'] ) && $extraParams['filters'] !== 'false' && $extraParams['filtervalues'] !== 'false' ) {
-      // $queryParameters['filters'] = array('id' => 10);
-    }
+    /*
+      if( isset( $extraParams['filters'], $extraParams['filtervalues'] ) && $extraParams['filters'] !== 'false' && $extraParams['filtervalues'] !== 'false' ) {
+        $queryParameters['filters'] = array('id' => 10);
+      }
+    */
 
     if( isset( $_POST['ids'] ) ) {
       if( is_array( $_POST['ids'] ) ) {
@@ -608,7 +586,7 @@ class geozzyAPIView extends View {
       }
     }
 
-    // error_log( '$queryParameters = '.print_r( $queryParameters, true ) );
+    error_log( '$queryParameters = '.print_r( $queryParameters, true ) );
     $resourceList = $resourceModel->listItems( $queryParameters );
 
     header('Content-type: application/json');
@@ -617,24 +595,46 @@ class geozzyAPIView extends View {
     while( $valueobject = $resourceList->fetch() ) {
       $allData = $valueobject->getAllData( 'onlydata' );
 
-      // Cargo los datos de Term dentro del recurso
-      $termsDep = $valueobject->getterDependence( 'id', 'ResourceTaxonomytermModel' );
-      if( $termsDep !== false ) {
-        $allData['categoryIds'] = array();
-        foreach( $termsDep as $termVo ) {
-          $allData['categoryIds'][] = $termVo->getter( 'taxonomyterm' );
+      // Category
+      if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
+        // Cargo los datos de Term dentro del recurso
+        $taxTermModel =  new ResourceTaxonomytermModel();
+        $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'resource' => $allData['id'] ) ) );
+        if( $taxTermList !== false ) {
+          $allData['categoryIds'] = array();
+          while( $taxTerm = $taxTermList->fetch() ) {
+            $allData['categoryIds'][] = $taxTerm->getter( 'id' );
+          }
         }
-      }
-
-      // Cargo los datos de Topic dentro del recurso
-      $topicsDep = $valueobject->getterDependence( 'id', 'ResourceTopicModel' );
-      if( $topicsDep !== false ) {
-        $allData['topicIds'] = array();
-        foreach( $topicsDep as $topicVo ) {
-          $allData['topicIds'][] = $topicVo->getter( 'topic' );
+        /*
+        $termsDep = $valueobject->getterDependence( 'id', 'ResourceTaxonomytermModel' );
+        if( $termsDep !== false ) {
+          $allData['categoryIds'] = array();
+          foreach( $termsDep as $termVo ) {
+            $allData['categoryIds'][] = $termVo->getter( 'taxonomyterm' );
+          }
         }
-      }
+        */
 
+        // Cargo los datos de Topic dentro del recurso
+        $topicsModel = new ResourceTopicModel();
+        $topicsList = $topicsModel->listItems( array( 'filters' => array( 'resource' => $allData['id'] ) ) );
+        if( $topicsList ) {
+          $allData['topicIds'] = array();
+          while( $topicVo = $topicsList->fetch() ) {
+            $allData['topicIds'][] = $topicVo->getter( 'id' );
+          }
+        }
+        /*
+        $topicsDep = $valueobject->getterDependence( 'id', 'ResourceTopicModel' );
+        if( $topicsDep !== false ) {
+          $allData['topicIds'] = array();
+          foreach( $topicsDep as $topicVo ) {
+            $allData['topicIds'][] = $topicVo->getter( 'topic' );
+          }
+        }
+        */
+      }
 
       if( $extraParams['rextmodels'] === 'true') {
         // Remove all REXT related models
@@ -665,10 +665,7 @@ class geozzyAPIView extends View {
         $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
       }
       echo $c.json_encode( $allData );
-
-      if( $c === '' ) {
-        $c=',';
-      }
+      $c=',';
     } // while
     echo ']';
   }
@@ -685,24 +682,26 @@ class geozzyAPIView extends View {
       'bounds'=> '#(.*)#'
     );
 
-    $queryFilters = RequestController::processUrlParams($urlParams, $validation);
+    $queryFilters = RequestController::processUrlParams( $urlParams, $validation );
+    $queryFiltersFinal = array();
+
 
     // taxonomy terms
-    if( isset($queryFilters['taxonomyterms']) ) {
-      $queryFilters['taxonomyterms'] = implode(',', array_map('intval', explode(',', $queryFilters['taxonomyterms'] ) ) );
+    if( isset($queryFilters['taxonomyterms']) && $queryFilters['taxonomyterms']!= 'false'  ) {
+      $queryFiltersFinal['taxonomyterms'] = implode(',', array_map('intval', explode(',', $queryFilters['taxonomyterms'] ) ) );
     }
 
     // types
-    if(  isset($queryFilters['types']) ) {
-      $queryFilters['types'] = array_map('intval', explode(',',$queryFilters['types']) );
+    if(  isset($queryFilters['types']) && $queryFilters['types']!= 'false'  ) {
+      $queryFiltersFinal['types'] = array_map('intval', explode(',',$queryFilters['types']) );
     }
 
     // topics
-    if(  isset($queryFilters['topics']) ) {
-      $queryFilters['topics'] = array_map('intval', explode(',', $queryFilters['topics'] ) );
+    if(  isset($queryFilters['topics']) && $queryFilters['topics']!= 'false'  ) {
+      $queryFiltersFinal['topics'] = array_map('intval', explode(',', $queryFilters['topics'] ) );
     }
 
-    if( isset($queryFilters['bounds']) &&
+    if( isset($queryFilters['bounds']) && $queryFilters['bounds']!= 'false' &&
       preg_match( '#(.*)\ (.*)\,(.*)\ (.*)#',
         urldecode( $queryFilters['bounds'] ),
         $bounds
@@ -711,34 +710,26 @@ class geozzyAPIView extends View {
       if( is_numeric($bounds[1]) && is_numeric($bounds[2]) &&
           is_numeric($bounds[3]) && is_numeric($bounds[4]) )
       {
-        $queryFilters['bounds'] = $bounds[1].' '.$bounds[2].','.
-                                  $bounds[1].' '.$bounds[4].','.
-                                  $bounds[3].' '.$bounds[4].','.
-                                  $bounds[3].' '.$bounds[2].','.
-                                  $bounds[1].' '.$bounds[2];
+
+        $queryFiltersFinal['bounds'] = $bounds[1].' '.$bounds[2].','.
+          $bounds[1].' '.$bounds[4].','.
+          $bounds[3].' '.$bounds[4].','.
+          $bounds[3].' '.$bounds[2].','.
+          $bounds[1].' '.$bounds[2];
       }
     }
 
+    $queryFiltersFinal['published'] = 1;
 
-
-
-    $queryFilters['published'] = 1;
-
-
-    $resourceList = $resourceIndexModel->listItems( array('filters' => $queryFilters, 'groupBy'=>'id') );
+    $resourceList = $resourceIndexModel->listItems( array('filters' => $queryFiltersFinal, 'groupBy'=>'id') );
     header('Content-type: application/json');
     echo '[';
     $c = '';
     while( $valueobject = $resourceList->fetch() ) {
       echo $c.$valueobject->getter('id');
-      if( $c === '' ) {
-        $c=',';
-      }
+      $c=',';
     }
     echo ']';
-
-
-
   }
 
   public function resourceTypes() {
@@ -771,9 +762,7 @@ class geozzyAPIView extends View {
       }
 
       echo $c.json_encode( $starData );
-      if( $c === '' ) {
-        $c=',';
-      }
+      $c=',';
     }
     echo ']';
   }
@@ -786,7 +775,6 @@ class geozzyAPIView extends View {
     $taxgroupModel = new TaxonomygroupModel();
     $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
     $this->syncModelList( $taxGroupList );
-
   }
 
   public function categoryTerms( $urlParams ) {
@@ -828,14 +816,14 @@ class geozzyAPIView extends View {
   }
 
   /*
-  // UI events
-  public function uiEventList() {
-    require_once APP_BASE_PATH."/conf/geozzyUIEvents.php";
-    global  $GEOZZY_UI_EVENTS;
+    // UI events
+    public function uiEventList() {
+      require_once APP_BASE_PATH."/conf/geozzyUIEvents.php";
+      global  $GEOZZY_UI_EVENTS;
 
-    header('Content-type: application/json');
-    echo json_encode( $GEOZZY_UI_EVENTS );
-  }
+      header('Content-type: application/json');
+      echo json_encode( $GEOZZY_UI_EVENTS );
+    }
   */
 
   public function syncModelList( $result, $lang = false ) {
@@ -845,10 +833,9 @@ class geozzyAPIView extends View {
     global $C_LANG;
 
     while ($valueobject = $result->fetch() ) {
-
       $allData = array('id' => $valueobject->getter('id'), 'idName' => $valueobject->getter('idName'),
-                       'name' => $valueobject->getter('name'), 'taxgroup' => $valueobject->getter('taxgroup'),
-                       'icon' => $valueobject->getter('icon'), 'weight' => $valueobject->getter('weight'));
+        'name' => $valueobject->getter('name'), 'taxgroup' => $valueobject->getter('taxgroup'),
+        'icon' => $valueobject->getter('icon'), 'weight' => $valueobject->getter('weight'));
       //$allData = $valueobject->getAllData('onlydata');
       echo $c.json_encode( $allData);
       $c=',';
@@ -860,7 +847,5 @@ class geozzyAPIView extends View {
     header('Content-type: application/json');
     $data = $model->getAllData('onlydata');
     echo json_encode( $data );
-
-
   }
 }
