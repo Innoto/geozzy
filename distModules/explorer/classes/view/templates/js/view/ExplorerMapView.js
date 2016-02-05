@@ -311,7 +311,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
             var currentAngle = 0-angle;
 
             $( that.iconos ).each( function(i,e){
-              e.hide();
+              e.remove();
             });
 
             that.iconos = [];
