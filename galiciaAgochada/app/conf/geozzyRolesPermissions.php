@@ -41,11 +41,6 @@ $CGMLCONF['user']['roles']['gestor'] = array(
   'name' => 'gestor',
   'description' => 'Role Gestor',
   'permissions' => array(
-    'category:list',
-    'category:create',
-    'category:edit',
-    'category:delete',
-
     'resource:mylist',
     'resource:list',
     'resource:create',
@@ -55,11 +50,6 @@ $CGMLCONF['user']['roles']['gestor'] = array(
 
     'topic:list',
     'topic:assign',
-
-    'starred:list',
-    'starred:assign',
-
-    'user:all',
 
     'admin:access'
   )
