@@ -617,6 +617,14 @@ class geozzyAPIView extends View {
         */
 
         // Cargo los datos de Topic dentro del recurso
+        $topicsModel = new ResourceTopicModel();
+        $topicsList = $topicsModel->listItems( array( 'filters' => array( 'resource' => $allData['id'] ) ) );
+        if( $topicsList ) {
+          $allData['topicIds'] = array();
+          while( $topicVo = $topicsList->fetch() ) {
+            $allData['topicIds'][] = $topicVo->getter( 'id' );
+          }
+        }
         /*
         $topicsDep = $valueobject->getterDependence( 'id', 'ResourceTopicModel' );
         if( $topicsDep !== false ) {
