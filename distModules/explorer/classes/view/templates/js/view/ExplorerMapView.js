@@ -263,16 +263,22 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
               var insideDiv = $('<div></div>');
               that.markerClustererHover = $("<div></div>");
               that.markerClustererHover.css('position', 'absolute');
-              //that.markerClustererHover.css('background', 'green');
+              //that.markerClustererHover.css('background', 'blue');
 
 
 
-              insideDiv.css('background', '#EC3440');
+              insideDiv.css('background', 'grey');
+              insideDiv.css('position', 'relative');
               insideDiv.css('width', '40px');
               insideDiv.css('height', '40px');
-              insideDiv.css('margin', '30px');
-              insideDiv.css("border-radius", insideDiv.width()/2);
 
+              insideDiv.css('margin', '28px');
+
+              insideDiv.css("border-radius", insideDiv.width()/2);
+              insideDiv.css("zIndex", 9);
+
+
+              insideDiv.show();
               that.markerClustererHover.append( insideDiv );
               that.markerClustererHover.hide();
 
@@ -282,23 +288,96 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
 
               that.markerClustererHover.css("border-radius",  that.markerClustererHover.width()/2);
-              // alert(that.markerClustererHover.height())
+
+
               // hide event!
               $( that.markerClustererHover ).bind('mouseleave', function() {
                 $( that.markerClustererHover ).hide();
               });
+
             }
 
             var top = ( $( that.map.getDiv() ).offset().top + p.y ) - that.markerClustererHover.height()/2;
             var left = ( $( that.map.getDiv() ).offset().left + p.x ) - that.markerClustererHover.width()/2;
 
-            $( that.markerClustererHover ).css("top", top+'px' );
-            $( that.markerClustererHover ).css("left", left+'px' );
+            that.markerClustererHover.css("top", top+'px' );
+            that.markerClustererHover.css("left", left+'px' );
 
-            $( that.markerClustererHover ).show();
+            that.markerClustererHover.show();
+
+
+            var elementsToPrint = 8;
+            var angle = 7.175;
+            var currentAngle = 0-angle;
+
+            $( that.iconos ).each( function(i,e){
+              e.hide();
+            });
+
+            that.iconos = [];
+
+            $( markers ).each( function(i,e){
+
+              currentAngle += angle;
+
+              var icono = $('<img src="'+e.getIcon().url+'">');
+              icono.css('position', 'absolute');
+              //icono.css('background', 'green');
+              icono.css('width', e.getIcon().size.width + 'px');
+              icono.css('height', e.getIcon().size.height + 'px');
+              icono.css("border-radius", 300);
+              //icono.css("border", '1px solid black');
+              icono.css("zIndex", 8);
+              //icono.css("zIndex", 8);
+
+              //icono.css("border-radius", icono.width()/2);
+//            icono.css("top", 0  +'px' );
+//            icono.css("left", 0  +'px' );
+
+              //var iconTopOrigin = ( $( that.map.getDiv() ).offset().top + p.y ) - icono.height()/2;
+              //var iconLeftOrigin = ( $( that.map.getDiv() ).offset().left + p.x ) - icono.width()/2;
+
+              var iconTopOrigin = that.markerClustererHover.height()/2 - icono.height()/2;
+              var iconLeftOrigin = that.markerClustererHover.width()/2 - icono.width()/2;
+
+              var iconTopDest = iconTopOrigin + ( 33 * Math.sin( currentAngle ));
+              var iconLeftDest = iconLeftOrigin + ( 33 * Math.cos( currentAngle ));
+
+
+              icono.css("top", (iconTopOrigin)  +'px' );
+              icono.css("left", (iconLeftOrigin) + 'px' );
+
+              icono.animate({
+                top: (iconTopDest)  +'px',
+                left: (iconLeftDest) + 'px'
+              }, 'fast' );
 
 
 
+
+              that.iconos.push(icono);
+            //  console.log( e.getIcon().url );
+            //  console.log( e.getIcon().size.height, e.getIcon().size.width );
+
+              icono.bind('hover', function(iconoRoseta){
+                //alert('')
+                console.log(iconoRoseta.target);
+              });
+
+              icono.bind('mouseleave', function(iconoRoseta){
+
+              });
+
+
+
+              elementsToPrint--;
+              if(elementsToPrint <= 0) {
+                return false;
+              }
+
+
+              that.markerClustererHover.append( icono );
+            });
 
 
 
