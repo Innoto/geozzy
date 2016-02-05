@@ -73,7 +73,7 @@ class AloxamentosExplorerController extends ExplorerController {
       $ids = array_map( 'intval',$_POST['ids']);
     }
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'title_es', 'mediumDescription_es', 'city'), 'filters' => array( 'ids' => $ids) ) );
+    $resources = $resourceModel->listItems( array('filters' => array( 'ids' => $ids) ) );
 
     $coma = '';
 
@@ -83,12 +83,13 @@ class AloxamentosExplorerController extends ExplorerController {
         echo $coma;
         $row = array();
 
-        $resourceDataArray = $resource->getAllData('onlydata');
+        $resourceDataArray = array('id' => $resource->getter('id'), 'title' => $resource->getter('title'),
+                                   'mediumDescription' => $resource->getter('mediumDescription'));
 
 
         $row['id'] = $resourceDataArray['id'];
-        $row['title'] = ( isset($resourceDataArray['title_es']) )?$resourceDataArray['title_es']:false;
-        $row['description'] = ( isset($resourceDataArray['mediumDescription_es']) )?$resourceDataArray['mediumDescription_es']:false;
+        $row['title'] = ( isset($resourceDataArray['title']) )?$resourceDataArray['title']:false;
+        $row['description'] = ( isset($resourceDataArray['mediumDescription']) )?$resourceDataArray['mediumDescription']:false;
         $row['city'] =  ( isset($resourceDataArray['city']) )?$resourceDataArray['city']:false;
 
 
