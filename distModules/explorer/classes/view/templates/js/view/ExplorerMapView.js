@@ -150,6 +150,8 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
         marker.setVisible(false);
 
+        marker.explorerResourceId = e.get('id');
+
         marker.addListener('click', function() {
           that.markerClick( e.get('id') );
         });
@@ -320,7 +322,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
               currentAngle += angle;
 
-              var icono = $('<img src="'+e.getIcon().url+'">');
+              var icono = $('<img data-resource-id="'+e.explorerResourceId+'" src="'+e.getIcon().url+'">');
               icono.css('position', 'absolute');
               //icono.css('background', 'green');
               icono.css('width', e.getIcon().size.width + 'px');
@@ -350,7 +352,14 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
               icono.animate({
                 top: (iconTopDest)  +'px',
                 left: (iconLeftDest) + 'px'
-              }, 'fast' );
+              },
+              {
+                queue: false,
+                duration: 123,
+                complete: function() {
+                  icono.css("zIndex", 10);
+                }
+              });
 
 
 
@@ -359,13 +368,17 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
             //  console.log( e.getIcon().url );
             //  console.log( e.getIcon().size.height, e.getIcon().size.width );
 
-              icono.bind('hover', function(iconoRoseta){
-                //alert('')
-                console.log(iconoRoseta.target);
+              icono.hover( function(iconoRoseta){
+                that.markerHover( $(iconoRoseta.target).attr('data-resource-id') );
+                icono.css('margin', '1px');
+                icono.css( 'cursor', 'pointer' );
               });
 
               icono.bind('mouseleave', function(iconoRoseta){
+                that.markerOut( $(iconoRoseta.target).attr('data-resource-id') );
 
+                icono.css('margin', '0px');
+                icono.css( 'cursor', 'arrow' );                
               });
 
 
