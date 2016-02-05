@@ -661,23 +661,25 @@ class geozzyAPIView extends View {
     );
 
     $queryFilters = RequestController::processUrlParams( $urlParams, $validation );
+    $queryFiltersFinal = array();
+
 
     // taxonomy terms
-    if( isset($queryFilters['taxonomyterms']) ) {
-      $queryFilters['taxonomyterms'] = implode(',', array_map('intval', explode(',', $queryFilters['taxonomyterms'] ) ) );
+    if( isset($queryFilters['taxonomyterms']) && $queryFilters['taxonomyterms']!= 'false'  ) {
+      $queryFiltersFinal['taxonomyterms'] = implode(',', array_map('intval', explode(',', $queryFilters['taxonomyterms'] ) ) );
     }
 
     // types
-    if(  isset($queryFilters['types']) ) {
-      $queryFilters['types'] = array_map('intval', explode(',',$queryFilters['types']) );
+    if(  isset($queryFilters['types']) && $queryFilters['types']!= 'false'  ) {
+      $queryFiltersFinal['types'] = array_map('intval', explode(',',$queryFilters['types']) );
     }
 
     // topics
-    if(  isset($queryFilters['topics']) ) {
-      $queryFilters['topics'] = array_map('intval', explode(',', $queryFilters['topics'] ) );
+    if(  isset($queryFilters['topics']) && $queryFilters['topics']!= 'false'  ) {
+      $queryFiltersFinal['topics'] = array_map('intval', explode(',', $queryFilters['topics'] ) );
     }
 
-    if( isset($queryFilters['bounds']) &&
+    if( isset($queryFilters['bounds']) && $queryFilters['bounds']!= 'false' &&
       preg_match( '#(.*)\ (.*)\,(.*)\ (.*)#',
         urldecode( $queryFilters['bounds'] ),
         $bounds
@@ -686,7 +688,8 @@ class geozzyAPIView extends View {
       if( is_numeric($bounds[1]) && is_numeric($bounds[2]) &&
           is_numeric($bounds[3]) && is_numeric($bounds[4]) )
       {
-        $queryFilters['bounds'] = $bounds[1].' '.$bounds[2].','.
+
+        $queryFiltersFinal['bounds'] = $bounds[1].' '.$bounds[2].','.
           $bounds[1].' '.$bounds[4].','.
           $bounds[3].' '.$bounds[4].','.
           $bounds[3].' '.$bounds[2].','.
@@ -694,9 +697,9 @@ class geozzyAPIView extends View {
       }
     }
 
-    $queryFilters['published'] = 1;
+    $queryFiltersFinal['published'] = 1;
 
-    $resourceList = $resourceIndexModel->listItems( array('filters' => $queryFilters, 'groupBy'=>'id') );
+    $resourceList = $resourceIndexModel->listItems( array('filters' => $queryFiltersFinal, 'groupBy'=>'id') );
     header('Content-type: application/json');
     echo '[';
     $c = '';
