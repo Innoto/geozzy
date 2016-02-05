@@ -31,9 +31,11 @@
           <!-- TOPIC -->
           <script type="text/template" id="menuTopics">
           <% _.each(topics, function(topic) { %>
+            {if $topicPermission}
                <li class="topics topic_<%- topic.id %>">
                   <a href="/admin#topic/<%- topic.id %>"><i class="fa fa-star fa-fw"></i> <%- topic.name_{$langDefault} %> </a>
                </li>
+            {/if}
           <% }); %>
           </script>
           <!-- END TOPICS -->

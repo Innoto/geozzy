@@ -15,8 +15,12 @@ var AdminView = Backbone.View.extend({
     //Categories
     var menuCategoryElement =  _.template($("#menuCategoryElement").html());
     var menuCategoriesDiv = $('#wrapper .navbar  .sidebar .categoriesList');
-
-    menuCategoriesDiv.html( menuCategoryElement( { categories:  app.categories.toJSON()  } ) );
+    var menuCategoriesData = app.categories.toJSON();
+    if(menuCategoriesData.length === 0){
+      $('#side-menu .categories').hide();
+    }else{
+      menuCategoriesDiv.html( menuCategoryElement( { categories: menuCategoriesData } ) );
+    }
     //Topics
     var menuTopics =  _.template($("#menuTopics").html());
     var menuTopicsContainer = $('#wrapper #side-menu');
@@ -24,7 +28,12 @@ var AdminView = Backbone.View.extend({
     //Starred
     var menuStarred =  _.template($("#menuStarred").html());
     var menuStarredContainer = $('#wrapper .navbar .sidebar .starredList');
-    menuStarredContainer.prepend( menuStarred( { starred:  app.starred.toJSON()  } ) );
+    var menuStarredData = app.starred.toJSON();
+    if(menuCategoriesData.length === 0){
+      $('#side-menu .starred').hide();
+    }else{
+      menuStarredContainer.prepend( menuStarred( { starred:  menuStarredData  } ) );
+    }
   },
 
   categoryEdit: function( id ) {

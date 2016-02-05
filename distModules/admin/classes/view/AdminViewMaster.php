@@ -40,6 +40,11 @@ class AdminViewMaster extends View
       }
       $res = false;
     }
+    if(!$useraccesscontrol->checkPermissions('admin:access', 'admin:full')){
+      Cogumelo::redirect('/403/');
+      $res = false;
+    }
+
     return $res;
   }
 
@@ -63,6 +68,8 @@ class AdminViewMaster extends View
     $this->template->assign( 'superAdminPermission' , $superAdminPermission);
     $userPermission = $useraccesscontrol->checkPermissions('user:all', 'admin:full');
     $this->template->assign( 'userPermission' , $userPermission);
+    $topicPermission = $useraccesscontrol->checkPermissions('topic:list', 'admin:full');
+    $this->template->assign( 'topicPermission' , $topicPermission);
     //
     $this->template->exec();
   }
