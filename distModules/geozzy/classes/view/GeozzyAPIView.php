@@ -547,10 +547,10 @@ class geozzyAPIView extends View {
     }
 
     // Category
-    if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
-      $queryParameters['affectsDependences'][] = 'ResourceTaxonomytermModel';
-      $queryParameters['affectsDependences'][] = 'ResourceTopicModel';
-    }
+    //if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
+    //  $queryParameters['affectsDependences'][] = 'ResourceTaxonomytermModel';
+    //  $queryParameters['affectsDependences'][] = 'ResourceTopicModel';
+    //}
 
 
 
@@ -595,24 +595,38 @@ class geozzyAPIView extends View {
     while( $valueobject = $resourceList->fetch() ) {
       $allData = $valueobject->getAllData( 'onlydata' );
 
-      // Cargo los datos de Term dentro del recurso
-      $termsDep = $valueobject->getterDependence( 'id', 'ResourceTaxonomytermModel' );
-      if( $termsDep !== false ) {
-        $allData['categoryIds'] = array();
-        foreach( $termsDep as $termVo ) {
-          $allData['categoryIds'][] = $termVo->getter( 'taxonomyterm' );
+      // Category
+      if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
+        // Cargo los datos de Term dentro del recurso
+        $taxTermModel =  new ResourceTaxonomytermModel();
+        $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'resource' => $allData['id'] ) ) );
+        if( $taxTermList !== false ) {
+          $allData['categoryIds'] = array();
+          while( $taxTerm = $taxTermList->fetch() ) {
+            $allData['categoryIds'][] = $taxTerm->getter( 'id' );
+          }
         }
-      }
-
-      // Cargo los datos de Topic dentro del recurso
-      $topicsDep = $valueobject->getterDependence( 'id', 'ResourceTopicModel' );
-      if( $topicsDep !== false ) {
-        $allData['topicIds'] = array();
-        foreach( $topicsDep as $topicVo ) {
-          $allData['topicIds'][] = $topicVo->getter( 'topic' );
+        /*
+        $termsDep = $valueobject->getterDependence( 'id', 'ResourceTaxonomytermModel' );
+        if( $termsDep !== false ) {
+          $allData['categoryIds'] = array();
+          foreach( $termsDep as $termVo ) {
+            $allData['categoryIds'][] = $termVo->getter( 'taxonomyterm' );
+          }
         }
-      }
+        */
 
+        // Cargo los datos de Topic dentro del recurso
+        /*
+        $topicsDep = $valueobject->getterDependence( 'id', 'ResourceTopicModel' );
+        if( $topicsDep !== false ) {
+          $allData['topicIds'] = array();
+          foreach( $topicsDep as $topicVo ) {
+            $allData['topicIds'][] = $topicVo->getter( 'topic' );
+          }
+        }
+        */
+      }
 
       if( $extraParams['rextmodels'] === 'true') {
         // Remove all REXT related models
