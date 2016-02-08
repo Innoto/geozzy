@@ -39,11 +39,13 @@ class AdminViewMaster extends View
         Cogumelo::redirect('/admin/login');
       }
       $res = false;
+    }else{
+      if(!$useraccesscontrol->checkPermissions('admin:access', 'admin:full')){
+        Cogumelo::redirect('/403/');
+        $res = false;
+      }
     }
-    if(!$useraccesscontrol->checkPermissions('admin:access', 'admin:full')){
-      Cogumelo::redirect('/403/');
-      $res = false;
-    }
+
 
     return $res;
   }
