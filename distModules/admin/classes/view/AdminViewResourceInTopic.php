@@ -55,8 +55,8 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     table::autoIncludes();
     $resource =  new ResourceModel();
-
     $resourcetype =  new ResourcetypeModel();
+
     $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
 
     foreach ($resourcetypelist as $typeId => $type){
@@ -102,7 +102,14 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setCol('published', __('Published'));
 
     // Filtrar por temática
-    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> $topicId, 'inRtype'=>$tiposArray ) );
+    $userSession = $useraccesscontrol->getSessiondata();
+    if($userSession && in_array('resource:mylist', $userSession['permissions'])){
+      $filters = array( 'ResourceTopicModel.topic'=> $topicId, 'inRtype'=>$tiposArray, 'user' => $userSession['data']['id'] );
+    }else{
+      $filters =  array('ResourceTopicModel.topic'=> $topicId, 'inRtype'=>$tiposArray );
+    }
+
+    $tabla->setDefaultFilters($filters);
     $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
     $tabla->setJoinType('INNER');
 

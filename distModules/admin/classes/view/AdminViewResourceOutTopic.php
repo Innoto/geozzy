@@ -72,7 +72,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
   }
 
   public function listResourcesOutTopicTable( $urlParams ) {
-
+    $useraccesscontrol = new UserAccessController();
     $validation = array('topic'=> '#\d+$#','resourceId'=> '#\d+$#');
     $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
     $topicId = $urlParamsList['topic'];
@@ -91,9 +91,6 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
 
     $tabla->setTabs(__('id'), array('*'=> __('All') ), '*');
 
-    // filters
-    $internalFilters['inRtype'] = $tiposArray;
-    $tabla->setDefaultFilters($internalFilters);
 
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
@@ -121,7 +118,13 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
     }
 
     // Filtrar por temática
-    $tabla->setDefaultFilters( array('nottopic'=> $topicId, 'inRtype'=>$tiposArray) );
+    $userSession = $useraccesscontrol->getSessiondata();
+    if($userSession && in_array('resource:mylist', $userSession['permissions'])){
+      $filters = array( 'nottopic'=> $topicId, 'inRtype'=>$tiposArray, 'user' => $userSession['data']['id'] );
+    }else{
+      $filters =  array('nottopic'=> $topicId, 'inRtype'=>$tiposArray);
+    }
+    $tabla->setDefaultFilters($filters);
 
     // imprimimos o JSON da taboa
     $tabla->exec();

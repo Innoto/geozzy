@@ -9,7 +9,6 @@ global $CGMLCONF;
   'category:delete',
 
   'resource:mylist',
-  'resource:list',
   'resource:create',
   'resource:edit',
   'resource:delete',
@@ -42,7 +41,6 @@ $CGMLCONF['user']['roles']['gestor'] = array(
   'description' => 'Role Gestor',
   'permissions' => array(
     'resource:mylist',
-    'resource:list',
     'resource:create',
     'resource:edit',
     'resource:delete',
