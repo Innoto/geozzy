@@ -22,8 +22,6 @@ define([], function () {
     var urlGeozzy = "http://test1.geozzy.com/api",
     	//urlBIserver = "http://localhost:8080";
 		urlBIserver = "http://test.geozzy.itg.es:10164";
-        
-
     var weekMilis = 7 * 24 * 60 * 60 * 1000;
 
     return {

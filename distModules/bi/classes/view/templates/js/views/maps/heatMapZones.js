@@ -1,9 +1,10 @@
 //### HeatMap Zones View: Manages the view by Geographic Bound for the explorers
 define([
+    'jquery',
     'underscore',
     'backbone',
     'config/appConfig'
-], function (_, Backbone, Config) {
+], function ($, _, Backbone, Config) {
     // Creating Map view, used for showing the Explored Zones Map when we organize by Geographic Bound
     var MapView = Backbone.View.extend({
         el: '#result',
@@ -13,11 +14,9 @@ define([
                 this.$el.append('<div id=\'map\'></div>');
             }
             this.$map = this.$('#map');
-
             this.data = options.chartData;
             this.explorers = [];
             this.gradientExplorers = [];
-            this.bounds = [];
         },
         // Sets hexadecimal random color, used for the gradient
         getRandomColor: function () {
@@ -52,42 +51,38 @@ define([
             this.renderMap();
             this.renderHeatMapLayers();
             this.renderLegend();
-            this.map.fitBounds(this.bounds);
         },
         // Process the assigned data
         //* For each element on the data, their stats are picked
         processData: function () {
             var that = this;
             _.each(this.data, function (elementData) {
-                var data = elementData.data,
-                    bounds = elementData.group.bounds,
-                    groupName = elementData.group.groupName;
-                //* Controls if each element has Lat and Lng in their bounds and is not Undefined
-                if (_.size(bounds[0]) == 2 &&
-                    _.size(bounds[1]) == 2 && !_.isUndefined(groupName)) {
-                    //* Picks the explorer position
-                    var explorer = _.findWhere(that.explorers, {explorerName: groupName}),
-                        center = L.latLngBounds(bounds).getCenter();
-                    var bounds = [
-                        center.lat,
-                        center.lng
-                    ];
-                    that.bounds.push(bounds);
-                    bounds.push(data);
-                    //* If the explorer is Undefined, is pushed in the list with his data
-                    if (_.isUndefined(explorer)) {
-                        that.explorers.push({
-                            explorerName: groupName,
-                            gradient: that.getRandomGradient(groupName),
-                            bounds: [bounds]
+                var groupName = elementData.group;
+                if (!_.isUndefined(groupName)) {
+                    var centerList = _.map(elementData.bounds,function(bounds){
+                        var center = L.latLngBounds(bounds).getCenter();
+                        return [
+                            center.lat,
+                            center.lng
+                        ];
+                    });
+                    var centerListSize = _.size(centerList);
+                    var bounds = [];
+                    _.each(centerList,function(centerListEl){
+                        var occurrences = _.filter(centerList,function(innerCenterListEl){
+                            return innerCenterListEl[0] == centerListEl[0] && innerCenterListEl[1] == centerListEl[1];
                         });
-                        //* If is not Undefined, his index is picked from the list, and their bounds are pushed
-                    } else {
-                        var index = _.indexOf(that.explorers, explorer);
-                        that.explorers[index].bounds.push(bounds);
-                    }
+                        centerListEl.push(_.size(occurrences)/centerListSize);
+                        bounds.push(centerListEl);
+                    });
+                    that.explorers.push({
+                        explorerName: groupName,
+                        gradient: that.getRandomGradient(groupName),
+                        bounds: bounds
+                    });
                 }
             });
+            console.log(that.explorers);
         },
         // Renders the Map Layer. Specifies the min and max zoom values
         renderMap: function () {
@@ -104,7 +99,7 @@ define([
                     zoom: 2,
                     layers: [baseLayer]
                 });
-                //* If there is some data, is rendered and centered on the first bounds element
+            //* If there is some data, is rendered and centered on the first bounds element
             } else {
                 this.map = new L.Map(this.$map[0], {
                     center: new L.LatLng(this.explorers[0].bounds[0][0], this.explorers[0].bounds[0][1]),
@@ -116,11 +111,12 @@ define([
         // Renders the Heat Layers. Configuring the Heat Zone for each different explorer
         renderHeatMapLayers: function () {
             var that = this;
-            _.each(this.explorers, function (explorer) {
+            for (var i = 0; i < this.explorers.length; i++) {
+                var explorer = this.explorers[i];
                 var cfgHeatMap = {
                     maxZoom: 12,
                     minOpacity: .8,
-                    max: .4,
+                    max: 1,
                     blur: 50,
                     //* Sets a random gradient to each explorer
                     gradient: that.getRandomGradient(explorer.explorerName)
@@ -130,7 +126,7 @@ define([
                     explorer.bounds,
                     cfgHeatMap
                 ).addTo(that.map);
-            });
+            }
         },
         // Renders the Legend. Creates the DOM element for the Legend
         renderLegend: function () {
@@ -155,7 +151,6 @@ define([
         remove: function () {
             this.explorers = [];
             this.gradientExplorers = [];
-            this.bounds = [];
             this.$map.remove();
         }
     });

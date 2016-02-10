@@ -12,7 +12,7 @@ define([
     'models/filters/filter',
     'models/categories/categoryTerms',
     'config/appConfig'
-], function (_, q, moment, BoxFilterView, DateFilterView, MapFilterView, SliderFilterView, Filter, CategoryTerms, Config) {
+], function ($, _, q, moment, BoxFilterView, DateFilterView, MapFilterView, SliderFilterView, Filter, CategoryTerms, Config) {
     // Parses the date String into a valid format for processing with toDate and toISOString
     var formatDate = function (dateString) {
         if (!_.isEmpty(dateString)) {
@@ -51,7 +51,7 @@ define([
         },
         // Returns the URL from the determined filter of the Collection
         getFilterUrl: function (filterID) {
-            var filterConfig = _.findWhere(Config.FILTER_URL, {filterID: filterID});
+            var filterConfig = _.findWhere(Config.FILTERS, {filterID: filterID});
             if (!_.isUndefined(filterConfig) && !_.isUndefined(filterConfig.url)) {
                 return filterConfig.url;
             } else {
