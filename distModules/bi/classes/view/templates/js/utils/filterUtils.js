@@ -12,7 +12,7 @@ define([
     'models/filters/filter',
     'models/categories/categoryTerms',
     'config/appConfig'
-], function ($, _, q, moment, BoxFilterView, DateFilterView, MapFilterView, SliderFilterView, Filter, CategoryTerms, Config) {
+], function (_, q, moment, BoxFilterView, DateFilterView, MapFilterView, SliderFilterView, Filter, CategoryTerms, Config) {
     // Parses the date String into a valid format for processing with toDate and toISOString
     var formatDate = function (dateString) {
         if (!_.isEmpty(dateString)) {

@@ -8,7 +8,7 @@ define([
     'models/explorers/explorers',
     'models/topics/topics',
     'config/appConfig'
-], function ($, _, q, CategoryTerms, Explorers, Topics, Config) {
+], function (_, q, CategoryTerms, Explorers, Topics, Config) {
 
     // Creating different lists with each type of: Explorer, Terms and Topics
     var listExplorer = [Config.GROUP_BY_EXPLORER, Config.GROUP_BY_EXPLORER_BOUNDS],

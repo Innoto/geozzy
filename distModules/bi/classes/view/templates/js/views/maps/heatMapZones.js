@@ -1,10 +1,9 @@
 //### HeatMap Zones View: Manages the view by Geographic Bound for the explorers
 define([
-    'jquery',
     'underscore',
     'backbone',
     'config/appConfig'
-], function ($, _, Backbone, Config) {
+], function (_, Backbone, Config) {
     // Creating Map view, used for showing the Explored Zones Map when we organize by Geographic Bound
     var MapView = Backbone.View.extend({
         el: '#result',
