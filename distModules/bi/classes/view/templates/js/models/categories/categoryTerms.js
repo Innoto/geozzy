@@ -1,11 +1,10 @@
 //### Category Terms Model: Used for getting the Terms and their categories
 define([
-    'jquery',
     'underscore',
     'backbone',
     'q',
     'config/appConfig'
-], function ($, _, Backbone, q, Config) {
+], function (_, Backbone, q, Config) {
     // Model with the values for the terms: ID, Values and Title
     var CategoryTerms = Backbone.Model.extend({
         defaults: {

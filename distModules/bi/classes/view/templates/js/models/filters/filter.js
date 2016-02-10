@@ -19,7 +19,6 @@ define([
         // Main function where is chosen the structure type for each filter
         parse: function (res) {
             var content;
-            console.log(res);
             switch (this.attributes.filterID) {
                 case Config.FILTER_LANGUAGE:
                     content = this.parseLanguage(res.languages.available);
