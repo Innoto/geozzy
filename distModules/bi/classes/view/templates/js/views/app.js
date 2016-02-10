@@ -2,6 +2,7 @@
 'use strict';
 
 define([
+    'jquery',
     'underscore',
     'q',
     'backbone',
@@ -29,7 +30,7 @@ define([
     'utils/filterUtils',
     'utils/idUtils',
     'config/appConfig'
-], function (_, q, Backbone, MetricsModel, OrgsModel, DetailByModel,
+], function ($, _, q, Backbone, MetricsModel, OrgsModel, DetailByModel,
              StatsModel, FilterTypesModel, FilterTitleModel, CategoryTerms, Topics, FiltersCollection,
              MetricsView, OrgsView, DetailByView, FiltersSelectorView,
              BoxFilterView, SliderFilter, AreaFilter, DateFilterView, BarChartView, DateChartView, HeatMapView,
