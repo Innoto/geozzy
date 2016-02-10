@@ -60,6 +60,15 @@ class AdminViewMaster extends View
     $this->template->exec();
   }
 
+  public function homePage(){
+    $template = new Template( $this->baseDir );
+    $template->setTpl('homePage.tpl', 'admin');
+
+    $this->template->addToBlock( 'col12', $template );
+    $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
+    $this->template->exec();
+  }
+
   public function commonAdminInterface(){
     $this->template->setTpl('adminMaster.tpl', 'admin');
     $useraccesscontrol = new UserAccessController();

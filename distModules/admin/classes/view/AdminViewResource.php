@@ -147,6 +147,7 @@ class AdminViewResource extends AdminViewMaster {
         $recursoData = array();
         $recursoData['rTypeId'] = $rTypeItem->getter('id');
         $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
+        $recursoData['typeReturn'] = $urlParamsList['resourcetype'];
 
         if( $topicItem ) {
           $rtypeTopicControl = new ResourcetypeTopicModel();
@@ -197,6 +198,7 @@ class AdminViewResource extends AdminViewMaster {
 
     if (isset( $urlParamsList['type'])){
       $typeItem = $urlParamsList['type'];
+      $recursoData['typeReturn'] = $typeItem;
     }
 
     if( $topicItem ) {
@@ -207,11 +209,6 @@ class AdminViewResource extends AdminViewMaster {
 
       if( $resourcetypeTopic ){
         $recursoData['topicReturn'] = $topicItem->getter('id');
-      }
-    }
-    else{
-      if ($typeItem){
-        $recursoData['typeReturn'] = $typeItem;
       }
     }
 

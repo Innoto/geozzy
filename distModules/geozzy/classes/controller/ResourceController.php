@@ -254,9 +254,17 @@ class ResourceController {
     // $form->setSuccess( 'accept', __( 'Thank you' ) );
 
     /* Establecemos la página a la que debe retornar */
+
+
     if( !isset($valuesArray['topicReturn']) ) {
       if (isset($valuesArray['typeReturn'])){ // tabla de páginas
-        $form->setSuccess( 'redirect', SITE_URL . 'admin#resourcepage/list/type/'.$valuesArray['typeReturn']);
+        $rtypeControl = new ResourcetypeModel();
+        $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $valuesArray['typeReturn'] ) ) )->fetch();
+        if($rTypeItem && $rTypeItem->getter('idName') === "rtypePage"){
+          $form->setSuccess( 'redirect', SITE_URL . 'admin#resourcepage/list');
+        }else{
+          $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
+        }
       }
       else{ // tabla general de contenidos
         $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );

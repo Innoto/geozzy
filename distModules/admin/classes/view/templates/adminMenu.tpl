@@ -45,7 +45,7 @@
             <a  href="/admin#charts"><i class="fa fa-line-chart fa-fw"></i> {t}Charts{/t}</a>
           </li>
           <li class="pages">
-            <a href="/admin#resourcepage/list/type/13"><i class="fa fa-files-o fa-fw"></i> {t}Pages{/t} </a>
+            <a href="/admin#resourcepage/list"><i class="fa fa-files-o fa-fw"></i> {t}Pages{/t} </a>
           </li>
           <li class="starred">
             <a href="/admin#starred"><i class="fa fa-star fa-fw"></i> {t}Starred{/t} <span class="fa arrow"></span></a>
