@@ -10,7 +10,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   //  Options
   that.options = {
     mapView: false,
-    circleColour: 'grey'
+    circleColour: '#3A4747'
   }
   $.extend(true, that.options, opts);
 
@@ -112,7 +112,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   overlay.draw = function() {};
   overlay.setMap(that.options.mapView.map);
 
-  var insideDiv = $('<div></div>');
+  var insideDiv = $("<div ><i class='fa fa-search'></i></div>");
   that.markerClustererHover = $("<div></div>");
   that.markerClustererHover.css('position', 'absolute');
   //that.markerClustererHover.css('background', 'blue');
@@ -125,6 +125,13 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   insideDiv.css("border-radius", insideDiv.width()/2);
   insideDiv.css("zIndex", 9);
 
+  //insideDiv.find("i").hide();
+  insideDiv.find("i").css('margin-left', '12px');
+  insideDiv.find("i").css('margin-top', '12px');
+  insideDiv.find("i").css('color', '#fff');
+/*  insideDiv.find("i").css('margin', 'auto');
+  insideDiv.find("i").css('background-color', 'red');
+*/
   insideDiv.show();
   that.markerClustererHover.append( insideDiv );
   that.markerClustererHover.hide();
