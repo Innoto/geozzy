@@ -33,6 +33,14 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
     that.markerClustererHover.css("left", left+'px' );
     that.markerClustererHover.show();
 
+    that.markerClustererHover.find(".markerClustererHoverCircle").unbind("click");
+    that.markerClustererHover.find(".markerClustererHoverCircle").bind("click", function(){
+      that.hide();
+      that.options.mapView.map.setCenter(pos);
+      that.options.mapView.map.setZoom( that.options.mapView.map.getZoom() + 1 );
+    });
+
+
     var elementsToPrint = 8;
     var angle = 7.175;
     var currentAngle = 0-angle;
@@ -114,7 +122,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   overlay.draw = function() {};
   overlay.setMap(that.options.mapView.map);
 
-  var insideDiv = $("<div ><i class='fa fa-search'></i></div>");
+  var insideDiv = $("<div class='markerClustererHoverCircle'><i class='fa fa-search'></i></div>");
   that.markerClustererHover = $("<div></div>");
   that.markerClustererHover.css('position', 'absolute');
   //that.markerClustererHover.css('background', 'blue');
