@@ -9,7 +9,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
   //  Options
   that.options = {
-    map: false,
+    mapView: false,
     circleColour: 'grey'
   }
   $.extend(true, that.options, opts);
@@ -25,9 +25,9 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
     var proj = overlay.getProjection();
     var pos = markers[0].getPosition();
     var p = proj.fromLatLngToContainerPixel(pos);
-    
-    var top = ( $( that.options.map.getDiv() ).offset().top + p.y ) - that.markerClustererHover.height()/2;
-    var left = ( $( that.options.map.getDiv() ).offset().left + p.x ) - that.markerClustererHover.width()/2;
+
+    var top = ( $( that.options.mapView.map.getDiv() ).offset().top + p.y ) - that.markerClustererHover.height()/2;
+    var left = ( $( that.options.mapView.map.getDiv() ).offset().left + p.x ) - that.markerClustererHover.width()/2;
 
     that.markerClustererHover.css("top", top+'px' );
     that.markerClustererHover.css("left", left+'px' );
@@ -82,13 +82,13 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
       that.iconos.push(icono);
 
       icono.hover( function(iconoRoseta){
-        that.markerHover( $(iconoRoseta.target).attr('data-resource-id') );
+        that.options.mapView.markerHover( $(iconoRoseta.target).attr('data-resource-id') );
         icono.css('margin', '1px');
         icono.css( 'cursor', 'pointer' );
       });
 
       icono.bind('mouseleave', function(iconoRoseta){
-        that.markerOut( $(iconoRoseta.target).attr('data-resource-id') );
+        that.options.mapView.markerOut( $(iconoRoseta.target).attr('data-resource-id') );
 
         icono.css('margin', '0px');
         icono.css( 'cursor', 'arrow' );
@@ -110,7 +110,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
   var overlay = new google.maps.OverlayView();
   overlay.draw = function() {};
-  overlay.setMap(that.options.map);
+  overlay.setMap(that.options.mapView.map);
 
   var insideDiv = $('<div></div>');
   that.markerClustererHover = $("<div></div>");

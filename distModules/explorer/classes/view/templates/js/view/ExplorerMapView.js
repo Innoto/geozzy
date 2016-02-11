@@ -38,7 +38,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       clusterize: false,
       clustererStyles: false,
       chooseMarkerIcon: function() {return false}
-      
+
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -237,7 +237,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         styles: that.options.clustererStyles
       });
 
-      var roseta = new geozzy.explorerComponents.clusterRoseView({map: that.map});
+      var roseta = new geozzy.explorerComponents.clusterRoseView({mapView: that});
 
 
 
