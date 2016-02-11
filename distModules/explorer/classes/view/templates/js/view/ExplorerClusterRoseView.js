@@ -43,65 +43,67 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
     that.iconos = [];
 
-    $( markers ).each( function(i,e){
 
-      currentAngle += angle;
+    if ( markers.length < 7 ) {
+      $( markers ).each( function(i,e){
 
-      var icono = $('<img data-resource-id="'+e.explorerResourceId+'" src="'+e.getIcon().url+'">');
-      icono.css('position', 'absolute');
-      //icono.css('background', 'green');
-      icono.css('width', e.getIcon().size.width + 'px');
-      icono.css('height', e.getIcon().size.height + 'px');
-      icono.css("border-radius", 300);
-      //icono.css("border", '1px solid black');
-      icono.css("zIndex", 8);
+        currentAngle += angle;
 
-
-      var iconTopOrigin = that.markerClustererHover.height()/2 - icono.height()/2;
-      var iconLeftOrigin = that.markerClustererHover.width()/2 - icono.width()/2;
-
-      var iconTopDest = iconTopOrigin + ( 33 * Math.sin( currentAngle ));
-      var iconLeftDest = iconLeftOrigin + ( 33 * Math.cos( currentAngle ));
+        var icono = $('<img data-resource-id="'+e.explorerResourceId+'" src="'+e.getIcon().url+'">');
+        icono.css('position', 'absolute');
+        //icono.css('background', 'green');
+        icono.css('width', e.getIcon().size.width + 'px');
+        icono.css('height', e.getIcon().size.height + 'px');
+        icono.css("border-radius", 300);
+        //icono.css("border", '1px solid black');
+        icono.css("zIndex", 8);
 
 
-      icono.css("top", (iconTopOrigin)  +'px' );
-      icono.css("left", (iconLeftOrigin) + 'px' );
+        var iconTopOrigin = that.markerClustererHover.height()/2 - icono.height()/2;
+        var iconLeftOrigin = that.markerClustererHover.width()/2 - icono.width()/2;
 
-      icono.animate({
-        top: (iconTopDest)  +'px',
-        left: (iconLeftDest) + 'px'
-      },
-      {
-        queue: false,
-        duration: 123,
-        complete: function() {
-          icono.css("zIndex", 10);
+        var iconTopDest = iconTopOrigin + ( 33 * Math.sin( currentAngle ));
+        var iconLeftDest = iconLeftOrigin + ( 33 * Math.cos( currentAngle ));
+
+
+        icono.css("top", (iconTopOrigin)  +'px' );
+        icono.css("left", (iconLeftOrigin) + 'px' );
+
+        icono.animate({
+          top: (iconTopDest)  +'px',
+          left: (iconLeftDest) + 'px'
+        },
+        {
+          queue: false,
+          duration: 123,
+          complete: function() {
+            icono.css("zIndex", 10);
+          }
+        });
+
+        that.iconos.push(icono);
+
+        icono.hover( function(iconoRoseta){
+          that.options.mapView.markerHover( $(iconoRoseta.target).attr('data-resource-id') );
+          icono.css('margin', '1px');
+          icono.css( 'cursor', 'pointer' );
+        });
+
+        icono.bind('mouseleave', function(iconoRoseta){
+          that.options.mapView.markerOut( $(iconoRoseta.target).attr('data-resource-id') );
+
+          icono.css('margin', '0px');
+          icono.css( 'cursor', 'arrow' );
+        });
+
+        elementsToPrint--;
+        if(elementsToPrint <= 0) {
+          return false;
         }
+
+        that.markerClustererHover.append( icono );
       });
-
-      that.iconos.push(icono);
-
-      icono.hover( function(iconoRoseta){
-        that.options.mapView.markerHover( $(iconoRoseta.target).attr('data-resource-id') );
-        icono.css('margin', '1px');
-        icono.css( 'cursor', 'pointer' );
-      });
-
-      icono.bind('mouseleave', function(iconoRoseta){
-        that.options.mapView.markerOut( $(iconoRoseta.target).attr('data-resource-id') );
-
-        icono.css('margin', '0px');
-        icono.css( 'cursor', 'arrow' );
-      });
-
-      elementsToPrint--;
-      if(elementsToPrint <= 0) {
-        return false;
-      }
-
-      that.markerClustererHover.append( icono );
-    });
-
+    }
   }
 
 
@@ -129,6 +131,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   insideDiv.find("i").css('margin-left', '12px');
   insideDiv.find("i").css('margin-top', '12px');
   insideDiv.find("i").css('color', '#fff');
+  insideDiv.css( 'cursor', 'pointer' );
 /*  insideDiv.find("i").css('margin', 'auto');
   insideDiv.find("i").css('background-color', 'red');
 */
