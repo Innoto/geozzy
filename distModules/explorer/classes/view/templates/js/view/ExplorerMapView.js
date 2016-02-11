@@ -12,7 +12,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   markersCreated: false,
   markerClusterer: false,
 
-  markerClustererHover: false,
+//  markerClustererHover: false,
 
   lastCenter: false,
 
@@ -38,6 +38,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       clusterize: false,
       clustererStyles: false,
       chooseMarkerIcon: function() {return false}
+      
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -236,174 +237,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         styles: that.options.clustererStyles
       });
 
+      var roseta = new geozzy.explorerComponents.clusterRoseView({map: that.map});
+
 
 
       that.markerClusterer.setMouseover(
         function( markers ) {
-          ///
-          ///
-          ///
-          ///
-          ///
-          ///
-          if( markers.length > 0 ) {
-
-            var overlay = new google.maps.OverlayView();
-            overlay.draw = function() {};
-            overlay.setMap(that.map);
-            var proj = overlay.getProjection();
-            var pos = markers[0].getPosition();
-            var p = proj.fromLatLngToContainerPixel(pos);
-
-
-
-
-            //$( xapita ).css('z-index','12222222');
-            //$( xapita ).css({borderRadius: '10%'});
-
-            if( !that.markerClustererHover ) {
-              var insideDiv = $('<div></div>');
-              that.markerClustererHover = $("<div></div>");
-              that.markerClustererHover.css('position', 'absolute');
-              //that.markerClustererHover.css('background', 'blue');
-
-
-
-              insideDiv.css('background', 'grey');
-              insideDiv.css('position', 'relative');
-              insideDiv.css('width', '40px');
-              insideDiv.css('height', '40px');
-
-              insideDiv.css('margin', '28px');
-
-              insideDiv.css("border-radius", insideDiv.width()/2);
-              insideDiv.css("zIndex", 9);
-
-
-              insideDiv.show();
-              that.markerClustererHover.append( insideDiv );
-              that.markerClustererHover.hide();
-
-
-              $('body').append(that.markerClustererHover);
-
-
-
-              that.markerClustererHover.css("border-radius",  that.markerClustererHover.width()/2);
-
-
-              // hide event!
-              $( that.markerClustererHover ).bind('mouseleave', function() {
-                $( that.markerClustererHover ).hide();
-              });
-
-            }
-
-            var top = ( $( that.map.getDiv() ).offset().top + p.y ) - that.markerClustererHover.height()/2;
-            var left = ( $( that.map.getDiv() ).offset().left + p.x ) - that.markerClustererHover.width()/2;
-
-            that.markerClustererHover.css("top", top+'px' );
-            that.markerClustererHover.css("left", left+'px' );
-
-            that.markerClustererHover.show();
-
-
-            var elementsToPrint = 8;
-            var angle = 7.175;
-            var currentAngle = 0-angle;
-
-            $( that.iconos ).each( function(i,e){
-              e.remove();
-            });
-
-            that.iconos = [];
-
-            $( markers ).each( function(i,e){
-
-              currentAngle += angle;
-
-              var icono = $('<img data-resource-id="'+e.explorerResourceId+'" src="'+e.getIcon().url+'">');
-              icono.css('position', 'absolute');
-              //icono.css('background', 'green');
-              icono.css('width', e.getIcon().size.width + 'px');
-              icono.css('height', e.getIcon().size.height + 'px');
-              icono.css("border-radius", 300);
-              //icono.css("border", '1px solid black');
-              icono.css("zIndex", 8);
-              //icono.css("zIndex", 8);
-
-              //icono.css("border-radius", icono.width()/2);
-//            icono.css("top", 0  +'px' );
-//            icono.css("left", 0  +'px' );
-
-              //var iconTopOrigin = ( $( that.map.getDiv() ).offset().top + p.y ) - icono.height()/2;
-              //var iconLeftOrigin = ( $( that.map.getDiv() ).offset().left + p.x ) - icono.width()/2;
-
-              var iconTopOrigin = that.markerClustererHover.height()/2 - icono.height()/2;
-              var iconLeftOrigin = that.markerClustererHover.width()/2 - icono.width()/2;
-
-              var iconTopDest = iconTopOrigin + ( 33 * Math.sin( currentAngle ));
-              var iconLeftDest = iconLeftOrigin + ( 33 * Math.cos( currentAngle ));
-
-
-              icono.css("top", (iconTopOrigin)  +'px' );
-              icono.css("left", (iconLeftOrigin) + 'px' );
-
-              icono.animate({
-                top: (iconTopDest)  +'px',
-                left: (iconLeftDest) + 'px'
-              },
-              {
-                queue: false,
-                duration: 123,
-                complete: function() {
-                  icono.css("zIndex", 10);
-                }
-              });
-
-
-
-
-              that.iconos.push(icono);
-            //  console.log( e.getIcon().url );
-            //  console.log( e.getIcon().size.height, e.getIcon().size.width );
-
-              icono.hover( function(iconoRoseta){
-                that.markerHover( $(iconoRoseta.target).attr('data-resource-id') );
-                icono.css('margin', '1px');
-                icono.css( 'cursor', 'pointer' );
-              });
-
-              icono.bind('mouseleave', function(iconoRoseta){
-                that.markerOut( $(iconoRoseta.target).attr('data-resource-id') );
-
-                icono.css('margin', '0px');
-                icono.css( 'cursor', 'arrow' );
-              });
-
-
-
-              elementsToPrint--;
-              if(elementsToPrint <= 0) {
-                return false;
-              }
-
-
-              that.markerClustererHover.append( icono );
-            });
-
-
-
-            //markers[0].setMap( that.map );
-          }
-          
-
-          ///
-          ///
-          ///
-          ///
-          ///
-          ///
+          roseta.show( markers );
 
         }
       );

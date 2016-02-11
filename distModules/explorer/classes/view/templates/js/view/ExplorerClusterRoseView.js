@@ -1,4 +1,5 @@
 var geozzy = geozzy || {};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
 
 geozzy.explorerComponents.clusterRoseView = function( opts ) {
@@ -21,6 +22,10 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
   that.show = function( markers ) {
 
+    var proj = overlay.getProjection();
+    var pos = markers[0].getPosition();
+    var p = proj.fromLatLngToContainerPixel(pos);
+    
     var top = ( $( that.options.map.getDiv() ).offset().top + p.y ) - that.markerClustererHover.height()/2;
     var left = ( $( that.options.map.getDiv() ).offset().left + p.x ) - that.markerClustererHover.width()/2;
 
@@ -103,24 +108,9 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
 
 
-
-
-
-
-
-
-
-
-
-
   var overlay = new google.maps.OverlayView();
   overlay.draw = function() {};
   overlay.setMap(that.options.map);
-  var proj = overlay.getProjection();
-  var pos = markers[0].getPosition();
-  var p = proj.fromLatLngToContainerPixel(pos);
-
-
 
   var insideDiv = $('<div></div>');
   that.markerClustererHover = $("<div></div>");
@@ -135,18 +125,13 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   insideDiv.css("border-radius", insideDiv.width()/2);
   insideDiv.css("zIndex", 9);
 
-
   insideDiv.show();
   that.markerClustererHover.append( insideDiv );
   that.markerClustererHover.hide();
 
-
   $('body').append(that.markerClustererHover);
 
-
-
   that.markerClustererHover.css("border-radius",  that.markerClustererHover.width()/2);
-
 
   // hide event!
   $( that.markerClustererHover ).bind('mouseleave', function() {
