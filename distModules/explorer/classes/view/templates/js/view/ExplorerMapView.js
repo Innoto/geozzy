@@ -378,7 +378,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
                 that.markerOut( $(iconoRoseta.target).attr('data-resource-id') );
 
                 icono.css('margin', '0px');
-                icono.css( 'cursor', 'arrow' );                
+                icono.css( 'cursor', 'arrow' );
               });
 
 
@@ -396,6 +396,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
             //markers[0].setMap( that.map );
           }
+          
 
           ///
           ///

@@ -207,7 +207,7 @@ geozzy.explorer = function( opts ) {
   that.render = function( dontRenderMap ) {
 
     var resourcesToLoad = [];
-    var metricData = {bounds:[], filters:[0]};
+    var metricData = {bounds:[], filters:[0], explorerId: that.options.explorerId };
 
 
     if(that.displays.map ) {

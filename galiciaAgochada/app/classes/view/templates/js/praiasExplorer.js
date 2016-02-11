@@ -77,7 +77,7 @@
     /**
       setExplorer. instance the explorer object
      */
-    that.setExplorer = function() { zoomControl: false
+    that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
         debug: false,
