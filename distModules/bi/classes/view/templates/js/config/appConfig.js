@@ -19,9 +19,9 @@ define([], function () {
         filterTaxonomyTerms = 17,
         filterSeconds = 18;
     // Variables for the both domains to access
-    var urlBIserver = "http://test.geozzy.itg.es:10164",
-        urlGeozzy = "http://test1.geozzy.com/api";
-
+    var urlGeozzy = "http://test1.geozzy.com/api",
+    	//urlBIserver = "http://localhost:8080";
+		urlBIserver = "http://test.geozzy.itg.es:10164";
     var weekMilis = 7 * 24 * 60 * 60 * 1000;
 
     return {
@@ -73,10 +73,10 @@ define([], function () {
         FILTER_TAXONOMY_TERMS: filterTaxonomyTerms,
         FILTER_SECONDS: filterSeconds,
 
-        FILTER_URL: [
+        FILTERS: [
             {
                 filterID: filterResource,
-                url: urlGeozzy + '/core/resourcelist/fields/false/filters/false/rtype/false'
+                url: urlGeozzy + '/core/resourcelist/fields/id,title_es/filters/false/rtype/flase/rextmodels/false/category/false'
             },
             {
                 filterID: filterResourceTypes,
@@ -92,7 +92,7 @@ define([], function () {
             },
             {
                 filterID: filterEventTypes,
-                url: urlGeozzy + '/core/uieventlist'
+                url: urlGeozzy + '/core/bi'
             },
             {
                 filterID: filterRegionCountry,

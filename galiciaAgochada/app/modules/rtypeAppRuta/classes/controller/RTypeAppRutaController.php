@@ -2,12 +2,12 @@
 
 rextAppZona::autoIncludes();
 
-class RTypeRutaController extends RTypeController implements RTypeInterface {
+class RTypeAppRutaController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeRutaController::__construct' );
+    // error_log( 'RTypeAppRutaController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeRuta() );
+    parent::__construct( $defResCtrl, new rtypeAppRuta() );
   }
 
 
@@ -16,7 +16,7 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeRutaController: manipulateForm()" );
+    // error_log( "RTypeAppRutaController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
@@ -31,7 +31,7 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
   } // function manipulateForm()
 
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RTypeRestaurantController: getFormBlockInfo()" );
+    // error_log( "RTypeAppRutaController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -193,7 +193,7 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeRutaController: resFormRevalidate()" );
+    // error_log( "RTypeAppRutaController: resFormRevalidate()" );
 
   }
 
@@ -202,7 +202,7 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeRutaController: resFormProcess()" );
+    // error_log( "RTypeAppRutaController: resFormProcess()" );
 
   }
 
@@ -211,7 +211,7 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeRutaController: resFormSuccess()" );
+    // error_log( "RTypeAppRutaController: resFormSuccess()" );
 
   }
 
@@ -220,7 +220,7 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    // error_log( "RTypeRutaController: getViewBlockInfo()" );
+    // error_log( "RTypeAppRutaController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -233,4 +233,4 @@ class RTypeRutaController extends RTypeController implements RTypeInterface {
     return $viewBlockInfo;
   }
 
-} // class RTypeRutaController
+} // class RTypeAppRutaController

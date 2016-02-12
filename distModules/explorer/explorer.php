@@ -61,6 +61,7 @@ class explorer extends Module {
     'js/view/ExplorerActiveListTinyView.js',
     'js/view/ExplorerPasiveListView.js',
     'js/view/ExplorerMapView.js',
+    'js/view/ExplorerClusterRoseView.js',
     'js/view/ExplorerMapInfoView.js',
     'js/Explorer.js'
   );

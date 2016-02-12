@@ -1,10 +1,10 @@
 <?php
 Cogumelo::load('coreView/View.php');
-rtypeHotel::load('controller/RTypeHotelController.php');
+rtypeAppHotel::load('controller/rtypeAppHotelController.php');
 
 
 
-class RTypeHotelView extends View
+class rtypeAppHotelView extends View
 {
 
   private $defResCtrl = null;
@@ -14,7 +14,7 @@ class RTypeHotelView extends View
     parent::__construct( $baseDir );
 
     $this->defResCtrl = $defResCtrl;
-    $this->rTypeCtrl = new RTypeHotelController( $defResCtrl );
+    $this->rTypeCtrl = new rtypeAppHotelController( $defResCtrl );
   }
 
 
@@ -23,7 +23,7 @@ class RTypeHotelView extends View
     Defino un formulario con su TPL como Bloque
    */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "RTypeHotelView: getFormBlock()" );
+    // error_log( "rtypeAppHotelView: getFormBlock()" );
 
     $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -47,7 +47,7 @@ class RTypeHotelView extends View
     Proceso formulario
    */
   public function actionResourceForm() {
-    // error_log( "RTypeHotelView: actionResourceForm()" );
+    // error_log( "rtypeAppHotelView: actionResourceForm()" );
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
     $form = $this->defResCtrl->resFormLoad();
@@ -79,4 +79,4 @@ class RTypeHotelView extends View
   } // function actionResourceForm()
 
 
-} // class RTypeHotelView
+} // class rtypeAppHotelView

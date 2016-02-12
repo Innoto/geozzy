@@ -15,6 +15,13 @@ class AdminViewResourceInTopic extends AdminViewMaster
   **/
   public function listResourcesInTopic($urlParams) {
 
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('topic:list', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
     $validation = array('topic'=> '#\d+$#');
     $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
 
@@ -30,14 +37,17 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $this->template->addToBlock( 'col12', $template );
     $this->template->assign( 'headTitle', $name );
-    $this->template->assign( 'headActions', '<a href="/admin#resourceouttopic/list/topic/'.$topicId.'" class="btn btn-default"> '.__('Add resource').'</a>' );
-    $this->template->assign( 'footerActions', '<a href="/admin#resourceouttopic/list/topic/'.$topicId.'" class="btn btn-default"> '.__('Add resource').'</a>' );
+    $assign = $useraccesscontrol->checkPermissions( array('topic:assign'), 'admin:full');
+    if($assign){
+      $this->template->assign( 'headActions', '<a href="/admin#resourceouttopic/list/topic/'.$topicId.'" class="btn btn-default"> '.__('Add resource').'</a>' );
+      $this->template->assign( 'footerActions', '<a href="/admin#resourceouttopic/list/topic/'.$topicId.'" class="btn btn-default"> '.__('Add resource').'</a>' );
+    }
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
 
   public function listResourcesInTopicTable($urlParams) {
-
+    $useraccesscontrol = new UserAccessController();
     $validation = array('topic'=> '#\d+$#');
     $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
 
@@ -45,8 +55,8 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     table::autoIncludes();
     $resource =  new ResourceModel();
-
     $resourcetype =  new ResourcetypeModel();
+
     $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
 
     foreach ($resourcetypelist as $typeId => $type){
@@ -57,14 +67,25 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $tabla->setTabs(__('published'), array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
+
     // set id search reference.
     $tabla->setSearchRefId('tableSearch');
 
       // set table Actions
-    $tabla->setActionMethod(__('Publish'), 'changeStatusPublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>1 ))');
-    $tabla->setActionMethod(__('Unpublish'), 'changeStatusUnpublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
-    $tabla->setActionMethod(__('Unasign'), 'unasign', 'deleteTopicRelation('.$topicId.', $rowId)');
-    $tabla->setActionMethod(__('Delete'), 'delete', 'listitems(array("filters" => array("id" => $rowId)))->fetch()->delete()');
+    $publish = $useraccesscontrol->checkPermissions( array('resource:publish'), 'admin:full');
+    if($publish){
+      $tabla->setActionMethod(__('Publish'), 'changeStatusPublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>1 ))');
+      $tabla->setActionMethod(__('Unpublish'), 'changeStatusUnpublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
+    }
+    $assign = $useraccesscontrol->checkPermissions( array('topic:assign'), 'admin:full');
+    if($assign){
+      $tabla->setActionMethod(__('Unasign'), 'unasign', 'deleteTopicRelation('.$topicId.', $rowId)');
+    }
+    $delete = $useraccesscontrol->checkPermissions( array('resource:delete'), 'admin:full');
+    if($delete){
+      $tabla->setActionMethod(__('Delete'), 'delete', 'listitems(array("filters" => array("id" => $rowId)))->fetch()->delete()');
+    }
+
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
@@ -81,7 +102,14 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setCol('published', __('Published'));
 
     // Filtrar por temática
-    $tabla->setDefaultFilters( array('ResourceTopicModel.topic'=> $topicId, 'inRtype'=>$tiposArray ) );
+    $userSession = $useraccesscontrol->getSessiondata();
+    if($userSession && in_array('resource:mylist', $userSession['permissions'])){
+      $filters = array( 'ResourceTopicModel.topic'=> $topicId, 'inRtype'=>$tiposArray, 'user' => $userSession['data']['id'] );
+    }else{
+      $filters =  array('ResourceTopicModel.topic'=> $topicId, 'inRtype'=>$tiposArray );
+    }
+
+    $tabla->setDefaultFilters($filters);
     $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
     $tabla->setJoinType('INNER');
 

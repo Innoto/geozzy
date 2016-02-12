@@ -1,5 +1,9 @@
 {extends file="adminPanel.tpl"}
 
+{block "header" append}
+  <script type="text/javascript" src="{$mediaJs}/module/admin/js/adminUser.js"></script>
+{/block}
+
 {block name="content"}
 
 {$userFormOpen}
@@ -13,6 +17,8 @@
     {$userFormFields.name}
     {$userFormFields.surname}
     {$userFormFields.email}
+
+    {$userFormFields.active}
 
   </div>
   <div class="col-md-6">

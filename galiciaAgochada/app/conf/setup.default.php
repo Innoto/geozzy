@@ -33,12 +33,12 @@ setCogumeloSetupConf( 'geozzy:resource:directUrl', 'resource' );
 setCogumeloSetupConf( 'geozzy:resource:urlAliasPatterns',
   array(
     'default' => '/',
-    'rtypeHotel' => array(
+    'rtypeAppHotel' => array(
       'default' => '/alojamientos/',
       'gl' => '/aloxamentos/',
       'en' => '/accommodation/'
     ),
-    'rtypeRestaurant' => array(
+    'rtypeAppRestaurant' => array(
       'default' => '/comidas/',
       'en' => '/food/'
     ),

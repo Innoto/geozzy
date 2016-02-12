@@ -16,6 +16,13 @@ class AdminViewResource extends AdminViewMaster {
    **/
   public function listResources() {
 
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions();
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
     $template = new Template( $this->baseDir );
     $template->assign('resourceTable', table::getTableHtml('AdminViewResource', '/admin/resource/table') );
     $template->setTpl('listResource.tpl', 'admin');
@@ -107,9 +114,15 @@ class AdminViewResource extends AdminViewMaster {
    * Creacion de Recursos
    */
   public function resourceForm( $urlParams = false ) {
+
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('resource:create', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
     $recursoData = false;
-
-
     /* Validamos os parámetros da url e obtemos un array de volta*/
     $validation = array( 'topic'=> '#^\d+$#', 'resourcetype' => '#^\d+$#', 'star' => '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
@@ -134,6 +147,7 @@ class AdminViewResource extends AdminViewMaster {
         $recursoData = array();
         $recursoData['rTypeId'] = $rTypeItem->getter('id');
         $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
+        $recursoData['typeReturn'] = $urlParamsList['resourcetype'];
 
         if( $topicItem ) {
           $rtypeTopicControl = new ResourcetypeTopicModel();
@@ -157,6 +171,12 @@ class AdminViewResource extends AdminViewMaster {
    * Edicion de Recursos
    */
   public function resourceEditForm( $urlParams = false ) {
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('resource:edit', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
 
     $recursoData = false;
     $urlParamTopic = false;
@@ -178,6 +198,7 @@ class AdminViewResource extends AdminViewMaster {
 
     if (isset( $urlParamsList['type'])){
       $typeItem = $urlParamsList['type'];
+      $recursoData['typeReturn'] = $typeItem;
     }
 
     if( $topicItem ) {
@@ -188,11 +209,6 @@ class AdminViewResource extends AdminViewMaster {
 
       if( $resourcetypeTopic ){
         $recursoData['topicReturn'] = $topicItem->getter('id');
-      }
-    }
-    else{
-      if ($typeItem){
-        $recursoData['typeReturn'] = $typeItem;
       }
     }
 

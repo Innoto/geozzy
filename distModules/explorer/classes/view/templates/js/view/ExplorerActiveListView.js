@@ -22,7 +22,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     '</div>'),*/
     '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
       '<div class="elementImg">'+
-        '<img class="img-responsive" src="/cgmlImg/<%- img %>/explorerXantaresImg/.jpg" />'+
+        '<img class="img-responsive" src="/cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
         '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
           '<ul class="elementOptions container-fluid">'+
             '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
@@ -31,7 +31,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       '</div>'+
       '<div class="elementInfo">'+
         '<div class="elementTitle"><%-title%></div>'+
-        '<div class="elementType"><img src="/cgmlImg/<%- category.icon %>/typeIconMini/marker.png"/></i> <%- category.name %></div>'+
+        '<div class="elementType"><img src="/cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
         '<% if( averagePrice ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
       '</div>'+
     '</div>'),

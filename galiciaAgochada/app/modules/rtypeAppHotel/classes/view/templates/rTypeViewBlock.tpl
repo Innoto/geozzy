@@ -28,7 +28,7 @@
 
 </script>
 
-<!-- rTypeViewBlock.tpl en rTypeHotel module -->
+<!-- rTypeViewBlock.tpl en rTypeAppHotel module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
@@ -129,7 +129,7 @@
 
     <div class="taxonomyBar row clearfix">
 
-      {if isset($res.data.accommodationType) && $res.data.accommodationType.idName == 'hoteles'}
+      {if isset($res.data.rTypeIdName) && $res.data.rTypeIdName == 'rtypeAppHotel'}
       <div class="taxStars col-xs-12 col-sm-2">
         {if isset($res.data.accommodationCategory)}
           <div class="taxStarsBox">
@@ -142,7 +142,7 @@
         {/if}
       </div>
       {/if}
-      
+
       <div class="taxIcons col-xs-12 col-sm-10">
         {foreach $allServices as $termId => $term}
 

@@ -1,10 +1,10 @@
 <?php
 Cogumelo::load('coreView/View.php');
-rtypeRestaurant::load('controller/RTypeRestaurantController.php');
+rtypeAppHotel::load('controller/RTypeAppHotelController.php');
 
 
 
-class RTypeRestaurantView extends View
+class RTypeAppHotelView extends View
 {
 
   private $defResCtrl = null;
@@ -14,7 +14,7 @@ class RTypeRestaurantView extends View
     parent::__construct( $baseDir );
 
     $this->defResCtrl = $defResCtrl;
-    $this->rTypeCtrl = new RTypeRestaurantController( $defResCtrl );
+    $this->rTypeCtrl = new RTypeAppHotelController( $defResCtrl );
   }
 
 
@@ -23,7 +23,7 @@ class RTypeRestaurantView extends View
     Defino un formulario con su TPL como Bloque
    */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "RTypeRestaurantView: getFormBlock()" );
+    // error_log( "RTypeAppHotelView: getFormBlock()" );
 
     $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -35,7 +35,6 @@ class RTypeRestaurantView extends View
 
     $this->template->assign( 'formClose', $form->getHtmlClose() );
     $this->template->assign( 'formValidations', $form->getScriptCode() );
-    $this->template->addClientStyles( 'masterResource.less');
 
     $this->template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
 
@@ -48,7 +47,7 @@ class RTypeRestaurantView extends View
     Proceso formulario
    */
   public function actionResourceForm() {
-    // error_log( "RTypeRestaurantView: actionResourceForm()" );
+    // error_log( "RTypeAppHotelView: actionResourceForm()" );
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
     $form = $this->defResCtrl->resFormLoad();
@@ -80,4 +79,4 @@ class RTypeRestaurantView extends View
   } // function actionResourceForm()
 
 
-} // class RTypeRestaurantView
+} // class RTypeAppHotelView

@@ -8,7 +8,7 @@ $geozzyTopicsInfo = array(
       'gl' => 'Paisaxes espectaculares'
     ),
     'resourceTypes' => array(
-      'rtypeRuta' => array(
+      'rtypeAppRuta' => array(
         'weight' => 1
       ),
       'rtypeAppEspazoNatural' => array(
@@ -32,7 +32,7 @@ $geozzyTopicsInfo = array(
       'gl' => 'Praias de ensono'
     ),
     'resourceTypes' => array(
-      'rtypeRuta' => array(
+      'rtypeAppRuta' => array(
         'weight' => 2
       ),
       'rtypeAppEspazoNatural' => array(
@@ -56,7 +56,7 @@ $geozzyTopicsInfo = array(
       'gl' => 'Recantos con estilo'
     ),
     'resourceTypes' => array(
-      'rtypeRuta' => array(
+      'rtypeAppRuta' => array(
         'weight' => 3
       ),
       'rtypeAppLugar' => array(
@@ -83,7 +83,7 @@ $geozzyTopicsInfo = array(
       'gl' => 'Auténtica gastronomía'
     ),
     'resourceTypes' => array(
-      'rtypeRestaurant' => array(
+      'rtypeAppRestaurant' => array(
         'weight' => 2
       )
     ),
@@ -104,28 +104,7 @@ $geozzyTopicsInfo = array(
       'gl' => 'Aloxamento con encanto'
     ),
     'resourceTypes' => array(
-      'rtypeHotel' => array(
-        'weight' => 1
-      )
-    ),
-    'table' => array(
-      'actions' => array(
-        'viewHtml' => 'auto',
-        'action' => 'auto'
-      ),
-    ),
-    'taxgroup' => 12,
-    'icon' => '',
-    'weight' => 1
-  ),
-  'FestaRachada' => array(
-    'name' => array(
-      'es' => 'Fiesta',
-      'en' => 'Party',
-      'gl' => 'Festa rachada'
-    ),
-    'resourceTypes' => array(
-      'rtypeAppFestaPopular' => array(
+      'rtypeAppHotel' => array(
         'weight' => 1
       )
     ),
@@ -167,7 +146,7 @@ $geozzyTopicsInfo = array(
       'gl' => 'Probas'
     ),
     'resourceTypes' => array(
-      'rtypeRestaurant' => array(
+      'rtypeAppRestaurant' => array(
         'weight' => 2
       )
     ),

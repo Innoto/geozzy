@@ -24,7 +24,7 @@
 </style>
 {/block}
 
-<!-- rTypeViewBlock.tpl en rTypeRestaurant module -->
+<!-- rTypeViewBlock.tpl en rTypeAppRestaurant module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
@@ -156,4 +156,4 @@
   {/if}
 
 </div><!-- /.resource .resViewBlock -->
-<!-- /rTypeViewBlock.tpl en rTypeRestaurant module -->
+<!-- /rTypeViewBlock.tpl en rTypeAppRestaurant module -->

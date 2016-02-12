@@ -5,6 +5,7 @@ var AdminRouter = Backbone.Router.extend({
 
   routes: {
     "" : "default",
+    "403" : "accessDenied",
     "charts" : "charts",
     "multiList" : "multiList",
     "category/:id" : "categoryEdit",
@@ -18,7 +19,7 @@ var AdminRouter = Backbone.Router.extend({
     "role/create" : "roleCreate",
     "role/edit/id/:id" : "roleEdit",
 
-    "resourcepage/list/type/:id": "resourcePageList",
+    "resourcepage/list": "resourcePageList",
     "resource/list": "resourceList",
     "topic/:id" : "resourceintopicList",
     "resourceintopic/list/topic/:id": "resourceintopicList",
@@ -33,10 +34,13 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   default: function() {
-    app.router.navigate("resource/list", {trigger: true});
+    //app.router.navigate("resource/list", {trigger: true});
+    app.mainView.loadAjaxContent( '/admin/home' );
   },
 
-  // charts
+  accessDenied: function() {
+    app.mainView.loadAjaxContent( '/admin/403' );
+  },
 
   charts: function() {
     app.mainView.loadAjaxContent( '/admin/charts' );
@@ -104,8 +108,8 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   // resources
-  resourcePageList: function( id ) {
-    app.mainView.loadAjaxContent( '/admin/resourcepage/list/type/' + id);
+  resourcePageList: function() {
+    app.mainView.loadAjaxContent( '/admin/resourcepage/list');
     app.mainView.menuSelect('pages');
     app.mainView.setBodyClass('resourcePageList');
   },

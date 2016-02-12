@@ -16,6 +16,15 @@
       explorador.layoutDistributeSize();
     });
 
+    if( document.cookie.replace(' ','').indexOf('geozzy-modal-welc-praias=1')==-1 ) {
+      $('.modalWelcome').modal();
+      $('.modalWelcome').on('hidden.bs.modal', function (e) {
+        var fecha = new Date();
+        fecha.setTime(fecha.getTime()+(365*24*60*60*1000));
+        document.cookie = "geozzy-modal-welc-praias=1; expires="+fecha.toGMTString()+"; path=/";
+      });
+    }
+
   });
 
 
@@ -68,7 +77,7 @@
     /**
       setExplorer. instance the explorer object
      */
-    that.setExplorer = function() { zoomControl: false
+    that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
         debug: false,

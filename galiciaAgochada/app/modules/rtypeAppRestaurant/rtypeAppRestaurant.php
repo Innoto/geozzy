@@ -2,17 +2,17 @@
 
 Cogumelo::load('coreController/Module.php');
 
-class rtypeRestaurant extends Module {
+class rtypeAppRestaurant extends Module {
 
-  public $name = 'rtypeRestaurant';
+  public $name = 'rtypeAppRestaurant';
   public $version = '1.0';
   public $rext = array( 'rextEatAndDrink', 'rextContact', 'rextAppZona', 'rextMapDirections' );
 
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RTypeRestaurantController.php',
-    'view/RTypeRestaurantView.php'
+    'controller/RTypeAppRestaurantController.php',
+    'view/RTypeAppRestaurantView.php'
   );
 
   public $nameLocations = array(
@@ -22,7 +22,7 @@ class rtypeRestaurant extends Module {
   );
 
   public $collectionRTypeFilter = array(
-    'rtypeHotel', 'rtypeRestaurant'
+    'rtypeAppHotel', 'rtypeAppRestaurant'
   );
 
 

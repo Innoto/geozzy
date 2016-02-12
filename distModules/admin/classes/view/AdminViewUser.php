@@ -16,6 +16,13 @@ class AdminViewUser extends AdminViewMaster
   public function showUser() {
 
     $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('user:all', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
+    $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
 
     $template = new Template( $this->baseDir );
@@ -34,6 +41,13 @@ class AdminViewUser extends AdminViewMaster
 
 
   public function listUsers() {
+
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('user:all', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
 
     $template = new Template( $this->baseDir );
     $template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
@@ -116,6 +130,13 @@ class AdminViewUser extends AdminViewMaster
 
   public function createUser() {
 
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('user:all', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
     $userView = new UserView();
 
     $form = $userView->userFormDefine();
@@ -138,6 +159,14 @@ class AdminViewUser extends AdminViewMaster
   * Section edit user
   **/
   public function editUser( $urlParams ) {
+
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('user:all', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
 
     $validation = array( 'id'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );

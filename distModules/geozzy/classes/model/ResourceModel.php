@@ -146,6 +146,7 @@ class ResourceModel extends Model {
     $resourcetopic =  new ResourceTopicModel();
     $resourceRel = $resourcetopic->listItems( array('filters' => array('resource' => $resourceId, 'topic'=> $topicId)))->fetch();
 
+    $deleted = false;
     if ($resourceRel){
       $deleted = $resourceRel->delete();
     }

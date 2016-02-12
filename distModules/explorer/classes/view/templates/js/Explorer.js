@@ -6,6 +6,14 @@ geozzy.explorer = function( opts ) {
   var that = this;
 
 
+  that.getLang= function(){
+    var lang = false;
+    if (typeof(GLOBAL_C_LANG)!='undefined'){
+      lang = '/'+GLOBAL_C_LANG;
+    }
+    return lang;
+  }
+
   //  Options
 
   that.options = {
@@ -75,8 +83,8 @@ geozzy.explorer = function( opts ) {
 
   that.exec = function() {
     // set multiple fetches
-    that.resourceMinimalList.url = that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal/updatedfrom/false';
-
+    lang = that.getLang();
+    that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal/updatedfrom/false';
     // set explorer router
     that.explorerRouter = new ExplorerRouter();
     that.explorerRouter.parentExplorer = that;
@@ -199,7 +207,7 @@ geozzy.explorer = function( opts ) {
   that.render = function( dontRenderMap ) {
 
     var resourcesToLoad = [];
-    var metricData = {bounds:[], filters:[0]};
+    var metricData = {bounds:[], zoom: false,  filters:[0], explorerId: that.options.explorerId };
 
 
     if(that.displays.map ) {
@@ -207,6 +215,7 @@ geozzy.explorer = function( opts ) {
       if( that.displays.map.isReady() ){
 
         var mapbounds = that.displays.map.getMapBounds();
+        metricData.zoom = that.displays.map.map.getZoom();
 
         metricData.bounds = [ [mapbounds[0].lat(), mapbounds[0].lng()], [mapbounds[1].lat(), mapbounds[1].lng()] ];
 
@@ -264,9 +273,10 @@ geozzy.explorer = function( opts ) {
 
 
   that.fetchPartialList = function( resourcesToLoad, success ) {
+    lang = that.getLang();
     that.resourcePartialList.fetchAndCache({
       ids: resourcesToLoad,
-      url: that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/partial/updatedfrom/false',
+      url: lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/partial/updatedfrom/false',
       success: function() {
         success();
       }
