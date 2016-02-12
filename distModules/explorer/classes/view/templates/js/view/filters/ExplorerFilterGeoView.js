@@ -123,8 +123,8 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
       height: 383,
       textReset: that.options.textReset,
       htmlIconArrow: '<i class="fa fa-caret-down"></i>',
-      imgSrc: '/media/module/rextAppZona/img/gal.svg',
-      imgTransparent: '/media/module/rextAppZona/img/transparent.png'
+      imgSrc: media+'/module/rextAppZona/img/gal.svg',
+      imgTransparent: media+'/module/rextAppZona/img/transparent.png'
     });
 
 
