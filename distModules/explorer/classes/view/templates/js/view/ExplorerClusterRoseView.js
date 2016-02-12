@@ -91,6 +91,12 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
         that.iconos.push(icono);
 
+
+        icono.bind('click', function(iconoRoseta){
+          that.hide();
+          that.options.mapView.markerClick( $(iconoRoseta.target).attr('data-resource-id') );
+        });
+
         icono.hover( function(iconoRoseta){
           that.options.mapView.markerHover( $(iconoRoseta.target).attr('data-resource-id') );
           icono.css('margin', '1px');
