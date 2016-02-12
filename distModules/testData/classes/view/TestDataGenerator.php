@@ -123,7 +123,6 @@ class TestDataGenerator extends View
 
          // user: establecemos 12 para poder buscar por este campo e borrar os recursos xerados aqui
          $user = 99999;
-         $userUpdate = 99999;
          // Publicado
          if ($randPublished = rand(1,8)){
            if ($randPublished == 3 || $randPublished == 5)
@@ -133,7 +132,7 @@ class TestDataGenerator extends View
          }
 
          // creación del recurso
-          $dataRes[$datos[0]] = array(
+          $dataRes[$j] = array(
             'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
             'title_en' => $data[$datos[0]]['title'],
             'title_gl' => $data[$datos[0]]['title'],
@@ -168,7 +167,7 @@ class TestDataGenerator extends View
       $actType = $resource->getter('rTypeId');
 
       // asignamos unha imaxe ao recurso
-      $file = $fileControl->createNewFile( $filedataArray[$k] );
+      $file = $fileControl->createNewFile( $filedataArray[$res] );
       $resource->setterDependence( 'image', $file );
 
       $resource->save(array('affectsDependences' => true));
