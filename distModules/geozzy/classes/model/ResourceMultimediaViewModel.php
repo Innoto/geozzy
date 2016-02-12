@@ -80,7 +80,9 @@ class ResourceMultimediaViewModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'inId' => ' geozzy_resource_multimedia_view.id IN (?) '
+  );
 
   var $notCreateDBTable = true;
 
