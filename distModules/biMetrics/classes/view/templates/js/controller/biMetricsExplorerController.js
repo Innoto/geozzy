@@ -24,6 +24,7 @@ geozzy.biMetrics.controller.explorer = geozzy.biMetrics.controller.biMetricsCont
     return {
        "explorer_ID": metric.explorerId,
        "bounds":metric.bounds,
+       "zoom":metric.zoom,
        "filters": metric.filters,
        "metricTime": that.getTimesTamp
     };
