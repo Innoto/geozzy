@@ -11,22 +11,22 @@ $(document).ready(function(){
   $('.rExtMapDirections .mapRoute').hide();
 
   // Reservation button HOTEL
-  $('.rtypeHotel .reservationSec .reservationBox .reservationBtb .showReservation').click(function(){
-    $('.rtypeHotel .reservationSec .reservationBox').hide();
-    $('.rtypeHotel .reservationSec .reservationData').show();
-    $('.rtypeHotel .reservationSec .reservationData .reservationBtb .showAverageRate').click(function(){
-      $('.rtypeHotel .reservationSec .reservationBox').show();
-      $('.rtypeHotel .reservationSec .reservationData').hide();
+  $('.rtypeAppHotel .reservationSec .reservationBox .reservationBtb .showReservation').click(function(){
+    $('.rtypeAppHotel .reservationSec .reservationBox').hide();
+    $('.rtypeAppHotel .reservationSec .reservationData').show();
+    $('.rtypeAppHotel .reservationSec .reservationData .reservationBtb .showAverageRate').click(function(){
+      $('.rtypeAppHotel .reservationSec .reservationBox').show();
+      $('.rtypeAppHotel .reservationSec .reservationData').hide();
     })
   });
 
   // Reservation button RESTAURANT
-  $('.rtypeRestaurant .reservationSec .reservationBox .reservationBtb .showReservation').click(function(){
-    $('.rtypeRestaurant .reservationSec .reservationBox').hide();
-    $('.rtypeRestaurant .reservationSec .reservationData').show();
-    $('.rtypeRestaurant .reservationSec .reservationData .reservationBtb .showAverageRate').click(function(){
-      $('.rtypeRestaurant .reservationSec .reservationBox').show();
-      $('.rtypeRestaurant .reservationSec .reservationData').hide();
+  $('.rtypeAppRestaurant .reservationSec .reservationBox .reservationBtb .showReservation').click(function(){
+    $('.rtypeAppRestaurant .reservationSec .reservationBox').hide();
+    $('.rtypeAppRestaurant .reservationSec .reservationData').show();
+    $('.rtypeAppRestaurant .reservationSec .reservationData .reservationBtb .showAverageRate').click(function(){
+      $('.rtypeAppRestaurant .reservationSec .reservationBox').show();
+      $('.rtypeAppRestaurant .reservationSec .reservationData').hide();
     })
   });
 
