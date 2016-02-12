@@ -207,7 +207,7 @@ geozzy.explorer = function( opts ) {
   that.render = function( dontRenderMap ) {
 
     var resourcesToLoad = [];
-    var metricData = {bounds:[], filters:[0], explorerId: that.options.explorerId };
+    var metricData = {bounds:[], zoom: false,  filters:[0], explorerId: that.options.explorerId };
 
 
     if(that.displays.map ) {
@@ -215,6 +215,7 @@ geozzy.explorer = function( opts ) {
       if( that.displays.map.isReady() ){
 
         var mapbounds = that.displays.map.getMapBounds();
+        metricData.zoom = that.displays.map.map.getZoom();
 
         metricData.bounds = [ [mapbounds[0].lat(), mapbounds[0].lng()], [mapbounds[1].lat(), mapbounds[1].lng()] ];
 
