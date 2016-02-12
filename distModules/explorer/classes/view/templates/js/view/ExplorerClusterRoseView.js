@@ -52,7 +52,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
     that.iconos = [];
 
 
-    if ( markers.length < 7 ) {
+    if ( markers.length <= 7 ) {
       $( markers ).each( function(i,e){
 
         currentAngle += angle;

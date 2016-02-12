@@ -107,8 +107,8 @@ class ResourceModel extends Model {
     'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
     'inRtype' => ' geozzy_resource.rTypeId IN (?) ',
     'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
-    'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
-    'ids' => ' geozzy_resource.id IN (?)',
+    'ids' => ' geozzy_resource.id IN (?) ',
+    'inId' => ' geozzy_resource.id IN (?) ',
     'updatedfrom' => ' ( geozzy_resource.timeCreation >= ? OR geozzy_resource.timeLastUpdate >= ? ) '
   );
 
