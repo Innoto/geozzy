@@ -114,7 +114,9 @@ class admin extends Module
 
   public function __construct() {
     $this->addUrlPatterns( '#^admin$#', 'view:AdminViewMaster::commonAdminInterface' );
+    $this->addUrlPatterns( '#^admin/home$#', 'view:AdminViewMaster::homePage' );
     $this->addUrlPatterns( '#^admin/charts$#', 'view:AdminViewBi::dashboard' );
+    $this->addUrlPatterns( '#^admin/403#', 'view:AdminViewMaster::accessDenied' );
     $this->addUrlPatterns( '#^admin/multilist$#', 'view:AdminViewMultiList::main' );
 
     $this->addUrlPatterns( '#^admin/alltables$#', 'view:AdminViewStatic::allTables' );
@@ -142,8 +144,8 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/resourceouttopic/list/(.*)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopic' );
     $this->addUrlPatterns( '#^admin/resourceouttopic/table/(.*)$#', 'view:AdminViewResourceOutTopic::listResourcesOutTopicTable' );
 
-    $this->addUrlPatterns( '#^admin/resourcepage/list/(.*)$#', 'view:AdminViewPage::listResourcesPage' );
-    $this->addUrlPatterns( '#^admin/resourcepage/table/(.*)$#', 'view:AdminViewPage::listResourcesPageTable' );
+    $this->addUrlPatterns( '#^admin/resourcepage/list$#', 'view:AdminViewPage::listResourcesPage' );
+    $this->addUrlPatterns( '#^admin/resourcepage/table$#', 'view:AdminViewPage::listResourcesPageTable' );
 
     $this->addUrlPatterns( '#^admin/starred/(.*)/assign$#', 'view:AdminViewStarred::listAssignStarred' );
     $this->addUrlPatterns( '#^admin/starred/table/(\d+)$#', 'view:AdminViewStarred::listStarredTable' );

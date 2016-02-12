@@ -24,7 +24,7 @@ define([
                     content = this.parseLanguage(res.languages.available);
                     break;
                 case Config.FILTER_EVENT_TYPES:
-                    content = this.parseObjectKeyValue(res, 'desc');
+                    content = this.parseObjectKeyValue(res['ui_events'], 'desc');
                     break;
                 case Config.FILTER_DEVICE_TYPE:
                     content = this.parseObjectKeyValue(res.devices, 'name');
@@ -42,7 +42,7 @@ define([
                 case Config.FILTER_TAXONOMY_TERMS:
                 case Config.FILTER_RESOURCE_TOPICS:
                 case Config.FILTER_RESOURCE_TYPES:
-                    content = this.parseListObject(res, 'name_es');
+                    content = this.parseListObject(res, 'name');
                     break;
             }
             this.set('content', content);

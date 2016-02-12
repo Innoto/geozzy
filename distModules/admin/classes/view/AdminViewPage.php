@@ -14,25 +14,17 @@ class AdminViewPage extends AdminViewMaster {
   /**
   * Section list user
   **/
-  public function listResourcesPage($urlParams) {
-
-    $validation = array('type'=> '#\d+$#');
-    $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
-
-    $type = $urlParamsList['type'];
+  public function listResourcesPage( ) {
 
     $template = new Template( $this->baseDir );
-    $template->assign('resourcepageTable', table::getTableHtml('AdminViewPage', '/admin/resourcepage/table/type/'.$type) );
+    $template->assign('resourcepageTable', table::getTableHtml('AdminViewPage', '/admin/resourcepage/table') );
     $template->setTpl('listResourcePage.tpl', 'admin');
 
     $resourcetype =  new ResourcetypeModel();
-    $resourcetypelist = $resourcetype->listItems(array( 'filters' => array( 'id' => $type ) ))->fetchAll();
+    $resourcetype = $resourcetype->listItems(array( 'filters' => array( 'idName' => 'rtypePage' ) ))->fetch();
 
     $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
-    foreach( $resourcetypelist as $i => $res ) {
-      $typeList[ $i ] = $res->getter('name_es');
-      $resCreateByType .= '<li><a class="create-'.$res->getter('idName').'" href="/admin#resource/create/resourcetype/'.$res->getter('id').'">'.$res->getter('name_es').'</a></li>';
-    }
+      $resCreateByType .= '<li><a class="create-'.$resourcetype->getter('idName').'" href="/admin#resource/create/resourcetype/'.$resourcetype->getter('id').'">'.$resourcetype->getter('name_es').'</a></li>';
     $resCreateByType .= '</ul>';
 
     $this->template->assign( 'headTitle', __('Resource Management') );
@@ -57,12 +49,11 @@ class AdminViewPage extends AdminViewMaster {
   }
 
 
-  public function listResourcesPageTable($urlParams) {
+  public function listResourcesPageTable() {
 
-    $validation = array('type'=> '#\d+$#');
-    $urlParamsList = RequestController::processUrlParams($urlParams,$validation);
-
-    $type = $urlParamsList['type'];
+    $resourcetype =  new ResourcetypeModel();
+    $resourcetype = $resourcetype->listItems(array( 'filters' => array( 'idName' => 'rtypePage' ) ))->fetch();
+    $type = $resourcetype->getter('id');
 
     table::autoIncludes();
     $resource =  new ResourceModel();

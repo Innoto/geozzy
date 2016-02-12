@@ -119,6 +119,7 @@ class Cogumelo extends CogumeloClass
 
     /*MasterView*/
     $this->addUrlPatterns( '#^$#', 'view:MasterView::home' );
+    $this->addUrlPatterns( '#^403$#', 'view:MasterView::page403' );
     //$this->addUrlPatterns( '#^404$#', 'view:MasterView::page404' );
   }
 

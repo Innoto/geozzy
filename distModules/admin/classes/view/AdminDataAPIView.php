@@ -32,7 +32,7 @@ class AdminDataAPIView extends View
     if( $res == false ) {
       header("HTTP/1.0 401");
       header('Content-type: application/json');
-      echo '{}';
+      echo '[]';
       exit;
     }
 
@@ -42,6 +42,15 @@ class AdminDataAPIView extends View
 
 
   function categoryTerms( $urlParams ) {
+
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions( array('category:list', 'category:edit', 'category:delete' ), 'admin:full');
+    if(!$access){
+      header("HTTP/1.0 403 Forbidden");
+      header('Content-type: application/json');
+      echo '[]';
+      exit;
+    }
 
 
     $validation = array('id'=> '#\d+$#');
@@ -134,12 +143,12 @@ class AdminDataAPIView extends View
         if( $taxTerm && $t = $taxTerm->fetch() ) {
           $t->delete();
           header('Content-type: application/json');
-          echo '{}';
+          echo '[]';
         }
         else {
           header("HTTP/1.0 404 Not Found");
           header('Content-type: application/json');
-          echo '{}';
+          echo '[]';
         }
 
         break;
@@ -266,6 +275,15 @@ class AdminDataAPIView extends View
 
 
   function categories() {
+
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions( array('category:list', 'category:edit', 'category:delete' ), 'admin:full');
+    if(!$access){
+      header('Content-type: application/json');
+      echo '[]';
+      exit;
+    }
+
     $taxgroupModel = new TaxonomygroupModel();
     $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
 
@@ -330,6 +348,15 @@ class AdminDataAPIView extends View
   }
 
   function resourcesTerm( $request ) {
+
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('starred:list', 'admin:full');
+    if(!$access){
+      header("HTTP/1.0 403 Forbidden");
+      header('Content-type: application/json');
+      echo '[]';
+      exit;
+    }
 
     $dataRequest = explode("/", $request[1]);
 
@@ -417,12 +444,12 @@ class AdminDataAPIView extends View
         if( $rTerm && $rt = $rTerm->fetch() ) {
           $rt->delete();
           header('Content-type: application/json');
-          echo '{}';
+          echo '[]';
         }
         else {
           header("HTTP/1.0 404 Not Found");
           header('Content-type: application/json');
-          echo '{}';
+          echo '[]';
         }
       break;
     }
@@ -559,6 +586,15 @@ class AdminDataAPIView extends View
 
 
   function starred() {
+
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('starred:list', 'admin:full');
+    if(!$access){
+      header('Content-type: application/json');
+      echo '[]';
+      exit;
+    }
+
     $taxtermModel = new TaxonomytermModel();
     $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
 

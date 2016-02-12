@@ -1,8 +1,14 @@
 <?php
-admin::load('view/AdminViewMaster.php');
 
+Cogumelo::load('coreView/View.php');
+common::autoIncludes();
+geozzy::autoIncludes();
+admin::autoIncludes();
+form::autoIncludes();
+form::loadDependence( 'ckeditor' );
+user::autoIncludes();
 
-class AdminViewLogin extends AdminViewMaster
+class AdminViewLogin extends View
 {
 
   public function __construct( $base_dir ) {
@@ -48,4 +54,3 @@ class AdminViewLogin extends AdminViewMaster
   }
 
 }
-

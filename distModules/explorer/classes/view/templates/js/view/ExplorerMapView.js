@@ -12,7 +12,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
   markersCreated: false,
   markerClusterer: false,
 
-  markerClustererHover: false,
+//  markerClustererHover: false,
 
   lastCenter: false,
 
@@ -38,6 +38,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
       clusterize: false,
       clustererStyles: false,
       chooseMarkerIcon: function() {return false}
+
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -150,6 +151,8 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
         marker.setVisible(false);
 
+        marker.explorerResourceId = e.get('id');
+
         marker.addListener('click', function() {
           that.markerClick( e.get('id') );
         });
@@ -234,83 +237,13 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
         styles: that.options.clustererStyles
       });
 
+      var roseta = new geozzy.explorerComponents.clusterRoseView({mapView: that});
+
 
 
       that.markerClusterer.setMouseover(
         function( markers ) {
-          ///
-          ///
-          ///
-          ///
-          ///
-          ///
-          if( markers.length > 0 ) {
-
-            var overlay = new google.maps.OverlayView();
-            overlay.draw = function() {};
-            overlay.setMap(that.map);
-            var proj = overlay.getProjection();
-            var pos = markers[0].getPosition();
-            var p = proj.fromLatLngToContainerPixel(pos);
-
-
-
-
-            //$( xapita ).css('z-index','12222222');
-            //$( xapita ).css({borderRadius: '10%'});
-
-            if( !that.markerClustererHover ) {
-              var insideDiv = $('<div></div>');
-              that.markerClustererHover = $("<div></div>");
-              that.markerClustererHover.css('position', 'absolute');
-              //that.markerClustererHover.css('background', 'green');
-
-
-
-              insideDiv.css('background', '#EC3440');
-              insideDiv.css('width', '40px');
-              insideDiv.css('height', '40px');
-              insideDiv.css('margin', '30px');
-              insideDiv.css("border-radius", insideDiv.width()/2);
-
-              that.markerClustererHover.append( insideDiv );
-              that.markerClustererHover.hide();
-
-
-              $('body').append(that.markerClustererHover);
-
-
-
-              that.markerClustererHover.css("border-radius",  that.markerClustererHover.width()/2);
-              // alert(that.markerClustererHover.height())
-              // hide event!
-              $( that.markerClustererHover ).bind('mouseleave', function() {
-                $( that.markerClustererHover ).hide();
-              });
-            }
-
-            var top = ( $( that.map.getDiv() ).offset().top + p.y ) - that.markerClustererHover.height()/2;
-            var left = ( $( that.map.getDiv() ).offset().left + p.x ) - that.markerClustererHover.width()/2;
-
-            $( that.markerClustererHover ).css("top", top+'px' );
-            $( that.markerClustererHover ).css("left", left+'px' );
-
-            $( that.markerClustererHover ).show();
-
-
-
-
-
-
-            //markers[0].setMap( that.map );
-          }
-
-          ///
-          ///
-          ///
-          ///
-          ///
-          ///
+          roseta.show( markers );
 
         }
       );

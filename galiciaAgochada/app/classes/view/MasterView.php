@@ -62,6 +62,12 @@ class MasterView extends View
     echo 'PAGE404: Recurso non atopado';
   }
 
+  public function page403() {
+    $this->template->addClientStyles('styles/master.less');
+    $this->template->setTpl('403.tpl');
+    $this->template->exec();
+  }
+
 
   public function home() {
 

@@ -25,7 +25,7 @@ define([
                         var url = Config.URL_CATEGORY_TERMS + category.id;
                         categoriesResult.push({
                             id: category.id,
-                            name: category.name_es
+                            name: category.name
                         });
                         promises.push($.get(url));
                     });
@@ -37,8 +37,8 @@ define([
                                     elementsResult.push({
                                         categoryID: category.id,
                                         id: term.id,
-                                        name: term.name_es,
-                                        categoryTermName: category.name + " -> " + term.name_es
+                                        name: term.name,
+                                        categoryTermName: category.name + " -> " + term.name
                                     });
                                 });
                             });
