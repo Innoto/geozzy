@@ -5,12 +5,12 @@ rextMapDirections::autoIncludes();
 rextAppZona::autoIncludes();
 rextSocialNetwork::autoIncludes();
 
-class RTypeHotelController extends RTypeController implements RTypeInterface {
+class RTypeAppHotelController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeHotelController::__construct' );
+    // error_log( 'RTypeAppHotelController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeHotel() );
+    parent::__construct( $defResCtrl, new rtypeAppHotel() );
 
   }
 
@@ -19,7 +19,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    //error_log( "RTypeHotelController: manipulateForm()" );
+    //error_log( "RTypeAppHotelController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
@@ -75,7 +75,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
 
 
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "RTypeHotelController: getFormBlockInfo()" );
+    //error_log( "RTypeAppHotelController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -283,7 +283,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    //error_log( "RTypeHotelController: resFormRevalidate()" );
+    //error_log( "RTypeAppHotelController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
       $this->accomCtrl = new RExtAccommodationController( $this );
@@ -303,7 +303,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    //error_log( "RTypeHotelController: resFormProcess()" );
+    //error_log( "RTypeAppHotelController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
       $this->accomCtrl = new RExtAccommodationController( $this );
@@ -325,7 +325,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    //error_log( "RTypeHotelController: resFormSuccess()" );
+    //error_log( "RTypeAppHotelController: resFormSuccess()" );
 
     $this->accomCtrl = new RExtAccommodationController( $this );
     $this->accomCtrl->resFormSuccess( $form, $resource );
@@ -342,7 +342,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    // error_log( "RTypeHotelController: getViewBlockInfo()" );
+    // error_log( "RTypeAppHotelController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -351,7 +351,7 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     );
 
     $template = new Template();
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeHotel' );
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppHotel' );
 
     $this->accomCtrl = new RExtAccommodationController( $this );
     $accomViewInfo = $this->accomCtrl->getViewBlockInfo();
@@ -487,4 +487,4 @@ class RTypeHotelController extends RTypeController implements RTypeInterface {
     return $viewBlockInfo;
   }
 
-} // class RTypeHotelController
+} // class RTypeAppHotelController

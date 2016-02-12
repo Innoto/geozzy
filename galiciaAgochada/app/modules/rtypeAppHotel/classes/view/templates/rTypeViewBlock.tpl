@@ -28,7 +28,7 @@
 
 </script>
 
-<!-- rTypeViewBlock.tpl en rTypeHotel module -->
+<!-- rTypeViewBlock.tpl en rTypeAppHotel module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
@@ -142,7 +142,7 @@
         {/if}
       </div>
       {/if}
-      
+
       <div class="taxIcons col-xs-12 col-sm-10">
         {foreach $allServices as $termId => $term}
 

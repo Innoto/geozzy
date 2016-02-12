@@ -5,12 +5,12 @@ rextMapDirections::autoIncludes();
 rextAppZona::autoIncludes();
 rextSocialNetwork::autoIncludes();
 
-class RTypeRestaurantController extends RTypeController implements RTypeInterface {
+class RTypeAppRestaurantController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeRestaurantController::__construct' );
+    // error_log( 'RTypeAppRestaurantController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeRestaurant() );
+    parent::__construct( $defResCtrl, new rtypeAppRestaurant() );
   }
 
 
@@ -19,7 +19,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeRestaurantController: manipulateForm()" );
+    // error_log( "RTypeAppRestaurantController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
@@ -67,7 +67,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
 
 
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RTypeRestaurantController: getFormBlockInfo()" );
+    // error_log( "RTypeAppRestaurantController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -275,7 +275,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeRestaurantController: resFormRevalidate()" );
+    // error_log( "RTypeAppRestaurantController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
       $this->eatCtrl = new RExtEatAndDrinkController( $this );
@@ -296,7 +296,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeRestaurantController: resFormProcess()" );
+    // error_log( "RTypeAppRestaurantController: resFormProcess()" );
     if( !$form->existErrors() ) {
       $this->eatCtrl = new RExtEatAndDrinkController( $this );
       $this->eatCtrl->resFormProcess( $form, $resource );
@@ -317,7 +317,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeRestaurantController: resFormSuccess()" );
+    // error_log( "RTypeAppRestaurantController: resFormSuccess()" );
 
     $this->eatCtrl = new RExtEatAndDrinkController( $this );
     $this->eatCtrl->resFormSuccess( $form, $resource );
@@ -334,7 +334,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    // error_log( "RTypeRestaurantController: getViewBlockInfo()" );
+    // error_log( "RTypeAppRestaurantController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -343,7 +343,7 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     );
 
     $template = new Template();
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeRestaurant' );
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppRestaurant' );
 
     $this->rExtCtrl = new RExtEatAndDrinkController( $this );
     $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
@@ -449,4 +449,4 @@ class RTypeRestaurantController extends RTypeController implements RTypeInterfac
     return $viewBlockInfo;
   }
 
-} // class RTypeRestaurantController
+} // class RTypeAppRestaurantController
