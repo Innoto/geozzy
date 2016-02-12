@@ -150,12 +150,12 @@ $C_REXT_MODULES = array(
 // resource Types
 global $C_RTYPE_MODULES;
 $C_RTYPE_MODULES = array(
-  'rtypeHotel',
-  'rtypeRestaurant',
+  'rtypeAppHotel',
+  'rtypeAppRestaurant',
   'rtypeUrl',
   'rtypePage',
   'rtypeFile',
-  'rtypeRuta',
+  'rtypeAppRuta',
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
   'rtypeAppFestaPopular'

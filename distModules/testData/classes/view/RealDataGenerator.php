@@ -24,7 +24,7 @@ class RealDataGenerator extends View
 
     // Tipo: restaurante
     $rTypeModel = new ResourcetypeModel();
-    $rTypeObj = $rTypeModel->listItems( array( 'filters' => array( 'idName' => 'rtypeRestaurant' )))->fetch();
+    $rTypeObj = $rTypeModel->listItems( array( 'filters' => array( 'idName' => 'rtypeAppRestaurant' )))->fetch();
     $rTypeId = $rTypeObj->getter('id');
 
     // Temática: probas
@@ -39,7 +39,7 @@ class RealDataGenerator extends View
     //$taxgroupArray[3] = 'starred';
 
     // user: establecemos 12 para poder buscar por este campo e borrar os recursos xerados aqui
-    $user = 12;
+    $user = 12000;
 
     // texto aleatorio para o contido
     include 'randomText.php';
@@ -96,7 +96,7 @@ class RealDataGenerator extends View
              'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
              'title_en' => $data[$datos[0]]['title'],
              'title_gl' => $data[$datos[0]]['title'],
-             'rTypeId' => $rTypeId, 
+             'rTypeId' => $rTypeId,
              'shortDescription_'.LANG_DEFAULT => $data[$datos[0]]['title'],
              'shortDescription_en' => $data[$datos[0]]['title'],
              'shortDescription_gl' => $data[$datos[0]]['title'],
@@ -144,7 +144,7 @@ class RealDataGenerator extends View
 
 
     for ($i = 1; $i <= $_POST['resNum']; $i++){
-      $k = rand(1,$j);
+      $k = rand(1,$j-1);
       $resource =  new ResourceModel($dataRes[$k]);
 
       // asignamos unha imaxe ao recurso
@@ -183,6 +183,9 @@ class RealDataGenerator extends View
           }
       }
       $randType = rand(1, $a-1);
+
+      print($termTypeArray[$randType]->getter('id'));
+
       $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $termTypeArray[$randType]->getter('id'), 'weight' => 1)) );
 
       // asignamos especialidades ao recurso

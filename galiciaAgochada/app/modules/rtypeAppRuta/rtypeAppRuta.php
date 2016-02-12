@@ -2,28 +2,25 @@
 
 Cogumelo::load( 'coreController/Module.php' );
 
-class rtypeHotel extends Module {
+class rtypeAppRuta extends Module {
 
-  public $name = 'rtypeHotel';
+  public $name = 'rtypeAppRuta';
   public $version = '1.0';
-  public $rext = array( 'rextAccommodation', 'rextContact', 'rextAppZona', 'rextMapDirections' );
+  public $rext = array('rextAppZona');
 
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RTypeHotelController.php',
-    'view/RTypeHotelView.php'
+    'controller/RTypeAppRutaController.php',
+    'view/RTypeAppRutaView.php'
   );
 
   public $nameLocations = array(
-    'es' => 'Hotel',
-    'en' => 'Hotel',
-    'gl' => 'Hotel'
+    'es' => 'Ruta',
+    'en' => 'Ruta',
+    'gl' => 'Ruta'
   );
 
-  public $collectionRTypeFilter = array(
-    'rtypeHotel', 'rtypeRestaurant'
-  );
 
   public function __construct() {
   }

@@ -5,6 +5,8 @@ Cogumelo::load('coreModel/DBUtils.php');
 common::autoIncludes();
 geozzy::autoIncludes();
 
+geozzy::load('controller/ResourceController.php');
+
 class TestDataGenerator extends View
 {
 
@@ -22,26 +24,49 @@ class TestDataGenerator extends View
 
   public function generateResources(){
 
+    $resourcecontrol = new ResourceController();
 
-    // Cargamos os tipos de recurso
+    // Listado de taxonomías únicas (personalizable para cada proxecto)
+    $onlyOneTax = array('rextAppZonaType', 'accommodationCategory');
+
+    // Cargamos os tipos de recurso, excluíndo os de sistema, e as súas taxonomías
     $resourcetypeModel = new ResourcetypeModel();
     $typeList = $resourcetypeModel->listItems()->fetchAll();
     $k = 0;
     foreach ($typeList as $type){
-      $typeArray[$k] = $type->getter('id');
-      $k = $k+1;
-    }
+      $rtypeName = $type->getter('idName');
+      if ($rtypeName !== 'rtypeFile' && $rtypeName !== 'rtypeUrl' && $rtypeName !== 'rtypePage'){
+        $tipos[$k]['id'] = $type->getter('id');
+        $tipos[$k]['idName'] = $rtypeName;
+        $rtype = new $rtypeName();
+        $typeArray[$type->getter('id')]['rtype'] = $rtypeName;
 
-    // Cargamos as taxonomías (incluídas destacados)
-    $taxtermModel = new TaxonomytermModel();
-    $taxtermList = $taxtermModel->listItems()->fetchAll();
-    $m = 1;
-    if ($taxtermList){
-      foreach ($taxtermList as $taxterm){
-        $taxtermArray[$m] = $taxterm->getter('id');
-        $m = $m+1;
+        foreach($rtype->rext as $rext){
+          $rextName = $rext;
+          $rextModel = new $rextName();
+          $rextTax = $rextModel->taxonomies;
+
+          $rextModelName = false;
+          if (sizeof($rextModel->models)>0){
+            $rextModelName = $rextModel->models;
+          }
+
+          $taxgroupArray = array();
+          foreach($rextModel->taxonomies as $key=>$taxgroup){
+            array_push ($taxgroupArray , $taxgroup['idName']);
+            $taxterm = array();
+            foreach($resourcecontrol->getOptionsTax($taxgroup['idName']) as $key=>$value){
+              array_push($taxterm, $key);
+            }
+            $taxtermArray[$taxgroup['idName']]=$taxterm;
+          }
+          $typeArray[$type->getter('id')]['taxonomies'][$rextName]['terms'] = $taxgroupArray;
+          $typeArray[$type->getter('id')]['taxonomies'][$rextName]['model'] = $rextModelName;
+        }
+        $k = $k+1;
       }
     }
+
 
     // Cargamos as temáticas
     $topicModel = new TopicModel();
@@ -54,159 +79,152 @@ class TestDataGenerator extends View
       }
     }
 
+    // texto aleatorio para o contido
+    include 'randomText.php';
+    $contentLength = rand(3,5000);
+    $contentIni = rand(0,500);
+    $contentRandom = substr($randomText, $contentIni, $contentLength);
+
     $fileControl = new FiledataController();
 
-    $filedataArray[1] = array('name' => '14420258.jpg', 'originalName' => '14420258.jpg',
-                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/imagetest/14420258.jpg',
-                                   'type' => 'image/jpeg', 'size' => '38080', 'destDir' => '/testData/');
-    $filedataArray[2] = array('name' => 'hotel-inglaterra_1.jpg', 'originalName' => 'hotel-inglaterra_1.jpg',
-                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/imagetest/hotel-inglaterra_1.jpg',
-                                   'type' => 'image/jpeg', 'size' => '22370', 'destDir' => '/testData/');
-    $filedataArray[3] = array('name' => 'Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
-                                   'originalName' => 'Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
-                                   'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/imagetest/Torre-Hercules-ilumina-conmemorar-Irlanda.jpg',
-                                   'type' => 'image/jpeg', 'size' => '22370', 'destDir' => '/testData/');
+    // Cargamos el array de datos
+    $data = array();
+    $j = 1;
+    if (($fichero = fopen(COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/datos.csv', "r")) !== FALSE) {
+       while (($datos = fgetcsv($fichero, 0, ";")) !== FALSE) {
+         // Procesar los datos.
+         $data[$datos[0]]['lat'] = $datos[1];
+         $data[$datos[0]]['lon'] = $datos[2];
+         $data[$datos[0]]['img'] = '/testData/'.$datos[3];
+         $data[$datos[0]]['title'] = $datos[4];
+         $data[$datos[0]]['mediumDescription'] = $datos[5];
 
+         $filedataArray[$datos[0]] = array(
+                                        'name' => $datos[3],
+                                        'originalName' => $datos[3],
+                                        'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/'.$datos[3],
+                                        'type' => 'image/jpeg', 'size' => '38080',
+                                        'destDir' => '/testData/'
+                                      );
 
-    // Creamos un array de alias de url
-    $urlAlias[1] = 'resourcealias1';
-    $urlAlias[2] = 'resourcealias2';
-    $urlAlias[3] = 'resourcealias3';
+         $loc = DBUtils::encodeGeometry( array('type'=>'POINT', 'data'=> array($data[$datos[0]]['lat'] , $data[$datos[0]]['lon']) ) );
+         $zoom = 10;
+
+         $urlArray[$datos[0]] = '/'.str_replace(' ', '-', $data[$datos[0]]['title']);
+
+         // generamos a clave para o array de tipos
+         $typeNum = rand(0,$k-1);
+         $rTypeId = $tipos[$typeNum]['id'];
+
+         $rand1 = rand(500000,900000);
+         $rand2 = rand(0,500000);
+         $timeCreation = date( "Y-m-d H:i:s", time()-$rand1 );
+         $timeLastUpdate = date( "Y-m-d H:i:s", time()-$rand2 );
+
+         // user: establecemos 12 para poder buscar por este campo e borrar os recursos xerados aqui
+         $user = 99999;
+         // Publicado
+         if ($randPublished = rand(1,8)){
+           if ($randPublished == 3 || $randPublished == 5)
+             $published = 0;
+           else
+             $published = 1;
+         }
+
+         // creación del recurso
+          $dataRes[$j] = array(
+            'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+            'title_en' => $data[$datos[0]]['title'],
+            'title_gl' => $data[$datos[0]]['title'],
+            'rTypeId' =>  $rTypeId,
+            'shortDescription_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+            'shortDescription_en' => $data[$datos[0]]['title'],
+            'shortDescription_gl' => $data[$datos[0]]['title'],
+            'mediumDescription_'.LANG_DEFAULT => $data[$datos[0]]['mediumDescription'],
+            'mediumDescription_en' => $data[$datos[0]]['mediumDescription'],
+            'mediumDescription_gl' => $data[$datos[0]]['mediumDescription'],
+            'content_'.LANG_DEFAULT => $contentRandom,
+            'content_en' => $contentRandom,
+            'content_gl' => $contentRandom,
+            'user' =>  $user,
+            'loc' => $loc,
+            'defaultZoom' => $zoom,
+            'timeCreation' => $timeCreation,
+            'published' => $published
+         );
+
+        $j = $j+1;
+       }
+    }
 
     Cogumelo::disableLogs();
 
     for ($i = 1; $i <= $_POST['resNum']; $i++){
 
-      include 'randomText.php';
+      $res = rand(1,$j-1);
+      $resource =  new ResourceModel($dataRes[$res]);
 
-      // título en idioma por defecto
-      $titleLength = rand(1,250);
-      $titleIni = rand(0,200);
-      $titleRandom = substr($randomText, $titleIni, $titleLength);
-
-      // título traducido
-      $titleEnLength = rand(1,250);
-      $titleEnIni = rand(0,200);
-      // traducido?
-      if ($randTranslation = rand(1,6)){
-        if ($randTranslation == 2)
-          $titleEnRandom = substr($randomText, $titleEnIni, $titleEnLength);
-        else
-          $titleEnRandom = NULL;
-      }
-
-      // descripcion en idioma por defecto
-      $descLength = rand(1,150);
-      $descIni = rand(0,200);
-      $descRandom = substr($randomText, $descIni, $descLength);
-
-      // contentido en idioma por defecto
-      $contentLength = rand(3,5000);
-      $contentIni = rand(0,500);
-      $contentRandom = substr($randomText, $contentIni, $contentLength);
-
-      // Publicado
-      if ($randPublished = rand(1,8)){
-        if ($randPublished == 3 || $randPublished == 5)
-          $published = 0;
-        else
-          $published = 1;
-      }
-
-      // generamos a clave para o array de tipos
-      $typeNum = rand(1,$k-1);
-
-      $rand1 = rand(500000,900000);
-      $rand2 = rand(0,500000);
-      $timeCreation = date( "Y-m-d H:i:s", time()-$rand1 );
-      $timeLastUpdate = date( "Y-m-d H:i:s", time()-$rand2 );
-      $randUpdate = rand(0,1);
-      $user = 10;
-      $userUpdate = 10;
-        // creación del recurso
-      if ($randUpdate == 1){
-        $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'mediumDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom,
-        'timeCreation' => $timeCreation, 'user' => $user, 'timeLastUpdate' => $timeLastUpdate, 'userUpdate' => $userUpdate);
-      }
-      else{
-        $data = array('title_'.LANG_DEFAULT => $titleRandom, 'title_en' => $titleEnRandom,'rTypeId' => $typeArray[$typeNum], 'published' => $published, 'shortDescription_'.LANG_DEFAULT => $descRandom, 'mediumDescription_'.LANG_DEFAULT => $descRandom, 'content_'.LANG_DEFAULT => $contentRandom,
-        'timeCreation' => $timeCreation, 'user' =>  $user);
-      }
-
-
-
-      // Location
-
-      $lat = $this->randomCoord( $_POST['lat1'], $_POST['lat2'] );
-      $lng = $this->randomCoord( $_POST['lng1'], $_POST['lng2'] );
-
-
-      $data['loc'] = DBUtils::encodeGeometry( array('type'=>'POINT', 'data'=> array($lat , $lng) ) );
-      $data['defaultZoom'] = 10;
-
-
-      $resource =  new ResourceModel($data);
-
-      // asignamos taxonomías ao recurso
-      $usedTaxterm = array();
-      if ($taxtermArray){
-        $taxtermTimes = rand(1,$m-1);
-        for ($c=1; $c<=$taxtermTimes; $c++){
-            $taxtermNum = rand(1,$m-1);
-            if (!in_array($taxtermArray[$taxtermNum],$usedTaxterm)){
-              $usedTaxterm[$c] = $taxtermArray[$taxtermNum];
-              $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxtermArray[$taxtermNum])) );
-            }
-        }
-      }
-      $resourcetype =  new ResourcetypeModel();
-      // asignamos temáticas ao recurso
-      $usedTopic = array();
-      if ($topicArray){
-        $topicTimes = rand(1,$l-1);
-        for ($a=1; $a<=$topicTimes; $a++){
-            $topicNum = rand(1,$l-1);
-            if (!in_array($topicArray[$topicNum],$usedTopic)){
-              $usedTopic[$a] = $topicArray[$topicNum];
-              $resource->setterDependence( 'id', new ResourceTopicModel( array('resource' => $resource->getter('id'), 'topic' => $topicArray[$topicNum])) );
-
-              $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicArray[$topicNum] ) ) )->fetchAll();
-              $cont = 0;
-              foreach ($resourcetypelist as $typeId => $type){
-                $tiposArray[$cont] = $typeId;
-                $cont = $cont + 1;
-              }
-              $t = rand(0,sizeof($tiposArray)-1);
-              $resource->setter('rTypeId', $tiposArray[$t]);
-            }
-        }
-      }
+      $actType = $resource->getter('rTypeId');
 
       // asignamos unha imaxe ao recurso
-      if ($filedataArray){
-        $filedataNum = rand(1,3);
-        // asignamos unha imaxe ao recurso
-        $file = $fileControl->createNewFile( $filedataArray[$filedataNum] );
-        $resource->setterDependence( 'image', $file );
+      $file = $fileControl->createNewFile( $filedataArray[$res] );
+      $resource->setterDependence( 'image', $file );
+
+      $resource->save(array('affectsDependences' => true));
+
+      $taxtermlist = array();
+      foreach($typeArray[$actType]['taxonomies'] as $key => $taxonomygroup){
+
+        if ($taxonomygroup['terms']){
+          $usedTaxterm = array();
+          foreach ($taxonomygroup['terms'] as $taxonomygroupname){
+            $taxtermlist = $taxtermArray[$taxonomygroupname];
+            if (in_array($taxonomygroupname, $onlyOneTax)){ //taxonomias simples
+              $taxtermNum = rand(0, sizeof($taxtermlist)-1);
+              $taxterm = $taxtermlist[$taxtermNum];
+              $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxterm, 'weight' => 1));
+              $resTaxterm->save();
+            }
+            else{ // taxonomias multiples
+              for ($c=1; $c<=sizeof($taxtermArray)/2; $c++){
+                  $taxtermNum = rand(0, sizeof($taxtermlist)-1);
+                  if (!in_array($taxtermlist[$taxtermNum],$usedTaxterm)){
+                    $usedTaxterm[$c] = $taxtermlist[$taxtermNum];
+                    $taxterm = $taxtermlist[$taxtermNum];
+                    $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxterm, 'weight' => 1));
+                    $resTaxterm->save();
+                  }
+              } // for
+            } // if-else
+          } // foreach ($taxonomygroup as $taxonomygroupname)
+        } // if ($taxonomygroup)
+
+
+        $rextModelName = $taxonomygroup['model'][0];
+        if (isset($rextModelName) && $rextModelName!=''){
+          $dataExt = array('resource'=> $resource->getter('id'));
+          $rextModel = new $rextModelName($dataExt);
+          $rextModel->save(array('affectsDependences' => false));
+        }
+      } // foreach($typeArray[$actType]['taxonomies'] as $taxonomygroup)
+
+
+       // asignamos temáticas ao recurso
+      $typetopic = new ResourcetypeTopicModel();
+      $typetopicList = $typetopic->listItems(array('filters'=>array('resourceType' => $resource->getter('rTypeId'))))->fetchAll();
+
+      if ($typetopicList){
+        foreach($typetopicList as $typetopic){
+          $resource->setterDependence( 'id', new ResourceTopicModel( array('resource' => $resource->getter('id'), 'topic' => $typetopic->getter('topic'))) );
+        }
       }
-
-      // asignamos url
-      $urlNum = rand(1,3);
-
-      $aliasArray = array(
-        'http' => 0,
-        'canonical' => 1,
-        'lang' => LANG_DEFAULT,
-        'urlFrom' => $urlAlias[$urlNum],
-        'urlTo' => null,
-        'resource' => $resource->getter('id')
-      );
-      $elemModel = new UrlAliasModel( $aliasArray );
-      $elemModel->save(array());
 
       // Grabamos las dependencias
       $res = $resource->save(array('affectsDependences' => true));
+
+      $resourcecontrol->setUrl($resource->getter('id'), LANG_DEFAULT);
     }
+
     echo "Recursos creados!";
   }
 
