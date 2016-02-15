@@ -257,23 +257,43 @@ define( 'DEPEN_MANUAL_REPOSITORY', COGUMELO_LOCATION.'/packages/vendorPackages' 
 //
 //	Media server
 //
-
-define( 'MEDIASERVER_HOST', '/' );
-define( 'MEDIASERVER_TMP_CACHE_PATH', APP_TMP_PATH.'/mediaCache' );
+define( 'MEDIASERVER_PRODUCTION_MODE', false ); // If true, you must compile less manually with ./cogumelo generateClientCaches
+define( 'MEDIASERVER_NOT_CACHE_JS', true );
+define( 'MEDIASERVER_HOST', '/' ); // Ej: '/' o 'http://media.galiciaagochada/'
 define( 'MOD_MEDIASERVER_URL_DIR', 'media');
 define( 'MEDIASERVER_FINAL_CACHE_PATH', 'mediaCache' );
-define( 'MEDIASERVER_NOT_CACHE_JS', true );
-define( 'MEDIASERVER_PRODUCTION_MODE', false ); // If true, you must compile less manually with ./cogumelo generateClientCaches
+define( 'MEDIASERVER_TMP_CACHE_PATH', APP_TMP_PATH.'/mediaCache' );
 define( 'MEDIASERVER_MINIMIFY_FILES', false ); // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
+
+/*
+setCogumeloSetupConf( 'mediaserver',
+  array(
+    'productionMode' => false, // If true, you must compile less manually with ./cogumelo generateClientCaches
+    'notCacheJs' => true,
+    'mediaHost' => 'http://media.galiciaagochada/', // Ej: '/' o 'http://media.galiciaagochada/'
+    'mediaPath' => 'media',
+    'cachePath' => 'mediaCache',
+    'tmpCachePath' => APP_TMP_PATH.'/mediaCache',
+    'minimifyFiles' => false // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
+  )
+);
+
+define( 'MEDIASERVER_PRODUCTION_MODE', getCogumeloSetupConf( 'mediaserver:productionMode' ) ); // If true, you must compile less manually with ./cogumelo generateClientCaches
+define( 'MEDIASERVER_NOT_CACHE_JS', getCogumeloSetupConf( 'mediaserver:notCacheJs' ) );
+define( 'MEDIASERVER_HOST', getCogumeloSetupConf( 'mediaserver:mediaHost' ) ); // Ej: '/' o 'http://media.galiciaagochada/'
+define( 'MOD_MEDIASERVER_URL_DIR', getCogumeloSetupConf( 'mediaserver:mediaPath' ) );
+define( 'MEDIASERVER_FINAL_CACHE_PATH', getCogumeloSetupConf( 'mediaserver:cachePath' ) );
+define( 'MEDIASERVER_TMP_CACHE_PATH', getCogumeloSetupConf( 'mediaserver:tmpCachePath' ) );
+define( 'MEDIASERVER_MINIMIFY_FILES', getCogumeloSetupConf( 'mediaserver:minimifyFiles' ) ); // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
+*/
+
 
 global $MEDIASERVER_LESS_GLOBALS; // Se cargan con el prefijo GLOBAL_
 $MEDIASERVER_LESS_GLOBALS = array( 'C_LANG' );
 global $MEDIASERVER_LESS_CONSTANTS;
 $MEDIASERVER_LESS_CONSTANTS = array(
   'langDefault' => LANG_DEFAULT,
-  'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
-  // 'langAvailable' => $LANG_AVAILABLE, // No conocemos como crear arrays anidados en Less
-  // 'var1' => 5, 'var2'=>array('a',true,5, array(1,2) ), 'var3' => true, 'comilla' => "ola'tu"
+  'langAvailableIds' => array_keys( $LANG_AVAILABLE )
 );
 
 global $MEDIASERVER_JAVASCRIPT_GLOBALS; // Se cargan con el prefijo GLOBAL_
@@ -285,7 +305,6 @@ $MEDIASERVER_JAVASCRIPT_CONSTANTS = array(
   'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
   'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
   'site_host' => SITE_HOST
-  // 'var1' => 5, 'var2'=>array('a',true,5, array(1,2) ), 'var3' => true, 'comilla' => "ola'tu"
 );
 
 global $MEDIASERVER_SMARTY_GLOBALS; // Se cargan con el prefijo GLOBAL_
@@ -297,5 +316,43 @@ $MEDIASERVER_SMARTY_CONSTANTS = array(
   'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
   'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
   'site_host' => SITE_HOST
-  // 'var1' => 5, 'var2'=>array('a',true,5, array(1,2) ), 'var3' => true, 'comilla' => "ola'tu"
+);
+
+setCogumeloSetupConf( 'mediaserver:publicConf:less',
+  array(
+    'globals' => array( 'C_LANG' ),
+    'constants' => array(
+      'langDefault' => LANG_DEFAULT,
+      'langAvailableIds' => array_keys( $LANG_AVAILABLE )
+    ),
+    'setup' => array( 'geozzy:resource:directUrl' )
+  )
+);
+
+setCogumeloSetupConf( 'mediaserver:publicConf:javascript',
+  array(
+    'globals' => array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' ),
+    'constants' => array(
+      'langDefault' => LANG_DEFAULT,
+      'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
+      'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
+      'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
+      'site_host' => SITE_HOST
+    ),
+    'setup' => array( 'geozzy:resource:directUrl' )
+  )
+);
+
+setCogumeloSetupConf( 'mediaserver:publicConf:smarty',
+  array(
+    'globals' => array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' ),
+    'constants' => array(
+      'langDefault' => LANG_DEFAULT,
+      'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
+      'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
+      'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
+      'site_host' => SITE_HOST
+    ),
+    'setup' => array( 'geozzy:resource:directUrl' )
+  )
 );

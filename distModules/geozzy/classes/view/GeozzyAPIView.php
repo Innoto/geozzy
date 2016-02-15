@@ -154,6 +154,14 @@ class geozzyAPIView extends View {
                   "required": false
                 },
                 {
+                  "name": "collection",
+                  "description": "Collections data and resources",
+                  "dataType": "boolean",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
                   "name": "updatedfrom",
                   "description": "updated from (UTC timestamp)",
                   "dataType": "int",
@@ -165,7 +173,7 @@ class geozzyAPIView extends View {
               "summary": "Fetches resource list"
             }
           ],
-          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/updatedfrom/{updatedfrom}",
+          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/updatedfrom/{updatedfrom}",
           "description": ""
         }
       ]
@@ -482,8 +490,8 @@ class geozzyAPIView extends View {
       'virtualBags'=> '#^(true|false)$#'
     );
     $extraParams = RequestController::processUrlParams( $urlParams, $validation );
-    //error_log( 'urlParams: '. print_r( $urlParams, true ) );
-    //error_log( 'extraParams: '. print_r( $extraParams, true ) );
+    // error_log( 'urlParams: '. print_r( $urlParams, true ) );
+    // error_log( 'extraParams: '. print_r( $extraParams, true ) );
 
     if( isset( $extraParams['users'] ) && $extraParams['users'] === 'true' ) {
       $userMod =  new UserModel();
@@ -531,6 +539,7 @@ class geozzyAPIView extends View {
       'rtype' => '#(.*)#',
       'rextmodels'=> '#^(true|false)$#',
       'category'=> '#^(true|false)$#',
+      'collection'=> '#^(true|false)$#',
       'updatedfrom' => '#^(\d+)$#'
     );
 
@@ -586,7 +595,7 @@ class geozzyAPIView extends View {
       }
     }
 
-    error_log( '$queryParameters = '.print_r( $queryParameters, true ) );
+    // error_log( '$queryParameters = '.print_r( $queryParameters, true ) );
     $resourceList = $resourceModel->listItems( $queryParameters );
 
     header('Content-type: application/json');
@@ -595,9 +604,15 @@ class geozzyAPIView extends View {
     while( $valueobject = $resourceList->fetch() ) {
       $allData = $valueobject->getAllData( 'onlydata' );
 
+      if( isset( $allData['loc'] ) ) {
+        $loc = DBUtils::decodeGeometry( $allData['loc'] );
+        $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
+      }
+
+
       // Category
       if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
-        // Cargo los datos de Term dentro del recurso
+        // Cargo los datos de Term del recurso
         $taxTermModel =  new ResourceTaxonomytermModel();
         $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'resource' => $allData['id'] ) ) );
         if( $taxTermList !== false ) {
@@ -606,17 +621,8 @@ class geozzyAPIView extends View {
             $allData['categoryIds'][] = $taxTerm->getter( 'id' );
           }
         }
-        /*
-        $termsDep = $valueobject->getterDependence( 'id', 'ResourceTaxonomytermModel' );
-        if( $termsDep !== false ) {
-          $allData['categoryIds'] = array();
-          foreach( $termsDep as $termVo ) {
-            $allData['categoryIds'][] = $termVo->getter( 'taxonomyterm' );
-          }
-        }
-        */
 
-        // Cargo los datos de Topic dentro del recurso
+        // Cargo los datos de Topic del recurso
         $topicsModel = new ResourceTopicModel();
         $topicsList = $topicsModel->listItems( array( 'filters' => array( 'resource' => $allData['id'] ) ) );
         if( $topicsList ) {
@@ -625,45 +631,115 @@ class geozzyAPIView extends View {
             $allData['topicIds'][] = $topicVo->getter( 'id' );
           }
         }
-        /*
-        $topicsDep = $valueobject->getterDependence( 'id', 'ResourceTopicModel' );
-        if( $topicsDep !== false ) {
-          $allData['topicIds'] = array();
-          foreach( $topicsDep as $topicVo ) {
-            $allData['topicIds'][] = $topicVo->getter( 'topic' );
-          }
-        }
-        */
       }
 
+
+      // Load all REXT related models
       if( $extraParams['rextmodels'] === 'true') {
-        // Remove all REXT related models
         $relatedModels = $valueobject->getRextModels();
 
         foreach( $relatedModels as $relModelIdName => $relModel ) {
           $rexData = array( 'MODELNAME' => $relModelIdName );
-          if( method_exists( $relModel , "getAllData" ) ) {
-            $rexData = array_merge( $rexData, $relModel->getAllData('onlydata') );
+          if( method_exists( $relModel, 'getAllData' ) ) {
+            $rexData = array_merge( $rexData, $relModel->getAllData( 'onlydata' ) );
             $allData['rextmodels'][] = $rexData;
           }
         }
       }
 
-      /*
-        // Remove all REXT related models
-        $relatedModels = $this->getRextModels();
 
-        foreach( $relatedModels as $relModelIdName => $relModel ) {
-          if($relModel) {
-            $relModel->delete();
+      // Collections
+      if( isset( $extraParams['collection'] ) && $extraParams['collection'] === 'true' ) {
+        // Cargo los datos de Collections del recurso
+        $resCollModel =  new CollectionResourcesListViewModel();
+        $collResList = $resCollModel->listItems( array(
+          'filters' => array( 'resourceMain' => $allData['id'] )
+        ) );
+        // error_log( 'resColl: collResList='.print_r( $collResList, true ) );
+        if( $collResList !== false ) {
+          $collsOther = array();
+          $collsMmedia = array();
+          while( $coll = $collResList->fetch() ) {
+            // error_log( 'resColl: '.print_r( $coll->getAllData( 'onlydata' ), true ) );
+            $collData = array();
+            $k = array( 'id', 'title', 'shortDescription', 'description', 'weight',
+              'weightMain', 'resourceSonList' );
+            foreach( $k as $key ) {
+              $collData[ $key ] = $coll->getter( $key );
+            }
+
+            if( $coll->getter( 'multimedia' ) ) {
+              $collsMmedia[ $collData['id'] ] = $collData;
+            }
+            else {
+              $collsOther[ $collData['id'] ] = $collData;
+            }
           }
         }
-      */
 
-      if( isset( $allData['loc'] ) ) {
-        $loc = DBUtils::decodeGeometry( $allData['loc'] );
-        $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
+        $allData[ 'collectionsGeneral' ] = array();
+        if( count( $collsOther ) > 0 ) {
+
+          foreach( $collsOther as $collId => $coll ) {
+            $coll[ 'resourcesData' ] = array();
+
+            $resIds = explode( ',', $coll['resourceSonList'] );
+            unset( $coll['resourceSonList'] );
+
+            $resModel =  new ResourceModel();
+            $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ) ) );
+
+            if( $resList !== false ) {
+              while( $resColl = $resList->fetch() ) {
+                $resCollData = array();
+                $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription',
+                  'image', 'loc', 'timeCreation', 'timeLastUpdate', 'weight' );
+                foreach( $k as $key ) {
+                  $resCollData[ $key ] = $resColl->getter( $key );
+                }
+                if( isset( $resCollData['loc'] ) ) {
+                  $loc = DBUtils::decodeGeometry( $resCollData['loc'] );
+                  $resCollData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
+                }
+                $coll[ 'resourcesData' ][] = $resCollData;
+              }
+            }
+
+            $allData[ 'collectionsGeneral' ][] = $coll;
+          }
+        }
+
+        $allData[ 'collectionsMultimedia' ] = array();
+        if( count( $collsMmedia ) > 0 ) {
+
+          foreach( $collsMmedia as $collId => $coll ) {
+            $coll[ 'resourcesData' ] = array();
+
+            $resIds = explode( ',', $coll['resourceSonList'] );
+            unset( $coll['resourceSonList'] );
+
+            $resModel =  new ResourceMultimediaViewModel();
+            $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ) ) );
+
+            if( $resList !== false ) {
+              while( $resColl = $resList->fetch() ) {
+                $resCollData = array();
+                $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'timeCreation',
+                  'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' );
+                foreach( $k as $key ) {
+                  $resCollData[ $key ] = $resColl->getter( $key );
+                }
+                $coll[ 'resourcesData' ][] = $resCollData;
+              }
+            }
+
+            $allData[ 'collectionsMultimedia' ][] = $coll;
+          }
+        }
       }
+
+
+
       echo $c.json_encode( $allData );
       $c=',';
     } // while
