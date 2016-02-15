@@ -99,10 +99,15 @@ class TestDataGenerator extends View
          $data[$datos[0]]['title'] = $datos[4];
          $data[$datos[0]]['mediumDescription'] = $datos[5];
 
+         $image_name = COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/'.$datos[3];
+         if (!file_exists($image_name)){
+           $image_name = COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/default.jpg';
+         }
+
          $filedataArray[$datos[0]] = array(
                                         'name' => $datos[3],
                                         'originalName' => $datos[3],
-                                        'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/'.$datos[3],
+                                        'absLocation' => $image_name,
                                         'type' => 'image/jpeg', 'size' => '38080',
                                         'destDir' => '/testData/'
                                       );
