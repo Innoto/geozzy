@@ -29,7 +29,7 @@
   /****************************
     paisaxesExplorer
    ****************************/
-  paisaxesExplorer = function() {
+  function paisaxesExplorer() {
     var that = this;
 
 
