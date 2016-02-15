@@ -110,6 +110,7 @@ class ResourceMultimediaViewModel extends Model {
       FROM geozzy_resource AS r, geozzy_resource_rext_url AS ru, geozzy_resourcetype as rtype
       WHERE rtype.id = r.rTypeId AND rtype.idName = "rtypeUrl"
         AND r.id = ru.resource
+    ;
   ';
 
 
