@@ -55,5 +55,10 @@ setCogumeloSetupConf( 'geozzy:resource:urlAliasPatterns',
   )
 );
 
-//var_dump( getCogumeloSetupConf( 'geozzy:resource:urlAliasPatterns:rtypeAppEspazoNatural:gl' ) );
-//var_dump( Cogumelo::getSetupValue( 'geozzy:resource:urlAliasPatterns:rtypeAppEspazoNatural:gl' ) );
+// En setup.*
+// setCogumeloSetupConf( 'modName:level1:level2', $value );
+// $value = getCogumeloSetupConf( 'modName:level1:level2' );
+
+// En codigo cogumelo
+// Cogumelo::setSetupValue( 'modName:level1:level2', $value );
+// $value = Cogumelo::getSetupValue( 'modName:level1:level2' );
