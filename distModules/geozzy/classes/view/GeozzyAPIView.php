@@ -618,7 +618,7 @@ class geozzyAPIView extends View {
         if( $taxTermList !== false ) {
           $allData['categoryIds'] = array();
           while( $taxTerm = $taxTermList->fetch() ) {
-            $allData['categoryIds'][] = $taxTerm->getter( 'id' );
+            $allData['categoryIds'][] = $taxTerm->getter( 'taxonomyterm' );
           }
         }
 
@@ -628,7 +628,7 @@ class geozzyAPIView extends View {
         if( $topicsList ) {
           $allData['topicIds'] = array();
           while( $topicVo = $topicsList->fetch() ) {
-            $allData['topicIds'][] = $topicVo->getter( 'id' );
+            $allData['topicIds'][] = $topicVo->getter( 'topic' );
           }
         }
       }
