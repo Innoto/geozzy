@@ -54,7 +54,8 @@
       that.mapOptions = {
         center: { lat: 43.1, lng: -7.36 },
         mapTypeControl: false,
-        zoom: 8
+        zoom: 8,
+        styles : mapTheme
       };
       that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
       mapControlUtils = new mapControlsUtils();
