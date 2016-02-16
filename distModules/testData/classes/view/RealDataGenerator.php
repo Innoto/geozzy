@@ -184,8 +184,6 @@ class RealDataGenerator extends View
       }
       $randType = rand(1, $a-1);
 
-      print($termTypeArray[$randType]->getter('id'));
-
       $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $termTypeArray[$randType]->getter('id'), 'weight' => 1)) );
 
       // asignamos especialidades ao recurso
