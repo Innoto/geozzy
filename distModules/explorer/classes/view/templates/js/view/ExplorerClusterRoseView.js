@@ -6,7 +6,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
   var that = this;
   that.iconos = [];
-
+  that.blocked = false;
   //  Options
   that.options = {
     mapView: false,
@@ -21,6 +21,12 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   };
 
   that.show = function( markers ) {
+    if(! that.blocked) {
+      that.realShow(markers);
+    }
+  }
+
+  that.realShow = function( markers ) {
 
     var proj = overlay.getProjection();
     var pos = markers[0].getPosition();
@@ -35,9 +41,11 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
     that.markerClustererHover.find(".markerClustererHoverCircle").unbind("click");
     that.markerClustererHover.find(".markerClustererHoverCircle").bind("click", function(){
+      that.blocked = true;
       that.hide();
       that.options.mapView.map.setCenter(pos);
       that.options.mapView.map.setZoom( that.options.mapView.map.getZoom() + 1 );
+      that.blocked= false;
     });
 
 
