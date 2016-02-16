@@ -115,6 +115,7 @@ $C_ENABLED_MODULES = array(
   'common',
   'devel',
   'user',
+  'detectMobile',
   'geozzyAPI',
   'filedata',
   'geozzy',
@@ -126,7 +127,6 @@ $C_ENABLED_MODULES = array(
   'Blocks',
   'table',
   'explorer',
-
   // testing module
   'testData'
 );
@@ -172,6 +172,7 @@ $C_INDEX_MODULES  = array(
   'i18nServer',
   'mediaserver',
   'user',
+  'detectMobile',
   'filedata',
   'geozzy',
   'appResourceBridge',
