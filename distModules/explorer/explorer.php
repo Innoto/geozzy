@@ -39,7 +39,7 @@ class explorer extends Module {
     ),
     array(
      "id" =>"ionrangeslider",
-     "params" => array("ionrangeslider"),
+     "params" => array("ionrangeslider#2"),
      "installer" => "bower",
      "includes" => array("js/ion.rangeSlider.js", "css/ion.rangeSlider.css")
     )

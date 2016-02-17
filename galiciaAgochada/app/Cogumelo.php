@@ -5,12 +5,7 @@ class Cogumelo extends CogumeloClass
 {
   public $dependences = array(
 
-    /*array(
-      "id" =>"modernizr",
-      "params" => array("modernizr"),
-      "installer" => "manual",
-      "includes" => array('modernizr.js')
-    ),*/
+
     array(
       "id" =>"featurejs",
       "params" => array("feature.js"),
@@ -24,11 +19,9 @@ class Cogumelo extends CogumeloClass
       "installer" => "bower",
       "includes" => array('lib/device.min.js')
     ),
-
-
     array(
      "id" => "bootstrap",
-     "params" => array("bootstrap"),
+     "params" => array("bootstrap#v3.3"),
      "installer" => "bower",
      "includes" => array("dist/js/bootstrap.min.js")
     ),
@@ -52,7 +45,7 @@ class Cogumelo extends CogumeloClass
     ),
     array(
       "id" =>"select2",
-      "params" => array("select2"),
+      "params" => array("select2#4"),
       "installer" => "bower",
       "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
     ),
@@ -70,7 +63,7 @@ class Cogumelo extends CogumeloClass
     ),
     array(
       "id" =>"unitegallery",
-      "params" => array("unitegallery"),
+      "params" => array("unitegallery#1.7"),
       "installer" => "bower",
       "includes" => array("package/unitegallery/js/unitegallery.min.js", "package/unitegallery/css/unite-gallery.css","package/unitegallery/themes/tiles/ug-theme-tiles.js", "package/unitegallery/themes/default/ug-theme-default.css")
     ),

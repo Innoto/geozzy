@@ -16,16 +16,31 @@ msgid "Paisaxes Espectaculares"
 msgstr "Spectacular Landscapes"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:231
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:231
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:235
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:227
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:256
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:231
+
 msgid "Toda Galicia"
 msgstr "All Galicia"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:244
 msgid "Todas as paisaxes"
 msgstr "All landscapes"
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/praiasExplorer.js:157
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/praiasExplorer.js:148
+msgid "Praias de Ensono"
+msgstr "Dreamlike beaches"
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:176
+msgid "Rincóns con Encanto"
+msgstr "Charming places"
+
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:244
+msgid "Todos os lugares"
+msgstr "All places"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:252
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:255

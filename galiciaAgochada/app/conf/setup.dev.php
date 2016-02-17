@@ -126,7 +126,6 @@ $C_ENABLED_MODULES = array(
   'Blocks',
   'table',
   'explorer',
-
   // testing module
   'testData'
 );
@@ -260,6 +259,7 @@ define( 'DEPEN_MANUAL_REPOSITORY', COGUMELO_LOCATION.'/packages/vendorPackages' 
 define( 'MEDIASERVER_PRODUCTION_MODE', false ); // If true, you must compile less manually with ./cogumelo generateClientCaches
 define( 'MEDIASERVER_NOT_CACHE_JS', true );
 define( 'MEDIASERVER_HOST', '/' ); // Ej: '/' o 'http://media.galiciaagochada/'
+
 define( 'MOD_MEDIASERVER_URL_DIR', 'media');
 define( 'MEDIASERVER_FINAL_CACHE_PATH', 'mediaCache' );
 define( 'MEDIASERVER_TMP_CACHE_PATH', APP_TMP_PATH.'/mediaCache' );
@@ -321,38 +321,38 @@ $MEDIASERVER_SMARTY_CONSTANTS = array(
 setCogumeloSetupConf( 'mediaserver:publicConf:less',
   array(
     'globals' => array( 'C_LANG' ),
-    'constants' => array(
+    'setupFields' => array( 'geozzy:resource:directUrl' ),
+    'vars' => array(
       'langDefault' => LANG_DEFAULT,
       'langAvailableIds' => array_keys( $LANG_AVAILABLE )
-    ),
-    'setup' => array( 'geozzy:resource:directUrl' )
+    )
   )
 );
 
 setCogumeloSetupConf( 'mediaserver:publicConf:javascript',
   array(
-    'globals' => array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' ),
-    'constants' => array(
+    'globalVars' => array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' ),
+    'setupFields' => array( 'geozzy:resource:directUrl' ),
+    'vars' => array(
       'langDefault' => LANG_DEFAULT,
       'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
       'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
       'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
       'site_host' => SITE_HOST
-    ),
-    'setup' => array( 'geozzy:resource:directUrl' )
+    )
   )
 );
 
 setCogumeloSetupConf( 'mediaserver:publicConf:smarty',
   array(
     'globals' => array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' ),
-    'constants' => array(
+    'setupFields' => array( 'geozzy:resource:directUrl' ),
+    'vars' => array(
       'langDefault' => LANG_DEFAULT,
       'langAvailableIds' => array_keys( $LANG_AVAILABLE ),
       'mediaJs' => ( MEDIASERVER_PRODUCTION_MODE == true && MEDIASERVER_NOT_CACHE_JS != true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
       'media' => ( MEDIASERVER_PRODUCTION_MODE == true )? MEDIASERVER_HOST.MEDIASERVER_FINAL_CACHE_PATH : MEDIASERVER_HOST.MOD_MEDIASERVER_URL_DIR,
       'site_host' => SITE_HOST
-    ),
-    'setup' => array( 'geozzy:resource:directUrl' )
+    )
   )
 );
