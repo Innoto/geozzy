@@ -1,6 +1,7 @@
 <?php
 Cogumelo::load('view/MasterView.php');
 
+
 class ExplorerView extends MasterView
 {
   public function __construct( $baseDir ) {
@@ -8,6 +9,7 @@ class ExplorerView extends MasterView
   }
   // función común a todos los exploradores
   function commonLayout(){
+
     $url_parts = explode('/', $_SERVER["REQUEST_URI"]);
     if(sizeof($url_parts)>2){
       $url = $url_parts[2];

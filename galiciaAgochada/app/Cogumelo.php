@@ -5,12 +5,7 @@ class Cogumelo extends CogumeloClass
 {
   public $dependences = array(
 
-    /*array(
-      "id" =>"modernizr",
-      "params" => array("modernizr"),
-      "installer" => "manual",
-      "includes" => array('modernizr.js')
-    ),*/
+
     array(
       "id" =>"featurejs",
       "params" => array("feature.js"),

@@ -126,7 +126,6 @@ $C_ENABLED_MODULES = array(
   'Blocks',
   'table',
   'explorer',
-
   // testing module
   'testData'
 );
@@ -260,6 +259,7 @@ define( 'DEPEN_MANUAL_REPOSITORY', COGUMELO_LOCATION.'/packages/vendorPackages' 
 define( 'MEDIASERVER_PRODUCTION_MODE', false ); // If true, you must compile less manually with ./cogumelo generateClientCaches
 define( 'MEDIASERVER_NOT_CACHE_JS', true );
 define( 'MEDIASERVER_HOST', '/' ); // Ej: '/' o 'http://media.galiciaagochada/'
+
 define( 'MOD_MEDIASERVER_URL_DIR', 'media');
 define( 'MEDIASERVER_FINAL_CACHE_PATH', 'mediaCache' );
 define( 'MEDIASERVER_TMP_CACHE_PATH', APP_TMP_PATH.'/mediaCache' );
