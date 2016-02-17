@@ -264,9 +264,10 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
         }
         else {
           that.parentExplorer.options.resourceAccess( id, {trigger:true} )
-          // call metrics event
-          that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
         }
+
+        // call metrics event
+        that.parentExplorer.metricsResourceController.eventClick( $(element.currentTarget).attr('data-resource-id'), 'Explorer: '+that.parentExplorer.options.explorerSectionName );
       break;
       case 'mouseenter':
         if( that.parentExplorer.displays.map ) {

@@ -107,6 +107,19 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
       section: section,
       event: 'clicked'
     });
+
+    that.eventAccessed( id, section );
+  },
+
+  eventAccessed: function( id, section  ) {
+    var that = this;
+
+    that.addMetric({
+      duration:30000/1000, // 20 seconds
+      resourceId: id,
+      section: section,
+      event: 'accessed_total'
+    });
   },
 
   eventPrint: function(id, section) {
