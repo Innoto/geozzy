@@ -8,7 +8,7 @@
 
   <div class="altViewInfo">
     <label class="cgmMForm">{t}Alternate view{/t}</label>
-    {$res.ext.rextView.data.altViewInfo|escape:'htmlall'}
+    {$altVar|escape:'htmlall'}
   </div>
 
   <div class="title">

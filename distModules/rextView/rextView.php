@@ -27,41 +27,9 @@ class rextView extends Module {
         'none' => array(
           'idName' => 'none',
           'name' => array(
-            'en' => 'none',
-            'es' => 'none',
-            'gl' => 'none'
-          )
-        ),
-        'tplSimplePage' => array(
-          'idName' => 'tplSimplePage',
-          'name' => array(
-            'en' => 'tplSimplePage',
-            'es' => 'tplSimplePage',
-            'gl' => 'tplSimplePage'
-          )
-        ),
-        'tplTwoColsPage' => array(
-          'idName' => 'tplTwoColsPage',
-          'name' => array(
-            'en' => 'tplTwoColsPage',
-            'es' => 'tplTwoColsPage',
-            'gl' => 'tplTwoColsPage'
-          )
-        ),
-        'viewLandingHotelCollections' => array(
-          'idName' => 'viewLandingHotelCollections',
-          'name' => array(
-            'en' => 'viewLandingHotelCollections',
-            'es' => 'viewLandingHotelCollections',
-            'gl' => 'viewLandingHotelCollections'
-          )
-        ),
-        'viewLandingExplorerFull' => array(
-          'idName' => 'viewLandingExplorerFull',
-          'name' => array(
-            'en' => 'viewLandingExplorerFull',
-            'es' => 'viewLandingExplorerFull',
-            'gl' => 'viewLandingExplorerFull'
+            'en' => 'None',
+            'es' => 'Ninguno',
+            'gl' => 'Ningún'
           )
         )
       )

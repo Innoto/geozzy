@@ -22,12 +22,8 @@ $rExtViewAppInitialTerms = array(
   )
 );
 
-
-
 /*
-
   EXAMPLE tpl:
-
   array(
     'idName' => 'tplAppCCCCCC',
     // tpl: rExtViewAltAppCCCCCC.tpl
@@ -38,9 +34,7 @@ $rExtViewAppInitialTerms = array(
     )
   )
 
-
   EXAMPLE class:
-
   array(
     'idName' => 'viewAppCCCCCC',
     // Class: RExtViewAltAppCCCCCC, File: RExtViewAltAppCCCCCC.php
@@ -51,5 +45,4 @@ $rExtViewAppInitialTerms = array(
       'gl' => 'Usar a clase CCCCCC'
     )
   )
-
 */
