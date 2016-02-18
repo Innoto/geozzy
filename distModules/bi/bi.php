@@ -58,7 +58,7 @@ class bi extends Module
     ),
     array(
      "id" =>"heatmap.js-amd",
-     "params" => array("heatmap.js-amd"),
+     "params" => array("heatmap.js-amd#2.0.1"),
      "installer" => "bower",
      "includes" => array('plugins/leaflet-heatmap.js','build/heatmap.js')
     ),
