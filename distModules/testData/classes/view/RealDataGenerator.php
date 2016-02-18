@@ -5,6 +5,8 @@ Cogumelo::load('coreModel/DBUtils.php');
 common::autoIncludes();
 geozzy::autoIncludes();
 
+geozzy::load('controller/ResourceController.php');
+
 class RealDataGenerator extends View
 {
 
@@ -21,6 +23,8 @@ class RealDataGenerator extends View
   }
 
   public function generateResources(){
+
+    $resourcecontrol = new ResourceController();
 
     // Tipo: restaurante
     $rTypeModel = new ResourcetypeModel();
@@ -76,12 +80,8 @@ class RealDataGenerator extends View
 
 
          $rand1 = rand(500000,900000);
-         $rand2 = rand(0,500000);
          $timeCreation = date( "Y-m-d H:i:s", time()-$rand1 );
-         $timeLastUpdate = date( "Y-m-d H:i:s", time()-$rand2 );
-         $randUpdate = rand(0,1);
-         $user = 10;
-         $userUpdate = 10;
+         $user = 99999;
          // Publicado
          if ($randPublished = rand(1,8)){
            if ($randPublished == 3 || $randPublished == 5)
@@ -91,31 +91,7 @@ class RealDataGenerator extends View
          }
 
          // creación del recurso
-         if ($randUpdate == 1){
-           $dataRes[$datos[0]] = array(
-             'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
-             'title_en' => $data[$datos[0]]['title'],
-             'title_gl' => $data[$datos[0]]['title'],
-             'rTypeId' => $rTypeId,
-             'shortDescription_'.LANG_DEFAULT => $data[$datos[0]]['title'],
-             'shortDescription_en' => $data[$datos[0]]['title'],
-             'shortDescription_gl' => $data[$datos[0]]['title'],
-             'mediumDescription_'.LANG_DEFAULT => $data[$datos[0]]['mediumDescription'],
-             'mediumDescription_en' => $data[$datos[0]]['mediumDescription'],
-             'mediumDescription_gl' => $data[$datos[0]]['mediumDescription'],
-             'content_'.LANG_DEFAULT => $contentRandom,
-             'content_en' => $contentRandom,
-             'content_gl' => $contentRandom,
-             'user' =>  $user,
-             'loc' => $loc,
-             'defaultZoom' => $zoom,
-             'timeCreation' => $timeCreation,
-             'timeLastUpdate' => $timeLastUpdate,
-             'userUpdate' => $userUpdate,
-             'published' => $published
-          );
-        }
-        else{
+
           $dataRes[$datos[0]] = array(
             'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
             'title_en' => $data[$datos[0]]['title'],
@@ -136,7 +112,7 @@ class RealDataGenerator extends View
             'timeCreation' => $timeCreation,
             'published' => $published
          );
-        }
+
 
         $j = $j+1;
        }
@@ -164,49 +140,53 @@ class RealDataGenerator extends View
       $t = rand(0,sizeof($tiposArray)-1);
       $resource->setter('rTypeId', $tiposArray[$t]);
 
+      $resource->save(array('affectsDependences' => true));
+
+      $resourcecontrol->setUrl($resource->getter('id'), LANG_DEFAULT);
+
       // Cargamos as taxonomías (incluídas destacados)
       $taxTermModel = new TaxonomytermModel();
+      $taxTermArray = array();
       $a=1; $b=1;
       foreach($taxgroupArray as $t=>$tax){
         $taxTermList[$tax] = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $tax ),
           'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
 
           while( $taxTerm = $taxTermList[$tax]->fetch() ){
+
             if ($tax == 'eatanddrinkType'){
-              $termTypeArray[$a] = $taxTerm;
+              $termTypeArray[$a] = $taxTerm->getter('id');
               $a = $a+1;
             }
             else{
-              $taxTermArray[$b] = $taxTerm;
+              $taxTermArray[$b] = $taxTerm->getter('id');
               $b = $b+1;
             }
           }
-      }
-      $randType = rand(1, $a-1);
 
-      $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $termTypeArray[$randType]->getter('id'), 'weight' => 1)) );
-
-      // asignamos especialidades ao recurso
-      $usedTaxterm = array();
-      if ($taxTermArray){
-        $taxtermTimes = rand(1,$b-1);
-        for ($c=1; $c<=$taxtermTimes; $c++){
-            $taxtermNum = rand(1,$b-1);
-            if (!in_array($taxTermArray[$taxtermNum]->getter('id'),$usedTaxterm)){
-              $usedTaxterm[$c] = $taxTermArray[$taxtermNum]->getter('id');
-              $resource->setterDependence( 'id', new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxTermArray[$taxtermNum]->getter('id'), 'weight' => 1)) );
+          if ($tax == 'eatanddrinkType'){
+            $taxtermNum = rand(1, sizeof($termTypeArray)-1);
+            $taxterm = $termTypeArray[$taxtermNum];
+            $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxterm, 'weight' => 1));
+            $resTaxterm->save();
+          }
+          else{
+            for ($c=1; $c<=sizeof($taxTermArray)/2; $c++){
+                $taxtermNum = rand(1, sizeof($taxTermArray)-1);
+                $usedTaxterm[$c] = $taxTermArray[$taxtermNum];
+                $taxterm = $taxTermArray[$taxtermNum];
+                $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxterm, 'weight' => 1));
+                $resTaxterm->save();
             }
+          }
         }
-      }
 
-     $resource->save(array('affectsDependences' => true));
+       $price = rand(8,140);
+       $capacity = rand(15, 200);
+       $dataExt = array('resource'=> $resource->getter('id'), 'averagePrice' => $price, 'capacity' => $capacity);
 
-     $price = rand(8,140);
-     $capacity = rand(15, 200);
-     $dataExt = array('resource'=> $resource->getter('id'), 'averagePrice' => $price, 'capacity' => $capacity);
-
-     $eatanddrink = new EatAndDrinkModel($dataExt);
-     $eatanddrink->save(array('affectsDependences' => false));
+       $eatanddrink = new EatAndDrinkModel($dataExt);
+       $eatanddrink->save(array('affectsDependences' => false));
 
     }
     echo "Recursos creados!";
