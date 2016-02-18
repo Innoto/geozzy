@@ -22,7 +22,7 @@ class admin extends Module
     ),
     array(
      "id" => "bootstrap",
-     "params" => array("bootstrap"),
+     "params" => array("bootstrap#v3.3"),
      "installer" => "bower",
      "includes" => array("dist/js/bootstrap.min.js")
     ),
@@ -46,7 +46,7 @@ class admin extends Module
     ),
     array(
      "id" =>"metismenu",
-     "params" => array("metisMenu"),
+     "params" => array("metisMenu#v2.4"),
      "installer" => "bower",
      "includes" => array("dist/metisMenu.min.css", "dist/metisMenu.min.js")
     ),
@@ -58,7 +58,7 @@ class admin extends Module
     ),
     array(
      "id" =>"select2",
-     "params" => array("select2"),
+     "params" => array("select2#4"),
      "installer" => "bower",
      "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
     ),
