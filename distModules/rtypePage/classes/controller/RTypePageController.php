@@ -1,4 +1,5 @@
 <?php
+rextView::autoIncludes();
 rextContact::autoIncludes();
 rextSocialNetwork::autoIncludes();
 
@@ -13,27 +14,36 @@ class RTypePageController extends RTypeController implements RTypeInterface {
 
 
   /**
-    Defino el formulario
-   **/
+   *  Defino el formulario
+   */
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypePageController: manipulateForm()" );
+    error_log( "RTypePageController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
     // cambiamos el tipo de topics y starred para que no se muestren
-    $form->setFieldParam('topics', 'type', 'reserved');
-    $form->setFieldParam('starred', 'type', 'reserved');
+    $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
+    $form->setFieldParam( 'topics', 'type', 'reserved' );
+    $form->setFieldParam( 'starred', 'type', 'reserved' );
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
+
+
+    // Extensión rextView
+    $rTypeExtNames[] = 'rextView';
+    $this->rextViewCtrl = new RExtViewController( $this );
+    $rExtFieldNames = $this->rextViewCtrl->manipulateForm( $form );
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    error_log( print_r( $rExtFieldNames, true ) );
+
 
     // Extensión contacto
     $rTypeExtNames[] = 'rextContact';
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-    $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
 
     // Extensión social network
     $rTypeExtNames[] = 'rextSocialNetwork';
@@ -46,7 +56,7 @@ class RTypePageController extends RTypeController implements RTypeInterface {
 
 
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RTypePageController: getFormBlockInfo()" );
+    error_log( "RTypePageController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -67,6 +77,15 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     if( $resId = $form->getFieldValue( 'id' ) ) {
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
+
+
+
+    // Extensión rextView
+    $this->rextViewCtrl = new RExtViewController( $this );
+    $rextViewInfo = $this->rextViewCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->rextViewCtrl->rExtName ] = $rextViewInfo;
+
+
 
     $this->contactCtrl = new RExtContactController( $this );
     $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
@@ -92,6 +111,17 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $formFieldsNames[] = 'topics';
     $formFieldsNames[] = 'starred';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+
+
+    // TEMPLATE panel rextView
+    $templates['rextView'] = new Template();
+    $templates['rextView']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['rextView']->assign( 'title', __( 'View' ) );
+    $templates['rextView']->setBlock( 'blockContent', $rextViewInfo['template']['basic'] );
+
+
 
 
     // TEMPLATE panel estado de publicacion
@@ -204,6 +234,7 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['rextView'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 
@@ -212,7 +243,6 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $templates['full'] = new Template();
     $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'res', $formBlockInfo );
-
 
     $formBlockInfo['template'] = $templates;
 
@@ -226,23 +256,28 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     // error_log( "RTypePageController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
+      $this->rextViewCtrl = new RExtViewController( $this );
+      $this->rextViewCtrl->resFormRevalidate( $form );
+
       $this->contactCtrl = new RExtContactController( $this );
       $this->contactCtrl->resFormRevalidate( $form );
 
       $this->socialCtrl = new RExtSocialNetworkController( $this );
       $this->socialCtrl->resFormRevalidate( $form );
     }
-
     // $this->evalFormUrlAlias( $form, 'urlAlias' );
   }
 
   /**
     Creación-Edición-Borrado de los elementos del recurso base
     Iniciar transaction
-   **/
+    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypePageController: resFormProcess()" );
+    error_log( "RTypePageController: resFormProcess()" );
     if( !$form->existErrors() ) {
+      $this->rextViewCtrl = new RExtViewController( $this );
+      $this->rextViewCtrl->resFormProcess( $form, $resource );
+
       $this->contactCtrl = new RExtContactController( $this );
       $this->contactCtrl->resFormProcess( $form, $resource );
 
@@ -256,7 +291,10 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypePageController: resFormSuccess()" );
+    error_log( "RTypePageController: resFormSuccess()" );
+
+    $this->rextViewCtrl = new RExtViewController( $this );
+    $this->rextViewCtrl->resFormSuccess( $form, $resource );
 
     $this->contactCtrl = new RExtContactController( $this );
     $this->contactCtrl->resFormSuccess( $form, $resource );
@@ -270,7 +308,7 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    // error_log( "RTypePageController: getViewBlockInfo()" );
+    error_log( "RTypePageController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -279,7 +317,10 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     );
 
     $template = new Template();
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypePage' );
+
+    $this->rextViewCtrl = new RExtViewController( $this );
+    $rextViewInfo = $this->rextViewCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->rextViewCtrl->rExtName ] = $rextViewInfo;
 
     $this->contactCtrl = new RExtContactController( $this );
     $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
@@ -288,10 +329,6 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
-
-    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-
-    $resData = $this->defResCtrl->getResourceData( false, true );
 
     if( $contactViewInfo ) {
       if( $contactViewInfo['template'] ) {
@@ -315,32 +352,32 @@ class RTypePageController extends RTypeController implements RTypeInterface {
       $template->assign( 'rextSocialNetworkBlock', false );
     }
 
-    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
+    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $viewBlockInfo['data'][ 'id' ] );
 
-    if ($collectionArrayInfo){
+    if( $collectionArrayInfo ) {
       $multimediaArray = $collectionArray = false;
-      foreach ($collectionArrayInfo as $key => $collectionInfo){
-        if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
-            $multimediaArray[$key] = $collectionInfo;
+      foreach( $collectionArrayInfo as $key => $collectionInfo ) {
+        if( $collectionInfo['col']['multimedia'] == 1 ) { // colecciones multimedia
+          $multimediaArray[$key] = $collectionInfo;
         }
-        else{ // resto de colecciones
-            $collectionArray[$key] = $collectionInfo;
+        else { // resto de colecciones
+          $collectionArray[$key] = $collectionInfo;
         }
       }
 
-      if ($multimediaArray){
+      if( $multimediaArray ) {
         $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
         if ($arrayMultimediaBlock){
-          foreach ($arrayMultimediaBlock as $multimediaBlock){
+          foreach( $arrayMultimediaBlock as $multimediaBlock ) {
             $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
           }
         }
       }
 
-      if ($collectionArray){
+      if( $collectionArray ) {
         $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
         if ($arrayCollectionBlock){
-          foreach ($arrayCollectionBlock as $collectionBlock){
+          foreach( $arrayCollectionBlock as $collectionBlock ) {
             $template->addToBlock( 'collections', $collectionBlock );
           }
         }
@@ -348,9 +385,18 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     }
 
 
+    // IMPORTANTE: rExtView seguramente cambie el .tpl, ignorando el definido aqui
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypePage' );
+    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+
     $viewBlockInfo['template'] = array( 'full' => $template );
 
-    return $viewBlockInfo;
+
+    //
+    // IMPORTANTE: rExtView se usa para alterar el resultado final del view
+    // Hay que ejecutar siempre como paso final el siguiente metodo
+    //
+    return $this->rextViewCtrl->alterViewBlockInfo( $viewBlockInfo, 'full' );
   }
 
 } // class RTypePageController
