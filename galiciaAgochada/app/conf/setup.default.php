@@ -28,9 +28,9 @@ ini_set( 'session.cookie_lifetime', 86400 );
 ini_set( 'session.gc_maxlifetime', 86400 );
 
 
-setCogumeloSetupConf( 'geozzy:resource:directUrl', 'resource' );
+cogumeloSetSetupValue( 'mod:geozzy:resource:directUrl', 'resource' );
 
-setCogumeloSetupConf( 'geozzy:resource:urlAliasPatterns',
+cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
   array(
     'default' => '/',
     'rtypeAppHotel' => array(
@@ -56,8 +56,8 @@ setCogumeloSetupConf( 'geozzy:resource:urlAliasPatterns',
 );
 
 // En setup.*
-// setCogumeloSetupConf( 'modName:level1:level2', $value );
-// $value = getCogumeloSetupConf( 'modName:level1:level2' );
+// cogumeloSetSetupValue( 'modName:level1:level2', $value );
+// $value = cogumeloGetSetupValue( 'modName:level1:level2' );
 
 // En codigo cogumelo
 // Cogumelo::setSetupValue( 'modName:level1:level2', $value );

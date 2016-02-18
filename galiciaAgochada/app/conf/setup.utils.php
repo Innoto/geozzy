@@ -1,8 +1,8 @@
 <?php
 
 
-function setCogumeloSetupConf( $path, $value ) {
-  // error_log( 'COGUMELO::setCogumeloSetupConf: '.$path );
+function cogumeloSetSetupValue( $path, $value ) {
+  // error_log( 'COGUMELO::cogumeloSetSetupValue: '.$path );
   global $CGMLCONF;
 
   if( !isset( $CGMLCONF ) || !is_array( $CGMLCONF ) ) {
@@ -38,14 +38,13 @@ function setCogumeloSetupConf( $path, $value ) {
   return $CGMLCONF;
 }
 
-function getCogumeloSetupConf( $path ) {
-  // error_log( 'COGUMELO::getCogumeloSetupConf: '.$path );
+function cogumeloGetSetupValue( $path ) {
+  // error_log( 'COGUMELO::cogumeloGetSetupValue: '.$path );
   global $CGMLCONF;
   $value = null;
 
   $parts = explode( ':', $path );
   $stack = '[\'' . implode( '\'][\'', $parts ) . '\']';
-  echo $stack;
   $fai = '$valid = isset( $CGMLCONF'. $stack .');';
   eval( $fai );
   if( $valid ) {

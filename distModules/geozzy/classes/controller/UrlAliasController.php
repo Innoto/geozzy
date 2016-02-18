@@ -28,7 +28,7 @@ class UrlAliasController {
       $aliasData = $urlAlias->getAllData( 'onlydata' );
       // error_log( "Alias: " . print_r( $aliasData, true ) );
 
-      $baseUrl = '/' . Cogumelo::getSetupValue('geozzy:resource:directUrl') . '/' . $aliasData[ 'resource' ];
+      $baseUrl = '/' . Cogumelo::getSetupValue('mod:geozzy:resource:directUrl') . '/' . $aliasData[ 'resource' ];
       $langUrl = '';
 
       if( isset( $aliasData[ 'lang' ] ) && $aliasData[ 'lang' ] !== '' ) {

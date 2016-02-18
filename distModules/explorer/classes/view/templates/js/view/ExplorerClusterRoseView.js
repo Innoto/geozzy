@@ -71,6 +71,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
         icono.css('width', e.getIcon().size.width + 'px');
         icono.css('height', e.getIcon().size.height + 'px');
         icono.css("border-radius", 300);
+
         //icono.css("border", '1px solid black');
         icono.css("zIndex", 8);
 
@@ -78,8 +79,8 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
         var iconTopOrigin = that.markerClustererHover.height()/2 - icono.height()/2;
         var iconLeftOrigin = that.markerClustererHover.width()/2 - icono.width()/2;
 
-        var iconTopDest = iconTopOrigin + ( 33 * Math.sin( currentAngle ));
-        var iconLeftDest = iconLeftOrigin + ( 33 * Math.cos( currentAngle ));
+        var iconTopDest = iconTopOrigin + ( 29 * Math.sin( currentAngle ));
+        var iconLeftDest = iconLeftOrigin + ( 29 * Math.cos( currentAngle ));
 
 
         icono.css("top", (iconTopOrigin)  +'px' );
@@ -143,15 +144,16 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
   insideDiv.css('background', that.options.circleColour);
   insideDiv.css('position', 'relative');
-  insideDiv.css('width', '40px');
-  insideDiv.css('height', '40px');
+  insideDiv.css('width', '33px');
+  insideDiv.css('height', '33px');
   insideDiv.css('margin', '28px');
-  insideDiv.css("border-radius", insideDiv.width()/2);
+  insideDiv.css('border', '2px solid #fff');
+  insideDiv.css("border-radius", (insideDiv.width()+4)/2);
   insideDiv.css("zIndex", 9);
 
   //insideDiv.find("i").hide();
-  insideDiv.find("i").css('margin-left', '12px');
-  insideDiv.find("i").css('margin-top', '12px');
+  insideDiv.find("i").css('margin-left', '7px');
+  insideDiv.find("i").css('margin-top', '7px');
   insideDiv.find("i").css('color', '#fff');
   insideDiv.css( 'cursor', 'pointer' );
 /*  insideDiv.find("i").css('margin', 'auto');
