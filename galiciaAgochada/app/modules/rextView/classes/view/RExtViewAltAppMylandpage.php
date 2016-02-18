@@ -3,33 +3,53 @@
 
 class RExtViewAltAppMylandpage {
 
+  public $defRExtViewCtrl = false;
   public $defRTypeCtrl = false;
   public $defResCtrl = false;
 
 
-  public function __construct( $defRTypeCtrl ){
+  public function __construct( $defRExtViewCtrl ){
     error_log( 'RExtViewAltAppMylandpage::__construct' );
-    $this->defRTypeCtrl = $defRTypeCtrl;
-    $this->defResCtrl = $defRTypeCtrl->defResCtrl;
+    $this->defRExtViewCtrl = $defRExtViewCtrl;
+    $this->defRTypeCtrl = $this->defRExtViewCtrl->defRTypeCtrl;
+    $this->defResCtrl = $this->defRTypeCtrl->defResCtrl;
   }
 
 
 
   /**
-    Visualizamos el Recurso
+    Alteramos la visualizacion el Recurso
    */
-  public function getViewBlock( Template $resBlock ) {
-    error_log( "RExtViewAltAppMylandpage: getViewBlock()" );
-    $newBlockTemplate = false; // Para incluir un bloque en el tpl "normal"
+  public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
+    error_log( "RExtViewAltAppMylandpage: alterViewBlockInfo( viewBlockInfo, $templateName )" );
+    /*
+      $viewBlockInfo = array(
+        'template' => array objTemplate,
+        'data' => resourceData,
+        'ext' => array rExt->viewBlockInfo
+      );
+    */
 
-    $resId = $this->defResCtrl->resObj->getter('id');
+    // Podemos obtener datos de las estructura
+    $resId = $viewBlockInfo['data']['id'];
 
-    $resBlock->setTpl( 'rExtViewAltAppMylandpage.tpl', 'rextView' ); // Para reemplazar el tpl "normal"
+    // Cambiar datos
+    $viewBlockInfo['data']['title'] = 'Un dato metido desde o View Aternativo ;-) ('.$resId.')';
 
-    // $resBlock->addToBlock( 'rextEatAndDrink', $eatBlock );
-    $resBlock->assign( 'altViewInfo', 'Un dato metido desde o View Aternativo ;-) ('.$resId.')' );
+    // Recargamos los datos en las variables que usamos del objTemplate
+    $viewBlockInfo['template']['full']->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
-    return $newBlockTemplate;
+    // Reemplazar el tpl "normal" de "full"
+    $viewBlockInfo['template']['full']->setTpl( 'rExtViewAltAppMylandpage.tpl', 'rextView' );
+
+    // Definir variables nuevas
+    $viewBlockInfo['template']['full']->assign( 'altVar', 'Var creada en el alterView' );
+
+    //
+    // O puede crearse una estructura $viewBlockInfo nueva desde cero
+    //
+
+    return $viewBlockInfo;
   }
 
 } // class RExtViewAltAppMylandpage
