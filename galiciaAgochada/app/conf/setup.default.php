@@ -55,6 +55,36 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
   )
 );
 
+cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
+  array(
+    'default' => array(
+      'multimedia' => array('rtypeUrl', 'rtypeFile'),
+      'eventos' => array(),
+      'base' => array()
+    ),
+    'rtypeAppHotel' => array(
+      'multimedia' => array(),
+      'eventos' => array(),
+      'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
+    ),
+    'rtypeAppRestaurant' => array(
+      'multimedia' => array(),
+      'eventos' => array(),
+      'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
+    ),
+    'rtypeAppEspazoNatural' => array(
+      'multimedia' => array(),
+      'eventos' => array(),
+      'base' => array()
+    ),
+    'rtypeAppLugar' => array(
+      'multimedia' => array(),
+      'eventos' => array(),
+      'base' => array()
+    )
+  )
+);
+
 // En setup.*
 // cogumeloSetSetupValue( 'modName:level1:level2', $value );
 // $value = cogumeloGetSetupValue( 'modName:level1:level2' );
