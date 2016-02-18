@@ -1374,11 +1374,11 @@ class ResourceController {
 
   public function getUrlByPattern( $resId, $langId = false ) {
     // error_log( "getUrlByPattern( $resId, $langId )" );
-    $urlAlias = '/'. Cogumelo::getSetupValue( 'geozzy:resource:directUrl' ) .'/'.$resId;
+    $urlAlias = '/'. Cogumelo::getSetupValue( 'mod:geozzy:resource:directUrl' ) .'/'.$resId;
 
     $pattern = '/';
 
-    $patterns = Cogumelo::getSetupValue( 'geozzy:resource:urlAliasPatterns' );
+    $patterns = Cogumelo::getSetupValue( 'mod:geozzy:resource:urlAliasPatterns' );
     if( $patterns ) {
       if( isset( $patterns['default'] ) ) {
         $pattern = $patterns['default'];
@@ -1428,7 +1428,7 @@ class ResourceController {
 
     if( !isset( $urlAlias ) || $urlAlias === false || $urlAlias === '' ) {
       $urlAlias = $this->getUrlByPattern( $resId, $langId );
-      //$urlAlias = '/'.Cogumelo::getSetupValue('geozzy:resource:directUrl').'/'.$resId;
+      //$urlAlias = '/'.Cogumelo::getSetupValue('mod:geozzy:resource:directUrl').'/'.$resId;
       // error_log( "setUrl: urlAlias automatico: $urlAlias " );
     }
 
