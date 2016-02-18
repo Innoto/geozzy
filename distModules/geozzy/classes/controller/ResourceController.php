@@ -1064,7 +1064,7 @@ class ResourceController {
     if( isset( $resId ) ) {
       $resCollectionList = $resourceCollectionsModel->listItems(
         array(
-          'filters' => array( 'resource' => $resId, 'CollectionModel.multimedia' => 0 ),
+          'filters' => array( 'resource' => $resId, 'CollectionModel.collectionType' => 'base' ),
           'order' => array( 'weight' => 1 ),
           'affectsDependences' => array( 'CollectionModel' )
         )
@@ -1095,7 +1095,7 @@ class ResourceController {
     if( isset( $resId ) ) {
       $resMultimediaList = $resourceCollectionsModel->listItems(
         array(
-          'filters' => array( 'resource' => $resId, 'CollectionModel.multimedia' => 1 ),
+          'filters' => array( 'resource' => $resId, 'CollectionModel.collectionType' => 'multimedia' ),
           'order' => array( 'weight' => 1 ),
           'affectsDependences' => array( 'CollectionModel' )
         )
@@ -1623,19 +1623,18 @@ class ResourceController {
           'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias')
         )
       );
-
       while ( $collection = $resCollectionList->fetch() )
       {
         $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
         'title' => $collection->getter('title_'.$this->actLang),
         'shortDescription' => $collection->getter('shortDescription_'.$this->actLang),
         'image' => $collection->getter('image'),
-        'multimedia' => $collection->getter('multimedia'));
+        'collectionType' => $collection->getter('collectionType'));
         $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
 
 
         $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
-        if ($collection->getter('multimedia')){
+        if ($collection->getter('collectionType')=='multimedia'){
           if ($resources){
             foreach( $resources as $resVal ) {
               $thumbSettings = array(
@@ -1695,10 +1694,10 @@ class ResourceController {
   }
 
   // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
-  public function goOverCollections( array $collections, $multimedia ) {
+  public function goOverCollections( array $collections, $collectionType ) {
     $collectionBlock = array();
     foreach( $collections as $idCollection => $collection ) {
-      if ($multimedia){
+      if ($collectionType == 'multimedia'){
         $collectionBlock[$idCollection] = $this->getMultimediaBlock($collection);
       }
       else{

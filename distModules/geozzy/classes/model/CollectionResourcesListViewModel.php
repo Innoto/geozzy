@@ -40,8 +40,9 @@ class CollectionResourcesListViewModel extends Model {
     'share' => array(
       'type' => 'TINYINT'
     ),
-    'multimedia' => array(
-      'type' => 'BOOLEAN'
+    'collectionType' => array(
+      'type' => 'VARCHAR',
+      'size' => 20
     ),
     'weight' => array(
       'type' => 'SMALLINT'
@@ -80,7 +81,7 @@ class CollectionResourcesListViewModel extends Model {
         geozzy_collection.description_en AS description_en,
         geozzy_collection.image AS image,
         geozzy_collection.share AS share,
-        geozzy_collection.multimedia AS multimedia,
+        geozzy_collection.collectionType AS collectionType,
         geozzy_collection.weight AS weight,
         geozzy_resource_collections.resource AS resourceMain,
         geozzy_resource_collections.weight AS weightMain,

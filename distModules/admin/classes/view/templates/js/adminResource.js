@@ -171,7 +171,7 @@ function bindResourceForm(){
 
 function successCollectionForm( data ){
 
-  if(data.multimedia === '1'){
+  if(data.collectionType === 'multimedia'){
     //Multimedia galery
     if( $('#resourceMultimediaGalleries option[value='+data.id+']').length > 0 ){
       $('#resourceMultimediaGalleries option[value='+data.id+']').text(data.title);

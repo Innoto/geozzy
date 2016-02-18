@@ -124,7 +124,8 @@ class AdminViewCollection extends AdminViewMaster
 
     $collectionView = new GeozzyCollectionView();
 
-    $valuesArray['multimedia'] = 1;
+    //$valuesArray['multimedia'] = 1;
+    $valuesArray['collectionType'] = 'multimedia';
 
     $formBlock = $collectionView->getFormBlock( $formName, $formUrl, $valuesArray );
     $formBlock->setTpl( 'collectionFormBlockBase.tpl', 'admin' );

@@ -40,8 +40,9 @@ class CollectionModel extends Model {
     'share' => array(
       'type' => 'TINYINT'
     ),
-    'multimedia' => array(
-      'type' => 'BOOLEAN'
+    'collectionType' => array(
+      'type' => 'VARCHAR',
+      'size' => 20
     ),
     'weight' => array(
       'type' => 'SMALLINT',

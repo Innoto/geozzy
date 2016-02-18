@@ -408,7 +408,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $collectionArray = false;
     if ($collectionArrayInfo){
       foreach( $collectionArrayInfo as $key => $collectionInfo ) {
-        if ($collectionInfo['col']['multimedia'] == 1){ // colecciones multimedia
+        if ($collectionInfo['col']['collectionType'] == 'multimedia'){ // colecciones multimedia
             $multimediaArray[$key] = $collectionInfo;
         }
         else{ // resto de colecciones
@@ -417,7 +417,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
       }
 
       if ($multimediaArray){
-        $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
+        $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $collectionType = 'multimedia' );
         if ($arrayMultimediaBlock){
           foreach( $arrayMultimediaBlock as $multimediaBlock ) {
             $multimediaBlock->assign( 'max', 6 );
@@ -428,7 +428,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
       }
 
       if ($collectionArray){
-        $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
+        $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $collectionType = 'base'  );
         if ($arrayCollectionBlock){
           foreach( $arrayCollectionBlock as $collectionBlock ) {
             $collectionBlock->setTpl('appEspazoNaturalCollectionViewBlock.tpl', 'rtypeAppEspazoNatural');

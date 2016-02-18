@@ -38,10 +38,10 @@ class GeozzyCollectionView extends View
     // $form->setSuccess( 'redirect', SITE_URL . 'admin#collection/list' );
 
     // Recursos disponibles
-    $valueMultimedia = ( array_key_exists('multimedia', $valuesArray ) ) ? $valuesArray['multimedia'] : false;
+    $valueCollectionType = ( array_key_exists('collectionType', $valuesArray ) ) ? $valuesArray['collectionType'] : 'base';
     $valueRTypeFilterParent = ( array_key_exists('filterRTypeParent', $valuesArray ) ) ? $valuesArray['filterRTypeParent'] : false;
 
-    $elemList = $this->getAvailableResources( $valueMultimedia, $valueRTypeFilterParent );
+    $elemList = $this->getAvailableResources( $valueCollectionType, $valueRTypeFilterParent );
 
     $resControl = new ResourceController();
 
@@ -89,12 +89,12 @@ class GeozzyCollectionView extends View
         ),
         'rules' => array( 'required' => true )
       ),
-      'multimedia' => array(
-        'params' => array('type' => 'reserved', 'value' => 0 )
+      'collectionType' => array(
+        'params' => array('type' => 'reserved', 'value' => 'base' )
       )
     );
 
-    if( array_key_exists('multimedia', $valuesArray ) && $valuesArray['multimedia'] === 1 ){
+    if( array_key_exists('collectionType', $valuesArray ) && $valuesArray['collectionType'] === 'multimedia' ){
       $fieldsInfo['addResourceLocal'] = array(
         'params' => array( 'id' => 'addResourceLocal', 'type' => 'button', 'value' => __( 'Upload multimedia ' ))
       );
@@ -354,7 +354,7 @@ class GeozzyCollectionView extends View
       if( $collection->save( array( 'affectsDependences' => $affectsDependences ) ) ) {
         $form->addFormError( 'No se ha podido guardar el collection.','formError' );
       }else{
-        $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'", multimedia: "'.$collection->getter('multimedia').'" });' );
+        $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'", collectionType: "'.$collection->getter('collectionType').'" });' );
       }
     }
 
@@ -362,22 +362,23 @@ class GeozzyCollectionView extends View
 
   } // function actionCollectionForm()
 
-  public function getAvailableResources( $multimedia, $filterRTypeParent ){
+  public function getAvailableResources( $collectionType, $filterRTypeParent ){
 
-    if( $multimedia === 1){
-      $filter = array( "rtypeUrl", "rtypeFile" );
-    }else{
-      if( $filterRTypeParent && class_exists($filterRTypeParent) ){
-
-        $rtypeMod = new $filterRTypeParent();
-        $rtypeFilter = (isset($rtypeMod->collectionRTypeFilter)) ? $rtypeMod->collectionRTypeFilter : false;
-        $rtypeFilter = ( is_array($rtypeFilter) && count($rtypeFilter)>0 ) ? $rtypeFilter : false;
-        $filter = $rtypeFilter;
-      }else{
-        $filter = false;
-      }
+    switch($collectionType){
+      case 'multimedia':
+        $filter = array( "rtypeUrl", "rtypeFile" );
+        break;
+      case 'base':
+        if( $filterRTypeParent && class_exists($filterRTypeParent) ){
+          $rtypeMod = new $filterRTypeParent();
+          $rtypeFilter = (isset($rtypeMod->collectionRTypeFilter)) ? $rtypeMod->collectionRTypeFilter : false;
+          $rtypeFilter = ( is_array($rtypeFilter) && count($rtypeFilter)>0 ) ? $rtypeFilter : false;
+          $filter = $rtypeFilter;
+        }else{
+          $filter = false;
+        }
+        break;
     }
-
 
     $resourceModel = new ResourceModel();
     $rtypeControl = new ResourcetypeModel();

@@ -27,8 +27,9 @@ class ResourceCollectionsAllModel extends Model {
       'size' => 100,
       'multilang' => true
     ),
-    'multimedia' => array(
-      'type' => 'INT',
+    'collectionType' => array(
+      'type' => 'VARCHAR',
+      'size' => 20
     ),
     'weight' => array(
       'type' => 'INT',
@@ -70,7 +71,7 @@ class ResourceCollectionsAllModel extends Model {
         geozzy_collection.shortDescription_es AS shortDescription_es,
         geozzy_collection.shortDescription_gl AS shortDescription_gl,
         geozzy_collection.shortDescription_en AS shortDescription_en,
-        geozzy_collection.multimedia AS multimedia,
+        geozzy_collection.collectionType AS collectionType,
         geozzy_collection.weight AS weight,
         geozzy_collection.image AS image,
         geozzy_resource_collections.resource AS resourceMain,
