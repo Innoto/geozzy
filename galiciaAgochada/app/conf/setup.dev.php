@@ -55,6 +55,7 @@ cogumeloSetSetupValue( 'lang', array(
 //
 //  DB
 //
+/*
 define( 'DB_ENGINE', 'mysql' );
 define( 'DB_HOSTNAME', 'localhost');
 define( 'DB_PORT', '3306');
@@ -66,6 +67,18 @@ define( 'DB_MYSQL_GROUPCONCAT_MAX_LEN', 4294967295); //max 	4294967295 (in 32 bi
 
 // allow cache with memcached
 define( 'DB_ALLOW_CACHE', true );
+*/
+cogumeloSetSetupValue( 'db', array(
+  'engine' => 'mysql',
+  'hostname' => 'localhost',
+  'port' => '3306',
+  'user' => 'galiciaagochada',
+  'password' => 'q7w8e9r',
+  'name' => 'galiciaagochada',
+  'mysqlGroupconcatMaxLen' => 4294967295,
+  'allowCache' => true
+));
+
 require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
 
 //
@@ -97,15 +110,25 @@ define( 'COGUMELO_APP_URL_ALIAS_CONTROLLER', COGUMELO_DIST_LOCATION.'/distModule
 //
 //  Sendmail
 //
+cogumeloSetSetupValue( 'smtp', array(
+  'host' => 'localhost',
+  'port' => '25',
+  'auth' => false,
+  'user' => 'Cogumelo Sender',
+  'pass' => 'cogumelo@cogumelo.org',
+  'fromName' => 'Cogumelo Sender',
+  'fromEmail' => 'cogumelo@cogumelo.org'
+));
+/*
 define( 'SMTP_HOST', 'localhost' );
 define( 'SMTP_PORT', '25' );
 define( 'SMTP_AUTH', false );
-define( 'SMTP_USER', '' );
-define( 'SMTP_PASS', '' );
+define( 'SMTP_USER', 'Cogumelo Sender' );
+define( 'SMTP_PASS', 'cogumelo@cogumelo.org' );
 
 define( 'SYS_MAIL_FROM_NAME', 'Cogumelo Sender' );
 define( 'SYS_MAIL_FROM_EMAIL', 'cogumelo@cogumelo.org' );
-
+*/
 
 //
 //  Templates
