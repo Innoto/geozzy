@@ -118,6 +118,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $formFieldsNames[] = 'externalUrl';
     $formFieldsNames[] = 'topics';
     $formFieldsNames[] = 'starred';
+    $formFieldsNames[] = 'rTypeIdName';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
