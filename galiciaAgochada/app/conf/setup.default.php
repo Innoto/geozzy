@@ -19,6 +19,14 @@
  * - Las URL no finalizan en /
  */
 
+// En setup.*
+// cogumeloSetSetupValue( 'modName:level1:level2', $value );
+// $value = cogumeloGetSetupValue( 'modName:level1:level2' );
+
+// En codigo cogumelo
+// Cogumelo::setSetupValue( 'modName:level1:level2', $value );
+// $value = Cogumelo::getSetupValue( 'modName:level1:level2' );
+
 
 
 //
@@ -30,65 +38,3 @@ ini_set( 'session.gc_maxlifetime', 86400 );
 
 cogumeloSetSetupValue( 'mod:geozzy:resource:directUrl', 'resource' );
 
-cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
-  array(
-    'default' => '/',
-    'rtypeAppHotel' => array(
-      'default' => '/alojamientos/',
-      'gl' => '/aloxamentos/',
-      'en' => '/accommodation/'
-    ),
-    'rtypeAppRestaurant' => array(
-      'default' => '/comidas/',
-      'en' => '/food/'
-    ),
-    'rtypeAppEspazoNatural' => array(
-      'default' => '/naturaleza/',
-      'gl' => '/natureza/',
-      'en' => '/nature/'
-    ),
-    'rtypeAppLugar' => array(
-      'default' => '/rincones/',
-      'gl' => '/recunchos/',
-      'en' => '/places/'
-    )
-  )
-);
-
-cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
-  array(
-    'default' => array(
-      'multimedia' => array('rtypeUrl', 'rtypeFile'),
-      'eventos' => array(),
-      'base' => array()
-    ),
-    'rtypeAppHotel' => array(
-      'multimedia' => array(),
-      'eventos' => array(),
-      'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
-    ),
-    'rtypeAppRestaurant' => array(
-      'multimedia' => array(),
-      'eventos' => array(),
-      'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
-    ),
-    'rtypeAppEspazoNatural' => array(
-      'multimedia' => array(),
-      'eventos' => array(),
-      'base' => array()
-    ),
-    'rtypeAppLugar' => array(
-      'multimedia' => array(),
-      'eventos' => array(),
-      'base' => array()
-    )
-  )
-);
-
-// En setup.*
-// cogumeloSetSetupValue( 'modName:level1:level2', $value );
-// $value = cogumeloGetSetupValue( 'modName:level1:level2' );
-
-// En codigo cogumelo
-// Cogumelo::setSetupValue( 'modName:level1:level2', $value );
-// $value = Cogumelo::getSetupValue( 'modName:level1:level2' );
