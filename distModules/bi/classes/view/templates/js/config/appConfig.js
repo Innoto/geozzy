@@ -45,6 +45,10 @@ define([], function () {
         DATE_FORMAT: 'D/M/YYYY HH:00:00',
         LOCALE: 'es',
 
+        DEFAULT_MAP_CENTER_LAT: 42.7597482,
+        DEFAULT_MAP_CENTER_LNG: -8.2016903,
+        DEFAULT_MAP_ZOOM: 8,
+
         METRICS_CACHE_EXPIRATION: weekMilis,
 
         FILTER_EXPLORERS_FILTERS_ID: 19,

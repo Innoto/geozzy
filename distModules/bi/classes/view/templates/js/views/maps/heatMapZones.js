@@ -101,8 +101,8 @@ define([
             //* If there is some data, is rendered and centered on the first bounds element
             } else {
                 this.map = new L.Map(this.$map[0], {
-                    center: new L.LatLng(this.explorers[0].bounds[0][0], this.explorers[0].bounds[0][1]),
-                    zoom: 10,
+                    center: new L.LatLng(Config.DEFAULT_MAP_CENTER_LAT,Config.DEFAULT_MAP_CENTER_LNG),
+                    zoom: Config.DEFAULT_MAP_ZOOM,
                     layers: [baseLayer]
                 });
             }
