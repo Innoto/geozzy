@@ -114,8 +114,12 @@ geozzy.biMetrics.controller.resource = geozzy.biMetrics.controller.biMetricsCont
   eventAccessed: function( id, section  ) {
     var that = this;
 
+
+    // random time spent :P
+    var satayTime = 130 * Math.random();
+
     that.addMetric({
-      duration:30000/1000, // 20 seconds
+      duration: satayTime,
       resourceId: id,
       section: section,
       event: 'accessed_total'
