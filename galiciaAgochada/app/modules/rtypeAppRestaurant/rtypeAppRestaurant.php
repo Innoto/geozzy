@@ -20,11 +20,11 @@ class rtypeAppRestaurant extends Module {
     'en' => 'Restaurant',
     'gl' => 'Restaurante'
   );
-
+/*
   public $collectionRTypeFilter = array(
     'rtypeAppHotel', 'rtypeAppRestaurant'
   );
-
+*/
 
   public function __construct() {
   }

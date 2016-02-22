@@ -330,26 +330,6 @@ class GeozzyCollectionView extends View
       }
     }
 
-
-    /*
-    if( !$form->existErrors()) {
-      $extraDataArray1 = array('collection' => $elemId, 'name' => 'datoExtra1');
-      foreach( $form->langAvailable as $langId ) {
-        $extraDataArray1['value_'.$langId ] = $form->getFieldValue( 'datoExtra1_'.$langId );
-      }
-      $collection->setterDependence( 'id', new extraDataModel( $extraDataArray1 ) );
-      $affectsDependences = true;
-
-      $extraDataArray2 = array('collection' => $elemId, 'name' => 'datoExtra2');
-      foreach( $form->langAvailable as $langId ) {
-        $extraDataArray2['value_'.$langId ] = $form->getFieldValue( 'datoExtra2_'.$langId );
-      }
-      $collection->setterDependence( 'id', new extraDataModel( $extraDataArray2 ) );
-      $affectsDependences = true;
-    }
-    */
-
-
     if( !$form->existErrors()) {
       if( $collection->save( array( 'affectsDependences' => $affectsDependences ) ) ) {
         $form->addFormError( 'No se ha podido guardar el collection.','formError' );
@@ -366,14 +346,16 @@ class GeozzyCollectionView extends View
 
     switch($collectionType){
       case 'multimedia':
-        $filter = array( "rtypeUrl", "rtypeFile" );
+        //$filter = array( "rtypeUrl", "rtypeFile" );
+        $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:multimedia' );
         break;
       case 'base':
         if( $filterRTypeParent && class_exists($filterRTypeParent) ){
-          $rtypeMod = new $filterRTypeParent();
+          /*$rtypeMod = new $filterRTypeParent();
           $rtypeFilter = (isset($rtypeMod->collectionRTypeFilter)) ? $rtypeMod->collectionRTypeFilter : false;
           $rtypeFilter = ( is_array($rtypeFilter) && count($rtypeFilter)>0 ) ? $rtypeFilter : false;
-          $filter = $rtypeFilter;
+          $filter = $rtypeFilter;*/
+          $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':base' );
         }else{
           $filter = false;
         }

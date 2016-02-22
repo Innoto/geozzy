@@ -69,7 +69,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
 
     // set id search reference.
-    $tabla->setSearchRefId('tableSearch');
+    $tabla->setSearchRefId('find');
 
       // set table Actions
     $publish = $useraccesscontrol->checkPermissions( array('resource:publish'), 'admin:full');

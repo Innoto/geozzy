@@ -63,7 +63,7 @@ class AdminViewPage extends AdminViewMaster {
     $tabla->setTabs(__('published'), array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
     // set id search reference.
-    $tabla->setSearchRefId('tableSearch');
+    $tabla->setSearchRefId('find');
 
     // set table Actions
     $tabla->setActionMethod(__('Publish'), 'changeStatusPublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>1 ))');

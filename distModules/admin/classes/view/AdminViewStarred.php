@@ -80,7 +80,7 @@ class AdminViewStarred extends AdminViewMaster
     $tabla->setTabs(__('id'), array('*'=> __('All') ), '*');
 
     // set id search reference.
-    $tabla->setSearchRefId('tableSearch');
+    $tabla->setSearchRefId('find');
 
      // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');

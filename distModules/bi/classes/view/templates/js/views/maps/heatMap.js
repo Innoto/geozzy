@@ -33,8 +33,8 @@ define([
             // If there is no data to show, is rendered a big world map empty
             if (_.size(this.data) < 1) {
                 this.map = new L.Map(this.$map[0], {
-                    center: new L.LatLng(30, -10),
-                    zoom: 2,
+                    center: new L.LatLng(Config.DEFAULT_MAP_CENTER_LAT,Config.DEFAULT_MAP_CENTER_LNG),
+                    zoom: Config.DEFAULT_MAP_ZOOM,
                     layers: [baseLayer]
                 });
             // If there is some data, is rendered and centered on the first element of it

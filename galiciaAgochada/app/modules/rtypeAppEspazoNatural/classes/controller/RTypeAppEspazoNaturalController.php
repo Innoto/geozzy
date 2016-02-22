@@ -125,6 +125,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $formFieldsNames[] = 'externalUrl';
     $formFieldsNames[] = 'topics';
     $formFieldsNames[] = 'starred';
+    $formFieldsNames[] = 'rTypeIdName';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
