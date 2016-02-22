@@ -189,9 +189,10 @@ class RExtViewAltAppHome {
 
       $viewBlockInfo['template']['full']->assign('rdAutenticaGastronomia', $resourceArrayGastronomia);
 
-      $viewBlockInfo['template']['full']->addClientScript('js/rextViewAltAppHome.js', 'rextView' );
-      $viewBlockInfo['template']['full']->addClientStyles('styles/rextViewAltAppHome.less', 'rextView' );
+      $viewBlockInfo['template']['full']->addClientScript('js/portada.js' );
+      $viewBlockInfo['template']['full']->addClientStyles('styles/masterPortada.less' );
       $viewBlockInfo['template']['full']->setTpl( 'rExtViewAltAppHome.tpl', 'rextView' );
+
 
     return $viewBlockInfo;
   }
