@@ -2,6 +2,16 @@
 
 $rExtViewAppInitialTerms = array(
   array(
+    'idName' => 'viewAppHome',
+    // Class: RExtViewAltAppMylandpage, File: RExtViewAltAppMylandpage.php
+    // tpl file name: rExtViewAltAppMylandpage.tpl
+    'name' => array(
+      'en' => 'Use Home',
+      'es' => 'Usar Portada',
+      'gl' => 'Usar Portada'
+    )
+  ),
+  array(
     'idName' => 'tplAppMytemplate',
     // tpl: rExtViewAltAppMytemplate.tpl
     'name' => array(
