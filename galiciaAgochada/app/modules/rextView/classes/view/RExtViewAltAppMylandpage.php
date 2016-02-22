@@ -45,6 +45,10 @@ class RExtViewAltAppMylandpage {
     // Definir variables nuevas
     $viewBlockInfo['template']['full']->assign( 'altVar', 'Var creada en el alterView' );
 
+    // Añadir estilos
+    // $viewBlockInfo['template']['full']->addClientScript( 'js/rExtViewAltAppMylandpage.js', 'rextView' );
+    $viewBlockInfo['template']['full']->addClientStyles( 'styles/rExtViewAltAppMylandpage.less', 'rextView' );
+
     //
     // O puede crearse una estructura $viewBlockInfo nueva desde cero
     //
