@@ -22,7 +22,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
   templateSummary: _.template(
     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
     "<div class='<%= filterClass %>-Summary'>"+
-      "<div class='icon'> <img class='icon' src='/cgmlImg/<%- option.icon %>/typeIcon/icon.png'> </div>" +
+      "<div class='icon'> <img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- option.icon %>/typeIcon/icon.png'> </div>" +
       "<div class='name'> <%- option.name %> </div>" +
     "</div>"
   ),
@@ -123,8 +123,8 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
       height: 383,
       textReset: that.options.textReset,
       htmlIconArrow: '<i class="fa fa-caret-down"></i>',
-      imgSrc: media+'/module/rextAppZona/img/gal.svg',
-      imgTransparent: media+'/module/rextAppZona/img/transparent.png'
+      imgSrc: cogumelo.publicConf.media+'/module/rextAppZona/img/gal.svg',
+      imgTransparent: cogumelo.publicConf.media+'/module/rextAppZona/img/transparent.png'
     });
 
 

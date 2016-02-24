@@ -17,9 +17,9 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
       "<% if(defaultOption){ %> "+
         "<li data-term-id='<%- defaultOption.value %>' > "+
           "<div class='title'><%- defaultOption.title %></div> "+
-          "<img class='icon' src='/cgmlImg/<%- defaultOption.icon %>/typeIcon/icon.png'> " +
-          "<img class='iconHover' src='/cgmlImg/<%- defaultOption.icon %>/typeIconHover/iconHover.png'> " +
-          "<img class='iconSelected' src='/cgmlImg/<%- defaultOption.icon %>/typeIconSelected/iconSelected.png'> " +
+          "<img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- defaultOption.icon %>/typeIcon/icon.png'> " +
+          "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- defaultOption.icon %>/typeIconHover/iconHover.png'> " +
+          "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- defaultOption.icon %>/typeIconSelected/iconSelected.png'> " +
         "</li>"+
       "<%}%>"+
       "<%= options %>"+
@@ -29,9 +29,9 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   templateOption: _.template(
     "<li data-term-id='<%- id %>'>"+
       "<div class='title'><%- name %></div> "+
-      "<img class='icon' src='/cgmlImg/<%- icon %>/typeIcon/icon.png'> " +
-      "<img class='iconHover' src='/cgmlImg/<%- icon %>/typeIconHover/iconHover.png'> " +
-      "<img class='iconSelected' src='/cgmlImg/<%- icon %>/typeIconSelected/iconSelected.png'> " +
+      "<img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIcon/icon.png'> " +
+      "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIconHover/iconHover.png'> " +
+      "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIconSelected/iconSelected.png'> " +
     "</li>"
   ),
 

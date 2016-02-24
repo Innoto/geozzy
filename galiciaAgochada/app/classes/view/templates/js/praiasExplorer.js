@@ -124,7 +124,7 @@
             var retObj = false;
 
             retObj = {
-              url: '/media/img/chapas/chapaPraias.png',
+              url: cogumelo.publicConf.media+'/img/chapas/chapaPraias.png',
               // This marker is 20 pixels wide by 36 pixels high.
               size: new google.maps.Size(24, 24),
               // The origin for this image is (0, 0).
@@ -162,7 +162,8 @@
           '<div class="container">'+
             '<div class="row">'+
               '<div class="col-md-12 explorerTitle" >'+
-                '<img class="iconTitleBar img-responsive" alt="'+name+'" src="/media/img/praiasIcon.png"></img>'+
+                '<img class="iconTitleBar img-responsive" alt="'+name+'" '+
+                  ' src="'+cogumelo.publicConf.media+'/img/praiasIcon.png"></img>'+
                 '<h1>'+name+'</h1>'+
               '</div>'+
             '</div>'+

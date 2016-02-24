@@ -11,7 +11,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     /*
     '<div data-resource-id="<%- id %>" class="accessButton col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
       '<div class="elementImg">'+
-        '<img class="img-responsive" src="/cgmlImg/<%- img %>/fast_cut/.jpg" />'+
+        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/fast_cut/.jpg" />'+
         '<ul class="elementOptions container-fluid">'+
           '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
         '</ul>'+
@@ -22,7 +22,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     '</div>'),*/
     '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
       '<div class="elementImg">'+
-        '<img class="img-responsive" src="/cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
+        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
         '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
           '<ul class="elementOptions container-fluid">'+
             '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
@@ -31,7 +31,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       '</div>'+
       '<div class="elementInfo">'+
         '<div class="elementTitle"><%-title%></div>'+
-        '<div class="elementType"><img src="/cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
+        '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
         '<% if( averagePrice ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
       '</div>'+
     '</div>'),

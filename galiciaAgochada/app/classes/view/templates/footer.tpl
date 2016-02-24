@@ -4,7 +4,7 @@
       <nav>
         <div class="row">
           <div class="col-sm-4">
-            <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"></img>
+            <img alt="logo" class="logo img-responsive" src="{$cogumelo.publicConf.media}/img/logoGA.png"></img>
             <h3>{t}Acerca de{/t}</h3>
             <ul>
               <li><a href="#"> {t}Contacto{/t} </a></li>
@@ -42,15 +42,24 @@
       <div class="row logosFooter">
         <div class="col-xs-4 poweredGzzy clearfix">
           <span>powered by</span>
-          <img class="logoGzzy img-responsive" src="/media/img/logoGzzy.png">
+          <img class="logoGzzy img-responsive" src="{$cogumelo.publicConf.media}/img/logoGzzy.png">
         </div>
         <div class="supportEnisa col-xs-4 clearfix">
-          <img class="logoEnisa img-responsive" src="/media/img/ENISA.png">
+          <img class="logoEnisa img-responsive" src="{$cogumelo.publicConf.media}/img/ENISA.png">
         </div>
         <div class="supportFeder col-xs-4 clearfix">
-          <img class="logoFeder img-responsive" src="/media/img/FEDER.png">
+          <img class="logoFeder img-responsive" src="{$cogumelo.publicConf.media}/img/FEDER.png">
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<pre style="display:none">
+SMARTY:
+
+{$cogumelo|@print_r}
+</pre>
+
