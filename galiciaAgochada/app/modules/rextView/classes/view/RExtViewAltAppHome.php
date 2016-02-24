@@ -1,5 +1,5 @@
 <?php
-Cogumelo::load('view/MasterView.php');
+Cogumelo::load('view/MasterPageView.php');
 
 class RExtViewAltAppHome {
 
@@ -25,9 +25,9 @@ class RExtViewAltAppHome {
   public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
     //error_log( "RExtViewAltAppHome: alterViewBlockInfo( viewBlockInfo, $templateName )" );
 
-    $masterView = new MasterView(false);
-    $masterView->home();
-    $viewBlockInfo['template']['full'] = $explorerView->template;
+    $masterPageView = new MasterPageView(false);
+    $masterPageView->home();
+    $viewBlockInfo['template']['full'] = $masterPageView->template;
 
     return $viewBlockInfo;
   }

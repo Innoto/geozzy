@@ -11,7 +11,7 @@ Cogumelo::autoIncludes();
 /**
 * Clase Master to extend other application methods
 */
-class MasterView extends View
+class MasterPageView extends View
 {
 
   public function __construct( $baseDir ) {
