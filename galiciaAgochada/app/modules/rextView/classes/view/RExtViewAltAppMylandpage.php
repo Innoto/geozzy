@@ -9,7 +9,7 @@ class RExtViewAltAppMylandpage {
 
 
   public function __construct( $defRExtViewCtrl ){
-    error_log( 'RExtViewAltAppMylandpage::__construct' );
+    //error_log( 'RExtViewAltAppMylandpage::__construct' );
     $this->defRExtViewCtrl = $defRExtViewCtrl;
     $this->defRTypeCtrl = $this->defRExtViewCtrl->defRTypeCtrl;
     $this->defResCtrl = $this->defRTypeCtrl->defResCtrl;
@@ -21,12 +21,14 @@ class RExtViewAltAppMylandpage {
     Alteramos la visualizacion el Recurso
    */
   public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
-    error_log( "RExtViewAltAppMylandpage: alterViewBlockInfo( viewBlockInfo, $templateName )" );
+    //error_log( "RExtViewAltAppMylandpage: alterViewBlockInfo( viewBlockInfo, $templateName )" );
     /*
       $viewBlockInfo = array(
         'template' => array objTemplate,
         'data' => resourceData,
-        'ext' => array rExt->viewBlockInfo
+        'ext' => array rExt->viewBlockInfo,
+        'header' => true, // true, false or html content
+        'footer' => true  // true, false or html content
       );
     */
 
@@ -57,4 +59,3 @@ class RExtViewAltAppMylandpage {
   }
 
 } // class RExtViewAltAppMylandpage
-

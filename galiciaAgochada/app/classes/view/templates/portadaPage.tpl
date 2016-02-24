@@ -1,10 +1,14 @@
 
-
-{block name="bodyContent"}
   <span id="inicio"></span>
   <section class="gzzSec secImage">
     <!-- Carousel items -->
     <div id="carousel" class="s-carousel carousel slide carousel-fade" data-ride="carousel" data-interval="5000" data-pause="false">
+      <!--<ol class="carousel-indicators">
+        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel" data-slide-to="1"></li>
+        <li data-target="#carousel" data-slide-to="2"></li>
+        <li data-target="#carousel" data-slide-to="3"></li>
+      </ol>-->
       <div class="carousel-inner">
         <div class="item active"></div>
         <div class="item"></div>
@@ -16,8 +20,9 @@
 
     <div class="container">
       <div class="intro">
-        <h2>{$res.data.title}</h2>
-        <p class="description">{$res.data.mediumDescription}</p>
+        <h2>{t}Galicia{/t}</h2>
+        <p>{t}Das postas do sol en Lapamán ás vistas de Saiáns{/t}</p>
+        <p>{t}Ruta polos mellores chiringuitos de Galicia{/t}</p>
       </div>
       <a class="introLinkSegredos" href="#segredos">{t}Descubre os nosos segredos{/t} <i class="fa fa-caret-down"></i></a>
     </div>
@@ -142,7 +147,7 @@
   <span class="anchor" id="recomendamos"></span>
   <section class="gzzSec secRecomendamos">
     <div class="container">
-      {if isset($rdRecantosConEstilo) }
+      {if isset($rdRecantosConEstilo) && $rdRecantosConEstilo!=false}
         <div class="destContainer destRecantosConEstilo">
           <h2>{t}Recantos con Estilo{/t}</h2>
           <div class="owl-carousel">
@@ -167,7 +172,7 @@
           </div>
         </div>
       {/if}
-      {if isset($rdFestaRachada) }
+      {if isset($rdFestaRachada) && $rdFestaRachada!=false}
         <div class="destContainer destFestaRachada">
           <h2>{t}Festa Rachada{/t}</h2>
           <div class="owl-carousel">
@@ -192,7 +197,7 @@
           </div>
         </div>
       {/if}
-      {if isset($rdPraiasDeEnsono) }
+      {if isset($rdPraiasDeEnsono) && $rdPraiasDeEnsono!=false }
         <div class="destContainer destPraiasDeEnsono">
           <h2>{t}Praias de Ensono{/t}</h2>
           <div class="owl-carousel">
@@ -218,7 +223,7 @@
         </div>
       {/if}
 
-      {if isset($rdPaisaxesEspectaculares) }
+      {if isset($rdPaisaxesEspectaculares) && $rdPaisaxesEspectaculares!=false }
         <div class="destContainer destPaisaxesEspectaculares">
           <h2>{t}Paisaxes Espectaculares{/t}</h2>
           <div class="owl-carousel">
@@ -243,7 +248,7 @@
           </div>
         </div>
       {/if}
-      {if isset($rdAloxamentoConEncanto) }
+      {if isset($rdAloxamentoConEncanto) && $rdAloxamentoConEncanto!=false }
         <div class="destContainer destAloxamentoConEncanto">
           <h2>{t}Aloxamentos con Encanto{/t}</h2>
           <div class="owl-carousel">
@@ -268,7 +273,7 @@
           </div>
         </div>
       {/if}
-      {if isset($rdAutenticaGastronomia) }
+      {if isset($rdAutenticaGastronomia) && $rdAutenticaGastronomia!=false }
       <div class="destContainer destAutenticaGastronomia">
         <h2>{t}Auténtica Gastronomía{/t}</h2>
         <div class="owl-carousel">
@@ -295,5 +300,3 @@
       {/if}
     </div>
   </section>
-
-{/block}
