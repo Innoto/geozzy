@@ -17,7 +17,7 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
   tplElement: _.template(
     '<div data-resource-id="<%- id %>" class="col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
       '<div class="elementImg">'+
-        '<img class="img-responsive" src="/cgmlImg/<%- img %>/fast_cut/<%- img %>.jpg" />'+
+        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/fast_cut/<%- img %>.jpg" />'+
         '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
           '<ul class="elementOptions container-fluid">'+
             '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+

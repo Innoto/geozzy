@@ -21,7 +21,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
   templateSummary: _.template(
     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-    "<span class='<%= filterClass %>-Summary'><img class='icon' src='/cgmlImg/<%- option.icon %>/typeIcon/icon.png'> <%- option.name %> </span>"
+    "<span class='<%= filterClass %>-Summary'><img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- option.icon %>/typeIcon/icon.png'> <%- option.name %> </span>"
   ),
 
 

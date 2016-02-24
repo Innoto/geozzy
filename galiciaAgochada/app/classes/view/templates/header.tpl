@@ -13,11 +13,11 @@
         <!-- LOGO in brand section -->
         {if isset($isFront) && $isFront}
         <a href="#inicio" class="navbar-brand page-scroll">
-          <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"/>
+          <img alt="logo" class="logo img-responsive" src="{$cogumelo.publicConf.media}/img/logoGA.png"/>
         </a>
         {else}
         <a href="/{$GLOBAL_C_LANG}/#inicio" class="navbar-brand page-scroll">
-          <img alt="logo" class="logo img-responsive" src="/media/img/logoGA.png"/>
+          <img alt="logo" class="logo img-responsive" src="{$cogumelo.publicConf.media}/img/logoGA.png"/>
         </a>
         {/if}
       </div>

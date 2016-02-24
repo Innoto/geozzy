@@ -120,7 +120,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
 
 
-    if( that.options.clusterize != false ) {
+    if( that.options.clusterize !== false ) {
       that.renderWithCluster();
 
     }
@@ -396,10 +396,6 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
 
 
   chooseMarker: function( e ) {
-
-    var that = this;
-
-
     var that = this;
     var retObj;
 
@@ -409,7 +405,7 @@ geozzy.explorerDisplay.mapView = Backbone.View.extend({
     }
     else {
       retObj = {
-        url: '/mediaCache/module/admin/img/geozzy_marker.png',
+        url: cogumelo.publicConf.media+'/module/admin/img/geozzy_marker.png',
         // This marker is 20 pixels wide by 36 pixels high.
         size: new google.maps.Size(30, 36),
         // The origin for this image is (0, 0).
