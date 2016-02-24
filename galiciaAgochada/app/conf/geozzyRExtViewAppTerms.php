@@ -70,8 +70,8 @@ $rExtViewAppInitialTerms = array(
       'es' => 'Usar Explorador de TodosSegredos',
       'gl' => 'Usar Explorador de TodosSegredos'
     )
-  ),
-  array(
+  )
+  /*array(
     'idName' => 'tplAppMytemplate',
     // tpl: rExtViewAltAppMytemplate.tpl
     'name' => array(
@@ -89,7 +89,7 @@ $rExtViewAppInitialTerms = array(
       'es' => 'Usar Mylandpage',
       'gl' => 'Usar Mylandpage'
     )
-  )
+  )*/
 );
 
 /*
