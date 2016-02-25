@@ -10,6 +10,6 @@
   {include file="footer.tpl"}
 </footer>
 
-<script rel="false" type="text/javascript" src="/media/js/resource.js"></script>
+<script rel="false" type="text/javascript" src="{$cogumelo.publicConf.media}/js/resource.js"></script>
 
 <!-- /appResourceBridgePage-blk.tpl en appResourceBridge module -->

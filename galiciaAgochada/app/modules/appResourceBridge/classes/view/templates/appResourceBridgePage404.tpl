@@ -2,7 +2,7 @@
 
 
 {block name="headClientIncludes" append}
-  <script rel="false" type="text/javascript" src="/media/js/resource.js"></script>
+  <script rel="false" type="text/javascript" src="{$cogumelo.publicConf.media}/js/resource.js"></script>
 {/block}
 
 {block name="headTitle" append}{$title404}{/block}
