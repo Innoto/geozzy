@@ -8,14 +8,14 @@ class initResources extends Module {
 
 
   public function __construct() {
-    $this->addUrlPatterns( '#^initResources$#', 'view:InitResourcesView::generateResources' );
+    //$this->addUrlPatterns( '#^initResources$#', 'view:InitResourcesView::generateResources' );
   }
 
 
   public function moduleRc() {
-    /*initResources::load('controller/InitResourcesController.php');
+    initResources::load('controller/InitResourcesController.php');
     $initResources = new InitResourcesController();
-    $initResources->generateResources();*/
+    $initResources->generateResources();
   }
 
 }
