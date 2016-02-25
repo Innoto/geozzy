@@ -1,4 +1,11 @@
 <?php
+// En setup.*
+// cogumeloSetSetupValue( 'modName:level1:level2', $value );
+// $value = cogumeloGetSetupValue( 'modName:level1:level2' );
+
+// En codigo cogumelo
+// Cogumelo::setSetupValue( 'modName:level1:level2', $value );
+// $value = Cogumelo::getSetupValue( 'modName:level1:level2' );
 
 // Framework Path
 //
@@ -24,6 +31,17 @@ cogumeloSetSetupValue( 'mod:mediaserver', array(
   'tmpCachePath' => APP_TMP_PATH.'/mediaCache',
   'minimifyFiles' => false // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
 ));
+
+//PORTO
+if( cogumeloGetSetupValue('mod:mediaserver:productionMode') ) {
+  cogumeloSetSetupValue( 'mod:mediaserver:notCacheJs', false );
+  cogumeloSetSetupValue( 'mod:mediaserver:host', 'http://media.galiciaagochada:84/' );
+}
+else {
+  cogumeloSetSetupValue( 'mod:mediaserver:notCacheJs', true );
+  cogumeloSetSetupValue( 'mod:mediaserver:host', '/' );
+}
+
 // A eliminar:
 define( 'MEDIASERVER_PRODUCTION_MODE', cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) );
 define( 'MEDIASERVER_NOT_CACHE_JS', cogumeloGetSetupValue( 'mod:mediaserver:notCacheJs' ) );

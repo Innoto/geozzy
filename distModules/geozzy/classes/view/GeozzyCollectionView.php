@@ -46,11 +46,12 @@ class GeozzyCollectionView extends View
     $resControl = new ResourceController();
 
     $resOptions = array();
-    while( $res = $elemList->fetch() ){
+    while( $res = $elemList->fetch() ) {
 
       $thumbSettings = array(
-        'profile' => 'square_cut',
-        'image' => $res->getter( 'image' )
+        'profile' => 'squareCut',
+        'imageId' => $res->getter( 'image' ),
+        'imageName' => $res->getter( 'image' ).'.jpg'
       );
       $resDataExtArray = $res->getterDependence('id', 'RExtUrlModel');
       if( $resDataExt = $resDataExtArray[0] ){
@@ -61,6 +62,7 @@ class GeozzyCollectionView extends View
         'text' => $res->getter( 'title', LANG_DEFAULT ),
         'data-image' => $resControl->getResourceThumbnail( $thumbSettings )
       );
+
       $resOptions[ $res->getter( 'id' ) ] = $elOpt;
     }
 

@@ -25,10 +25,10 @@
 {/block}
 
 {block name="socialMeta" append}
-  <meta property="og:url" content="{$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}" />
+  <meta property="og:url" content="{$site_host}{$res.data["urlAlias"]}" />
   <meta property="og:image" content="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
-  <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
-  <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}" />
+  <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb"]}" />
+  <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb"]}" />
 {/block}
 
 <!-- rTypeViewBlock.tpl en rTypeEspazoNatural module -->
@@ -60,7 +60,7 @@
         <div class="arrow-left"></div>
         <p>{t}volver{/t}</p>
       </a>
-    </div>  
+    </div>
   </section>
 
   <section class="contentSec container gzSection">
@@ -84,14 +84,14 @@
             <div class="share-open" style="display:none;">
               {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}
                 <div class="share-net fb">
-                  <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer.php?u={$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}&t={$res.ext.rextSocialNetwork.data["textFb_$GLOBAL_C_LANG"]}">
+                  <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer.php?u={$site_host}{$res.data["urlAlias"]}&t={$res.ext.rextSocialNetwork.data["textFb"]}">
                       <i class="fa fa-facebook-square"></i>
                   </a>
                 </div>
               {/if}
               {if isset($res.ext.rextSocialNetwork.data.activeTwitter) && $res.ext.rextSocialNetwork.data.activeTwitter}
                 <div class="share-net twitter">
-                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$site_host}{$res.data["urlAlias_$GLOBAL_C_LANG"]}&text={$res.ext.rextSocialNetwork.data["textTwitter_$GLOBAL_C_LANG"]}">
+                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$site_host}{$res.data["urlAlias"]}&text={$res.ext.rextSocialNetwork.data["textTwitter"]}">
                     <i class="fa fa-twitter-square"></i>
                   </a>
                 </div>

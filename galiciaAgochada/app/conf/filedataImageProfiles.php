@@ -47,32 +47,32 @@ $IMAGE_PROFILES = array(
     'rasterColor' => '#000000', 'backgroundColor' => '#FFFFFF',
     'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
   'fast_cut' => array( 'width' => 400, 'height' => 300, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
-  'square_cut' => array( 'width' => 128, 'height' => 128, 'cut' => true ),
+  'squareCut' => array( 'width' => 128, 'height' => 128, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
   'exp1' => array( 'width' => 200, 'height' => 150 ),
   'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
 
 
   'explorerXantaresImg' => array( 'width' => 530, 'height' => 213, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
 
-/* PERFILES PARA FICHA DE RECURSO */
-'typeIconMini' => array(
-  'width' => 24,
-  'height' => 24,
-  'saveFormat' => 'PNG' ),
-'typeIconCategory' => array(
-    'width' => 32,
-    'height' => 32,
-    'padding' => 1,
+  /* PERFILES PARA FICHA DE RECURSO */
+  'typeIconMini' => array(
+    'width' => 24,
+    'height' => 24,
     'saveFormat' => 'PNG' ),
+  'typeIconCategory' => array(
+      'width' => 32,
+      'height' => 32,
+      'padding' => 1,
+      'saveFormat' => 'PNG' ),
+  'imgMultimediaGallery' => array(
+      'width' => 700,
+      'height' => 400,
+      'cut' => false,
+      'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
 
-'imgMultimediaGallery' => array(
-    'width' => 700,
-    'height' => 400,
-    'cut' => false ),
 
 
-
-/*-----------------------------------------TEMP ----------------------------------------------------------------------*/
+  /*-----------------------------------------TEMP ----------------------------------------------------------------------*/
   'typeIcon' => array(
     'rasterColor' => '#ffffff',
     'width' => 36, 'height' => 36,
@@ -99,7 +99,7 @@ $IMAGE_PROFILES = array(
 
 
 
-/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
+  /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
   'typeIconXantares' => array(
     'rasterColor' => '#ffffff',
     'width' => 36, 'height' => 36,
@@ -129,7 +129,7 @@ $IMAGE_PROFILES = array(
     'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares.png',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
 
-/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR ALOXAMENTOS----------------------------------------*/
+  /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR ALOXAMENTOS----------------------------------------*/
   'typeIconAloxamentos' => array(
     'rasterColor' => '#ffffff',
     'width' => 36, 'height' => 36,
@@ -160,45 +160,42 @@ $IMAGE_PROFILES = array(
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
 
 
-/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
+  /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
   'explorerPaisaxesMarker' => array(
     'width' => 24, 'height' => 24, 'cut' => false,
     'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaPaisaxes.png',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
 
-    'filterTypePaisaxes' => array(
-      'width' => 32, 'height' => 32, 'cut' => false,
-      'rasterColor' => '#FFFFFF', 'padding' => 0,
-      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+  'filterTypePaisaxes' => array(
+    'width' => 32, 'height' => 32, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 0,
+    'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
 
-    'filterTypePaisaxes2' => array(
-      'width' => 24, 'height' => 24, 'cut' => false,
-      'rasterColor' => '#95C131', 'padding' => 0,
-      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+  'filterTypePaisaxes2' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#95C131', 'padding' => 0,
+    'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
 
 
-/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
+  /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
   'explorerRinconsMarker' => array(
     'width' => 24, 'height' => 24, 'cut' => false,
     'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRincons.png',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
 
-    'filterTypeRincons' => array(
-      'width' => 32, 'height' => 32, 'cut' => false,
-      'rasterColor' => '#FFFFFF', 'padding' => 0,
-      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+  'filterTypeRincons' => array(
+    'width' => 32, 'height' => 32, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 0,
+    'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
 
-    'filterTypeRincons2' => array(
-      'width' => 24, 'height' => 24, 'cut' => false,
-      'rasterColor' => '#6888C8', 'padding' => 0,
-      'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
-
-
-
-/*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
+  'filterTypeRincons2' => array(
+    'width' => 24, 'height' => 24, 'cut' => false,
+    'rasterColor' => '#6888C8', 'padding' => 0,
+    'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
 
 
 
+  /*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
   'explorerMarker' => array(
     'width' => 24, 'height' => 24, 'cut' => false,
     'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/chapa_paisaxes.png',
@@ -209,12 +206,13 @@ $IMAGE_PROFILES = array(
     'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
   */
+
   'resourceLg' => array( 'width' => 1200, 'height' => 500),
   'resourceMd' => array( 'width' => 992, 'height' => 400),
   'resourceSm' => array( 'width' => 768, 'height' => 300),
 
 
-
+  /*
   // TEST
   'svgTest' => array(
     'width' => 100, 'height' => 64,
@@ -225,9 +223,6 @@ $IMAGE_PROFILES = array(
     'backgroundColor' => '#F000F0',
     'saveFormat' => 'PNG', 'cache' => false
   ),
-
-
-
   // CHAPA TEST
   'chapaTest' => array(
     'width' => 24, 'height' => 24,
@@ -241,9 +236,7 @@ $IMAGE_PROFILES = array(
     //'backgroundImg' => '/app/classes/view/templates/img/chapa_paisaxes.png',
     'saveFormat' => 'PNG', 'cache' => false
   ),
-
-
-
+  */
   'ancho' => array( 'width' => 400, 'height' => 200 ),
   'alto' => array( 'width' => 200, 'height' => 400 )
 );

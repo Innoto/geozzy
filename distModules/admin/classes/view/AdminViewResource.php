@@ -331,21 +331,23 @@ class AdminViewResource extends AdminViewMaster {
     }
 
     if( !$form->existErrors() ) {
+      $thumbImg = false;
+      //$imgDefault = false;
+      //$isYoutubeID = false;
+
+      $thumbSettings = array(
+        'profile' => 'squareCut'
+      );
 
       $rtypeControl = new ResourcetypeModel();
       $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $resource->getter('rTypeId') ) ) )->fetch();
-      $imgDefault = false;
-      $thumbImg = false;
-      $isYoutubeID = false;
-      $thumbSettings = array(
-        'profile' => 'square_cut'
-      );
-
-      if($resource->getter('image')){
-        $thumbSettings['image'] = $resource->getter('image');
+      if( $rTypeItem && $rTypeItem->getter('idName') === 'rtypeUrl' && $form->getFieldValue('rExtUrl_url') ) {
+        $thumbSettings['url'] = $form->getFieldValue('rExtUrl_url');
       }
-      if(($rTypeItem && $rTypeItem->getter('idName') === 'rtypeUrl') && $form->getFieldValue('rExtUrl_url')){
-        $thumbSettings['url'] = $form->getFieldValue('rExtUrl_url');      }
+      if( $resource->getter('image') ){
+        $thumbSettings['imageId'] = $resource->getter('image');
+        $thumbSettings['imageName'] = $resource->getter('image').'.jpg';
+      }
 
       $resCtrl = new ResourceController();
       $thumbImg = $resCtrl->getResourceThumbnail( $thumbSettings );
@@ -361,7 +363,9 @@ class AdminViewResource extends AdminViewMaster {
     // Enviamos el OK-ERROR a la BBDD y al formulario
     $resourceView->actionResourceFormSuccess( $form, $resource );
   }
-  public function ytVidId($url) {
+
+
+  public function ytVidId( $url ) {
     $p = '#^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$#';
     return (preg_match($p, $url, $coincidencias)) ? $coincidencias[1] : false;
   }
