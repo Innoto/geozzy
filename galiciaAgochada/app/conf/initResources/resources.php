@@ -77,9 +77,9 @@ $initResources = array(
     'idName' => 'praiasExplorer',
     'rType' => 'rtypePage',
     'title' => array(
-      'en' => 'Use Praias Praias',
-      'es' => 'Usar Praias de Rincons',
-      'gl' => 'Usar Praias de Rincons'
+      'en' => 'Use Praias Explorer',
+      'es' => 'Usar Explorador de Praias',
+      'gl' => 'Usar Explorador de Praias'
     ),
     'shortDescription' => array(),
     'img' => false,
@@ -94,9 +94,9 @@ $initResources = array(
     'idName' => 'paisaxesExplorer',
     'rType' => 'rtypePage',
     'title' => array(
-      'en' => 'Use Paisaxes Praias',
-      'es' => 'Usar Paisaxes de Rincons',
-      'gl' => 'Usar Paisaxes de Rincons'
+      'en' => 'Use Paisaxes Explorer',
+      'es' => 'Usar Explorador de Paisaxes',
+      'gl' => 'Usar Explorador de Paisaxes'
     ),
     'shortDescription' => array(),
     'img' => false,
@@ -108,16 +108,16 @@ $initResources = array(
     )
   ),
   array(
-    'idName' => 'paisaxesExplorer',
+    'idName' => 'segredosExplorer',
     'rType' => 'rtypePage',
     'title' => array(
-      'en' => 'Use Paisaxes Praias',
-      'es' => 'Usar Paisaxes de Rincons',
-      'gl' => 'Usar Paisaxes de Rincons'
+      'en' => 'Use Segredos Explorer',
+      'es' => 'Usar Explorador de Segredos',
+      'gl' => 'Usar Explorador de Segredos'
     ),
     'shortDescription' => array(),
     'img' => false,
-    'viewType' => 'viewAppPaisaxesExplorer',
+    'viewType' => 'viewAppSegredosExplorer',
     'urlAlias' => array(
       'en' => '/segredos',
       'es' => '/segredos',
