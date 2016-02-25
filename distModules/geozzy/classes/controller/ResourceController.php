@@ -46,7 +46,8 @@ class ResourceController {
 
     common::autoIncludes();
     form::autoIncludes();
-    user::autoIncludes();
+    //user::autoIncludes();
+    user::load('controller/UserAccessController.php');
     filedata::autoIncludes();
 
     global $C_LANG, $LANG_AVAILABLE; // Idioma actual, cogido de la url

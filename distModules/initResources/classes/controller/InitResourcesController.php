@@ -1,25 +1,11 @@
 <?php
-Cogumelo::load('coreView/View.php');
-Cogumelo::load('coreModel/DBUtils.php');
-
-common::autoIncludes();
-geozzy::autoIncludes();
 
 geozzy::load('controller/ResourceController.php');
 
-class InitResourcesView extends View
-{
+class InitResourcesController{
 
-  public function __construct( $base_dir ) {
-    parent::__construct($base_dir);
-  }
+  public function __construct(){
 
-  /**
-  * Evaluate the access conditions and report if can continue
-  * @return bool : true -> Access allowed
-  */
-  function accessCheck() {
-    return true;
   }
 
   public function generateResources(){
@@ -57,7 +43,6 @@ class InitResourcesView extends View
       $resource->save();
 
       // Unha vez creado o recurso, creamos as súas relacións
-
       // image
       if ($initRes['img']){
         $filedata = array(
@@ -81,8 +66,8 @@ class InitResourcesView extends View
       }
     }
 
-    echo 'Páxinas base creadas';
+    echo 'Base resources created';
 
   }
 
-}
+} // class InitResourcesController

@@ -17,9 +17,9 @@ $initResources = array(
     'img' => 'default.jpg',
     'viewType' => 'viewAppHome',
     'urlAlias' => array(
-      'en' => '/home',
-      'es' => '/home',
-      'gl' => '/home'
+      'en' => '/',
+      'es' => '/',
+      'gl' => '/'
     )
   ),
   array(

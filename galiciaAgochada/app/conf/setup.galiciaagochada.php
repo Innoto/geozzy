@@ -175,9 +175,8 @@ $C_ENABLED_MODULES = array(
   'table',
   'explorer',
   // testing module
-  'testData',
-  //initial resources
-  'initResources'
+  'testData'
+
 );
 
 // resource Extenssions
@@ -207,7 +206,9 @@ $C_RTYPE_MODULES = array(
   'rtypeAppRuta',
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
-  'rtypeAppFestaPopular'
+  'rtypeAppFestaPopular',
+  //initial resources
+  'initResources'
 );
 
 // Merge all modules
