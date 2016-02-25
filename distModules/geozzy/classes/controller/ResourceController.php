@@ -2,32 +2,18 @@
 geozzy::load( 'controller/RTypeController.php' );
 geozzy::load( 'controller/RExtController.php' );
 
-
-
 /**
 METODOS A CAMBIAR/ELIMINAR
-
 loadResourceObject
-
 getResourceData: Controlar ben translate e cargar a maioria dos datos
-
 formToTemplate
-
 loadAdminFormColumns
-
 getAdminFormColumns
-
 setBlockPartTemplate
-
 getViewBlock
-
 getResourceBlock
-
 getCollectionBlock
 **/
-
-
-
 
 
 class ResourceController {
@@ -120,7 +106,7 @@ class ResourceController {
       $this->resObj = ( $resList ) ? $resList->fetch() : null;
     }
 
-    return( $this->resObj != null &&  $this->resObj != false );
+    return( $this->resObj !== null &&  $this->resObj !== false );
   }
 
 
@@ -132,17 +118,16 @@ class ResourceController {
    * @return array OR false
    */
   public function getResourceData( $resId = false, $translate = false ) {
-    // error_log( "ResourceController: getResourceData()" );
+    error_log( "ResourceController: getResourceData()" );
 
-    if( !$this->resData && $this->loadResourceObject( $resId ) ) {
-      $resourceData = false;
-
+    if( (!$this->resData || ( $resId && $resId !== $this->resData['id'] ) ) && $this->loadResourceObject( $resId ) ) {
       $langDefault = LANG_DEFAULT;
       global $LANG_AVAILABLE;
       if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
         $langAvailable = array_keys( $LANG_AVAILABLE );
       }
 
+      /*
       if( $translate ) {
         $resourceData = array();
         foreach( $this->resObj->getCols() as $key => $value ) {
@@ -151,6 +136,14 @@ class ResourceController {
       }
       else {
         $resourceData = $this->resObj->getAllData( 'onlydata' );
+      }
+      */
+      $resourceData = $this->resObj->getAllData( 'onlydata' );
+      $resourceFields = $this->resObj->getCols();
+      foreach( $resourceFields as $key => $value ) {
+        if( !isset( $resourceData[ $key ] ) ) {
+          $resourceData[ $key ] = $this->resObj->getter( $key );
+        }
       }
 
       // Geograpic Location
@@ -168,11 +161,16 @@ class ResourceController {
           $urlLang = $urlAlias->getter('lang');
           if( $urlLang ) {
             $resourceData[ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
-            if ($urlLang == $this->actLang){
-              $resourceData[ 'urlAlias'] = $resourceData[ 'urlAlias_'.$urlLang ];
+            if( $urlLang === $this->actLang ) {
+              $resourceData['urlAlias'] = $resourceData[ 'urlAlias_'.$urlLang ];
             }
           }
         }
+      }
+      if( !isset($resourceData['urlAlias']) ) {
+        $resourceData['urlAlias'] = '/'.$this->actLang.'/'.
+          Cogumelo::getSetupValue('mod:geozzy:resource:directUrl').'/'.
+          $resourceData[ 'id' ].'#UAF';
       }
 
       // Cargo los datos de image dentro de los del recurso
@@ -1516,7 +1514,6 @@ class ResourceController {
       }
     }
 
-
     return( $viewBlockInfo );
   } // function getViewBlockInfo()
 
@@ -1576,32 +1573,24 @@ class ResourceController {
   } // function getResourceBlock( $resData )
 
   public function getResourceThumbnail( $param ) {
+    error_log( 'getResourceThumbnail :'.print_r($param,true));
+    $thumbImg = Cogumelo::getSetupValue('publicConf:vars:media').'/module/geozzy/img/default-multimedia.png';
 
-    $imgDefault = false;
-    $thumbImg = false;
-    $isYoutubeID = false;
-
-    if( array_key_exists( 'image', $param ) && $param['image'] && $param['image'] != 'null' ){
-      if( array_key_exists( 'profile', $param ) ){
-        $thumbImg = '/cgmlImg/'.$param['image'].'/'.$param['profile'].'/'.$param['image'];
-      }else{
-        $thumbImg = '/cgmlImg/'.$param['image'];
+    if( array_key_exists( 'imageId', $param ) && $param['imageId'] && $param['imageId'] !== 'null' ) {
+      if( !isset( $param['imageName'] ) ) {
+        $param['imageName'] = $param['imageId'].'.jpg';
       }
-    }else{
+      $prof = array_key_exists( 'profile', $param ) ? $param['profile'].'/' : '';
+      $thumbImg = Cogumelo::getSetupValue('publicConf:vars:mediaHost').'cgmlImg/'.$param['imageId'].
+          '/'.$prof.$param['imageName'];
+    }
+    else {
       if( array_key_exists( 'url', $param ) ){
         $isYoutubeID = $this->ytVidId( $param['url'] );
-        if(!$isYoutubeID){
-          $imgDefault = true;
-        }else{
+        if( $isYoutubeID ) {
           $thumbImg = 'http://img.youtube.com/vi/'.$isYoutubeID.'/0.jpg';
         }
-      }else{
-        $imgDefault = true;
       }
-    }
-
-    if( $imgDefault ){
-      $thumbImg = '/media/module/geozzy/img/default-multimedia.png';
     }
 
     return $thumbImg;
@@ -1624,24 +1613,43 @@ class ResourceController {
           'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias')
         )
       );
-      while ( $collection = $resCollectionList->fetch() )
-      {
-        $collectionResources[$collection->getter('id')]['col'] = array('id' => $collection->getter('id'),
-        'title' => $collection->getter('title_'.$this->actLang),
-        'shortDescription' => $collection->getter('shortDescription_'.$this->actLang),
-        'image' => $collection->getter('image'),
-        'collectionType' => $collection->getter('collectionType'));
-        $collectionResourcesFirst[$collection->getter('id')]['col'] = $collectionResources[$collection->getter('id')]['col'];
+      while ( $collection = $resCollectionList->fetch() ) {
+        $collectionResources[ $collection->getter('id') ]['col'] = array(
+          'id' => $collection->getter('id'),
+          'title' => $collection->getter('title_'.$this->actLang),
+          'shortDescription' => $collection->getter('shortDescription_'.$this->actLang),
+          'image' => $collection->getter('image'),
+          'collectionType' => $collection->getter('collectionType')
+        );
 
+        // $collectionResourcesFirst[ $collection->getter('id') ]['col'] = $collectionResources[ $collection->getter('id') ]['col'];
 
         $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
-        if ($collection->getter('collectionType')=='multimedia'){
-          if ($resources){
+        if( $resources ) {
+          if( $collection->getter('collectionType') === 'multimedia' ) {
             foreach( $resources as $resVal ) {
               $thumbSettings = array(
-               'image' => $resVal->getter( 'image' ),
-               'profile' => 'imgMultimediaGallery'
+                'profile' => 'imgMultimediaGallery'
               );
+
+              $imgId = $resVal->getter( 'image' );
+
+
+
+
+
+//var_dump( $imgId );
+
+
+
+
+
+
+              if( $imgId && $imgId !== 'null' ) {
+                $thumbSettings['imageId'] = $imgId;
+                $thumbSettings['imageName'] = $imgId.'.jpg';
+              }
+
               $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
               $multimediaUrl = false;
               if( $resDataExt = $resDataExtArray[0]){
@@ -1656,21 +1664,23 @@ class ResourceController {
               $thumbSettings['profile'] = 'hdpi4';
               $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
-              $urlAlias = $this->getUrlAlias($resVal->getter('id'));
+              $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
 
-              $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] =
-                array('rType' => $resVal->getter('rTypeId'), 'title' => $resVal->getter('title_'.$this->actLang),
-                      'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
-                      'multimediaUrl' => $multimediaUrl, 'image' => $imgUrl, 'image_big' => $imgUrl2, 'urlAlias' => $urlAlias);
+              $collectionResources[ $collection->getter('id') ]['res'][ $resVal->getter('id') ] = array(
+                'rType' => $resVal->getter('rTypeId'),
+                'title' => $resVal->getter('title_'.$this->actLang),
+                'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
+                'multimediaUrl' => $multimediaUrl, 'image' => $imgUrl, 'image_big' => $imgUrl2,
+                'urlAlias' => $urlAlias
+              );
             }
           }
-        }
-        else{
-          if( $resources ) {
+          else {
             foreach( $resources as $resVal ) {
               $thumbSettings = array(
-               'image' => $resVal->getter( 'image' ),
-               'profile' => 'fast_cut'
+                'imageId' => $resVal->getter( 'image' ),
+                'imageName' => $resVal->getter( 'image' ).'.jpg',
+                'profile' => 'fast_cut'
               );
               $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
               if( $resDataExt = $resDataExtArray[0] ) {
@@ -1698,11 +1708,11 @@ class ResourceController {
   public function goOverCollections( array $collections, $collectionType ) {
     $collectionBlock = array();
     foreach( $collections as $idCollection => $collection ) {
-      if ($collectionType == 'multimedia'){
-        $collectionBlock[$idCollection] = $this->getMultimediaBlock($collection);
+      if( $collectionType == 'multimedia' ) {
+        $collectionBlock[ $idCollection ] = $this->getMultimediaBlock( $collection );
       }
-      else{
-        $collectionBlock[$idCollection] = $this->getCollectionBlock($collection);
+      else {
+        $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
       }
     }
     return $collectionBlock;

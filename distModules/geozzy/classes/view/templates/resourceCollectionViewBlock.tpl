@@ -5,7 +5,7 @@
       <div class="item">
         <div class="itemImage">
 
-            <img class="img-responsive" alt="{$res.title}" src="{$res.image}" data-image="{$res.image_big}" data-description="{$res.title}">
+            <img class="img-responsive" alt="{$res.title}" src="{$res.image}" data-image="{$res.image_big|default:''}" data-description="{$res.title}">
             <div class="trama">
                 <div class="destResourceMoreInfo">
                   <p>{$res.shortDescription}</p>

@@ -297,7 +297,7 @@ cogumeloSetSetupValue( 'mod:mediaserver', array(
   'minimifyFiles' => false // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
 ));
 */
-cogumeloSetSetupValue( 'mod:mediaserver:publicConf:javascript',
+cogumeloSetSetupValue( 'publicConf',
   array(
     'globalVars' => array( 'C_LANG', 'C_SESSION_ID' ),
     'setupFields' => array( 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl' ),
@@ -316,11 +316,14 @@ cogumeloSetSetupValue( 'mod:mediaserver:publicConf:javascript',
     )
   )
 );
+cogumeloSetSetupValue( 'mod:mediaserver:publicConf:javascript',
+  cogumeloGetSetupValue( 'publicConf' )
+);
 cogumeloSetSetupValue( 'mod:mediaserver:publicConf:less',
-  cogumeloGetSetupValue( 'mod:mediaserver:publicConf:javascript' )
+  cogumeloGetSetupValue( 'publicConf' )
 );
 cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty',
-  cogumeloGetSetupValue( 'mod:mediaserver:publicConf:javascript' )
+  cogumeloGetSetupValue( 'publicConf' )
 );
 
 
