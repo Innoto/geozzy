@@ -175,7 +175,9 @@ $C_ENABLED_MODULES = array(
   'table',
   'explorer',
   // testing module
-  'testData'
+  'testData',
+  //initial resources
+  'initResources'
 );
 
 // resource Extenssions
@@ -227,6 +229,7 @@ $C_INDEX_MODULES  = array(
   'Blocks',
   'geozzyAPI',
   'testData',
+  'initResources',
   'explorer',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!

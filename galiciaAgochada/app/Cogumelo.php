@@ -103,15 +103,16 @@ class Cogumelo extends CogumeloClass
 
     /*Real urls*/
     /*Explorers*/
+    /*
     $this->addUrlPatterns( '#^paisaxes-espectaculares#', 'view:ExplorerView::paisaxesExplorer' );
     $this->addUrlPatterns( '#^rincons-con-encanto#', 'view:ExplorerView::rinconsExplorer' );
     $this->addUrlPatterns( '#^praias-ensono#', 'view:ExplorerView::praiasExplorer' );
     $this->addUrlPatterns( '#^sabrosos-xantares#', 'view:ExplorerView::xantaresExplorer' );
     $this->addUrlPatterns( '#^aloxamentos-con-encanto#', 'view:ExplorerView::aloxamentosExplorer' );
-    $this->addUrlPatterns( '#^segredos#', 'view:ExplorerView::todosSegredosExplorer' );
+    $this->addUrlPatterns( '#^segredos#', 'view:ExplorerView::todosSegredosExplorer' );*/
 
     /*MasterView*/
-    $this->addUrlPatterns( '#^$#', 'view:MasterView::home' );
+    //$this->addUrlPatterns( '#^$#', 'view:MasterView::home' );
     $this->addUrlPatterns( '#^403$#', 'view:MasterView::page403' );
     //$this->addUrlPatterns( '#^404$#', 'view:MasterView::page404' );
   }
