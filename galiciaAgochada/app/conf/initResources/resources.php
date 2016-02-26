@@ -117,7 +117,7 @@ $initResources = array(
     ),
     'shortDescription' => array(),
     'img' => false,
-    'viewType' => 'viewAppSegredosExplorer',
+    'viewType' => 'viewAppTodosSegredosExplorer',
     'urlAlias' => array(
       'en' => '/segredos',
       'es' => '/segredos',

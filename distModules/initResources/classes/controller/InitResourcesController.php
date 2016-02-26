@@ -1,6 +1,7 @@
 <?php
 
 geozzy::load('controller/ResourceController.php');
+geozzy::load('model/ResourceModel.php');
 
 class InitResourcesController{
 
@@ -20,20 +21,20 @@ class InitResourcesController{
     $taxonomyTerm = new TaxonomytermModel();
     $urlAlias = new urlAliasModel();
 
-    foreach($initResources as $initRes){
+    foreach( $initResources as $initRes ) {
 
       // Tipo e recurso base
       $rtypeIdName = $initRes['rType'];
       $rType = $resourceType->listItems(array('filters' => array('idName'=>$rtypeIdName)))->fetch();
 
-      $timeCreation = date( "Y-m-d H:i:s", time()-rand(500000,900000) );
+      $timeCreation = date( "Y-m-d H:i:s", time() );
 
-      $resData = array('rTypeId'=>$rType->getter('id'), 'published' => 1, 'timeCreation' => $timeCreation);
+      $resData = array( 'rTypeId'=>$rType->getter('id'), 'published' => 1, 'timeCreation' => $timeCreation );
 
       // Campos multiidioma: título e descripción
-      foreach($LANG_AVAILABLE as $key=>$lang){
+      foreach( Cogumelo::getSetupValue('lang:available') as $key => $lang ) {
         $resData['title_'.$key] = $initRes['title'][$key];
-        if ($initRes['shortDescription']){
+        if( $initRes['shortDescription'] ) {
           $resData['shortDescription_'.$key] = $initRes['shortDescription'][$key];
         }
       }
@@ -43,12 +44,13 @@ class InitResourcesController{
       $resource->save();
 
       // Unha vez creado o recurso, creamos as súas relacións
+
       // image
-      if ($initRes['img']){
+      if( $initRes['img'] ) {
         $filedata = array(
-            'name' => $initRes['img'],
-            'absLocation' => APP_BASE_PATH.'/conf/initResources/files/'.$initRes['img'],
-            'type' => 'image/jpeg', 'size' => '38080'
+          'name' => $initRes['img'],
+          'destDir' => ResourceModel::$cols['image']['uploadDir'],
+          'absLocation' => APP_BASE_PATH.'/conf/initResources/files/'.$initRes['img']
         );
         $file = $fileControl->createNewFile( $filedata );
         $resource->setterDependence( 'image', $file );
@@ -56,13 +58,21 @@ class InitResourcesController{
       }
 
       // taxanomies
-      $taxterm = $taxonomyTerm->listItems(array('filters'=>array('idName' => $initRes['viewType'])))->fetch();
-      $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxterm->getter('id'), 'weight' => 1));
-      $resTaxterm->save();
+      if( isset($initRes['viewType']) ) {
+        $taxterm = $taxonomyTerm->listItems(array('filters'=>array('idName' => $initRes['viewType'])))->fetch();
+        if( $taxterm ) {
+          $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'),
+            'taxonomyterm' => $taxterm->getter('id'), 'weight' => 1));
+          $resTaxterm->save();
+        }
+        else {
+          echo "\n".'  ERROR: No existe un taxTerm con idName '.$initRes['viewType']."\n";
+        }
+      }
 
       //urlAlias multiidioma
-      foreach($LANG_AVAILABLE as $key=>$lang){
-          $resourcecontrol->setUrl($resource->getter('id'), $key, $initRes['urlAlias'][$key]);
+      foreach( Cogumelo::getSetupValue('lang:available') as $key => $lang ) {
+        $resourcecontrol->setUrl($resource->getter('id'), $key, $initRes['urlAlias'][$key]);
       }
     }
 
