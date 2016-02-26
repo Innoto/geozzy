@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-md-4">
     {if array_key_exists('avatar', $user['data'])}
-      <img class="userAvatar img-responsive img-rounded" src="/cgmlImg/$user['data']['avatar']}">
+      <img class="userAvatar img-responsive img-rounded" src="{$cogumelo.publicConf.mediaHost}cgmlImg/$user['data']['avatar']}">
     {/if}
   </div>
   <div class="col-md-8">

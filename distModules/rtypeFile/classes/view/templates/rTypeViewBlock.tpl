@@ -29,8 +29,8 @@
   <div class="image cgmMForm-fileField">
     <label for="imgResource" class="cgmMForm">{t}Image{/t}</label>
     {if isset( $res.data.image )}
-      <style type="text/css">.cgmMForm-fileField img { height: 100px }</style>
-      <img src="/cgmlImg/{$res.data.image.id}"
+      <style type="text/css">.cgmMForm-fileField img { height: 100px; }</style>
+      <img src="{$cogumelo.publicConf.media}cgmlImg/{$res.data.image.id}"
         {if isset( $res.data.image.title )}alt="{$res.data.image.title}" title="{$res.data.image.title}"{/if}></img>
     {else}
       <p>{t}None{/t}</p>
@@ -54,5 +54,3 @@
 </div>
 
 <!-- /rTypeViewBlock.tpl en rtypeFile module -->
-
-

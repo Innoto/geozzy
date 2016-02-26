@@ -159,7 +159,7 @@
               if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
 
                 if( jQuery.isNumeric( e.get('icon') )  ){
-                  iconUrl = '/cgmlImg/'+e.get('icon')+'/explorerAloxamentosMarker/marker.png';
+                  iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/explorerAloxamentosMarker/marker.png';
                   return false;
                 }
 
@@ -339,7 +339,7 @@
       }
       else
       if ( $(state.element).attr('icon') != 'false') {
-        $ret = $('<span><img width=24 height=24 src="/cgmlImg/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>');
+        $ret = $('<span><img width=24 height=24 src="'+cogumelo.publicConf.mediaHost+'cgmlImg/' + $(state.element).attr('icon') + '"/></i> ' + state.text + '</span>');
       }
       else {
         $ret = state.text;

@@ -10,7 +10,7 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                   {if array_key_exists('avatar', $user['data'])}
-                    <img class="userAvatar img-responsive" src="/cgmlImg/{$user['data']['avatar']}">
+                    <img class="userAvatar img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$user['data']['avatar']}">
                   {/if}
                   {$user['data']['login']}
                   <i class="fa fa-caret-down"></i>

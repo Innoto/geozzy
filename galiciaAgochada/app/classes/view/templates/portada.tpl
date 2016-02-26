@@ -156,7 +156,7 @@
             {foreach from=$rdRecantosConEstilo item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
+                  <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                       <div class="destResourceMoreInfo">
                         <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
@@ -181,7 +181,7 @@
             {foreach from=$rdFestaRachada item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
+                  <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama" >
                     <div class="destResourceMoreInfo">
                       <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
@@ -206,7 +206,7 @@
             {foreach from=$rdPraiasDeEnsono item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
+                  <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                     <div class="destResourceMoreInfo">
                       <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
@@ -232,7 +232,7 @@
             {foreach from=$rdPaisaxesEspectaculares item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
+                  <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                     <div class="destResourceMoreInfo">
                       <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
@@ -257,7 +257,7 @@
             {foreach from=$rdAloxamentoConEncanto item=rd}
               <div class="item">
                 <div class="itemImage">
-                  <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
+                  <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                     <div class="destResourceMoreInfo">
                       <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
@@ -282,7 +282,7 @@
           {foreach from=$rdAutenticaGastronomia item=rd}
             <div class="item">
               <div class="itemImage">
-                <img class="img-responsive" src="/cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
+                <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                 <div class="trama">
                   <div class="destResourceMoreInfo">
                     <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
