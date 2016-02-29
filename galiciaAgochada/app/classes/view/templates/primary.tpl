@@ -11,6 +11,7 @@
   <meta name="description" content="{block name="headDescription"}Galicia Agochada{/block}">
   {block name="socialMeta"}{/block}
   {block name="headClientIncludes"}
+    {$main_client_includes}
     {$client_includes}
     <script type="text/javascript">
       $( document ).ready(function(){

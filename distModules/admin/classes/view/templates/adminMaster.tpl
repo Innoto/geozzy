@@ -15,6 +15,7 @@
   <![endif]-->
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+  {$main_client_includes}
   {$client_includes}
 
 
