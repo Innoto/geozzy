@@ -65,7 +65,7 @@ $(document).ready(function(){
           showMoreMultimedia(elm);
 
           $('.multimediaSec #less_'+elm).bind('click', function(){
-            showLessMultimedia(idGallery);
+            showLessMultimedia(elm);
           });
         });
       }

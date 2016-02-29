@@ -1,24 +1,24 @@
 {block name="headCssIncludes" append}
 <style type="text/css">
   .imageSec{
-    background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
+    background: rgba(0, 0, 0, 0) url("{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     height: 50vh;
   }
   @media screen and (min-width: 1200px) {
     .resource .imageSec {
-      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/resourceLg/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
+      background: rgba(0, 0, 0, 0) url("{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/resourceLg/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     }
   } /*1200px*/
 
   @media screen and (max-width: 1199px) {
     .resource .imageSec {
-      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/resourceMd/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
+      background: rgba(0, 0, 0, 0) url("{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/resourceMd/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     }
   }/*1199px*/
 
   @media screen and (max-width: 991px) {
     .resource .imageSec {
-      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/resourceSm/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
+      background: rgba(0, 0, 0, 0) url("{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/resourceSm/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     }
   }/*991px*/
 </style>
@@ -37,7 +37,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
-          <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="/media/img/aloxamentosIcon.png"></img>
+          <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="{$cogumelo.publicConf.media}/img/aloxamentosIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
         <div class="stars hidden-xs col-sm-3 col-md-2">
@@ -88,7 +88,7 @@
         {if isset($res.data.accommodationType)}
         {foreach from=$res.data.accommodationType item=termInfo}
           <li>
-            {if isset($termInfo.icon)}<img src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
+            {if isset($termInfo.icon)}<img src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
             <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
           </li>
           {break}
@@ -147,13 +147,13 @@
         {foreach $allServices as $termId => $term}
 
             <div class="icon clearfix {if !is_array($res.data.accommodationServices) || !$termId|array_key_exists:$res.data.accommodationServices}light{/if}">
-              <img alt="{$term.name}" title="{$term.name}" src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
+              <img alt="{$term.name}" title="{$term.name}" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
             </div>
         {/foreach}
 
         {foreach $allFacilities as $termId => $term}
             <div class="icon clearfix {if !is_array($res.data.accommodationServices) || !$termId|array_key_exists:$res.data.accommodationFacilities}light{/if}">
-              <img alt="{$term.name}" title="{$term.name}" src="/cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
+              <img alt="{$term.name}" title="{$term.name}" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
             </div>
         {/foreach}
       </div>

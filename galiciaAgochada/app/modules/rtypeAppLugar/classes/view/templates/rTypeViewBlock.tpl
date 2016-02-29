@@ -4,24 +4,24 @@
 
 <style type="text/css">
   .imageSec{
-    background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
+    background: rgba(0, 0, 0, 0) url("{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     height: 50vh;
   }
   @media screen and (min-width: 1200px) {
     .resource .imageSec {
-      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/resourceLg/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
+      background: rgba(0, 0, 0, 0) url("{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/resourceLg/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     }
   } /*1200px*/
 
   @media screen and (max-width: 1199px) {
     .resource .imageSec {
-      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/resourceMd/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
+      background: rgba(0, 0, 0, 0) url("{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/resourceMd/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     }
   }/*1199px*/
 
   @media screen and (max-width: 991px) {
     .resource .imageSec {
-      background: rgba(0, 0, 0, 0) url("/cgmlImg/{$res.data.image.id}/resourceSm/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
+      background: rgba(0, 0, 0, 0) url("{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/resourceSm/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
     }
   }/*991px*/
 </style>
@@ -29,7 +29,7 @@
 
 {block name="socialMeta" append}
   <meta property="og:url" content="{$site_host}{$res.data["urlAlias"]}" />
-  <meta property="og:image" content="/cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
+  <meta property="og:image" content="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
   <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb"]}" />
   <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb"]}" />
 {/block}
@@ -42,7 +42,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
-          <img class="iconTitleBar img-responsive" alt="Rincóns con estilo" src="/media/img/rinconsIcon.png"></img>
+          <img class="iconTitleBar img-responsive" alt="Rincóns con estilo" src="{$cogumelo.publicConf.media}/img/rinconsIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
         <div class="stars hidden-xs col-sm-3 col-md-2">
@@ -72,7 +72,7 @@
         {if isset($res.data.rextAppLugarType)}
         {foreach from=$res.data.rextAppLugarType item=termInfo}
           <li>
-            {if isset($termInfo.icon)}<img src="/cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
+            {if isset($termInfo.icon)}<img src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
             <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
           </li>
           {break}
