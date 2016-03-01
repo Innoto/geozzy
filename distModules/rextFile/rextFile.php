@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextFile extends Module {
 
   public $name = 'rextFile';
-  public $version = '1.0';
+  public $version = 1.0;
 
 
   public $models = array(
