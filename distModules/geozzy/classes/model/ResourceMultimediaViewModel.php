@@ -86,33 +86,39 @@ class ResourceMultimediaViewModel extends Model {
 
   var $notCreateDBTable = true;
 
-  var $rcSQL = '
-    DROP VIEW IF EXISTS geozzy_resource_multimedia_view;
 
-    CREATE VIEW geozzy_resource_multimedia_view AS
 
-      SELECT r.id, r.rTypeId, r.user, r.userUpdate, r.published,
-        r.title_es, r.title_gl, r.title_en,
-        r.shortDescription_es, r.shortDescription_gl, r.shortDescription_en,
-        r.image, r.timeCreation, r.timeLastUpdate, r.averageVotes, r.weight,
-        rf.author AS author, rf.file, NULL AS embed, NULL AS url
-      FROM geozzy_resource AS r, geozzy_resource_rext_file AS rf, geozzy_resourcetype as rtype
-      WHERE rtype.id = r.rTypeId AND rtype.idName = "rtypeFile"
-        AND r.id = rf.resource
+  var $deploySQL = array(
+    // All Times
+    'geozzy#1.0' => array(
+      'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_resource_multimedia_view;
 
-      UNION ALL
+        CREATE VIEW geozzy_resource_multimedia_view AS
 
-      SELECT r.id, r.rTypeId, r.user, r.userUpdate, r.published,
-        r.title_es, r.title_gl, r.title_en,
-        r.shortDescription_es, r.shortDescription_gl, r.shortDescription_en,
-        r.image, r.timeCreation, r.timeLastUpdate, r.averageVotes, r.weight,
-        ru.author AS author, NULL AS file, ru.embed, ru.url
-      FROM geozzy_resource AS r, geozzy_resource_rext_url AS ru, geozzy_resourcetype as rtype
-      WHERE rtype.id = r.rTypeId AND rtype.idName = "rtypeUrl"
-        AND r.id = ru.resource
-    ;
-  ';
+          SELECT r.id, r.rTypeId, r.user, r.userUpdate, r.published,
+            r.title_es, r.title_gl, r.title_en,
+            r.shortDescription_es, r.shortDescription_gl, r.shortDescription_en,
+            r.image, r.timeCreation, r.timeLastUpdate, r.averageVotes, r.weight,
+            rf.author AS author, rf.file, NULL AS embed, NULL AS url
+          FROM geozzy_resource AS r, geozzy_resource_rext_file AS rf, geozzy_resourcetype as rtype
+          WHERE rtype.id = r.rTypeId AND rtype.idName = "rtypeFile"
+            AND r.id = rf.resource
 
+          UNION ALL
+
+          SELECT r.id, r.rTypeId, r.user, r.userUpdate, r.published,
+            r.title_es, r.title_gl, r.title_en,
+            r.shortDescription_es, r.shortDescription_gl, r.shortDescription_en,
+            r.image, r.timeCreation, r.timeLastUpdate, r.averageVotes, r.weight,
+            ru.author AS author, NULL AS file, ru.embed, ru.url
+          FROM geozzy_resource AS r, geozzy_resource_rext_url AS ru, geozzy_resourcetype as rtype
+          WHERE rtype.id = r.rTypeId AND rtype.idName = "rtypeUrl"
+            AND r.id = ru.resource;
+      '
+    )
+  );
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );

@@ -6,7 +6,19 @@ Cogumelo::load('coreModel/Model.php');
 class TaxonomytermModel extends Model {
 
   // multiple unique constrait
-  var $rcSQL = 'ALTER TABLE geozzy_taxonomyterm ADD CONSTRAINT taxgroup_idName UNIQUE (taxgroup, idName);';
+
+
+
+
+  var $deploySQL = array(
+    // All Times
+    'geozzy#1.0' => array(
+      'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        ALTER TABLE geozzy_taxonomyterm ADD CONSTRAINT taxgroup_idName UNIQUE (taxgroup, idName);
+      '
+    )
+  );
 
   static $tableName = 'geozzy_taxonomyterm';
 

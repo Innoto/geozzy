@@ -8,7 +8,12 @@ Cogumelo::load('coreModel/Model.php');
 class TodosSegredosExplorerModel extends Model
 {
   var $notCreateDBTable = true;
-  var $rcSQL = "
+
+  var $deploySQL = array(
+    // All Times
+    'app#1.0' => array(
+      'executeOnGenerateModelToo' => true,
+      'sql'=> "
           DROP VIEW IF EXISTS geozzy_todos_segredos_explorer_index;
           CREATE VIEW geozzy_todos_segredos_explorer_index AS
           SELECT
@@ -44,7 +49,10 @@ class TodosSegredosExplorerModel extends Model
             geozzy_resource.published = 1 AND
             geozzy_topic.idName = 'probasTopic'
           group by geozzy_resource.id;
-              ";
+      "
+    )
+  );
+
 
   static $tableName = 'geozzy_todos_segredos_explorer_index';
   static $cols = array(
