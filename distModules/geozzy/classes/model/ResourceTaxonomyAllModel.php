@@ -59,30 +59,36 @@ class ResourceTaxonomyAllModel extends Model {
 
   var $notCreateDBTable = true;
 
-  var $rcSQL = '
-    DROP VIEW IF EXISTS geozzy_resource_taxonomyall;
-    CREATE VIEW geozzy_resource_taxonomyall AS
-      SELECT
-        geozzy_taxonomyterm.id AS id,
-        geozzy_taxonomyterm.idName AS idName,
-        geozzy_taxonomyterm.name_es AS name_es,
-        geozzy_taxonomyterm.name_gl AS name_gl,
-        geozzy_taxonomyterm.name_en AS name_en,
-        geozzy_taxonomyterm.parent AS parent,
-        geozzy_taxonomyterm.weight AS weight,
-        geozzy_taxonomyterm.icon AS icon,
-        geozzy_taxonomyterm.taxgroup AS taxgroup,
-        geozzy_taxonomygroup.idName AS idNameTaxgroup,
-        geozzy_resource_taxonomyterm.resource AS resource,
-        geozzy_resource_taxonomyterm.id AS idResTaxTerm,
-        geozzy_resource_taxonomyterm.weight AS weightResTaxTerm
-      FROM `geozzy_resource_taxonomyterm`
-        JOIN `geozzy_taxonomygroup`
-        JOIN `geozzy_taxonomyterm`
-      WHERE geozzy_resource_taxonomyterm.taxonomyterm = geozzy_taxonomyterm.id
-        AND geozzy_taxonomyterm.taxgroup = geozzy_taxonomygroup.id
-      ORDER BY geozzy_resource_taxonomyterm.resource;
-  ';
+  var $deploySQL = array(
+    // All Times
+    'geozzy#1.0' => array(
+      'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_resource_taxonomyall;
+        CREATE VIEW geozzy_resource_taxonomyall AS
+          SELECT
+            geozzy_taxonomyterm.id AS id,
+            geozzy_taxonomyterm.idName AS idName,
+            geozzy_taxonomyterm.name_es AS name_es,
+            geozzy_taxonomyterm.name_gl AS name_gl,
+            geozzy_taxonomyterm.name_en AS name_en,
+            geozzy_taxonomyterm.parent AS parent,
+            geozzy_taxonomyterm.weight AS weight,
+            geozzy_taxonomyterm.icon AS icon,
+            geozzy_taxonomyterm.taxgroup AS taxgroup,
+            geozzy_taxonomygroup.idName AS idNameTaxgroup,
+            geozzy_resource_taxonomyterm.resource AS resource,
+            geozzy_resource_taxonomyterm.id AS idResTaxTerm,
+            geozzy_resource_taxonomyterm.weight AS weightResTaxTerm
+          FROM `geozzy_resource_taxonomyterm`
+            JOIN `geozzy_taxonomygroup`
+            JOIN `geozzy_taxonomyterm`
+          WHERE geozzy_resource_taxonomyterm.taxonomyterm = geozzy_taxonomyterm.id
+            AND geozzy_taxonomyterm.taxgroup = geozzy_taxonomygroup.id
+          ORDER BY geozzy_resource_taxonomyterm.resource;
+      '
+    )
+  );
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {

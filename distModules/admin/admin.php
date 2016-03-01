@@ -6,7 +6,7 @@ Cogumelo::load("coreController/Module.php");
 class admin extends Module
 {
   public $name = "admin";
-  public $version = "";
+  public $version = 1.0;
   public $dependences = array(
     array(
      "id" =>"underscore",

@@ -8,17 +8,26 @@ Cogumelo::load('coreModel/Model.php');
 class StarredResourcesModel extends Model
 {
   var $notCreateDBTable = true;
-  var $rcSQL = "
-                DROP VIEW IF EXISTS geozzy_starred_resources;
-                CREATE VIEW geozzy_starred_resources AS
-                  SELECT
-                    geozzy_resource.id as id,
-                    geozzy_resource.rTypeId as rTypeId,
-                    geozzy_resource_taxonomyterm.taxonomyterm as taxonomyterm,
-                    geozzy_resource_taxonomyterm.weight as weight
-                  from geozzy_resource , geozzy_resource_taxonomyterm
-                  where geozzy_resource_taxonomyterm.resource = geozzy_resource.id AND geozzy_resource.published = true;
-              ";
+
+
+
+  var $deploySQL = array(
+    // All Times
+    'geozzy#1.0' => array(
+      'executeOnGenerateModelToo' => true,
+      'sql'=> '
+          DROP VIEW IF EXISTS geozzy_starred_resources;
+          CREATE VIEW geozzy_starred_resources AS
+            SELECT
+              geozzy_resource.id as id,
+              geozzy_resource.rTypeId as rTypeId,
+              geozzy_resource_taxonomyterm.taxonomyterm as taxonomyterm,
+              geozzy_resource_taxonomyterm.weight as weight
+            from geozzy_resource , geozzy_resource_taxonomyterm
+            where geozzy_resource_taxonomyterm.resource = geozzy_resource.id AND geozzy_resource.published = true;
+      '
+    )
+  );
 
   static $tableName = 'geozzy_starred_resources';
   static $cols = array(

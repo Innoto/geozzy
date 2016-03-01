@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextAccommodation extends Module {
 
   public $name = 'rextAccommodation';
-  public $version = '1.0';
+  public $version = 1.0;
 
 
   public $models = array(

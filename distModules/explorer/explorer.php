@@ -4,7 +4,7 @@ Cogumelo::load("coreController/Module.php");
 
 class explorer extends Module {
   public $name = "explorer";
-  public $version = "1.0";
+  public $version = 1.0;
 
   public $dependences = array(
     array(

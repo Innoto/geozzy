@@ -7,7 +7,7 @@ Cogumelo::load("coreController/Module.php");
 class biMetrics extends Module
 {
   public $name = "biMetrics";
-  public $version = "1.0";
+  public $version = 1.0;
 
 
 

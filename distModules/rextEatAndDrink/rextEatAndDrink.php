@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextEatAndDrink extends Module {
 
   public $name = 'rextEatAndDrink';
-  public $version = '1.0';
+  public $version = 1.0;
 
 
   public $models = array(

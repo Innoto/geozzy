@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextUrl extends Module {
 
   public $name = 'rextUrl';
-  public $version = '1.0';
+  public $version = 1.0;
 
 
   public $models = array(

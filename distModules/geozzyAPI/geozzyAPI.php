@@ -7,8 +7,7 @@ Cogumelo::load("coreController/Module.php");
 class geozzyAPI extends Module
 {
   public $name = "geozzyAPI";
-  public $version = "";
-
+  public $version = 1.0;
 
 
   public $dependences = array(

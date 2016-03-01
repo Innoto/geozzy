@@ -10,7 +10,7 @@ class Blocks extends Module
 {
 
   public $name = "Blocks";
-  public $version = "";
+  public $version = 1.0;
   public $dependences = array(
 
   );

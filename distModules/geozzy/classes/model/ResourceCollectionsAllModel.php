@@ -59,33 +59,40 @@ class ResourceCollectionsAllModel extends Model {
 
   var $notCreateDBTable = true;
 
-  var $rcSQL = '
-    DROP VIEW IF EXISTS geozzy_resource_collectionsall;
-    CREATE VIEW geozzy_resource_collectionsall AS
-      SELECT
-        geozzy_collection.id AS id,
-        geozzy_collection.idName AS idName,
-        geozzy_collection.title_es AS title_es,
-        geozzy_collection.title_gl AS title_gl,
-        geozzy_collection.title_en AS title_en,
-        geozzy_collection.shortDescription_es AS shortDescription_es,
-        geozzy_collection.shortDescription_gl AS shortDescription_gl,
-        geozzy_collection.shortDescription_en AS shortDescription_en,
-        geozzy_collection.collectionType AS collectionType,
-        geozzy_collection.weight AS weight,
-        geozzy_collection.image AS image,
-        geozzy_resource_collections.resource AS resourceMain,
-        geozzy_resource_collections.weight AS weightMain,
-        geozzy_collection_resources.resource AS resourceSon,
-        geozzy_collection_resources.weight AS weightSon
-      FROM `geozzy_resource_collections`
-        JOIN `geozzy_collection_resources`
-        JOIN `geozzy_collection`
-      WHERE geozzy_collection_resources.collection = geozzy_collection.id
-        AND geozzy_resource_collections.collection = geozzy_collection.id
-      ORDER BY geozzy_resource_collections.weight, geozzy_collection_resources.weight;
-  ';
 
+
+  var $deploySQL = array(
+    // All Times
+    'geozzy#1.0' => array(
+      'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_resource_collectionsall;
+        CREATE VIEW geozzy_resource_collectionsall AS
+          SELECT
+            geozzy_collection.id AS id,
+            geozzy_collection.idName AS idName,
+            geozzy_collection.title_es AS title_es,
+            geozzy_collection.title_gl AS title_gl,
+            geozzy_collection.title_en AS title_en,
+            geozzy_collection.shortDescription_es AS shortDescription_es,
+            geozzy_collection.shortDescription_gl AS shortDescription_gl,
+            geozzy_collection.shortDescription_en AS shortDescription_en,
+            geozzy_collection.collectionType AS collectionType,
+            geozzy_collection.weight AS weight,
+            geozzy_collection.image AS image,
+            geozzy_resource_collections.resource AS resourceMain,
+            geozzy_resource_collections.weight AS weightMain,
+            geozzy_collection_resources.resource AS resourceSon,
+            geozzy_collection_resources.weight AS weightSon
+          FROM `geozzy_resource_collections`
+            JOIN `geozzy_collection_resources`
+            JOIN `geozzy_collection`
+          WHERE geozzy_collection_resources.collection = geozzy_collection.id
+            AND geozzy_resource_collections.collection = geozzy_collection.id
+          ORDER BY geozzy_resource_collections.weight, geozzy_collection_resources.weight;
+      '
+    )
+  );
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
