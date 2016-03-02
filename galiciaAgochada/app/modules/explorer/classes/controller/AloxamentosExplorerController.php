@@ -84,7 +84,7 @@ class AloxamentosExplorerController extends ExplorerController {
         $row = array();
 
         $resourceDataArray = array('id' => $resource->getter('id'), 'title' => $resource->getter('title'),
-                                   'mediumDescription' => $resource->getter('mediumDescription'));
+                                   'mediumDescription' => $resource->getter('mediumDescription'), 'city' => $resource->getter('city'));
 
 
         $row['id'] = $resourceDataArray['id'];
