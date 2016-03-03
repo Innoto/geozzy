@@ -602,13 +602,17 @@ class geozzyAPIView extends View {
     echo '[';
     $c = '';
     while( $valueobject = $resourceList->fetch() ) {
-      $allData = $valueobject->getAllData( 'onlydata' );
+      //$allCols = $valueobject->getCols(false);
+      $allCols = array('id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
+                       'image', 'loc', 'defaultZoom', 'externalUrl', 'averageVotes');
+      foreach ($allCols as $col){
+        $allData[$col] = $valueobject->getter($col);
+      }
 
       if( isset( $allData['loc'] ) ) {
         $loc = DBUtils::decodeGeometry( $allData['loc'] );
         $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
       }
-
 
       // Category
       if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
@@ -640,8 +644,14 @@ class geozzyAPIView extends View {
 
         foreach( $relatedModels as $relModelIdName => $relModel ) {
           $rexData = array( 'MODELNAME' => $relModelIdName );
+
           if( method_exists( $relModel, 'getAllData' ) ) {
-            $rexData = array_merge( $rexData, $relModel->getAllData( 'onlydata' ) );
+            $allCols = $relModel->getCols(false);
+            foreach($allCols as $key => $col){
+              $rexData_cols[$key] = $relModel->getter($key);
+            }
+
+            $rexData = array_merge( $rexData, $rexData_cols);
             $allData['rextmodels'][] = $rexData;
           }
         }
@@ -836,7 +846,11 @@ class geozzyAPIView extends View {
 
     $c = '';
     while( $starred = $starredList->fetch() ) {
-      $starData = $starred->getAllData('onlydata');
+
+      $allCols = $starred->getCols(false);
+      foreach($allCols as $key => $col){
+        $starData[$key] = $starred->getter($key);
+      }
 
       $starredResourceModel = new StarredResourcesModel();
       $starredResources = $starredResourceModel->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']), 'order'=>array('weight'=>1)) );

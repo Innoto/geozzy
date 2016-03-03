@@ -92,9 +92,6 @@
       });
     }
 
-
-
-
     /**
       setExplorer. instance the explorer object
      */
@@ -107,7 +104,7 @@
         resourceAccess: function(id) {
           $(".explorerContainer.explorer-loading").show();
           $(".explorerContainer.explorer-container-du").load(
-            '/resource/'+id,
+            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
             { pf: 'blk' },
             function() {
               $(".explorerContainer.explorer-loading").hide();

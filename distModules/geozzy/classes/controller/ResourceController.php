@@ -97,7 +97,7 @@ class ResourceController {
    * @return array OR false
    */
   public function loadResourceObject( $resId = false ) {
-    if( $this->resObj === null ) {
+    if( $this->resObj === null || ( $resId && $resId !== $this->resObj->getter('id') ) ) {
       $resModel = new ResourceModel();
       $resList = $resModel->listItems( array( 'affectsDependences' =>
         array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ),

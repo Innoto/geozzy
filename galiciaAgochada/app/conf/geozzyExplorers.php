@@ -21,7 +21,7 @@ $GEOZZY_EXPLORERS = array(
     'module' => 'explorer',
     'controllerFile' => 'controller/PaisaxesExplorerController.php',
     'controllerName' => 'PaisaxesExplorerController',
-    'name' => 'Paisaxes Espectaculares',
+    'name' => __('Paisaxes Espectaculares'),
     'mapBounds' => array(
       array( 49.9, -9.8 ),
       array( 41.7, -6.6 )
@@ -34,7 +34,7 @@ $GEOZZY_EXPLORERS = array(
     'module' => 'explorer',
     'controllerFile' => 'controller/XantaresExplorerController.php',
     'controllerName' => 'XantaresExplorerController',
-    'name' => 'Sabrosos xantares',
+    'name' => __('Sabrosos xantares'),
     'mapBounds' => array(
       array( 49.9, -9.8 ),
       array( 41.7, -6.6 )
@@ -47,7 +47,7 @@ $GEOZZY_EXPLORERS = array(
     'module' => 'explorer',
     'controllerFile' => 'controller/TodosSegredosExplorerController.php',
     'controllerName' => 'TodosSegredosExplorerController',
-    'name' => 'Descúbreos todos xuntos',
+    'name' => __('Descúbreos todos xuntos'),
     'mapBounds' => array(
       array( 49.9, -9.8 ),
       array( 41.7, -6.6 )
@@ -60,7 +60,7 @@ $GEOZZY_EXPLORERS = array(
     'module' => 'explorer',
     'controllerFile' => 'controller/AloxamentosExplorerController.php',
     'controllerName' => 'AloxamentosExplorerController',
-    'name' => 'Aloxamentos con encanto',
+    'name' => __('Aloxamentos con encanto'),
     'mapBounds' => array(
       array( 49.9, -9.8 ),
       array( 41.7, -6.6 )
@@ -75,7 +75,7 @@ $GEOZZY_EXPLORERS = array(
     'module' => 'explorer',
     'controllerFile' => 'controller/PraiasExplorerController.php',
     'controllerName' => 'PraiasExplorerController',
-    'name' => 'Praias de ensono',
+    'name' => __('Praias de ensono'),
     'mapBounds' => array(
       array( 49.9, -9.8 ),
       array( 41.7, -6.6 )
@@ -88,7 +88,7 @@ $GEOZZY_EXPLORERS = array(
     'module' => 'explorer',
     'controllerFile' => 'controller/RinconsExplorerController.php',
     'controllerName' => 'RinconsExplorerController',
-    'name' => 'Rincóns con encanto',
+    'name' => __('Rincóns con encanto'),
     'mapBounds' => array(
       array( 49.9, -9.8 ),
       array( 41.7, -6.6 )
