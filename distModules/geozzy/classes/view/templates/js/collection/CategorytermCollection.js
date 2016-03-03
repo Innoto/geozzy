@@ -16,8 +16,8 @@ geozzy.collection.CategorytermCollection = Backbone.Collection.extend({
 
   getLang: function(){
     var lang = false;
-    if (typeof(GLOBAL_C_LANG)!='undefined'){
-      lang = '/'+GLOBAL_C_LANG;
+    if (typeof(cogumelo.publicConf.C_LANG)!='undefined'){
+      lang = '/'+cogumelo.publicConf.C_LANG;
     }
     return lang;
   },

@@ -90,7 +90,7 @@
         resourceAccess: function(id) {
           $(".explorerContainer.explorer-loading").show();
           $(".explorerContainer.explorer-container-du").load(
-            '/'+ GLOBAL_C_LANG +'/resource/'+id,
+            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
             { pf: 'blk' },
             function() {
               $(".explorerContainer.explorer-loading").hide();
