@@ -68,7 +68,6 @@ class MasterPageView extends View
     $this->template->exec();
   }
 
-
   public function home() {
 
     // Autodetección idioma
@@ -95,11 +94,15 @@ class MasterPageView extends View
     $resourceArrayRecantos = array();
     while ( $res = $resList->fetch() ) {
       $resAll = $res->getAllData();
+      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
+      $resourceArrayRecantos[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayRecantos[$res->getter('id')]['data'] = $resAll['data'];
       $urlAlias = $this->getUrlAlias($res->getter('id'));
       $resourceArrayRecantos[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-
+    usort($resourceArrayRecantos, function($a, $b) {
+        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    });
     $this->template->assign('rdRecantosConEstilo', $resourceArrayRecantos);
 
     /**
@@ -119,11 +122,15 @@ class MasterPageView extends View
     $resourceArrayFesta = array();
     while ( $res = $resList->fetch() ) {
       $resAll = $res->getAllData();
+      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
+      $resourceArrayFesta[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayFesta[$res->getter('id')]['data'] = $resAll['data'];
       $urlAlias = $this->getUrlAlias($res->getter('id'));
       $resourceArrayFesta[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-
+    usort($resourceArrayFesta, function($a, $b) {
+        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    });
     $this->template->assign('rdFestaRachada', $resourceArrayFesta);
 
     /**
@@ -143,11 +150,15 @@ class MasterPageView extends View
     $resourceArrayPraias = array();
     while ( $res = $resList->fetch() ) {
       $resAll = $res->getAllData();
+      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
+      $resourceArrayPraias[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayPraias[$res->getter('id')]['data'] = $resAll['data'];
       $urlAlias = $this->getUrlAlias($res->getter('id'));
       $resourceArrayPraias[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-
+    usort($resourceArrayPraias, function($a, $b) {
+        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    });
     $this->template->assign('rdPraiasDeEnsono', $resourceArrayPraias);
 
     /**
@@ -167,11 +178,15 @@ class MasterPageView extends View
     $resourceArrayPaisaxes = array();
     while ( $res = $resList->fetch() ) {
       $resAll = $res->getAllData();
+      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
+      $resourceArrayPaisaxes[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayPaisaxes[$res->getter('id')]['data'] = $resAll['data'];
       $urlAlias = $this->getUrlAlias($res->getter('id'));
       $resourceArrayPaisaxes[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-
+    usort($resourceArrayPaisaxes, function($a, $b) {
+        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    });
     $this->template->assign('rdPaisaxesEspectaculares', $resourceArrayPaisaxes);
 
     /**
@@ -191,11 +206,15 @@ class MasterPageView extends View
     $resourceArrayAloxamentos = array();
     while ( $res = $resList->fetch() ) {
       $resAll = $res->getAllData();
+      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
+      $resourceArrayAloxamentos[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayAloxamentos[$res->getter('id')]['data'] = $resAll['data'];
       $urlAlias = $this->getUrlAlias($res->getter('id'));
       $resourceArrayAloxamentos[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-
+    usort($resourceArrayAloxamentos, function($a, $b) {
+        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    });
     $this->template->assign('rdAloxamentoConEncanto', $resourceArrayAloxamentos);
 
     /**
@@ -215,11 +234,15 @@ class MasterPageView extends View
     $resourceArrayGastronomia = array();
     while ( $res = $resList->fetch() ) {
       $resAll = $res->getAllData();
+      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
+      $resourceArrayGastronomia[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayGastronomia[$res->getter('id')]['data'] = $resAll['data'];
       $urlAlias = $this->getUrlAlias($res->getter('id'));
       $resourceArrayGastronomia[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-
+    usort($resourceArrayGastronomia, function($a, $b) {
+        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    });
     $this->template->assign('rdAutenticaGastronomia', $resourceArrayGastronomia);
 
     $this->template->assign('isFront', true);
