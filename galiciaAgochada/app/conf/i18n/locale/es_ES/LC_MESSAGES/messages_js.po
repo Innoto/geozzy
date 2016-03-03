@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2016-02-17T13:04:14+01:00\n"
-"PO-Revision-Date: 2016-02-17T13:04:15+01:00\n"
+"POT-Creation-Date: 2016-03-03T16:08:08+01:00\n"
+"PO-Revision-Date: 2016-03-03T16:08:09+01:00\n"
 "Language: \n"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:177
@@ -16,10 +16,13 @@ msgstr ""
 msgid "Paisaxes Espectaculares"
 msgstr "Paisajes Espectaculares"
 
-#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:232
-#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:236
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:233
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:233
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:228
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:257
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:233
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:232
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:236
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:232
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:231
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:231
@@ -29,15 +32,17 @@ msgstr "Paisajes Espectaculares"
 msgid "Toda Galicia"
 msgstr ""
 
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:246
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:245
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/paisaxesExplorer.js:244
 msgid "Todas as paisaxes"
 msgstr "Todos los paisajes"
 
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:250
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:253
-#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:256
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:276
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:279
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:256
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:252
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:255
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:275
@@ -45,34 +50,38 @@ msgstr "Todos los paisajes"
 msgid "Especialidade"
 msgstr "Especialidad"
 
-#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:258
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:255
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:281
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:258
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:257
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:280
 msgid "Todas as especialidades"
 msgstr "Todas las especialidades"
 
-#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:265
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:262
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:281
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:288
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:265
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:264
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:280
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:287
 msgid "Precio"
 msgstr ""
 
-#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:268
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:265
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:284
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:291
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:268
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:267
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:283
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:290
 msgid "Cun prezo inferior a"
 msgstr "Con un precio inferior a"
 
-#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:276
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:273
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:292
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:299
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:276
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/xantaresExplorer.js:275
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/aloxamentosExplorer.js:291
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/todosSegredosExplorer.js:298
@@ -120,11 +129,13 @@ msgstr "Todos los servicios"
 msgid "Rincóns con Encanto"
 msgstr "Rincones con Encanto"
 
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:246
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:245
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/rinconsExplorer.js:244
 msgid "Todos os lugares"
 msgstr "Todos los lugares"
 
+#: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/praiasExplorer.js:161
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/praiasExplorer.js:158
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/praiasExplorer.js:157
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/templates/js/praiasExplorer.js:148
