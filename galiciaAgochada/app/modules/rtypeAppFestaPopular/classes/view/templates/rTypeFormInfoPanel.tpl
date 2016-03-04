@@ -35,7 +35,8 @@
     </div>
     {foreach $res.data.starred as $star}
     <div class="row rowWhite"><div class="infoCol col-md-4"></div>
-      <div class="infoColData col-md-8">{$star["name_$GLOBAL_C_LANG"]}</div>
+      {$l = $cogumelo.publicConf.C_LANG}
+      <div class="infoColData col-md-8">{$star["name_$l"]}</div>
     </div>
     {/foreach}
   {/if}

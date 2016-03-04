@@ -34,7 +34,7 @@
       <h2>{t}Os segredos de Galicia{/t}</h2>
       <div class="row">
         <div class="segredoItem segredoRincons col-lg-4 col-sm-6">
-          <a href="/{$GLOBAL_C_LANG}/rincons-con-encanto">
+          <a href="/{$cogumelo.publicConf.C_LANG}/rincons-con-encanto">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
@@ -47,7 +47,7 @@
           </a>
         </div>
         <div class="segredoItem segredoPaisaxes col-lg-4 col-sm-6">
-          <a href="/{$GLOBAL_C_LANG}/paisaxes-espectaculares">
+          <a href="/{$cogumelo.publicConf.C_LANG}/paisaxes-espectaculares">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
@@ -60,7 +60,7 @@
           </a>
         </div>
         <div class="segredoItem segredoPraias col-lg-4 col-sm-6">
-          <a href="/{$GLOBAL_C_LANG}/praias-ensono">
+          <a href="/{$cogumelo.publicConf.C_LANG}/praias-ensono">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
@@ -73,7 +73,7 @@
           </a>
         </div>
         <div class="segredoItem segredoXantares col-lg-4 col-sm-6">
-          <a href="/{$GLOBAL_C_LANG}/sabrosos-xantares">
+          <a href="/{$cogumelo.publicConf.C_LANG}/sabrosos-xantares">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
@@ -86,7 +86,7 @@
           </a>
         </div>
         <div class="segredoItem segredoAloxamentos col-lg-4 col-sm-6">
-          <a href="/{$GLOBAL_C_LANG}/aloxamentos-con-encanto">
+          <a href="/{$cogumelo.publicConf.C_LANG}/aloxamentos-con-encanto">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
@@ -112,7 +112,7 @@
           </a>
         </div>
       </div>
-      <a class="segredosAll" href="/{$GLOBAL_C_LANG}/segredos">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
+      <a class="segredosAll" href="/{$cogumelo.publicConf.C_LANG}/segredos">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
     </div>
   </section>
 
@@ -157,14 +157,14 @@
                   <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                       <div class="destResourceMoreInfo">
-                        <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                        <p>{$rd.data["shortDescription_$cogumelo.publicConf.C_LANG"]}</p>
                         <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                       </div>
                   </div>
                 </div>
                 <div class="itemTitle">
                   <a href="/{$rd.data.urlAlias}">
-                    <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
+                    <h3>{$rd.data["title_$cogumelo.publicConf.C_LANG"]}</h3>
                   </a>
                 </div>
               </div>
@@ -182,14 +182,14 @@
                   <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama" >
                     <div class="destResourceMoreInfo">
-                      <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                      <p>{$rd.data["shortDescription_$cogumelo.publicConf.C_LANG"]}</p>
                       <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
                   <a href="/{$rd.urlAlias}">
-                    <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
+                    <h3>{$rd.data["title_$cogumelo.publicConf.C_LANG"]}</h3>
                   </a>
                 </div>
               </div>
@@ -207,14 +207,14 @@
                   <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                     <div class="destResourceMoreInfo">
-                      <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                      <p>{$rd.data["shortDescription_$cogumelo.publicConf.C_LANG"]}</p>
                       <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
                   <a href="/{$rd.urlAlias}">
-                    <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
+                    <h3>{$rd.data["title_$cogumelo.publicConf.C_LANG"]}</h3>
                   </a>
                 </div>
               </div>
@@ -233,14 +233,14 @@
                   <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                     <div class="destResourceMoreInfo">
-                      <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                      <p>{$rd.data["shortDescription_$cogumelo.publicConf.C_LANG"]}</p>
                       <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
                   <a href="/{$rd.urlAlias}">
-                    <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
+                    <h3>{$rd.data["title_$cogumelo.publicConf.C_LANG"]}</h3>
                   </a>
                 </div>
               </div>
@@ -258,14 +258,14 @@
                   <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
                     <div class="destResourceMoreInfo">
-                      <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                      <p>{$rd.data["shortDescription_$cogumelo.publicConf.C_LANG"]}</p>
                       <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
                   <a href="/{$rd.urlAlias}">
-                    <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
+                    <h3>{$rd.data["title_$cogumelo.publicConf.C_LANG"]}</h3>
                   </a>
                 </div>
               </div>
@@ -283,14 +283,14 @@
                 <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                 <div class="trama">
                   <div class="destResourceMoreInfo">
-                    <p>{$rd.data["shortDescription_$GLOBAL_C_LANG"]}</p>
+                    <p>{$rd.data["shortDescription_$cogumelo.publicConf.C_LANG"]}</p>
                     <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                   </div>
                 </div>
               </div>
               <div class="itemTitle">
                 <a href="/{$rd.urlAlias}">
-                  <h3>{$rd.data["title_$GLOBAL_C_LANG"]}</h3>
+                  <h3>{$rd.data["title_$cogumelo.publicConf.C_LANG"]}</h3>
                 </a>
               </div>
             </div>

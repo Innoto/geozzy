@@ -1,10 +1,10 @@
 {extends file="primary.tpl"}
 
-{if isset($res.header) && $res.header==false}
-  {block name="headerContent"}{/block}
+{if isset($res.header) && $res.header===false}
+  {block name="headContent"}{/block}
 {/if}
 
-{if isset($res.footer) && $res.footer==false}
+{if isset($res.footer) && $res.footer===false}
   {block name="footerContent"}{/block}
 {/if}
 

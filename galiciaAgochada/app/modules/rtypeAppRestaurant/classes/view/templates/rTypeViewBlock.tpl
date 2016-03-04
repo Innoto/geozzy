@@ -82,7 +82,8 @@
         {foreach from=$res.data.eatanddrinkType item=termInfo}
           <li>
             <img src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.png" />
-            <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
+            {$l = $cogumelo.publicConf.C_LANG}
+            <div class="name">{$termInfo["name_$l"]}</div>
           </li>
           {break}
         {/foreach}

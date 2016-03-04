@@ -30,17 +30,14 @@ class AppResourceBridgeView extends MasterView {
         }
       }
 
-      $header = true;
-      if (isset($resViewBlockInfo['header']))
-        $header = $resViewBlockInfo['header'];
-
       $resData = array('data' => $resViewBlockInfo['data'], 'ext' => $resViewBlockInfo['ext']);
       // Si vienen datos de header o footer, se asignan
-      if (isset($resViewBlockInfo['header']))
+      if (isset($resViewBlockInfo['header'])){
         $resData['header'] = $resViewBlockInfo['header'];
-      if (isset($resViewBlockInfo['footer']))
+      }
+      if (isset($resViewBlockInfo['footer'])){
         $resData['footer'] = $resViewBlockInfo['footer'];
-
+      }
       $this->template->assign( 'res', $resData );
 
       $this->template->assign('i18nlocale', I18N_LOCALE);

@@ -73,7 +73,8 @@
         {foreach from=$res.data.rextAppLugarType item=termInfo}
           <li>
             {if isset($termInfo.icon)}<img src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />{/if}
-            <div class="name">{$termInfo["name_$GLOBAL_C_LANG"]}</div>
+            {$l = $cogumelo.publicConf.C_LANG}
+            <div class="name">{$termInfo["name_$l"]}</div>
           </li>
           {break}
         {/foreach}
