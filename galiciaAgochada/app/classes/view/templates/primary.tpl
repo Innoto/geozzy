@@ -23,22 +23,34 @@
 </head>
 <body data-spy="scroll" data-target=".headContent">
   <article>
-    {block name="headContent"}
-      <header class="headContent">
-        {include file="header.tpl"}
-      </header>
-    {/block}
+
+    {capture "headContent"}
+      {block name="headContent"}
+        <header class="headContent">
+          {include file="header.tpl"}
+        </header>
+      {/block}
+    {/capture}
+    {if isset($res.header) && $res.header!==false}{$res.header}{/if}
+    {if !isset($res.header) || $res.header===true}{$smarty.capture.headContent}{/if}
+
     <section class="bodyContent">
       {block name="bodyContent"}{if $bodyContent}{$bodyContent}{/if}{/block}
     </section>
-    {block name="footerContent"}
-      <footer class="footerContent">
-        {include file="footer.tpl"}
-      </footer>
-    {/block}
+
+    {capture "footerContent"}
+      {block name="footerContent"}
+        <footer class="footerContent">
+          {include file="footer.tpl"}
+        </footer>
+      {/block}
+    {/capture}
+    {if isset($res.footer) && $res.footer!==false}{$res.footer}{/if}
+    {if !isset($res.footer) || $res.footer===true}{$smarty.capture.footerContent}{/if}
 
   </article>
 </body>
 </html>
+
 
 <!-- /defaultConHeader.tpl en app de Geozzy -->

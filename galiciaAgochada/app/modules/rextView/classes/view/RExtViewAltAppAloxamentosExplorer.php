@@ -20,10 +20,8 @@ class RExtViewAltAppAloxamentosExplorer {
    */
   public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
     //error_log( "RExtViewAltAppAloxamentosExplorer: alterViewBlockInfo( viewBlockInfo, $templateName )" );
-    
     $explorerView = new ExplorerPageView(false);
     $explorerView->aloxamentosExplorer();
-    $viewBlockInfo['header'] = false;
     $viewBlockInfo['footer'] = false;
     $viewBlockInfo['template']['full'] = $explorerView->template;
 

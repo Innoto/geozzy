@@ -20,10 +20,8 @@ class RExtViewAltAppTodosSegredosExplorer {
    */
   public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
     //error_log( "RExtViewAltAppTodosSegredosExplorer: alterViewBlockInfo( viewBlockInfo, $templateName )" );
-    
     $explorerView = new ExplorerPageView(false);
     $explorerView->todosSegredosExplorer();
-    $viewBlockInfo['header'] = false;
     $viewBlockInfo['footer'] = false;
     $viewBlockInfo['template']['full'] = $explorerView->template;
 

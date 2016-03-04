@@ -20,10 +20,8 @@ class RExtViewAltAppXantaresExplorer {
    */
   public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
     //error_log( "RExtViewAltAppXantaresExplorer: alterViewBlockInfo( viewBlockInfo, $templateName )" );
-
     $explorerView = new ExplorerPageView(false);
     $explorerView->xantaresExplorer();
-    $viewBlockInfo['header'] = false;
     $viewBlockInfo['footer'] = false;
     $viewBlockInfo['template']['full'] = $explorerView->template;
 

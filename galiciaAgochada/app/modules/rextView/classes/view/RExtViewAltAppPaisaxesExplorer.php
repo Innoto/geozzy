@@ -20,10 +20,8 @@ class RExtViewAltAppPaisaxesExplorer {
    */
   public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
     //error_log( "RExtViewAltAppPaisaxesExplorer: alterViewBlockInfo( viewBlockInfo, $templateName )" );
-
     $explorerView = new ExplorerPageView(false);
     $explorerView->paisaxesExplorer();
-    $viewBlockInfo['header'] = false;
     $viewBlockInfo['footer'] = false;
     $viewBlockInfo['template']['full'] = $explorerView->template;
 
