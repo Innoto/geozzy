@@ -9,9 +9,13 @@ $( document ).ready(function(){
     }
   });
   /*Pechar o cabeceira reducida*/
-  $('.nav a').on('click', function(){
-    $('.navbar-toggle').click();
+
+  $(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') ) {
+        $(this).collapse('hide');
+    }
   });
+  
   /*Sliders destacados*/
   $('.owl-carousel').owlCarousel({
     loop: true,
