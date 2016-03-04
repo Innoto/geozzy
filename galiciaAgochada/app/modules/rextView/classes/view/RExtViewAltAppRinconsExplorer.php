@@ -20,10 +20,8 @@ class RExtViewAltAppRinconsExplorer {
    */
   public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
     //error_log( "RExtViewAltAppRinconsExplorer: alterViewBlockInfo( viewBlockInfo, $templateName )" );
-
     $explorerView = new ExplorerPageView(false);
     $explorerView->rinconsExplorer();
-    $viewBlockInfo['header'] = false;
     $viewBlockInfo['footer'] = false;
     $viewBlockInfo['template']['full'] = $explorerView->template;
 

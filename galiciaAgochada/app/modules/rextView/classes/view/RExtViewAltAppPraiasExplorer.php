@@ -22,7 +22,6 @@ class RExtViewAltAppPraiasExplorer {
     //error_log( "RExtViewAltAppPraiasExplorer: alterViewBlockInfo( viewBlockInfo, $templateName )" );
     $explorerView = new ExplorerPageView(false);
     $explorerView->praiasExplorer();
-    $viewBlockInfo['header'] = false;
     $viewBlockInfo['footer'] = false;
     $viewBlockInfo['template']['full'] = $explorerView->template;
 
