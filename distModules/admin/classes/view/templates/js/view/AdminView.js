@@ -7,6 +7,8 @@ var AdminView = Backbone.View.extend({
 
   bodyClass: false,
 
+  chartsLoaded: false,
+
   initialize: function(){
     this.renderMenu();
   },
@@ -53,6 +55,20 @@ var AdminView = Backbone.View.extend({
 
   },
 
+  loadAjaxCharts: function( url ) {
+    var that=this;
+    that.childView = false;
+
+    if (that.chartsLoaded == false){
+      $("#page-wrapper").load( url, {}, function(){ 
+        that.render();
+        that.chartsLoaded = $('#page-wrapper').html(); 
+      });
+      
+    }else{
+      $('#page-wrapper').html(that.chartsLoaded);
+    }
+  },
 
   loadAjaxContentModal: function( modalUrl, modalId, modalTitle, size ) {
 
