@@ -43,7 +43,7 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   charts: function() {
-    app.mainView.loadAjaxContent( '/admin/charts' );
+    app.mainView.loadAjaxCharts( '/admin/charts' );
     app.mainView.setBodyClass('charts');
   },
 

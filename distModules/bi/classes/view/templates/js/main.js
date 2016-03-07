@@ -78,6 +78,5 @@ require([
     $.noConflict();
     Backbone.history.start();
     new Router();
-    var view = new AppView();
-    view.render();
+    new AppView();
 });
