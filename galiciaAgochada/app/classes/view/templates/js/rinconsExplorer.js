@@ -182,7 +182,7 @@
             '<div class="row">'+
               '<div class="col-md-6 col-sm-1 hidden-xs explorerTitle" >'+
                 '<img class="iconTitleBar img-responsive" alt="'+name+'" '+
-                  ' src='+cogumelo.publicConf.media+'"/img/rinconsIcon.png"></img>'+
+                  ' src="'+cogumelo.publicConf.media+'/img/rinconsIcon.png"></img>'+
                 '<h1>'+name+'</h1>'+
               '</div>'+
               '<div class="col-md-6 col-sm-11 col-xs-12 explorerFilters clearfix" ></div>'+
