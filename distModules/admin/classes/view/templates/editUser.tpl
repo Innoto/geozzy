@@ -17,9 +17,10 @@
   <div class="col-md-6">
 
     {$userFormFields.login}
+    {$userFormFields.email}
     {$userFormFields.name}
     {$userFormFields.surname}
-    {$userFormFields.email}
+
 
     {$userFormFields.active}
 
