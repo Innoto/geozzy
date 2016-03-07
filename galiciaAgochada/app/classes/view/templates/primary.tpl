@@ -31,7 +31,7 @@
         </header>
       {/block}
     {/capture}
-    {if isset($res.header) && $res.header!==false}{$res.header}{/if}
+    {if isset($res.header) && $res.header!==false && $res.header!==true}{$res.header}{/if}
     {if !isset($res.header) || $res.header===true}{$smarty.capture.headContent}{/if}
 
     <section class="bodyContent">
@@ -45,7 +45,7 @@
         </footer>
       {/block}
     {/capture}
-    {if isset($res.footer) && $res.footer!==false}{$res.footer}{/if}
+    {if isset($res.footer) && $res.footer!==false && $res.footer!==true}{$res.footer}{/if}
     {if !isset($res.footer) || $res.footer===true}{$smarty.capture.footerContent}{/if}
 
   </article>
