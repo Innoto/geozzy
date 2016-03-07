@@ -16,17 +16,19 @@
 {/block}
 
 
-{block name="headDescription"}{if $res.data.headDescription!='' }{$res.data.headDescription}{else}{$res.data.shortDescription}{/if}{/block}
+{block name="headDescription"}
+  {if $res.data.headDescription!='' }{$res.data.headDescription}{else}{$res.data.shortDescription}{/if}
+{/block}
 
 
 {block name="socialMeta" append}
-<meta property="og:title" content="{$res.data.headTitle}" />
-<meta property="og:type" content="article" />
-<meta property="og:site_name" content="Galicia Agochada" />
-<meta property="og:image" content="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
-<link href="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" rel="image_src">
-<meta property="og:url" content="{$site_host}{$res.data["urlAlias"]}" />
-<meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb"]}" />
+  <meta property="og:title" content="{$res.data.headTitle}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Galicia Agochada" />
+  <meta property="og:image" content="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
+  <link href="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" rel="image_src">
+  <meta property="og:url" content="{$site_host}{$res.data["urlAlias"]}" />
+  <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb"]}" />
 {/block}
 
 
