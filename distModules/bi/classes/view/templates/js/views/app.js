@@ -47,6 +47,10 @@ define([
         //* Listening to some events of change in the view
         //* Requesting Metrics and resetting the Organizations and Filters for the first time
         initialize: function () {
+            console.log("BI: initialize");
+            this.setElement($(this.el));      // jQuery template                          
+            this.delegateEvents();
+
             this.$metricSelect = this.$('#metricsSelect');
             this.$orgsSelect = this.$('#orgsSelect');
             this.$detailBySelect = this.$('#detailBySelect');

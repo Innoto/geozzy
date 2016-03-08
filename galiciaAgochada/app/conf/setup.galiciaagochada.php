@@ -63,6 +63,9 @@ define( 'DB_MYSQL_GROUPCONCAT_MAX_LEN', 4294967295); //max 	4294967295 (in 32 bi
 // allow cache with memcached
 define( 'DB_ALLOW_CACHE', true );
 */
+/*
+MOVIDO a setup.dev.php o setup.final.php
+
 cogumeloSetSetupValue( 'db', array(
   'engine' => 'mysql',
   'hostname' => 'localhost',
@@ -73,6 +76,7 @@ cogumeloSetSetupValue( 'db', array(
   'mysqlGroupconcatMaxLen' => 4294967295,
   'allowCache' => true
 ));
+*/
 
 require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
 

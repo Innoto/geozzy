@@ -9,7 +9,7 @@ define([
             'charts': 'refresh'
         },
         refresh: function(){
-        
+            new AppView();
         }
     });
     return Router;

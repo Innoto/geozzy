@@ -38,14 +38,14 @@ function cogumeloSetSetupValue( $path, $value ) {
   return $CGMLCONF;
 }
 
-function cogumeloGetSetupValue( $path ) {
+function cogumeloGetSetupValue( $path = '' ) {
   // error_log( 'COGUMELO::cogumeloGetSetupValue: '.$path );
   global $CGMLCONF;
   $value = null;
 
   $parts = explode( ':', $path );
-  $stack = '[\'' . implode( '\'][\'', $parts ) . '\']';
-  $fai = '$valid = isset( $CGMLCONF'. $stack .');';
+  $stack = ( $parts[0] === '' ) ? '' : '[\'' . implode( '\'][\'', $parts ) . '\']';
+  $fai = '$valid = isset( $CGMLCONF'. $stack .' );';
   eval( $fai );
   if( $valid ) {
     $fai = '$value = $CGMLCONF'. $stack .';';

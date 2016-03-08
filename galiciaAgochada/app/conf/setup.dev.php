@@ -16,14 +16,27 @@ define( 'COGUMELO_DIST_LOCATION', '/home/proxectos/geozzy');
 //
 define( 'APP_TMP_PATH', APP_BASE_PATH.'/tmp' );
 
+// DB
+//
+cogumeloSetSetupValue( 'db', array(
+  'engine' => 'mysql',
+  'hostname' => 'localhost',
+  'port' => '3306',
+  'user' => 'galiciaagochada',
+  'password' => 'q7w8e9r',
+  'name' => 'galiciaagochada',
+  'mysqlGroupconcatMaxLen' => 4294967295,
+  'allowCache' => true
+));
+
 // Url settings
-// TODO: Cuidado porque no se admite un puerto
+// TODO: No se admite un puerto?
 define( 'COGUMELO_ADMINSCRIPT_URL', 'http://galiciaagochada/cogumelo-server.php');
 
 // Media server
 //
 cogumeloSetSetupValue( 'mod:mediaserver', array(
-  'productionMode' => false, // If true, you must compile less manually with ./cogumelo generateClientCaches
+  'productionMode' => true, // If true, you must compile less manually with ./cogumelo generateClientCaches
   'notCacheJs' => true,
   'host' => '/', // Ej: '/' o 'http://media.galiciaagochada:84/'
   'path' => 'media',
@@ -33,16 +46,14 @@ cogumeloSetSetupValue( 'mod:mediaserver', array(
 ));
 
 //PORTO
-/*
 if( cogumeloGetSetupValue('mod:mediaserver:productionMode') ) {
   cogumeloSetSetupValue( 'mod:mediaserver:notCacheJs', false );
-  cogumeloSetSetupValue( 'mod:mediaserver:host', 'http://media.galiciaagochada:84/' );
+  cogumeloSetSetupValue( 'mod:mediaserver:host', 'http://media.galiciaagochada/' );
 }
 else {
   cogumeloSetSetupValue( 'mod:mediaserver:notCacheJs', true );
   cogumeloSetSetupValue( 'mod:mediaserver:host', '/' );
 }
-*/
 
 // A eliminar:
 define( 'MEDIASERVER_PRODUCTION_MODE', cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) );
