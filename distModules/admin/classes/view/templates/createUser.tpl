@@ -12,11 +12,12 @@
   <div class="col-md-6">
 
     {$userFormFields.login}
+    {$userFormFields.email}
     {$userFormFields.password}
     {$userFormFields.password2}
     {$userFormFields.name}
     {$userFormFields.surname}
-    {$userFormFields.email}
+
 
     {$userFormFields.active}
 
