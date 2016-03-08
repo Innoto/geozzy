@@ -36,7 +36,7 @@ define( 'COGUMELO_ADMINSCRIPT_URL', 'http://galiciaagochada/cogumelo-server.php'
 // Media server
 //
 cogumeloSetSetupValue( 'mod:mediaserver', array(
-  'productionMode' => true, // If true, you must compile less manually with ./cogumelo generateClientCaches
+  'productionMode' => false, // If true, you must compile less manually with ./cogumelo generateClientCaches
   'notCacheJs' => true,
   'host' => '/', // Ej: '/' o 'http://media.galiciaagochada:84/'
   'path' => 'media',
@@ -46,6 +46,7 @@ cogumeloSetSetupValue( 'mod:mediaserver', array(
 ));
 
 //PORTO
+/*
 if( cogumeloGetSetupValue('mod:mediaserver:productionMode') ) {
   cogumeloSetSetupValue( 'mod:mediaserver:notCacheJs', false );
   cogumeloSetSetupValue( 'mod:mediaserver:host', 'http://media.galiciaagochada/' );
@@ -54,6 +55,7 @@ else {
   cogumeloSetSetupValue( 'mod:mediaserver:notCacheJs', true );
   cogumeloSetSetupValue( 'mod:mediaserver:host', '/' );
 }
+*/
 
 // A eliminar:
 define( 'MEDIASERVER_PRODUCTION_MODE', cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) );
