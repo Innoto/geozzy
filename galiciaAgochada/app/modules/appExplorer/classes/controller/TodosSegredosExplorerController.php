@@ -71,7 +71,7 @@ class TodosSegredosExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/TodosSegredosExplorerModel.php');
+    appExplorer::load('model/TodosSegredosExplorerModel.php');
     $resourceModel = new TodosSegredosExplorerModel();
 
     $ids = false;

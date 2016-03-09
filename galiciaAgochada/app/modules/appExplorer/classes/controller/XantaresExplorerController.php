@@ -64,7 +64,7 @@ class XantaresExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/XantaresExplorerModel.php');
+    appExplorer::load('model/XantaresExplorerModel.php');
     $resourceModel = new XantaresExplorerModel();
 
     $ids = false;

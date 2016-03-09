@@ -61,7 +61,7 @@ class RinconsExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/RinconsExplorerModel.php');
+    appExplorer::load('model/RinconsExplorerModel.php');
     $resourceModel = new RinconsExplorerModel();
 
     $ids = false;

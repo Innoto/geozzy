@@ -61,7 +61,7 @@ class PraiasExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/PraiasExplorerModel.php');
+    appExplorer::load('model/PraiasExplorerModel.php');
     $resourceModel = new PraiasExplorerModel();
 
     $ids = false;
