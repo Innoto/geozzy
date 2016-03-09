@@ -5,17 +5,17 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class RinconsExplorerModel extends Model
+class XantaresExplorerModel extends Model
 {
   var $notCreateDBTable = true;
 
   var $deploySQL = array(
     // All Times
-    'explorer#1.0' => array(
+    'appExplorer#1.0' => array(
       'executeOnGenerateModelToo' => true,
       'sql'=> "
-          DROP VIEW IF EXISTS geozzy_rincons_explorer_index;
-          CREATE VIEW geozzy_rincons_explorer_index AS
+          DROP VIEW IF EXISTS geozzy_xantares_explorer_index;
+          CREATE VIEW geozzy_xantares_explorer_index AS
           SELECT
             geozzy_resource.id as id,
             geozzy_resourcetype.idName as rtype,
@@ -27,6 +27,7 @@ class RinconsExplorerModel extends Model
             geozzy_resource.mediumDescription_en as mediumDescription_en,
             geozzy_resource.mediumDescription_gl as mediumDescription_gl,
             geozzy_resource.loc as loc,
+            geozzy_resource_rext_eatanddrink.averagePrice as averagePrice,
             geozzy_resource_rext_contact.city as city,
             geozzy_resource.timeLastUpdate as timeLastUpdate,
             group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
@@ -39,18 +40,21 @@ class RinconsExplorerModel extends Model
           ON geozzy_resource.id = geozzy_resource_topic.resource
           LEFT JOIN geozzy_topic
           ON geozzy_resource_topic.topic = geozzy_topic.id
+          LEFT JOIN geozzy_resource_rext_eatanddrink
+          ON geozzy_resource.id = geozzy_resource_rext_eatanddrink.resource
           LEFT JOIN geozzy_resource_rext_contact
           ON geozzy_resource.id = geozzy_resource_rext_contact.resource
 
           WHERE
             geozzy_resource.published = 1 AND
-            geozzy_topic.idName = 'RecantosConEstilo'
+            geozzy_topic.idName = 'AutenticaGastronomia'
           group by geozzy_resource.id;
       "
     )
   );
 
-  static $tableName = 'geozzy_rincons_explorer_index';
+
+  static $tableName = 'geozzy_xantares_explorer_index';
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -75,6 +79,9 @@ class RinconsExplorerModel extends Model
     ),
     'loc' => array(
       'type'=>'GEOMETRY'
+    ),
+    'averagePrice' => array(
+      'type' => 'FLOAT'
     ),
     'city' => array(
       'type' => 'VARCHAR'

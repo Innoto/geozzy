@@ -2,12 +2,12 @@
 
 explorer::load('controller/ExplorerController.php');
 
-class XantaresExplorerController extends ExplorerController {
+class RinconsExplorerController extends ExplorerController {
 
   public function serveMinimal( $updatedFrom = false ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/XantaresExplorerModel.php');
-    $resourceModel = new XantaresExplorerModel();
+    appExplorer::load('model/RinconsExplorerModel.php');
+    $resourceModel = new RinconsExplorerModel();
 
 
     if( $updatedFrom ) {
@@ -19,7 +19,7 @@ class XantaresExplorerController extends ExplorerController {
 
 
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image', 'averagePrice'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image'), 'filters'=> $filters ) );
 
     $coma = '';
 
@@ -31,9 +31,9 @@ class XantaresExplorerController extends ExplorerController {
 
         $resourceDataArray = $resource->getAllData('onlydata');
 
-
         $row['id'] = $resourceDataArray['id'];
         $row['rtype'] = $resourceDataArray['rtype'];
+
         if( isset($resourceDataArray['loc']) ) {
           $loc = DBUtils::decodeGeometry( $resourceDataArray['loc'] );
           $row['lat'] = floatval( $loc['data'][0] );
@@ -48,9 +48,6 @@ class XantaresExplorerController extends ExplorerController {
         if( isset($resourceDataArray['image']) ) {
           $row['img'] = $resourceDataArray['image'];
         }
-        if( isset($resourceDataArray['averagePrice']) ) {
-          $row['averagePrice'] = $resourceDataArray['averagePrice'];
-        }
 
 
         echo json_encode( $row );
@@ -64,8 +61,8 @@ class XantaresExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/XantaresExplorerModel.php');
-    $resourceModel = new XantaresExplorerModel();
+    appExplorer::load('model/RinconsExplorerModel.php');
+    $resourceModel = new RinconsExplorerModel();
 
     $ids = false;
 
@@ -73,7 +70,7 @@ class XantaresExplorerController extends ExplorerController {
       $ids = array_map( 'intval',$_POST['ids']);
     }
 
-    $resources = $resourceModel->listItems( array( 'filters' => array( 'ids' => $ids) ) );
+    $resources = $resourceModel->listItems( array('filters' => array( 'ids' => $ids) ) );
 
     $coma = '';
 
@@ -82,13 +79,17 @@ class XantaresExplorerController extends ExplorerController {
     while( $resource = $resources->fetch() ){
         echo $coma;
         $row = array();
+
         $resourceDataArray = array('id' => $resource->getter('id'), 'title' => $resource->getter('title'),
                                    'mediumDescription' => $resource->getter('mediumDescription'), 'city' => $resource->getter('city'));
+
 
         $row['id'] = $resourceDataArray['id'];
         $row['title'] = ( isset($resourceDataArray['title']) )?$resourceDataArray['title']:false;
         $row['description'] = ( isset($resourceDataArray['mediumDescription']) )?$resourceDataArray['mediumDescription']:false;
         $row['city'] =  ( isset($resourceDataArray['city']) )?$resourceDataArray['city']:false;
+
+
 
 
         echo json_encode( $row );

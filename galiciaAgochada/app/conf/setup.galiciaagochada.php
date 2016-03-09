@@ -178,8 +178,9 @@ $C_ENABLED_MODULES = array(
   'Blocks',
   'table',
   'explorer',
+  'appExplorer',
   // testing module
-  'testData'
+  'testData',
 
 );
 

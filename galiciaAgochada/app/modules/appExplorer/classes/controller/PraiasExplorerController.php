@@ -2,12 +2,12 @@
 
 explorer::load('controller/ExplorerController.php');
 
-class PaisaxesExplorerController extends ExplorerController {
+class PraiasExplorerController extends ExplorerController {
 
   public function serveMinimal( $updatedFrom = false ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/PaisaxesExplorerModel.php');
-    $resourceModel = new PaisaxesExplorerModel();
+    appExplorer::load('model/PraiasExplorerModel.php');
+    $resourceModel = new PraiasExplorerModel();
 
 
     if( $updatedFrom ) {
@@ -61,8 +61,8 @@ class PaisaxesExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/PaisaxesExplorerModel.php');
-    $resourceModel = new PaisaxesExplorerModel();
+    appExplorer::load('model/PraiasExplorerModel.php');
+    $resourceModel = new PraiasExplorerModel();
 
     $ids = false;
 
