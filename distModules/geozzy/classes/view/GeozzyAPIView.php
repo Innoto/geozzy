@@ -428,6 +428,36 @@ class geozzyAPIView extends View {
     <?php
   }
 
+  public function userSessionJson() {
+    header('Content-type: application/json');
+    ?>
+      {
+        "resourcePath": "/userSession.json",
+        "basePath": "/api",
+        "apis": [
+          {
+            "operations": [
+              {
+                "errorResponses": [
+                  {
+                    "reason": "Not found",
+                    "code": 404
+                  }
+                ],
+                "httpMethod": "GET",
+                "nickname": "userSession",
+                "parameters": [],
+                "summary": "User session"
+              }
+            ],
+            "path": "/core/usersession",
+            "description": ""
+          }
+        ]
+      }
+    <?php
+  }
+
   /*
     public function uiEventListJson() {
       header('Content-type: application/json');
@@ -912,6 +942,31 @@ class geozzyAPIView extends View {
     $topicList = $topicModel->listItems( );
     $this->syncModelList( $topicList );
   }
+  // userSession
+  public function userSession() {
+    user::autoIncludes();
+    $useraccesscontrol = new UserAccessController();
+    $user = $useraccesscontrol->getSessiondata();
+
+    header('Content-type: application/json');
+    if($user){
+      $u = array();
+      $u['id'] = $user['data']['id'];
+      $u['login'] = $user['data']['login'];
+      $u['name'] = $user['data']['name'];
+      $u['surname'] = $user['data']['surname'];
+      $u['email'] = $user['data']['email'];
+      $u['active'] = $user['data']['active'];
+      $u['timeLastLogin'] = $user['data']['timeLastLogin'];
+      $u['timeCreateUser'] = $user['data']['timeCreateUser'];
+      $u['avatar'] = $user['data']['avatar'];
+    }else{
+      $u = false;
+    }
+    echo json_encode( $u );
+
+  }
+
 
   /*
     // UI events
