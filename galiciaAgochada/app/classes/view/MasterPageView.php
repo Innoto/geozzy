@@ -3,6 +3,7 @@
 Cogumelo::load('coreView/View.php');
 Cogumelo::load('coreController/I18nController.php');
 common::autoIncludes();
+user::autoIncludes();
 geozzy::autoIncludes();
 Cogumelo::autoIncludes();
 
@@ -69,6 +70,10 @@ class MasterPageView extends View
   }
 
   public function home() {
+
+    $useraccesscontrol = new UserAccessController();
+    $user = $useraccesscontrol->getSessiondata();
+Cogumelo::console($user);
 
     // Autodetección idioma
     $i18nCtrl = new I18nController();

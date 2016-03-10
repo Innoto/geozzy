@@ -178,6 +178,7 @@ $C_ENABLED_MODULES = array(
   'Blocks',
   'table',
   'explorer',
+  'geozzyUser',
   // testing module
   'testData'
 
