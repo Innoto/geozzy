@@ -179,8 +179,9 @@ $C_ENABLED_MODULES = array(
   'table',
   'explorer',
   'geozzyUser',
+  'appExplorer',
   // testing module
-  'testData'
+  'testData',
 
 );
 

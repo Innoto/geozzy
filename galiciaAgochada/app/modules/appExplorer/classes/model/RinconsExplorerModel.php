@@ -5,17 +5,17 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class PraiasExplorerModel extends Model
+class RinconsExplorerModel extends Model
 {
   var $notCreateDBTable = true;
 
   var $deploySQL = array(
     // All Times
-    'explorer#1.0' => array(
+    'appExplorer#1.0' => array(
       'executeOnGenerateModelToo' => true,
       'sql'=> "
-          DROP VIEW IF EXISTS geozzy_praias_explorer_index;
-          CREATE VIEW geozzy_praias_explorer_index AS
+          DROP VIEW IF EXISTS geozzy_rincons_explorer_index;
+          CREATE VIEW geozzy_rincons_explorer_index AS
           SELECT
             geozzy_resource.id as id,
             geozzy_resourcetype.idName as rtype,
@@ -44,13 +44,13 @@ class PraiasExplorerModel extends Model
 
           WHERE
             geozzy_resource.published = 1 AND
-            geozzy_topic.idName = 'PraiasDeEnsono'
+            geozzy_topic.idName = 'RecantosConEstilo'
           group by geozzy_resource.id;
       "
     )
   );
 
-  static $tableName = 'geozzy_praias_explorer_index';
+  static $tableName = 'geozzy_rincons_explorer_index';
   static $cols = array(
     'id' => array(
       'type' => 'INT',

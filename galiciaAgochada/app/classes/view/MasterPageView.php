@@ -36,7 +36,8 @@ class MasterPageView extends View
       '127.0.0.1'
     );
 
-    if( in_array( $_SERVER['REMOTE_ADDR'], $validIp ) || strpos( $_SERVER['REMOTE_ADDR'], '10.77.' ) === 0 ) {
+    $conectionIP = isset( $_SERVER['HTTP_X_REAL_IP'] ) ? $_SERVER['HTTP_X_REAL_IP'] : $_SERVER['REMOTE_ADDR'];
+    if( in_array( $conectionIP, $validIp ) || strpos( $conectionIP, '10.77.' ) === 0 ) {
       $accessValid = true;
     }
     else {

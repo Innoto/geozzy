@@ -2,12 +2,12 @@
 
 explorer::load('controller/ExplorerController.php');
 
-class TodosSegredosExplorerController extends ExplorerController {
+class XantaresExplorerController extends ExplorerController {
 
   public function serveMinimal( $updatedFrom = false ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/TodosSegredosExplorerModel.php');
-    $resourceModel = new TodosSegredosExplorerModel();
+    appExplorer::load('model/XantaresExplorerModel.php');
+    $resourceModel = new XantaresExplorerModel();
 
 
     if( $updatedFrom ) {
@@ -24,7 +24,7 @@ class TodosSegredosExplorerController extends ExplorerController {
     $coma = '';
 
     echo '[';
-    $limite_temporal   = 1000;
+
     while( $resource = $resources->fetch() ){
         echo $coma;
         $row = array();
@@ -53,16 +53,9 @@ class TodosSegredosExplorerController extends ExplorerController {
         }
 
 
-
         echo json_encode( $row );
 
       $coma=',';
-
-      $limite_temporal--;
-
-      if($limite_temporal <= 0 ) {
-        break;
-      }
     }
 
     echo ']';
@@ -71,8 +64,8 @@ class TodosSegredosExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/TodosSegredosExplorerModel.php');
-    $resourceModel = new TodosSegredosExplorerModel();
+    appExplorer::load('model/XantaresExplorerModel.php');
+    $resourceModel = new XantaresExplorerModel();
 
     $ids = false;
 
@@ -80,7 +73,7 @@ class TodosSegredosExplorerController extends ExplorerController {
       $ids = array_map( 'intval',$_POST['ids']);
     }
 
-    $resources = $resourceModel->listItems( array('filters' => array( 'ids' => $ids) ) );
+    $resources = $resourceModel->listItems( array( 'filters' => array( 'ids' => $ids) ) );
 
     $coma = '';
 
@@ -89,10 +82,8 @@ class TodosSegredosExplorerController extends ExplorerController {
     while( $resource = $resources->fetch() ){
         echo $coma;
         $row = array();
-
         $resourceDataArray = array('id' => $resource->getter('id'), 'title' => $resource->getter('title'),
                                    'mediumDescription' => $resource->getter('mediumDescription'), 'city' => $resource->getter('city'));
-
 
         $row['id'] = $resourceDataArray['id'];
         $row['title'] = ( isset($resourceDataArray['title']) )?$resourceDataArray['title']:false;

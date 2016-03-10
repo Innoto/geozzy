@@ -2,12 +2,12 @@
 
 explorer::load('controller/ExplorerController.php');
 
-class RinconsExplorerController extends ExplorerController {
+class TodosSegredosExplorerController extends ExplorerController {
 
   public function serveMinimal( $updatedFrom = false ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/RinconsExplorerModel.php');
-    $resourceModel = new RinconsExplorerModel();
+    appExplorer::load('model/TodosSegredosExplorerModel.php');
+    $resourceModel = new TodosSegredosExplorerModel();
 
 
     if( $updatedFrom ) {
@@ -19,21 +19,21 @@ class RinconsExplorerController extends ExplorerController {
 
 
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image', 'averagePrice'), 'filters'=> $filters ) );
 
     $coma = '';
 
     echo '[';
-
+    $limite_temporal   = 1000;
     while( $resource = $resources->fetch() ){
         echo $coma;
         $row = array();
 
         $resourceDataArray = $resource->getAllData('onlydata');
 
+
         $row['id'] = $resourceDataArray['id'];
         $row['rtype'] = $resourceDataArray['rtype'];
-
         if( isset($resourceDataArray['loc']) ) {
           $loc = DBUtils::decodeGeometry( $resourceDataArray['loc'] );
           $row['lat'] = floatval( $loc['data'][0] );
@@ -48,11 +48,21 @@ class RinconsExplorerController extends ExplorerController {
         if( isset($resourceDataArray['image']) ) {
           $row['img'] = $resourceDataArray['image'];
         }
+        if( isset($resourceDataArray['averagePrice']) ) {
+          $row['averagePrice'] = $resourceDataArray['averagePrice'];
+        }
+
 
 
         echo json_encode( $row );
 
       $coma=',';
+
+      $limite_temporal--;
+
+      if($limite_temporal <= 0 ) {
+        break;
+      }
     }
 
     echo ']';
@@ -61,8 +71,8 @@ class RinconsExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    explorer::load('model/RinconsExplorerModel.php');
-    $resourceModel = new RinconsExplorerModel();
+    appExplorer::load('model/TodosSegredosExplorerModel.php');
+    $resourceModel = new TodosSegredosExplorerModel();
 
     $ids = false;
 
@@ -88,8 +98,6 @@ class RinconsExplorerController extends ExplorerController {
         $row['title'] = ( isset($resourceDataArray['title']) )?$resourceDataArray['title']:false;
         $row['description'] = ( isset($resourceDataArray['mediumDescription']) )?$resourceDataArray['mediumDescription']:false;
         $row['city'] =  ( isset($resourceDataArray['city']) )?$resourceDataArray['city']:false;
-
-
 
 
         echo json_encode( $row );

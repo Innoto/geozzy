@@ -5,17 +5,17 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class XantaresExplorerModel extends Model
+class TodosSegredosExplorerModel extends Model
 {
   var $notCreateDBTable = true;
 
   var $deploySQL = array(
     // All Times
-    'explorer#1.0' => array(
+    'appExplorer#1.0' => array(
       'executeOnGenerateModelToo' => true,
       'sql'=> "
-          DROP VIEW IF EXISTS geozzy_xantares_explorer_index;
-          CREATE VIEW geozzy_xantares_explorer_index AS
+          DROP VIEW IF EXISTS geozzy_todos_segredos_explorer_index;
+          CREATE VIEW geozzy_todos_segredos_explorer_index AS
           SELECT
             geozzy_resource.id as id,
             geozzy_resourcetype.idName as rtype,
@@ -47,14 +47,14 @@ class XantaresExplorerModel extends Model
 
           WHERE
             geozzy_resource.published = 1 AND
-            geozzy_topic.idName = 'AutenticaGastronomia'
+            geozzy_topic.idName = 'probasTopic'
           group by geozzy_resource.id;
       "
     )
   );
 
 
-  static $tableName = 'geozzy_xantares_explorer_index';
+  static $tableName = 'geozzy_todos_segredos_explorer_index';
   static $cols = array(
     'id' => array(
       'type' => 'INT',

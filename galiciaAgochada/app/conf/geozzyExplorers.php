@@ -4,6 +4,7 @@ global $GEOZZY_EXPLORERS;
 
 
 $GEOZZY_EXPLORERS = array(
+/*
   'default' => array(
     'module' => 'explorer',
     'controllerFile' => 'controller/DefaultExplorerController.php',
@@ -17,8 +18,9 @@ $GEOZZY_EXPLORERS = array(
       'catGroupIdNames' => array()
     )
   ),
+*/
   'paisaxes' => array(
-    'module' => 'explorer',
+    'module' => 'appExplorer',
     'controllerFile' => 'controller/PaisaxesExplorerController.php',
     'controllerName' => 'PaisaxesExplorerController',
     'name' => __('Paisaxes Espectaculares'),
@@ -31,7 +33,7 @@ $GEOZZY_EXPLORERS = array(
     )
   ),
   'xantares' => array(
-    'module' => 'explorer',
+    'module' => 'appExplorer',
     'controllerFile' => 'controller/XantaresExplorerController.php',
     'controllerName' => 'XantaresExplorerController',
     'name' => __('Sabrosos xantares'),
@@ -44,7 +46,7 @@ $GEOZZY_EXPLORERS = array(
     )
   ),
   'todosSegredos' => array(
-    'module' => 'explorer',
+    'module' => 'appExplorer',
     'controllerFile' => 'controller/TodosSegredosExplorerController.php',
     'controllerName' => 'TodosSegredosExplorerController',
     'name' => __('Descúbreos todos xuntos'),
@@ -57,7 +59,7 @@ $GEOZZY_EXPLORERS = array(
     )
   ),
   'aloxamentos' => array(
-    'module' => 'explorer',
+    'module' => 'appExplorer',
     'controllerFile' => 'controller/AloxamentosExplorerController.php',
     'controllerName' => 'AloxamentosExplorerController',
     'name' => __('Aloxamentos con encanto'),
@@ -72,7 +74,7 @@ $GEOZZY_EXPLORERS = array(
     )
   ),
   'praias' => array(
-    'module' => 'explorer',
+    'module' => 'appExplorer',
     'controllerFile' => 'controller/PraiasExplorerController.php',
     'controllerName' => 'PraiasExplorerController',
     'name' => __('Praias de ensono'),
@@ -85,7 +87,7 @@ $GEOZZY_EXPLORERS = array(
     )
   ),
   'rincons' => array(
-    'module' => 'explorer',
+    'module' => 'appExplorer',
     'controllerFile' => 'controller/RinconsExplorerController.php',
     'controllerName' => 'RinconsExplorerController',
     'name' => __('Rincóns con encanto'),
