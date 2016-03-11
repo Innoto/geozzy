@@ -16,9 +16,9 @@ class initResources extends Module {
 
   }
 
-  public function moduleDeploy() {
+  public function moduleDeploy( $isFirstGenerateModel = false ) {
     initResources::load('controller/InitResourcesController.php');
     $initResources = new InitResourcesController();
-    $initResources->generateResources();
+    $initResources->generateResources( $isFirstGenerateModel );
   }
 }

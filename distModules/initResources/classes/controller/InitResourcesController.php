@@ -9,7 +9,7 @@ class InitResourcesController{
 
   }
 
-  public function generateResources(){
+  public function generateResources( $isFirstGenerateModel = false ){
 
 
 
@@ -17,9 +17,29 @@ class InitResourcesController{
 
 
 
+
     foreach( $initResources as $initRes ) {
 
-      $this->generateResource($initRes);
+      if( preg_match( '#^(.*)\#(\d{1,10}(.\d{1,10})?)#', $initRes['version'], $matches ) ) {
+        $deployModuleName = $matches[1];
+
+        eval( '$currentModuleVersion = (float) '.$deployModuleName.'::checkCurrentVersion();' );
+        eval( '$registeredModuleVersion = (float) '.$deployModuleName.'::checkRegisteredVersion();' );
+
+        $deployModuleVersion = (float) $matches[2];
+        if( class_exists( $deployModuleName ) ) {
+
+          if( $isFirstGenerateModel === true && isset( $initRes['executeOnGenerateModelToo']) && $initRes['executeOnGenerateModelToo'] === true){
+            $this->generateResource($initRes);
+
+          }
+          else
+          if( $deployModuleVersion > $registeredModuleVersion  &&  $deployModuleVersion <= $currentModuleVersion )  {
+            $this->generateResource($initRes);
+          }
+        }
+
+      }
     }
 
     echo 'Base resources created';

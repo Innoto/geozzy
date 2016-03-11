@@ -1,7 +1,7 @@
 <?php
 $initResources = array(
   array(
-      'version' =>' Cogumelo#1.0',
+      'version' =>'Cogumelo#1.0',
       'executeOnGenerateModelToo' => true,
       'idName' => 'home',
       'rType' => 'rtypePage',
@@ -24,7 +24,7 @@ $initResources = array(
       )
   ),
   array(
-      'version' =>' Cogumelo#1.0',
+      'version' =>'Cogumelo#1.0',
       'executeOnGenerateModelToo' => true,
       'idName' => 'xantaresExplorer',
       'rType' => 'rtypePage',
@@ -43,7 +43,7 @@ $initResources = array(
       )
   ),
   array(
-      'version' =>' Cogumelo#1.0',
+      'version' =>'Cogumelo#1.0',
       'executeOnGenerateModelToo' => true,
       'idName' => 'aloxamentosExplorer',
       'rType' => 'rtypePage',
@@ -62,7 +62,7 @@ $initResources = array(
       )
   ),
   array(
-      'version' =>' Cogumelo#1.0',
+      'version' =>'Cogumelo#1.0',
       'executeOnGenerateModelToo' => true,
       'idName' => 'rinconsExplorer',
       'rType' => 'rtypePage',
@@ -81,7 +81,7 @@ $initResources = array(
       )
   ),
   array(
-      'version' =>' Cogumelo#1.0',
+      'version' =>'Cogumelo#1.0',
       'executeOnGenerateModelToo' => true,
       'idName' => 'praiasExplorer',
       'rType' => 'rtypePage',
@@ -100,7 +100,7 @@ $initResources = array(
       )
   ),
   array(
-      'version' =>' Cogumelo#1.0',
+      'version' =>'Cogumelo#1.0',
       'executeOnGenerateModelToo' => true,
       'idName' => 'paisaxesExplorer',
       'rType' => 'rtypePage',
@@ -119,7 +119,7 @@ $initResources = array(
       )
   ),
   array(
-      'version' =>' Cogumelo#1.0',
+      'version' =>'Cogumelo#1.0',
       'executeOnGenerateModelToo' => true,
       'idName' => 'segredosExplorer',
       'rType' => 'rtypePage',
