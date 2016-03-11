@@ -11,7 +11,8 @@ class GenericExplorerModel extends Model
 
   var $deploySQL = array(
     // All Times
-    'explorer#1.0' => array(
+    array(
+      'version' => 'explorer#1.0',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_generic_explorer_index;
@@ -38,7 +39,7 @@ class GenericExplorerModel extends Model
     )
   );
 
-  
+
 
   static $tableName = 'geozzy_generic_explorer_index';
   static $cols = array(

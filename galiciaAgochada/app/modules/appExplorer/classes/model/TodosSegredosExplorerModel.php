@@ -11,7 +11,8 @@ class TodosSegredosExplorerModel extends Model
 
   var $deploySQL = array(
     // All Times
-    'appExplorer#1.0' => array(
+    array(
+      'appExplorer#1.0',
       'executeOnGenerateModelToo' => true,
       'sql'=> "
           DROP VIEW IF EXISTS geozzy_todos_segredos_explorer_index;
