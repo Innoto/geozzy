@@ -27,14 +27,15 @@ class InitResourcesController{
         eval( '$registeredModuleVersion = (float) '.$deployModuleName.'::checkRegisteredVersion();' );
 
         $deployModuleVersion = (float) $matches[2];
+
         if( class_exists( $deployModuleName ) ) {
 
           if( $isFirstGenerateModel === true && isset( $initRes['executeOnGenerateModelToo']) && $initRes['executeOnGenerateModelToo'] === true){
             $this->generateResource($initRes);
 
           }
-          else
-          if( $deployModuleVersion > $registeredModuleVersion  &&  $deployModuleVersion <= $currentModuleVersion )  {
+          else if( $deployModuleVersion > $registeredModuleVersion  &&  $deployModuleVersion <= $currentModuleVersion )  {
+
             $this->generateResource($initRes);
           }
         }
