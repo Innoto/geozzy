@@ -3,6 +3,9 @@
 geozzy::load('controller/ResourceController.php');
 geozzy::load('model/ResourceModel.php');
 
+
+
+
 class InitResourcesController{
 
   public function __construct(){
@@ -46,6 +49,9 @@ class InitResourcesController{
     echo 'Base resources created';
 
   }
+
+
+
 
   public function generateResource($initRes){
     global $LANG_AVAILABLE;
