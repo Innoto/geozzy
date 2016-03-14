@@ -238,6 +238,7 @@ $C_INDEX_MODULES  = array(
   'testData',
   'initResources',
   'explorer',
+  'geozzyUser',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 

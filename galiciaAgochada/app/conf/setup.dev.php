@@ -36,7 +36,7 @@ define( 'COGUMELO_ADMINSCRIPT_URL', 'http://galiciaagochada/cogumelo-server.php'
 // Media server
 //
 cogumeloSetSetupValue( 'mod:mediaserver', array(
-  'productionMode' => false, // If true, you must compile less manually with ./cogumelo generateClientCaches
+  'productionMode' => true, // If true, you must compile less manually with ./cogumelo generateClientCaches
   'notCacheJs' => true,
   'host' => '/', // Ej: '/' o 'http://media.galiciaagochada:84/'
   'path' => 'media',
