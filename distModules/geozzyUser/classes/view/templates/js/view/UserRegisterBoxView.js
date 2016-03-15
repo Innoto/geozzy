@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
+if(!geozzy.userSessionComponents) geozzy.userSessionComponents={};
 
-geozzy.explorerDisplay.activeListView = Backbone.View.extend({
+geozzy.userSessionComponents.activeListView = Backbone.View.extend({
 
   tpl: _.template(
     '<div class="explorerActiveListContent">'+

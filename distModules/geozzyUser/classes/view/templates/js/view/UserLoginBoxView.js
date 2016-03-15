@@ -1,10 +1,10 @@
 var geozzy = geozzy || {};
-if(!geozzy.user) geozzy.user={};
+if(!geozzy.userSessionComponents) geozzy.userSessionComponents={};
 
-geozzy.user.userLoginView = Backbone.View.extend({
+geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
 
-  userLoginTemplate : _.template( geozzy.userSession.userLoginBoxTemplate ),
-  modalTemplate : _.template( geozzy.userSession.modalMdTemplate ),
+  userLoginTemplate : _.template( geozzy.userSessionComponents.userLoginBoxTemplate ),
+  modalTemplate : _.template( geozzy.userSessionComponents.modalMdTemplate ),
 
   events: {
 
