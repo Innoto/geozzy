@@ -4,7 +4,7 @@ if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
 
 
 
-geozzy.biMetrics.controller.biMetricsController = Backbone.Collection.extend({
+geozzy.biMetrics.biMetricsController = Backbone.Collection.extend({
 
   initialize: function( options ) {
     var that = this;

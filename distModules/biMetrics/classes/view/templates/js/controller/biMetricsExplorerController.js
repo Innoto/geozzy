@@ -4,7 +4,7 @@ if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
 
 
 
-geozzy.biMetrics.controller.explorer = geozzy.biMetrics.controller.biMetricsController.extend( {
+geozzy.biMetrics.explorer = geozzy.biMetrics.biMetricsController.extend( {
 
   biMetricsName: false,
 
