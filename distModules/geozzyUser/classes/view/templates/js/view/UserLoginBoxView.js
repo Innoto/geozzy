@@ -3,8 +3,8 @@ if(!geozzy.user) geozzy.user={};
 
 geozzy.user.userLoginView = Backbone.View.extend({
 
-  userLoginTemplate : _.template($("#userLoginBox").html()),
-  modalTemplate : _.template( $('#modalMdTemplate').html()),
+  userLoginTemplate : _.template( geozzy.userSession.userLoginBoxTemplate ),
+  modalTemplate : _.template( geozzy.userSession.modalMdTemplate ),
 
   events: {
 

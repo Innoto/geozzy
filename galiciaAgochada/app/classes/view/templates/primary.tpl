@@ -22,8 +22,6 @@
 
 </head>
 <body data-spy="scroll" data-target=".headContent">
-  
-  {include file="geozzyUser///userBox.tpl"}
 
   <article>
     {capture "headContent"}

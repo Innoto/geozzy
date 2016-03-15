@@ -27,6 +27,7 @@ class geozzyUser extends Module
 
   public $includesCommon = array(
     'js/model/UserSessionModel.js',
+    'js/view/Templates.js',
     'js/view/UserLoginBoxView.js',
     'js/view/UserRegisterBoxView.js',
     'js/UserSession.js'

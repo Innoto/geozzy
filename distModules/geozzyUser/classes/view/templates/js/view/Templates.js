@@ -1,0 +1,43 @@
+var geozzy = geozzy || {};
+if(!geozzy.userSession) geozzy.userSession={};
+
+
+geozzy.userSession.modalMdTemplate = ''+
+'<div id="<%- modalId %>" class="modal fade" tabindex="-1" role="dialog">'+
+  '<div class="modal-dialog modal-md">'+
+    '<div class="modal-content">'+
+      '<div class="modal-header">'+
+        '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+        '<h3 class="modal-title"><%- modalTitle %></h3>'+
+      '</div>'+
+      '<div class="modal-body"></div>'+
+      '<div class="modal-footer">'+
+        '<button type="button" class="btn btn-warning" data-dismiss="modal">'+__("Close")+'</button>'+
+      '</div>'+
+    '</div>'+
+  '</div>'+
+'</div>';
+
+geozzy.userSession.userLoginBoxTemplate = ''+
+'<h3>'+__("Necesitas tener una cuenta para participar en Galicia Agochada")+'</h3>'+
+'<button type="button" class="gotoregister btn btn-primary">'+__("Crear una cuenta")+'</button>'+
+'<hr />'+
+'<h3>'+__("¿Ya tienes una cuenta?")+'</h3>'+
+'<h3>'+__("Inicia tu sesión para continuar")+'</h3>'+
+'<div class="loginForm"></div>'+
+'<a href="#">'+__("He olvidado mi contraseña")+'</a>';
+
+geozzy.userSession.userResgisterBoxTemplate = ''+
+'<h3>'+__("Muchas gracias")+'.</h3>'+
+'<h3>'+__("Tu cuenta se ha creado con éxito")+'</h3>'+
+'<p>'+__("En breve recibirás un correo-e para comprobar tu identidad")+'.</p>'+
+'<p>'+__("Si no lo recibes en las proximas horas, comprueba tu bandeja de SPAM")+'</p>'+
+'<button type="button" class="btn btn-primary" data-dismiss="modal">'+__("Continuar")+'</button>';
+
+
+geozzy.userSession.userResgisterOkBoxTemplate = ''+
+'<h3>'+__("Muchas gracias")+'.</h3>'+
+'<h3>'+__("Tu cuenta se ha creado con éxito")+'</h3>'+
+'<p>'+__("En breve recibirás un correo-e para comprobar tu identidad")+'.</p>'+
+'<p>'+__("Si no lo recibes en las proximas horas, comprueba tu bandeja de SPAM")+'</p>'+
+'<button type="button" class="btn btn-primary" data-dismiss="modal">'+__("Continuar")+'</button>';
