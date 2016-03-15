@@ -1,8 +1,8 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
 
-geozzy.explorerDisplay.mapInfoViewTemplate = ''+
+geozzy.explorerComponents.mapInfoViewTemplate = ''+
   '<div class="gempiContent">'+
     '<div class="gempiImg">'+
       '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" />'+
@@ -17,7 +17,7 @@ geozzy.explorerDisplay.mapInfoViewTemplate = ''+
   '</div>';
 
 
-geozzy.explorerDisplay.activeListTinyViewTemplate = ''+
+geozzy.explorerComponents.activeListTinyViewTemplate = ''+
   '<div class="explorerListPager">'+
     '<%=pager%>'+
   '</div>'+
@@ -27,7 +27,7 @@ geozzy.explorerDisplay.activeListTinyViewTemplate = ''+
     '</div>'+
   '</div>';
 
-geozzy.explorerDisplay.activeListTinyViewElement = ''+
+geozzy.explorerComponents.activeListTinyViewElement = ''+
   '<div data-resource-id="<%- id %>" class="col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
     '<div class="elementImg">'+
       '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/fast_cut/<%- img %>.jpg" />'+
@@ -43,7 +43,7 @@ geozzy.explorerDisplay.activeListTinyViewElement = ''+
     '</div>'+
   '</div>';
 
-geozzy.explorerDisplay.activeListTinyViewPager = ''+
+geozzy.explorerComponents.activeListTinyViewPager = ''+
   '<div class="previous"><i class="fa fa-sort-asc"></i></div>'+
     '<% for( c=0 ; c <= pages ; c++){ %>'+
       '<% if(c==v.currentPage){ %>'+
@@ -54,12 +54,12 @@ geozzy.explorerDisplay.activeListTinyViewPager = ''+
     '<% } %>'+
   '<div class="next"><i class="fa fa-sort-desc"></i></div>';
 
-geozzy.explorerDisplay.activeListViewTemplate = ''+
+geozzy.explorerComponents.activeListViewTemplate = ''+
   '<div class="explorerActiveListContent">'+
       '<%=content%>'+
   '</div>';
 
-geozzy.explorerDisplay.activeListViewElement = '' +
+geozzy.explorerComponents.activeListViewElement = '' +
   '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
     '<div class="elementImg">'+
       '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+

@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
-geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
+geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
   displayType: 'mapInfo',
   parentExplorer: false,
@@ -24,7 +24,7 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
-      tpl: geozzy.explorerDisplay.mapInfoViewTemplate,
+      tpl: geozzy.explorerComponents.mapInfoViewTemplate,
     });
 
     that.options = $.extend(true, {}, options, opts);

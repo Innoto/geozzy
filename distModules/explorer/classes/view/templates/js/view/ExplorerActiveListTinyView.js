@@ -1,9 +1,9 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
 
 
-geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
+geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
 
 
@@ -37,9 +37,9 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       showInBuffer: true,
       showOutMapAndBuffer: false,
 
-      tpl: geozzy.explorerDisplay.activeListTinyViewTemplate ,
-      tplElement: geozzy.explorerDisplay.activeListTinyViewElement,
-      tplPager: geozzy.explorerDisplay.activeListTinyViewPager
+      tpl: geozzy.explorerComponents.activeListTinyViewTemplate ,
+      tplElement: geozzy.explorerComponents.activeListTinyViewElement,
+      tplPager: geozzy.explorerComponents.activeListTinyViewPager
 
     });
     that.options = $.extend(true, {}, options, opts);

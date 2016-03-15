@@ -117,9 +117,9 @@
      */
     that.setDisplays = function() {
 
-      that.infowindow = new geozzy.explorerDisplay.mapInfoView();
-      that.listaMini = new geozzy.explorerDisplay.activeListTinyView({ el:$('.explorer-container-gallery')});
-      that.mapa = new geozzy.explorerDisplay.mapView({
+      that.infowindow = new geozzy.explorerComponents.mapInfoView();
+      that.listaMini = new geozzy.explorerComponents.activeListTinyView({ el:$('.explorer-container-gallery')});
+      that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
           clusterize:false,
           chooseMarkerIcon: function( markerData ) {

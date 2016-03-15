@@ -160,13 +160,13 @@
      */
     that.setDisplays = function() {
 
-      that.infowindow = new geozzy.explorerDisplay.mapInfoView();
-      that.listaMini = new geozzy.explorerDisplay.activeListView({
+      that.infowindow = new geozzy.explorerComponents.mapInfoView();
+      that.listaMini = new geozzy.explorerComponents.activeListView({
           el:$('.explorer-container-gallery'),
           categories: that.eatAndDrinkTypes,
           tplElement: xantaresElementTpl
       });
-      that.mapa = new geozzy.explorerDisplay.mapView({
+      that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
           clusterize:false,
           chooseMarkerIcon: function( markerData ) {
