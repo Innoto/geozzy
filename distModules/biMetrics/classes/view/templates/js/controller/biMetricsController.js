@@ -1,10 +1,10 @@
 var geozzy = geozzy || {};
-if(!geozzy.biMetrics) geozzy.biMetrics={};
-if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
+if(!geozzy.biMetricsComponents) geozzy.biMetricsComponents={};
 
 
 
-geozzy.biMetrics.biMetricsController = Backbone.Collection.extend({
+
+geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
 
   initialize: function( options ) {
     var that = this;
