@@ -32,7 +32,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       '<div class="elementInfo">'+
         '<div class="elementTitle"><%-title%></div>'+
         '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
-        '<% if( averagePrice ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
+        '<% if( typeof averagePrice != "undefined" ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
       '</div>'+
     '</div>'),
 
@@ -129,19 +129,13 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       });
 
 
+      var minJSON = that.parentExplorer.resourceMinimalList.get( e ).toJSON();
+      var partJSON = that.parentExplorer.resourcePartialList.get( e ).toJSON();
 
+      var element = $.extend( true, partJSON, minJSON );
 
-      var element = {
-        contador: contador,
-        title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
-        id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
-        inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible'),
-        img: that.parentExplorer.resourceMinimalList.get( e ).get('img'),
-        averagePrice: that.parentExplorer.resourceMinimalList.get( e ).get('averagePrice'),
-        category: elementCategory
-
-      };
-
+      element.contador = contador;
+      element.category = elementCategory;
 
       // metrics
       that.parentExplorer.metricsResourceController.eventPrint(
