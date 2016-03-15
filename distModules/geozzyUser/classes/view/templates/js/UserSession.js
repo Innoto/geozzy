@@ -6,6 +6,7 @@ geozzy.userSession = function() {
   var that = this;
   that.userSession = false;
   that.loginView = false;
+  that.registerView = false;
   that.finishCallback = false;
   //
   // First Execution
@@ -39,12 +40,19 @@ geozzy.userSession = function() {
     that.loginView.closeLoginModal();
     that.finishCallback();
   }
+
+  that.initRegisterBox = function(  ){
+    that.loginView = new geozzy.user.userLoginView();
+  }
+  that.successRegisterBox = function(){
+    that.loginView.closeLoginModal();
+    that.finishCallback();
+  }
 }
 
 
-/*
+
 var userSession = new geozzy.userSession();
 userSession.userControlAccess( function(){
   alert('access');
 });
-*/
