@@ -1,20 +1,20 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
-geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
+geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
   displayType: 'mapInfo',
   parentExplorer: false,
   template: _.template(""),
   containerMap: false,
   divId: 'geozzyExplorerMapInfo',
-  templateCode: geozzy.explorerDisplay.mapInfoViewTemplate,
+
   currentMousePos: { x: -1, y: -1 },
 
 
 
 
-  template: _.template( geozzy.explorerDisplay.mapInfoViewTemplate ),
+  template: false,
 
   marginX: 25,
   marginY: 20,
@@ -24,12 +24,12 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
-
+      tpl: geozzy.explorerComponents.mapInfoViewTemplate,
     });
 
     that.options = $.extend(true, {}, options, opts);
 
-
+    that.template = _.template( that.options.tpl );
     that.mousePosEventListener();
 
   },

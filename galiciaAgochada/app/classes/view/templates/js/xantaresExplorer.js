@@ -1,7 +1,36 @@
 
 
 
+
+
   $(document).ready(function(){
+
+
+
+
+    xantaresElementTpl = '' +
+      '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
+        '<div class="elementImg">'+
+          '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
+          '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
+            '<ul class="elementOptions container-fluid">'+
+              '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
+            '</ul>'+
+          '</div>'+
+        '</div>'+
+        '<div class="elementInfo">'+
+          '<div class="elementTitle"><%-title%></div>'+
+          '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
+          '<% if( typeof averagePrice != "undefined" ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
+        '</div>'+
+      '</div>';
+
+
+
+
+
+
+
     explorador = new xantaresExplorer();
     explorador.interfaceFilters();
 
@@ -131,12 +160,13 @@
      */
     that.setDisplays = function() {
 
-      that.infowindow = new geozzy.explorerDisplay.mapInfoView();
-      that.listaMini = new geozzy.explorerDisplay.activeListView({
+      that.infowindow = new geozzy.explorerComponents.mapInfoView();
+      that.listaMini = new geozzy.explorerComponents.activeListView({
           el:$('.explorer-container-gallery'),
-          categories: that.eatAndDrinkTypes
+          categories: that.eatAndDrinkTypes,
+          tplElement: xantaresElementTpl
       });
-      that.mapa = new geozzy.explorerDisplay.mapView({
+      that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
           clusterize:false,
           chooseMarkerIcon: function( markerData ) {

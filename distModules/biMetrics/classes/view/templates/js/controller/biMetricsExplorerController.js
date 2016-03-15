@@ -1,10 +1,9 @@
 var geozzy = geozzy || {};
-if(!geozzy.biMetrics) geozzy.biMetrics={};
-if(!geozzy.biMetrics.controller) geozzy.biMetrics.controller={};
+if(!geozzy.biMetricsComponents) geozzy.biMetricsComponents={};
 
 
 
-geozzy.biMetrics.controller.explorer = geozzy.biMetrics.controller.biMetricsController.extend( {
+geozzy.biMetricsComponents.explorer = geozzy.biMetricsComponents.biMetricsController.extend( {
 
   biMetricsName: false,
 

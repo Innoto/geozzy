@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
-geozzy.explorerDisplay.mapView = Backbone.View.extend({
+geozzy.explorerComponents.mapView = Backbone.View.extend({
 
   displayType: 'map',
   parentExplorer: false ,

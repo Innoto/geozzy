@@ -1,9 +1,9 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
 
 
-geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
+geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
 
 
@@ -37,16 +37,16 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
       showInBuffer: true,
       showOutMapAndBuffer: false,
 
-      tplCode: geozzy.explorerDisplay.activeListTinyViewTemplate ,
-      tplElementCode: geozzy.explorerDisplay.activeListTinyViewElement,
-      tplPagerCode: geozzy.explorerDisplay.activeListTinyViewPager
+      tpl: geozzy.explorerComponents.activeListTinyViewTemplate ,
+      tplElement: geozzy.explorerComponents.activeListTinyViewElement,
+      tplPager: geozzy.explorerComponents.activeListTinyViewPager
 
     });
     that.options = $.extend(true, {}, options, opts);
 
-    that.tpl= _.template( that.options.tplCode);
-    that.tplElement= _.template( that.options.tplElementCode);
-    that.tplPager= _.template( that.options.tplPagerCode);
+    that.tpl= _.template( that.options.tpl);
+    that.tplElement= _.template( that.options.tplElement);
+    that.tplPager= _.template( that.options.tplPager);
   },
 
 
