@@ -4,7 +4,7 @@ var geozzy = geozzy || {};
 geozzy.userSession = function() {
 
   var that = this;
-  that.userSession = false;
+  that.user = false;
   that.loginView = false;
   that.finishCallback = false;
   //
@@ -14,7 +14,7 @@ geozzy.userSession = function() {
     that.finishCallback = callback;
     that.getUserSession(
       function(){
-        if( that.userSession.get('id') === false ){
+        if( that.user.get('id') === false ){
           that.initLoginBox();
         }else{
           that.finishCallback();
@@ -24,8 +24,8 @@ geozzy.userSession = function() {
   }
 
   that.getUserSession = function(success){
-    that.userSession = new geozzy.model.UserSessionModel();
-    that.userSession.fetch({
+    that.user = new geozzy.userSessionComponents.UserSessionModel();
+    that.user.fetch({
       success: function(){
         success();
       }
@@ -33,18 +33,10 @@ geozzy.userSession = function() {
   }
 
   that.initLoginBox = function(  ){
-    that.loginView = new geozzy.user.userLoginView();
+    that.loginView = new geozzy.userSessionComponents.userLoginView();
   }
   that.successLoginBox = function(){
     that.loginView.closeLoginModal();
     that.finishCallback();
   }
 }
-
-
-/*
-var userSession = new geozzy.userSession();
-userSession.userControlAccess( function(){
-  alert('access');
-});
-*/

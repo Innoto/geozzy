@@ -35,7 +35,7 @@ class GeozzyUserView extends View
     $form = $userView->loginFormDefine();
     $form->setAction('/geozzyuser/senduserlogin');
     //$form->setSuccess( 'redirect', '/' );
-    $form->setSuccess( 'jsEval', 'userSession.successLoginBox();' );
+    $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.successLoginBox();' );
 
     echo ($userView->loginFormGet( $form ));
 
