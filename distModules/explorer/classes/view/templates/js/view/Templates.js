@@ -72,6 +72,5 @@ geozzy.explorerDisplay.activeListViewElement = '' +
     '<div class="elementInfo">'+
       '<div class="elementTitle"><%-title%></div>'+
       '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
-      '<% if( typeof averagePrice != "undefined" ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
     '</div>'+
   '</div>';
