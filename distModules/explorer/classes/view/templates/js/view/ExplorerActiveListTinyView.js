@@ -5,40 +5,11 @@ if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 
 geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
 
-  tpl: _.template(
-    '<div class="explorerListPager">'+
-      '<%=pager%>'+
-    '</div>'+
-    '<div class="explorerListContent container-fluid">'+
-      '<div class="">'+
-        '<%=content%>'+
-      '</div>'+
-    '</div>'),
-  tplElement: _.template(
-    '<div data-resource-id="<%- id %>" class="col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
-      '<div class="elementImg">'+
-        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/fast_cut/<%- img %>.jpg" />'+
-        '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
-          '<ul class="elementOptions container-fluid">'+
-            '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
-          '</ul>'+
-        '</div>'+
-      '</div>'+
 
-      '<div class="elementInfo">'+
-        '<%-title%>'+
-      '</div>'+
-    '</div>'),
-  tplPager: _.template(
-    '<div class="previous"><i class="fa fa-sort-asc"></i></div>'+
-    '<% for( c=0 ; c <= pages ; c++){ %>'+
-      '<% if(c==v.currentPage){ %>'+
-        '<div><span class="currentPage"><i class="fa fa-square-o"></i></span></div>'+
-      '<% }else{ %>'+
-        '<div><span><i class="fa fa-square pageNum" data-page-num="<%- c %>"></i></span></div>'+
-      '<% } %>'+
-    '<% } %>'+
-    '<div class="next"><i class="fa fa-sort-desc"></i></div>'),
+
+  tpl: false,
+  tplElement: false,
+  tplPager: false,
 
   displayType: 'activeList',
   parentExplorer: false,
@@ -64,11 +35,18 @@ geozzy.explorerDisplay.activeListTinyView = Backbone.View.extend({
     var that = this;
     var options = new Object({
       showInBuffer: true,
-      showOutMapAndBuffer: false
-    });
+      showOutMapAndBuffer: false,
 
+      tplCode: geozzy.explorerDisplay.activeListTinyViewTemplate ,
+      tplElementCode: geozzy.explorerDisplay.activeListTinyViewElement,
+      tplPagerCode: geozzy.explorerDisplay.activeListTinyViewPager
+
+    });
     that.options = $.extend(true, {}, options, opts);
 
+    that.tpl= _.template( that.options.tplCode);
+    that.tplElement= _.template( that.options.tplElementCode);
+    that.tplPager= _.template( that.options.tplPagerCode);
   },
 
 

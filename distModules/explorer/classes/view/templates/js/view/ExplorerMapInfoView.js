@@ -8,26 +8,13 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   template: _.template(""),
   containerMap: false,
   divId: 'geozzyExplorerMapInfo',
-
+  templateCode: geozzy.explorerDisplay.mapInfoViewTemplate,
   currentMousePos: { x: -1, y: -1 },
 
 
 
 
-  template: _.template(
-    '<div class="gempiContent">'+
-      '<div class="gempiImg">'+
-        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" />'+
-        '<div class="gempiFav"><% if(touchAccess){ %><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i> <% } %></div>'+
-      '</div>'+
-      '<div class="gempiInfo">'+
-        '<div class="gempiTitle"><%-title%></div>'+
-        '<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+
-        '<div class="gempiDescription"><%-description%></div>'+
-        '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
-      '</div>'+
-    '</div>'
-  ),
+  template: _.template( geozzy.explorerDisplay.mapInfoViewTemplate ),
 
   marginX: 25,
   marginY: 20,
@@ -112,17 +99,12 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
        [id],
        function() {
 
+         var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
+         var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
 
-         var element = {
-           id: that.parentExplorer.resourcePartialList.get( id ).get('id'),
-           inMap: that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible'),
-           img: that.parentExplorer.resourceMinimalList.get( id ).get('img'),
-           title: that.parentExplorer.resourcePartialList.get( id ).get('title'),
-           description: that.parentExplorer.resourcePartialList.get( id ).get('description'),
-           city: that.parentExplorer.resourcePartialList.get( id ).get('city'),
-           touchAccess: that.parentExplorer.explorerTouchDevice
-         };
+         var element = $.extend( true, partJSON, minJSON );
 
+         element.touchAccess = that.parentExplorer.explorerTouchDevice;
 
          $( '#'+that.divId ).html( that.template( element ) );
 

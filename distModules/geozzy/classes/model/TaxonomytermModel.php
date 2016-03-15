@@ -12,7 +12,8 @@ class TaxonomytermModel extends Model {
 
   var $deploySQL = array(
     // All Times
-    'geozzy#1.0' => array(
+    array(
+      'version' => 'geozzy#1.0',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         ALTER TABLE geozzy_taxonomyterm ADD CONSTRAINT taxgroup_idName UNIQUE (taxgroup, idName);

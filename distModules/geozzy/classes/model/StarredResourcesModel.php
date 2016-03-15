@@ -13,7 +13,8 @@ class StarredResourcesModel extends Model
 
   var $deploySQL = array(
     // All Times
-    'geozzy#1.0' => array(
+    array(
+      'version' => 'geozzy#1.0',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
           DROP VIEW IF EXISTS geozzy_starred_resources;
