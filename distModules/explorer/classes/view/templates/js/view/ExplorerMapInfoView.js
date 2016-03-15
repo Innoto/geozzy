@@ -99,17 +99,12 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
        [id],
        function() {
 
+         var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
+         var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
 
-         var element = {
-           id: that.parentExplorer.resourcePartialList.get( id ).get('id'),
-           inMap: that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible'),
-           img: that.parentExplorer.resourceMinimalList.get( id ).get('img'),
-           title: that.parentExplorer.resourcePartialList.get( id ).get('title'),
-           description: that.parentExplorer.resourcePartialList.get( id ).get('description'),
-           city: that.parentExplorer.resourcePartialList.get( id ).get('city'),
-           touchAccess: that.parentExplorer.explorerTouchDevice
-         };
+         var element = $.extend( true, partJSON, minJSON );
 
+         element.touchAccess = that.parentExplorer.explorerTouchDevice;
 
          $( '#'+that.divId ).html( that.template( element ) );
 
