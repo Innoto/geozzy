@@ -1,11 +1,15 @@
-var ExplorerResourcePartialCollection = Backbone.Collection.extend({
+var geozzy = geozzy || {};
+if (! geozzy.explorerComponents) { geozzy.explorerComponents= {} }
+
+
+geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend({
   url: false,
   model: ExplorerResourcePartialModel,
 
   fetchAndCache: function( params ) {
 
     var that = this;
-    var resPartialCollection = new ExplorerResourcePartialCollection();
+    var resPartialCollection = new geozzy.explorerComponents.resourcePartialCollection();
     resPartialCollection.url = params.url;
 
     var idsToFetch = [];

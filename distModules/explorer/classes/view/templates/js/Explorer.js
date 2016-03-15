@@ -57,7 +57,7 @@ geozzy.explorer = function( opts ) {
   that.resourceIndex = false;
 
   that.resourceMinimalList = new geozzy.explorerComponents.resourceMinimalCollection();
-  that.resourcePartialList =  new ExplorerResourcePartialCollection();
+  that.resourcePartialList =  new geozzy.explorerComponents.resourcePartialCollection();
 
 
   // Displays

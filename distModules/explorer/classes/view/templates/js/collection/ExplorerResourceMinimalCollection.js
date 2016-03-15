@@ -1,4 +1,3 @@
-
 var geozzy = geozzy || {};
 if (! geozzy.explorerComponents) { geozzy.explorerComponents= {} }
 
