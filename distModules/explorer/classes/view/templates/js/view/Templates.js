@@ -53,3 +53,25 @@ geozzy.explorerDisplay.activeListTinyViewPager = ''+
       '<% } %>'+
     '<% } %>'+
   '<div class="next"><i class="fa fa-sort-desc"></i></div>';
+
+geozzy.explorerDisplay.activeListViewTemplate = ''+
+  '<div class="explorerActiveListContent">'+
+      '<%=content%>'+
+  '</div>';
+
+geozzy.explorerDisplay.activeListViewElement = '' +
+  '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
+    '<div class="elementImg">'+
+      '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
+      '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
+        '<ul class="elementOptions container-fluid">'+
+          '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
+        '</ul>'+
+      '</div>'+
+    '</div>'+
+    '<div class="elementInfo">'+
+      '<div class="elementTitle"><%-title%></div>'+
+      '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
+      '<% if( typeof averagePrice != "undefined" ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
+    '</div>'+
+  '</div>';

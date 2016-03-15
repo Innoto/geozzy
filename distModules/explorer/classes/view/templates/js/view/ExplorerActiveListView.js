@@ -3,40 +3,8 @@ if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
 
 geozzy.explorerDisplay.activeListView = Backbone.View.extend({
 
-  tpl: _.template(
-    '<div class="explorerActiveListContent">'+
-        '<%=content%>'+
-    '</div>'),
-  tplElement: _.template(
-    /*
-    '<div data-resource-id="<%- id %>" class="accessButton col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
-      '<div class="elementImg">'+
-        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/fast_cut/.jpg" />'+
-        '<ul class="elementOptions container-fluid">'+
-          '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
-        '</ul>'+
-      '</div>'+
-      '<div class="elementInfo">'+
-        '<%-title%>'+
-      '</div>'+
-    '</div>'),*/
-    '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
-      '<div class="elementImg">'+
-        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
-        '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
-          '<ul class="elementOptions container-fluid">'+
-            '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
-          '</ul>'+
-        '</div>'+
-      '</div>'+
-      '<div class="elementInfo">'+
-        '<div class="elementTitle"><%-title%></div>'+
-        '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
-        '<% if( typeof averagePrice != "undefined" ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
-      '</div>'+
-    '</div>'),
-
-
+  tpl: false,
+  tplElement: false,
 
   displayType: 'activeList',
   parentExplorer: false,
@@ -62,11 +30,15 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     var options = new Object({
       showInBuffer: true,
       showOutMapAndBuffer: false,
-      cateogories: false
+      cateogories: false,
+      tpl: geozzy.explorerDisplay.activeListViewTemplate,
+      tplElement: geozzy.explorerDisplay.activeListViewElement
     });
 
     that.options = $.extend(true, {}, options, opts);
 
+    that.tpl = _.template(that.options.tpl);
+    that.tplElement = _.template(that.options.tplElement);
   },
 
 
