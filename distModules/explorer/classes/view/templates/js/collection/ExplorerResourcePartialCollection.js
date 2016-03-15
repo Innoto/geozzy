@@ -4,7 +4,7 @@ if (! geozzy.explorerComponents) { geozzy.explorerComponents= {} }
 
 geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend({
   url: false,
-  model: ExplorerResourcePartialModel,
+  model: geozzy.explorerComponents.resourcePartialModel,
 
   fetchAndCache: function( params ) {
 
