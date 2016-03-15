@@ -5,17 +5,19 @@ geozzy.userSession = function() {
 
   var that = this;
   that.userSession = false;
-
+  that.loginView = false;
+  that.finishCallback = false;
   //
   // First Execution
   //
-  that.userControlAccess = function( callback ) {
+  that.userControlAccess = function(callback) {
+    that.finishCallback = callback;
     that.getUserSession(
       function(){
         if( that.userSession.get('id') === false ){
-          that.initLoginBox(callback);
+          that.initLoginBox();
         }else{
-          callback();
+          that.finishCallback();
         }
       }
     );
@@ -30,15 +32,19 @@ geozzy.userSession = function() {
     });
   }
 
-  that.initLoginBox = function(){
-
+  that.initLoginBox = function(  ){
+    that.loginView = new geozzy.user.userLoginView();
+  }
+  that.successLoginBox = function(){
+    that.loginView.closeLoginModal();
+    that.finishCallback();
   }
 }
 
 
 /*
-var u = new geozzy.userSession();
-u.userControlAccess( function(){
+var userSession = new geozzy.userSession();
+userSession.userControlAccess( function(){
   alert('access');
 });
 */
