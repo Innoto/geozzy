@@ -9,9 +9,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
   displayType: 'activeList',
   parentExplorer: false,
   visibleResources: [],
-  currentPage: 0,
-  endPage: 3,
-  totalPages: false,
+
 
 
   events: {
@@ -31,6 +29,11 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       showInBuffer: true,
       showOutMapAndBuffer: false,
       cateogories: false,
+
+      currentPage: 0,
+      endPage: 3,
+      totalPages: false,
+
       tpl: geozzy.explorerComponents.activeListViewTemplate,
       tplElement: geozzy.explorerComponents.activeListViewElement
     });
@@ -52,10 +55,10 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     visibleResources.setSort('mapVisible', 'desc');
 
     // get total packages
-    that.totalPages = that.parentExplorer.resourceIndex.getNumPages();
+    that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
 
     // set current page
-    visibleResources.setPage(that.currentPage);
+    visibleResources.setPage(that.options.currentPage);
 
     that.visibleResources = visibleResources.pluck( 'id' );
     return visibleResources.pluck( 'id' );
@@ -134,21 +137,21 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       pageNum = 0;
     }
 
-    if( that.endPage != false && pageNum > that.endPage ) {
+    if( that.options.endPage != false && pageNum > that.options.endPage ) {
 
-      pageNum = that.endPage;
+      pageNum = that.options.endPage;
 
     }
     else
-    if ( that.endPage != false && pageNum > that.totalPages ){
-      pageNum = that.totalPages;
+    if ( that.options.endPage != false && pageNum > that.options.totalPages ){
+      pageNum = that.options.totalPages;
     }
     else
-    if( that.endPage == false &&  pageNum > that.totalPages  ){
-      pageNum = that.endPage
+    if( that.options.endPage == false &&  pageNum > that.options.totalPages  ){
+      pageNum = that.options.endPage
     }
 
-    that.currentPage = pageNum;
+    that.options.currentPage = pageNum;
 
     //fetch new visible elements from explorer
     that.parentExplorer.fetchPartialList(
