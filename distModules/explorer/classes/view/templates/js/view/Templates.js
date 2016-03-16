@@ -74,3 +74,27 @@ geozzy.explorerComponents.activeListViewElement = '' +
       '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
     '</div>'+
   '</div>';
+
+
+geozzy.explorerComponents.filterButtonsViewTemplate = "" +
+  " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+  "<ul class='<%= filterClass %> clearfix'>"+
+    "<% if(defaultOption){ %> "+
+      "<li data-term-id='<%- defaultOption.value %>' > "+
+        "<div class='title'><%- defaultOption.title %></div> "+
+        "<img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- defaultOption.icon %>/typeIcon/icon.png'> " +
+        "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- defaultOption.icon %>/typeIconHover/iconHover.png'> " +
+        "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- defaultOption.icon %>/typeIconSelected/iconSelected.png'> " +
+      "</li>"+
+    "<%}%>"+
+    "<%= options %>"+
+  "</ul>";
+
+
+geozzy.explorerComponents.filterButtonsViewOption = "" +
+  "<li data-term-id='<%- id %>'>"+
+    "<div class='title'><%- name %></div> "+
+    "<img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIcon/icon.png'> " +
+    "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIconHover/iconHover.png'> " +
+    "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIconSelected/iconSelected.png'> " +
+  "</li>";
