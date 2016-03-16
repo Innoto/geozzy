@@ -14,11 +14,6 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
   displayType: 'activeList',
   parentExplorer: false,
   visibleResources: [],
-  currentPage: 0,
-  endPage: 3,
-  itemsEachPage: 6,
-  totalPages: false,
-
 
   events: {
       "click .explorerListPager .next" : "nextPage",
@@ -37,6 +32,11 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
       showInBuffer: true,
       showOutMapAndBuffer: false,
 
+      currentPage: 0,
+      endPage: 3,
+      itemsEachPage: 6,
+      totalPages: false,
+
       tpl: geozzy.explorerComponents.activeListTinyViewTemplate ,
       tplElement: geozzy.explorerComponents.activeListTinyViewElement,
       tplPager: geozzy.explorerComponents.activeListTinyViewPager
@@ -54,7 +54,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     var that = this;
     this.parentExplorer.resourceIndex.removePagination();
 
-    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.itemsEachPage);
+    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.options.itemsEachPage);
 /*
     that.parentExplorer.resourceIndex.filterBy( function(e) {
       var ret = false;
@@ -79,10 +79,10 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     visibleResources.setSort('mapVisible', 'desc');
 
     // get total packages
-    that.totalPages = that.parentExplorer.resourceIndex.getNumPages();
+    that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
 
     // set current page
-    visibleResources.setPage(that.currentPage);
+    visibleResources.setPage(that.options.currentPage);
 
     that.visibleResources = visibleResources.pluck( 'id' );
     return visibleResources.pluck( 'id' );
@@ -128,10 +128,10 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     var that = this;
 
 
-    var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.itemsEachPage );
+    var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.options.itemsEachPage );
 
-    if( that.endPage < pages ) {
-      pages = that.endPage;
+    if( that.options.endPage < pages ) {
+      pages = that.options.endPage;
     }
 
 
@@ -147,21 +147,21 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
       pageNum = 0;
     }
 
-    if( that.endPage != false && pageNum > that.endPage ) {
+    if( that.options.endPage != false && pageNum > that.options.endPage ) {
 
-      pageNum = that.endPage;
+      pageNum = that.options.endPage;
 
     }
     else
-    if ( that.endPage != false && pageNum > that.totalPages ){
-      pageNum = that.totalPages;
+    if ( that.options.endPage != false && pageNum > that.options.totalPages ){
+      pageNum = that.options.totalPages;
     }
     else
-    if( that.endPage == false &&  pageNum > that.totalPages  ){
-      pageNum = that.endPage
+    if( that.options.endPage == false &&  pageNum > that.options.totalPages  ){
+      pageNum = that.options.endPage
     }
 
-    that.currentPage = pageNum;
+    that.options.currentPage = pageNum;
 
     //fetch new visible elements from explorer
     that.parentExplorer.fetchPartialList(
@@ -184,11 +184,11 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
   nextPage: function() {
     var that =  this;
 
-    var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.itemsEachPage );
-    var nextPage = that.currentPage+1;
+    var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.options.itemsEachPage );
+    var nextPage = that.options.currentPage+1;
 
-    if( nextPage > that.endPage-1 ) {
-      nextPage = that.endPage-1;
+    if( nextPage > that.options.endPage-1 ) {
+      nextPage = that.options.endPage-1;
     }
     else
     if( nextPage > pages-1  ) {
@@ -200,7 +200,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
   previousPage: function( ){
     var that = this;
-    that.setPage(that.currentPage-1);
+    that.setPage(that.options.currentPage-1);
   },
 
   resourceClick: function( element ) {
