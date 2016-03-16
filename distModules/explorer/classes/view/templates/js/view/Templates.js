@@ -98,3 +98,18 @@ geozzy.explorerComponents.filterButtonsViewOption = "" +
     "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIconHover/iconHover.png'> " +
     "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIconSelected/iconSelected.png'> " +
   "</li>";
+
+
+geozzy.explorerComponents.filterComboViewTemplate = "" +
+  " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+  "<select class='<%= filterClass %>'>"+
+    "<% if(defaultOption){ %> <option value='<%- defaultOption.value %>' icon='<%- defaultOption.icon %>'><%- defaultOption.title %></option> <%}%>"+
+    "<%= options %>"+
+  "</select>";
+
+
+geozzy.explorerComponents.filterComboViewOptionT =  "<option value='<%- id %>' icon='<%- icon %>'><%- name %></option>";
+
+geozzy.explorerComponents.filterComboViewSummaryT = "" +
+  " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+  "<span class='<%= filterClass %>-Summary'><img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- option.icon %>/typeIcon/icon.png'> <%- option.name %> </span>";
