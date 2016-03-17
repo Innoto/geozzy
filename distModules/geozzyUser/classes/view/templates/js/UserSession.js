@@ -35,6 +35,7 @@ geozzy.userSession = function() {
 
   that.initLoginBox = function(  ){
     that.loginView = new geozzy.userSessionComponents.userLoginView();
+    that.loginView.userSessionParent = that;
   }
   that.successLoginBox = function(){
     that.loginView.closeLoginModal();
@@ -42,7 +43,8 @@ geozzy.userSession = function() {
   }
 
   that.initRegisterBox = function(  ){
-    that.loginView = new geozzy.user.userLoginView();
+    that.registerView = new geozzy.userSessionComponents.userRegisterView();
+    that.registerView.userSessionParent = that;
   }
   that.successRegisterBox = function(){
     that.loginView.closeLoginModal();

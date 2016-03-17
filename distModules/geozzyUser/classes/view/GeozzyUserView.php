@@ -40,12 +40,30 @@ class GeozzyUserView extends View
     echo ($userView->loginFormGet( $form ));
 
   }
-
-
   public function sendLoginForm() {
     $userView = new UserView();
     $form = $userView->actionLoginForm();
     $form->sendJsonResponse();
   }
+
+
+
+  public function registerForm() {
+    $userView = new UserView();
+
+    $form = $userView->loginFormDefine();
+    $form->setAction('/geozzyuser/senduserlogin');
+    //$form->setSuccess( 'redirect', '/' );
+    $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.successLoginBox();' );
+
+    echo ($userView->loginFormGet( $form ));
+
+  }
+  public function sendRegisterForm() {
+    $userView = new UserView();
+    $form = $userView->actionLoginForm();
+    $form->sendJsonResponse();
+  }
+
 
 }

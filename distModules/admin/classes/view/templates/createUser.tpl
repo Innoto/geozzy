@@ -13,6 +13,7 @@
 
     {$userFormFields.login}
     {$userFormFields.email}
+    {$userFormFields.repeatEmail}
     {$userFormFields.password}
     {$userFormFields.password2}
     {$userFormFields.name}

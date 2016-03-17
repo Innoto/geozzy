@@ -109,6 +109,7 @@ class ResourceModel extends Model {
     'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
     'ids' => ' geozzy_resource.id IN (?) ',
     'inId' => ' geozzy_resource.id IN (?) ',
+    'notInId' => ' geozzy_resource.id NOT IN (?) ',
     'updatedfrom' => ' ( geozzy_resource.timeCreation >= ? OR geozzy_resource.timeLastUpdate >= ? ) '
   );
 
@@ -189,7 +190,8 @@ class ResourceModel extends Model {
   public function delete( array $parameters = array() ) {
 
 
-    Cogumelo::debug( 'Called custom delete on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    Cogumelo::debug( 'Called custom delete on '.get_called_class().' with "'.
+      $this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $this->dataFacade->deleteFromKey( $this->getFirstPrimarykeyId(), $this->getter( $this->getFirstPrimarykeyId() )  );
 
 
@@ -199,7 +201,7 @@ class ResourceModel extends Model {
     $resourceTaxonomyTermList = $resourceTaxonomytermControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
 
     while( $resourceTaxonomyTerm = $resourceTaxonomyTermList->fetch()  ) {
-     $resourceTaxonomyTerm->delete();
+      $resourceTaxonomyTerm->delete();
     }
 
 
@@ -208,7 +210,7 @@ class ResourceModel extends Model {
     $resourceTopicList = $resourceTopicControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
 
     while( $resourceTopic = $resourceTopicList->fetch()  ) {
-     $resourceTopic->delete();
+      $resourceTopic->delete();
     }
 
 
@@ -219,7 +221,7 @@ class ResourceModel extends Model {
     $collectionsToRemove = array();
 
     while( $resourceCollections = $resourceCollectionsList->fetch()  ) {
-     $resourceCollections->delete();
+      $resourceCollections->delete();
     }
 
 
@@ -227,8 +229,8 @@ class ResourceModel extends Model {
     $CollectionResourcesList = $collectionResourcesModel->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
 
     while( $CollectionResources = $CollectionResourcesList->fetch()  ) {
-     $collectionsToRemove[] = $CollectionResources->getter('collection');
-     $CollectionResources->delete();
+      $collectionsToRemove[] = $CollectionResources->getter('collection');
+      $CollectionResources->delete();
     }
 
 

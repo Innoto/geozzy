@@ -2,9 +2,10 @@ var geozzy = geozzy || {};
 if(!geozzy.userSessionComponents) geozzy.userSessionComponents={};
 
 geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
+
   userSessionParent : false,
-  userLoginTemplate : _.template( geozzy.userSessionComponents.userLoginBoxTemplate ),
-  modalTemplate : _.template( geozzy.userSessionComponents.modalMdTemplate ),
+  userLoginTemplate : false,
+  modalTemplate : false,
 
   events: {
     "click .gotoregister": "goToRegister"
@@ -37,6 +38,10 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
   },
   initialize: function( opts ) {
     var that = this;
+
+    that.userLoginTemplate = _.template( geozzy.userSessionComponents.userLoginBoxTemplate ),
+    that.modalTemplate = _.template( geozzy.userSessionComponents.modalMdTemplate ),
+
     that.initLoginModal();
   },
   render: function() {

@@ -11,29 +11,9 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   },
 
   isTaxonomyFilter: true,
-  template: _.template(
-    " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-    "<ul class='<%= filterClass %> clearfix'>"+
-      "<% if(defaultOption){ %> "+
-        "<li data-term-id='<%- defaultOption.value %>' > "+
-          "<div class='title'><%- defaultOption.title %></div> "+
-          "<img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- defaultOption.icon %>/typeIcon/icon.png'> " +
-          "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- defaultOption.icon %>/typeIconHover/iconHover.png'> " +
-          "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- defaultOption.icon %>/typeIconSelected/iconSelected.png'> " +
-        "</li>"+
-      "<%}%>"+
-      "<%= options %>"+
-    "</ul>"
-  ),
+  template: _.template( geozzy.explorerComponents.filterButtonsViewTemplate ),
 
-  templateOption: _.template(
-    "<li data-term-id='<%- id %>'>"+
-      "<div class='title'><%- name %></div> "+
-      "<img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIcon/icon.png'> " +
-      "<img class='iconHover' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIconHover/iconHover.png'> " +
-      "<img class='iconSelected' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- icon %>/typeIconSelected/iconSelected.png'> " +
-    "</li>"
-  ),
+  templateOption: _.template( geozzy.explorerComponents.filterButtonsViewOption  ),
 
   initialize: function( opts ) {
     var that = this;
