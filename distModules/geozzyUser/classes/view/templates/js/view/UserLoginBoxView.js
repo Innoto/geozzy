@@ -2,12 +2,12 @@ var geozzy = geozzy || {};
 if(!geozzy.userSessionComponents) geozzy.userSessionComponents={};
 
 geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
-
+  userSessionParent : false,
   userLoginTemplate : _.template( geozzy.userSessionComponents.userLoginBoxTemplate ),
   modalTemplate : _.template( geozzy.userSessionComponents.modalMdTemplate ),
 
   events: {
-
+    "click .gotoregister": "goToRegister"
   },
 
   initLoginModal: function(){
@@ -15,7 +15,7 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
 
     $('body').append( that.modalTemplate({ 'modalId': 'loginModal', 'modalTitle': 'Login' }) );
     $("#loginModal .modal-body").html( that.userLoginTemplate() );
-    $("#loginModal .modal-body .loginForm").load( '/geozzyuser/login' );
+    $("#loginModal .modal-body .loginModalForm").load( '/geozzyuser/login' );
     $("#loginModal").modal({
       'show' : true,
       'backdrop' : 'static'
@@ -27,6 +27,9 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
 
+    that.el = "#loginModal";
+    that.$el = $(that.el);
+    that.delegateEvents();
   },
   closeLoginModal: function() {
     var that = this;
@@ -39,6 +42,11 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
   render: function() {
     var that = this;
     //that.$el.html( that.tpl({ content: contentHtml }) )
+  },
+  goToRegister: function() {
+    var that = this;
+    that.closeLoginModal();
+    that.userSessionParent.initRegisterBox();
   }
 
 });
