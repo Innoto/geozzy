@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.model) geozzy.model={};
+if(!geozzy.userSessionComponents) geozzy.userSessionComponents={};
 
-geozzy.model.UserSessionModel = Backbone.Model.extend({
+geozzy.userSessionComponents.UserSessionModel = Backbone.Model.extend({
   defaults: {
     id: false,
     login: '',

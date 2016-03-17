@@ -6,9 +6,7 @@ geozzy.explorerComponents.pasiveListView = Backbone.View.extend({
   displayType: 'pasiveList',
   parentExplorer: false,
   visibleResources: [],
-  currentPage: 0,
-  endPage: 3,
-  totalPages: false,
+
 
 
   events: {

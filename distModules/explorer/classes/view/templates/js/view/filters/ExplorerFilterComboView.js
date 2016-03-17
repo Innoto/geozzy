@@ -7,22 +7,11 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
 
   isTaxonomyFilter: true,
-  template: _.template(
-    " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-    "<select class='<%= filterClass %>'>"+
-      "<% if(defaultOption){ %> <option value='<%- defaultOption.value %>' icon='<%- defaultOption.icon %>'><%- defaultOption.title %></option> <%}%>"+
-      "<%= options %>"+
-    "</select>"
-  ),
+  template: _.template( geozzy.explorerComponents.filterComboViewTemplate ),
 
-  templateOption: _.template(
-    "<option value='<%- id %>' icon='<%- icon %>'><%- name %></option>"
-  ),
+  templateOption: _.template( geozzy.explorerComponents.filterComboViewOptionT ),
 
-  templateSummary: _.template(
-    " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-    "<span class='<%= filterClass %>-Summary'><img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- option.icon %>/typeIcon/icon.png'> <%- option.name %> </span>"
-  ),
+  templateSummary: _.template( geozzy.explorerComponents.filterComboViewSummaryT ),
 
 
   initialize: function( opts ) {

@@ -1,8 +1,8 @@
 var geozzy = geozzy || {};
-if(!geozzy.userSession) geozzy.userSession={};
+if(!geozzy.userSessionComponents) geozzy.userSessionComponents={};
 
 
-geozzy.userSession.modalMdTemplate = ''+
+geozzy.userSessionComponents.modalMdTemplate = ''+
 '<div id="<%- modalId %>" class="modal fade" tabindex="-1" role="dialog">'+
   '<div class="modal-dialog modal-md">'+
     '<div class="modal-content">'+
@@ -18,7 +18,7 @@ geozzy.userSession.modalMdTemplate = ''+
   '</div>'+
 '</div>';
 
-geozzy.userSession.userLoginBoxTemplate = ''+
+geozzy.userSessionComponents.userLoginBoxTemplate = ''+
 '<h3>'+__("Necesitas tener una cuenta para participar en Galicia Agochada")+'</h3>'+
 '<button type="button" class="gotoregister btn btn-primary">'+__("Crear una cuenta")+'</button>'+
 '<hr />'+
@@ -27,7 +27,7 @@ geozzy.userSession.userLoginBoxTemplate = ''+
 '<div class="loginForm"></div>'+
 '<a href="#">'+__("He olvidado mi contraseña")+'</a>';
 
-geozzy.userSession.userResgisterBoxTemplate = ''+
+geozzy.userSessionComponents.userResgisterBoxTemplate = ''+
 '<h3>'+__("Muchas gracias")+'.</h3>'+
 '<h3>'+__("Tu cuenta se ha creado con éxito")+'</h3>'+
 '<p>'+__("En breve recibirás un correo-e para comprobar tu identidad")+'.</p>'+
@@ -35,7 +35,7 @@ geozzy.userSession.userResgisterBoxTemplate = ''+
 '<button type="button" class="btn btn-primary" data-dismiss="modal">'+__("Continuar")+'</button>';
 
 
-geozzy.userSession.userResgisterOkBoxTemplate = ''+
+geozzy.userSessionComponents.userResgisterOkBoxTemplate = ''+
 '<h3>'+__("Muchas gracias")+'.</h3>'+
 '<h3>'+__("Tu cuenta se ha creado con éxito")+'</h3>'+
 '<p>'+__("En breve recibirás un correo-e para comprobar tu identidad")+'.</p>'+

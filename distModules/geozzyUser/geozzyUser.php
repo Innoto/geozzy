@@ -30,7 +30,8 @@ class geozzyUser extends Module
     'js/view/Templates.js',
     'js/view/UserLoginBoxView.js',
     'js/view/UserRegisterBoxView.js',
-    'js/UserSession.js'
+    'js/UserSession.js',
+    'js/UserSessionInstance.js'
   );
 
 
