@@ -22,8 +22,8 @@
 
 </head>
 <body data-spy="scroll" data-target=".headContent">
-  <article>
 
+  <article>
     {capture "headContent"}
       {block name="headContent"}
         <header class="headContent">

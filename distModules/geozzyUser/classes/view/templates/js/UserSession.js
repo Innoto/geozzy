@@ -4,41 +4,39 @@ var geozzy = geozzy || {};
 geozzy.userSession = function() {
 
   var that = this;
-  that.userSession = false;
-
+  that.user = false;
+  that.loginView = false;
+  that.finishCallback = false;
   //
   // First Execution
   //
-  that.userControlAccess = function( callback ) {
+  that.userControlAccess = function(callback) {
+    that.finishCallback = callback;
     that.getUserSession(
       function(){
-        if( that.userSession.get('id') === false ){
-          that.initLoginBox(callback);
+        if( that.user.get('id') === false ){
+          that.initLoginBox();
         }else{
-          callback();
+          that.finishCallback();
         }
       }
     );
   }
 
   that.getUserSession = function(success){
-    that.userSession = new geozzy.model.UserSessionModel();
-    that.userSession.fetch({
+    that.user = new geozzy.userSessionComponents.UserSessionModel();
+    that.user.fetch({
       success: function(){
         success();
       }
     });
   }
 
-  that.initLoginBox = function(){
-
+  that.initLoginBox = function(  ){
+    that.loginView = new geozzy.userSessionComponents.userLoginView();
+  }
+  that.successLoginBox = function(){
+    that.loginView.closeLoginModal();
+    that.finishCallback();
   }
 }
-
-
-/*
-var u = new geozzy.userSession();
-u.userControlAccess( function(){
-  alert('access');
-});
-*/

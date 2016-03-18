@@ -56,8 +56,8 @@ geozzy.explorer = function( opts ) {
 
   that.resourceIndex = false;
 
-  that.resourceMinimalList = new ExplorerResourceMinimalCollection();
-  that.resourcePartialList =  new ExplorerResourcePartialCollection();
+  that.resourceMinimalList = new geozzy.explorerComponents.resourceMinimalCollection();
+  that.resourcePartialList =  new geozzy.explorerComponents.resourcePartialCollection();
 
 
   // Displays
@@ -86,7 +86,7 @@ geozzy.explorer = function( opts ) {
     lang = that.getLang();
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal/updatedfrom/false';
     // set explorer router
-    that.explorerRouter = new ExplorerRouter();
+    that.explorerRouter = new geozzy.explorerComponents.mainRouter();
     that.explorerRouter.parentExplorer = that;
     Backbone.history.start();
 

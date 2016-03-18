@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
-geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
+geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
   displayType: 'mapInfo',
   parentExplorer: false,
@@ -14,20 +14,7 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
 
 
 
-  template: _.template(
-    '<div class="gempiContent">'+
-      '<div class="gempiImg">'+
-        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" />'+
-        '<div class="gempiFav"><% if(touchAccess){ %><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i> <% } %></div>'+
-      '</div>'+
-      '<div class="gempiInfo">'+
-        '<div class="gempiTitle"><%-title%></div>'+
-        '<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+
-        '<div class="gempiDescription"><%-description%></div>'+
-        '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
-      '</div>'+
-    '</div>'
-  ),
+  template: false,
 
   marginX: 25,
   marginY: 20,
@@ -37,12 +24,12 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
-
+      tpl: geozzy.explorerComponents.mapInfoViewTemplate,
     });
 
     that.options = $.extend(true, {}, options, opts);
 
-
+    that.template = _.template( that.options.tpl );
     that.mousePosEventListener();
 
   },
@@ -112,17 +99,12 @@ geozzy.explorerDisplay.mapInfoView = Backbone.View.extend({
        [id],
        function() {
 
+         var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
+         var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
 
-         var element = {
-           id: that.parentExplorer.resourcePartialList.get( id ).get('id'),
-           inMap: that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible'),
-           img: that.parentExplorer.resourceMinimalList.get( id ).get('img'),
-           title: that.parentExplorer.resourcePartialList.get( id ).get('title'),
-           description: that.parentExplorer.resourcePartialList.get( id ).get('description'),
-           city: that.parentExplorer.resourcePartialList.get( id ).get('city'),
-           touchAccess: that.parentExplorer.explorerTouchDevice
-         };
+         var element = $.extend( true, partJSON, minJSON );
 
+         element.touchAccess = that.parentExplorer.explorerTouchDevice;
 
          $( '#'+that.divId ).html( that.template( element ) );
 

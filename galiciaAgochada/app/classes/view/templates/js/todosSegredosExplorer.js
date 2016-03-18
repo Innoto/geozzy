@@ -137,12 +137,12 @@
      */
     that.setDisplays = function() {
 
-      that.infowindow = new geozzy.explorerDisplay.mapInfoView();
-      that.listaMini = new geozzy.explorerDisplay.activeListView({
+      that.infowindow = new geozzy.explorerComponents.mapInfoView();
+      that.listaMini = new geozzy.explorerComponents.activeListView({
           el:$('.explorer-container-gallery'),
           categories: that.eatAndDrinkTypes
       });
-      that.mapa = new geozzy.explorerDisplay.mapView({
+      that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
           clusterize:true,
           chooseMarkerIcon: function( markerData ) {

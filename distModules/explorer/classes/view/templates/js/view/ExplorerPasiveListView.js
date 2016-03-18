@@ -1,14 +1,12 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
-geozzy.explorerDisplay.pasiveListView = Backbone.View.extend({
+geozzy.explorerComponents.pasiveListView = Backbone.View.extend({
 
   displayType: 'pasiveList',
   parentExplorer: false,
   visibleResources: [],
-  currentPage: 0,
-  endPage: 3,
-  totalPages: false,
+
 
 
   events: {

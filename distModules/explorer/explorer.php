@@ -51,6 +51,7 @@ class explorer extends Module {
     'js/model/ExplorerResourcePartialModel.js',
     'js/collection/ExplorerResourceMinimalCollection.js',
     'js/collection/ExplorerResourcePartialCollection.js',
+    'js/view/Templates.js',    
     'js/view/ExplorerFilterView.js',
     'js/view/filters/ExplorerFilterButtonsView.js',
     'js/view/filters/ExplorerFilterComboView.js',

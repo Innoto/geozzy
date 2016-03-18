@@ -5,7 +5,6 @@ geozzy::load('model/ResourceModel.php');
 
 
 
-
 class InitResourcesController{
 
   public function __construct(){

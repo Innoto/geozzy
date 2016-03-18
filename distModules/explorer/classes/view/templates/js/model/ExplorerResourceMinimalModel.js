@@ -1,4 +1,7 @@
-var ExplorerResourceMinimalModel = Backbone.Model.extend({
+var geozzy = geozzy || {};
+if (! geozzy.explorerComponents) { geozzy.explorerComponents= {} }
+
+geozzy.explorerComponents.resourceMinimalModel = Backbone.Model.extend({
   defaults: {
     id: false,
     type: false,

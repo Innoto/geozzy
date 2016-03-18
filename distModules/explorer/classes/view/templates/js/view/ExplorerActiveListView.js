@@ -1,50 +1,16 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerDisplay) geozzy.explorerDisplay={};
+if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
-geozzy.explorerDisplay.activeListView = Backbone.View.extend({
+geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
-  tpl: _.template(
-    '<div class="explorerActiveListContent">'+
-        '<%=content%>'+
-    '</div>'),
-  tplElement: _.template(
-    /*
-    '<div data-resource-id="<%- id %>" class="accessButton col-md-2 col-sm-2 col-xs-4 element element-<%- id %>">'+
-      '<div class="elementImg">'+
-        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/fast_cut/.jpg" />'+
-        '<ul class="elementOptions container-fluid">'+
-          '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
-        '</ul>'+
-      '</div>'+
-      '<div class="elementInfo">'+
-        '<%-title%>'+
-      '</div>'+
-    '</div>'),*/
-    '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
-      '<div class="elementImg">'+
-        '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
-        '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
-          '<ul class="elementOptions container-fluid">'+
-            '<li class="elementOpt elementFav"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></li>'+
-          '</ul>'+
-        '</div>'+
-      '</div>'+
-      '<div class="elementInfo">'+
-        '<div class="elementTitle"><%-title%></div>'+
-        '<div class="elementType"><img src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- category.icon %>/typeIconMini/<%- category.icon %>.png"/></i> <%- category.name %></div>'+
-        '<% if( averagePrice ){%> <div class="elementPrice"> <%= averagePrice %>€<span>/persona</span> </div> <%}%>'+
-      '</div>'+
-    '</div>'),
-
-
+  tpl: false,
+  tplElement: false,
 
   displayType: 'activeList',
   parentExplorer: false,
   visibleResources: [],
-  currentPage: 0,
-  endPage: 3,
-  totalPages: false,
 
+  currentPage: 0,
 
   events: {
 
@@ -62,11 +28,19 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     var options = new Object({
       showInBuffer: true,
       showOutMapAndBuffer: false,
-      cateogories: false
+      cateogories: false,
+
+      endPage: 3,
+      totalPages: false,
+
+      tpl: geozzy.explorerComponents.activeListViewTemplate,
+      tplElement: geozzy.explorerComponents.activeListViewElement
     });
 
     that.options = $.extend(true, {}, options, opts);
 
+    that.tpl = _.template(that.options.tpl);
+    that.tplElement = _.template(that.options.tplElement);
   },
 
 
@@ -80,7 +54,7 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
     visibleResources.setSort('mapVisible', 'desc');
 
     // get total packages
-    that.totalPages = that.parentExplorer.resourceIndex.getNumPages();
+    that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
 
     // set current page
     visibleResources.setPage(that.currentPage);
@@ -129,19 +103,13 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       });
 
 
+      var minJSON = that.parentExplorer.resourceMinimalList.get( e ).toJSON();
+      var partJSON = that.parentExplorer.resourcePartialList.get( e ).toJSON();
 
+      var element = $.extend( true, partJSON, minJSON );
 
-      var element = {
-        contador: contador,
-        title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
-        id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
-        inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible'),
-        img: that.parentExplorer.resourceMinimalList.get( e ).get('img'),
-        averagePrice: that.parentExplorer.resourceMinimalList.get( e ).get('averagePrice'),
-        category: elementCategory
-
-      };
-
+      element.contador = contador;
+      element.category = elementCategory;
 
       // metrics
       that.parentExplorer.metricsResourceController.eventPrint(
@@ -168,18 +136,18 @@ geozzy.explorerDisplay.activeListView = Backbone.View.extend({
       pageNum = 0;
     }
 
-    if( that.endPage != false && pageNum > that.endPage ) {
+    if( that.options.endPage != false && pageNum > that.options.endPage ) {
 
-      pageNum = that.endPage;
+      pageNum = that.options.endPage;
 
     }
     else
-    if ( that.endPage != false && pageNum > that.totalPages ){
-      pageNum = that.totalPages;
+    if ( that.options.endPage != false && pageNum > that.options.totalPages ){
+      pageNum = that.options.totalPages;
     }
     else
-    if( that.endPage == false &&  pageNum > that.totalPages  ){
-      pageNum = that.endPage
+    if( that.options.endPage == false &&  pageNum > that.options.totalPages  ){
+      pageNum = that.options.endPage
     }
 
     that.currentPage = pageNum;

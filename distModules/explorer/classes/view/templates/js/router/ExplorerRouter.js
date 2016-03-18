@@ -1,4 +1,7 @@
-var ExplorerRouter = Backbone.Router.extend({
+var geozzy = geozzy || {};
+if (! geozzy.explorerComponents) { geozzy.explorerComponents= {} }
+
+geozzy.explorerComponents.mainRouter = Backbone.Router.extend({
   parentExplorer: false,
   routes: {
     '': 'main',
