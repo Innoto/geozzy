@@ -621,7 +621,7 @@ CREATE TABLE `geozzy_resourcetype` (
 
 LOCK TABLES `geozzy_resourcetype` WRITE;
 /*!40000 ALTER TABLE `geozzy_resourcetype` DISABLE KEYS */;
-INSERT INTO `geozzy_resourcetype` VALUES (10,'rtypeAppHotel','Hotel','Hotel','Hotel','[\"AccommodationModel\",\"ContactModel\"]',0),(11,'rtypeAppRestaurant','Restaurante','Restaurante','Restaurant','[\"EatAndDrinkModel\",\"ContactModel\"]',0),(12,'rtypeUrl','URL','URL','URL','[\"RExtUrlModel\"]',0),(13,'rtypePage','PÃ¡gina','PÃ¡xina','Page','[\"ContactModel\"]',0),(14,'rtypeFile','Fichero','Ficheiro','File','[\"RExtFileModel\"]',0),(15,'rtypeAppRuta','Ruta','Ruta','Ruta','[]',0),(16,'rtypeAppLugar','Lugar','Lugar','Lugar','[\"ContactModel\"]',0),(17,'rtypeAppEspazoNatural','Espazo Natural','Espazo Natural','Espazo Natural','[\"ContactModel\"]',0),(18,'rtypeAppFestaPopular','Festa Popular','Festa Popular','Festa Popular','[]',0);
+INSERT INTO `geozzy_resourcetype` VALUES (10,'rtypeAppHotel','Hotel','Hotel','Hotel','[\"AccommodationModel\",\"ContactModel\"]',0),(11,'rtypeAppRestaurant','Restaurante','Restaurante','Restaurant','[\"EatAndDrinkModel\",\"ContactModel\"]',0),(12,'rtypeUrl','URL','URL','URL','[\"RExtUrlModel\"]',0),(13,'rtypePage','PÃ¡gina','PÃ¡xina','Page','[\"ContactModel\"]',0),(14,'rtypeFile','Fichero','Ficheiro','File','[\"RExtFileModel\"]',0),(15,'rtypeAppRuta','Ruta','Ruta','Ruta','[]',0),(16,'rtypeAppLugar','Lugar','Lugar','Lugar','[\"ContactModel\"]',0),(17,'rtypeAppEspazoNatural','Espazo Natural','Espazo Natural','Espazo Natural','[\"ContactModel\"]',0),(18,'rtypeAppFesta','Festa Popular','Festa Popular','Festa Popular','[]',0);
 /*!40000 ALTER TABLE `geozzy_resourcetype` ENABLE KEYS */;
 UNLOCK TABLES;
 

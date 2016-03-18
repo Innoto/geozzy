@@ -70,7 +70,7 @@ class RealDataGenerator extends View
          $filedataArray[$datos[0]] = array(
                                         'name' => $datos[3],
                                         'originalName' => $datos[3],
-                                        'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/'.$datos[3],
+                                        'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/images/'.$datos[3],
                                         'type' => 'image/jpeg', 'size' => '38080',
                                         'destDir' => '/testData/'
                                       );

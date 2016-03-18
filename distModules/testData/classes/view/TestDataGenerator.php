@@ -32,6 +32,7 @@ class TestDataGenerator extends View
     // Cargamos os tipos de recurso, excluíndo os de sistema, e as súas taxonomías
     $resourcetypeModel = new ResourcetypeModel();
     $typeList = $resourcetypeModel->listItems()->fetchAll();
+
     $k = 0;
     foreach ($typeList as $type){
       $rtypeName = $type->getter('idName');
@@ -99,9 +100,9 @@ class TestDataGenerator extends View
          $data[$datos[0]]['title'] = $datos[4];
          $data[$datos[0]]['mediumDescription'] = $datos[5];
 
-         $image_name = COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/'.$datos[3];
+         $image_name = COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/images/'.$datos[3];
          if (!file_exists($image_name)){
-           $image_name = COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/templates/images/default.jpg';
+           $image_name = COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/images/default.jpg';
          }
 
          $filedataArray[$datos[0]] = array(

@@ -295,6 +295,9 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
 
       $this->socialCtrl = new RExtSocialNetworkController( $this );
       $this->socialCtrl->resFormRevalidate( $form );
+
+      $this->zonaCtrl = new RExtAppZonaController( $this );
+      $this->zonaCtrl->resFormRevalidate( $form );
     }
 
   }
@@ -336,6 +339,9 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
 
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $this->socialCtrl->resFormSuccess( $form, $resource );
+
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $this->zonaCtrl->resFormSuccess( $form, $resource );
   }
 
 

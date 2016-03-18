@@ -37,9 +37,6 @@ function bindResourceForm(){
     app.mainView.loadAjaxContentModal('/admin/multimedia/create', 'createMultimediaGalleryModal', 'Create Multimedia Gallery');
   });
 
-
-
-
   $('select.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
     orientation: 'horizontal',
     icon: '<i class="fa fa-arrows"></i>'
@@ -65,6 +62,10 @@ function bindResourceForm(){
     icon: '<i class="fa fa-arrows"></i>'
   });
   $('select.cgmMForm-field-rExtAppEspazoNatural_rextAppEspazoNaturalType').multiList({
+    orientation: 'horizontal',
+    icon: '<i class="fa fa-arrows"></i>'
+  });
+  $('select.cgmMForm-field-rExtEventCollection_events').multiList({
     orientation: 'horizontal',
     icon: '<i class="fa fa-arrows"></i>'
   });
