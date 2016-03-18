@@ -43,6 +43,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     $resourceCollectionsList = $resourceCollectionsModel->listItems(
       array('filters' => array('resource' => $resId)) );
 
+    $elemId = false;  
     $eventCol = false;
     while($resCol = $resourceCollectionsList->fetch()){
       $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
@@ -51,16 +52,18 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
       }
     }
 
-    $collectionResourcesModel = new CollectionResourcesModel();
-    $collectionResourceList = $collectionResourcesModel->listItems(
-      array('filters' => array('collection' => $elemId)) );
+    if ($elemId){
+      $collectionResourcesModel = new CollectionResourcesModel();
+      $collectionResourceList = $collectionResourcesModel->listItems(
+        array('filters' => array('collection' => $elemId)) );
 
-    $resIds = array();
-    while($res = $collectionResourceList->fetch()){
-      $resIds[] = $res->getter('resource');
+      $resIds = array();
+      while($res = $collectionResourceList->fetch()){
+        $resIds[] = $res->getter('resource');
+      }
+
+      $rExtData['events'] = $resIds;
     }
-
-    $rExtData['events'] = $resIds;
 
     // error_log( 'RExtEventCollectionController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
