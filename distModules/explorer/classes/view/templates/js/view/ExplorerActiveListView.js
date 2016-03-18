@@ -10,7 +10,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
   parentExplorer: false,
   visibleResources: [],
 
-
+  currentPage: 0,
 
   events: {
 
@@ -30,7 +30,6 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       showOutMapAndBuffer: false,
       cateogories: false,
 
-      currentPage: 0,
       endPage: 3,
       totalPages: false,
 
@@ -58,7 +57,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
 
     // set current page
-    visibleResources.setPage(that.options.currentPage);
+    visibleResources.setPage(that.currentPage);
 
     that.visibleResources = visibleResources.pluck( 'id' );
     return visibleResources.pluck( 'id' );
@@ -151,7 +150,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       pageNum = that.options.endPage
     }
 
-    that.options.currentPage = pageNum;
+    that.currentPage = pageNum;
 
     //fetch new visible elements from explorer
     that.parentExplorer.fetchPartialList(
