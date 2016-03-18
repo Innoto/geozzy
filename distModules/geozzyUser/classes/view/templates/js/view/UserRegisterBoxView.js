@@ -13,7 +13,7 @@ geozzy.userSessionComponents.userRegisterView = Backbone.View.extend({
   initRegisterModal: function(){
     var that = this;
 
-    $('body').append( that.modalTemplate({ 'modalId': 'registerModal', 'modalTitle': 'Login' }) );
+    $('body').append( that.modalTemplate({ 'modalId': 'registerModal', 'modalTitle': 'Register' }) );
     $("#registerModal .modal-body").html( that.userRegisterTemplate() );
     $("#registerModal .modal-body .registerModalForm").load( '/geozzyuser/login' );
     $("#registerModal").modal({
