@@ -1264,16 +1264,23 @@ class ResourceController {
 
     // Si estamos editando, repasamos y borramos relaciones sobrantes
     if( $baseId ) {
+      $colModel = new CollectionModel();
       $relModel = new ResourceCollectionsModel();
-      $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
+      $relPrevList = $relModel->listItems(
+        array( 'filters' => array( 'resource' => $baseId ) ) );
       if( $relPrevList ) {
         // estaban asignados antes
         $relPrevInfo = array();
         while( $relPrev = $relPrevList->fetch() ){
-          $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
-          if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
-            $relPrev->delete();
+
+          $collection = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) )->fetch();
+          if ($collection->getter('collectionType')!='event'){
+            $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
+            if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
+              $relPrev->delete();
+            }
           }
+
         }
       }
     }

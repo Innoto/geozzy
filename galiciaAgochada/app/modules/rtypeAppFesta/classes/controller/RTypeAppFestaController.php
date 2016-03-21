@@ -1,25 +1,24 @@
 <?php
-rextAppEspazoNatural::autoIncludes();
+rextEvent::autoIncludes();
+rextEventCollection::autoIncludes();
+rextAppFesta::autoIncludes();
 rextContact::autoIncludes();
 rextMapDirections::autoIncludes();
-rextAppZona::autoIncludes();
 rextSocialNetwork::autoIncludes();
 
-class RTypeAppEspazoNaturalController extends RTypeController implements RTypeInterface {
+class RTypeAppFestaController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ) {
-    // error_log( 'RTypeAppEspazoNaturalController::__construct' );
+    // error_log( 'RTypeAppFestaController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeAppEspazoNatural() );
+    parent::__construct( $defResCtrl, new rtypeAppFesta() );
   }
-
-
 
   /**
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeAppEspazoNaturalController: manipulateForm()" );
+    // error_log( "RTypeAppFestaController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
@@ -33,8 +32,8 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     //$form->removeField('externalUrl');
 
     // Extensión Espazo Natural
-    $rTypeExtNames[] = 'rextAppEspazoNatural';
-    $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
+    $rTypeExtNames[] = 'rextAppFesta';
+    $this->rExtCtrl = new RExtAppFestaController( $this );
     $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
@@ -44,27 +43,31 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $this->contactCtrl = new RExtContactController( $this );
     $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
 
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
     // Extensión redes sociales
     $rTypeExtNames[] = 'rextSocialNetwork';
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $rExtFieldNames = $this->socialCtrl->manipulateForm( $form );
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
-    // Extensión Zona
-    $rTypeExtNames[] = 'rextAppZona';
-    $this->zonaCtrl = new RExtAppZonaController( $this );
-    $rExtFieldNames = $this->zonaCtrl->manipulateForm( $form );
-
-    // eliminamos los campos de contacto que no necesitamos
-    /*$form->removeField('rExtContact_address');
-    $form->removeField('rExtContact_city');
-    $form->removeField('rExtContact_cp');
-    $form->removeField('rExtContact_province');
-    $form->removeField('rExtContact_phone');
-    $form->removeField('rExtContact_email');
-    $form->removeField('rExtContact_timetable');*/
+    // Extensión evento
+    $rTypeExtNames[] = 'rextEvent';
+    $this->eventCtrl = new RExtEventController( $this );
+    $rExtFieldNames = $this->eventCtrl->manipulateForm( $form );
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Extensión evento
+    $rTypeExtNames[] = 'rextEventCollection';
+    $this->eventCollectionCtrl = new RExtEventCollectionController( $this );
+    $rExtFieldNames = $this->eventCollectionCtrl->manipulateForm( $form );
+
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // eliminamos los campos de extensiones que no necesitamos
+    $form->removeField('rextEvent_rextEventType');
+
 
 
     return( $rTypeFieldNames );
@@ -72,7 +75,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
 
 
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RTypeAppEspazoNaturalController: getFormBlockInfo()" );
+    // error_log( "RTypeAppFestaController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -94,21 +97,29 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
 
-    $this->espazoCtrl = new RExtAppEspazoNaturalController( $this );
-    $espazoViewInfo = $this->espazoCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->espazoCtrl->rExtName ] = $espazoViewInfo;
+    $this->festaCtrl = new RExtAppFestaController( $this );
+    $festaViewInfo = $this->festaCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->festaCtrl->rExtName ] = $festaViewInfo;
 
     $this->contactCtrl = new RExtContactController( $this );
     $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
+    $this->mapDirCtrl = new RExtMapDirectionsController( $this );
+    $mapDirViewInfo = $this->mapDirCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->mapDirCtrl->rExtName ] = $mapDirViewInfo;
+
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $socialViewInfo = $this->socialCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
 
-    $this->zonaCtrl = new RExtAppZonaController( $this );
-    $zonaViewInfo = $this->zonaCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->zonaCtrl->rExtName ] = $zonaViewInfo;
+    $this->eventCtrl = new RExtEventController( $this );
+    $eventViewInfo = $this->eventCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $eventViewInfo;
+
+    $this->eventCollectionCtrl = new RExtEventCollectionController( $this );
+    $eventCollectionViewInfo = $this->eventCollectionCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->eventCollectionCtrl->rExtName ] = $eventCollectionViewInfo;
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -186,6 +197,30 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $formFieldsNames = array( 'collections', 'addCollections' );
     $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
 
+    // TEMPLATE panel event
+    $templates['event'] = new Template();
+    $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['event']->assign( 'title', __( 'Select date and time' ) );
+    $templates['event']->assign( 'res', $formBlockInfo );
+    //$formFieldsNames = array( 'rextEventDate', 'rextEventView' );
+    $formFieldsNames = $this->eventCtrl->prefixArray( array('rextEventDate'));
+    $templates['event']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel eventCollection
+    $templates['eventCollectionView'] = new Template();
+    $templates['eventCollectionView']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['eventCollectionView']->assign( 'title', __( 'Select event collection view' ) );
+    $templates['eventCollectionView']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = $this->eventCollectionCtrl->prefixArray( array('rextEventCollectionView'));
+    $templates['eventCollectionView']->assign( 'formFieldsNames', $formFieldsNames );
+
+    $templates['eventCollection'] = new Template();
+    $templates['eventCollection']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['eventCollection']->assign( 'title', __( 'Select event' ) );
+    $templates['eventCollection']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = $this->eventCollectionCtrl->prefixArray( array('events'));
+    $templates['eventCollection']->assign( 'formFieldsNames', $formFieldsNames );
+
     // TEMPLATE panel image
     $templates['image'] = new Template();
     $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -199,8 +234,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['categorization']->assign( 'title', __( 'Categorization' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->espazoCtrl->prefixArray( array('rextAppEspazoNaturalType'));
-    $formFieldsNames[] = $this->zonaCtrl->addPrefix('rextAppZonaType');
+    $formFieldsNames = $this->festaCtrl->prefixArray( array('rextAppFestaType'));
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel cuadro informativo
@@ -242,12 +276,15 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['eventCollection'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['event'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['eventCollectionView'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 
@@ -266,10 +303,10 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeAppEspazoNaturalController: resFormRevalidate()" );
+    // error_log( "RTypeAppFestaController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
-      $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
+      $this->rExtCtrl = new RExtAppFestaController( $this );
       $this->rExtCtrl->resFormRevalidate( $form );
 
       $this->contactCtrl = new RExtContactController( $this );
@@ -278,8 +315,11 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
       $this->socialCtrl = new RExtSocialNetworkController( $this );
       $this->socialCtrl->resFormRevalidate( $form );
 
-      $this->zonaCtrl = new RExtAppZonaController( $this );
-      $this->zonaCtrl->resFormRevalidate( $form );
+      $this->eventCtrl = new RExtEventController( $this );
+      $this->eventCtrl->resFormRevalidate( $form );
+
+      $this->eventCollectionCtrl = new RExtEventCollectionController( $this );
+      $this->eventCollectionCtrl->resFormRevalidate( $form );
     }
   }
 
@@ -288,10 +328,10 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeAppEspazoNaturalController: resFormProcess()" );
+    // error_log( "RTypeAppFestaController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
-      $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
+      $this->rExtCtrl = new RExtAppFestaController( $this );
       $this->rExtCtrl->resFormProcess( $form, $resource );
 
       $this->contactCtrl = new RExtContactController( $this );
@@ -300,8 +340,12 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
       $this->socialCtrl = new RExtSocialNetworkController( $this );
       $this->socialCtrl->resFormProcess( $form, $resource );
 
-      $this->zonaCtrl = new RExtAppZonaController( $this );
-      $this->zonaCtrl->resFormProcess( $form, $resource );
+      $this->eventCtrl = new RExtEventController( $this );
+      $this->eventCtrl->resFormProcess( $form, $resource );
+
+      $this->eventCollectionCtrl = new RExtEventCollectionController( $this );
+      $this->eventCollectionCtrl->resFormProcess( $form, $resource );
+
     }
   }
 
@@ -310,9 +354,9 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeAppEspazoNaturalController: resFormSuccess()" );
+    // error_log( "RTypeAppFestaController: resFormSuccess()" );
 
-    $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
+    $this->rExtCtrl = new RExtAppFestaController( $this );
     $this->rExtCtrl->resFormSuccess( $form, $resource );
 
     $this->contactCtrl = new RExtContactController( $this );
@@ -321,8 +365,11 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $this->socialCtrl->resFormSuccess( $form, $resource );
 
-    $this->zonaCtrl = new RExtAppZonaController( $this );
-    $this->zonaCtrl->resFormSuccess( $form, $resource );
+    $this->eventCtrl = new RExtEventController( $this );
+    $this->eventCtrl->resFormSuccess( $form, $resource );
+
+    $this->eventCollectionCtrl = new RExtEventCollectionController( $this );
+    $this->eventCollectionCtrl->resFormSuccess( $form, $resource );
   }
 
 
@@ -330,7 +377,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    // error_log( "RTypeEspazoNaturalController: getViewBlockInfo()" );
+    // error_log( "RTypeFestaController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -339,9 +386,9 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     );
 
     $template = new Template();
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppEspazoNatural' );
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppFesta' );
 
-    $this->rExtCtrl = new RExtAppEspazoNaturalController( $this );
+    $this->rExtCtrl = new RExtAppFestaController( $this );
     $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
 
@@ -358,6 +405,14 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
 
+    $this->eventCtrl = new RExtEventController( $this );
+    $eventViewInfo = $this->eventCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $eventViewInfo;
+
+    $this->eventCollectionCtrl = new RExtEventCollectionController( $this );
+    $eventCollectionViewInfo = $this->eventCollectionCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->eventCollectionCtrl->rExtName ] = $eventCollectionViewInfo;
+
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
     $resData = $this->defResCtrl->getResourceData( false, true );
@@ -365,12 +420,12 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     if( $rExtViewInfo ) {
       if( $rExtViewInfo['template'] ) {
         foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextAppEspazoNaturalBlock', $templateBlock );
+          $template->addToBlock( 'rextAppFestaBlock', $templateBlock );
         }
       }
     }
     else {
-      $template->assign( 'rextAppEspazoNatural', false );
+      $template->assign( 'rextAppFesta', false );
     }
 
     if( $contactViewInfo ) {
@@ -406,6 +461,28 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
       $template->assign( 'rextSocialNetworkBlock', false );
     }
 
+    if( $eventViewInfo ) {
+      if( $eventViewInfo['template'] ) {
+        foreach( $eventViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextEventBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextEventBlock', false );
+    }
+
+    if( $eventCollectionViewInfo ) {
+      if( $eventCollectionViewInfo['template'] ) {
+        foreach( $eventCollectionViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextEventCollectionBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextEventCollectionBlock', false );
+    }
+
 
     /* Cargamos los bloques de colecciones */
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
@@ -427,7 +504,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
         if ($arrayMultimediaBlock){
           foreach ($arrayMultimediaBlock as $multimediaBlock){
             $multimediaBlock->assign( 'max', 6 );
-            $multimediaBlock->setTpl('appEspazoNaturalMultimediaViewBlock.tpl', 'rtypeAppEspazoNatural');
+            $multimediaBlock->setTpl('AppFestaMultimediaViewBlock.tpl', 'rtypeAppFesta');
             $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
           }
         }
@@ -437,18 +514,16 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
         $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $collectionType = 'base' );
         if ($arrayCollectionBlock){
           foreach ($arrayCollectionBlock as $collectionBlock){
-            $collectionBlock->setTpl('appEspazoNaturalCollectionViewBlock.tpl', 'rtypeAppEspazoNatural');
+            $collectionBlock->setTpl('AppFestaCollectionViewBlock.tpl', 'rtypeAppFesta');
             $template->addToBlock( 'collections', $collectionBlock );
           }
         }
       }
     }
 
-
-
     $viewBlockInfo['template'] = array( 'full' => $template );
 
     return $viewBlockInfo;
   }
 
-} // class RTypeAppEspazoNaturalController
+} // class RTypeAppFestaController

@@ -1,10 +1,10 @@
 <?php
 Cogumelo::load('coreView/View.php');
-rtypeAppFestaPopular::load('controller/RTypeAppFestaPopularController.php');
+rtypeAppFesta::load('controller/RTypeAppFestaController.php');
 
 
 
-class RTypeAppFestaPopularView extends View
+class RTypeAppFestaView extends View
 {
 
   private $defResCtrl = null;
@@ -14,7 +14,7 @@ class RTypeAppFestaPopularView extends View
     parent::__construct( $baseDir );
 
     $this->defResCtrl = $defResCtrl;
-    $this->rTypeCtrl = new RTypeAppFestaPopularController( $defResCtrl );
+    $this->rTypeCtrl = new RTypeAppFestaController( $defResCtrl );
   }
 
 
@@ -23,7 +23,7 @@ class RTypeAppFestaPopularView extends View
     Defino un formulario con su TPL como Bloque
    */
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "RTypeAppFestaPopularView: getFormBlock()" );
+    error_log( "RTypeAppFestaView: getFormBlock()" );
 
     $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -47,7 +47,7 @@ class RTypeAppFestaPopularView extends View
     Proceso formulario
    */
   public function actionResourceForm() {
-    error_log( "RTypeAppFestaPopularView: actionResourceForm()" );
+    error_log( "RTypeAppFestaView: actionResourceForm()" );
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
     $form = $this->defResCtrl->resFormLoad();
@@ -79,4 +79,4 @@ class RTypeAppFestaPopularView extends View
   } // function actionResourceForm()
 
 
-} // class RTypeAppFestaPopularView
+} // class RTypeAppFestaView

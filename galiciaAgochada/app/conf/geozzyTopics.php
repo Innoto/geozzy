@@ -125,7 +125,7 @@ $geozzyTopicsInfo = array(
       'gl' => 'Festa rachada'
     ),
     'resourceTypes' => array(
-      'rtypeAppFestaPopular' => array(
+      'rtypeAppFesta' => array(
         'weight' => 1
       )
     ),

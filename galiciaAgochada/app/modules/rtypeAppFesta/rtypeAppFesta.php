@@ -2,23 +2,23 @@
 
 Cogumelo::load( 'coreController/Module.php' );
 
-class rtypeAppFestaPopular extends Module {
+class rtypeAppFesta extends Module {
 
-  public $name = 'rtypeAppFestaPopular';
+  public $name = 'rtypeAppFesta';
   public $version = '1.0';
-  public $rext = array('rextAppZona');
+  public $rext = array('rextAppFesta', 'rextContact', 'rextAppZona', 'rextMapDirections', 'rextEvent', 'rextEventCollection');
 
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RTypeAppFestaPopularController.php',
-    'view/RTypeAppFestaPopularView.php'
+    'controller/RTypeAppFestaController.php',
+    'view/RTypeAppFestaView.php'
   );
 
   public $nameLocations = array(
-    'es' => 'Festa Popular',
-    'en' => 'Festa Popular',
-    'gl' => 'Festa Popular'
+    'es' => 'Festa',
+    'en' => 'Festa',
+    'gl' => 'Festa'
   );
 
 
