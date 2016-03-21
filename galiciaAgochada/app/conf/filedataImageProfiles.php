@@ -129,6 +129,11 @@ $IMAGE_PROFILES = array(
     'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares.png',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
 
+  'explorerXantaresMarkerApp' => array(
+    'width' => 96, 'height' => 96, 'cut' => false,
+    'rasterColor' => '#FFFFFF', 'padding' => 10, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares96x96.png',
+    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+
   /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR ALOXAMENTOS----------------------------------------*/
   'typeIconAloxamentos' => array(
     'rasterColor' => '#ffffff',
