@@ -84,7 +84,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
           }
 
           if( that.allResourcesLoading === false  && that.allResourcesLoaded === false ) {
-            console.log("FETCH ALL",   that.chamado);
+
             that.fetchFull();
 
           }
