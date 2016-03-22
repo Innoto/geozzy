@@ -79,6 +79,9 @@ class TodosSegredosExplorerController extends ExplorerController {
     if( isset($_POST['ids']) ){
       $filters['ids'] = array_map( 'intval',$_POST['ids']);
     }
+    else {
+      sleep(10);
+    }
 
     $resources = $resourceModel->listItems( array('filters' => $filters ) );
 

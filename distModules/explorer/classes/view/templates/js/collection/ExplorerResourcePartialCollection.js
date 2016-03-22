@@ -7,6 +7,10 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
   model: geozzy.explorerComponents.resourcePartialModel,
   lastUpdate: false,
   options:{},
+  allResourcesLoading: false,
+  allResourcesLoaded: false,
+
+  chamado:0,
 
   initialize( opts ) {
     var that = this;
@@ -17,8 +21,8 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
     that.options = $.extend(true, options, opts);
 
     that.url = that.options.url;
-    that.getLocalStorage();
-    console.log(that.url)
+    //that.getLocalStorage();
+
   },
 
   getLocalStorage( ) {
@@ -62,35 +66,54 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
     var that = this;
     var allIdsInCollection = true;
 
+    that.chamado = that.chamado+1
 
-    $.each( params.ids, function(i,e) {
-      if( !that.get( e ) ){
-        allIdsInCollection = false;
-        return;
-      }
-    });
-
-    if( allIdsInCollection === true ) {
-      params.success();
+    if( params.ids.length === 1 && that.get(params.ids[0]) ){
+      if(params.success) { params.success(); }
     }
+    else
+    if( that.allResourcesLoaded === false ) {
+      that.fetch({
+        data: {ids: params.ids},
+        type: 'POST',
+        remove: false,
+        success: function( list ) {
+
+          if(params.success) {
+            params.success();
+          }
+
+          if( that.allResourcesLoading === false  && that.allResourcesLoaded === false ) {
+            console.log("FETCH ALL",   that.chamado);
+            that.fetchFull();
+
+          }
+        }
+      });
+    }
+    else {
+      if(params.success) {
+        params.success();
+      }
+    }
+  },
+
+  fetchFull: function(  ) {
+    var that = this;
+
+    that.allResourcesLoading = true;
+
 
     that.fetch({
-      data: {ids: params.ids},
       type: 'POST',
       remove: false,
       success: function( list ) {
-        list.each(function(resource) {
-          that.add(resource);
-        });
-
-
-        if(params.success) {
-          params.success();
-          that.saveLocalStorage();
-        }
-
+        that.allResourcesLoaded = true;
+        that.allResourcesLoading = false;
       }
     });
   }
+
+
 
 });
