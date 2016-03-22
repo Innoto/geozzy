@@ -130,7 +130,7 @@ $IMAGE_PROFILES = array(
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
 
   'explorerXantaresMarkerApp' => array(
-    'width' => 96, 'height' => 96, 'cut' => false,
+    'width' => 64, 'height' => 64, 'cut' => false,
     'rasterColor' => '#FFFFFF', 'padding' => 10, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares96x96.png',
     'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
 
