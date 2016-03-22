@@ -282,7 +282,7 @@ geozzy.explorer = function( opts ) {
         });
     }
 
-    console.log("FETCH IDS", that.resourcePartialList.allResourcesLoaded);
+
     that.resourcePartialList.fetchIds({
       ids: resourcesToLoad,
       success: function() {
