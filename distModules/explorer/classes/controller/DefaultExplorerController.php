@@ -64,14 +64,13 @@ class DefaultExplorerController extends ExplorerController {
     explorer::load('model/GenericExplorerModel.php');
     $resourceModel = new GenericExplorerModel();
 
-    $ids = false;
+    $filters = array();
 
     if( isset($_POST['ids']) ){
-      $ids = array_map( 'intval',$_POST['ids']);
+      $filters['ids'] = array_map( 'intval',$_POST['ids']);
     }
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'title_es', 'shortDescription_es'), 'filters' => array( 'ids' => $ids) ) );
-
+    $resources = $resourceModel->listItems( array('filters' => $filters ) );
     $coma = '';
 
     echo '[';
