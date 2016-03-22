@@ -64,13 +64,13 @@ class PraiasExplorerController extends ExplorerController {
     appExplorer::load('model/PraiasExplorerModel.php');
     $resourceModel = new PraiasExplorerModel();
 
-    $ids = false;
+    $filters = array();
 
     if( isset($_POST['ids']) ){
-      $ids = array_map( 'intval',$_POST['ids']);
+      $filters['ids'] = array_map( 'intval',$_POST['ids']);
     }
 
-    $resources = $resourceModel->listItems( array('filters' => array( 'ids' => $ids) ) );
+    $resources = $resourceModel->listItems( array('filters' => $filters ) );
 
     $coma = '';
 

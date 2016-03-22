@@ -57,7 +57,7 @@ geozzy.explorer = function( opts ) {
   that.resourceIndex = false;
 
   that.resourceMinimalList = new geozzy.explorerComponents.resourceMinimalCollection();
-  that.resourcePartialList =  new geozzy.explorerComponents.resourcePartialCollection();
+  that.resourcePartialList =  false;//new geozzy.explorerComponents.resourcePartialCollection();
 
 
   // Displays
@@ -272,15 +272,32 @@ geozzy.explorer = function( opts ) {
   },
 
 
-  that.fetchPartialList = function( resourcesToLoad, success ) {
+  that.fetchPartialList = function( resourcesToLoad, fetchSuccess ) {
     lang = that.getLang();
+
+    if( that.resourcePartialList === false ) {
+      that.resourcePartialList = new geozzy.explorerComponents.resourcePartialCollection(
+        {
+          url: lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/partial/updatedfrom/false'
+        });
+    }
+
+
+    that.resourcePartialList.fetchIds({
+      ids: resourcesToLoad,
+      success: function() {
+        fetchSuccess();
+      }
+    });
+
+    /*
     that.resourcePartialList.fetchAndCache({
       ids: resourcesToLoad,
       url: lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/partial/updatedfrom/false',
       success: function() {
-        success();
+        fetchSuccess();
       }
-    });
+    });*/
   }
 
 
