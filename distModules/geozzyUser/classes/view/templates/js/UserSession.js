@@ -9,6 +9,7 @@ geozzy.userSession = function() {
   that.registerView = false;
   that.registerOkView = false;
   that.finishCallback = false;
+  that.abortCallback = false;
   that.userRouter = false;
 
 
@@ -36,7 +37,7 @@ geozzy.userSession = function() {
     });
   }
 
-  that.initLoginBox = function(  ){
+  that.initLoginBox = function(){
     that.loginView = new geozzy.userSessionComponents.userLoginView();
     that.loginView.userSessionParent = that;
   }
@@ -45,7 +46,7 @@ geozzy.userSession = function() {
     that.finishCallback();
   }
 
-  that.initRegisterBox = function(  ){
+  that.initRegisterBox = function(){
     that.registerView = new geozzy.userSessionComponents.userRegisterView();
     that.registerView.userSessionParent = that;
   }
@@ -54,7 +55,7 @@ geozzy.userSession = function() {
     that.initRegisterOkBox();
 
   }
-  that.initRegisterOkBox = function(  ){
+  that.initRegisterOkBox = function(){
     that.registerOkView = new geozzy.userSessionComponents.userRegisterOkView();
     that.registerOkView.userSessionParent = that;
   }
