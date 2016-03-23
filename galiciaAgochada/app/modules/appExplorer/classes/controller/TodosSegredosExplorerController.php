@@ -74,13 +74,16 @@ class TodosSegredosExplorerController extends ExplorerController {
     appExplorer::load('model/TodosSegredosExplorerModel.php');
     $resourceModel = new TodosSegredosExplorerModel();
 
-    $ids = false;
+    $filters = array();
 
     if( isset($_POST['ids']) ){
-      $ids = array_map( 'intval',$_POST['ids']);
+      $filters['ids'] = array_map( 'intval',$_POST['ids']);
+    }
+    else {
+      sleep();
     }
 
-    $resources = $resourceModel->listItems( array('filters' => array( 'ids' => $ids) ) );
+    $resources = $resourceModel->listItems( array('filters' => $filters ) );
 
     $coma = '';
 

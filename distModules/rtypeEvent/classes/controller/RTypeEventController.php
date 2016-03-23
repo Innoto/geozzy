@@ -1,25 +1,29 @@
 <?php
+rextEvent::autoIncludes();
 
-
-
-class RTypeAppFestaPopularController extends RTypeController implements RTypeInterface {
+class RTypeEventController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    error_log( 'RTypeAppFestaPopularController::__construct' );
+    // error_log( 'RTypeEventController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeAppFestaPopular() );
+    parent::__construct( $defResCtrl, new rtypeEvent() );
+
   }
-
 
 
   /**
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeAppFestaPopularController: manipulateForm()" );
+    //error_log( "RTypeEventController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
+
+    // Extensión alojamiento
+    $rTypeExtNames[] = 'rextEvent';
+    $this->eventCtrl = new RExtEventController( $this );
+    $rExtFieldNames = $this->eventCtrl->manipulateForm( $form );
 
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
@@ -27,12 +31,18 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
 
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Añadir validadores extra
+    // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
+
     return( $rTypeFieldNames );
   } // function manipulateForm()
 
 
+
   public function getFormBlockInfo( FormController $form ) {
-    error_log( "RTypeAppFestaPopularlController: getFormBlockInfo()" );
+    //error_log( "RTypeEventController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -54,6 +64,10 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
 
+    $this->eventCtrl = new RExtEventController( $this );
+    $accomViewInfo = $this->eventCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $accomViewInfo;
+
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
     $templates['formBase']->setTpl( 'rTypeFormBase.tpl', 'geozzy' );
@@ -69,6 +83,7 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     $formFieldsNames[] = 'externalUrl';
     $formFieldsNames[] = 'topics';
     $formFieldsNames[] = 'starred';
+    $formFieldsNames[] = 'rTypeIdName';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
@@ -94,29 +109,6 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     );
     $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
 
-    // TEMPLATE panel contacto
-    $templates['location'] = new Template();
-    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
-    $templates['location']->assign( 'title', __( 'Location' ) );
-    $templates['location']->assign( 'res', $formBlockInfo );
-    $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
-
-    // TEMPLATE panel multimedia
-    $templates['multimedia'] = new Template();
-    $templates['multimedia']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['multimedia']->assign( 'title', __( 'Multimedia galleries' ) );
-    $templates['multimedia']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'multimediaGalleries', 'addMultimediaGalleries' );
-    $templates['multimedia']->assign( 'formFieldsNames', $formFieldsNames );
-
-    // TEMPLATE panel collections
-    $templates['collections'] = new Template();
-    $templates['collections']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['collections']->assign( 'title', __( 'Collections of related resources' ) );
-    $templates['collections']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'collections', 'addCollections' );
-    $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
-
     // TEMPLATE panel image
     $templates['image'] = new Template();
     $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -124,6 +116,14 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     $templates['image']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'image' );
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel categorization
+    $templates['categorization'] = new Template();
+    $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['categorization']->assign( 'title', __( 'Categorization' ) );
+    $templates['categorization']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = $this->eventCtrl->prefixArray(array( 'EventType', 'EventView'));
+    $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel cuadro informativo
     $templates['info'] = new Template();
@@ -136,7 +136,9 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     if ($type){
       $templates['info']->assign( 'rType', $type->getter('name_es') );
     }
+
     $timeCreation = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeCreation']));
+
     $templates['info']->assign( 'timeCreation', $timeCreation );
     if (isset($formBlockInfo['data']['userUpdate'])){
       $userModel = new UserModel();
@@ -161,13 +163,15 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 
     // TEMPLATE en bruto con todos los elementos del form
@@ -186,7 +190,13 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeAppFestaPopularController: resFormRevalidate()" );
+    //error_log( "RTypeEventController: resFormRevalidate()" );
+
+    if( !$form->existErrors() ) {
+      $this->eventCtrl = new RExtEventController( $this );
+      $this->eventCtrl->resFormRevalidate( $form );
+
+    }
 
   }
 
@@ -195,8 +205,13 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeAppFestaPopularController: resFormProcess()" );
+    //error_log( "RTypeEventController: resFormProcess()" );
 
+    if( !$form->existErrors() ) {
+      $this->eventCtrl = new RExtEventController( $this );
+      $this->eventCtrl->resFormProcess( $form, $resource );
+
+    }
   }
 
   /**
@@ -204,7 +219,10 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeAppFestaPopularController: resFormSuccess()" );
+    //error_log( "RTypeEventController: resFormSuccess()" );
+
+    $this->eventCtrl = new RExtEventController( $this );
+    $this->eventCtrl->resFormSuccess( $form, $resource );
 
   }
 
@@ -213,7 +231,7 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    error_log( "RTypeAppFestaPopularController: getViewBlockInfo()" );
+    // error_log( "RTypeEventController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -221,9 +239,55 @@ class RTypeAppFestaPopularController extends RTypeController implements RTypeInt
       'ext' => array()
     );
 
-    // PENDIENTE
+    $template = new Template();
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeEvent' );
+
+    $this->eventCtrl = new RExtEventController( $this );
+    $accomViewInfo = $this->eventCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $accomViewInfo;
+
+    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+
+    $taxtermModel = new TaxonomytermModel();
+
+    /* Recuperamos todos los términos de la taxonomía servicios*/
+    $services = $this->defResCtrl->getOptionsTax( 'EventServices' );
+    foreach( $services as $serviceId => $serviceName ) {
+      $service = $taxtermModel->listItems(array('filters'=> array('id' => $serviceId)))->fetch();
+      /*Quitamos los términos de la extensión que no se usan en este proyecto*/
+        $allServices[$serviceId]['name'] = $serviceName;
+        $allServices[$serviceId]['idName'] = $service->getter('idName');
+        $allServices[$serviceId]['icon'] = $service->getter('icon');
+    }
+    $template->assign('allServices', $allServices);
+
+    /* Recuperamos todos los términos de la taxonomía instalaciones*/
+    $facilities = $this->defResCtrl->getOptionsTax( 'EventFacilities' );
+    foreach( $facilities as $facilityId => $facilityName ) {
+      $facility = $taxtermModel->listItems(array('filters'=> array('id' => $facilityId)))->fetch();
+      /*Quitamos los términos de la extensión que no se usan en este proyecto*/
+      if ($facility->getter('idName') !== 'bar' && $facility->getter('idName') !== 'lavadora'){
+        $allFacilities[$facilityId]['name'] = $facilityName;
+        $allFacilities[$facilityId]['idName'] = $facility->getter('idName');
+        $allFacilities[$facilityId]['icon'] = $facility->getter('icon');
+      }
+    }
+    $template->assign('allFacilities', $allFacilities);
+
+    if( $accomViewInfo ) {
+      if( $accomViewInfo['template'] ) {
+        foreach( $accomViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextEventBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextEventBlock', false );
+    }
+
+    $viewBlockInfo['template'] = array( 'full' => $template );
 
     return $viewBlockInfo;
   }
 
-} // class RTypeAppFestaPopularController
+} // class RTypeEventController

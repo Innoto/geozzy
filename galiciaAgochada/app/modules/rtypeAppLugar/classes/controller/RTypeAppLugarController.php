@@ -282,6 +282,9 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
 
       $this->socialCtrl = new RExtSocialNetworkController( $this );
       $this->socialCtrl->resFormRevalidate( $form );
+
+      $this->zonaCtrl = new RExtAppZonaController( $this );
+      $this->zonaCtrl->resFormRevalidate( $form );
     }
   }
 
@@ -317,8 +320,14 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $this->rExtCtrl = new RExtAppLugarController( $this );
     $this->rExtCtrl->resFormSuccess( $form, $resource );
 
+    $this->contactCtrl = new RExtContactController( $this );
+    $this->contactCtrl->resFormSuccess( $form, $resource );
+
     $this->socialCtrl = new RExtSocialNetworkController( $this );
     $this->socialCtrl->resFormSuccess( $form, $resource );
+
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $this->zonaCtrl->resFormSuccess( $form, $resource );
   }
 
 

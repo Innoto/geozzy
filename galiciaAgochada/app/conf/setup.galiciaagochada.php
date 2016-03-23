@@ -198,7 +198,10 @@ $C_REXT_MODULES = array(
   'rextAppLugar',
   'rextAppEspazoNatural',
   'rextAppZona',
-  'rextSocialNetwork'
+  'rextSocialNetwork',
+  'rextEvent',
+  'rextEventCollection',
+  'rextAppFesta'
 );
 
 // resource Types
@@ -212,7 +215,8 @@ $C_RTYPE_MODULES = array(
   'rtypeAppRuta',
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
-  'rtypeAppFestaPopular',
+  'rtypeAppFesta',
+  'rtypeEvent',
   //initial resources
   'initResources'
 );
@@ -364,17 +368,17 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
   array(
     'default' => array(
       'multimedia' => array('rtypeUrl', 'rtypeFile'),
-      'eventos' => array(),
+      'eventos' => array('rtypeEvent'),
       'base' => array()
     ),
     'rtypeAppHotel' => array(
       'multimedia' => array(),
-      'eventos' => array(),
+      'eventos' => array('rtypeEvent'),
       'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
     ),
     'rtypeAppRestaurant' => array(
       'multimedia' => array(),
-      'eventos' => array(),
+      'eventos' => array('rtypeEvent'),
       'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
     ),
     'rtypeAppEspazoNatural' => array(
@@ -385,6 +389,11 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
     'rtypeAppLugar' => array(
       'multimedia' => array(),
       'eventos' => array(),
+      'base' => array()
+    ),
+    'rtypeAppFesta' => array(
+      'multimedia' => array(),
+      'eventos' => array('rtypeAppFesta', 'rtypeEvent'),
       'base' => array()
     )
   )

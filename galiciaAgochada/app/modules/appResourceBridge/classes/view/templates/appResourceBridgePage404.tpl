@@ -8,11 +8,14 @@
 {block name="headTitle" append}{$title404}{/block}
 
 {block name="bodyContent"}
+
   <div class="container">
+    <img src="/bd_low.png" style="float:right;">
     <div class="content404">
-      <h1><i class="fa fa-frown-o"></i> 404</h1>
+      <br><br><br>
+      <h1><i class="fa fa-smile-o"></i> Parabéns!</h1>
       <h3>{t}La página indicada no existe.{/t}</h3>
-      <p>{t}Puede usar los enlaces de la parte superior e inferior para moverse a las distintas secciones de la web.{/t}</p>
+      <p>{t}Ya puede anotar horas por todo el tiempo perdido en el visionado.{/t}</p>
 
     </div>
   </div>
