@@ -947,7 +947,6 @@ class geozzyAPIView extends View {
     user::autoIncludes();
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
-
     header('Content-type: application/json');
     if($user){
       $u = array();
@@ -959,7 +958,10 @@ class geozzyAPIView extends View {
       $u['active'] = $user['data']['active'];
       $u['timeLastLogin'] = $user['data']['timeLastLogin'];
       $u['timeCreateUser'] = $user['data']['timeCreateUser'];
-      $u['avatar'] = $user['data']['avatar'];
+      if(array_key_exists('avatar', $user['data'])){
+        $u['avatar'] = $user['data']['avatar'];
+      }
+
     }else{
       $u = false;
     }

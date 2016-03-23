@@ -1,27 +1,27 @@
 var geozzy = geozzy || {};
 if(!geozzy.userSessionComponents) geozzy.userSessionComponents={};
 
-geozzy.userSessionComponents.userRegisterView = Backbone.View.extend({
+geozzy.userSessionComponents.userRegisterOkView = Backbone.View.extend({
   userSessionParent : false,
-  userRegisterTemplate : false,
+  userRegisterOkTemplate : false,
   modalTemplate : false,
 
   events: {
 
   },
 
-  initRegisterModal: function(){
+  initRegisterOkModal: function(){
     var that = this;
 
-    $('body').append( that.modalTemplate({ 'modalId': 'registerModal', 'modalTitle': 'Register' }) );
-    $("#registerModal .modal-body").html( that.userRegisterTemplate() );
-    $("#registerModal .modal-body .registerModalForm").load( '/geozzyuser/register' );
-    $("#registerModal").modal({
+    $('body').append( that.modalTemplate({ 'modalId': 'registerOkModal', 'modalTitle': 'Register' }) );
+    $("#registerOkModal .modal-body").html( that.userRegisterOkTemplate() );
+    $("#registerOkModal").modal({
       'show' : true,
       'backdrop' : 'static'
     });
-    $("#registerModal").on('hidden.bs.modal', function (e) {
+    $("#registerOkModal").on('hidden.bs.modal', function (e) {
       e.target.remove();
+      that.userSessionParent.finishCallback();
     });
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');
@@ -34,9 +34,9 @@ geozzy.userSessionComponents.userRegisterView = Backbone.View.extend({
   },
   initialize: function( opts ) {
     var that = this;
-    that.userRegisterTemplate = _.template( geozzy.userSessionComponents.userRegisterBoxTemplate );
+    that.userRegisterOkTemplate = _.template( geozzy.userSessionComponents.userRegisterOkBoxTemplate );
     that.modalTemplate = _.template( geozzy.userSessionComponents.modalMdTemplate );
-    that.initRegisterModal();
+    that.initRegisterOkModal();
   },
   render: function() {
     var that = this;

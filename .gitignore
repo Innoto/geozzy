@@ -1,5 +1,6 @@
 
 *.log
+/distModules/testData/classes/view/templates/images/*.jpg
 /distModules/testData/classes/view/images/fototest1.jpg
 /distModules/testData/classes/view/images/fototest10.jpg
 /distModules/testData/classes/view/images/fototest100.jpg

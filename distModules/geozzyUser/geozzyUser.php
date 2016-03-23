@@ -26,10 +26,12 @@ class geozzyUser extends Module
   );
 
   public $includesCommon = array(
+    'js/router/UserRouter.js',
     'js/model/UserSessionModel.js',
     'js/view/Templates.js',
     'js/view/UserLoginBoxView.js',
     'js/view/UserRegisterBoxView.js',
+    'js/view/UserRegisterOkBoxView.js',
     'js/UserSession.js',
     'js/UserSessionInstance.js'
   );
@@ -39,6 +41,8 @@ class geozzyUser extends Module
     $this->addUrlPatterns( '#^geozzyuser/logout$#', 'view:GeozzyUserView::sendLogout' );
     $this->addUrlPatterns( '#^geozzyuser/login$#', 'view:GeozzyUserView::loginForm' );
     $this->addUrlPatterns( '#^geozzyuser/senduserlogin$#', 'view:GeozzyUserView::sendLoginForm' );
+    $this->addUrlPatterns( '#^geozzyuser/register$#', 'view:GeozzyUserView::registerForm' );
+    $this->addUrlPatterns( '#^geozzyuser/senduserregister$#', 'view:GeozzyUserView::sendRegisterForm' );
   }
 
 }

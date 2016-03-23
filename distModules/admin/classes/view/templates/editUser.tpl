@@ -18,6 +18,7 @@
 
     {$userFormFields.login}
     {$userFormFields.email}
+    {$userFormFields.repeatEmail}
     {$userFormFields.name}
     {$userFormFields.surname}
 
