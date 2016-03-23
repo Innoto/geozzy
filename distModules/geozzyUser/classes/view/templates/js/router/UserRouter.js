@@ -8,9 +8,13 @@ geozzy.userSessionComponents.mainRouter = Backbone.Router.extend({
 
   myprofile: function( ) {
     var that = this;
-    that.userSessionParent.userControlAccess( function(){
-      alert('myprofile');
-    });
+    that.userSessionParent.userControlAccess(
+      function(){
+        alert('myprofile');
+      },
+      function(){
+        that.navigate("/", {trigger: true});
+      }
+    );
   }
-
 });

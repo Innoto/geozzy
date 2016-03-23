@@ -15,8 +15,11 @@ geozzy.userSession = function() {
 
   // First Execution
   //
-  that.userControlAccess = function(callback) {
-    that.finishCallback = callback;
+  that.userControlAccess = function( successCallback, abortCallback) {
+    that.finishCallback = successCallback;
+    if(abortCallback){
+      that.abortCallback = abortCallback;
+    }
     that.getUserSession(
       function(){
         if( that.user.get('id') === false ){
