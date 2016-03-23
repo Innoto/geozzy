@@ -97,7 +97,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
           lsDataParsed = false;
         }
 
-        //that.reset()
+        that.reset()
         that.lastCacheUpdate = lsDataParsed.lastUpdate;
 
         that.set( lsDataParsed.resources );

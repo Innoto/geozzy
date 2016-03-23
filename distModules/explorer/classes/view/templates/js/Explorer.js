@@ -84,7 +84,7 @@ geozzy.explorer = function( opts ) {
   that.exec = function() {
     // set multiple fetches
     lang = that.getLang();
-    that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal/updatedfrom/false';
+    that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
     // set explorer router
     that.explorerRouter = new geozzy.explorerComponents.mainRouter();
     that.explorerRouter.parentExplorer = that;

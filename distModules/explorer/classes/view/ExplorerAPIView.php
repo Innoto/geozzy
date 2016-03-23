@@ -43,7 +43,7 @@ class ExplorerAPIView extends View
                   "code": 404
                 }
               ],
-              "httpMethod": "GET",
+              "httpMethod": "POST",
               "nickname": "explorer",
               "parameters": [
                 {
@@ -66,15 +66,25 @@ class ExplorerAPIView extends View
                   "name": "updatedfrom",
                   "description": "updated from (UTC timestamp)",
                   "dataType": "int",
-                  "paramType": "path",
+                  "paramType": "form",
                   "defaultValue": "false",
-                  "required": true
+                  "required": false
+                },
+                {
+                  "name": "ids",
+                  "description": "ids",
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "paramType": "form",
+                  "required": false
                 }
               ],
               "summary": "Fetches explorer data"
             }
           ],
-          "path": "/explorer/explorer/{explorer}/request/{request}/updatedfrom/{updatedfrom}",
+          "path": "/explorer/explorer/{explorer}/request/{request}",
           "description": ""
         }
       ]
@@ -126,8 +136,7 @@ class ExplorerAPIView extends View
 
     $validation = array(
       'explorer'=> '#(.*)#',
-      'request'=> '#(.*)#',
-      'updatedfrom' => '#\d+$#'
+      'request'=> '#(.*)#'
     );
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 

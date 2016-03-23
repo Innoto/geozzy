@@ -70,7 +70,9 @@ class XantaresExplorerController extends ExplorerController {
     $filters = array();
 
     if( isset($_POST['ids']) ){
-      $filters['ids'] = array_map( 'intval',$_POST['ids']);
+      $ids = ( is_array($_POST['ids']) )? $_POST['ids'] : [$_POST['ids']] ;
+
+      $filters['ids'] = array_map( 'intval',$ids);
     }
 
     $resources = $resourceModel->listItems( array('filters' => $filters ) );
