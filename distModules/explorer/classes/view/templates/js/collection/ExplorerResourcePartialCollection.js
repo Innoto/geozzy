@@ -4,8 +4,9 @@ if (! geozzy.explorerComponents) { geozzy.explorerComponents= {} }
 
 geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend({
   url: false,
+  useLocalStorage: true,
   model: geozzy.explorerComponents.resourcePartialModel,
-  lastUpdate: false,
+  lastCacheUpdate: false,
   options:{},
   allResourcesLoading: false,
   allResourcesLoaded: false,
@@ -13,69 +14,68 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
 
   initialize( opts ) {
     var that = this;
-    var options = {
-      useLocalStorage: true,
-      url: false
-    }
-    that.options = $.extend(true, options, opts);
 
-    that.url = that.options.url;
     that.getLocalStorage();
 
   },
 
-  fetchIds: function( params ) {
+  fetchByIds: function( params ) {
     var that = this;
-    var allIdsInCollection = true;
 
 
+    if( that.lastCacheUpdate === false ) {
 
-    if( params.ids.length === 1 && that.get(params.ids[0]) ){
-      if(params.success) { params.success(); }
-    }
-    else
-    if( that.allResourcesLoaded === false ) {
-      that.fetch({
-        data: {ids: params.ids},
-        type: 'POST',
-        remove: false,
-        success: function( list ) {
-
-          if(params.success) {
-            params.success();
-          }
-
-          if( that.allResourcesLoading === false  && that.allResourcesLoaded === false ) {
-
+      if( params.ids.length === 1 && that.get(params.ids[0]) ){
+        if(params.success) { params.success(); }
+      }
+      else
+      if( that.allResourcesLoaded === false ) {
+        that.fetch({
+          data: {ids: params.ids},
+          type: 'POST',
+          remove: false,
+          success: function( list ) {
+            if(params.success) {
+              params.success();
+            }
             that.fetchFull();
-
           }
+        });
+      }
+      else {
+        if(params.success) {
+          params.success();
         }
-      });
-    }
-    else {
-      if(params.success) {
-        params.success();
       }
     }
+    else {
+
+      params.success();
+    }
+
   },
 
   fetchFull: function(  ) {
     var that = this;
 
-    that.allResourcesLoading = true;
+    if( that.allResourcesLoading === false  && that.allResourcesLoaded === false ) {
+      that.allResourcesLoading = true;
+      that.fetch({
+        type: 'POST',
+        remove: false,
+        success: function( list ) {
 
-    that.fetch({
-      type: 'POST',
-      remove: false,
-      success: function( list ) {
-        that.allResourcesLoaded = true;
-        that.allResourcesLoading = false;
+          that.allResourcesLoaded = true;
+          that.allResourcesLoading = false;
 
-        console.log('Geozzy explorer loaded ' + that.length + ' resources');
-      }
-    });
-  }
+          console.log('Geozzy explorer loaded ' + that.length + ' resources');
+          that.saveLocalStorage();
+
+        }
+      });
+
+    }
+  },
 
 
 
@@ -90,15 +90,17 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
 
         try{
           lsDataParsed = JSON.parse( lsData );
+
         }
         catch(e){
           console.log('Geozzy exlorer, failed trying to get localstorage data:' + e);
           lsDataParsed = false;
         }
 
-        that.reset()
-        that.lastUpdate = lsDataParsed.lastUpdate;
-        that.add( lsDataParsed.resources );
+        //that.reset()
+        that.lastCacheUpdate = lsDataParsed.lastUpdate;
+
+        that.set( lsDataParsed.resources );
 
       }
 
@@ -110,11 +112,15 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
     var that = this;
 
     if( that.useLocalStorage === true && typeof Storage !== "undefined" && that.url != false) {
+
       localStorage.removeItem( that.url );
-      localStorage.setItem( that.url, { lastUpdate: new Date().getTime() , resources: that.toJSON } )
+
+
+      localStorage.setItem( that.url, JSON.stringify({ lastUpdate: new Date().getTime() , resources: that.toJSON() }) )
+
     }
 
 
-  },
+  }
 
 });

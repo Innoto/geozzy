@@ -275,18 +275,23 @@ geozzy.explorer = function( opts ) {
   that.fetchPartialList = function( resourcesToLoad, fetchSuccess ) {
     lang = that.getLang();
 
+
+
     if( that.resourcePartialList === false ) {
-      that.resourcePartialList = new geozzy.explorerComponents.resourcePartialCollection(
+      var partialCollection = geozzy.explorerComponents.resourcePartialCollection.extend(
         {
-          url: lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/partial/updatedfrom/false'
+          url: lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/partial'
         });
+
+      that.resourcePartialList = new partialCollection();
     }
 
 
-    that.resourcePartialList.fetchIds({
+    that.resourcePartialList.fetchByIds({
       ids: resourcesToLoad,
       success: function() {
         fetchSuccess();
+
       }
     });
 
