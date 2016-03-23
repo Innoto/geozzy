@@ -10,7 +10,6 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
   allResourcesLoading: false,
   allResourcesLoaded: false,
 
-  chamado:0,
 
   initialize( opts ) {
     var that = this;
@@ -21,9 +20,65 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
     that.options = $.extend(true, options, opts);
 
     that.url = that.options.url;
-    //that.getLocalStorage();
+    that.getLocalStorage();
 
   },
+
+  fetchIds: function( params ) {
+    var that = this;
+    var allIdsInCollection = true;
+
+
+
+    if( params.ids.length === 1 && that.get(params.ids[0]) ){
+      if(params.success) { params.success(); }
+    }
+    else
+    if( that.allResourcesLoaded === false ) {
+      that.fetch({
+        data: {ids: params.ids},
+        type: 'POST',
+        remove: false,
+        success: function( list ) {
+
+          if(params.success) {
+            params.success();
+          }
+
+          if( that.allResourcesLoading === false  && that.allResourcesLoaded === false ) {
+
+            that.fetchFull();
+
+          }
+        }
+      });
+    }
+    else {
+      if(params.success) {
+        params.success();
+      }
+    }
+  },
+
+  fetchFull: function(  ) {
+    var that = this;
+
+    that.allResourcesLoading = true;
+
+    that.fetch({
+      type: 'POST',
+      remove: false,
+      success: function( list ) {
+        that.allResourcesLoaded = true;
+        that.allResourcesLoading = false;
+
+        console.log('Geozzy explorer loaded ' + that.length + ' resources');
+      }
+    });
+  }
+
+
+
 
   getLocalStorage( ) {
     var that = this;
@@ -61,59 +116,5 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
 
 
   },
-
-  fetchIds: function( params ) {
-    var that = this;
-    var allIdsInCollection = true;
-
-    that.chamado = that.chamado+1
-
-    if( params.ids.length === 1 && that.get(params.ids[0]) ){
-      if(params.success) { params.success(); }
-    }
-    else
-    if( that.allResourcesLoaded === false ) {
-      that.fetch({
-        data: {ids: params.ids},
-        type: 'POST',
-        remove: false,
-        success: function( list ) {
-
-          if(params.success) {
-            params.success();
-          }
-
-          if( that.allResourcesLoading === false  && that.allResourcesLoaded === false ) {
-
-            that.fetchFull();
-
-          }
-        }
-      });
-    }
-    else {
-      if(params.success) {
-        params.success();
-      }
-    }
-  },
-
-  fetchFull: function(  ) {
-    var that = this;
-
-    that.allResourcesLoading = true;
-
-
-    that.fetch({
-      type: 'POST',
-      remove: false,
-      success: function( list ) {
-        that.allResourcesLoaded = true;
-        that.allResourcesLoading = false;
-      }
-    });
-  }
-
-
 
 });
