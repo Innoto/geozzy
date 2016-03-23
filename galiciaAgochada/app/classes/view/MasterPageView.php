@@ -74,7 +74,6 @@ class MasterPageView extends View
 
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
-Cogumelo::console($user);
 
     // Autodetección idioma
     $i18nCtrl = new I18nController();

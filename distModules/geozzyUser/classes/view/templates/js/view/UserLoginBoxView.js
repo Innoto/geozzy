@@ -34,13 +34,13 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
   },
   closeLoginModal: function() {
     var that = this;
-    $("#loginModal").modal('hide');
+    $("#loginModal").modal('hide'); 
   },
   initialize: function( opts ) {
     var that = this;
 
-    that.userLoginTemplate = _.template( geozzy.userSessionComponents.userLoginBoxTemplate ),
-    that.modalTemplate = _.template( geozzy.userSessionComponents.modalMdTemplate ),
+    that.userLoginTemplate = _.template( geozzy.userSessionComponents.userLoginBoxTemplate );
+    that.modalTemplate = _.template( geozzy.userSessionComponents.modalMdTemplate );
 
     that.initLoginModal();
   },

@@ -7,8 +7,11 @@ geozzy.userSession = function() {
   that.user = false;
   that.loginView = false;
   that.registerView = false;
+  that.registerOkView = false;
   that.finishCallback = false;
-  //
+  that.userRouter = false;
+
+
   // First Execution
   //
   that.userControlAccess = function(callback) {
@@ -47,7 +50,18 @@ geozzy.userSession = function() {
     that.registerView.userSessionParent = that;
   }
   that.successRegisterBox = function(){
-    that.loginView.closeLoginModal();
-    that.finishCallback();
+    that.registerView.closeRegisterModal();
+    that.initRegisterOkBox();
+
+  }
+  that.initRegisterOkBox = function(  ){
+    that.registerOkView = new geozzy.userSessionComponents.userRegisterOkView();
+    that.registerOkView.userSessionParent = that;
+  }
+
+  that.userRouter = new geozzy.userSessionComponents.mainRouter();
+  that.userRouter.userSessionParent = that;
+  if( !Backbone.History.started ){
+    Backbone.history.start();
   }
 }

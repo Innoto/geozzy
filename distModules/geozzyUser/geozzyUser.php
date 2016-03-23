@@ -26,10 +26,12 @@ class geozzyUser extends Module
   );
 
   public $includesCommon = array(
+    'js/router/UserRouter.js',
     'js/model/UserSessionModel.js',
     'js/view/Templates.js',
     'js/view/UserLoginBoxView.js',
     'js/view/UserRegisterBoxView.js',
+    'js/view/UserRegisterOkBoxView.js',
     'js/UserSession.js',
     'js/UserSessionInstance.js'
   );
