@@ -66,6 +66,10 @@ class RinconsExplorerController extends ExplorerController {
 
     $filters = array();
 
+    if( isset( $_POST['updatedfrom']) && is_numeric($_POST['updatedfrom'])  )  {
+      $filters['updatedfrom'] = gmdate( 'Y-m-d H:i:s', $_POST['updatedfrom'] );
+    }
+
     if( isset($_POST['ids']) ){
       $filters['ids'] = array_map( 'intval',$_POST['ids']);
     }
