@@ -12,7 +12,7 @@ class AloxamentosExplorerModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'appExplorer#1.0',
+      'version' => 'appExplorer#1.1',
       'executeOnGenerateModelToo' => true,
       'sql'=> "
         DROP VIEW IF EXISTS geozzy_aloxamentos_explorer_index;
