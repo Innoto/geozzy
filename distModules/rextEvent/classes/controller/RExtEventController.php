@@ -1,5 +1,6 @@
 <?php
-
+geozzy::load( 'controller/RExtController.php' );
+geozzy::load( 'controller/RTypeController.php' );
 
 class RExtEventController extends RExtController implements RExtInterface {
 
@@ -56,8 +57,12 @@ class RExtEventController extends RExtController implements RExtInterface {
     $rExtFieldNames = array();
 
     $fieldsInfo = array(
-      'rextEventDate' => array(
-        'params' => array( 'label' => __( 'Event date' ) ),
+      'rextEventInitDate' => array(
+        'params' => array( 'label' => __( 'Event init date' ) ),
+        'rules' => array( 'maxlength' => 200 )
+      ),
+      'rextEventEndDate' => array(
+        'params' => array( 'label' => __( 'Event end date' ) ),
         'rules' => array( 'maxlength' => 200 )
       ),
       'rextEventType' => array(
@@ -139,6 +144,8 @@ class RExtEventController extends RExtController implements RExtInterface {
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
+
+    $templates['full']->addClientScript('js/rextEvent.js', 'rextEvent');
 
     $formBlockInfo['template'] = $templates;
 
@@ -224,7 +231,6 @@ class RExtEventController extends RExtController implements RExtInterface {
 
         $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
 
-        $template->setTpl( 'rExtViewBlock.tpl', 'rextEvent' );
 
         $rExtViewBlockInfo['template'] = array( 'full' => $template );
       }

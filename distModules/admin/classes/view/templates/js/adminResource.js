@@ -65,10 +65,16 @@ function bindResourceForm(){
     orientation: 'horizontal',
     icon: '<i class="fa fa-arrows"></i>'
   });
+
+  /*
   $('select.cgmMForm-field-rExtEventCollection_events').multiList({
     orientation: 'horizontal',
     icon: '<i class="fa fa-arrows"></i>'
   });
+  $('#addEvents').on('click', function(){
+    //PARAMS( URL - ID - TITLE )
+    app.mainView.loadAjaxContentModal('/rtypeEvent/event/create', 'createEventModal', 'Create Event');
+  });*/
 
   $('select.cgmMForm-field-rExtAppZona_rextAppZonaType').select2();
   $('select.cgmMForm-field-weight').select2();

@@ -196,30 +196,26 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     $templates['collections']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'collections', 'addCollections' );
     $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
-
+/*
     // TEMPLATE panel event
     $templates['event'] = new Template();
     $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['event']->assign( 'title', __( 'Select date and time' ) );
     $templates['event']->assign( 'res', $formBlockInfo );
-    //$formFieldsNames = array( 'rextEventDate', 'rextEventView' );
-    $formFieldsNames = $this->eventCtrl->prefixArray( array('rextEventDate'));
+    $formFieldsNames = $this->eventCtrl->prefixArray( array('rextEventInitDate', 'rextEventEndDate', 'rextEventType'));
     $templates['event']->assign( 'formFieldsNames', $formFieldsNames );
+*/
+    // TEMPLATE panel event
+    $templates['event'] = new Template();
+    $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['event']->assign( 'title', __( 'Event' ) );
+    $templates['event']->setBlock( 'blockContent', $eventViewInfo['template']['full'] );
 
-    // TEMPLATE panel eventCollection
-    $templates['eventCollectionView'] = new Template();
-    $templates['eventCollectionView']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['eventCollectionView']->assign( 'title', __( 'Select event collection view' ) );
-    $templates['eventCollectionView']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->eventCollectionCtrl->prefixArray( array('rextEventCollectionView'));
-    $templates['eventCollectionView']->assign( 'formFieldsNames', $formFieldsNames );
-
+    // TEMPLATE panel eventcollection
     $templates['eventCollection'] = new Template();
     $templates['eventCollection']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['eventCollection']->assign( 'title', __( 'Select event' ) );
-    $templates['eventCollection']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->eventCollectionCtrl->prefixArray( array('events'));
-    $templates['eventCollection']->assign( 'formFieldsNames', $formFieldsNames );
+    $templates['eventCollection']->assign( 'title', __( 'Event collection' ) );
+    $templates['eventCollection']->setBlock( 'blockContent', $eventCollectionViewInfo['template']['full'] );
 
     // TEMPLATE panel image
     $templates['image'] = new Template();
@@ -284,7 +280,6 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['event'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['eventCollectionView'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 

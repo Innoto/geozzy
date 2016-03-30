@@ -43,7 +43,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     $resourceCollectionsList = $resourceCollectionsModel->listItems(
       array('filters' => array('resource' => $resId)) );
 
-    $elemId = false;  
+    $elemId = false;
     $eventCol = false;
     while($resCol = $resourceCollectionsList->fetch()){
       $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
@@ -137,6 +137,9 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
           'multiple' => true,
           'options'=> $resOptions
         )
+      ),
+      'addEvents' => array(
+        'params' => array( 'id' => 'addEvents', 'type' => 'button', 'value' => __( 'Add Event' ))
       )
     );
 
@@ -206,6 +209,8 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
       'formFields' => $form->getHtmlFieldsAndGroups(),
     );
 
+    //var_dump($formBlockInfo['dataForm']);
+
     if( $form->getFieldValue( 'id' ) ) {
       $formBlockInfo['data'] = $this->getRExtData();
     }
@@ -214,6 +219,22 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
+
+    $prevContent = "<script>
+      $(document).ready(function(){
+        bindResourceForm();
+      });
+      function bindResourceForm(){
+        $('select.cgmMForm-field-rExtEventCollection_events').multiList({
+          orientation: 'horizontal'
+        });
+        $('#addEvents').on('click', function(){
+          app.mainView.loadAjaxContentModal('/rtypeEvent/event/create', 'createEventModal', 'Create Event');
+        });
+      }
+    </script>";
+
+    $templates['full']->assign( 'prevContent', $prevContent );
 
     $formBlockInfo['template'] = $templates;
 
@@ -264,7 +285,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
             $eventCol = $typecol;
           }
         }
-
+        $elemId = false;
         if ($eventCol){
           $elemId = $eventCol->getter('id');
         }

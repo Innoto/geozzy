@@ -28,8 +28,10 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
     $form->setFieldParam('starred', 'type', 'reserved');
+    $form->setFieldParam('externalUrl', 'type', 'reserved');
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
+    $form->removeValidationRules('externalUrl');
 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
@@ -65,8 +67,8 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     }
 
     $this->eventCtrl = new RExtEventController( $this );
-    $accomViewInfo = $this->eventCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $accomViewInfo;
+    $eventViewInfo = $this->eventCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $eventViewInfo;
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -76,9 +78,7 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
 
     $formFieldsNames = array_merge(
       $form->multilangFieldNames( 'title' ),
-      $form->multilangFieldNames( 'shortDescription' ),
-      $form->multilangFieldNames( 'mediumDescription' ),
-      $form->multilangFieldNames( 'content' )
+      $form->multilangFieldNames( 'shortDescription' )
     );
     $formFieldsNames[] = 'externalUrl';
     $formFieldsNames[] = 'topics';
@@ -117,13 +117,19 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     $formFieldsNames = array( 'image' );
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
 
-    // TEMPLATE panel categorization
-    $templates['categorization'] = new Template();
-    $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['categorization']->assign( 'title', __( 'Categorization' ) );
-    $templates['categorization']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->eventCtrl->prefixArray(array( 'EventType', 'EventView'));
-    $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
+
+/*
+    // TEMPLATE panel event
+    $templates['event'] = new Template();
+    $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['event']->assign( 'title', __( 'Event data' ) );
+    $templates['event']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = $this->eventCtrl->prefixArray( array('rextEventInitDate', 'rextEventEndDate', 'rextEventType'));
+    $templates['event']->assign( 'formFieldsNames', $formFieldsNames );*/
+    $templates['event'] = new Template();
+    $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['event']->assign( 'title', __( 'Event' ) );
+    $templates['event']->setBlock( 'blockContent', $eventViewInfo['template']['full'] );
 
     // TEMPLATE panel cuadro informativo
     $templates['info'] = new Template();
@@ -163,15 +169,11 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['event'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 
     // TEMPLATE en bruto con todos los elementos del form
