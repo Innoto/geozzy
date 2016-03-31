@@ -14,10 +14,10 @@ class rextRoutes extends Module {
 
   public $dependences = array(
     array(
-      "id" => "phpgeo",
-      "params" => array("mjaschen/phpgeo ", "1.3.2"),
+      "id" => "geophp",
+      "params" => array("phayes/geophp", "1.2"),
       "installer" => "composer",
-      "includes" => array("")
+      "includes" => array("geoPHP.inc")
     ),
   );
 
@@ -30,9 +30,9 @@ class rextRoutes extends Module {
 
 
   public function moduleRc() {
-    geozzy::load( 'controller/RTUtilsController.php' );
+    /*geozzy::load( 'controller/RTUtilsController.php' );
 
     $rtUtilsControl = new RTUtilsController(__CLASS__);
-    $rtUtilsControl->rExtModuleRc();
+    $rtUtilsControl->rExtModuleRc();*/
   }
 }
