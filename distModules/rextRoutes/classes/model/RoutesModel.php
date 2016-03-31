@@ -18,31 +18,31 @@ class RoutesModel extends Model
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
-    'durationMinutes' = array(
+    'durationMinutes' => array(
       'type' => 'INT'
     ),
-    'slopeUp' = array(
+    'slopeUp' => array(
       'type' => 'INT'
     ),
-    'slopeDown' = array(
+    'slopeDown' => array(
       'type' => 'INT'
     ),
-    'travelDistance' = array(
+    'travelDistance' => array(
       'type' => 'INT'
     ),
-    'difficultyEnvironment' = array(
+    'difficultyEnvironment' => array(
       'type' => 'INT'
     ),
-    'difficultyItinerary' = array(
+    'difficultyItinerary' => array(
       'type' => 'INT'
     ),
-    'difficultyDisplacement' = array(
+    'difficultyDisplacement' => array(
       'type' => 'INT'
     ),
-    'difficultyEffort' = array(
+    'difficultyEffort' => array(
       'type' => 'INT'
     ),
-    'routeFile' = array(
+    'routeFile' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
       'key' => 'id'
