@@ -198,6 +198,7 @@ $C_REXT_MODULES = array(
   'rextAppLugar',
   'rextAppEspazoNatural',
   'rextAppZona',
+  'rextAppUser',
   'rextSocialNetwork',
   'rextEvent',
   'rextEventCollection',
@@ -216,6 +217,7 @@ $C_RTYPE_MODULES = array(
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
   'rtypeAppFesta',
+  'rtypeAppUser',
   'rtypeEvent',
   //initial resources
   'initResources'
