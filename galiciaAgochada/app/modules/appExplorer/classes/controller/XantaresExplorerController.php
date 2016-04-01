@@ -69,6 +69,12 @@ class XantaresExplorerController extends ExplorerController {
 
     $filters = array();
 
+
+    if( isset( $_POST['updatedfrom']) && is_numeric($_POST['updatedfrom'])  )  {
+      $filters['updatedfrom'] = gmdate( 'Y-m-d H:i:s', $_POST['updatedfrom'] );
+    }
+
+
     if( isset($_POST['ids']) ){
       $ids = ( is_array($_POST['ids']) )? $_POST['ids'] : [$_POST['ids']] ;
 

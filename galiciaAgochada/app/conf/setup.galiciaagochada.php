@@ -181,7 +181,6 @@ $C_ENABLED_MODULES = array(
   'appExplorer',
   // testing module
   'testData',
-
 );
 
 // resource Extenssions
@@ -233,6 +232,7 @@ $C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_
 
 
 // before app/Cogumelo.php execution
+// Needed for modules with their own urls
 global $C_INDEX_MODULES;
 $C_INDEX_MODULES  = array(
   'i18nGetLang',
@@ -250,6 +250,7 @@ $C_INDEX_MODULES  = array(
   'initResources',
   'explorer',
   'geozzyUser',
+  'rtypeEvent',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 

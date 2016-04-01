@@ -18,7 +18,11 @@ class EventModel extends Model
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
-    'rextEventDate' => array(
+    'rextEventInitDate' => array(
+      'type' => 'VARCHAR',
+      'size' => '200'
+    ),
+    'rextEventEndDate' => array(
       'type' => 'VARCHAR',
       'size' => '200'
     )

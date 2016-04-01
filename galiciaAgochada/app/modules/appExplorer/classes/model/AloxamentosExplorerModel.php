@@ -12,7 +12,7 @@ class AloxamentosExplorerModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'appExplorer#1.0',
+      'version' => 'appExplorer#1.2',
       'executeOnGenerateModelToo' => true,
       'sql'=> "
         DROP VIEW IF EXISTS geozzy_aloxamentos_explorer_index;
@@ -30,6 +30,7 @@ class AloxamentosExplorerModel extends Model
           geozzy_resource.loc as loc,
           geozzy_resource_rext_accommodation.averagePrice as averagePrice,
           geozzy_resource_rext_contact.city as city,
+          geozzy_resource.timeCreation as timeCreation,
           geozzy_resource.timeLastUpdate as timeLastUpdate,
           group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
         FROM geozzy_resource
@@ -89,14 +90,17 @@ class AloxamentosExplorerModel extends Model
     'city' => array(
       'type' => 'VARCHAR'
     ),
+    'timeCreation' => array(
+      'type' => 'DATETIME'
+    ),
     'timeLastUpdate' => array(
-      'type'=>'GEOMETRY'
+      'type' => 'DATETIME'
     )
   );
 
   static $extraFilters = array(
     'ids' => ' id IN (?)',
-    'updatedfrom' => ' timeLastUpdate > FROM_UNIXTIME(?) '
+    'updatedfrom' => ' ( geozzy_aloxamentos_explorer_index.timeCreation >= ? OR geozzy_aloxamentos_explorer_index.timeLastUpdate >= ? ) '
 
   );
 
