@@ -178,7 +178,6 @@ $C_ENABLED_MODULES = array(
   'Blocks',
   'table',
   'explorer',
-  'geozzyUser',
   'appExplorer',
   // testing module
   'testData',
@@ -218,13 +217,19 @@ $C_RTYPE_MODULES = array(
   'rtypeAppEspazoNatural',
   'rtypeAppFesta',
   'rtypeAppUser',
-  'rtypeEvent',
-  //initial resources
-  'initResources'
+  'rtypeEvent'
+);
+
+
+// resource Types
+global $C_ULTIMATE_MODULES;
+$C_ULTIMATE_MODULES = array(
+  'initResources',
+  'geozzyUser'
 );
 
 // Merge all modules
-$C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_MODULES );
+$C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_MODULES, $C_ULTIMATE_MODULES );
 
 
 // before app/Cogumelo.php execution
