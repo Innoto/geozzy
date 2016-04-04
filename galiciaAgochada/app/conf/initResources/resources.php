@@ -119,24 +119,24 @@ $initResources = array(
       )
   ),
   array(
-      'version' =>'Cogumelo#1.0',
-      'executeOnGenerateModelToo' => true,
-      'idName' => 'segredosExplorer',
-      'rType' => 'rtypePage',
-      'title' => array(
-        'en' => 'Use Segredos Explorer',
-        'es' => 'Usar Explorador de Segredos',
-        'gl' => 'Usar Explorador de Segredos'
-      ),
-      'shortDescription' => array(),
-      'img' => false,
-      'viewType' => 'viewAppTodosSegredosExplorer',
-      'urlAlias' => array(
-        'en' => '/segredos',
-        'es' => '/segredos',
-        'gl' => '/segredos'
-      )
+    'version' =>'Cogumelo#1.0',
+    'executeOnGenerateModelToo' => true,
+    'idName' => 'segredosExplorer',
+    'rType' => 'rtypePage',
+    'title' => array(
+      'en' => 'Use Segredos Explorer',
+      'es' => 'Usar Explorador de Segredos',
+      'gl' => 'Usar Explorador de Segredos'
+    ),
+    'shortDescription' => array(),
+    'img' => false,
+    'viewType' => 'viewAppTodosSegredosExplorer',
+    'urlAlias' => array(
+      'en' => '/segredos',
+      'es' => '/segredos',
+      'gl' => '/segredos'
     )
+  )
 );
   /*
 

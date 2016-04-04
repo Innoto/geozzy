@@ -3,18 +3,25 @@ if (! geozzy.userSessionComponents) { geozzy.userSessionComponents= {} }
 geozzy.userSessionComponents.mainRouter = Backbone.Router.extend({
   userSessionParent: false,
   routes: {
-    'geozzyuser/myprofile': 'myprofile'
+    'user/accessprofile': 'controlAccessProfile',
+    'user/profile': 'myprofile'
   },
 
-  myprofile: function( ) {
+  controlAccessProfile: function( ) {
     var that = this;
     that.userSessionParent.userControlAccess(
       function(){
-        alert('myprofile');
+        window.location.href="/userprofile#user/profile";
+        //that.navigate("/", {trigger: true});
       },
       function(){
         that.navigate("/", {trigger: true});
       }
     );
+  },
+  myprofile: function() {
+    if( window.location.pathname === "/userprofile" ){
+      $(".bodyContent .contentSec").load( "/geozzyuser/profile", {}, function(){} );
+    }
   }
 });

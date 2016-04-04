@@ -50,8 +50,10 @@ geozzy.userSession = function() {
   }
 
   that.initRegisterBox = function(){
-    that.registerView = new geozzy.userSessionComponents.userRegisterView();
-    that.registerView.userSessionParent = that;
+    setTimeout(function() {
+      that.registerView = new geozzy.userSessionComponents.userRegisterView();
+      that.registerView.userSessionParent = that;
+    }, 500);
   }
   that.successRegisterBox = function(){
     that.registerView.closeRegisterModal();
@@ -59,6 +61,11 @@ geozzy.userSession = function() {
 
   }
   that.initRegisterOkBox = function(){
+    setTimeout(function() {
+      that.registerOkView = new geozzy.userSessionComponents.userRegisterOkView();
+      that.registerOkView.userSessionParent = that;
+    }, 500);
+
     that.registerOkView = new geozzy.userSessionComponents.userRegisterOkView();
     that.registerOkView.userSessionParent = that;
   }

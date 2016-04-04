@@ -36,6 +36,7 @@
           <img class="iconTitleBar img-responsive" alt="Páxina xeral" src="/media/img/paxinaIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
+        {if isset($stars)}
         <div class="stars hidden-xs col-sm-3 col-md-2">
           <i class="fa fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
@@ -43,12 +44,16 @@
           <i class="fa selected fa-star-o"></i>
           <i class="fa selected fa-star-o"></i>
         </div>
+        {/if}
       </div>
     </div>
   </div>
+
+  {if $res.data.image.id}
   <section class="imageSec gzSection">
 
   </section>
+  {/if}
 
   <section class="contentSec container gzSection">
     <div class="typeBar row">
@@ -74,10 +79,12 @@
             </div>
           {/if}
         </li>
+        {if isset($fav)}
         <li class="elementFav">
           <i class="fa fa-heart-o"></i>
           <i class="fa fa-heart"></i>
         </li>
+        {/if}
       </ul>
     </div>
 
@@ -90,7 +97,10 @@
     </div>
   </section>
 
+  {if (isset($rextContactBlock) && $rextContactBlock!="") || (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")
+  || ( isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data !=="")}
   <section class="locationSec gzSection">
+    {if (isset($rextContactBlock) && $rextContactBlock!="")}
     <div class="locationLight">
       <div class="location container">
         <div class="title">
@@ -101,9 +111,11 @@
         </div>
       </div>
     </div>
+    {/if}
 
     <div class="locationDark">
-      {if isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== ""}
+      {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")
+      || ( isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data !=="")}
       <div class="directions">
         <div class="container">
           <div class="title">
@@ -122,7 +134,7 @@
           </div>
           {else}
           <div class="indications" style="display:none;">
-              {$res.ext.rextContact.data.directions|escape:'htmlall'}
+            {$res.ext.rextContact.data.directions|escape:'htmlall'}
           </div>
           {/if}
         </div>
@@ -142,7 +154,7 @@
       <div class="grey-bar"></div>
     {/if}
   </section>
-
+  {/if}
   {if isset($multimediaGalleries)}
     <section class="multimediaSec container gzSection">
       {$multimediaGalleries}
