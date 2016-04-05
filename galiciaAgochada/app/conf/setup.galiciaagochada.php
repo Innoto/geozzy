@@ -195,11 +195,9 @@ $C_ENABLED_MODULES = array(
   'Blocks',
   'table',
   'explorer',
-  'geozzyUser',
   'appExplorer',
   // testing module
   'testData',
-
 );
 
 // resource Extenssions
@@ -215,6 +213,7 @@ $C_REXT_MODULES = array(
   'rextAppLugar',
   'rextAppEspazoNatural',
   'rextAppZona',
+  'rextAppUser',
   'rextSocialNetwork',
   'rextEvent',
   'rextEventCollection',
@@ -233,16 +232,24 @@ $C_RTYPE_MODULES = array(
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
   'rtypeAppFesta',
-  'rtypeEvent',
-  //initial resources
-  'initResources'
+  'rtypeAppUser',
+  'rtypeEvent'
+);
+
+
+// resource Types
+global $C_ULTIMATE_MODULES;
+$C_ULTIMATE_MODULES = array(
+  'initResources',
+  'geozzyUser'
 );
 
 // Merge all modules
-$C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_MODULES );
+$C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_MODULES, $C_ULTIMATE_MODULES );
 
 
 // before app/Cogumelo.php execution
+// Needed for modules with their own urls
 global $C_INDEX_MODULES;
 $C_INDEX_MODULES  = array(
   'i18nGetLang',
@@ -260,6 +267,7 @@ $C_INDEX_MODULES  = array(
   'initResources',
   'explorer',
   'geozzyUser',
+  'rtypeEvent',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 

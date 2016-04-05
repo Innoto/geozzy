@@ -15,6 +15,10 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   $.extend(true, that.options, opts);
 
 
+  google.maps.event.addListener( that.options.mapView.map, 'bounds_changed', function() {
+    //alert('')
+    that.hide();
+  });
 
   that.hide = function( ) {
     $( that.markerClustererHover ).hide();

@@ -15,8 +15,11 @@ geozzy.userSession = function() {
 
   // First Execution
   //
-  that.userControlAccess = function(callback) {
-    that.finishCallback = callback;
+  that.userControlAccess = function( successCallback, abortCallback) {
+    that.finishCallback = successCallback;
+    if(abortCallback){
+      that.abortCallback = abortCallback;
+    }
     that.getUserSession(
       function(){
         if( that.user.get('id') === false ){
@@ -47,8 +50,10 @@ geozzy.userSession = function() {
   }
 
   that.initRegisterBox = function(){
-    that.registerView = new geozzy.userSessionComponents.userRegisterView();
-    that.registerView.userSessionParent = that;
+    setTimeout(function() {
+      that.registerView = new geozzy.userSessionComponents.userRegisterView();
+      that.registerView.userSessionParent = that;
+    }, 500);
   }
   that.successRegisterBox = function(){
     that.registerView.closeRegisterModal();
@@ -56,6 +61,11 @@ geozzy.userSession = function() {
 
   }
   that.initRegisterOkBox = function(){
+    setTimeout(function() {
+      that.registerOkView = new geozzy.userSessionComponents.userRegisterOkView();
+      that.registerOkView.userSessionParent = that;
+    }, 500);
+
     that.registerOkView = new geozzy.userSessionComponents.userRegisterOkView();
     that.registerOkView.userSessionParent = that;
   }

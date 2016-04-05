@@ -53,6 +53,7 @@ class InitResourcesController{
 
 
   public function generateResource($initRes){
+
     global $LANG_AVAILABLE;
     $resourcecontrol = new ResourceController();
     $resourceType = new ResourcetypeModel();

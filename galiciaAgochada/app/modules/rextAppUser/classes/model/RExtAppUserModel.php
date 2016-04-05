@@ -3,10 +3,9 @@ Cogumelo::load( 'coreModel/VO.php' );
 Cogumelo::load( 'coreModel/Model.php' );
 
 
+class RExtAppUserModel extends Model {
 
-class EventModel extends Model
-{
-  static $tableName = 'geozzy_resource_rext_event';
+  static $tableName = 'geozzy_resource_rext_app_user';
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -18,13 +17,10 @@ class EventModel extends Model
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
-    'rextEventInitDate' => array(
-      'type' => 'VARCHAR',
-      'size' => '200'
-    ),
-    'rextEventEndDate' => array(
-      'type' => 'VARCHAR',
-      'size' => '200'
+    'user' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'UserModel',
+      'key' => 'id'
     )
   );
 

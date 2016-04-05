@@ -1,12 +1,20 @@
 <!-- rExtFormBlock.tpl en  module -->
-
+{$client_includes}
 <div class="{$rExtName} formBlock">
 
+{if isset($prevContent)}
+  {$prevContent}
+{/if}
+
 {foreach $rExt.dataForm.formFieldsArray as $key=>$formField}
-  {if !in_array($key,$formFieldsHiddenArray)}
-    {$formField}
-  {/if}
+    {if isset($formFieldsHiddenArray) && !in_array($key,$formFieldsHiddenArray) || !isset($formFieldsHiddenArray)}
+      {$formField}
+    {/if}
 {/foreach}
+
+{if isset($postContent)}
+  {$postContent}
+{/if}
 
 </div>
 

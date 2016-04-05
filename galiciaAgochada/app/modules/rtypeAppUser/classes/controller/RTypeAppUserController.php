@@ -1,50 +1,47 @@
 <?php
-rextEvent::autoIncludes();
+rextAppUser::autoIncludes();
 
-class RTypeEventController extends RTypeController implements RTypeInterface {
+
+class RTypeAppUserController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeEventController::__construct' );
+    // error_log( 'RTypeAppUserController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeEvent() );
-
+    parent::__construct( $defResCtrl, new rtypeAppUser() );
   }
 
+
+  private function newRExtContr() {
+
+    return new RExtAppUserController( $this );
+  }
 
   /**
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    //error_log( "RTypeEventController: manipulateForm()" );
+    // error_log( "RTypeAppUserController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
-    // Extensión alojamiento
-    $rTypeExtNames[] = 'rextEvent';
-    $this->eventCtrl = new RExtEventController( $this );
-    $rExtFieldNames = $this->eventCtrl->manipulateForm( $form );
+    $rTypeExtNames[] = 'rextAppUser';
+    $this->rExtCtrl = $this->newRExtContr();
+    $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
+
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
     $form->setFieldParam('starred', 'type', 'reserved');
-    $form->setFieldParam('externalUrl', 'type', 'reserved');
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
-    $form->removeValidationRules('externalUrl');
-
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-    // Añadir validadores extra
-    // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
 
     return( $rTypeFieldNames );
   } // function manipulateForm()
 
-
-
   public function getFormBlockInfo( FormController $form ) {
-    //error_log( "RTypeEventController: getFormBlockInfo()" );
+    // error_log( "RTypeHotelController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -66,9 +63,9 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
 
-    $this->eventCtrl = new RExtEventController( $this );
-    $eventViewInfo = $this->eventCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $eventViewInfo;
+    $this->appUserCtrlappUserCtrl = new RExtAppUserController( $this );
+    $fileViewInfo = $this->appUserCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->appUserCtrl->rExtName ] = $fileViewInfo;
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -78,12 +75,11 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
 
     $formFieldsNames = array_merge(
       $form->multilangFieldNames( 'title' ),
-      $form->multilangFieldNames( 'shortDescription' )
+      $form->multilangFieldNames( 'shortDescription' ),
+      $form->multilangFieldNames( 'mediumDescription' )
     );
     $formFieldsNames[] = 'externalUrl';
-    $formFieldsNames[] = 'topics';
-    $formFieldsNames[] = 'starred';
-    $formFieldsNames[] = 'rTypeIdName';
+    $formFieldsNames[] = $this->appUserCtrl->addPrefix( 'author' );
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
@@ -94,7 +90,6 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     $templates['publication']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'published', 'weight' );
     $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
-
 
     // TEMPLATE panel SEO
     $templates['seo'] = new Template();
@@ -109,6 +104,7 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     );
     $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
 
+
     // TEMPLATE panel image
     $templates['image'] = new Template();
     $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -117,19 +113,13 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     $formFieldsNames = array( 'image' );
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
 
-
-/*
-    // TEMPLATE panel event
-    $templates['event'] = new Template();
-    $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['event']->assign( 'title', __( 'Event data' ) );
-    $templates['event']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->eventCtrl->prefixArray( array('rextEventInitDate', 'rextEventEndDate', 'rextEventType'));
-    $templates['event']->assign( 'formFieldsNames', $formFieldsNames );*/
-    $templates['event'] = new Template();
-    $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['event']->assign( 'title', __( 'Event' ) );
-    $templates['event']->setBlock( 'blockContent', $eventViewInfo['template']['full'] );
+    // TEMPLATE panel image
+    $templates['image'] = new Template();
+    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['image']->assign( 'title', __( 'Select a image' ) );
+    $templates['image']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'image' );
+    $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel cuadro informativo
     $templates['info'] = new Template();
@@ -142,23 +132,17 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     if ($type){
       $templates['info']->assign( 'rType', $type->getter('name_es') );
     }
-
-    $timeCreation = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeCreation']));
-
+    $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
     $templates['info']->assign( 'timeCreation', $timeCreation );
     if (isset($formBlockInfo['data']['userUpdate'])){
       $userModel = new UserModel();
       $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
       $userUpdateName = $userUpdate->getter('name');
-      $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
+      $timeLastUpdate = date('d/m/Y', time($formBlockInfo['data']['timeLastUpdate']));
       $templates['info']->assign( 'timeLastUpdate', $timeLastUpdate.' ('.$userUpdateName.')' );
     }
     if (isset($formBlockInfo['data']['averageVotes'])){
       $templates['info']->assign( 'averageVotes', $formBlockInfo['data']['averageVotes']);
-    }
-    /* Temáticas */
-    if (isset($formBlockInfo['data']['topicsName'])){
-      $templates['info']->assign( 'resourceTopicList', $formBlockInfo['data']['topicsName']);
     }
     $templates['info']->assign( 'res', $formBlockInfo );
     $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
@@ -169,12 +153,18 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['event'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToBlock( 'col4', $templates['file'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
+
+    // TEMPLATE en bruto con todos los elementos del form
+    $templates['formProfile'] = new Template();
+    $templates['formProfile']->assign( 'title', __( 'Resource' ) );
+    $templates['formProfile']->setTpl( 'rTypeAppFormProfileBlock.tpl', 'rtypeAppUser' );
+    $templates['formProfile']->assign( 'res', $formBlockInfo );
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();
@@ -187,19 +177,18 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     return $formBlockInfo;
   }
 
-
   /**
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    //error_log( "RTypeEventController: resFormRevalidate()" );
+    // error_log( "RTypeAppUserController: resFormRevalidate()" );
 
     if( !$form->existErrors() ) {
-      $this->eventCtrl = new RExtEventController( $this );
-      $this->eventCtrl->resFormRevalidate( $form );
-
+      $this->rExtCtrl = $this->newRExtContr();
+      $this->rExtCtrl->resFormRevalidate( $form );
     }
 
+    // $this->evalFormAppUserAlias( $form, 'urlAlias' );
   }
 
   /**
@@ -207,13 +196,13 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    //error_log( "RTypeEventController: resFormProcess()" );
+    // error_log( "RTypeAppUserController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
-      $this->eventCtrl = new RExtEventController( $this );
-      $this->eventCtrl->resFormProcess( $form, $resource );
-
+      $this->rExtCtrl = $this->newRExtContr();
+      $this->rExtCtrl->resFormProcess( $form, $resource );
     }
+
   }
 
   /**
@@ -221,19 +210,46 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    //error_log( "RTypeEventController: resFormSuccess()" );
+    // error_log( "RTypeAppUserController: resFormSuccess()" );
 
-    $this->eventCtrl = new RExtEventController( $this );
-    $this->eventCtrl->resFormSuccess( $form, $resource );
-
+    $this->rExtCtrl = $this->newRExtContr();
+    $this->rExtCtrl->resFormSuccess( $form, $resource );
   }
+
+
+
+  /**
+    Visualizamos el Recurso
+   **/
+  public function getViewBlock( Template $resBlock ) {
+    // error_log( "RTypeAppUserController: getViewBlock()" );
+    $template = false;
+
+    $template = $resBlock;
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppUser' );
+
+    $this->rExtCtrl = $this->newRExtContr();
+    $urlBlock = $this->rExtCtrl->getViewBlock( $resBlock );
+
+    if( $urlBlock ) {
+      $template->addToBlock( 'rextAppUser', $urlBlock );
+      $template->assign( 'rExtBlockNames', array( 'rextAppUser' ) );
+    }
+    else {
+      $template->assign( 'rextAppUser', false );
+      $template->assign( 'rExtBlockNames', false );
+    }
+
+    return $template;
+  }
+
 
 
   /**
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    // error_log( "RTypeEventController: getViewBlockInfo()" );
+    // error_log( "RTypeAppUserController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -242,49 +258,23 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     );
 
     $template = new Template();
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeEvent' );
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppUser' );
 
-    $this->eventCtrl = new RExtEventController( $this );
-    $accomViewInfo = $this->eventCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $accomViewInfo;
+    $this->rExtCtrl = $this->newRExtContr();
+    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
 
     $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
-    $taxtermModel = new TaxonomytermModel();
-
-    /* Recuperamos todos los términos de la taxonomía servicios*/
-    $services = $this->defResCtrl->getOptionsTax( 'EventServices' );
-    foreach( $services as $serviceId => $serviceName ) {
-      $service = $taxtermModel->listItems(array('filters'=> array('id' => $serviceId)))->fetch();
-      /*Quitamos los términos de la extensión que no se usan en este proyecto*/
-        $allServices[$serviceId]['name'] = $serviceName;
-        $allServices[$serviceId]['idName'] = $service->getter('idName');
-        $allServices[$serviceId]['icon'] = $service->getter('icon');
-    }
-    $template->assign('allServices', $allServices);
-
-    /* Recuperamos todos los términos de la taxonomía instalaciones*/
-    $facilities = $this->defResCtrl->getOptionsTax( 'EventFacilities' );
-    foreach( $facilities as $facilityId => $facilityName ) {
-      $facility = $taxtermModel->listItems(array('filters'=> array('id' => $facilityId)))->fetch();
-      /*Quitamos los términos de la extensión que no se usan en este proyecto*/
-      if ($facility->getter('idName') !== 'bar' && $facility->getter('idName') !== 'lavadora'){
-        $allFacilities[$facilityId]['name'] = $facilityName;
-        $allFacilities[$facilityId]['idName'] = $facility->getter('idName');
-        $allFacilities[$facilityId]['icon'] = $facility->getter('icon');
-      }
-    }
-    $template->assign('allFacilities', $allFacilities);
-
-    if( $accomViewInfo ) {
-      if( $accomViewInfo['template'] ) {
-        foreach( $accomViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextEventBlock', $templateBlock );
+    if( $rExtViewInfo ) {
+      if( $rExtViewInfo['template'] ) {
+        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextAppUserBlock', $templateBlock );
         }
       }
     }
     else {
-      $template->assign( 'rextEventBlock', false );
+      $template->assign( 'rextAppUserBlock', false );
     }
 
     $viewBlockInfo['template'] = array( 'full' => $template );
@@ -292,4 +282,4 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     return $viewBlockInfo;
   }
 
-} // class RTypeEventController
+} // class RTypeAppUserController

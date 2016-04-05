@@ -1,7 +1,7 @@
 <!-- rExtViewBlock.tpl en rextAppEspazoNatural module -->
 
 <p> --- rExtViewBlock.tpl en rextAppEspazoNatural module</p>
-OLA
+
 <div class="rExtAppEspazoNatural">
 
   <div class="appEspazoNaturalType">

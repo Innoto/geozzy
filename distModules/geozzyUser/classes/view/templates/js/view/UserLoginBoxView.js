@@ -8,7 +8,8 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
   modalTemplate : false,
 
   events: {
-    "click .gotoregister": "goToRegister"
+    "click .gotoregister": "goToRegister",
+    "click .close": "abortLoginModal"
   },
 
   initLoginModal: function(){
@@ -19,6 +20,7 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
     $("#loginModal .modal-body .loginModalForm").load( '/geozzyuser/login' );
     $("#loginModal").modal({
       'show' : true,
+      'keyboard': false,
       'backdrop' : 'static'
     });
     $("#loginModal").on('hidden.bs.modal', function (e) {
@@ -34,7 +36,13 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
   },
   closeLoginModal: function() {
     var that = this;
-    $("#loginModal").modal('hide'); 
+    $("#loginModal").modal('hide');
+  },
+  abortLoginModal: function() {
+    var that = this;
+    if( that.userSessionParent.abortCallback ){
+      that.userSessionParent.abortCallback();
+    }
   },
   initialize: function( opts ) {
     var that = this;

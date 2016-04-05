@@ -36,13 +36,41 @@ class geozzyUser extends Module
     'js/UserSessionInstance.js'
   );
 
-
   function __construct() {
     $this->addUrlPatterns( '#^geozzyuser/logout$#', 'view:GeozzyUserView::sendLogout' );
     $this->addUrlPatterns( '#^geozzyuser/login$#', 'view:GeozzyUserView::loginForm' );
     $this->addUrlPatterns( '#^geozzyuser/senduserlogin$#', 'view:GeozzyUserView::sendLoginForm' );
     $this->addUrlPatterns( '#^geozzyuser/register$#', 'view:GeozzyUserView::registerForm' );
     $this->addUrlPatterns( '#^geozzyuser/senduserregister$#', 'view:GeozzyUserView::sendRegisterForm' );
+    $this->addUrlPatterns( '#^geozzyuser/profile#', 'view:GeozzyUserView::profileForm' );
+    $this->addUrlPatterns( '#^geozzyuser/sendprofile#', 'view:GeozzyUserView::sendProfileForm' );
+  }
+
+  public function moduleRc() {
+
+    $res = array(
+      'idName' => 'user',
+      'rType' => 'rtypePage',
+      'title' => array(
+        'en' => 'Usuario',
+        'es' => 'User',
+        'gl' => 'Usuario'
+      ),
+      'shortDescription' => array(),
+      'img' => false,
+      'viewType' => 'none',
+      'urlAlias' => array(
+        'en' => '/userprofile',
+        'es' => '/userprofile',
+        'gl' => '/userprofile'
+      )
+    );
+
+
+    initResources::load('controller/InitResourcesController.php');
+    $initResources = new InitResourcesController();
+    $initResources->generateResource( $res );
+
   }
 
 }

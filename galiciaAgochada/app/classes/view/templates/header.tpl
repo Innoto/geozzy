@@ -53,7 +53,7 @@
             <li class="dropdown userSelector">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
               <ul class="dropdown-menu">
-                <li><a href="/{$cogumelo.publicConf.C_LANG}#geozzyuser/myprofile">{t}Mi perfil{/t}</a></li>
+                <li><a href="/{$cogumelo.publicConf.C_LANG}#user/accessprofile">{t}Mi perfil{/t}</a></li>
                 <li><a href="/{$cogumelo.publicConf.C_LANG}/geozzyuser/logout">{t}Cerrar sessión{/t}</a></li>
               </ul>
             </li>
