@@ -110,27 +110,44 @@ define( 'COGUMELO_APP_URL_ALIAS_CONTROLLER', COGUMELO_DIST_LOCATION.'/distModule
 
 
 //
-//  Sendmail
+//  Mail sender
 //
-cogumeloSetSetupValue( 'smtp', array(
+cogumeloSetSetupValue( 'mail', array(
+  'type' => 'smtp',
   'host' => 'localhost',
   'port' => '25',
   'auth' => false,
-  'user' => 'Cogumelo Sender',
-  'pass' => 'cogumelo@cogumelo.org',
+  //'user' => 'mailuser',
+  //'pass' => 'mailuserpass',
+  //'secure' => 'tls',
   'fromName' => 'Cogumelo Sender',
   'fromEmail' => 'cogumelo@cogumelo.org'
 ));
 /*
-define( 'SMTP_HOST', 'localhost' );
-define( 'SMTP_PORT', '25' );
-define( 'SMTP_AUTH', false );
-define( 'SMTP_USER', 'Cogumelo Sender' );
-define( 'SMTP_PASS', 'cogumelo@cogumelo.org' );
-
-define( 'SYS_MAIL_FROM_NAME', 'Cogumelo Sender' );
-define( 'SYS_MAIL_FROM_EMAIL', 'cogumelo@cogumelo.org' );
+cogumeloSetSetupValue( 'mail', array(
+  'type' => 'gmail',
+  'host' => 'localhost',
+  'port' => '25',
+  'auth' => false,
+  'user' => 'mailuser',
+  'pass' => 'mailuserpass',
+  'fromName' => 'Cogumelo Sender',
+  'fromEmail' => 'cogumelo@cogumelo.org'
+));
 */
+/*
+cogumeloSetSetupValue( 'smtp', array(
+  'host' => 'localhost',
+  'port' => '25',
+  'auth' => false,
+  //'user' => 'mailuser',
+  //'pass' => 'mailuserpass',
+  //'secure' => 'tls',
+  'fromName' => 'Cogumelo Sender',
+  'fromEmail' => 'cogumelo@cogumelo.org'
+));
+*/
+
 
 //
 //  Templates
