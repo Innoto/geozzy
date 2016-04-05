@@ -349,8 +349,9 @@ cogumeloSetSetupValue( 'mod:mediaserver:publicConf:less',
 cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty',
   cogumeloGetSetupValue( 'publicConf' )
 );
-
-
+cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields',
+  array_merge( cogumeloGetSetupValue( 'publicConf:setupFields' ), array('user:session') )
+);
 
 cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
   array(
