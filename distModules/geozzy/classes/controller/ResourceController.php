@@ -807,7 +807,7 @@ class ResourceController {
       // TRANSACTION COMMIT
       $resource->transactionCommit();
 
-      echo $form->jsonFormOk();
+      echo $form->getJsonOk();
     }
     else {
       // TRANSACTION ROLLBACK
@@ -816,7 +816,7 @@ class ResourceController {
       }
 
       // $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
-      echo $form->jsonFormError();
+      echo $form->getJsonError();
     }
   }
 

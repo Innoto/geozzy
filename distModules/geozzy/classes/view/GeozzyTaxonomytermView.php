@@ -147,12 +147,7 @@ class GeozzyTaxonomytermView extends View
     $form = $this->actionTaxTermForm();
     $this->taxtermOk($form);
 
-    if( $form->existErrors() ) {
-      echo $form->jsonFormError();
-    }
-    else {
-      echo $form->jsonFormOk();
-    }
+    echo $form->getJsonResponse();
   }
 
 
