@@ -90,7 +90,7 @@ define( 'GA_ACCESS_PASSWORD', 'gz15005' );
 //
 //  Url settings
 //
-// TODO: Cuidado porque no se admite un puerto
+// TODO: Cuidado porque no se procesa el puerto
 /*
 Agora en setup.dev.php ou setup.final.php
 define( 'COGUMELO_ADMINSCRIPT_URL', 'http://galiciaagochada/cogumelo-server.php');
@@ -131,18 +131,6 @@ cogumeloSetSetupValue( 'mail', array(
   'auth' => false,
   'user' => 'mailuser',
   'pass' => 'mailuserpass',
-  'fromName' => 'Cogumelo Sender',
-  'fromEmail' => 'cogumelo@cogumelo.org'
-));
-*/
-/*
-cogumeloSetSetupValue( 'smtp', array(
-  'host' => 'localhost',
-  'port' => '25',
-  'auth' => false,
-  //'user' => 'mailuser',
-  //'pass' => 'mailuserpass',
-  //'secure' => 'tls',
   'fromName' => 'Cogumelo Sender',
   'fromEmail' => 'cogumelo@cogumelo.org'
 ));
@@ -237,7 +225,7 @@ $C_RTYPE_MODULES = array(
 );
 
 
-// resource Types
+// Ultimate modules
 global $C_ULTIMATE_MODULES;
 $C_ULTIMATE_MODULES = array(
   'initResources',
