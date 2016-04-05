@@ -6,7 +6,6 @@ geozzy::load( 'controller/RExtController.php' );
 METODOS A CAMBIAR/ELIMINAR
 loadResourceObject
 getResourceData: Controlar ben translate e cargar a maioria dos datos
-formToTemplate
 loadAdminFormColumns
 getAdminFormColumns
 setBlockPartTemplate
@@ -493,6 +492,7 @@ class ResourceController {
    * @param $template Template Contiene la estructura de columnas para Admin
    * @param $adminViewResource AdminViewResource Acceso a los métodos usados en Admin
    */
+  /*
   public function loadAdminFormColumns( $formBlock, $template, $adminViewResource ) {
 
     $adminColsInfo = $this->getAdminFormColumns( $formBlock, $template, $adminViewResource );
@@ -515,6 +515,7 @@ class ResourceController {
       }
     }
   }
+  */
 
 
   /**
@@ -526,6 +527,7 @@ class ResourceController {
    *
    * @return Array Información de los elementos de cada columna
    */
+  /*
   public function getAdminFormColumns( $formBlock, $template, $adminViewResource ) {
     $cols = array(
       'col8' => array(),
@@ -655,10 +657,12 @@ class ResourceController {
 
     return $cols;
   }
+  */
 
   /**
     Se crea un nuevo template y se asigna el array de variables recibido
    */
+  /*
   public function setBlockPartTemplate( $formPartArray ) {
     $partTemplate = new Template();
     $partTemplate->addClientStyles( 'masterResource.less');
@@ -667,6 +671,7 @@ class ResourceController {
     $partTemplate->assign('formFieldsHiddenArray', array());
     return $partTemplate;
   }
+  */
 
   /**
     Se reconstruye el formulario con sus datos y se realizan las validaciones que contiene
@@ -1547,6 +1552,7 @@ class ResourceController {
     return $resData;
   }
 
+  /*
   public function getResourceBlock( $resData ) {
     // error_log( "GeozzyResourceView: getResourceBlock()" );
 
@@ -1578,6 +1584,7 @@ class ResourceController {
 
     return( $template );
   } // function getResourceBlock( $resData )
+  */
 
   public function getResourceThumbnail( $param ) {
     error_log( 'getResourceThumbnail :'.print_r($param,true));
@@ -1641,16 +1648,7 @@ class ResourceController {
 
               $imgId = $resVal->getter( 'image' );
 
-
-
-
-
-//var_dump( $imgId );
-
-
-
-
-
+              //var_dump( $imgId );
 
               if( $imgId && $imgId !== 'null' ) {
                 $thumbSettings['imageId'] = $imgId;
