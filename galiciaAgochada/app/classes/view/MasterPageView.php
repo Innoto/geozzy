@@ -74,6 +74,7 @@ class MasterPageView extends View
 
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
+    
 
     // Autodetección idioma
     $i18nCtrl = new I18nController();
