@@ -30,6 +30,7 @@ class MailExample extends View {
 
     $tpl = new Template();
     $tpl->setTpl( 'mailExample.tpl' );
+
     $mailControl->setBody( 'Texto sin HTML', $tpl, array( 'var1'=>'Contido var 1', 'var2'=>'2' ) );
     $mailControl->send( 'jmporto@innoto.es', 'Ola meu - Compacto' );
 
