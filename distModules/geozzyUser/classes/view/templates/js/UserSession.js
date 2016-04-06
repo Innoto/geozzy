@@ -72,7 +72,10 @@ geozzy.userSession = function() {
 
   that.userRouter = new geozzy.userSessionComponents.mainRouter();
   that.userRouter.userSessionParent = that;
-  if( !Backbone.History.started ){
-    Backbone.history.start();
-  }
+
+  $(document).ready( function(){
+    if( !Backbone.History.started ){
+      Backbone.history.start();
+    }
+  });
 }

@@ -89,9 +89,12 @@ geozzy.explorer = function( opts ) {
     that.explorerRouter = new geozzy.explorerComponents.mainRouter();
     that.explorerRouter.parentExplorer = that;
 
-    if( !Backbone.History.started ){
-      Backbone.history.start();
-    }
+    $(document).ready( function(){
+      if( !Backbone.History.started ){
+        Backbone.history.start();
+      }
+    });
+    
     // render filters
     if( that.filters.length > 0 ) {
       $.each( that.filters, function(i,e){
