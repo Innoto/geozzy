@@ -244,6 +244,7 @@ $C_INDEX_MODULES  = array(
   'i18nServer',
   'mediaserver',
   'user',
+  'geozzyUser',
   'filedata',
   'geozzy',
   'appResourceBridge',
@@ -254,7 +255,6 @@ $C_INDEX_MODULES  = array(
   'testData',
   'initResources',
   'explorer',
-  'geozzyUser',
   'rtypeEvent',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
