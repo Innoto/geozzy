@@ -118,6 +118,8 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
   },
 
 
+
+
   syncEnable: function() {
 
     var that = this;
