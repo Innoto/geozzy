@@ -1,13 +1,16 @@
 <?php
-
+rextAppLugar::autoIncludes();
+rextContact::autoIncludes();
+rextMapDirections::autoIncludes();
 rextAppZona::autoIncludes();
+rextSocialNetwork::autoIncludes();
 
 class RTypeAppRutaController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeAppRutaController::__construct' );
+    // error_log( 'RTypeAppLugarController::__construct' );
 
-    parent::__construct( $defResCtrl, new rtypeAppRuta() );
+    parent::__construct( $defResCtrl, new rtypeAppLugar() );
   }
 
 
@@ -16,10 +19,16 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeAppRutaController: manipulateForm()" );
+    // error_log( "RTypeAppLugarController: manipulateForm()" );
 
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
+
+    // Extensión lugar
+    $rTypeExtNames[] = 'rextAppLugar';
+    $this->rExtCtrl = new RExtAppLugarController( $this );
+    $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
+
 
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
@@ -27,11 +36,35 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
 
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Extensión contacto
+    $rTypeExtNames[] = 'rextContact';
+    $this->contactCtrl = new RExtContactController( $this );
+    $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
+
+    // Extensión redes sociales
+    $rTypeExtNames[] = 'rextSocialNetwork';
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $rExtFieldNames = $this->socialCtrl->manipulateForm( $form );
+
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Extensión Zona
+    $rTypeExtNames[] = 'rextAppZona';
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $rExtFieldNames = $this->zonaCtrl->manipulateForm( $form );
+    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+
+    // Altero campos del form del recurso "normal"
+    $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
+
     return( $rTypeFieldNames );
   } // function manipulateForm()
 
+
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RTypeAppRutaController: getFormBlockInfo()" );
+    // error_log( "RTypeRestaurantController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -53,9 +86,22 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
 
+    $this->lugarCtrl = new RExtAppLugarController( $this );
+    $lugarViewInfo = $this->lugarCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->lugarCtrl->rExtName ] = $lugarViewInfo;
+
+    $this->contactCtrl = new RExtContactController( $this );
+    $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialViewInfo = $this->socialCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
+
     $this->zonaCtrl = new RExtAppZonaController( $this );
     $zonaViewInfo = $this->zonaCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->zonaCtrl->rExtName ] = $zonaViewInfo;
+
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -72,6 +118,7 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $formFieldsNames[] = 'externalUrl';
     $formFieldsNames[] = 'topics';
     $formFieldsNames[] = 'starred';
+    $formFieldsNames[] = 'rTypeIdName';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
@@ -97,6 +144,42 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     );
     $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
 
+
+    // TEMPLATE panel reservas
+
+    $templates['reservation'] = new Template();
+    $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['reservation']->assign( 'title', __( 'Reservation' ) );
+    $templates['reservation']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = $this->lugarCtrl->prefixArray( array( 'reservationURL', 'reservationPhone' ) );
+    $templates['reservation']->assign( 'formFieldsNames', $formFieldsNames );
+
+    // TEMPLATE panel contacto
+    $templates['location'] = new Template();
+    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
+    $templates['location']->assign( 'title', __( 'Location' ) );
+    $templates['location']->assign( 'res', $formBlockInfo );
+    $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
+/*
+    // TEMPLATE panel social network
+    $templates['social'] = new Template();
+    $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['social']->assign( 'title', __( 'Social Networks' ) );
+    $templates['social']->setBlock( 'blockContent', $socialViewInfo['template']['basic'] );
+*/
+
+    // TEMPLATE panel localización
+    $templates['contact'] = new Template();
+    $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['contact']->assign( 'title', __( 'Contact' ) );
+    $templates['contact']->setBlock( 'blockContent', $contactViewInfo['template']['basic'] );
+
+    // TEMPLATE panel social network
+    $templates['social'] = new Template();
+    $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['social']->assign( 'title', __( 'Social Networks' ) );
+    $templates['social']->setBlock( 'blockContent', $socialViewInfo['template']['basic'] );
+
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();
     $templates['multimedia']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -121,13 +204,6 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $formFieldsNames = array( 'image' );
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
 
-    // TEMPLATE panel categorization
-    $templates['categorization'] = new Template();
-    $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['categorization']->assign( 'title', __( 'Categorization' ) );
-    $templates['categorization']->assign( 'res', $formBlockInfo );
-    $formFieldsNames[] = $this->zonaCtrl->addPrefix('rextAppZonaType');
-    $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel cuadro informativo
     $templates['info'] = new Template();
@@ -166,14 +242,18 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
 
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
+    //$templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
+
 
 
     // TEMPLATE en bruto con todos los elementos del form
@@ -187,14 +267,25 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     return $formBlockInfo;
   }
 
-
-
   /**
     Validaciones extra previas a usar los datos del recurso base
    **/
   public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeAppRutaController: resFormRevalidate()" );
+    // error_log( "RTypeAppLugarController: resFormRevalidate()" );
 
+    if( !$form->existErrors() ) {
+      $this->rExtCtrl = new RExtAppLugarController( $this );
+      $this->rExtCtrl->resFormRevalidate( $form );
+
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormRevalidate( $form );
+
+      $this->socialCtrl = new RExtSocialNetworkController( $this );
+      $this->socialCtrl->resFormRevalidate( $form );
+
+      $this->zonaCtrl = new RExtAppZonaController( $this );
+      $this->zonaCtrl->resFormRevalidate( $form );
+    }
   }
 
   /**
@@ -202,8 +293,21 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeAppRutaController: resFormProcess()" );
+    // error_log( "RTypeAppLugarController: resFormProcess()" );
 
+    if( !$form->existErrors() ) {
+      $this->rExtCtrl = new RExtAppLugarController( $this );
+      $this->rExtCtrl->resFormProcess( $form, $resource );
+
+      $this->contactCtrl = new RExtContactController( $this );
+      $this->contactCtrl->resFormProcess( $form, $resource );
+
+      $this->socialCtrl = new RExtSocialNetworkController( $this );
+      $this->socialCtrl->resFormProcess( $form, $resource );
+
+      $this->zonaCtrl = new RExtAppZonaController( $this );
+      $this->zonaCtrl->resFormProcess( $form, $resource );
+    }
   }
 
   /**
@@ -211,8 +315,19 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     Finalizar transaction
    **/
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeAppRutaController: resFormSuccess()" );
+    // error_log( "RTypeAppLugarController: resFormSuccess()" );
 
+    $this->rExtCtrl = new RExtAppLugarController( $this );
+    $this->rExtCtrl->resFormSuccess( $form, $resource );
+
+    $this->contactCtrl = new RExtContactController( $this );
+    $this->contactCtrl->resFormSuccess( $form, $resource );
+
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $this->socialCtrl->resFormSuccess( $form, $resource );
+
+    $this->zonaCtrl = new RExtAppZonaController( $this );
+    $this->zonaCtrl->resFormSuccess( $form, $resource );
   }
 
 
@@ -220,7 +335,7 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    // error_log( "RTypeAppRutaController: getViewBlockInfo()" );
+    // error_log( "RTypeAppLugarController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -228,9 +343,114 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
       'ext' => array()
     );
 
-    // PENDIENTE!!!
+    $template = new Template();
+    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppLugar' );
+
+    $this->rExtCtrl = new RExtAppLugarController( $this );
+    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
+
+    $this->contactCtrl = new RExtContactController( $this );
+    $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
+
+    $this->mapDirCtrl = new RExtMapDirectionsController( $this );
+    $mapDirViewInfo = $this->mapDirCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->mapDirCtrl->rExtName ] = $mapDirViewInfo;
+    // error_log( 'viewBlockInfo ext '. $this->mapDirCtrl->rExtName .' = '. print_r( $mapDirViewInfo, true ) );
+
+    $this->socialCtrl = new RExtSocialNetworkController( $this );
+    $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
+    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
+
+    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+
+    $resData = $this->defResCtrl->getResourceData( false, true );
+
+    if( $rExtViewInfo ) {
+      if( $rExtViewInfo['template'] ) {
+        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextAppLugarBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextAppLugarBlock', false );
+    }
+
+    if( $contactViewInfo ) {
+      if( $contactViewInfo['template'] ) {
+        foreach( $contactViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextContactBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextContactBlock', false );
+    }
+
+    if( $mapDirViewInfo ) {
+      if( $mapDirViewInfo['template'] ) {
+        foreach( $mapDirViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextMapDirectionsBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextMapDirectionsBlock', false );
+    }
+
+    if( $socialViewInfo ) {
+      if( $socialViewInfo['template'] ) {
+        foreach( $socialViewInfo['template'] as $nameBlock => $templateBlock ) {
+          $template->addToBlock( 'rextSocialNetworkBlock', $templateBlock );
+        }
+      }
+    }
+    else {
+      $template->assign( 'rextSocialNetworkBlock', false );
+    }
+
+    /* Cargamos los bloques de colecciones */
+    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
+
+    $multimediaArray = false;
+    $collectionArray = false;
+    if ($collectionArrayInfo){
+      foreach( $collectionArrayInfo as $key => $collectionInfo ) {
+        if ($collectionInfo['col']['collectionType'] == 'multimedia'){ // colecciones multimedia
+            $multimediaArray[$key] = $collectionInfo;
+        }
+        else{ // resto de colecciones
+            $collectionArray[$key] = $collectionInfo;
+        }
+      }
+
+      if ($multimediaArray){
+        $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $collectionType = 'multimedia' );
+        if ($arrayMultimediaBlock){
+          foreach( $arrayMultimediaBlock as $multimediaBlock ) {
+            $multimediaBlock->assign( 'max', 6 );
+            $multimediaBlock->setTpl('appEspazoNaturalMultimediaViewBlock.tpl', 'rtypeAppEspazoNatural');
+            $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+          }
+        }
+      }
+
+      if ($collectionArray){
+        $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $collectionType = 'base'  );
+        if ($arrayCollectionBlock){
+          foreach( $arrayCollectionBlock as $collectionBlock ) {
+            $collectionBlock->setTpl('appEspazoNaturalCollectionViewBlock.tpl', 'rtypeAppEspazoNatural');
+            $template->addToBlock( 'collections', $collectionBlock );
+          }
+        }
+      }
+    }
+
+    $viewBlockInfo['template'] = array( 'full' => $template );
 
     return $viewBlockInfo;
   }
 
-} // class RTypeAppRutaController
+} // class RTypeAppLugarController

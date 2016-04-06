@@ -120,8 +120,6 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
     );
     $formFieldsNames[] = 'externalUrl';
     $formFieldsNames[] = 'rTypeIdName';
-    $formFieldsNames[] = 'topics';
-    $formFieldsNames[] = 'starred';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 

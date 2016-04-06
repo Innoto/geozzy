@@ -108,8 +108,6 @@ class RTypePageController extends RTypeController implements RTypeInterface {
       $form->multilangFieldNames( 'content' )
     );
     $formFieldsNames[] = 'externalUrl';
-    $formFieldsNames[] = 'topics';
-    $formFieldsNames[] = 'starred';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
