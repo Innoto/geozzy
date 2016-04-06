@@ -94,7 +94,7 @@ define( 'GA_ACCESS_PASSWORD', 'gz15005' );
 //
 //  Url settings
 //
-// TODO: Cuidado porque no se admite un puerto
+// TODO: Cuidado porque no se procesa el puerto
 /*
 Agora en setup.dev.php ou setup.final.php
 define( 'COGUMELO_ADMINSCRIPT_URL', 'http://galiciaagochada/cogumelo-server.php');
@@ -114,27 +114,32 @@ define( 'COGUMELO_APP_URL_ALIAS_CONTROLLER', COGUMELO_DIST_LOCATION.'/distModule
 
 
 //
-//  Sendmail
+//  Mail sender
 //
-cogumeloSetSetupValue( 'smtp', array(
+cogumeloSetSetupValue( 'mail', array(
+  'type' => 'smtp',
   'host' => 'localhost',
   'port' => '25',
   'auth' => false,
-  'user' => 'Cogumelo Sender',
-  'pass' => 'cogumelo@cogumelo.org',
+  //'user' => 'mailuser',
+  //'pass' => 'mailuserpass',
+  //'secure' => 'tls',
   'fromName' => 'Cogumelo Sender',
   'fromEmail' => 'cogumelo@cogumelo.org'
 ));
 /*
-define( 'SMTP_HOST', 'localhost' );
-define( 'SMTP_PORT', '25' );
-define( 'SMTP_AUTH', false );
-define( 'SMTP_USER', 'Cogumelo Sender' );
-define( 'SMTP_PASS', 'cogumelo@cogumelo.org' );
-
-define( 'SYS_MAIL_FROM_NAME', 'Cogumelo Sender' );
-define( 'SYS_MAIL_FROM_EMAIL', 'cogumelo@cogumelo.org' );
+cogumeloSetSetupValue( 'mail', array(
+  'type' => 'gmail',
+  'host' => 'localhost',
+  'port' => '25',
+  'auth' => false,
+  'user' => 'mailuser',
+  'pass' => 'mailuserpass',
+  'fromName' => 'Cogumelo Sender',
+  'fromEmail' => 'cogumelo@cogumelo.org'
+));
 */
+
 
 //
 //  Templates
@@ -182,7 +187,6 @@ $C_ENABLED_MODULES = array(
   'Blocks',
   'table',
   'explorer',
-  'geozzyUser',
   'appExplorer',
   // testing module
   'testData',
@@ -201,6 +205,7 @@ $C_REXT_MODULES = array(
   'rextAppLugar',
   'rextAppEspazoNatural',
   'rextAppZona',
+  'rextAppUser',
   'rextSocialNetwork',
   'rextEvent',
   'rextEventCollection',
@@ -219,13 +224,20 @@ $C_RTYPE_MODULES = array(
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
   'rtypeAppFesta',
-  'rtypeEvent',
-  //initial resources
-  'initResources'
+  'rtypeAppUser',
+  'rtypeEvent'
+);
+
+
+// Ultimate modules
+global $C_ULTIMATE_MODULES;
+$C_ULTIMATE_MODULES = array(
+  'initResources',
+  'geozzyUser'
 );
 
 // Merge all modules
-$C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_MODULES );
+$C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_MODULES, $C_ULTIMATE_MODULES );
 
 
 // before app/Cogumelo.php execution
@@ -236,6 +248,7 @@ $C_INDEX_MODULES  = array(
   'i18nServer',
   'mediaserver',
   'user',
+  'geozzyUser',
   'filedata',
   'geozzy',
   'appResourceBridge',
@@ -246,7 +259,6 @@ $C_INDEX_MODULES  = array(
   'testData',
   'initResources',
   'explorer',
-  'geozzyUser',
   'rtypeEvent',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
@@ -341,8 +353,9 @@ cogumeloSetSetupValue( 'mod:mediaserver:publicConf:less',
 cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty',
   cogumeloGetSetupValue( 'publicConf' )
 );
-
-
+cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields',
+  array_merge( cogumeloGetSetupValue( 'publicConf:setupFields' ), array('user:session') )
+);
 
 cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
   array(

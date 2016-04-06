@@ -118,6 +118,8 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
   },
 
 
+
+
   syncEnable: function() {
 
     var that = this;
@@ -139,7 +141,7 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
   getTimesTamp: function() {
     var that = this;
 
-    return Math.floor(Date.now() / 1000);
+    return Math.floor( Date.now() );  // timestamp miliseconds
   },
 
   getDevice: function() {

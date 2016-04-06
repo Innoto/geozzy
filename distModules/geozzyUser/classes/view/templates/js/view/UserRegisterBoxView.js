@@ -7,7 +7,7 @@ geozzy.userSessionComponents.userRegisterView = Backbone.View.extend({
   modalTemplate : false,
 
   events: {
-
+    "click .close": "abortRegisterModal"
   },
 
   initRegisterModal: function(){
@@ -18,6 +18,7 @@ geozzy.userSessionComponents.userRegisterView = Backbone.View.extend({
     $("#registerModal .modal-body .registerModalForm").load( '/geozzyuser/register' );
     $("#registerModal").modal({
       'show' : true,
+      'keyboard': false,
       'backdrop' : 'static'
     });
     $("#registerModal").on('hidden.bs.modal', function (e) {
@@ -26,11 +27,19 @@ geozzy.userSessionComponents.userRegisterView = Backbone.View.extend({
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
-
+    that.el = "#registerModal";
+    that.$el = $(that.el);
+    that.delegateEvents();
   },
   closeRegisterModal: function() {
     var that = this;
     $("#registerModal").modal('hide');
+  },
+  abortRegisterModal: function() {
+    var that = this;
+    if( that.userSessionParent.abortCallback ){
+      that.userSessionParent.abortCallback();
+    }
   },
   initialize: function( opts ) {
     var that = this;

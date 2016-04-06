@@ -16,8 +16,7 @@ geozzy.userSessionComponents.userRegisterOkView = Backbone.View.extend({
     $('body').append( that.modalTemplate({ 'modalId': 'registerOkModal', 'modalTitle': 'Register' }) );
     $("#registerOkModal .modal-body").html( that.userRegisterOkTemplate() );
     $("#registerOkModal").modal({
-      'show' : true,
-      'backdrop' : 'static'
+      'show' : true
     });
     $("#registerOkModal").on('hidden.bs.modal', function (e) {
       e.target.remove();

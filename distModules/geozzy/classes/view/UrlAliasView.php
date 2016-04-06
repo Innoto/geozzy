@@ -131,11 +131,11 @@ class UrlAliasView extends View
       $elemModel = new UrlAliasModel( $valuesArray );
       $elemModel->save();
 
-      echo $form->jsonFormOk();
+      echo $form->getJsonOk();
     }
     else {
       $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
-      echo $form->jsonFormError();
+      echo $form->getJsonError();
     }
 
   } // function actionForm()

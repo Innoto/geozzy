@@ -7,7 +7,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
 
 
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtAccommodationController::__construct' );
 
     $this->numericFields = array( 'singleRooms', 'doubleRooms', 'familyRooms', 'beds', 'averagePrice' );
 
@@ -16,7 +15,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
 
 
   public function getRExtData( $resId = false ) {
-    //error_log( "RExtAccommodationController: getRExtData( $resId )" );
     $rExtData = false;
 
     if( $resId === false ) {
@@ -41,7 +39,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
       }
     }
 
-    // error_log( 'RExtAccommodationController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
@@ -50,7 +47,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     Defino el formulario
    */
   public function manipulateForm( FormController $form ) {
-    //error_log( "RExtAccommodationController: manipulateForm()" );
 
     $rExtFieldNames = array();
 
@@ -166,7 +162,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
 
 
   public function getFormBlockInfo( FormController $form ) {
-    //error_log( "RExtAccommodationController: getFormBlockInfo()" );
 
     $formBlockInfo = array(
       'template' => false,
@@ -175,7 +170,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -201,7 +195,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( FormController $form ) {
-    //error_log( "RExtAccommodationController: resFormRevalidate()" );
   }
 
   /**
@@ -209,14 +202,13 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     Iniciar transaction
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    //error_log( "RExtAccommodationController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
+      //$numericFields = array( 'averagePrice', 'capacity' );
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      // error_log( 'NEW rExtAccommodation: ' . print_r( $valuesArray, true ) );
       $rExtModel = new AccommodationModel( $valuesArray );
       if( $rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
@@ -245,7 +237,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     Finalizar transaction
    */
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    //error_log( "RExtAccommodationController: resFormSuccess()" );
   }
 
 
@@ -253,7 +244,6 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    //error_log( "RExtAccommodationController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,
