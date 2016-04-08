@@ -52,7 +52,7 @@ class TestRouteView extends View
 
     //var_dump( filetype('/home/pblanco/Descargas/Felechosa_final.kml') );
 
-    $filePath = '/home/pblanco/Descargas/Felechosa_final.kml';
+    $filePath = '/home/pblanco/Descargas/Felechosa_final.gpx';
 
     $fnSplited = explode( '.', $filePath );
     /*array_pop( $fnSplited )*/
@@ -71,8 +71,6 @@ class TestRouteView extends View
     catch(Exception $e) {
         echo $e->getMessage();
     }
-
-
 
 
     ?>
@@ -98,22 +96,51 @@ class TestRouteView extends View
             var centro = <?php echo $centro;?>;
             var map;
             var recorrido = [ ];
+            var trackCircle = false;
 
             function findPoint(lat, lng) {
 
 
               $.each(recorrido, function(i,e){
 
-
-
                 if( e.lat.toFixed(4) == lat.toFixed(4) && e.lng.toFixed(4) == lng.toFixed(4) ) {
-                  console.log('altitude',puntos[e.id][2].toFixed(0) + ' M' )
-                  return false;
+                  console.log(lat, e.lat , lng, e.lng)
+                  hoverRecorrido(e.id)
+//                  return false;
                 }
-
-
               });
             }
+
+
+            function hoverRecorrido( id ) {
+              console.log('altitude',puntos[id][2] + ' M' )
+
+              if( trackCircle ) {
+
+                trackCircle.setMap(null);
+              }
+              var scale = Math.pow(2, map.getZoom());
+
+
+
+              trackCircle = new google.maps.Circle({
+                  center: {lat: puntos[id][0] , lng: puntos[id][1]},
+                  radius: 900000/scale,
+                  strokeWeight:0,
+                  fillColor: "#FF0000",
+                  fillOpacity: 1,
+                  map: map
+              });
+            }
+
+            function outRecorrido( ) {
+
+              if( trackCircle ) {
+                trackCircle.setMap(null);
+              }
+
+            }
+
 
 
             function initMap() {
@@ -149,18 +176,24 @@ class TestRouteView extends View
               var recorridoPolyline = new google.maps.Polyline({
                 path: recorrido,
                 geodesic: true,
-                strokeColor: '#FF0000',
+                strokeColor: '#000',
                 strokeOpacity: 1.0,
                 strokeWeight: 3
               });
 
               recorridoPolyline.setMap(map);
               recorridoPolylineBK.setMap(map)
+
               recorridoPolylineBK.addListener('mouseover', function(ev){
                 findPoint(ev.latLng.lat(), ev.latLng.lng())
-                //findPoint(ev);
-
               });
+/*
+              recorridoPolylineBK.addListener('mouseleave', function(ev){
+                outRecorrido();
+              });
+*/
+
+
 
 
             }
