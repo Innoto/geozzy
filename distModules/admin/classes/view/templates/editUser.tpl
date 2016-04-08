@@ -16,7 +16,6 @@
 <div class="row">
   <div class="col-md-6">
 
-    {$userFormFields.login}
     {$userFormFields.email}
     {$userFormFields.repeatEmail}
     {$userFormFields.name}
