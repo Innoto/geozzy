@@ -8,7 +8,10 @@ class rextRoutes extends Module {
   public $version = 1.0;
 
 
-  public $models = array();
+
+  public $models = array(
+    'RExtRoutesModel'
+  );
 
   public $taxonomies = array(
     'routeCircuitType' => array(
@@ -45,10 +48,15 @@ class rextRoutes extends Module {
   );
 
   public $includesCommon = array(
+    /*'controller/RExtRoutesController.php',
+    'model/RExtRoutesModel.php'*/
   );
 
 
   public function __construct() {
+
+    $this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
+
   }
 
 
