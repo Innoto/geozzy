@@ -210,7 +210,7 @@ class GeozzyUserView extends View
         'translate' => true
       ),
       'submit' => array(
-        'params' => array( 'type' => 'submit', 'value' => __('Save account') )
+        'params' => array( 'type' => 'submit', 'value' => __('Save') )
       )
     );
 
@@ -228,13 +228,32 @@ class GeozzyUserView extends View
     $form->saveToSession();
 
     //RESOURCE PROFILE
+    if( Cogumelo::getSetupValue('mod:geozzyUser:profile') != "" ){
+      $rtypeName = Cogumelo::getSetupValue('mod:geozzyUser:profile');
+      $userRExt = new rextUserProfileModel();
+      $resUser = $userRExt->listItems(array('filters' => array('id' => $userSess['data']['id'] )))->fetch();
 
+      $recursoData = false;
+      $rTypeItem = false;
 
+      $rtypeControl = new ResourcetypeModel();
+      $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'idName' => $rtypeName ) ) )->fetch();
+      $recursoData['rTypeId'] = $rTypeItem->getter('id');
+      $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
+      $resCtrl = new ResourceController();
 
-
-
+      if($resUser){
+        $recursoData['id'] = $resUser->getter('resource');
+        $formBlockInfo = $resCtrl->getFormBlockInfo( "resProfileEdit", "/admin/resource/sendresource", $recursoData );
+        $profileBlock = $formBlockInfo['template']['formProfile'];
+      }else{
+        $formBlockInfo = $resCtrl->getFormBlockInfo( "resProfileCreate", "/admin/resource/sendresource", $recursoData );
+        $profileBlock = $formBlockInfo['template']['formProfile'];
+      }
+    }
 
     $template = new Template( $this->baseDir );
+    $template->assign("profileBlock", $profileBlock );
     $template->assign("userBaseFormOpen", $form->getHtmpOpen());
     $template->assign("userBaseFormFields", $form->getHtmlFieldsArray());
     $template->assign("userBaseFormClose", $form->getHtmlClose());

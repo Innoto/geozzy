@@ -288,7 +288,12 @@ input[type="checkbox"]{
 }
 
 //LABEL
-label { display: block; }
+label { display: block;
+  &.formError{
+    margin: 5px 0px;
+    border-radius: 0;
+  }
+}
 
 /*PANEL BASE*/
 .panel{

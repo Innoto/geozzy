@@ -6,7 +6,7 @@ class rtypeAppUser extends Module {
 
   public $name = 'rtypeAppUser';
   public $version = 1.0;
-  public $rext = array( 'rextAppUser', 'rextContact');
+  public $rext = array( 'rextUserProfile', 'rextContact');
 
   public $dependences = array();
 

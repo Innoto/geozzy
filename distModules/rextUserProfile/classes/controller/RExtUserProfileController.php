@@ -1,7 +1,7 @@
 <?php
 
 
-class RExtAppUserController extends RExtController implements RExtInterface {
+class RExtUserProfileController extends RExtController implements RExtInterface {
 
   public $numericFields = false;
 
@@ -11,7 +11,7 @@ class RExtAppUserController extends RExtController implements RExtInterface {
 
     // $this->numericFields = array( 'averagePrice' );
 
-    parent::__construct( $defRTypeCtrl, new rextAppUser(), 'rExtAppUser_' );
+    parent::__construct( $defRTypeCtrl, new rextUserProfile(), 'rExtAppUser_' );
   }
 
 
@@ -23,7 +23,7 @@ class RExtAppUserController extends RExtController implements RExtInterface {
       $resId = $this->defResCtrl->resObj->getter('id');
     }
 
-    $rExtModel = new RExtAppUserModel();
+    $rExtModel = new RExtUserProfileModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
     $rExtObj = $rExtList->fetch();
 
@@ -146,7 +146,7 @@ class RExtAppUserController extends RExtController implements RExtInterface {
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
       // error_log( 'NEW RExtAppUserModel: ' . print_r( $valuesArray, true ) );
-      $this->rExtModel = new rextAppUserModel( $valuesArray );
+      $this->rExtModel = new rextUserProfileModel( $valuesArray );
       if( $this->rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
@@ -222,7 +222,7 @@ class RExtAppUserController extends RExtController implements RExtInterface {
         }
       }
       $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextAppUser' );
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextUserProfile' );
     }
 
     return $template;
@@ -246,7 +246,7 @@ class RExtAppUserController extends RExtController implements RExtInterface {
 
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
 
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextAppUser' );
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextUserProfile' );
 
       $rExtViewBlockInfo['template'] = array( 'full' => $template );
     }

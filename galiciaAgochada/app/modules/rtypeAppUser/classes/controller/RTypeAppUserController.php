@@ -1,5 +1,5 @@
 <?php
-rextAppUser::autoIncludes();
+rextUserProfile::autoIncludes();
 
 
 class RTypeAppUserController extends RTypeController implements RTypeInterface {
@@ -12,8 +12,7 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
 
 
   private function newRExtContr() {
-
-    return new RExtAppUserController( $this );
+    return new RExtUserProfileController( $this );
   }
 
   /**
@@ -25,7 +24,7 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
     $rTypeExtNames = array();
     $rTypeFieldNames = array();
 
-    $rTypeExtNames[] = 'rextAppUser';
+    $rTypeExtNames[] = 'rextUserProfile';
     $this->rExtCtrl = $this->newRExtContr();
     $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
 
@@ -63,9 +62,9 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
 
-    $this->appUserCtrlappUserCtrl = new RExtAppUserController( $this );
-    $fileViewInfo = $this->appUserCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->appUserCtrl->rExtName ] = $fileViewInfo;
+    $this->extUserProfileCtrl = new RExtUserProfileController( $this );
+    $fileViewInfo = $this->extUserProfileCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->extUserProfileCtrl->rExtName ] = $fileViewInfo;
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -78,8 +77,6 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
       $form->multilangFieldNames( 'shortDescription' ),
       $form->multilangFieldNames( 'mediumDescription' )
     );
-    $formFieldsNames[] = 'externalUrl';
-    $formFieldsNames[] = $this->appUserCtrl->addPrefix( 'author' );
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
@@ -156,7 +153,6 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['file'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 
@@ -232,11 +228,11 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
     $urlBlock = $this->rExtCtrl->getViewBlock( $resBlock );
 
     if( $urlBlock ) {
-      $template->addToBlock( 'rextAppUser', $urlBlock );
-      $template->assign( 'rExtBlockNames', array( 'rextAppUser' ) );
+      $template->addToBlock( 'rextUserProfile', $urlBlock );
+      $template->assign( 'rExtBlockNames', array( 'rextUserProfile' ) );
     }
     else {
-      $template->assign( 'rextAppUser', false );
+      $template->assign( 'rextUserProfile', false );
       $template->assign( 'rExtBlockNames', false );
     }
 
@@ -269,12 +265,12 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
     if( $rExtViewInfo ) {
       if( $rExtViewInfo['template'] ) {
         foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextAppUserBlock', $templateBlock );
+          $template->addToBlock( 'rextUserProfileBlock', $templateBlock );
         }
       }
     }
     else {
-      $template->assign( 'rextAppUserBlock', false );
+      $template->assign( 'rextUserProfileBlock', false );
     }
 
     $viewBlockInfo['template'] = array( 'full' => $template );
