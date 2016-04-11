@@ -3,19 +3,60 @@
 
 interface RExtInterface {
 
-  // Defino el formulario
+  /**
+   * Carga los datos de los elementos de la extension
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   */
+  public function getRExtData( $resId );
+  // @todo Esto ten que controlar os idiomas
+
+  /**
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
+   */
   public function manipulateForm( FormController $form );
 
-  // Validaciones extra previas a usar los datos del recurso base
+  /**
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
+  public function getFormBlockInfo( FormController $form );
+
+  /**
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
+   */
   public function resFormRevalidate( FormController $form );
 
-  // Creación-Edición-Borrado de los elementos del recurso base. Iniciar transaction
+  /**
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
   public function resFormProcess( FormController $form, ResourceModel $resource );
 
-  // Enviamos el OK-ERROR a la BBDD y al formulario. Finalizar transaction
+  /**
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
   public function resFormSuccess( FormController $form, ResourceModel $resource );
 
-  // Preparamos los datos para visualizar el Recurso
+  /**
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
+   */
   public function getViewBlockInfo();
 
 } // interface RExtInterface
@@ -31,6 +72,8 @@ class RExtController {
   public $rExtModule = null;
   public $rExtModel = null;
   public $taxonomies = false;
+
+  public $numericFields = false;
 
 
   public function __construct( $defRTypeCtrl, $rExtModule, $prefix = false ){
@@ -49,6 +92,91 @@ class RExtController {
     }
   }
 
+  /**
+   * Carga los datos de los elementos de la extension
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   */
+  public function getRExtData( $resId = false ) {
+    $rExtData = false;
+
+    // @todo Esto ten que controlar os idiomas
+
+    return $rExtData;
+  }
+
+  /**
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
+  public function getFormBlockInfo( FormController $form ) {
+    $formBlockInfo = array(
+      'template' => false,
+      'data' => false,
+      'dataForm' => false
+    );
+
+    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
+
+    $formBlockInfo['dataForm'] = array(
+      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
+      'formFields' => $form->getHtmlFieldsAndGroups(),
+    );
+
+    if( $form->getFieldValue( 'id' ) ) {
+      $formBlockInfo['data'] = $this->getRExtData();
+    }
+
+    $templates['full'] = new Template();
+    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    $templates['full']->assign( 'rExtName', $this->rExtName );
+    $templates['full']->assign( 'rExt', $formBlockInfo );
+
+    $formBlockInfo['template'] = $templates;
+
+    return $formBlockInfo;
+  }
+
+  /**
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
+   */
+  public function resFormRevalidate( FormController $form ) {
+  }
+
+  /**
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
+  }
+
+  /**
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
+   */
+  public function getViewBlockInfo() {
+    $rExtViewBlockInfo = array(
+      'template' => false,
+      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
+    );
+
+    return $rExtViewBlockInfo;
+  }
+
+
+  /*************
+    Utilidades
+  *************/
 
   public function getRExtFormValues( $formValuesArray, $numericFields = false ) {
     // error_log( "RExtController: getRExtFormValues()" );
