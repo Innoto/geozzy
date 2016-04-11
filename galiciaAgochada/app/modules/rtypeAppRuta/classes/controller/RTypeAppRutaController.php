@@ -116,8 +116,6 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
       $form->multilangFieldNames( 'content' )
     );
     $formFieldsNames[] = 'externalUrl';
-    $formFieldsNames[] = 'topics';
-    $formFieldsNames[] = 'starred';
     $formFieldsNames[] = 'rTypeIdName';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 

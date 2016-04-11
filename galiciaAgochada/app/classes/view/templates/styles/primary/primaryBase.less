@@ -193,7 +193,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 
 }//footerContent
-
+/*Common Fav Styles*/
 .commonFav{
   list-style: none;
   color: @gzzColor-fav;
@@ -210,17 +210,54 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     .fa-heart-o{ display: none; }
   }
 }
+/*Common Modal Styles*/
+.modal{
+  .modal-dialog{
+    margin: 120px auto;
+    .modal-content{
+      border: 5px solid @gzzColor-bck-6;
+      box-shadow: none;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+      h3{
+        font-size: 22px;
+        margin-top: 5px;
+      }
+      h4{
+        font-size: 18px;
+        margin-top: 5px;
+      }
+      p{
+        font-size: 14px;
+      }
+      .modal-header{
+        background: @gzzColor-bck-9;
+        color: @gzzColor-text-light;
+        h3{ text-transform: uppercase; }
+        button.close{
+          color: @gzzColor-text-light;
+          font-size: 30px;
+        }
+      }
+      .modal-body{
+        padding: 20px auto;
+      }//.modal-body
+    }//.modal-content
+  }//.modal-dialog
+} //.modal
+
 .containerGzzy{
   padding: 0 60px;
 }
-
+/*Common Anchor Styles*/
 .anchor{
   display: block;
   height: @headerHeight;
   margin-top: -@headerHeight;
   visibility: hidden;
 }
-
+/*Common Btn Styles*/
 .btn{
   font-size: 14px;
   font-weight: 500;
@@ -229,4 +266,40 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-border-radius: 25px;
   border-radius: 25px;
   text-transform: uppercase;
+}
+
+/*Common Element Form Styles*/
+form{
+  margin: 10px 0;
+  .cgmMForm-wrap{
+    margin:10px 0px;
+    .clearfix;
+
+    label{
+      font-weight: 600;
+      &.formError{
+        margin: 5px 0px;
+        border-radius: 0;
+      }
+    }
+    input{}
+    input[type="submit"],
+    .cgmMForm-field-submit input{
+      .btn;
+      .btn-primary;
+      .pull-right;
+    }
+  }
+}
+/*Columns*/
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
 }
