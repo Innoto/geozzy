@@ -1,114 +1,58 @@
 <?php
-rextAccommodation::autoIncludes();
-rextContact::autoIncludes();
-rextMapDirections::autoIncludes();
-rextAppZona::autoIncludes();
-rextSocialNetwork::autoIncludes();
 
 class RTypeAppHotelController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-
     parent::__construct( $defResCtrl, new rtypeAppHotel() );
-
   }
 
 
   /**
-    Defino el formulario
-   **/
+   * Alteramos el objeto form. del recursoBase para adaptarlo a las necesidades del RType
+   *
+   * @param $form FormController Objeto form. del recursoBase
+   *
+   * @return array $rTypeFieldNames
+   */
   public function manipulateForm( FormController $form ) {
 
-    $rTypeExtNames = array();
-    $rTypeFieldNames = array();
+    // Lanzamos los manipulateForm de las extensiones
+    parent::manipulateForm( $form );
 
-    // Extensión alojamiento
-    $rTypeExtNames[] = 'rextAccommodation';
-    $this->accomCtrl = new RExtAccommodationController( $this );
-    $rExtFieldNames = $this->accomCtrl->manipulateForm( $form );
 
-    // Elimino los campos de la extensión que no quiero usar
-    foreach( $rExtFieldNames as $i => $fieldName ) {
-      if( $fieldName == 'singleRooms' || $fieldName == 'doubleRooms' || $fieldName == 'tripleRooms' || $fieldName == 'familyRooms'
-          || $fieldName == 'beds' || $fieldName == 'accommodationBrand' || $fieldName == 'accommodationUsers' ) {
-        $form->removeField( 'rExtAccommodation_'.$rExtFieldNames[$i] );
-      }
-    }
+    // Elimino los campos de rextAccommodation que no quiero usar
+    $accomCtrl = new RExtAccommodationController( $this );
+    $rExtAccommodationRemove = $accomCtrl->prefixArray( array( 'singleRooms', 'doubleRooms',
+      'tripleRooms', 'familyRooms', 'beds', 'accommodationBrand', 'accommodationUsers' ) );
+    $form->removeField( $rExtAccommodationRemove );
 
     // cambiamos el tipo de topics y starred para que no se muestren
-    $form->setFieldParam('topics', 'type', 'reserved');
-    $form->setFieldParam('starred', 'type', 'reserved');
-    $form->removeValidationRules('topics');
-    $form->removeValidationRules('starred');
-
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-    // Extensión contacto
-    $rTypeExtNames[] = 'rextContact';
-    $this->contactCtrl = new RExtContactController( $this );
-    $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-    // Extensión redes sociales
-    $rTypeExtNames[] = 'rextSocialNetwork';
-    $this->socialCtrl = new RExtSocialNetworkController( $this );
-    $rExtFieldNames = $this->socialCtrl->manipulateForm( $form );
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-    // Extensión Zona
-    $rTypeExtNames[] = 'rextAppZona';
-    $this->zonaCtrl = new RExtAppZonaController( $this );
-    $rExtFieldNames = $this->zonaCtrl->manipulateForm( $form );
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+    $form->setFieldParam( 'topics', 'type', 'reserved' );
+    $form->setFieldParam( 'starred', 'type', 'reserved' );
+    $form->removeValidationRules( 'topics' );
+    $form->removeValidationRules( 'starred' );
 
     // Altero campos del form del recurso "normal"
     $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
-
-    // Añadir validadores extra
-    // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
-
-    return( $rTypeFieldNames );
   } // function manipulateForm()
 
 
-
+  /**
+   * Preparamos los datos para visualizar el formulario del Recurso
+   *
+   * @param $form FormController
+   *
+   * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'ext' => array }
+   */
   public function getFormBlockInfo( FormController $form ) {
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false,
-      'ext' => array()
-    );
+    // Cargamos la informacion del form, los datos y lanzamos los getFormBlockInfo de las extensiones
+    $formBlockInfo = parent::getFormBlockInfo( $form );
 
-    $formBlockInfo['dataForm'] = array(
-      'formOpen' => $form->getHtmpOpen(),
-      'formFieldsArray' => $form->getHtmlFieldsArray(),
-      'formFieldsHiddenArray' => array(),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-      'formClose' => $form->getHtmlClose(),
-      'formValidations' => $form->getScriptCode()
-    );
 
-    if( $resId = $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
-    }
-
-    $this->accomCtrl = new RExtAccommodationController( $this );
-    $accomViewInfo = $this->accomCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->accomCtrl->rExtName ] = $accomViewInfo;
-
-    $this->contactCtrl = new RExtContactController( $this );
-    $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
-
-    $this->socialCtrl = new RExtSocialNetworkController( $this );
-    $socialViewInfo = $this->socialCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
-
-    $this->zonaCtrl = new RExtAppZonaController( $this );
-    $zonaViewInfo = $this->zonaCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->zonaCtrl->rExtName ] = $zonaViewInfo;
+    // Necesito estos controles
+    $accomCtrl = new RExtAccommodationController( $this );
+    $zonaCtrl = new RExtAppZonaController( $this );
 
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
@@ -150,33 +94,38 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     );
     $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
 
-
     // TEMPLATE panel reservas
     $templates['reservation'] = new Template();
     $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['reservation']->assign( 'title', __( 'Reservation' ) );
     $templates['reservation']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->accomCtrl->prefixArray(array( 'reservationURL', 'reservationPhone', 'reservationEmail' ));
+    $formFieldsNames = $accomCtrl->prefixArray(array( 'reservationURL', 'reservationPhone', 'reservationEmail' ));
     $templates['reservation']->assign( 'formFieldsNames', $formFieldsNames );
+
 
     // TEMPLATE panel contacto
     $templates['location'] = new Template();
     $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
     $templates['location']->assign( 'title', __( 'Location' ) );
     $templates['location']->assign( 'res', $formBlockInfo );
-    $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
+    $templates['location']->assign( 'directions', $form->multilangFieldNames( 'rExtContact_directions' ) );
+
 
     // TEMPLATE panel localización
     $templates['contact'] = new Template();
     $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['contact']->assign( 'title', __( 'Contact' ) );
-    $templates['contact']->setBlock( 'blockContent', $contactViewInfo['template']['basic'] );
+    //$templates['contact']->setFragment( 'blockContent', $contactViewInfo['template']['basic'] );
+    $templates['contact']->setFragment( 'blockContent', $formBlockInfo['ext']['rextContact']['template']['basic'] );
+
 
     // TEMPLATE panel social network
     $templates['social'] = new Template();
     $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['social']->assign( 'title', __( 'Social Networks' ) );
-    $templates['social']->setBlock( 'blockContent', $socialViewInfo['template']['basic'] );
+    //$templates['social']->setFragment( 'blockContent', $socialViewInfo['template']['basic'] );
+    $templates['social']->setFragment( 'blockContent', $formBlockInfo['ext']['rextSocialNetwork']['template']['basic'] );
+
 
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();
@@ -207,9 +156,9 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['categorization']->assign( 'title', __( 'Categorization' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->accomCtrl->prefixArray(array( 'accommodationType', 'accommodationCategory',
+    $formFieldsNames = $accomCtrl->prefixArray(array( 'accommodationType', 'accommodationCategory',
       'averagePrice', 'accommodationFacilities', 'accommodationServices'));
-    $formFieldsNames[] = $this->zonaCtrl->addPrefix('rextAppZonaType');
+    $formFieldsNames[] = $zonaCtrl->addPrefix('rextAppZonaType');
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel cuadro informativo
@@ -218,27 +167,28 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     $templates['info']->assign( 'title', __( 'Information' ) );
     $templates['info']->assign( 'res', $formBlockInfo );
 
+
     $resourceType = new ResourcetypeModel();
     $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
-    if ($type){
+    if( $type ) {
       $templates['info']->assign( 'rType', $type->getter('name_es') );
     }
 
     $timeCreation = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeCreation']));
 
     $templates['info']->assign( 'timeCreation', $timeCreation );
-    if (isset($formBlockInfo['data']['userUpdate'])){
+    if( isset($formBlockInfo['data']['userUpdate']) ) {
       $userModel = new UserModel();
       $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
       $userUpdateName = $userUpdate->getter('name');
       $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
       $templates['info']->assign( 'timeLastUpdate', $timeLastUpdate.' ('.$userUpdateName.')' );
     }
-    if (isset($formBlockInfo['data']['averageVotes'])){
+    if( isset($formBlockInfo['data']['averageVotes']) ) {
       $templates['info']->assign( 'averageVotes', $formBlockInfo['data']['averageVotes']);
     }
     /* Temáticas */
-    if (isset($formBlockInfo['data']['topicsName'])){
+    if( isset($formBlockInfo['data']['topicsName']) ) {
       $templates['info']->assign( 'resourceTopicList', $formBlockInfo['data']['topicsName']);
     }
     $templates['info']->assign( 'res', $formBlockInfo );
@@ -249,19 +199,20 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
-    $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['social'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['reservation'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['multimedia'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['collections'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['seo'] );
     // COL4
-    $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['image'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['categorization'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
+
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();
@@ -276,98 +227,48 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
 
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
-   **/
-  public function resFormRevalidate( FormController $form ) {
-
-    if( !$form->existErrors() ) {
-      $this->accomCtrl = new RExtAccommodationController( $this );
-      $this->accomCtrl->resFormRevalidate( $form );
-
-      $this->contactCtrl = new RExtContactController( $this );
-      $this->contactCtrl->resFormRevalidate( $form );
-
-      $this->socialCtrl = new RExtSocialNetworkController( $this );
-      $this->socialCtrl->resFormRevalidate( $form );
-
-      $this->zonaCtrl = new RExtAppZonaController( $this );
-      $this->zonaCtrl->resFormRevalidate( $form );
-    }
-
-  }
-
-  /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
-   **/
-  public function resFormProcess( FormController $form, ResourceModel $resource ) {
-
-    if( !$form->existErrors() ) {
-      $this->accomCtrl = new RExtAccommodationController( $this );
-      $this->accomCtrl->resFormProcess( $form, $resource );
-
-      $this->contactCtrl = new RExtContactController( $this );
-      $this->contactCtrl->resFormProcess( $form, $resource );
-
-      $this->socialCtrl = new RExtSocialNetworkController( $this );
-      $this->socialCtrl->resFormProcess( $form, $resource );
-
-      $this->zonaCtrl = new RExtAppZonaController( $this );
-      $this->zonaCtrl->resFormProcess( $form, $resource );
-    }
-  }
-
-  /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
-   **/
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-
-    $this->accomCtrl = new RExtAccommodationController( $this );
-    $this->accomCtrl->resFormSuccess( $form, $resource );
-
-    $this->contactCtrl = new RExtContactController( $this );
-    $this->contactCtrl->resFormSuccess( $form, $resource );
-
-    $this->socialCtrl = new RExtSocialNetworkController( $this );
-    $this->socialCtrl->resFormSuccess( $form, $resource );
-
-    $this->zonaCtrl = new RExtAppZonaController( $this );
-    $this->zonaCtrl->resFormSuccess( $form, $resource );
-  }
+   * Validaciones extra previas a usar los datos del recurso
+   *
+   * @param $form FormController Objeto form. del recurso
+   */
+  // parent::resFormRevalidate( $form );
 
 
   /**
-    Preparamos los datos para visualizar el Recurso
-   **/
+   * Creación-Edicion-Borrado de los elementos del recurso segun el RType
+   *
+   * @param $form FormController Objeto form. del recurso
+   * @param $resource ResourceModel Objeto form. del recurso
+   */
+  // parent::resFormProcess( $form, $resource );
+
+
+  /**
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  // parent::resFormSuccess( $form, $resource );
+
+
+
+  /**
+   * Preparamos los datos para visualizar el Recurso con sus cambios y sus extensiones
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
+   */
   public function getViewBlockInfo() {
 
-    $viewBlockInfo = array(
-      'template' => false,
-      'data' => $this->defResCtrl->getResourceData( false, true ),
-      'ext' => array()
-    );
+    // Preparamos los datos para visualizar el Recurso con sus extensiones
+    $viewBlockInfo = parent::getViewBlockInfo();
 
-    $template = new Template();
+
+    // $template = new Template();
+    $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppHotel' );
 
-    $this->accomCtrl = new RExtAccommodationController( $this );
-    $accomViewInfo = $this->accomCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->accomCtrl->rExtName ] = $accomViewInfo;
-
-    $this->contactCtrl = new RExtContactController( $this );
-    $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
-
-    $this->mapDirCtrl = new RExtMapDirectionsController( $this );
-    $mapDirViewInfo = $this->mapDirCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->mapDirCtrl->rExtName ] = $mapDirViewInfo;
-
-    $this->socialCtrl = new RExtSocialNetworkController( $this );
-    $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
-
-    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+    // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $viewBlockInfo['data'][ 'id' ] );
 
@@ -376,10 +277,10 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     if ($collectionArrayInfo){
       foreach( $collectionArrayInfo as $key => $collectionInfo ) {
         if ($collectionInfo['col']['collectionType'] == 'multimedia'){ // colecciones multimedia
-            $multimediaArray[$key] = $collectionInfo;
+          $multimediaArray[$key] = $collectionInfo;
         }
         else{ // resto de colecciones
-            $collectionArray[$key] = $collectionInfo;
+          $collectionArray[$key] = $collectionInfo;
         }
       }
 
@@ -387,7 +288,7 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
         $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $collectionType = 'multimedia' );
         if ($arrayMultimediaBlock){
           foreach( $arrayMultimediaBlock as $multimediaBlock ) {
-            $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+            $template->addToFragment( 'multimediaGalleries', $multimediaBlock );
           }
         }
       }
@@ -396,7 +297,7 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
         $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $collectionType = 'base'  );
         if ($arrayCollectionBlock){
           foreach( $arrayCollectionBlock as $collectionBlock ) {
-            $template->addToBlock( 'collections', $collectionBlock );
+            $template->addToFragment( 'collections', $collectionBlock );
           }
         }
       }
@@ -431,50 +332,8 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     }
     $template->assign('allFacilities', $allFacilities);
 
-    if( $accomViewInfo ) {
-      if( $accomViewInfo['template'] ) {
-        foreach( $accomViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextAccommodationBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextAccommodationBlock', false );
-    }
 
-    if( $contactViewInfo ) {
-      if( $contactViewInfo['template'] ) {
-        foreach( $contactViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextContactBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextContactBlock', false );
-    }
-
-    if( $mapDirViewInfo ) {
-      if( $mapDirViewInfo['template'] ) {
-        foreach( $mapDirViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextMapDirectionsBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextMapDirectionsBlock', false );
-    }
-
-    if( $socialViewInfo ) {
-      if( $socialViewInfo['template'] ) {
-        foreach( $socialViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextSocialNetworkBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextSocialNetworkBlock', false );
-    }
-
+    // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
     $viewBlockInfo['template'] = array( 'full' => $template );
 
     return $viewBlockInfo;

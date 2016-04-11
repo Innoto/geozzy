@@ -45,7 +45,16 @@ class rextRoutes extends Module {
       "installer" => "composer",
       "includes" => array("geoPHP.inc")
     ),
+    array(
+      "id" => "dygraphs",
+      "params" => array("dygraphs#v1.1.0"),
+      "installer" => "bower",
+      "includes" => array("dygraph-combined.js")
+    )
   );
+
+
+
 
   public $includesCommon = array(
     /*'controller/RExtRoutesController.php',

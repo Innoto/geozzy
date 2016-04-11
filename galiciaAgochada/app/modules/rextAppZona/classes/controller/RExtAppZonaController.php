@@ -3,14 +3,9 @@
 
 class RExtAppZonaController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
-
-
   public function __construct( $defRTypeCtrl ){
-    error_log( 'RExtAppZonaController::__construct' );
-
+    // error_log( 'RExtAppZonaController::__construct' );
     // $this->numericFields = array( 'averagePrice' );
-
     parent::__construct( $defRTypeCtrl, new rextAppZona(), 'rExtAppZona_' );
   }
 
@@ -118,7 +113,7 @@ class RExtAppZonaController extends RExtController implements RExtInterface {
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -178,7 +173,7 @@ class RExtAppZonaController extends RExtController implements RExtInterface {
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    error_log( "RExtAppZonaController: getViewBlockInfo()" );
+    // error_log( "RExtAppZonaController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = array(
       'template' => false,

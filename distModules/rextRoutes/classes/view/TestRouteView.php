@@ -50,9 +50,8 @@ class TestRouteView extends View
   public function routeConvert() {
     rextRoutes::autoIncludes();
 
-    //var_dump( filetype('/home/pblanco/Descargas/Felechosa_final.kml') );
-
-    $filePath = '/home/pblanco/Descargas/Felechosa_final.gpx';
+    //$filePath = '/home/pblanco/Descargas/Felechosa_final.gpx';
+    $filePath = '/home/pblanco/Descargas/Incio_oural_.gpx';
 
     $fnSplited = explode( '.', $filePath );
     /*array_pop( $fnSplited )*/
@@ -64,6 +63,7 @@ class TestRouteView extends View
       echo "<br>--------------------<br>";
       var_dump( json_encode( $this->extractPoints( $polygon )) );*/
       $cent = $polygon->getCentroid();
+
 
       $centro = json_encode( [ $cent->y(), $cent->x() ]);
       $puntos = json_encode( $this->extractPoints( $polygon ));
@@ -83,10 +83,12 @@ class TestRouteView extends View
           </style>
 
           <script src="https://code.jquery.com/jquery-1.12.3.min.js"  ></script>
+          <script src="/vendor/bower/dygraphs/dygraph-combined.js"  ></script>
+
         </head>
         <body>
           <div id="map"></div>
-
+          <div id="graph" style="position:absolute;width:400px;height:150px;bottom:30px;left:30px;"></div>
           <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"  async defer></script>
 
 
@@ -95,25 +97,37 @@ class TestRouteView extends View
             var puntos = <?php echo $puntos;?>;
             var centro = <?php echo $centro;?>;
             var map;
-            var recorrido = [ ];
             var trackCircle = false;
+            var grafico = false;
 
             function findPoint(lat, lng) {
 
+              var lessDistance = false;
+              var lessDistanceElementId = false;
 
-              $.each(recorrido, function(i,e){
+              $.each(puntos, function(i,e){
 
-                if( e.lat.toFixed(4) == lat.toFixed(4) && e.lng.toFixed(4) == lng.toFixed(4) ) {
-                  console.log(lat, e.lat , lng, e.lng)
-                  hoverRecorrido(e.id)
-//                  return false;
+                var currentDistance =  Math.pow( e[0] - lat, 2 ) + Math.pow( e[1] - lng, 2 )  ;
+
+
+                if( lessDistance == false || lessDistance > currentDistance ) {
+                  lessDistance = currentDistance;
+                  lessDistanceElementId = i ;
                 }
+
+
               });
+
+
+              if( lessDistanceElementId ) {
+                hoverRecorrido( lessDistanceElementId );
+              }
             }
 
 
             function hoverRecorrido( id ) {
-              console.log('altitude',puntos[id][2] + ' M' )
+              //grafico.setSelection(id);
+              grafico.setSelection(id) ;
 
               if( trackCircle ) {
 
@@ -125,7 +139,7 @@ class TestRouteView extends View
 
               trackCircle = new google.maps.Circle({
                   center: {lat: puntos[id][0] , lng: puntos[id][1]},
-                  radius: 900000/scale,
+                  radius: 850000/scale,
                   strokeWeight:0,
                   fillColor: "#FF0000",
                   fillOpacity: 1,
@@ -150,6 +164,7 @@ class TestRouteView extends View
               });
 
 
+              var recorrido = [ ];
 
               $.each(puntos, function(i,e){
               /*  var marker = new google.maps.Marker({
@@ -165,11 +180,18 @@ class TestRouteView extends View
               //console.log(recorrido)
 
 
-              var recorridoPolylineBK = new google.maps.Polyline({
+              var recorridoPolylineBK2 = new google.maps.Polyline({
                 path: recorrido,
                 geodesic: true,
                 strokeOpacity: 0,
-                strokeWeight: 50
+                strokeWeight: 20
+              });
+
+              var recorridoPolylineBK1 = new google.maps.Polyline({
+                path: recorrido,
+                geodesic: true,
+                strokeOpacity: 0,
+                strokeWeight: 10
               });
 
 
@@ -182,11 +204,19 @@ class TestRouteView extends View
               });
 
               recorridoPolyline.setMap(map);
-              recorridoPolylineBK.setMap(map)
+              recorridoPolylineBK1.setMap(map)
+              recorridoPolylineBK2.setMap(map)
 
-              recorridoPolylineBK.addListener('mouseover', function(ev){
+              recorridoPolylineBK2.addListener('mouseover', function(ev){
                 findPoint(ev.latLng.lat(), ev.latLng.lng())
               });
+              recorridoPolylineBK1.addListener('mouseover', function(ev){
+                findPoint(ev.latLng.lat(), ev.latLng.lng())
+              });
+              recorridoPolyline.addListener('mouseover', function(ev){
+                findPoint(ev.latLng.lat(), ev.latLng.lng())
+              });
+
 /*
               recorridoPolylineBK.addListener('mouseleave', function(ev){
                 outRecorrido();
@@ -194,7 +224,43 @@ class TestRouteView extends View
 */
 
 
+              var chartString = "step,Altitude\n";
+              $.each(puntos, function(i,e){
+                //if( typeof e[2] == 'undefined' ) {
+                  chartString += i + "," + e[2] + "\n";
+                //}
+                //else {
+                  //chartString += i + ",0\n";
+                //}
 
+              });
+
+
+
+              grafico = new Dygraph( document.getElementById("graph"),
+                chartString
+              );
+
+
+
+
+              grafico.updateOptions( {
+                annotationMouseOverHandler: function(annotation, point, dygraph, event) {
+                    alert('')
+                }
+              });
+
+              $("#graph").mousemove(function(e) {
+                  var seleccionado = grafico.getSelection();
+
+                  hoverRecorrido( seleccionado )
+
+              }).mouseleave(function(e) {
+                  var seleccionada = grafico.getSelection();
+                  outRecorrido();
+
+
+              });
 
             }
 

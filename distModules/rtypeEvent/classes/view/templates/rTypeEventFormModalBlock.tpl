@@ -5,27 +5,28 @@
     label { display: block; }
     .cgmMForm-field { max-width: none !important; }
   </style>
-  <script type="text/javascript" src="{$mediaJs}/module/admin/js/adminResourceTypeMultimedia.js"></script>
 
-  {$res.dataForm.formOpen}
+  <div class="eventModal">
+    {$res.dataForm.formOpen}
     {$res.dataForm.formFieldsArray.cgIntFrmId}
-  
+<!--    {$res.dataForm.formFieldsArray.id}
+    {$res.dataForm.formFieldsArray.rTypeId}-->
     {foreach $langAvailableIds as $lang}
       {$res.dataForm.formFieldsArray["title_$lang"]}
     {/foreach}
-    {$res.dataForm.formFieldsArray.rExtFile_author}
+    {foreach $langAvailableIds as $lang}
+      {$res.dataForm.formFieldsArray["mediumDescription_$lang"]}
+    {/foreach}
 
-    {$res.dataForm.formFieldsArray.rExtFile_file}
-    <label class="resImageMoreInfo">*{t}Files up to 5MB can be upload in JPG and PNG format{/t}</label>
+    {$rextEventBlock}
 
     {$res.dataForm.formFieldsArray.image}
     <label class="resImageMoreInfo">*{t}If not uploaded, an automatic thumbnail will be created{/t}</label>
 
     {$res.dataForm.formFieldsArray.submit}
-
-
-  {$res.dataForm.formClose}
-  {$res.dataForm.formValidations}
+    {$res.dataForm.formClose}
+    {$res.dataForm.formValidations}
+  </div>
 
 {/block}{*/content*}
 
