@@ -3,9 +3,6 @@
 
 class RExtViewController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
-
-
   public function __construct( $defRTypeCtrl ){
     // error_log( 'RExtViewController::__construct' );
     // $this->numericFields = array( 'averagePrice' );
@@ -111,7 +108,7 @@ class RExtViewController extends RExtController implements RExtInterface {
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
@@ -199,7 +196,7 @@ class RExtViewController extends RExtController implements RExtInterface {
     if( isset( $viewBlockInfo['ext'][ $this->rExtName ]['data']['viewAlternativeMode'] ) ) {
       $term = array_pop( $viewBlockInfo['ext'][ $this->rExtName ]['data']['viewAlternativeMode'] );
       $viewAlternativeMode = $term[ 'idName' ];
-      error_log( 'RExtViewController: alterViewBlockInfo: viewAlternativeMode: ' . $viewAlternativeMode );
+      error_log( 'RExtViewController->alterViewBlockInfo: viewAlternativeMode: ' . $viewAlternativeMode );
 
       if( strpos( $viewAlternativeMode, 'tpl' ) === 0 ) {
         if( strpos( $viewAlternativeMode, 'tplApp' ) !== 0 ) {
@@ -208,17 +205,17 @@ class RExtViewController extends RExtController implements RExtInterface {
         else {
           $newTplFile = 'rExtViewAlt'.substr( $viewAlternativeMode, 3 ).'.tpl';
         }
-        error_log( 'RExtViewController: alterViewBlockInfo: $newTplFile: '.$newTplFile );
+        error_log( 'RExtViewController->alterViewBlockInfo: $newTplFile: '.$newTplFile );
         $existFile = ModuleController::getRealFilePath( 'classes/view/templates/'.$newTplFile, $this->rExtName );
 
         if( $existFile ) {
           if( $templateName ) {
-            error_log( 'RExtViewController: alterViewBlockInfo: cambio el .tpl de '.$templateName );
+            error_log( 'RExtViewController->alterViewBlockInfo: cambio el .tpl de '.$templateName );
             $viewBlockInfo['template'][ $templateName ]->setTpl( $newTplFile, $this->rExtName );
           }
           else {
             foreach( $viewBlockInfo['template'] as $templateName => $templateObj ) {
-              error_log( 'RExtViewController: alterViewBlockInfo: cambio el .tpl de '.$templateName );
+              error_log( 'RExtViewController->alterViewBlockInfo: cambio el .tpl de '.$templateName );
               $templateObj->setTpl( $newTplFile, $this->rExtName );
             }
           }
@@ -227,7 +224,7 @@ class RExtViewController extends RExtController implements RExtInterface {
       elseif( strpos( $viewAlternativeMode, 'view' ) === 0 ) {
         $altViewClass = 'RExtViewAlt'.substr( $viewAlternativeMode, 4 );
         $altViewClassFile = $altViewClass.'.php';
-        error_log( 'RExtViewController: alterViewBlockInfo: ClassFile: '.$altViewClassFile );
+        error_log( 'RExtViewController->alterViewBlockInfo: ClassFile: '.$altViewClassFile );
         $existFile = ModuleController::getRealFilePath( 'classes/view/'.$altViewClassFile, $this->rExtName );
 
         if( $existFile ) {
