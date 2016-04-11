@@ -3,14 +3,9 @@
 
 class RExtSocialNetworkController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
-
-
   public function __construct( $defRTypeCtrl ){
     // error_log( 'RExtSocialNetworkController::__construct' );
-
     // $this->numericFields = array( 'averagePrice' );
-
     parent::__construct( $defRTypeCtrl, new rextSocialNetwork(), 'rExtSocialNetwork_' );
   }
 
@@ -33,7 +28,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       $rExtData = $rExtObj->getAllData( 'onlydata' );
       $rExtDataFields = $rExtObj->getCols();
       foreach( $rExtDataFields as $key => $value ) {
-        error_log( "=== Res Col: $key" );
+        // error_log( "=== Res Col: $key" );
         if( !isset( $rExtData[ $key ] ) ) {
           $rExtData[ $key ] = $rExtObj->getter( $key );
         }

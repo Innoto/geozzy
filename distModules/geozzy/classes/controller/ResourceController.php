@@ -6,12 +6,6 @@ geozzy::load( 'controller/RExtController.php' );
 METODOS A CAMBIAR/ELIMINAR
 loadResourceObject
 getResourceData: Controlar ben translate e cargar a maioria dos datos
-loadAdminFormColumns
-getAdminFormColumns
-setBlockPartTemplate
-getViewBlock
-getResourceBlock
-getCollectionBlock
 **/
 
 
@@ -117,7 +111,7 @@ class ResourceController {
    * @return array OR false
    */
   public function getResourceData( $resId = false, $translate = false ) {
-    error_log( "ResourceController: getResourceData()" );
+    // error_log( "ResourceController: getResourceData()" );
 
     if( (!$this->resData || ( $resId && $resId !== $this->resData['id'] ) ) && $this->loadResourceObject( $resId ) ) {
       $langDefault = LANG_DEFAULT;
@@ -448,233 +442,37 @@ class ResourceController {
    * @return Obj-Form
    */
   public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "ResourceController: getFormObj()" );
-
-    // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
     $form = $this->getBaseFormObj( $formName, $urlAction, $valuesArray );
 
     if( $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) ) ) {
-      $rTypeFieldNames = $this->rTypeCtrl->manipulateForm( $form );
-      // error_log( 'rTypeFieldNames: '.print_r( $rTypeFieldNames, true ) );
+      $this->rTypeCtrl->manipulateForm( $form );
     }
 
-    // Una vez que lo tenemos definido, guardamos el form en sesion
-    $form->saveToSession();
+    $form->saveToSession(); // Nos aseguramos de que el form se guarda en sesion
 
     return( $form );
   }
 
   /**
-   * Defino el formulario y creo su Bloque con su TPL
+   * Creamos el formulario y preparamos los datos para visualizar el formulario del Recurso
    *
    * @param $formName string Nombre del form
    * @param $urlAction string URL del action
    * @param $valuesArray array Opcional: Valores de los campos del form
    *
-   * @return Template
+   * @return Array $formBlockInfo{ 'template' => Array, 'data' => Array, 'ext' => Array, 'dataForm' => Array, objForm => Form }
    */
   public function getFormBlockInfo( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "GeozzyResourceView: getFormBlockInfo()" );
-
     $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
 
     $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
-    $formBlockInfo['objForm'] =  $form;
+    $formBlockInfo['objForm'] = $form;
 
     return( $formBlockInfo );
   }
 
-
   /**
-   * Cargamos el contenido del Template del Form en el de Admin
-   *
-   * @param $formBlock Template Contiene el form y los datos cargados
-   * @param $template Template Contiene la estructura de columnas para Admin
-   * @param $adminViewResource AdminViewResource Acceso a los métodos usados en Admin
-   */
-  /*
-  public function loadAdminFormColumns( $formBlock, $template, $adminViewResource ) {
-
-    $adminColsInfo = $this->getAdminFormColumns( $formBlock, $template, $adminViewResource );
-
-    // Pasamos al control al rType
-    if( $this->rTypeCtrl ) {
-      $rTypeAdminCols = $this->rTypeCtrl->manipulateAdminFormColumns( $formBlock, $template, $adminViewResource, $adminColsInfo );
-      if( $rTypeAdminCols ) {
-        $adminColsInfo = $rTypeAdminCols;
-      }
-    }
-
-    // Metemos los bloques dentro de las columnas del Template
-    foreach( $adminColsInfo as $colName => $colElements ) {
-      if( count( $colElements ) ) {
-        foreach( $colElements as $idName => $colElementInfo ) {
-          list( $content, $title, $icon ) = $colElementInfo;
-          $template->addToBlock( $colName, $adminViewResource->getPanelBlock( $content, $title, $icon ) );
-        }
-      }
-    }
-  }
-  */
-
-
-  /**
-   * Repartimos el contenido del Template del Form en elementos para las distintas columnas
-   *
-   * @param $formBlock Template Contiene el form y los datos cargados
-   * @param $template Template Contiene la estructura de columnas para Admin
-   * @param $adminViewResource AdminViewResource Acceso a los métodos usados en Admin
-   *
-   * @return Array Información de los elementos de cada columna
-   */
-  /*
-  public function getAdminFormColumns( $formBlock, $template, $adminViewResource ) {
-    $cols = array(
-      'col8' => array(),
-      'col4' => array()
-    );
-
-    // Fragmentamos el formulario generado
-    $formImage = $adminViewResource->extractFormBlockFields( $formBlock, array( 'image' ) );
-    $formPublished = $adminViewResource->extractFormBlockFields( $formBlock, array( 'published', 'weight' ) );
-    $formSeo = $adminViewResource->extractFormBlockFields( $formBlock,
-      array( 'urlAlias', 'headKeywords', 'headDescription', 'headTitle' ) );
-    $formContacto = $adminViewResource->extractFormBlockFields( $formBlock, array( 'datoExtra1', 'datoExtra2' ) );
-    $formCollections = $adminViewResource->extractFormBlockFields( $formBlock, array( 'collections', 'addCollections' ) );
-    $formMultimediaGalleries = $adminViewResource->extractFormBlockFields( $formBlock, array( 'multimediaGalleries', 'addMultimediaGalleries' ) );
-    $formLatLon = $adminViewResource->extractFormBlockFields( $formBlock, array( 'locLat', 'locLon', 'defaultZoom' ) );
-
-    // El bloque que usa $formBlock contiene la estructura del form
-
-    // Bloques de 8
-    $cols['col8']['main'] = array( $formBlock, __('Main Resource information'), 'fa-archive' );
-
-    if( $formLatLon ) {
-      $formPartBlock = $this->setBlockPartTemplate($formLatLon);
-      $cols['col8']['location'] = array( $formPartBlock , __('Location'), 'fa-archive' );
-    }
-
-    if( $formCollections ) {
-      $formPartBlock = $this->setBlockPartTemplate($formCollections);
-      $cols['col8']['collections'] = array( $formPartBlock, __('Collections of related resources'), 'fa-th-large' );
-    }
-    if( $formMultimediaGalleries ) {
-      $formPartBlock = $this->setBlockPartTemplate($formMultimediaGalleries);
-      $cols['col8']['multimedia'] = array( $formPartBlock, __('Multimedia galleries'), 'fa-th-large' );
-    }
-
-    if( $formSeo ) {
-      $formPartBlock = $this->setBlockPartTemplate($formSeo);
-      $cols['col8']['seo'] = array( $formPartBlock, __( 'SEO' ), 'fa-globe' );
-    }
-
-
-    // Bloques de 4
-    if( $formPublished ) {
-      $formPartBlock = $this->setBlockPartTemplate($formPublished);
-      $cols['col4']['publication'] = array( $formPartBlock, __( 'Publication' ), 'fa-adjust' );
-    }
-
-    if( $formImage ) {
-      $formPartBlock = $this->setBlockPartTemplate($formImage);
-      $cols['col4']['image'] = array( $formPartBlock, __( 'Select a image' ), 'fa-file-image-o' );
-    }
-
-    // Componemos el bloque geolocalización
-    $resourceLocLat = $formBlock->getTemplateVars('locLat');
-    $resourceLocLon = $formBlock->getTemplateVars('locLon');
-    $resourceDefaultZoom = $formBlock->getTemplateVars('defaultZoom');
-
-    // Componemos el bloque geolocalización
-    $templateBlock = $formBlock->getTemplateVars('formFieldsArray');
-    if (isset($templateBlock['locLat'])){
-      $resourceLocLat = $templateBlock['locLat'];
-      $resourceLocLon = $templateBlock['locLon'];
-      $resourceDefaultZoom = $templateBlock['defaultZoom'];
-
-      $locationData = '<div class="row">'.
-        '<div class="col-md-3">'.$resourceLocLat.'</div>'.
-        '<div class="col-md-3">'.$resourceLocLon.'</div>'.
-        '<div class="col-md-3">'.$resourceDefaultZoom.'</div>'.
-        '<div class="col-md-3"><div class="automaticBtn btn btn-primary">'.__("Automatic Location").'</div></div></div>';
-
-      $locAll = '<div class="row location">'.
-          '<div class="col-lg-12 mapContainer">'.
-            '<div class="descMap">Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización</div>'.
-          '</div>'.
-          '<div class="col-lg-12 locationData">'.$locationData.'</div>'.
-        '</div>';
-
-      $cols['col8']['location'] = array( $locAll, __( 'Location' ), 'fa-globe' );
-    }
-
-
-    // Recuperamos las temáticas que tiene asociadas el recurso
-    $resourceId = $formBlock->getTemplateVars('resourceId');
-
-    $allTopics = $this->getOptionsTopic();
-    $resourceTopicModel = new ResourceTopicModel();
-    $resourceTopicList = $resourceTopicModel->listItems( array( 'filters' => array( 'resource' => $resourceId ) ) );
-    $topicsHtml = '';
-    if( $resourceTopicList ) {
-      while( $topicList = $resourceTopicList->fetch() ) {
-        $allTopics[ $topicList->getter( 'topic' ) ];
-        $topicsHtml = $topicsHtml.'<div class="row rowWhite"><div class="infoCol col-md-4"></div>'.
-          '<div class="infoColData col-md-8">'.$allTopics[ $topicList->getter( 'topic' ) ].'</div></div>';
-      }
-    }
-
-    // Recuperamos las taxonomías asociadas al recurso
-    $starredHtml = '';
-    $resourceTax = $this->getTermsInfoByGroupIdName( $resourceId );
-    if( isset( $resourceTax['starred'] ) && count( $resourceTax['starred'] ) > 0 ) {
-      foreach( $resourceTax['starred'] as $tax ) {
-        $starredHtml = $starredHtml.'<div class="row rowWhite"><div class="infoCol col-md-4"></div><div class="infoColData col-md-8">'.$tax['idName'].'</div></div>';
-      }
-    }
-
-    $resourceType = $formBlock->getTemplateVars('rTypeName');
-    $timeCreation = $formBlock->getTemplateVars('timeCreation');
-    $user = $formBlock->getTemplateVars('userName');
-    if( $formBlock->getTemplateVars('timeLastUpdate') ) {
-      $timeLastUpdate = $formBlock->getTemplateVars('timeLastUpdate');
-      $userUpdate = $formBlock->getTemplateVars('userUpdate');
-      $update = $timeLastUpdate.' ('.$userUpdate.')';
-    }
-    else{
-      $update =  '- - -';
-    }
-    $info = '<div class="infoBasic">'.
-      '<div class="row"><div class="infoCol col-md-4">ID</div><div class="infoColData col-md-8">'.$resourceId.'</div></div>'.
-      '<div class="row"><div class="infoCol col-md-4">Tipo</div><div class="infoColData col-md-8">'.$resourceType.'</div></div>'.
-      '<div class="row"><div class="infoCol col-md-4">Creado</div><div class="infoColData col-md-8">'.$timeCreation.' ('.$user.')</div></div>'.
-      '<div class="row"><div class="infoCol col-md-4">Actualizado</div><div class="infoColData col-md-8">'.$update.'</div></div>'.
-      '<div class="row"><div class="infoCol col-md-12">Temáticas</div></div>'.$topicsHtml.
-      '<div class="row"><div class="infoCol col-md-12">Destacados</div></div>'.$starredHtml.
-      '</div>';
-
-    $cols['col4']['info'] = array( $info, __( 'Information' ), 'fa-globe' );
-
-    return $cols;
-  }
-  */
-
-  /**
-    Se crea un nuevo template y se asigna el array de variables recibido
-   */
-  /*
-  public function setBlockPartTemplate( $formPartArray ) {
-    $partTemplate = new Template();
-    $partTemplate->addClientStyles( 'masterResource.less');
-    $partTemplate->setTpl('resourceFormBlockPart.tpl', 'admin');
-    $partTemplate->assign('formFieldsArray', $formPartArray);
-    $partTemplate->assign('formFieldsHiddenArray', array());
-    return $partTemplate;
-  }
-  */
-
-  /**
-    Se reconstruye el formulario con sus datos y se realizan las validaciones que contiene
+   * Se reconstruye el formulario con sus datos y se realizan las validaciones que contiene
    */
   public function resFormLoad() {
     $form = new FormController();
@@ -696,7 +494,7 @@ class ResourceController {
   }
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Validaciones extra previas a usar los datos del recurso base
    */
   public function resFormRevalidate( $form ) {
     $urlAliasFieldNames = $form->multilangFieldNames( 'urlAlias' );
@@ -707,8 +505,7 @@ class ResourceController {
   }
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Creación-Edición-Borrado de los elementos del recurso base e iniciar transaction
    */
   public function resFormProcess( $form ) {
     $resource = false;
@@ -763,7 +560,7 @@ class ResourceController {
       }
     }
 
-    /**
+    /*
       DEPENDENCIAS / RELACIONES
     */
     if( !$form->existErrors() && $form->isFieldDefined( 'image' ) ) {
@@ -785,7 +582,7 @@ class ResourceController {
     if( !$form->existErrors() ) {
       $this->setFormUrlAlias( $form, 'urlAlias', $resource );
     }
-    /**
+    /*
       DEPENDENCIAS (END)
     */
     if( !$form->existErrors()) {
@@ -799,8 +596,7 @@ class ResourceController {
   }
 
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
+   * Enviamos el OK-ERROR a la BBDD y al formulario y finalizar transaction
    */
   public function resFormSuccess( $form, $resource ) {
     if( !$form->existErrors() ) {
@@ -827,7 +623,7 @@ class ResourceController {
 
 
   /**
-    Filedata methods
+   * Filedata methods
    */
   public function setFormFiledata( $form, $fieldName, $colName, $resObj ) {
     $fileField = $form->getFieldValue( $fieldName );
@@ -912,7 +708,7 @@ class ResourceController {
 
 
   /**
-    ExtraData methods
+   * ExtraData methods
    */
   private function setFormExtraData( $form, $fieldName, $colName, $baseObj ) {
     if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
@@ -938,9 +734,8 @@ class ResourceController {
   }
 
   /**
-    Taxonomy/Topic methods
+   * Taxonomy/Topic methods
    */
-
   public function getOptionsTopic() {
     $topics = array();
     $topicModel =  new TopicModel();
@@ -1310,7 +1105,7 @@ class ResourceController {
 
 
   /**
-    UrlAlias methods
+   * UrlAlias methods
    */
   private $urlTranslate = array(
     'from' => array( 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï',
@@ -1474,40 +1269,8 @@ class ResourceController {
 
 
 
-
-
-
-  // /**
-  //   Visualizamos el Recurso
-  //  */
-  // public function getViewBlock( $resData = false ) {
-  //   // error_log( "GeozzyResourceView: getViewBlock()" );
-  //
-  //   if( !$resData ) {
-  //     $resData = $this->getResourceData(); // true -> translated version
-  //   }
-  //
-  //   $resBlock = $this->getResourceBlock( $resData );
-  //   //$resBlock = false;
-  //
-  //   $this->getRTypeCtrl( $resData[ 'rTypeId' ] );
-  //
-  //   if( $this->rTypeCtrl ) {
-  //     // error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlock' );
-  //     $rTypeBlock = $this->rTypeCtrl->getViewBlock( $resBlock );
-  //     if( $rTypeBlock ) {
-  //       // error_log( 'GeozzyResourceView: resBlock = rTypeBlock' );
-  //       $resBlock = $rTypeBlock;
-  //     }
-  //   }
-  //
-  //   return( $resBlock );
-  // } // function getViewBlock( $resData )
-
-
-
   /**
-    Datos y template por defecto del ResourceBlock
+   * Datos y template por defecto del ResourceBlock
    */
   public function getViewBlockInfo( $resId = false ) {
     // error_log( "GeozzyResourceView: getViewBlockInfo()" );
@@ -1534,8 +1297,8 @@ class ResourceController {
 
 
   /**
-    Devuelve resData con los campos traducibles en el idioma actual
-  */
+   * Devuelve resData con los campos traducibles en el idioma actual
+   */
   public function getTranslatedData( $resData ) {
 
     foreach ( $resData as $key => $data ) {
@@ -1551,40 +1314,6 @@ class ResourceController {
     }
     return $resData;
   }
-
-  /*
-  public function getResourceBlock( $resData ) {
-    // error_log( "GeozzyResourceView: getResourceBlock()" );
-
-    $template = new Template();
-
-    // DEBUG
-    $htmlMsg = "\n<pre>\n" . print_r( $resData, true ) . "\n</pre>\n";
-
-    foreach( $resData as $key => $value ) {
-      $template->assign( $key, $value );
-      // error_log( $key . ' === ' . print_r( $value, true ) );
-    }
-
-
-    $collections = $this->getCollectionsInfo( $resData[ 'id' ] );
-    // error_log( "collections = ". print_r( $collections, true ) );
-
-    if( $collections ) {
-      foreach( $collections[ 'values' ] as $collectionId ) {
-        //$collectionBlock = $this->getCollectionBlock( $collectionId );
-        $collectionBlock = $this->getCollectionBlock( $collections[ 'values' ][ '0' ][ 'data' ] );
-        if( $collectionBlock ) {
-          $template->addToBlock( 'collections', $collectionBlock );
-        }
-      }
-    }
-    $template->addClientStyles( 'masterResource.less');
-    $template->setTpl( 'resourceViewBlock.tpl', 'geozzy' );
-
-    return( $template );
-  } // function getResourceBlock( $resData )
-  */
 
   public function getResourceThumbnail( $param ) {
     error_log( 'getResourceThumbnail :'.print_r($param,true));
