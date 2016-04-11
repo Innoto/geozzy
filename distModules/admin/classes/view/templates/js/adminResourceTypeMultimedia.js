@@ -22,11 +22,10 @@ function moveSubmitBtn(query){
 
 function linkOrEmbed (){
   var linkOrEmbedValue = $('#linkOrEmbed').val();
-  $('.linkOrEmbedContainer').hide();  
+  $('.linkOrEmbedContainer').hide();
   $('.linkOrEmbed_'+linkOrEmbedValue).show();
 
   $('#linkOrEmbed').change(function(){
-    console.log(this.value);
     $('.linkOrEmbedContainer').hide();
     $('.linkOrEmbed_'+this.value).show();
   });

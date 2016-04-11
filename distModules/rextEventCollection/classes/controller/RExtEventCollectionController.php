@@ -272,11 +272,13 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
       $resourceCollectionsModel = new ResourceCollectionsModel();
 
       // buscamos las colecciones de ese recurso
+      $resourceCollectionsCount = $resourceCollectionsModel->listCount(
+        array('filters' => array( 'resource' => $resource->getter('id')) ) );
       $resourceCollections = $resourceCollectionsModel->listItems(
         array('filters' => array( 'resource' => $resource->getter('id')) ) );
 
+      if ($resourceCollectionsCount>0){// existe coleccion
 
-      if ($resourceCollections){// existe coleccion
         $eventCol = false;
         while($resCol = $resourceCollections->fetch()){
           $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
@@ -289,16 +291,15 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         if ($eventCol){
           $elemId = $eventCol->getter('id');
         }
-        else{ // creamos a coleccion
-          if ($newResources){
-            $collection->setter('collectionType', 'event');
-            $collection->save();
-            $resourceCollection = new ResourceCollectionsModel(array('resource'=>$resource->getter('id'), 'collection' => $collection->getter('id')));
-            $resourceCollection->save();
-          }
+      }
+      else{ // creamos a coleccion
+        if ($newResources){
+          $collection->setter('collectionType', 'event');
+          $collection->save();
+          $resourceCollection = new ResourceCollectionsModel(array('resource'=>$resource->getter('id'), 'collection' => $collection->getter('id')));
+          $resourceCollection->save();
         }
       }
-
     }
 
     // Procesamos o listado de recursos asociados
@@ -311,6 +312,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
       // Si estamos editando, repasamos y borramos recursos sobrantes
       if( $elemId ) {
+
         $CollectionResourcesModel = new CollectionResourcesModel();
 
         $collectionResourceList = $CollectionResourcesModel->listItems(

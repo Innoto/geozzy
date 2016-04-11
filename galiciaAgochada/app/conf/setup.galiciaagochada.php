@@ -46,6 +46,10 @@ cogumeloSetSetupValue( 'lang', array(
   'default' => 'es'
 ));
 
+// Dates
+//
+cogumeloSetSetupValue( 'date:timezone', 'Europe/Madrid');
+
 
 //
 //  DB
@@ -324,7 +328,7 @@ cogumeloSetSetupValue( 'mod:mediaserver', array(
 cogumeloSetSetupValue( 'publicConf',
   array(
     'globalVars' => array( 'C_LANG', 'C_SESSION_ID' ),
-    'setupFields' => array( 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl' ),
+    'setupFields' => array( 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone' ),
     'vars' => array(
       'langDefault' => cogumeloGetSetupValue( 'lang:default' ),
       'langAvailableIds' => array_keys( cogumeloGetSetupValue( 'lang:available' ) ),
@@ -410,6 +414,15 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
       'eventos' => array('rtypeAppFesta', 'rtypeEvent'),
       'base' => array()
     )
+  )
+);
+
+cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes',
+  array(
+    'rtypeUrl',
+    'rtypePage',
+    'rtypeFile',
+    'rtypeEvent'
   )
 );
 

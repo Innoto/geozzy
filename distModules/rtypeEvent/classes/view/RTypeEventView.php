@@ -2,6 +2,7 @@
 Cogumelo::load('coreView/View.php');
 rtypeEvent::load('controller/RTypeEventController.php');
 geozzy::load('controller/ResourceController.php');
+geozzy::load( 'view/GeozzyResourceView.php' );
 
 
 class RTypeEventView extends View
@@ -83,57 +84,46 @@ class RTypeEventView extends View
   } // function actionResourceForm()
 
 
-
-
   /**
    * Creacion de formulario de microevento
    */
-  public function createForm( $urlParams = false ) {
-    user::load('controller/UserAccessController.php');
-    $useraccesscontrol = new UserAccessController();
-    $access = $useraccesscontrol->checkPermissions('resource:create', 'admin:full');
-    if(!$access){
-      cogumelo::redirect("/admin/403");
-      exit;
+  public function createModalForm( $urlParams = false ) {
+
+    $resCtrl = new ResourceController();
+    $rtypeModel = new ResourcetypeModel();
+
+    $formName = 'eventCreate';
+    $urlAction = '/rtypeEvent/event/sendevent';
+
+    $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeEvent') ) )->fetch();
+    $valuesArray['rTypeId'] = $rtype->getter('id');
+
+    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
+    $form = $formBlockInfo['objForm'];
+
+    $form->setFieldParam('published', 'type', 'reserved');
+    $form->setFieldParam('published', 'value', '1');
+    $urlAliasLang = $form->multilangFieldNames('urlAlias');
+    foreach ($urlAliasLang as $key => $field) {
+      $form->removeField( $field);
     }
+    $form->removeField('externalUrl');
+    $form->removeValidationRules('published');
 
-    $rtypeControl = new ResourcetypeModel();
-    $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'idName' => 'rtypeEvent' ) ) )->fetch();
+    $formBlockInfo['dataForm'] = array(
+      'formOpen' => $form->getHtmpOpen(),
+      'formFieldsArray' => $form->getHtmlFieldsArray(),
+      'formFieldsHiddenArray' => array(),
+      'formFields' => $form->getHtmlFieldsAndGroups(),
+      'formClose' => $form->getHtmlClose(),
+      'formValidations' => $form->getScriptCode()
+    );
 
-    if( $rTypeItem ) {
-      $recursoData = array();
-      $recursoData['rTypeId'] = $rTypeItem->getter('id');
-      $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
-      $recursoData['typeReturn'] = $rTypeItem->getter('id');
-    }
+    $formBlockInfo['template']['miniFormModal']->addToBlock('rextEventBlock', $formBlockInfo['ext']['rextEvent']['template']['full']);
+    $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
+    $formBlockInfo['template']['miniFormModal']->exec();
 
-
-    /*
-    $recursoData = false;
-    $validation = array( 'resourcetype' => '#^\d+$#' );
-    $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
-
-    if( $urlParamsList ) {
-      $rTypeItem = false;
-
-      if( isset( $urlParamsList['resourcetype'] ) ) {
-        $urlParamRtype = $urlParamsList['resourcetype'];
-        $rtypeControl = new ResourcetypeModel();
-        $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $urlParamRtype ) ) )->fetch();
-      }
-
-      if( $rTypeItem ) {
-        $recursoData = array();
-        $recursoData['rTypeId'] = $rTypeItem->getter('id');
-        $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
-        $recursoData['typeReturn'] = $urlParamsList['resourcetype'];
-
-      }
-    }*/
-
-    $this->resourceShowForm( 'eventCreate', '/rtypeEvent/event/sendevent', $recursoData );
-  } // function resourceForm()
-
+  }
 
   public function resourceShowForm( $formName, $urlAction, $valuesArray = false, $resCtrl = false ) {
 
@@ -141,9 +131,19 @@ class RTypeEventView extends View
       $resCtrl = new ResourceController();
     }
 
-
     $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
-    $formBlockInfo['template']['adminFull']->exec();
+
+    $form = $formBlockInfo['objForm'];
+    $form->setFieldParam('published', 'type', 'reserved');
+    $form->setFieldParam('published', 'value', '1');
+    $urlAliasLang = $form->multilangFieldNames('urlAlias');
+    foreach ($urlAliasLang as $key => $field) {
+      $form->removeField( $field);
+    }
+    $form->removeValidationRules('published');
+
+    $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
+    $formBlockInfo['template']['miniFormModal']->exec();
   }
 
 
@@ -181,8 +181,33 @@ class RTypeEventView extends View
   } // function resourceEditForm()
 
 
-  public function sendForm(){
+  public function sendModalResourceForm() {
 
+    $resourceView = new GeozzyResourceView();
+    $resource = null;
+
+    // Se construye el formulario con sus datos y se realizan las validaciones que contiene
+    $form = $resourceView->defResCtrl->resFormLoad();
+
+    if( !$form->existErrors() ) {
+      // Validar y guardar los datos
+      $resource = $resourceView->actionResourceFormProcess( $form );
+
+    }
+
+    if( !$form->existErrors() ) {
+
+      $resCtrl = new ResourceController();
+
+      $form->removeSuccess( 'redirect' );
+      $form->setSuccess( 'jsEval', ' successResourceForm( { '.
+        ' id : "'.$resource->getter('id').'",'.
+        ' title: "'.$resource->getter('title_'.$form->langDefault).'" });'
+      );
+    }
+
+    // Enviamos el OK-ERROR a la BBDD y al formulario
+    $resourceView->actionResourceFormSuccess( $form, $resource );
   }
 
 } // class RTypeEventView

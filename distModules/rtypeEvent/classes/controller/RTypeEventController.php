@@ -33,6 +33,9 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     $form->removeValidationRules('starred');
     $form->removeValidationRules('externalUrl');
 
+    // cambiamos el id de la imagen para evitar la colisión con la modal
+    $form->setFieldParam('image', 'id', 'imgResourceEvent');
+
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // Añadir validadores extra
@@ -68,7 +71,7 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
 
     $this->eventCtrl = new RExtEventController( $this );
     $eventViewInfo = $this->eventCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $eventViewInfo;
+    $formBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $eventViewInfo;
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -80,9 +83,6 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
       $form->multilangFieldNames( 'title' ),
       $form->multilangFieldNames( 'shortDescription' )
     );
-    $formFieldsNames[] = 'externalUrl';
-    $formFieldsNames[] = 'topics';
-    $formFieldsNames[] = 'starred';
     $formFieldsNames[] = 'rTypeIdName';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
@@ -117,15 +117,7 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     $formFieldsNames = array( 'image' );
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
 
-
-/*
     // TEMPLATE panel event
-    $templates['event'] = new Template();
-    $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['event']->assign( 'title', __( 'Event data' ) );
-    $templates['event']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->eventCtrl->prefixArray( array('rextEventInitDate', 'rextEventEndDate', 'rextEventType'));
-    $templates['event']->assign( 'formFieldsNames', $formFieldsNames );*/
     $templates['event'] = new Template();
     $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['event']->assign( 'title', __( 'Event' ) );
@@ -180,6 +172,14 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     $templates['full'] = new Template();
     $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'res', $formBlockInfo );
+
+
+    // TEMPLATE para form mini para modal
+    $templates['miniFormModal'] = new Template();
+    $templates['miniFormModal']->assign( 'title', __( 'Resource' ) );
+    $templates['miniFormModal']->setTpl( 'rTypeEventFormModalBlock.tpl', 'rtypeEvent' );
+    $templates['miniFormModal']->addClientScript('js/rextEvent.js', 'rextEvent');
+    $templates['miniFormModal']->assign( 'res', $formBlockInfo );
 
 
     $formBlockInfo['template'] = $templates;
