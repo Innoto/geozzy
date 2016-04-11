@@ -66,8 +66,8 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // eliminamos los campos de extensiones que no necesitamos
-    $form->removeField('rextEvent_rextEventType');
-
+    /*$form->removeField('rextEvent_rextEventType');
+    $form->removeField('rextEvent_rextEventResource');*/
 
 
     return( $rTypeFieldNames );
@@ -85,6 +85,7 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     );
 
     $formBlockInfo['dataForm'] = array(
+      'formId' => $form->getId(),
       'formOpen' => $form->getHtmpOpen(),
       'formFieldsArray' => $form->getHtmlFieldsArray(),
       'formFieldsHiddenArray' => array(),
@@ -92,6 +93,7 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
       'formClose' => $form->getHtmlClose(),
       'formValidations' => $form->getScriptCode()
     );
+
 
     if( $resId = $form->getFieldValue( 'id' ) ) {
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );

@@ -18,12 +18,17 @@ class EventModel extends Model
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
-    'rextEventInitDate' => array(
-      'type' => 'VARCHAR',
+    'relatedResource' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'ResourceModel',
+      'key' => 'id'
+    ),
+    'initDate' => array(
+      'type' => 'TIMESTAMP',
       'size' => '200'
     ),
-    'rextEventEndDate' => array(
-      'type' => 'VARCHAR',
+    'endDate' => array(
+      'type' => 'TIMESTAMP',
       'size' => '200'
     )
   );

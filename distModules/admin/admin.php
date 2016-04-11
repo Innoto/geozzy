@@ -91,6 +91,24 @@ class admin extends Module
       "params" => array("raleway"),
       "installer" => "bower",
       "includes" => array("raleway.css")
+    ),
+    array(
+     "id" =>"moment",
+     "params" => array("moment"),
+     "installer" => "bower",
+     "includes" => array('min/moment-with-locales.min.js')
+    ),
+    array(
+     "id" =>"eonasdan-bootstrap-datetimepicker",
+     "params" => array("eonasdan-bootstrap-datetimepicker"),
+     "installer" => "bower",
+     "includes" => array("build/css/bootstrap-datetimepicker.min.css", "build/js/bootstrap-datetimepicker.min.js")
+    ),
+    array(
+     "id" =>"moment-timezone",
+     "params" => array("moment-timezone"),
+     "installer" => "bower",
+     "includes" => array("builds/moment-timezone-with-data.min.js")
     )
   );
 

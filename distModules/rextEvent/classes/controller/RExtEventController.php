@@ -53,21 +53,48 @@ class RExtEventController extends RExtController implements RExtInterface {
    */
   public function manipulateForm( FormController $form ) {
     // error_log( "RExtContactController: manipulateForm()" );
-
     $rExtFieldNames = array();
 
+    // systemRTypes
+    $systemRtypes = Cogumelo::getSetupValue('mod:geozzy:resource:systemRTypes');
+
+    $resourceModel = new ResourceModel();
+    $rtypeModel = new resourceTypeModel();
+
+    $rtypeArray = $rtypeModel->listItems(
+        array( 'filters' => array( 'idNameExists' => $systemRtypes ) )
+    );
+    $filterRtype = array();
+    while( $rtype = $rtypeArray->fetch() ){
+      array_push( $filterRtype, $rtype->getter('id') );
+    }
+
+    $elemList = $resourceModel->listItems(
+      array( 'filters' => array( 'notInRtype' => $filterRtype ) )
+    );
+    $allRes = array();
+    $allRes['0'] = false;
+    while( $elem = $elemList->fetch() ){
+      $allRes[ $elem->getter( 'id' ) ] = $elem->getter( 'title' );
+    }
+
     $fieldsInfo = array(
-      'rextEventInitDate' => array(
-        'params' => array( 'label' => __( 'Event init date' ) ),
+      'initDate' => array(
+        'params' => array('type' => 'hidden'),
         'rules' => array( 'maxlength' => 200 )
       ),
-      'rextEventEndDate' => array(
-        'params' => array( 'label' => __( 'Event end date' ) ),
+      'endDate' => array(
+        'params' => array('type' => 'hidden'),
         'rules' => array( 'maxlength' => 200 )
       ),
       'rextEventType' => array(
         'params' => array( 'label' => __( 'Event type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order',
           'options' => $this->defResCtrl->getOptionsTax( 'rextEventType' )
+        )
+      ),
+      'relatedResource' => array(
+        'params' => array( 'label' => __( 'Related resource' ), 'type' => 'select',
+          'options' => $allRes
         )
       )
     );
@@ -117,8 +144,6 @@ class RExtEventController extends RExtController implements RExtInterface {
   } // function manipulateForm()
 
 
-
-
   public function getFormBlockInfo( FormController $form ) {
     // error_log( "RExtContactController: getFormBlockInfo()" );
 
@@ -129,23 +154,27 @@ class RExtEventController extends RExtController implements RExtInterface {
     );
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
 
     $formBlockInfo['dataForm'] = array(
+      'formId' => $form->getId(),
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
+      'formFields' => $form->getHtmlFieldsAndGroups()
     );
 
     if( $form->getFieldValue( 'id' ) ) {
       $formBlockInfo['data'] = $this->getRExtData();
     }
 
+
     $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    //$templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    $templates['full']->setTpl( 'rExtViewBlock.tpl', 'rextEvent' );
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
-
     $templates['full']->addClientScript('js/rextEvent.js', 'rextEvent');
+
+    $prevContent = '<style type="text/css">.bootstrap-datetimepicker-widget table th{background: none;}</style>';
+    $templates['full']->assign( 'prevContent', $prevContent );
 
     $formBlockInfo['template'] = $templates;
 
@@ -168,12 +197,18 @@ class RExtEventController extends RExtController implements RExtInterface {
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RExtEventController: resFormProcess()" );
-
     if( !$form->existErrors() ) {
+
       //$numericFields = array( 'averagePrice', 'capacity' );
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
-
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
+
+      if( $form->isFieldDefined( 'rextEvent_initDate' ) && is_numeric( $form->getFieldValue( 'rextEvent_initDate' ) ) ) {
+        $valuesArray[ 'initDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_initDate' ) );
+      }
+      if( $form->isFieldDefined( 'rextEvent_endDate' ) && is_numeric( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
+        $valuesArray[ 'endDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_endDate' ) );
+      }
 
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
       $rExtModel = new EventModel( $valuesArray );
