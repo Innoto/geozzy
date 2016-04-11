@@ -50,8 +50,8 @@ class TestRouteView extends View
   public function routeConvert() {
     rextRoutes::autoIncludes();
 
-    $filePath = '/home/pblanco/Descargas/Felechosa_final.gpx';
-    //$filePath = '/home/pblanco/Descargas/nova.kml';
+    //$filePath = '/home/pblanco/Descargas/Felechosa_final.gpx';
+    $filePath = '/home/pblanco/Descargas/Incio_oural_.gpx';
 
     $fnSplited = explode( '.', $filePath );
     /*array_pop( $fnSplited )*/
@@ -88,7 +88,7 @@ class TestRouteView extends View
         </head>
         <body>
           <div id="map"></div>
-          <div id="graph" style="position:absolute;width:300px;height:150px;bottom:30px;left:30px;"></div>
+          <div id="graph" style="position:absolute;width:400px;height:150px;bottom:30px;left:30px;"></div>
           <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"  async defer></script>
 
 
