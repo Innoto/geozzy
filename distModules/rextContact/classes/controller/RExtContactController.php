@@ -3,9 +3,6 @@
 
 class RExtContactController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
-
-
   public function __construct( $defRTypeCtrl ){
     // error_log( 'RExtContactController::__construct' );
 

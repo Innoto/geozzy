@@ -8,7 +8,10 @@ class rextRoutes extends Module {
   public $version = 1.0;
 
 
-  public $models = array();
+
+  public $models = array(
+    'RExtRoutesModel'
+  );
 
   public $taxonomies = array(
     'routeCircuitType' => array(
@@ -42,13 +45,27 @@ class rextRoutes extends Module {
       "installer" => "composer",
       "includes" => array("geoPHP.inc")
     ),
+    array(
+      "id" => "dygraphs",
+      "params" => array("dygraphs#v1.1.0"),
+      "installer" => "bower",
+      "includes" => array("dygraph-combined.js")
+    )
   );
 
+
+
+
   public $includesCommon = array(
+    /*'controller/RExtRoutesController.php',
+    'model/RExtRoutesModel.php'*/
   );
 
 
   public function __construct() {
+
+    $this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
+
   }
 
 
