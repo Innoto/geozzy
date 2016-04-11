@@ -9,9 +9,6 @@
 
   {$res.dataForm.formOpen}
     {$res.dataForm.formFieldsArray.cgIntFrmId}
-    {$res.dataForm.formFieldsArray.id}
-    {$res.dataForm.formFieldsArray.rTypeId}
-    {$res.dataForm.formFieldsArray.published}
     {foreach $langAvailableIds as $lang}
       {$res.dataForm.formFieldsArray["title_$lang"]}
     {/foreach}
