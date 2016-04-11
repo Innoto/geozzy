@@ -50,9 +50,8 @@ class TestRouteView extends View
   public function routeConvert() {
     rextRoutes::autoIncludes();
 
-    //var_dump( filetype('/home/pblanco/Descargas/Felechosa_final.kml') );
-
     $filePath = '/home/pblanco/Descargas/Felechosa_final.gpx';
+    //$filePath = '/home/pblanco/Descargas/nova.kml';
 
     $fnSplited = explode( '.', $filePath );
     /*array_pop( $fnSplited )*/
@@ -84,10 +83,12 @@ class TestRouteView extends View
           </style>
 
           <script src="https://code.jquery.com/jquery-1.12.3.min.js"  ></script>
+          <script src="/vendor/bower/dygraphs/dygraph-combined.js"  ></script>
+
         </head>
         <body>
           <div id="map"></div>
-
+          <div id="graph" style="position:absolute;width:300px;height:150px;bottom:30px;left:30px;"></div>
           <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"  async defer></script>
 
 
@@ -97,6 +98,7 @@ class TestRouteView extends View
             var centro = <?php echo $centro;?>;
             var map;
             var trackCircle = false;
+            var grafico = false;
 
             function findPoint(lat, lng) {
 
@@ -124,6 +126,8 @@ class TestRouteView extends View
 
 
             function hoverRecorrido( id ) {
+              //grafico.setSelection(id);
+              grafico.setSelection(id) ;
 
               if( trackCircle ) {
 
@@ -220,7 +224,43 @@ class TestRouteView extends View
 */
 
 
+              var chartString = "step,Altitude\n";
+              $.each(puntos, function(i,e){
+                //if( typeof e[2] == 'undefined' ) {
+                  chartString += i + "," + e[2] + "\n";
+                //}
+                //else {
+                  //chartString += i + ",0\n";
+                //}
 
+              });
+
+
+
+              grafico = new Dygraph( document.getElementById("graph"),
+                chartString
+              );
+
+
+
+
+              grafico.updateOptions( {
+                annotationMouseOverHandler: function(annotation, point, dygraph, event) {
+                    alert('')
+                }
+              });
+
+              $("#graph").mousemove(function(e) {
+                  var seleccionado = grafico.getSelection();
+
+                  hoverRecorrido( seleccionado )
+
+              }).mouseleave(function(e) {
+                  var seleccionada = grafico.getSelection();
+                  outRecorrido();
+
+
+              });
 
             }
 
