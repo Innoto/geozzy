@@ -55,8 +55,7 @@ class GeozzyUserView extends View
   public function registerForm() {
 
     $this->loginCheck();
-    $form = new FormController( 'registerModalForm', '/user/senduserform' ); //actionform
-
+    $form = new FormController('registerModalForm'); //actionform
     $form->setAction('/geozzyuser/senduserregister');
     $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.successRegisterBox();' );
 
@@ -137,24 +136,45 @@ class GeozzyUserView extends View
       echo $form->getJsonOk();
     }
   }
-  public function profileForm() {
+  public function myProfileForm() {
 
-    $form = new FormController( 'registerModalForm', '/user/senduserform' ); //actionform
+    $useraccesscontrol = new UserAccessController();
+    $userSess = $useraccesscontrol->getSessiondata();
+    $user = new UserModel();
+    $dataVO = $user->listItems( array(
+      'filters' => array('id' => $userSess['data']['id'] ),
+      'affectsDependences' => array( 'FiledataModel')
+    ))->fetch();
 
-    $form->setAction('/geozzyuser/senduserregister');
-    $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.successRegisterBox();' );
+    if(!$dataVO){
+      Cogumelo::redirect( SITE_URL.'404' );
+    }
+
+    $data = $dataVO->getAllData('onlydata');
+    unset( $data['password']);
+    $fileDep = $dataVO->getterDependence( 'avatar' );
+    if( $fileDep !== false ) {
+      foreach( $fileDep as $fileModel ) {
+        $fileData = $fileModel->getAllData();
+        $data[ 'avatar' ] = $fileData[ 'data' ];
+      }
+    }
+
+    // BASE FORM FIELDS
+    $form = new FormController( 'userProfileBaseForm');
+    $form->setAction('/geozzyuser/senduserbaseprofile');
+    $form->setSuccess( 'redirect', '/userprofile#user/profile' );
 
     $fieldsInfo = array(
       'id' => array(
         'params' => array( 'type' => 'reserved', 'value' => null )
       ),
-
       'login' => array(
         'params' => array( 'type' => 'reserved' ),
         'rules' => array( 'required' => true )
       ),
       'active' => array(
-        'params' => array( 'type' => 'reserved', 'value'=> '1')
+        'params' => array( 'type' => 'reserved' )
       ),
       'name' => array(
         'params' => array( 'placeholder' => __('Name'), 'label' => __('Name') ),
@@ -171,15 +191,26 @@ class GeozzyUserView extends View
         'rules' => array( 'required' => true )
       ),
       'password' => array(
-        'params' => array( 'id' => 'password', 'type' => 'password', 'placeholder' => __('Password'), 'label' => __('Password') ),
-        'rules' => array( 'required' => true )
+        'params' => array( 'id' => 'password', 'type' => 'password', 'placeholder' => __('Password'), 'label' => __('Password') )
       ),
       'password2' => array(
-        'params' => array( 'id' => 'password2', 'type' => 'password', 'placeholder' => __('Repeat password'), 'label' => __('Repeat password') ),
-        'rules' => array( 'required' => true )
+        'params' => array( 'id' => 'password2', 'type' => 'password', 'placeholder' => __('Repeat password'), 'label' => __('Repeat password') )
+      ),
+      'avatar' => array(
+        'params' => array(
+          'type' => 'file',
+          'id' => 'inputFicheiro',
+          'placeholder' => 'Escolle un ficheiro',
+          'label' => 'Avatar',
+          'destDir' => '/users'
+        )
+      ),
+      'description' => array(
+        'params' => array( 'type' => 'textarea', 'placeholder' => 'Descripción'),
+        'translate' => true
       ),
       'submit' => array(
-        'params' => array( 'type' => 'submit', 'value' => __('Create account') )
+        'params' => array( 'type' => 'submit', 'value' => __('Save account') )
       )
     );
 
@@ -188,21 +219,33 @@ class GeozzyUserView extends View
     $form->setValidationRule( 'password', 'equalTo', '#password2' );
     $form->setValidationRule( 'email', 'email' );
     $form->setValidationRule( 'email', 'equalTo', '#repeatEmail' );
+    $form->setValidationRule( 'avatar', 'minfilesize', 1024 );
+    $form->setValidationRule( 'avatar', 'accept', 'image/jpeg' );
+
+
+    $form->loadArrayValues( $data );
 
     $form->saveToSession();
 
+    //RESOURCE PROFILE
+
+
+
+
+
+
     $template = new Template( $this->baseDir );
-    $template->assign("userFormOpen", $form->getHtmpOpen());
-    $template->assign("userFormFields", $form->getHtmlFieldsArray());
-    $template->assign("userFormClose", $form->getHtmlClose());
-    $template->assign("userFormValidations", $form->getScriptCode());
-    $template->setTpl('createModalUser.tpl', 'geozzyUser');
+    $template->assign("userBaseFormOpen", $form->getHtmpOpen());
+    $template->assign("userBaseFormFields", $form->getHtmlFieldsArray());
+    $template->assign("userBaseFormClose", $form->getHtmlClose());
+    $template->assign("userBaseFormValidations", $form->getScriptCode());
+    $template->setTpl('userProfile.tpl', 'geozzyUser');
 
     echo ( $template->execToString() );
   }
 
 
-  public function sendProfileForm() {
+  public function sendUserBaseProfileForm() {
     $userView = new UserView();
     $form = $userView->actionUserForm();
     if( $form->existErrors() ) {
@@ -210,12 +253,6 @@ class GeozzyUserView extends View
     }
     else {
       $user = $userView->userFormOk( $form );
-      // AutoLogueamos al usuario
-      if($user){
-        $useraccesscontrol = new UserAccessController();
-        $useraccesscontrol->userAutoLogin( $user->getter('login') );
-      }
-      // Enviamos un mail de verificación
 
       echo $form->getJsonOk();
     }
