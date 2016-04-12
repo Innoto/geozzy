@@ -64,7 +64,14 @@ class rextRoutes extends Module {
 
   public function __construct() {
 
+
+// TEST CODE
     $this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
+// END TEST CODE
+
+
+    $this->addUrlPatterns( '#^api/routes$#', 'view:RoutesAPIView::routes' );
+    $this->addUrlPatterns( '#^api/routes.json#', 'view:RoutesAPIView::routesJson' );
 
   }
 

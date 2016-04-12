@@ -142,7 +142,7 @@ class TestRouteView extends View
                   center: {lat: route.trackPoints[id][0] , lng: route.trackPoints[id][1]},
                   radius: 850000/scale,
                   strokeWeight:0,
-                  fillColor: "#FF0000",
+                  fillColor: "#0000FF",
                   fillOpacity: 1,
                   map: map
               });
