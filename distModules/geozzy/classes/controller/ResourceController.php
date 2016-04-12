@@ -237,34 +237,19 @@ class ResourceController {
    *
    * @return Obj-Form
    */
-  public function getBaseFormObj( $formName, $urlAction, $valuesArray = false ) {
+  public function getBaseFormObj( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
     // error_log( "ResourceController: getBaseFormObj()" );
     // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
 
     $form = new FormController( $formName, $urlAction );
 
-    // $form->setSuccess( 'accept', __( 'Thank you' ) );
+    if($successArray){
+      foreach ($successArray as $tSuccess => $success) {
+        $form->setSuccess( $tSuccess, $success );
+      }
+    }
 
     /* Establecemos la página a la que debe retornar */
-
-
-    if( !isset($valuesArray['topicReturn']) ) {
-      if (isset($valuesArray['typeReturn'])){ // tabla de páginas
-        $rtypeControl = new ResourcetypeModel();
-        $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $valuesArray['typeReturn'] ) ) )->fetch();
-        if($rTypeItem && $rTypeItem->getter('idName') === "rtypePage"){
-          $form->setSuccess( 'redirect', SITE_URL . 'admin#resourcepage/list');
-        }else{
-          $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
-        }
-      }
-      else{ // tabla general de contenidos
-        $form->setSuccess( 'redirect', SITE_URL . 'admin#resource/list' );
-      }
-    }
-    else { // tabla de recursos de una temática
-      $form->setSuccess( 'redirect', SITE_URL . 'admin#topic/'.$valuesArray['topicReturn']);
-    }
 
     $resCollections = array();
     if( isset( $valuesArray[ 'id' ] ) ) {
@@ -441,8 +426,9 @@ class ResourceController {
    *
    * @return Obj-Form
    */
-  public function getFormObj( $formName, $urlAction, $valuesArray = false ) {
-    $form = $this->getBaseFormObj( $formName, $urlAction, $valuesArray );
+  public function getFormObj( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
+
+    $form = $this->getBaseFormObj( $formName, $urlAction, $successArray, $valuesArray );
 
     if( $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) ) ) {
       $this->rTypeCtrl->manipulateForm( $form );
@@ -462,8 +448,8 @@ class ResourceController {
    *
    * @return Array $formBlockInfo{ 'template' => Array, 'data' => Array, 'ext' => Array, 'dataForm' => Array, objForm => Form }
    */
-  public function getFormBlockInfo( $formName, $urlAction, $valuesArray = false ) {
-    $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
+  public function getFormBlockInfo( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
+    $form = $this->getFormObj( $formName, $urlAction, $successArray, $valuesArray );
 
     $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
     $formBlockInfo['objForm'] = $form;
