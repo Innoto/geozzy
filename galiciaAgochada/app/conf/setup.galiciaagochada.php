@@ -207,9 +207,10 @@ $C_REXT_MODULES = array(
   'rextAppEspazoNatural',
   'rextAppZona',
   'rextSocialNetwork',
-  'rextEvent',
-  'rextEventCollection',
-  'rextAppFesta'
+  //'rextEvent',
+  //'rextEventCollection',
+  //'rextAppFesta',
+  'rextRoutes'
 );
 
 // resource Types
@@ -220,12 +221,12 @@ $C_RTYPE_MODULES = array(
   'rtypeUrl',
   'rtypePage',
   'rtypeFile',
-  'rtypeAppRuta',
+  //'rtypeAppRuta',
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
-  'rtypeAppFesta',
+  //'rtypeAppFesta',
   'rtypeAppUser',
-  'rtypeEvent'
+  //'rtypeEvent'
 );
 
 
@@ -259,7 +260,8 @@ $C_INDEX_MODULES  = array(
   'testData',
   'initResources',
   'explorer',
-  'rtypeEvent',
+  'rextRoutes',
+  //'rtypeEvent',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 

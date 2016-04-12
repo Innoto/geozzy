@@ -20,7 +20,7 @@ class TestRouteView extends View
   public function accessCheck() {
     return true;
   }
-
+/*
 
   public function extractPoints( $geom ) {
     $points = array();
@@ -45,23 +45,16 @@ class TestRouteView extends View
     }
 
     return $points;
-  }
+  }*/
 
   public function routeConvert() {
     rextRoutes::autoIncludes();
+/*
 
-    //$filePath = '/home/pblanco/Descargas/Felechosa_final.gpx';
-    $filePath = '/home/pblanco/Descargas/Incio_oural_.gpx';
-
-    $fnSplited = explode( '.', $filePath );
-    /*array_pop( $fnSplited )*/
 
     try {
       $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
-      /*echo "<pre>";
-      var_dump( $polygon->getGeomType() );
-      echo "<br>--------------------<br>";
-      var_dump( json_encode( $this->extractPoints( $polygon )) );*/
+
       $cent = $polygon->getCentroid();
 
 
@@ -71,6 +64,12 @@ class TestRouteView extends View
     catch(Exception $e) {
         echo $e->getMessage();
     }
+*/
+
+    rextRoutes::load('controller/RoutesController.php');
+    $routesControl = new RoutesController();
+    $filePath = '/home/pblanco/Descargas/Incio_oural_.gpx';
+    $rutaJSON = json_encode(    $routesControl->getRoute($filePath) );
 
 
     ?>
@@ -94,8 +93,9 @@ class TestRouteView extends View
 
           <script type="text/javascript">
 
-            var puntos = <?php echo $puntos;?>;
-            var centro = <?php echo $centro;?>;
+            var route = JSON.parse('<?php echo $rutaJSON;?>');
+
+
             var map;
             var trackCircle = false;
             var grafico = false;
@@ -105,7 +105,7 @@ class TestRouteView extends View
               var lessDistance = false;
               var lessDistanceElementId = false;
 
-              $.each(puntos, function(i,e){
+              $.each( route.trackPoints , function(i,e){
 
                 var currentDistance =  Math.pow( e[0] - lat, 2 ) + Math.pow( e[1] - lng, 2 )  ;
 
@@ -138,7 +138,7 @@ class TestRouteView extends View
 
 
               trackCircle = new google.maps.Circle({
-                  center: {lat: puntos[id][0] , lng: puntos[id][1]},
+                  center: {lat: route.trackPoints[id][0] , lng: route.trackPoints[id][1]},
                   radius: 850000/scale,
                   strokeWeight:0,
                   fillColor: "#FF0000",
@@ -159,14 +159,14 @@ class TestRouteView extends View
 
             function initMap() {
               map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: centro[0], lng: centro[1]},
+                center: {lat: route.centroid[0], lng: route.centroid[1]},
                 zoom: 13
               });
 
 
               var recorrido = [ ];
 
-              $.each(puntos, function(i,e){
+              $.each(route.trackPoints, function(i,e){
               /*  var marker = new google.maps.Marker({
                     position: new google.maps.LatLng( e[0], e[1] ),
                     map: map,
@@ -225,7 +225,7 @@ class TestRouteView extends View
 
 
               var chartString = "step,Altitude\n";
-              $.each(puntos, function(i,e){
+              $.each( route.trackPoints, function(i,e){
                 //if( typeof e[2] == 'undefined' ) {
                   chartString += i + "," + e[2] + "\n";
                 //}
