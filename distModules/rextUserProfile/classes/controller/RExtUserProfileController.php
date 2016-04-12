@@ -11,7 +11,7 @@ class RExtUserProfileController extends RExtController implements RExtInterface 
 
     // $this->numericFields = array( 'averagePrice' );
 
-    parent::__construct( $defRTypeCtrl, new rextUserProfile(), 'rExtAppUser_' );
+    parent::__construct( $defRTypeCtrl, new rextUserProfile(), 'rExtUserProfile_' );
   }
 
 
