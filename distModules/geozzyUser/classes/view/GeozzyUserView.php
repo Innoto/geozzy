@@ -248,10 +248,12 @@ class GeozzyUserView extends View
         $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'idName' => $rtypeName ) ) )->fetch();
         $recursoData['rTypeId'] = $rTypeItem->getter('id');
         $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
-        $recursoData['rExtUserProfile_user'] = $userSess['data']['id'];
 
         $formBlockInfo = $resCtrl->getFormBlockInfo( "resProfileCreate", "/geozzyuser/resource/sendresource", $recursoData );
+        $formBlockInfo['objForm']->setFieldValue('rExtUserProfile_user', $userSess['data']['id']);
+        $formBlockInfo['objForm']->saveToSession();
         $profileBlock = $formBlockInfo['template']['formProfile'];
+
       }
     }
 
