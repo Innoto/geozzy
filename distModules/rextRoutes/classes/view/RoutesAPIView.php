@@ -71,7 +71,20 @@ class RoutesAPIView extends View
 
 
   // explorer
-  public function routes( $urlParams ) {
+  public function routes(  ) {
+    rextRoutes::autoIncludes();
+
+    rextRoutes::load('controller/RoutesController.php');
+    $routesControl = new RoutesController();
+    $filePath = '/home/pblanco/Descargas/Incio_oural_.gpx';
+
+    $rutaJSON = json_encode(   [ $routesControl->getRoute($filePath) ]);
+
+
+    header('Content-type: application/json');
+    echo $rutaJSON;
+
+    /*
     require_once APP_BASE_PATH."/conf/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
     global $GEOZZY_EXPLORERS;
 
@@ -112,7 +125,7 @@ class RoutesAPIView extends View
     }
     else {
       header("HTTP/1.0 404 Not Found");
-    }
+    }*/
   }
 
 }
