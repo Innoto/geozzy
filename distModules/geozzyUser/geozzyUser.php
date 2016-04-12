@@ -44,6 +44,7 @@ class geozzyUser extends Module
     $this->addUrlPatterns( '#^geozzyuser/senduserregister$#', 'view:GeozzyUserView::sendRegisterForm' );
     $this->addUrlPatterns( '#^geozzyuser/profile#', 'view:GeozzyUserView::myProfileForm' );
     $this->addUrlPatterns( '#^geozzyuser/senduserbaseprofile#', 'view:GeozzyUserView::sendUserBaseProfileForm' );
+    $this->addUrlPatterns( '#^geozzyuser/resource/sendresource#', 'view:GeozzyUserView::sendUserProfileResourceForm' );
   }
 
   public function moduleRc() {

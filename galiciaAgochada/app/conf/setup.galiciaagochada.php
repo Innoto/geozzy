@@ -202,10 +202,10 @@ $C_REXT_MODULES = array(
   'rextUrl',
   'rextView',
   'rextFile',
+  'rextUserProfile',
   'rextAppLugar',
   'rextAppEspazoNatural',
   'rextAppZona',
-  'rextAppUser',
   'rextSocialNetwork',
   //'rextEvent',
   //'rextEventCollection',
@@ -264,6 +264,11 @@ $C_INDEX_MODULES  = array(
   //'rtypeEvent',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
+
+// User config
+cogumeloSetSetupValue( 'mod:geozzyUser', array(
+  'profile' => 'rtypeAppUser'
+));
 
 
 //  Logs

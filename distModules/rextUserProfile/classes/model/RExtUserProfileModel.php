@@ -3,9 +3,9 @@ Cogumelo::load( 'coreModel/VO.php' );
 Cogumelo::load( 'coreModel/Model.php' );
 
 
-class RExtAppUserModel extends Model {
+class RExtUserProfileModel extends Model {
 
-  static $tableName = 'geozzy_resource_rext_app_user';
+  static $tableName = 'geozzy_resource_rext_user_profile';
   static $cols = array(
     'id' => array(
       'type' => 'INT',

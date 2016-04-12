@@ -2,14 +2,14 @@
 Cogumelo::load( 'coreController/Module.php' );
 
 
-class rextAppUser extends Module {
+class rextUserProfile extends Module {
 
-  public $name = 'rextAppUser';
+  public $name = 'rextUserProfile';
   public $version = 1.0;
 
 
   public $models = array(
-    'RExtAppUserModel'
+    'RExtUserProfileModel'
   );
 
   public $taxonomies = array();
@@ -17,8 +17,8 @@ class rextAppUser extends Module {
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RExtAppUserController.php',
-    'model/RExtAppUserModel.php'
+    'controller/RExtUserProfileController.php',
+    'model/RExtUserProfileModel.php'
   );
 
 
