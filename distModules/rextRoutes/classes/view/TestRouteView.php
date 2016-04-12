@@ -99,6 +99,7 @@ class TestRouteView extends View
             var map;
             var trackCircle = false;
             var grafico = false;
+            var isTrackHover = false;
 
             function findPoint(lat, lng) {
 
@@ -208,20 +209,28 @@ class TestRouteView extends View
               recorridoPolylineBK2.setMap(map)
 
               recorridoPolylineBK2.addListener('mouseover', function(ev){
-                findPoint(ev.latLng.lat(), ev.latLng.lng())
+                findPoint(ev.latLng.lat(), ev.latLng.lng());
+                isTrackHover = true;
               });
               recorridoPolylineBK1.addListener('mouseover', function(ev){
-                findPoint(ev.latLng.lat(), ev.latLng.lng())
+                findPoint(ev.latLng.lat(), ev.latLng.lng());
+                isTrackHover = true;
               });
               recorridoPolyline.addListener('mouseover', function(ev){
-                findPoint(ev.latLng.lat(), ev.latLng.lng())
+                findPoint(ev.latLng.lat(), ev.latLng.lng());
+                isTrackHover = true;
               });
 
-/*
-              recorridoPolylineBK.addListener('mouseleave', function(ev){
+              recorridoPolylineBK2.addListener('mouseout', function(ev){
                 outRecorrido();
               });
-*/
+              recorridoPolylineBK1.addListener('mouseout', function(ev){
+                outRecorrido();
+              });
+              recorridoPolyline.addListener('mouseout', function(ev){
+                outRecorrido();
+              });
+
 
 
               var chartString = "step,Altitude\n";
@@ -234,6 +243,19 @@ class TestRouteView extends View
                 //}
 
               });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
