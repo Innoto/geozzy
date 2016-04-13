@@ -66,7 +66,8 @@ geozzy.explorer = function( opts ) {
     map: false,
     mapInfo: false,
     activeList: false,
-    pasiveList: false
+    pasiveList: false,
+    plugins: []
   }
 
   // filters
@@ -94,7 +95,7 @@ geozzy.explorer = function( opts ) {
         Backbone.history.start();
       }
     });
-    
+
     // render filters
     if( that.filters.length > 0 ) {
       $.each( that.filters, function(i,e){
@@ -202,6 +203,11 @@ geozzy.explorer = function( opts ) {
       that.displays.pasiveList = displayObj;
       that.displays.pasiveList.parentExplorer = that;
     }
+    else
+    if( displayObj.displayType == 'plugin' ) {
+      displayObj.parentExplorer = that;
+      that.displays.plugins.push( displayObj );
+    }
     else {
       console.log('Geozzy explorer ERROR: Display type key not found');
     }
@@ -249,6 +255,10 @@ geozzy.explorer = function( opts ) {
     if(that.displays.pasiveList) {
       that.displays.pasiveList.currentPage = 0;
       resourcesToLoad = $.merge( that.displays.pasiveList.getVisibleResourceIds() , resourcesToLoad);
+    }
+
+    if( that.displays.plugins.length > 0 ) {
+
     }
 
 
