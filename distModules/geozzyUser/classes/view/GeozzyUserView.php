@@ -164,7 +164,7 @@ class GeozzyUserView extends View
     // BASE FORM FIELDS
     $form = new FormController( 'userProfileBaseForm');
     $form->setAction('/geozzyuser/senduserbaseprofile');
-    $form->setSuccess( 'redirect', '/userprofile#user/profile' );
+    $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.userRouter.successProfileForm();' );
 
     $fieldsInfo = array(
       'id' => array(
@@ -235,7 +235,8 @@ class GeozzyUserView extends View
       $resUser = $userRExt->listItems(array('filters' => array('user' => $userSess['data']['id'] )))->fetch();
       $resCtrl = new ResourceController();
       $recursoData = false;
-      $successArray[ 'redirect' ] = SITE_URL . 'userprofile#user/profile';
+
+      $successArray[ 'jsEval' ] = 'geozzy.userSessionInstance.userRouter.successProfileForm();';
 
       if($resUser){
         //Update

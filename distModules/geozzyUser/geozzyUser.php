@@ -59,7 +59,7 @@ class geozzyUser extends Module
       ),
       'shortDescription' => array(),
       'img' => false,
-      'viewType' => 'none',
+      'viewType' => 'tplEmpty',
       'urlAlias' => array(
         'en' => '/userprofile',
         'es' => '/userprofile',

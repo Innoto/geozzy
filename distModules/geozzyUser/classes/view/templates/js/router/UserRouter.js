@@ -21,7 +21,10 @@ geozzy.userSessionComponents.mainRouter = Backbone.Router.extend({
   },
   myprofile: function() {
     if( window.location.pathname === "/userprofile" ){
-      $(".bodyContent .contentSec").load( "/geozzyuser/profile", {}, function(){} );
+      $(".bodyContent").load( "/geozzyuser/profile", {}, function(){} );
     }
+  },
+  successProfileForm: function() {
+    this.navigate( "user/accessprofile", {trigger:true} );
   }
 });
