@@ -235,11 +235,12 @@ class GeozzyUserView extends View
       $resUser = $userRExt->listItems(array('filters' => array('user' => $userSess['data']['id'] )))->fetch();
       $resCtrl = new ResourceController();
       $recursoData = false;
+      $successArray[ 'redirect' ] = SITE_URL . 'userprofile#user/profile';
 
       if($resUser){
         //Update
         $recursoData = $resCtrl->getResourceData( $resUser->getter('resource') );
-        $formBlockInfo = $resCtrl->getFormBlockInfo( "resProfileEdit", "/geozzyuser/resource/sendresource", $recursoData );
+        $formBlockInfo = $resCtrl->getFormBlockInfo( "resProfileEdit", "/geozzyuser/resource/sendresource", $successArray, $recursoData );
         $profileBlock = $formBlockInfo['template']['formProfile'];
       }else{
         //create
@@ -249,7 +250,7 @@ class GeozzyUserView extends View
         $recursoData['rTypeId'] = $rTypeItem->getter('id');
         $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
 
-        $formBlockInfo = $resCtrl->getFormBlockInfo( "resProfileCreate", "/geozzyuser/resource/sendresource", $recursoData );
+        $formBlockInfo = $resCtrl->getFormBlockInfo( "resProfileCreate", "/geozzyuser/resource/sendresource", $successArray, $recursoData );
         $formBlockInfo['objForm']->setFieldValue('rExtUserProfile_user', $userSess['data']['id']);
         $formBlockInfo['objForm']->saveToSession();
         $profileBlock = $formBlockInfo['template']['formProfile'];
