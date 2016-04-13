@@ -3,6 +3,7 @@
 Cogumelo::load('coreView/View.php');
 common::autoIncludes();
 geozzy::autoIncludes();
+geozzy::load( 'view/GeozzyResourceView.php' );
 form::autoIncludes();
 form::loadDependence( 'ckeditor' );
 user::autoIncludes();
@@ -210,7 +211,7 @@ class GeozzyUserView extends View
         'translate' => true
       ),
       'submit' => array(
-        'params' => array( 'type' => 'submit', 'value' => __('Save account') )
+        'params' => array( 'type' => 'submit', 'value' => __('Send') )
       )
     );
 
@@ -228,13 +229,40 @@ class GeozzyUserView extends View
     $form->saveToSession();
 
     //RESOURCE PROFILE
+    if( Cogumelo::getSetupValue('mod:geozzyUser:profile') && Cogumelo::getSetupValue('mod:geozzyUser:profile') != "" ){
+      $rtypeName = Cogumelo::getSetupValue('mod:geozzyUser:profile');
+      $userRExt = new rextUserProfileModel();
+      $resUser = $userRExt->listItems(array('filters' => array('user' => $userSess['data']['id'] )))->fetch();
+      $resCtrl = new ResourceController();
+      $recursoData = false;
+      $successArray[ 'redirect' ] = SITE_URL . 'userprofile#user/profile';
 
+      if($resUser){
+        //Update
+        $recursoData = $resCtrl->getResourceData( $resUser->getter('resource') );
+        $formBlockInfo = $resCtrl->getFormBlockInfo( "resProfileEdit", "/geozzyuser/resource/sendresource", $successArray, $recursoData );
+        $profileBlock = $formBlockInfo['template']['formProfile'];
+      }else{
+        //create
+        $rTypeItem = false;
+        $rtypeControl = new ResourcetypeModel();
+        $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'idName' => $rtypeName ) ) )->fetch();
+        $recursoData['rTypeId'] = $rTypeItem->getter('id');
+        $recursoData['rTypeIdName'] = $rTypeItem->getter('idName');
 
+        $formBlockInfo = $resCtrl->getFormBlockInfo( "resProfileCreate", "/geozzyuser/resource/sendresource", $successArray, $recursoData );
+        $formBlockInfo['objForm']->setFieldValue('rExtUserProfile_user', $userSess['data']['id']);
+        $formBlockInfo['objForm']->saveToSession();
+        $profileBlock = $formBlockInfo['template']['formProfile'];
 
+      }
+    }
 
 
 
     $template = new Template( $this->baseDir );
+    $template->setFragment( "profileBlock", $profileBlock );
+    $template->addClientScript('js/userProfile.js', 'geozzyUser');
     $template->assign("userBaseFormOpen", $form->getHtmpOpen());
     $template->assign("userBaseFormFields", $form->getHtmlFieldsArray());
     $template->assign("userBaseFormClose", $form->getHtmlClose());
@@ -256,6 +284,11 @@ class GeozzyUserView extends View
 
       echo $form->getJsonOk();
     }
+  }
+
+  public function sendUserProfileResourceForm() {
+    $resourceView = new GeozzyResourceView();
+    $resourceView->actionResourceForm();
   }
   public function sendLogout(){
     $useraccesscontrol = new UserAccessController();

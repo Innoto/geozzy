@@ -1,3 +1,5 @@
+{$client_includes}
+
 {$userBaseFormOpen}
   <div class="userFormBase">
     <div class="row">
@@ -33,5 +35,9 @@
   </div>
 {$userBaseFormClose}
 {$userBaseFormValidations}
+
+<hr />
+
+{$profileBlock}
 
 <hr />

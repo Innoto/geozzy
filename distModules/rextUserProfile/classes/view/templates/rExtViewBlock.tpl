@@ -1,8 +1,8 @@
 <!-- rExtViewBlock.tpl en rextAppEspazoNatural module -->
 
-<p> --- rExtViewBlock.tpl en rextAppUser module</p>
+<p> --- rExtViewBlock.tpl en rextUserProfile module</p>
 
-<div class="rExtAppUser">
+<div class="rExtUserProfile">
 
 </div>
 

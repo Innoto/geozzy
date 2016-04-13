@@ -57,14 +57,22 @@ class rextRoutes extends Module {
 
 
   public $includesCommon = array(
-    /*'controller/RExtRoutesController.php',
-    'model/RExtRoutesModel.php'*/
+    'controller/RoutesController.php',
+    //'model/RExtRoutesModel.php'
+
   );
 
 
   public function __construct() {
 
+
+// TEST CODE
     $this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
+// END TEST CODE
+
+
+    $this->addUrlPatterns( '#^api/routes$#', 'view:RoutesAPIView::routes' );
+    $this->addUrlPatterns( '#^api/routes.json#', 'view:RoutesAPIView::routesJson' );
 
   }
 

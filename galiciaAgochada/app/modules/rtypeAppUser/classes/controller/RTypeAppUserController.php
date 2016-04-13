@@ -1,6 +1,4 @@
 <?php
-rextAppUser::autoIncludes();
-
 
 class RTypeAppUserController extends RTypeController implements RTypeInterface {
 
@@ -12,8 +10,7 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
 
 
   private function newRExtContr() {
-
-    return new RExtAppUserController( $this );
+    return new RExtUserProfileController( $this );
   }
 
   /**
@@ -22,50 +19,31 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
   public function manipulateForm( FormController $form ) {
     // error_log( "RTypeAppUserController: manipulateForm()" );
 
-    $rTypeExtNames = array();
-    $rTypeFieldNames = array();
-
-    $rTypeExtNames[] = 'rextAppUser';
-    $this->rExtCtrl = $this->newRExtContr();
-    $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
-
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+    // Lanzamos los manipulateForm de las extensiones
+    parent::manipulateForm( $form );
 
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
     $form->setFieldParam('starred', 'type', 'reserved');
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
+    $urlAliasLang = $form->multilangFieldNames('urlAlias');
+    foreach( $urlAliasLang as $key => $field ) {
+      $form->removeField( $field);
+    }
+    $urlAliasLang = $form->multilangFieldNames('title');
+    foreach( $urlAliasLang as $key => $field ) {
+      $form->removeField( $field);
+    }
+    $form->removeField('rExtContact_email');
+    $form->removeField('externalUrl');
+    $form->removeValidationRules('published');
 
-    return( $rTypeFieldNames );
   } // function manipulateForm()
 
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RTypeHotelController: getFormBlockInfo()" );
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false,
-      'ext' => array()
-    );
-
-    $formBlockInfo['dataForm'] = array(
-      'formOpen' => $form->getHtmpOpen(),
-      'formFieldsArray' => $form->getHtmlFieldsArray(),
-      'formFieldsHiddenArray' => array(),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-      'formClose' => $form->getHtmlClose(),
-      'formValidations' => $form->getScriptCode()
-    );
-
-    if( $resId = $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
-    }
-
-    $this->appUserCtrlappUserCtrl = new RExtAppUserController( $this );
-    $fileViewInfo = $this->appUserCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->appUserCtrl->rExtName ] = $fileViewInfo;
+    $formBlockInfo = parent::getFormBlockInfo( $form );
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -78,8 +56,6 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
       $form->multilangFieldNames( 'shortDescription' ),
       $form->multilangFieldNames( 'mediumDescription' )
     );
-    $formFieldsNames[] = 'externalUrl';
-    $formFieldsNames[] = $this->appUserCtrl->addPrefix( 'author' );
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
@@ -156,13 +132,12 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['file'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
     $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['formProfile'] = new Template();
-    $templates['formProfile']->assign( 'title', __( 'Resource' ) );
+    $templates['formProfile']->assign( 'title', __( 'Profile Data' ) );
     $templates['formProfile']->setTpl( 'rTypeAppFormProfileBlock.tpl', 'rtypeAppUser' );
     $templates['formProfile']->assign( 'res', $formBlockInfo );
 
@@ -177,71 +152,31 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
     return $formBlockInfo;
   }
 
-  /**
-    Validaciones extra previas a usar los datos del recurso base
-   **/
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeAppUserController: resFormRevalidate()" );
-
-    if( !$form->existErrors() ) {
-      $this->rExtCtrl = $this->newRExtContr();
-      $this->rExtCtrl->resFormRevalidate( $form );
-    }
-
-    // $this->evalFormAppUserAlias( $form, 'urlAlias' );
-  }
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
-   **/
-  public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeAppUserController: resFormProcess()" );
-
-    if( !$form->existErrors() ) {
-      $this->rExtCtrl = $this->newRExtContr();
-      $this->rExtCtrl->resFormProcess( $form, $resource );
-    }
-
-  }
-
-  /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
-   **/
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeAppUserController: resFormSuccess()" );
-
-    $this->rExtCtrl = $this->newRExtContr();
-    $this->rExtCtrl->resFormSuccess( $form, $resource );
-  }
-
+   * Validaciones extra previas a usar los datos del recurso
+   *
+   * @param $form FormController Objeto form. del recurso
+   */
+  // parent::resFormRevalidate( $form );
 
 
   /**
-    Visualizamos el Recurso
-   **/
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RTypeAppUserController: getViewBlock()" );
-    $template = false;
+   * Creación-Edicion-Borrado de los elementos del recurso segun el RType
+   *
+   * @param $form FormController Objeto form. del recurso
+   * @param $resource ResourceModel Objeto form. del recurso
+   */
+  // parent::resFormProcess( $form, $resource );
 
-    $template = $resBlock;
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppUser' );
 
-    $this->rExtCtrl = $this->newRExtContr();
-    $urlBlock = $this->rExtCtrl->getViewBlock( $resBlock );
-
-    if( $urlBlock ) {
-      $template->addToBlock( 'rextAppUser', $urlBlock );
-      $template->assign( 'rExtBlockNames', array( 'rextAppUser' ) );
-    }
-    else {
-      $template->assign( 'rextAppUser', false );
-      $template->assign( 'rExtBlockNames', false );
-    }
-
-    return $template;
-  }
+  /**
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  // parent::resFormSuccess( $form, $resource );
 
 
 
@@ -249,33 +184,12 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    // error_log( "RTypeAppUserController: getViewBlockInfo()" );
 
-    $viewBlockInfo = array(
-      'template' => false,
-      'data' => $this->defResCtrl->getResourceData( false, true ),
-      'ext' => array()
-    );
+    // Preparamos los datos para visualizar el Recurso con sus extensiones
+    $viewBlockInfo = parent::getViewBlockInfo();
 
-    $template = new Template();
+    $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppUser' );
-
-    $this->rExtCtrl = $this->newRExtContr();
-    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
-
-    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-
-    if( $rExtViewInfo ) {
-      if( $rExtViewInfo['template'] ) {
-        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextAppUserBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextAppUserBlock', false );
-    }
 
     $viewBlockInfo['template'] = array( 'full' => $template );
 

@@ -202,14 +202,15 @@ $C_REXT_MODULES = array(
   'rextUrl',
   'rextView',
   'rextFile',
+  'rextUserProfile',
   'rextAppLugar',
   'rextAppEspazoNatural',
   'rextAppZona',
-  'rextAppUser',
   'rextSocialNetwork',
-  'rextEvent',
-  'rextEventCollection',
-  'rextAppFesta'
+  //'rextEvent',
+  //'rextEventCollection',
+  //'rextAppFesta',
+  'rextRoutes'
 );
 
 // resource Types
@@ -220,12 +221,12 @@ $C_RTYPE_MODULES = array(
   'rtypeUrl',
   'rtypePage',
   'rtypeFile',
-  'rtypeAppRuta',
+  //'rtypeAppRuta',
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
-  'rtypeAppFesta',
+  //'rtypeAppFesta',
   'rtypeAppUser',
-  'rtypeEvent'
+  //'rtypeEvent'
 );
 
 
@@ -259,9 +260,15 @@ $C_INDEX_MODULES  = array(
   'testData',
   'initResources',
   'explorer',
-  'rtypeEvent',
+  'rextRoutes',
+  //'rtypeEvent',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
+
+// User config
+cogumeloSetSetupValue( 'mod:geozzyUser', array(
+  'profile' => 'rtypeAppUser'
+));
 
 
 //  Logs
