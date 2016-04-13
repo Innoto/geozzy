@@ -257,9 +257,6 @@ geozzy.explorer = function( opts ) {
       resourcesToLoad = $.merge( that.displays.pasiveList.getVisibleResourceIds() , resourcesToLoad);
     }
 
-    if( that.displays.plugins.length > 0 ) {
-
-    }
 
 
     // Advanced Fetch
@@ -276,6 +273,12 @@ geozzy.explorer = function( opts ) {
 
         if(that.displays.pasiveList) {
           that.displays.pasiveList.render();
+        }
+
+        if( that.displays.plugins.length > 0 ) {
+          $.each( that.displays.plugins, function(pluginIndex, plugin) {
+            plugin.render();
+          });
         }
 
         that.timeDebugerExtended.log( '&nbsp;- Render lists' );
