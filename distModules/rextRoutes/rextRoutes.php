@@ -58,6 +58,9 @@ class rextRoutes extends Module {
 
   public $includesCommon = array(
     'controller/RoutesController.php',
+    'js/collection/RouteModel.js',
+    'js/collection/RouteCollection.js',
+    'js/view/routesExplorerView.js'
     //'model/RExtRoutesModel.php'
 
   );
