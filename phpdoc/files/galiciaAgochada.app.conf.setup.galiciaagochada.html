@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">1733</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">18</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1353464512"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1353464512" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/RExtInterface.html">RExtInterface</a></li>
+                                                    <li class="interface"><a href="../classes/RTypeInterface.html">RTypeInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/AccommodationModel.html">AccommodationModel</a></li>
+                                                    <li class="class"><a href="../classes/admin.html">admin</a></li>
+                                                    <li class="class"><a href="../classes/AdminDataAPIView.html">AdminDataAPIView</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewBi.html">AdminViewBi</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewCollection.html">AdminViewCollection</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewLogin.html">AdminViewLogin</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewMaster.html">AdminViewMaster</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewMultiList.html">AdminViewMultiList</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewPage.html">AdminViewPage</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewResource.html">AdminViewResource</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewResourceInTopic.html">AdminViewResourceInTopic</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewResourceOutTopic.html">AdminViewResourceOutTopic</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewRole.html">AdminViewRole</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewStarred.html">AdminViewStarred</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewTaxonomy.html">AdminViewTaxonomy</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewTopic.html">AdminViewTopic</a></li>
+                                                    <li class="class"><a href="../classes/AdminViewUser.html">AdminViewUser</a></li>
+                                                    <li class="class"><a href="../classes/AloxamentosExplorerController.html">AloxamentosExplorerController</a></li>
+                                                    <li class="class"><a href="../classes/AloxamentosExplorerModel.html">AloxamentosExplorerModel</a></li>
+                                                    <li class="class"><a href="../classes/apiFiltersController.html">apiFiltersController</a></li>
+                                                    <li class="class"><a href="../classes/appExplorer.html">appExplorer</a></li>
+                                                    <li class="class"><a href="../classes/appResourceBridge.html">appResourceBridge</a></li>
+                                                    <li class="class"><a href="../classes/AppResourceBridgeView.html">AppResourceBridgeView</a></li>
+                                                    <li class="class"><a href="../classes/bi.html">bi</a></li>
+                                                    <li class="class"><a href="../classes/biMetrics.html">biMetrics</a></li>
+                                                    <li class="class"><a href="../classes/biView.html">biView</a></li>
+                                                    <li class="class"><a href="../classes/Blocks.html">Blocks</a></li>
+                                                    <li class="class"><a href="../classes/BlocksPorto1.html">BlocksPorto1</a></li>
+                                                    <li class="class"><a href="../classes/BlocksPorto2.html">BlocksPorto2</a></li>
+                                                    <li class="class"><a href="../classes/Cogumelo.html">Cogumelo</a></li>
+                                                    <li class="class"><a href="../classes/CollectionModel.html">CollectionModel</a></li>
+                                                    <li class="class"><a href="../classes/CollectionResourcesListViewModel.html">CollectionResourcesListViewModel</a></li>
+                                                    <li class="class"><a href="../classes/CollectionResourcesModel.html">CollectionResourcesModel</a></li>
+                                                    <li class="class"><a href="../classes/CommentModel.html">CommentModel</a></li>
+                                                    <li class="class"><a href="../classes/ContactModel.html">ContactModel</a></li>
+                                                    <li class="class"><a href="../classes/DefaultExplorerController.html">DefaultExplorerController</a></li>
+                                                    <li class="class"><a href="../classes/DocAPIView.html">DocAPIView</a></li>
+                                                    <li class="class"><a href="../classes/EatAndDrinkModel.html">EatAndDrinkModel</a></li>
+                                                    <li class="class"><a href="../classes/EventModel.html">EventModel</a></li>
+                                                    <li class="class"><a href="../classes/explorer.html">explorer</a></li>
+                                                    <li class="class"><a href="../classes/ExplorerAPIView.html">ExplorerAPIView</a></li>
+                                                    <li class="class"><a href="../classes/ExplorerController.html">ExplorerController</a></li>
+                                                    <li class="class"><a href="../classes/ExplorerPageView.html">ExplorerPageView</a></li>
+                                                    <li class="class"><a href="../classes/ExplorerView.html">ExplorerView</a></li>
+                                                    <li class="class"><a href="../classes/ExtraDataModel.html">ExtraDataModel</a></li>
+                                                    <li class="class"><a href="../classes/GenericExplorerModel.html">GenericExplorerModel</a></li>
+                                                    <li class="class"><a href="../classes/geozzy.html">geozzy</a></li>
+                                                    <li class="class"><a href="../classes/geozzyAPI.html">geozzyAPI</a></li>
+                                                    <li class="class"><a href="../classes/geozzyAPIView.html">geozzyAPIView</a></li>
+                                                    <li class="class"><a href="../classes/GeozzyCollectionView.html">GeozzyCollectionView</a></li>
+                                                    <li class="class"><a href="../classes/GeozzyExamplesController.html">GeozzyExamplesController</a></li>
+                                                    <li class="class"><a href="../classes/GeozzyResourceView.html">GeozzyResourceView</a></li>
+                                                    <li class="class"><a href="../classes/GeozzyTaxonomytermView.html">GeozzyTaxonomytermView</a></li>
+                                                    <li class="class"><a href="../classes/geozzyUser.html">geozzyUser</a></li>
+                                                    <li class="class"><a href="../classes/GeozzyUserView.html">GeozzyUserView</a></li>
+                                                    <li class="class"><a href="../classes/initResources.html">initResources</a></li>
+                                                    <li class="class"><a href="../classes/InitResourcesController.html">InitResourcesController</a></li>
+                                                    <li class="class"><a href="../classes/MailExample.html">MailExample</a></li>
+                                                    <li class="class"><a href="../classes/MasterPageView.html">MasterPageView</a></li>
+                                                    <li class="class"><a href="../classes/MasterView.html">MasterView</a></li>
+                                                    <li class="class"><a href="../classes/PaisaxesExplorerController.html">PaisaxesExplorerController</a></li>
+                                                    <li class="class"><a href="../classes/PaisaxesExplorerModel.html">PaisaxesExplorerModel</a></li>
+                                                    <li class="class"><a href="../classes/PraiasExplorerController.html">PraiasExplorerController</a></li>
+                                                    <li class="class"><a href="../classes/PraiasExplorerModel.html">PraiasExplorerModel</a></li>
+                                                    <li class="class"><a href="../classes/RatingModel.html">RatingModel</a></li>
+                                                    <li class="class"><a href="../classes/RealDataGenerator.html">RealDataGenerator</a></li>
+                                                    <li class="class"><a href="../classes/ResourceCollectionsAllModel.html">ResourceCollectionsAllModel</a></li>
+                                                    <li class="class"><a href="../classes/ResourceCollectionsModel.html">ResourceCollectionsModel</a></li>
+                                                    <li class="class"><a href="../classes/ResourceController.html">ResourceController</a></li>
+                                                    <li class="class"><a href="../classes/ResourceIndexModel.html">ResourceIndexModel</a></li>
+                                                    <li class="class"><a href="../classes/ResourceModel.html">ResourceModel</a></li>
+                                                    <li class="class"><a href="../classes/ResourceMultimediaViewModel.html">ResourceMultimediaViewModel</a></li>
+                                                    <li class="class"><a href="../classes/ResourceTaxonomyAllModel.html">ResourceTaxonomyAllModel</a></li>
+                                                    <li class="class"><a href="../classes/ResourceTaxonomytermModel.html">ResourceTaxonomytermModel</a></li>
+                                                    <li class="class"><a href="../classes/ResourceTopicModel.html">ResourceTopicModel</a></li>
+                                                    <li class="class"><a href="../classes/ResourcetypeModel.html">ResourcetypeModel</a></li>
+                                                    <li class="class"><a href="../classes/ResourcetypeTopicModel.html">ResourcetypeTopicModel</a></li>
+                                                    <li class="class"><a href="../classes/rextAccommodation.html">rextAccommodation</a></li>
+                                                    <li class="class"><a href="../classes/RExtAccommodationController.html">RExtAccommodationController</a></li>
+                                                    <li class="class"><a href="../classes/rextAppEspazoNatural.html">rextAppEspazoNatural</a></li>
+                                                    <li class="class"><a href="../classes/RExtAppEspazoNaturalController.html">RExtAppEspazoNaturalController</a></li>
+                                                    <li class="class"><a href="../classes/rextAppFesta.html">rextAppFesta</a></li>
+                                                    <li class="class"><a href="../classes/RExtAppFestaController.html">RExtAppFestaController</a></li>
+                                                    <li class="class"><a href="../classes/rextAppLugar.html">rextAppLugar</a></li>
+                                                    <li class="class"><a href="../classes/RExtAppLugarController.html">RExtAppLugarController</a></li>
+                                                    <li class="class"><a href="../classes/rextAppUser.html">rextAppUser</a></li>
+                                                    <li class="class"><a href="../classes/RExtAppUserController.html">RExtAppUserController</a></li>
+                                                    <li class="class"><a href="../classes/RExtAppUserModel.html">RExtAppUserModel</a></li>
+                                                    <li class="class"><a href="../classes/rextAppZona.html">rextAppZona</a></li>
+                                                    <li class="class"><a href="../classes/RExtAppZonaController.html">RExtAppZonaController</a></li>
+                                                    <li class="class"><a href="../classes/rextContact.html">rextContact</a></li>
+                                                    <li class="class"><a href="../classes/RExtContactController.html">RExtContactController</a></li>
+                                                    <li class="class"><a href="../classes/RExtController.html">RExtController</a></li>
+                                                    <li class="class"><a href="../classes/RExtControllerDOC.html">RExtControllerDOC</a></li>
+                                                    <li class="class"><a href="../classes/rextEatAndDrink.html">rextEatAndDrink</a></li>
+                                                    <li class="class"><a href="../classes/RExtEatAndDrinkController.html">RExtEatAndDrinkController</a></li>
+                                                    <li class="class"><a href="../classes/rextEvent.html">rextEvent</a></li>
+                                                    <li class="class"><a href="../classes/rextEventCollection.html">rextEventCollection</a></li>
+                                                    <li class="class"><a href="../classes/RExtEventCollectionController.html">RExtEventCollectionController</a></li>
+                                                    <li class="class"><a href="../classes/RExtEventController.html">RExtEventController</a></li>
+                                                    <li class="class"><a href="../classes/rextFile.html">rextFile</a></li>
+                                                    <li class="class"><a href="../classes/RExtFileController.html">RExtFileController</a></li>
+                                                    <li class="class"><a href="../classes/RExtFileModel.html">RExtFileModel</a></li>
+                                                    <li class="class"><a href="../classes/rextMapDirections.html">rextMapDirections</a></li>
+                                                    <li class="class"><a href="../classes/RExtMapDirectionsController.html">RExtMapDirectionsController</a></li>
+                                                    <li class="class"><a href="../classes/rextRoutes.html">rextRoutes</a></li>
+                                                    <li class="class"><a href="../classes/rextSocialNetwork.html">rextSocialNetwork</a></li>
+                                                    <li class="class"><a href="../classes/RExtSocialNetworkController.html">RExtSocialNetworkController</a></li>
+                                                    <li class="class"><a href="../classes/RExtSocialNetworkModel.html">RExtSocialNetworkModel</a></li>
+                                                    <li class="class"><a href="../classes/rextUrl.html">rextUrl</a></li>
+                                                    <li class="class"><a href="../classes/RExtUrlController.html">RExtUrlController</a></li>
+                                                    <li class="class"><a href="../classes/RExtUrlModel.html">RExtUrlModel</a></li>
+                                                    <li class="class"><a href="../classes/rextView.html">rextView</a></li>
+                                                    <li class="class"><a href="../classes/RExtViewAltAppAloxamentosExplorer.html">RExtViewAltAppAloxamentosExplorer</a></li>
+                                                    <li class="class"><a href="../classes/RExtViewAltAppHome.html">RExtViewAltAppHome</a></li>
+                                                    <li class="class"><a href="../classes/RExtViewAltAppMylandpage.html">RExtViewAltAppMylandpage</a></li>
+                                                    <li class="class"><a href="../classes/RExtViewAltAppPaisaxesExplorer.html">RExtViewAltAppPaisaxesExplorer</a></li>
+                                                    <li class="class"><a href="../classes/RExtViewAltAppPraiasExplorer.html">RExtViewAltAppPraiasExplorer</a></li>
+                                                    <li class="class"><a href="../classes/RExtViewAltAppRinconsExplorer.html">RExtViewAltAppRinconsExplorer</a></li>
+                                                    <li class="class"><a href="../classes/RExtViewAltAppTodosSegredosExplorer.html">RExtViewAltAppTodosSegredosExplorer</a></li>
+                                                    <li class="class"><a href="../classes/RExtViewAltAppXantaresExplorer.html">RExtViewAltAppXantaresExplorer</a></li>
+                                                    <li class="class"><a href="../classes/RExtViewController.html">RExtViewController</a></li>
+                                                    <li class="class"><a href="../classes/RinconsExplorerController.html">RinconsExplorerController</a></li>
+                                                    <li class="class"><a href="../classes/RinconsExplorerModel.html">RinconsExplorerModel</a></li>
+                                                    <li class="class"><a href="../classes/RoutesModel.html">RoutesModel</a></li>
+                                                    <li class="class"><a href="../classes/RTUtilsController.html">RTUtilsController</a></li>
+                                                    <li class="class"><a href="../classes/rtypeAppEspazoNatural.html">rtypeAppEspazoNatural</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppEspazoNaturalController.html">RTypeAppEspazoNaturalController</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppEspazoNaturalView.html">RTypeAppEspazoNaturalView</a></li>
+                                                    <li class="class"><a href="../classes/rtypeAppFesta.html">rtypeAppFesta</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppFestaController.html">RTypeAppFestaController</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppFestaView.html">RTypeAppFestaView</a></li>
+                                                    <li class="class"><a href="../classes/rtypeAppHotel.html">rtypeAppHotel</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppHotelController.html">RTypeAppHotelController</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppHotelView.html">RTypeAppHotelView</a></li>
+                                                    <li class="class"><a href="../classes/rtypeAppLugar.html">rtypeAppLugar</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppLugarController.html">RTypeAppLugarController</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppLugarView.html">RTypeAppLugarView</a></li>
+                                                    <li class="class"><a href="../classes/rtypeAppRestaurant.html">rtypeAppRestaurant</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppRestaurantController.html">RTypeAppRestaurantController</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppRestaurantView.html">RTypeAppRestaurantView</a></li>
+                                                    <li class="class"><a href="../classes/rtypeAppRuta.html">rtypeAppRuta</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppRutaController.html">RTypeAppRutaController</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppRutaView.html">RTypeAppRutaView</a></li>
+                                                    <li class="class"><a href="../classes/rtypeAppUser.html">rtypeAppUser</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppUserController.html">RTypeAppUserController</a></li>
+                                                    <li class="class"><a href="../classes/RTypeAppUserView.html">RTypeAppUserView</a></li>
+                                                    <li class="class"><a href="../classes/RTypeController.html">RTypeController</a></li>
+                                                    <li class="class"><a href="../classes/rtypeEvent.html">rtypeEvent</a></li>
+                                                    <li class="class"><a href="../classes/RTypeEventController.html">RTypeEventController</a></li>
+                                                    <li class="class"><a href="../classes/RTypeEventView.html">RTypeEventView</a></li>
+                                                    <li class="class"><a href="../classes/rtypeFile.html">rtypeFile</a></li>
+                                                    <li class="class"><a href="../classes/RTypeFileController.html">RTypeFileController</a></li>
+                                                    <li class="class"><a href="../classes/RTypeFileView.html">RTypeFileView</a></li>
+                                                    <li class="class"><a href="../classes/rtypePage.html">rtypePage</a></li>
+                                                    <li class="class"><a href="../classes/RTypePageController.html">RTypePageController</a></li>
+                                                    <li class="class"><a href="../classes/RTypePageView.html">RTypePageView</a></li>
+                                                    <li class="class"><a href="../classes/rtypeUrl.html">rtypeUrl</a></li>
+                                                    <li class="class"><a href="../classes/RTypeUrlController.html">RTypeUrlController</a></li>
+                                                    <li class="class"><a href="../classes/RTypeUrlView.html">RTypeUrlView</a></li>
+                                                    <li class="class"><a href="../classes/StarredResourcesModel.html">StarredResourcesModel</a></li>
+                                                    <li class="class"><a href="../classes/TaxonomygroupModel.html">TaxonomygroupModel</a></li>
+                                                    <li class="class"><a href="../classes/TaxonomytermModel.html">TaxonomytermModel</a></li>
+                                                    <li class="class"><a href="../classes/testData.html">testData</a></li>
+                                                    <li class="class"><a href="../classes/TestDataGenerator.html">TestDataGenerator</a></li>
+                                                    <li class="class"><a href="../classes/TestDataViewMaster.html">TestDataViewMaster</a></li>
+                                                    <li class="class"><a href="../classes/TodosSegredosExplorerController.html">TodosSegredosExplorerController</a></li>
+                                                    <li class="class"><a href="../classes/TodosSegredosExplorerModel.html">TodosSegredosExplorerModel</a></li>
+                                                    <li class="class"><a href="../classes/TopicModel.html">TopicModel</a></li>
+                                                    <li class="class"><a href="../classes/UrlAliasController.html">UrlAliasController</a></li>
+                                                    <li class="class"><a href="../classes/UrlAliasModel.html">UrlAliasModel</a></li>
+                                                    <li class="class"><a href="../classes/UrlAliasView.html">UrlAliasView</a></li>
+                                                    <li class="class"><a href="../classes/XantaresExplorerController.html">XantaresExplorerController</a></li>
+                                                    <li class="class"><a href="../classes/XantaresExplorerModel.html">XantaresExplorerModel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content file">
+                    <nav>
+                                                                    </nav>
+
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small>galiciaAgochada/app/conf</small>setup.galiciaagochada.php</h1>
+                    <p><em>Previamente ya se definen los siguientes valores:</em></p>
+                    <p>WEB_BASE_PATH - Apache DocumentRoot (declarado en index.php)
+APP_BASE_PATH - App Path (declarado en index.php)
+SITE_PATH - App Path (declarado en index.php)</p>
+<p>IS_DEVEL_ENV - Indica si estamos en el entorno de desarrollo (declarado en setup.php)</p>
+<p>Normas de estilo:</p>
+<ul>
+<li>Nombres:</li>
+<li>Inicia por mod:nombreModulo: para modulos</li>
+<li>
+<p>Usar en variablePath para rutas</p>
+</li>
+<li>Valores:</li>
+<li>Las rutas NO finalizan en /</li>
+<li>Las URL NO finalizan en /</li>
+</ul>
+
+                    
+                    
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                        
+                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                            </table>
+
+                </aside>
+            </div>
+
+                        <div class="row-fluid">
+                <section class="span8 content file">
+                    <h2>Constants</h2>
+                </section>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_GA_ACCESS_USER" name="constant_GA_ACCESS_USER" class="anchor"></a>
+            <article id="constant_GA_ACCESS_USER" class="constant">
+                <h3 class="">GA_ACCESS_USER</h3>
+                <pre class="signature">GA_ACCESS_USER</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_GA_ACCESS_PASSWORD" name="constant_GA_ACCESS_PASSWORD" class="anchor"></a>
+            <article id="constant_GA_ACCESS_PASSWORD" class="constant">
+                <h3 class="">GA_ACCESS_PASSWORD</h3>
+                <pre class="signature">GA_ACCESS_PASSWORD</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SITE_PROTOCOL" name="constant_SITE_PROTOCOL" class="anchor"></a>
+            <article id="constant_SITE_PROTOCOL" class="constant">
+                <h3 class="">SITE_PROTOCOL</h3>
+                <pre class="signature">SITE_PROTOCOL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SITE_HOST" name="constant_SITE_HOST" class="anchor"></a>
+            <article id="constant_SITE_HOST" class="constant">
+                <h3 class="">SITE_HOST</h3>
+                <pre class="signature">SITE_HOST</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SITE_FOLDER" name="constant_SITE_FOLDER" class="anchor"></a>
+            <article id="constant_SITE_FOLDER" class="constant">
+                <h3 class="">SITE_FOLDER</h3>
+                <pre class="signature">SITE_FOLDER</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SITE_URL" name="constant_SITE_URL" class="anchor"></a>
+            <article id="constant_SITE_URL" class="constant">
+                <h3 class="">SITE_URL</h3>
+                <pre class="signature">SITE_URL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SITE_URL_HTTP" name="constant_SITE_URL_HTTP" class="anchor"></a>
+            <article id="constant_SITE_URL_HTTP" class="constant">
+                <h3 class="">SITE_URL_HTTP</h3>
+                <pre class="signature">SITE_URL_HTTP</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SITE_URL_HTTPS" name="constant_SITE_URL_HTTPS" class="anchor"></a>
+            <article id="constant_SITE_URL_HTTPS" class="constant">
+                <h3 class="">SITE_URL_HTTPS</h3>
+                <pre class="signature">SITE_URL_HTTPS</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SITE_URL_CURRENT" name="constant_SITE_URL_CURRENT" class="anchor"></a>
+            <article id="constant_SITE_URL_CURRENT" class="constant">
+                <h3 class="">SITE_URL_CURRENT</h3>
+                <pre class="signature">SITE_URL_CURRENT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_COGUMELO_APP_URL_ALIAS_CONTROLLER" name="constant_COGUMELO_APP_URL_ALIAS_CONTROLLER" class="anchor"></a>
+            <article id="constant_COGUMELO_APP_URL_ALIAS_CONTROLLER" class="constant">
+                <h3 class="">COGUMELO_APP_URL_ALIAS_CONTROLLER</h3>
+                <pre class="signature">COGUMELO_APP_URL_ALIAS_CONTROLLER</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SMARTY_DIR" name="constant_SMARTY_DIR" class="anchor"></a>
+            <article id="constant_SMARTY_DIR" class="constant">
+                <h3 class="">SMARTY_DIR</h3>
+                <pre class="signature">SMARTY_DIR</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LOGDIR" name="constant_LOGDIR" class="anchor"></a>
+            <article id="constant_LOGDIR" class="constant">
+                <h3 class="">LOGDIR</h3>
+                <pre class="signature">LOGDIR</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LOG_RAW_SQL" name="constant_LOG_RAW_SQL" class="anchor"></a>
+            <article id="constant_LOG_RAW_SQL" class="constant">
+                <h3 class="">LOG_RAW_SQL</h3>
+                <pre class="signature">LOG_RAW_SQL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEBUG" name="constant_DEBUG" class="anchor"></a>
+            <article id="constant_DEBUG" class="constant">
+                <h3 class="">DEBUG</h3>
+                <pre class="signature">DEBUG</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ERRORS" name="constant_ERRORS" class="anchor"></a>
+            <article id="constant_ERRORS" class="constant">
+                <h3 class="">ERRORS</h3>
+                <pre class="signature">ERRORS</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_BCK" name="constant_BCK" class="anchor"></a>
+            <article id="constant_BCK" class="constant">
+                <h3 class="">BCK</h3>
+                <pre class="signature">BCK</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LANG_DEFAULT" name="constant_LANG_DEFAULT" class="anchor"></a>
+            <article id="constant_LANG_DEFAULT" class="constant">
+                <h3 class="">LANG_DEFAULT</h3>
+                <pre class="signature">LANG_DEFAULT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SMARTY_CONFIG" name="constant_SMARTY_CONFIG" class="anchor"></a>
+            <article id="constant_SMARTY_CONFIG" class="constant">
+                <h3 class="">SMARTY_CONFIG</h3>
+                <pre class="signature">SMARTY_CONFIG</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SMARTY_COMPILE" name="constant_SMARTY_COMPILE" class="anchor"></a>
+            <article id="constant_SMARTY_COMPILE" class="constant">
+                <h3 class="">SMARTY_COMPILE</h3>
+                <pre class="signature">SMARTY_COMPILE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SMARTY_CACHE" name="constant_SMARTY_CACHE" class="anchor"></a>
+            <article id="constant_SMARTY_CACHE" class="constant">
+                <h3 class="">SMARTY_CACHE</h3>
+                <pre class="signature">SMARTY_CACHE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TPL_TMP" name="constant_TPL_TMP" class="anchor"></a>
+            <article id="constant_TPL_TMP" class="constant">
+                <h3 class="">TPL_TMP</h3>
+                <pre class="signature">TPL_TMP</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEPEN_COMPOSER_PATH" name="constant_DEPEN_COMPOSER_PATH" class="anchor"></a>
+            <article id="constant_DEPEN_COMPOSER_PATH" class="constant">
+                <h3 class="">DEPEN_COMPOSER_PATH</h3>
+                <pre class="signature">DEPEN_COMPOSER_PATH</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEPEN_BOWER_PATH" name="constant_DEPEN_BOWER_PATH" class="anchor"></a>
+            <article id="constant_DEPEN_BOWER_PATH" class="constant">
+                <h3 class="">DEPEN_BOWER_PATH</h3>
+                <pre class="signature">DEPEN_BOWER_PATH</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEPEN_MANUAL_PATH" name="constant_DEPEN_MANUAL_PATH" class="anchor"></a>
+            <article id="constant_DEPEN_MANUAL_PATH" class="constant">
+                <h3 class="">DEPEN_MANUAL_PATH</h3>
+                <pre class="signature">DEPEN_MANUAL_PATH</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEPEN_MANUAL_REPOSITORY" name="constant_DEPEN_MANUAL_REPOSITORY" class="anchor"></a>
+            <article id="constant_DEPEN_MANUAL_REPOSITORY" class="constant">
+                <h3 class="">DEPEN_MANUAL_REPOSITORY</h3>
+                <pre class="signature">DEPEN_MANUAL_REPOSITORY</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MOD_DEVEL_ALLOW_ACCESS" name="constant_MOD_DEVEL_ALLOW_ACCESS" class="anchor"></a>
+            <article id="constant_MOD_DEVEL_ALLOW_ACCESS" class="constant">
+                <h3 class="">MOD_DEVEL_ALLOW_ACCESS</h3>
+                <pre class="signature">MOD_DEVEL_ALLOW_ACCESS</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MOD_DEVEL_URL_DIR" name="constant_MOD_DEVEL_URL_DIR" class="anchor"></a>
+            <article id="constant_MOD_DEVEL_URL_DIR" class="constant">
+                <h3 class="">MOD_DEVEL_URL_DIR</h3>
+                <pre class="signature">MOD_DEVEL_URL_DIR</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MOD_DEVEL_PASSWORD" name="constant_MOD_DEVEL_PASSWORD" class="anchor"></a>
+            <article id="constant_MOD_DEVEL_PASSWORD" class="constant">
+                <h3 class="">MOD_DEVEL_PASSWORD</h3>
+                <pre class="signature">MOD_DEVEL_PASSWORD</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_I18N" name="constant_I18N" class="anchor"></a>
+            <article id="constant_I18N" class="constant">
+                <h3 class="">I18N</h3>
+                <pre class="signature">I18N</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_I18N_LOCALE" name="constant_I18N_LOCALE" class="anchor"></a>
+            <article id="constant_I18N_LOCALE" class="constant">
+                <h3 class="">I18N_LOCALE</h3>
+                <pre class="signature">I18N_LOCALE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_GETTEXT_UPDATE" name="constant_GETTEXT_UPDATE" class="anchor"></a>
+            <article id="constant_GETTEXT_UPDATE" class="constant">
+                <h3 class="">GETTEXT_UPDATE</h3>
+                <pre class="signature">GETTEXT_UPDATE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MOD_FORM_CSS_PRE" name="constant_MOD_FORM_CSS_PRE" class="anchor"></a>
+            <article id="constant_MOD_FORM_CSS_PRE" class="constant">
+                <h3 class="">MOD_FORM_CSS_PRE</h3>
+                <pre class="signature">MOD_FORM_CSS_PRE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MOD_FORM_FILES_TMP_PATH" name="constant_MOD_FORM_FILES_TMP_PATH" class="anchor"></a>
+            <article id="constant_MOD_FORM_FILES_TMP_PATH" class="constant">
+                <h3 class="">MOD_FORM_FILES_TMP_PATH</h3>
+                <pre class="signature">MOD_FORM_FILES_TMP_PATH</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MOD_FORM_FILES_APP_PATH" name="constant_MOD_FORM_FILES_APP_PATH" class="anchor"></a>
+            <article id="constant_MOD_FORM_FILES_APP_PATH" class="constant">
+                <h3 class="">MOD_FORM_FILES_APP_PATH</h3>
+                <pre class="signature">MOD_FORM_FILES_APP_PATH</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MOD_FILEDATA_APP_PATH" name="constant_MOD_FILEDATA_APP_PATH" class="anchor"></a>
+            <article id="constant_MOD_FILEDATA_APP_PATH" class="constant">
+                <h3 class="">MOD_FILEDATA_APP_PATH</h3>
+                <pre class="signature">MOD_FILEDATA_APP_PATH</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MOD_FILEDATA_CACHE_PATH" name="constant_MOD_FILEDATA_CACHE_PATH" class="anchor"></a>
+            <article id="constant_MOD_FILEDATA_CACHE_PATH" class="constant">
+                <h3 class="">MOD_FILEDATA_CACHE_PATH</h3>
+                <pre class="signature">MOD_FILEDATA_CACHE_PATH</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">galiciaAgochada/app/conf/setup.galiciaagochada.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/galiciaAgochada/app/conf/setup.galiciaagochada.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on April 13th, 2016 at 11:34.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

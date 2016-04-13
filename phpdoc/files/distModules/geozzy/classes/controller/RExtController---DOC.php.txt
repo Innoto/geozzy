@@ -1,0 +1,202 @@
+<?php
+
+class RExtControllerDOC {
+
+
+  public $rExtName = 'rExt'; // Nombre del RExt
+  public $prefix = 'rExt_'; // Prefijo para los campos del RExt
+
+  public $defRTypeCtrl = null; // Acceso al controller del RType 'padre'
+  public $defResCtrl = null; // Acceso al controller del Resource 'padre'
+  public $rExtModule = null; // Acceso a 'la configuración' del RExt
+  public $taxonomies = false; // Datos de taxonomias en 'la configuración' del RExt
+
+  public $numericFields = false; // Campos del RExt que son de tipo numérico y que se inicializan a null
+
+  /**
+   * Constructor de RExtController que inicializa sus atributos
+   * @param Object $defRTypeCtrl Controller del RType 'padre'
+   * @param Object $rExtModule Acceso a 'la configuración' del RExt
+   * @param String $prefix Prefijo para los campos del RExt
+   */
+  public function __construct( $defRTypeCtrl, $rExtModule, $prefix = false ){
+    /*
+    El constructor del controller que extiende lanza este con los parámetros adecuados
+    Se inicializan: defRTypeCtrl, defResCtrl, rExtName, prefix, rExtModule y taxonomies
+    Si existen campos numéricos, el otro tambien tiene que inicializar el atributo numericFields
+    */
+  }
+
+
+
+  /**
+   * Carga los datos de los elementos de la extension
+   * @param $resId integer
+   * @return array OR false
+   */
+  public function getRExtData( $resId = false ) {
+    /*
+    A implementar.
+    Creamos un Array con todos los datos del RExt co formato 'fieldName' => 'value'
+    */
+  }
+
+  /**
+   * Defino la parte de la extension del formulario
+   * @param $form FormController
+   */
+  public function manipulateForm( FormController $form ) {
+    /*
+    A implementar.
+    Alteramos el objeto $form:
+      - Añadimos campos, valores y reglas del RExt
+      - Podemos alterar campos, valores y reglas existentes (Peligroso!!!)
+      - Importante: Guardar la lista de campos del RExt en el campo 'reserved' 'FieldNames'
+        Nota: Esto permite que el método del RExt getRExtFormValues() separe sus campos del resto
+    Nota: Todos los campos de RExt llevan un prefijo que los marca para evitar conflictos
+      Para añadir dichos prefijos, el RExt dispone de los métodos addPrefix, prefixArray y prefixArrayKeys
+    */
+  }
+
+  /**
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   * @param $form FormController
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
+  public function getFormBlockInfo( FormController $form ) {
+    /*
+    Implementado y extensible
+    Creamos un Array con todos la información del RExt:
+      - 'template' Array de objetos Template ofrecidos por el RExt. Por defecto usamos 'full'
+      - 'data' => Array con todos los datos del RExt co formato 'fieldName' => 'value'
+      - 'dataForm' => Array con contenidos HTML del formulario del RExt
+    Ejemplo resumido:
+
+    $formBlockInfo = array(
+      'template' => array(
+        'full' => new Template()
+      ),
+      'data' => $this->getRExtData(),
+      'dataForm' => array(
+        'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
+        'formFields' => $form->getHtmlFieldsAndGroups(),
+      )
+    );
+    $formBlockInfo['template']['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    $formBlockInfo['template']['full']->assign( 'rExtName', $this->rExtName );
+    $formBlockInfo['template']['full']->assign( 'rExt', $formBlockInfo );
+    return $formBlockInfo;
+    */
+  }
+
+  /**
+   * Validaciones extra previas a usar los datos
+   * @param $form FormController
+   */
+  public function resFormRevalidate( FormController $form ) {
+    /*
+    Implementado vacío y extensible
+    Normalmente no hay que hacer nada
+
+    Permite revisar los datos del formulario despues del submit y añadir errores al $form:
+      - $form->addFormError( 'Msg. de error global del formulario' );
+      - $form->addFieldError( $fieldName, 'Msg. de error para un campo del formulario' );
+    */
+  }
+
+  /**
+   * Creación-Edición-Borrado de los elementos de la extension
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  public function resFormProcess( FormController $form, ResourceModel $resource ) {
+    /*
+    Hay que crear/guardar los datos del RExt: Modelos, términos, ficheros, ...
+    Si hay errores, es necesario registrarlos en $form para parar el proceso y notificarlos:
+      - $form->addFormError( 'Msg. de error global del formulario' );
+    */
+  }
+
+  /**
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
+    /*
+    Implementado vacío y extensible. Normalmente no se usa.
+    Puede servir para alterar los 'success' del $form:
+      - $form->setSuccess( $successName, $successParam = true )
+        successName options:
+          jsEval : Ejecuta el texto indicado con un eval
+          accept : Muestra el texto como un alert
+          redirect : Pasa a la url indicada con un window.location.replace
+          reload : window.location.reload
+          resetForm : Borra el formulario
+      - $form->removeSuccess( $successName = false )
+    */
+  }
+
+  /**
+   * Preparamos los datos para visualizar la parte de la extension
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
+   */
+  public function getViewBlockInfo() {
+    /*
+    Implementado sin Template y extensible
+
+    Creamos un Array con todos la información del RExt:
+      - 'template' Array de objetos Template ofrecidos por el RExt. Por defecto usamos 'full'
+      - 'data' => Array con todos los datos del RExt co formato 'fieldName' => 'value'
+
+    Por defecto (RExt sin Template):
+    $rExtViewBlockInfo = array(
+      'template' false,
+      'data' => $this->getRExtData(),
+    );
+    return $rExtViewBlockInfo;
+    */
+  }
+
+
+  /*************
+    Utilidades
+   *************/
+
+  /**
+   * Separamos los valores de los campos del Form que son de este RExt del resto y les sacamos en prefijo
+   * @param Array $formValuesArray Valores de todos los campos del Form
+   * @param Array $numericFields Nombre de los campos de tipo numerico para inicializarlos a 'null' si no existen
+   * @return Array $valuesArray Valores los campos del Form que son de este RExt con sus nombres sin el prefijo
+   */
+  public function getRExtFormValues( $formValuesArray, $numericFields = false );
+
+  /**
+   * Añade el prefijo del RExt
+   * @param String $text Texto que necesita prefijo
+   * @return String Texto con el prefijo
+   */
+  public function addPrefix( $text );
+
+  /**
+   * Quita el prefijo del RExt
+   * @param String $text Texto que le sobra el prefijo
+   * @return String Texto sin el prefijo
+   */
+  public function removePrefix( $text );
+
+  /**
+   * Añade el prefijo del RExt a los valores del array
+   * @param Array $valuesArray Array que tiene nombres de campos
+   * @return Array Array que tiene los valores con el prefijo del RExt
+   */
+  public function prefixArray( $valuesArray );
+
+  /**
+   * Añade el prefijo del RExt a los keys del array
+   * @param Array $valuesArray Array que tiene como keys nombres de campos
+   * @return Array Array que tiene los keys con el prefijo del RExt
+   */
+  public function prefixArrayKeys( $valuesArray );
+} // class RExtController
+
