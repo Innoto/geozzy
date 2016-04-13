@@ -181,7 +181,12 @@ class RExtViewController extends RExtController implements RExtInterface {
 
 
   /**
-    Alteramos la visualizacion el Recurso
+   * Alteramos la visualizacion el Recurso
+   *
+   * @param Array $viewBlockInfo
+   * @param String $templateName
+   *
+   * @return Array viewBlockInfo
    */
   public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
     // error_log( "RExtViewController: alterViewBlockInfo( viewBlockInfo, $templateName )" );
