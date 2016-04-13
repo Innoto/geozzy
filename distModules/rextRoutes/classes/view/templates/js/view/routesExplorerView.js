@@ -35,21 +35,20 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   render: function() {
     var that = this;
 
+    that.renderMapRoute();
+    that.renderGraphRoute();
+  },
 
+
+
+
+  renderMapRoute: function(){
     var recorrido = [ ];
 
     $.each(route.trackPoints, function(i,e){
-    /*  var marker = new google.maps.Marker({
-          position: new google.maps.LatLng( e[0], e[1] ),
-          map: map,
-          title: 'lat:' + e[0] + 'lon' + e[1] + 'altitude: ' + e[2]
-      });*/
       recorrido.push({id:i, lat: e[0], lng:e[1] });
-
-
     });
 
-    //console.log(recorrido)
 
 
     var recorridoPolylineBK2 = new google.maps.Polyline({
@@ -102,30 +101,15 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       outRecorrido();
     });
 
+  },
+
+  renderGraphRoute: function() {
 
 
     var chartString = "step,Altitude\n";
     $.each( route.trackPoints, function(i,e){
-      //if( typeof e[2] == 'undefined' ) {
         chartString += i + "," + e[2] + "\n";
-      //}
-      //else {
-        //chartString += i + ",0\n";
-      //}
-
     });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -133,9 +117,6 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     grafico = new Dygraph( document.getElementById("graph"),
       chartString
     );
-
-
-
 
     grafico.updateOptions( {
       annotationMouseOverHandler: function(annotation, point, dygraph, event) {
@@ -154,11 +135,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
     });
-
-
   },
-
-
 
   findPoint: function(lat, lng) {
 

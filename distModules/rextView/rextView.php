@@ -32,7 +32,7 @@ class rextView extends Module {
             'gl' => 'Ningún'
           )
         ),
-        'empty' => array(
+        'tplEmpty' => array(
           'idName' => 'tplEmpty',
           'name' => array(
             'en' => 'Empty',
