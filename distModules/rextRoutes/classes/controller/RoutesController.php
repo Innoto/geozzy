@@ -57,6 +57,7 @@ class RoutesController {
         $cent = $polygon->getCentroid();
 
         $route = [];
+        $route['id'] =  126;
         $route['centroid'] =  [ $cent->y(), $cent->x() ];
         $route['trackPoints'] = $this->extractPoints( $polygon );
       }
