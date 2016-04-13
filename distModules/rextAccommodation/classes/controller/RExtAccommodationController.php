@@ -158,7 +158,11 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
         $rExtFieldNames[] = $fieldName;
       }
     }
-    $rExtFieldNames[] = 'FieldNames';
+
+    /*******************************************************************
+     * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
+     *******************************************************************/
+    //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
@@ -175,6 +179,14 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
   // parent::getFormBlockInfo( $form );
+
+
+  /**
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
+   */
+  // parent::resFormRevalidate( $form );
 
 
   /**
@@ -232,13 +244,9 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
-      $template = new Template();
-
-      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextAccommodation' );
-
-      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+      $rExtViewBlockInfo['template']['full'] = new Template();
+      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextAccommodation' );
     }
 
     return $rExtViewBlockInfo;
