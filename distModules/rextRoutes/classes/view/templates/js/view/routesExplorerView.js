@@ -35,8 +35,20 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   render: function() {
     var that = this;
 
-    that.renderMapRoute();
-    that.renderGraphRoute();
+
+    if( that.routesCollection !== false ) {
+      that.routesCollection.fetch({
+        success: function( res ) {
+          that.renderMapRoute();
+          that.renderGraphRoute();
+        }
+      });
+    }
+    else {
+      that.renderMapRoute();
+      that.renderGraphRoute();
+    }
+
   },
 
 
@@ -46,7 +58,10 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     var that = this;
     var recorrido = [ ];
 
-    $.each(route.trackPoints, function(i,e){
+    var route =  that.routesCollection.get(126)
+
+
+    $.each( route.get('trackPoints') , function(i,e){
       recorrido.push({id:i, lat: e[0], lng:e[1] });
     });
 
