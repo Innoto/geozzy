@@ -117,6 +117,9 @@
 
       that.infowindow = new geozzy.explorerComponents.mapInfoView();
       that.listaMini = new geozzy.explorerComponents.activeListTinyView({ el:$('.explorer-container-gallery')});
+
+      that.routes = new geozzy.explorerComponents.routesView();
+
       that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
           clusterize:false,
@@ -158,6 +161,7 @@
       });
 
 
+      that.explorer.addDisplay( that.routes );
       that.explorer.addDisplay( that.listaMini );
       that.explorer.addDisplay( that.mapa );
       that.explorer.addDisplay( that.infowindow );

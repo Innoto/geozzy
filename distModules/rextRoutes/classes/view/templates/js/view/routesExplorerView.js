@@ -14,7 +14,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   parentExplorer: false,
   routesCollection: false,
   mapRoutes: [],
-
+  trackCircle: false,
 
   events: {
     //  "click .explorerListPager .next" : "nextPage"
@@ -35,17 +35,33 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   render: function() {
     var that = this;
 
-    that.renderMapRoute();
-    that.renderGraphRoute();
+
+    if( that.routesCollection !== false ) {
+      that.routesCollection.fetch({
+        success: function( res ) {
+          //that.renderMapRoute();
+          //that.renderGraphRoute();
+        }
+      });
+    }
+    else {
+      //that.renderMapRoute();
+      //that.renderGraphRoute();
+    }
+
   },
 
 
 
 
   renderMapRoute: function(){
+    var that = this;
     var recorrido = [ ];
 
-    $.each(route.trackPoints, function(i,e){
+    var route =  that.routesCollection.get(126)
+
+
+    $.each( route.get('trackPoints') , function(i,e){
       recorrido.push({id:i, lat: e[0], lng:e[1] });
     });
 
@@ -74,9 +90,9 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       strokeWeight: 3
     });
 
-    recorridoPolyline.setMap(map);
-    recorridoPolylineBK1.setMap(map)
-    recorridoPolylineBK2.setMap(map)
+    recorridoPolyline.setMap(that.parentExplorer.map.map );
+    recorridoPolylineBK1.setMap( that.parentExplorer.map.map );
+    recorridoPolylineBK2.setMap( that.parentExplorer.map.map );
 
     recorridoPolylineBK2.addListener('mouseover', function(ev){
       findPoint(ev.latLng.lat(), ev.latLng.lng());
@@ -104,7 +120,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   },
 
   renderGraphRoute: function() {
-
+    /*
+    var that = this;
 
     var chartString = "step,Altitude\n";
     $.each( route.trackPoints, function(i,e){
@@ -127,17 +144,18 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     $("#graph").mousemove(function(e) {
         var seleccionado = grafico.getSelection();
 
-        hoverRecorrido( seleccionado )
+        that.hoverRoute( seleccionado )
 
     }).mouseleave(function(e) {
         var seleccionada = grafico.getSelection();
         outRecorrido();
 
 
-    });
+    });*/
   },
 
   findPoint: function(lat, lng) {
+    var that = this;
 
     var lessDistance = false;
     var lessDistanceElementId = false;
@@ -155,24 +173,24 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
     if( lessDistanceElementId ) {
-      hoverRecorrido( lessDistanceElementId );
+      that.hoverRoute( lessDistanceElementId );
     }
-  }
+  },
 
 
-  hoverRecorrido: function( id ) {
+  hoverRoute: function( id ) {
+    var that = this;
+
     //grafico.setSelection(id);
     grafico.setSelection(id) ;
 
-    if( trackCircle ) {
-
-      trackCircle.setMap(null);
+    if( that.trackCircle ) {
+      that.trackCircle.setMap(null);
     }
+
     var scale = Math.pow(2, map.getZoom());
 
-
-
-    trackCircle = new google.maps.Circle({
+    that.trackCircle = new google.maps.Circle({
         center: {lat: route.trackPoints[id][0] , lng: route.trackPoints[id][1]},
         radius: 850000/scale,
         strokeWeight:0,
@@ -180,12 +198,13 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
         fillOpacity: 1,
         map: map
     });
-  }
+  },
 
-  outRecorrido: function( ) {
+  mideBall: function( ) {
+    var that = this;
 
-    if( trackCircle ) {
-      trackCircle.setMap(null);
+    if( that.trackCircle ) {
+      that.trackCircle.setMap(null);
     }
 
   }
