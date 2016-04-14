@@ -39,14 +39,14 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     if( that.routesCollection !== false ) {
       that.routesCollection.fetch({
         success: function( res ) {
-          that.renderMapRoute();
-          that.renderGraphRoute();
+          //that.renderMapRoute();
+          //that.renderGraphRoute();
         }
       });
     }
     else {
-      that.renderMapRoute();
-      that.renderGraphRoute();
+      //that.renderMapRoute();
+      //that.renderGraphRoute();
     }
 
   },
@@ -175,7 +175,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     if( lessDistanceElementId ) {
       that.hoverRoute( lessDistanceElementId );
     }
-  }
+  },
 
 
   hoverRoute: function( id ) {
@@ -198,7 +198,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
         fillOpacity: 1,
         map: map
     });
-  }
+  },
 
   mideBall: function( ) {
     var that = this;
