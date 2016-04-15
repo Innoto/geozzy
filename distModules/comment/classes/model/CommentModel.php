@@ -3,9 +3,9 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-class CommentsModel extends Model {
+class CommentModel extends Model {
 
-  static $tableName = 'geozzy_comments';
+  static $tableName = 'geozzy_comment';
 
   static $cols = array(
     'id' => array(

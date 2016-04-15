@@ -4,9 +4,9 @@
 Cogumelo::load("coreController/Module.php");
 
 
-class comments extends Module
+class comment extends Module
 {
-  public $name = "comments";
+  public $name = "comment";
   public $version = 1.0;
 
 
@@ -32,7 +32,7 @@ class comments extends Module
   }
 
   public function moduleRc() {
-    
+
 
   }
 }
