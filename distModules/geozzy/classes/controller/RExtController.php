@@ -36,7 +36,7 @@ interface RExtInterface {
    * Preparamos los datos para visualizar la parte de la extension del formulario
    *
    * Implementado y extensible
-   * Creamos un Array con todos la información del RExt:
+   * Creamos un Array con toda la información del RExt:
    *   - 'template' Array de objetos Template ofrecidos por el RExt. Por defecto usamos 'full'
    *   - 'data' => Array con todos los datos del RExt co formato 'fieldName' => 'value'
    *   - 'dataForm' => Array con contenidos HTML del formulario del RExt
@@ -176,7 +176,7 @@ class RExtController {
    * Preparamos los datos para visualizar la parte de la extension del formulario
    *
    * Implementado y extensible
-   * Creamos un Array con todos la información del RExt:
+   * Creamos un Array con toda la información del RExt:
    *   - 'template' Array de objetos Template ofrecidos por el RExt. Por defecto usamos 'full'
    *   - 'data' => Array con todos los datos del RExt co formato 'fieldName' => 'value'
    *   - 'dataForm' => Array con contenidos HTML del formulario del RExt
