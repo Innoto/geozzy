@@ -98,7 +98,7 @@ class RTypeEventView extends View
     $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeEvent') ) )->fetch();
     $valuesArray['rTypeId'] = $rtype->getter('id');
 
-    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
+    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
     $form = $formBlockInfo['objForm'];
 
     $form->setFieldParam('published', 'type', 'reserved');
