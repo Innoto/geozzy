@@ -76,9 +76,9 @@ class RoutesAPIView extends View
 
     rextRoutes::load('controller/RoutesController.php');
     $routesControl = new RoutesController();
-    $filePath = '/home/pblanco/Descargas/Incio_oural_.gpx';
 
-    $rutaJSON = json_encode(   [ $routesControl->getRoute($filePath) ]);
+
+    $rutaJSON = json_encode( [ $routesControl->getRoute('/home/pblanco/Descargas/Sarria.gpx', 10), $routesControl->getRoute('/home/pblanco/Descargas/Incio_oural_.gpx', 15) ]);
 
 
     header('Content-type: application/json');

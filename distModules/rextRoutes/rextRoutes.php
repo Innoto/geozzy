@@ -58,7 +58,7 @@ class rextRoutes extends Module {
 
   public $includesCommon = array(
     'controller/RoutesController.php',
-    'js/collection/RouteModel.js',
+    'js/model/RouteModel.js',
     'js/collection/RouteCollection.js',
     'js/view/routesExplorerView.js'
     //'model/RExtRoutesModel.php'
@@ -70,7 +70,7 @@ class rextRoutes extends Module {
 
 
 // TEST CODE
-    $this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
+    //$this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
 // END TEST CODE
 
 

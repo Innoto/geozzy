@@ -37,7 +37,7 @@ class RoutesController {
   }
 
 
-  public function getRoute( $filePath ) {
+  public function getRoute( $filePath, $id ) {
     rextRoutes::autoIncludes();
 
     $route = false;
@@ -57,7 +57,7 @@ class RoutesController {
         $cent = $polygon->getCentroid();
 
         $route = [];
-        $route['id'] =  126;
+        $route['id'] =  $id;
         $route['centroid'] =  [ $cent->y(), $cent->x() ];
         $route['trackPoints'] = $this->extractPoints( $polygon );
       }
