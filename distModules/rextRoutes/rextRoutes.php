@@ -70,7 +70,7 @@ class rextRoutes extends Module {
 
 
 // TEST CODE
-    $this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
+    //$this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
 // END TEST CODE
 
 
