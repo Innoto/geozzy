@@ -522,8 +522,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       that.parentExplorer.displays.mapInfo.hide();
       that.panToLastCenter();
     }
-  },
-  clusterClick: function(){},
-  clusterHover: function(){}
+  }
 
 });

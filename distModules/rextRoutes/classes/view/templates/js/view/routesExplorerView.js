@@ -23,7 +23,9 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
-
+      strokeColor: '#000',
+      strokeOpacity: 1,
+      strokeWeight: 3
       //tpl: geozzy.explorerComponents.routesViewTemplate ,
 
     });
@@ -36,11 +38,12 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     var that = this;
 
 
-    if( that.routesCollection !== false ) {
+    if( that.routesCollection === false ) {
+      that.routesCollection = new geozzy.explorerComponents.routeCollection();
       that.routesCollection.fetch({
         success: function( res ) {
-          //that.renderMapRoute();
-          //that.renderGraphRoute();
+        //  that.renderMapRoute();
+        //  that.renderGraphRoute();
         }
       });
     }
@@ -55,11 +58,15 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
   renderMapRoute: function(){
+    console.log('RENDERIZADO')
     var that = this;
     var recorrido = [ ];
 
     var route =  that.routesCollection.get(126)
 
+console.log(route);
+
+    var map = that.parentExplorer.displays.map.map ;
 
     $.each( route.get('trackPoints') , function(i,e){
       recorrido.push({id:i, lat: e[0], lng:e[1] });
@@ -85,14 +92,14 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     var recorridoPolyline = new google.maps.Polyline({
       path: recorrido,
       geodesic: true,
-      strokeColor: '#000',
-      strokeOpacity: 1.0,
-      strokeWeight: 3
+      strokeColor: that.options.strokeColor,
+      strokeOpacity: that.options.strokeOpacity,
+      strokeWeight: that.options.strokeWeight
     });
 
-    recorridoPolyline.setMap(that.parentExplorer.map.map );
-    recorridoPolylineBK1.setMap( that.parentExplorer.map.map );
-    recorridoPolylineBK2.setMap( that.parentExplorer.map.map );
+    recorridoPolyline.setMap( map );
+    recorridoPolylineBK1.setMap( map );
+    recorridoPolylineBK2.setMap( map );
 
     recorridoPolylineBK2.addListener('mouseover', function(ev){
       findPoint(ev.latLng.lat(), ev.latLng.lng());
@@ -106,7 +113,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       findPoint(ev.latLng.lat(), ev.latLng.lng());
       isTrackHover = true;
     });
-
+/*
     recorridoPolylineBK2.addListener('mouseout', function(ev){
       outRecorrido();
     });
@@ -115,7 +122,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     });
     recorridoPolyline.addListener('mouseout', function(ev){
       outRecorrido();
-    });
+    });*/
 
   },
 
