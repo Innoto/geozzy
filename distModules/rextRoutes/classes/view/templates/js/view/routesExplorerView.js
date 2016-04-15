@@ -42,14 +42,14 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       that.routesCollection = new geozzy.explorerComponents.routeCollection();
       that.routesCollection.fetch({
         success: function( res ) {
-          that.renderMapRoute();
-          that.renderGraphRoute();
+        //  that.renderMapRoute();
+        //  that.renderGraphRoute();
         }
       });
     }
     else {
-      that.renderMapRoute();
-      that.renderGraphRoute();
+      //that.renderMapRoute();
+      //that.renderGraphRoute();
     }
 
   },
