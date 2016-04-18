@@ -187,7 +187,7 @@ geozzy.explorer = function( opts ) {
   //
 
   that.addDisplay = function( displayObj ){
-    console.log(displayObj)
+
     if( displayObj.displayType == 'map' ) {
       that.displays.map = displayObj;
       that.displays.map.setParentExplorer( that );
