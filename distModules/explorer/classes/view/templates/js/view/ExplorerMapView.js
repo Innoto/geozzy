@@ -46,6 +46,11 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     this.setMap( this.options.map );
   },
 
+  setParentExplorer: function( parentExplorer ) {
+    var  that = this;
+    that.parentExplorer = parentExplorer;
+  },
+
   setMap: function( mapObj ) {
     this.map = mapObj;
     this.setMapEvents();
@@ -508,9 +513,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     // call metrics event
     that.parentExplorer.metricsResourceController.eventHoverStart( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
 
-    if( that.parentExplorer.displays.mapInfo ) {
+    that.parentExplorer.triggerEvent('markerHover');
+    /*if( that.parentExplorer.displays.mapInfo ) {
       that.parentExplorer.displays.mapInfo.show( id );
-    }
+    }*/
   },
   markerOut: function( id ) {
     var that = this;

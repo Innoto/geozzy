@@ -44,6 +44,12 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
   },
 
 
+  setParentExplorer: function( parentExplorer ) {
+    var  that = this;
+    that.parentExplorer = parentExplorer;
+  },
+
+
   getVisibleResourceIds: function() {
     var that = this;
     this.parentExplorer.resourceIndex.removePagination();

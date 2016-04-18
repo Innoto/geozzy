@@ -67,9 +67,9 @@ geozzy.explorer = function( opts ) {
 
   that.displays = {
     map: false,
-    mapInfo: false,
+//    mapInfo: false,
     activeList: false,
-    pasiveList: false,
+//    pasiveList: false,
     plugins: []
   }
 
@@ -187,28 +187,29 @@ geozzy.explorer = function( opts ) {
   //
 
   that.addDisplay = function( displayObj ){
+    console.log(displayObj)
     if( displayObj.displayType == 'map' ) {
       that.displays.map = displayObj;
-      that.displays.map.parentExplorer = that;
+      that.displays.map.setParentExplorer( that );
     }
     else
-    if( displayObj.displayType == 'mapInfo' ) {
+  /*  if( displayObj.displayType == 'mapInfo' ) {
       that.displays.mapInfo = displayObj;
-      that.displays.mapInfo.parentExplorer = that;
+      that.displays.mapInfo.setParentExplorer( that );
     }
-    else
+    else*/
     if( displayObj.displayType == 'activeList' ) {
       that.displays.activeList = displayObj;
-      that.displays.activeList.parentExplorer = that;
+      that.displays.activeList.setParentExplorer( that );
     }
-    else
+  /*  else
     if( displayObj.displayType == 'pasiveList' ) {
       that.displays.pasiveList = displayObj;
-      that.displays.pasiveList.parentExplorer = that;
-    }
+      that.displays.pasiveList.setParentExplorer( that );
+    }*/
     else
     if( displayObj.displayType == 'plugin' ) {
-      displayObj.parentExplorer = that;
+      displayObj.setParentExplorer( that );
       that.displays.plugins.push( displayObj );
     }
     else {

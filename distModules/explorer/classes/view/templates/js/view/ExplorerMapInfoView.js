@@ -3,7 +3,7 @@ if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
 geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
-  displayType: 'mapInfo',
+  displayType: 'plugin',
   parentExplorer: false,
   template: _.template(""),
   containerMap: false,
@@ -31,6 +31,16 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
     that.template = _.template( that.options.tpl );
     that.mousePosEventListener();
+
+
+
+  },
+
+  setParentExplorer: function( parentExplorer ) {
+    var  that = this;
+    that.parentExplorer = parentExplorer;
+
+    that.parentExplorer.bindEvent('resourceHover', function(){alert('')});
 
   },
 
@@ -84,8 +94,15 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     }
   },
 
-  render: function( id ) {
+  render: function( ) {
     var that = this;
+
+
+  },
+
+  show: function( id ) {
+    var that = this;
+
     that.createInfoMapDiv();
 
     var resourceInfo = new Backbone.Model(  );
@@ -96,8 +113,8 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     that.ready = id;
 
     that.parentExplorer.fetchPartialList(
-       [id],
-       function() {
+      [id],
+      function() {
 
          var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
          var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
@@ -111,15 +128,9 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
          if( that.ready == id){
           $( '#'+that.divId ).show();
           that.moveInfoMapDivWhenBehindMouse();
-        }
-       }
+         }
+      }
     );
-
-  },
-
-  show: function( id ) {
-    var that = this;
-    that.render( id );
   },
 
   hide: function() {

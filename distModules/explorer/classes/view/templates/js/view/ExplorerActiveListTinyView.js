@@ -13,7 +13,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
   currentPage: 0,
 
-  displayType: 'activeList',
+  displayType: 'plugin',
   parentExplorer: false,
   visibleResources: [],
 
@@ -49,6 +49,11 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     that.tpl= _.template( that.options.tpl);
     that.tplElement= _.template( that.options.tplElement);
     that.tplPager= _.template( that.options.tplPager);
+  },
+
+  setParentExplorer: function( parentExplorer ) {
+    var  that = this;
+    that.parentExplorer = parentExplorer;
   },
 
 
@@ -248,7 +253,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
         // call metrics event
         that.parentExplorer.metricsResourceController.eventClick( $(element.currentTarget).attr('data-resource-id'), 'Explorer: '+that.parentExplorer.options.explorerSectionName );
-      break;
+        break;
       case 'mouseenter':
         if( that.parentExplorer.displays.map ) {
           that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
@@ -261,7 +266,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
             'Explorer: '+that.parentExplorer.options.explorerSectionName
           );
         }
-      break;
+        break;
       case 'mouseleave':
 
         if( that.parentExplorer.displays.map ) {
@@ -274,7 +279,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
           $(element.currentTarget).attr('data-resource-id')
         );
 
-      break;
+        break;
     }
   }
 });

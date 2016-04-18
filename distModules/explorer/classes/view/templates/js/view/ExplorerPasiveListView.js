@@ -22,6 +22,11 @@ geozzy.explorerComponents.pasiveListView = Backbone.View.extend({
   initialize: function( opts ) {
 
 
+  },
+
+  setParentExplorer: function( parentExplorer ) {
+    var  that = this;
+    that.parentExplorer = parentExplorer;
   }
 
 });

@@ -33,7 +33,11 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
   },
 
-
+  setParentExplorer: function( parentExplorer ) {
+    var  that = this;
+    that.parentExplorer = parentExplorer;
+  },
+  
   render: function() {
     var that = this;
 
