@@ -40,7 +40,19 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     var  that = this;
     that.parentExplorer = parentExplorer;
 
-    that.parentExplorer.bindEvent('resourceHover', function(){alert('')});
+    that.parentExplorer.bindEvent('resourceHover', function( params ){
+      that.show(params.id);
+    });
+
+    that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
+      that.hide(params.id);
+    });
+
+
+    that.parentExplorer.bindEvent('resourceClick', function( params ){
+      //that.show(params.id);
+    });
+
 
   },
 

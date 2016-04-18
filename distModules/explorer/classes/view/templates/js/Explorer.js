@@ -340,8 +340,10 @@ geozzy.explorer = function( opts ) {
   }
 
 
-  that.triggerEvent = function( eventName, parameters ) {
+  that.triggerEvent = function( eventName, parameters) {
     var that = this;
+
+
     $.each( that.explorerEvents, function( i, event ){
       if( typeof event.name != 'undefined' && event.name == eventName  ) {
         if( typeof event.action != 'undefined'  ) {
