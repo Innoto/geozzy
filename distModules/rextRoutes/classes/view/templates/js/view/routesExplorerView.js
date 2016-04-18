@@ -36,8 +36,21 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   setParentExplorer: function( parentExplorer ) {
     var  that = this;
     that.parentExplorer = parentExplorer;
+
+    that.parentExplorer.bindEvent('resourceHover', function( params ){
+      //that.show(params.id);
+    });
+
+    that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
+      //that.hide(params.id);
+    });
+
+
+    that.parentExplorer.bindEvent('resourceClick', function( params ){
+      //that.show(params.id);
+    });
   },
-  
+
   render: function() {
     var that = this;
 
