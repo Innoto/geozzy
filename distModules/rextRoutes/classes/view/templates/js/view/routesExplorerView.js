@@ -91,24 +91,24 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
         routeData.push({id:i, lat: e[0], lng:e[1] });
       });
 
-/*
-
-      var recorridoPolylineBK2 = new google.maps.Polyline({
-        path: recorrido,
-        geodesic: true,
-        strokeOpacity: 0,
-        strokeWeight: 20
-      });
-
-      var recorridoPolylineBK1 = new google.maps.Polyline({
-        path: recorrido,
-        geodesic: true,
-        strokeOpacity: 0,
-        strokeWeight: 10
-      });*/
 
 
       routeMap.id = route.get('id');
+
+      //console.log(route.get('trackPoints')[route.get('trackPoints').length - 1])
+
+      routeMap.markerStart = marker = new google.maps.Marker({
+        position:  {lat: route.get('trackPoints')[0][0], lng: route.get('trackPoints')[0][1]},
+        title: __('Route start')
+      });
+
+      routeMap.markerEnd = marker = new google.maps.Marker({
+        position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][0] },
+        title: __('Route End')
+      });
+
+
+
 
       routeMap.polyline = new google.maps.Polyline({
         path: routeData,
@@ -224,6 +224,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     $.each(  that.mapRoutes, function(i,e) {
       if( e.id == id ) {
         e.polyline.setMap( map );
+        e.markerStart.setMap(map)
+        e.markerEnd.setMap(map)
         return false;
       }
     });
@@ -235,6 +237,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
     $.each(  that.mapRoutes, function(i,e) {
       e.polyline.setMap( null );
+      e.markerStart.setMap( null )
+      e.markerEnd.setMap( null )
     });
   },
 
