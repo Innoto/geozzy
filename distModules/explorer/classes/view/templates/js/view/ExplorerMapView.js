@@ -514,9 +514,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that.parentExplorer.metricsResourceController.eventHoverStart( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
 
     that.parentExplorer.triggerEvent('resourceHover', {id:id});
-    /*if( that.parentExplorer.displays.mapInfo ) {
-      that.parentExplorer.displays.mapInfo.show( id );
-    }*/
+
   },
   markerOut: function( id ) {
     var that = this;
@@ -524,12 +522,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     // call metrics event end
     that.parentExplorer.metricsResourceController.eventHoverEnd( id );
 
+    if( that.parentExplorer.displays.activeList ) {
+      that.panToLastCenter();
+    }
 
     that.parentExplorer.triggerEvent('resourceMouseOut', {id:id});
-    /*if( that.parentExplorer.displays.mapInfo ) {
-      that.parentExplorer.displays.mapInfo.hide();
-      that.panToLastCenter();
-    }*/
+
   }
 
 });

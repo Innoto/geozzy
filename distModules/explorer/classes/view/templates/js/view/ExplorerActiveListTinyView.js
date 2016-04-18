@@ -13,7 +13,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
   currentPage: 0,
 
-  displayType: 'plugin',
+  displayType: 'activeList',
   parentExplorer: false,
   visibleResources: [],
 
