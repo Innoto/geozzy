@@ -28,11 +28,6 @@ class CommentModel extends Model {
       'vo' => 'ResourceModel',
       'key'=> 'id'
     ),
-    'status' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'TaxonomytermModel',
-      'key' => 'id'
-    ),
     'published' => array(
       'type' => 'BOOLEAN'
     ),
@@ -47,8 +42,14 @@ class CommentModel extends Model {
       'type' => 'SMALLINT'
     ),
     'typeSuggest' => array(
-      'type'=>'VARCHAR',
-      'size' => 100,
+      'type'=>'FOREIGN',
+      'vo' => 'TaxonomytermModel',
+      'key' => 'id'
+    ),
+    'status' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'TaxonomytermModel',
+      'key' => 'id'
     ),
     'anonymousName' => array(
       'type' => 'CHAR',
