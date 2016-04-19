@@ -224,6 +224,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     $.each(  that.mapRoutes, function(i,e) {
       if( e.id == id ) {
         e.polyline.setMap( map );
+        e.polylineBG1.setMap(map);
+        e.polylineBG2.setMap(map);
         e.markerStart.setMap(map)
         e.markerEnd.setMap(map)
         return false;
@@ -237,6 +239,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
     $.each(  that.mapRoutes, function(i,e) {
       e.polyline.setMap( null );
+      e.polylineBG1.setMap(map);
+      e.polylineBG2.setMap(map);
       e.markerStart.setMap( null )
       e.markerEnd.setMap( null )
     });
