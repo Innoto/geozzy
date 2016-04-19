@@ -106,6 +106,7 @@ class RTypeEventView extends View
     $urlAliasLang = $form->multilangFieldNames('urlAlias');
     foreach ($urlAliasLang as $key => $field) {
       $form->removeField( $field);
+      $form->removeValidationRules($field);
     }
     $form->removeField('externalUrl');
     $form->removeValidationRules('published');
@@ -122,9 +123,80 @@ class RTypeEventView extends View
     $formBlockInfo['template']['miniFormModal']->addToBlock('rextEventBlock', $formBlockInfo['ext']['rextEvent']['template']['full']);
     $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
     $formBlockInfo['template']['miniFormModal']->exec();
-
   }
 
+
+  /**
+   * Edicion de Recursos
+   */
+  public function editModalForm( $urlParams = false ) {
+
+    $resCtrl = new ResourceController();
+    $rtypeModel = new ResourcetypeModel();
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('resource:edit', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
+    /* Validamos os parámetros da url e obtemos un array de volta*/
+    $formName = 'eventEdit';
+    $urlAction = '/rtypeEvent/event/sendevent';
+
+    if( isset( $urlParams['1'] ) ) {
+      $idResource = $urlParams['1'];
+      $resourceModel = new ResourceModel();
+      $resourceList = $resourceModel->listItems(array( 'affectsDependences' =>
+        array( 'EventModel', 'FiledataModel' ),
+        'filters' => array( 'id' => $idResource ) ));
+      $resource = $resourceList->fetch();
+    }
+
+    if( $resource ) {
+      $resourceData = $resource->getAllData();
+
+      $resourceData = $resourceData[ 'data' ];
+
+      // Cargo los datos de image dentro de los del collection
+      $fileDep = $resource->getterDependence( 'image' );
+
+      if( $fileDep !== false ) {
+        foreach( $fileDep as $fileModel ) {
+          $fileData = $fileModel->getAllData();
+          $resourceData[ 'image' ] = $fileData[ 'data' ];
+        }
+      }
+
+      $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeEvent') ) )->fetch();
+      $resourceData['rTypeId'] = $rtype->getter('id');
+
+      $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $resourceData );
+
+      $form = $formBlockInfo['objForm'];
+
+      $urlAliasLang = $form->multilangFieldNames('urlAlias');
+      foreach ($urlAliasLang as $key => $field) {
+        $form->removeField( $field);
+        $form->removeValidationRules($field);
+      }
+
+      // Cambiamos el template del formulario
+      $formBlockInfo['template']['miniFormModal']->addToBlock('rextEventBlock', $formBlockInfo['ext']['rextEvent']['template']['full']);
+      $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
+      $formBlockInfo['template']['miniFormModal']->exec();
+    }
+    else {
+      cogumelo::error( 'Imposible acceder al evento indicado.' );
+    }
+
+
+  } // function resourceEditForm()
+
+
+/*
   public function resourceShowForm( $formName, $urlAction, $valuesArray = false, $resCtrl = false ) {
 
     if( !$resCtrl ) {
@@ -139,46 +211,16 @@ class RTypeEventView extends View
     $urlAliasLang = $form->multilangFieldNames('urlAlias');
     foreach ($urlAliasLang as $key => $field) {
       $form->removeField( $field);
+      $form->removeValidationRules($field);
     }
     $form->removeValidationRules('published');
 
     $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
     $formBlockInfo['template']['miniFormModal']->exec();
   }
+*/
 
 
-  /**
-   * Edicion de Recursos
-   */
-  public function editForm( $urlParams = false ) {
-    $useraccesscontrol = new UserAccessController();
-    $access = $useraccesscontrol->checkPermissions('resource:edit', 'admin:full');
-    if(!$access){
-      cogumelo::redirect("/admin/403");
-      exit;
-    }
-
-    $recursoData = false;
-    $urlParamTopic = false;
-    $topicItem = false;
-    $typeItem = false;
-
-    /* Validamos os parámetros da url e obtemos un array de volta*/
-    $validation = array( 'resourceId'=> '#^\d+$#');
-    $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
-
-    $resCtrl = new ResourceController();
-    $recursoData = $resCtrl->getResourceData( $urlParamsList['resourceId'] );
-
-    $recursoData['typeReturn'] = 'rtypeEvent';
-
-    if( $recursoData ) {
-      $this->resourceShowForm( 'resourceEdit', '/admin/resource/sendresource', $recursoData, $resCtrl );
-    }
-    else {
-      cogumelo::error( 'Imposible acceder al recurso indicado.' );
-    }
-  } // function resourceEditForm()
 
 
   public function sendModalResourceForm() {

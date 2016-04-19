@@ -1,10 +1,7 @@
 
 {extends file="admin///adminPanel.tpl"}
 {block name="content"}
-  <style>
-    label { display: block; }
-    .cgmMForm-field { max-width: none !important; }
-  </style>
+
 
   <div class="eventModal">
     {$res.dataForm.formOpen}

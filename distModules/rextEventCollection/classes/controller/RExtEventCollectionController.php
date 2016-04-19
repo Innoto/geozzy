@@ -219,14 +219,18 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
+    $templates['full']->addClientScript('js/rextEventCollection.js', 'rextEventCollection');
 
+    /*
     $prevContent = "<script>
       $(document).ready(function(){
         bindResourceForm();
       });
       function bindResourceForm(){
         $('select.cgmMForm-field-rExtEventCollection_events').multiList({
-          orientation: 'horizontal'
+          itemActions : [
+            { 'id': 'edit', 'html': '<i class=\"fa fa-pencil-square-o\"></i>', 'action': editModalForm }
+          ],
         });
         $('#addEvents').on('click', function(){
           app.mainView.loadAjaxContentModal('/rtypeEvent/event/create', 'createEventModal', 'Create Event');
@@ -234,7 +238,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
       }
     </script>";
 
-    $templates['full']->assign( 'prevContent', $prevContent );
+    $templates['full']->assign( 'prevContent', $prevContent );*/
 
     $formBlockInfo['template'] = $templates;
 
@@ -311,7 +315,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
       }
 
       // Si estamos editando, repasamos y borramos recursos sobrantes
-      if( $elemId ) {
+      if( isset($elemId) ) {
 
         $CollectionResourcesModel = new CollectionResourcesModel();
 
