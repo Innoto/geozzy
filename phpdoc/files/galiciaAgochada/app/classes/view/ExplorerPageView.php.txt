@@ -30,8 +30,12 @@ class ExplorerPageView extends MasterView
 
   }
   function paisaxesExplorer(){
+
+
     // cogemos la url actual para el idioma (hasta que sea recurso)
     $this->commonLayout();
+
+    rextRoutes::autoIncludes();
 
     $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
     $this->template->addClientScript('js/paisaxesExplorer.js');

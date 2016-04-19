@@ -26,6 +26,7 @@ class geozzy extends Module {
 
 
   public $includesCommon = array(
+    'controller/ResourceController.php',
     'model/ResourceModel.php',
     'model/UrlAliasModel.php',
     'view/GeozzyTaxonomytermView.php'
