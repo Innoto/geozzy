@@ -78,7 +78,7 @@ class RoutesAPIView extends View
     $routesControl = new RoutesController();
 
 
-    $rutaJSON = json_encode( [ $routesControl->getRoute('/home/pblanco/Descargas/Sarria.gpx', 10), $routesControl->getRoute('/home/pblanco/Descargas/Incio_oural_.gpx', 15) ]);
+    $rutaJSON = json_encode( [ $routesControl->getRoute('/home/pblanco/Descargas/nova.gpx', 117), $routesControl->getRoute('/home/pblanco/Descargas/Incio_oural_.gpx', 110) ]);
 
 
     header('Content-type: application/json');

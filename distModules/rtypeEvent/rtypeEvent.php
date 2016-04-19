@@ -24,7 +24,7 @@ class rtypeEvent extends Module {
 
   public function __construct() {
     $this->addUrlPatterns( '#^rtypeEvent/event/create$#', 'view:RTypeEventView::createModalForm' );
-    $this->addUrlPatterns( '#^rtypeEvent/event/edit/(\d+)$#', 'view:RTypeEventView::editForm' );
+    $this->addUrlPatterns( '#^rtypeEvent/event/edit/(\d+)$#', 'view:RTypeEventView::editModalForm' );
     $this->addUrlPatterns( '#^rtypeEvent/event/sendevent$#', 'view:RTypeEventView::sendModalResourceForm' );
   }
 
