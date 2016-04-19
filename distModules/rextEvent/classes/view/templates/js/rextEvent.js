@@ -9,6 +9,7 @@ $(document).ready(function(){
   }
 
   moveSubmitBtn('#createEventModal');
+  moveSubmitBtn('#editModalForm');
 });
 
 
@@ -17,11 +18,11 @@ function bindEventForm(modal){
   var initDay = false;
   var endDay = false;
 
-  if ($(modal+'input.cgmMForm-field-rextEvent_initDate').val() && $(modal+'input.cgmMForm-field-rextEvent_initDate').val() != ''){
+  if ($(modal+'input.cgmMForm-field-rextEvent_initDate').val() && $(modal+'input.cgmMForm-field-rextEvent_initDate').val() != '0000-00-00 00:00:00'){
     initDay = $(modal+'input.cgmMForm-field-rextEvent_initDate').val();
     //initDay = moment.unix(initDateTs_saved).utc();
   }
-  if ($(modal+'input.cgmMForm-field-rextEvent_endDate').val() && $(modal+'input.cgmMForm-field-rextEvent_endDate').val() != ''){
+  if ($(modal+'input.cgmMForm-field-rextEvent_endDate').val() && $(modal+'input.cgmMForm-field-rextEvent_endDate').val() != '0000-00-00 00:00:00'){
     endDay = $(modal+'input.cgmMForm-field-rextEvent_endDate').val();
     //endDay = moment.unix(endDateTs_saved).utc();
   }
@@ -71,11 +72,13 @@ function moveSubmitBtn(query){
 
 
 function successResourceForm( data ){
-  //resource
-  $('#collEvents').append('<option data-image="'+data.image+'" selected="selected" value="'+data.id+'">'+data.title+'</option>');
-  $('#createEventModal').modal('hide');
+
+  if( $('#collEvents option[value='+data.id+']').length > 0 ){
+    $('#collEvents option[value='+data.id+']').text(data.title);
+    $('#editModalForm').modal('hide');
+  }else{
+    $('#collEvents').append('<option data-image="'+data.image+'" selected="selected" value="'+data.id+'">'+data.title+'</option>');
+    $('#createEventModal').modal('hide');
+  }
   $('#collEvents').trigger('change');
-
-
-  //End resource
 }
