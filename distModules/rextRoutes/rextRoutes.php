@@ -45,6 +45,13 @@ class rextRoutes extends Module {
       "installer" => "composer",
       "includes" => array("geoPHP.inc")
     ),
+/*    array(
+      "id" => "c-pchart",
+      "params" => array("szymach/c-pchart", "2.0.2"), // REQUIRES php5-gd installed on server
+      "installer" => "composer",
+      "includes" => array("src/Resources/data/constants.php", "src/Chart/BaseDraw.php","src/Chart/Draw.php","src/Chart/Image.php","src/Chart/Data.php")
+    ),*/
+
     array(
       "id" => "dygraphs",
       "params" => array("dygraphs#v1.1.0"),
@@ -70,7 +77,9 @@ class rextRoutes extends Module {
 
 
 // TEST CODE
-    //$this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
+
+    $this->addUrlPatterns( '#^testRouteGraph#', 'view:TestRouteView::testRouteGraph' );
+    $this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
 // END TEST CODE
 
 
