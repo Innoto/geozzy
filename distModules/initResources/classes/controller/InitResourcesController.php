@@ -86,7 +86,7 @@ class InitResourcesController{
     // Unha vez creado o recurso, creamos as súas relacións
 
     // image
-    if( $initRes['img'] ) {
+    if( isset( $initRes['img'] ) ) {
       $filedata = array(
         'name' => $initRes['img'],
         'destDir' => ResourceModel::$cols['image']['uploadDir'],
@@ -98,7 +98,7 @@ class InitResourcesController{
     }
 
     // taxanomies
-    if( isset($initRes['viewType']) ) {
+    if( isset( $initRes['viewType'] ) ) {
       $taxterm = $taxonomyTerm->listItems(array('filters'=>array('idName' => $initRes['viewType'])))->fetch();
       if( $taxterm ) {
         $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'),
