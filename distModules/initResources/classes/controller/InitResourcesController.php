@@ -71,8 +71,10 @@ class InitResourcesController{
 
     // Campos multiidioma: título e descripción
     foreach( Cogumelo::getSetupValue('lang:available') as $key => $lang ) {
-      $resData['title_'.$key] = $initRes['title'][$key];
-      if( $initRes['shortDescription'] ) {
+      if( isset( $initRes['title'][$key] ) ) {
+        $resData['title_'.$key] = $initRes['title'][$key];
+      }
+      if( isset( $initRes['shortDescription'][$key] ) ) {
         $resData['shortDescription_'.$key] = $initRes['shortDescription'][$key];
       }
     }
@@ -110,7 +112,9 @@ class InitResourcesController{
 
     //urlAlias multiidioma
     foreach( Cogumelo::getSetupValue('lang:available') as $key => $lang ) {
-      $resourcecontrol->setUrl($resource->getter('id'), $key, $initRes['urlAlias'][$key]);
+      if( isset( $initRes['urlAlias'][$key] ) ) {
+        $resourcecontrol->setUrl($resource->getter('id'), $key, $initRes['urlAlias'][$key]);
+      }
     }
   }
 
