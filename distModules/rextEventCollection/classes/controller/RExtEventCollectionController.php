@@ -383,6 +383,39 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
+      // 
+      // echo '<pre>';
+      // print_r($rExtViewBlockInfo['data']);
+      // echo '</pre>';
+
+      /* Cargamos los bloques de colecciones */
+      $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
+
+      $multimediaArray = false;
+      $collectionArray = false;
+      if ($collectionArrayInfo){
+        foreach ($collectionArrayInfo as $key => $collectionInfo){
+          if ($collectionInfo['col']['collectionType'] == 'event'){ // colecciones multimedia
+              $eventArray[$key] = $collectionInfo;
+          }
+        }
+
+        if ($eventArray){
+          $arrayEventBlock = $this->defResCtrl->goOverCollections( $eventArray, $collectionType = 'event' );
+          if ($arrayEventBlock){
+
+
+            //print_r($arrayEventBlock);
+
+            foreach( $arrayEventBlock as $eventBlock ) {
+              $template->addToFragment( 'eventBlock', $eventBlock );
+            }
+          }
+        }
+      }
+
+
+
 
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
 

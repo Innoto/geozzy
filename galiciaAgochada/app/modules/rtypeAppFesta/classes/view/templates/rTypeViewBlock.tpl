@@ -125,6 +125,11 @@
     </div>
   </section>
 
+  <section class="eventSection">
+    OLA
+    {$rextEventCollectionBlock}
+  </section>
+
   <section class="locationSec gzSection">
     {if (isset($rextContactBlock) && $rextContactBlock!="")}
     <div class="locationLight">

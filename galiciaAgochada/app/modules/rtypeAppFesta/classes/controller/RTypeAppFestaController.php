@@ -107,6 +107,8 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
     $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
 
+
+
     $this->mapDirCtrl = new RExtMapDirectionsController( $this );
     $mapDirViewInfo = $this->mapDirCtrl->getViewBlockInfo();
     $viewBlockInfo['ext'][ $this->mapDirCtrl->rExtName ] = $mapDirViewInfo;
@@ -497,23 +499,21 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
       if ($multimediaArray){
         $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $collectionType = 'multimedia' );
         if ($arrayMultimediaBlock){
-          foreach ($arrayMultimediaBlock as $multimediaBlock){
-            $multimediaBlock->assign( 'max', 6 );
-            $multimediaBlock->setTpl('AppFestaMultimediaViewBlock.tpl', 'rtypeAppFesta');
-            $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+          foreach( $arrayMultimediaBlock as $multimediaBlock ) {
+            $template->addToFragment( 'multimediaGalleries', $multimediaBlock );
           }
         }
       }
 
       if ($collectionArray){
-        $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $collectionType = 'base' );
+        $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $collectionType = 'base'  );
         if ($arrayCollectionBlock){
-          foreach ($arrayCollectionBlock as $collectionBlock){
-            $collectionBlock->setTpl('AppFestaCollectionViewBlock.tpl', 'rtypeAppFesta');
-            $template->addToBlock( 'collections', $collectionBlock );
+          foreach( $arrayCollectionBlock as $collectionBlock ) {
+            $template->addToFragment( 'collections', $collectionBlock );
           }
         }
       }
+
     }
 
     $viewBlockInfo['template'] = array( 'full' => $template );
