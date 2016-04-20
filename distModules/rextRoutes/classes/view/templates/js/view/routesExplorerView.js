@@ -30,9 +30,25 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
     });
     that.options = $.extend(true, {}, options, opts);
-
   },
 
+  setParentExplorer: function( parentExplorer ) {
+    var  that = this;
+    that.parentExplorer = parentExplorer;
+
+    that.parentExplorer.bindEvent('resourceHover', function( params ){
+      that.showRoute(params.id);
+    });
+
+    that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
+      that.hideRoutes();
+    });
+
+
+    that.parentExplorer.bindEvent('resourceClick', function( params ){
+      //that.show(params.id);
+    });
+  },
 
   render: function() {
     var that = this;
@@ -42,91 +58,139 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       that.routesCollection = new geozzy.explorerComponents.routeCollection();
       that.routesCollection.fetch({
         success: function( res ) {
-        //  that.renderMapRoute();
-        //  that.renderGraphRoute();
+          that.renderMapRoutes();
+          that.renderGraphRoutes();
         }
       });
     }
-    else {
+    /*else {
       //that.renderMapRoute();
       //that.renderGraphRoute();
-    }
+    }*/
 
   },
 
 
 
 
-  renderMapRoute: function(){
-    console.log('RENDERIZADO')
+  renderMapRoutes: function(){
     var that = this;
-    var recorrido = [ ];
-
-    var route =  that.routesCollection.get(126)
-
-console.log(route);
-
-    var map = that.parentExplorer.displays.map.map ;
-
-    $.each( route.get('trackPoints') , function(i,e){
-      recorrido.push({id:i, lat: e[0], lng:e[1] });
-    });
-
-
-
-    var recorridoPolylineBK2 = new google.maps.Polyline({
-      path: recorrido,
-      geodesic: true,
-      strokeOpacity: 0,
-      strokeWeight: 20
-    });
-
-    var recorridoPolylineBK1 = new google.maps.Polyline({
-      path: recorrido,
-      geodesic: true,
-      strokeOpacity: 0,
-      strokeWeight: 10
-    });
-
-
-    var recorridoPolyline = new google.maps.Polyline({
-      path: recorrido,
-      geodesic: true,
-      strokeColor: that.options.strokeColor,
-      strokeOpacity: that.options.strokeOpacity,
-      strokeWeight: that.options.strokeWeight
-    });
-
-    recorridoPolyline.setMap( map );
-    recorridoPolylineBK1.setMap( map );
-    recorridoPolylineBK2.setMap( map );
-
-    recorridoPolylineBK2.addListener('mouseover', function(ev){
-      findPoint(ev.latLng.lat(), ev.latLng.lng());
-      isTrackHover = true;
-    });
-    recorridoPolylineBK1.addListener('mouseover', function(ev){
-      findPoint(ev.latLng.lat(), ev.latLng.lng());
-      isTrackHover = true;
-    });
-    recorridoPolyline.addListener('mouseover', function(ev){
-      findPoint(ev.latLng.lat(), ev.latLng.lng());
-      isTrackHover = true;
-    });
+    that.mapRoutes = [];
 /*
-    recorridoPolylineBK2.addListener('mouseout', function(ev){
-      outRecorrido();
+    var route =  that.routesCollection.get(126)
+*/
+
+    that.routesCollection.each( function(e,i){
+      var route = e;
+
+
+      var routeMap = {};
+      var routeData = [ ];
+
+      $.each( route.get('trackPoints') , function(i,e){
+        routeData.push({id:i, lat: e[0], lng:e[1] });
+      });
+
+
+
+      routeMap.id = route.get('id');
+
+      //console.log(route.get('trackPoints')[route.get('trackPoints').length - 1])
+
+      routeMap.markerStart = marker = new google.maps.Marker({
+        position:  {lat: route.get('trackPoints')[0][0], lng: route.get('trackPoints')[0][1]},
+        title: __('Route start'),
+        icon: {
+          url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_start.png' ,
+          anchor: new google.maps.Point(16,16)
+        }
+      });
+
+      routeMap.markerEnd = marker = new google.maps.Marker({
+        position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
+        title: __('Route End'),
+        icon: {
+          url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_finish.png' ,
+          anchor: new google.maps.Point(2,14)
+        }
+
+      });
+
+
+
+
+      routeMap.polyline = new google.maps.Polyline({
+        path: routeData,
+        geodesic: true,
+        strokeColor: that.options.strokeColor,
+        strokeOpacity: that.options.strokeOpacity,
+        strokeWeight: that.options.strokeWeight
+      });
+
+      routeMap.polylineBG1 = new google.maps.Polyline({
+        path: routeData,
+        geodesic: true,
+        strokeOpacity: 0,
+        strokeWeight: 20
+      });
+
+      routeMap.polylineBG2 = new google.maps.Polyline({
+        path: routeData,
+        geodesic: true,
+        strokeOpacity: 0,
+        strokeWeight: 10
+      });
+
+
+      that.mapRoutes.push( routeMap );
+
+      //recorridoPolyline.setMap( map );
+/*
+      recorridoPolylineBK1.setMap( map );
+      recorridoPolylineBK2.setMap( map );
+*/
+
+
+
+
+
+      /*
+      recorridoPolylineBK2.addListener('mouseover', function(ev){
+        findPoint(ev.latLng.lat(), ev.latLng.lng());
+        isTrackHover = true;
+      });
+      recorridoPolylineBK1.addListener('mouseover', function(ev){
+        findPoint(ev.latLng.lat(), ev.latLng.lng());
+        isTrackHover = true;
+      });
+      recorridoPolyline.addListener('mouseover', function(ev){
+        findPoint(ev.latLng.lat(), ev.latLng.lng());
+        isTrackHover = true;
+      });
+      */
+      /*
+      recorridoPolylineBK2.addListener('mouseout', function(ev){
+        outRecorrido();
+      });
+      recorridoPolylineBK1.addListener('mouseout', function(ev){
+        outRecorrido();
+      });
+      recorridoPolyline.addListener('mouseout', function(ev){
+        outRecorrido();
+      });*/
+
+
+
+
+
+
+
+
     });
-    recorridoPolylineBK1.addListener('mouseout', function(ev){
-      outRecorrido();
-    });
-    recorridoPolyline.addListener('mouseout', function(ev){
-      outRecorrido();
-    });*/
 
   },
 
-  renderGraphRoute: function() {
+  renderGraphRoutes: function() {
     /*
     var that = this;
 
@@ -159,6 +223,37 @@ console.log(route);
 
 
     });*/
+  },
+
+
+  showRoute: function( id ) {
+
+    var that = this;
+    var map = that.parentExplorer.displays.map.map ;
+
+    $.each(  that.mapRoutes, function(i,e) {
+      if( e.id == id ) {
+        e.polyline.setMap( map );
+        e.polylineBG1.setMap(map);
+        e.polylineBG2.setMap(map);
+        e.markerStart.setMap(map)
+        e.markerEnd.setMap(map)
+        return false;
+      }
+    });
+  },
+
+  hideRoutes: function( id ) {
+    var that = this;
+    var map = that.parentExplorer.displays.map.map ;
+
+    $.each(  that.mapRoutes, function(i,e) {
+      e.polyline.setMap( null );
+      e.polylineBG1.setMap(map);
+      e.polylineBG2.setMap(map);
+      e.markerStart.setMap( null )
+      e.markerEnd.setMap( null )
+    });
   },
 
   findPoint: function(lat, lng) {

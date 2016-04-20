@@ -8,7 +8,6 @@ form::autoIncludes();
 form::loadDependence( 'ckeditor' );
 user::autoIncludes();
 table::autoIncludes();
-bi::autoIncludes();
 
 
 class AdminViewMaster extends View
@@ -21,6 +20,10 @@ class AdminViewMaster extends View
     global $LANG_AVAILABLE;
     if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
       $this->langAvailable = array_keys( $LANG_AVAILABLE );
+    }
+
+    if( class_exists( 'bi' ) ) {
+      bi::autoIncludes();
     }
   }
 

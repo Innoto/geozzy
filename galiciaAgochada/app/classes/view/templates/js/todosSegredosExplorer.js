@@ -188,7 +188,7 @@
                 width: 28,
                 textColor: '#FFFFFF',
                 anchor:[0,100],
-                textSize: 15
+                textSize: 13
               },
               {
                 url: cogumelo.publicConf.media+"/img/segredosClusterIcon.png",
@@ -196,7 +196,7 @@
                 width: 32,
                 textColor: '#FFFFFF',
                 anchor:[0,100],
-                textSize: 17
+                textSize: 14
               }]
       });
 

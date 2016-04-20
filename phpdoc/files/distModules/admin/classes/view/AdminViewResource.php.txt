@@ -228,8 +228,24 @@ class AdminViewResource extends AdminViewMaster {
       $resCtrl = new ResourceController();
     }
 
-
-    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
+    if( !isset($valuesArray['topicReturn']) ) {
+      if (isset($valuesArray['typeReturn'])){ // tabla de páginas
+        $rtypeControl = new ResourcetypeModel();
+        $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $valuesArray['typeReturn'] ) ) )->fetch();
+        if($rTypeItem && $rTypeItem->getter('idName') === "rtypePage"){
+          $successArray[ 'redirect' ] = SITE_URL . 'admin#resourcepage/list';
+        }else{
+          $successArray[ 'redirect' ] = SITE_URL . 'admin#resource/list';
+        }
+      }
+      else{ // tabla general de contenidos
+        $successArray[ 'redirect' ] = SITE_URL . 'admin#resource/list';
+      }
+    }
+    else { // tabla de recursos de una temática
+      $successArray[ 'redirect' ] = SITE_URL . 'admin#topic/'.$valuesArray['topicReturn'];
+    }
+    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
     $formBlockInfo['template']['adminFull']->exec();
   }
 
@@ -246,7 +262,7 @@ class AdminViewResource extends AdminViewMaster {
     $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
     $valuesArray['rTypeId'] = $rtype->getter('id');
 
-    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
+    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
 
 
     $form = $formBlockInfo['objForm'];
@@ -285,7 +301,7 @@ class AdminViewResource extends AdminViewMaster {
     $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeFile') ) )->fetch();
     $valuesArray['rTypeId'] = $rtype->getter('id');
 
-    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $valuesArray );
+    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
     $form = $formBlockInfo['objForm'];
 
     $form->setFieldParam('image', 'label', 'Thumbnail image (Optional)');

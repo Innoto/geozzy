@@ -208,9 +208,9 @@ $C_REXT_MODULES = array(
   'rextAppEspazoNatural',
   'rextAppZona',
   'rextSocialNetwork',
-  //'rextEvent',
-  //'rextEventCollection',
-  //'rextAppFesta',
+  'rextEvent',
+  'rextEventCollection',
+  'rextAppFesta',
   'rextRoutes'
 );
 
@@ -225,9 +225,9 @@ $C_RTYPE_MODULES = array(
   //'rtypeAppRuta',
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
-  //'rtypeAppFesta',
+  'rtypeAppFesta',
   'rtypeAppUser',
-  //'rtypeEvent'
+  'rtypeEvent'
 );
 
 
@@ -263,7 +263,7 @@ $C_INDEX_MODULES  = array(
   'explorer',
   'rextRoutes',
   'comment',
-  //'rtypeEvent',
+  'rtypeEvent',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 
