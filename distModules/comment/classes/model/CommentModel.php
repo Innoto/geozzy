@@ -41,7 +41,7 @@ class CommentModel extends Model {
     'rate' => array(
       'type' => 'SMALLINT'
     ),
-    'typeSuggest' => array(
+    'suggestType' => array(
       'type'=>'FOREIGN',
       'vo' => 'TaxonomytermModel',
       'key' => 'id'
