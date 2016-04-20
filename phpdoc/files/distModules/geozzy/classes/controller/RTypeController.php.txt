@@ -6,23 +6,59 @@ interface RTypeInterface {
   /**
    * Alteramos el objeto form. del recursoBase para adaptarlo a las necesidades del RType
    *
-   * @param $form FormController Objeto form. del recursoBase
+   * Alteramos el objeto $form:
+   *   - Pasamos el control a cada una de las extensiones
+   *   - Añadimos campos, valores y reglas propios del RType
+   *   - Podemos alterar campos, valores y reglas existentes
+   * Por defecto: Llama a cada extensión sin cambiar nada más.
    *
-   * @return array $rTypeFieldNames
+   * @param $form FormController Objeto form. del recursoBase
    */
   public function manipulateForm( FormController $form );
 
   /**
-   * Preparamos los datos para visualizar el formulario del Recurso
+   * Preparamos los datos para visualizar las distintas partes que forman el RType
+   *
+   * Creamos un Array con todos la información del RType y sus RExt:
+   *   - 'template' Array de objetos Template ofrecidos por el RType. Por defecto usamos 'full'
+   *   - 'data' => Array con todos los datos del RType co formato 'fieldName' => 'value'
+   *   - 'dataForm' => Array con contenidos HTML del formulario del RType
+   *   - 'objForm' => FormController
+   *   - 'ext' => Array con el resultado del manipulateForm de cada RExt
+   * Por defecto se cargan todos sin crear ningún Template
+   * Ejemplo de respuesta:
+   * $formBlockInfo = array(
+   *   'template' => array(
+   *     'full' => new Template()
+   *   ),
+   *   'data' => $this->defResCtrl->getResourceData( $resId ),
+   *   'dataForm' => array(
+   *     'formId' => $form->getId(),
+   *     'formOpen' => $form->getHtmpOpen(),
+   *     'formFieldsArray' => $form->getHtmlFieldsArray(),
+   *     'formFieldsHiddenArray' => array(),
+   *     'formFields' => $form->getHtmlFieldsAndGroups(),
+   *     'formClose' => $form->getHtmlClose(),
+   *     'formValidations' => $form->getScriptCode()
+   *   )
+   *   'objForm' => $form,
+   *   'ext' => array()
+   * );
    *
    * @param $form FormController
    *
-   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array, 'dataForm' => array }
+   * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'objForm' => FormController, 'ext' => array }
    */
   public function getFormBlockInfo( FormController $form );
 
   /**
-   * Validaciones extra previas a usar los datos del recurso
+   * Validaciones extra previas a usar los datos
+   *
+   * Por defecto solo pasamos el control al resFormRevalidate de cada RExt
+   * Normalmente no hay que hacer nada
+   * Permite revisar los datos del formulario despues del submit y añadir errores al $form:
+   *   - $form->addFormError( 'Msg. de error global del formulario' );
+   *   - $form->addFieldError( $fieldName, 'Msg. de error para un campo del formulario' );
    *
    * @param $form FormController Objeto form. del recurso
    */
@@ -89,15 +125,15 @@ class RTypeController {
   /**
    * Alteramos el objeto form. del recursoBase para adaptarlo a las necesidades del RType
    *
-   * @param $form FormController Objeto form. del recursoBase
+   * Alteramos el objeto $form:
+   *   - Pasamos el control a cada una de las extensiones
+   *   - Añadimos campos, valores y reglas propios del RType
+   *   - Podemos alterar campos, valores y reglas existentes
+   * Por defecto: Llama a cada extensión sin cambiar nada más.
    *
-   * @return array $rTypeFieldNames
+   * @param $form FormController Objeto form. del recursoBase
    */
   public function manipulateForm( FormController $form ) {
-
-    $rTypeExtNames = array();
-    $rTypeFieldNames = array();
-
     // Lanzamos los manipulateForm de los RExt de este RType
     foreach( $this->rExts as $rExtName ) {
       $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
@@ -107,17 +143,44 @@ class RTypeController {
   }
 
   /**
-   * Preparamos los datos para visualizar el formulario del Recurso
+   * Preparamos los datos para visualizar las distintas partes que forman el RType
+   *
+   * Creamos un Array con todos la información del RType y sus RExt:
+   *   - 'template' Array de objetos Template ofrecidos por el RType. Por defecto usamos 'full'
+   *   - 'data' => Array con todos los datos del RType co formato 'fieldName' => 'value'
+   *   - 'dataForm' => Array con contenidos HTML del formulario del RType
+   *   - 'objForm' => FormController
+   *   - 'ext' => Array con el resultado del manipulateForm de cada RExt
+   * Se cargan todos sin crear ningún Template
+   * Ejemplo de respuesta:
+   * $formBlockInfo = array(
+   *   'template' => array(
+   *     'full' => new Template()
+   *   ),
+   *   'data' => $this->defResCtrl->getResourceData( $resId ),
+   *   'dataForm' => array(
+   *     'formId' => $form->getId(),
+   *     'formOpen' => $form->getHtmpOpen(),
+   *     'formFieldsArray' => $form->getHtmlFieldsArray(),
+   *     'formFieldsHiddenArray' => array(),
+   *     'formFields' => $form->getHtmlFieldsAndGroups(),
+   *     'formClose' => $form->getHtmlClose(),
+   *     'formValidations' => $form->getScriptCode()
+   *   )
+   *   'objForm' => $form,
+   *   'ext' => array()
+   * );
    *
    * @param $form FormController
    *
-   * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'ext' => array }
+   * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'objForm' => FormController, 'ext' => array }
    */
   public function getFormBlockInfo( FormController $form ) {
     $formBlockInfo = array(
       'template' => false,
       'data' => false,
       'dataForm' => false,
+      'objForm' => $form,
       'ext' => array()
     );
 
@@ -148,7 +211,13 @@ class RTypeController {
   }
 
   /**
-   * Validaciones extra previas a usar los datos del recurso
+   * Validaciones extra previas a usar los datos
+   *
+   * Por defecto solo pasamos el control al resFormRevalidate de cada RExt
+   * Normalmente no hay que hacer nada
+   * Permite revisar los datos del formulario despues del submit y añadir errores al $form:
+   *   - $form->addFormError( 'Msg. de error global del formulario' );
+   *   - $form->addFieldError( $fieldName, 'Msg. de error para un campo del formulario' );
    *
    * @param $form FormController Objeto form. del recurso
    */
@@ -165,6 +234,11 @@ class RTypeController {
 
   /**
    * Creación-Edicion-Borrado de los elementos del recurso segun el RType
+   *
+   * Hay que crear/guardar los datos del RType. Se lanza resFormProcess() de cada RExt
+   * Normalmente en el RType
+   * Si hay errores, es necesario registrarlos en $form para parar el proceso y notificarlos:
+   *   - $form->addFormError( 'Msg. de error global del formulario' );
    *
    * @param $form FormController
    * @param $resource ResourceModel
