@@ -40,10 +40,11 @@
           </script>
           <!-- END TOPICS -->
 
-
-          <li class="charts">
-            <a  href="/admin#charts"><i class="fa fa-line-chart fa-fw"></i> {t}Charts{/t}</a>
-          </li>
+          {if isset($biInclude)}
+            <li class="charts">
+              <a  href="/admin#charts"><i class="fa fa-line-chart fa-fw"></i> {t}Charts{/t}</a>
+            </li>
+          {/if}
           <li class="pages">
             <a href="/admin#resourcepage/list"><i class="fa fa-files-o fa-fw"></i> {t}Pages{/t} </a>
           </li>

@@ -188,6 +188,7 @@ $C_ENABLED_MODULES = array(
   'table',
   'explorer',
   'appExplorer',
+  'comment',
   // testing module
   'testData',
 );
@@ -261,6 +262,7 @@ $C_INDEX_MODULES  = array(
   'initResources',
   'explorer',
   'rextRoutes',
+  'comment',
   'rtypeEvent',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!

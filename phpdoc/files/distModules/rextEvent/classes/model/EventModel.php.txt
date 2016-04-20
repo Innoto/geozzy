@@ -24,12 +24,10 @@ class EventModel extends Model
       'key' => 'id'
     ),
     'initDate' => array(
-      'type' => 'TIMESTAMP',
-      'size' => '200'
+      'type' => 'TIMESTAMP'
     ),
     'endDate' => array(
-      'type' => 'TIMESTAMP',
-      'size' => '200'
+      'type' => 'TIMESTAMP'
     )
   );
 

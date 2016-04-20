@@ -99,12 +99,21 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
       routeMap.markerStart = marker = new google.maps.Marker({
         position:  {lat: route.get('trackPoints')[0][0], lng: route.get('trackPoints')[0][1]},
-        title: __('Route start')
+        title: __('Route start'),
+        icon: {
+          url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_start.png' ,
+          anchor: new google.maps.Point(16,16)
+        }
       });
 
       routeMap.markerEnd = marker = new google.maps.Marker({
-        position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][0] },
-        title: __('Route End')
+        position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
+        title: __('Route End'),
+        icon: {
+          url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_finish.png' ,
+          anchor: new google.maps.Point(2,14)
+        }
+
       });
 
 
@@ -218,6 +227,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
   showRoute: function( id ) {
+
     var that = this;
     var map = that.parentExplorer.displays.map.map ;
 

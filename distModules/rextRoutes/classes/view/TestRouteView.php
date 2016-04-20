@@ -47,6 +47,20 @@ class TestRouteView extends View
     return $points;
   }*/
 
+  public function testRouteGraph() {
+    rextRoutes::autoIncludes();
+
+/*
+      function CpChart\Chart\imaimagecreatetruecolor = imaimagecreatetruecolor;
+      $myData = new pData();
+      $myData->addPoints([0, 1, 1, 2, 3, 5, 8, 13]);
+      $myImage = new pImage(500, 300, $myData);
+      $myImage->setGraphArea(25,25, 475,275);
+      $myImage->drawScale();
+*/
+
+  }
+
   public function routeConvert() {
     rextRoutes::autoIncludes();
 /*
@@ -69,7 +83,7 @@ class TestRouteView extends View
     rextRoutes::load('controller/RoutesController.php');
     $routesControl = new RoutesController();
     $filePath = '/home/pblanco/Descargas/Incio_oural_.gpx';
-    $rutaJSON = json_encode(    $routesControl->getRoute($filePath) );
+    $rutaJSON = json_encode(    $routesControl->getRoute($filePath, 10) );
 
 
     ?>

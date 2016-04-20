@@ -3,9 +3,9 @@ Cogumelo::load('coreModel/VO.php');
 Cogumelo::load('coreModel/Model.php');
 
 
-class CommentsModel extends Model {
+class CommentModel extends Model {
 
-  static $tableName = 'geozzy_comments';
+  static $tableName = 'geozzy_comment';
 
   static $cols = array(
     'id' => array(
@@ -28,11 +28,6 @@ class CommentsModel extends Model {
       'vo' => 'ResourceModel',
       'key'=> 'id'
     ),
-    'status' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'TaxonomytermModel',
-      'key' => 'id'
-    ),
     'published' => array(
       'type' => 'BOOLEAN'
     ),
@@ -46,9 +41,15 @@ class CommentsModel extends Model {
     'rate' => array(
       'type' => 'SMALLINT'
     ),
-    'typeSuggest' => array(
-      'type'=>'VARCHAR',
-      'size' => 100,
+    'suggestType' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'TaxonomytermModel',
+      'key' => 'id'
+    ),
+    'status' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'TaxonomytermModel',
+      'key' => 'id'
     ),
     'anonymousName' => array(
       'type' => 'CHAR',
