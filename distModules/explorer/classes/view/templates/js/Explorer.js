@@ -1,6 +1,6 @@
 var geozzy = geozzy || {};
 
-
+geozzy.explorerComponents.routerInstance = false;
 geozzy.explorer = function( opts ) {
 
   var that = this;
@@ -29,8 +29,8 @@ geozzy.explorer = function( opts ) {
     filterChangeEvent: function(){},
     filteringEndEvent: function(){},
     firstLoadEvent: function(){},
-    resourceAccess: function( ){},
-    resourceQuit: function( ) {}
+    resourceAccess: function( ){ return false;},
+    resourceQuit: function( ) { return false;}
   }
   $.extend(true, that.options, opts);
 
@@ -43,8 +43,6 @@ geozzy.explorer = function( opts ) {
   // events
   that.explorerEvents = [];
 
-  // router
-  that.explorerRouter = false;
 
   //  Debuger
   that.timeDebugerMain = new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer main'} );
@@ -82,13 +80,17 @@ geozzy.explorer = function( opts ) {
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
 
     // set explorer router
-    that.explorerRouter = new geozzy.explorerComponents.mainRouter();
-    that.explorerRouter.parentExplorer = that;
+    geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
+    geozzy.explorerComponents.routerInstance.parentExplorer = that;
+    Backbone.history.stop();
+    Backbone.history.start();
 
 
     that.bindEvent('resourceClick', function(param){
-      that.explorerRouter.navigate('resource/'+param.id);
-      that.options.resourceAccess(param.id);
+      if( that.options.resourceAccess(param.id) !== false ) {
+        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id);
+      }
+
     });
 
 
