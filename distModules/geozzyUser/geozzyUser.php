@@ -58,7 +58,6 @@ class geozzyUser extends Module
         'gl' => 'Usuario'
       ),
       'shortDescription' => array(),
-      'img' => false,
       'viewType' => 'tplEmpty',
       'urlAlias' => array(
         'en' => '/userprofile',

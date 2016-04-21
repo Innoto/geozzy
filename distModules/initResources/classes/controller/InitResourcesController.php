@@ -86,7 +86,8 @@ class InitResourcesController{
     // Unha vez creado o recurso, creamos as súas relacións
 
     // image
-    if( isset( $initRes['img'] ) ) {
+
+    if( isset( $initRes['img']) && $initRes['img'] ) {
       $filedata = array(
         'name' => $initRes['img'],
         'destDir' => ResourceModel::$cols['image']['uploadDir'],

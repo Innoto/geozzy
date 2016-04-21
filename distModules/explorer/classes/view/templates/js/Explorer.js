@@ -1,6 +1,6 @@
 var geozzy = geozzy || {};
 
-
+geozzy.explorerComponents.routerInstance = false;
 geozzy.explorer = function( opts ) {
 
   var that = this;
@@ -17,23 +17,20 @@ geozzy.explorer = function( opts ) {
   //  Options
 
   that.options = {
-
     explorerSectionName: 'Geozzy Explorer',
-
     explorerAPIHost: '/api/explorer/',
     explorerId: 'default',
 
     // cache times (in seconds)
     cacheTimeIndex: 20,
-
     debug: false,
 
     // events
     filterChangeEvent: function(){},
     filteringEndEvent: function(){},
     firstLoadEvent: function(){},
-    resourceAccess: function( ){},
-    resourceQuit: function( ) {}
+    resourceAccess: function( ){ return false;},
+    resourceQuit: function( ) { return false;}
   }
   $.extend(true, that.options, opts);
 
@@ -46,30 +43,22 @@ geozzy.explorer = function( opts ) {
   // events
   that.explorerEvents = [];
 
-  // router
-  that.explorerRouter = false;
 
   //  Debuger
-
   that.timeDebugerMain = new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer main'} );
   that.timeDebugerExtended =  new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer extended data'} );
 
 
   // Resource Collections and Indexes
-
   that.resourceIndex = false;
-
   that.resourceMinimalList = new geozzy.explorerComponents.resourceMinimalCollection();
   that.resourcePartialList =  false;//new geozzy.explorerComponents.resourcePartialCollection();
 
 
   // Displays
-
   that.displays = {
     map: false,
-//    mapInfo: false,
     activeList: false,
-//    pasiveList: false,
     plugins: []
   }
 
@@ -89,9 +78,22 @@ geozzy.explorer = function( opts ) {
     // set multiple fetches
     lang = that.getLang();
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
+
     // set explorer router
-    that.explorerRouter = new geozzy.explorerComponents.mainRouter();
-    that.explorerRouter.parentExplorer = that;
+    geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
+    geozzy.explorerComponents.routerInstance.parentExplorer = that;
+    Backbone.history.stop();
+    Backbone.history.start();
+
+
+    that.bindEvent('resourceClick', function(param){
+      if( that.options.resourceAccess(param.id) !== false ) {
+        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id);
+      }
+
+    });
+
+
 
     $(document).ready( function(){
       if( !Backbone.History.started ){
@@ -193,20 +195,10 @@ geozzy.explorer = function( opts ) {
       that.displays.map.setParentExplorer( that );
     }
     else
-  /*  if( displayObj.displayType == 'mapInfo' ) {
-      that.displays.mapInfo = displayObj;
-      that.displays.mapInfo.setParentExplorer( that );
-    }
-    else*/
     if( displayObj.displayType == 'activeList' ) {
       that.displays.activeList = displayObj;
       that.displays.activeList.setParentExplorer( that );
     }
-  /*  else
-    if( displayObj.displayType == 'pasiveList' ) {
-      that.displays.pasiveList = displayObj;
-      that.displays.pasiveList.setParentExplorer( that );
-    }*/
     else
     if( displayObj.displayType == 'plugin' ) {
       displayObj.setParentExplorer( that );
@@ -317,14 +309,7 @@ geozzy.explorer = function( opts ) {
       }
     });
 
-    /*
-    that.resourcePartialList.fetchAndCache({
-      ids: resourcesToLoad,
-      url: lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/partial/updatedfrom/false',
-      success: function() {
-        fetchSuccess();
-      }
-    });*/
+
   }
 
 

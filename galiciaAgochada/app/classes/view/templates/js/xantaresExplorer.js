@@ -1,12 +1,5 @@
 
-
-
-
-
   $(document).ready(function(){
-
-
-
 
     xantaresElementTpl = '' +
       '<div data-resource-id="<%- id %>" class="col-md-12 element">'+
@@ -25,43 +18,13 @@
         '</div>'+
       '</div>';
 
-
-
-
-
-
-
     explorador = new xantaresExplorer();
     explorador.interfaceFilters();
 
-    explorador.setInitialData( function() {
+    explorador.presetExplorer( function() {
       explorador.setExplorer();
-      explorador.setDisplays();
-      explorador.setFilters();
-      explorador.exec();
-      //$( '.explorerFilterElement .especialidadeEatandDrink').select2();
     });
 
-    // autodetección de idioma
-    path = window.location.pathname.split('/');
-
-    has_lang = false;
-    $(langAvailableIds).each(function(i,e){
-      if (path[1]===e){
-        has_lang = true;
-      }
-    });
-
-    if(!has_lang){ // url sen idioma
-      if (navigator.appName == 'Netscape' || 'Microsoft Internet Explorer' || 'Opera'){
-        var idioma = navigator.language;
-      }
-      else{
-        var idioma = navigator.browserLanguage;
-      }
-      lang_array = idioma.split('-');
-      window.location = lang_array[0] + window.location.pathname;
-    }
   });
 
 
@@ -89,13 +52,15 @@
     that.listaMini = false;
     that.mapa = false;
 
+    that.explorer = false;
+    that.explorer2 = false;
 
 
 
     /**
       setInitialData. Preset objects and get values for the filters
      */
-    that.setInitialData = function( doneFunction ){
+    that.presetExplorer = function( doneFunction ){
       that.mapOptions = {
         center: { lat: 43.1, lng: -7.36 },
         zoom: 8,
@@ -121,11 +86,25 @@
       });
     }
 
+
+
+
     /**
       setExplorer. instance the explorer object
      */
     that.setExplorer = function() {
+/*
+      that.explorer2 =  new geozzy.explorer({
+        debug: false,
+        explorerId:'paisaxes',
+        explorerSectionName:'Paisaxes',
+        resourceQuit: function() {
+          $(".explorerContainer.explorer-container-du").hide();
+          $(".explorerContainer.explorer-container-du").html('');
+        }
 
+      });
+*/
       that.explorer = new geozzy.explorer({
         debug: false,
         explorerId:'xantares',
@@ -149,6 +128,12 @@
 
       });
 
+      that.setDisplays();
+      that.setFilters();
+
+      that.explorer.exec();
+      that.explorer2.exec();
+
     }
 
 
@@ -168,16 +153,13 @@
       });
       that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
-          clusterize:false,
+          clusterize:true,
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
             var retObj = false;
 
 
             that.eatAndDrinkTypes.each( function(e){
-              //console.log(e.get('id'))
-              //console.debug(markerData.get('terms'))
-
               if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
 
                 if( jQuery.isNumeric( e.get('icon') )  ){
@@ -207,8 +189,17 @@
       });
 
 
+
+/*
+      that.mapa2 = new geozzy.explorerComponents.mapView({
+          map: that.resourceMap,
+          clusterize:false
+      });
+*/
+
       that.explorer.addDisplay( that.listaMini );
       that.explorer.addDisplay( that.mapa );
+      //that.explorer2.addDisplay( that.mapa2 );
       that.explorer.addDisplay( that.infowindow );
 
     }
@@ -222,9 +213,6 @@
       setFilters. set explorer filter objects
      */
     that.setFilters = function() {
-
-
-
 
       //TEMP ADD FILTER MAP*-----------------------------------------------------------------------------------------------------------------------
       var Coords = [
@@ -313,26 +301,7 @@
       that.explorer.addFilter( filtroReset );
       that.explorer.addFilter( filtroZona );
 
-
-
-
-
     }
-
-
-
-
-
-    /**
-      exec. execs the explorer
-     */
-    that.exec = function(){
-
-      that.explorer.exec();
-
-    }
-
-
 
 
 
