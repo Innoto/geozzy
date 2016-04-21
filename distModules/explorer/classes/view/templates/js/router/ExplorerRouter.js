@@ -8,9 +8,10 @@ geozzy.explorerComponents.mainRouter = Backbone.Router.extend({
     'resource/:id': 'resource'
   },
 
+
   main: function( ) {
     var that = this;
-
+    
     that.parentExplorer.options.resourceQuit();
   },
 

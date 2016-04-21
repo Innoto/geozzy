@@ -84,6 +84,10 @@ class AdminViewMaster extends View
     $this->template->assign( 'userPermission' , $userPermission);
     $topicPermission = $useraccesscontrol->checkPermissions('topic:list', 'admin:full');
     $this->template->assign( 'topicPermission' , $topicPermission);
+
+    if( class_exists( 'bi' ) ) {
+      $this->template->assign( 'biInclude' , true);
+    }
     //
     $this->template->exec();
   }

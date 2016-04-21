@@ -31,9 +31,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     },
   },
 
-  initialize: function( opts ) {
+  initialize: function( options ) {
     var that = this;
-    var options = new Object({
+    var opts = new Object({
       map : false,
       clusterize: false,
       clustererStyles: false,
@@ -41,7 +41,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     });
 
-    that.options = $.extend(true, {}, options, opts);
+
+    that.options = $.extend(true, {}, opts, options );
 
     this.setMap( this.options.map );
   },
@@ -498,9 +499,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   markerClick: function( id ){
 
     var that = this;
-
-    //that.parentExplorer.options.resourceAccess( id )
-    that.parentExplorer.explorerRouter.navigate('resource/'+id, {trigger:true});
 
     // call metrics event
     that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
