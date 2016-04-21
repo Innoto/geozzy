@@ -25,6 +25,8 @@ class geozzyUser extends Module
     )
   );
 
+
+  public $autoIncludeAlways = true;
   public $includesCommon = array(
     'js/router/UserRouter.js',
     'js/model/UserSessionModel.js',
