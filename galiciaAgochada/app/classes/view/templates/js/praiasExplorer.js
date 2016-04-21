@@ -68,6 +68,11 @@
         styles : mapTheme
       };
       that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
+
+      google.maps.event.addListenerOnce( that.resourceMap , 'idle', function(){
+        explorador.layoutDistributeSize();
+      });
+
       mapControlUtils = new mapControlsUtils();
       mapControlUtils.changeMapControls(that.resourceMap);
 
