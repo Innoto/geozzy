@@ -224,12 +224,8 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
     switch (eventType) {
       case 'click':
-        if( that.parentExplorer.displays.map ) {
-          that.parentExplorer.explorerRouter.navigate( 'resource/' + $(element.currentTarget).attr('data-resource-id'), {trigger:true} );
-        }
-        else {
-          that.parentExplorer.options.resourceAccess( id, {trigger:true} )
-        }
+
+        that.parentExplorer.triggerEvent('resourceClick',{id:$(element.currentTarget).attr('data-resource-id')} );
 
         // call metrics event
         that.parentExplorer.metricsResourceController.eventClick( $(element.currentTarget).attr('data-resource-id'), 'Explorer: '+that.parentExplorer.options.explorerSectionName );
