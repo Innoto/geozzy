@@ -211,6 +211,7 @@ $C_REXT_MODULES = array(
   'rextEvent',
   'rextEventCollection',
   'rextAppFesta',
+  'rextPoi',
   'rextRoutes'
 );
 
@@ -227,6 +228,7 @@ $C_RTYPE_MODULES = array(
   'rtypeAppEspazoNatural',
   'rtypeAppFesta',
   'rtypeAppUser',
+  'rtypePoi',
   'rtypeEvent'
 );
 
