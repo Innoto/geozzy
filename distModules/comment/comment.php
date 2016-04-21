@@ -140,7 +140,7 @@ class comment extends Module
 
   function __construct() {
     $this->addUrlPatterns( '#^comment/form#', 'view:CommentView::commentForm' );
-    $this->addUrlPatterns( '#^comment/sendcomment$#', 'view:CommentView::sendCommentForm' );
+    $this->addUrlPatterns( '#^comment/sendcommentform$#', 'view:CommentView::sendCommentForm' );
   }
 
 

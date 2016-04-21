@@ -436,6 +436,23 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes',
 );
 
 
+cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
+  array(
+    'rtypeAppHotel' => array(
+      'moderation' => 'none', // none|validated|all
+      'activeComment' => true, //True or false
+      'activeSuggest' => true //True or false
+    ),
+    'rtypeAppRestaurant' => array(
+      'moderation' => 'validated', // none|validated|all
+      'activeComment' => false, //True or false
+      'activeSuggest' => true //True or false
+    )
+  )
+);
+
+
+
 
 
 
