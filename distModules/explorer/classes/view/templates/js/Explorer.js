@@ -17,15 +17,12 @@ geozzy.explorer = function( opts ) {
   //  Options
 
   that.options = {
-
     explorerSectionName: 'Geozzy Explorer',
-
     explorerAPIHost: '/api/explorer/',
     explorerId: 'default',
 
     // cache times (in seconds)
     cacheTimeIndex: 20,
-
     debug: false,
 
     // events
@@ -83,13 +80,15 @@ geozzy.explorer = function( opts ) {
     // set multiple fetches
     lang = that.getLang();
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
+
     // set explorer router
     that.explorerRouter = new geozzy.explorerComponents.mainRouter();
     that.explorerRouter.parentExplorer = that;
 
 
     that.bindEvent('resourceClick', function(param){
-      that.explorerRouter.navigate('resource/'+param.id, {trigger:true});
+      that.explorerRouter.navigate('resource/'+param.id);
+      that.options.resourceAccess(param.id);
     });
 
 
