@@ -50,26 +50,20 @@ geozzy.explorer = function( opts ) {
   that.explorerRouter = false;
 
   //  Debuger
-
   that.timeDebugerMain = new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer main'} );
   that.timeDebugerExtended =  new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer extended data'} );
 
 
   // Resource Collections and Indexes
-
   that.resourceIndex = false;
-
   that.resourceMinimalList = new geozzy.explorerComponents.resourceMinimalCollection();
   that.resourcePartialList =  false;//new geozzy.explorerComponents.resourcePartialCollection();
 
 
   // Displays
-
   that.displays = {
     map: false,
-//    mapInfo: false,
     activeList: false,
-//    pasiveList: false,
     plugins: []
   }
 
@@ -92,6 +86,13 @@ geozzy.explorer = function( opts ) {
     // set explorer router
     that.explorerRouter = new geozzy.explorerComponents.mainRouter();
     that.explorerRouter.parentExplorer = that;
+
+
+    that.bindEvent('resourceClick', function(param){
+      that.explorerRouter.navigate('resource/'+param.id, {trigger:true});
+    });
+
+
 
     $(document).ready( function(){
       if( !Backbone.History.started ){
@@ -193,20 +194,10 @@ geozzy.explorer = function( opts ) {
       that.displays.map.setParentExplorer( that );
     }
     else
-  /*  if( displayObj.displayType == 'mapInfo' ) {
-      that.displays.mapInfo = displayObj;
-      that.displays.mapInfo.setParentExplorer( that );
-    }
-    else*/
     if( displayObj.displayType == 'activeList' ) {
       that.displays.activeList = displayObj;
       that.displays.activeList.setParentExplorer( that );
     }
-  /*  else
-    if( displayObj.displayType == 'pasiveList' ) {
-      that.displays.pasiveList = displayObj;
-      that.displays.pasiveList.setParentExplorer( that );
-    }*/
     else
     if( displayObj.displayType == 'plugin' ) {
       displayObj.setParentExplorer( that );
@@ -317,14 +308,7 @@ geozzy.explorer = function( opts ) {
       }
     });
 
-    /*
-    that.resourcePartialList.fetchAndCache({
-      ids: resourcesToLoad,
-      url: lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/partial/updatedfrom/false',
-      success: function() {
-        fetchSuccess();
-      }
-    });*/
+
   }
 
 
