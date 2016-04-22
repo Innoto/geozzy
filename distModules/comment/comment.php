@@ -24,18 +24,16 @@ class comment extends Module
      "includes" => array("backbone.js")
     )
   );
-
+  public $autoIncludeAlways = true;
   public $includesCommon = array(
-/*
-    'js/router/UserRouter.js',
-    'js/model/UserSessionModel.js',
+    /*'js/model/CommentModel.js',
+    'js/collection/CommentCollection.js',*/
     'js/view/Templates.js',
-    'js/view/UserLoginBoxView.js',
-    'js/view/UserRegisterBoxView.js',
-    'js/view/UserRegisterOkBoxView.js',
-    'js/UserSession.js',
-    'js/UserSessionInstance.js'
-*/
+    /*'js/view/ListCommentView.js',*/
+    'js/view/CreateCommentView.js',
+    /*'js/view/CreateCommentOkView.js',*/
+    'js/Comment.js',
+    'js/CommentInstance.js'
   );
 
   public $taxonomies = array(
