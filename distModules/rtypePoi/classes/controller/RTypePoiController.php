@@ -117,11 +117,14 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     $formFieldsNames = array( 'image' );
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
 
+
     // TEMPLATE panel Poi
-    $templates['Poi'] = new Template();
-    $templates['Poi']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['Poi']->assign( 'title', __( 'Poi' ) );
-    $templates['Poi']->setBlock( 'blockContent', $PoiViewInfo['template']['full'] );
+    $templates['poi'] = new Template();
+    $templates['poi']->setTpl( 'rExtViewBlock.tpl', 'rextPoi' );
+    $templates['poi']->assign( 'title', __( 'Punto de Interés' ) );
+    $templates['poi']->assign( 'res', $formBlockInfo );
+    $templates['poi']->assign('rExt', $formBlockInfo['ext']);
+    $templates['poi']->setBlock( 'blockContent', $PoiViewInfo['template']['full'] );
 
     // TEMPLATE panel cuadro informativo
     $templates['info'] = new Template();
@@ -161,7 +164,8 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
     $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['Poi'] );
+    //$templates['adminFull']->addToBlock( 'col8', $templates['location'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['poi'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
     // COL4
     $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
