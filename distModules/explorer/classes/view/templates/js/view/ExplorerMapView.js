@@ -483,11 +483,50 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
     else {
       that.panToLastCenter();
+      that.outerPanTo( that.parentExplorer.resourceMinimalList.get( id ) )
     }
+  },
+
+  outerPanTo: function( resource ) {
+    var that = this;
+
+
+
+    if( !$('div.explorerPositionArrows').length ) {
+      $('<div class="explorerPositionArrows"  style="position:absolute;top:200;right:0;width:100px;height:100px;color:white;">'+
+          '<div class="pos NW">nw</div>'+
+          '<div class="pos N">n</div>'+
+          '<div class="pos NE">ne</div>'+
+          '<div class="pos E">e</div>'+
+          '<div class="pos SE">se</div>'+
+          '<div class="pos S">s</div>'+
+          '<div class="pos SW">sw</div>'+
+          '<div class="pos W">w</div>'+
+        '<div>').appendTo('body');
+
+
+    }
+
+    //that.resetOuterPanTo();
+    var outerPos = resource.get('mapOuterZone');
+
+    $('div.explorerPositionArrows div.pos' ).hide();
+    $('div.explorerPositionArrows' ).show();
+    $('div.explorerPositionArrows div.' + outerPos ).show();
+    console.log( $('div.explorerPositionArrows div.' + outerPos ).html() );
+
+  },
+
+  resetOuterPanTo: function() {
+    that = this;
+    $('#geozzyExplorer_'+that.parentExplorer.options.explorerId+'_mapArrows').hide();
   },
 
   panToLastCenter: function() {
     var that = this;
+
+    that.resetOuterPanTo();
+
     if( that.lastCenter ) {
       that.map.panTo( that.lastCenter );
       that.lastCenter = false;

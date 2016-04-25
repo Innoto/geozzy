@@ -24,7 +24,7 @@
 </style>
 {/block}
 
-<!-- rTypeViewBlock.tpl en rTypeAppRestaurant module -->
+<!-- rTypeViewBlock.tpl en rTypeBlog module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
@@ -77,7 +77,7 @@
                 </div>
               {/if}
             </div>
-          {/if}
+          {/if}{* /ext.rextSocialNetwork *}
         </li>
         {if isset($fav)}
         <li class="elementFav">
@@ -86,10 +86,6 @@
         </li>
         {/if}
       </ul>
-    </div>
-
-    <div class="mediumDescription">
-      {$res.data.mediumDescription|escape:'htmlall'}
     </div>
 
     <div class="content">
@@ -145,7 +141,7 @@
     {if isset( $res.data.loc )}
     <div class="map">
       <div class="container">
-
+        {* Aqui cargaremos el mapa con JS *}
       </div>
     </div>
     {/if}
@@ -168,4 +164,4 @@
   {/if}
 
 </div><!-- /.resource .resViewBlock -->
-<!-- /rTypeViewBlock.tpl en rTypeAppRestaurant module -->
+<!-- /rTypeViewBlock.tpl en rTypeBlog module -->
