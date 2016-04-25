@@ -55,14 +55,12 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     $rTypeExtNames[] = 'rextEvent';
     $this->eventCtrl = new RExtEventController( $this );
     $rExtFieldNames = $this->eventCtrl->manipulateForm( $form );
-
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // Extensión evento
     $rTypeExtNames[] = 'rextEventCollection';
     $this->eventCollectionCtrl = new RExtEventCollectionController( $this );
     $rExtFieldNames = $this->eventCollectionCtrl->manipulateForm( $form );
-
     $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
 
     // eliminamos los campos de extensiones que no necesitamos

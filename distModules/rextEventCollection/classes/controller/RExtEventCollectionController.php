@@ -383,7 +383,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
-      // 
+      //
       // echo '<pre>';
       // print_r($rExtViewBlockInfo['data']);
       // echo '</pre>';

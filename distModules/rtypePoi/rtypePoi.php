@@ -16,9 +16,9 @@ class rtypePoi extends Module {
   );
 
   public $nameLocations = array(
-    'es' => 'Poi',
-    'en' => 'Poi',
-    'gl' => 'Poi'
+    'es' => 'POI',
+    'en' => 'POI',
+    'gl' => 'POI'
   );
 
 
