@@ -51,7 +51,7 @@ class explorer extends Module {
     'js/model/ExplorerResourcePartialModel.js',
     'js/collection/ExplorerResourceMinimalCollection.js',
     'js/collection/ExplorerResourcePartialCollection.js',
-    'js/view/Templates.js',    
+    'js/view/Templates.js',
     'js/view/ExplorerFilterView.js',
     'js/view/filters/ExplorerFilterButtonsView.js',
     'js/view/filters/ExplorerFilterComboView.js',
@@ -64,7 +64,8 @@ class explorer extends Module {
     'js/view/ExplorerMapView.js',
     'js/view/ExplorerClusterRoseView.js',
     'js/view/ExplorerMapInfoView.js',
-    'js/Explorer.js'
+    'js/Explorer.js',
+    'styles/explorerMapArrows.less'
   );
 
 
