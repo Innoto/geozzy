@@ -527,20 +527,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var mapCenterWidth = mapWidth / 2 - arrowDivSize.w;
     var mapCenterHeight =  mapHeight / 2 - arrowDivSize.h;
 
-    //console.log(mapTopLeft, mapWidth, height);
-
-/*
-    $('div.explorerPositionArrows div.pos.N').top(100).left(900);
-    $('div.explorerPositionArrows div.pos.NE').top(100).left(900);
-    $('div.explorerPositionArrows div.pos.E').top(100).left(900);
-    $('div.explorerPositionArrows div.pos.SE').top(100).left(900);
-    $('div.explorerPositionArrows div.pos.S').top(100).left(900);
-    $('div.explorerPositionArrows div.pos.SW').top(100).left(900);
-    $('div.explorerPositionArrows div.pos.W').top(100).left(900);
-    $('div.explorerPositionArrows div.pos.NW').top(100).left(900);
-*/
-
-    console.log(outerPos)
 
     switch( outerPos ) {
       case 'N':
