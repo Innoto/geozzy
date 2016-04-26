@@ -483,7 +483,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
     else {
       that.panToLastCenter();
-      that.outerPanTo( that.parentExplorer.resourceMinimalList.get( id ) )
+
+
+
+      if( mapVisible == 0 ){
+        that.outerPanTo( that.parentExplorer.resourceMinimalList.get( id ) )
+      }
     }
   },
 
@@ -493,8 +498,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
     if( !$('div.explorerPositionArrows').length ) {
-      $('<div class="explorerPositionArrows" style="display:none;">'+
-          '<div class="pos NW"></div>'+
+      $('<div class="explorerPositionArrows" style="display:none;bakground-color:green;z-index:10000;">'+
           '<div class="pos N"></div>'+
           '<div class="pos NE"></div>'+
           '<div class="pos E"></div>'+
@@ -502,9 +506,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
           '<div class="pos S"></div>'+
           '<div class="pos SW"></div>'+
           '<div class="pos W"></div>'+
+          '<div class="pos NW"></div>'+
         '<div>').appendTo('body');
-
-
     }
 
     that.resetOuterPanTo();
@@ -512,6 +515,59 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     $('div.explorerPositionArrows div.pos' ).hide();
     $('div.explorerPositionArrows' ).show();
     $('div.explorerPositionArrows div.' + outerPos ).show();
+
+
+    var arrowDivSize = {
+        w: $('div.explorerPositionArrows div.' + outerPos ).width(),
+        h: $('div.explorerPositionArrows div.' + outerPos ).height()
+      };
+    var mapTopLeft = $(that.map.getDiv()).offset();
+    var mapWidth = $(that.map.getDiv()).width();
+    var mapHeight = $(that.map.getDiv()).height();
+    var mapCenterWidth = mapWidth / 2 - arrowDivSize.w;
+    var mapCenterHeight =  mapHeight / 2 - arrowDivSize.h;
+
+    //console.log(mapTopLeft, mapWidth, height);
+
+/*
+    $('div.explorerPositionArrows div.pos.N').top(100).left(900);
+    $('div.explorerPositionArrows div.pos.NE').top(100).left(900);
+    $('div.explorerPositionArrows div.pos.E').top(100).left(900);
+    $('div.explorerPositionArrows div.pos.SE').top(100).left(900);
+    $('div.explorerPositionArrows div.pos.S').top(100).left(900);
+    $('div.explorerPositionArrows div.pos.SW').top(100).left(900);
+    $('div.explorerPositionArrows div.pos.W').top(100).left(900);
+    $('div.explorerPositionArrows div.pos.NW').top(100).left(900);
+*/
+
+    console.log(outerPos)
+
+    switch( outerPos ) {
+      case 'N':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top , left: mapCenterWidth });
+        break;
+      case 'NE':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top , left: mapWidth - arrowDivSize.w });
+        break;
+      case 'E':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapCenterHeight , left: mapWidth - arrowDivSize.w });
+        break;
+      case 'SE':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapHeight - arrowDivSize.h , left: mapWidth - arrowDivSize.w });
+        break;
+      case 'S':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapHeight - arrowDivSize.h , left: mapCenterWidth });
+        break;
+      case 'SW':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapHeight - arrowDivSize.h , left: mapTopLeft.left });
+        break;
+      case 'W':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapCenterHeight , left: mapTopLeft.left });
+        break;
+      case 'NW':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top , left: mapTopLeft.left  });
+        break;
+    }
 
   },
 
