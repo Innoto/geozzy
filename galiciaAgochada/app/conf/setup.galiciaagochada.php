@@ -188,7 +188,6 @@ $C_ENABLED_MODULES = array(
   'table',
   'explorer',
   'appExplorer',
-  'comment',
   // testing module
   'testData',
 );
@@ -212,6 +211,7 @@ $C_REXT_MODULES = array(
   'rextEventCollection',
   'rextAppFesta',
   'rextPoi',
+  'rextComment',
   'rextRoutes'
 );
 
@@ -264,7 +264,7 @@ $C_INDEX_MODULES  = array(
   'initResources',
   'explorer',
   'rextRoutes',
-  'comment',
+  'rextComment',
   'rtypeEvent',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
@@ -440,15 +440,17 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes',
 
 cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
   array(
+    'default' => array(
+      'moderation' => 'none', // none|validated|all
+      'ctype' => array() // 'comment','suggest'
+    ),
     'rtypeAppHotel' => array(
       'moderation' => 'none', // none|validated|all
-      'activeComment' => true, //True or false
-      'activeSuggest' => true //True or false
+      'ctype' => array('comment','suggest') // 'comment','suggest'
     ),
     'rtypeAppRestaurant' => array(
       'moderation' => 'validated', // none|validated|all
-      'activeComment' => false, //True or false
-      'activeSuggest' => true //True or false
+      'ctype' => array('suggest') // 'comment','suggest'
     )
   )
 );
