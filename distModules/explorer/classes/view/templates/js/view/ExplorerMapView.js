@@ -521,7 +521,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
 
-    that.outerPanToIntervalometerValue = 4;
+    that.outerPanToIntervalometerValue = 3;
     $('div.explorerPositionArrows div.' + outerPos + ' div.counter' ).text(that.outerPanToIntervalometerValue);
     that.outerPanToIntervalometer = setInterval( function(){
       that.outerPanToIntervalometerValue--;
