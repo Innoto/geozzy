@@ -517,10 +517,21 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     $('div.explorerPositionArrows div.' + outerPos ).show();
 
 
+    var highestZindex = -999;
+
+    $("*").each(function() {
+        var current = parseInt($(this).css("z-index"), 10);
+        if(current && highestZindex < current) highestZindex = current+1;
+    });
+
+    $('div.explorerPositionArrows div.' + outerPos ).css('position', 'absolute');
+    $('div.explorerPositionArrows div.' + outerPos ).css('z-index', highestZindex);
+
     var arrowDivSize = {
         w: $('div.explorerPositionArrows div.' + outerPos ).width(),
         h: $('div.explorerPositionArrows div.' + outerPos ).height()
       };
+
     var mapTopLeft = $(that.map.getDiv()).offset();
     var mapWidth = $(that.map.getDiv()).width();
     var mapHeight = $(that.map.getDiv()).height();
