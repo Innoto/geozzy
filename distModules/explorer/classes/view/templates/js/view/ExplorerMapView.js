@@ -12,6 +12,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   markersCreated: false,
   markerClusterer: false,
 
+  outerPanToIntervalometer: false,
+  outerPanToIntervalometerValue: false,
+
 //  markerClustererHover: false,
 
   lastCenter: false,
@@ -450,7 +453,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
   },
 
-  panTo: function( id ) {
+  panTo: function( id, forcePan ) {
     var that = this;
     var mapVisible = that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible');
     var mapOuterZone = that.parentExplorer.resourceMinimalList.get( id ).get('mapOuterZone');
@@ -458,7 +461,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var scale = Math.pow(2, that.map.getZoom());
 
     //console.log(mapVisible)
-    if( mapVisible == 1 || mapVisible == 2  ) {
+    if( mapVisible == 1 || mapVisible == 2  || forcePan == true ) {
       if( that.lastCenter == false ){
         that.lastCenter = that.map.getCenter();
       }
@@ -499,14 +502,14 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     if( !$('div.explorerPositionArrows').length ) {
       $('<div class="explorerPositionArrows" style="display:none;">'+
-          '<div class="pos N"></div>'+
-          '<div class="pos NE"></div>'+
-          '<div class="pos E"></div>'+
-          '<div class="pos SE"></div>'+
-          '<div class="pos S"></div>'+
-          '<div class="pos SW"></div>'+
-          '<div class="pos W"></div>'+
-          '<div class="pos NW"></div>'+
+          '<div class="pos N"> <div class="counter"></div> </div>'+
+          '<div class="pos NE"> <div class="counter"></div> </div>'+
+          '<div class="pos E"> <div class="counter"></div> </div>'+
+          '<div class="pos SE"> <div class="counter"></div> </div>'+
+          '<div class="pos S"> <div class="counter"></div> </div>'+
+          '<div class="pos SW"> <div class="counter"></div> </div>'+
+          '<div class="pos W"> <div class="counter"></div> </div>'+
+          '<div class="pos NW"> <div class="counter"></div> </div>'+
         '<div>').appendTo('body');
     }
 
@@ -515,6 +518,20 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     $('div.explorerPositionArrows div.pos' ).hide();
     $('div.explorerPositionArrows' ).show();
     $('div.explorerPositionArrows div.' + outerPos ).show();
+
+
+
+    that.outerPanToIntervalometerValue = 4;
+    $('div.explorerPositionArrows div.' + outerPos + ' div.counter' ).text(that.outerPanToIntervalometerValue);
+    that.outerPanToIntervalometer = setInterval( function(){
+      that.outerPanToIntervalometerValue--;
+      $('div.explorerPositionArrows div.' + outerPos + ' div.counter' ).text(that.outerPanToIntervalometerValue);
+
+      if( that.outerPanToIntervalometerValue == 0){
+        that.resetOuterPanTo();
+        that.panTo( resource.get('id'), true );
+      }
+    }, 700);
 
 
     var highestZindex = -999;
@@ -570,6 +587,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
   resetOuterPanTo: function() {
     that = this;
+
+    if( that.outerPanToIntervalometer  ) {
+      clearInterval( that.outerPanToIntervalometer )
+      that.outerPanToIntervalometer = false;
+    }
+
     $('div.explorerPositionArrows' ).hide();
   },
 
