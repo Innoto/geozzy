@@ -498,7 +498,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
     if( !$('div.explorerPositionArrows').length ) {
-      $('<div class="explorerPositionArrows" style="display:none;bakground-color:green;z-index:10000;">'+
+      $('<div class="explorerPositionArrows" style="display:none;">'+
           '<div class="pos N"></div>'+
           '<div class="pos NE"></div>'+
           '<div class="pos E"></div>'+
