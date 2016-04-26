@@ -204,14 +204,14 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       case 'click':
           that.parentExplorer.triggerEvent('resourceClick',{id:$(element.currentTarget).attr('data-resource-id')} );
 
-          // call metrics event          
+          // call metrics event
           that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
       break;
       case 'mouseenter':
         if( that.parentExplorer.displays.map ) {
-          that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
           that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('data-resource-id') );
           that.parentExplorer.displays.map.markerHover( $(element.currentTarget).attr('data-resource-id') );
+          that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
         }
         else {
           that.parentExplorer.metricsResourceController.eventHoverStart(

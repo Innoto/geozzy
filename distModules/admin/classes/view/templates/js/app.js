@@ -32,7 +32,9 @@ $( document ).ready(function() {
   $.when( app.categories.fetch(), app.topics.fetch(), app.starred.fetch() ).done(function() {
     app.router = new AdminRouter();
     app.mainView = new AdminView();
-    Backbone.history.start();
+    if( !Backbone.History.started ){
+      Backbone.history.start();
+    }
 
   });
 

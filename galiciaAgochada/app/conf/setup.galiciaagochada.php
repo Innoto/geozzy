@@ -266,6 +266,7 @@ $C_INDEX_MODULES  = array(
   'rextRoutes',
   'rextComment',
   'rtypeEvent',
+  'rtypePoi',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 

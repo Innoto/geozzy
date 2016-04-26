@@ -25,9 +25,8 @@ class RExtPoiController extends RExtController implements RExtInterface {
       $resId = $this->defResCtrl->resObj->getter('id');
     }
 
-    if( $rExtObj ) {
-      $rExtData = $rExtObj->getAllData( 'onlydata' );
-
+    if( $this->taxonomies && is_array( $this->taxonomies ) && count( $this->taxonomies ) > 0 ) {
+      $rExtData = array();
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
       $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
       if( $termsGroupedIdName !== false ) {
@@ -76,13 +75,8 @@ class RExtPoiController extends RExtController implements RExtInterface {
 
     $fieldsInfo = array(
       'rextPoiType' => array(
-        'params' => array( 'label' => __( 'Poi type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order',
+        'params' => array( 'label' => __( 'POI type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order',
           'options' => $this->defResCtrl->getOptionsTax( 'rextPoiType' )
-        )
-      ),
-      'relatedResource' => array(
-        'params' => array( 'label' => __( 'Related resource' ), 'type' => 'select',
-          'options' => $allRes
         )
       )
     );
@@ -153,16 +147,12 @@ class RExtPoiController extends RExtController implements RExtInterface {
       $formBlockInfo['data'] = $this->getRExtData();
     }
 
-
     $templates['full'] = new Template();
-    //$templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
-    $templates['full']->setTpl( 'rExtViewBlock.tpl', 'rextPoi' );
-    $templates['full']->assign( 'rExtName', $this->rExtName );
+    $templates['full']->assign( 'var', 'mierda' );
     $templates['full']->assign( 'rExt', $formBlockInfo );
-    $templates['full']->addClientScript('js/rextPoi.js', 'rextPoi');
-
-    $prevContent = '<style type="text/css">.bootstrap-datetimepicker-widget table th{background: none;}</style>';
-    $templates['full']->assign( 'prevContent', $prevContent );
+    $templates['full']->setTpl( 'rExtViewBlock.tpl', 'rextPoi' );
+    //$templates['full']->addClientScript('js/rextPoi.js', 'rextPoi');
+    //$templates['full']->assign( 'prevContent', $prevContent );
 
     $formBlockInfo['template'] = $templates;
 
@@ -191,12 +181,6 @@ class RExtPoiController extends RExtController implements RExtInterface {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-
-      // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
-      $rExtModel = new PoiModel( $valuesArray );
-      if( $rExtModel === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
-      }
     }
 
     if( !$form->existErrors() ) {
@@ -208,12 +192,6 @@ class RExtPoiController extends RExtController implements RExtInterface {
       }
     }
 
-    if( !$form->existErrors() ) {
-      $saveResult = $rExtModel->save();
-      if( $saveResult === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
-      }
-    }
   }
 
   /**
