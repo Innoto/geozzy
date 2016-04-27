@@ -1,7 +1,7 @@
 <?php
 
 Cogumelo::load('view/MasterView.php');
-geozzy::load( 'view/GeozzyResourceView.php' );
+geozzy::load( 'controller/ResourceController.php' );
 
 
 
@@ -19,8 +19,8 @@ class AppResourceBridgeView extends MasterView {
       $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;
     }
 
-    $resourceView = new GeozzyResourceView();
-    $resViewBlockInfo = $resourceView->getViewBlockInfo( $resId );
+    $resourceCtrl = new ResourceController();
+    $resViewBlockInfo = $resourceCtrl->getViewBlockInfo( $resId );
 
     if( $resViewBlockInfo['data'] ) {
 
@@ -40,7 +40,7 @@ class AppResourceBridgeView extends MasterView {
       }
       $this->template->assign( 'res', $resData );
 
-      $this->template->assign('i18nlocale', I18N_LOCALE);
+      $this->template->assign( 'i18nlocale', I18N_LOCALE );
 
       $this->template->addClientStyles('styles/masterResource.less');
       //$this->template->addClientScript('js/resource.js');
