@@ -117,8 +117,10 @@ class RTypeController {
     }
 
     // Cargamos los autoIncludes de los RExt de este RType
-    foreach( $this->rExts as $rExtName ) {
-      $rExtName::autoIncludes();
+    if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
+      foreach( $this->rExts as $rExtName ) {
+        $rExtName::autoIncludes();
+      }
     }
   }
 
@@ -135,10 +137,12 @@ class RTypeController {
    */
   public function manipulateForm( FormController $form ) {
     // Lanzamos los manipulateForm de los RExt de este RType
-    foreach( $this->rExts as $rExtName ) {
-      $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
-      $rExtCtrl = new $rExtCtrlName( $this );
-      $rExtCtrl->manipulateForm( $form );
+    if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
+      foreach( $this->rExts as $rExtName ) {
+        $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+        $rExtCtrl = new $rExtCtrlName( $this );
+        $rExtCtrl->manipulateForm( $form );
+      }
     }
   }
 
@@ -200,11 +204,13 @@ class RTypeController {
 
 
     // Lanzamos los getFormBlockInfo de los RExt de este RType
-    foreach( $this->rExts as $rExtName ) {
-      $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
-      $rExtCtrl = new $rExtCtrlName( $this );
-      $rExtFormViewInfo = $rExtCtrl->getFormBlockInfo( $form );
-      $formBlockInfo['ext'][ $rExtCtrl->rExtName ] = $rExtFormViewInfo;
+    if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
+      foreach( $this->rExts as $rExtName ) {
+        $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+        $rExtCtrl = new $rExtCtrlName( $this );
+        $rExtFormViewInfo = $rExtCtrl->getFormBlockInfo( $form );
+        $formBlockInfo['ext'][ $rExtCtrl->rExtName ] = $rExtFormViewInfo;
+      }
     }
 
     return $formBlockInfo;
@@ -224,10 +230,12 @@ class RTypeController {
   public function resFormRevalidate( FormController $form ) {
     if( !$form->existErrors() ) {
       // Lanzamos los resFormRevalidate de los RExt de este RType
-      foreach( $this->rExts as $rExtName ) {
-        $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
-        $rExtCtrl = new $rExtCtrlName( $this );
-        $rExtFormViewInfo = $rExtCtrl->resFormRevalidate( $form );
+      if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
+        foreach( $this->rExts as $rExtName ) {
+          $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+          $rExtCtrl = new $rExtCtrlName( $this );
+          $rExtFormViewInfo = $rExtCtrl->resFormRevalidate( $form );
+        }
       }
     }
   }
@@ -246,10 +254,12 @@ class RTypeController {
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     if( !$form->existErrors() ) {
       // Lanzamos los resFormProcess de los RExt de este RType
-      foreach( $this->rExts as $rExtName ) {
-        $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
-        $rExtCtrl = new $rExtCtrlName( $this );
-        $rExtFormViewInfo = $rExtCtrl->resFormProcess( $form, $resource );
+      if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
+        foreach( $this->rExts as $rExtName ) {
+          $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+          $rExtCtrl = new $rExtCtrlName( $this );
+          $rExtFormViewInfo = $rExtCtrl->resFormProcess( $form, $resource );
+        }
       }
     }
   }
@@ -263,10 +273,12 @@ class RTypeController {
    */
   public function resFormSuccess( FormController $form, ResourceModel $resource ) {
     // Lanzamos los resFormSuccess de los RExt de este RType
-    foreach( $this->rExts as $rExtName ) {
-      $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
-      $rExtCtrl = new $rExtCtrlName( $this );
-      $rExtCtrl->resFormSuccess( $form, $resource );
+    if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
+      foreach( $this->rExts as $rExtName ) {
+        $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+        $rExtCtrl = new $rExtCtrlName( $this );
+        $rExtCtrl->resFormSuccess( $form, $resource );
+      }
     }
   }
 
@@ -286,16 +298,18 @@ class RTypeController {
 
     // Lanzamos los getViewBlockInfo de los RExt de este RType
     // y preasignamos su template['full'] a un bloque por defecto
-    foreach( $this->rExts as $rExtName ) {
-      $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
-      $rExtCtrl = new $rExtCtrlName( $this );
-      $viewBlockInfo['ext'][ $rExtName ] = $rExtCtrl->getViewBlockInfo();
-      if( isset( $viewBlockInfo['ext'][ $rExtName ]['template']['full'] ) ) {
-        $viewBlockInfo['template']['full']->addToFragment( $rExtName.'Block',
-          $viewBlockInfo['ext'][ $rExtName ]['template']['full'] );
-      }
-      else {
-        $viewBlockInfo['template']['full']->assign( $rExtName.'Block', false );
+    if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
+      foreach( $this->rExts as $rExtName ) {
+        $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+        $rExtCtrl = new $rExtCtrlName( $this );
+        $viewBlockInfo['ext'][ $rExtName ] = $rExtCtrl->getViewBlockInfo();
+        if( isset( $viewBlockInfo['ext'][ $rExtName ]['template']['full'] ) ) {
+          $viewBlockInfo['template']['full']->addToFragment( $rExtName.'Block',
+            $viewBlockInfo['ext'][ $rExtName ]['template']['full'] );
+        }
+        else {
+          $viewBlockInfo['template']['full']->assign( $rExtName.'Block', false );
+        }
       }
     }
 
