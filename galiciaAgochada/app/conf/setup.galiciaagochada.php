@@ -223,7 +223,7 @@ $C_RTYPE_MODULES = array(
   'rtypeUrl',
   'rtypePage',
   'rtypeFile',
-  //'rtypeAppRuta',
+  'rtypeAppRuta',
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
   'rtypeAppFesta',
