@@ -91,6 +91,9 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
     $templates['location']->assign( 'title', __( 'Location' ) );
     $templates['location']->assign( 'res', $formBlockInfo );
+    //$templates['location']->assign( 'directions', array( 'rExtRoutes_durationMinutes' ) );
+
+
 //echo "<pre>";
 //var_dump($formBlockInfo['ext']['rextRoutes'] );
 //exit;
@@ -99,7 +102,6 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $templates['routes']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['routes']->assign( 'title', __( 'Rutas' ) );
     $templates['routes']->setFragment( 'blockContent', $formBlockInfo['ext']['rextRoutes']['template']['full'] );
-
     //$templates['routes']->setFragment( 'formFieldNames',);
 
 

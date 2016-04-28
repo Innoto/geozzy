@@ -61,35 +61,50 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     $fieldsInfo = array(
 
-
+      'routeFile' => array(
+        'params' => array( 'label' => __( 'Route file' ), 'type' => 'file', 'id' => 'rExtFileField',
+        'placeholder' => __( 'File' ), 'destDir' => RoutesModel::$cols['routeFile']['uploadDir'] ),
+        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'application/gpx,application/gpx+xml,application/vnd.google-earth.kml+xml' )
+      ),
       'durationMinutes' => array(
         'params' => array( 'label' => __( 'Duration of route' ) ),
         'rules' => array( 'digits' => true )
-      )
-
-/*
-
-      'durationMinutes' => array(
-        'type' => 'INT'
       ),
       'slopeUp' => array(
-        'type' => 'INT'
+        'params' => array( 'label' => __( 'Vertical rise level' ) ),
+        'rules' => array( 'digits' => true )
       ),
       'slopeDown' => array(
-        'type' => 'INT'
+        'params' => array( 'label' => __( 'Vertical descent level' ) ),
+        'rules' => array( 'digits' => true )
       ),
       'travelDistance' => array(
-        'type' => 'INT'
+        'params' => array( 'label' => __( 'Travel distance' ) ),
+        'rules' => array( 'digits' => true )
       ),
       'difficultyEnvironment' => array(
-        'type' => 'INT'
+        'params' => array( 'label' => __( 'Natural environment difficulty' ) ),
+        'rules' => array( 'digits' => true )
       ),
+
       'difficultyItinerary' => array(
-        'type' => 'INT'
+        'params' => array( 'label' => __( 'Difficulty of the itinerary' ) ),
+        'rules' => array( 'digits' => true )
       ),
       'difficultyDisplacement' => array(
+        'params' => array( 'label' => __( 'Difficulty of displacement' ) ),
         'type' => 'INT'
       ),
+      'difficultyEffort' => array(
+        'params' => array( 'label' => __( 'Effort level' ) ),
+        'type' => 'INT'
+      )
+/*
+
+
+
+
+
       'difficultyEffort' => array(
         'type' => 'INT'
       ),
