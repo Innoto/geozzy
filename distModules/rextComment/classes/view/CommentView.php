@@ -21,22 +21,50 @@ class CommentView extends View
     return true;
   }
 
-  public function commentForm() {
+  public function commentForm( $param ) {
 
-    $form = new FormController('commentForm'); //actionform
-    $form->setAction('/comment/sendcommentform');
-    //$form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.successRegisterBox();' );
+    $validation = array(
+      'resource' => '#(\d+)#',
+      'commenttype'=> '#(.*)#'
+    );
+    $extraParams = RequestController::processUrlParams( $param, $validation );
+
+    if( !array_key_exists('resource', $extraParams ) ){
+      exit();
+    }
+    $resourceID = $extraParams['resource'];
+    $ctype = array_key_exists( 'commenttype', $extraParams) ? $extraParams['commenttype'] : false;
+
+    $rextCommentControl = new RExtCommentController();
+    $permissionsComment = $rextCommentControl->getCommentPermissions($resourceID);
+    $publishComment = $rextCommentControl->commentPublish($resourceID);
+
+    $ctypeParamTerms = $permissionsComment;
+    if($ctype){
+      $ctypeParamTerms = ( in_array($ctype, $permissionsComment) ? $ctype : $permissionsComment );
+    }
 
     $taxModelControl = new TaxonomygroupModel();
     $termModelControl = new TaxonomytermModel();
     // Data Options Comment Type
     $commentTypeTax = $taxModelControl->listItems( array('filters' => array('idName' => 'commentType')) )->fetch();
-    $commentTypeTerms = $termModelControl->listItems( array('filters' => array('taxgroup' => $commentTypeTax->getter('id'))) )->fetchAll();
+    $commentTypeTerms = $termModelControl->listItems(
+      array('filters' =>
+        array(
+          'taxgroup' => $commentTypeTax->getter('id'),
+          'idNames' => $ctypeParamTerms
+        )
+      )
+    )->fetchAll();
     $commentTypeTermsArray = array();
+    $firstTermCount = 1;
     foreach ($commentTypeTerms as $term) {
+      if($firstTermCount){
+        $commentTypeDefault = $term->getter('id');
+        $firstTermCount = 0;
+      }
       if($term->getter('idName') === 'comment'){
         $commentTypeTermsArray[$term->getter('id')] = __('A public comment and evaluation');
-        $commentTypeDefault = $term->getter('id');
       }elseif ($term->getter('idName')  === 'suggest'){
         $commentTypeTermsArray[$term->getter('id')] = __('A private suggestion about this content');
       }
@@ -57,16 +85,26 @@ class CommentView extends View
       $userID = NULL;
     }
 
+    $form = new FormController('commentForm'); //actionform
+    $form->setAction('/comment/sendcommentform');
+    //$form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.successRegisterBox();' );
+
     $fieldsInfo = array();
     $fieldsInfo['id'] = array(
       'params' => array( 'type' => 'reserved', 'value' => null )
     );
-    $fieldsInfo['type'] = array(
-      'params' => array( 'type' => 'radio', 'label' => __('What do you contribute?'), 'value' => $commentTypeDefault,
-        'options'=> $commentTypeTermsArray
-      ),
-      'rules' => array( 'required' => true )
-    );
+    if( count($commentTypeTermsArray) > 1){
+      $fieldsInfo['type'] = array(
+        'params' => array( 'type' => 'radio', 'label' => __('What do you contribute?'), 'value' => $commentTypeDefault,
+          'options'=> $commentTypeTermsArray
+        ),
+        'rules' => array( 'required' => true )
+      );
+    }else{
+      $fieldsInfo['type'] = array(
+        'params' => array( 'type' => 'reserved', 'value' => $commentTypeDefault )
+      );
+    }
     if(!$userID){
       $fieldsInfo['anonymousName'] = array(
         'params' => array( 'label' => __('Your name')),
@@ -77,29 +115,30 @@ class CommentView extends View
         'rules' => array( 'required' => true )
       );
     }
-    $fieldsInfo['rate'] = array(
-      'params' => array( 'label' => __('How do we value?'), 'value' => 0 )
-    );
-    $fieldsInfo['suggestType'] = array(
-      'params' => array( 'label' => __( 'What do we suggest?' ), 'type' => 'select',
-        'options'=> $suggestTypeTermsArray
-      )
-    );
+    if(in_array('comment', $permissionsComment)){
+      $fieldsInfo['rate'] = array(
+        'params' => array( 'label' => __('How do we value?'), 'value' => 0 )
+      );
+    }
+    if(in_array('suggest', $permissionsComment)){
+      $fieldsInfo['suggestType'] = array(
+        'params' => array( 'label' => __( 'What do we suggest?' ), 'type' => 'select',
+          'options'=> $suggestTypeTermsArray
+        )
+      );
+    }
     $fieldsInfo['content'] = array(
       'params' => array( 'label' => __( 'Your comment' ), 'type' => 'textarea' ),
       'rules' => array( 'required' => true )
     );
-    $fieldsInfo['user'] = array(
-      'params' => array( 'type' => 'reserved', 'value' => $userID )
+    $fieldsInfo['published'] = array(
+      'params' => array( 'type' => 'reserved', 'value' => $publishComment )
     );
     $fieldsInfo['user'] = array(
       'params' => array( 'type' => 'reserved', 'value' => $userID )
     );
     $fieldsInfo['resource'] = array(
-      'params' => array( 'type' => 'reserved' )
-    );
-    $fieldsInfo['cancel'] = array(
-      'params' => array( 'type' => 'button', 'value' => __('Cancel') )
+      'params' => array( 'type' => 'reserved', 'value' => $resourceID )
     );
     $fieldsInfo['submit'] = array(
       'params' => array( 'type' => 'submit', 'value' => __('Send') )
@@ -109,13 +148,14 @@ class CommentView extends View
     $form->saveToSession();
 
     $template = new Template( $this->baseDir );
+    $template->addClientScript("js/commentForm.js", 'rextComment');
     $template->assign("commentFormOpen", $form->getHtmpOpen());
     $template->assign("commentFormFields", $form->getHtmlFieldsArray());
     $template->assign("commentFormClose", $form->getHtmlClose());
     $template->assign("commentFormValidations", $form->getScriptCode());
-    $template->setTpl('comment.tpl', 'comment');
+    $template->setTpl('comment.tpl', 'rextComment');
 
-    echo ( $template->execToString() );
+    $template->exec();
 
   }
 

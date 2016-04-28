@@ -44,8 +44,11 @@ class AppResourceBridgeView extends MasterView {
 
       $this->template->addClientStyles('styles/masterResource.less');
       //$this->template->addClientScript('js/resource.js');
-
-
+/*
+      if( class_exists( 'geozzyUser' ) ) {
+        geozzyUser::autoIncludes();
+      }
+*/
       $tplFile = 'appResourceBridgePageFull.tpl';
       if( isset( $_REQUEST['pf'] ) && $_REQUEST['pf'] !== '' ) {
         $mark = preg_replace( '/[^0-9a-z_-]/i', '_', $_REQUEST['pf'] );

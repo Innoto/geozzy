@@ -114,7 +114,7 @@ class GeozzyUserView extends View
     $template->assign("userFormValidations", $form->getScriptCode());
     $template->setTpl('createModalUser.tpl', 'geozzyUser');
 
-    echo ( $template->execToString() );
+    $template->exec();
   }
 
 
@@ -270,7 +270,7 @@ class GeozzyUserView extends View
     $template->assign("userBaseFormValidations", $form->getScriptCode());
     $template->setTpl('userProfile.tpl', 'geozzyUser');
 
-    echo ( $template->execToString() );
+    $template->exec();
   }
 
 

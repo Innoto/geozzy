@@ -33,7 +33,6 @@ class CommentModel extends Model {
     ),
     'content' => array(
       'type' => 'TEXT',
-      'multilang' => true
     ),
     'timeCreation' => array(
       'type' => 'DATETIME'
