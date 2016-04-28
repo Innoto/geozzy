@@ -77,7 +77,10 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
     if( $type ) {
       $templates['info']->assign( 'rType', $type->getter('name_es') );
     }
-    $timeCreation = gmdate( 'd/m/Y', strtotime($formBlockInfo['data']['timeCreation']) );
+    $timeCreation = '';
+    if( isset($formBlockInfo['data']['timeCreation']) && $formBlockInfo['data']['timeCreation'] ) {
+      $timeCreation = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeCreation']));
+    }
     $templates['info']->assign( 'timeCreation', $timeCreation );
     if( isset($formBlockInfo['data']['userUpdate']) ) {
       $userModel = new UserModel();
