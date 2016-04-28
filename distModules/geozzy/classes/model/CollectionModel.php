@@ -53,6 +53,15 @@ class CollectionModel extends Model {
   static $extraFilters = array();
 
 
+  var $deploySQL = array(
+    array(
+      'version' => 'geozzy#1.1',
+      'sql'=> 'ALTER TABLE `geozzy_collection`
+        ADD COLUMN `timeCreation` DATETIME NULL DEFAULT NULL AFTER `collectionType` ;'
+    )
+  );
+
+
   public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
