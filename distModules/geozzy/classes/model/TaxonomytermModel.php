@@ -60,7 +60,8 @@ class TaxonomytermModel extends Model {
 
   static $extraFilters = array(
     'idInCSV' => ' id IN ( ? ) ',
-    'idNameInCSV' => ' idName IN ( ? ) '
+    'idNameInCSV' => ' idName IN ( ? ) ',
+    'idNames' => ' idName IN ( ? ) '
   );
 
 
