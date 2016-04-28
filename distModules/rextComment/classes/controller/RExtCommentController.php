@@ -1,14 +1,13 @@
 <?php
+geozzy::load( 'controller/RExtController.php' );
 
+class RExtCommentController extends RExtController implements RExtInterface {
 
-class RExtRoutesController extends RExtController implements RExtInterface {
-
-  public $numericFields = false;
-
-
-  public function __construct( $defRTypeCtrl ){
-
-    parent::__construct( $defRTypeCtrl, new rextRoutes(), 'rExtRoutes_' );
+  public function __construct( $defRTypeCtrl = false ){
+    if($defRTypeCtrl){
+      parent::__construct( $defRTypeCtrl, new rextComment(), 'rExtComment_' );
+    }
+    $this->numericFields = array( );
   }
 
   /**
@@ -27,7 +26,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
       $resId = $this->defResCtrl->resObj->getter('id');
     }
 
-    $rExtModel = new RoutesModel();
+    $rExtModel = new ResourceCommentModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
     $rExtObj = $rExtList->fetch();
 
@@ -45,7 +44,6 @@ class RExtRoutesController extends RExtController implements RExtInterface {
       }
     }
 
-
     return $rExtData;
   }
 
@@ -60,124 +58,10 @@ class RExtRoutesController extends RExtController implements RExtInterface {
     $rExtFieldNames = array();
 
     $fieldsInfo = array(
-
-      'routeFile' => array(
-        'params' => array( 'label' => __( 'Route file' ), 'type' => 'file', 'id' => 'rExtFileField',
-        'placeholder' => __( 'File' ), 'destDir' => RoutesModel::$cols['routeFile']['uploadDir'] ),
-        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'application/gpx,application/gpx+xml,application/vnd.google-earth.kml+xml' )
-      ),
-      'durationMinutes' => array(
-        'params' => array( 'label' => __( 'Duration of route' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'slopeUp' => array(
-        'params' => array( 'label' => __( 'Vertical rise level' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'slopeDown' => array(
-        'params' => array( 'label' => __( 'Vertical descent level' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'travelDistance' => array(
-        'params' => array( 'label' => __( 'Travel distance' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'difficultyEnvironment' => array(
-        'params' => array( 'label' => __( 'Natural environment difficulty' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-
-      'difficultyItinerary' => array(
-        'params' => array( 'label' => __( 'Difficulty of the itinerary' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'difficultyDisplacement' => array(
-        'params' => array( 'label' => __( 'Difficulty of displacement' ) ),
-        'type' => 'INT'
-      ),
-      'difficultyEffort' => array(
-        'params' => array( 'label' => __( 'Effort level' ) ),
-        'type' => 'INT'
+      'activeComment' => array(
+        'params' => array( 'label' => __( 'Comentarios activados' ) ),
+        'rules' => array( 'maxlength' => 1 )
       )
-/*
-
-
-
-
-
-      'difficultyEffort' => array(
-        'type' => 'INT'
-      ),
-      'routeFile' => array(
-        'type'=>'FOREIGN',
-        'vo' => 'FiledataModel',
-        'key' => 'id'
-      )
-*/
-/*
-      'reservationURL' => array(
-        'params' => array( 'label' => __( 'Hotel reservation URL' ) ),
-        'rules' => array( 'maxlength' => 2000, 'url' => true )
-      ),
-      'reservationPhone' => array(
-        'params' => array( 'label' => __( 'Hotel reservation phone' ) ),
-        'rules' => array( 'maxlength' => 20 )
-      ),
-      'reservationEmail' => array(
-        'params' => array( 'label' => __( 'Hotel reservation email' ) ),
-        'rules' => array( 'maxlength' => 255, 'email' => true)
-      ),
-      'singleRooms' => array(
-        'params' => array( 'label' => __( 'Hotel single rooms' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'doubleRooms' => array(
-        'params' => array( 'label' => __( 'Hotel double rooms' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'familyRooms' => array(
-        'params' => array( 'label' => __( 'Hotel family rooms' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'beds' => array(
-        'params' => array( 'label' => __( 'Hotel beds' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'averagePrice' => array(
-        'params' => array( 'label' => __( 'Hotel average price' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'accommodationType' => array(
-        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order',
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationType' )
-        )
-      ),
-      'accommodationCategory' => array(
-        'params' => array( 'label' => __( 'Accommodation category' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationCategory' )
-        )
-      ),
-      'accommodationServices' => array(
-        'params' => array( 'label' => __( 'Accommodation services' ), 'type' => 'select', 'multiple' => true,
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationServices' )
-        )
-      ),
-      'accommodationFacilities' => array(
-        'params' => array( 'label' => __( 'Accommodation facilities' ), 'type' => 'select', 'multiple' => true,
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationFacilities' )
-        )
-      ),
-      'accommodationBrand' => array(
-        'params' => array( 'label' => __( 'Accommodation brand' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationBrand' )
-        )
-      ),
-      'accommodationUsers' => array(
-        'params' => array( 'label' => __( 'Accommodation users profile' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationUsers' )
-        )
-      )
-*/
     );
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
@@ -261,7 +145,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      $rExtModel = new RoutesModel( $valuesArray );
+      $rExtModel = new ResourceCommentModel( $valuesArray );
       if( $rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
@@ -305,10 +189,88 @@ class RExtRoutesController extends RExtController implements RExtInterface {
     if( $rExtViewBlockInfo['data'] ) {
       $rExtViewBlockInfo['template']['full'] = new Template();
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextRoutes' );
+      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextComment' );
     }
 
     return $rExtViewBlockInfo;
   }
 
-} // class RExtSocialNetworkController
+  /**
+   * Metodo que comprueba si es posible enviar un comentario o sugerencia
+   *
+   * @return Array $permissions{ 'comment', 'suggest' }
+   */
+  public function getCommentPermissions($id) {
+    $perms = array();
+
+    $resourceModel = new ResourceModel();
+    $res = $resourceModel->listItems(
+      array(
+        'filters'=> array('id' => $id),
+        'affectsDependences' => array('ResourcetypeModel')
+      )
+    )->fetch();
+
+    $rtype = $res->getterDependence('rTypeId', 'ResourcetypeModel');
+    $commentRules = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules');
+    if($commentRules){
+      if(array_key_exists($rtype[0]->getter('idName'), $commentRules)){
+        $perms = $commentRules[$rtype[0]->getter('idName')]['ctype'];
+      }else{
+        $perms = $commentRules['default']['ctype'];
+      }
+    }
+    if(in_array('comment', $perms)){
+      $resExtCommentModel = new ResourceCommentModel();
+      $resExtComment = $resExtCommentModel->listItems(
+      array('filters'=> array('resource' => $id)))->fetch();
+
+      if($resExtComment && !$resExtComment->getter('activeComment')){
+        $unsetKey = array_search('comment', $perms);
+        unset($perms[$unsetKey]);
+      }
+    }
+    return $perms;
+  }
+
+  /**
+   * Metodo que comprueba moderacion de un comentario y te devuelve si se publica o no
+   *
+   * @return Bool true or false
+   */
+  public function commentPublish($id) {
+    $publish = false;
+
+    $resourceModel = new ResourceModel();
+    $res = $resourceModel->listItems(
+      array(
+        'filters'=> array('id' => $id),
+        'affectsDependences' => array('ResourcetypeModel')
+      )
+    )->fetch();
+
+    $rtype = $res->getterDependence('rTypeId', 'ResourcetypeModel');
+    $commentRules = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules');
+    if($commentRules){
+      if(array_key_exists($rtype[0]->getter('idName'), $commentRules)){
+        $moderation = $commentRules[$rtype[0]->getter('idName')]['moderation'];
+      }else{
+        $moderation = $commentRules['default']['moderation'];
+      }
+      switch ($moderation) {
+        case 'none':
+          $publish = true;
+          break;
+        case 'verified':
+          $useraccesscontrol = new UserAccessController();
+          $userSess = $useraccesscontrol->getSessiondata();
+          if($userSess){
+            $publish = ($userSess['data']['verified'] == 1) ? true : false;
+          }
+          break;
+      }
+    }
+    return $publish;
+  }
+
+} // class RExtAccommodationController

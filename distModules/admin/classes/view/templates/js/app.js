@@ -35,6 +35,10 @@ $( document ).ready(function() {
     if( !Backbone.History.started ){
       Backbone.history.start();
     }
+    else {
+      Backbone.history.stop();
+      Backbone.history.start();
+    }
 
   });
 

@@ -82,8 +82,14 @@ geozzy.explorer = function( opts ) {
     // set explorer router
     geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
     geozzy.explorerComponents.routerInstance.parentExplorer = that;
-    Backbone.history.stop();
-    Backbone.history.start();
+
+    if( !Backbone.History.started ){
+      Backbone.history.start();
+    }
+    else {
+      Backbone.history.stop();
+      Backbone.history.start();
+    }
 
 
     that.bindEvent('resourceClick', function(param){

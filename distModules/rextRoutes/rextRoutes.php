@@ -64,11 +64,12 @@ class rextRoutes extends Module {
 
 
   public $includesCommon = array(
+    'controller/RExtRoutesController.php',
     'controller/RoutesController.php',
     'js/model/RouteModel.js',
     'js/collection/RouteCollection.js',
     'js/view/routesExplorerView.js'
-    //'model/RExtRoutesModel.php'
+
 
   );
 

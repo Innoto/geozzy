@@ -1,8 +1,8 @@
 var geozzy = geozzy || {};
 
-
-geozzy.userSessionInstance = new geozzy.userSession();
-
+if(typeof(geozzy.userSessionInstance)=='undefined'){
+  geozzy.userSessionInstance = new geozzy.userSession();
+}
 /*
 geozzy.userSessionInstance.userControlAccess( function(){
   alert('access');

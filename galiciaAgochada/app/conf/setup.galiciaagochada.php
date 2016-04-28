@@ -188,7 +188,6 @@ $C_ENABLED_MODULES = array(
   'table',
   'explorer',
   'appExplorer',
-  'comment',
   // testing module
   'testData',
 );
@@ -212,6 +211,7 @@ $C_REXT_MODULES = array(
   'rextEventCollection',
   'rextAppFesta',
   'rextPoi',
+  'rextComment',
   'rextRoutes'
 );
 
@@ -223,7 +223,7 @@ $C_RTYPE_MODULES = array(
   'rtypeUrl',
   'rtypePage',
   'rtypeFile',
-  //'rtypeAppRuta',
+  'rtypeAppRuta',
   'rtypeAppLugar',
   'rtypeAppEspazoNatural',
   'rtypeAppFesta',
@@ -264,7 +264,7 @@ $C_INDEX_MODULES  = array(
   'initResources',
   'explorer',
   'rextRoutes',
-  'comment',
+  'rextComment',
   'rtypeEvent',
   'rtypePoi',
   'devel'
@@ -441,15 +441,17 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes',
 
 cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
   array(
+    'default' => array(
+      'moderation' => 'none', // none|verified|all
+      'ctype' => array() // 'comment','suggest'
+    ),
     'rtypeAppHotel' => array(
-      'moderation' => 'none', // none|validated|all
-      'activeComment' => true, //True or false
-      'activeSuggest' => true //True or false
+      'moderation' => 'verified', // none|verified|all
+      'ctype' => array('comment','suggest') // 'comment','suggest'
     ),
     'rtypeAppRestaurant' => array(
-      'moderation' => 'validated', // none|validated|all
-      'activeComment' => false, //True or false
-      'activeSuggest' => true //True or false
+      'moderation' => 'verified', // none|verified|all
+      'ctype' => array('suggest') // 'comment','suggest'
     )
   )
 );

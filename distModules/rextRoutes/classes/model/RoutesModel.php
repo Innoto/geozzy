@@ -45,7 +45,8 @@ class RoutesModel extends Model
     'routeFile' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
-      'key' => 'id'
+      'key' => 'id',
+      'uploadDir'=> '/RExtRouteFiles/'
     )
   );
 

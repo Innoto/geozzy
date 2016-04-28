@@ -1,15 +1,14 @@
 <?php
-
-
 Cogumelo::load("coreController/Module.php");
 
-
-class comment extends Module
+class rextComment extends Module
 {
-  public $name = "comment";
+  public $name = "rextComment";
   public $version = 1.0;
 
-
+  public $models = array(
+    'CommentModel'
+  );
   public $dependences = array(
     array(
      "id" =>"underscore",
@@ -24,18 +23,19 @@ class comment extends Module
      "includes" => array("backbone.js")
     )
   );
-
+  public $autoIncludeAlways = true;
   public $includesCommon = array(
-/*
-    'js/router/UserRouter.js',
-    'js/model/UserSessionModel.js',
+    'controller/RExtCommentController.php',
+    /*
+    'js/model/CommentModel.js',
+    'js/collection/CommentCollection.js',
+    */
     'js/view/Templates.js',
-    'js/view/UserLoginBoxView.js',
-    'js/view/UserRegisterBoxView.js',
-    'js/view/UserRegisterOkBoxView.js',
-    'js/UserSession.js',
-    'js/UserSessionInstance.js'
-*/
+    /*'js/view/ListCommentView.js',*/
+    'js/view/CreateCommentView.js',
+    /*'js/view/CreateCommentOkView.js',*/
+    'js/Comment.js',
+    'js/commentInstance.js'
   );
 
   public $taxonomies = array(
@@ -139,7 +139,7 @@ class comment extends Module
   );
 
   function __construct() {
-    $this->addUrlPatterns( '#^comment/form#', 'view:CommentView::commentForm' );
+    $this->addUrlPatterns( '#^comment/form/(.*)#', 'view:CommentView::commentForm' );
     $this->addUrlPatterns( '#^comment/sendcommentform$#', 'view:CommentView::sendCommentForm' );
   }
 
