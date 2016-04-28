@@ -442,15 +442,15 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes',
 cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
   array(
     'default' => array(
-      'moderation' => 'none', // none|validated|all
+      'moderation' => 'none', // none|verified|all
       'ctype' => array() // 'comment','suggest'
     ),
     'rtypeAppHotel' => array(
-      'moderation' => 'none', // none|validated|all
+      'moderation' => 'verified', // none|verified|all
       'ctype' => array('comment','suggest') // 'comment','suggest'
     ),
     'rtypeAppRestaurant' => array(
-      'moderation' => 'validated', // none|validated|all
+      'moderation' => 'verified', // none|verified|all
       'ctype' => array('suggest') // 'comment','suggest'
     )
   )
