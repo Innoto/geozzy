@@ -20,5 +20,4 @@ class RTypeAppRutaView extends View
 
 
 
-
 } // class RTypeAppRutaView
