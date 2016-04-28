@@ -82,7 +82,6 @@ class RExtRoutesController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Travel distance' ) ),
         'rules' => array( 'digits' => true )
       ),
-
       'difficultyEnvironment' => array(
         'params' => array( 'label' => __( 'Natural environment difficulty' ) ),
         'rules' => array( 'digits' => true )
@@ -96,7 +95,6 @@ class RExtRoutesController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Difficulty of displacement' ) ),
         'type' => 'INT'
       ),
-
       'difficultyEffort' => array(
         'params' => array( 'label' => __( 'Effort level' ) ),
         'type' => 'INT'
