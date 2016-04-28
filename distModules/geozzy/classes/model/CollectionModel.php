@@ -44,6 +44,10 @@ class CollectionModel extends Model {
       'type' => 'VARCHAR',
       'size' => 20
     ),
+    'timeCreation' => array(
+      'type' => 'DATETIME',
+      'default' => NULL
+    ),
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0

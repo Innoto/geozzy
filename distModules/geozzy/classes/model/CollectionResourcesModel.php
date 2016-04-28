@@ -23,6 +23,14 @@ class CollectionResourcesModel extends Model {
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
+    'note' => array(
+      'type' => 'VARCHAR(500)',
+      'default' => NULL
+    ),
+    'timeCreation' => array(
+      'type' => 'DATETIME',
+      'default' => NULL
+    ),
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0
