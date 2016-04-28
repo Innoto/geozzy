@@ -588,18 +588,16 @@ class ResourceController {
     if( !$form->existErrors() ) {
       // TRANSACTION COMMIT
       $resource->transactionCommit();
-
-      echo $form->getJsonOk();
     }
     else {
       // TRANSACTION ROLLBACK
       if( $resource ) {
         $resource->transactionRollback();
       }
-
       // $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
-      echo $form->getJsonError();
     }
+
+    $form->sendJsonResponse();
   }
 
 
