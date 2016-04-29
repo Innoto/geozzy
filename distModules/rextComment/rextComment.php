@@ -21,6 +21,12 @@ class rextComment extends Module
      "params" => array("backbone#1.1.2"),
      "installer" => "bower",
      "includes" => array("backbone.js")
+    ),
+    array(
+     "id" =>"bootstrap-star-rating",
+     "params" => array("bootstrap-star-rating"),
+     "installer" => "bower",
+     "includes" => array("js/star-rating.min.js", 'css/star-rating.min.css')
     )
   );
   public $autoIncludeAlways = true;
@@ -33,7 +39,7 @@ class rextComment extends Module
     'js/view/Templates.js',
     /*'js/view/ListCommentView.js',*/
     'js/view/CreateCommentView.js',
-    /*'js/view/CreateCommentOkView.js',*/
+    'js/view/CommentOkView.js',
     'js/Comment.js',
     'js/commentInstance.js'
   );

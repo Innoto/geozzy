@@ -5,7 +5,7 @@ geozzy.comment = function() {
 
   var that = this;
   that.createCommentView = false;
-  that.createCommentOkView = false;
+  that.commentOkView = false;
   that.listCommentView = false;
 
   // First Execution
@@ -13,7 +13,6 @@ geozzy.comment = function() {
   that.createComment = function( idResource, commentType ) {
     if(idResource){
       setTimeout(function() {
-        console.log(geozzy.commentComponents);
         that.createCommentView = new geozzy.commentComponents.CreateCommentView({idResource:idResource, commentType:commentType });
       }, 500);
     }
@@ -23,6 +22,8 @@ geozzy.comment = function() {
     that.initCommentOk();
   }
   that.initCommentOk = function (){
-
+    setTimeout(function() {
+      that.commentOkView = new geozzy.commentComponents.CommentOkView();
+    }, 500);
   }
 }

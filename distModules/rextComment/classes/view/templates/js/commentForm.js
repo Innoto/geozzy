@@ -1,24 +1,52 @@
 $(document).ready(function(){
-  //hideFields();
-  //showFields($('input.cgmMForm-field-type').val());
-/*
-  $('input.cgmMForm-field-type').change(function(){
-    hideFields();
-    showFields($('input.cgmMForm-field-type').val());
+
+  $("input.inputRating").rating({
+    min: 0,
+    max: 5,
+    step: 1,
+    size: 'xs',
+    theme: 'krajee-fa',
+    clearCaption: '',
+    clearButton: '',
+    defaultCaption: '',
+    starCaptions: {
+      1: '',
+      2: '',
+      3: '',
+      4: '',
+      5: ''
+    },
+    filledStar:'<i class="fa fa-star" aria-hidden="true"></i>',
+    emptyStar:'<i class="fa fa-star-o" aria-hidden="true"></i>'
   });
-*/
-  function hideFields(){
-    $('div.cgmMForm-field-rate').hide();
-    $('div.cgmMForm-field-suggestType').hide();
-  }
-  function showFields(param){
-    if(param){
-      if(param === "125"){
-        $('div.cgmMForm-field-rate').show();
-      }
-      if(param === "126"){
-        $('div.cgmMForm-field-suggestType').show();
-      }
-    }
-  }
+
 });
+
+function initCtype( param ){
+  hideFields(param);
+  showFields(searchCtypeData(param, $('input.cgmMForm-field-type[name=type]:checked').val()));
+  $('input.cgmMForm-field-type').change(function(){
+    hideFields(param);
+    showFields(searchCtypeData(param, $('input.cgmMForm-field-type[name=type]:checked').val()));
+  });
+}
+
+function searchCtypeData( param , id ){
+  return $.grep(param, function(e){
+    return e.id == id;
+  })[0];
+}
+
+function hideFields( param ){
+  console.log(param);
+  $.each(param, function(index, item) {
+    $.each(item.show, function(i, e) {
+      $('.cgmMForm-wrap.cgmMForm-field-'+e).hide();
+    });
+  });
+}
+function showFields(param){
+  $.each(param.show, function(index, item) {
+    $('.cgmMForm-wrap.cgmMForm-field-'+item).show();
+  });
+}

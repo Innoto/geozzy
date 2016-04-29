@@ -41,7 +41,7 @@ class CommentView extends View
 
     $ctypeParamTerms = $permissionsComment;
     if($ctype){
-      $ctypeParamTerms = ( in_array($ctype, $permissionsComment) ? $ctype : $permissionsComment );
+      $ctypeParamTerms = ( in_array($ctype, $permissionsComment) ? array($ctype) : $permissionsComment );
     }
 
     $taxModelControl = new TaxonomygroupModel();
@@ -64,8 +64,10 @@ class CommentView extends View
         $firstTermCount = 0;
       }
       if($term->getter('idName') === 'comment'){
+        $commentTermID = $term->getter('id');
         $commentTypeTermsArray[$term->getter('id')] = __('A public comment and evaluation');
       }elseif ($term->getter('idName')  === 'suggest'){
+        $suggestTermID = $term->getter('id');
         $commentTypeTermsArray[$term->getter('id')] = __('A private suggestion about this content');
       }
     }
@@ -87,7 +89,7 @@ class CommentView extends View
 
     $form = new FormController('commentForm'); //actionform
     $form->setAction('/comment/sendcommentform');
-    //$form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.successRegisterBox();' );
+    $form->setSuccess( 'jsEval', 'geozzy.commentInstance.successCommentBox();' );
 
     $fieldsInfo = array();
     $fieldsInfo['id'] = array(
@@ -115,12 +117,12 @@ class CommentView extends View
         'rules' => array( 'required' => true )
       );
     }
-    if(in_array('comment', $permissionsComment)){
+    if(in_array('comment', $ctypeParamTerms)){
       $fieldsInfo['rate'] = array(
-        'params' => array( 'label' => __('How do we value?'), 'value' => 0 )
+        'params' => array( 'label' => __('How do we value?'), 'class' => 'inputRating', 'value' => 0 )
       );
     }
-    if(in_array('suggest', $permissionsComment)){
+    if(in_array('suggest', $ctypeParamTerms)){
       $fieldsInfo['suggestType'] = array(
         'params' => array( 'label' => __( 'What do we suggest?' ), 'type' => 'select',
           'options'=> $suggestTypeTermsArray
@@ -145,6 +147,9 @@ class CommentView extends View
     );
 
     $form->definitionsToForm( $fieldsInfo );
+    if(!$userID){
+      $form->setValidationRule( 'anonymousEmail', 'email' );
+    }
     $form->saveToSession();
 
     $template = new Template( $this->baseDir );
@@ -153,8 +158,15 @@ class CommentView extends View
     $template->assign("commentFormFields", $form->getHtmlFieldsArray());
     $template->assign("commentFormClose", $form->getHtmlClose());
     $template->assign("commentFormValidations", $form->getScriptCode());
-    $template->setTpl('comment.tpl', 'rextComment');
 
+    if( count($commentTypeTermsArray) > 1){
+      $commentCustomScript = '<script>$(function() { setTimeout(function() { initCtype([ {id: "'.$commentTermID.'",show: ["rate"]}, {id: "'.$suggestTermID.'", show: ["suggestType"]} ]); }, 500); });</script>';
+    }else{
+      $commentCustomScript = '';
+    }
+
+    $template->assign("commentCustomScript", $commentCustomScript);
+    $template->setTpl('comment.tpl', 'rextComment');
     $template->exec();
 
   }
@@ -185,6 +197,7 @@ class CommentView extends View
     //Si tod0 esta OK!
     if( !$form->existErrors() ){
       $valuesArray = $form->getValuesArray();
+
       $valuesArray['timeCreation'] = date("Y-m-d H:i:s", time());
       //Añadir valor de published si dependiendo de conf de comentarios
       $valuesArray['published'] = true;

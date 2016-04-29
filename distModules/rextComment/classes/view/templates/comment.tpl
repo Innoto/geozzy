@@ -6,3 +6,5 @@
   {/foreach}
 {$commentFormClose}
 {$commentFormValidations}
+
+{$commentCustomScript}

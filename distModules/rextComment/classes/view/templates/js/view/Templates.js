@@ -17,3 +17,6 @@ geozzy.commentComponents.modalMdTemplate = ''+
 
 geozzy.commentComponents.commentFormTemplate = ''+
 '<div class="commentFormModal"></div>';
+
+geozzy.commentComponents.commentFormOkTemplate = ''+
+'<h3>'+__("Your contribution is welcome")+'</h3>';

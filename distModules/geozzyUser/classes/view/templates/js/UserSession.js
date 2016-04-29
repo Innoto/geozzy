@@ -65,9 +65,6 @@ geozzy.userSession = function() {
       that.registerOkView = new geozzy.userSessionComponents.userRegisterOkView();
       that.registerOkView.userSessionParent = that;
     }, 500);
-
-    that.registerOkView = new geozzy.userSessionComponents.userRegisterOkView();
-    that.registerOkView.userSessionParent = that;
   }
 
   that.userRouter = new geozzy.userSessionComponents.mainRouter();
