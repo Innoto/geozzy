@@ -44,6 +44,10 @@ class CollectionModel extends Model {
       'type' => 'VARCHAR',
       'size' => 20
     ),
+    'timeCreation' => array(
+      'type' => 'DATETIME',
+      'default' => NULL
+    ),
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0
@@ -51,6 +55,15 @@ class CollectionModel extends Model {
   );
 
   static $extraFilters = array();
+
+
+  var $deploySQL = array(
+    array(
+      'version' => 'geozzy#1.1',
+      'sql'=> 'ALTER TABLE `geozzy_collection`
+        ADD COLUMN `timeCreation` DATETIME NULL DEFAULT NULL AFTER `collectionType` ;'
+    )
+  );
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {

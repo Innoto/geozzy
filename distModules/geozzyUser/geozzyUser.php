@@ -35,7 +35,7 @@ class geozzyUser extends Module
     'js/view/UserRegisterBoxView.js',
     'js/view/UserRegisterOkBoxView.js',
     'js/UserSession.js',
-    'js/UserSessionInstance.js'
+    'js/userSessionInstance.js'
   );
 
   function __construct() {

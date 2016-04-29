@@ -23,6 +23,14 @@ class CollectionResourcesModel extends Model {
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
+    'note' => array(
+      'type' => 'VARCHAR(500)',
+      'default' => NULL
+    ),
+    'timeCreation' => array(
+      'type' => 'DATETIME',
+      'default' => NULL
+    ),
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0
@@ -30,6 +38,16 @@ class CollectionResourcesModel extends Model {
   );
 
   static $extraFilters = array();
+
+
+  var $deploySQL = array(
+    array(
+      'version' => 'geozzy#1.1',
+      'sql'=> 'ALTER TABLE `geozzy_collection_resources`
+        ADD COLUMN `timeCreation` DATETIME NULL DEFAULT NULL AFTER `resource`,
+        ADD COLUMN `note` VARCHAR(500) NULL DEFAULT NULL AFTER `resource` ;'
+    )
+  );
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {

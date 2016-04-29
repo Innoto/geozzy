@@ -6,7 +6,7 @@ class rtypeAppLugar extends Module {
 
   public $name = 'rtypeAppLugar';
   public $version = '1.0';
-  public $rext = array( 'rextAppLugar', 'rextContact', 'rextAppZona', 'rextMapDirections' );
+  public $rext = array( 'rextAppLugar', 'rextContact', 'rextAppZona', 'rextMapDirections', 'rextComment' );
 
   public $dependences = array();
 

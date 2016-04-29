@@ -12,6 +12,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   markersCreated: false,
   markerClusterer: false,
 
+  outerPanToIntervalometer: false,
+  outerPanToIntervalometerValue: false,
+
 //  markerClustererHover: false,
 
   lastCenter: false,
@@ -450,7 +453,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
   },
 
-  panTo: function( id ) {
+  panTo: function( id, forcePan ) {
     var that = this;
     var mapVisible = that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible');
     var mapOuterZone = that.parentExplorer.resourceMinimalList.get( id ).get('mapOuterZone');
@@ -458,7 +461,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var scale = Math.pow(2, that.map.getZoom());
 
     //console.log(mapVisible)
-    if( mapVisible == 1 || mapVisible == 2  ) {
+    if( mapVisible == 1 || mapVisible == 2  || forcePan == true ) {
       if( that.lastCenter == false ){
         that.lastCenter = that.map.getCenter();
       }
@@ -483,7 +486,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
     else {
       that.panToLastCenter();
-      that.outerPanTo( that.parentExplorer.resourceMinimalList.get( id ) )
+
+
+
+      if( mapVisible == 0 ){
+        that.outerPanTo( that.parentExplorer.resourceMinimalList.get( id ) )
+      }
     }
   },
 
@@ -493,33 +501,99 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
     if( !$('div.explorerPositionArrows').length ) {
-      $('<div class="explorerPositionArrows"  style="position:absolute;top:200;right:0;width:100px;height:100px;color:white;">'+
-          '<div class="pos NW">nw</div>'+
-          '<div class="pos N">n</div>'+
-          '<div class="pos NE">ne</div>'+
-          '<div class="pos E">e</div>'+
-          '<div class="pos SE">se</div>'+
-          '<div class="pos S">s</div>'+
-          '<div class="pos SW">sw</div>'+
-          '<div class="pos W">w</div>'+
+      $('<div class="explorerPositionArrows" style="display:none;">'+
+          '<div class="pos N"> <div class="counter"></div> </div>'+
+          '<div class="pos NE"> <div class="counter"></div> </div>'+
+          '<div class="pos E"> <div class="counter"></div> </div>'+
+          '<div class="pos SE"> <div class="counter"></div> </div>'+
+          '<div class="pos S"> <div class="counter"></div> </div>'+
+          '<div class="pos SW"> <div class="counter"></div> </div>'+
+          '<div class="pos W"> <div class="counter"></div> </div>'+
+          '<div class="pos NW"> <div class="counter"></div> </div>'+
         '<div>').appendTo('body');
-
-
     }
 
-    //that.resetOuterPanTo();
+    that.resetOuterPanTo();
     var outerPos = resource.get('mapOuterZone');
-
     $('div.explorerPositionArrows div.pos' ).hide();
     $('div.explorerPositionArrows' ).show();
     $('div.explorerPositionArrows div.' + outerPos ).show();
-    console.log( $('div.explorerPositionArrows div.' + outerPos ).html() );
+
+
+
+    that.outerPanToIntervalometerValue = 3;
+    $('div.explorerPositionArrows div.' + outerPos + ' div.counter' ).text(that.outerPanToIntervalometerValue);
+    that.outerPanToIntervalometer = setInterval( function(){
+      that.outerPanToIntervalometerValue--;
+      $('div.explorerPositionArrows div.' + outerPos + ' div.counter' ).text(that.outerPanToIntervalometerValue);
+
+      if( that.outerPanToIntervalometerValue == 0){
+        that.resetOuterPanTo();
+        that.panTo( resource.get('id'), true );
+      }
+    }, 700);
+
+
+    var highestZindex = -999;
+
+    $("*").each(function() {
+        var current = parseInt($(this).css("z-index"), 10);
+        if(current && highestZindex < current) highestZindex = current+1;
+    });
+
+    $('div.explorerPositionArrows div.' + outerPos ).css('position', 'absolute');
+    $('div.explorerPositionArrows div.' + outerPos ).css('z-index', highestZindex);
+
+    var arrowDivSize = {
+        w: $('div.explorerPositionArrows div.' + outerPos ).width(),
+        h: $('div.explorerPositionArrows div.' + outerPos ).height()
+      };
+
+    var mapTopLeft = $(that.map.getDiv()).offset();
+    var mapWidth = $(that.map.getDiv()).width();
+    var mapHeight = $(that.map.getDiv()).height();
+    var mapCenterWidth = mapWidth / 2 - arrowDivSize.w;
+    var mapCenterHeight =  mapHeight / 2 - arrowDivSize.h;
+
+
+    switch( outerPos ) {
+      case 'N':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top , left: mapCenterWidth });
+        break;
+      case 'NE':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top , left: mapWidth - arrowDivSize.w });
+        break;
+      case 'E':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapCenterHeight , left: mapWidth - arrowDivSize.w });
+        break;
+      case 'SE':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapHeight - arrowDivSize.h , left: mapWidth - arrowDivSize.w });
+        break;
+      case 'S':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapHeight - arrowDivSize.h , left: mapCenterWidth });
+        break;
+      case 'SW':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapHeight - arrowDivSize.h , left: mapTopLeft.left });
+        break;
+      case 'W':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapCenterHeight , left: mapTopLeft.left });
+        break;
+      case 'NW':
+        $('div.explorerPositionArrows').css({top: mapTopLeft.top , left: mapTopLeft.left  });
+        break;
+    }
 
   },
 
   resetOuterPanTo: function() {
     that = this;
-    $('#geozzyExplorer_'+that.parentExplorer.options.explorerId+'_mapArrows').hide();
+
+    if( that.outerPanToIntervalometer  ) {
+      clearInterval( that.outerPanToIntervalometer )
+      that.outerPanToIntervalometer = false;
+    }
+
+    $('div.explorerPositionArrows' ).hide();
   },
 
   panToLastCenter: function() {
