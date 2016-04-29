@@ -24,12 +24,11 @@ class CollectionResourcesModel extends Model {
       'key' => 'id'
     ),
     'note' => array(
-      'type' => 'VARCHAR(500)',
-      'default' => NULL
+      'type' => 'VARCHAR',
+      'size' => 500
     ),
     'timeCreation' => array(
-      'type' => 'DATETIME',
-      'default' => NULL
+      'type' => 'DATETIME'
     ),
     'weight' => array(
       'type' => 'SMALLINT',
