@@ -27,7 +27,7 @@ class RoutesAPIView extends View
     header('Content-type: application/json');
     ?>
     {
-      "resourcePath": "/explorer.json",
+      "resourcePath": "/routes.json",
       "basePath": "/api",
       "apis": [
         {

@@ -200,8 +200,10 @@ class CommentView extends View
 
       $valuesArray['timeCreation'] = date("Y-m-d H:i:s", time());
       //Añadir valor de published si dependiendo de conf de comentarios
-      $valuesArray['published'] = true;
+var_dump($valuesArray);
       $comment = new CommentModel( $valuesArray );
+
+var_dump($comment->getAllData());
       $comment->save();
     }
     return $comment;

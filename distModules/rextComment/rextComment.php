@@ -147,6 +147,9 @@ class rextComment extends Module
   function __construct() {
     $this->addUrlPatterns( '#^comment/form/(.*)#', 'view:CommentView::commentForm' );
     $this->addUrlPatterns( '#^comment/sendcommentform$#', 'view:CommentView::sendCommentForm' );
+
+    $this->addUrlPatterns( '#^api/comment/list/(.*)$#', 'view:CommentAPIView::comments' );
+    $this->addUrlPatterns( '#^api/comments.json$#', 'view:CommentAPIView::commentsJson' );
   }
 
 
