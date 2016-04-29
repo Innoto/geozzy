@@ -24,7 +24,8 @@ class CollectionResourcesModel extends Model {
       'key' => 'id'
     ),
     'note' => array(
-      'type' => 'VARCHAR(500)',
+      'type' => 'VARCHAR',
+      'size' => 500,
       'default' => NULL
     ),
     'timeCreation' => array(
