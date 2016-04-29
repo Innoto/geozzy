@@ -45,8 +45,7 @@ class CollectionModel extends Model {
       'size' => 20
     ),
     'timeCreation' => array(
-      'type' => 'DATETIME',
-      'default' => NULL
+      'type' => 'DATETIME'
     ),
     'weight' => array(
       'type' => 'SMALLINT',
