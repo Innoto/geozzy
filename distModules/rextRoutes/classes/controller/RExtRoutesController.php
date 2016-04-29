@@ -64,7 +64,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
       'routeFile' => array(
         'params' => array( 'label' => __( 'Route file' ), 'type' => 'file', 'id' => 'rExtFileField',
         'placeholder' => __( 'File' ), 'destDir' => RoutesModel::$cols['routeFile']['uploadDir'] ),
-        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'application/gpx,application/gpx+xml,application/vnd.google-earth.kml+xml' )
+        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'accept' => ',application/xml,application\/gpx,application\/gpx\+xml,application\/vnd.google\-earth\.kml\+xml' )
       ),
       'durationMinutes' => array(
         'params' => array( 'label' => __( 'Duration of route' ) ),
@@ -99,85 +99,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Effort level' ) ),
         'type' => 'INT'
       )
-/*
 
-
-
-
-
-      'difficultyEffort' => array(
-        'type' => 'INT'
-      ),
-      'routeFile' => array(
-        'type'=>'FOREIGN',
-        'vo' => 'FiledataModel',
-        'key' => 'id'
-      )
-*/
-/*
-      'reservationURL' => array(
-        'params' => array( 'label' => __( 'Hotel reservation URL' ) ),
-        'rules' => array( 'maxlength' => 2000, 'url' => true )
-      ),
-      'reservationPhone' => array(
-        'params' => array( 'label' => __( 'Hotel reservation phone' ) ),
-        'rules' => array( 'maxlength' => 20 )
-      ),
-      'reservationEmail' => array(
-        'params' => array( 'label' => __( 'Hotel reservation email' ) ),
-        'rules' => array( 'maxlength' => 255, 'email' => true)
-      ),
-      'singleRooms' => array(
-        'params' => array( 'label' => __( 'Hotel single rooms' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'doubleRooms' => array(
-        'params' => array( 'label' => __( 'Hotel double rooms' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'familyRooms' => array(
-        'params' => array( 'label' => __( 'Hotel family rooms' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'beds' => array(
-        'params' => array( 'label' => __( 'Hotel beds' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'averagePrice' => array(
-        'params' => array( 'label' => __( 'Hotel average price' ) ),
-        'rules' => array( 'digits' => true )
-      ),
-      'accommodationType' => array(
-        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order',
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationType' )
-        )
-      ),
-      'accommodationCategory' => array(
-        'params' => array( 'label' => __( 'Accommodation category' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationCategory' )
-        )
-      ),
-      'accommodationServices' => array(
-        'params' => array( 'label' => __( 'Accommodation services' ), 'type' => 'select', 'multiple' => true,
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationServices' )
-        )
-      ),
-      'accommodationFacilities' => array(
-        'params' => array( 'label' => __( 'Accommodation facilities' ), 'type' => 'select', 'multiple' => true,
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationFacilities' )
-        )
-      ),
-      'accommodationBrand' => array(
-        'params' => array( 'label' => __( 'Accommodation brand' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationBrand' )
-        )
-      ),
-      'accommodationUsers' => array(
-        'params' => array( 'label' => __( 'Accommodation users profile' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'accommodationUsers' )
-        )
-      )
-*/
     );
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
