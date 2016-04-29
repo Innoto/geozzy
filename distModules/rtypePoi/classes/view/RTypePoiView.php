@@ -92,8 +92,8 @@ class RTypePoiView extends View
     $resCtrl = new ResourceController();
     $rtypeModel = new ResourcetypeModel();
 
-    $formName = 'PoiCreate';
-    $urlAction = '/rtypePoi/Poi/sendPoi';
+    $formName = 'poiCreate';
+    $urlAction = '/rtypePoi/poi/sendPoi';
 
     $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypePoi') ) )->fetch();
     $valuesArray['rTypeId'] = $rtype->getter('id');
@@ -120,7 +120,7 @@ class RTypePoiView extends View
       'formValidations' => $form->getScriptCode()
     );
 
-    $formBlockInfo['template']['miniFormModal']->addToBlock('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['full']);
+    $formBlockInfo['template']['miniFormModal']->addToBlock('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['adminExt']);
     $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
     $formBlockInfo['template']['miniFormModal']->exec();
   }

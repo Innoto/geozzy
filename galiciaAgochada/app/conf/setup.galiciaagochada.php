@@ -212,6 +212,7 @@ $C_REXT_MODULES = array(
   'rextEventCollection',
   'rextAppFesta',
   'rextPoi',
+  'rextPoiCollection',
   'rextRoutes'
 );
 
@@ -399,31 +400,37 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
     'default' => array(
       'multimedia' => array('rtypeUrl', 'rtypeFile'),
       'eventos' => array('rtypeEvent'),
+      'poi' => array('rtypePoi'),
       'base' => array()
     ),
     'rtypeAppHotel' => array(
       'multimedia' => array(),
       'eventos' => array('rtypeEvent'),
+      'poi' => array(),
       'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
     ),
     'rtypeAppRestaurant' => array(
       'multimedia' => array(),
       'eventos' => array('rtypeEvent'),
+      'poi' => array(),
       'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
     ),
     'rtypeAppEspazoNatural' => array(
       'multimedia' => array(),
       'eventos' => array(),
+      'poi' => array('rtypePoi'),
       'base' => array()
     ),
     'rtypeAppLugar' => array(
       'multimedia' => array(),
       'eventos' => array(),
+      'poi' => array(),
       'base' => array()
     ),
     'rtypeAppFesta' => array(
       'multimedia' => array(),
       'eventos' => array('rtypeAppFesta', 'rtypeEvent'),
+      'poi' => array(),
       'base' => array()
     )
   )

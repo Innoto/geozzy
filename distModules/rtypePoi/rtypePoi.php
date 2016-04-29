@@ -23,9 +23,9 @@ class rtypePoi extends Module {
 
 
   public function __construct() {
-    $this->addUrlPatterns( '#^rtypePoi/Poi/create$#', 'view:RTypePoiView::createModalForm' );
-    $this->addUrlPatterns( '#^rtypePoi/Poi/edit/(\d+)$#', 'view:RTypePoiView::editModalForm' );
-    $this->addUrlPatterns( '#^rtypePoi/Poi/sendPoi$#', 'view:RTypePoiView::sendModalResourceForm' );
+    $this->addUrlPatterns( '#^rtypePoi/poi/create$#', 'view:RTypePoiView::createModalForm' );
+    $this->addUrlPatterns( '#^rtypePoi/poi/edit/(\d+)$#', 'view:RTypePoiView::editModalForm' );
+    $this->addUrlPatterns( '#^rtypePoi/poi/sendPoi$#', 'view:RTypePoiView::sendModalResourceForm' );
   }
 
 

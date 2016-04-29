@@ -4,26 +4,21 @@ rextPoi::autoIncludes();
 class RTypePoiController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypePoiController::__construct' );
-
     parent::__construct( $defResCtrl, new rtypePoi() );
-
   }
 
 
   /**
-    Defino el formulario
-   **/
+   * Alteramos el objeto form. del recursoBase para adaptarlo a las necesidades del RType
+   *
+   * @param $form FormController Objeto form. del recursoBase
+   *
+   * @return array $rTypeFieldNames
+   */
   public function manipulateForm( FormController $form ) {
-    //error_log( "RTypePoiController: manipulateForm()" );
 
-    $rTypeExtNames = array();
-    $rTypeFieldNames = array();
-
-    // Extensión alojamiento
-    $rTypeExtNames[] = 'rextPoi';
-    $this->PoiCtrl = new RExtPoiController( $this );
-    $rExtFieldNames = $this->PoiCtrl->manipulateForm( $form );
+    // Lanzamos los manipulateForm de las extensiones
+    parent::manipulateForm( $form );
 
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
@@ -36,42 +31,20 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     // cambiamos el id de la imagen para evitar la colisión con la modal
     $form->setFieldParam('image', 'id', 'imgResourcePoi');
 
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-    // Añadir validadores extra
-    // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
-
-    return( $rTypeFieldNames );
   } // function manipulateForm()
 
 
-
+  /**
+   * Preparamos los datos para visualizar el formulario del Recurso
+   *
+   * @param $form FormController
+   *
+   * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'ext' => array }
+   */
   public function getFormBlockInfo( FormController $form ) {
     //error_log( "RTypePoiController: getFormBlockInfo()" );
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false,
-      'ext' => array()
-    );
-
-    $formBlockInfo['dataForm'] = array(
-      'formOpen' => $form->getHtmpOpen(),
-      'formFieldsArray' => $form->getHtmlFieldsArray(),
-      'formFieldsHiddenArray' => array(),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-      'formClose' => $form->getHtmlClose(),
-      'formValidations' => $form->getScriptCode()
-    );
-
-    if( $resId = $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
-    }
-
-    $this->PoiCtrl = new RExtPoiController( $this );
-    $PoiViewInfo = $this->PoiCtrl->getFormBlockInfo( $form );
-    $formBlockInfo['ext'][ $this->PoiCtrl->rExtName ] = $PoiViewInfo;
+    $formBlockInfo = parent::getFormBlockInfo( $form );
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -120,11 +93,10 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
 
     // TEMPLATE panel Poi
     $templates['poi'] = new Template();
-    $templates['poi']->setTpl( 'rExtViewBlock.tpl', 'rextPoi' );
-    $templates['poi']->assign( 'title', __( 'Punto de Interés' ) );
+    $templates['poi']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['poi']->assign( 'title', __( 'poi' ) );
     $templates['poi']->assign( 'res', $formBlockInfo );
-    $templates['poi']->assign('rExt', $formBlockInfo['ext']);
-    $templates['poi']->setBlock( 'blockContent', $PoiViewInfo['template']['full'] );
+    $templates['poi']->setFragment( 'blockContent', $formBlockInfo['ext']['rextPoi']['template']['adminExt'] );
 
     // TEMPLATE panel cuadro informativo
     $templates['info'] = new Template();
@@ -183,6 +155,7 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     $templates['miniFormModal']->assign( 'title', __( 'Resource' ) );
     $templates['miniFormModal']->setTpl( 'rTypePoiFormModalBlock.tpl', 'rtypePoi' );
     $templates['miniFormModal']->addClientScript('js/rextPoi.js', 'rextPoi');
+    $templates['miniFormModal']->assign('rExt', $formBlockInfo['ext']);
     $templates['miniFormModal']->assign( 'res', $formBlockInfo );
 
 
@@ -193,66 +166,43 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
 
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
-   **/
-  public function resFormRevalidate( FormController $form ) {
-    //error_log( "RTypePoiController: resFormRevalidate()" );
-
-    if( !$form->existErrors() ) {
-      $this->PoiCtrl = new RExtPoiController( $this );
-      $this->PoiCtrl->resFormRevalidate( $form );
-
-    }
-
-  }
-
-  /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
-   **/
-  public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    //error_log( "RTypePoiController: resFormProcess()" );
-
-    if( !$form->existErrors() ) {
-      $this->PoiCtrl = new RExtPoiController( $this );
-      $this->PoiCtrl->resFormProcess( $form, $resource );
-
-    }
-  }
-
-  /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
-   **/
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    //error_log( "RTypePoiController: resFormSuccess()" );
-
-    $this->PoiCtrl = new RExtPoiController( $this );
-    $this->PoiCtrl->resFormSuccess( $form, $resource );
-
-  }
+   * Validaciones extra previas a usar los datos del recurso
+   *
+   * @param $form FormController Objeto form. del recurso
+   */
+  // parent::resFormRevalidate( $form );
 
 
   /**
-    Preparamos los datos para visualizar el Recurso
-   **/
+   * Creación-Edicion-Borrado de los elementos del recurso segun el RType
+   *
+   * @param $form FormController Objeto form. del recurso
+   * @param $resource ResourceModel Objeto form. del recurso
+   */
+  // parent::resFormProcess( $form, $resource );
+
+
+  /**
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  // parent::resFormSuccess( $form, $resource );
+
+
+  /**
+   * Preparamos los datos para visualizar el Recurso con sus cambios y sus extensiones
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
+   */
   public function getViewBlockInfo() {
-    // error_log( "RTypePoiController: getViewBlockInfo()" );
+    // Preparamos los datos para visualizar el Recurso con sus extensiones
+    $viewBlockInfo = parent::getViewBlockInfo();
 
-    $viewBlockInfo = array(
-      'template' => false,
-      'data' => $this->defResCtrl->getResourceData( false, true ),
-      'ext' => array()
-    );
-
-    $template = new Template();
+    //$template = new Template();
+    $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypePoi' );
-
-    $this->PoiCtrl = new RExtPoiController( $this );
-    $accomViewInfo = $this->PoiCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->PoiCtrl->rExtName ] = $accomViewInfo;
-
-    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
     $taxtermModel = new TaxonomytermModel();
 

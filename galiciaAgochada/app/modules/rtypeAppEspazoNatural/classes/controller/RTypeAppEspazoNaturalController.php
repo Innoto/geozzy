@@ -39,6 +39,10 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
 
     $espazoCtrl = new RExtAppEspazoNaturalController( $this );
     $zonaCtrl = new RExtAppZonaController( $this );
+    /*
+    $this->poiCollectionCtrl = new RExtPoiCollectionController( $this );
+    $poiCollectionViewInfo = $this->poiCollectionCtrl->getFormBlockInfo( $form );
+    $viewBlockInfo['ext'][ $this->poiCollectionCtrl->rExtName ] = $poiCollectionViewInfo;*/
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -115,6 +119,12 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $formFieldsNames = array( 'collections', 'addCollections' );
     $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
 
+    // TEMPLATE panel poicollection
+    $templates['poiCollection'] = new Template();
+    $templates['poiCollection']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['poiCollection']->assign( 'title', __( 'POI collection' ) );
+    $templates['poiCollection']->setBlock( 'blockContent', $formBlockInfo['ext']['rextPoiCollection']['template']['full'] );
+
     // TEMPLATE panel image
     $templates['image'] = new Template();
     $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -173,6 +183,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
+    $templates['adminFull']->addToBlock( 'col8', $templates['poiCollection'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
     $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );

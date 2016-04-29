@@ -3,6 +3,8 @@ var app = app || {};
 
 
 $(document).ready(function(){
+
+
   var els = $('.switchery');
   els.each(function( index )  {
     var switchery = new Switchery( this, { color : '#58ba81', secondaryColor : '#FF6A4B'} );
@@ -70,18 +72,22 @@ function bindResourceForm(){
   $('select.cgmMForm-field-weight').select2();
   $('select.cgmMForm-field-rExtView_viewAlternativeMode').select2();
 
+}
+
+function initializeMap( form ){
+
+  formName = '.'+form;
 
   // Location Map
-  if(  $("input[name='locLat']").length &&  $("input[name='locLon']").length ) {
-    var latInput = $("input[name='locLat']");
-    var lonInput = $("input[name='locLon']");
-    var defaultZoom = $("input[name='defaultZoom']");
-    //var locationContainer = latInput.parent().parent();
+  if(  $(formName+" input[name='locLat']").length &&  $(formName+" input[name='locLon']").length ) {
+    var latInput = $(formName+" input[name='locLat']");
+    var lonInput = $(formName+" input[name='locLon']");
+    var defaultZoom = $(formName+" input[name='defaultZoom']");
 
-    var mapContainer = $('.mapContainer');
+    var mapContainer = $(formName+' .mapContainer');
 
     if( mapContainer.length ) {
-      mapContainer.append('<div id="resourceLocationMap"></div>');
+      mapContainer.append('<div class="resourceLocationMap" id="resourceLocationMap_'+form+'"></div>');
 
       // latInput.parent().hide();
       // lonInput.parent().hide();
@@ -103,7 +109,7 @@ function bindResourceForm(){
         zoom: zoom,
         scrollwheel: false
       };
-      var resourceMap = new google.maps.Map(document.getElementById('resourceLocationMap'), mapOptions);
+      var resourceMap = new google.maps.Map(document.getElementById('resourceLocationMap_'+form), mapOptions);
 
       // add marker
 
@@ -150,7 +156,7 @@ function bindResourceForm(){
         resourceMarker.setMap( resourceMap);
       }
 
-      $('.locationData .cgmMForm-field').each(function(i,e){
+      $(formName+' .locationData .cgmMForm-field').each(function(i,e){
         $(e).change(function(){
           newPos = new google.maps.LatLng( latInput.val(), lonInput.val() );
           resourceMarker.position.lat(latInput.val());

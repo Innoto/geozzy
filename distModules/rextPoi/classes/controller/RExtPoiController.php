@@ -8,11 +8,6 @@ class RExtPoiController extends RExtController implements RExtInterface {
 
 
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtPoiController::__construct' );
-
-    global $C_LANG;
-    $this->actLang = $C_LANG;
-
     parent::__construct( $defRTypeCtrl, new rextPoi(), 'rextPoi_' );
   }
 
@@ -44,7 +39,9 @@ class RExtPoiController extends RExtController implements RExtInterface {
 
 
   /**
-    Defino el formulario
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
    */
   public function manipulateForm( FormController $form ) {
     // error_log( "RExtContactController: manipulateForm()" );
@@ -125,34 +122,28 @@ class RExtPoiController extends RExtController implements RExtInterface {
     return( $rExtFieldNames );
   } // function manipulateForm()
 
-
+  /**
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RExtContactController: getFormBlockInfo()" );
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
+    $resData = $form->getHtmlFieldsArray( array('locLat', 'locLon', 'defaultZoom') );
 
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
 
-    $formBlockInfo['dataForm'] = array(
-      'formId' => $form->getId(),
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups()
-    );
+    $formBlockInfo = parent::getFormBlockInfo( $form );
 
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
+    $templates = $formBlockInfo['template'];
 
-    $templates['full'] = new Template();
-    $templates['full']->assign( 'var', 'mierda' );
-    $templates['full']->assign( 'rExt', $formBlockInfo );
-    $templates['full']->setTpl( 'rExtViewBlock.tpl', 'rextPoi' );
-    //$templates['full']->addClientScript('js/rextPoi.js', 'rextPoi');
-    //$templates['full']->assign( 'prevContent', $prevContent );
+    $templates['adminExt'] = new Template();
+    $templates['adminExt']->setTpl( 'rExtViewBlock.tpl', 'rextPoi' );
+    $templates['adminExt']->assign( 'rExtName', $this->rExtName );
+    $templates['adminExt']->assign( 'rExt', $formBlockInfo );
+    $templates['adminExt']->assign( 'res', $resData );
+    $templates['adminExt']->addClientScript('js/rextPoi.js', 'rextPoi');
 
     $formBlockInfo['template'] = $templates;
 
@@ -161,13 +152,12 @@ class RExtPoiController extends RExtController implements RExtInterface {
 
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
    */
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RExtContactController: resFormRevalidate()" );
+  // parent::resFormRevalidate( $form );
 
-    // $this->evalFormUrlAlias( $form, 'urlAlias' );
-  }
 
   /**
     Creación-Edición-Borrado de los elementos del recurso base
@@ -195,38 +185,27 @@ class RExtPoiController extends RExtController implements RExtInterface {
   }
 
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtContactController: resFormSuccess()" );
-
-  }
+  // parent::resFormSuccess( $form, $resource )
 
 
   /**
     Datos y template por defecto de la extension
    */
   public function getViewBlockInfo() {
-    // error_log( "RExtContactController: getViewBlockInfo()" );
-
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData()
-    );
-
-
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
-      // TODO: esto será un campo da BBDD
+
       $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
 
       if (isset($rExtViewBlockInfo['data']['date'])){
         $template = new Template();
-
         $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
-
         $rExtViewBlockInfo['template'] = array( 'full' => $template );
       }
     }

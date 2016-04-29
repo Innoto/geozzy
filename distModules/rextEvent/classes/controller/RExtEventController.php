@@ -167,7 +167,6 @@ class RExtEventController extends RExtController implements RExtInterface {
 
 
     $templates['full'] = new Template();
-    //$templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
     $templates['full']->setTpl( 'rExtViewBlock.tpl', 'rextEvent' );
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );

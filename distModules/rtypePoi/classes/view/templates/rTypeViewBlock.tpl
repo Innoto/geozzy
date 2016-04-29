@@ -1,3 +1,5 @@
+OLA
+
 <div class="locationBlock formBlock">
   {$client_includes}
 <div class="row location">

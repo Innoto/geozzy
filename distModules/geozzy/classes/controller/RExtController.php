@@ -211,6 +211,7 @@ class RExtController {
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
 
     $formBlockInfo['dataForm'] = array(
+      'formId' => $form->getId(),
       'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
       'formFields' => $form->getHtmlFieldsAndGroups(),
     );

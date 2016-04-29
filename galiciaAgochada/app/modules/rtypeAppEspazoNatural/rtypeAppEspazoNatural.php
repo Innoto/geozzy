@@ -6,7 +6,7 @@ class rtypeAppEspazoNatural extends Module {
 
   public $name = 'rtypeAppEspazoNatural';
   public $version = '1.0';
-  public $rext = array( 'rextAppEspazoNatural', 'rextContact', 'rextSocialNetwork', 'rextAppZona', 'rextMapDirections' );
+  public $rext = array( 'rextAppEspazoNatural', 'rextContact', 'rextSocialNetwork', 'rextAppZona', 'rextMapDirections', 'rextPoiCollection' );
 
   public $dependences = array();
 

@@ -3,7 +3,7 @@
 
 {block name="content"}
 
-<div class="row location">
+<div class="row location {$res.dataForm.formId}">
     <div class="col-lg-12 mapContainer">
       <div class="descMap">Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización</div>
     </div>
@@ -24,6 +24,9 @@
         {/foreach}
       </div>
     {/if}
+    <script>$( document ).ready( function() {
+      alert('antes');initializeMap("{$res.dataForm.formId}");
+    });</script>
   </div>
 
 {/block}{*/content*}
