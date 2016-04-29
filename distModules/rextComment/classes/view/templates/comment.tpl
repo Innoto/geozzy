@@ -1,3 +1,4 @@
+{$commentCustomScript}
 {$client_includes}
 
 {$commentFormOpen}
@@ -6,5 +7,3 @@
   {/foreach}
 {$commentFormClose}
 {$commentFormValidations}
-
-{$commentCustomScript}

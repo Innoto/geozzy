@@ -160,9 +160,9 @@ class CommentView extends View
     $template->assign("commentFormValidations", $form->getScriptCode());
 
     if( count($commentTypeTermsArray) > 1){
-      $commentCustomScript = '<script>$(function() { setTimeout(function() { initCtype([ {id: "'.$commentTermID.'",show: ["rate"]}, {id: "'.$suggestTermID.'", show: ["suggestType"]} ]); }, 500); });</script>';
+      $commentCustomScript = '<script> var suggestTermID = '.$suggestTermID.';  var commentTermID = '.$commentTermID.'; </script>';
     }else{
-      $commentCustomScript = '';
+      $commentCustomScript = '<script> var suggestTermID = false;  var commentTermID = false; </script>';
     }
 
     $template->assign("commentCustomScript", $commentCustomScript);
@@ -200,10 +200,8 @@ class CommentView extends View
 
       $valuesArray['timeCreation'] = date("Y-m-d H:i:s", time());
       //Añadir valor de published si dependiendo de conf de comentarios
-var_dump($valuesArray);
       $comment = new CommentModel( $valuesArray );
 
-var_dump($comment->getAllData());
       $comment->save();
     }
     return $comment;

@@ -1,4 +1,7 @@
 $(document).ready(function(){
+  if(commentTermID && suggestTermID){
+    initCtype([ {id: commentTermID ,show: ["rate"]}, {id: suggestTermID, show: ["suggestType"]} ]);
+  }
 
   $("input.inputRating").rating({
     min: 0,
