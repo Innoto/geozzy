@@ -80,58 +80,23 @@ class RExtUserProfileController extends RExtController implements RExtInterface 
 
 
   /**
-    getFormBlockInfo
-  */
-  public function getFormBlockInfo( FormController $form ) {
-
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
-
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
-
-    $formBlockInfo['dataForm'] = array(
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-    );
-
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
-
-    $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
-    $templates['full']->assign( 'rExtName', $this->rExtName );
-    $templates['full']->assign( 'rExt', $formBlockInfo );
-
-    $formBlockInfo['template'] = $templates;
-
-    return $formBlockInfo;
-  }
-
-
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
+  // parent::getFormBlockInfo( $form );
 
 
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
    */
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RExtAppUserController: resFormRevalidate()" );
-
-    /*
-    // De entrada, se procesan los campos file en Resource
-    if( !$form->existErrors() ) {
-      if( !$form->processAppUserFields( array( $this->addPrefix( 'file' ) ) ) ) {
-        $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea '.
-          'necesario subirlos otra vez.', 'formError' );
-      }
-    }
-    */
-  }
+  // parent::resFormRevalidate( $form );
+  
 
   /**
     Creación-Edición-Borrado de los elementos del recurso base
@@ -174,59 +139,13 @@ class RExtUserProfileController extends RExtController implements RExtInterface 
 
   }
 
-
-
   /**
-    Visualizamos el Recurso
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RExtAppUserController: getViewBlock()" );
-    $template = false;
-
-    $resId = $this->defResCtrl->resObj->getter('id');
-    $rExtData = $this->getRExtData( $resId );
-
-    if( $rExtData ) {
-      $template = new Template();
-
-      $rExtData = $this->prefixArrayKeys( $rExtData );
-      foreach( $rExtData as $key => $value ) {
-        $template->assign( $key, $rExtData[ $key ] );
-        // error_log( $key . ' === ' . print_r( $rExtData[ $key ], true ) );
-      }
-
-      // Vacio campos numericos NULL
-      if( $this->numericFields ) {
-        foreach( $this->numericFields as $fieldName ) {
-          $fieldName = $this->addPrefix( $fieldName );
-          if( !isset( $rExtData[ $fieldName ] ) || !$rExtData[ $fieldName ] ) {
-            $template->assign( $fieldName, '##NULL-VACIO##' );
-          }
-        }
-      }
-
-      // Procesamos as taxonomías asociadas para mostralas en CSV
-      if( $this->taxonomies ) {
-        foreach( $this->taxonomies as $tax ) {
-          $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-          $taxFieldValue = '';
-
-          if( isset( $rExtData[ $taxFieldName ] ) ) {
-            $terms = array();
-            foreach( $rExtData[ $taxFieldName ] as $termInfo ) {
-              $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
-            }
-            $taxFieldValue = implode( ', ', $terms );
-          }
-          $template->assign( $taxFieldName, $taxFieldValue );
-        }
-      }
-      $template->assign( 'rExtFieldNames', array_keys( $rExtData ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextUserProfile' );
-    }
-
-    return $template;
-  }
+  // parent::resFormSuccess( $form, $resource )
 
 
 
@@ -234,21 +153,13 @@ class RExtUserProfileController extends RExtController implements RExtInterface 
     Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo() {
-    // error_log( "RExtAppUserController: getViewBlockInfo()" );
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
-    );
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
-      $template = new Template();
-
-      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextUserProfile' );
-
-      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+      $rExtViewBlockInfo['template']['full'] = new Template();
+      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextUserProfile' );
     }
 
     return $rExtViewBlockInfo;

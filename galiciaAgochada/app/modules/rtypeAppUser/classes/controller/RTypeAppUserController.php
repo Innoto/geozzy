@@ -8,11 +8,6 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
     parent::__construct( $defResCtrl, new rtypeAppUser() );
   }
 
-
-  private function newRExtContr() {
-    return new RExtUserProfileController( $this );
-  }
-
   /**
     Defino el formulario
    **/

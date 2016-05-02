@@ -49,14 +49,14 @@ $( document ).ready( function() {
     $( '.cgmMForm-group-wrap ul.langSwitch li.langSwitch-'+lang ).addClass( 'langActive' );
   }
 
-  if( langAvailableIds ) {
+  if( cogumelo.publicConf.langAvailableIds ) {
     var htmlLangSwitch = '<ul class="langSwitch">';
-    $.each( langAvailableIds, function( index, lang ) {
+    $.each( cogumelo.publicConf.langAvailableIds, function( index, lang ) {
       htmlLangSwitch += '<li class="langSwitch-'+lang+'" data-lang-value="'+lang+'">'+lang;
     });
     $( '.cgmMForm-group-wrap' ).prepend( htmlLangSwitch );
 
-    switchFormLang( langDefault );
+    switchFormLang( cogumelo.publicConf.langDefault );
 
     $( '.cgmMForm-group-wrap ul.langSwitch li' ).on( "click", function() {
       newLang = $( this ).data( 'lang-value' );

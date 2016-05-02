@@ -1,7 +1,7 @@
 {extends file="adminPanel.tpl"}
 
 {block "header" append}
-  <script type="text/javascript" src="{$mediaJs}/module/admin/js/adminUser.js"></script>
+  <script type="text/javascript" src="{$cogumelo.publicConf.mediaJs}/module/admin/js/adminUser.js"></script>
 {/block}
 
 {block name="content"}
@@ -29,8 +29,8 @@
   </div>
 </div>
 
-{if $langAvailableIds === false || $langAvailableIds|@count gt 1}
-  {foreach $langAvailableIds as $lang}
+{if $cogumelo.publicConf.langAvailableIds === false || $cogumelo.publicConf.langAvailableIds|@count gt 1}
+  {foreach $cogumelo.publicConf.langAvailableIds as $lang}
     {$userFormFields['description_'|cat:$lang]}
   {/foreach}
 {else}

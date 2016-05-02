@@ -27,7 +27,7 @@
   <meta property="og:site_name" content="Galicia Agochada" />
   <meta property="og:image" content="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
   <link href="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" rel="image_src">
-  <meta property="og:url" content="{$site_host}{$res.data["urlAlias"]}" />
+  <meta property="og:url" content="{$cogumelo.publicConf.site_host}{$res.data["urlAlias"]}" />
   <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb"]}" />
 {/block}
 

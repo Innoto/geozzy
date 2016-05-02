@@ -333,7 +333,7 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     $template->assign('allFacilities', $allFacilities);
 
 
-    // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+    //$template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
     $viewBlockInfo['template'] = array( 'full' => $template );
 
     return $viewBlockInfo;

@@ -6,8 +6,8 @@
 </style>
 
 <script>
-  var langAvailable = {$JsLangAvailable};
-  var langDefault = {$JsLangDefault};
+/*  var langAvailable = {$JsLangAvailable};
+  var langDefault = {$JsLangDefault};*/
 </script>
 
 {$taxtermFormOpen}

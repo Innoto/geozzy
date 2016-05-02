@@ -4,7 +4,7 @@
 
         <div id="menuInfo">
           <div class="menuLogo">
-            <img src="{$mediaJs}/module/geozzy/img/logo.png" class="img-responsive">
+            <img src="{$cogumelo.publicConf.media}/module/geozzy/img/logo.png" class="img-responsive">
           </div>
           <ul class="userInfo nav">
             <li class="dropdown">
@@ -33,7 +33,7 @@
           <% _.each(topics, function(topic) { %>
             {if $topicPermission}
                <li class="topics topic_<%- topic.id %>">
-                  <a href="/admin#topic/<%- topic.id %>"><i class="fa fa-star fa-fw"></i> <%- topic.name_{$langDefault} %> </a>
+                  <a href="/admin#topic/<%- topic.id %>"><i class="fa fa-star fa-fw"></i> <%- topic.name_{$cogumelo.publicConf.langDefault} %> </a>
                </li>
             {/if}
           <% }); %>
@@ -55,7 +55,7 @@
                 <script type="text/template" id="menuStarred">
                 <% _.each(starred, function(star) { %>
                      <li class="starred star_<%- star.id %>">
-                        <a href="/admin#starred/<%- star.id %>"><i class="fa fa-star fa-fw"></i> <%- star.name_{$langDefault} %> </a>
+                        <a href="/admin#starred/<%- star.id %>"><i class="fa fa-star fa-fw"></i> <%- star.name_{$cogumelo.publicConf.langDefault} %> </a>
                      </li>
                 <% }); %>
                 </script>
@@ -74,7 +74,7 @@
                 <script type="text/template" id="menuCategoryElement">
                   <% for(var categoryK in categories) { %>
                     <li class="category_<%- categories[categoryK].id %>">
-                      <a href="/admin#category/<%- categories[categoryK].id %>"><i class="fa fa-tag fa-fw"></i> <%- categories[categoryK].name_{$langDefault} %> </a>
+                      <a href="/admin#category/<%- categories[categoryK].id %>"><i class="fa fa-tag fa-fw"></i> <%- categories[categoryK].name_{$cogumelo.publicConf.langDefault} %> </a>
                     </li>
                   <% } %>
                 </script>

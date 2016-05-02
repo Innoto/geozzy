@@ -27,12 +27,7 @@
 </style>
 {/block}
 
-{block name="socialMeta" append}
-  <meta property="og:url" content="{$site_host}{$res.data["urlAlias"]}" />
-  <meta property="og:image" content="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />
-  <meta property="og:description" content="{$res.ext.rextSocialNetwork.data["textFb"]}" />
-  <meta name="description" content="{$res.ext.rextSocialNetwork.data["textFb"]}" />
-{/block}
+
 
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
@@ -88,14 +83,14 @@
             <div class="share-open" style="display:none;">
               {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}
                 <div class="share-net fb">
-                  <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer.php?u={$site_host}{$res.data["urlAlias"]}&t={$res.ext.rextSocialNetwork.data["textFb"]}">
+                  <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer.php?u={$cogumelo.publicConf.site_host}{$res.data["urlAlias"]}&t={$res.ext.rextSocialNetwork.data["textFb"]}">
                       <i class="fa fa-facebook-square"></i>
                   </a>
                 </div>
               {/if}
               {if isset($res.ext.rextSocialNetwork.data.activeTwitter) && $res.ext.rextSocialNetwork.data.activeTwitter}
                 <div class="share-net twitter">
-                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$site_host}{$res.data["urlAlias"]}&text={$res.ext.rextSocialNetwork.data["textTwitter"]} vía{$site_host}">
+                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$cogumelo.publicConf.site_host}{$res.data["urlAlias"]}&text={$res.ext.rextSocialNetwork.data["textTwitter"]} vía{$cogumelo.publicConf.site_host}">
                     <i class="fa fa-twitter-square"></i>
                   </a>
                 </div>

@@ -122,37 +122,29 @@ class RExtUrlController extends RExtController implements RExtInterface {
   } // function manipulateForm()
 
   /**
-    getFormBlockInfo
-  */
-  public function getFormBlockInfo( FormController $form ) {
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
+  // parent::getFormBlockInfo( $form );
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
 
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
+  /**
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
+   */
+  // parent::resFormRevalidate( $form );
 
-    $formBlockInfo['dataForm'] = array(
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-    );
 
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
-
-    $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
-    $templates['full']->assign( 'rExtName', $this->rExtName );
-    $templates['full']->assign( 'rExt', $formBlockInfo );
-
-    $formBlockInfo['template'] = $templates;
-
-    return $formBlockInfo;
-  }
+  /**
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
 
   /**
     Validaciones extra previas a usar los datos del recurso base
@@ -207,97 +199,12 @@ class RExtUrlController extends RExtController implements RExtInterface {
   }
 
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtUrlController: resFormSuccess()" );
-
-  }
-
-
-
-  /**
-    Visualizamos el Recurso
-   */
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RExtUrlController: getViewBlock()" );
-    $template = false;
-
-    $resId = $this->defResCtrl->resObj->getter('id');
-    $rExtData = $this->getRExtData( $resId );
-
-    if( $rExtData ) {
-      $template = new Template();
-
-      $externalUrl = $this->defResCtrl->resObj->getter( 'externalUrl' );
-      $template->assign( 'externalUrl', $externalUrl );
-
-      $rExtDataPrefixed = $this->prefixArrayKeys( $rExtData );
-      foreach( $rExtDataPrefixed as $key => $value ) {
-        $template->assign( $key, $rExtDataPrefixed[ $key ] );
-        // error_log( $key . ' === ' . print_r( $rExtDataPrefixed[ $key ], true ) );
-      }
-
-      // Vacio campos numericos NULL
-      if( $this->numericFields ) {
-        foreach( $this->numericFields as $fieldName ) {
-          $fieldName = $this->addPrefix( $fieldName );
-          if( !isset( $rExtDataPrefixed[ $fieldName ] ) || !$rExtDataPrefixed[ $fieldName ] ) {
-            $template->assign( $fieldName, '##NULL-VACIO##' );
-          }
-        }
-      }
-
-      // Procesamos as taxonomías asociadas para mostralas en CSV
-      foreach( $this->taxonomies as $tax ) {
-        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-        $taxFieldValue = '';
-
-        if( isset( $rExtDataPrefixed[ $taxFieldName ] ) ) {
-          $terms = array();
-          foreach( $rExtDataPrefixed[ $taxFieldName ] as $termInfo ) {
-            $terms[] = $termInfo['name_es'].' ('.$termInfo['id'].')';
-          }
-          $taxFieldValue = implode( ', ', $terms );
-        }
-        $template->assign( $taxFieldName, $taxFieldValue );
-      }
-
-      $template->assign( 'rExtFieldNames', array_keys( $rExtDataPrefixed ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextUrl' );
-
-      if( isset( $rExtData[ 'urlContentType' ] ) ) {
-        $urlContentType = array_pop( $rExtData[ 'urlContentType' ] );
-        $urlContentType = $urlContentType[ 'idName' ];
-        error_log( 'urlContentType: ' . $urlContentType );
-        switch( $urlContentType ) {
-          case 'page':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
-            break;
-          case 'file':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
-            break;
-          case 'media':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
-            break;
-          case 'image':
-            $template->setTpl( 'rExtViewBlockImage.tpl', 'rextUrl' );
-            break;
-          case 'audio':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
-            break;
-          case 'video':
-            $template->setTpl( 'rExtViewBlockVideo.tpl', 'rextUrl' );
-            break;
-        }
-      }
-
-    }
-
-    return $template;
-  }
-
+  // parent::resFormSuccess( $form, $resource )
 
 
   /**
@@ -306,10 +213,7 @@ class RExtUrlController extends RExtController implements RExtInterface {
   public function getViewBlockInfo() {
     // error_log( "RExtUrlController: getViewBlockInfo()" );
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
-    );
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();

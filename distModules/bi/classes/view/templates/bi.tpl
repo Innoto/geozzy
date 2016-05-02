@@ -70,4 +70,4 @@
   </div><!-- /contentSection -->
 
 </section>
-<script data-main="/media/module/bi/js/main" src="/vendor/bower/requirejs/require.js"></script>
+<script data-main="{$cogumelo.publicConf.media}/module/bi/js/main" src="/vendor/bower/requirejs/require.js"></script>

@@ -4,7 +4,6 @@ var app = app || {};
 
 $(document).ready(function(){
 
-
   var els = $('.switchery');
   els.each(function( index )  {
     var switchery = new Switchery( this, { color : '#58ba81', secondaryColor : '#FF6A4B'} );
@@ -114,7 +113,7 @@ function initializeMap( form ){
       // add marker
 
       var my_marker = {
-        url: media+'/module/admin/img/geozzy_marker.png',
+        url: cogumelo.publicConf.media+'/module/admin/img/geozzy_marker.png',
         // This marker is 20 pixels wide by 36 pixels high.
         size: new google.maps.Size(30, 36),
         // The origin for this image is (0, 0).

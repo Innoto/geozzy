@@ -32,8 +32,6 @@ class RExtPoiController extends RExtController implements RExtInterface {
         }
       }
     }
-
-    // error_log( 'RExtPoiController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
@@ -114,13 +112,18 @@ class RExtPoiController extends RExtController implements RExtInterface {
         $rExtFieldNames[] = $fieldName;
       }
     }
-    $rExtFieldNames[] = 'FieldNames';
+
+    /*******************************************************************
+     * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
+     *******************************************************************/
+    //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
 
     return( $rExtFieldNames );
   } // function manipulateForm()
+
 
   /**
    * Preparamos los datos para visualizar la parte de la extension del formulario
@@ -133,9 +136,7 @@ class RExtPoiController extends RExtController implements RExtInterface {
 
     $resData = $form->getHtmlFieldsArray( array('locLat', 'locLon', 'defaultZoom') );
 
-
     $formBlockInfo = parent::getFormBlockInfo( $form );
-
     $templates = $formBlockInfo['template'];
 
     $templates['adminExt'] = new Template();
@@ -166,11 +167,9 @@ class RExtPoiController extends RExtController implements RExtInterface {
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RExtPoiController: resFormProcess()" );
     if( !$form->existErrors() ) {
-
       //$numericFields = array( 'averagePrice', 'capacity' );
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
-
     }
 
     if( !$form->existErrors() ) {
@@ -181,8 +180,8 @@ class RExtPoiController extends RExtController implements RExtInterface {
         }
       }
     }
-
   }
+
 
   /**
    * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario

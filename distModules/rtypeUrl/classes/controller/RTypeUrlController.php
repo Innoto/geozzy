@@ -1,6 +1,4 @@
 <?php
-rextUrl::autoIncludes();
-
 
 class RTypeUrlController extends RTypeController implements RTypeInterface {
 
@@ -10,28 +8,12 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     parent::__construct( $defResCtrl, new rtypeUrl() );
   }
 
-
-  private function newRExtContr() {
-
-    return new RExtUrlController( $this );
-  }
-
-
   /**
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
     // error_log( "RTypeUrlController: manipulateForm()" );
-
-    $rTypeExtNames = array();
-    $rTypeFieldNames = array();
-
-    $rTypeExtNames[] = 'rextUrl';
-    $this->rExtCtrl = $this->newRExtContr();
-    $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
-
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
+    parent::manipulateForm( $form );
     // Valadaciones extra
 
     // Eliminamos campos del formulario de recurso que no deseamos
@@ -45,35 +27,12 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     $form->removeField( $removeFields );
     $form->saveToSession();
 
-    return( $rTypeFieldNames );
   } // function manipulateForm()
 
   public function getFormBlockInfo( FormController $form ) {
     // error_log( "RTypeHotelController: getFormBlockInfo()" );
-
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false,
-      'ext' => array()
-    );
-
-    $formBlockInfo['dataForm'] = array(
-      'formOpen' => $form->getHtmpOpen(),
-      'formFieldsArray' => $form->getHtmlFieldsArray(),
-      'formFieldsHiddenArray' => array(),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-      'formClose' => $form->getHtmlClose(),
-      'formValidations' => $form->getScriptCode()
-    );
-
-    if( $resId = $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
-    }
-
+    $formBlockInfo = parent::getFormBlockInfo( $form );
     $this->urlCtrl = new RExtUrlController( $this );
-    $urlViewInfo = $this->urlCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->urlCtrl->rExtName ] = $urlViewInfo;
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -183,69 +142,27 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
 
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
-   **/
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeUrlController: resFormRevalidate()" );
-
-    if( !$form->existErrors() ) {
-      $this->rExtCtrl = $this->newRExtContr();
-      $this->rExtCtrl->resFormRevalidate( $form );
-    }
-
-    // $this->evalFormUrlAlias( $form, 'urlAlias' );
-  }
+   * Validaciones extra previas a usar los datos del recurso
+   *
+   * @param $form FormController Objeto form. del recurso
+   */
+  // parent::resFormRevalidate( $form );
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
-   **/
-  public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeUrlController: resFormProcess()" );
-
-    if( !$form->existErrors() ) {
-      $this->rExtCtrl = $this->newRExtContr();
-      $this->rExtCtrl->resFormProcess( $form, $resource );
-    }
-  }
+   * Creación-Edicion-Borrado de los elementos del recurso segun el RType
+   *
+   * @param $form FormController Objeto form. del recurso
+   * @param $resource ResourceModel Objeto form. del recurso
+   */
+  // parent::resFormProcess( $form, $resource );
 
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
-   **/
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeUrlController: resFormSuccess()" );
-
-    $this->rExtCtrl = $this->newRExtContr();
-    $this->rExtCtrl->resFormSuccess( $form, $resource );
-  }
-
-
-
-  /**
-    Visualizamos el Recurso
-   **/
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RTypeUrlController: getViewBlock()" );
-    $template = false;
-
-    $template = $resBlock;
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
-
-    $this->rExtCtrl = $this->newRExtContr();
-    $urlBlock = $this->rExtCtrl->getViewBlock( $resBlock );
-
-    if( $urlBlock ) {
-      $template->addToBlock( 'rextUrl', $urlBlock );
-      $template->assign( 'rExtBlockNames', array( 'rextUrl' ) );
-    }
-    else {
-      $template->assign( 'rextUrl', false );
-      $template->assign( 'rExtBlockNames', false );
-    }
-
-    return $template;
-  }
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  // parent::resFormSuccess( $form, $resource );
 
 
 
@@ -253,15 +170,9 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    // error_log( "RTypeUrlController: getViewBlockInfo()" );
+    $viewBlockInfo = parent::getViewBlockInfo();
 
-    $viewBlockInfo = array(
-      'template' => false,
-      'data' => $this->defResCtrl->getResourceData( false, true ),
-      'ext' => array()
-    );
-
-    $template = new Template();
+    $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
 
     $this->rExtCtrl = $this->newRExtContr();
