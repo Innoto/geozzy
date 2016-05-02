@@ -20,7 +20,7 @@ if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] )
   $par = $_GET['q'];
   switch( $par ) {
     case 'rotate_logs':
-      $dir = cogumeloGetSetupValue( 'logs:path' );
+      $dir = Cogumelo::getSetupValue( 'logs:path' );
       $handle = opendir( $dir );
       while( $file = readdir( $handle ) ) {
         $file = $dir.'/'.$file;
@@ -46,7 +46,7 @@ if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] )
         }
       }
 
-      $dir = cogumeloGetSetupValue( 'mod:filedata:cachePath' );
+      $dir = Cogumelo::getSetupValue( 'mod:filedata:cachePath' );
       $dirElements = scandir( $dir );
       if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {
         foreach( $dirElements as $dirElement ) {
@@ -56,7 +56,7 @@ if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] )
         }
       }
 
-      $dir = cogumeloSetSetupValue( 'mod:mediaserver:tmpCachePath' );
+      $dir = Cogumelo::getSetupValue( 'mod:mediaserver:tmpCachePath' );
       $dirElements = scandir( $dir );
       if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {
         foreach( $dirElements as $dirElement ) {
