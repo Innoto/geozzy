@@ -29,10 +29,10 @@ class ResourceController {
     user::load('controller/UserAccessController.php');
     filedata::autoIncludes();
 
-    global $C_LANG, $LANG_AVAILABLE; // Idioma actual, cogido de la url
+    global $C_LANG; // Idioma actual, cogido de la url
     $this->actLang = $C_LANG;
-    $this->defLang = LANG_DEFAULT;
-    $this->allLang = $LANG_AVAILABLE;
+    $this->defLang = Cogumelo::getSetupValue( 'lang:default' );
+    $this->allLang = Cogumelo::getSetupValue( 'lang:available' );
 
     if( $resId ) {
       $this->loadResourceObject( $resId );
@@ -114,10 +114,11 @@ class ResourceController {
     // error_log( "ResourceController: getResourceData()" );
 
     if( (!$this->resData || ( $resId && $resId !== $this->resData['id'] ) ) && $this->loadResourceObject( $resId ) ) {
-      $langDefault = LANG_DEFAULT;
-      global $LANG_AVAILABLE;
-      if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
-        $langAvailable = array_keys( $LANG_AVAILABLE );
+      $langDefault = Cogumelo::getSetupValue( 'lang:default' );
+
+      $langsConf = Cogumelo::getSetupValue( 'lang:available' );
+      if( is_array( $langsConf ) ) {
+        $langAvailable = array_keys( $langsConf );
       }
 
       /*
@@ -529,8 +530,8 @@ class ResourceController {
 
     if( !$form->existErrors() ) {
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
-      $resource = new ResourceModel( $valuesArray );
-      if( $resource === false ) {
+      $this->resObj = new ResourceModel( $valuesArray );
+      if( $this->resObj === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
       }
     }
@@ -538,9 +539,9 @@ class ResourceController {
     if( !$form->existErrors()) {
 
       // TRANSACTION START
-      $resource->transactionStart();
+      $this->resObj->transactionStart();
 
-      $saveResult = $resource->save();
+      $saveResult = $this->resObj->save();
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
       }
@@ -550,35 +551,35 @@ class ResourceController {
       DEPENDENCIAS / RELACIONES
     */
     if( !$form->existErrors() && $form->isFieldDefined( 'image' ) ) {
-      $this->setFormFiledata( $form, 'image', 'image', $resource );
+      $this->setFormFiledata( $form, 'image', 'image', $this->resObj );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'topics' ) ) {
-      $this->setFormTopic( $form, 'topics', $resource );
+      $this->setFormTopic( $form, 'topics', $this->resObj );
     }
 
     if( !$form->existErrors() && ( $form->isFieldDefined( 'collections' ) || $form->isFieldDefined( 'multimediaGalleries' ) ) ) {
-      $this->setFormCollection( $form, $resource );
+      $this->setFormCollection( $form, $this->resObj );
     }
 
     if( !$form->existErrors() && $form->isFieldDefined( 'starred' ) ) {
-      $this->setFormTax( $form, 'starred', 'starred', $form->getFieldValue( 'starred' ), $resource );
+      $this->setFormTax( $form, 'starred', 'starred', $form->getFieldValue( 'starred' ), $this->resObj );
     }
 
     if( !$form->existErrors() ) {
-      $this->setFormUrlAlias( $form, 'urlAlias', $resource );
+      $this->setFormUrlAlias( $form, 'urlAlias', $this->resObj );
     }
     /*
       DEPENDENCIAS (END)
     */
     if( !$form->existErrors()) {
-      $saveResult = $resource->save();
+      $saveResult = $this->resObj->save();
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
       }
     }
 
-    return $resource;
+    return $this->resObj;
   }
 
   /**
@@ -725,7 +726,7 @@ class ResourceController {
     $topicModel =  new TopicModel();
     $topicList = $topicModel->listItems();
     while( $topic = $topicList->fetch() ){
-      $topics[ $topic->getter( 'id' ) ] = $topic->getter( 'name', LANG_DEFAULT );
+      $topics[ $topic->getter( 'id' ) ] = $topic->getter( 'name', Cogumelo::getSetupValue( 'lang:default' ) );
     }
 
     return $topics;
@@ -737,7 +738,7 @@ class ResourceController {
     $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ),
       'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
     while( $taxTerm = $taxTermList->fetch() ){
-      $options[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'name', LANG_DEFAULT );
+      $options[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'name', Cogumelo::getSetupValue( 'lang:default' ) );
     }
 
     return $options;
@@ -857,7 +858,7 @@ class ResourceController {
         $collections = $res->getterDependence( 'collection', 'CollectionModel' );
 
         if( $collections ){
-          $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', LANG_DEFAULT );
+          $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ) );
           $colInfo[ 'values' ][] = $res->getter( 'collection' );
         }
       }
@@ -887,7 +888,7 @@ class ResourceController {
       while( $res = $resMultimediaList->fetch() ){
         $multimediaGalleries = $res->getterDependence( 'collection', 'CollectionModel' );
         if( $multimediaGalleries ){
-          $multimediaInfo[ 'options' ][ $res->getter( 'collection' ) ] = $multimediaGalleries[ 0 ]->getter( 'title', LANG_DEFAULT );
+          $multimediaInfo[ 'options' ][ $res->getter( 'collection' ) ] = $multimediaGalleries[ 0 ]->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ) );
           $multimediaInfo[ 'values' ][] = $res->getter( 'collection' );
         }
       }
