@@ -11,7 +11,7 @@
             <i class="fa fa-bars"></i>
         </button>
         <div class="headerTitleContainer">
-          <h3>{t}Category management for{/t} <%- name_{$langDefault} %> </h3>
+          <h3>{t}Category management for{/t} <%- name_{$cogumelo.publicConf.langDefault} %> </h3>
         </div>
       </div>
       <div class="col-lg-6 col-md-12 clearfix">
@@ -35,7 +35,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
 
-                {t}List of terms for{/t} ( <%- name_{$langDefault} %> )
+                {t}List of terms for{/t} ( <%- name_{$cogumelo.publicConf.langDefault} %> )
 
             </div>
             <div class="panel-body">
@@ -54,7 +54,7 @@
 
   <div class="footerSection clearfix">
     <div class="headerActionsContainer">
-      <button type="button" class="newTaxTerm btn btn-default">{t}Add{/t} <%- name_{$langDefault} %></button>
+      <button type="button" class="newTaxTerm btn btn-default">{t}Add{/t} <%- name_{$cogumelo.publicConf.langDefault} %></button>
       <span class="saveChanges">
         <button class="btn btn-danger cancelTerms">{t}Cancel{/t}</button>
         <button class="btn btn-primary saveTerms">{t}Save{/t}</button>
@@ -79,7 +79,7 @@
 
         <div class="dd-handle">
           <i class="fa fa-arrows icon-handle"></i>
-          <%- term.name_{$langDefault} %>
+          <%- term.name_{$cogumelo.publicConf.langDefault} %>
           <% if (term.icon){  %>
             <img class="term-icon img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/<%- term.icon %>/">
           <% } %>

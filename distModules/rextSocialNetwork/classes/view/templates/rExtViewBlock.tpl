@@ -6,7 +6,7 @@
   {$rExt.dataForm.formFieldsArray[$text]}
 {/foreach}
 <div class="defaultFb-box">
-  {$defaultFb["$GLOBAL_C_LANG"]}
+  {$defaultFb[$cogumelo.publicConf.C_LANG]}
 </div>
 {$rExt.dataForm.formFieldsArray['rExtSocialNetwork_activeTwitter']}
 {foreach $textTwitter as $text}

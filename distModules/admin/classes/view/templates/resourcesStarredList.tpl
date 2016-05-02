@@ -11,7 +11,7 @@
             <i class="fa fa-bars"></i>
         </button>
         <div class="headerTitleContainer">
-          <h3>{t}Resources Starred in{/t} <%- name_{$langDefault} %> </h3>
+          <h3>{t}Resources Starred in{/t} <%- name_{$cogumelo.publicConf.langDefault} %> </h3>
         </div>
       </div>
       <div class="col-lg-6 col-md-12 clearfix">
@@ -35,7 +35,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
 
-                {t}List of resources for{/t} ( <%- name_{$langDefault} %> )
+                {t}List of resources for{/t} ( <%- name_{$cogumelo.publicConf.langDefault} %> )
 
             </div>
             <div class="panel-body">
@@ -78,7 +78,7 @@
 
         <div class="dd-handle">
           <i class="fa fa-arrows icon-handle"></i>
-          <%- resource.title_{$langDefault} %>
+          <%- resource.title_{$cogumelo.publicConf.langDefault} %>
         </div>
 
       </div>

@@ -5,11 +5,11 @@
     label { display: block; }
     .cgmMForm-field { max-width: none !important; }
   </style>
-  <script type="text/javascript" src="{$mediaJs}/module/admin/js/adminResourceTypeMultimedia.js"></script>
+  <script type="text/javascript" src="{$cogumelo.publicConf.mediaJs}/module/admin/js/adminResourceTypeMultimedia.js"></script>
 
   {$res.dataForm.formOpen}
     {$res.dataForm.formFieldsArray.cgIntFrmId}
-    {foreach $langAvailableIds as $lang}
+    {foreach $cogumelo.publicConf.langAvailableIds as $lang}
       {$res.dataForm.formFieldsArray["title_$lang"]}
     {/foreach}
     {$res.dataForm.formFieldsArray.rExtUrl_author}

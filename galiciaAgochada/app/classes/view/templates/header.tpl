@@ -15,7 +15,7 @@
               <img alt="logo" class="logo img-responsive" src="{$cogumelo.publicConf.media}/img/logoGA.png"/>
             </a>
           {else}
-            <a href="/{$GLOBAL_C_LANG}/#inicio" class="navbar-brand page-scroll">
+            <a href="/{$cogumelo.publicConf.C_LANG}/#inicio" class="navbar-brand page-scroll">
               <img alt="logo" class="logo img-responsive" src="{$cogumelo.publicConf.media}/img/logoGA.png"/>
             </a>
           {/if}
@@ -40,7 +40,7 @@
             {/if}
 
             <li class="dropdown langSelector">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe"></i>&nbsp;{$GLOBAL_C_LANG}</a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe"></i>&nbsp;{$cogumelo.publicConf.C_LANG}</a>
               <ul class="dropdown-menu">
                 {if isset($res.data) && $res.data}
                   {foreach key=k item=lang from=$cogumelo.publicConf.lang_available}
