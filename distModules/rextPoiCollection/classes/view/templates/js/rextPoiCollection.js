@@ -1,5 +1,6 @@
 $(document).ready(function(){
   bindResourceForm();
+  initializeMap(poiFormId);
 });
 
 function bindResourceForm(){

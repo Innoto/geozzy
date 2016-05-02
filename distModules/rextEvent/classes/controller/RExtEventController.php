@@ -49,7 +49,9 @@ class RExtEventController extends RExtController implements RExtInterface {
 
 
   /**
-    Defino el formulario
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
    */
   public function manipulateForm( FormController $form ) {
     // error_log( "RExtContactController: manipulateForm()" );
@@ -135,7 +137,11 @@ class RExtEventController extends RExtController implements RExtInterface {
         $rExtFieldNames[] = $fieldName;
       }
     }
-    $rExtFieldNames[] = 'FieldNames';
+
+    /*******************************************************************
+     * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
+     *******************************************************************/
+    //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
@@ -144,27 +150,17 @@ class RExtEventController extends RExtController implements RExtInterface {
   } // function manipulateForm()
 
 
+  /**
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RExtContactController: getFormBlockInfo()" );
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
-
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-
-    $formBlockInfo['dataForm'] = array(
-      'formId' => $form->getId(),
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups()
-    );
-
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
-
+    $formBlockInfo = parent::getFormBlockInfo( $form );
+    $templates = $formBlockInfo['template'];
 
     $templates['full'] = new Template();
     $templates['full']->setTpl( 'rExtViewBlock.tpl', 'rextEvent' );
@@ -182,13 +178,12 @@ class RExtEventController extends RExtController implements RExtInterface {
 
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
    */
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RExtContactController: resFormRevalidate()" );
+  // parent::resFormRevalidate( $form );
 
-    // $this->evalFormUrlAlias( $form, 'urlAlias' );
-  }
 
   /**
     Creación-Edición-Borrado de los elementos del recurso base
@@ -233,28 +228,23 @@ class RExtEventController extends RExtController implements RExtInterface {
     }
   }
 
-  /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
-   */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtContactController: resFormSuccess()" );
 
-  }
+  /**
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  // parent::resFormSuccess( $form, $resource )
 
 
   /**
     Datos y template por defecto de la extension
    */
   public function getViewBlockInfo() {
-    // error_log( "RExtContactController: getViewBlockInfo()" );
+    //TODO: Falta actualizar método a nueva forma de trabajar con abstracción -> pendente decidir visualización de eventos / pois
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData()
-    );
-
-
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
       // TODO: esto será un campo da BBDD
@@ -264,7 +254,6 @@ class RExtEventController extends RExtController implements RExtInterface {
         $template = new Template();
 
         $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
 
         $rExtViewBlockInfo['template'] = array( 'full' => $template );
       }

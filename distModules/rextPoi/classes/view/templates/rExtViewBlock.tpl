@@ -1,4 +1,7 @@
 <div class="poiBlock {$rExt.dataForm.formId}">
+  <script>
+    var poiFormId = '{$rExt.dataForm.formId}';
+  </script>
   {$client_includes}
 
   <div class="poiType">
@@ -14,7 +17,5 @@
       <div class="col-md-2">{$res['defaultZoom']}</div>
     </div>
   </div>
-  <script>$( document ).ready( function() {
-    alert('modal');initializeMap("{$rExt.dataForm.formId}");
-  });</script>
+
 </div>

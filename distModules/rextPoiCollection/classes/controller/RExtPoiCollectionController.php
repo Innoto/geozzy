@@ -7,8 +7,6 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
 
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtPoiCollectionController::__construct' );
-
     global $C_LANG;
     $this->actLang = $C_LANG;
 
@@ -17,7 +15,6 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
 
   public function getRExtData( $resId = false ) {
-    // error_log( "RExtPoiCollectionController: getRExtData( $resId )" );
     $rExtData = false;
 
     if( $resId === false ) {
@@ -36,7 +33,6 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
         }
       }
     }
-
 
     $collection = new CollectionModel( );
     $resourceCollectionsModel = new ResourceCollectionsModel();
@@ -61,21 +57,19 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
       while($res = $collectionResourceList->fetch()){
         $resIds[] = $res->getter('resource');
       }
-
       $rExtData['pois'] = $resIds;
     }
 
-    // error_log( 'RExtPoiCollectionController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
 
   /**
-    Defino el formulario
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
    */
   public function manipulateForm( FormController $form ) {
-    // error_log( "RExtPoiCollectionController: manipulateForm()" );
-
     $form_values = $form->getValuesArray();
     $filterRTypeParent = $form_values['rTypeIdName'];
 
@@ -140,6 +134,10 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
+    // Validaciones extra
+    //$form->removeValidationRule( 'pois', 'inArray' );
+    $form->removeValidationRule( 'rExtPoiCollection_pois', 'inArray' );
+
     // Si es una edicion, añadimos el ID y cargamos los datos
      $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
 
@@ -172,7 +170,11 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
         $rExtFieldNames[] = $fieldName;
       }
     }
-    $rExtFieldNames[] = 'FieldNames';
+
+    /*******************************************************************
+     * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
+     *******************************************************************/
+    //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
@@ -182,30 +184,17 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
 
 
-
+  /**
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RExtPoiCollectionController: getFormBlockInfo()" );
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
-
-
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
-
-    $formBlockInfo['dataForm'] = array(
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-    );
-
-    //var_dump($formBlockInfo['dataForm']);
-
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
+    $formBlockInfo = parent::getFormBlockInfo( $form );
+    $templates = $formBlockInfo['template'];
 
     $templates['full'] = new Template();
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
@@ -220,11 +209,12 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
    */
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RExtPoiCollectionController: resFormRevalidate()" );
-  }
+  // parent::resFormRevalidate( $form );
+
 
   /**
     Creación-Edición-Borrado de los elementos del recurso base
@@ -242,7 +232,7 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
           if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
             $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
           }
-        }  
+        }
       }
 
       $newResources = $form->getFieldValue( 'rExtPoiCollection_pois' );
@@ -275,6 +265,7 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
         if ($newResources){
           $collection->setter('collectionType', 'poi');
           $collection->save();
+          $elemId = $collection->getter('id');
           $resourceCollection = new ResourceCollectionsModel(array('resource'=>$resource->getter('id'), 'collection' => $collection->getter('id')));
           $resourceCollection->save();
         }
@@ -313,7 +304,6 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
       $affectsDependences = false;
       // Creamos-Editamos todas las relaciones con los recursos
-
       if( $newResources !== false ) {
         $affectsDependences = true;
         $weight = 0;
@@ -336,25 +326,22 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
     }
   }
 
+
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtPoiCollectionController: resFormSuccess()" );
-  }
+  // parent::resFormSuccess( $form, $resource )
 
 
   /**
     Datos y template por defecto de la extension
    */
   public function getViewBlockInfo() {
-    // error_log( "RExtPoiCollectionController: getViewBlockInfo()" );
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData()
-    );
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
@@ -383,12 +370,9 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
       }
 
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
       $template->setTpl( 'rExtViewBlock.tpl', 'rextPoiCollection' );
-
       $rExtViewBlockInfo['template'] = array( 'full' => $template );
     }
-
     return $rExtViewBlockInfo;
   }
 

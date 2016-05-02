@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  initializeMap(poiFormId);
+
   if($('.poiModal').size()>0){
     //bindModalEventForm();
     bindPoiForm('.poiModal ');
@@ -7,8 +9,6 @@ $(document).ready(function(){
   else{
     bindPoiForm('');
   }
-
-
 
   moveSubmitBtn('#createPoiModal');
   moveSubmitBtn('#editModalForm');
@@ -27,8 +27,6 @@ function bindPoiForm(modal){
 
 
 function moveSubmitBtn(query){
-
-
 
   var buttonsToMove = $(query).find('.gzzAdminToMove');
 

@@ -37,7 +37,6 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
       }
     }
 
-
     $collection = new CollectionModel( );
     $resourceCollectionsModel = new ResourceCollectionsModel();
     $resourceCollectionsList = $resourceCollectionsModel->listItems(
@@ -65,17 +64,16 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
       $rExtData['events'] = $resIds;
     }
 
-    // error_log( 'RExtEventCollectionController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
 
   /**
-    Defino el formulario
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
    */
   public function manipulateForm( FormController $form ) {
-    // error_log( "RExtEventCollectionController: manipulateForm()" );
-
     $form_values = $form->getValuesArray();
     $filterRTypeParent = $form_values['rTypeIdName'];
 
@@ -145,7 +143,8 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
-
+    // Validaciones extra
+    $form->removeValidationRule( 'rExtEventCollection_events', 'inArray' );
 
 
     // Si es una edicion, añadimos el ID y cargamos los datos
@@ -180,7 +179,11 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         $rExtFieldNames[] = $fieldName;
       }
     }
-    $rExtFieldNames[] = 'FieldNames';
+
+    /*******************************************************************
+     * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
+     *******************************************************************/
+    //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
@@ -190,55 +193,23 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
 
 
-
+  /**
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RExtEventCollectionController: getFormBlockInfo()" );
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
-
-
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
-
-    $formBlockInfo['dataForm'] = array(
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-    );
-
-    //var_dump($formBlockInfo['dataForm']);
-
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
+    $formBlockInfo = parent::getFormBlockInfo( $form );
+    $templates = $formBlockInfo['template'];
 
     $templates['full'] = new Template();
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
     $templates['full']->addClientScript('js/rextEventCollection.js', 'rextEventCollection');
-
-    /*
-    $prevContent = "<script>
-      $(document).ready(function(){
-        bindResourceForm();
-      });
-      function bindResourceForm(){
-        $('select.cgmMForm-field-rExtEventCollection_events').multiList({
-          itemActions : [
-            { 'id': 'edit', 'html': '<i class=\"fa fa-pencil-square-o\"></i>', 'action': editModalForm }
-          ],
-        });
-        $('#addEvents').on('click', function(){
-          app.mainView.loadAjaxContentModal('/rtypeEvent/event/create', 'createEventModal', 'Create Event');
-        });
-      }
-    </script>";
-
-    $templates['full']->assign( 'prevContent', $prevContent );*/
 
     $formBlockInfo['template'] = $templates;
 
@@ -247,11 +218,12 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
    */
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RExtEventCollectionController: resFormRevalidate()" );
-  }
+  // parent::resFormRevalidate( $form );
+
 
   /**
     Creación-Edición-Borrado de los elementos del recurso base
@@ -300,6 +272,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         if ($newResources){
           $collection->setter('collectionType', 'event');
           $collection->save();
+          $elemId = $collection->getter('id');
           $resourceCollection = new ResourceCollectionsModel(array('resource'=>$resource->getter('id'), 'collection' => $collection->getter('id')));
           $resourceCollection->save();
         }
@@ -338,7 +311,6 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
       $affectsDependences = false;
       // Creamos-Editamos todas las relaciones con los recursos
-
       if( $newResources !== false ) {
         $affectsDependences = true;
         $weight = 0;
@@ -361,13 +333,14 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     }
   }
 
+
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtEventCollectionController: resFormSuccess()" );
-  }
+  // parent::resFormSuccess( $form, $resource )
 
 
   /**
@@ -376,17 +349,10 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
   public function getViewBlockInfo() {
     // error_log( "RExtEventCollectionController: getViewBlockInfo()" );
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData()
-    );
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
-      //
-      // echo '<pre>';
-      // print_r($rExtViewBlockInfo['data']);
-      // echo '</pre>';
 
       /* Cargamos los bloques de colecciones */
       $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
@@ -403,10 +369,6 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         if ($eventArray){
           $arrayEventBlock = $this->defResCtrl->goOverCollections( $eventArray, $collectionType = 'event' );
           if ($arrayEventBlock){
-
-
-            //print_r($arrayEventBlock);
-
             foreach( $arrayEventBlock as $eventBlock ) {
               $template->addToFragment( 'eventBlock', $eventBlock );
             }
@@ -414,18 +376,10 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         }
       }
 
-
-
-
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
       $template->setTpl( 'rExtViewBlock.tpl', 'rextEventCollection' );
-
       $rExtViewBlockInfo['template'] = array( 'full' => $template );
     }
-
-    // error_log( "RExtEventCollectionController: getViewBlockInfo() = " . print_r( $rExtViewBlockInfo['data'], true ) );
-
     return $rExtViewBlockInfo;
   }
 

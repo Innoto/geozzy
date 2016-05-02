@@ -221,6 +221,7 @@ class RExtController {
     }
 
     $formBlockInfo['template']['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    $formBlockInfo['template']['full']->addClientScript('js/rExt.js', 'geozzy');
     $formBlockInfo['template']['full']->assign( 'rExtName', $this->rExtName );
     $formBlockInfo['template']['full']->assign( 'rExt', $formBlockInfo );
 
