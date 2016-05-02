@@ -1,11 +1,36 @@
 <?php
-// En setup.*
-// cogumeloSetSetupValue( 'modName:level1:level2', $value );
-// $value = cogumeloGetSetupValue( 'modName:level1:level2' );
+/*
+Previamente se definen las siguientes constantes:
 
-// En codigo cogumelo
-// Cogumelo::setSetupValue( 'modName:level1:level2', $value );
-// $value = Cogumelo::getSetupValue( 'modName:level1:level2' );
+WEB_BASE_PATH - Apache DocumentRoot (en index.php)
+APP_BASE_PATH - App Path (en index.php)
+SITE_PATH     - App Path (en index.php)
+IS_DEVEL_ENV  - Indica si estamos en el entorno de desarrollo (en setup.php)
+
+
+Normas de estilo:
+
+Nombres:
+- Inicia por mod:nombreModulo: para configuración de modulos
+- Fuera de módulos, de forma general, usaremos tema:subtema:variable
+- Usar nombres finalizados en "Path" (variablePath) para rutas
+
+Valores:
+- Las rutas NO finalizan en /
+- Las URL NO finalizan en /
+
+
+Llamadas a metodos:
+
+En ficheros de setup:
+cogumeloSetSetupValue( 'mod:nombreModulo:level1:level2', $value );
+$value = cogumeloGetSetupValue( 'mod:nombreModulo:level1:level2' );
+
+En código cogumelo:
+Cogumelo::setSetupValue( 'mod:nombreModulo:level1:level2', $value );
+$value = Cogumelo::getSetupValue( 'mod:nombreModulo:level1:level2' );
+*/
+
 
 // Framework Path
 //
@@ -65,3 +90,12 @@ define( 'MOD_MEDIASERVER_URL_DIR', cogumeloGetSetupValue( 'mod:mediaserver:path'
 define( 'MEDIASERVER_FINAL_CACHE_PATH', cogumeloGetSetupValue( 'mod:mediaserver:cachePath' ) );
 define( 'MEDIASERVER_TMP_CACHE_PATH', cogumeloGetSetupValue( 'mod:mediaserver:tmpCachePath' ) );
 define( 'MEDIASERVER_MINIMIFY_FILES', cogumeloGetSetupValue( 'mod:mediaserver:minimifyFiles' ) );
+
+/*
+define( 'MEDIASERVER_PRODUCTION_MODE', Cogumelo::getSetupValue( 'mod:mediaserver:productionMode' ) );
+define( 'MEDIASERVER_NOT_CACHE_JS', Cogumelo::getSetupValue( 'mod:mediaserver:notCacheJs' ) );
+define( 'MEDIASERVER_HOST', Cogumelo::getSetupValue( 'mod:mediaserver:host' ) );
+define( 'MOD_MEDIASERVER_URL_DIR', Cogumelo::getSetupValue( 'mod:mediaserver:path' ) );
+define( 'MEDIASERVER_FINAL_CACHE_PATH', Cogumelo::getSetupValue( 'mod:mediaserver:cachePath' ) );
+define( 'MEDIASERVER_TMP_CACHE_PATH', Cogumelo::getSetupValue( 'mod:mediaserver:tmpCachePath' ) );
+define( 'MEDIASERVER_MINIMIFY_FILES', Cogumelo::getSetupValue( 'mod:mediaserver:minimifyFiles' ) );
