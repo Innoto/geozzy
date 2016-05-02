@@ -85,7 +85,7 @@ class AdminViewResource extends AdminViewMaster {
     // Nome das columnas
     $tabla->setCol('id', 'ID');
     $tabla->setCol('rTypeId', __('Type'));
-    $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
+    $tabla->setCol('title_'.Cogumelo::getSetupValue( 'lang:default' ), __('Title'));
     $tabla->setCol('published', __('Published'));
 
     // Filtrar por temática

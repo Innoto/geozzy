@@ -33,7 +33,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $topicmodel =  new TopicModel();
     $topic = $topicmodel->listItems(array("filters" => array("id" => $topicId)));
-    $name = $topic->fetch()->getter('name', LANG_DEFAULT);
+    $name = $topic->fetch()->getter('name', Cogumelo::getSetupValue( 'lang:default' ));
 
     $this->template->addToBlock( 'col12', $template );
     $this->template->assign( 'headTitle', $name );
@@ -98,7 +98,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     // Nome das columnas
     $tabla->setCol('id', 'ID');
     $tabla->setCol('rTypeId', __('Type'));
-    $tabla->setCol('title_'.LANG_DEFAULT, __('Title'));
+    $tabla->setCol('title_'.Cogumelo::getSetupValue( 'lang:default' ), __('Title'));
     $tabla->setCol('published', __('Published'));
 
     // Filtrar por temática

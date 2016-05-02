@@ -394,7 +394,7 @@ class AdminDataAPIView extends View
             'id',
             'rTypeId',
             'published',
-            'title_'.LANG_DEFAULT
+            'title_'.Cogumelo::getSetupValue( 'lang:default' )
           );
 
 

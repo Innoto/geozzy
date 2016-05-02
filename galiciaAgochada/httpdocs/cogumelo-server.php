@@ -2,11 +2,11 @@
 
 // Project location
 define( 'WEB_BASE_PATH', getcwd() );
-define( 'APP_BASE_PATH', getcwd().'/../app' );
+define( 'PRJ_BASE_PATH', realpath( WEB_BASE_PATH.'/..' ) );
+define( 'APP_BASE_PATH', PRJ_BASE_PATH.'/app' );
 
-define( 'SITE_PATH', APP_BASE_PATH.'/' );
 // Include cogumelo core Location
-set_include_path( '.:'.SITE_PATH );
+set_include_path( '.:'.APP_BASE_PATH );
 
 require_once( 'conf/setup.php' );
 
@@ -15,16 +15,16 @@ require_once( 'conf/setup.php' );
 if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] ) &&  isPrivateIp( $_SERVER['REMOTE_ADDR'] ) ) {
   require_once( COGUMELO_LOCATION.'/coreClasses/CogumeloClass.php' );
   require_once( COGUMELO_LOCATION.'/coreClasses/coreController/DependencesController.php' );
-  require_once( SITE_PATH.'/Cogumelo.php' );
+  require_once( APP_BASE_PATH.'/Cogumelo.php' );
 
   $par = $_GET['q'];
   switch( $par ) {
     case 'rotate_logs':
-      $dir = SITE_PATH.'log/';
+      $dir = cogumeloGetSetupValue( 'logs:path' );
       $handle = opendir( $dir );
       while( $file = readdir( $handle ) ) {
-        if( is_file( $dir.$file ) ) {
-          $file = $dir.$file;
+        $file = $dir.'/'.$file;
+        if( is_file( $file ) ) {
           $pos = strpos( $file, 'gz' );
           if( $pos === false ){
             $gzfile = $file.'-'.date( 'Ymd-Hms' ).'.gz';
@@ -36,7 +36,7 @@ if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] )
       }
       break;
     case 'flush':
-      $dir = SITE_PATH.'tmp/templates_c';
+      $dir = APP_TMP_PATH.'/templates_c';
       $dirElements = scandir( $dir );
       if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {
         foreach( $dirElements as $dirElement ) {
@@ -46,7 +46,7 @@ if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] )
         }
       }
 
-      $dir = MOD_FILEDATA_CACHE_PATH;
+      $dir = cogumeloGetSetupValue( 'mod:filedata:cachePath' );
       $dirElements = scandir( $dir );
       if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {
         foreach( $dirElements as $dirElement ) {
@@ -56,7 +56,7 @@ if( $_SERVER['REMOTE_ADDR'] != 'local_shell' && isset( $_SERVER['REMOTE_ADDR'] )
         }
       }
 
-      $dir = MEDIASERVER_TMP_CACHE_PATH;
+      $dir = cogumeloSetSetupValue( 'mod:mediaserver:tmpCachePath' );
       $dirElements = scandir( $dir );
       if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {
         foreach( $dirElements as $dirElement ) {

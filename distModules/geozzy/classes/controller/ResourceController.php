@@ -495,7 +495,7 @@ class ResourceController {
    * Creación-Edición-Borrado de los elementos del recurso base e iniciar transaction
    */
   public function resFormProcess( $form ) {
-    $resource = false;
+    $this->resObj = false;
 
     if( !$form->existErrors() ) {
       $useraccesscontrol = new UserAccessController();

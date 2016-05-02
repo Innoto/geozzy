@@ -496,11 +496,11 @@ class geozzyAPIView extends View {
   public function bi( $urlParams ) {
     require_once APP_BASE_PATH."/conf/geozzyBI.php";
     header('Content-type: application/json');
-    global $LANG_AVAILABLE, $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS;
+    global $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS;
 
     $langs = array(
-      'default'=> LANG_DEFAULT,
-      'available'=> $LANG_AVAILABLE
+      'default'=> Cogumelo::getSetupValue( 'lang:default' ),
+      'available'=> Cogumelo::getSetupValue( 'lang:available' )
     );
 
     $biData = array(

@@ -3,8 +3,8 @@
   Previamente se definen las siguientes constantes:
 
   WEB_BASE_PATH - Apache DocumentRoot (en index.php)
+  PRJ_BASE_PATH - Project Path (normalmente contiene app/ httpdocs/ formFiles/) (en index.php)
   APP_BASE_PATH - App Path (en index.php)
-  SITE_PATH     - App Path (en index.php)
   IS_DEVEL_ENV  - Indica si estamos en el entorno de desarrollo (en setup.php)
 
 
@@ -49,6 +49,15 @@ cogumeloSetSetupValue( 'lang', array(
   'default' => 'es'
 ));
 
+// A eliminar:
+global $LANG_AVAILABLE;
+$LANG_AVAILABLE = cogumeloGetSetupValue( 'lang:available' );
+define( 'LANG_DEFAULT', cogumeloGetSetupValue( 'lang:default' ) );
+
+
+
+
+
 // Dates
 //
 cogumeloSetSetupValue( 'date:timezone', 'Europe/Madrid');
@@ -57,34 +66,7 @@ cogumeloSetSetupValue( 'date:timezone', 'Europe/Madrid');
 //
 //  DB
 //
-/*
-define( 'DB_ENGINE', 'mysql' );
-define( 'DB_HOSTNAME', 'localhost');
-define( 'DB_PORT', '3306');
-define( 'DB_USER', 'galiciaagochada');
-define( 'DB_PASSWORD', 'q7w8e9r');
-define( 'DB_NAME', 'galiciaagochada');
-
-define( 'DB_MYSQL_GROUPCONCAT_MAX_LEN', 4294967295); //max 	4294967295 (in 32 bits) , 18446744073709547520 (in 64 bits)
-
-// allow cache with memcached
-define( 'DB_ALLOW_CACHE', true );
-*/
-/*
-MOVIDO a setup.dev.php o setup.final.php
-
-cogumeloSetSetupValue( 'db', array(
-  'engine' => 'mysql',
-  'hostname' => 'localhost',
-  'port' => '3306',
-  'user' => 'galiciaagochada',
-  'password' => 'q7w8e9r',
-  'name' => 'galiciaagochada',
-  'mysqlGroupconcatMaxLen' => 4294967295,
-  'allowCache' => true
-));
-*/
-
+// MOVIDO a setup.dev.php o setup.final.php
 require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
 
 //
@@ -98,10 +80,6 @@ define( 'GA_ACCESS_PASSWORD', 'gz15005' );
 //  Url settings
 //
 // TODO: Cuidado porque no se procesa el puerto
-/*
-Agora en setup.dev.php ou setup.final.php
-define( 'COGUMELO_ADMINSCRIPT_URL', 'http://galiciaagochada/cogumelo-server.php');
-*/
 define( 'SITE_PROTOCOL', isset( $_SERVER['HTTPS'] ) ? 'https' : 'http' );
 define( 'SITE_HOST', SITE_PROTOCOL.'://'.$_SERVER['HTTP_HOST']);  // solo HOST sin ('/')
 define( 'SITE_FOLDER', '/' );  // SITE_FOLDER STARTS AND ENDS WITH SLASH ('/')
@@ -283,7 +261,7 @@ cogumeloSetSetupValue( 'mod:geozzyUser', array(
 //  Logs
 //
 cogumeloSetSetupValue( 'logs', array(
-  'path' => APP_BASE_PATH.'/log/', //log files directory
+  'path' => APP_BASE_PATH.'/log', // log files directory
   'rawSql' => false, // Log RAW all SQL ¡WARNING! application passwords will dump into log files
   'debug' => true, // Set Debug mode to log debug messages on log
   'error' => true // Display errors on screen. If you use devel module, you might disable it
@@ -307,8 +285,8 @@ cogumeloSetSetupValue( 'mod:devel', array(
 //  i18n
 //
 cogumeloSetSetupValue( 'i18n', array(
-  'path' => SITE_PATH.'conf/i18n/',
-  'localePath' => SITE_PATH.'conf/i18n/locale/',
+  'path' => APP_BASE_PATH.'/conf/i18n',
+  'localePath' => APP_BASE_PATH.'/conf/i18n/locale',
   'gettextUpdate' => true // update gettext files when working in localhost
 ));
 
@@ -322,7 +300,7 @@ cogumeloSetSetupValue( 'mod:form', array(
 //  Filedata Mod
 //
 cogumeloSetSetupValue( 'mod:filedata', array(
-  'filePath' => APP_BASE_PATH.'/../formFiles',
+  'filePath' => PRJ_BASE_PATH.'/formFiles',
   'cachePath' => WEB_BASE_PATH.'/cgmlImg'
 ));
 include 'filedataImageProfiles.php';
@@ -372,6 +350,28 @@ cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty',
 cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields',
   array_merge( cogumeloGetSetupValue( 'publicConf:setupFields' ), array('user:session') )
 );
+
+// A eliminar:
+global $MEDIASERVER_LESS_GLOBALS; // Se cargan con el prefijo GLOBAL_
+$MEDIASERVER_LESS_GLOBALS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:less:globalVars' );
+global $MEDIASERVER_LESS_CONSTANTS;
+$MEDIASERVER_LESS_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:less:vars' );
+global $MEDIASERVER_JAVASCRIPT_GLOBALS; // Se cargan con el prefijo GLOBAL_
+$MEDIASERVER_JAVASCRIPT_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
+global $MEDIASERVER_JAVASCRIPT_CONSTANTS;
+$MEDIASERVER_JAVASCRIPT_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:javascript:vars' );
+global $MEDIASERVER_SMARTY_GLOBALS; // Se cargan con el prefijo GLOBAL_
+$MEDIASERVER_SMARTY_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
+global $MEDIASERVER_SMARTY_CONSTANTS;
+$MEDIASERVER_SMARTY_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:smarty:vars' );
+
+
+
+
+
+
+
+
 
 cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
   array(
@@ -495,22 +495,6 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
 
 
 // A eliminar:
-define( 'LOGDIR', cogumeloGetSetupValue( 'logs:path' ) ); //log files directory
-define( 'LOG_RAW_SQL', cogumeloGetSetupValue( 'logs:rawSql' ) ); // Log RAW all SQL ¡WARNING! application passwords will dump into log files
-define( 'DEBUG', cogumeloGetSetupValue( 'logs:debug' ) ); // Set Debug mode to log debug messages on log
-define( 'ERRORS', cogumeloGetSetupValue( 'logs:error' ) ); // Display errors on screen. If you use devel module, you might disable it
-
-// A eliminar:
-define( 'BCK', cogumeloGetSetupValue( 'script:backupPath' ) );
-//cogumelo/cogumeloScript:    BCK, I18N, I18N_LOCALE,TPL_TMP );
-//cogumelo/coreModules/devel/classes/view/DevelView.php:    $this->template->assign("infoBck" , BCK);
-
-// A eliminar:
-global $LANG_AVAILABLE;
-$LANG_AVAILABLE = cogumeloGetSetupValue( 'lang:available' );
-define( 'LANG_DEFAULT', cogumeloGetSetupValue( 'lang:default' ) );
-
-// A eliminar:
 define( 'SMARTY_CONFIG', cogumeloGetSetupValue( 'smarty:configPath' ) );
 define( 'SMARTY_COMPILE', cogumeloGetSetupValue( 'smarty:compilePath' ) );
 define( 'SMARTY_CACHE', cogumeloGetSetupValue( 'smarty:cachePath' ) );
@@ -527,42 +511,6 @@ define( 'MOD_DEVEL_ALLOW_ACCESS', cogumeloGetSetupValue( 'mod:devel:allowAccess'
 define( 'MOD_DEVEL_URL_DIR', cogumeloGetSetupValue( 'mod:devel:url' ) );
 define( 'MOD_DEVEL_PASSWORD', cogumeloGetSetupValue( 'mod:devel:password' ) );
 
-// A eliminar:
-define( 'I18N', cogumeloGetSetupValue( 'i18n:path' ) );
-define( 'I18N_LOCALE', cogumeloGetSetupValue( 'i18n:localePath' ) );
-define( 'GETTEXT_UPDATE', cogumeloGetSetupValue( 'i18n:gettextUpdate' ) );
 
-// A eliminar:
-define( 'MOD_FORM_CSS_PRE', cogumeloGetSetupValue( 'mod:form:cssPrefix' ) );
-define( 'MOD_FORM_FILES_TMP_PATH', cogumeloGetSetupValue( 'mod:form:tmpPath' ) );
-// QUITAR MOD_FORM_FILES_APP_PATH
-define( 'MOD_FORM_FILES_APP_PATH', APP_BASE_PATH.'/../formFiles' );
 
-// A eliminar:
-define( 'MOD_FILEDATA_APP_PATH', cogumeloGetSetupValue( 'mod:filedata:filePath' )  );
-define( 'MOD_FILEDATA_CACHE_PATH', cogumeloGetSetupValue( 'mod:filedata:cachePath' ) );
 
-// A eliminar:
-/*
-define( 'MEDIASERVER_PRODUCTION_MODE', cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) );
-define( 'MEDIASERVER_NOT_CACHE_JS', cogumeloGetSetupValue( 'mod:mediaserver:notCacheJs' ) );
-define( 'MEDIASERVER_HOST', cogumeloGetSetupValue( 'mod:mediaserver:host' ) );
-define( 'MOD_MEDIASERVER_URL_DIR', cogumeloGetSetupValue( 'mod:mediaserver:path' ) );
-define( 'MEDIASERVER_FINAL_CACHE_PATH', cogumeloGetSetupValue( 'mod:mediaserver:cachePath' ) );
-define( 'MEDIASERVER_TMP_CACHE_PATH', cogumeloGetSetupValue( 'mod:mediaserver:tmpCachePath' ) );
-define( 'MEDIASERVER_MINIMIFY_FILES', cogumeloGetSetupValue( 'mod:mediaserver:minimifyFiles' ) );
-*/
-
-// A eliminar:
-global $MEDIASERVER_LESS_GLOBALS; // Se cargan con el prefijo GLOBAL_
-$MEDIASERVER_LESS_GLOBALS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:less:globalVars' );
-global $MEDIASERVER_LESS_CONSTANTS;
-$MEDIASERVER_LESS_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:less:vars' );
-global $MEDIASERVER_JAVASCRIPT_GLOBALS; // Se cargan con el prefijo GLOBAL_
-$MEDIASERVER_JAVASCRIPT_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
-global $MEDIASERVER_JAVASCRIPT_CONSTANTS;
-$MEDIASERVER_JAVASCRIPT_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:javascript:vars' );
-global $MEDIASERVER_SMARTY_GLOBALS; // Se cargan con el prefijo GLOBAL_
-$MEDIASERVER_SMARTY_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
-global $MEDIASERVER_SMARTY_CONSTANTS;
-$MEDIASERVER_SMARTY_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:smarty:vars' );

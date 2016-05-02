@@ -16,10 +16,11 @@ class AdminViewMaster extends View
   public function __construct( $base_dir ) {
     parent::__construct($base_dir);
 
-    $this->langDefault = LANG_DEFAULT;
-    global $LANG_AVAILABLE;
-    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
-      $this->langAvailable = array_keys( $LANG_AVAILABLE );
+    $this->langDefault = Cogumelo::getSetupValue( 'lang:default' );
+
+    $langsConf = Cogumelo::getSetupValue( 'lang:available' );
+    if( is_array( $langsConf ) ) {
+      $this->langAvailable = array_keys( $langsConf );
     }
 
     if( class_exists( 'bi' ) ) {
@@ -108,8 +109,6 @@ class AdminViewMaster extends View
     // Tomamos la variable del formulario principal con todos los campos
     $formFieldsArray = $formBlock->getTemplateVars( 'formFieldsArray' );
     $formFieldsHiddenArray = $formBlock->getTemplateVars( 'formFieldsHiddenArray' );
-
-    global $LANG_AVAILABLE;
 
     foreach( $vars as $field ) {
       $langs = ( isset( $formFieldsArray[ $field ] ) ) ? array( '' ) : $this->langAvailable;

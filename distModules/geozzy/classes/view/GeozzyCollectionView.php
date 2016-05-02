@@ -59,7 +59,7 @@ class GeozzyCollectionView extends View
       }
       $elOpt = array(
         'value' => $res->getter( 'id' ),
-        'text' => $res->getter( 'title', LANG_DEFAULT ),
+        'text' => $res->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ) ),
         'data-image' => $resControl->getResourceThumbnail( $thumbSettings )
       );
 
@@ -178,7 +178,6 @@ class GeozzyCollectionView extends View
     }
 
     if( !$form->existErrors() ) {
-      global $LANG_AVAILABLE;
       $elemIdForm = false;
 
       $valuesArray = $form->getValuesArray();

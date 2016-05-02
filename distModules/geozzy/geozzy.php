@@ -92,7 +92,7 @@ class geozzy extends Module {
     */
     $passwd = false;
 
-    $fileConnectionsInfo = SITE_PATH.'conf/default-connections-info.php';
+    $fileConnectionsInfo = APP_BASE_PATH.'/conf/default-connections-info.php';
     if( file_exists( $fileConnectionsInfo ) ) {
       include $fileConnectionsInfo;
       if( defined( 'SUPERADMIN_PASS' ) ) {

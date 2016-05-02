@@ -40,9 +40,9 @@ class AppResourceBridgeView extends MasterView {
       }
       $this->template->assign( 'res', $resData );
 
-      $this->template->assign( 'i18nlocale', I18N_LOCALE );
+      $this->template->assign( 'i18nlocale', Cogumelo::getSetupValue( 'i18n:localePath' ) );
 
-      $this->template->addClientStyles('styles/masterResource.less');
+      $this->template->addClientStyles( 'styles/masterResource.less' );
       //$this->template->addClientScript('js/resource.js');
 /*
       if( class_exists( 'geozzyUser' ) ) {

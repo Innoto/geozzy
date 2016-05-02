@@ -33,12 +33,13 @@ class UrlAliasView extends View
 
     $langAvailable = false;
     $langOptions = array( '' => _( 'Any' ) );
-    global $LANG_AVAILABLE;
-    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
-      $langAvailable = array_keys( $LANG_AVAILABLE );
-      $langDefault = LANG_DEFAULT;
 
-      foreach( $LANG_AVAILABLE as $langId => $langValues ) {
+    $langsConf = Cogumelo::getSetupValue( 'lang:available' )
+    if( is_array( $langsConf ) ) {
+      $langAvailable = array_keys( $langsConf );
+      $langDefault = Cogumelo::getSetupValue( 'lang:default' );
+
+      foreach( $langAvailable as $langId => $langValues ) {
         $langOptions[ $langId ] = $langValues[ 'name' ];
       }
     }

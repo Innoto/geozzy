@@ -1,7 +1,6 @@
 #!/usr/bin/php -q
 <?php
 
-
 $_SERVER['HTTPS'] = false;
 $_SERVER['HTTP_HOST'] = '';
 $_SERVER['REQUEST_URI'] = 'cogumelo shell script';
@@ -9,14 +8,12 @@ $_SERVER['REMOTE_ADDR'] = "local_shell";
 
 
 // Project location
-
 define( 'PRJ_BASE_PATH', dirname(__FILE__) );
 define( 'WEB_BASE_PATH', dirname(__FILE__).'/httpdocs' );
 define( 'APP_BASE_PATH', dirname(__FILE__).'/app' );
-define( 'SITE_PATH', APP_BASE_PATH.'/' );
 
 // cogumelo core Location
-set_include_path('.:'.SITE_PATH);
+set_include_path('.:'.APP_BASE_PATH);
 
 // require setup
 require_once( 'conf/setup.php' );

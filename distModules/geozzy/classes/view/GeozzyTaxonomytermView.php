@@ -38,13 +38,14 @@ class GeozzyTaxonomytermView extends View
     $langAvailable = false;
     $this->template->assign( 'JsLangAvailable', 'false' );
     $this->template->assign( 'JsLangDefault', 'false' );
-    global $LANG_AVAILABLE;
-    if( isset( $LANG_AVAILABLE ) && is_array( $LANG_AVAILABLE ) ) {
-      $langAvailable = array_keys( $LANG_AVAILABLE );
-      $langDefault = LANG_DEFAULT;
+
+    $langsConf = Cogumelo::getSetupValue( 'lang:available' )
+    if( is_array( $langsConf ) ) {
+      $langAvailable = array_keys( $langsConf );
+      $langDefault = Cogumelo::getSetupValue( 'lang:default' );
       $tmp = implode( "', '", $langAvailable );
       $this->template->assign( 'JsLangAvailable', "['".$tmp."']" );
-      $this->template->assign( 'JsLangDefault', "'".LANG_DEFAULT."'" );
+      $this->template->assign( 'JsLangDefault', "'".$langDefault."'" );
     }
 
 
@@ -178,7 +179,7 @@ class GeozzyTaxonomytermView extends View
    * @return $taxterm
    **/
   public function taxtermOk( $form ) {
-    $langDefault = LANG_DEFAULT;
+    $langDefault = Cogumelo::getSetupValue( 'lang:default' );
 
     //Si tod0 esta OK!
     if( !$form->processFileFields() ) {

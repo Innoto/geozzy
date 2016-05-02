@@ -4,10 +4,9 @@
 define( 'WEB_BASE_PATH', getcwd() );
 define( 'PRJ_BASE_PATH', realpath( WEB_BASE_PATH.'/..' ) );
 define( 'APP_BASE_PATH', PRJ_BASE_PATH.'/app' );
-define( 'SITE_PATH',     APP_BASE_PATH.'/' );
 
 // Include cogumelo core Location
-set_include_path( '.:'.SITE_PATH );
+set_include_path( '.:'.APP_BASE_PATH );
 
 require_once( 'conf/setup.php' );
 
@@ -23,7 +22,7 @@ $dependencesControl->loadCogumeloIncludes();
 // error & warning handlers
 set_error_handler( 'Cogumelo::warningHandler' );
 register_shutdown_function( 'Cogumelo::errorHandler' );
-if( !ERRORS ) {
+if( !cogumeloGetSetupValue( 'logs:error' ) ) { // Metodo de setup porque no se ha cargado Cogumelo aun
   ini_set( 'display_errors', 0 );
 }
 
