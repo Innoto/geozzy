@@ -4,26 +4,21 @@ rextEvent::autoIncludes();
 class RTypeEventController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeEventController::__construct' );
-
     parent::__construct( $defResCtrl, new rtypeEvent() );
-
   }
 
 
   /**
-    Defino el formulario
-   **/
+   * Alteramos el objeto form. del recursoBase para adaptarlo a las necesidades del RType
+   *
+   * @param $form FormController Objeto form. del recursoBase
+   *
+   * @return array $rTypeFieldNames
+   */
   public function manipulateForm( FormController $form ) {
-    //error_log( "RTypeEventController: manipulateForm()" );
 
-    $rTypeExtNames = array();
-    $rTypeFieldNames = array();
-
-    // Extensión alojamiento
-    $rTypeExtNames[] = 'rextEvent';
-    $this->eventCtrl = new RExtEventController( $this );
-    $rExtFieldNames = $this->eventCtrl->manipulateForm( $form );
+    // Lanzamos los manipulateForm de las extensiones
+    parent::manipulateForm( $form );
 
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
@@ -36,42 +31,20 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     // cambiamos el id de la imagen para evitar la colisión con la modal
     $form->setFieldParam('image', 'id', 'imgResourceEvent');
 
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-    // Añadir validadores extra
-    // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
-
-    return( $rTypeFieldNames );
   } // function manipulateForm()
 
 
-
+  /**
+   * Preparamos los datos para visualizar el formulario del Recurso
+   *
+   * @param $form FormController
+   *
+   * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'ext' => array }
+   */
   public function getFormBlockInfo( FormController $form ) {
     //error_log( "RTypeEventController: getFormBlockInfo()" );
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false,
-      'ext' => array()
-    );
-
-    $formBlockInfo['dataForm'] = array(
-      'formOpen' => $form->getHtmpOpen(),
-      'formFieldsArray' => $form->getHtmlFieldsArray(),
-      'formFieldsHiddenArray' => array(),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-      'formClose' => $form->getHtmlClose(),
-      'formValidations' => $form->getScriptCode()
-    );
-
-    if( $resId = $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
-    }
-
-    $this->eventCtrl = new RExtEventController( $this );
-    $eventViewInfo = $this->eventCtrl->getFormBlockInfo( $form );
-    $formBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $eventViewInfo;
+    $formBlockInfo = parent::getFormBlockInfo( $form );
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -121,7 +94,7 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     $templates['event'] = new Template();
     $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['event']->assign( 'title', __( 'Event' ) );
-    $templates['event']->setBlock( 'blockContent', $eventViewInfo['template']['full'] );
+    $templates['event']->setFragment( 'blockContent', $formBlockInfo['ext']['rextEvent']['template']['full']  );
 
     // TEMPLATE panel cuadro informativo
     $templates['info'] = new Template();
@@ -189,106 +162,54 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
 
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
-   **/
-  public function resFormRevalidate( FormController $form ) {
-    //error_log( "RTypeEventController: resFormRevalidate()" );
-
-    if( !$form->existErrors() ) {
-      $this->eventCtrl = new RExtEventController( $this );
-      $this->eventCtrl->resFormRevalidate( $form );
-
-    }
-
-  }
-
-  /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
-   **/
-  public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    //error_log( "RTypeEventController: resFormProcess()" );
-
-    if( !$form->existErrors() ) {
-      $this->eventCtrl = new RExtEventController( $this );
-      $this->eventCtrl->resFormProcess( $form, $resource );
-
-    }
-  }
-
-  /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
-   **/
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    //error_log( "RTypeEventController: resFormSuccess()" );
-
-    $this->eventCtrl = new RExtEventController( $this );
-    $this->eventCtrl->resFormSuccess( $form, $resource );
-
-  }
+   * Validaciones extra previas a usar los datos del recurso
+   *
+   * @param $form FormController Objeto form. del recurso
+   */
+  // parent::resFormRevalidate( $form );
 
 
   /**
-    Preparamos los datos para visualizar el Recurso
-   **/
+   * Creación-Edicion-Borrado de los elementos del recurso segun el RType
+   *
+   * @param $form FormController Objeto form. del recurso
+   * @param $resource ResourceModel Objeto form. del recurso
+   */
+  // parent::resFormProcess( $form, $resource );
+
+
+  /**
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  // parent::resFormSuccess( $form, $resource );
+
+
+  /**
+   * Preparamos los datos para visualizar el Recurso con sus cambios y sus extensiones
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
+   */
   public function getViewBlockInfo() {
-    // error_log( "RTypeEventController: getViewBlockInfo()" );
+    //TODO: Falta actualizar método a nueva forma de trabajar con abstracción -> pendente decidir visualización de eventos / pois
 
-    $viewBlockInfo = array(
-      'template' => false,
-      'data' => $this->defResCtrl->getResourceData( false, true ),
-      'ext' => array()
-    );
+    $viewBlockInfo = parent::getViewBlockInfo();
 
     $template = new Template();
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeEvent' );
 
-    $this->eventCtrl = new RExtEventController( $this );
-    $accomViewInfo = $this->eventCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->eventCtrl->rExtName ] = $accomViewInfo;
-
-    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-
     $taxtermModel = new TaxonomytermModel();
 
     /* Recuperamos todos los términos de la taxonomía servicios*/
-    $services = $this->defResCtrl->getOptionsTax( 'EventServices' );
-    foreach( $services as $serviceId => $serviceName ) {
-      $service = $taxtermModel->listItems(array('filters'=> array('id' => $serviceId)))->fetch();
-      /*Quitamos los términos de la extensión que no se usan en este proyecto*/
-        $allServices[$serviceId]['name'] = $serviceName;
-        $allServices[$serviceId]['idName'] = $service->getter('idName');
-        $allServices[$serviceId]['icon'] = $service->getter('icon');
-    }
-    $template->assign('allServices', $allServices);
-
-    /* Recuperamos todos los términos de la taxonomía instalaciones*/
-    $facilities = $this->defResCtrl->getOptionsTax( 'EventFacilities' );
-    foreach( $facilities as $facilityId => $facilityName ) {
-      $facility = $taxtermModel->listItems(array('filters'=> array('id' => $facilityId)))->fetch();
-      /*Quitamos los términos de la extensión que no se usan en este proyecto*/
-      if ($facility->getter('idName') !== 'bar' && $facility->getter('idName') !== 'lavadora'){
-        $allFacilities[$facilityId]['name'] = $facilityName;
-        $allFacilities[$facilityId]['idName'] = $facility->getter('idName');
-        $allFacilities[$facilityId]['icon'] = $facility->getter('icon');
-      }
-    }
-    $template->assign('allFacilities', $allFacilities);
-
-    if( $accomViewInfo ) {
-      if( $accomViewInfo['template'] ) {
-        foreach( $accomViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextEventBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextEventBlock', false );
+    $eventTypeList = $this->defResCtrl->getOptionsTax( 'rextEventType' );
+    foreach( $eventTypeList as $eventTypeId => $eventTypeName ) {
+      $eventType = $taxtermModel->listItems(array('filters'=> array('id' => $eventTypeId)))->fetch();
     }
 
+    $template->assign('eventType', $eventType);
     $viewBlockInfo['template'] = array( 'full' => $template );
-
     return $viewBlockInfo;
   }
 

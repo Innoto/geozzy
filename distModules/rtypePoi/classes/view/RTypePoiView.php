@@ -144,7 +144,7 @@ class RTypePoiView extends View
 
     /* Validamos os parámetros da url e obtemos un array de volta*/
     $formName = 'PoiEdit';
-    $urlAction = '/rtypePoi/Poi/sendPoi';
+    $urlAction = '/rtypePoi/poi/sendPoi';
 
     if( isset( $urlParams['1'] ) ) {
       $idResource = $urlParams['1'];
@@ -184,7 +184,7 @@ class RTypePoiView extends View
       }
 
       // Cambiamos el template del formulario
-      $formBlockInfo['template']['miniFormModal']->addToBlock('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['full']);
+      $formBlockInfo['template']['miniFormModal']->addToBlock('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['adminExt']);
       $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
       $formBlockInfo['template']['miniFormModal']->exec();
     }

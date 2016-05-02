@@ -90,12 +90,3 @@ define( 'MOD_MEDIASERVER_URL_DIR', cogumeloGetSetupValue( 'mod:mediaserver:path'
 define( 'MEDIASERVER_FINAL_CACHE_PATH', cogumeloGetSetupValue( 'mod:mediaserver:cachePath' ) );
 define( 'MEDIASERVER_TMP_CACHE_PATH', cogumeloGetSetupValue( 'mod:mediaserver:tmpCachePath' ) );
 define( 'MEDIASERVER_MINIMIFY_FILES', cogumeloGetSetupValue( 'mod:mediaserver:minimifyFiles' ) );
-
-/*
-define( 'MEDIASERVER_PRODUCTION_MODE', Cogumelo::getSetupValue( 'mod:mediaserver:productionMode' ) );
-define( 'MEDIASERVER_NOT_CACHE_JS', Cogumelo::getSetupValue( 'mod:mediaserver:notCacheJs' ) );
-define( 'MEDIASERVER_HOST', Cogumelo::getSetupValue( 'mod:mediaserver:host' ) );
-define( 'MOD_MEDIASERVER_URL_DIR', Cogumelo::getSetupValue( 'mod:mediaserver:path' ) );
-define( 'MEDIASERVER_FINAL_CACHE_PATH', Cogumelo::getSetupValue( 'mod:mediaserver:cachePath' ) );
-define( 'MEDIASERVER_TMP_CACHE_PATH', Cogumelo::getSetupValue( 'mod:mediaserver:tmpCachePath' ) );
-define( 'MEDIASERVER_MINIMIFY_FILES', Cogumelo::getSetupValue( 'mod:mediaserver:minimifyFiles' ) );

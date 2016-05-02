@@ -94,7 +94,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $templates['contact'] = new Template();
     $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['contact']->assign( 'title', __( 'Contact' ) );
-    $templates['contact']->setBlock( 'blockContent', $formBlockInfo['ext']['rextContact']['template']['basic'] );
+    $templates['contact']->setFragment( 'blockContent', $formBlockInfo['ext']['rextContact']['template']['basic'] );
 
     // TEMPLATE panel social network
     $templates['social'] = new Template();
@@ -123,7 +123,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $templates['poiCollection'] = new Template();
     $templates['poiCollection']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['poiCollection']->assign( 'title', __( 'POI collection' ) );
-    $templates['poiCollection']->setBlock( 'blockContent', $formBlockInfo['ext']['rextPoiCollection']['template']['full'] );
+    $templates['poiCollection']->setFragment( 'blockContent', $formBlockInfo['ext']['rextPoiCollection']['template']['full'] );
 
     // TEMPLATE panel image
     $templates['image'] = new Template();
@@ -241,19 +241,13 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     // Preparamos los datos para visualizar el Recurso con sus extensiones
     $viewBlockInfo = parent::getViewBlockInfo();
 
-    $viewBlockInfo = array(
-      'template' => false,
-      'data' => $this->defResCtrl->getResourceData( false, true ),
-      'ext' => array()
-    );
-
-    $template = new Template();
+    //$template = new Template();
+    $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppEspazoNatural' );
-
     // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
 
     /* Cargamos los bloques de colecciones */
-    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
+    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $viewBlockInfo['data'][ 'id' ] );
 
     $multimediaArray = false;
     $collectionArray = false;

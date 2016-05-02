@@ -206,40 +206,13 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
 
     $taxtermModel = new TaxonomytermModel();
 
-    /* Recuperamos todos los términos de la taxonomía servicios*/
-    $services = $this->defResCtrl->getOptionsTax( 'PoiServices' );
-    foreach( $services as $serviceId => $serviceName ) {
-      $service = $taxtermModel->listItems(array('filters'=> array('id' => $serviceId)))->fetch();
-      /*Quitamos los términos de la extensión que no se usan en este proyecto*/
-        $allServices[$serviceId]['name'] = $serviceName;
-        $allServices[$serviceId]['idName'] = $service->getter('idName');
-        $allServices[$serviceId]['icon'] = $service->getter('icon');
+    /* Recuperamos todos los términos de la taxonomía tipo*/
+    $poiTypeList = $this->defResCtrl->getOptionsTax( 'rextPoiType' );
+    foreach( $poiTypeList as $poiTypeId => $poiTypeName ) {
+      $poiType = $taxtermModel->listItems(array('filters'=> array('id' => $poiTypeId)))->fetch();
     }
-    $template->assign('allServices', $allServices);
+    $template->assign('poiType', $poiType);
 
-    /* Recuperamos todos los términos de la taxonomía instalaciones*/
-    $facilities = $this->defResCtrl->getOptionsTax( 'PoiFacilities' );
-    foreach( $facilities as $facilityId => $facilityName ) {
-      $facility = $taxtermModel->listItems(array('filters'=> array('id' => $facilityId)))->fetch();
-      /*Quitamos los términos de la extensión que no se usan en este proyecto*/
-      if ($facility->getter('idName') !== 'bar' && $facility->getter('idName') !== 'lavadora'){
-        $allFacilities[$facilityId]['name'] = $facilityName;
-        $allFacilities[$facilityId]['idName'] = $facility->getter('idName');
-        $allFacilities[$facilityId]['icon'] = $facility->getter('icon');
-      }
-    }
-    $template->assign('allFacilities', $allFacilities);
-
-    if( $accomViewInfo ) {
-      if( $accomViewInfo['template'] ) {
-        foreach( $accomViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextPoiBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextPoiBlock', false );
-    }
 
     $viewBlockInfo['template'] = array( 'full' => $template );
 
