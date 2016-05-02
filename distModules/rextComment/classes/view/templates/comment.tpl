@@ -1,3 +1,4 @@
+{$commentCustomScript}
 {$client_includes}
 
 {$commentFormOpen}
