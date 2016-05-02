@@ -1,6 +1,4 @@
 <?php
-rextFile::autoIncludes();
-
 
 class RTypeFileController extends RTypeController implements RTypeInterface {
 
@@ -10,26 +8,13 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     parent::__construct( $defResCtrl, new rtypeFile() );
   }
 
-
-  private function newRExtContr() {
-
-    return new RExtFileController( $this );
-  }
-
   /**
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
     // error_log( "RTypeFileController: manipulateForm()" );
 
-    $rTypeExtNames = array();
-    $rTypeFieldNames = array();
-
-    $rTypeExtNames[] = 'rextFile';
-    $this->rExtCtrl = $this->newRExtContr();
-    $rExtFieldNames = $this->rExtCtrl->manipulateForm( $form );
-
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
+    parent::manipulateForm( $form );
 
     // cambiamos el tipo de topics y starred para que no se muestren
     $form->setFieldParam('topics', 'type', 'reserved');
@@ -37,35 +22,13 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
 
-    return( $rTypeFieldNames );
   } // function manipulateForm()
 
   public function getFormBlockInfo( FormController $form ) {
     // error_log( "RTypeHotelController: getFormBlockInfo()" );
-
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false,
-      'ext' => array()
-    );
-
-    $formBlockInfo['dataForm'] = array(
-      'formOpen' => $form->getHtmpOpen(),
-      'formFieldsArray' => $form->getHtmlFieldsArray(),
-      'formFieldsHiddenArray' => array(),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-      'formClose' => $form->getHtmlClose(),
-      'formValidations' => $form->getScriptCode()
-    );
-
-    if( $resId = $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
-    }
+    $formBlockInfo = parent::getFormBlockInfo( $form );
 
     $this->fileCtrl = new RExtFileController( $this );
-    $fileViewInfo = $this->fileCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->fileCtrl->rExtName ] = $fileViewInfo;
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -186,30 +149,20 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
   }
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
-   **/
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeFileController: resFormRevalidate()" );
+   * Validaciones extra previas a usar los datos del recurso
+   *
+   * @param $form FormController Objeto form. del recurso
+   */
+  // parent::resFormRevalidate( $form );
 
-    if( !$form->existErrors() ) {
-      $this->rExtCtrl = $this->newRExtContr();
-      $this->rExtCtrl->resFormRevalidate( $form );
-    }
-
-    // $this->evalFormFileAlias( $form, 'urlAlias' );
-  }
 
   /**
     Creación-Edición-Borrado de los elementos del recurso base
     Iniciar transaction
    **/
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeFileController: resFormProcess()" );
 
-    if( !$form->existErrors() ) {
-      $this->rExtCtrl = $this->newRExtContr();
-      $this->rExtCtrl->resFormProcess( $form, $resource );
-    }
+    parent::resFormProcess( $form, $resource );
 
     if( !$form->existErrors() ) {
       //error_log( "rExtCtrl->rExtModel:" . print_r( $this->rExtCtrl->rExtModel, true ) );
@@ -228,58 +181,20 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
   }
 
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
-   **/
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeFileController: resFormSuccess()" );
-
-    $this->rExtCtrl = $this->newRExtContr();
-    $this->rExtCtrl->resFormSuccess( $form, $resource );
-  }
-
-
-
-  /**
-    Visualizamos el Recurso
-   **/
-  public function getViewBlock( Template $resBlock ) {
-    // error_log( "RTypeFileController: getViewBlock()" );
-    $template = false;
-
-    $template = $resBlock;
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeFile' );
-
-    $this->rExtCtrl = $this->newRExtContr();
-    $urlBlock = $this->rExtCtrl->getViewBlock( $resBlock );
-
-    if( $urlBlock ) {
-      $template->addToBlock( 'rextFile', $urlBlock );
-      $template->assign( 'rExtBlockNames', array( 'rextFile' ) );
-    }
-    else {
-      $template->assign( 'rextFile', false );
-      $template->assign( 'rExtBlockNames', false );
-    }
-
-    return $template;
-  }
-
-
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  // parent::resFormSuccess( $form, $resource );
 
   /**
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo() {
-    // error_log( "RTypeFileController: getViewBlockInfo()" );
+    $viewBlockInfo = parent::getViewBlockInfo();
 
-    $viewBlockInfo = array(
-      'template' => false,
-      'data' => $this->defResCtrl->getResourceData( false, true ),
-      'ext' => array()
-    );
-
-    $template = new Template();
+    $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeFile' );
 
     $this->rExtCtrl = $this->newRExtContr();
