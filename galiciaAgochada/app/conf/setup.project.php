@@ -1,32 +1,35 @@
 <?php
-/**
- * Previamente ya se definen los siguientes valores:
- *
- * WEB_BASE_PATH - Apache DocumentRoot (declarado en index.php)
- * APP_BASE_PATH - App Path (declarado en index.php)
- * SITE_PATH - App Path (declarado en index.php)
- *
- * IS_DEVEL_ENV - Indica si estamos en el entorno de desarrollo (declarado en setup.php)
- *
- *
- * Normas de estilo:
- *
- * * Nombres:
- * - Inicia por mod:nombreModulo: para modulos
- * - Usar en variablePath para rutas
- *
- * * Valores:
- * - Las rutas NO finalizan en /
- * - Las URL NO finalizan en /
- */
+/*
+  Previamente se definen las siguientes constantes:
 
-// En setup.*
-// cogumeloSetSetupValue( 'modName:level1:level2', $value );
-// $value = cogumeloGetSetupValue( 'modName:level1:level2' );
+  WEB_BASE_PATH - Apache DocumentRoot (en index.php)
+  APP_BASE_PATH - App Path (en index.php)
+  SITE_PATH     - App Path (en index.php)
+  IS_DEVEL_ENV  - Indica si estamos en el entorno de desarrollo (en setup.php)
 
-// En codigo cogumelo
-// Cogumelo::setSetupValue( 'modName:level1:level2', $value );
-// $value = Cogumelo::getSetupValue( 'modName:level1:level2' );
+
+  Normas de estilo:
+
+  Nombres:
+  - Inicia por mod:nombreModulo: para configuración de modulos
+  - Fuera de módulos, de forma general, usaremos tema:subtema:variable
+  - Usar nombres finalizados en "Path" (variablePath) para rutas
+
+  Valores:
+  - Las rutas NO finalizan en /
+  - Las URL NO finalizan en /
+
+
+  Llamadas a metodos:
+
+  En ficheros de setup:
+  cogumeloSetSetupValue( 'mod:nombreModulo:level1:level2', $value );
+  $value = cogumeloGetSetupValue( 'mod:nombreModulo:level1:level2' );
+
+  En código cogumelo:
+  Cogumelo::setSetupValue( 'mod:nombreModulo:level1:level2', $value );
+  $value = Cogumelo::getSetupValue( 'mod:nombreModulo:level1:level2' );
+*/
 
 
 // Lang

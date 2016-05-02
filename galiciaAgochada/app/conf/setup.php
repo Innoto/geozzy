@@ -15,5 +15,5 @@ else {
 
 
 // Configuracion proyecto
-require_once( 'setup.galiciaagochada.php' );
+require_once( 'setup.project.php' );
 
