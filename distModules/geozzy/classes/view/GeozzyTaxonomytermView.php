@@ -39,7 +39,7 @@ class GeozzyTaxonomytermView extends View
     $this->template->assign( 'JsLangAvailable', 'false' );
     $this->template->assign( 'JsLangDefault', 'false' );
 
-    $langsConf = Cogumelo::getSetupValue( 'lang:available' )
+    $langsConf = Cogumelo::getSetupValue( 'lang:available' );
     if( is_array( $langsConf ) ) {
       $langAvailable = array_keys( $langsConf );
       $langDefault = Cogumelo::getSetupValue( 'lang:default' );
