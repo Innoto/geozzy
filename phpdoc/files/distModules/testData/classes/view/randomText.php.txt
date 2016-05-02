@@ -1,6 +1,0 @@
-<?php
-$randomText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lectus nunc, luctus at nisi non, congue efficitur velit. Duis semper pellentesque neque, sed faucibus metus luctus ac. Aliquam posuere erat eu feugiat vestibulum. Ut magna eros, vehicula ut elementum vel, mattis id leo. 
-Pellentesque ac ex nibh. Nulla interdum aliquam pretium. Sed porttitor arcu quis mi ullamcorper, tempus faucibus diam pharetra. Mauris sagittis mi eget faucibus auctor. Nullam aliquet erat nec enim condimentum viverra. Quisque finibus cursus auctor. Praesent orci nibh, volutpat eget orci eget, porta condimentum orci. Fusce nec dictum sapien, vel fringilla purus. Nullam eget lobortis lorem. Pellentesque imperdiet 
-ante mauris, sit amet faucibus sem consequat ut. Morbi metus nulla, hendrerit ut aliquam in, laoreet feugiat dui. Aenean ac massa nulla. Aenean venenatis ex quis ipsum tempus dapibus. Proin efficitur, sapien eget convallis ultrices, quam mauris semper enim, sit amet volutpat purus 
-diam sit amet nisi. Vestibulum vestibulum a ligula ut facilisis. Nam molestie eros quis libero dapibus, a tempus lorem pulvinar. Morbi eget nisl ut enim rutrum efficitur. In hac habitasse platea dictumst. ";
-?>
