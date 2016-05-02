@@ -3,8 +3,8 @@
   Previamente se definen las siguientes constantes:
 
   WEB_BASE_PATH - Apache DocumentRoot (en index.php)
+  PRJ_BASE_PATH - Project Path (normalmente contiene app/ httpdocs/ formFiles/) (en index.php)
   APP_BASE_PATH - App Path (en index.php)
-  SITE_PATH     - App Path (en index.php)
   IS_DEVEL_ENV  - Indica si estamos en el entorno de desarrollo (en setup.php)
 
 
@@ -41,6 +41,10 @@ define( 'COGUMELO_DIST_LOCATION', '/home/proxectos/geozzy');
 //
 define( 'APP_TMP_PATH', APP_BASE_PATH.'/tmp' );
 
+// cogumeloScript Url settings
+//
+cogumeloSetSetupValue( 'script:cogumeloServerUrl', 'http://galiciaagochada/cogumelo-server.php' );
+
 // DB
 //
 cogumeloSetSetupValue( 'db', array(
@@ -54,10 +58,6 @@ cogumeloSetSetupValue( 'db', array(
   'allowCache' => true
 ));
 
-// Url settings
-// TODO: No se admite un puerto?
-define( 'COGUMELO_ADMINSCRIPT_URL', 'http://galiciaagochada/cogumelo-server.php');
-
 // Media server
 //
 cogumeloSetSetupValue( 'mod:mediaserver', array(
@@ -70,32 +70,3 @@ cogumeloSetSetupValue( 'mod:mediaserver', array(
   'minimifyFiles' => false // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
 ));
 
-//PORTO
-/*
-if( cogumeloGetSetupValue('mod:mediaserver:productionMode') ) {
-  cogumeloSetSetupValue( 'mod:mediaserver:notCacheJs', false );
-  cogumeloSetSetupValue( 'mod:mediaserver:host', 'http://media.galiciaagochada/' );
-}
-else {
-  cogumeloSetSetupValue( 'mod:mediaserver:notCacheJs', true );
-  cogumeloSetSetupValue( 'mod:mediaserver:host', '/' );
-}
-*/
-
-// A eliminar:
-define( 'MEDIASERVER_PRODUCTION_MODE', cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) );
-define( 'MEDIASERVER_NOT_CACHE_JS', cogumeloGetSetupValue( 'mod:mediaserver:notCacheJs' ) );
-define( 'MEDIASERVER_HOST', cogumeloGetSetupValue( 'mod:mediaserver:host' ) );
-define( 'MOD_MEDIASERVER_URL_DIR', cogumeloGetSetupValue( 'mod:mediaserver:path' ) );
-define( 'MEDIASERVER_FINAL_CACHE_PATH', cogumeloGetSetupValue( 'mod:mediaserver:cachePath' ) );
-define( 'MEDIASERVER_TMP_CACHE_PATH', cogumeloGetSetupValue( 'mod:mediaserver:tmpCachePath' ) );
-define( 'MEDIASERVER_MINIMIFY_FILES', cogumeloGetSetupValue( 'mod:mediaserver:minimifyFiles' ) );
-
-/*
-define( 'MEDIASERVER_PRODUCTION_MODE', Cogumelo::getSetupValue( 'mod:mediaserver:productionMode' ) );
-define( 'MEDIASERVER_NOT_CACHE_JS', Cogumelo::getSetupValue( 'mod:mediaserver:notCacheJs' ) );
-define( 'MEDIASERVER_HOST', Cogumelo::getSetupValue( 'mod:mediaserver:host' ) );
-define( 'MOD_MEDIASERVER_URL_DIR', Cogumelo::getSetupValue( 'mod:mediaserver:path' ) );
-define( 'MEDIASERVER_FINAL_CACHE_PATH', Cogumelo::getSetupValue( 'mod:mediaserver:cachePath' ) );
-define( 'MEDIASERVER_TMP_CACHE_PATH', Cogumelo::getSetupValue( 'mod:mediaserver:tmpCachePath' ) );
-define( 'MEDIASERVER_MINIMIFY_FILES', Cogumelo::getSetupValue( 'mod:mediaserver:minimifyFiles' ) );
