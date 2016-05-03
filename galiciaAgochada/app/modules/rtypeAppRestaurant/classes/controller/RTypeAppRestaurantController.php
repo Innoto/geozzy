@@ -1,32 +1,25 @@
 <?php
-rextEatAndDrink::autoIncludes();
-rextContact::autoIncludes();
-rextMapDirections::autoIncludes();
-rextAppZona::autoIncludes();
-rextSocialNetwork::autoIncludes();
 
 class RTypeAppRestaurantController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeAppRestaurantController::__construct' );
-
     parent::__construct( $defResCtrl, new rtypeAppRestaurant() );
   }
 
 
-
   /**
-    Defino el formulario
-   **/
+   * Alteramos el objeto form. del recursoBase para adaptarlo a las necesidades del RType
+   *
+   * @param $form FormController Objeto form. del recursoBase
+   *
+   * @return array $rTypeFieldNames
+   */
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeAppRestaurantController: manipulateForm()" );
 
-    $rTypeExtNames = array();
-    $rTypeFieldNames = array();
+    // Lanzamos los manipulateForm de las extensiones
+    parent::manipulateForm( $form );
 
-    $rTypeExtNames[] = 'rextEatAndDrink';
-    $this->eatCtrl = new RExtEatAndDrinkController( $this );
-    $rExtFieldNames = $this->eatCtrl->manipulateForm( $form );
+    $eatCtrl = new RExtEatAndDrinkController( $this );
 
     // Elimino los campos de la extensión que no quiero usar
     $form->removeField('rextEatAndDrink_capacity');
@@ -37,73 +30,25 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
 
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-    // Extensión contacto
-    $rTypeExtNames[] = 'rextContact';
-    $this->contactCtrl = new RExtContactController( $this );
-    $rExtFieldNames = $this->contactCtrl->manipulateForm( $form );
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
     $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
 
-    // Extensión social network
-    $rTypeExtNames[] = 'rextSocialNetwork';
-    $this->socialCtrl = new RExtSocialNetworkController( $this );
-    $rExtFieldNames = $this->socialCtrl->manipulateForm( $form );
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-    // Extensión Zona
-    $rTypeExtNames[] = 'rextAppZona';
-    $this->zonaCtrl = new RExtAppZonaController( $this );
-    $rExtFieldNames = $this->zonaCtrl->manipulateForm( $form );
-    $rTypeFieldNames = array_merge( $rTypeFieldNames, $rExtFieldNames );
-
-    // Valadaciones extra
-    // $form->setValidationRule( 'restaurantName_'.$form->langDefault, 'required' );
-
-    return( $rTypeFieldNames );
   } // function manipulateForm()
 
 
+  /**
+   * Preparamos los datos para visualizar el formulario del Recurso
+   *
+   * @param $form FormController
+   *
+   * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'ext' => array }
+   */
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RTypeAppRestaurantController: getFormBlockInfo()" );
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false,
-      'ext' => array()
-    );
+    // Cargamos la informacion del form, los datos y lanzamos los getFormBlockInfo de las extensiones
+    $formBlockInfo = parent::getFormBlockInfo( $form );
 
-    $formBlockInfo['dataForm'] = array(
-      'formOpen' => $form->getHtmpOpen(),
-      'formFieldsArray' => $form->getHtmlFieldsArray(),
-      'formFieldsHiddenArray' => array(),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-      'formClose' => $form->getHtmlClose(),
-      'formValidations' => $form->getScriptCode()
-    );
-
-    if( $resId = $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
-    }
-
-    $this->eatCtrl = new RExtEatAndDrinkController( $this );
-    $EatandDrinkViewInfo = $this->eatCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->eatCtrl->rExtName ] = $EatandDrinkViewInfo;
-
-    $this->contactCtrl = new RExtContactController( $this );
-    $contactViewInfo = $this->contactCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
-
-    $this->socialCtrl = new RExtSocialNetworkController( $this );
-    $socialViewInfo = $this->socialCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
-
-    $this->zonaCtrl = new RExtAppZonaController( $this );
-    $zonaViewInfo = $this->zonaCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->zonaCtrl->rExtName ] = $zonaViewInfo;
+    $eatCtrl = new RExtEatAndDrinkController( $this );
+    $zonaCtrl = new RExtAppZonaController( $this );
 
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
@@ -152,7 +97,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
     $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['reservation']->assign( 'title', __( 'Reservation' ) );
     $templates['reservation']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->eatCtrl->prefixArray( array( 'reservationURL', 'reservationPhone' ) );
+    $formFieldsNames = $eatCtrl->prefixArray( array( 'reservationURL', 'reservationPhone' ) );
     $templates['reservation']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel contacto
@@ -166,13 +111,13 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
     $templates['contact'] = new Template();
     $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['contact']->assign( 'title', __( 'Contact' ) );
-    $templates['contact']->setBlock( 'blockContent', $contactViewInfo['template']['basic'] );
+    $templates['contact']->setFragment( 'blockContent', $formBlockInfo['ext']['rextContact']['template']['basic'] );
 
     // TEMPLATE panel social network
     $templates['social'] = new Template();
     $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['social']->assign( 'title', __( 'Social Networks' ) );
-    $templates['social']->setBlock( 'blockContent', $socialViewInfo['template']['basic'] );
+    $templates['social']->setFragment( 'blockContent', $formBlockInfo['ext']['rextSocialNetwork']['template']['basic'] );
 
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();
@@ -203,8 +148,8 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['categorization']->assign( 'title', __( 'Categorization' ) );
     $templates['categorization']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $this->eatCtrl->prefixArray( array('eatanddrinkType', 'eatanddrinkSpecialities', 'averagePrice') );
-    $formFieldsNames[] = $this->zonaCtrl->addPrefix('rextAppZonaType');
+    $formFieldsNames = $eatCtrl->prefixArray( array('eatanddrinkType', 'eatanddrinkSpecialities', 'averagePrice') );
+    $formFieldsNames[] = $zonaCtrl->addPrefix('rextAppZonaType');
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel cuadro informativo
@@ -270,150 +215,48 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
     return $formBlockInfo;
   }
 
-  /**
-    Validaciones extra previas a usar los datos del recurso base
-   **/
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RTypeAppRestaurantController: resFormRevalidate()" );
-
-    if( !$form->existErrors() ) {
-      $this->eatCtrl = new RExtEatAndDrinkController( $this );
-      $this->eatCtrl->resFormRevalidate( $form );
-
-      $this->contactCtrl = new RExtContactController( $this );
-      $this->contactCtrl->resFormRevalidate( $form );
-
-      $this->socialCtrl = new RExtSocialNetworkController( $this );
-      $this->socialCtrl->resFormRevalidate( $form );
-
-      $this->zonaCtrl = new RExtAppZonaController( $this );
-      $this->zonaCtrl->resFormRevalidate( $form );
-    }
-
-    // $this->evalFormUrlAlias( $form, 'urlAlias' );
-  }
-
-  /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
-   **/
-  public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeAppRestaurantController: resFormProcess()" );
-    if( !$form->existErrors() ) {
-      $this->eatCtrl = new RExtEatAndDrinkController( $this );
-      $this->eatCtrl->resFormProcess( $form, $resource );
-
-      $this->contactCtrl = new RExtContactController( $this );
-      $this->contactCtrl->resFormProcess( $form, $resource );
-
-      $this->socialCtrl = new RExtSocialNetworkController( $this );
-      $this->socialCtrl->resFormProcess( $form, $resource );
-
-      $this->zonaCtrl = new RExtAppZonaController( $this );
-      $this->zonaCtrl->resFormProcess( $form, $resource );
-    }
-  }
-
-  /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
-   **/
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RTypeAppRestaurantController: resFormSuccess()" );
-
-    $this->eatCtrl = new RExtEatAndDrinkController( $this );
-    $this->eatCtrl->resFormSuccess( $form, $resource );
-
-    $this->contactCtrl = new RExtContactController( $this );
-    $this->contactCtrl->resFormSuccess( $form, $resource );
-
-    $this->socialCtrl = new RExtSocialNetworkController( $this );
-    $this->socialCtrl->resFormSuccess( $form, $resource );
-
-    $this->zonaCtrl = new RExtAppZonaController( $this );
-    $this->zonaCtrl->resFormSuccess( $form, $resource );
-  }
 
 
   /**
-    Preparamos los datos para visualizar el Recurso
-   **/
+   * Validaciones extra previas a usar los datos del recurso
+   *
+   * @param $form FormController Objeto form. del recurso
+   */
+  // parent::resFormRevalidate( $form );
+
+
+
+  /**
+   * Creación-Edicion-Borrado de los elementos del recurso segun el RType
+   *
+   * @param $form FormController Objeto form. del recurso
+   * @param $resource ResourceModel Objeto form. del recurso
+   */
+  // parent::resFormProcess( $form, $resource );
+
+
+
+  /**
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
+   */
+  // parent::resFormSuccess( $form, $resource );
+
+
+  /**
+   * Preparamos los datos para visualizar el Recurso con sus cambios y sus extensiones
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
+   */
   public function getViewBlockInfo() {
-    // error_log( "RTypeAppRestaurantController: getViewBlockInfo()" );
 
-    $viewBlockInfo = array(
-      'template' => false,
-      'data' => $this->defResCtrl->getResourceData( false, true ),
-      'ext' => array()
-    );
+    // Preparamos los datos para visualizar el Recurso con sus extensiones
+    $viewBlockInfo = parent::getViewBlockInfo();
 
-    $template = new Template();
+    $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppRestaurant' );
-
-    $this->rExtCtrl = new RExtEatAndDrinkController( $this );
-    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
-
-    $this->contactCtrl = new RExtContactController( $this );
-    $contactViewInfo = $this->contactCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->contactCtrl->rExtName ] = $contactViewInfo;
-
-    $this->mapDirCtrl = new RExtMapDirectionsController( $this );
-    $mapDirViewInfo = $this->mapDirCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->mapDirCtrl->rExtName ] = $mapDirViewInfo;
-    // error_log( 'viewBlockInfo ext '. $this->mapDirCtrl->rExtName .' = '. print_r( $mapDirViewInfo, true ) );
-
-    $this->socialCtrl = new RExtSocialNetworkController( $this );
-    $socialViewInfo = $this->socialCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->socialCtrl->rExtName ] = $socialViewInfo;
-
-    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-
-    $resData = $this->defResCtrl->getResourceData( false, true );
-
-    if( $rExtViewInfo ) {
-      if( $rExtViewInfo['template'] ) {
-        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextEatAndDrinkBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextEatAndDrinkBlock', 'false' );
-    }
-
-    if( $contactViewInfo ) {
-      if( $contactViewInfo['template'] ) {
-        foreach( $contactViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextContactBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextContactBlock', false );
-    }
-
-    if( $mapDirViewInfo ) {
-      if( $mapDirViewInfo['template'] ) {
-        foreach( $mapDirViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextMapDirectionsBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextMapDirectionsBlock', false );
-    }
-
-    if( $socialViewInfo ) {
-      if( $socialViewInfo['template'] ) {
-        foreach( $socialViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextSocialNetworkBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextSocialNetworkBlock', false );
-    }
 
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
 
@@ -447,7 +290,6 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
         }
       }
     }
-
 
     $viewBlockInfo['template'] = array( 'full' => $template );
 

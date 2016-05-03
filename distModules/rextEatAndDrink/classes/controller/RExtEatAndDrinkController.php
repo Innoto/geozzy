@@ -3,17 +3,19 @@
 
 class RExtEatAndDrinkController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
-
-
   public function __construct( $defRTypeCtrl ){
+    parent::__construct( $defRTypeCtrl, new rextEatAndDrink(), 'rextEatAndDrink_' );
 
     $this->numericFields = array( 'averagePrice', 'capacity' );
-
-    parent::__construct( $defRTypeCtrl, new rextEatAndDrink(), 'rextEatAndDrink_' );
   }
 
-
+  /**
+   * Carga los datos de los elementos de la extension
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   */
   public function getRExtData( $resId = false ) {
     $rExtData = false;
 
@@ -44,7 +46,9 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
 
 
   /**
-    Defino el formulario
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
    */
   public function manipulateForm( FormController $form ) {
 
@@ -116,7 +120,11 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
         $rExtFieldNames[] = $fieldName;
       }
     }
-    $rExtFieldNames[] = 'FieldNames';
+
+    /*******************************************************************
+     * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
+     *******************************************************************/
+    //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
@@ -125,50 +133,36 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
   } // function manipulateForm()
 
 
-  public function getFormBlockInfo( FormController $form ) {
-
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
-
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-
-    $formBlockInfo['dataForm'] = array(
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-    );
-
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
-
-    $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
-    $templates['full']->assign( 'rExtName', $this->rExtName );
-    $templates['full']->assign( 'rExt', $formBlockInfo );
-
-    $formBlockInfo['template'] = $templates;
-
-    return $formBlockInfo;
-  }
-
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
-  public function resFormRevalidate( FormController $form ) {
-  }
+  // parent::getFormBlockInfo( $form );
+
+
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
+   */
+  // parent::resFormRevalidate( $form );
+
+
+
+  /**
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
 
     if( !$form->existErrors() ) {
-      //$numericFields = array( 'averagePrice', 'capacity' );
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
@@ -196,23 +190,26 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     }
   }
 
+
+
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-  }
+  // parent::resFormSuccess( $form, $resource )
+
 
 
   /**
-    Preparamos los datos para visualizar el Recurso
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
-    );
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();

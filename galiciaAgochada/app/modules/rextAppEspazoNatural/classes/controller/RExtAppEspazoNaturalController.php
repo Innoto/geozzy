@@ -169,12 +169,6 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
       $rExtViewBlockInfo['template']['full'] = new Template();
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextAppEspazoNatural' );
-
-
-      // $template = new Template();
-      // $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-      // $template->setTpl( 'rExtViewBlock.tpl', 'rextAppEspazoNatural' );
-      // $rExtViewBlockInfo['template'] = array( 'full' => $template );
     }
 
     return $rExtViewBlockInfo;
