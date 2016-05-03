@@ -56,9 +56,8 @@ cogumeloSetSetupValue( 'date:timezone', 'Europe/Madrid');
 
 
 //
-//  DB
+//  memcached
 //
-// MOVIDO a setup.dev.php o setup.final.php
 require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
 
 //
