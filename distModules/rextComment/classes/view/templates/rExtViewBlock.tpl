@@ -1,6 +1,6 @@
 <!-- rExtViewBlock.tpl en rExtComment module -->
 
-<div class="rExtComment">
+<div class="rExtCommentList">
 
 </div>
 

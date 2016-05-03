@@ -54,7 +54,7 @@ class admin extends Module
      "id" =>"raphael",
      "params" => array("raphael"),
      "installer" => "bower",
-     "includes" => array("raphael-min.js")
+     "includes" => array("raphael.min.js")
     ),
     array(
      "id" =>"select2",

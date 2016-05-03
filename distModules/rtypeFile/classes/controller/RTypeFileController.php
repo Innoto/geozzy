@@ -123,13 +123,13 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
-    $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['seo'] );
     // COL4
-    $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['file'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['file'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['image'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['miniFormModal'] = new Template();
@@ -166,11 +166,36 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
 
     if( !$form->existErrors() ) {
       //error_log( "rExtCtrl->rExtModel:" . print_r( $this->rExtCtrl->rExtModel, true ) );
+      $fileCtrl = new RExtFileController( $this );
+      $valueFile = $form->getFieldValue( $fileCtrl->addPrefix( 'file' ) );
+      $valueImage = $form->getFieldValue( 'image' );
+
+      if(!$valueImage && ( $valueFile && strpos($valueFile['validate']['type'], 'image/') !== false )){
+
+
+        $rexData = $fileCtrl->getRExtData($resource->getter('id'));
+        $resdata['id'] = $resource->getter('id');
+        $resdata['image'] = $rexData['file']['id'];
+        $resModel = new resourceModel($resdata);
+        $resModel->save();
+      }
+      // image field == file field
+    }
+
+    /*
+    if( !$form->existErrors() ) {
+      $this->rExtCtrl = $this->newRExtContr();
+      $this->rExtCtrl->resFormProcess( $form, $resource );
+    }
+    if( !$form->existErrors() ) {
 
       $valueFile = $form->getFieldValue( $this->rExtCtrl->addPrefix( 'file' ) );
       $valueImage = $form->getFieldValue( 'image' );
 
       if(!$valueImage && ( $valueFile && strpos($valueFile['validate']['type'], 'image/') !== false )){
+
+        var_dump($this->defResCtrl->resObj->getter('id'));
+        exit;
         $resdata['id'] = $this->rExtCtrl->rExtModel->getter('resource');
         $resdata['image'] = $this->rExtCtrl->rExtModel->getter('file');
         $resModel = new resourceModel($resdata);
@@ -178,6 +203,7 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
       }
       // image field == file field
     }
+    */
   }
 
   /**
@@ -206,7 +232,7 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     if( $rExtViewInfo ) {
       if( $rExtViewInfo['template'] ) {
         foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextFileBlock', $templateBlock );
+          $template->addToFragment( 'rextFileBlock', $templateBlock );
         }
       }
     }
