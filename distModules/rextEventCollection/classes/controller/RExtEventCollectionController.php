@@ -112,7 +112,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
       }
       $elOpt = array(
         'value' => $res->getter( 'id' ),
-        'text' => $res->getter( 'title', LANG_DEFAULT ),
+        'text' => $res->getter( 'title', Cogumelo::getSetupValue('lang:default') ),
         'data-image' => $resControl->getResourceThumbnail( $thumbSettings )
       );
 
