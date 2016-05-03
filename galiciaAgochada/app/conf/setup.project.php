@@ -308,7 +308,7 @@ cogumeloSetSetupValue( 'mod:mediaserver', array(
   'path' => 'media',
   'cachePath' => 'mediaCache',
   'tmpCachePath' => APP_TMP_PATH.'/mediaCache',
-  'minimifyFiles' => false // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
+  'minimifyFiles' => false // for js and css files ( only when mod:mediaserver:productionMode is true)
 ));
 */
 cogumeloSetSetupValue( 'publicConf',
@@ -344,18 +344,18 @@ cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields',
 );
 
 // A eliminar:
-global $MEDIASERVER_LESS_GLOBALS; // Se cargan con el prefijo GLOBAL_
-$MEDIASERVER_LESS_GLOBALS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:less:globalVars' );
-global $MEDIASERVER_LESS_CONSTANTS;
-$MEDIASERVER_LESS_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:less:vars' );
-global $MEDIASERVER_JAVASCRIPT_GLOBALS; // Se cargan con el prefijo GLOBAL_
-$MEDIASERVER_JAVASCRIPT_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
-global $MEDIASERVER_JAVASCRIPT_CONSTANTS;
-$MEDIASERVER_JAVASCRIPT_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:javascript:vars' );
-global $MEDIASERVER_SMARTY_GLOBALS; // Se cargan con el prefijo GLOBAL_
-$MEDIASERVER_SMARTY_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
-global $MEDIASERVER_SMARTY_CONSTANTS;
-$MEDIASERVER_SMARTY_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:smarty:vars' );
+// global $MEDIASERVER_LESS_GLOBALS; // Se cargan con el prefijo GLOBAL_
+// $MEDIASERVER_LESS_GLOBALS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:less:globalVars' );
+// global $MEDIASERVER_LESS_CONSTANTS;
+// $MEDIASERVER_LESS_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:less:vars' );
+// global $MEDIASERVER_JAVASCRIPT_GLOBALS; // Se cargan con el prefijo GLOBAL_
+// $MEDIASERVER_JAVASCRIPT_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
+// global $MEDIASERVER_JAVASCRIPT_CONSTANTS;
+// $MEDIASERVER_JAVASCRIPT_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:javascript:vars' );
+// global $MEDIASERVER_SMARTY_GLOBALS; // Se cargan con el prefijo GLOBAL_
+// $MEDIASERVER_SMARTY_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
+// global $MEDIASERVER_SMARTY_CONSTANTS;
+// $MEDIASERVER_SMARTY_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:smarty:vars' );
 
 
 
