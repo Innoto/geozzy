@@ -60,6 +60,8 @@ class MasterView extends View
 
 
   public function page404() {
+    // Esto se llama directamente desde Cogumelo RequestController
+    header("HTTP/1.0 404 Not Found");
     echo 'PAGE404: Recurso non atopado';
   }
 
