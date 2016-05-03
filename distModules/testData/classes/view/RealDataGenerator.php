@@ -26,6 +26,8 @@ class RealDataGenerator extends View
 
     $resourcecontrol = new ResourceController();
 
+    $langDefault = Cogumelo::getSetupValue( 'lang:default' );
+
     // Tipo: restaurante
     $rTypeModel = new ResourcetypeModel();
     $rTypeObj = $rTypeModel->listItems( array( 'filters' => array( 'idName' => 'rtypeAppRestaurant' )))->fetch();
@@ -59,7 +61,7 @@ class RealDataGenerator extends View
     $data = array();
     $j = 1;
     if (($fichero = fopen(COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/datos.csv', "r")) !== FALSE) {
-       while (($datos = fgetcsv($fichero, 0, ";")) !== FALSE) {
+      while (($datos = fgetcsv($fichero, 0, ";")) !== FALSE) {
          // Procesar los datos.
          $data[$datos[0]]['lat'] = $datos[1];
          $data[$datos[0]]['lon'] = $datos[2];
@@ -68,12 +70,12 @@ class RealDataGenerator extends View
          $data[$datos[0]]['mediumDescription'] = $datos[5];
 
          $filedataArray[$datos[0]] = array(
-                                        'name' => $datos[3],
-                                        'originalName' => $datos[3],
-                                        'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/images/'.$datos[3],
-                                        'type' => 'image/jpeg', 'size' => '38080',
-                                        'destDir' => '/testData/'
-                                      );
+          'name' => $datos[3],
+          'originalName' => $datos[3],
+          'absLocation' => COGUMELO_DIST_LOCATION.'/distModules/testData/classes/view/images/'.$datos[3],
+          'type' => 'image/jpeg', 'size' => '38080',
+          'destDir' => '/testData/'
+        );
 
          $loc = DBUtils::encodeGeometry( array('type'=>'POINT', 'data'=> array($data[$datos[0]]['lat'] , $data[$datos[0]]['lon']) ) );
          $zoom = 10;
@@ -83,27 +85,29 @@ class RealDataGenerator extends View
          $timeCreation = date( "Y-m-d H:i:s", time()-$rand1 );
          $user = 99999;
          // Publicado
-         if ($randPublished = rand(1,8)){
-           if ($randPublished == 3 || $randPublished == 5)
+         if ($randPublished = rand(1,8)) {
+           if ($randPublished == 3 || $randPublished == 5) {
              $published = 0;
-           else
+           }
+           else {
              $published = 1;
+           }
          }
 
          // creación del recurso
 
           $dataRes[$datos[0]] = array(
-            'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+            'title_'.$langDefault => $data[$datos[0]]['title'],
             'title_en' => $data[$datos[0]]['title'],
             'title_gl' => $data[$datos[0]]['title'],
             'rTypeId' => $rTypeId,
-            'shortDescription_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+            'shortDescription_'.$langDefault => $data[$datos[0]]['title'],
             'shortDescription_en' => $data[$datos[0]]['title'],
             'shortDescription_gl' => $data[$datos[0]]['title'],
-            'mediumDescription_'.LANG_DEFAULT => $data[$datos[0]]['mediumDescription'],
+            'mediumDescription_'.$langDefault => $data[$datos[0]]['mediumDescription'],
             'mediumDescription_en' => $data[$datos[0]]['mediumDescription'],
             'mediumDescription_gl' => $data[$datos[0]]['mediumDescription'],
-            'content_'.LANG_DEFAULT => $contentRandom,
+            'content_'.$langDefault => $contentRandom,
             'content_en' => $contentRandom,
             'content_gl' => $contentRandom,
             'user' =>  $user,
@@ -142,7 +146,7 @@ class RealDataGenerator extends View
 
       $resource->save(array('affectsDependences' => true));
 
-      $resourcecontrol->setUrl($resource->getter('id'), LANG_DEFAULT);
+      $resourcecontrol->setUrl($resource->getter('id'), $langDefault);
 
       // Cargamos as taxonomías (incluídas destacados)
       $taxTermModel = new TaxonomytermModel();

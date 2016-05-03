@@ -26,6 +26,8 @@ class TestDataGenerator extends View
 
     $resourcecontrol = new ResourceController();
 
+    $langDefault = Cogumelo::getSetupValue( 'lang:default' );
+
     // Listado de taxonomías únicas (personalizable para cada proxecto)
     $onlyOneTax = array('rextAppZonaType', 'accommodationCategory');
 
@@ -106,12 +108,12 @@ class TestDataGenerator extends View
          }
 
          $filedataArray[$datos[0]] = array(
-                                        'name' => $datos[3],
-                                        'originalName' => $datos[3],
-                                        'absLocation' => $image_name,
-                                        'type' => 'image/jpeg', 'size' => '38080',
-                                        'destDir' => '/testData/'
-                                      );
+          'name' => $datos[3],
+          'originalName' => $datos[3],
+          'absLocation' => $image_name,
+          'type' => 'image/jpeg', 'size' => '38080',
+          'destDir' => '/testData/'
+        );
 
          $loc = DBUtils::encodeGeometry( array('type'=>'POINT', 'data'=> array($data[$datos[0]]['lat'] , $data[$datos[0]]['lon']) ) );
          $zoom = 10;
@@ -139,17 +141,17 @@ class TestDataGenerator extends View
 
          // creación del recurso
           $dataRes[$j] = array(
-            'title_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+            'title_'.$langDefault => $data[$datos[0]]['title'],
             'title_en' => $data[$datos[0]]['title'],
             'title_gl' => $data[$datos[0]]['title'],
             'rTypeId' =>  $rTypeId,
-            'shortDescription_'.LANG_DEFAULT => $data[$datos[0]]['title'],
+            'shortDescription_'.$langDefault => $data[$datos[0]]['title'],
             'shortDescription_en' => $data[$datos[0]]['title'],
             'shortDescription_gl' => $data[$datos[0]]['title'],
-            'mediumDescription_'.LANG_DEFAULT => $data[$datos[0]]['mediumDescription'],
+            'mediumDescription_'.$langDefault => $data[$datos[0]]['mediumDescription'],
             'mediumDescription_en' => $data[$datos[0]]['mediumDescription'],
             'mediumDescription_gl' => $data[$datos[0]]['mediumDescription'],
-            'content_'.LANG_DEFAULT => $contentRandom,
+            'content_'.$langDefault => $contentRandom,
             'content_en' => $contentRandom,
             'content_gl' => $contentRandom,
             'user' =>  $user,
@@ -228,7 +230,7 @@ class TestDataGenerator extends View
       // Grabamos las dependencias
       $res = $resource->save(array('affectsDependences' => true));
 
-      $resourcecontrol->setUrl($resource->getter('id'), LANG_DEFAULT);
+      $resourcecontrol->setUrl($resource->getter('id'), $langDefault);
     }
 
     echo "Recursos creados!";

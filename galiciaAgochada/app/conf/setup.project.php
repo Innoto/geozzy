@@ -49,14 +49,6 @@ cogumeloSetSetupValue( 'lang', array(
   'default' => 'es'
 ));
 
-// A eliminar:
-global $LANG_AVAILABLE;
-$LANG_AVAILABLE = cogumeloGetSetupValue( 'lang:available' );
-define( 'LANG_DEFAULT', cogumeloGetSetupValue( 'lang:default' ) );
-
-
-
-
 
 // Dates
 //
@@ -125,7 +117,7 @@ cogumeloSetSetupValue( 'mail', array(
 //
 //  Templates
 //
-// Constante usada directamente por Smarty
+// Constante usada directamente por Smarty - No eliminar!!!
 define( 'SMARTY_DIR', WEB_BASE_PATH.'/vendor/composer/smarty/smarty/libs/' );
 cogumeloSetSetupValue( 'smarty', array(
   'configPath' => APP_BASE_PATH.'/conf/smarty',
@@ -494,11 +486,6 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
 
 
 
-// A eliminar:
-define( 'SMARTY_CONFIG', cogumeloGetSetupValue( 'smarty:configPath' ) );
-define( 'SMARTY_COMPILE', cogumeloGetSetupValue( 'smarty:compilePath' ) );
-define( 'SMARTY_CACHE', cogumeloGetSetupValue( 'smarty:cachePath' ) );
-define( 'TPL_TMP', cogumeloGetSetupValue( 'smarty:tmpPath' ) );
 
 // A eliminar:
 define( 'DEPEN_COMPOSER_PATH', cogumeloGetSetupValue( 'dependences:composerPath' ) );
