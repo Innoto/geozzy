@@ -225,4 +225,9 @@
     </section>
   {/if}
 
+  {if isset($rextCommentBlock)}
+    <section class="commentSec container gzSection">
+      {$rextCommentBlock}
+    </section>
+  {/if}
 </div>

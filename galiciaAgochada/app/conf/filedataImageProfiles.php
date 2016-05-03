@@ -32,194 +32,179 @@
  *   /cgmlImg/{filedataId}[/.*] (realiza un redirect al caso 1)
  */
 
-global $IMAGE_PROFILES;
 
-$IMAGE_PROFILES = array(
-  'mdpi4' => array( 'width' => 640, 'height' => 480, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
-  'hdpi4' => array( 'width' => 960, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
-  'xhdpi4' => array( 'width' => 1280, 'height' => 960, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
-  'mdpi16' => array( 'width' => 640, 'height' => 360, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
-  'hdpi16' => array( 'width' => 960, 'height' => 540, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
-  'xhdpi16' => array( 'width' => 1280, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+// $IMAGE_PROFILES
+cogumeloSetSetupValue( 'mod:filedata:profile:mdpi4', array( 'width' => 640, 'height' => 480, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:hdpi4', array( 'width' => 960, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:xhdpi4', array( 'width' => 1280, 'height' => 960, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:mdpi16', array( 'width' => 640, 'height' => 360, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:hdpi16', array( 'width' => 960, 'height' => 540, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:xhdpi16', array( 'width' => 1280, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 
-  'big' => array( 'width' => 2000, 'height' => 2000, 'cut' => false, 'enlarge' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
-  'fast' => array( 'width' => 400, 'height' => 300, 'cut' => false,
-    'rasterColor' => '#000000', 'backgroundColor' => '#FFFFFF',
-    'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
-  'fast_cut' => array( 'width' => 400, 'height' => 300, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ),
-  'squareCut' => array( 'width' => 128, 'height' => 128, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
-  'exp1' => array( 'width' => 200, 'height' => 150 ),
-  'rec1' => array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ),
+cogumeloSetSetupValue( 'mod:filedata:profile:big', array(
+  'width' => 2000, 'height' => 2000, 'cut' => false, 'enlarge' => false,
+  'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 
+cogumeloSetSetupValue( 'mod:filedata:profile:fast', array(
+  'width' => 400, 'height' => 300, 'cut' => false,
+  'rasterColor' => '#000000', 'backgroundColor' => '#FFFFFF',
+  'saveFormat' => 'JPEG', 'saveQuality' => 50 ) );
 
-  'explorerXantaresImg' => array( 'width' => 530, 'height' => 213, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+cogumeloSetSetupValue( 'mod:filedata:profile:fast_cut', array(
+  'width' => 400, 'height' => 300, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ) );
 
-  /* PERFILES PARA FICHA DE RECURSO */
-  'typeIconMini' => array(
-    'width' => 24,
-    'height' => 24,
-    'saveFormat' => 'PNG' ),
-  'typeIconCategory' => array(
-      'width' => 32,
-      'height' => 32,
-      'padding' => 1,
-      'saveFormat' => 'PNG' ),
-  'imgMultimediaGallery' => array(
-      'width' => 700,
-      'height' => 400,
-      'cut' => false,
-      'saveFormat' => 'JPEG', 'saveQuality' => 95 ),
+cogumeloSetSetupValue( 'mod:filedata:profile:squareCut', array(
+  'width' => 128, 'height' => 128, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:exp1', array(
+  'width' => 200, 'height' => 150 ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:rec1', array(
+  'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ) );
 
 
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerXantaresImg', array(
+  'width' => 530, 'height' => 213, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 
-  /*-----------------------------------------TEMP ----------------------------------------------------------------------*/
-  'typeIcon' => array(
-    'rasterColor' => '#ffffff',
-    'width' => 36, 'height' => 36,
-    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 5,
-    'saveName' => 'icon.png',
-    'saveFormat' => 'PNG' ),
-  'typeIconHover' => array(
-    'rasterColor' => '#ffffff',
-    'width' => 36, 'height' => 36,
-    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaFilterHover36x36.png',
-    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 5,
-    'saveName' => 'iconHover.png',
-    'saveFormat' => 'PNG' ),
-  'typeIconSelected' => array(
-    'rasterColor' => '#ffffff',
-    'width' => 36, 'height' => 36,
-    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRest36x36.png',
-    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 5,
-    'saveName' => 'iconSelected.png',
-    'saveFormat' => 'PNG' ),
+/* PERFILES PARA FICHA DE RECURSO */
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconMini', array(
+  'width' => 24, 'height' => 24, 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconCategory', array(
+  'width' => 32, 'height' => 32, 'padding' => 1, 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:imgMultimediaGallery', array(
+  'width' => 700, 'height' => 400, 'cut' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 
 
 
-  /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
-  'typeIconXantares' => array(
-    'rasterColor' => '#ffffff',
-    'width' => 36, 'height' => 36,
-    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 5,
-    'saveName' => 'icon.png',
-    'saveFormat' => 'PNG' ),
-  'typeIconXantaresHover' => array(
-    'rasterColor' => '#ffffff',
-    'width' => 36, 'height' => 36,
-    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaFilterHover36x36.png',
-    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 5,
-    'saveName' => 'iconHover.png',
-    'saveFormat' => 'PNG' ),
-  'typeIconXantaresSelected' => array(
-    'rasterColor' => '#ffffff',
-    'width' => 36, 'height' => 36,
-    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRest36x36.png',
-    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 5,
-    'saveName' => 'iconSelected.png',
-    'saveFormat' => 'PNG' ),
+/*-----------------------------------------TEMP ----------------------------------------------------------------------*/
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIcon', array(
+  'width' => 36, 'height' => 36,
+  'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+  'padding' => 5, 'saveName' => 'icon.png', 'saveFormat' => 'PNG' ) );
 
-  'explorerXantaresMarker' => array(
-    'width' => 24, 'height' => 24, 'cut' => false,
-    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares.png',
-    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconHover', array(
+  'width' => 36, 'height' => 36,
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaFilterHover36x36.png',
+  'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+  'padding' => 5, 'saveName' => 'iconHover.png', 'saveFormat' => 'PNG' ) );
 
-  'explorerXantaresMarkerApp' => array(
-    'width' => 64, 'height' => 64, 'cut' => false,
-    'rasterColor' => '#FFFFFF', 'padding' => 10, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
-    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
-
-  /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR ALOXAMENTOS----------------------------------------*/
-  'typeIconAloxamentos' => array(
-    'rasterColor' => '#ffffff',
-    'width' => 36, 'height' => 36,
-    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 5,
-    'saveName' => 'icon.png',
-    'saveFormat' => 'PNG' ),
-  'typeIconAloxamentosHover' => array(
-    'rasterColor' => '#ffffff',
-    'width' => 36, 'height' => 36,
-    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaFilterHover36x36.png',
-    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 5,
-    'saveName' => 'iconHover.png',
-    'saveFormat' => 'PNG' ),
-  'typeIconAloxamentosSelected' => array(
-    'rasterColor' => '#ffffff',
-    'width' => 36, 'height' => 36,
-    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaAloxamentos36x36.png',
-    'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
-    'padding' => 5,
-    'saveName' => 'iconSelected.png',
-    'saveFormat' => 'PNG' ),
-
-  'explorerAloxamentosMarker' => array(
-    'width' => 24, 'height' => 24, 'cut' => false,
-    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaAloxamentos.png',
-    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconSelected', array(
+  'width' => 36, 'height' => 36,
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRest36x36.png',
+  'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+  'padding' => 5, 'saveName' => 'iconSelected.png', 'saveFormat' => 'PNG' ) );
 
 
-  /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
-  'explorerPaisaxesMarker' => array(
-    'width' => 24, 'height' => 24, 'cut' => false,
-    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaPaisaxes.png',
-    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconXantares', array(
+  'width' => 36, 'height' => 36,
+  'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+  'padding' => 5, 'saveName' => 'icon.png', 'saveFormat' => 'PNG' ) );
 
-  'filterTypePaisaxes' => array(
-    'width' => 32, 'height' => 32, 'cut' => false,
-    'rasterColor' => '#FFFFFF', 'padding' => 0,
-    'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconXantaresHover', array(
+  'width' => 36, 'height' => 36,
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaFilterHover36x36.png',
+  'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+  'padding' => 5, 'saveName' => 'iconHover.png', 'saveFormat' => 'PNG' ) );
 
-  'filterTypePaisaxes2' => array(
-    'width' => 24, 'height' => 24, 'cut' => false,
-    'rasterColor' => '#95C131', 'padding' => 0,
-    'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconXantaresSelected', array(
+  'width' => 36, 'height' => 36,
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRest36x36.png',
+  'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+  'padding' => 5, 'saveName' => 'iconSelected.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerXantaresMarker', array(
+  'width' => 24, 'height' => 24, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares.png',
+  'padding' => 5,'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerXantaresMarkerApp', array(
+  'width' => 64, 'height' => 64, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
+  'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR ALOXAMENTOS----------------------------------------*/
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconAloxamentos', array(
+  'width' => 36, 'height' => 36,
+  'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+  'padding' => 5, 'saveName' => 'icon.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconAloxamentosHover', array(
+  'width' => 36, 'height' => 36,
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaFilterHover36x36.png',
+  'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+  'padding' => 5, 'saveName' => 'iconHover.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconAloxamentosSelected', array(
+  'width' => 36, 'height' => 36,
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaAloxamentos36x36.png',
+  'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+  'padding' => 5, 'saveName' => 'iconSelected.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerAloxamentosMarker', array(
+  'width' => 24, 'height' => 24, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaAloxamentos.png',
+  'padding' => 5, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
 
 
-  /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
-  'explorerRinconsMarker' => array(
-    'width' => 24, 'height' => 24, 'cut' => false,
-    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRincons.png',
-    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerPaisaxesMarker', array(
+  'width' => 24, 'height' => 24, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaPaisaxes.png',
+  'padding' => 5,'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
 
-  'filterTypeRincons' => array(
-    'width' => 32, 'height' => 32, 'cut' => false,
-    'rasterColor' => '#FFFFFF', 'padding' => 0,
-    'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+cogumeloSetSetupValue( 'mod:filedata:profile:filterTypePaisaxes', array(
+  'width' => 32, 'height' => 32, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'padding' => 0,'saveName' => 'icon.png', 'saveFormat' => 'PNG' ) );
 
-  'filterTypeRincons2' => array(
-    'width' => 24, 'height' => 24, 'cut' => false,
-    'rasterColor' => '#6888C8', 'padding' => 0,
-    'saveName' => 'icon.png', 'saveFormat' => 'PNG' ),
+cogumeloSetSetupValue( 'mod:filedata:profile:filterTypePaisaxes2', array(
+  'width' => 24, 'height' => 24, 'cut' => false, 'rasterColor' => '#95C131',
+  'padding' => 0, 'saveName' => 'icon.png', 'saveFormat' => 'PNG' ) );
 
 
+/*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR PAISAXES----------------------------------------*/
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerRinconsMarker', array(
+  'width' => 24, 'height' => 24, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRincons.png',
+  'padding' => 5, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
 
-  /*---------------------- PERFILES DE DESARROLLO PARA  HOVERS----------------------------------------*/
-  'explorerMarker' => array(
-    'width' => 24, 'height' => 24, 'cut' => false,
-    'rasterColor' => '#FFFFFF', 'padding' => 5, 'backgroundImg' => '/chapa_paisaxes.png',
-    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
-  /*
-  'explorerMarker' => array(
-    'width' => 32, 'height' => 32, 'cut' => false,
-    'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
-    'saveName' => 'marker.png', 'saveFormat' => 'PNG' ),
-  */
+cogumeloSetSetupValue( 'mod:filedata:profile:filterTypeRincons', array(
+  'width' => 32, 'height' => 32, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'padding' => 0, 'saveName' => 'icon.png', 'saveFormat' => 'PNG' ) );
 
-  'resourceLg' => array( 'width' => 1200, 'height' => 500),
-  'resourceMd' => array( 'width' => 992, 'height' => 400),
-  'resourceSm' => array( 'width' => 768, 'height' => 300),
+cogumeloSetSetupValue( 'mod:filedata:profile:filterTypeRincons2', array(
+  'width' => 24, 'height' => 24, 'cut' => false, 'rasterColor' => '#6888C8',
+  'padding' => 0, 'saveName' => 'icon.png', 'saveFormat' => 'PNG' ) );
 
 
-  /*
-  // TEST
-  'svgTest' => array(
+
+/*---------------------- PERFILES DE DESARROLLO PARA HOVERS----------------------------------------*/
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerMarker', array(
+  'width' => 24, 'height' => 24, 'cut' => false,
+  'rasterColor' => '#FFFFFF', 'backgroundImg' => '/chapa_paisaxes.png',
+  'padding' => 5, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+/*
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerMarker', array(
+  'width' => 32, 'height' => 32, 'cut' => false,
+  'backgroundColor' => '#00000000', 'rasterColor' => '#95c131',
+  'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+*/
+
+cogumeloSetSetupValue( 'mod:filedata:profile:resourceLg', array( 'width' => 1200, 'height' => 500) );
+cogumeloSetSetupValue( 'mod:filedata:profile:resourceMd', array( 'width' => 992, 'height' => 400) );
+cogumeloSetSetupValue( 'mod:filedata:profile:resourceSm', array( 'width' => 768, 'height' => 300) );
+
+
+
+cogumeloSetSetupValue( 'mod:filedata:profile:ancho', array( 'width' => 400, 'height' => 200 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:alto', array( 'width' => 200, 'height' => 400 ) );
+
+/*
+// TEST
+cogumeloSetSetupValue( 'mod:filedata:profile:svgTest',
+  array(
     'width' => 100, 'height' => 64,
     'cut' => false,
     'rasterColor' => '#00FF00',
@@ -227,9 +212,12 @@ $IMAGE_PROFILES = array(
     'padding' => array( 0, 18, 0, 18 ),
     'backgroundColor' => '#F000F0',
     'saveFormat' => 'PNG', 'cache' => false
-  ),
-  // CHAPA TEST
-  'chapaTest' => array(
+  )
+);
+
+// CHAPA TEST
+cogumeloSetSetupValue( 'mod:filedata:profile:chapaTest',
+  array(
     'width' => 24, 'height' => 24,
     'cut' => false,
     'rasterColor' => '#FFFFFF',
@@ -240,11 +228,10 @@ $IMAGE_PROFILES = array(
     //'backgroundImg' => '/module/MODULENAME/chapa_paisaxes.png',
     //'backgroundImg' => '/app/classes/view/templates/img/chapa_paisaxes.png',
     'saveFormat' => 'PNG', 'cache' => false
-  ),
-  */
-  'ancho' => array( 'width' => 400, 'height' => 200 ),
-  'alto' => array( 'width' => 200, 'height' => 400 )
+  )
 );
+*/
+
 
 
 

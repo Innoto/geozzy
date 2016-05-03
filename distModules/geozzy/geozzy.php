@@ -1,10 +1,10 @@
 <?php
 
 Cogumelo::load( 'coreController/Module.php' );
-// require_once APP_BASE_PATH.'/conf/geozzyResourceType.php';
-// require_once APP_BASE_PATH.'/conf/geozzyTopics.php';
-require_once APP_BASE_PATH.'/conf/geozzyTaxonomyGroups.php';
-require_once APP_BASE_PATH.'/conf/geozzyStarred.php';
+// require_once APP_BASE_PATH.'/conf/inc/geozzyResourceType.php';
+// require_once APP_BASE_PATH.'/conf/inc/geozzyTopics.php';
+require_once APP_BASE_PATH.'/conf/inc/geozzyTaxonomyGroups.php';
+require_once APP_BASE_PATH.'/conf/inc/geozzyStarred.php';
 
 define('MOD_GEOZZY_URL_DIR', 'geozzy');
 
@@ -92,7 +92,7 @@ class geozzy extends Module {
     */
     $passwd = false;
 
-    $fileConnectionsInfo = APP_BASE_PATH.'/conf/default-connections-info.php';
+    $fileConnectionsInfo = APP_BASE_PATH.'/conf/inc/default-connections-info.php';
     if( file_exists( $fileConnectionsInfo ) ) {
       include $fileConnectionsInfo;
       if( defined( 'SUPERADMIN_PASS' ) ) {

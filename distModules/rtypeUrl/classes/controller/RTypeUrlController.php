@@ -116,12 +116,12 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
-    $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['seo'] );
     // COL4
-    $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['image'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['miniFormModal'] = new Template();
@@ -184,7 +184,7 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     if( $rExtViewInfo ) {
       if( $rExtViewInfo['template'] ) {
         foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToBlock( 'rextUrlBlock', $templateBlock );
+          $template->addToFragment( 'rextUrlBlock', $templateBlock );
         }
       }
     }
