@@ -32,12 +32,10 @@ class rextComment extends Module
   public $autoIncludeAlways = true;
   public $includesCommon = array(
     'controller/RExtCommentController.php',
-    /*
     'js/model/CommentModel.js',
     'js/collection/CommentCollection.js',
-    */
     'js/view/Templates.js',
-    /*'js/view/ListCommentView.js',*/
+    'js/view/ListCommentView.js',
     'js/view/CreateCommentView.js',
     'js/view/CommentOkView.js',
     'js/Comment.js',

@@ -190,6 +190,7 @@ class RExtCommentController extends RExtController implements RExtInterface {
       $rExtViewBlockInfo['template']['full'] = new Template();
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextComment' );
+      $rExtViewBlockInfo['template']['full']->addClientScript('js/commentList.js', 'rextComment');
     }
 
     return $rExtViewBlockInfo;

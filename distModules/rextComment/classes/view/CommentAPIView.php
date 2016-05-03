@@ -90,7 +90,10 @@ class CommentAPIView extends View
 
       rextComment::load('model/CommentModel.php');
       $commentModel = new CommentModel();
-      $commentsList = $commentModel->listItems(  array( 'filters' => array( 'resource'=> $urlParamsList['resource'], 'published' => 1, 'type' => $commentTypeTerm->getter('id')  ) ) );
+      $commentsList = $commentModel->listItems(  array(
+        'filters' => array( 'resource'=> $urlParamsList['resource'], 'published' => 1, 'type' => $commentTypeTerm->getter('id')  ),
+        'order' => array( 'timeCreation' => -1 )
+      ) );
 
       header('Content-type: application/json');
       echo '[';
