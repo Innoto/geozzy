@@ -276,7 +276,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
         $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $collectionType = 'multimedia' );
         if ($arrayMultimediaBlock){
           foreach ($arrayMultimediaBlock as $multimediaBlock){
-            $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+            $template->addToFragment( 'multimediaGalleries', $multimediaBlock );
           }
         }
       }
@@ -285,7 +285,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
         $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $collectionType = 'base' );
         if ($arrayCollectionBlock){
           foreach ($arrayCollectionBlock as $collectionBlock){
-            $template->addToBlock( 'collections', $collectionBlock );
+            $template->addToFragment( 'collections', $collectionBlock );
           }
         }
       }

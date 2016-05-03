@@ -184,5 +184,11 @@
     </section>
   {/if}
 
+  {if isset($rextCommentBlock)}
+    <section class="commentSec container gzSection">
+      {$rextCommentBlock}
+    </section>
+  {/if}
+
 </div><!-- /.resource .resViewBlock -->
 <!-- /rTypeViewBlock.tpl en rTypeRestaurant module -->
