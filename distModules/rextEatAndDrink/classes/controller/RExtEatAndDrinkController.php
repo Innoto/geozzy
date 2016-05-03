@@ -212,11 +212,9 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
-      $template = new Template();
-
-      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextEatAndDrink' );
+      $rExtViewBlockInfo['template']['full'] = new Template();
+      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextEatAndDrink' );
 
       $rExtViewBlockInfo['template'] = array( 'full' => $template );
     }

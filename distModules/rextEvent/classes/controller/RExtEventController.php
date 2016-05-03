@@ -1,22 +1,20 @@
 <?php
-geozzy::load( 'controller/RExtController.php' );
-geozzy::load( 'controller/RTypeController.php' );
+
 
 class RExtEventController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
-
-
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtEventController::__construct' );
-
-    global $C_LANG;
-    $this->actLang = $C_LANG;
-
     parent::__construct( $defRTypeCtrl, new rextEvent(), 'rextEvent_' );
   }
 
 
+  /**
+   * Carga los datos de los elementos de la extension
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   */
   public function getRExtData( $resId = false ) {
     // error_log( "RExtEventController: getRExtData( $resId )" );
     $rExtData = false;
@@ -186,8 +184,10 @@ class RExtEventController extends RExtController implements RExtInterface {
 
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RExtEventController: resFormProcess()" );
@@ -239,7 +239,9 @@ class RExtEventController extends RExtController implements RExtInterface {
 
 
   /**
-    Datos y template por defecto de la extension
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
     //TODO: Falta actualizar método a nueva forma de trabajar con abstracción -> pendente decidir visualización de eventos / pois

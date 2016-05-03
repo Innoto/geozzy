@@ -3,7 +3,6 @@
 
 class RExtAppEspazoNaturalController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
 
   public function __construct( $defRTypeCtrl ){
     parent::__construct( $defRTypeCtrl, new rextAppEspazoNatural(), 'rExtAppEspazoNatural_' );

@@ -3,21 +3,19 @@
 
 class RExtEventCollectionController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
-
-
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtEventCollectionController::__construct' );
-
-    global $C_LANG;
-    $this->actLang = $C_LANG;
-
     parent::__construct( $defRTypeCtrl, new rextEventCollection(), 'rExtEventCollection_' );
   }
 
 
+  /**
+   * Carga los datos de los elementos de la extension
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   */
   public function getRExtData( $resId = false ) {
-    // error_log( "RExtEventCollectionController: getRExtData( $resId )" );
     $rExtData = false;
 
     if( $resId === false ) {
@@ -226,8 +224,10 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RExtEventCollectionController: resFormProcess()" );
@@ -235,6 +235,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     $valuesArray = $form->getValuesArray();
 
     if( !$form->existErrors() ) {
+
       foreach( $this->taxonomies as $tax ) {
         $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
         if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
@@ -253,29 +254,24 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
       $resourceCollections = $resourceCollectionsModel->listItems(
         array('filters' => array( 'resource' => $resource->getter('id')) ) );
 
-      if ($resourceCollectionsCount>0){// existe coleccion
-
-        $eventCol = false;
+      $elemId = false;
+      if ($resourceCollectionsCount>0){// existe coleccion      
         while($resCol = $resourceCollections->fetch()){
           $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
 
           if($typecol->getter('collectionType')==='event'){
-            $eventCol = $typecol;
+            $elemId = $typecol->getter('id');
+            break;
           }
         }
-        $elemId = false;
-        if ($eventCol){
-          $elemId = $eventCol->getter('id');
-        }
       }
-      else{ // creamos a coleccion
-        if ($newResources){
-          $collection->setter('collectionType', 'event');
-          $collection->save();
-          $elemId = $collection->getter('id');
-          $resourceCollection = new ResourceCollectionsModel(array('resource'=>$resource->getter('id'), 'collection' => $collection->getter('id')));
-          $resourceCollection->save();
-        }
+
+      if (!$elemId && $newResources){ // creamos a coleccion
+        $collection->setter('collectionType', 'event');
+        $collection->save();
+        $elemId = $collection->getter('id');
+        $resourceCollection = new ResourceCollectionsModel(array('resource'=>$resource->getter('id'), 'collection' => $collection->getter('id')));
+        $resourceCollection->save();
       }
     }
 
@@ -344,7 +340,9 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
 
   /**
-    Datos y template por defecto de la extension
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
     // error_log( "RExtEventCollectionController: getViewBlockInfo()" );

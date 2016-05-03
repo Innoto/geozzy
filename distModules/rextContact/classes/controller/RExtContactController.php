@@ -4,8 +4,6 @@
 class RExtContactController extends RExtController implements RExtInterface {
 
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtContactController::__construct' );
-
     global $C_LANG;
     $this->actLang = $C_LANG;
 
@@ -13,6 +11,13 @@ class RExtContactController extends RExtController implements RExtInterface {
   }
 
 
+  /**
+   * Carga los datos de los elementos de la extension
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   */
   public function getRExtData( $resId = false ) {
     // error_log( "RExtContactController: getRExtData( $resId )" );
     $rExtData = false;
@@ -29,14 +34,15 @@ class RExtContactController extends RExtController implements RExtInterface {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
     }
 
-
-    // error_log( 'RExtContactController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
 
+
   /**
-    Defino el formulario
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
    */
   public function manipulateForm( FormController $form ) {
     // error_log( "RExtContactController: manipulateForm()" );
@@ -121,7 +127,11 @@ class RExtContactController extends RExtController implements RExtInterface {
         $rExtFieldNames[] = $fieldName;
       }
     }
-    $rExtFieldNames[] = 'FieldNames';
+
+    /*******************************************************************
+     * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
+     *******************************************************************/
+    //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
@@ -131,37 +141,23 @@ class RExtContactController extends RExtController implements RExtInterface {
 
 
 
-
+  /**
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RExtContactController: getFormBlockInfo()" );
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
-
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
-
-    $formBlockInfo['dataForm'] = array(
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-    );
-
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
+    $formBlockInfo = parent::getFormBlockInfo( $form );
+    $templates = $formBlockInfo['template'];
 
     $templates['basic'] = new Template();
     $templates['basic']->setTpl( 'rExtFormBasic.tpl', 'rextContact' );
     $templates['basic']->assign( 'rExt', $formBlockInfo );
+    $templates['basic']->addClientScript('js/initMap.js', 'geozzy');
     $templates['basic']->assign('timetable', $form->multilangFieldNames( 'rExtContact_timetable' ));
-
-    $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
-    $templates['full']->assign( 'rExtName', $this->rExtName );
-    $templates['full']->assign( 'rExt', $formBlockInfo );
 
     $formBlockInfo['template'] = $templates;
 
@@ -170,25 +166,22 @@ class RExtContactController extends RExtController implements RExtInterface {
 
 
 
-
-
-
-
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
    */
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RExtContactController: resFormRevalidate()" );
+  // parent::resFormRevalidate( $form );
 
-    // $this->evalFormUrlAlias( $form, 'urlAlias' );
-  }
+
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtContactController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
@@ -210,28 +203,24 @@ class RExtContactController extends RExtController implements RExtInterface {
     }
   }
 
+
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtContactController: resFormSuccess()" );
-
-  }
+  // parent::resFormSuccess( $form, $resource )
 
 
   /**
-    Datos y template por defecto de la extension
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
-    // error_log( "RExtContactController: getViewBlockInfo()" );
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData()
-    );
-
-
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
       // TODO: esto será un campo da BBDD
@@ -240,13 +229,10 @@ class RExtContactController extends RExtController implements RExtInterface {
       if (isset($rExtViewBlockInfo['data']['city']) || isset($rExtViewBlockInfo['data']['province']) || isset($rExtViewBlockInfo['data']['cp'])
           || isset($rExtViewBlockInfo['data']['phone']) || isset($rExtViewBlockInfo['data']['email']) || isset($rExtViewBlockInfo['data']['url'])
           || isset($rExtViewBlockInfo['data']['directions']) || isset($rExtViewBlockInfo['data']['timetable'])){
-        $template = new Template();
 
-        $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
-        $template->setTpl( 'rExtViewBlock.tpl', 'rextContact' );
-
-        $rExtViewBlockInfo['template'] = array( 'full' => $template );
+        $rExtViewBlockInfo['template']['full'] = new Template();
+        $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+        $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextContact' );
       }
     }
 

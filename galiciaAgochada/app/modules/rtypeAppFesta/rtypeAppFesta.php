@@ -6,7 +6,7 @@ class rtypeAppFesta extends Module {
 
   public $name = 'rtypeAppFesta';
   public $version = '1.0';
-  public $rext = array('rextAppFesta', 'rextContact', 'rextAppZona', 'rextMapDirections', 'rextEvent', 'rextEventCollection');
+  public $rext = array('rextAppFesta', 'rextContact', 'rextSocialNetwork', 'rextAppZona', 'rextMapDirections', 'rextEvent', 'rextEventCollection');
 
   public $dependences = array();
 

@@ -152,6 +152,7 @@ class RExtPoiController extends RExtController implements RExtInterface {
   }
 
 
+
   /**
    * Validaciones extra previas a usar los datos
    *
@@ -160,9 +161,12 @@ class RExtPoiController extends RExtController implements RExtInterface {
   // parent::resFormRevalidate( $form );
 
 
+
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RExtPoiController: resFormProcess()" );
@@ -193,7 +197,9 @@ class RExtPoiController extends RExtController implements RExtInterface {
 
 
   /**
-    Datos y template por defecto de la extension
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
     $rExtViewBlockInfo = parent::getViewBlockInfo();

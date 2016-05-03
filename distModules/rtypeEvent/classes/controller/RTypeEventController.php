@@ -1,5 +1,6 @@
 <?php
-rextEvent::autoIncludes();
+
+geozzy::load('controller/RTypeController.php');
 
 class RTypeEventController extends RTypeController implements RTypeInterface {
 

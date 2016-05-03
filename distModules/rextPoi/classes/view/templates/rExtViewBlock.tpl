@@ -1,6 +1,6 @@
 <div class="poiBlock {$rExt.dataForm.formId}">
   <script>
-    var poiFormId = '{$rExt.dataForm.formId}';
+    var formId = '{$rExt.dataForm.formId}';
   </script>
   {$client_includes}
 

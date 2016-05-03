@@ -3,26 +3,26 @@
 
 class RExtAppLugarController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
-
 
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtAppLugarController::__construct' );
-
-    // $this->numericFields = array( 'averagePrice' );
     parent::__construct( $defRTypeCtrl, new rextAppLugar(), 'rExtAppLugar_' );
   }
 
 
+  /**
+   * Carga los datos de los elementos de la extension
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   */
   public function getRExtData( $resId = false ) {
-    // error_log( "RExtAppLugarController: getRExtData( $resId )" );
+
     $rExtData = false;
 
     if( $resId === false ) {
       $resId = $this->defResCtrl->resObj->getter('id');
     }
-
-    // Only tax fields !!!
 
     // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
     $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
@@ -37,16 +37,16 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
       }
     }
 
-    // error_log( 'RExtAppLugarController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
 
   /**
-    Defino el formulario
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
    */
   public function manipulateForm( FormController $form ) {
-    // error_log( "RExtAppLugarController: manipulateForm()" );
 
     $rExtFieldNames = array();
 
@@ -93,7 +93,10 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
       }
     }
 
-    $rExtFieldNames[] = 'FieldNames';
+    /*******************************************************************
+     * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
+     *******************************************************************/
+    //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
@@ -101,54 +104,32 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
     return( $rExtFieldNames );
   } // function manipulateForm()
 
-  /**
-    getFormBlockInfo
-  */
-  public function getFormBlockInfo( FormController $form ) {
-
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
-
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
-
-    $formBlockInfo['dataForm'] = array(
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-    );
-
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
-
-    $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
-    $templates['full']->assign( 'rExtName', $this->rExtName );
-    $templates['full']->assign( 'rExt', $formBlockInfo );
-
-    $formBlockInfo['template'] = $templates;
-
-    return $formBlockInfo;
-  }
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RExtAppLugarController: resFormRevalidate()" );
+  // parent::getFormBlockInfo( $form );
 
-  }
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
+   */
+  // parent::resFormRevalidate( $form );
+
+
+  /**
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtAppLugarController: resFormProcess()" );
-
     // TAXs
     if( !$form->existErrors() ) {
       foreach( $this->taxonomies as $tax ) {
@@ -160,35 +141,29 @@ class RExtAppLugarController extends RExtController implements RExtInterface {
     }
   }
 
+
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtAppLugarController: resFormSuccess()" );
-
-  }
+  // parent::resFormSuccess( $form, $resource )
 
 
   /**
-    Preparamos los datos para visualizar el Recurso
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
-    // error_log( "RExtAppLugarController: getViewBlockInfo()" );
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
-    );
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
-      $template = new Template();
-
-      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextAppLugar' );
-
-      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+      $rExtViewBlockInfo['template']['full'] = new Template();
+      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextAccommodation' );
     }
 
     return $rExtViewBlockInfo;
