@@ -11,7 +11,7 @@ class RTUtilsController {
     $this->moduleClass = $moduleClass;
   }
 
-  public function rTypeModuleRc( ) {
+  public function rTypeModuleRc() {
     $rTypeObj = new $this->moduleClass();
     $rTypeModel = $this->addRType( $rTypeObj->name, $rTypeObj->nameLocations );
 
@@ -21,7 +21,7 @@ class RTUtilsController {
   }
 
 
-  public function rExtModuleRc( ) {
+  public function rExtModuleRc() {
     $rExtObj = new $this->moduleClass();
     $this->createTaxonomies( $rExtObj->taxonomies );
   }
@@ -49,7 +49,7 @@ class RTUtilsController {
 
 
   public function addRTypeToTopics( $rTypeId, $rTypeIdName ) {
-    include APP_BASE_PATH.'/conf/geozzyTopics.php';
+    include APP_BASE_PATH.'/conf/inc/geozzyTopics.php';
 
     if( is_array( $geozzyTopicsInfo ) && count( $geozzyTopicsInfo ) > 0 ) {
       foreach( $geozzyTopicsInfo as $topicIdName => $topicInfo ) {

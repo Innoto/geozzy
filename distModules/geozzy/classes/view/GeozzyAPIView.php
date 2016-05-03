@@ -1,6 +1,6 @@
 <?php
 
-require_once APP_BASE_PATH."/conf/geozzyAPI.php";
+require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
 
 /**
@@ -494,7 +494,7 @@ class geozzyAPIView extends View {
 
   // BI data
   public function bi( $urlParams ) {
-    require_once APP_BASE_PATH."/conf/geozzyBI.php";
+    require_once APP_BASE_PATH."/conf/inc/geozzyBI.php";
     header('Content-type: application/json');
     global $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS;
 
@@ -973,7 +973,7 @@ class geozzyAPIView extends View {
   /*
     // UI events
     public function uiEventList() {
-      require_once APP_BASE_PATH."/conf/geozzyUIEvents.php";
+      require_once APP_BASE_PATH."/conf/inc/geozzyUIEvents.php";
       global  $GEOZZY_UI_EVENTS;
 
       header('Content-type: application/json');

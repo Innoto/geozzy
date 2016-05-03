@@ -1,5 +1,5 @@
 <?php
-require_once APP_BASE_PATH."/conf/geozzyAPI.php";
+require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
 Cogumelo::autoIncludes();
 
@@ -23,7 +23,7 @@ class DocAPIView extends View
 
   function main(){
     $this->template->setTpl('doc.tpl', 'geozzyAPI');
-    $this->template->assign('swaggerLocation', '/vendor/bower/swagger-ui/');    
+    $this->template->assign('swaggerLocation', '/vendor/bower/swagger-ui/');
     $this->template->exec();
   }
 
@@ -31,7 +31,7 @@ class DocAPIView extends View
   function apidocJson() {
 
     global $GEOZZY_API_DOC_URLS;
-    
+
     $apis = json_encode( $GEOZZY_API_DOC_URLS );
 
     header('Content-type: application/json');

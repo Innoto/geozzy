@@ -3,7 +3,7 @@ Cogumelo::load('coreView/View.php');
 geozzy::autoIncludes();
 admin::autoIncludes();
 user::autoIncludes();
-require_once APP_BASE_PATH."/conf/geozzyAPI.php";
+require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
 
 /**
 * Clase Master to extend other application methods

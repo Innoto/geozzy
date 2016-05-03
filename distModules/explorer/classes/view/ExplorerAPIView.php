@@ -1,6 +1,6 @@
 <?php
 
-require_once APP_BASE_PATH."/conf/geozzyAPI.php";
+require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
 
 /**
@@ -131,7 +131,7 @@ class ExplorerAPIView extends View
 
   // explorer
   public function explorer( $urlParams ) {
-    require_once APP_BASE_PATH."/conf/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
+    require_once APP_BASE_PATH."/conf/inc/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
     global $GEOZZY_EXPLORERS;
 
     $validation = array(
@@ -176,7 +176,7 @@ class ExplorerAPIView extends View
 
   // explorer list
   public function explorerList() {
-    require_once APP_BASE_PATH."/conf/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
+    require_once APP_BASE_PATH."/conf/inc/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
     global $GEOZZY_EXPLORERS;
 
     if( count( $GEOZZY_EXPLORERS ) > 0 ) {
