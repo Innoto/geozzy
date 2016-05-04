@@ -20,3 +20,18 @@ geozzy.commentComponents.commentFormTemplate = ''+
 
 geozzy.commentComponents.commentFormOkTemplate = ''+
 '<h3>'+__("Your contribution is welcome")+'</h3>';
+
+geozzy.commentComponents.listCommentItemTemplate = ''+
+'<div class="commentItem">'+
+  '<div class="commentContent"><%- commentContent %></div>'+
+  '<div class="commentRate">'+
+    '<% for (var i = 0; i < 5; i++) { '+
+      'if(commentRate > i){'+
+        '%><i class="fa fa-star" aria-hidden="true"></i><%'+
+      '}else{'+
+        '%><i class="fa fa-star-o" aria-hidden="true"></i><%'+
+      '}'+
+    '}  %>'+
+  '</div>'+
+  '<div class="commentInfo">'+__("By")+' <span><%- commentUserName %></span>  <%- commentTimeCreation %></div>'+
+'</div>';

@@ -26,4 +26,13 @@ geozzy.comment = function() {
       that.commentOkView = new geozzy.commentComponents.CommentOkView();
     }, 500);
   }
+
+  that.listComment = function( idResource ){
+    if(idResource){
+      //geozzy.commentComponents.comments = new CommentCollection([], { id: idResource });
+      //$.when( geozzy.commentComponents.comments.fetch() ).done(function() {
+        that.listCommentView = new geozzy.commentComponents.ListCommentView(idResource);
+      //});
+    }
+  }
 }
