@@ -1,6 +1,8 @@
 <?php
-define( 'IS_DEVEL_ENV', !file_exists( APP_BASE_PATH . '/conf/setup.final.php' ) );
 require_once( 'setup.utils.php' );
+
+define( 'IS_DEVEL_ENV', !file_exists( APP_BASE_PATH . '/conf/setup.final.php' ) );
+cogumeloSetSetupValue( 'setup:isDevelEnv', IS_DEVEL_ENV );
 
 // Configuracion inicial
 require_once( 'setup.default.php' );

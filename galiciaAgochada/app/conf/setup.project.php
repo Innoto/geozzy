@@ -50,6 +50,7 @@ cogumeloSetSetupValue( 'lang', array(
 ));
 
 
+//
 // Dates
 //
 cogumeloSetSetupValue( 'date:timezone', 'Europe/Madrid');
@@ -59,6 +60,7 @@ cogumeloSetSetupValue( 'date:timezone', 'Europe/Madrid');
 //  memcached
 //
 require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
+
 
 //
 // Public Access User
@@ -79,10 +81,12 @@ define( 'SITE_URL_HTTP', 'http://'.$_SERVER['HTTP_HOST'] . SITE_FOLDER );
 define( 'SITE_URL_HTTPS', 'https://'.$_SERVER['HTTP_HOST'] . SITE_FOLDER );
 define( 'SITE_URL_CURRENT', SITE_PROTOCOL == 'http' ? SITE_URL_HTTP : SITE_URL_HTTPS );
 
+
 //
 // URL alias controller: Fichero que contiene una clase UrlAliasController con un metodo getAlternative
 //
 cogumeloSetSetupValue( 'urlAliasController:classFile', COGUMELO_DIST_LOCATION.'/distModules/geozzy/classes/controller/UrlAliasController.php' );
+
 
 //
 //  Mail sender
@@ -248,6 +252,7 @@ cogumeloSetSetupValue( 'mod:geozzyUser', array(
 ));
 
 
+//
 //  Logs
 //
 cogumeloSetSetupValue( 'logs', array(
@@ -258,11 +263,13 @@ cogumeloSetSetupValue( 'logs', array(
 ));
 
 
+//
 // Backups
 //
 cogumeloSetSetupValue( 'script:backupPath', APP_BASE_PATH.'/backups/' ); //backups directory
 
 
+//
 //  Devel Mod
 //
 cogumeloSetSetupValue( 'mod:devel', array(
@@ -272,6 +279,7 @@ cogumeloSetSetupValue( 'mod:devel', array(
 ));
 
 
+//
 //  i18n
 //
 cogumeloSetSetupValue( 'i18n', array(
@@ -280,6 +288,8 @@ cogumeloSetSetupValue( 'i18n', array(
   'gettextUpdate' => true // update gettext files when working in localhost
 ));
 
+
+//
 //  Form Mod
 //
 cogumeloSetSetupValue( 'mod:form', array(
@@ -287,6 +297,8 @@ cogumeloSetSetupValue( 'mod:form', array(
   'tmpPath' => APP_TMP_PATH.'/formFiles'
 ));
 
+
+//
 //  Filedata Mod
 //
 cogumeloSetSetupValue( 'mod:filedata', array(
@@ -296,19 +308,9 @@ cogumeloSetSetupValue( 'mod:filedata', array(
 include 'filedataImageProfiles.php';
 
 
+//
 //	Media server
 //
-/*
-cogumeloSetSetupValue( 'mod:mediaserver', array(
-  'productionMode' => false, // If true, you must compile less manually with ./cogumelo generateClientCaches
-  'notCacheJs' => true,
-  'host' => '/', // Ej: '/' o 'http://media.galiciaagochada/'
-  'path' => 'media',
-  'cachePath' => 'mediaCache',
-  'tmpCachePath' => APP_TMP_PATH.'/mediaCache',
-  'minimifyFiles' => false // for js and css files ( only when mod:mediaserver:productionMode is true)
-));
-*/
 cogumeloSetSetupValue( 'publicConf',
   array(
     'globalVars' => array( 'C_LANG', 'C_SESSION_ID' ),
@@ -341,28 +343,10 @@ cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields',
   array_merge( cogumeloGetSetupValue( 'publicConf:setupFields' ), array('user:session') )
 );
 
-// A eliminar:
-// global $MEDIASERVER_LESS_GLOBALS; // Se cargan con el prefijo GLOBAL_
-// $MEDIASERVER_LESS_GLOBALS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:less:globalVars' );
-// global $MEDIASERVER_LESS_CONSTANTS;
-// $MEDIASERVER_LESS_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:less:vars' );
-// global $MEDIASERVER_JAVASCRIPT_GLOBALS; // Se cargan con el prefijo GLOBAL_
-// $MEDIASERVER_JAVASCRIPT_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
-// global $MEDIASERVER_JAVASCRIPT_CONSTANTS;
-// $MEDIASERVER_JAVASCRIPT_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:javascript:vars' );
-// global $MEDIASERVER_SMARTY_GLOBALS; // Se cargan con el prefijo GLOBAL_
-// $MEDIASERVER_SMARTY_GLOBALS = array( 'LANG_AVAILABLE', 'C_LANG', 'C_SESSION_ID' );
-// global $MEDIASERVER_SMARTY_CONSTANTS;
-// $MEDIASERVER_SMARTY_CONSTANTS = cogumeloGetSetupValue( 'mod:mediaserver:publicConf:smarty:vars' );
 
-
-
-
-
-
-
-
-
+//
+// Alias por defecto en recursos
+//
 cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
   array(
     'default' => '/',
@@ -388,6 +372,10 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
   )
 );
 
+
+//
+//
+//
 cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
   array(
     'default' => array(
@@ -429,6 +417,11 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
   )
 );
 
+
+
+//
+// RTypes de "uso interno"
+//
 cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes',
   array(
     'rtypeUrl',
@@ -439,6 +432,9 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes',
 );
 
 
+//
+//
+//
 cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
   array(
     'default' => array(
@@ -455,6 +451,5 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
     )
   )
 );
-
 
 
