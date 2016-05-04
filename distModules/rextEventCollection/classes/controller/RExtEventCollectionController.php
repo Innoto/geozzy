@@ -255,7 +255,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         array('filters' => array( 'resource' => $resource->getter('id')) ) );
 
       $elemId = false;
-      if ($resourceCollectionsCount>0){// existe coleccion      
+      if ($resourceCollectionsCount>0){// existe coleccion
         while($resCol = $resourceCollections->fetch()){
           $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
 
@@ -352,8 +352,10 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
 
+      $resId = $this->defResCtrl->resObj->getter('id');
+
       /* Cargamos los bloques de colecciones */
-      $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
+      $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resId );
 
       $multimediaArray = false;
       $collectionArray = false;
