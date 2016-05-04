@@ -168,7 +168,7 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
 
 
     // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-    $viewBlockInfo['template'] = array( 'full' => $template );
+    $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
   }

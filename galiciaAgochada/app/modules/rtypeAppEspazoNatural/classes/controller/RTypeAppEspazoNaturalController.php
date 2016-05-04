@@ -286,7 +286,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
       }
     }
 
-    $viewBlockInfo['template'] = array( 'full' => $template );
+    $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
   }

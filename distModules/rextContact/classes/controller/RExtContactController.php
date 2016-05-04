@@ -4,9 +4,6 @@
 class RExtContactController extends RExtController implements RExtInterface {
 
   public function __construct( $defRTypeCtrl ){
-    global $C_LANG;
-    $this->actLang = $C_LANG;
-
     parent::__construct( $defRTypeCtrl, new rextContact(), 'rExtContact_' );
   }
 
