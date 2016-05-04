@@ -40,14 +40,16 @@ class RExtRoutesController extends RExtController implements RExtInterface {
           }
         }
       }
-    }
 
-    $fileDep = $rExtObj->getterDependence( 'routeFile' );
-    if( $fileDep !== false ) {
-      foreach( $fileDep as $fileModel ) {
-        $rExtData[ 'routeFile' ] = $fileModel->getAllData( 'onlydata' );
+      $fileDep = $rExtObj->getterDependence( 'routeFile' );
+      if( $fileDep !== false ) {
+        foreach( $fileDep as $fileModel ) {
+          $rExtData[ 'routeFile' ] = $fileModel->getAllData( 'onlydata' );
+        }
       }
     }
+
+
 
     return $rExtData;
   }
