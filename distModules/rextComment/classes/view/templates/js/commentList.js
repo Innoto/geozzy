@@ -1,3 +1,6 @@
 $(document).ready(function(){
-  alert('hola');
+  var idResource = $('.resource').attr('data-resource');
+  if(idResource){
+    geozzy.commentInstance.listComment(idResource);
+  }
 });

@@ -446,7 +446,7 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
       'ctype' => array() // 'comment','suggest'
     ),
     'rtypeAppHotel' => array(
-      'moderation' => 'verified', // none|verified|all
+      'moderation' => 'none', // none|verified|all
       'ctype' => array('comment','suggest') // 'comment','suggest'
     ),
     'rtypeAppRestaurant' => array(
@@ -455,6 +455,3 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
     )
   )
 );
-
-
-

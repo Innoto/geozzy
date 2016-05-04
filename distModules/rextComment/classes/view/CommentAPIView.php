@@ -92,8 +92,11 @@ class CommentAPIView extends View
       $commentModel = new CommentModel();
       $commentsList = $commentModel->listItems(  array(
         'filters' => array( 'resource'=> $urlParamsList['resource'], 'published' => 1, 'type' => $commentTypeTerm->getter('id')  ),
-        'order' => array( 'timeCreation' => -1 )
+        'order' => array( 'timeCreation' => -1 ),
+        'affectsDependences' => array('UserModel')
       ) );
+
+
 
       header('Content-type: application/json');
       echo '[';
@@ -102,7 +105,12 @@ class CommentAPIView extends View
 
       while ($valueobject = $commentsList->fetch() ) {
         $allData = $valueobject->getAllData('onlydata');
-        echo $c.json_encode( $allData);
+        $user = $valueobject->getterDependence('user');
+        if($user){
+          $allData['userName'] = $user[0]->getter('name');
+          $allData['userEmail'] = $user[0]->getter('email');
+        }
+        echo $c.json_encode($allData);
         $c=',';
       }
       echo ']';

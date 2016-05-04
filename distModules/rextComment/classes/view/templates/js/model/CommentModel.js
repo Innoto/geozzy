@@ -5,7 +5,6 @@ geozzy.commentComponents.CommentModel = Backbone.Model.extend({
   defaults: {
     id: false,
     type: 0,
-    user: 0,
     resource: 0,
     published: 0,
     content: '',
@@ -14,6 +13,9 @@ geozzy.commentComponents.CommentModel = Backbone.Model.extend({
     suggestType: 0,
     status: 0,
     anonymousName: '',
-    anonymousEmail: ''
+    anonymousEmail: '',
+    user: 0,
+    userName: '',
+    userEmail: ''
   }
 });

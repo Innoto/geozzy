@@ -1,15 +1,12 @@
-
 var geozzy = geozzy || {};
 if(!geozzy.commentComponents) geozzy.commentComponents={};
 
 geozzy.commentComponents.ListCommentView = Backbone.View.extend({
-/*
-  commentFormTemplate : false,
-  modalTemplate : false,
-  idResource: false,
-  commentType : false,
-  */
+
+  el : $(".commentSec .rExtCommentList"),
+  tagName : '',
   comments : false,
+  listCommentItemTemplate : false,
   events: {
 
   },
@@ -18,25 +15,35 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
 
     var that = this;
     that.comments = new geozzy.commentComponents.CommentCollection([], { resource: idResource });
-    that.comments.fetch(
-      {
-        success: function() {
-          console.log(that.comments);
-          that.updateList();
-        }
+    that.comments.fetch({
+      success: function() {
+        that.render();
       }
-    );
+    });
   },
 
   render: function() {
-/*
+
     var that = this;
 
-    this.baseTemplate = _.template( $('#resourcesStarredList').html() );
-    this.$el.html( this.baseTemplate(that.starredTerm.toJSON() ) );
+    that.listCommentItemTemplate = _.template( geozzy.commentComponents.listCommentItemTemplate );
+    this.$el.html('');
+    _.each( that.comments.toJSON() , function(item){
+      data = {
+        commentContent: item.content,
+        commentRate: item.rate,
+        commentUserName: false,
+        commentTimeCreation: item.timeCreation
+      }
+      if(item.userName){
+        data.commentUserName = item.userName;
+      }else{
+        data.commentUserName = item.anonymousName;
+      }
 
-    that.saveChangesVisible(false);
-*/
+      that.$el.append( that.listCommentItemTemplate(data) );
+    });
+
   },
 
   updateList: function() {
