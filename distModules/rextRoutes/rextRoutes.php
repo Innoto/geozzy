@@ -10,7 +10,7 @@ class rextRoutes extends Module {
 
 
   public $models = array(
-    'RExtRoutesModel'
+    'RouteModel'
   );
 
   public $taxonomies = array(
