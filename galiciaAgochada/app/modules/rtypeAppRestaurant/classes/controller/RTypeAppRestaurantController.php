@@ -291,7 +291,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       }
     }
 
-    $viewBlockInfo['template'] = array( 'full' => $template );
+    $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
   }

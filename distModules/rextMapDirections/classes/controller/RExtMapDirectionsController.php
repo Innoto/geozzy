@@ -85,10 +85,11 @@ class RExtMapDirectionsController extends RExtController implements RExtInterfac
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
-    // error_log( "RExtMapDirectionsController: getViewBlockInfo()" );
 
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
+    $resData = $this->defResCtrl->getResourceData();
+    
     if( isset( $resData['locLat'] ) && $resData['locLat'] !== '' ) {
       $rExtViewBlockInfo['data']['title'] = $resData['title'];
       $rExtViewBlockInfo['data']['locLat'] = $resData['locLat'];

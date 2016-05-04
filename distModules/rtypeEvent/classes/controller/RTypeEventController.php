@@ -210,7 +210,7 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     }
 
     $template->assign('eventType', $eventType);
-    $viewBlockInfo['template'] = array( 'full' => $template );
+    $viewBlockInfo['template']['full'] = $template;
     return $viewBlockInfo;
   }
 

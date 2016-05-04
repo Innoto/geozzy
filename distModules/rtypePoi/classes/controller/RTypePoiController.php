@@ -214,7 +214,7 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     $template->assign('poiType', $poiType);
 
 
-    $viewBlockInfo['template'] = array( 'full' => $template );
+    $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
   }

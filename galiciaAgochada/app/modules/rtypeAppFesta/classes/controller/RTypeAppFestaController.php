@@ -284,7 +284,7 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
 
     }
 
-    $viewBlockInfo['template'] = array( 'full' => $template );
+    $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
   }

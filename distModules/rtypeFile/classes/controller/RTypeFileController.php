@@ -240,7 +240,7 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
       $template->assign( 'rextFileBlock', false );
     }
 
-    $viewBlockInfo['template'] = array( 'full' => $template );
+    $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
   }

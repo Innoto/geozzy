@@ -347,8 +347,10 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
 
+      $resId = $this->defResCtrl->resObj->getter('id');
+
       /* Cargamos los bloques de colecciones */
-      $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
+      $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resId );
 
       $multimediaArray = false;
       $collectionArray = false;
