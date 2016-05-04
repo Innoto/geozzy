@@ -1,17 +1,14 @@
 
-# private info
-/app/conf/default-connections-info.php
-
-# logs
+# logs (Default)
 /app/log/
 
-# backups
+# backups (Default)
 /app/backups/
 
-# temp
+# temp (Default)
 /app/tmp/
 
-# mediaserver and dependences
+# mediaserver and dependences (Default)
 /httpdocs/cgmlImg/
 /httpdocs/mediaCache/
 /httpdocs/vendor/
@@ -20,6 +17,9 @@
 /composer.json
 /composer.lock
 
-# temp form files
+# temp form files (Default)
 /formFiles/
 
+
+# private info
+/app/conf/inc/default-connections-info.php

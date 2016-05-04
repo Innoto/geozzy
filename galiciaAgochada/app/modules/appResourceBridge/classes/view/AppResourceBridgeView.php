@@ -13,7 +13,7 @@ class AppResourceBridgeView extends MasterView {
 
 
   public function showResourcePage( $urlParams = false ) {
-    error_log( "AppResourceBridgeView: showResourcePage()" . print_r( $urlParams, true ) );
+    // error_log( "AppResourceBridgeView: showResourcePage()" . print_r( $urlParams, true ) );
 
     if( isset( $urlParams['1'] ) ) {
       $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;

@@ -1301,7 +1301,7 @@ class ResourceController {
   }
 
   public function getResourceThumbnail( $param ) {
-    error_log( 'getResourceThumbnail :'.print_r($param,true));
+    // error_log( 'getResourceThumbnail :'.print_r($param,true));
     $thumbImg = Cogumelo::getSetupValue('publicConf:vars:media').'/module/geozzy/img/default-multimedia.png';
 
     if( array_key_exists( 'imageId', $param ) && $param['imageId'] && $param['imageId'] !== 'null' ) {
