@@ -3,9 +3,6 @@
 
 class RExtRoutesController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
-
-
   public function __construct( $defRTypeCtrl ){
 
     parent::__construct( $defRTypeCtrl, new rextRoutes(), 'rExtRoutes_' );
@@ -44,7 +41,6 @@ class RExtRoutesController extends RExtController implements RExtInterface {
         }
       }
     }
-
 
     return $rExtData;
   }
@@ -159,7 +155,22 @@ class RExtRoutesController extends RExtController implements RExtInterface {
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
-  // parent::getFormBlockInfo( $form );
+  public function getFormBlockInfo( FormController $form ) {
+
+    $formBlockInfo = parent::getFormBlockInfo( $form );
+    $templates = $formBlockInfo['template'];
+    /**
+     * Hay que redefinirlo para meterle el js de inicialización de mapa
+     */
+    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    $templates['full']->assign( 'rExtName', $this->rExtName );
+    $templates['full']->addClientScript('js/initMap.js', 'geozzy');
+    $templates['full']->assign( 'rExt', $formBlockInfo );
+
+    $formBlockInfo['template'] = $templates;
+
+    return $formBlockInfo;
+  }
 
 
   /**
@@ -233,4 +244,4 @@ class RExtRoutesController extends RExtController implements RExtInterface {
     return $rExtViewBlockInfo;
   }
 
-} // class RExtSocialNetworkController
+} // class RExtRoutesController
