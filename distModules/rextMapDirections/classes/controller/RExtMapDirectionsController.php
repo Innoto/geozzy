@@ -3,19 +3,18 @@
 
 class RExtMapDirectionsController extends RExtController implements RExtInterface {
 
-  public $numericFields = false;
-
-
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtMapDirectionsController::__construct' );
-
-    global $C_LANG;
-    $this->actLang = $C_LANG;
-
     parent::__construct( $defRTypeCtrl, new rextMapDirections(), 'rExtMapDirections_' );
   }
 
 
+  /**
+   * Carga los datos de los elementos de la extension
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   */
   public function getRExtData( $resId = false ) {
     // error_log( "RExtMapDirectionsController: getRExtData( $resId )" );
     $rExtData = false;
@@ -26,7 +25,9 @@ class RExtMapDirectionsController extends RExtController implements RExtInterfac
 
 
   /**
-    Defino el formulario
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
    */
   public function manipulateForm( FormController $form ) {
     // error_log( "RExtMapDirectionsController: manipulateForm()" );
@@ -37,74 +38,68 @@ class RExtMapDirectionsController extends RExtController implements RExtInterfac
 
 
 
-
-  public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RExtMapDirectionsController: getFormBlockInfo()" );
-
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
-
-    return $formBlockInfo;
-  }
-
-
-
-
-
-
-
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RExtMapDirectionsController: resFormRevalidate()" );
-  }
+  // parent::getFormBlockInfo( $form );
+
+
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
+   */
+  // parent::resFormRevalidate( $form );
+
+
+
+  /**
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RExtMapDirectionsController: resFormProcess()" );
   }
 
+
+
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtMapDirectionsController: resFormSuccess()" );
-  }
+  // parent::resFormSuccess( $form, $resource )
 
 
   /**
-    Datos y template por defecto de la extension
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
-    // error_log( "RExtMapDirectionsController: getViewBlockInfo()" );
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData()
-    );
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     $resData = $this->defResCtrl->getResourceData();
+    
     if( isset( $resData['locLat'] ) && $resData['locLat'] !== '' ) {
       $rExtViewBlockInfo['data']['title'] = $resData['title'];
       $rExtViewBlockInfo['data']['locLat'] = $resData['locLat'];
       $rExtViewBlockInfo['data']['locLon'] = $resData['locLon'];
       $rExtViewBlockInfo['data']['defaultZoom'] = $resData['defaultZoom'];
 
-      $template = new Template();
-      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextMapDirections' );
-      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+      $rExtViewBlockInfo['template']['full'] = new Template();
+      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextMapDirections' );
     }
-
-    // error_log( "RExtMapDirectionsController: getViewBlockInfo() = " . print_r( $rExtViewBlockInfo['data'], true ) );
 
     return $rExtViewBlockInfo;
   }

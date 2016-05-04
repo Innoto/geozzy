@@ -73,4 +73,37 @@ class RoutesController {
     return $route;
   }
 
+
+
+  public function validateRoute( $filePath ) {
+    rextRoutes::autoIncludes();
+
+    $isValid = false;
+    //$filePath = '/home/pblanco/Descargas/Felechosa_final.gpx';
+
+    if ( file_exists( $filePath ) ) {
+
+      $fnSplited = explode( '.', $filePath );
+      /*array_pop( $fnSplited )*/
+
+      try {
+        $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
+        /*echo "<pre>";
+        var_dump( $polygon->getGeomType() );
+        echo "<br>--------------------<br>";
+        var_dump( json_encode( $this->extractPoints( $polygon )) );*/
+        $isValid = true;
+      }
+      catch(Exception $e) {
+          Cogumelo::error( $e->getMessage() );
+      }
+    }
+    else {
+      Cogumelo::error('File not found: '. $filePath);
+    }
+
+
+    return $route;
+  }
+
 }

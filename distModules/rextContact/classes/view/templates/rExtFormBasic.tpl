@@ -1,5 +1,7 @@
 <!-- rExtFormBasic.tpl en rExtContact module -->
 
+{$client_includes}
+
 <div class="rExtContact formBlock formBasic">
 
 {$rExt.dataForm.formFieldsArray['rExtContact_address']}

@@ -44,7 +44,7 @@ class GeozzyResourceView extends View {
    * @return Obj-Template
    **/
   public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    error_log( "GeozzyResourceView: getFormBlock()" );
+    // error_log( "GeozzyResourceView: getFormBlock()" );
 
     $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
@@ -59,7 +59,7 @@ class GeozzyResourceView extends View {
    * Action del formulario
    */
   public function actionResourceForm() {
-    error_log( "GeozzyResourceView: actionResourceForm()" );
+    // error_log( "GeozzyResourceView: actionResourceForm()" );
     $resource = null;
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
@@ -80,7 +80,7 @@ class GeozzyResourceView extends View {
    * Action del formulario Process
    */
   public function actionResourceFormProcess( $form ) {
-    error_log( "GeozzyResourceView: actionResourceFormProcess()" );
+    // error_log( "GeozzyResourceView: actionResourceFormProcess()" );
     $resource = null;
 
 
@@ -133,7 +133,7 @@ class GeozzyResourceView extends View {
    * Action del formulario Success
    */
   public function actionResourceFormSuccess( $form, $resource ) {
-    error_log( "GeozzyResourceView: actionResourceFormSuccess()" );
+    // error_log( "GeozzyResourceView: actionResourceFormSuccess()" );
 
     // Enviamos el OK-ERROR a la BBDD y al formulario
     $this->defResCtrl->resFormSuccess( $form, $resource );
@@ -149,7 +149,7 @@ class GeozzyResourceView extends View {
    * @param $resId int ID del recurso
    */
   public function getViewBlockInfo( $resId = false ) {
-    error_log( "GeozzyResourceView: showResourcePageBlock()" );
+    // error_log( "GeozzyResourceView: showResourcePageBlock()" );
 
     $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
 

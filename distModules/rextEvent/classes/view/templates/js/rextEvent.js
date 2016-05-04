@@ -1,9 +1,6 @@
 $(document).ready(function(){
 
-  initializeMap(poiFormId);
-
   if($('.eventModal').size()>0){
-    //bindModalEventForm();
     bindEventForm('.eventModal ');
   }
   else{

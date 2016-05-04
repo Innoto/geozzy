@@ -1,5 +1,6 @@
 <?php
-rextEvent::autoIncludes();
+
+geozzy::load('controller/RTypeController.php');
 
 class RTypeEventController extends RTypeController implements RTypeInterface {
 
@@ -209,7 +210,7 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     }
 
     $template->assign('eventType', $eventType);
-    $viewBlockInfo['template'] = array( 'full' => $template );
+    $viewBlockInfo['template']['full'] = $template;
     return $viewBlockInfo;
   }
 

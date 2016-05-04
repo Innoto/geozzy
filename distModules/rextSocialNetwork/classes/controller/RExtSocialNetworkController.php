@@ -4,14 +4,18 @@
 class RExtSocialNetworkController extends RExtController implements RExtInterface {
 
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtSocialNetworkController::__construct' );
-    // $this->numericFields = array( 'averagePrice' );
     parent::__construct( $defRTypeCtrl, new rextSocialNetwork(), 'rExtSocialNetwork_' );
   }
 
 
+  /**
+   * Carga los datos de los elementos de la extension
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   */
   public function getRExtData( $resId = false ) {
-    // error_log( "RExtSocialNetworkController: getRExtData( $resId )" );
     $rExtData = false;
 
     if( $resId === false ) {
@@ -41,7 +45,9 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
 
 
   /**
-    Defino el formulario
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
    */
   public function manipulateForm( FormController $form ) {
     // error_log( "RExtSocialNetworkController: manipulateForm()" );
@@ -103,7 +109,10 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       }
     }
 
-    $rExtFieldNames[] = 'FieldNames';
+    /*******************************************************************
+     * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
+     *******************************************************************/
+    //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
@@ -111,30 +120,14 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     return( $rExtFieldNames );
   } // function manipulateForm()
 
+
   /**
     getFormBlockInfo
   */
   public function getFormBlockInfo( FormController $form ) {
 
-    // error_log( "RExtContactController: getFormBlockInfo()" );
-
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
-
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
-
-    $formBlockInfo['dataForm'] = array(
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-    );
-
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
+    $formBlockInfo = parent::getFormBlockInfo( $form );
+    $templates = $formBlockInfo['template'];
 
     $templates['basic'] = new Template();
     $templates['basic']->setTpl( 'rExtFormBasic.tpl', 'rextSocialNetwork' );
@@ -142,40 +135,33 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     $templates['basic']->assign('textFb', $form->multilangFieldNames( 'rExtSocialNetwork_textFb' ));
     $templates['basic']->assign('textTwitter', $form->multilangFieldNames( 'rExtSocialNetwork_textTwitter' ));
 
-
-    $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
-    $templates['full']->assign( 'rExtName', $this->rExtName );
-    $templates['full']->assign( 'rExt', $formBlockInfo );
-
     $formBlockInfo['template'] = $templates;
 
     return $formBlockInfo;
   }
 
+
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
    */
-  public function resFormRevalidate( FormController $form ) {
+  // parent::resFormRevalidate( $form );
 
-    // $this->evalFormSocialNetworkAlias( $form, 'socialNetworkAlias' );
-  }
+
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtSocialNetworkController: resFormProcess()" );
-
-
 
     if( !$form->existErrors() ) {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
-
-      // error_log( 'NEW RExtSocialNetworkModel: ' . print_r( $valuesArray, true ) );
 
       $textFb = $form->multilangFieldNames( 'textFb' );
       foreach( $textFb as $text ) {
@@ -199,7 +185,6 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       }
     }
 
-
     if( !$form->existErrors() ) {
       $saveResult = $rExtModel->save();
       if( $saveResult === false ) {
@@ -208,26 +193,24 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     }
   }
 
+
   /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtSocialNetworkController: resFormSuccess()" );
-
-  }
+  // parent::resFormSuccess( $form, $resource )
 
 
   /**
-    Preparamos los datos para visualizar el Recurso
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
-    // error_log( "RExtSocialNetworkController: getViewBlockInfo()" );
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
-    );
+    $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();

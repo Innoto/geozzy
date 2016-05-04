@@ -258,7 +258,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
     $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppRestaurant' );
 
-    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resData[ 'id' ] );
+    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $viewBlockInfo['data'][ 'id' ] );
 
     $multimediaArray = false;
     $collectionArray = false;
@@ -291,7 +291,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       }
     }
 
-    $viewBlockInfo['template'] = array( 'full' => $template );
+    $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
   }

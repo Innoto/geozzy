@@ -22,7 +22,14 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     // Lanzamos los manipulateForm de las extensiones
     parent::manipulateForm( $form );
 
+    // cambiamos el tipo de topics y starred para que no se muestren
+    $form->setFieldParam( 'topics', 'type', 'reserved' );
+    $form->setFieldParam( 'starred', 'type', 'reserved' );
+    $form->removeValidationRules( 'topics' );
+    $form->removeValidationRules( 'starred' );
 
+    // Altero campos del form del recurso "normal"
+    $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
   } // function manipulateForm()
 
 
@@ -37,10 +44,6 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
 
     // Cargamos la informacion del form, los datos y lanzamos los getFormBlockInfo de las extensiones
     $formBlockInfo = parent::getFormBlockInfo( $form );
-
-
-
-
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -67,9 +70,6 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $formFieldsNames = array( 'published', 'weight' );
     $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
 
-
-
-
     // TEMPLATE panel SEO
     $templates['seo'] = new Template();
     $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -84,8 +84,6 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
 
 
-
-
     // TEMPLATE panel location
     $templates['location'] = new Template();
     $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
@@ -94,9 +92,6 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     //$templates['location']->assign( 'directions', array( 'rExtRoutes_durationMinutes' ) );
 
 
-//echo "<pre>";
-//var_dump($formBlockInfo['ext']['rextRoutes'] );
-//exit;
     // TEMPLATE rutas
     $templates['routes'] = new Template();
     $templates['routes']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );

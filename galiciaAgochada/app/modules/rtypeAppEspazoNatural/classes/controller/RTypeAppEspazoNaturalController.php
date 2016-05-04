@@ -14,11 +14,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
    *
    * @return array $rTypeFieldNames
    */
-  /**
-    Defino el formulario
-   **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeAppEspazoNaturalController: manipulateForm()" );
 
     // Lanzamos los manipulateForm de las extensiones
     parent::manipulateForm( $form );
@@ -32,6 +28,13 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
   } // function manipulateForm()
 
 
+  /**
+   * Preparamos los datos para visualizar el formulario del Recurso
+   *
+   * @param $form FormController
+   *
+   * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'ext' => array }
+   */
   public function getFormBlockInfo( FormController $form ) {
 
     // Cargamos la informacion del form, los datos y lanzamos los getFormBlockInfo de las extensiones
@@ -283,7 +286,7 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
       }
     }
 
-    $viewBlockInfo['template'] = array( 'full' => $template );
+    $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
   }

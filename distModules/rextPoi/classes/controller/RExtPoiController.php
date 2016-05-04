@@ -145,11 +145,14 @@ class RExtPoiController extends RExtController implements RExtInterface {
     $templates['adminExt']->assign( 'rExt', $formBlockInfo );
     $templates['adminExt']->assign( 'res', $resData );
     $templates['adminExt']->addClientScript('js/rextPoi.js', 'rextPoi');
+    /* Hay que añadírselo aquí porque no carga la extensión de contacto */
+    $templates['adminExt']->addClientScript('js/initMap.js', 'geozzy');
 
     $formBlockInfo['template'] = $templates;
 
     return $formBlockInfo;
   }
+
 
 
   /**
@@ -160,9 +163,12 @@ class RExtPoiController extends RExtController implements RExtInterface {
   // parent::resFormRevalidate( $form );
 
 
+
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RExtPoiController: resFormProcess()" );
@@ -193,7 +199,9 @@ class RExtPoiController extends RExtController implements RExtInterface {
 
 
   /**
-    Datos y template por defecto de la extension
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
     $rExtViewBlockInfo = parent::getViewBlockInfo();

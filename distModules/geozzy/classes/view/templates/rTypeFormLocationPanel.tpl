@@ -4,7 +4,7 @@
 {block name="content"}
 
 <script>
-  var poiFormId = '{$res.dataForm.formId}';
+  var formId = '{$res.dataForm.formId}';
 </script>
 
 <div class="row location {$res.dataForm.formId}">

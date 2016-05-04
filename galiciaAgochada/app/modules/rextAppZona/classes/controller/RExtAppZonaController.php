@@ -3,13 +3,19 @@
 
 class RExtAppZonaController extends RExtController implements RExtInterface {
 
+
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtAppZonaController::__construct' );
-    // $this->numericFields = array( 'averagePrice' );
     parent::__construct( $defRTypeCtrl, new rextAppZona(), 'rExtAppZona_' );
   }
 
 
+  /**
+   * Carga los datos de los elementos de la extension
+   *
+   * @param $resId integer
+   *
+   * @return array OR false
+   */
   public function getRExtData( $resId = false ) {
     // error_log( "RExtAppZonaController: getRExtData( $resId )" );
     $rExtData = false;
@@ -32,16 +38,16 @@ class RExtAppZonaController extends RExtController implements RExtInterface {
       }
     }
 
-    // error_log( 'RExtAppZonaController: getRExtData = '.print_r( $rExtData, true ) );
     return $rExtData;
   }
 
 
   /**
-    Defino el formulario
+   * Defino la parte de la extension del formulario
+   *
+   * @param $form FormController
    */
   public function manipulateForm( FormController $form ) {
-    // error_log( "RExtAppZonaController: manipulateForm()" );
 
     $rExtFieldNames = array();
 /*
@@ -59,7 +65,7 @@ class RExtAppZonaController extends RExtController implements RExtInterface {
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
     // Valadaciones extra
-    // $form->setValidationRule( 'hotelName_'.$form->langDefault, 'required' );
+    $form->removeValidationRule( 'rExtAppZona_rextAppZonaType', 'inArray' );
 
     // Si es una edicion, añadimos el ID y cargamos los datos
     $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
@@ -93,7 +99,10 @@ class RExtAppZonaController extends RExtController implements RExtInterface {
       }
     }
 
-    $rExtFieldNames[] = 'FieldNames';
+    /*******************************************************************
+     * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
+     *******************************************************************/
+    //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
 
     $form->saveToSession();
@@ -101,54 +110,34 @@ class RExtAppZonaController extends RExtController implements RExtInterface {
     return( $rExtFieldNames );
   } // function manipulateForm()
 
-  /**
-    getFormBlockInfo
-  */
-  public function getFormBlockInfo( FormController $form ) {
 
-    $formBlockInfo = array(
-      'template' => false,
-      'data' => false,
-      'dataForm' => false
-    );
-
-    $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
-    // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );
-
-    $formBlockInfo['dataForm'] = array(
-      'formFieldsArray' => $form->getHtmlFieldsArray( $prefixedFieldNames ),
-      'formFields' => $form->getHtmlFieldsAndGroups(),
-    );
-
-    if( $form->getFieldValue( 'id' ) ) {
-      $formBlockInfo['data'] = $this->getRExtData();
-    }
-
-    $templates['full'] = new Template();
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
-    $templates['full']->assign( 'rExtName', $this->rExtName );
-    $templates['full']->assign( 'rExt', $formBlockInfo );
-
-    $formBlockInfo['template'] = $templates;
-
-    return $formBlockInfo;
-  }
 
   /**
-    Validaciones extra previas a usar los datos del recurso base
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
-  public function resFormRevalidate( FormController $form ) {
-    // error_log( "RExtAppZonaController: resFormRevalidate()" );
+  // parent::getFormBlockInfo( $form );
 
-    // $this->evalFormUrlAlias( $form, 'urlAlias' );
-  }
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Validaciones extra previas a usar los datos
+   *
+   * @param $form FormController
+   */
+  // parent::resFormRevalidate( $form );
+
+
+
+  /**
+   * Creación-Edición-Borrado de los elementos de la extension
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtAppZonaController: resFormProcess()" );
 
     if( !$form->existErrors() ) {
       foreach( $this->taxonomies as $tax ) {
@@ -160,39 +149,22 @@ class RExtAppZonaController extends RExtController implements RExtInterface {
     }
   }
 
-  /**
-    Enviamos el OK-ERROR a la BBDD y al formulario
-    Finalizar transaction
-   */
-  public function resFormSuccess( FormController $form, ResourceModel $resource ) {
-    // error_log( "RExtAppZonaController: resFormSuccess()" );
-
-  }
 
   /**
-    Preparamos los datos para visualizar el Recurso
+   * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
+   *
+   * @param $form FormController
+   * @param $resource ResourceModel
    */
-  public function getViewBlockInfo() {
-    // error_log( "RExtAppZonaController: getViewBlockInfo()" );
+  // parent::resFormSuccess( $form, $resource )
 
-    $rExtViewBlockInfo = array(
-      'template' => false,
-      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
-    );
 
-    /*
-    if( $rExtViewBlockInfo['data'] ) {
-      $template = new Template();
+  /**
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
+   */
+   // parent::getViewBlockInfo( $form, $resource )
 
-      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextAccommodation' );
-
-      $rExtViewBlockInfo['template'] = array( 'full' => $template );
-    }
-    */
-
-    return $rExtViewBlockInfo;
-  }
 
 } // class RExtAppZonaController
