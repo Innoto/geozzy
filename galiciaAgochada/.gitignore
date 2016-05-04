@@ -1,12 +1,5 @@
-
-# logs (Default)
-/app/log/
-
-# backups (Default)
-/app/backups/
-
-# temp (Default)
-/app/tmp/
+# Documentacion php
+/phpdoc/
 
 # mediaserver and dependences (Default)
 /httpdocs/cgmlImg/
@@ -20,6 +13,3 @@
 # temp form files (Default)
 /formFiles/
 
-
-# private info
-/app/conf/inc/default-connections-info.php

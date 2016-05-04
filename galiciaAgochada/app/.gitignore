@@ -1,0 +1,10 @@
+
+# logs
+/log/
+
+# backups
+/backups/
+
+# temp
+/tmp/
+
