@@ -56,7 +56,7 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
       }
       commentsItems += that.listCommentItemTemplate(data);
     });
-    that.$el.html( that.listCommentTemplate({ comments:commentsItems, commentsToShow:that.commentsToShow }) );
+    that.$el.append( that.listCommentTemplate({ comments:commentsItems, commentsToShow:that.commentsToShow }) );
 
   },
   showAll : function (){

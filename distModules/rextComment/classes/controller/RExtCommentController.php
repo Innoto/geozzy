@@ -187,7 +187,13 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
+
+      $perms = $this->getCommentPermissions( $rExtViewBlockInfo['data']['resource'] );
+
       $rExtViewBlockInfo['template']['full'] = new Template();
+      if(in_array('comment', $perms)){
+        $rExtViewBlockInfo['template']['full']->assign( 'commentButton', true );
+      }
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextComment' );
       $rExtViewBlockInfo['template']['full']->addClientScript('js/commentList.js', 'rextComment');
