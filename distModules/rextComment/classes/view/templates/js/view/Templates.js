@@ -21,6 +21,12 @@ geozzy.commentComponents.commentFormTemplate = ''+
 geozzy.commentComponents.commentFormOkTemplate = ''+
 '<h3>'+__("Your contribution is welcome")+'</h3>';
 
+geozzy.commentComponents.listCommentTemplate = ''+
+'<div class="commentListContainer">'+
+  '<div class="commentList"><%= comments %></div>'+
+  '<% if(commentsToShow){ %> <div class="commentShowMore">'+__("See all comments")+'</div> <% } %>'+
+'</div>';
+
 geozzy.commentComponents.listCommentItemTemplate = ''+
 '<div class="commentItem">'+
   '<div class="commentContent"><%- commentContent %></div>'+
@@ -33,5 +39,5 @@ geozzy.commentComponents.listCommentItemTemplate = ''+
       '}'+
     '}  %>'+
   '</div>'+
-  '<div class="commentInfo">'+__("By")+' <span><%- commentUserName %></span>  <%- commentTimeCreation %></div>'+
+  '<div class="commentInfo">'+__("by")+' <span><%- commentUserName %></span>  <%- commentTimeCreation %></div>'+
 '</div>';

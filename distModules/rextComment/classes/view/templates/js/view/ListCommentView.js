@@ -6,9 +6,12 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
   el : $(".commentSec .rExtCommentList"),
   tagName : '',
   comments : false,
+  listCommentTemplate : false,
   listCommentItemTemplate : false,
-  events: {
+  commentsToShow : 3,
 
+  events: {
+    "click .commentShowMore": "showAll"
   },
 
   initialize: function( idResource ) {
@@ -25,10 +28,21 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
   render: function() {
 
     var that = this;
-
+    var commentsItems = '';
+    that.$el.html('');
+    that.listCommentTemplate = _.template( geozzy.commentComponents.listCommentTemplate );
     that.listCommentItemTemplate = _.template( geozzy.commentComponents.listCommentItemTemplate );
-    this.$el.html('');
+    var commentNumber = 0;
+
+    if( that.comments.keys().length < that.commentsToShow) {
+      that.commentsToShow = false;
+    }
+
     _.each( that.comments.toJSON() , function(item){
+      if(that.commentsToShow !== false && that.commentsToShow === commentNumber){
+        return false;
+      }
+      commentNumber++;
       data = {
         commentContent: item.content,
         commentRate: item.rate,
@@ -40,32 +54,15 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
       }else{
         data.commentUserName = item.anonymousName;
       }
-
-      that.$el.append( that.listCommentItemTemplate(data) );
+      commentsItems += that.listCommentItemTemplate(data);
     });
+    that.$el.html( that.listCommentTemplate({ comments:commentsItems, commentsToShow:that.commentsToShow }) );
 
   },
-
-  updateList: function() {
-/*
+  showAll : function (){
     var that = this;
-
-    this.listTemplate = _.template( $('#resourcesStarredItem').html() );
-    this.$el.find('.listResources').html('');
-    var rs = that.resourcesStarred.search({deleted:0});
-    rs.sortByField('weight');
-    _.each( rs.toJSON() , function(item){
-      that.$el.find('.listResources').append( that.listTemplate({ resource: item }) );
-    });
-
-    this.$el.find('.dd').nestable({
-      'maxDepth': 1,
-      'dragClass': "gzznestable dd-dragel",
-      callback: function(l, e) {
-        that.saveList();
-      }
-    });
-*/
+    that.commentsToShow = false;
+    that.render();
   }
 
 });
