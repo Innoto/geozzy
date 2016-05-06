@@ -4,7 +4,6 @@ if(!geozzy.commentComponents) geozzy.commentComponents={};
 geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
 
   el : false,
-  className : '.commentListContainer',
   comments : false,
   adminListCommentTemplate : false,
   adminListCommentItemTemplate : false,
@@ -30,7 +29,7 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
 
     var that = this;
     var commentsItems = '';
-    that.$el.find(that.className).html('');
+    that.$el.find(".commentListContainer").html('');
     that.adminListCommentTemplate = _.template( geozzy.commentComponents.adminListCommentTemplate );
     that.adminListCommentItemTemplate = _.template( geozzy.commentComponents.adminListCommentItemTemplate );
     that.adminListSuggestionItemTemplate = _.template( geozzy.commentComponents.adminListSuggestionItemTemplate );
@@ -52,8 +51,7 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
       }
       commentsItems += that.adminListCommentItemTemplate(data);
     });
-    that.$el.find(that.className).append( that.adminListCommentTemplate({ comments:commentsItems }) );
-
+    that.$el.find('.commentListContainer').append( that.adminListCommentTemplate({ comments:commentsItems }) );
   }
 
 });
