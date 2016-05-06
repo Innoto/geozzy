@@ -2,9 +2,9 @@
 Cogumelo::load( 'coreController/Module.php' );
 
 
-class rextMapDirections extends Module {
+class rextMap extends Module {
 
-  public $name = 'rextMapDirections';
+  public $name = 'rextMap';
   public $version = 1.0;
 
 
@@ -15,9 +15,9 @@ class rextMapDirections extends Module {
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RExtMapDirectionsController.php',
-    'js/rExtMapDirectionsController.js',
-    'js/rExtMapDirectionsInstance.js'
+    'controller/RExtMapController.php',
+    'js/rExtMapController.js',
+    'js/rExtMapInstance.js'
   );
 
 

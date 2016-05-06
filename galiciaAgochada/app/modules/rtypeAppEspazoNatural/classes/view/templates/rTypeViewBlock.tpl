@@ -134,6 +134,7 @@
     {/if}
 
     <div class="locationDark">
+
       {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")
       || ( isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data !=="")}
         <div class="directions">
@@ -154,6 +155,7 @@
           {$rextMapDirectionsBlock}
         {/if}
       {/if}
+      {$rextMapBlock}
     </div>
 
     {if isset($collections)}

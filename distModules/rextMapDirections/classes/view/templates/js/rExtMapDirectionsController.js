@@ -51,8 +51,11 @@ geozzy.rExtMapDirectionsController = {
   tramoExtraIni: false,
   tramoExtraFin: false,
 
+  resourceMap: false,
 
+/*
   prepareMap: function prepareMap( directionsData ) {
+
     // console.log( 'prepareMap:', directionsData );
     var that = this;
 
@@ -76,11 +79,7 @@ geozzy.rExtMapDirectionsController = {
 
       this.resourceMap = new google.maps.Map( $mapContainer.get(0), this.resourceMapOptions );
 
-      setTimeout(
-        function(){
-          google.maps.event.trigger(that.resourceMap, "resize");
-        },
-      100);
+
 
       // add marker
       this.resourceMarker = new google.maps.Marker({
@@ -95,11 +94,23 @@ geozzy.rExtMapDirectionsController = {
         },
         draggable: false
       });
+
+
+
+
+
+
     } // if( $mapContainer.length )
     else {
       console.log( 'prepareMap - ERROR: NON ENCONTRO O WRAPPER DO MAPA!!!' );
     }
+
+
   },
+*/
+
+
+
 
   resetMap: function resetMap() {
     this.resourceMap.setZoom( this.resourceMapOptions.zoom );
@@ -113,6 +124,13 @@ geozzy.rExtMapDirectionsController = {
   prepareRoutes: function prepareRoutes( directionsData ) {
     // console.log( 'prepareRoutes', directionsData );
     var that = this;
+
+
+    that.resourceMap = geozzy.rExtMapInstance.resourceMap;
+
+
+    this.resourceMapInfo = directionsData;
+
 
     // Prepare Form
     this.routePanelContainer = $( directionsData.wrapperRoute );
@@ -157,6 +175,7 @@ geozzy.rExtMapDirectionsController = {
         that.clearRoute();
         that.resetForm();
         that.setMarkerFrom( ev.latLng );
+
         that.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), false, false );
       });
 
@@ -247,7 +266,8 @@ geozzy.rExtMapDirectionsController = {
   },
 
   loadRoute: function loadRoute( from, fromTitle, routeMode ) {
-    // console.log( 'loadRoute:', from, fromTitle, routeMode );
+
+
     var that = this;
 
     if( from ) {
@@ -265,7 +285,6 @@ geozzy.rExtMapDirectionsController = {
 
       travelInfo = false;
       that.clearRoute();
-
       if( that.resourceLastroute ) {
         that.routeFrom.dir = that.resourceLastroute.routes[0].legs[0].start_address;
         that.routeTo.dir = that.resourceLastroute.routes[0].legs[0].end_address;
@@ -273,6 +292,7 @@ geozzy.rExtMapDirectionsController = {
         that.routeTo.distance = that.resourceLastroute.routes[0].legs[0].distance.value;
 
         that.setMarkerFrom( that.resourceLastroute.routes[0].legs[0].start_location );
+
         that.directionsDisplay.setMap( that.resourceMap );
         that.directionsDisplay.setPanel( that.routePanelContainer.find( '#comollegarListado' ).get(0) );
 
@@ -390,8 +410,10 @@ geozzy.rExtMapDirectionsController = {
       travelMode: google.maps.TravelMode[ modeString ]
     };
 
+
     if( typeof this.resourceRoutes[ mode ][ id ] === 'undefined' || !cache ) {
       this.directionsService.route( route, function( result, status ) {
+
         if( status === google.maps.DirectionsStatus.OK ) {
           // console.debug( '<p>'+ route.travelMode +' Metros: '+result.routes[0].legs[0].distance.value+' Segundos: '+result.routes[0].legs[0].duration.value+'</p>' );
           // directionsDisplay.setDirections(result);

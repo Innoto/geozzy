@@ -69,4 +69,3 @@ cogumeloSetSetupValue( 'mod:mediaserver', array(
   'tmpCachePath' => APP_TMP_PATH.'/mediaCache',
   'minimifyFiles' => false // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
 ));
-

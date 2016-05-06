@@ -173,6 +173,7 @@ $C_REXT_MODULES = array(
   'rextAccommodation',
   'rextEatAndDrink',
   'rextContact',
+  'rextMap',
   'rextMapDirections',
   'rextUrl',
   'rextView',
