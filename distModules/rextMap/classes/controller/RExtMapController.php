@@ -1,12 +1,11 @@
 <?php
 
 
-class RExtMapDirectionsController extends RExtController implements RExtInterface {
+class RExtMapController extends RExtController implements RExtInterface {
 
   public function __construct( $defRTypeCtrl ){
     parent::__construct( $defRTypeCtrl, new rextMapDirections(), 'rExtMapDirections_' );
   }
-
 
   /**
    * Carga los datos de los elementos de la extension
@@ -98,7 +97,7 @@ class RExtMapDirectionsController extends RExtController implements RExtInterfac
 
       $rExtViewBlockInfo['template']['full'] = new Template();
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextMapDirections' );
+      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextMap' );
     }
 
     return $rExtViewBlockInfo;

@@ -30,13 +30,8 @@
     color: #44F;
     border-color: #44F;
   }
-  .rExtMapDirections .resMapWrapper {
-    height:400px;
-  }
-  .rExtMapDirections .resMapContainer {
-    width:100%;
-    height:100%;
-  }
+
+
 </style>
 
 <div class="rExtMapDirections">
@@ -64,9 +59,9 @@
     </div>
   </div>
   <div class="resMapWrapper">
-    <div class="resMapContainer" style="">
-      <!-- google.map -->
-    </div>
+    <!--div class="resMapContainer" style="">
+
+    </div-->
   </div>
 </div>
 
@@ -80,18 +75,18 @@ var geozzy = geozzy || {};
 geozzy.rExtMapDirectionsData = {
   title: '{$rExt.data.title}',
   lat: {$rExt.data.locLat},
-  lon: {$rExt.data.locLon},
+  lng: {$rExt.data.locLon},
   zoom: {$rExt.data.defaultZoom},
   wrapper: '.rExtMapDirections .resMapContainer',
   wrapperRoute: '.rExtMapDirections .mapRoute',
   scrollTopMargin: 130
 };
 
+
+/*
 $(document).ready( function() {
   setTimeout(function(){
-    if( typeof geozzy.rExtMapDirectionsData !== 'undefined' ) {
-      geozzy.rExtMapDirectionsController.prepareMap( geozzy.rExtMapDirectionsData );
-    }
+
 
     if( typeof geozzy.rExtMapDirectionsData.wrapperRoute !== 'undefined' ) {
       geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData );
@@ -100,7 +95,7 @@ $(document).ready( function() {
   },300);
 
 });
-
+*/
 </script>
 
 <!-- /rExtViewBlock.tpl en rExtMapDirections module -->
