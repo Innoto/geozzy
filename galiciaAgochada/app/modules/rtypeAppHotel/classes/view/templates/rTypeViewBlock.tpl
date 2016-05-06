@@ -201,6 +201,7 @@
           {$rextMapDirectionsBlock}
         {/if}
       {/if}
+      {$rextMapBlock}
     </div>
 
 

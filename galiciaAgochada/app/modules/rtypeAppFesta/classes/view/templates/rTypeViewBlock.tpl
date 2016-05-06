@@ -158,6 +158,7 @@
           {$rextMapDirectionsBlock}
         {/if}
       {/if}
+      {$rextMapBlock}
     </div>
 
     {if isset($collections)}
