@@ -41,3 +41,36 @@ geozzy.commentComponents.listCommentItemTemplate = ''+
   '</div>'+
   '<div class="commentInfo">'+__("by")+' <span><%- commentUserName %></span>  <%- commentTimeCreation %></div>'+
 '</div>';
+
+geozzy.commentComponents.adminListCommentTemplate = ''+
+'<div class="commentList"><%= comments %></div>';
+
+geozzy.commentComponents.adminListCommentItemTemplate = ''+
+'<div class="commentItem">'+
+  '<div class="commentContent"><%- commentContent %></div>'+
+  '<div class="commentRate">'+
+    '<% for (var i = 0; i < 5; i++) { '+
+      'if(commentRate > i){'+
+        '%><i class="fa fa-star" aria-hidden="true"></i><%'+
+      '}else{'+
+        '%><i class="fa fa-star-o" aria-hidden="true"></i><%'+
+      '}'+
+    '}  %>'+
+  '</div>'+
+  '<div class="commentInfo">'+__("by")+' <span><%- commentUserName %></span>  <%- commentTimeCreation %></div>'+
+'</div>';
+
+geozzy.commentComponents.adminListSuggestionItemTemplate = ''+
+'<div class="commentItem">'+
+  '<div class="commentContent"><%- commentContent %></div>'+
+  '<div class="commentRate">'+
+    '<% for (var i = 0; i < 5; i++) { '+
+      'if(commentRate > i){'+
+        '%><i class="fa fa-star" aria-hidden="true"></i><%'+
+      '}else{'+
+        '%><i class="fa fa-star-o" aria-hidden="true"></i><%'+
+      '}'+
+    '}  %>'+
+  '</div>'+
+  '<div class="commentInfo">'+__("by")+' <span><%- commentUserName %></span>  <%- commentTimeCreation %></div>'+
+'</div>';
