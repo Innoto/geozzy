@@ -5,6 +5,7 @@
   WEB_BASE_PATH - Apache DocumentRoot (en index.php)
   PRJ_BASE_PATH - Project Path (normalmente contiene app/ httpdocs/ formFiles/) (en index.php)
   APP_BASE_PATH - App Path (en index.php)
+  APP_TMP_PATH  - Ficheros temporales (en index.php)
   IS_DEVEL_ENV  - Indica si estamos en el entorno de desarrollo (en setup.php)
 
 
@@ -32,19 +33,20 @@
 */
 
 
+//
 // Framework Path
 //
 define( 'COGUMELO_LOCATION', '/home/proxectos/cogumelo' );
 define( 'COGUMELO_DIST_LOCATION', '/home/proxectos/geozzy');
 
-//  APP
-//
-define( 'APP_TMP_PATH', APP_BASE_PATH.'/tmp' );
 
+//
 // cogumeloScript Url settings
 //
 cogumeloSetSetupValue( 'script:cogumeloServerUrl', 'http://galiciaagochada/cogumelo-server.php' );
 
+
+//
 // DB
 //
 cogumeloSetSetupValue( 'db', array(
@@ -58,6 +60,8 @@ cogumeloSetSetupValue( 'db', array(
   'allowCache' => true
 ));
 
+
+//
 // Media server
 //
 cogumeloSetSetupValue( 'mod:mediaserver', array(
@@ -69,3 +73,5 @@ cogumeloSetSetupValue( 'mod:mediaserver', array(
   'tmpCachePath' => APP_TMP_PATH.'/mediaCache',
   'minimifyFiles' => false // for js and css files ( only when MEDIASERVER_PRODUCTION_MODE is true)
 ));
+
+
