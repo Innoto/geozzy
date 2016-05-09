@@ -44,7 +44,8 @@ ini_set( 'session.cookie_lifetime', cogumeloGetSetupValue( 'session:lifetime' ) 
 ini_set( 'session.gc_probability', 1 );
 ini_set( 'session.gc_divisor', 100 );
 // Our own session save path
-session_save_path( APP_BASE_PATH . '/tmp/php-sessions' );
+cogumeloSetSetupValue( 'session:savePath', APP_BASE_PATH . '/php-sessions' );
+session_save_path( cogumeloGetSetupValue( 'session:savePath' ) );
 
 
 //
