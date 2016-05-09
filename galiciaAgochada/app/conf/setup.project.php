@@ -5,6 +5,7 @@
   WEB_BASE_PATH - Apache DocumentRoot (en index.php)
   PRJ_BASE_PATH - Project Path (normalmente contiene app/ httpdocs/ formFiles/) (en index.php)
   APP_BASE_PATH - App Path (en index.php)
+  APP_TMP_PATH  - Ficheros temporales (en index.php)
   IS_DEVEL_ENV  - Indica si estamos en el entorno de desarrollo (en setup.php)
 
 
@@ -32,6 +33,14 @@
 */
 
 
+//
+// Public Access User
+//
+define( 'GA_ACCESS_USER', 'gaUser' );
+define( 'GA_ACCESS_PASSWORD', 'gz15005' );
+
+
+//
 // Lang
 //
 cogumeloSetSetupValue( 'lang', array(
@@ -51,93 +60,9 @@ cogumeloSetSetupValue( 'lang', array(
 
 
 //
-// Dates
-//
-cogumeloSetSetupValue( 'date:timezone', 'Europe/Madrid');
-
-
-//
-//  memcached
-//
-require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
-
-
-//
-// Public Access User
-//
-define( 'GA_ACCESS_USER', 'gaUser' );
-define( 'GA_ACCESS_PASSWORD', 'gz15005' );
-
-
-//
-//  Url settings
-//
-// TODO: Cuidado porque no se procesa el puerto
-define( 'SITE_PROTOCOL', isset( $_SERVER['HTTPS'] ) ? 'https' : 'http' );
-define( 'SITE_HOST', SITE_PROTOCOL.'://'.$_SERVER['HTTP_HOST']);  // solo HOST sin ('/')
-define( 'SITE_FOLDER', '/' );  // SITE_FOLDER STARTS AND ENDS WITH SLASH ('/')
-define( 'SITE_URL', SITE_HOST . SITE_FOLDER );
-define( 'SITE_URL_HTTP', 'http://'.$_SERVER['HTTP_HOST'] . SITE_FOLDER );
-define( 'SITE_URL_HTTPS', 'https://'.$_SERVER['HTTP_HOST'] . SITE_FOLDER );
-define( 'SITE_URL_CURRENT', SITE_PROTOCOL == 'http' ? SITE_URL_HTTP : SITE_URL_HTTPS );
-
-
-//
 // URL alias controller: Fichero que contiene una clase UrlAliasController con un metodo getAlternative
 //
 cogumeloSetSetupValue( 'urlAliasController:classFile', COGUMELO_DIST_LOCATION.'/distModules/geozzy/classes/controller/UrlAliasController.php' );
-
-
-//
-//  Mail sender
-//
-cogumeloSetSetupValue( 'mail', array(
-  'type' => 'smtp',
-  'host' => 'localhost',
-  'port' => '25',
-  'auth' => false,
-  //'user' => 'mailuser',
-  //'pass' => 'mailuserpass',
-  //'secure' => 'tls',
-  'fromName' => 'Cogumelo Sender',
-  'fromEmail' => 'cogumelo@cogumelo.org'
-));
-/*
-cogumeloSetSetupValue( 'mail', array(
-  'type' => 'gmail',
-  'host' => 'localhost',
-  'port' => '25',
-  'auth' => false,
-  'user' => 'mailuser',
-  'pass' => 'mailuserpass',
-  'fromName' => 'Cogumelo Sender',
-  'fromEmail' => 'cogumelo@cogumelo.org'
-));
-*/
-
-
-//
-//  Templates
-//
-// Constante usada directamente por Smarty - No eliminar!!!
-define( 'SMARTY_DIR', WEB_BASE_PATH.'/vendor/composer/smarty/smarty/libs/' );
-cogumeloSetSetupValue( 'smarty', array(
-  'configPath' => APP_BASE_PATH.'/conf/smarty',
-  'compilePath' => APP_TMP_PATH.'/templates_c',
-  'cachePath' => APP_TMP_PATH.'/cache',
-  'tmpPath' => APP_TMP_PATH.'/tpl'
-));
-
-
-//
-// Dependences PATH
-//
-cogumeloSetSetupValue( 'dependences', array(
-  'composerPath' => WEB_BASE_PATH.'/vendor/composer',
-  'bowerPath' => WEB_BASE_PATH.'/vendor/bower',
-  'manualPath' => WEB_BASE_PATH.'/vendor/manual',
-  'manualRepositoryPath' => COGUMELO_LOCATION.'/packages/vendorPackages'
-));
 
 
 //
@@ -247,27 +172,24 @@ $C_INDEX_MODULES  = array(
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 
+
+//
 // User config
+//
 cogumeloSetSetupValue( 'mod:geozzyUser', array(
   'profile' => 'rtypeAppUser'
 ));
 
 
 //
-//  Logs
+// Dependences PATH
 //
-cogumeloSetSetupValue( 'logs', array(
-  'path' => APP_BASE_PATH.'/log', // log files directory
-  'rawSql' => false, // Log RAW all SQL ¡WARNING! application passwords will dump into log files
-  'debug' => true, // Set Debug mode to log debug messages on log
-  'error' => true // Display errors on screen. If you use devel module, you might disable it
+cogumeloSetSetupValue( 'dependences', array(
+  'composerPath' => WEB_BASE_PATH.'/vendor/composer',
+  'bowerPath' => WEB_BASE_PATH.'/vendor/bower',
+  'manualPath' => WEB_BASE_PATH.'/vendor/manual',
+  'manualRepositoryPath' => COGUMELO_LOCATION.'/packages/vendorPackages'
 ));
-
-
-//
-// Backups
-//
-cogumeloSetSetupValue( 'script:backupPath', APP_BASE_PATH.'/backups/' ); //backups directory
 
 
 //
@@ -291,46 +213,25 @@ cogumeloSetSetupValue( 'i18n', array(
 
 
 //
-//  Form Mod
+//  Media server
 //
-cogumeloSetSetupValue( 'mod:form', array(
-  'cssPrefix' => 'cgmMForm',
-  'tmpPath' => APP_TMP_PATH.'/formFiles'
-));
+cogumeloSetSetupValue( 'publicConf:globalVars', array( 'C_LANG', 'C_SESSION_ID' ) );
+cogumeloSetSetupValue( 'publicConf:setupFields',
+  array( 'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone' ) );
+cogumeloSetSetupValue( 'publicConf:vars:langDefault', cogumeloGetSetupValue( 'lang:default' ) );
+cogumeloSetSetupValue( 'publicConf:vars:langAvailableIds', array_keys( cogumeloGetSetupValue( 'lang:available' ) ) );
+cogumeloSetSetupValue( 'publicConf:vars:mediaJs',
+  ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true &&
+    cogumeloGetSetupValue( 'mod:mediaserver:notCacheJs' ) !== true )
+    ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
+    : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ) );
+cogumeloSetSetupValue( 'publicConf:vars:media',
+  ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true )
+    ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
+    : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ) );
+cogumeloSetSetupValue( 'publicConf:vars:mediaHost', cogumeloGetSetupValue( 'mod:mediaserver:host' ) );
+cogumeloSetSetupValue( 'publicConf:vars:site_host', SITE_HOST );
 
-
-//
-//  Filedata Mod
-//
-cogumeloSetSetupValue( 'mod:filedata', array(
-  'filePath' => PRJ_BASE_PATH.'/formFiles',
-  'cachePath' => WEB_BASE_PATH.'/cgmlImg'
-));
-include 'filedataImageProfiles.php';
-
-
-//
-//	Media server
-//
-cogumeloSetSetupValue( 'publicConf',
-  array(
-    'globalVars' => array( 'C_LANG', 'C_SESSION_ID' ),
-    'setupFields' => array( 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone' ),
-    'vars' => array(
-      'langDefault' => cogumeloGetSetupValue( 'lang:default' ),
-      'langAvailableIds' => array_keys( cogumeloGetSetupValue( 'lang:available' ) ),
-      'mediaJs' => ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true &&
-        cogumeloGetSetupValue( 'mod:mediaserver:notCacheJs' ) !== true )
-        ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
-        : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ),
-      'media' => ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true )
-        ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
-        : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ),
-      'mediaHost' => cogumeloGetSetupValue( 'mod:mediaserver:host' ),
-      'site_host' => SITE_HOST
-    )
-  )
-);
 cogumeloSetSetupValue( 'mod:mediaserver:publicConf:javascript',
   cogumeloGetSetupValue( 'publicConf' )
 );

@@ -201,7 +201,7 @@ class RExtViewController extends RExtController implements RExtInterface {
     if( isset( $viewBlockInfo['ext'][ $this->rExtName ]['data']['viewAlternativeMode'] ) ) {
       $term = array_pop( $viewBlockInfo['ext'][ $this->rExtName ]['data']['viewAlternativeMode'] );
       $viewAlternativeMode = $term[ 'idName' ];
-      error_log( 'RExtViewController->alterViewBlockInfo: viewAlternativeMode: ' . $viewAlternativeMode );
+      // error_log( 'RExtViewController->alterViewBlockInfo: viewAlternativeMode: ' . $viewAlternativeMode );
 
       if( strpos( $viewAlternativeMode, 'tpl' ) === 0 ) {
         if( strpos( $viewAlternativeMode, 'tplApp' ) !== 0 ) {
