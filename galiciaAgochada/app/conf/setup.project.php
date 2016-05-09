@@ -311,25 +311,23 @@ include 'filedataImageProfiles.php';
 //
 //	Media server
 //
-cogumeloSetSetupValue( 'publicConf',
-  array(
-    'globalVars' => array( 'C_LANG', 'C_SESSION_ID' ),
-    'setupFields' => array( 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone' ),
-    'vars' => array(
-      'langDefault' => cogumeloGetSetupValue( 'lang:default' ),
-      'langAvailableIds' => array_keys( cogumeloGetSetupValue( 'lang:available' ) ),
-      'mediaJs' => ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true &&
-        cogumeloGetSetupValue( 'mod:mediaserver:notCacheJs' ) !== true )
-        ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
-        : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ),
-      'media' => ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true )
-        ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
-        : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ),
-      'mediaHost' => cogumeloGetSetupValue( 'mod:mediaserver:host' ),
-      'site_host' => SITE_HOST
-    )
-  )
-);
+cogumeloSetSetupValue( 'publicConf:globalVars', array( 'C_LANG', 'C_SESSION_ID' ) );
+cogumeloSetSetupValue( 'publicConf:setupFields',
+  array( 'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone' ) );
+cogumeloSetSetupValue( 'publicConf:vars:langDefault', cogumeloGetSetupValue( 'lang:default' ) );
+cogumeloSetSetupValue( 'publicConf:vars:langAvailableIds', array_keys( cogumeloGetSetupValue( 'lang:available' ) ) );
+cogumeloSetSetupValue( 'publicConf:vars:mediaJs',
+  ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true &&
+    cogumeloGetSetupValue( 'mod:mediaserver:notCacheJs' ) !== true )
+    ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
+    : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ) );
+cogumeloSetSetupValue( 'publicConf:vars:media',
+  ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true )
+    ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
+    : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ) );
+cogumeloSetSetupValue( 'publicConf:vars:mediaHost', cogumeloGetSetupValue( 'mod:mediaserver:host' ) );
+cogumeloSetSetupValue( 'publicConf:vars:site_host', SITE_HOST );
+
 cogumeloSetSetupValue( 'mod:mediaserver:publicConf:javascript',
   cogumeloGetSetupValue( 'publicConf' )
 );

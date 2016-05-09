@@ -1,40 +1,54 @@
 <?php
-/**
- * Previamente (en index.php) ya se definen los siguientes valores:
- *
- * WEB_BASE_PATH - Apache DocumentRoot (declarado en index.php)
- * APP_BASE_PATH - App Path (declarado en index.php)
- * SITE_PATH - App Path (declarado en index.php)
- * IS_DEVEL_ENV - Indica si estamos en el entorno de desarrollo (declarado en setup.php)
- *
- *
- * Normas de estilo:
- *
- * * Nombres:
- * - Inicia por MOD_NOMBREMODULO_ para modulos
- * - Finalizan en _PATH para rutas
- *
- * * Valores:
- * - Las rutas no finalizan en /
- * - Las URL no finalizan en /
- */
+/*
+  Previamente se definen las siguientes constantes:
 
-// En setup.*
-// cogumeloSetSetupValue( 'modName:level1:level2', $value );
-// $value = cogumeloGetSetupValue( 'modName:level1:level2' );
+  WEB_BASE_PATH - Apache DocumentRoot (en index.php)
+  PRJ_BASE_PATH - Project Path (normalmente contiene app/ httpdocs/ formFiles/) (en index.php)
+  APP_BASE_PATH - App Path (en index.php)
+  IS_DEVEL_ENV  - Indica si estamos en el entorno de desarrollo (en setup.php)
 
-// En codigo cogumelo
-// Cogumelo::setSetupValue( 'modName:level1:level2', $value );
-// $value = Cogumelo::getSetupValue( 'modName:level1:level2' );
+
+  Normas de estilo:
+
+  Nombres:
+  - Inicia por mod:nombreModulo: para configuración de modulos
+  - Fuera de módulos, de forma general, usaremos tema:subtema:variable
+  - Usar nombres finalizados en "Path" (variablePath) para rutas
+
+  Valores:
+  - Las rutas NO finalizan en /
+  - Las URL NO finalizan en /
+
+
+  Llamadas a metodos:
+
+  En ficheros de setup:
+  cogumeloSetSetupValue( 'mod:nombreModulo:level1:level2', $value );
+  $value = cogumeloGetSetupValue( 'mod:nombreModulo:level1:level2' );
+
+  En código cogumelo:
+  Cogumelo::setSetupValue( 'mod:nombreModulo:level1:level2', $value );
+  $value = Cogumelo::getSetupValue( 'mod:nombreModulo:level1:level2' );
+*/
 
 
 
 //
 //  SESSION
 //
-ini_set( 'session.cookie_lifetime', 86400 );
-ini_set( 'session.gc_maxlifetime', 86400 );
+// Session lifetime
+cogumeloSetSetupValue( 'session:lifetime', 4*60*60 ); // 4h.
+ini_set( 'session.gc_maxlifetime',  cogumeloGetSetupValue( 'session:lifetime' ) );
+ini_set( 'session.cookie_lifetime', cogumeloGetSetupValue( 'session:lifetime' ) );
+// Enable session garbage collection with a 1% chance of running on each session_start()
+ini_set( 'session.gc_probability', 1 );
+ini_set( 'session.gc_divisor', 100 );
+// Our own session save path
+session_save_path( APP_BASE_PATH . '/tmp/php-sessions' );
 
 
+//
+// Url to load resource view from ID
+//
 cogumeloSetSetupValue( 'mod:geozzy:resource:directUrl', 'resource' );
 
