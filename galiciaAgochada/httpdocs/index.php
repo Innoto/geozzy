@@ -3,7 +3,7 @@
 // Project location
 define( 'WEB_BASE_PATH', getcwd() );
 define( 'PRJ_BASE_PATH', realpath( WEB_BASE_PATH.'/..' ) );
-define( 'APP_TMP_PATH', APP_BASE_PATH.'/tmp' );
+define( 'APP_BASE_PATH', PRJ_BASE_PATH.'/app' );
 
 // Include cogumelo core Location
 set_include_path( '.:'.APP_BASE_PATH );
