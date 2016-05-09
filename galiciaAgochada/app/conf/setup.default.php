@@ -34,6 +34,12 @@
 
 
 //
+// Ficheros temporales
+//
+define( 'APP_TMP_PATH', APP_BASE_PATH.'/tmp' );
+
+
+//
 // Dates
 //
 cogumeloSetSetupValue( 'date:timezone', 'Europe/Madrid');
