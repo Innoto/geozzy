@@ -11,11 +11,13 @@ geozzy.commentComponents.CommentModel = Backbone.Model.extend({
     timeCreation: '',
     rate: 0,
     suggestType: 0,
+    suggestTypeName: '',
     status: 0,
     anonymousName: '',
     anonymousEmail: '',
     user: 0,
     userName: '',
-    userEmail: ''
+    userEmail: '',
+    userVerified: false
   }
 });

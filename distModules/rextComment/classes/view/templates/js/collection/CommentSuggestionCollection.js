@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
 if(!geozzy.commentComponents) geozzy.commentComponents={};
 
-geozzy.commentComponents.CommentSuggestionCollection = Backbone.Model.extend({
+geozzy.commentComponents.CommentSuggestionCollection = Backbone.Collection.extend({
   initialize: function(models, options) {
     this.resource = options.resource;
   },
@@ -14,7 +14,7 @@ geozzy.commentComponents.CommentSuggestionCollection = Backbone.Model.extend({
 
   search: function( opts ){
     var result = this.where( opts );
-    var resultCollection = new geozzy.commentComponents.CommentSuggestionCollection( result );
+    var resultCollection = new geozzy.commentComponents.CommentSuggestionCollection(result, {resource: this.resource});
 
     return resultCollection;
   },
