@@ -5,7 +5,7 @@ user::autoIncludes();
 
 $useraccesscontrol = new UserAccessController();
 
-if( $useraccesscontrol->isLogged()){
+if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) ){
   $GEOZZY_API_DOC_URLS_ADMIN = array(
     array(
       'path' => '/admin/adminCategories.json',
@@ -22,6 +22,10 @@ if( $useraccesscontrol->isLogged()){
     array(
       'path' => '/admin/adminStarred.json',
       'description' => 'Admin StarredTerms'
+    ),
+    array(
+      'path' => '/admin/adminCommentSuggestion.json',
+      'description' => 'Admin Comments and Suggestions'
     )
   );
 }
