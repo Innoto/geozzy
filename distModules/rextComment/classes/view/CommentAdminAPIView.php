@@ -92,9 +92,8 @@ class CommentAdminAPIView extends View
 
       geozzy::load('model/TaxonomygroupModel.php');
       geozzy::load('model/TaxonomytermModel.php');
-
-
       rextComment::load('model/CommentModel.php');
+      
       $commentModel = new CommentModel();
       $commentsList = $commentModel->listItems(  array(
         'filters' => array( 'resource'=> $urlParamsList['resource'] ),
@@ -112,10 +111,19 @@ class CommentAdminAPIView extends View
       while ($valueobject = $commentsList->fetch() ) {
         $allData = $valueobject->getAllData('onlydata');
         $user = $valueobject->getterDependence('user');
+
         if($user){
           $allData['userName'] = $user[0]->getter('name');
           $allData['userEmail'] = $user[0]->getter('email');
+          $allData['userVerified'] = $user[0]->getter('verified');
         }
+        $ctype = $valueobject->getterDependence('type');
+var_dump($ctype);
+exit;
+        if($ctype){
+
+        }
+
         echo $c.json_encode($allData);
         $c=',';
       }
