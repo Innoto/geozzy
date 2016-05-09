@@ -2,9 +2,11 @@
 # logs
 /log/
 
-# backups
+# backups (default)
 /backups/
 
 # temp
 /tmp/
 
+# PHP sessions (default)
+/php-sessions
