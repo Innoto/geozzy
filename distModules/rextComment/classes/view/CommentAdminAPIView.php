@@ -93,12 +93,12 @@ class CommentAdminAPIView extends View
       geozzy::load('model/TaxonomygroupModel.php');
       geozzy::load('model/TaxonomytermModel.php');
       rextComment::load('model/CommentModel.php');
-      
+
       $commentModel = new CommentModel();
       $commentsList = $commentModel->listItems(  array(
         'filters' => array( 'resource'=> $urlParamsList['resource'] ),
         'order' => array( 'timeCreation' => -1 ),
-        'affectsDependences' => array('UserModel')
+        'affectsDependences' => array('UserModel','TaxonomytermModel')
       ) );
 
 
@@ -117,12 +117,33 @@ class CommentAdminAPIView extends View
           $allData['userEmail'] = $user[0]->getter('email');
           $allData['userVerified'] = $user[0]->getter('verified');
         }
-        $ctype = $valueobject->getterDependence('type');
-var_dump($ctype);
-exit;
-        if($ctype){
 
+        $ctype = $valueobject->getterDependence('type');
+
+        if($ctype){
+          $allData['type'] = $ctype[0]->getter('name');
         }
+
+
+        $suggestType = $valueobject->getterDependence('suggestType');
+
+        if($suggestType){
+          $allData['stype'] = $suggestType[0]->getter('name');
+        }
+
+
+        $suggestType = $valueobject->getterDependence('suggestType');
+
+        if($suggestType){
+          $allData['type'] = $suggestType[0]->getter('name');
+        }
+
+        $suggestType = $valueobject->getterDependence('status');
+
+        if($suggestType){
+          $allData['status'] = $suggestType[0]->getter('name');
+        }
+
 
         echo $c.json_encode($allData);
         $c=',';
