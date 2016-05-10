@@ -1027,10 +1027,10 @@ class ResourceController {
     $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' ); // collectionType "multimedia"
 
     if( !is_array( $formValuesCol ) ) {
-      $formValuesCol = ( $formValuesCol === false ) ? array() : array( $formValuesCol );
+      $formValuesCol = ( is_numeric( $formValuesCol ) ) ? array( $formValuesCol ) : array();
     }
     if( !is_array( $formValuesMulti ) ) {
-      $formValuesMulti = ( $formValuesMulti === false ) ? array() : array( $formValuesMulti );
+      $formValuesMulti = ( is_numeric( $formValuesMulti ) ) ? array( $formValuesMulti ) : array();
     }
     $formValues = array_merge( $formValuesCol, $formValuesMulti );
 
@@ -1043,9 +1043,10 @@ class ResourceController {
         // estaban asignados antes
         $relPrevInfo = array();
         $colModel = new CollectionModel();
-        while( $relPrev = $relPrevList->fetch() ){
-          $collection = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) )->fetch();
-          if( $collection->getter('collectionType') === 'base' || $collection->getter('collectionType') === 'multimedia' ) {
+        while( $relPrev = $relPrevList->fetch() ) {
+          $colList = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) );
+          $collection = ( $colList ) ? $colList->fetch() : false;
+          if( $collection && in_array( $collection->getter('collectionType'), array( 'base', 'multimedia' ) ) ) {
             $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
             if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ) {
               // desasignar
@@ -1057,7 +1058,7 @@ class ResourceController {
     }
 
     // Creamos-Editamos todas las relaciones
-    if( $formValues !== false ) {
+    if( count( $formValues ) > 0 ) {
       $weight = 0;
       foreach( $formValues as $value ) {
         $weight++;
