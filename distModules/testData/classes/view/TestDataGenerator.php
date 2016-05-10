@@ -180,41 +180,43 @@ class TestDataGenerator extends View
 
       $resource->save(array('affectsDependences' => true));
 
-      $taxtermlist = array();
-      foreach($typeArray[$actType]['taxonomies'] as $key => $taxonomygroup){
+      if( isset( $typeArray[$actType]['taxonomies'] ) && is_array( $typeArray[$actType]['taxonomies'] ) && count( $typeArray[$actType]['taxonomies'] )>0 ) {
+        $taxtermlist = array();
+        foreach( $typeArray[$actType]['taxonomies'] as $key => $taxonomygroup ) {
 
-        if ($taxonomygroup['terms']){
-          $usedTaxterm = array();
-          foreach ($taxonomygroup['terms'] as $taxonomygroupname){
-            $taxtermlist = $taxtermArray[$taxonomygroupname];
-            if (in_array($taxonomygroupname, $onlyOneTax)){ //taxonomias simples
-              $taxtermNum = rand(0, sizeof($taxtermlist)-1);
-              $taxterm = $taxtermlist[$taxtermNum];
-              $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxterm, 'weight' => 1));
-              $resTaxterm->save();
-            }
-            else{ // taxonomias multiples
-              for ($c=1; $c<=sizeof($taxtermArray)/2; $c++){
-                  $taxtermNum = rand(0, sizeof($taxtermlist)-1);
-                  if (!in_array($taxtermlist[$taxtermNum],$usedTaxterm)){
-                    $usedTaxterm[$c] = $taxtermlist[$taxtermNum];
-                    $taxterm = $taxtermlist[$taxtermNum];
-                    $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxterm, 'weight' => 1));
-                    $resTaxterm->save();
-                  }
-              } // for
-            } // if-else
-          } // foreach ($taxonomygroup as $taxonomygroupname)
-        } // if ($taxonomygroup)
+          if ($taxonomygroup['terms']){
+            $usedTaxterm = array();
+            foreach ($taxonomygroup['terms'] as $taxonomygroupname){
+              $taxtermlist = $taxtermArray[$taxonomygroupname];
+              if (in_array($taxonomygroupname, $onlyOneTax)){ //taxonomias simples
+                $taxtermNum = rand(0, sizeof($taxtermlist)-1);
+                $taxterm = $taxtermlist[$taxtermNum];
+                $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxterm, 'weight' => 1));
+                $resTaxterm->save();
+              }
+              else{ // taxonomias multiples
+                for ($c=1; $c<=sizeof($taxtermArray)/2; $c++){
+                    $taxtermNum = rand(0, sizeof($taxtermlist)-1);
+                    if (!in_array($taxtermlist[$taxtermNum],$usedTaxterm)){
+                      $usedTaxterm[$c] = $taxtermlist[$taxtermNum];
+                      $taxterm = $taxtermlist[$taxtermNum];
+                      $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'), 'taxonomyterm' => $taxterm, 'weight' => 1));
+                      $resTaxterm->save();
+                    }
+                } // for
+              } // if-else
+            } // foreach ($taxonomygroup as $taxonomygroupname)
+          } // if ($taxonomygroup)
 
 
-        $rextModelName = $taxonomygroup['model'][0];
-        if (isset($rextModelName) && $rextModelName!=''){
-          $dataExt = array('resource'=> $resource->getter('id'));
-          $rextModel = new $rextModelName($dataExt);
-          $rextModel->save(array('affectsDependences' => false));
-        }
-      } // foreach($typeArray[$actType]['taxonomies'] as $taxonomygroup)
+          $rextModelName = $taxonomygroup['model'][0];
+          if (isset($rextModelName) && $rextModelName!=''){
+            $dataExt = array('resource'=> $resource->getter('id'));
+            $rextModel = new $rextModelName($dataExt);
+            $rextModel->save(array('affectsDependences' => false));
+          }
+        } // foreach($typeArray[$actType]['taxonomies'] as $taxonomygroup)
+      } // if( isset( $typeArray[$actType]['taxonomies'] ) && ...
 
 
        // asignamos temáticas ao recurso
