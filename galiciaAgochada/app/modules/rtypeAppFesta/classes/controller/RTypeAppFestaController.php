@@ -256,11 +256,13 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     $collectionArray = false;
     if ($collectionArrayInfo){
       foreach ($collectionArrayInfo as $key => $collectionInfo){
-        if ($collectionInfo['col']['collectionType'] == 'multimedia'){ // colecciones multimedia
+        switch($collectionInfo['col']['collectionType']){
+          case 'multimedia':
             $multimediaArray[$key] = $collectionInfo;
-        }
-        else{ // resto de colecciones
+            break;
+          case 'base':
             $collectionArray[$key] = $collectionInfo;
+            break;
         }
       }
 
@@ -281,7 +283,6 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
           }
         }
       }
-
     }
 
     $viewBlockInfo['template']['full'] = $template;

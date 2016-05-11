@@ -120,7 +120,7 @@ class RTypeEventView extends View
       'formValidations' => $form->getScriptCode()
     );
 
-    $formBlockInfo['template']['miniFormModal']->addToBlock('rextEventBlock', $formBlockInfo['ext']['rextEvent']['template']['full']);
+    $formBlockInfo['template']['miniFormModal']->addToFragment('rextEventBlock', $formBlockInfo['ext']['rextEvent']['template']['full']);
     $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
     $formBlockInfo['template']['miniFormModal']->exec();
   }
@@ -184,7 +184,7 @@ class RTypeEventView extends View
       }
 
       // Cambiamos el template del formulario
-      $formBlockInfo['template']['miniFormModal']->addToBlock('rextEventBlock', $formBlockInfo['ext']['rextEvent']['template']['full']);
+      $formBlockInfo['template']['miniFormModal']->addToFragment('rextEventBlock', $formBlockInfo['ext']['rextEvent']['template']['full']);
       $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
       $formBlockInfo['template']['miniFormModal']->exec();
     }

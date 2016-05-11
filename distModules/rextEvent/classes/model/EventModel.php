@@ -24,14 +24,16 @@ class EventModel extends Model
       'key' => 'id'
     ),
     'initDate' => array(
-      'type' => 'TIMESTAMP'
+      'type' => 'DATETIME'
     ),
     'endDate' => array(
-      'type' => 'TIMESTAMP'
+      'type' => 'DATETIME'
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'inId' => ' geozzy_resource_rext_event.resource IN (?) '
+  );
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {

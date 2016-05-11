@@ -24,7 +24,7 @@ class RecursoView extends MasterView
 
     $resourceView = new GeozzyResourceView();
     $formBlock = $resourceView->getFormBlock( $this->formName,  $this->formUrl, false );
-    $this->template->setBlock( 'formNewResourceBlock', $formBlock );
+    $this->template->setFragment( 'formNewResourceBlock', $formBlock );
 
     $this->template->setTpl( 'probandoFormRecurso.tpl' );
     //$this->template->setTpl( 'string:{$css_includes}{$js_includes}{$formNewResourceBlock}' );
@@ -56,7 +56,7 @@ class RecursoView extends MasterView
 
       $resourceView = new GeozzyResourceView();
       $formBlock = $resourceView->getFormBlock( $this->formName,  $this->formUrl, $recursoData[ 'data' ] );
-      $this->template->setBlock( 'formNewResourceBlock', $formBlock );
+      $this->template->setFragment( 'formNewResourceBlock', $formBlock );
 
       $this->template->setTpl( 'probandoFormRecurso.tpl' );
       $this->template->exec();

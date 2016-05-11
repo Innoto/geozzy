@@ -33,7 +33,7 @@ class TestDataViewMaster extends View
       $template->assign( 'content', $content );
     }
     else {
-      $template->setBlock( 'content', $content );
+      $template->setFragment( 'content', $content );
     }
     $template->assign( 'title', $title );
     $template->assign( 'icon', $icon );

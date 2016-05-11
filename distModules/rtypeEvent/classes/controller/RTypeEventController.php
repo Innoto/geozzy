@@ -55,7 +55,7 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
 
     $formFieldsNames = array_merge(
       $form->multilangFieldNames( 'title' ),
-      $form->multilangFieldNames( 'shortDescription' )
+      $form->multilangFieldNames( 'mediumDescription' )
     );
     $formFieldsNames[] = 'rTypeIdName';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
@@ -134,13 +134,13 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
-    $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['event'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['event'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['seo'] );
     // COL4
-    $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['image'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();

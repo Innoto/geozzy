@@ -121,8 +121,13 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
     $fieldsInfo = array(
       'rextEventCollectionView' => array(
-        'params' => array( 'label' => __( 'EventCollection view' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'Event collection view' ), 'type' => 'select',
           'options' => $this->defResCtrl->getOptionsTax( 'rextEventCollectionView' )
+        )
+      ),
+      'rextEventCollectionFilter' => array(
+        'params' => array( 'label' => __( 'Event collection filter' ), 'type' => 'select',
+          'options' => $this->defResCtrl->getOptionsTax( 'rextEventCollectionFilter' )
         )
       ),
       'events' => array(
@@ -350,35 +355,82 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
-      $template = new Template();
 
       $resId = $this->defResCtrl->resObj->getter('id');
+      $eventIdList = $rExtViewBlockInfo['data']['events'];
 
-      /* Cargamos los bloques de colecciones */
-      $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resId );
-
-      $multimediaArray = false;
-      $collectionArray = false;
-      if ($collectionArrayInfo){
-        foreach ($collectionArrayInfo as $key => $collectionInfo){
-          if ($collectionInfo['col']['collectionType'] == 'event'){ // colecciones multimedia
-              $eventArray[$key] = $collectionInfo;
-          }
-        }
-
-        if ($eventArray){
-          $arrayEventBlock = $this->defResCtrl->goOverCollections( $eventArray, $collectionType = 'event' );
-          if ($arrayEventBlock){
-            foreach( $arrayEventBlock as $eventBlock ) {
-              $template->addToFragment( 'eventBlock', $eventBlock );
-            }
-          }
-        }
+      $eventIdsArray = $eventIdsArrayFinal =array();
+      foreach( $eventIdList as $eventId){
+        $eventIdsArray[] = $eventId;
       }
 
-      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextEventCollection' );
-      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+      foreach ($rExtViewBlockInfo['data']['rextEventCollectionFilter'] as $eventFilterTerm){
+        $eventFilterSelectedTerm = $eventFilterTerm;
+      }
+
+      $eventModel =  new EventModel();
+      $eventList = $eventModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArray), 'order' => array( 'initDate' => 1 ) ));
+
+      /* Establecemos locale para obtener las fechas en el idioma actual */
+      global $C_LANG;
+      setlocale (LC_TIME, Cogumelo::getSetupValue( 'lang:available:'.$C_LANG.':i18n' ));
+
+        /* Cargamos los datos de la extensión */
+        while( $event = $eventList->fetch() ){
+          $eventInfo = $event->getAllData('onlydata');
+          $initDate = new DateTime($eventInfo['initDate']);
+          $eventDate = $initDate->format('Y').$initDate->format('m').$initDate->format('d');
+          $today = date('Ymd');
+          if ($eventFilterSelectedTerm['idName'] == 'nextEvents' && strcmp($eventDate,$today)<0){
+            continue;
+          }
+          $eventIdsArrayFinal[] = $event->getter('resource');
+          $eventCollection[$event->getter('resource')]['event'] = $event->getAllData('onlydata');
+          $eventCollection[$event->getter('resource')]['event']['formatedDate']['initDate'] = $initDate->format('Ymd');
+          $eventCollection[$event->getter('resource')]['event']['formatedDate']['j'] = $initDate->format('j');
+          $eventCollection[$event->getter('resource')]['event']['formatedDate']['l'] = strftime('%A', $initDate->format('U'));
+          $eventCollection[$event->getter('resource')]['event']['formatedDate']['m'] = $initDate->format('m');
+          $eventCollection[$event->getter('resource')]['event']['formatedDate']['F'] = strftime('%B', $initDate->format('U'));
+          $eventCollection[$event->getter('resource')]['event']['formatedDate']['Y'] = $initDate->format('Y');
+          $eventCollection[$event->getter('resource')]['event']['formatedDate']['time'] = $initDate->format('H:i');
+        }
+
+        /* Cargamos los datos básicos de recurso que necesitamos */
+        $resourceModel =  new ResourceModel();
+        $resourceList = $resourceModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArrayFinal) ));
+        while( $resource = $resourceList->fetch() ){
+          $eventCollection[$resource->getter('id')]['resource']['title'] = $resource->getter('title');
+          $eventCollection[$resource->getter('id')]['resource']['mediumDescription'] = $resource->getter('mediumDescription');
+          $eventCollection[$resource->getter('id')]['resource']['image'] = $resource->getter('image');
+        }
+        $rExtViewBlockInfo['data']['events'] = $eventCollection;
+
+
+
+
+        $taxViewModel =  new TaxonomyViewModel();
+        /* Cargamos todos los términos de la taxonomía de visualización de eventCollection*/
+        $options = array();
+        $taxViewList = $taxViewModel->listItems( array( 'filters' => array( 'taxGroupIdName' => 'rextEventCollectionView' )));
+        while( $taxView = $taxViewList->fetch() ){
+          $options[ $taxView->getter( 'id' ) ]['idName'] = $taxView->getter( 'idName' );
+        }
+
+        foreach ($options as $eventView){
+          $templates[$eventView['idName']] = new Template();
+          $templates[$eventView['idName']]->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+          $templates[$eventView['idName']]->setTpl( 'rExt'.$eventView['idName'].'Block.tpl', 'rextEventCollection' );
+        }
+
+        /* Asignamos al template en uso el template asociado al término actual */
+        foreach ($rExtViewBlockInfo['data']['rextEventCollectionView'] as $eventViewTerm){
+          $eventViewSelectedTerm = $eventViewTerm;
+        }
+
+
+
+      $templates['full'] = $templates[$eventViewSelectedTerm['idName']];
+      $rExtViewBlockInfo['template'] = $templates;
     }
     return $rExtViewBlockInfo;
   }

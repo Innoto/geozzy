@@ -12,7 +12,7 @@ define('MOD_GEOZZY_URL_DIR', 'geozzy');
 class geozzy extends Module {
 
   public $name = 'geozzy';
-  public $version = 1.1;
+  public $version = 1.2;
 
   public $dependences = array(
     array(

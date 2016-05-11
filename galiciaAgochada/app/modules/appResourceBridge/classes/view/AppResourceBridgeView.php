@@ -79,7 +79,7 @@ class AppResourceBridgeView extends MasterView {
     $resourceView = new GeozzyResourceView();
     $templateBlock = $resourceView->getResourceBlockTmp( $urlParams );
 
-    $this->template->setBlock( 'resourceBlock', $templateBlock );
+    $this->template->setFragment( 'resourceBlock', $templateBlock );
 
     $this->template->addClientStyles('styles/masterResource.less');
     $this->template->addClientScript('js/resource.js');

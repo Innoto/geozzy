@@ -196,11 +196,13 @@ cogumeloSetSetupValue( 'mod:filedata:profile:resourceLg', array( 'width' => 1200
 cogumeloSetSetupValue( 'mod:filedata:profile:resourceMd', array( 'width' => 992, 'height' => 400) );
 cogumeloSetSetupValue( 'mod:filedata:profile:resourceSm', array( 'width' => 768, 'height' => 300) );
 
-
-
 cogumeloSetSetupValue( 'mod:filedata:profile:ancho', array( 'width' => 400, 'height' => 200 ) );
 cogumeloSetSetupValue( 'mod:filedata:profile:alto', array( 'width' => 200, 'height' => 400 ) );
 
+cogumeloSetSetupValue( 'mod:filedata:profile:basicEvent', array( 'width' => 600, 'height' => 400) );
+cogumeloSetSetupValue( 'mod:filedata:profile:listEvent', array( 'width' => 240, 'height' => 120) );
+cogumeloSetSetupValue( 'mod:filedata:profile:calendarEvent', array( 'width' => 330, 'height' => 200) );
+cogumeloSetSetupValue( 'mod:filedata:profile:calendarEventSmall', array( 'width' => 240, 'height' => 180) );
 /*
 // TEST
 cogumeloSetSetupValue( 'mod:filedata:profile:svgTest',
