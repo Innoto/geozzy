@@ -496,7 +496,7 @@ class geozzyAPIView extends View {
   public function bi( $urlParams ) {
     require_once APP_BASE_PATH."/conf/inc/geozzyBI.php";
     header('Content-type: application/json');
-    global $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS;
+    global $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS, $BI_RECOMMENDS;
 
     $langs = array(
       'default'=> Cogumelo::getSetupValue( 'lang:default' ),
@@ -511,7 +511,8 @@ class geozzyAPIView extends View {
       'metrics' => array(
         'explorer' => $BI_METRICS_EXPLORER,
         'resource' => $BI_METRICS_RESOURCE
-      )
+      ),
+      'recommends' => $BI_RECOMMENDS
     );
 
     // /users/{users}/virtualBags/{virtualBags}
