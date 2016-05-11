@@ -58,7 +58,7 @@ class AdminViewMaster extends View
     $template = new Template( $this->baseDir );
     $template->setTpl('admin403.tpl', 'admin');
 
-    $this->template->addToBlock( 'col12', $template );
+    $this->template->addToFragment( 'col12', $template );
     $this->template->assign( 'headTitle', __('Access denied') );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
@@ -68,7 +68,7 @@ class AdminViewMaster extends View
     $template = new Template( $this->baseDir );
     $template->setTpl('homePage.tpl', 'admin');
 
-    $this->template->addToBlock( 'col12', $template );
+    $this->template->addToFragment( 'col12', $template );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();
   }
@@ -137,7 +137,7 @@ class AdminViewMaster extends View
       $template->assign( 'content', $content );
     }
     else {
-      $template->setBlock( 'content', $content );
+      $template->setFragment( 'content', $content );
     }
     $template->assign( 'title', $title );
     $template->assign( 'icon', ( $icon ) ? $icon : 'fa-info' );

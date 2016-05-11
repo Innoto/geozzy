@@ -42,7 +42,7 @@ class AdminViewPage extends AdminViewMaster {
         '.$resCreateByType.'
       </div>' );
 
-    $this->template->addToBlock( 'col12', $template );
+    $this->template->addToFragment( 'col12', $template );
 
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
     $this->template->exec();

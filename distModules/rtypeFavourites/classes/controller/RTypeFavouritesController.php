@@ -100,6 +100,41 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
     $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
 
 
+
+
+
+    $favTemplate = false;
+    $favData = false;
+    if( $formBlockInfo['data']['id'] ) {
+      $favourites = false;
+      $resId = $formBlockInfo['data']['id'];
+
+      $favModel = new FavouritesViewModel();
+      $favList = $favModel->listItems( array( 'filters' => array( 'resourceMain' => $resId ) ) );
+      if( $favList ) {
+        $favData = array();
+        while( $favObj = $favList->fetch() ) {
+          $allData = $favObj->getAllData( 'onlydata' );
+          if( $allData['id'] !== null ) { // Por si hay col. pero no recursos
+            $favData[] = $allData;
+          }
+        }
+      }
+
+      if( $favData ) {
+        // TEMPLATE panel estado de publicacion
+        $favTemplate = new Template();
+        $favTemplate->setTpl( 'favAdminFormPanel.tpl', 'rtypeFavourites' );
+        $favTemplate->assign( 'title', __( 'Favoritos' ) );
+        $favTemplate->assign( 'res', $formBlockInfo );
+        $favTemplate->assign( 'favData', $favData );
+      }
+    }
+
+
+
+
+
     // TEMPLATE con todos los paneles
     $templates['adminFull'] = new Template();
     $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
@@ -108,6 +143,9 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
 
     // COL8
     $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
+    if( $favTemplate ) {
+      $templates['adminFull']->addToFragment( 'col8', $favTemplate );
+    }
     // $templates['adminFull']->addToFragment( 'col8', $templates['favResources'] );
     // COL4
     $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );

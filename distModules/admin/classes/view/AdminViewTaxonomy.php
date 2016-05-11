@@ -109,9 +109,9 @@ class AdminViewTaxonomy extends AdminViewMaster
 
     $panel = $this->getPanelBlock( $formBlock, 'Category form', 'fa-tag' );
 
-    $this->template->addToBlock( 'col8', $panel );
+    $this->template->addToFragment( 'col8', $panel );
 
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( $formSeparate[ 'icon' ], __( 'Selecciona un icono' ) ) );
+    $this->template->addToFragment( 'col4', $this->getPanelBlock( $formSeparate[ 'icon' ], __( 'Selecciona un icono' ) ) );
 
     $this->template->assign( 'headTitle', __('Category form') );
     $this->template->assign( 'headActions', '<a href="/admin#category/'.$catId.'" class="btn btn-danger"> '.__('Cancel').'</a>' );

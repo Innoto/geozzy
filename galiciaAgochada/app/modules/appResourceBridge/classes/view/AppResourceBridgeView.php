@@ -26,7 +26,7 @@ class AppResourceBridgeView extends MasterView {
 
       if( $resViewBlockInfo['template'] ) {
         foreach( $resViewBlockInfo['template'] as $nameBlock => $templateBlock ) {
-          $this->template->addToBlock( 'resTemplateBlock', $templateBlock );
+          $this->template->addToFragment( 'resTemplateBlock', $templateBlock );
         }
       }
 
@@ -79,7 +79,7 @@ class AppResourceBridgeView extends MasterView {
     $resourceView = new GeozzyResourceView();
     $templateBlock = $resourceView->getResourceBlockTmp( $urlParams );
 
-    $this->template->setBlock( 'resourceBlock', $templateBlock );
+    $this->template->setFragment( 'resourceBlock', $templateBlock );
 
     $this->template->addClientStyles('styles/masterResource.less');
     $this->template->addClientScript('js/resource.js');

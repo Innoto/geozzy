@@ -35,7 +35,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $topic = $topicmodel->listItems(array("filters" => array("id" => $topicId)));
     $name = $topic->fetch()->getter('name', Cogumelo::getSetupValue( 'lang:default' ));
 
-    $this->template->addToBlock( 'col12', $template );
+    $this->template->addToFragment( 'col12', $template );
     $this->template->assign( 'headTitle', $name );
     $assign = $useraccesscontrol->checkPermissions( array('topic:assign'), 'admin:full');
     if($assign){

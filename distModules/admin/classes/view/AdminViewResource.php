@@ -37,7 +37,7 @@ class AdminViewResource extends AdminViewMaster {
     }
     $resCreateByType .= '</ul>';
 
-    $this->template->addToBlock( 'col12', $template );
+    $this->template->addToFragment( 'col12', $template );
     $this->template->assign( 'headTitle', __('Resource Management') );
     $this->template->assign( 'headActions', '<div class="btn-group assignResource AdminViewResource">
         <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">

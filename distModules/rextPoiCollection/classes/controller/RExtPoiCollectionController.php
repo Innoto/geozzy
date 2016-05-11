@@ -344,38 +344,6 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
-    if( $rExtViewBlockInfo['data'] ) {
-      $template = new Template();
-
-      $resId = $this->defResCtrl->resObj->getter('id');
-
-      /* Cargamos los bloques de colecciones */
-      $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $resId );
-
-      $multimediaArray = false;
-      $collectionArray = false;
-      if ($collectionArrayInfo){
-        foreach ($collectionArrayInfo as $key => $collectionInfo){
-          if ($collectionInfo['col']['collectionType'] == 'poi'){ // colecciones multimedia
-              $poiArray[$key] = $collectionInfo;
-          }
-        }
-
-        if ($poiArray){
-          $arrayPoiBlock = $this->defResCtrl->goOverCollections( $poiArray, $collectionType = 'poi' );
-          if ($arrayPoiBlock){
-
-            foreach( $arrayPoiBlock as $poiBlock ) {
-              $template->addToFragment( 'poiBlock', $poiBlock );
-            }
-          }
-        }
-      }
-
-      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-      $template->setTpl( 'rExtViewBlock.tpl', 'rextPoiCollection' );
-      $rExtViewBlockInfo['template'] = array( 'full' => $template );
-    }
     return $rExtViewBlockInfo;
   }
 

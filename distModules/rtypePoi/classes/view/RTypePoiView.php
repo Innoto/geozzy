@@ -120,7 +120,7 @@ class RTypePoiView extends View
       'formValidations' => $form->getScriptCode()
     );
 
-    $formBlockInfo['template']['miniFormModal']->addToBlock('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['adminExt']);
+    $formBlockInfo['template']['miniFormModal']->addToFragment('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['adminExt']);
     $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
     $formBlockInfo['template']['miniFormModal']->exec();
   }
@@ -184,7 +184,7 @@ class RTypePoiView extends View
       }
 
       // Cambiamos el template del formulario
-      $formBlockInfo['template']['miniFormModal']->addToBlock('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['adminExt']);
+      $formBlockInfo['template']['miniFormModal']->addToFragment('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['adminExt']);
       $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
       $formBlockInfo['template']['miniFormModal']->exec();
     }

@@ -245,7 +245,7 @@ class ResourceController {
     $form = new FormController( $formName, $urlAction );
 
     if($successArray){
-      foreach ($successArray as $tSuccess => $success) {
+      foreach( $successArray as $tSuccess => $success ) {
         $form->setSuccess( $tSuccess, $success );
       }
     }
@@ -1020,58 +1020,45 @@ class ResourceController {
   } // setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj )
 
   private function setFormCollection( $form, $baseObj ) {
+    // SOLO procesamos collections de tipo "base" o "multimedia"
 
     $baseId = $baseObj->getter( 'id' );
-    $formValuesCol = $form->getFieldValue( 'collections' );
-    $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' );
+    $formValuesCol = $form->getFieldValue( 'collections' ); // collectionType "base"
+    $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' ); // collectionType "multimedia"
 
-    if( !is_array($formValuesCol) && $formValuesCol != false ){
-      $fVCol = array();
-      array_push( $fVCol, $formValuesCol );
-      $formValuesCol = $fVCol;
+    if( !is_array( $formValuesCol ) ) {
+      $formValuesCol = ( is_numeric( $formValuesCol ) ) ? array( $formValuesCol ) : array();
     }
-
-    if( !is_array($formValuesMulti) && $formValuesMulti != false ){
-      $fVMulti = array();
-      array_push( $fVMulti, $formValuesMulti );
-      $formValuesMulti = $fVMulti;
+    if( !is_array( $formValuesMulti ) ) {
+      $formValuesMulti = ( is_numeric( $formValuesMulti ) ) ? array( $formValuesMulti ) : array();
     }
-
-    $formValuesCol = ( !is_array($formValuesCol) ) ? array() : $formValuesCol;
-    $formValuesMulti = ( !is_array($formValuesMulti) ) ? array() : $formValuesMulti;
-
     $formValues = array_merge( $formValuesCol, $formValuesMulti );
+
     $relPrevInfo = false;
-
-    if( $formValues !== false && !is_array( $formValues ) ) {
-      $formValues = array( $formValues );
-    }
-
     // Si estamos editando, repasamos y borramos relaciones sobrantes
     if( $baseId ) {
-      $colModel = new CollectionModel();
       $relModel = new ResourceCollectionsModel();
-      $relPrevList = $relModel->listItems(
-        array( 'filters' => array( 'resource' => $baseId ) ) );
+      $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
       if( $relPrevList ) {
         // estaban asignados antes
         $relPrevInfo = array();
-        while( $relPrev = $relPrevList->fetch() ){
-
-          $collection = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) )->fetch();
-          if ($collection->getter('collectionType')!='event'){
+        $colModel = new CollectionModel();
+        while( $relPrev = $relPrevList->fetch() ) {
+          $colList = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) );
+          $collection = ( $colList ) ? $colList->fetch() : false;
+          if( $collection && in_array( $collection->getter('collectionType'), array( 'base', 'multimedia' ) ) ) {
             $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
-            if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
+            if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ) {
+              // desasignar
               $relPrev->delete();
             }
           }
-
         }
       }
     }
 
     // Creamos-Editamos todas las relaciones
-    if( $formValues !== false ) {
+    if( count( $formValues ) > 0 ) {
       $weight = 0;
       foreach( $formValues as $value ) {
         $weight++;
@@ -1362,8 +1349,6 @@ class ResourceController {
 
               $imgId = $resVal->getter( 'image' );
 
-              //var_dump( $imgId );
-
               if( $imgId && $imgId !== 'null' ) {
                 $thumbSettings['imageId'] = $imgId;
                 $thumbSettings['imageName'] = $imgId.'.jpg';
@@ -1394,7 +1379,7 @@ class ResourceController {
               );
             }
           }
-          else {
+          if( $collection->getter('collectionType') === 'base' ) {
             foreach( $resources as $resVal ) {
               $thumbSettings = array(
                 'imageId' => $resVal->getter( 'image' ),
@@ -1427,12 +1412,7 @@ class ResourceController {
   public function goOverCollections( array $collections, $collectionType ) {
     $collectionBlock = array();
     foreach( $collections as $idCollection => $collection ) {
-      if( $collectionType == 'multimedia' ) {
-        $collectionBlock[ $idCollection ] = $this->getMultimediaBlock( $collection );
-      }
-      else {
-        $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
-      }
+      $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
     }
     return $collectionBlock;
   }
@@ -1440,15 +1420,25 @@ class ResourceController {
   // Obtiene un bloque de una colección no multimedia dada
   public function getCollectionBlock( $collection ) {
 
-    // echo '<pre>';
-    // print_r($collection);
-    // echo '</pre>';
-
     $template = new Template();
     $template->assign( 'id', $collection['col']['id'] );
-    $template->assign( 'collectionResources', $collection );
-    $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
-    return $template;
+
+    switch($colType = $collection['col']['collectionType']){
+      case 'multimedia':
+        $template->assign( 'max', 6 );
+        $template->assign( 'multimediaAll', $collection );
+        $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
+        break;
+
+      case 'base':
+        $template->assign( 'collectionResources', $collection );
+        $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
+        break;
+
+   }
+   return $template;
+
+
   }
 
 
