@@ -29,7 +29,7 @@ class AdminViewUser extends AdminViewMaster
     $template->assign( 'user' , $user);
     $template->setTpl('showUser.tpl', 'admin');
 
-    $this->template->addToBlock( 'col8', $template );
+    $this->template->addToFragment( 'col8', $template );
     $this->template->assign( 'headTitle', __('Show user') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
@@ -53,7 +53,7 @@ class AdminViewUser extends AdminViewMaster
     $template->assign('userTable', table::getTableHtml('AdminViewUser', '/admin/user/table') );
     $template->setTpl('listUser.tpl', 'admin');
 
-    $this->template->addToBlock( 'col12', $template );
+    $this->template->addToFragment( 'col12', $template );
     $this->template->assign( 'headTitle', __('User Management') );
     $this->template->assign( 'headActions', '<a href="/admin#user/create" class="btn btn-default"> '.__('Add user').'</a>' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
@@ -65,7 +65,7 @@ class AdminViewUser extends AdminViewMaster
       $listUsersBlock = $this->listUsersBlock();
 
       $panel = $this->getPanelBlock( $listUsersBlock, 'Users Table', 'fa-user' );
-      $this->template->addToBlock( 'col12', $panel );
+      $this->template->addToFragment( 'col12', $panel );
       $this->template->assign('titleHeader', "Users List");
       $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
 
@@ -147,7 +147,7 @@ class AdminViewUser extends AdminViewMaster
     $createUserBlock->setTpl('createUser.tpl', 'admin');
 
 
-    $this->template->addToBlock( 'col8', $createUserBlock );
+    $this->template->addToFragment( 'col8', $createUserBlock );
     $this->template->assign( 'headTitle', __('Create user') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
@@ -179,7 +179,7 @@ class AdminViewUser extends AdminViewMaster
     $form->setSuccess( 'redirect', '/admin#user/list' );
     $editUserBlock = $userView->userFormGetBlock( $form );
     $editUserBlock->setTpl('editUser.tpl', 'admin');
-    $this->template->addToBlock( 'col8', $editUserBlock );
+    $this->template->addToFragment( 'col8', $editUserBlock );
     /*--------------------*/
 
     /*FORM CHANGE PASSWORD*/
@@ -187,7 +187,7 @@ class AdminViewUser extends AdminViewMaster
     $formChange->setAction('/admin/user/changepassword');
     $formChange->setSuccess( 'redirect', '/admin#user/list' );
     $changePasswordBlock = $userView->userChangePasswordFormGetBlock( $formChange );
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( $changePasswordBlock, 'Change Password', 'fa-key' ) );
+    $this->template->addToFragment( 'col4', $this->getPanelBlock( $changePasswordBlock, 'Change Password', 'fa-key' ) );
 
     /*--------------------*/
 
@@ -196,7 +196,7 @@ class AdminViewUser extends AdminViewMaster
     $userRolesForm->setAction('/admin/user/assignroles');
     $userRolesForm->setSuccess( 'redirect', '/admin#user/list' );
     $userRolesFormBlock = $userView->userRolesFormGetBlock( $userRolesForm );
-    $this->template->addToBlock( 'col4', $this->getPanelBlock( $userRolesFormBlock, 'Edit Roles', 'fa-unlock-alt' ) );
+    $this->template->addToFragment( 'col4', $this->getPanelBlock( $userRolesFormBlock, 'Edit Roles', 'fa-unlock-alt' ) );
     /*--------------------*/
 
     $this->template->assign( 'headTitle', __('Edit user') );

@@ -23,7 +23,7 @@ class AdminViewMultiList extends AdminViewMaster
     $template->assign('termArray', $taxtermModel->listItems()->fetchAll() );
     $template->setTpl('multiListExamples.tpl', 'admin');
 
-    $this->template->addToBlock( 'col8', $template );
+    $this->template->addToFragment( 'col8', $template );
     $this->template->assign( 'headTitle', __('Stats Page') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();

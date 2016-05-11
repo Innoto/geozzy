@@ -61,12 +61,12 @@ class AdminViewStarred extends AdminViewMaster
       <div class="btn btn-primary assignResource btnAssign"> '.__('Assign selected').'</div>'
     );
 
-    $this->template->addToBlock( 'col8', $template );
+    $this->template->addToFragment( 'col8', $template );
 
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
     $panel = $this->getPanelBlock( __('<ul style="list-style:none;"><li>Create a new resource</li><li>Working with resource types)</li><li>Assign to this starred)</li></ul>'), __('Assign resources: howto') );
-    $this->template->addToBlock( 'col4', $panel );
+    $this->template->addToFragment( 'col4', $panel );
     $this->template->exec();
   }
 

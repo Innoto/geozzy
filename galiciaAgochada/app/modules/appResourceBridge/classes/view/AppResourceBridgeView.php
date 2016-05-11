@@ -26,7 +26,7 @@ class AppResourceBridgeView extends MasterView {
 
       if( $resViewBlockInfo['template'] ) {
         foreach( $resViewBlockInfo['template'] as $nameBlock => $templateBlock ) {
-          $this->template->addToBlock( 'resTemplateBlock', $templateBlock );
+          $this->template->addToFragment( 'resTemplateBlock', $templateBlock );
         }
       }
 
