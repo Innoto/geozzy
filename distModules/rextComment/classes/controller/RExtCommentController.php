@@ -59,7 +59,8 @@ class RExtCommentController extends RExtController implements RExtInterface {
 
     $fieldsInfo = array(
       'activeComment' => array(
-        'params' => array( 'label' => __( 'Comentarios activados' ) ),
+
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Active comment') )),
         'rules' => array( 'maxlength' => 1 )
       )
     );
@@ -121,7 +122,26 @@ class RExtCommentController extends RExtController implements RExtInterface {
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
-  // parent::getFormBlockInfo( $form );
+    public function getFormBlockInfo( FormController $form ) {
+
+      $formBlockInfo = parent::getFormBlockInfo( $form );
+      $templates = $formBlockInfo['template'];
+
+      $templates['adminExt'] = new Template();
+      $templates['adminExt']->setTpl( 'rExtFormBlock.tpl', 'rextComment' );
+      $templates['adminExt']->assign( 'rExt', $formBlockInfo );
+      $templates['adminExt']->assign( 'rExtName', $this->rExtName );
+
+      $rControl = new ResourceController();
+      $commentTypeOptions = $rControl->getOptionsTax('commentType');
+      $templates['adminExt']->assign( 'commentTypeOptions', $commentTypeOptions );
+
+      $templates['adminExt']->addClientScript('js/rextAdminComment.js', 'rextComment');
+
+      $formBlockInfo['template'] = $templates;
+
+      return $formBlockInfo;
+  }
 
 
   /**
@@ -187,9 +207,16 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     if( $rExtViewBlockInfo['data'] ) {
+
+      $perms = $this->getCommentPermissions( $rExtViewBlockInfo['data']['resource'] );
+
       $rExtViewBlockInfo['template']['full'] = new Template();
+      if(in_array('comment', $perms)){
+        $rExtViewBlockInfo['template']['full']->assign( 'commentButton', true );
+      }
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextComment' );
+      $rExtViewBlockInfo['template']['full']->addClientScript('js/commentList.js', 'rextComment');
     }
 
     return $rExtViewBlockInfo;

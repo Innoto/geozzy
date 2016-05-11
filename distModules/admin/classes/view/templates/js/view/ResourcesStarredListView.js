@@ -18,7 +18,6 @@ var ResourcesStarredListView = Backbone.View.extend({
   initialize: function( starredTerm ) {
     var that = this;
     that.resourcesStarred = new ResourcesStarredCollection();
-
     that.starredTerm = starredTerm;
 
     that.resourcesStarred.fetch(

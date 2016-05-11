@@ -245,7 +245,7 @@ class ResourceController {
     $form = new FormController( $formName, $urlAction );
 
     if($successArray){
-      foreach ($successArray as $tSuccess => $success) {
+      foreach( $successArray as $tSuccess => $success ) {
         $form->setSuccess( $tSuccess, $success );
       }
     }
@@ -1020,58 +1020,45 @@ class ResourceController {
   } // setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj )
 
   private function setFormCollection( $form, $baseObj ) {
+    // SOLO procesamos collections de tipo "base" o "multimedia"
 
     $baseId = $baseObj->getter( 'id' );
-    $formValuesCol = $form->getFieldValue( 'collections' );
-    $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' );
+    $formValuesCol = $form->getFieldValue( 'collections' ); // collectionType "base"
+    $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' ); // collectionType "multimedia"
 
-    if( !is_array($formValuesCol) && $formValuesCol != false ){
-      $fVCol = array();
-      array_push( $fVCol, $formValuesCol );
-      $formValuesCol = $fVCol;
+    if( !is_array( $formValuesCol ) ) {
+      $formValuesCol = ( is_numeric( $formValuesCol ) ) ? array( $formValuesCol ) : array();
     }
-
-    if( !is_array($formValuesMulti) && $formValuesMulti != false ){
-      $fVMulti = array();
-      array_push( $fVMulti, $formValuesMulti );
-      $formValuesMulti = $fVMulti;
+    if( !is_array( $formValuesMulti ) ) {
+      $formValuesMulti = ( is_numeric( $formValuesMulti ) ) ? array( $formValuesMulti ) : array();
     }
-
-    $formValuesCol = ( !is_array($formValuesCol) ) ? array() : $formValuesCol;
-    $formValuesMulti = ( !is_array($formValuesMulti) ) ? array() : $formValuesMulti;
-
     $formValues = array_merge( $formValuesCol, $formValuesMulti );
+
     $relPrevInfo = false;
-
-    if( $formValues !== false && !is_array( $formValues ) ) {
-      $formValues = array( $formValues );
-    }
-
     // Si estamos editando, repasamos y borramos relaciones sobrantes
     if( $baseId ) {
-      $colModel = new CollectionModel();
       $relModel = new ResourceCollectionsModel();
-      $relPrevList = $relModel->listItems(
-        array( 'filters' => array( 'resource' => $baseId ) ) );
+      $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
       if( $relPrevList ) {
         // estaban asignados antes
         $relPrevInfo = array();
-        while( $relPrev = $relPrevList->fetch() ){
-
-          $collection = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) )->fetch();
-          if ($collection->getter('collectionType')!='event'){
+        $colModel = new CollectionModel();
+        while( $relPrev = $relPrevList->fetch() ) {
+          $colList = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) );
+          $collection = ( $colList ) ? $colList->fetch() : false;
+          if( $collection && in_array( $collection->getter('collectionType'), array( 'base', 'multimedia' ) ) ) {
             $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
-            if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ){ // desasignar
+            if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ) {
+              // desasignar
               $relPrev->delete();
             }
           }
-
         }
       }
     }
 
     // Creamos-Editamos todas las relaciones
-    if( $formValues !== false ) {
+    if( count( $formValues ) > 0 ) {
       $weight = 0;
       foreach( $formValues as $value ) {
         $weight++;

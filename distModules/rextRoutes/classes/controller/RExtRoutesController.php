@@ -25,7 +25,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
     }
 
     $rExtModel = new RoutesModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'affectsDependences' => array( 'FiledataModel' ) ) );
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {
@@ -40,7 +40,16 @@ class RExtRoutesController extends RExtController implements RExtInterface {
           }
         }
       }
+
+      $fileDep = $rExtObj->getterDependence( 'routeFile' );
+      if( $fileDep !== false ) {
+        foreach( $fileDep as $fileModel ) {
+          $rExtData[ 'routeFile' ] = $fileModel->getAllData( 'onlydata' );
+        }
+      }
     }
+
+
 
     return $rExtData;
   }
@@ -55,6 +64,11 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     $rExtFieldNames = array();
 
+/*
+    'params' => array( 'label' => __( 'Multimedia file' ), 'type' => 'file', 'id' => 'rExtFileField',
+    'placeholder' => __( 'File' ), 'destDir' => CollectionModel::$cols['image']['uploadDir'] ),
+    'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true' )
+*/
     $fieldsInfo = array(
 
       'routeFile' => array(
@@ -119,13 +133,15 @@ class RExtRoutesController extends RExtController implements RExtInterface {
               $taxFieldValues[] = ( is_array( $value ) ) ? $value[ 'id' ] : $value;
             }
             $valuesArray[ $taxFieldName ] = $taxFieldValues;
+
           }
         }
       }
 
-      $form->loadArrayValues( $valuesArray );
-    }
 
+    }
+    $form->loadArrayValues( $valuesArray );
+    //var_dump($valuesArray);exit;
     // Add RExt info to form
     foreach( $fieldsInfo as $fieldName => $info ) {
       if( isset( $info[ 'translate' ] ) && $info[ 'translate' ] ) {
@@ -194,11 +210,20 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      $rExtModel = new RoutesModel( $valuesArray );
-      if( $rExtModel === false ) {
+      $this->rExtModel = new RoutesModel( $valuesArray );
+      if( $this->rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
     }
+
+    $fileField = $this->addPrefix( 'routeFile' );
+    if( !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
+      //var_dump($rExtModel);exit;
+
+      $this->defResCtrl->setFormFiledata( $form, $fileField, 'routeFile', $this->rExtModel );
+      $this->rExtModel->save();
+    }
+
 
     if( !$form->existErrors() ) {
       foreach( $this->taxonomies as $tax ) {
@@ -210,7 +235,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
     }
 
     if( !$form->existErrors() ) {
-      $saveResult = $rExtModel->save();
+      $saveResult = $this->rExtModel->save();
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }

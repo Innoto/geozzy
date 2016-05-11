@@ -16,7 +16,8 @@ class rextMapDirections extends Module {
 
   public $includesCommon = array(
     'controller/RExtMapDirectionsController.php',
-    'js/rExtMapDirectionsController.js'
+    'js/rExtMapDirectionsController.js',
+    'js/rExtMapDirectionsInstance.js'
   );
 
 

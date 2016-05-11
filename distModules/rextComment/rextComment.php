@@ -32,14 +32,14 @@ class rextComment extends Module
   public $autoIncludeAlways = true;
   public $includesCommon = array(
     'controller/RExtCommentController.php',
-    /*
     'js/model/CommentModel.js',
     'js/collection/CommentCollection.js',
-    */
+    'js/collection/CommentSuggestionCollection.js',
     'js/view/Templates.js',
-    /*'js/view/ListCommentView.js',*/
+    'js/view/ListCommentView.js',
     'js/view/CreateCommentView.js',
     'js/view/CommentOkView.js',
+    'js/view/AdminListCommentView.js',
     'js/Comment.js',
     'js/commentInstance.js'
   );
@@ -150,6 +150,9 @@ class rextComment extends Module
 
     $this->addUrlPatterns( '#^api/comment/list/(.*)$#', 'view:CommentAPIView::comments' );
     $this->addUrlPatterns( '#^api/comments.json$#', 'view:CommentAPIView::commentsJson' );
+
+    $this->addUrlPatterns( '#^api/admin/commentsuggestion/list/(.*)$#', 'view:CommentAdminAPIView::commentsSuggestions' );
+    $this->addUrlPatterns( '#^api/admin/adminCommentSuggestion.json$#', 'view:CommentAdminAPIView::commentsSuggestionsJson' );
   }
 
 

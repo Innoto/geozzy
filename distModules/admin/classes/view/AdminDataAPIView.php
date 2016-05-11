@@ -28,6 +28,10 @@ class AdminDataAPIView extends View
      $res = false;
     }
 
+    $access = $useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full');
+    if(!$access){
+      $res = false;
+    }
 
     if( $res == false ) {
       header("HTTP/1.0 401");
@@ -37,7 +41,6 @@ class AdminDataAPIView extends View
     }
 
     return $res;
-
   }
 
 
