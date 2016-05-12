@@ -146,7 +146,7 @@ include 'filedataImageProfiles.php';
 // Session lifetime
 cogumeloSetSetupValue( 'session:lifetime', 4*60*60 ); // 4h.
 ini_set( 'session.gc_maxlifetime',  cogumeloGetSetupValue( 'session:lifetime' ) );
-ini_set( 'session.cookie_lifetime', cogumeloGetSetupValue( 'session:lifetime' ) );
+ini_set( 'session.cookie_lifetime', 365*24*60*60 ); // 1 year
 // Enable session garbage collection with a 1% chance of running on each session_start()
 ini_set( 'session.gc_probability', 1 );
 ini_set( 'session.gc_divisor', 100 );
