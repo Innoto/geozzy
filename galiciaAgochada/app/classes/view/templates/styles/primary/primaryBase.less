@@ -193,11 +193,26 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   }
 
 }//footerContent
+
+
 /*Common Fav Styles*/
+
+/*
+@import (less) '/vendor/bower/font-awesome/css/font-awesome.min.css';
+*/
 .commonFav{
   list-style: none;
   color: @gzzColor-fav;
 
+  /*
+  .fav-off::before {
+    &:extend( .fa .fa-heart-o:before all );
+  }
+  .fav-on::before {
+    &:extend( .fa .fa-heart:before all );
+  }
+  */
+  /*
   .fa-heart{ display:none; }
   .fa-heart-o{ display: inline; }
 
@@ -209,6 +224,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     .fa-heart{ display:inline; }
     .fa-heart-o{ display: none; }
   }
+  */
 }
 /*Common Modal Styles*/
 .modal{

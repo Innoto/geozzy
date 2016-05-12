@@ -30,6 +30,7 @@ class rextFavourite extends Module {
 
   public $autoIncludeAlways = true;
   public $includesCommon = array(
+    'js/rExtFavouriteController.js',
     'controller/RExtFavouriteController.php',
     'model/FavouritesViewModel.php',
     /*
