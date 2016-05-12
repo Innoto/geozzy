@@ -189,19 +189,19 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
 
     // COL8
-    $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['reservation'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['social'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['reservation'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['multimedia'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['collections'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['seo'] );
     // COL4
-    $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['image'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['categorization'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
 
 
     // TEMPLATE en bruto con todos los elementos del form

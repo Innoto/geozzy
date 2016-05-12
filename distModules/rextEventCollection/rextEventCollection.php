@@ -47,6 +47,35 @@ class rextEventCollection extends Module {
           )
         )
       )
+    ),
+    'rextEventCollectionFilter' => array(
+      'idName' => 'rextEventCollectionFilter',
+      'name' => array(
+        'en' => 'Event Collection filter',
+        'es' => 'Filtro de colección de eventos',
+        'gl' => 'Vista de colección de eventos'
+      ),
+      'editable' => 0,
+      'nestable' => 0,
+      'sortable' => 0,
+      'initialTerms' => array(
+        'allEvents' => array(
+          'idName' => 'allEvents',
+          'name' => array(
+            'en' => 'All events',
+            'es' => 'Todos los eventos',
+            'gl' => 'Todos os eventos'
+          )
+        ),
+        'nextEvents' => array(
+          'idName' => 'nextEvents',
+          'name' => array(
+            'en' => 'Only next events from today',
+            'es' => 'Sólo eventos a partir de hoy',
+            'gl' => 'Só eventos a partir de hoxe'
+          )
+        )
+      )
     )
   );
 

@@ -33,7 +33,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
-          <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="{$cogumelo.publicConf.media}/img/paisaxesIcon.png"></img>
+          <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="{$cogumelo.publicConf.media}/img/festasIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
         <div class="stars hidden-xs col-sm-3 col-md-2">
@@ -107,20 +107,23 @@
       {/if}
     </div>
   </section>
+
+  {if isset($rextEventCollectionBlock)}
+  <section class="eventSection container gzSection">
+    {$rextEventCollectionBlock}
+  </section>
+  {/if}
+
   {if isset($multimediaGalleries)}
     <section class="multimediaSec container gzSection">
       {$multimediaGalleries}
     </section>
   {/if}
+
   <section class="contentSec container gzSection">
     <div class="content">
       {$res.data.content}
     </div>
-  </section>
-
-  <section class="eventSection">
-    OLA
-    {$rextEventCollectionBlock}
   </section>
 
   <section class="locationSec gzSection">

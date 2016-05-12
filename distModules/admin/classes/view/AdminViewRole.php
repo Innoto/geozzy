@@ -26,7 +26,7 @@ class AdminViewRole extends AdminViewMaster
     $template->assign('roleTable', table::getTableHtml('AdminViewRole', '/admin/role/table') );
     $template->setTpl('listRole.tpl', 'admin');
 
-    $this->template->addToBlock( 'col12', $template );
+    $this->template->addToFragment( 'col12', $template );
     $this->template->assign( 'headTitle', __('Roles Management') );
     $this->template->assign( 'headActions', '<a href="/admin#role/create" class="btn btn-default"> '.__('Add role').'</a>' );
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
@@ -84,7 +84,7 @@ class AdminViewRole extends AdminViewMaster
     $template->assign('createRoleHtml', $createRoleHtml);
     $template->setTpl('createRole.tpl', 'admin');
 
-    $this->template->addToBlock( 'col8', $template );
+    $this->template->addToFragment( 'col8', $template );
     $this->template->assign( 'headTitle', __('Create role') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();
@@ -117,7 +117,7 @@ class AdminViewRole extends AdminViewMaster
     $template->assign('editRoleHtml', $editRoleHtml);
     $template->setTpl('editRole.tpl', 'admin');
 
-    $this->template->addToBlock( 'col8', $template );
+    $this->template->addToFragment( 'col8', $template );
     $this->template->assign( 'headTitle', __('Edit role') );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $this->template->exec();

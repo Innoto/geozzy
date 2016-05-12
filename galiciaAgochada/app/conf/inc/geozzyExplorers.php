@@ -98,5 +98,11 @@ $GEOZZY_EXPLORERS = array(
     'filters' => array(
       'catGroupIdNames' => array( 'rextAppLugarType', 'rextAppZonaType' )
     )
+  ),
+  'pois' => array(
+    'module' => 'rextPoiCollection',
+    'controllerFile' => 'controller/PoisExplorerController.php',
+    'controllerName' => 'PoisExplorerController',
+    'name' => __('Puntos de interese')
   )
 );

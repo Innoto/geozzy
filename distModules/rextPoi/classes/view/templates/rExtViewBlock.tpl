@@ -1,4 +1,5 @@
 <div class="poiBlock {$rExt.dataForm.formId}">
+
   <script>
     var formId = '{$rExt.dataForm.formId}';
   </script>

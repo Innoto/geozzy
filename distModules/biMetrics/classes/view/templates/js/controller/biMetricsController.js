@@ -17,22 +17,17 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
 
     that.packageTimestamp = that.getTimesTamp();
 
-    $.ajax({
-      url:'/api/core/bi',
-      cache: true,
-      success: function( dat ){
-        that.biApiConf = dat;
+    geozzy.biMetricsInstances.configuration.getConf(
+      function() {
+        that.biApiConf = geozzy.biMetricsInstances.configuration.conf;
         that.syncEnable();
 
         // leave page event
         $( window ).unload(function() {
           that.sync();
         });
-
       }
-    });
-
-
+    );
 
 
 

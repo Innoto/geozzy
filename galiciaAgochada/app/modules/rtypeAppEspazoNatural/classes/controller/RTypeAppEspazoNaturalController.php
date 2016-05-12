@@ -182,19 +182,19 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
-    $templates['adminFull']->addToBlock( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['contact'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['social'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['location'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['poiCollection'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['multimedia'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['collections'] );
-    $templates['adminFull']->addToBlock( 'col8', $templates['seo'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['contact'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['social'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['poiCollection'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['multimedia'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['collections'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['seo'] );
     // COL4
-    $templates['adminFull']->addToBlock( 'col4', $templates['publication'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['image'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['categorization'] );
-    $templates['adminFull']->addToBlock( 'col4', $templates['info'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['image'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['categorization'] );
+    $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
 
     // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();
@@ -244,6 +244,8 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     // Preparamos los datos para visualizar el Recurso con sus extensiones
     $viewBlockInfo = parent::getViewBlockInfo();
 
+
+
     //$template = new Template();
     $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppEspazoNatural' );
@@ -256,10 +258,11 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     $collectionArray = false;
     if ($collectionArrayInfo){
       foreach ($collectionArrayInfo as $key => $collectionInfo){
-        if ($collectionInfo['col']['collectionType'] == 'multimedia'){ // colecciones multimedia
+        switch($collectionInfo['col']['collectionType']){
+          case 'multimedia':
             $multimediaArray[$key] = $collectionInfo;
-        }
-        else{ // resto de colecciones
+            break;
+          case 'base':
             $collectionArray[$key] = $collectionInfo;
         }
       }
@@ -268,9 +271,9 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
         $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $collectionType = 'multimedia' );
         if ($arrayMultimediaBlock){
           foreach ($arrayMultimediaBlock as $multimediaBlock){
-            $multimediaBlock->assign( 'max', 6 );
-            $multimediaBlock->setTpl('appEspazoNaturalMultimediaViewBlock.tpl', 'rtypeAppEspazoNatural');
-            $template->addToBlock( 'multimediaGalleries', $multimediaBlock );
+            //$multimediaBlock->assign( 'max', 6 );
+            //$multimediaBlock->setTpl('appEspazoNaturalMultimediaViewBlock.tpl', 'rtypeAppEspazoNatural');
+            $template->addToFragment( 'multimediaGalleries', $multimediaBlock );
           }
         }
       }
@@ -279,8 +282,8 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
         $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $collectionType = 'base' );
         if ($arrayCollectionBlock){
           foreach ($arrayCollectionBlock as $collectionBlock){
-            $collectionBlock->setTpl('appEspazoNaturalCollectionViewBlock.tpl', 'rtypeAppEspazoNatural');
-            $template->addToBlock( 'collections', $collectionBlock );
+            //$collectionBlock->setTpl('appEspazoNaturalCollectionViewBlock.tpl', 'rtypeAppEspazoNatural');
+            $template->addToFragment( 'collections', $collectionBlock );
           }
         }
       }

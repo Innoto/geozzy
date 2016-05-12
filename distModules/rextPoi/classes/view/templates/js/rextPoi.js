@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   if($('.poiModal').size()>0){
-    initializeMap(formId);
+    //initializeMap(formId);
     bindPoiForm('.poiModal ');
   }
   else{

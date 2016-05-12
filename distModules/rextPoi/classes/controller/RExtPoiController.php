@@ -210,7 +210,7 @@ class RExtPoiController extends RExtController implements RExtInterface {
 
       $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
 
-      if (isset($rExtViewBlockInfo['data']['date'])){
+      if (isset($rExtViewBlockInfo['data'])){
         $template = new Template();
         $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
         $rExtViewBlockInfo['template'] = array( 'full' => $template );

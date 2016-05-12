@@ -1349,8 +1349,6 @@ class ResourceController {
 
               $imgId = $resVal->getter( 'image' );
 
-              //var_dump( $imgId );
-
               if( $imgId && $imgId !== 'null' ) {
                 $thumbSettings['imageId'] = $imgId;
                 $thumbSettings['imageName'] = $imgId.'.jpg';
@@ -1381,7 +1379,7 @@ class ResourceController {
               );
             }
           }
-          else {
+          if( $collection->getter('collectionType') === 'base' ) {
             foreach( $resources as $resVal ) {
               $thumbSettings = array(
                 'imageId' => $resVal->getter( 'image' ),
@@ -1414,12 +1412,7 @@ class ResourceController {
   public function goOverCollections( array $collections, $collectionType ) {
     $collectionBlock = array();
     foreach( $collections as $idCollection => $collection ) {
-      if( $collectionType == 'multimedia' ) {
-        $collectionBlock[ $idCollection ] = $this->getMultimediaBlock( $collection );
-      }
-      else {
-        $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
-      }
+      $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
     }
     return $collectionBlock;
   }
@@ -1427,15 +1420,25 @@ class ResourceController {
   // Obtiene un bloque de una colección no multimedia dada
   public function getCollectionBlock( $collection ) {
 
-    // echo '<pre>';
-    // print_r($collection);
-    // echo '</pre>';
-
     $template = new Template();
     $template->assign( 'id', $collection['col']['id'] );
-    $template->assign( 'collectionResources', $collection );
-    $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
-    return $template;
+
+    switch($colType = $collection['col']['collectionType']){
+      case 'multimedia':
+        $template->assign( 'max', 6 );
+        $template->assign( 'multimediaAll', $collection );
+        $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
+        break;
+
+      case 'base':
+        $template->assign( 'collectionResources', $collection );
+        $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
+        break;
+
+   }
+   return $template;
+
+
   }
 
 

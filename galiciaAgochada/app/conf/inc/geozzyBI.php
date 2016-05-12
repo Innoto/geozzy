@@ -4,7 +4,7 @@ global $BI_SITE_SECTIONS;
 global $BI_METRICS_EXPLORER;
 global $BI_METRICS_RESOURCE;
 global $BI_GEOZZY_UI_EVENTS;
-
+global $BI_RECOMMENDS;
 
 
 
@@ -42,4 +42,10 @@ $BI_DEVICES = array(
   'mob' => array('name'=> 'Smartphone'),
   'desk' => array('name'=> 'Sobremesa/portátil'),
   'tablet' => array('name'=> 'Tablet')
+);
+
+
+$BI_RECOMMENDS = array(
+  'explorerURL' => 'http://test.geozzy.itg.es:10164/recommender/explorer',
+  'resourceURL' => 'http://test.geozzy.itg.es:10164/recommender/resource'
 );
