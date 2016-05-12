@@ -12,8 +12,10 @@
     <div class="event accordion-group">
       <div class="accordion-heading row">
         <a class="date accordion-toggle col-md-4" data-toggle="collapse" data-parent="#accordion2" href=".ele{$eventDate.id}">
-          <i class="fa fa-caret-right" aria-hidden="true"></i>
-          {$eventDate.formatedDate.l}, {$eventDate.formatedDate.j} de {$eventDate.formatedDate.F}
+          <i class="arrow fa fa-caret-right" aria-hidden="true"></i>
+          <div class="dateContent">
+            {$eventDate.formatedDate.l}, {$eventDate.formatedDate.j} {t}de{/t} {$eventDate.formatedDate.F}
+          </div>
         </a>
       </div><hr/>
       <div class="ele{$eventDate.id} accordion-body collapse {if $eventDate@first}in{/if} clearfix">

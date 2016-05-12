@@ -340,9 +340,22 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
+
+
   public function getViewBlockInfo() {
 
     $rExtViewBlockInfo = parent::getViewBlockInfo();
+
+    if( $rExtViewBlockInfo['data'] ) {
+      $template = new Template();
+      $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+      biMetrics::autoIncludes();
+      explorer::autoIncludes();
+
+      $template->addClientScript('js/poiCollectionExplorer.js', 'rextPoiCollection');
+      $template->setTpl( 'rExtViewBlock.tpl', 'rextPoiCollection' );
+      $rExtViewBlockInfo['template'] = array( 'full' => $template );
+    }
 
     return $rExtViewBlockInfo;
   }

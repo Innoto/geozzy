@@ -244,6 +244,8 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
     // Preparamos los datos para visualizar el Recurso con sus extensiones
     $viewBlockInfo = parent::getViewBlockInfo();
 
+
+
     //$template = new Template();
     $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppEspazoNatural' );
