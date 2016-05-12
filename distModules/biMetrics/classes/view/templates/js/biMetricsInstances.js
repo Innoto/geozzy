@@ -3,6 +3,11 @@ var geozzy = geozzy || {};
 if(!geozzy.biMetricsInstances) geozzy.biMetricsInstances={};
 
 
+if(typeof geozzy.biMetricsInstances.configuration  === 'undefined'){
+  geozzy.biMetricsInstances.configuration = new geozzy.biMetricsComponents.biConfiguration();
+}
+
+
 if(typeof geozzy.biMetricsInstances.explorer  === 'undefined'){
   geozzy.biMetricsInstances.explorer = new geozzy.biMetricsComponents.explorer();
 }
