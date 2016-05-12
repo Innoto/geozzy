@@ -16,3 +16,8 @@ if(typeof geozzy.biMetricsInstances.explorer  === 'undefined'){
 if(typeof geozzy.biMetricsInstances.resource  === 'undefined'){
   geozzy.biMetricsInstances.resource = new geozzy.biMetricsComponents.resource();
 }
+
+
+if(typeof geozzy.biMetricsComponents.recommender  === 'undefined'){
+  geozzy.biMetricsInstances.recommender = new geozzy.biMetricsComponents.biRecommender();
+}

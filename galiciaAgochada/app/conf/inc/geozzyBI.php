@@ -46,6 +46,6 @@ $BI_DEVICES = array(
 
 
 $BI_RECOMMENDS = array(
-  'explorerURL' => 'http://test.geozzy.itg.es:10163/recommender/explorer',
-  'resourceURL' => 'http://test.geozzy.itg.es:10163/recommender/resource'
+  'explorerURL' => 'http://test.geozzy.itg.es:10164/recommender/explorer',
+  'resourceURL' => 'http://test.geozzy.itg.es:10164/recommender/resource'
 );

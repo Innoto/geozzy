@@ -31,6 +31,7 @@ class biMetrics extends Module
     'js/controller/biMetricsController.js',
     'js/controller/biMetricsExplorerController.js',
     'js/controller/biMetricsResourceController.js',
+    'js/controller/biRecommenderController.js',    
     'js/biMetricsInstances.js'
   );
 
