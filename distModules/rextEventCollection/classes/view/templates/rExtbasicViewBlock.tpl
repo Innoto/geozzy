@@ -20,7 +20,7 @@
       </div><hr/>
       <div class="ele{$eventDate.id} accordion-body collapse {if $eventDate@first}in{/if}">
         {foreach $eventDate.data as $i => $elm}
-        <div class="extendedData accordion-inner">
+        <div class="extendedData accordion-inner row">
 
           <div class="eventTime col-md-1">
             <p><b>{$elm.event.formatedDate.time} h.</b></p>
