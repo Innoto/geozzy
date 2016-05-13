@@ -112,7 +112,8 @@ $C_REXT_MODULES = array(
   'rextAppFesta',
   'rextPoi',
   'rextPoiCollection',
-  'rextComment',
+  // 'rextComment',
+  'rextFavourite',
   'rextRoutes',
   'rextReccommended'
 );
@@ -130,6 +131,7 @@ $C_RTYPE_MODULES = array(
   'rtypeAppEspazoNatural',
   'rtypeAppFesta',
   'rtypeAppUser',
+  'rtypeFavourites',
   'rtypePoi',
   'rtypeEvent'
 );
@@ -166,11 +168,26 @@ $C_INDEX_MODULES  = array(
   'initResources',
   'explorer',
   'rextRoutes',
-  'rextComment',
+  // 'rextComment',
+  'rextFavourite',
   'rtypeEvent',
   'rtypePoi',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
+
+
+//
+// RTypes de "uso interno"
+//
+cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes',
+  array(
+    'rtypeUrl',
+    'rtypePage',
+    'rtypeFavourites',
+    'rtypeFile',
+    'rtypeEvent'
+  )
+);
 
 
 //
@@ -319,19 +336,6 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
   )
 );
 
-
-
-//
-// RTypes de "uso interno"
-//
-cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes',
-  array(
-    'rtypeUrl',
-    'rtypePage',
-    'rtypeFile',
-    'rtypeEvent'
-  )
-);
 
 
 //
