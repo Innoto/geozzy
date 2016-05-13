@@ -24,9 +24,6 @@
 </style>
 {/block}
 
-
-{$rextPoiCollectionBlock}
-
 <!-- rTypeViewBlock.tpl en rTypeEspazoNatural module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}" data-resource="{$res.data.id}">
 
@@ -36,7 +33,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
-          <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="{$cogumelo.publicConf.media}/img/paisaxesIcon.png"></img>
+          <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="{$cogumelo.publicConf.media}/img/festasIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
         <div class="stars hidden-xs col-sm-3 col-md-2">
@@ -60,48 +57,6 @@
   </section>
 
   <section class="contentSec container gzSection">
-    <div class="typeBar row">
-      <ul class="type col-xs-6 col-sm-6 col-md-6 clearfix">
-        {if isset($res.data.rextAppEspazoNaturalType)}
-        {foreach from=$res.data.rextAppEspazoNaturalType item=termInfo}
-          <li>
-            <img src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
-            <div class="name">{$termInfo.name_es}</div>
-          </li>
-          {break}
-        {/foreach}
-        {/if}
-      </ul>
-
-      <ul class="social col-xs-6 col-sm-6 col-md-6 clearfix">
-        <li class="elementShare">
-          {if isset($res.ext.rextSocialNetwork) && ($res.ext.rextSocialNetwork.data.activeFb || $res.ext.rextSocialNetwork.data.activeTwitter)}
-            <div class="share"><i class="fa fa-share-alt"></i></div>
-            <div class="share-open" style="display:none;">
-              {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}
-                <div class="share-net fb">
-                  <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer.php?u={$cogumelo.publicConf.site_host}{$res.data["urlAlias"]}&t={$res.ext.rextSocialNetwork.data["textFb"]}">
-                      <i class="fa fa-facebook-square"></i>
-                  </a>
-                </div>
-              {/if}
-              {if isset($res.ext.rextSocialNetwork.data.activeTwitter) && $res.ext.rextSocialNetwork.data.activeTwitter}
-                <div class="share-net twitter">
-                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$cogumelo.publicConf.site_host}{$res.data["urlAlias"]}&text={$res.ext.rextSocialNetwork.data["textTwitter"]}">
-                    <i class="fa fa-twitter-square"></i>
-                  </a>
-                </div>
-              {/if}
-            </div>
-          {/if}
-        </li>
-        <li class="elementFav">
-          <i class="fa fa-heart-o"></i>
-          <i class="fa fa-heart"></i>
-        </li>
-      </ul>
-    </div>
-
     <div class="mediumDescription">
       {if $res.data.mediumDescription}
         {$res.data.mediumDescription|escape:'htmlall'}
@@ -110,11 +65,19 @@
       {/if}
     </div>
   </section>
+
+  {if isset($rextRouteBlock)}
+  <section class="routeSection container gzSection">
+    {$rextRouteBlock}
+  </section>
+  {/if}
+
   {if isset($multimediaGalleries)}
     <section class="multimediaSec container gzSection">
       {$multimediaGalleries}
     </section>
   {/if}
+
   <section class="contentSec container gzSection">
     <div class="content">
       {$res.data.content}
@@ -136,7 +99,6 @@
     {/if}
 
     <div class="locationDark">
-
       {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")
       || ( isset( $res.ext.rextMapDirections.data ) && $res.ext.rextMapDirections.data !=="")}
         <div class="directions">
@@ -164,12 +126,6 @@
       <div class="grey-bar"></div>
     {/if}
   </section>
-
-  {if isset($rextReccommendedBlock)}
-    <section class="reccommendedSec container gzSection">
-      {$rextReccommendedBlock}
-    </section>
-  {/if}
 
   {if isset($collections)}
     <section class="collectionSec container gzSection">
