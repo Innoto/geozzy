@@ -48,7 +48,7 @@ class FavouritesViewModel extends Model {
   );
 
   static $extraFilters = array(
-    'idNotNull' => ' id NOT NULL '
+    'idNotNull' => ' id IS NOT NULL '
   );
 
   var $notCreateDBTable = true;
