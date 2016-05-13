@@ -10,18 +10,18 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
   info: {
 
   },
-  activate: function activate( resource ) {
-    console.log( 'rExtFavouriteController.activate');
-  },
-  deactivate: function deactivate( resource ) {
-    console.log( 'rExtFavouriteController.deactivate');
-  },
   setStatus: function setStatus( resource, status ) {
-    console.log( 'rExtFavouriteController.setStatus: '+resource+', '+status );
+    // console.log( 'rExtFavouriteController.setStatus: '+resource+', '+status );
     var that = this;
-
     that.resource = resource;
     that.status = status;
+
+    geozzy.userSessionInstance.userControlAccess( function() {
+      geozzy.rExtFavouriteController.sendSetStatus( that );
+    });
+  },
+  sendSetStatus: function sendSetStatus( that ) {
+    // console.log( 'rExtFavouriteController.sendSetStatus' );
 
     var formData = new FormData();
     formData.append( 'execute', 'setStatus' );
@@ -32,7 +32,7 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
       url: '/geozzyFavourite/command', type: 'POST',
       data: formData, cache: false, contentType: false, processData: false,
       success: function setStatusSuccess( $jsonData, $textStatus, $jqXHR ) {
-        console.log( 'rExtFavouriteController.setStatus $jsonData --- ', $jsonData );
+        // console.log( 'rExtFavouriteController.setStatus $jsonData --- ', $jsonData );
 
         if ( $jsonData.result === 'ok' ) {
           that.setStatusClient( that.resource, $jsonData.status );
@@ -41,11 +41,17 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     });
   },
   getStatus: function getStatus( resource ) {
-    console.log( 'rExtFavouriteController.getStatus: '+resource);
+    // console.log( 'rExtFavouriteController.getStatus: '+resource );
     var that = this;
 
     that.resource = resource;
-    that.status = status;
+
+    geozzy.userSessionInstance.userControlAccess( function() {
+      geozzy.rExtFavouriteController.sendGetStatus( that );
+    });
+  },
+  sendGetStatus: function sendGetStatus( that ) {
+    // console.log( 'rExtFavouriteController.sendGetStatus');
 
     var formData = new FormData();
     formData.append( 'execute', 'getStatus' );
@@ -55,7 +61,7 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
       url: '/geozzyFavourite/command', type: 'POST',
       data: formData, cache: false, contentType: false, processData: false,
       success: function setStatusSuccess( $jsonData, $textStatus, $jqXHR ) {
-        console.log( 'rExtFavouriteController.getStatus $jsonData --- ', $jsonData );
+        // console.log( 'rExtFavouriteController.getStatus $jsonData --- ', $jsonData );
 
         if ( $jsonData.result === 'ok' ) {
           that.setStatusClient( that.resource, $jsonData.status );
@@ -64,15 +70,15 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     });
   },
   changeStatus: function changeStatus( resource ) {
-    console.log( 'rExtFavouriteController.change');
+    // console.log( 'rExtFavouriteController.change');
     status = this.getStatusClient( resource );
     newStatus = ( status === 1 || status === '1' || status === true ) ? 0 : 1;
     this.setStatus( resource, newStatus );
   },
   setStatusClient: function setStatusClient( resource, status ) {
-    console.log( 'rExtFavouriteController.setStatusClient: '+resource+', '+status );
+    // console.log( 'rExtFavouriteController.setStatusClient: '+resource+', '+status );
     $favField = $('.rExtFavourite[data-favourite-resource="'+resource+'"]');
-    console.log($favField);
+    // console.log($favField);
     if( status === 1 || status === '1' || status === true ) {
       $favField.addClass( 'selected' ).attr( 'data-favourite-status', 1 );
     }
@@ -81,18 +87,18 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     }
   },
   getStatusClient: function getStatusClient( resource ) {
-    console.log( 'rExtFavouriteController.getStatusClient: '+resource );
+    // console.log( 'rExtFavouriteController.getStatusClient: '+resource );
     $favField = $('.rExtFavourite[data-favourite-resource="'+resource+'"]');
     status = $favField.attr( 'data-favourite-status' );
-    console.log( 'rExtFavouriteController.getStatusClient: status='+status );
+    // console.log( 'rExtFavouriteController.getStatusClient: status='+status );
     return( status );
   },
   eventClick: function eventClick() {
-    console.log( 'rExtFavouriteController.eventClick', $( this ).data() );
+    // console.log( 'rExtFavouriteController.eventClick', $( this ).data() );
     geozzy.rExtFavouriteController.changeStatus( $( this ).data( 'favouriteResource' ) );
   },
   setBinds: function setBinds() {
-    console.log( 'rExtFavouriteController.setBinds' );
+    // console.log( 'rExtFavouriteController.setBinds' );
     $('.rExtFavourite[data-favourite-bind!="1"]').attr( 'data-favourite-bind', 1 ).on( 'click', geozzy.rExtFavouriteController.eventClick );
   }
 };
@@ -100,6 +106,6 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
 
 
 $(document).ready(function(){
-  console.log( 'rExtFavouriteController.ready');
+  // console.log( 'rExtFavouriteController.ready');
   geozzy.rExtFavouriteController.setBinds();
 });
