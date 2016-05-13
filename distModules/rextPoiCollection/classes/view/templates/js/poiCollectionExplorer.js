@@ -7,6 +7,7 @@
       explorerSectionName:'Puntos de interese',
       debug:false
     });
+
     /* EXPLORER DISPLAY DECLARATION  (SET CUSTOM ICON TOO)  */
     var explorerMapa = new geozzy.explorerDisplay.mapView({
         map: geozzy.rExtMapInstance.resourceMap,
