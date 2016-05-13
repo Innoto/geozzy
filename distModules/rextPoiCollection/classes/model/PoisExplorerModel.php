@@ -12,7 +12,7 @@ class PoisExplorerModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'appExplorer#1',
+      'version' => 'rextPoiCollection#1.1',
       'executeOnGenerateModelToo' => true,
       'sql'=> "
         DROP VIEW IF EXISTS geozzy_pois_explorer_index;
