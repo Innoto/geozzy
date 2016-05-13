@@ -10,18 +10,18 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
   info: {
 
   },
-  activate: function activate( resource ) {
-    console.log( 'rExtFavouriteController.activate');
-  },
-  deactivate: function deactivate( resource ) {
-    console.log( 'rExtFavouriteController.deactivate');
-  },
   setStatus: function setStatus( resource, status ) {
     console.log( 'rExtFavouriteController.setStatus: '+resource+', '+status );
     var that = this;
-
     that.resource = resource;
     that.status = status;
+
+    geozzy.userSessionInstance.userControlAccess( function() {
+      geozzy.rExtFavouriteController.sendSetStatus( that );
+    });
+  },
+  sendSetStatus: function sendSetStatus( that ) {
+    console.log( 'rExtFavouriteController.sendSetStatus' );
 
     var formData = new FormData();
     formData.append( 'execute', 'setStatus' );
@@ -41,11 +41,17 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     });
   },
   getStatus: function getStatus( resource ) {
-    console.log( 'rExtFavouriteController.getStatus: '+resource);
+    console.log( 'rExtFavouriteController.getStatus: '+resource );
     var that = this;
 
     that.resource = resource;
-    that.status = status;
+
+    geozzy.userSessionInstance.userControlAccess( function() {
+      geozzy.rExtFavouriteController.sendGetStatus( that );
+    });
+  },
+  sendGetStatus: function sendGetStatus( that ) {
+    console.log( 'rExtFavouriteController.sendGetStatus');
 
     var formData = new FormData();
     formData.append( 'execute', 'getStatus' );

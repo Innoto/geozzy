@@ -6,7 +6,8 @@ class rtypeAppRestaurant extends Module {
 
   public $name = 'rtypeAppRestaurant';
   public $version = '1.0';
-  public $rext = array( 'rextEatAndDrink', 'rextContact', 'rextSocialNetwork', 'rextAppZona', 'rextMap', 'rextMapDirections', 'rextComment' );
+  public $rext = array( 'rextEatAndDrink', 'rextContact', 'rextSocialNetwork', 'rextAppZona',
+    'rextMap', 'rextMapDirections', 'rextComment', 'rextFavourite' );
 
   public $dependences = array();
 

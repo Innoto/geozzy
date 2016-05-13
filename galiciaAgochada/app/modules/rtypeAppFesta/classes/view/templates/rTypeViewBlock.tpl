@@ -93,8 +93,7 @@
           {/if}
         </li>
         <li class="elementFav">
-          <i class="fa fa-heart-o"></i>
-          <i class="fa fa-heart"></i>
+          {if isset($rextFavouriteBlock)}{$rextFavouriteBlock}{/if}
         </li>
       </ul>
     </div>
