@@ -355,5 +355,4 @@ geozzy.explorer = function( opts ) {
   }
 
 
-
 }

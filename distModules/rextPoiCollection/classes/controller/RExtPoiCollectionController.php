@@ -351,7 +351,7 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       biMetrics::autoIncludes();
       explorer::autoIncludes();
-
+      $template->addClientScript('js/TimeDebuger.js', 'common');
       $template->addClientScript('js/poiCollectionExplorer.js', 'rextPoiCollection');
       $template->setTpl( 'rExtViewBlock.tpl', 'rextPoiCollection' );
       $rExtViewBlockInfo['template'] = array( 'full' => $template );
