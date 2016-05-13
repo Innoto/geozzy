@@ -538,16 +538,28 @@ class geozzyAPIView extends View {
       }
     }
 
-    if( isset( $extraParams['virtualBags'] ) && $extraParams['virtualBags'] === 'true' ) {
-      $userMod =  new UserModel();
-      $userList = $userMod->listItems( array( 'filters' => array('active' => 1) ) );
+    if( isset( $extraParams['virtualBags'] ) && $extraParams['virtualBags'] === 'true' && class_exists( 'FavouritesViewModel' ) ) {
+      $favMod =  new FavouritesViewModel();
+      $favList = $favMod->listItems( array( 'filters' => array( 'idNotNull' => true ) ) );
       $biData['virtualBags'] = array();
-      if( $userList ) {
-        while( $userVo = $userList->fetch() ) {
-          $biData['virtualBags'][] = array(
-            'userId' => $userVo->getter('id'),
-            'virtualBags' => array()
-          );
+      if( $favList ) {
+
+        // Recopilamos los datos
+        $userBags = array();
+        while( $favVo = $favList->fetch() ) {
+          $favUser = $favVo->getter( 'user' );
+          $favId = $favVo->getter( 'resourceMain' );
+          $userBags[ $favUser ][ $favId ][] = $favVo->getter( 'id' );
+        } // while
+
+        // Los estructuramos dentro de biData
+        if( count($userBags) > 0 ) {
+          foreach( $userBags as $user => $bags ) {
+            $biData['virtualBags'][] = array(
+              'userId' => $user,
+              'virtualBags' => $bags
+            );
+          }
         }
       }
     }
