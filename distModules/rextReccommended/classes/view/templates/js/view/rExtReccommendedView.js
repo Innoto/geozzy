@@ -13,11 +13,15 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
     var that = this;
     that.render();
   },
-
   render: function() {
     var that = this;
-    console.log('ola');
-    $(that.el).append(that.template());
+    $(that.el).append(that.template({
+      id:39,
+      title:'El castaño dormilón',
+      image:'/cgmlImg/75/fast_cut/75.jpg',
+      urlAlias:'alojamientos/el-castano-dormilon',
+      shortDescription:'Casa rural en la comarca del Ortegal'
+    }));
   }
 
 });
