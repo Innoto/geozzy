@@ -6,7 +6,7 @@ class rtypeAppRuta extends Module {
 
   public $name = 'rtypeAppRuta';
   public $version = '1.0';
-  public $rext = array('rextRoutes');
+  public $rext = array('rextRoutes', 'rextMap',  'rextMapDirections');
 
   public $dependences = array();
 

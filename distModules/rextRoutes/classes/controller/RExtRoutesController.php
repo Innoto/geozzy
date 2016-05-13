@@ -257,16 +257,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-  public function getViewBlockInfo() {
-    $rExtViewBlockInfo = parent::getViewBlockInfo();
-
-    if( $rExtViewBlockInfo['data'] ) {
-      $rExtViewBlockInfo['template']['full'] = new Template();
-      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextRoutes' );
-    }
-
-    return $rExtViewBlockInfo;
-  }
+   //parent::getViewBlockInfo();
+  
 
 } // class RExtRoutesController

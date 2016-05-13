@@ -3,11 +3,8 @@
 class RTypeAppRutaController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeAppLugarController::__construct' );
-
     parent::__construct( $defResCtrl, new rtypeAppRuta() );
   }
-
 
 
   /**
@@ -174,15 +171,11 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
     $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
-    //$templates['adminFull']->addToFragment( 'col8', $templates['contact'] );
-    //$templates['adminFull']->addToFragment( 'col8', $templates['social'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['routes'] );
-
     $templates['adminFull']->addToFragment( 'col8', $templates['multimedia'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['collections'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['seo'] );
-
     // COL4
     $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
     $templates['adminFull']->addToFragment( 'col4', $templates['image'] );
@@ -234,7 +227,60 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
 
-   // parent::getViewBlockInfo();
+   public function getViewBlockInfo() {
+
+     // Preparamos los datos para visualizar el Recurso con sus extensiones
+     $viewBlockInfo = parent::getViewBlockInfo();
+
+
+
+     //$template = new Template();
+     $template = $viewBlockInfo['template']['full'];
+     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppRuta' );
+     // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+
+     /* Cargamos los bloques de colecciones */
+     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $viewBlockInfo['data'][ 'id' ] );
+
+     $multimediaArray = false;
+     $collectionArray = false;
+     if ($collectionArrayInfo){
+       foreach ($collectionArrayInfo as $key => $collectionInfo){
+         switch($collectionInfo['col']['collectionType']){
+           case 'multimedia':
+             $multimediaArray[$key] = $collectionInfo;
+             break;
+           case 'base':
+             $collectionArray[$key] = $collectionInfo;
+         }
+       }
+
+       if ($multimediaArray){
+         $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $collectionType = 'multimedia' );
+         if ($arrayMultimediaBlock){
+           foreach ($arrayMultimediaBlock as $multimediaBlock){
+             //$multimediaBlock->assign( 'max', 6 );
+             //$multimediaBlock->setTpl('appEspazoNaturalMultimediaViewBlock.tpl', 'rtypeAppEspazoNatural');
+             $template->addToFragment( 'multimediaGalleries', $multimediaBlock );
+           }
+         }
+       }
+
+       if ($collectionArray){
+         $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $collectionType = 'base' );
+         if ($arrayCollectionBlock){
+           foreach ($arrayCollectionBlock as $collectionBlock){
+             //$collectionBlock->setTpl('appEspazoNaturalCollectionViewBlock.tpl', 'rtypeAppEspazoNatural');
+             $template->addToFragment( 'collections', $collectionBlock );
+           }
+         }
+       }
+     }
+
+     $viewBlockInfo['template']['full'] = $template;
+
+     return $viewBlockInfo;
+   }
 
 
 } // class RTypeAppLugarController

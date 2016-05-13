@@ -1,43 +1,23 @@
-<div class="basicCollectionView accordion" id="accordion2">
+<div class="basicCollectionView">
 
-  {$eventsByDate = array()}
-  {foreach $rExt.data.events as $key=>$res}
-    {$eventsByDate[$res.event.formatedDate.initDate]['id'] = $res.event.resource}
-    {$eventsByDate[$res.event.formatedDate.initDate]['formatedDate'] = $res.event.formatedDate}
-    {$eventsByDate[$res.event.formatedDate.initDate]['data'][] = $res}
-  {/foreach}
-
-
-  {foreach $eventsByDate as $k=>$eventDate}
-    <div class="event accordion-group">
-      <div class="accordion-heading row">
-        <a class="date accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href=".ele{$eventDate.id}">
-          <i class="arrow fa fa-caret-right" aria-hidden="true"></i>
-          <div class="dateContent">
-            {$eventDate.formatedDate.l}, {$eventDate.formatedDate.j} de {$eventDate.formatedDate.F}
-          </div>
-        </a>
-      </div><hr/>
-      <div class="ele{$eventDate.id} accordion-body collapse {if $eventDate@first}in{/if}">
-        {foreach $eventDate.data as $i => $elm}
-        <div class="extendedData accordion-inner row">
-
-          <div class="eventTime col-md-1">
-            <p><b>{$elm.event.formatedDate.time} h.</b></p>
-          </div>
-          <div class="eventTitle col-md-11">
-            <p><b>{$elm.resource.title}</b></p>
-          </div>
-
-          <div class="eventDescription col-md-7">
-            <p>{$elm.resource.mediumDescription}</p>
-          </div>
-          <img class="col-md-5" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/basicEvent/{$elm.resource.image}.jpg"/>
-
-        </div><hr/>
-        {/foreach}
+  {foreach $rExt.data.events as $eventDate}
+    <div class="event col-md-3">
+      <div class="box">
+        <div class="eventImg">
+          <img src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$eventDate.resource.image}/listEvent/{$eventDate.resource.image}.jpg"/>
+        </div>
+        <div class="eventDate">
+          <p>{$eventDate.event.formatedDate.l}, {$eventDate.event.formatedDate.j} de {$eventDate.event.formatedDate.F}</p>
+        </div>
+        <div class="eventTitle">
+          {$eventDate.resource.title}
+        </div>
+        <div class="eventTime">
+          {$eventDate.event.formatedDate.time} h.
+        </div>
       </div>
     </div>
+
   {/foreach}
 
 </div>

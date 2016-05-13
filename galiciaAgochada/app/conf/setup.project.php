@@ -113,7 +113,8 @@ $C_REXT_MODULES = array(
   'rextPoi',
   'rextPoiCollection',
   'rextComment',
-  'rextRoutes'
+  'rextRoutes',
+  'rextReccommended'
 );
 
 // resource Types
