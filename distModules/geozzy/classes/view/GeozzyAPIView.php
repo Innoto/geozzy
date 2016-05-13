@@ -540,7 +540,7 @@ class geozzyAPIView extends View {
 
     if( isset( $extraParams['virtualBags'] ) && $extraParams['virtualBags'] === 'true' && class_exists( 'FavouritesViewModel' ) ) {
       $favMod =  new FavouritesViewModel();
-      $favList = $favMod->listItems( array( 'filters' => array('active' => 1) ) );
+      $favList = $favMod->listItems( array( 'filters' => array( 'idNotNull' => true ) ) );
       $biData['virtualBags'] = array();
       if( $favList ) {
 
