@@ -179,15 +179,13 @@ $C_INDEX_MODULES  = array(
 //
 // RTypes de "uso interno"
 //
-cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes',
-  array(
-    'rtypeUrl',
-    'rtypePage',
-    'rtypeFavourites',
-    'rtypeFile',
-    'rtypeEvent'
-  )
-);
+cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes', array(
+  'rtypeUrl',
+  'rtypePage',
+  'rtypeFavourites',
+  'rtypeFile',
+  'rtypeEvent'
+));
 
 
 //
