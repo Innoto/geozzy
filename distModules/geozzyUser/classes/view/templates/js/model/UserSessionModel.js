@@ -13,5 +13,5 @@ geozzy.userSessionComponents.UserSessionModel = Backbone.Model.extend({
     timeCreateUser: 0,
     avatar: false
   },
-  urlRoot: 'api/core/usersession'
+  urlRoot: '/api/core/usersession'
 });
