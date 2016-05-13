@@ -157,7 +157,7 @@
           }
           /* Dando estilos al contenedor del codigo de RExtFavourite */
           li.elementFav{
-            float:right;
+            float: right;
             list-style: none;
             /*
             .commonFav;
@@ -379,9 +379,18 @@
 
     .collectionSec{
       .owlGalleryGATheme();
+      .collectionBox{
+        margin-top:15px;
+        margin-bottom:30px;
+      }
     }
-    .multimediaSec{
 
+    .multimediaSec{
+      .galleryBox{
+        min-height:200px;
+        margin-bottom:20px;
+        .simpleMultimediaGallery{margin-top:15px;}
+      }
       .more, .less{
         text-transform: uppercase;
         margin-top:7px;
@@ -391,15 +400,8 @@
       }
     }
 
-    .multimediaSec .galleryBox{
-      min-height:200px;
-      margin-bottom:20px;
-      .simpleMultimediaGallery{margin-top:15px;}
-    }
-
-    .collectionSec .collectionBox{
-      margin-top:15px;
-      margin-bottom:30px;
+    .reccommendedSec{
+      .owlGalleryGATheme();
     }
 
     .commentSec{
@@ -436,6 +438,11 @@
           vertical-align: center;
         }
       }
+      .destResourceMoreInfo a{
+        background-color: @gzzColor-aloxamento;
+        border-color: @gzzColor-aloxamento;
+        font-weight:bold;
+      }
     }
 
     .collectionSec,
@@ -450,10 +457,14 @@
     .reservationBtb{
       background-color: @gzzColor-xantares;
       .showReservation{color:@gzzColor-bck-1;}
-      a{color:@gzzColor-bck-1;}
     }
     .reservationBtb:hover{
       background-color: @gzzColor-xantares + #111111;
+    }
+    .destResourceMoreInfo a{
+      background-color: @gzzColor-xantares;
+      border-color: @gzzColor-xantares;
+      font-weight:bold;
     }
     .collectionSec,
     .multimediaSec{
@@ -465,6 +476,13 @@
 
 
   .rtypeAppFesta{
+
+    .destResourceMoreInfo a{
+      background-color: @gzzColor-festas;
+      border-color: @gzzColor-festas;
+      font-weight:bold;
+    }
+
     .eventSection{
       .listCollectionView{
         .accordion-group{
@@ -536,9 +554,21 @@
   }
 
 
-  .rtypeAppEspazoNatural{  }
+  .rtypeAppEspazoNatural{
+    .destResourceMoreInfo a{
+      background-color: @gzzColor-paisaxes;
+      border-color: @gzzColor-paisaxes;
+      font-weight:bold;
+    }
+   }
 
-  .rtypeAppLugar{  }
+  .rtypeAppLugar{
+    .destResourceMoreInfo a{
+      background-color: @gzzColor-rincons;
+      border-color: @gzzColor-rincons;
+      font-weight:bold;
+    }
+  }
 
 
 }

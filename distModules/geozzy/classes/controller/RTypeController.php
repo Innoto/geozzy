@@ -113,13 +113,13 @@ class RTypeController {
     if( property_exists( $rTypeModule, 'rext' ) && is_array( $rTypeModule->rext )
       && count( $rTypeModule->rext ) > 0 )
     {
-      $this->rExts = $rTypeModule->rext;
-    }
-
-    // Cargamos los autoIncludes de los RExt de este RType
-    if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
-      foreach( $this->rExts as $rExtName ) {
-        $rExtName::autoIncludes();
+      $this->rExts = array();
+      // Cargamos los autoIncludes de los RExt de este RType si se han activado en el setup.project
+      foreach( $rTypeModule->rext as $rExtName ) {
+        if( class_exists( $rExtName ) ) {
+          $this->rExts[] = $rExtName;
+          $rExtName::autoIncludes();
+        }
       }
     }
   }
