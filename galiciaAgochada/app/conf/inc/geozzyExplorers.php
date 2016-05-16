@@ -25,8 +25,8 @@ $GEOZZY_EXPLORERS = array(
     'controllerName' => 'PaisaxesExplorerController',
     'name' => __('Paisaxes Espectaculares'),
     'mapBounds' => array(
-      array( 49.9, -9.8 ),
-      array( 41.7, -6.6 )
+      array(43.87,-9.35),
+      array(41.78,-6.73)
     ),
     'filters' => array(
       'catGroupIdNames' => array( 'rextAppEspazoNaturalType', 'rextAppZonaType' )
@@ -38,8 +38,8 @@ $GEOZZY_EXPLORERS = array(
     'controllerName' => 'XantaresExplorerController',
     'name' => __('Sabrosos xantares'),
     'mapBounds' => array(
-      array( 49.9, -9.8 ),
-      array( 41.7, -6.6 )
+      array(43.87,-9.35),
+      array(41.78,-6.73)
     ),
     'filters' => array(
       'catGroupIdNames' => array( 'eatanddrinkSpecialities', 'rextAppZonaType' )
@@ -51,8 +51,8 @@ $GEOZZY_EXPLORERS = array(
     'controllerName' => 'TodosSegredosExplorerController',
     'name' => __('Descúbreos todos xuntos'),
     'mapBounds' => array(
-      array( 49.9, -9.8 ),
-      array( 41.7, -6.6 )
+      array(43.87,-9.35),
+      array(41.78,-6.73)
     ),
     'filters' => array(
       'catGroupIdNames' => array( 'eatanddrinkSpecialities', 'rextAppZonaType' )
@@ -64,8 +64,8 @@ $GEOZZY_EXPLORERS = array(
     'controllerName' => 'AloxamentosExplorerController',
     'name' => __('Aloxamentos con encanto'),
     'mapBounds' => array(
-      array( 49.9, -9.8 ),
-      array( 41.7, -6.6 )
+      array(43.87,-9.35),
+      array(41.78,-6.73)
     ),
     'filters' => array(
       'catGroupIdNames' => array( 'accommodationType', 'accommodationCategory',
@@ -79,8 +79,8 @@ $GEOZZY_EXPLORERS = array(
     'controllerName' => 'PraiasExplorerController',
     'name' => __('Praias de ensono'),
     'mapBounds' => array(
-      array( 49.9, -9.8 ),
-      array( 41.7, -6.6 )
+      array(43.87,-9.35),
+      array(41.78,-6.73)
     ),
     'filters' => array(
       'catGroupIdNames' => array()
@@ -92,8 +92,8 @@ $GEOZZY_EXPLORERS = array(
     'controllerName' => 'RinconsExplorerController',
     'name' => __('Rincóns con encanto'),
     'mapBounds' => array(
-      array( 49.9, -9.8 ),
-      array( 41.7, -6.6 )
+      array(43.87,-9.35),
+      array(41.78,-6.73)
     ),
     'filters' => array(
       'catGroupIdNames' => array( 'rextAppLugarType', 'rextAppZonaType' )
