@@ -139,8 +139,39 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
         event: 'printed'
       });
     }
+  },
 
+  eventCommented: function(id, section) {
+    var that = this;
 
+    that.addMetric({
+      duration: 0,
+      resourceId: id,
+      section: section,
+      event: 'commented'
+    });
+  },
+
+  eventShared: function(id, section) {
+    var that = this;
+
+    that.addMetric({
+      duration: 0,
+      resourceId: id,
+      section: section,
+      event: 'shared'
+    });
+  },
+
+  eventFavourited: function(id, section) {
+    var that = this;
+
+    that.addMetric({
+      duration: 0,
+      resourceId: id,
+      section: section,
+      event: 'favourited'
+    });
   }
 
 });
