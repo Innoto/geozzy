@@ -34,12 +34,20 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
 
   },
 
+
+
   packageTemplate: function( ) {
 
     var that = this;
 
+    var userID = null;
+
+    if( geozzy.userSessionInstance.user) {
+      userID = geozzy.userSessionInstance.user.get('id');
+    }
+
     return {
-       "user_ID":283,
+       "user_ID": userID,
        "language": cogumelo.publicConf.C_LANG,
        "session_ID": cogumelo.publicConf.C_SESSION_ID,
        "observationTime": that.packageTimestamp ,
