@@ -112,7 +112,7 @@ $C_REXT_MODULES = array(
   'rextAppFesta',
   'rextPoi',
   'rextPoiCollection',
-  // 'rextComment',
+  'rextComment',
   'rextFavourite',
   'rextRoutes',
   'rextReccommended'
@@ -168,7 +168,7 @@ $C_INDEX_MODULES  = array(
   'initResources',
   'explorer',
   'rextRoutes',
-  // 'rextComment',
+  'rextComment',
   'rextFavourite',
   'rtypeEvent',
   'rtypePoi',

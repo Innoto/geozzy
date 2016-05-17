@@ -48,6 +48,9 @@ class rextFavourite extends Module {
 
   public function __construct() {
     $this->addUrlPatterns( '#^geozzyFavourite/command$#', 'view:RExtFavouriteView::execCommand' );
+
+    $this->addUrlPatterns( '#^api/favourites$#', 'view:RExtFavouriteAPIView::apiQuery' );
+    $this->addUrlPatterns( '#^api/favourites.json$#', 'view:RExtFavouriteAPIView::apiInfoJson' );
   }
 
 

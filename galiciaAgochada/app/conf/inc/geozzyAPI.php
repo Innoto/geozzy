@@ -1,10 +1,10 @@
 <?php
 global $GEOZZY_API_DOC_URLS;
+
 define( 'GEOZZY_API_ACTIVE', true);
+
 user::autoIncludes();
-
 $useraccesscontrol = new UserAccessController();
-
 if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) ){
   $GEOZZY_API_DOC_URLS_ADMIN = array(
     array(
@@ -93,6 +93,10 @@ $GEOZZY_API_DOC_URLS =  array_merge(
     array(
       'path'=> '/routes.json',
       'description' => 'Routes API'
+    ),
+    array(
+      'path'=> '/favourites.json',
+      'description' => 'Favourites API'
     )
   )
 );
