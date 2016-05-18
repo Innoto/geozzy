@@ -1,5 +1,6 @@
 <div class="calendarCollectionView accordion" id="accordion2">
 
+{if isset($rExt.data.events)}
   {$eventsByDate = array()}
   {foreach $rExt.data.events as $key=>$res}
     {$eventsByDate[$res.event.formatedDate.initDate]['id'] = $res.event.resource}
@@ -41,5 +42,7 @@
       </div>
     </div>
   {/foreach}
+  
+{/if}
 
 </div>

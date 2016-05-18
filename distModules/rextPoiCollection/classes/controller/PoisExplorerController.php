@@ -8,14 +8,6 @@ class PoisExplorerController extends ExplorerController {
     Cogumelo::load('coreModel/DBUtils.php');
     $resourceModel = new PoisExplorerModel();
 
-    if( $updatedFrom ) {
-      $filters = array('updatedfrom'=> $updatedFrom);
-    }
-    else {
-      $filters = array();
-    }
-
-
     $filters = array('34');
     $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc'), 'filters'=> $filters ) );
 
@@ -49,7 +41,7 @@ class PoisExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    appExplorer::load('model/PoisExplorerModel.php');
+    //appExplorer::load('model/PoisExplorerModel.php');
     $resourceModel = new PoisExplorerModel();
 
     $filters = array();
@@ -72,12 +64,12 @@ class PoisExplorerController extends ExplorerController {
         $row = array();
 
         $resourceDataArray = array('id' => $resource->getter('id'), 'title' => $resource->getter('title'),
-                                   'mediumDescription' => $resource->getter('mediumDescription'), 'image' => $resource->getter('image'));
+                                   'shortDescription' => $resource->getter('shortDescription'), 'image' => $resource->getter('image'));
 
 
         $row['id'] = $resourceDataArray['id'];
         $row['title'] = ( isset($resourceDataArray['title']) )?$resourceDataArray['title']:false;
-        $row['description'] = ( isset($resourceDataArray['mediumDescription']) )?$resourceDataArray['mediumDescription']:false;
+        $row['description'] = ( isset($resourceDataArray['shortDescription']) )?$resourceDataArray['shortDescription']:'';
         $row['image'] =  ( isset($resourceDataArray['image']) )?$resourceDataArray['image']:false;
 
         echo json_encode( $row );
