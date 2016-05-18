@@ -8,6 +8,8 @@ require_once APP_BASE_PATH.'/conf/inc/geozzyAPI.php';
 class RExtFavouriteAPIView extends View {
 
   var $userId = false;
+  var $userSession = false;
+  var $userAPIAccess = false;
 
   public function __construct( $base_dir ) {
 
@@ -15,7 +17,19 @@ class RExtFavouriteAPIView extends View {
     $userCtrl = new UserAccessController();
     $userInfo = $userCtrl->getSessiondata();
     // error_log( 'USER: '.print_r( $userInfo, true ) );
-    $this->userId = isset( $userInfo['data']['id'] ) ? $userInfo['data']['id'] : false;
+
+    if( isset( $userInfo['data']['id'] ) ) {
+      $this->userId =  $userInfo['data']['id'];
+      $this->userSession = $userInfo;
+    }
+
+    if( $this->userSession && $this->userSession['data']['login'] === 'superAdmin' ) {
+      $this->userAPIAccess = true;
+    }
+
+    $this->apiParams = array( 'cmd', 'status' );
+    $this->apiCommands = array( 'setStatus', 'getStatus', 'listFavs', 'listResources', 'listUsers' );
+    $this->apiFilters = array( 'fav-id', 'res-id', 'user-id' );
 
     parent::__construct( $base_dir ); // Esto lanza el accessCheck
   }
@@ -32,28 +46,45 @@ class RExtFavouriteAPIView extends View {
 
 
   public function apiQuery( $urlParams = false ) {
-    $result = false;
+    $result = null;
 
-    // $validation = array( 'fav-id'=> '#\d+$#', 'res-id'=> '#\d+$#' );
-    // $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
+    $command = ( isset( $_POST['cmd'] ) && in_array( $_POST['cmd'], $this->apiCommands ) ) ? $_POST['cmd'] : null;
+
+    $status = null;
+    if( isset( $_POST['status'] ) ) {
+      $status = ( $_POST['status'] ) ? 1 : 0; // Manejamos status como 0-1 y no false-true
+    }
 
     $filters = array();
-    foreach( [ 'fav-id', 'res-id', 'user-id' ] as $key ) {
-      if( isset( $_POST[$key] ) ) {
-        $filters[$key] = $_POST[$key];
-      }
+    foreach( $this->apiFilters as $key ) {
+      $filters[ $key ] = ( isset( $_POST[ $key ] ) ) ? $_POST[ $key ] : null;
     }
 
-    $status = ( isset( $_POST['status'] ) && $_POST['status'] ) ? 1 : 0; // Manejamos status como 0-1 y no false-true
+    // error_log( 'filters: '.print_r( $filters, true ) );
+    // var_dump( $filters );
 
-    $command = ( isset( $_POST['cmd'] ) && in_array( $_POST['cmd'], ['setStatus', 'getStatus', 'listFavs', 'listResources', 'listUsers'] ) ) ? $_POST['cmd'] : false;
-
-
-    if( isset( $_POST['cmd'] ) ) {
-      $result = $this->getterCommand( $_POST['cmd'], $filters );
-    }
-    elseif( isset( $_POST['res-id'] ) ) {
-      $result = $this->listByResId( $_POST['res-id'] );
+    switch( $command ) {
+      case 'setStatus':
+        $result = $this->apiSetStatus( $status, $filters['res-id'], $filters['user-id'] );
+        break;
+      case 'getStatus':
+        $result = $this->apiGetStatus( $filters['res-id'], $filters['user-id'] );
+        break;
+      case 'listFavs':
+        $result = $this->apiListFavs( $filters );
+        break;
+      case 'listResources':
+        $result = $this->apiListResources( $filters );
+        break;
+      case 'listUsers':
+        $result = $this->apiListUsers( $filters );
+        break;
+      default:
+        $result = array(
+          'result' => 'error',
+          'msg' => 'Command error'
+        );
+        break;
     }
 
     header('Content-Type: application/json; charset=utf-8');
@@ -61,59 +92,75 @@ class RExtFavouriteAPIView extends View {
   }
 
 
-
-  public function getterCommand( $command, $filters ) {
+  public function apiSetStatus( $status, $resId, $userId ) {
     $result = null;
 
-    // error_log( 'RExtFavouriteView->setStatus: '.$resource.', '.$status );
+    // Si no hay usuario, el de session
+    if( $userId === null && $this->userId !== false ) {
+      $userId = $this->userId;
+    }
 
-    $favCtrl = new RExtFavouriteController();
-    switch( $command ) {
-      case 'setStatus':
-        $favInfo = $favCtrl->getStatus( $filters['res-id'], $filters['user-id'] );
+    // Solo pueden acceder a otros usuarios si $this->userAPIAccess
+    if( !$this->userAPIAccess && $userId !== $this->userId ) {
+      $userId = null;
+    }
 
-        $status = ( $status ) ? 1 : 0; // Manejamos status como 0-1 y no false-true
-
-        // error_log( 'RExtFavouriteView->setStatus: '.$resource.', '.$status );
-
-        $favCtrl = new RExtFavouriteController();
-        if( $favCtrl->setStatus( $resource, $status, $this->userId ) ) {
-          $result = array(
-            'result' => 'ok',
-            'status' => $status
-          );
-        }
-
-        break;
-      case 'getStatus':
-        $favInfo = $favCtrl->getStatus( $filters['res-id'], $filters['user-id'] );
-        if( $favInfo ) {
-          $result = array(
-            'result' => 'ok',
-            'status' => '1',
-            'data' => $favInfo
-          );
-        }
-        else {
-          $result = array(
-            'result' => 'ok',
-            'status' => '0'
-          );
-        }
-        break;
-      case 'listFavs':
-        # code...
-        break;
-      case 'listResources':
-        # code...
-        break;
-      case 'listUsers':
-        # code...
-        break;
+    if( $status !== null && $resId !== null && $userId !== null ) {
+      $favCtrl = new RExtFavouriteController();
+      if( $favCtrl->setStatus( $resId, $status, $userId ) ) {
+        $result = array(
+          'result' => 'ok',
+          'status' => $status
+        );
+      }
+    }
+    else {
+      $result = array(
+        'result' => 'error',
+        'msg' => 'Parameters error'
+      );
     }
 
     return $result;
   }
+
+
+  public function apiGetStatus( $resId, $userId ) {
+    $result = null;
+
+    // Si no hay usuario, el de session
+    if( $userId === null && $this->userId !== false ) {
+      $userId = $this->userId;
+    }
+
+    // Solo pueden acceder a otros usuarios si $this->userAPIAccess
+    if( !$this->userAPIAccess && $userId !== $this->userId ) {
+      $userId = null;
+    }
+
+    if( $resId !== null && $userId !== null ) {
+      $favCtrl = new RExtFavouriteController();
+      $result = array(
+        'result' => 'ok',
+        'status' => $favCtrl->getStatus( $resId, $userId )
+      );
+    }
+    else {
+      $result = array(
+        'result' => 'error',
+        'msg' => 'Parameters error'
+      );
+    }
+
+    return $result;
+  }
+
+
+
+
+
+
+
 
 
 
@@ -142,7 +189,14 @@ class RExtFavouriteAPIView extends View {
           "parameters": [
             {
               "name": "cmd",
-              "description": "Command ( setStatus | getStatus | listFavs | listResources | listUsers )",
+              "description": "Command ( <?php echo implode( ' | ', $this->apiCommands ); ?> )",
+              "type": "integer",
+              "paramType": "form",
+              "required": true
+            },
+            {
+              "name": "status",
+              "description": "Favourite status ( 0 | 1 )",
               "type": "integer",
               "paramType": "form",
               "required": false

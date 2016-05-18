@@ -108,6 +108,9 @@ class geozzy extends Module {
     $userData = array(
       'login' => 'superAdmin',
       'name' => 'superAdmin',
+      'surname' => 'Geozzy',
+      'email' => 'superAdmin@geozzy.local',
+      'timeCreateUser' => gmdate( 'Y-m-d H:i:s', time() ),
       'active' => 1
     );
     $user = new UserModel( $userData );

@@ -955,31 +955,32 @@ class geozzyAPIView extends View {
     $topicList = $topicModel->listItems( );
     $this->syncModelList( $topicList );
   }
+
   // userSession
   public function userSession() {
+    $userInfo = false;
+
     user::autoIncludes();
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
-    header('Content-type: application/json');
-    if($user){
-      $u = array();
-      $u['id'] = $user['data']['id'];
-      $u['login'] = $user['data']['login'];
-      $u['name'] = $user['data']['name'];
-      $u['surname'] = $user['data']['surname'];
-      $u['email'] = $user['data']['email'];
-      $u['active'] = $user['data']['active'];
-      $u['timeLastLogin'] = $user['data']['timeLastLogin'];
-      $u['timeCreateUser'] = $user['data']['timeCreateUser'];
-      if(array_key_exists('avatar', $user['data'])){
-        $u['avatar'] = $user['data']['avatar'];
+
+    if( $user ) {
+      $userInfo = array();
+      $userInfo['id'] = $user['data']['id'];
+      $userInfo['login'] = $user['data']['login'];
+      $userInfo['name'] = ( isset( $user['data']['name'] ) ) ? $user['data']['name'] : null;
+      $userInfo['surname'] = ( isset( $user['data']['surname'] ) ) ? $user['data']['surname'] : null;
+      $userInfo['email'] = ( isset( $user['data']['email'] ) ) ? $user['data']['email'] : null;
+      $userInfo['active'] = $user['data']['active'];
+      $userInfo['timeLastLogin'] = ( isset( $user['data']['timeLastLogin'] ) ) ? $user['data']['timeLastLogin'] : null;
+      $userInfo['timeCreateUser'] = $user['data']['timeCreateUser'];
+      if( array_key_exists('avatar', $user['data']) ){
+        $userInfo['avatar'] = $user['data']['avatar'];
       }
-
-    }else{
-      $u = false;
     }
-    echo json_encode( $u );
 
+    header('Content-type: application/json');
+    echo json_encode( $userInfo );
   }
 
 
