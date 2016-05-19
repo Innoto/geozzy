@@ -9,27 +9,25 @@ class RExtFavouriteAPIView extends View {
 
   var $userId = false;
   var $userSession = false;
-  var $userAPIAccess = false;
+  var $extendAPIAccess = false;
 
   public function __construct( $base_dir ) {
-
     user::load( 'controller/UserAccessController.php' );
     $userCtrl = new UserAccessController();
     $userInfo = $userCtrl->getSessiondata();
-    // error_log( 'USER: '.print_r( $userInfo, true ) );
 
     if( isset( $userInfo['data']['id'] ) ) {
-      $this->userId =  $userInfo['data']['id'];
+      $this->userId = $userInfo['data']['id'];
       $this->userSession = $userInfo;
     }
 
-    if( $this->userSession && $this->userSession['data']['login'] === 'superAdmin' ) {
-      $this->userAPIAccess = true;
+    if( GEOZZY_API_ACTIVE === true && $this->userSession && $this->userSession['data']['login'] === 'superAdmin' ) {
+      $this->extendAPIAccess = true;
     }
 
     $this->apiParams = array( 'cmd', 'status' );
     $this->apiCommands = array( 'setStatus', 'getStatus', 'listFavs', 'listResources', 'listUsers' );
-    $this->apiFilters = array( 'fav-id', 'res-id', 'user-id' );
+    $this->apiFilters = array( 'favouritesId', 'resourceId', 'userId' );
 
     parent::__construct( $base_dir ); // Esto lanza el accessCheck
   }
@@ -39,14 +37,17 @@ class RExtFavouriteAPIView extends View {
    * @return bool : true -> Access allowed
    */
   public function accessCheck() {
-    //return( $this->userId !== false );
-    return( GEOZZY_API_ACTIVE === true );
+    return( $this->userId !== false );
+    // return( GEOZZY_API_ACTIVE === true );
   }
 
 
-
+  /**
+   * API router
+   */
   public function apiQuery() {
     $result = null;
+    $error = false;
 
     $command = ( isset( $_POST['cmd'] ) && in_array( $_POST['cmd'], $this->apiCommands ) ) ? $_POST['cmd'] : null;
 
@@ -60,15 +61,12 @@ class RExtFavouriteAPIView extends View {
       $filters[ $key ] = ( isset( $_POST[ $key ] ) ) ? $_POST[ $key ] : null;
     }
 
-    // error_log( 'filters: '.print_r( $filters, true ) );
-    // var_dump( $filters );
-
     switch( $command ) {
       case 'setStatus':
-        $result = $this->apiSetStatus( $status, $filters['res-id'], $filters['user-id'] );
+        $result = $this->apiSetStatus( $status, $filters['resourceId'], $filters['userId'] );
         break;
       case 'getStatus':
-        $result = $this->apiGetStatus( $filters['res-id'], $filters['user-id'] );
+        $result = $this->apiGetStatus( $filters['resourceId'], $filters['userId'] );
         break;
       case 'listFavs':
         $result = $this->apiListFavs( $filters );
@@ -92,22 +90,22 @@ class RExtFavouriteAPIView extends View {
   }
 
 
-  public function apiSetStatus( $status, $resId, $userId ) {
+  public function apiSetStatus( $status, $resourceId, $userId ) {
     $result = null;
 
     // Si no hay usuario, el de session
     if( $userId === null && $this->userId !== false ) {
-      $userId = $this->userId;
+      $userId = strval( $this->userId );
     }
 
-    // Solo pueden acceder a otros usuarios si $this->userAPIAccess
-    if( !$this->userAPIAccess && $userId !== $this->userId ) {
+    // Solo pueden acceder a otros usuarios si $this->extendAPIAccess
+    if( !$this->extendAPIAccess && $userId !== strval( $this->userId ) ) {
       $userId = null;
     }
 
-    if( $status !== null && $resId !== null && $userId !== null ) {
+    if( $status !== null && $resourceId !== null && $userId !== null ) {
       $favCtrl = new RExtFavouriteController();
-      if( $favCtrl->setStatus( $resId, $status, $userId ) ) {
+      if( $favCtrl->setStatus( $resourceId, $status, $userId ) ) {
         $result = array(
           'result' => 'ok',
           'status' => $status
@@ -125,24 +123,24 @@ class RExtFavouriteAPIView extends View {
   }
 
 
-  public function apiGetStatus( $resId, $userId ) {
+  public function apiGetStatus( $resourceId, $userId ) {
     $result = null;
 
     // Si no hay usuario, el de session
     if( $userId === null && $this->userId !== false ) {
-      $userId = $this->userId;
+      $userId = strval( $this->userId );
     }
 
-    // Solo pueden acceder a otros usuarios si $this->userAPIAccess
-    if( !$this->userAPIAccess && $userId !== $this->userId ) {
+    // Solo pueden acceder a otros usuarios si $this->extendAPIAccess
+    if( !$this->extendAPIAccess && $userId !== strval( $this->userId ) ) {
       $userId = null;
     }
 
-    if( $resId !== null && $userId !== null ) {
+    if( $resourceId !== null && $userId !== null ) {
       $favCtrl = new RExtFavouriteController();
       $result = array(
         'result' => 'ok',
-        'status' => $favCtrl->getStatus( $resId, $userId )
+        'status' => $favCtrl->getStatus( $resourceId, $userId )
       );
     }
     else {
@@ -159,20 +157,20 @@ class RExtFavouriteAPIView extends View {
   public function apiListFavs( $filters ) {
     $result = null;
 
-    // Solo pueden acceder si $this->userAPIAccess
-    if( $this->userAPIAccess ) {
+    // Solo pueden acceder si $this->extendAPIAccess
+    if( $this->extendAPIAccess ) {
       $listFilters = array();
-      if( $filters['res-id'] !== null ) {
-        $listFilters['resource'] = $filters['res-id'];
+      if( $filters['resourceId'] !== null ) {
+        $listFilters['inResourceList'] = $filters['resourceId'];
       }
-      if( $filters['user-id'] !== null ) {
-        $listFilters['user'] = $filters['user-id'];
+      if( $filters['userId'] !== null ) {
+        $listFilters['user'] = $filters['userId'];
       }
-      if( $filters['fav-id'] !== null ) {
-        $listFilters['resourceMain'] = $filters['fav-id'];
+      if( $filters['favouritesId'] !== null ) {
+        $listFilters['id'] = $filters['favouritesId'];
       }
 
-      $favModel = new FavouritesViewModel();
+      $favModel = new FavouritesListViewModel();
       $favList = $favModel->listItems( array( 'filters' => $listFilters ) );
       if( $favList ) {
         $result = array(
@@ -181,10 +179,11 @@ class RExtFavouriteAPIView extends View {
         );
         while( $favObj = $favList->fetch() ) {
           $favData = $favObj->getAllData( 'onlydata' );
-          $result['favourites'][ $favData['resourceMain'] ] = array(
-            'id' => $favData['resourceMain'],
-            'timeCreation' => $favData['colTimeCreation'],
+          $result['favourites'][ $favData['id'] ] = array(
+            'id' => $favData['id'],
             'user' => $favData['user'],
+            'resourceList' => ( isset( $favData['resourceList'] ) ) ? explode( ',', $favData['resourceList'] ) : array(),
+            'timeCreation' => $favData['timeCreation'],
             // 'colId' => $favData['colId'],
             'published' => $favData['published']
           );
@@ -205,17 +204,17 @@ class RExtFavouriteAPIView extends View {
   public function apiListResources( $filters ) {
     $result = null;
 
-    // Solo pueden acceder si $this->userAPIAccess
-    if( $this->userAPIAccess ) {
+    // Solo pueden acceder si $this->extendAPIAccess
+    if( $this->extendAPIAccess ) {
       $listFilters = array();
-      if( $filters['res-id'] !== null ) {
-        $listFilters['inResourceList'] = $filters['res-id'];
+      if( $filters['resourceId'] !== null ) {
+        $listFilters['inResourceList'] = $filters['resourceId'];
       }
-      if( $filters['user-id'] !== null ) {
-        $listFilters['user'] = $filters['user-id'];
+      if( $filters['userId'] !== null ) {
+        $listFilters['user'] = $filters['userId'];
       }
-      if( $filters['fav-id'] !== null ) {
-        $listFilters['id'] = $filters['fav-id'];
+      if( $filters['favouritesId'] !== null ) {
+        $listFilters['id'] = $filters['favouritesId'];
       }
 
       $favModel = new FavouritesListViewModel();
@@ -226,18 +225,20 @@ class RExtFavouriteAPIView extends View {
           'resource' => array()
         );
         while( $favObj = $favList->fetch() ) {
-          $favId = $favObj->getter( 'id' );
+          $favouritesId = $favObj->getter( 'id' );
           $resourceList = $favObj->getter('resourceList');
           if( $resourceList ) {
             $resourceList = explode( ',', $resourceList );
-            foreach( $resourceList as $resId ) {
-              if( !isset( $result['resource'][ $resId ] ) ) {
-                $result['resource'][ $resId ] = array(
-                  'id' => $resId,
-                  'favourites' => array()
-                );
+            foreach( $resourceList as $resourceId ) {
+              if( $filters['resourceId'] === null || $filters['resourceId'] === $resourceId ) {
+                if( !isset( $result['resource'][ $resourceId ] ) ) {
+                  $result['resource'][ $resourceId ] = array(
+                    'id' => $resourceId,
+                    'favourites' => array()
+                  );
+                }
+                $result['resource'][ $resourceId ]['favourites'][] = $favouritesId;
               }
-              $result['resource'][ $resId ]['favourites'][] = $favId;
             }
           }
           error_log( 'resourceList: '.$favObj->getter('resourceList') );
@@ -258,35 +259,37 @@ class RExtFavouriteAPIView extends View {
   public function apiListUsers( $filters ) {
     $result = null;
 
-    // Solo pueden acceder si $this->userAPIAccess
-    if( $this->userAPIAccess ) {
+    // Solo pueden acceder si $this->extendAPIAccess
+    if( $this->extendAPIAccess ) {
       $listFilters = array();
-      if( $filters['res-id'] !== null ) {
-        $listFilters['resource'] = $filters['res-id'];
+      if( $filters['resourceId'] !== null ) {
+        $listFilters['inResourceList'] = $filters['resourceId'];
       }
-      if( $filters['user-id'] !== null ) {
-        $listFilters['user'] = $filters['user-id'];
+      if( $filters['userId'] !== null ) {
+        $listFilters['user'] = $filters['userId'];
       }
-      if( $filters['fav-id'] !== null ) {
-        $listFilters['resourceMain'] = $filters['fav-id'];
+      if( $filters['favouritesId'] !== null ) {
+        $listFilters['id'] = $filters['favouritesId'];
       }
 
-      $favModel = new FavouritesViewModel();
+      $favModel = new FavouritesListViewModel();
       $favList = $favModel->listItems( array( 'filters' => $listFilters ) );
       if( $favList ) {
         $result = array(
           'result' => 'ok',
-          'data' => array()
+          'user' => array()
         );
         while( $favObj = $favList->fetch() ) {
-          $favData = $favObj->getAllData( 'onlydata' );
-          $result['data'][ $favData['resourceMain'] ] = array(
-            'id' => $favData['resourceMain'],
-            'timeCreation' => $favData['colTimeCreation'],
-            'user' => $favData['user'],
-            'colId' => $favData['colId'],
-            'published' => $favData['published']
-          );
+          $favouritesId = $favObj->getter( 'id' );
+          $userId = $favObj->getter( 'user' );
+
+          if( !isset( $result['user'][ $userId ] ) ) {
+            $result['user'][ $userId ] = array(
+              'id' => $userId,
+              'favourites' => array()
+            );
+          }
+          $result['user'][ $userId ]['favourites'][] = $favouritesId;
         }
       }
     }
@@ -304,6 +307,9 @@ class RExtFavouriteAPIView extends View {
 
 
 
+  /**
+   * API info to swagger
+   */
   public function apiInfoJson() {
     header('Content-type: application/json');
 ?>
@@ -342,22 +348,22 @@ class RExtFavouriteAPIView extends View {
               "required": false
             },
             {
-              "name": "fav-id",
-              "description": "Get Resource Ids filter by Favourites Id",
+              "name": "favouritesId",
+              "description": "Limit command by Favourites Id",
               "type": "integer",
               "paramType": "form",
               "required": false
             },
             {
-              "name": "res-id",
-              "description": "Get Favourites Ids filter by Resource Id",
+              "name": "resourceId",
+              "description": "Limit command by Resource Id",
               "type": "integer",
               "paramType": "form",
               "required": false
             },
             {
-              "name": "user-id",
-              "description": "Get Favourites Ids filter by User Id",
+              "name": "userId",
+              "description": "Limit command by User Id",
               "type": "integer",
               "paramType": "form",
               "required": false

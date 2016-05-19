@@ -4,36 +4,23 @@
 var geozzy = geozzy || {};
 
 geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
-  config: {
-
-  },
-  info: {
-
-  },
   setStatus: function setStatus( resource, status ) {
-    // console.log( 'rExtFavouriteController.setStatus: '+resource+', '+status );
     var that = this;
     that.resource = resource;
     that.status = status;
-
     geozzy.userSessionInstance.userControlAccess( function() {
       geozzy.rExtFavouriteController.sendSetStatus( that );
     });
   },
   sendSetStatus: function sendSetStatus( that ) {
-    // console.log( 'rExtFavouriteController.sendSetStatus' );
-
     var formData = new FormData();
-    formData.append( 'execute', 'setStatus' );
-    formData.append( 'resource', that.resource );
+    formData.append( 'cmd', 'setStatus' );
+    formData.append( 'resourceId', that.resource );
     formData.append( 'status', that.status );
-
     $.ajax({
-      url: '/geozzyFavourite/command', type: 'POST',
+      url: '/api/favourites', type: 'POST',
       data: formData, cache: false, contentType: false, processData: false,
       success: function setStatusSuccess( $jsonData, $textStatus, $jqXHR ) {
-        // console.log( 'rExtFavouriteController.setStatus $jsonData --- ', $jsonData );
-
         if ( $jsonData.result === 'ok' ) {
           that.setStatusClient( that.resource, $jsonData.status );
         }
@@ -41,28 +28,20 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     });
   },
   getStatus: function getStatus( resource ) {
-    // console.log( 'rExtFavouriteController.getStatus: '+resource );
     var that = this;
-
     that.resource = resource;
-
     geozzy.userSessionInstance.userControlAccess( function() {
       geozzy.rExtFavouriteController.sendGetStatus( that );
     });
   },
   sendGetStatus: function sendGetStatus( that ) {
-    // console.log( 'rExtFavouriteController.sendGetStatus');
-
     var formData = new FormData();
-    formData.append( 'execute', 'getStatus' );
-    formData.append( 'resource', that.resource );
-
+    formData.append( 'cmd', 'getStatus' );
+    formData.append( 'resourceId', that.resource );
     $.ajax({
-      url: '/geozzyFavourite/command', type: 'POST',
+      url: '/api/favourites', type: 'POST',
       data: formData, cache: false, contentType: false, processData: false,
       success: function setStatusSuccess( $jsonData, $textStatus, $jqXHR ) {
-        // console.log( 'rExtFavouriteController.getStatus $jsonData --- ', $jsonData );
-
         if ( $jsonData.result === 'ok' ) {
           that.setStatusClient( that.resource, $jsonData.status );
         }
@@ -70,15 +49,12 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     });
   },
   changeStatus: function changeStatus( resource ) {
-    // console.log( 'rExtFavouriteController.change');
     status = this.getStatusClient( resource );
     newStatus = ( status === 1 || status === '1' || status === true ) ? 0 : 1;
     this.setStatus( resource, newStatus );
   },
   setStatusClient: function setStatusClient( resource, status ) {
-    // console.log( 'rExtFavouriteController.setStatusClient: '+resource+', '+status );
     $favField = $('.rExtFavourite[data-favourite-resource="'+resource+'"]');
-    // console.log($favField);
     if( status === 1 || status === '1' || status === true ) {
       $favField.addClass( 'selected' ).attr( 'data-favourite-status', 1 );
     }
@@ -87,18 +63,14 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     }
   },
   getStatusClient: function getStatusClient( resource ) {
-    // console.log( 'rExtFavouriteController.getStatusClient: '+resource );
     $favField = $('.rExtFavourite[data-favourite-resource="'+resource+'"]');
     status = $favField.attr( 'data-favourite-status' );
-    // console.log( 'rExtFavouriteController.getStatusClient: status='+status );
     return( status );
   },
   eventClick: function eventClick() {
-    // console.log( 'rExtFavouriteController.eventClick', $( this ).data() );
     geozzy.rExtFavouriteController.changeStatus( $( this ).data( 'favouriteResource' ) );
   },
   setBinds: function setBinds() {
-    // console.log( 'rExtFavouriteController.setBinds' );
     $('.rExtFavourite[data-favourite-bind!="1"]').attr( 'data-favourite-bind', 1 ).on( 'click', geozzy.rExtFavouriteController.eventClick );
   }
 };
@@ -106,6 +78,5 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
 
 
 $(document).ready(function(){
-  // console.log( 'rExtFavouriteController.ready');
   geozzy.rExtFavouriteController.setBinds();
 });
