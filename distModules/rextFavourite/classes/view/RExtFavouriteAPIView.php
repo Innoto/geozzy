@@ -348,15 +348,15 @@ class RExtFavouriteAPIView extends View {
               "required": false
             },
             {
-              "name": "favouritesId",
-              "description": "Limit command by Favourites Id",
+              "name": "resourceId",
+              "description": "Limit command by Resource Id",
               "type": "integer",
               "paramType": "form",
               "required": false
             },
             {
-              "name": "resourceId",
-              "description": "Limit command by Resource Id",
+              "name": "favouritesId",
+              "description": "Limit command by Favourites Id",
               "type": "integer",
               "paramType": "form",
               "required": false
