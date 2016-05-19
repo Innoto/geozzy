@@ -45,7 +45,7 @@ class RExtFavouriteAPIView extends View {
 
 
 
-  public function apiQuery( $urlParams = false ) {
+  public function apiQuery() {
     $result = null;
 
     $command = ( isset( $_POST['cmd'] ) && in_array( $_POST['cmd'], $this->apiCommands ) ) ? $_POST['cmd'] : null;
@@ -156,9 +156,149 @@ class RExtFavouriteAPIView extends View {
   }
 
 
+  public function apiListFavs( $filters ) {
+    $result = null;
+
+    // Solo pueden acceder si $this->userAPIAccess
+    if( $this->userAPIAccess ) {
+      $listFilters = array();
+      if( $filters['res-id'] !== null ) {
+        $listFilters['resource'] = $filters['res-id'];
+      }
+      if( $filters['user-id'] !== null ) {
+        $listFilters['user'] = $filters['user-id'];
+      }
+      if( $filters['fav-id'] !== null ) {
+        $listFilters['resourceMain'] = $filters['fav-id'];
+      }
+
+      $favModel = new FavouritesViewModel();
+      $favList = $favModel->listItems( array( 'filters' => $listFilters ) );
+      if( $favList ) {
+        $result = array(
+          'result' => 'ok',
+          'favourites' => array()
+        );
+        while( $favObj = $favList->fetch() ) {
+          $favData = $favObj->getAllData( 'onlydata' );
+          $result['favourites'][ $favData['resourceMain'] ] = array(
+            'id' => $favData['resourceMain'],
+            'timeCreation' => $favData['colTimeCreation'],
+            'user' => $favData['user'],
+            // 'colId' => $favData['colId'],
+            'published' => $favData['published']
+          );
+        }
+      }
+    }
+    else {
+      $result = array(
+        'result' => 'error',
+        'msg' => 'Access denied'
+      );
+    }
+
+    return $result;
+  }
 
 
+  public function apiListResources( $filters ) {
+    $result = null;
 
+    // Solo pueden acceder si $this->userAPIAccess
+    if( $this->userAPIAccess ) {
+      $listFilters = array();
+      if( $filters['res-id'] !== null ) {
+        $listFilters['inResourceList'] = $filters['res-id'];
+      }
+      if( $filters['user-id'] !== null ) {
+        $listFilters['user'] = $filters['user-id'];
+      }
+      if( $filters['fav-id'] !== null ) {
+        $listFilters['id'] = $filters['fav-id'];
+      }
+
+      $favModel = new FavouritesListViewModel();
+      $favList = $favModel->listItems( array( 'filters' => $listFilters ) );
+      if( $favList ) {
+        $result = array(
+          'result' => 'ok',
+          'resource' => array()
+        );
+        while( $favObj = $favList->fetch() ) {
+          $favId = $favObj->getter( 'id' );
+          $resourceList = $favObj->getter('resourceList');
+          if( $resourceList ) {
+            $resourceList = explode( ',', $resourceList );
+            foreach( $resourceList as $resId ) {
+              if( !isset( $result['resource'][ $resId ] ) ) {
+                $result['resource'][ $resId ] = array(
+                  'id' => $resId,
+                  'favourites' => array()
+                );
+              }
+              $result['resource'][ $resId ]['favourites'][] = $favId;
+            }
+          }
+          error_log( 'resourceList: '.$favObj->getter('resourceList') );
+        }
+      }
+    }
+    else {
+      $result = array(
+        'result' => 'error',
+        'msg' => 'Access denied'
+      );
+    }
+
+    return $result;
+  }
+
+
+  public function apiListUsers( $filters ) {
+    $result = null;
+
+    // Solo pueden acceder si $this->userAPIAccess
+    if( $this->userAPIAccess ) {
+      $listFilters = array();
+      if( $filters['res-id'] !== null ) {
+        $listFilters['resource'] = $filters['res-id'];
+      }
+      if( $filters['user-id'] !== null ) {
+        $listFilters['user'] = $filters['user-id'];
+      }
+      if( $filters['fav-id'] !== null ) {
+        $listFilters['resourceMain'] = $filters['fav-id'];
+      }
+
+      $favModel = new FavouritesViewModel();
+      $favList = $favModel->listItems( array( 'filters' => $listFilters ) );
+      if( $favList ) {
+        $result = array(
+          'result' => 'ok',
+          'data' => array()
+        );
+        while( $favObj = $favList->fetch() ) {
+          $favData = $favObj->getAllData( 'onlydata' );
+          $result['data'][ $favData['resourceMain'] ] = array(
+            'id' => $favData['resourceMain'],
+            'timeCreation' => $favData['colTimeCreation'],
+            'user' => $favData['user'],
+            'colId' => $favData['colId'],
+            'published' => $favData['published']
+          );
+        }
+      }
+    }
+    else {
+      $result = array(
+        'result' => 'error',
+        'msg' => 'Access denied'
+      );
+    }
+
+    return $result;
+  }
 
 
 
