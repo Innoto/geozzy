@@ -5,23 +5,45 @@ if(!geozzy.rextReccommended) geozzy.rextReccommended={};
 geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
   template: _.template($('#recommendedListTemplate').html()),
   el: '.rExtReccommendedList',
-
+  options: false,
   events: {
 
   },
-  initialize: function(  ) {
+  initialize: function( opts ) {
     var that = this;
+
+    var options = {
+      onRender: function(){}
+    };
+
+    that.options = $.extend(true, {}, that.options, opts);
+
     that.render();
   },
   render: function() {
     var that = this;
-    $(that.el).append(that.template({
-      id:39,
-      title:'El castaño dormilón',
-      image:'/cgmlImg/75/fast_cut/75.jpg',
-      urlAlias:'alojamientos/el-castano-dormilon',
-      shortDescription:'Casa rural en la comarca del Ortegal'
-    }));
+
+    var col = new geozzy.collection.ResourceCollection();
+
+
+    var recommendedResources = geozzy.biMetricsInstances.recommender.resource( '34', function(res){
+      res= [43, 40, 46];
+      col.fetchByIds(res, function(){
+        col.each( function(elm, i){
+          alert(elm.get('urlAlias'))
+
+          $(that.el).append(that.template({
+            id:elm.get('id'),
+            title:elm.get('title'),
+            image:elm.get('image'),
+            //urlAlias:elm.get('urlAlias'),
+            shortDescription:elm.get('shortDescription')
+          }));
+        });
+        that.options.onRender();
+      });
+    });
+
   }
 
 });

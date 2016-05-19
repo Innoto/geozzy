@@ -150,7 +150,7 @@
       {if isset($rdRecantosConEstilo) && $rdRecantosConEstilo!=false}
         <div class="destContainer destRecantosConEstilo">
           <h2>{t}Recantos con Estilo{/t}</h2>
-          <div class="owl-carousel">
+          <div class="owl-carousel owl-carousel-gzz">
             {foreach from=$rdRecantosConEstilo item=rd}
               <div class="item">
                 <div class="itemImage">
@@ -175,7 +175,7 @@
       {if isset($rdFestaRachada) && $rdFestaRachada!=false}
         <div class="destContainer destFestaRachada">
           <h2>{t}Festa Rachada{/t}</h2>
-          <div class="owl-carousel">
+          <div class="owl-carousel owl-carousel-gzz">
             {foreach from=$rdFestaRachada item=rd}
               <div class="item">
                 <div class="itemImage">
@@ -200,7 +200,7 @@
       {if isset($rdPraiasDeEnsono) && $rdPraiasDeEnsono!=false }
         <div class="destContainer destPraiasDeEnsono">
           <h2>{t}Praias de Ensono{/t}</h2>
-          <div class="owl-carousel">
+          <div class="owl-carousel owl-carousel-gzz">
             {foreach from=$rdPraiasDeEnsono item=rd}
               <div class="item">
                 <div class="itemImage">
@@ -226,7 +226,7 @@
       {if isset($rdPaisaxesEspectaculares) && $rdPaisaxesEspectaculares!=false }
         <div class="destContainer destPaisaxesEspectaculares">
           <h2>{t}Paisaxes Espectaculares{/t}</h2>
-          <div class="owl-carousel">
+          <div class="owl-carousel owl-carousel-gzz">
             {foreach from=$rdPaisaxesEspectaculares item=rd}
               <div class="item">
                 <div class="itemImage">
@@ -251,7 +251,7 @@
       {if isset($rdAloxamentoConEncanto) && $rdAloxamentoConEncanto!=false }
         <div class="destContainer destAloxamentoConEncanto">
           <h2>{t}Aloxamentos con Encanto{/t}</h2>
-          <div class="owl-carousel">
+          <div class="owl-carousel owl-carousel-gzz">
             {foreach from=$rdAloxamentoConEncanto item=rd}
               <div class="item">
                 <div class="itemImage">
@@ -276,7 +276,7 @@
       {if isset($rdAutenticaGastronomia) && $rdAutenticaGastronomia!=false }
       <div class="destContainer destAutenticaGastronomia">
         <h2>{t}Auténtica Gastronomía{/t}</h2>
-        <div class="owl-carousel">
+        <div class="owl-carousel owl-carousel-gzz">
           {foreach from=$rdAutenticaGastronomia item=rd}
             <div class="item">
               <div class="itemImage">

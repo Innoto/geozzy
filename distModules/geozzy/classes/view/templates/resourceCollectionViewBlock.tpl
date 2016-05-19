@@ -1,11 +1,11 @@
 <h4>{$collectionResources.col.title}</h4>
 <div>{$collectionResources.col.shortDescription}</div>
-<div class="collectionBox owl-carousel">
+<div class="collectionBox owl-carousel owl-carousel-gzz">
     {foreach $collectionResources.res as $resId => $res}
       <div class="item">
         <div class="itemImage">
 
-            <img class="img-responsive" alt="{$res.title}" src="{$res.image}" data-image="{$res.image_big|default:''}" data-description="{$res.title}">
+            <img class="img-responsive" alt="{$res.title}" src="{$res.image}" data-image="{$res.imagebig|default:''}" data-description="{$res.title}">
             <div class="trama">
                 <div class="destResourceMoreInfo">
                   <p>{$res.shortDescription}</p>

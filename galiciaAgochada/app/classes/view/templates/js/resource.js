@@ -72,7 +72,18 @@ $(document).ready(function(){
     });
   }
 
-  $('.owl-carousel').owlCarousel({
+  initOwl();
+
+});
+
+function getCollection(id){
+  return $.grep(multimedia, function(e){
+    return e.id == id;
+  })[0];
+}
+
+function initOwl(){
+  $('.owl-carousel-gzz').owlCarousel({
     margin:10,
     nav:true,
     responsive:{
@@ -88,17 +99,10 @@ $(document).ready(function(){
     }
   });
 
-  $('.owl-carousel .owl-nav .owl-prev').html('<i class="fa fa-angle-left"></i>');
-  $('.owl-carousel .owl-nav .owl-next').html('<i class="fa fa-angle-right"></i>');
+  $('.owl-carousel-gzz .owl-nav .owl-prev').html('<i class="fa fa-angle-left"></i>');
+  $('.owl-carousel-gzz .owl-nav .owl-next').html('<i class="fa fa-angle-right"></i>');
 
   initEffectNavs();
-
-});
-
-function getCollection(id){
-  return $.grep(multimedia, function(e){
-    return e.id == id;
-  })[0];
 }
 
 

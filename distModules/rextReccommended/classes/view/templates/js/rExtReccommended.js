@@ -1,8 +1,13 @@
 
 $(document).ready( function() {
-  new geozzy.rextReccommended.reccommendedView();
+  new geozzy.rextReccommended.reccommendedView({onRender:function(){
+    initMyOwl();
+  }});
 
-  $('.owl-carousel').owlCarousel({
+});
+
+function initMyOwl(){
+  $('.rExtReccommendedList').owlCarousel({
     margin:10,
     nav:true,
     responsive:{
@@ -18,13 +23,14 @@ $(document).ready( function() {
     }
   });
 
-  $('.owl-carousel .owl-nav .owl-prev').html('<i class="fa fa-angle-left"></i>');
-  $('.owl-carousel .owl-nav .owl-next').html('<i class="fa fa-angle-right"></i>');
 
-  initEffectNavs();
-});
+  $('.rExtReccommendedList .owl-nav .owl-prev').html('<i class="fa fa-angle-left"></i>');
+  $('.rExtReccommendedList .owl-nav .owl-next').html('<i class="fa fa-angle-right"></i>');
 
-function initEffectNavs(){
+  initMyOwlNavs();
+}
+
+function initMyOwlNavs(){
   $('a.page-scroll').bind('click', function scrollSuave(event) {
     var hrefText = $(this).attr('href');
     if( hrefText.indexOf( '#' ) === 0 ) {

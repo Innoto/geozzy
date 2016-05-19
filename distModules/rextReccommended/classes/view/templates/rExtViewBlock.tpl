@@ -1,17 +1,16 @@
 <h4>{t}Recursos recomendados:{/t}</h4>
 
-<div class="rExtReccommendedList">
+<div class="rExtReccommendedList owl-carousel">
 
 </div>
 
-<script type="text/template" id="recommendedListTemplate">
 
-  <div class="reccommendedBox owl-carousel">
+<script type="text/template" id="recommendedListTemplate">
 
     <div class="item">
       <div class="itemImage">
 
-          <img class="img-responsive" alt="<%- title %>" src="<%- image %>" data-description="<%- title %>">
+          <img class="img-responsive" alt="<%- title %>" src="/cgmlImg/<%- image %>/fast_cut/<%- image %>.jpg" data-description="<%- title %>">
           <div class="trama">
               <div class="destResourceMoreInfo">
                 <p><%- shortDescription %></p>
@@ -27,5 +26,4 @@
       </div>
     </div>
 
-  </div>
 </script>

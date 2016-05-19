@@ -84,12 +84,16 @@ class RExtReccommendedController extends RExtController implements RExtInterface
 
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
+    biMetrics::autoIncludes();
+
     $resData = $this->defResCtrl->getResourceData();
 
     if( isset( $resData) ) {
 
       $rExtViewBlockInfo['template']['full'] = new Template();
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+      $rExtViewBlockInfo['template']['full']->addClientScript( 'js/model/ResourceModel.js' , 'geozzy');
+      $rExtViewBlockInfo['template']['full']->addClientScript( 'js/collection/ResourceCollection.js' , 'geozzy');
       $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextReccommended' );
     }
 
