@@ -1,5 +1,6 @@
 <div class="basicCollectionView">
 
+{if isset($rExt.data.events)}
   {foreach $rExt.data.events as $eventDate}
     <div class="event col-md-3">
       <div class="box">
@@ -17,7 +18,7 @@
         </div>
       </div>
     </div>
-
   {/foreach}
+{/if}
 
 </div>

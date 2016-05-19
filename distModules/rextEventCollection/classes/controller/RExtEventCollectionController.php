@@ -357,23 +357,27 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     if( $rExtViewBlockInfo['data'] ) {
 
       $resId = $this->defResCtrl->resObj->getter('id');
-      $eventIdList = $rExtViewBlockInfo['data']['events'];
 
-      $eventIdsArray = $eventIdsArrayFinal =array();
-      foreach( $eventIdList as $eventId){
-        $eventIdsArray[] = $eventId;
-      }
+      if(isset($rExtViewBlockInfo['data']['events'])){
 
-      foreach ($rExtViewBlockInfo['data']['rextEventCollectionFilter'] as $eventFilterTerm){
-        $eventFilterSelectedTerm = $eventFilterTerm;
-      }
+        $eventIdList = $rExtViewBlockInfo['data']['events'];
 
-      $eventModel =  new EventModel();
-      $eventList = $eventModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArray), 'order' => array( 'initDate' => 1 ) ));
+        $eventIdsArray = $eventIdsArrayFinal =array();
+        foreach( $eventIdList as $eventId){
+          $eventIdsArray[] = $eventId;
+        }
 
-      /* Establecemos locale para obtener las fechas en el idioma actual */
-      global $C_LANG;
-      setlocale (LC_TIME, Cogumelo::getSetupValue( 'lang:available:'.$C_LANG.':i18n' ));
+
+        foreach ($rExtViewBlockInfo['data']['rextEventCollectionFilter'] as $eventFilterTerm){
+          $eventFilterSelectedTerm = $eventFilterTerm;
+        }
+
+        $eventModel =  new EventModel();
+        $eventList = $eventModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArray), 'order' => array( 'initDate' => 1 ) ));
+
+        /* Establecemos locale para obtener las fechas en el idioma actual */
+        global $C_LANG;
+        setlocale (LC_TIME, Cogumelo::getSetupValue( 'lang:available:'.$C_LANG.':i18n' ));
 
         /* Cargamos los datos de la extensión */
         while( $event = $eventList->fetch() ){
@@ -404,6 +408,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
           $eventCollection[$resource->getter('id')]['resource']['image'] = $resource->getter('image');
         }
         $rExtViewBlockInfo['data']['events'] = $eventCollection;
+      }
 
 
 

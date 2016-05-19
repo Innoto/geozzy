@@ -78,8 +78,7 @@ class PoisExplorerModel extends Model
   );
 
   static $extraFilters = array(
-    'ids' => ' id IN (?)',
-    'updatedfrom' => ' ( geozzy_aloxamentos_explorer_index.timeCreation >= ? OR geozzy_aloxamentos_explorer_index.timeLastUpdate >= ? ) '
+    'ids' => ' id IN (?)'
 
   );
 
