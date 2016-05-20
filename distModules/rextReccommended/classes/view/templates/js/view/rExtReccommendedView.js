@@ -30,8 +30,6 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
       res= [43, 40, 46];
       col.fetchByIds(res, function(){
         col.each( function(elm, i){
-          alert(elm.get('urlAlias'))
-
           $(that.el).append(that.template({
             id:elm.get('id'),
             title:elm.get('title'),

@@ -168,12 +168,20 @@ class geozzyAPIView extends View {
                   "paramType": "path",
                   "defaultValue": "false",
                   "required": false
+                },
+                {
+                  "name": "url",
+                  "description": "urlAlias relation",
+                  "dataType": "string",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
                 }
               ],
               "summary": "Fetches resource list"
             }
           ],
-          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/updatedfrom/{updatedfrom}",
+          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/updatedfrom/{updatedfrom}/url/{url}",
           "description": ""
         }
       ]
@@ -599,7 +607,8 @@ class geozzyAPIView extends View {
       'rextmodels'=> '#^(true|false)$#',
       'category'=> '#^(true|false)$#',
       'collection'=> '#^(true|false)$#',
-      'updatedfrom' => '#^(\d+)$#'
+      'updatedfrom' => '#^(\d+)$#',
+      'url' => '#(.*)#'
     );
 
     $extraParams = RequestController::processUrlParams( $param, $validation );
@@ -657,15 +666,38 @@ class geozzyAPIView extends View {
     // error_log( '$queryParameters = '.print_r( $queryParameters, true ) );
     $resourceList = $resourceModel->listItems( $queryParameters );
 
+    if( isset( $extraParams['url'] ) && $extraParams['url'] === 'true' ) {
+      $urlAliasModel = new UrlAliasModel();
+      $urlAliasList = $urlAliasModel->listItems( );
+      $urls = array();
+      while( $urlAlias = $urlAliasList->fetch() ) {
+        $urls[$urlAlias->getter('resource')] = $urlAlias->getter('urlFrom');
+      }
+    }
+
+
     header('Content-type: application/json');
     echo '[';
     $c = '';
     while( $valueobject = $resourceList->fetch() ) {
+
+
+
       //$allCols = $valueobject->getCols(false);
       $allCols = array('id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
                        'image', 'loc', 'defaultZoom', 'externalUrl', 'averageVotes');
       foreach ($allCols as $col){
         $allData[$col] = $valueobject->getter($col);
+      }
+
+      if( isset( $extraParams['url'] ) && $extraParams['url'] === 'true' ) {
+
+        if (array_key_exists($valueobject->getter('id'), $urls)){
+          $allData['urlAlias'] = $urls[$valueobject->getter('id')];
+        }
+        else{
+          $allData['urlAlias'] = '/resource/'.$valueobject->getter('id');
+        }
       }
 
       if( isset( $allData['loc'] ) ) {
@@ -745,6 +777,9 @@ class geozzyAPIView extends View {
             }
           }
         }
+
+
+
 
         $allData[ 'collectionsGeneral' ] = array();
         if( count( $collsOther ) > 0 ) {
