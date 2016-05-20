@@ -41,7 +41,7 @@ class FavouritesListViewModel extends Model {
 
   static $extraFilters = array(
     'resourceListNotNull' => ' resourceList IS NOT NULL ',
-    'inResourceList' => ' ( resourceList like "?,%" OR resourceList like "%,?,%" OR resourceList like "%,?"  OR resourceList = ? ) '
+    'inResourceList' => ' ( resourceList like concat(?,",%") OR resourceList LIKE CONCAT("%,",?,",%") OR resourceList LIKE CONCAT("%,",?)  OR resourceList = ? ) '
   );
 
   var $notCreateDBTable = true;
