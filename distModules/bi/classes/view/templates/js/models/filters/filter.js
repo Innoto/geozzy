@@ -36,7 +36,7 @@ define([
                     content = this.parseObjectKeyValue(res, 'name');
                     break;
                 case Config.FILTER_RESOURCE:
-                    content = this.parseListObject(res, 'title_es');
+                    content = this.parseListObject(res, 'title');
                     break;
                 case Config.FILTER_RESOURCE_TERMS:
                 case Config.FILTER_TAXONOMY_TERMS:
