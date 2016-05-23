@@ -16,8 +16,8 @@ class rextReccommended extends Module {
 
   public $includesCommon = array(
     'controller/RExtReccommendedController.php',
-    'js/rExtReccommended.js',
-    'js/view/rExtReccommendedView.js'
+    'js/view/rExtReccommendedView.js',
+    'js/rExtReccommended.js'
   );
 
 

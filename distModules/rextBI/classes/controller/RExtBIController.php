@@ -1,10 +1,10 @@
 <?php
 
 
-class RExtMapController extends RExtController implements RExtInterface {
+class RExtBIController extends RExtController implements RExtInterface {
 
   public function __construct( $defRTypeCtrl ){
-    parent::__construct( $defRTypeCtrl, new rextMapDirections(), 'rExtBI_' );
+    parent::__construct( $defRTypeCtrl, new rextBI(), 'rExtBI_' );
   }
 
   /**
@@ -84,23 +84,20 @@ class RExtMapController extends RExtController implements RExtInterface {
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo() {
-/*
+
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     $resData = $this->defResCtrl->getResourceData();
 
-    if( isset( $resData['locLat'] ) && $resData['locLat'] !== '' ) {
-      $rExtViewBlockInfo['data']['title'] = $resData['title'];
-      $rExtViewBlockInfo['data']['locLat'] = $resData['locLat'];
-      $rExtViewBlockInfo['data']['locLon'] = $resData['locLon'];
-      $rExtViewBlockInfo['data']['defaultZoom'] = $resData['defaultZoom'];
 
-      $rExtViewBlockInfo['template']['full'] = new Template();
-      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextMap' );
-    }
+    $rExtViewBlockInfo['data']['id'] = $resData['id'];
 
-    return $rExtViewBlockInfo;*/
+    $rExtViewBlockInfo['template']['full'] = new Template();
+    $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+    $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextBI' );
+
+
+    return $rExtViewBlockInfo;
   }
 
 } // class RExtMapDirectionsController

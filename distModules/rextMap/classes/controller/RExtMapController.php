@@ -4,7 +4,7 @@
 class RExtMapController extends RExtController implements RExtInterface {
 
   public function __construct( $defRTypeCtrl ){
-    parent::__construct( $defRTypeCtrl, new rextMapDirections(), 'rExtMapDirections_' );
+    parent::__construct( $defRTypeCtrl, new rextMap(), 'rExtMap_' );
   }
 
   /**
