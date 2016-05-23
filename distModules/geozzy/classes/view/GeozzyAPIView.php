@@ -547,29 +547,45 @@ class geozzyAPIView extends View {
     }
 
     if( isset( $extraParams['virtualBags'] ) && $extraParams['virtualBags'] === 'true' && class_exists( 'FavouritesViewModel' ) ) {
-      $favMod =  new FavouritesViewModel();
-      $favList = $favMod->listItems( array( 'filters' => array( 'idNotNull' => true ) ) );
-      $biData['virtualBags'] = array();
+
+      $favModel = new FavouritesListViewModel();
+      $favList = $favModel->listItems( array( 'filters' => array( 'resourceListNotNull' => true ) ) );
       if( $favList ) {
-
-        // Recopilamos los datos
-        $userBags = array();
-        while( $favVo = $favList->fetch() ) {
-          $favUser = $favVo->getter( 'user' );
-          $favId = $favVo->getter( 'resourceMain' );
-          $userBags[ $favUser ][ $favId ][] = $favVo->getter( 'id' );
-        } // while
-
-        // Los estructuramos dentro de biData
-        if( count($userBags) > 0 ) {
-          foreach( $userBags as $user => $bags ) {
-            $biData['virtualBags'][] = array(
-              'userId' => $user,
-              'virtualBags' => $bags
-            );
-          }
+        $biData['virtualBags'] = array();
+        while( $favObj = $favList->fetch() ) {
+          $favData = $favObj->getAllData( 'onlydata' );
+          $biData['virtualBags'][] = array(
+            'userId' => $favData['user'],
+            'virtualBags' => ( isset( $favData['resourceList'] ) ) ? explode( ',', $favData['resourceList'] ) : array()
+          );
         }
       }
+
+      /*
+        $favMod =  new FavouritesViewModel();
+        $favList = $favMod->listItems( array( 'filters' => array( 'idNotNull' => true ) ) );
+        $biData['virtualBags'] = array();
+        if( $favList ) {
+
+          // Recopilamos los datos
+          $userBags = array();
+          while( $favVo = $favList->fetch() ) {
+            $favUser = $favVo->getter( 'user' );
+            $favId = $favVo->getter( 'resourceMain' );
+            $userBags[ $favUser ][ $favId ][] = $favVo->getter( 'id' );
+          } // while
+
+          // Los estructuramos dentro de biData
+          if( count($userBags) > 0 ) {
+            foreach( $userBags as $user => $bags ) {
+              $biData['virtualBags'][] = array(
+                'userId' => $user,
+                'virtualBags' => $bags
+              );
+            }
+          }
+        }
+      */
     }
 
     echo json_encode( $biData );
