@@ -330,6 +330,12 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
       'eventos' => array('rtypeAppFesta', 'rtypeEvent'),
       'poi' => array(),
       'base' => array()
+    ),
+    'rtypeAppRuta' => array(
+      'multimedia' => array(),
+      'eventos' => array(),
+      'poi' => array('rtypePoi'),
+      'base' => array()
     )
   )
 );
