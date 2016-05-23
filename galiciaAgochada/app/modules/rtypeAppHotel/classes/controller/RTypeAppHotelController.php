@@ -111,12 +111,12 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     $templates['location']->assign( 'directions', $form->multilangFieldNames( 'rExtContact_directions' ) );
 
     // TEMPLATE panel poicollection
-    /*
-    $templates['comment'] = new Template();
-    $templates['comment']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['comment']->assign( 'title', __( 'Comments' ) );
-    $templates['comment']->setFragment( 'blockContent', $formBlockInfo['ext']['rextComment']['template']['adminExt'] );
-*/
+    if( class_exists( 'rextComment' ) ) {
+      $templates['comment'] = new Template();
+      $templates['comment']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+      $templates['comment']->assign( 'title', __( 'Comments' ) );
+      $templates['comment']->setFragment( 'blockContent', $formBlockInfo['ext']['rextComment']['template']['adminExt'] );
+    }
     // TEMPLATE panel localización
     $templates['contact'] = new Template();
     $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -207,7 +207,11 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     // COL8
     $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['contact'] );
-    //$templates['adminFull']->addToFragment( 'col8', $templates['comment'] );
+
+    if( class_exists( 'rextComment' ) ) {
+      $templates['adminFull']->addToFragment( 'col8', $templates['comment'] );
+    }
+
     $templates['adminFull']->addToFragment( 'col8', $templates['social'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['reservation'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
