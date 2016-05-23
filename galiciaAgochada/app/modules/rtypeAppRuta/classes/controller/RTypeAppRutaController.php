@@ -25,8 +25,6 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $form->removeValidationRules( 'topics' );
     $form->removeValidationRules( 'starred' );
 
-    // Altero campos del form del recurso "normal"
-    $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
   } // function manipulateForm()
 
 
@@ -86,7 +84,7 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
     $templates['location']->assign( 'title', __( 'Location' ) );
     $templates['location']->assign( 'res', $formBlockInfo );
-    //$templates['location']->assign( 'directions', array( 'rExtRoutes_durationMinutes' ) );
+    $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
 
 
     // TEMPLATE rutas
@@ -96,15 +94,18 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $templates['routes']->setFragment( 'blockContent', $formBlockInfo['ext']['rextRoutes']['template']['full'] );
     //$templates['routes']->setFragment( 'formFieldNames',);
 
+    // TEMPLATE panel localización
+    $templates['contact'] = new Template();
+    $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['contact']->assign( 'title', __( 'Contact' ) );
+    $templates['contact']->setFragment( 'blockContent', $formBlockInfo['ext']['rextContact']['template']['basic'] );
 
-/*
     // TEMPLATE panel social network
     $templates['social'] = new Template();
     $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['social']->assign( 'title', __( 'Social Networks' ) );
-    //$templates['social']->setFragment( 'blockContent', $socialViewInfo['template']['basic'] );
     $templates['social']->setFragment( 'blockContent', $formBlockInfo['ext']['rextSocialNetwork']['template']['basic'] );
-*/
+
 
     // TEMPLATE panel multimedia
     $templates['multimedia'] = new Template();
@@ -171,8 +172,10 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
     // COL8
     $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
-    $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['social'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['contact'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['routes'] );
+    $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['multimedia'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['collections'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['seo'] );

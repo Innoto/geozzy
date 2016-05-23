@@ -95,24 +95,27 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
     $resControl = new ResourceController();
 
     $resOptions = array();
-    while( $res = $elemList->fetch() ) {
 
-      $thumbSettings = array(
-        'profile' => 'squareCut',
-        'imageId' => $res->getter( 'image' ),
-        'imageName' => $res->getter( 'image' ).'.jpg'
-      );
-      $resDataExtArray = $res->getterDependence('id', 'RExtUrlModel');
-      if( $resDataExt = $resDataExtArray[0] ){
-        $thumbSettings['url'] = $resDataExt->getter('url');
+    if ($elemList){
+      while( $res = $elemList->fetch() ) {
+
+        $thumbSettings = array(
+          'profile' => 'squareCut',
+          'imageId' => $res->getter( 'image' ),
+          'imageName' => $res->getter( 'image' ).'.jpg'
+        );
+        $resDataExtArray = $res->getterDependence('id', 'RExtUrlModel');
+        if( $resDataExt = $resDataExtArray[0] ){
+          $thumbSettings['url'] = $resDataExt->getter('url');
+        }
+        $elOpt = array(
+          'value' => $res->getter( 'id' ),
+          'text' => $res->getter( 'title', Cogumelo::getSetupValue('lang:default') ),
+          'data-image' => $resControl->getResourceThumbnail( $thumbSettings )
+        );
+
+        $resOptions[ $res->getter( 'id' ) ] = $elOpt;
       }
-      $elOpt = array(
-        'value' => $res->getter( 'id' ),
-        'text' => $res->getter( 'title', Cogumelo::getSetupValue('lang:default') ),
-        'data-image' => $resControl->getResourceThumbnail( $thumbSettings )
-      );
-
-      $resOptions[ $res->getter( 'id' ) ] = $elOpt;
     }
 
     $rExtFieldNames = array();
