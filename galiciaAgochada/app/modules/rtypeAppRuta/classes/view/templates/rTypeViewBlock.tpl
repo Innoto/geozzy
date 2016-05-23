@@ -57,6 +57,36 @@
   </section>
 
   <section class="contentSec container gzSection">
+    <div class="typeBar">
+
+      <ul class="social clearfix">
+        <li class="elementShare">
+          {if isset($res.ext.rextSocialNetwork) && ($res.ext.rextSocialNetwork.data.activeFb || $res.ext.rextSocialNetwork.data.activeTwitter)}
+            <div class="share"><i class="fa fa-share-alt"></i></div>
+            <div class="share-open" style="display:none;">
+              {if isset($res.ext.rextSocialNetwork.data.activeFb) && $res.ext.rextSocialNetwork.data.activeFb}
+                <div class="share-net fb">
+                  <a class="icon-share facebook" target="_blank" rel="nofollow" href="http://www.facebook.com/sharer.php?u={$cogumelo.publicConf.site_host}{$res.data["urlAlias"]}&t={$res.ext.rextSocialNetwork.data["textFb"]}">
+                      <i class="fa fa-facebook-square"></i>
+                  </a>
+                </div>
+              {/if}
+              {if isset($res.ext.rextSocialNetwork.data.activeTwitter) && $res.ext.rextSocialNetwork.data.activeTwitter}
+                <div class="share-net twitter">
+                  <a class="icon-share twitter" target="_blank" rel="nofollow" href="http://twitter.com/share?url={$cogumelo.publicConf.site_host}{$res.data["urlAlias"]}&text={$res.ext.rextSocialNetwork.data["textTwitter"]}">
+                    <i class="fa fa-twitter-square"></i>
+                  </a>
+                </div>
+              {/if}
+            </div>
+          {/if}
+        </li>
+        <li class="elementFav">
+          {if isset($rextFavouriteBlock)}{$rextFavouriteBlock}{/if}
+        </li>
+      </ul>
+    </div>
+
     <div class="mediumDescription">
       {if $res.data.mediumDescription}
         {$res.data.mediumDescription|escape:'htmlall'}
@@ -65,12 +95,6 @@
       {/if}
     </div>
   </section>
-
-  {if isset($rextRouteBlock)}
-  <section class="routeSection container gzSection">
-    {$rextRouteBlock}
-  </section>
-  {/if}
 
   {if isset($multimediaGalleries)}
     <section class="multimediaSec container gzSection">
@@ -85,18 +109,24 @@
   </section>
 
   <section class="locationSec gzSection">
-    {if (isset($rextContactBlock) && $rextContactBlock!="")}
     <div class="locationLight">
       <div class="location container">
         <div class="title">
-          {t}Contact{/t}
+          {t}Ficha técnica{/t}
         </div>
-        <div class="{$res.data.rTypeIdName} accommodation">
-          {$rextContactBlock}
-        </div>
+        {if (isset($rextContactBlock) && $rextContactBlock!="")}
+          <div class="{$res.data.rTypeIdName} accommodation">
+            {$rextContactBlock}
+          </div>
+        {/if}
+        {$rextRoutesBlock}
+        {if isset($rextRoutesBlock)}
+        <section class="routesBlock">
+          {$rextRoutesBlock}
+        </section>
+        {/if}
       </div>
     </div>
-    {/if}
 
     <div class="locationDark">
       {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")
