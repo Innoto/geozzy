@@ -18,7 +18,7 @@ define([
             _.each(res, function (value) {
                 content.push({
                     id: value.id,
-                    name: value.name_es
+                    name: value.name
                 });
             });
             this.set('elements', content);

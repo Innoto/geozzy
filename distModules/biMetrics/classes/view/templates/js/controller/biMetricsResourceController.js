@@ -1,7 +1,9 @@
 var geozzy = geozzy || {};
 if(!geozzy.biMetricsComponents) geozzy.biMetricsComponents={};
 
-
+$( window ).unload(function() {
+  return "Handler for .unload() called.";
+});
 
 geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsController.extend( {
 
@@ -15,9 +17,16 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
 
   biApiConf: false,
 
+  accessedCurrent: false,
   hoverStack: [],
   printedResources:[],
   pendingMetrics: [],
+
+  initialize: function() {
+    var that = this;
+    that.endPendingEvents();
+  },
+
   metricTemplate: function( metric ) {
     var that = this;
     /*
@@ -63,6 +72,21 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
   },
 
 
+  endPendingEvents: function() {
+
+    var that = this;
+
+    var pendingAccess = Cookies.get("biMetricPendingAccess");
+
+    if( pendingAccess != null ) {
+
+      that.accessedCurrent = JSON.parse(pendingAccess);
+      Cookies.remove('biMetricPendingAccess');
+      that.eventAccessedEnd();
+    }
+
+  },
+
 
   eventHoverStart: function( id, section ) {
 
@@ -107,22 +131,49 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
       event: 'clicked'
     });
 
-    that.eventAccessed( id, section );
+    //that.eventAccessed( id, section );
   },
 
-  eventAccessed: function( id, section  ) {
+
+
+  eventAccessedStart: function( id, section  ) {
     var that = this;
 
-
     // random time spent :P
-    var satayTime = 130 * Math.random();
 
-    that.addMetric({
-      duration: satayTime,
+    that.eventAccessedEnd();
+
+    that.accessedCurrent = {
+      startTime: that.getTimesTamp(),
       resourceId: id,
       section: section,
-      event: 'accessed_total'
-    });
+    };
+
+    window.onbeforeunload = function() {
+      if(that.accessedCurrent != false){
+        Cookies.set( "biMetricPendingAccess", that.accessedCurrent );
+      }
+    };
+
+  },
+
+  eventAccessedEnd: function() {
+    var that = this;
+
+    if( that.accessedCurrent != false ){
+
+      var duration = 500;//( that.getTimesTamp() - e.start )/1000;
+
+
+      that.addMetric({
+        duration: duration,
+        resourceId: that.accessedCurrent.resourceId,
+        section: that.accessedCurrent.section,
+        event: 'accessed_total'
+      });
+
+      that.accessedCurrent = false;
+    }
   },
 
   eventPrint: function(id, section) {

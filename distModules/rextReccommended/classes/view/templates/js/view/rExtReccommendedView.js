@@ -23,6 +23,7 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
   render: function() {
     var that = this;
 
+
     var col = new geozzy.collection.ResourceCollection();
 
 

@@ -18,7 +18,6 @@ class rextReccommended extends Module {
     'controller/RExtReccommendedController.php',
     'js/view/rExtReccommendedView.js',
     'js/rExtReccommended.js'
-
   );
 
 

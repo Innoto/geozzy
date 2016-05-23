@@ -93,8 +93,10 @@ geozzy.explorer = function( opts ) {
 
 
     that.bindEvent('resourceClick', function(param){
+
       if( that.options.resourceAccess(param.id) !== false ) {
         geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id);
+        //that.metricsResourceController.eventAccessed(param.id, 'Explorer: '+that.options.explorerSectionName );
       }
 
     });

@@ -26,7 +26,7 @@ geozzy.rExtMapController = function( opts ) {
   that.initialize = function() {
 
     var $mapContainer = $( that.options.wrapper );
-    console.log( that.options.wrapper  )
+    //console.log( that.options.wrapper  )
     if( $mapContainer.length === 1 ) {
       // console.log( 'prepareMap - OK: ATOPADO O WRAPPER DO MAPA!!!' );
       // gmaps init
@@ -35,7 +35,7 @@ geozzy.rExtMapController = function( opts ) {
         zoom: that.options.zoom,
         scrollwheel: false
       };
-
+      
       that.resourceMap = new google.maps.Map( $mapContainer.get(0), that.resourceMapOptions );
 
 
