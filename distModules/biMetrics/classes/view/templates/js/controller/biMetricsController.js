@@ -3,13 +3,14 @@ if(!geozzy.biMetricsComponents) geozzy.biMetricsComponents={};
 
 
 
-
 geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
 
+  resourcePendingMetrics: [],
   initialize: function( options ) {
     var that = this;
+
     var opts = {
-      syncPeriod: 10000 // in miliseconds
+      syncPeriod: 5000 // in miliseconds
     }
 
     that.options = $.extend(true, {}, opts, options );
@@ -21,11 +22,6 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
       function() {
         that.biApiConf = geozzy.biMetricsInstances.configuration.conf;
         that.syncEnable();
-
-        // leave page event
-        $( window ).unload(function() {
-          that.sync();
-        });
       }
     );
 
@@ -55,7 +51,7 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
           "type": that.getDevice(),
           "device_ID":0
        },
-       "metrics": that.pendingMetrics
+       "metrics": that.resourcePendingMetrics
 
     };
   },
@@ -77,15 +73,16 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
 
     if( metric = that.metricTemplate( data ) ) {
 
-      that.pendingMetrics.push(metric);
+      that.resourcePendingMetrics.push(metric);
     }
+
   },
 
   reset: function() {
     var that = this;
 
-    this.pendingMetrics = [];
-    this.packageTimestamp = false;
+    that.resourcePendingMetrics = [];
+    that.packageTimestamp = false;
 
   },
 
@@ -93,14 +90,19 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
   sync: function() {
     var that = this;
 
-    if( that.pendingMetrics.length > 0 ) {
+    if( that.resourcePendingMetrics.length > 0 ) {
 
-      $.ajax({
-        type: "POST",
-        url: that.getMetricsURL(),
-        data: that.packageTemplate() ,
-        dataType: 'application/json'
-      });
+      if( that.getMetricsURL() != '' ) {
+        $.ajax({
+          type: "POST",
+          url: that.getMetricsURL(),
+          data: that.packageTemplate() ,
+          dataType: 'application/json'
+        });
+      }
+      else {
+        console.log( 'BI METRICS:', that.packageTemplate());
+      }
 
       that.reset();
       that.packageTimestamp = that.getTimesTamp();

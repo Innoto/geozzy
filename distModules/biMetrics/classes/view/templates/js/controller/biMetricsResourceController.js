@@ -1,9 +1,7 @@
 var geozzy = geozzy || {};
 if(!geozzy.biMetricsComponents) geozzy.biMetricsComponents={};
 
-$( window ).unload(function() {
-  return "Handler for .unload() called.";
-});
+
 
 geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsController.extend( {
 
@@ -20,10 +18,10 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
   accessedCurrent: false,
   hoverStack: [],
   printedResources:[],
-  pendingMetrics: [],
 
   initialize: function() {
     var that = this;
+
     that.endPendingEvents();
   },
 
@@ -125,27 +123,37 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
 
     that.accessedCurrent = {
       startTime: that.getTimesTamp(),
+      endTime: false,
       resourceId: id,
-      section: section,
+      section: section
     };
+
 
     //console.log('ENGADE', that.accessedCurrent );
 
     window.onbeforeunload = function() {
       if(that.accessedCurrent != false){
+        that.accessedCurrent.endTime = that.getTimesTamp();
         Cookies.set( "biMetricPendingAccess", that.accessedCurrent );
       }
     };
 
   },
 
-  eventAccessedEnd: function() {
+  eventAccessedEnd: function( ) {
     var that = this;
+
 
     if( that.accessedCurrent != false ){
 
+      if( that.accessedCurrent.endTime != false ) {
+        var endTime = that.accessedCurrent.endTime;
+      }
+      else {
+        var endTime = that.getTimesTamp();
+      }
 
-      var duration = ( that.getTimesTamp() - that.accessedCurrent.startTime )/1000;
+      var duration = ( endTime - that.accessedCurrent.startTime )/1000;
 
       that.addMetric({
         duration: duration,
@@ -154,10 +162,8 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
         event: 'accessed_total'
       });
 
-      //console.log('pushea', that.pendingMetrics);
 
 
-      //console.log('Acabo de engadir',that.pendingMetrics)
       that.accessedCurrent = false;
     }
   },

@@ -15,7 +15,6 @@ geozzy.biMetricsComponents.explorer = geozzy.biMetricsComponents.biMetricsContro
 
   biApiConf: false,
 
-  pendingMetrics: [],
   metricTemplate: function( metric ) {
     var that = this;
 

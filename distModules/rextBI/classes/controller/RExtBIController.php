@@ -85,6 +85,8 @@ class RExtBIController extends RExtController implements RExtInterface {
    */
   public function getViewBlockInfo() {
 
+    biMetrics::autoIncludes();
+
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     $resData = $this->defResCtrl->getResourceData();
