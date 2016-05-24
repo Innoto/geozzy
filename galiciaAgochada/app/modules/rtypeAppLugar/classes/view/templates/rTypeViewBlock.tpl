@@ -27,6 +27,7 @@
 </style>
 {/block}
 
+{$rextBIBlock}
 
 
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}" data-resource="{$res.data.id}">
