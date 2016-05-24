@@ -135,8 +135,7 @@ class RExtCommentController extends RExtController implements RExtInterface {
       $rControl = new ResourceController();
       $commentTypeOptions = $rControl->getOptionsTax('commentType');
       $templates['adminExt']->assign( 'commentTypeOptions', $commentTypeOptions );
-
-      $templates['adminExt']->addClientScript('js/rextAdminComment.js', 'rextComment');
+      $templates['adminExt']->addClientScript('js/rextAdminCommentList.js', 'rextComment');
 
       $formBlockInfo['template'] = $templates;
 

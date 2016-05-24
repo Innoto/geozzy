@@ -190,3 +190,49 @@ label.resImageMoreInfo{ margin-bottom: 30px;}
   width:100%;
   height:300px;
 }
+
+
+/*ADMIN REXTCOMMENTS*/
+.rextComment{
+  .commentListContainer{
+    .commentList{
+      max-height: 400px;
+      overflow: scroll;
+      overflow-x: hidden;
+      padding-right: 10px;
+      .commentItem{
+        padding: 10px;
+        margin: 10px 0;
+        background: @gzzColor-bck-2;
+
+        .commentTimeCreation{ font-size: 13px; }
+        .commentUserInfo{
+          font-weight: 600;
+          font-size: 13px;
+          .userVerified{ margin-left: 5px; }
+        }
+        .commentTypeLabel{ font-weight: 600; text-transform: uppercase; margin: 15px 10px 0 0; }
+        .commentStars{ color: @gzzColor-positive; }
+        .commentContent{ margin-top: 10px; }
+
+        ul{
+          list-style: none;
+          li{
+            margin-left: 5px;
+            float:left;
+            .labelText{
+              display: block;
+              width: 100%;
+              font-size: 12px;
+            }
+            .btn{
+              padding: 5px 10px;
+              margin:0;
+            }
+            i{ font-size: 16px; }
+          }
+        }
+      }// .commentItem
+    }// .commentList
+  }// .commentListContainer
+}// .rextComment

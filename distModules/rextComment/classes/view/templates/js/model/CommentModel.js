@@ -5,6 +5,7 @@ geozzy.commentComponents.CommentModel = Backbone.Model.extend({
   defaults: {
     id: false,
     type: 0,
+    typeIdName: '',
     resource: 0,
     published: 0,
     content: '',

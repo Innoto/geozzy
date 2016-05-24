@@ -117,26 +117,15 @@ class CommentAdminAPIView extends View
           $allData['userEmail'] = $user[0]->getter('email');
           $allData['userVerified'] = $user[0]->getter('verified');
         }
-
-/*
         $ctype = $valueobject->getterDependence('type');
         if($ctype){
-          $allData['type'] = $ctype[0]->getter('name');
+          $allData['typeIdName'] = $ctype[0]->getter('idName');
         }
-*/
-/*
         $suggestType = $valueobject->getterDependence('suggestType');
         if($suggestType){
-          $allData['stype'] = $suggestType[0]->getter('name');
-        }
-*/
-/*
-        $suggestType = $valueobject->getterDependence('suggestType');
-        if($suggestType){
-          $allData['type'] = $suggestType[0]->getter('name');
+          $allData['suggestTypeName'] = $suggestType[0]->getter('name');
         }
 
-  */
   /*
         $suggestType = $valueobject->getterDependence('status');
         if($suggestType){

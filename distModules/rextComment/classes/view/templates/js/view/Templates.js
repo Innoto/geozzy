@@ -52,35 +52,35 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
       '<div class="commentTimeCreation"><%- commentTimeCreation %></div>'+
       '<div class="commentUserInfo">'+
         '<%- commentUserName %> ( <%- commentUserEmail %> )'+
-        '<% if(commentUserVerified === true){'+
-          '%><i class="fa fa-check" aria-hidden="true"></i><%'+
+        '<% if(commentUserVerified  === "1"){'+
+          '%><span class="userVerified"><i class="fa fa-check" aria-hidden="true"></i></span><%'+
         '} %>'+
       '</div>'+
     '</div>'+
     '<div class="col-md-4">'+
-      '<ul class="clearfix pull-right">'+
+      '<ul class="commentOptions clearfix pull-right">'+
         '<li>'+
           '<label><input type="checkbox" class="commentPublished switchery" checked="<% if(commentPublished === true){'+
             '%>checked<%'+
           '}else{'+
             '%>false<%'+
           '} %>'+
-          '" value="1" name="commentPublished"><span class="labelText">'+__("Comment")+'</span></label>'+
+          '" value="1" name="commentPublished"><span class="labelText">'+__("Published")+'</span></label>'+
         '</li>'+
-        '<li><button class="btn deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-default deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
       '</ul>'+
     '</div>'+
-    '<div class="col-md-12">'+__("Comment")+
+    '<div class="col-md-12"><span class="commentTypeLabel">'+__("Comment")+'</span><span class="commentStars">'+
       '<% for (var i = 0; i < 5; i++) { '+
         'if(commentRate > i){'+
           '%><i class="fa fa-star" aria-hidden="true"></i><%'+
         '}else{'+
           '%><i class="fa fa-star-o" aria-hidden="true"></i><%'+
         '}'+
-      '}  %>'+
+      '}  %> </span>'+
     '</div>'+
+    '<div class="col-md-12 commentContent"><%- commentContent %></div>'+
   '</div>'+
-  '<div class="col-md-12 commentContent"><%- commentContent %></div>'+
 '</div>';
 
 geozzy.commentComponents.adminListSuggestionItemTemplate = ''+
@@ -90,25 +90,20 @@ geozzy.commentComponents.adminListSuggestionItemTemplate = ''+
       '<div class="commentTimeCreation"><%- commentTimeCreation %></div>'+
       '<div class="commentUserInfo">'+
         '<%- commentUserName %> ( <%- commentUserEmail %> )'+
-        '<% if(commentUserVerified === true){'+
-          '%><i class="fa fa-check" aria-hidden="true"></i><%'+
+        '<% if(commentUserVerified === "1"){'+
+          '%><span class="userVerified"><i class="fa fa-check" aria-hidden="true"></i></span><%'+
         '} %>'+
       '</div>'+
     '</div>'+
     '<div class="col-md-4">'+
-      '<ul class="clearfix pull-right">'+
-        '<li>'+
-          '<label><input type="checkbox" class="commentPublished switchery" checked="<% if(commentPublished === true){'+
-            '%>checked<%'+
-          '}else{'+
-            '%>false<%'+
-          '} %>'+
-          '" value="1" name="commentPublished"><span class="labelText">'+__("Comment")+'</span></label>'+
-        '</li>'+
-        '<li><button class="btn deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
+      '<ul class="suggestOptions clearfix pull-right">'+
+        '<li><button class="btn btn-primary greatSuggest"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-danger irrelevantSuggest"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-default deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
       '</ul>'+
     '</div>'+
-    '<div class="col-md-12"><%- suggestTypeName %></div>'+
+    '<div class="col-md-12"><span class="commentTypeLabel"><%- suggestTypeName %></span></div>'+
+    '<div class="col-md-12 commentContent"><%- commentContent %></div>'+
   '</div>'+
-  '<div class="col-md-12 commentContent"><%- commentContent %></div>'+
+
 '</div>';

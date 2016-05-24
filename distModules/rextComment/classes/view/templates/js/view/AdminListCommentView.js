@@ -38,10 +38,9 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
     that.adminListCommentTemplate = _.template( geozzy.commentComponents.adminListCommentTemplate );
     that.adminListCommentItemTemplate = _.template( geozzy.commentComponents.adminListCommentItemTemplate );
     that.adminListSuggestionItemTemplate = _.template( geozzy.commentComponents.adminListSuggestionItemTemplate );
-  console.log(that.commentType);
-  console.log(that.comments);
+
     commentsFiltered = that.comments.search({type : parseInt(that.commentType) });
-  console.log(commentsFiltered);
+
     _.each( commentsFiltered.toJSON() , function(item){
       data = {
         commentContent: item.content,
@@ -59,10 +58,20 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
         data.commentUserEmail = item.anonymousEmail;
         data.commentUserVerified = false;
       }
-      commentsItems += that.adminListCommentItemTemplate(data);
+      if(item.typeIdName === 'comment'){
+        commentsItems += that.adminListCommentItemTemplate(data);
+      }else if(item.typeIdName === 'suggest'){
+        data.suggestTypeName = item.suggestTypeName;
+        commentsItems += that.adminListSuggestionItemTemplate(data);
+      }
+
     });
-    console.log(that.adminListCommentTemplate({ comments:commentsItems }));
+
     that.$el.find('.commentListContainer').append( that.adminListCommentTemplate({ comments:commentsItems }) );
+    var els = that.$el.find('.commentPublished.switchery');
+    els.each(function( index )  {
+      var switchery = new Switchery( this, { color : '#58ba81', secondaryColor : '#FF6A4B'} );
+    });
   },
 
   changeCType: function() {

@@ -1,3 +1,5 @@
+{$client_includes}
+
 <div class="{$rExtName} formBlock">
   <div class="clearfix">
     <div class="row">
