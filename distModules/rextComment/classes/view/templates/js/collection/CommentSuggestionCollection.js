@@ -14,6 +14,12 @@ geozzy.commentComponents.CommentSuggestionCollection = Backbone.Collection.exten
 
   search: function( opts ){
     var result = this.where( opts );
+console.log('---- C O L L E C T I O N ----');
+console.log(opts);
+console.log(result);
+console.log(this.resource);
+
+console.log('--------------------');
     var resultCollection = new geozzy.commentComponents.CommentSuggestionCollection(result, {resource: this.resource});
 
     return resultCollection;

@@ -97,6 +97,7 @@ $C_REXT_MODULES = array(
   'rextAccommodation',
   'rextEatAndDrink',
   'rextContact',
+  'rextBI',
   'rextMap',
   'rextMapDirections',
   'rextUrl',
@@ -329,6 +330,12 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
       'multimedia' => array(),
       'eventos' => array('rtypeAppFesta', 'rtypeEvent'),
       'poi' => array(),
+      'base' => array()
+    ),
+    'rtypeAppRuta' => array(
+      'multimedia' => array(),
+      'eventos' => array(),
+      'poi' => array('rtypePoi'),
       'base' => array()
     )
   )

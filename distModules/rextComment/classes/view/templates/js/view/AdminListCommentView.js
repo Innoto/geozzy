@@ -30,7 +30,6 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
   },
 
   render: function() {
-
     var that = this;
     var commentsItems = '';
     var commentsFiltered =  false;
@@ -39,7 +38,10 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
     that.adminListCommentTemplate = _.template( geozzy.commentComponents.adminListCommentTemplate );
     that.adminListCommentItemTemplate = _.template( geozzy.commentComponents.adminListCommentItemTemplate );
     that.adminListSuggestionItemTemplate = _.template( geozzy.commentComponents.adminListSuggestionItemTemplate );
+  console.log(that.commentType);
+  console.log(that.comments);
     commentsFiltered = that.comments.search({type : parseInt(that.commentType) });
+  console.log(commentsFiltered);
     _.each( commentsFiltered.toJSON() , function(item){
       data = {
         commentContent: item.content,
@@ -59,6 +61,7 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
       }
       commentsItems += that.adminListCommentItemTemplate(data);
     });
+    console.log(that.adminListCommentTemplate({ comments:commentsItems }));
     that.$el.find('.commentListContainer').append( that.adminListCommentTemplate({ comments:commentsItems }) );
   },
 

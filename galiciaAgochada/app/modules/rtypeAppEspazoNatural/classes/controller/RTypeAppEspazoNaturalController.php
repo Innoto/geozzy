@@ -42,10 +42,6 @@ class RTypeAppEspazoNaturalController extends RTypeController implements RTypeIn
 
     $espazoCtrl = new RExtAppEspazoNaturalController( $this );
     $zonaCtrl = new RExtAppZonaController( $this );
-    /*
-    $this->poiCollectionCtrl = new RExtPoiCollectionController( $this );
-    $poiCollectionViewInfo = $this->poiCollectionCtrl->getFormBlockInfo( $form );
-    $viewBlockInfo['ext'][ $this->poiCollectionCtrl->rExtName ] = $poiCollectionViewInfo;*/
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();

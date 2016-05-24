@@ -1,9 +1,10 @@
 
 $(document).ready( function() {
-  new geozzy.rextReccommended.reccommendedView({onRender:function(){
-    initMyOwl();
-  }});
-
+  new geozzy.rextReccommended.reccommendedView({
+    onRender:function(){
+      initMyOwl();
+    }
+  });
 });
 
 function initMyOwl(){

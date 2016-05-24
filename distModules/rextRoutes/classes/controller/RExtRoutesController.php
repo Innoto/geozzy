@@ -72,7 +72,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
     $fieldsInfo = array(
 
       'routeFile' => array(
-        'params' => array( 'label' => __( 'Route file' ), 'type' => 'file', 'id' => 'rExtFileField',
+        'params' => array( 'label' => __( 'Route file' ), 'type' => 'file', 
         'placeholder' => __( 'File' ), 'destDir' => RoutesModel::$cols['routeFile']['uploadDir'] ),
         'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'accept' => ',application/xml,application\/gpx,application\/gpx\+xml,application\/vnd.google\-earth\.kml\+xml' )
       ),
@@ -180,7 +180,6 @@ class RExtRoutesController extends RExtController implements RExtInterface {
      */
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'rExtName', $this->rExtName );
-    $templates['full']->addClientScript('js/initMap.js', 'geozzy');
     $templates['full']->assign( 'rExt', $formBlockInfo );
 
     $formBlockInfo['template'] = $templates;
@@ -258,6 +257,6 @@ class RExtRoutesController extends RExtController implements RExtInterface {
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
    //parent::getViewBlockInfo();
-  
+
 
 } // class RExtRoutesController

@@ -34,7 +34,8 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
     that.listCommentItemTemplate = _.template( geozzy.commentComponents.listCommentItemTemplate );
     var commentNumber = 0;
 
-    if( that.comments.keys().length < that.commentsToShow) {
+console.log(that.comments.length);
+    if( that.comments.length <= that.commentsToShow) {
       that.commentsToShow = false;
     }
 
