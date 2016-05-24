@@ -81,8 +81,8 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
   reset: function() {
     var that = this;
 
-    this.pendingMetrics = [];
-    this.packageTimestamp = false;
+    that.resourcePendingMetrics = [];
+    that.packageTimestamp = false;
 
   },
 
