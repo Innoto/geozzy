@@ -71,7 +71,8 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     geozzy.rExtFavouriteController.changeStatus( $( this ).data( 'favouriteResource' ) );
   },
   setBinds: function setBinds() {
-    $('.rExtFavourite[data-favourite-bind!="1"]').attr( 'data-favourite-bind', 1 ).on( 'click', geozzy.rExtFavouriteController.eventClick );
+    $('.rExtFavourite[data-favourite-bind!="1"]').attr( 'data-favourite-bind', 1 ).on(
+      'click', geozzy.rExtFavouriteController.eventClick );
   }
 };
 

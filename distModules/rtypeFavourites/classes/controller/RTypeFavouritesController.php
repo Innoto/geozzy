@@ -103,31 +103,17 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
 
 
 
-    $favTemplate = false;
-    $favData = false;
+    $favsTemplate = false;
     if( $formBlockInfo['data']['id'] ) {
-      $favourites = false;
-      $resId = $formBlockInfo['data']['id'];
+      $favsData = $this->getFavsData( $formBlockInfo['data']['id'] );
 
-      $favModel = new FavouritesViewModel();
-      $favList = $favModel->listItems( array( 'filters' => array( 'resourceMain' => $resId ) ) );
-      if( $favList ) {
-        $favData = array();
-        while( $favObj = $favList->fetch() ) {
-          $allData = $favObj->getAllData( 'onlydata' );
-          if( $allData['id'] !== null ) { // Por si hay col. pero no recursos
-            $favData[] = $allData;
-          }
-        }
-      }
-
-      if( $favData ) {
+      if( $favsData ) {
         // TEMPLATE panel estado de publicacion
-        $favTemplate = new Template();
-        $favTemplate->setTpl( 'favAdminFormPanel.tpl', 'rtypeFavourites' );
-        $favTemplate->assign( 'title', __( 'Favoritos' ) );
-        $favTemplate->assign( 'res', $formBlockInfo );
-        $favTemplate->assign( 'favData', $favData );
+        $favsTemplate = new Template();
+        $favsTemplate->setTpl( 'favAdminFormPanel.tpl', 'rtypeFavourites' );
+        $favsTemplate->assign( 'title', __( 'Favoritos' ) );
+        $favsTemplate->assign( 'res', $formBlockInfo );
+        $favsTemplate->assign( 'favsData', $favsData );
       }
     }
 
@@ -143,8 +129,8 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
 
     // COL8
     $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
-    if( $favTemplate ) {
-      $templates['adminFull']->addToFragment( 'col8', $favTemplate );
+    if( $favsTemplate ) {
+      $templates['adminFull']->addToFragment( 'col8', $favsTemplate );
     }
     // $templates['adminFull']->addToFragment( 'col8', $templates['favResources'] );
     // COL4
@@ -199,10 +185,14 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
     // Preparamos los datos para visualizar el Recurso con sus extensiones
     $viewBlockInfo = parent::getViewBlockInfo();
 
-
     // $template = new Template();
     $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeFavourites' );
+
+
+    $favsResources = $this->getFavsResources( $viewBlockInfo['data']['id'] );
+    $favsResourcesInfo = ($favsResources) ? $this->getResourcesInfo( $favsResources ) : false;
+    $template->assign( 'favsResourcesInfo', $favsResourcesInfo );
 
 
     // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
@@ -210,5 +200,69 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
 
     return $viewBlockInfo;
   }
+
+
+  /**
+   * UTILS
+   */
+  public function getFavsData( $favsId ) {
+    $favsData = false;
+
+    $favModel = new FavouritesViewModel();
+    $favList = $favModel->listItems( array( 'filters' => array( 'resourceMain' => $favsId ) ) );
+    if( $favList ) {
+      $favsData = array();
+      while( $favObj = $favList->fetch() ) {
+        $allData = $favObj->getAllData( 'onlydata' );
+        if( $allData['id'] !== null ) { // Por si hay col. pero no recursos
+          $favsData[] = $allData;
+        }
+      }
+    }
+
+    return $favsData;
+  }
+
+  public function getFavsResources( $favsId ) {
+    $favsResources = false;
+
+    $favModel = new FavouritesListViewModel();
+    $favList = $favModel->listItems( array( 'filters' => array( 'id' => $favsId, 'resourceListNotNull' => true ) ) );
+    $favObj = ( $favList ) ? $favList->fetch() : false;
+    $favData = ( $favObj ) ? $favObj->getAllData( 'onlydata' ) : false;
+    $favsResources = ( isset( $favData['resourceList'] ) ) ? explode( ',', $favData['resourceList'] ) : false;
+
+    return $favsResources;
+  }
+
+  public function getResourcesInfo( $resIds ) {
+    geozzy::load('model/ResourceModel.php');
+    $resInfo = array();
+
+    $urlAliasModel = new UrlAliasModel();
+    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'resourceIn' => $resIds ) ) );
+    $urls = array();
+    while( $urlAlias = $urlAliasList->fetch() ) {
+      $urls[$urlAlias->getter('resource')] = $urlAlias->getter('urlFrom');
+    }
+
+    $resourceModel = new ResourceModel();
+    $resourceList = $resourceModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ) ) );
+    while( $resObj = $resourceList->fetch() ) {
+      $resId = $resObj->getter('id');
+      $resInfo[ $resId ] = array(
+        'title' => $resObj->getter('title'),
+        'shortDescription' => $resObj->getter('shortDescription'),
+        'image' => $resObj->getter('image'),
+        'url' => $urls[ $resId ],
+        'rTypeId' => $resObj->getter('rTypeId'),
+        'averageVotes' => $resObj->getter('averageVotes')
+      );
+    }
+
+    return $resInfo;
+  }
+
+
 
 } // class RTypeBlogController
