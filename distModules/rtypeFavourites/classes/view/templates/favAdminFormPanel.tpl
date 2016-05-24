@@ -2,10 +2,9 @@
 
 {block name="content"}
 
-<h3>FAVORITOS TPL</h3>
-
+<script type="text/javascript">$rTypeFavouritesAdminData = {$favsData|@json_encode}</script>
 <pre>
-{var_dump($favData)}
+{var_dump($favsData)}
 </pre>
 
 {if isset($blockContent)}
