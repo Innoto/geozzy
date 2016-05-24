@@ -76,6 +76,7 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
     var metric = false;
 
     if( metric = that.metricTemplate( data ) ) {
+
       that.pendingMetrics.push(metric);
     }
   },
@@ -91,7 +92,6 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
 
   sync: function() {
     var that = this;
-
 
     if( that.pendingMetrics.length > 0 ) {
 

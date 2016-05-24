@@ -39,29 +39,11 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
     };*/
 
     return {
-       "seconds": metric.duration,
-       "section": metric.section,
-       "resource":{
-          "term":[0],
-          "name":"Recurso " + metric.resourceId,
-          "resource_ID": metric.resourceId,
-          "topic":[
-             1
-          ],
-          "location":[
-             42.8603,
-             42.8603
-          ],
-          "type":{
-             "name":"Tipo 5",
-             "type_ID":5
-          }
-       },
-       "event":{
-          "event_ID":0,
-          "name": metric.event,
-       },
-       "metricTime": that.getTimesTamp()
+      "metricTime": that.getTimesTamp(),
+      "resource_ID": metric.resourceId,
+      "event": metric.event,
+      "seconds": metric.duration,
+      "section": metric.section
     };
 
   },
@@ -139,8 +121,6 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
   eventAccessedStart: function( id, section  ) {
     var that = this;
 
-    // random time spent :P
-
     that.eventAccessedEnd();
 
     that.accessedCurrent = {
@@ -148,6 +128,8 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
       resourceId: id,
       section: section,
     };
+
+    //console.log('ENGADE', that.accessedCurrent );
 
     window.onbeforeunload = function() {
       if(that.accessedCurrent != false){
@@ -162,8 +144,8 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
 
     if( that.accessedCurrent != false ){
 
-      var duration = 500;//( that.getTimesTamp() - e.start )/1000;
 
+      var duration = ( that.getTimesTamp() - that.accessedCurrent.startTime )/1000;
 
       that.addMetric({
         duration: duration,
@@ -172,6 +154,10 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
         event: 'accessed_total'
       });
 
+      //console.log('pushea', that.pendingMetrics);
+
+
+      //console.log('Acabo de engadir',that.pendingMetrics)
       that.accessedCurrent = false;
     }
   },

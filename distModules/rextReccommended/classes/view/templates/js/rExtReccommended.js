@@ -1,6 +1,5 @@
 
 $(document).ready( function() {
-
   new geozzy.rextReccommended.reccommendedView({
     onRender:function(){
       initMyOwl();

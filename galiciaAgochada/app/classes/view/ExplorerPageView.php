@@ -23,6 +23,8 @@ class ExplorerPageView extends MasterView
     $this->template->addClientScript('js/galiciaAgochadaExplorersUtils.js');
     $this->template->addClientScript('js/model/TaxonomygroupModel.js', 'geozzy');
     $this->template->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');
+    $this->template->addClientScript( 'js/model/ResourceModel.js' , 'geozzy');
+    $this->template->addClientScript( 'js/collection/ResourceCollection.js' , 'geozzy');
     $this->template->addClientScript('js/collection/CategoryCollection.js', 'geozzy');
     $this->template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
     biMetrics::autoIncludes();
