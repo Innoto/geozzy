@@ -91,13 +91,15 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
     var that = this;
 
     if( that.resourcePendingMetrics.length > 0 ) {
-
-      $.ajax({
-        type: "POST",
-        url: that.getMetricsURL(),
-        data: that.packageTemplate() ,
-        dataType: 'application/json'
-      });
+      
+      if( that.getMetricsURL() != '' ) {
+        $.ajax({
+          type: "POST",
+          url: that.getMetricsURL(),
+          data: that.packageTemplate() ,
+          dataType: 'application/json'
+        });
+      }
 
       that.reset();
       that.packageTimestamp = that.getTimesTamp();
