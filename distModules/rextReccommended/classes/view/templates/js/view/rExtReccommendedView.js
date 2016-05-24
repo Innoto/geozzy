@@ -27,7 +27,7 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
 
     var recommendedResources = geozzy.biMetricsInstances.recommender.resource( '19', function(res){
 
-      var res = '[{"resource_id":27,"recommendation":"2900"},{"resource_id":28,"recommendation":"2900"},{"resource_id":29,"recommendation":"2900"}]';
+      //var res = '[{"resource_id":27,"recommendation":"2900"},{"resource_id":28,"recommendation":"2900"},{"resource_id":29,"recommendation":"2900"}]';
       var res_ids = [];
       $(JSON.parse(res)).each(function(index,e){
         res_ids.push(e.resource_id)
