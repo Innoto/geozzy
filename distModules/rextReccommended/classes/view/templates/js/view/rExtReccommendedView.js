@@ -21,21 +21,25 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
     that.render();
   },
   render: function() {
+
     var that = this;
+    var col = new geozzy.collection.ResourceCollection({urlAlias: true});
 
+    var recommendedResources = geozzy.biMetricsInstances.recommender.resource( '19', function(res){
 
-    var col = new geozzy.collection.ResourceCollection();
+      //var res = '[{"resource_id":27,"recommendation":"2900"},{"resource_id":28,"recommendation":"2900"},{"resource_id":29,"recommendation":"2900"}]';
+      var res_ids = [];
+      $(JSON.parse(res)).each(function(index,e){
+        res_ids.push(e.resource_id)
+      });
 
-
-    var recommendedResources = geozzy.biMetricsInstances.recommender.resource( '34', function(res){
-      res= [43, 40, 46];
-      col.fetchByIds(res, function(){
+      col.fetchByIds(res_ids, function(){
         col.each( function(elm, i){
           $(that.el).append(that.template({
             id:elm.get('id'),
             title:elm.get('title'),
             image:elm.get('image'),
-            //urlAlias:elm.get('urlAlias'),
+            urlAlias:elm.get('urlAlias'),
             shortDescription:elm.get('shortDescription')
           }));
         });

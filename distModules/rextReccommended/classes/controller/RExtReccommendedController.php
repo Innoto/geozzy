@@ -91,6 +91,7 @@ class RExtReccommendedController extends RExtController implements RExtInterface
     if( isset( $resData) ) {
 
       $rExtViewBlockInfo['template']['full'] = new Template();
+      $rExtViewBlockInfo['data']['id'] = $resData['id'];
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $rExtViewBlockInfo['template']['full']->addClientScript( 'js/model/ResourceModel.js' , 'geozzy');
       $rExtViewBlockInfo['template']['full']->addClientScript( 'js/collection/ResourceCollection.js' , 'geozzy');

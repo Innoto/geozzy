@@ -14,7 +14,8 @@ geozzy.collection.ResourceCollection = Backbone.Collection.extend({
     rextmodels: false,
     category: false,
     collection: false,
-    updatedfrom: false
+    updatedfrom: false,
+    urlAlias: false
   },
 
   initialize: function( opts ) {
@@ -33,6 +34,7 @@ geozzy.collection.ResourceCollection = Backbone.Collection.extend({
     that.url += '/category/'+that.options.category
     that.url += '/collection/'+that.options.collection
     that.url += '/updatedfrom/'+that.options.updatedfrom
+    that.url += '/urlAlias/'+that.options.urlAlias
   },
 
 

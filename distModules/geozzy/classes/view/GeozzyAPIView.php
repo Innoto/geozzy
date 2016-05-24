@@ -170,7 +170,7 @@ class geozzyAPIView extends View {
                   "required": false
                 },
                 {
-                  "name": "url",
+                  "name": "urlAlias",
                   "description": "urlAlias relation",
                   "dataType": "string",
                   "paramType": "path",
@@ -181,7 +181,7 @@ class geozzyAPIView extends View {
               "summary": "Fetches resource list"
             }
           ],
-          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/updatedfrom/{updatedfrom}/url/{url}",
+          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/updatedfrom/{updatedfrom}/urlAlias/{urlAlias}",
           "description": ""
         }
       ]
@@ -560,32 +560,6 @@ class geozzyAPIView extends View {
           );
         }
       }
-
-      /*
-        $favMod =  new FavouritesViewModel();
-        $favList = $favMod->listItems( array( 'filters' => array( 'idNotNull' => true ) ) );
-        $biData['virtualBags'] = array();
-        if( $favList ) {
-
-          // Recopilamos los datos
-          $userBags = array();
-          while( $favVo = $favList->fetch() ) {
-            $favUser = $favVo->getter( 'user' );
-            $favId = $favVo->getter( 'resourceMain' );
-            $userBags[ $favUser ][ $favId ][] = $favVo->getter( 'id' );
-          } // while
-
-          // Los estructuramos dentro de biData
-          if( count($userBags) > 0 ) {
-            foreach( $userBags as $user => $bags ) {
-              $biData['virtualBags'][] = array(
-                'userId' => $user,
-                'virtualBags' => $bags
-              );
-            }
-          }
-        }
-      */
     }
 
     echo json_encode( $biData );
@@ -608,7 +582,7 @@ class geozzyAPIView extends View {
       'category'=> '#^(true|false)$#',
       'collection'=> '#^(true|false)$#',
       'updatedfrom' => '#^(\d+)$#',
-      'url' => '#(.*)#'
+      'urlAlias' => '#(.*)#'
     );
 
     $extraParams = RequestController::processUrlParams( $param, $validation );
@@ -666,7 +640,7 @@ class geozzyAPIView extends View {
     // error_log( '$queryParameters = '.print_r( $queryParameters, true ) );
     $resourceList = $resourceModel->listItems( $queryParameters );
 
-    if( isset( $extraParams['url'] ) && $extraParams['url'] === 'true' ) {
+    if( isset( $extraParams['urlAlias'] ) && $extraParams['urlAlias'] === 'true' ) {
       $urlAliasModel = new UrlAliasModel();
       $urlAliasList = $urlAliasModel->listItems( );
       $urls = array();
@@ -690,7 +664,7 @@ class geozzyAPIView extends View {
         $allData[$col] = $valueobject->getter($col);
       }
 
-      if( isset( $extraParams['url'] ) && $extraParams['url'] === 'true' ) {
+      if( isset( $extraParams['urlAlias'] ) && $extraParams['urlAlias'] === 'true' ) {
 
         if (array_key_exists($valueobject->getter('id'), $urls)){
           $allData['urlAlias'] = $urls[$valueobject->getter('id')];
@@ -834,7 +808,7 @@ class geozzyAPIView extends View {
               while( $resColl = $resList->fetch() ) {
                 $resCollData = array();
                 $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'timeCreation',
-                  'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' );
+                  'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'urlAlias' );
                 foreach( $k as $key ) {
                   $resCollData_tmp[$resColl->getter('id')][ $key ] = $resColl->getter( $key );
                 }

@@ -43,7 +43,9 @@ class UrlAliasModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'resourceIn' => ' geozzy_url_alias.resource IN (?) ',
+  );
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {
