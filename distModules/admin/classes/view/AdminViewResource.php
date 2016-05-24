@@ -246,6 +246,11 @@ class AdminViewResource extends AdminViewMaster {
       $successArray[ 'redirect' ] = SITE_URL . 'admin#topic/'.$valuesArray['topicReturn'];
     }
     $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
+
+    $resTplVar = $formBlockInfo['template']['adminFull']->getTemplateVars('res');
+    if( !$resTplVar ) {
+      $formBlockInfo['template']['adminFull']->assign( 'res', array( 'data' => $formBlockInfo['data'] ) );
+    }
     $formBlockInfo['template']['adminFull']->exec();
   }
 

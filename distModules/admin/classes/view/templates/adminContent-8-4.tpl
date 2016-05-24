@@ -3,6 +3,10 @@
 
 {block name="contentSection"}
 
+<script type="text/javascript">
+  $resourceViewData = {$res.data|@json_encode}
+</script>
+
 <div class="admin-cols-8-4">
   <div class="row">
 
