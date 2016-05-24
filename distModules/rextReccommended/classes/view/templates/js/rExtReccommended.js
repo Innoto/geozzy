@@ -1,12 +1,11 @@
-console.log(geozzy.collection)
-console.log(geozzy.model.ResourceModel)
-$(document).ready( function() {
-  console.log(geozzy.collection)
-  console.log(geozzy.model.ResourceModel)
-  new geozzy.rextReccommended.reccommendedView({onRender:function(){
-    initMyOwl();
-  }});
 
+$(document).ready( function() {
+
+  new geozzy.rextReccommended.reccommendedView({
+    onRender:function(){
+      initMyOwl();
+    }
+  });
 });
 
 function initMyOwl(){

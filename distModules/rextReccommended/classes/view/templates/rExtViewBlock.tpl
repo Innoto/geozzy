@@ -14,16 +14,24 @@
           <div class="trama">
               <div class="destResourceMoreInfo">
                 <p><%- shortDescription %></p>
-                <a class="btn btn-primary" target="blank" href="/resource/<%- id %>">{t}Find out!{/t}</a>
+                <a class="btn btn-primary" target="blank" href="<%- urlAlias %>">{t}Find out!{/t}</a>
               </div>
           </div>
 
       </div>
       <div class="itemTitle">
-        <a target="_blank" href="/resource/<%- id %>">
+        <a target="_blank" href="<%- urlAlias %>">
           <h3><%- title %></h3>
         </a>
       </div>
     </div>
 
+</script>
+
+<script type="text/javascript">
+  var geozzy = geozzy || {};
+
+  geozzy.rExtReccommendedOptions = {
+    resId: {$rExt.data.id}
+  }
 </script>
