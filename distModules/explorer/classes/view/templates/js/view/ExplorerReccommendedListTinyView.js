@@ -26,7 +26,50 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
     that.parentExplorer = parentExplorer;
   },
 
+  render: function() {
+
+    var that = this;
+    var col = new geozzy.collection.ResourceCollection({urlAlias: true});
 
 
+    if( typeof that.parentExplorer.displays.map  != 'undefined') {
+      var bounds = that.parentExplorer.displays.map.getMapBounds();
+    }
+    else {
+      var bounds = [];
+    }
+
+
+    var recommendedResources = geozzy.biMetricsInstances.recommender.explorer( that.parentExplorer.explorerID , bounds, function(res){
+
+      // Para pruebas
+      if (res.length>0){
+        var res_ids = [];
+
+        $.each(res, function(i,e){
+          res_ids.push(e.resource_id)
+        });
+
+        col.fetchByIds(res_ids, function(){
+          col.each( function(elm, i){
+            /*$(that.el).append(that.template({
+              id:elm.get('id'),
+              title:elm.get('title'),
+              image:elm.get('image'),
+              urlAlias:elm.get('urlAlias'),
+              shortDescription:elm.get('shortDescription')
+            }));*/
+
+            console.log(elm);
+          });
+
+        });
+
+      }
+
+    });
+
+
+  }
 
 });

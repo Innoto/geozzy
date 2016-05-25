@@ -51,7 +51,21 @@ geozzy.biMetricsComponents.biRecommender = Backbone.Collection.extend({
   },
 
   explorer: function( explorerID, bounds, successCallback ) {
+    geozzy.biMetricsInstances.configuration.getConf(
+      function() {
+        var resourceRecommenderURL = geozzy.biMetricsInstances.configuration.conf.recommends.explorerURL;
 
+        $.ajax({
+          url:resourceRecommenderURL,
+          method: 'POST',
+          data: { explorerID: explorerID, userID: that.getUserIdentifier(), bounds: bounds },
+          success: function( recommendData ) {
+            successCallback( recommendData );
+          }
+        });
+
+      }
+    );
   }
 
 
