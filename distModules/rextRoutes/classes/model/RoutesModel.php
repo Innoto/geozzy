@@ -42,11 +42,27 @@ class RoutesModel extends Model
     'difficultyEffort' => array(
       'type' => 'INT'
     ),
+    'difficultyGlobal' => array(
+      'type' => 'INT'
+    ),
     'routeFile' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
       'key' => 'id',
       'uploadDir'=> '/RExtRouteFiles/'
+    ),
+    'routeStart' => array(
+      'type' => 'VARCHAR',
+      'size' => 100,
+      'multilang' => true
+    ),
+    'routeEnd' => array(
+      'type' => 'VARCHAR',
+      'size' => 100,
+      'multilang' => true
+    ),
+    'circular' => array(
+      'type' => 'BOOLEAN'
     )
   );
 
