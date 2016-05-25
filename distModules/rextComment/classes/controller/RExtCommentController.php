@@ -59,8 +59,7 @@ class RExtCommentController extends RExtController implements RExtInterface {
 
     $fieldsInfo = array(
       'activeComment' => array(
-
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Active comment') )),
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'value' => '1', 'options'=> array( '1' => __('Active comment') )),
         'rules' => array( 'maxlength' => 1 )
       )
     );
@@ -167,22 +166,22 @@ class RExtCommentController extends RExtController implements RExtInterface {
       $rExtModel = new ResourceCommentModel( $valuesArray );
       if( $rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
-      }
-    }
+      }else{
 
-    if( !$form->existErrors() ) {
-      foreach( $this->taxonomies as $tax ) {
-        $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-        if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
-          $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
+        if($valuesArray['activeComment'] !== '1'){
+          $saveResult = $rExtModel->save();
+          if( $saveResult === false ) {
+            $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
+          }
+        }else{
+          if($rExtModel->getter('id')){
+            $saveResult = $rExtModel->delete();
+            if( $saveResult === false ) {
+              $form->addFormError( 'No se ha podido borrar el recurso. (rExtModel)','formError' );
+            }
+          }
         }
-      }
-    }
 
-    if( !$form->existErrors() ) {
-      $saveResult = $rExtModel->save();
-      if( $saveResult === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
     }
   }
@@ -204,19 +203,21 @@ class RExtCommentController extends RExtController implements RExtInterface {
    */
   public function getViewBlockInfo() {
     $rExtViewBlockInfo = parent::getViewBlockInfo();
+    $rExtViewBlockInfo['template']['full'] = new Template();
 
-    if( $rExtViewBlockInfo['data'] ) {
-
-      $perms = $this->getCommentPermissions( $rExtViewBlockInfo['data']['resource'] );
-
-      $rExtViewBlockInfo['template']['full'] = new Template();
-      if(in_array('comment', $perms)){
-        $rExtViewBlockInfo['template']['full']->assign( 'commentButton', true );
-      }
-      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextComment' );
-      $rExtViewBlockInfo['template']['full']->addClientScript('js/commentList.js', 'rextComment');
+    $resID = $this->defResCtrl->resObj->getter('id');
+    $perms = $this->getCommentPermissions( $resID );
+    if(in_array('comment', $perms)){
+      $rExtViewBlockInfo['template']['full']->assign( 'commentButton', true );
     }
+
+    $rExtViewBlockInfo['template']['full']->assign( 'resID', $resID);
+    $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextComment' );
+    $rExtViewBlockInfo['template']['full']->addClientScript('js/commentList.js', 'rextComment');
+
+
+      error_log(json_encode($rExtViewBlockInfo['template']['full']));
+
 
     return $rExtViewBlockInfo;
   }

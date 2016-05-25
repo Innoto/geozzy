@@ -114,18 +114,12 @@
     <div class="locationLight">
       <div class="location container">
         <div class="title">
-          {t}Ficha técnica{/t}
+          {t}Location{/t}
         </div>
         {if (isset($rextContactBlock) && $rextContactBlock!="")}
           <div class="{$res.data.rTypeIdName} accommodation">
             {$rextContactBlock}
           </div>
-        {/if}
-        {$rextRoutesBlock}
-        {if isset($rextRoutesBlock)}
-        <section class="routesBlock">
-          {$rextRoutesBlock}
-        </section>
         {/if}
       </div>
     </div>
@@ -153,9 +147,14 @@
       {/if}
       {$rextMapBlock}
     </div>
-
-    {if isset($collections)}
+    {if isset($collections) || isset($rextRoutesBlock)}
       <div class="grey-bar"></div>
+    {/if}
+  </section>
+
+  <section class="routesSec gzSection">
+    {if isset($rextRoutesBlock)}
+      {$rextRoutesBlock}
     {/if}
   </section>
 

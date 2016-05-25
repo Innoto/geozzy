@@ -90,7 +90,7 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     // TEMPLATE rutas
     $templates['routes'] = new Template();
     $templates['routes']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['routes']->assign( 'title', __( 'Rutas' ) );
+    $templates['routes']->assign( 'title', __( 'Routes' ) );
     $templates['routes']->setFragment( 'blockContent', $formBlockInfo['ext']['rextRoutes']['template']['full'] );
     //$templates['routes']->setFragment( 'formFieldNames',);
 
