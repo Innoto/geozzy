@@ -380,9 +380,16 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     return ret;
   },
 
+  getMapBoundsInArray: function() {
+    var that = this;
+    var bounds = that.getMapBounds();
+
+    return [ [bounds[0].lat(),bounds[0].lng()], [bounds[1].lat(),bounds[1].lng()] ];
+  },
 
   getMapBounds: function() {
     var that = this;
+
     return [ that.map.getBounds().getSouthWest(), that.map.getBounds().getNorthEast() ];
   },
 
