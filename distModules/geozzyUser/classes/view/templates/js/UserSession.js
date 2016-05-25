@@ -35,7 +35,9 @@ geozzy.userSession = function() {
     that.user = new geozzy.userSessionComponents.UserSessionModel();
     that.user.fetch({
       success: function(){
-        success();
+        if(typeof(success) === 'function'){
+          success();
+        }
       }
     });
   }
