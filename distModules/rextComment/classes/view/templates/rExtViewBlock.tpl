@@ -1,8 +1,13 @@
 <!-- rExtViewBlock.tpl en rExtComment module -->
+{$client_includes}
 
 <div class="rExtCommentBar clearfix">
   <h4>{t}Comentarios{/t}</h4>
-  <button class="btn" onclick="geozzy.commentInstance.createComment({$rExt['data']['resource']}, 'comment');">{t}Post a comment{/t}</button>
+
+
+  {if isset($commentButton)}
+    <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'comment');">{t}Post a comment{/t}</button>
+  {/if}
 </div>
 <div class="rExtCommentList">
 

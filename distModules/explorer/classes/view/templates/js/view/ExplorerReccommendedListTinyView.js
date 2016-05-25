@@ -1,22 +1,19 @@
 var geozzy = geozzy || {};
 if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
-geozzy.explorerComponents.pasiveListView = Backbone.View.extend({
+geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
 
-  displayType: 'pasiveList',
+  displayType: 'activeList',
   parentExplorer: false,
-  visibleResources: [],
-
-
 
   events: {
-      "click .explorerListPager .next" : "nextPage",
+      /*"click .explorerListPager .next" : "nextPage",
       "click .explorerListPager .previous" : "previousPage",
 
       // resource events
       "click .explorerListContent .accessButton": "resourceClick",
       "mouseenter .explorerListContent .element": "resourceHover",
-      "mouseleave .explorerListContent": "resourceOut",
+      "mouseleave .explorerListContent": "resourceOut",*/
   },
 
   initialize: function( opts ) {
@@ -27,6 +24,9 @@ geozzy.explorerComponents.pasiveListView = Backbone.View.extend({
   setParentExplorer: function( parentExplorer ) {
     var  that = this;
     that.parentExplorer = parentExplorer;
-  }
+  },
+
+
+
 
 });

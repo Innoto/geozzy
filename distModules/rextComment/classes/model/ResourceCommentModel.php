@@ -20,7 +20,7 @@ class ResourceCommentModel extends Model
     ),
     'activeComment' => array(
       'type' => 'BOOLEAN',
-      'default' => 1
+      'default' => 0
     )
   );
 
