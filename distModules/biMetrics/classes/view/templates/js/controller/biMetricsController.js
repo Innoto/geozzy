@@ -2,12 +2,13 @@ var geozzy = geozzy || {};
 if(!geozzy.biMetricsComponents) geozzy.biMetricsComponents={};
 
 
-
 geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
 
-  resourcePendingMetrics: [],
+  //resourcePendingMetrics: [],
   initialize: function( options ) {
     var that = this;
+
+    that.pendingMetrics = [];
 
     var opts = {
       syncPeriod: 5000 // in miliseconds
@@ -25,6 +26,10 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
       }
     );
 
+
+    if( typeof that.endPendingEvents != 'undefined') {
+      that.endPendingEvents();
+    }
 
 
 
@@ -51,7 +56,7 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
           "type": that.getDevice(),
           "device_ID":0
        },
-       "metrics": that.resourcePendingMetrics
+       "metrics": that.pendingMetrics
 
     };
   },
@@ -73,7 +78,7 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
 
     if( metric = that.metricTemplate( data ) ) {
 
-      that.resourcePendingMetrics.push(metric);
+      that.pendingMetrics.push(metric);
     }
 
   },
@@ -81,7 +86,7 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
   reset: function() {
     var that = this;
 
-    that.resourcePendingMetrics = [];
+    that.pendingMetrics = [];
     that.packageTimestamp = false;
 
   },
@@ -90,7 +95,7 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
   sync: function() {
     var that = this;
 
-    if( that.resourcePendingMetrics.length > 0 ) {
+    if( that.pendingMetrics.length > 0 ) {
 
       if( that.getMetricsURL() != '' ) {
         $.ajax({

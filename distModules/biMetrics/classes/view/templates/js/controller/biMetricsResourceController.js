@@ -18,13 +18,16 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
   accessedCurrent: false,
   hoverStack: [],
   printedResources:[],
-
+/*
   initialize: function() {
     var that = this;
 
-    that.endPendingEvents();
-  },
+    //this.resourcePendingMetrics = [];
 
+    that.endPendingEvents();
+
+  },
+*/
   metricTemplate: function( metric ) {
     var that = this;
     /*
@@ -146,6 +149,8 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
 
     if( that.accessedCurrent != false ){
 
+
+
       if( that.accessedCurrent.endTime != false ) {
         var endTime = that.accessedCurrent.endTime;
       }
@@ -163,6 +168,7 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
       });
 
 
+      //console.log(that.resourcePendingMetrics)
 
       that.accessedCurrent = false;
     }
