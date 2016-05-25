@@ -70,11 +70,8 @@ class RExtRoutesController extends RExtController implements RExtInterface {
     'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true' )
 */
     $fieldsInfo = array(
-
-      'routeFile' => array(
-        'params' => array( 'label' => __( 'Route file' ), 'type' => 'file', 
-        'placeholder' => __( 'File' ), 'destDir' => RoutesModel::$cols['routeFile']['uploadDir'] ),
-        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'accept' => ',application/xml,application\/gpx,application\/gpx\+xml,application\/vnd.google\-earth\.kml\+xml' )
+      'circular' => array(
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Circular itinerary') ))
       ),
       'durationMinutes' => array(
         'params' => array( 'label' => __( 'Duration of route' ) ),
@@ -96,7 +93,6 @@ class RExtRoutesController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Natural environment difficulty' ) ),
         'rules' => array( 'digits' => true )
       ),
-
       'difficultyItinerary' => array(
         'params' => array( 'label' => __( 'Difficulty of the itinerary' ) ),
         'rules' => array( 'digits' => true )
@@ -108,6 +104,25 @@ class RExtRoutesController extends RExtController implements RExtInterface {
       'difficultyEffort' => array(
         'params' => array( 'label' => __( 'Effort level' ) ),
         'type' => 'INT'
+      ),
+      'difficultyGlobal' => array(
+        'params' => array( 'label' => __( 'Global difficulty' ) ),
+        'type' => 'INT'
+      ),
+      'routeStart' => array(
+        'translate' => true,
+        'params' => array( 'label' => __( 'Route start' ) ),
+        'rules' => array( 'maxlength' => '100' )
+      ),
+      'routeEnd' => array(
+        'translate' => true,
+        'params' => array( 'label' => __( 'Route end' ) ),
+        'rules' => array( 'maxlength' => '100' )
+      ),
+      'routeFile' => array(
+        'params' => array( 'label' => __( 'Route file' ), 'type' => 'file',
+        'placeholder' => __( 'File' ), 'destDir' => RoutesModel::$cols['routeFile']['uploadDir'] ),
+        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'accept' => ',application/xml,application\/gpx,application\/gpx\+xml,application\/vnd.google\-earth\.kml\+xml' )
       )
 
     );
@@ -175,10 +190,9 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     $formBlockInfo = parent::getFormBlockInfo( $form );
     $templates = $formBlockInfo['template'];
-    /**
-     * Hay que redefinirlo para meterle el js de inicialización de mapa
-     */
-    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+
+    //$templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
+    $templates['full']->setTpl( 'rExtFormBlock.tpl', 'rextRoutes' );
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
 
@@ -256,7 +270,22 @@ class RExtRoutesController extends RExtController implements RExtInterface {
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-   //parent::getViewBlockInfo();
+   public function getViewBlockInfo() {
+
+     $rExtViewBlockInfo = parent::getViewBlockInfo();
+
+     if( $rExtViewBlockInfo['data'] ) {
+       // TODO: esto será un campo da BBDD
+       $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
+
+       $rExtViewBlockInfo['template']['full'] = new Template();
+       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+       $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextRoutes' );
+
+     }
+
+     return $rExtViewBlockInfo;
+   }
 
 
 } // class RExtRoutesController
