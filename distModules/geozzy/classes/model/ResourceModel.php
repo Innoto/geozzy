@@ -103,7 +103,7 @@ class ResourceModel extends Model {
 
   var $deploySQL = array(
     array(
-      'version' => 'geozzy#1.1',
+      'version' => 'geozzy#1.3',
       'sql'=> '
         ALTER TABLE geozzy_resource
         MODIFY COLUMN averageVotes SMALLINT
