@@ -196,7 +196,6 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
 
     $favData = $this->getStatusInfo( $resId, $favUser );
     $preStatus = ( $favData ) ? 1 : 0;
-
     if( $preStatus === 1 && $newStatus === 0 ) {
       // Estamos con status 1 y queremos status 0
       $crModel = new CollectionResourcesModel( array( 'id' => $favData['id'] ) );
@@ -209,14 +208,12 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
       $colId = $this->getCollectionId( $favUser );
 
       if( !$colId ) {
-        user::load( 'controller/UserAccessController.php' );
-        $userCtrl = new UserAccessController();
-        $userInfo = $userCtrl->getSessiondata();
-        // error_log( 'USER: '.print_r( $userInfo, true ) );
-
         // Hai que crear toda la estructura previa: res rtypeFavourites, col, rc
-        $resModel = new ResourceModel( array( 'rTypeId' => $this->getFavRTypeId(), 'user' => $favUser,
-          'published' => true, 'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );
+        $favsResInfo = array( 'rTypeId' => $this->getFavRTypeId(), 'user' => $favUser,
+          'title' => 'Favs. user '.$favUser,
+          'title_'.Cogumelo::getSetupValue( 'lang:default' ) => 'Favs. user '.$favUser,
+          'published' => true, 'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) );
+        $resModel = new ResourceModel( $favsResInfo );
         $resModel->save();
         $resMainId = $resModel->getter('id');
 
