@@ -209,6 +209,11 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
       $colId = $this->getCollectionId( $favUser );
 
       if( !$colId ) {
+        user::load( 'controller/UserAccessController.php' );
+        $userCtrl = new UserAccessController();
+        $userInfo = $userCtrl->getSessiondata();
+        // error_log( 'USER: '.print_r( $userInfo, true ) );
+
         // Hai que crear toda la estructura previa: res rtypeFavourites, col, rc
         $resModel = new ResourceModel( array( 'rTypeId' => $this->getFavRTypeId(), 'user' => $favUser,
           'published' => true, 'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );

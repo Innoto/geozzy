@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextFavourite extends Module {
 
   public $name = 'rextFavourite';
-  public $version = 1.0;
+  public $version = 1.1;
 
 
   public $models = array( 'FavouritesViewModel' );
