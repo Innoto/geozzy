@@ -41,14 +41,9 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
 
     var that = this;
 
-    var userID = null;
 
-    if( geozzy.userSessionInstance.user) {
-      userID = geozzy.userSessionInstance.user.get('id');
-    }
 
-    return {
-       "user_ID": userID,
+    var metricsObj = {
        "language": cogumelo.publicConf.C_LANG,
        "session_ID": cogumelo.publicConf.C_SESSION_ID,
        "observationTime": that.packageTimestamp ,
@@ -57,8 +52,14 @@ geozzy.biMetricsComponents.biMetricsController = Backbone.Collection.extend({
           "device_ID":0
        },
        "metrics": that.pendingMetrics
+    }
 
-    };
+
+    if( geozzy.userSessionInstance.user && geozzy.userSessionInstance.user.get('id')) {
+      metricsObj.user_ID = geozzy.userSessionInstance.user.get('id');
+    }
+
+    return metricsObj;
   },
 
   metricTemplate: function() {
