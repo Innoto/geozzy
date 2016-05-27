@@ -41,7 +41,7 @@ geozzy.biMetricsComponents.resource = geozzy.biMetricsComponents.biMetricsContro
 
     return {
       "metricTime": that.getTimesTamp(),
-      "resource_ID": metric.resourceId,
+      "resource": metric.resourceId,
       "event": metric.event,
       "seconds": metric.duration,
       "section": metric.section
