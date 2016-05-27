@@ -1,5 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerComponents) geozzy.explorerComponents={};
+geozzy.explorerComponents = geozzy.explorerComponents || {}; //if(!geozzy.explorerComponents) geozzy.explorerComponents={};
+
+console.log( 'CREANDO geozzy.explorerComponents.activeListView' );
 
 geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
@@ -71,6 +73,8 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
   render: function() {
     var that = this;
+
+    console.log( 'geozzy.explorerComponents.activeListView.render()' );
 
     that.$el.html('');
     var contador = 1;
