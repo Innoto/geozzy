@@ -49,7 +49,7 @@ class FavouritesListViewModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'rextFavourite#1.0',
+      'version' => 'rextFavourite#1.1',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_favourites_list_view;

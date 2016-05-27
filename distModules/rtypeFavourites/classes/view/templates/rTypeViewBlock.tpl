@@ -27,7 +27,8 @@
   </section>
 
   <script type="text/javascript">
-    $favsResourcesInfo = {$favsResourcesInfo|@json_encode}
+    var geozzy = geozzy || {};
+    geozzy.favsResourcesInfo = {$favsResourcesInfo|@json_encode}
   </script>
   <section class="favouritesSec container gzSection">
     <div class="favourites">

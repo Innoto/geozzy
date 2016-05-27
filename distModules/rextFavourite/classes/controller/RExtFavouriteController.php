@@ -94,6 +94,19 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
   public function getAllFavourites( $favUser ) {
     $favData = false;
 
+    $favModel = new FavouritesListViewModel();
+    $favList = $favModel->listItems( array( 'filters' => array( 'user' => $favUser ) ) );
+    $favObj = ( $favList ) ? $favList->fetch() : false;
+    if( $favObj ) {
+      $favData = ( $favObj->getter('resourceList') ) ? explode( ',', $favObj->getter('resourceList') ) : array();
+    }
+
+    return $favData;
+  }
+  /*
+  public function getAllFavourites( $favUser ) {
+    $favData = false;
+
     $favModel = new FavouritesViewModel();
     $favList = $favModel->listItems( array( 'filters' => array( 'user' => $favUser ) ) );
     if( $favList ) {
@@ -105,7 +118,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
 
     return $favData;
   }
-
+  */
 
   /**
    * Localiza el id de la coleccion de favoritos (false si no existe)
@@ -155,7 +168,16 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
    * @return integer
    */
   public function getStatus( $resId, $favUser ) {
-    $status = ( $this->getStatusInfo( $resId, $favUser ) ) ? 1 : 0;
+    if( !is_array( $resId ) ) {
+      $status = ( $this->getStatusInfo( $resId, $favUser ) ) ? 1 : 0;
+    }
+    else {
+      $status = array();
+      $favResources = $this->getAllFavourites( $favUser );
+      foreach( $resId as $id ) {
+        $status[ $id ] = ( in_array( $id, $favResources ) ) ? 1 : 0;
+      }
+    }
 
     return $status;
   }
@@ -187,6 +209,11 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
       $colId = $this->getCollectionId( $favUser );
 
       if( !$colId ) {
+        user::load( 'controller/UserAccessController.php' );
+        $userCtrl = new UserAccessController();
+        $userInfo = $userCtrl->getSessiondata();
+        // error_log( 'USER: '.print_r( $userInfo, true ) );
+
         // Hai que crear toda la estructura previa: res rtypeFavourites, col, rc
         $resModel = new ResourceModel( array( 'rTypeId' => $this->getFavRTypeId(), 'user' => $favUser,
           'published' => true, 'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );

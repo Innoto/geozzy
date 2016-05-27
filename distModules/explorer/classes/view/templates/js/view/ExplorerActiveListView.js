@@ -1,5 +1,6 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerComponents) geozzy.explorerComponents={};
+geozzy.explorerComponents = geozzy.explorerComponents || {}; //if(!geozzy.explorerComponents) geozzy.explorerComponents={};
+
 
 geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
@@ -13,13 +14,12 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
   currentPage: 0,
 
   events: {
+    // resource events
 
-      // resource events
-
-      "click .explorerActiveListContent .accessButton": "resourceClick",
-      "touchend .explorerActiveListContent .element": "resourceTouch",
-      "mouseenter .explorerActiveListContent .element": "resourceHover",
-      "mouseleave .explorerActiveListContent .element": "resourceOut",
+    "click .explorerActiveListContent .accessButton": "resourceClick",
+    "touchend .explorerActiveListContent .element": "resourceTouch",
+    "mouseenter .explorerActiveListContent .element": "resourceHover",
+    "mouseleave .explorerActiveListContent .element": "resourceOut",
   },
 
   initialize: function( opts ) {
@@ -73,17 +73,14 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
   render: function() {
     var that = this;
 
-
     that.$el.html('');
     var contador = 1;
-
-
 
     var contentHtml = '';
     $.each(  this.visibleResources, function(i,e){
 
       //that.options.categories
-    //  console.log( that.parentExplorer.resourceMinimalList.toJSON/ )
+      //console.log( that.parentExplorer.resourceMinimalList.toJSON/ )
 
       var elementCategory = false;
 
@@ -98,14 +95,11 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
             elementCategory = e2.toJSON()
           }
           return false;
-/*
+          /*
           if( jQuery.isNumeric( e2.get('icon') )  ){
-
             return false;
           }*/
-
         }
-
       });
 
 
@@ -130,9 +124,16 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
     that.$el.html( that.tpl({ content: contentHtml }) )
 
+    that.onRenderComplete();
   },
 
-
+  onRenderComplete: function onRenderComplete() {
+    //console.log( 'geozzy.explorerComponents.activeListView.onRenderComplete()' );
+    if( typeof geozzy.rExtFavouriteController.setBinds === 'function' ) {
+      $( '.rExtFavouriteHidden' ).css( 'display', 'inline-block' ).removeClass( 'rExtFavouriteHidden' );
+      geozzy.rExtFavouriteController.setBindsAndGetStatus();
+    }
+  },
 
   setPage: function( pageNum ) {
     var that = this;
