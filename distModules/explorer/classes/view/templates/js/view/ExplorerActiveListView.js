@@ -1,7 +1,6 @@
 var geozzy = geozzy || {};
 geozzy.explorerComponents = geozzy.explorerComponents || {}; //if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
-console.log( 'CREANDO geozzy.explorerComponents.activeListView' );
 
 geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
@@ -74,8 +73,6 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
   render: function() {
     var that = this;
 
-    console.log( 'geozzy.explorerComponents.activeListView.render()' );
-
     that.$el.html('');
     var contador = 1;
 
@@ -131,11 +128,9 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
   },
 
   onRenderComplete: function onRenderComplete() {
-    console.log( 'geozzy.explorerComponents.activeListView.onRenderComplete()' );
+    //console.log( 'geozzy.explorerComponents.activeListView.onRenderComplete()' );
     if( typeof geozzy.rExtFavouriteController.setBinds === 'function' ) {
       $( '.rExtFavouriteHidden' ).css( 'display', 'inline-block' ).removeClass( 'rExtFavouriteHidden' );
-      //geozzy.rExtFavouriteController.setBinds();
-      //geozzy.rExtFavouriteController.getStatusAll();
       geozzy.rExtFavouriteController.setBindsAndGetStatus();
     }
   },

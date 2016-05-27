@@ -108,11 +108,9 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
   },
 
   onRenderComplete: function onRenderComplete() {
-    console.log( 'geozzy.explorerComponents.activeListTinyView.onRenderComplete()' );
+    //console.log( 'geozzy.explorerComponents.activeListTinyView.onRenderComplete()' );
     if( typeof geozzy.rExtFavouriteController.setBinds === 'function' ) {
       $( '.rExtFavouriteHidden' ).css( 'display', 'inline-block' ).removeClass( 'rExtFavouriteHidden' );
-      //geozzy.rExtFavouriteController.setBinds();
-      //geozzy.rExtFavouriteController.getStatusAll();
       geozzy.rExtFavouriteController.setBindsAndGetStatus();
     }
   },
