@@ -110,8 +110,8 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     $templates['location']->assign( 'res', $formBlockInfo );
     $templates['location']->assign( 'directions', $form->multilangFieldNames( 'rExtContact_directions' ) );
 
-    // TEMPLATE panel poicollection
-    if( class_exists( 'rextComment' ) ) {
+    // TEMPLATE panel comment
+    if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
       $templates['comment'] = new Template();
       $templates['comment']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
       $templates['comment']->assign( 'title', __( 'Comments' ) );
@@ -208,7 +208,7 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['contact'] );
 
-    if( class_exists( 'rextComment' ) ) {
+    if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
       $templates['adminFull']->addToFragment( 'col8', $templates['comment'] );
     }
 
@@ -314,6 +314,9 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
       }
     }
 
+    if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
+      $template->addToFragment( 'rextCommentAverageBlock', $viewBlockInfo['ext']['rextComment']['template']['headerAverage'] );
+    }
 
     $taxtermModel = new TaxonomytermModel();
 

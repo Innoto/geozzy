@@ -18,9 +18,10 @@ geozzy.comment = function() {
       }, 500);
     }
   }
-  that.successCommentBox = function(){
+  that.successCommentBox = function( idResource ){
     that.createCommentView.closeCreateCommentModal();
     that.initCommentOk();
+    that.listComment( idResource );
   }
   that.initCommentOk = function (){
     setTimeout(function() {

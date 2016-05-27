@@ -206,19 +206,36 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $rExtViewBlockInfo['template']['full'] = new Template();
 
     $resID = $this->defResCtrl->resObj->getter('id');
+
+    $averageVotesModel = new AverageVotesViewModel();
+    $resAverageData = $averageVotesModel->listItems( array('filters' => array('id' => $resID) ))->fetch();
+    if($resAverageData){
+      $resAverageVotes = $resAverageData->getter('averageVotes');
+      $resNumberVotes = $resAverageData->getter('commentsVotes');
+    }
+
     $perms = $this->getCommentPermissions( $resID );
     if(in_array('comment', $perms)){
       $rExtViewBlockInfo['template']['full']->assign( 'commentButton', true );
     }
-
     $rExtViewBlockInfo['template']['full']->assign( 'resID', $resID);
+    if($resAverageData){
+      $rExtViewBlockInfo['template']['full']->assign( 'resAverageVotes', $resAverageVotes);
+      $rExtViewBlockInfo['template']['full']->assign( 'resNumberVotes', $resNumberVotes);
+    }
+    $commentModel = new commentModel();
+    $commentCount = $commentModel->listCount( array('filters' => array('resource' => $resID) ));
+    if( !in_array('comment', $perms) && $commentCount === 0){
+      $rExtViewBlockInfo['template']['full']->assign( 'commentEmpty', true);
+    }
     $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextComment' );
     $rExtViewBlockInfo['template']['full']->addClientScript('js/commentList.js', 'rextComment');
 
-
-      error_log(json_encode($rExtViewBlockInfo['template']['full']));
-
-
+    $rExtViewBlockInfo['template']['headerAverage'] = new Template();
+    if($resAverageData){
+      $rExtViewBlockInfo['template']['headerAverage']->assign( 'resAverageVotes', $resAverageVotes);
+    }
+    $rExtViewBlockInfo['template']['headerAverage']->setTpl( 'rExtAverageBlock.tpl', 'rextComment' );
     return $rExtViewBlockInfo;
   }
 
