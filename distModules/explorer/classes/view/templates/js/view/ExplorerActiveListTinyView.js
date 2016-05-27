@@ -1,11 +1,8 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerComponents) geozzy.explorerComponents={};
-
+geozzy.explorerComponents = geozzy.explorerComponents || {}; //if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
 
 geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
-
-
 
   tpl: false,
   tplElement: false,
@@ -18,14 +15,14 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
   visibleResources: [],
 
   events: {
-      "click .explorerListPager .next" : "nextPage",
-      "click .explorerListPager .previous" : "previousPage",
-      "click .explorerListPager .pageNum" : "setPageClick",
-      // resource events
-      "click .explorerListContent .accessButton": "resourceClick",
-      "touchend .explorerListContent .element": "resourceTouch",
-      "mouseenter .explorerListContent .element": "resourceHover",
-      "mouseleave .explorerListContent .element": "resourceOut",
+    "click .explorerListPager .next" : "nextPage",
+    "click .explorerListPager .previous" : "previousPage",
+    "click .explorerListPager .pageNum" : "setPageClick",
+    // resource events
+    "click .explorerListContent .accessButton": "resourceClick",
+    "touchend .explorerListContent .element": "resourceTouch",
+    "mouseenter .explorerListContent .element": "resourceHover",
+    "mouseleave .explorerListContent .element": "resourceOut",
   },
 
   initialize: function( opts ) {
@@ -56,7 +53,6 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     that.parentExplorer = parentExplorer;
   },
 
-
   getVisibleResourceIds: function() {
     var that = this;
     this.parentExplorer.resourceIndex.removePagination();
@@ -74,7 +70,6 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     that.visibleResources = visibleResources.pluck( 'id' );
     return visibleResources.pluck( 'id' );
   },
-
 
   render: function() {
     var that = this;
@@ -107,21 +102,29 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
       contador++;
     });
 
-    that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) )
+    that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) );
 
+    that.onRenderComplete();
   },
 
-  renderPager() {
-    var that = this;
+  onRenderComplete: function onRenderComplete() {
+    console.log( 'geozzy.explorerComponents.activeListTinyView.onRenderComplete()' );
+    if( typeof geozzy.rExtFavouriteController.setBinds === 'function' ) {
+      $( '.rExtFavouriteHidden' ).css( 'display', 'inline-block' ).removeClass( 'rExtFavouriteHidden' );
+      //geozzy.rExtFavouriteController.setBinds();
+      //geozzy.rExtFavouriteController.getStatusAll();
+      geozzy.rExtFavouriteController.setBindsAndGetStatus();
+    }
+  },
 
+  renderPager: function renderPager() {
+    var that = this;
 
     var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.options.itemsEachPage );
 
     if( that.options.endPage < pages ) {
       pages = that.options.endPage;
     }
-
-
 
     return this.tplPager({ v:that, pages:pages-1 } );
   },
@@ -166,7 +169,6 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
     that.setPage( $(elemento.target).attr('data-page-num')  );
   },
-
 
   nextPage: function() {
     var that =  this;

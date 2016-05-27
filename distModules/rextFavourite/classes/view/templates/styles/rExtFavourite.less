@@ -1,0 +1,16 @@
+
+@rExtFavourite-color: #006600;
+
+.rExtFavourite { display: inline-block; }
+
+.rExtFavourite { color: @rExtFavourite-color; }
+
+.rExtFavourite .fav-off { display: inline; }
+
+.rExtFavourite .fav-on { display: none; }
+
+.rExtFavourite.selected .fav-off { display: none; }
+
+.rExtFavourite.selected .fav-on { display: inline; }
+
+.rExtFavourite:hover { color: fade( @rExtFavourite-color, 50% ); }

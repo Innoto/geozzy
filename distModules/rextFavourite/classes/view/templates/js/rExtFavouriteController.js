@@ -6,13 +6,20 @@ var geozzy = geozzy || {};
 geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
   setStatus: function setStatus( resource, status ) {
     var that = this;
+
     that.resource = resource;
     that.status = status;
+
     geozzy.userSessionInstance.userControlAccess( function() {
-      geozzy.rExtFavouriteController.sendSetStatus( that );
+      geozzy.rExtFavouriteController.sendSetStatus( that.resource, that.status );
     });
   },
-  sendSetStatus: function sendSetStatus( that ) {
+  sendSetStatus: function sendSetStatus( resource, status ) {
+    var that = this;
+
+    that.resource = resource;
+    that.status = status;
+
     var formData = new FormData();
     formData.append( 'cmd', 'setStatus' );
     formData.append( 'resourceId', that.resource );
@@ -29,12 +36,42 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
   },
   getStatus: function getStatus( resource ) {
     var that = this;
+
     that.resource = resource;
+
     geozzy.userSessionInstance.userControlAccess( function() {
-      geozzy.rExtFavouriteController.sendGetStatus( that );
+      geozzy.rExtFavouriteController.sendGetStatus( that.resource );
     });
   },
-  sendGetStatus: function sendGetStatus( that ) {
+  getStatusAll: function getStatusAll( limitTo ) {
+    var that = this;
+
+    if( geozzy.userSessionInstance.user && geozzy.userSessionInstance.user.get('id') ) {
+      var resources='';
+
+      if( typeof limitTo === 'undefined' ) {
+        var res=[];
+        $('.rExtFavourite[data-favourite-resource]').each(function( index ) {
+          res.push( $( this ).attr( 'data-favourite-resource' ) );
+        });
+        resources = res.toString();
+      }
+      else {
+        resources = ( typeof limitTo === 'string' ) ? limitTo : limitTo.toString();
+      }
+
+      that.resource = resources;
+      if( that.resource !== '' ) {
+        console.log('Facendo un sendGetStatus de varios recursos: '+that.resource );
+        geozzy.rExtFavouriteController.sendGetStatus( that.resource );
+      }
+    }
+  },
+  sendGetStatus: function sendGetStatus( resource ) {
+    var that = this;
+
+    that.resource = resource;
+
     var formData = new FormData();
     formData.append( 'cmd', 'getStatus' );
     formData.append( 'resourceId', that.resource );
@@ -43,7 +80,17 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
       data: formData, cache: false, contentType: false, processData: false,
       success: function setStatusSuccess( $jsonData, $textStatus, $jqXHR ) {
         if ( $jsonData.result === 'ok' ) {
-          that.setStatusClient( that.resource, $jsonData.status );
+          if( typeof $jsonData.status === 'number' ) {
+            that.setStatusClient( that.resource, $jsonData.status );
+          }
+          else {
+            console.log( 'JSON status non NUMERO. Type: '+ typeof $jsonData.status );
+            console.log( $jsonData.status );
+            $.each( $jsonData.status, function( resId, resStatus ) {
+              console.log( 'resId: ' + resId + ' resStatus: ', resStatus );
+              that.setStatusClient( resId, resStatus );
+            });
+          }
         }
       }
     });
@@ -67,12 +114,27 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     status = $favField.attr( 'data-favourite-status' );
     return( status );
   },
-  eventClick: function eventClick() {
+  eventClick: function eventClick( event ) {
+    event.stopPropagation();
     geozzy.rExtFavouriteController.changeStatus( $( this ).data( 'favouriteResource' ) );
   },
   setBinds: function setBinds() {
     $('.rExtFavourite[data-favourite-bind!="1"]').attr( 'data-favourite-bind', 1 ).on(
       'click', geozzy.rExtFavouriteController.eventClick );
+  },
+  setBindsAndGetStatus: function setBindsAndGetStatus() {
+    var that = this;
+
+    var resources=[];
+    $('.rExtFavourite[data-favourite-bind!="1"]').each(function( index ) {
+      resources.push( $( this ).attr( 'data-favourite-resource' ) );
+      $( this ).attr( 'data-favourite-bind', 1 ).on(
+        'click', geozzy.rExtFavouriteController.eventClick );
+    });
+
+    if( resources.length > 0 ) {
+      that.getStatusAll( resources.toString() );
+    }
   }
 };
 

@@ -8,10 +8,10 @@ class ExplorerPageView extends MasterView
     parent::__construct( $baseDir );
   }
   // función común a todos los exploradores
-  function commonLayout(){
+  public function commonLayout(){
 
     $url_parts = explode('/', $_SERVER["REQUEST_URI"]);
-    if(sizeof($url_parts)>2){
+    if( count($url_parts)>2 ){
       $url = $url_parts[2];
     }
     else {
@@ -31,9 +31,8 @@ class ExplorerPageView extends MasterView
     explorer::autoIncludes();
 
   }
-  function paisaxesExplorer(){
 
-
+  public function paisaxesExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
     $this->commonLayout();
 
@@ -41,52 +40,78 @@ class ExplorerPageView extends MasterView
 
     $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
     $this->template->addClientScript('js/paisaxesExplorer.js');
+
+    $this->template->addClientStyles('styles/rExtFavourite.less', 'rextFavourite' );
+    $this->template->addClientScript('js/rExtFavouriteController.js', 'rextFavourite' );
+
     $this->template->setTpl('paisaxesExplorerPage.tpl');
   }
-  function rinconsExplorer(){
+
+  public function rinconsExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
     $this->commonLayout();
 
     $this->template->addClientStyles('styles/masterRinconsExplorer.less');
     $this->template->addClientScript('js/rinconsExplorer.js');
+
+    $this->template->addClientStyles('styles/rExtFavourite.less', 'rextFavourite' );
+    $this->template->addClientScript('js/rExtFavouriteController.js', 'rextFavourite' );
+
     $this->template->setTpl('rinconsExplorerPage.tpl');
   }
-  function praiasExplorer(){
+
+  public function praiasExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
     $this->commonLayout();
 
     $this->template->addClientStyles('styles/masterPraiasExplorer.less');
     $this->template->addClientScript('js/praiasExplorer.js');
+
+    $this->template->addClientStyles('styles/rExtFavourite.less', 'rextFavourite' );
+    $this->template->addClientScript('js/rExtFavouriteController.js', 'rextFavourite' );
+
     $this->template->setTpl('praiasExplorerPage.tpl');
   }
-  function xantaresExplorer(){
+  public function xantaresExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
     $this->commonLayout();
 
     $this->template->addClientStyles('styles/masterXantaresExplorer.less');
     $this->template->addClientScript('js/xantaresExplorer.js');
+
+    $this->template->addClientStyles('styles/rExtFavourite.less', 'rextFavourite' );
+    $this->template->addClientScript('js/rExtFavouriteController.js', 'rextFavourite' );
+
     $this->template->setTpl('xantaresExplorerPage.tpl');
   }
-  function aloxamentosExplorer(){
+  public function aloxamentosExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
     $this->commonLayout();
 
     $this->template->addClientStyles('styles/masterAloxamentosExplorer.less');
     $this->template->addClientScript('js/aloxamentosExplorer.js');
+
+    $this->template->addClientStyles('styles/rExtFavourite.less', 'rextFavourite' );
+    $this->template->addClientScript('js/rExtFavouriteController.js', 'rextFavourite' );
+
     $this->template->setTpl('aloxamentosExplorerPage.tpl');
   }
 
-  function todosSegredosExplorer(){
+  public function todosSegredosExplorer(){
     // cogemos la url actual para el idioma (hasta que sea recurso)
     $this->commonLayout();
 
     $this->template->addClientStyles('styles/masterTodosSegredosExplorer.less');
     $this->template->addClientScript('js/todosSegredosExplorer.js');
+
+    $this->template->addClientStyles('styles/rExtFavourite.less', 'rextFavourite' );
+    $this->template->addClientScript('js/rExtFavouriteController.js', 'rextFavourite' );
+
     $this->template->setTpl('todosSegredosExplorerPage.tpl');
   }
 
 /*Examples*/
-  function explorerLayout( $urlParams = false ){
+  public function explorerLayout( $urlParams = false ){
 
     if( isset($urlParams) && $urlParams[1]){
       $this->template->assign( 'explorerType', 'explorerLayout'.$urlParams[1] );
@@ -99,7 +124,7 @@ class ExplorerPageView extends MasterView
     $this->template->exec();
   }
 
-  function explorerLayoutSection( $urlParams = false ){
+  public function explorerLayoutSection( $urlParams = false ){
 
     if( isset($urlParams) && $urlParams[1]){
       $this->template->assign( 'explorerType', 'explorerLayout'.$urlParams[1] );
