@@ -27,7 +27,7 @@ class AverageVotesViewModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'geozzy#1.0',
+      'version' => 'rextComment#1.1',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_averagevote_view;

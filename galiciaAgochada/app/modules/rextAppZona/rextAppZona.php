@@ -105,9 +105,9 @@ class rextAppZona extends Module {
         array(
           'idName' => 'terrasDeOurenseAllariz',
           'name' => array(
-            'en' => 'Terras de Ourense - Allariz',
-            'es' => 'Terras de Ourense - Allariz',
-            'gl' => 'Terras de Ourense - Allariz'
+            'en' => 'Terras de Ourense',
+            'es' => 'Terras de Ourense',
+            'gl' => 'Terras de Ourense'
           )
         ),
         array(

@@ -89,7 +89,7 @@ class CommentView extends View
 
     $form = new FormController('commentForm'); //actionform
     $form->setAction('/comment/sendcommentform');
-    $form->setSuccess( 'jsEval', 'geozzy.commentInstance.successCommentBox();' );
+    $form->setSuccess( 'jsEval', 'geozzy.commentInstance.successCommentBox('.$resourceID.');' );
 
     $fieldsInfo = array();
     $fieldsInfo['id'] = array(
@@ -200,9 +200,15 @@ class CommentView extends View
 
       $valuesArray['timeCreation'] = date("Y-m-d H:i:s", time());
       //Añadir valor de published si dependiendo de conf de comentarios
+      $valuesArray['rate'] = $valuesArray['rate'] * 20;
       $comment = new CommentModel( $valuesArray );
-
       $comment->save();
+      //Consultamos el valor de valoracion media y lo guardamos en el recurso
+      $averageVotesModel = new AverageVotesViewModel();
+      $resAverageVotes = $averageVotesModel->listItems( array('filters' => array('id' => $comment->getter('resource')) ))->fetch();
+      $resourceModel = new ResourceModel( array('id' => $comment->getter('resource'), 'averageVotes' => $resAverageVotes->getter('averageVotes') ));
+      $resourceModel->save();
+
     }
     return $comment;
   }

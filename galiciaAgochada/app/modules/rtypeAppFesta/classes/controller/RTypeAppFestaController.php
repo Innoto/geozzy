@@ -88,6 +88,14 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     $templates['location']->assign( 'res', $formBlockInfo );
     $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
 
+    // TEMPLATE panel comment
+    if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
+      $templates['comment'] = new Template();
+      $templates['comment']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+      $templates['comment']->assign( 'title', __( 'Comments' ) );
+      $templates['comment']->setFragment( 'blockContent', $formBlockInfo['ext']['rextComment']['template']['adminExt'] );
+    }
+
     // TEMPLATE panel localización
     $templates['contact'] = new Template();
     $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -183,6 +191,9 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     $templates['adminFull']->addToFragment( 'col8', $templates['contact'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['social'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
+    if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
+      $templates['adminFull']->addToFragment( 'col8', $templates['comment'] );
+    }
     $templates['adminFull']->addToFragment( 'col8', $templates['eventCollection'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['multimedia'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['collections'] );
@@ -284,6 +295,10 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
         }
       }
     }
+    if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
+      $template->addToFragment( 'rextCommentAverageBlock', $viewBlockInfo['ext']['rextComment']['template']['headerAverage'] );
+    }
+
 
     $viewBlockInfo['template']['full'] = $template;
 

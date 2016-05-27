@@ -30,6 +30,7 @@ geozzy.commentComponents.listCommentTemplate = ''+
 geozzy.commentComponents.listCommentItemTemplate = ''+
 '<div class="commentItem">'+
   '<div class="commentContent"><%- commentContent %></div>'+
+  '<% if(commentRate != 0){ %>'+
   '<div class="commentRate">'+
     '<% for (var i = 0; i < 5; i++) { '+
       'if(commentRate > i){'+
@@ -39,7 +40,8 @@ geozzy.commentComponents.listCommentItemTemplate = ''+
       '}'+
     '}  %>'+
   '</div>'+
-  '<div class="commentInfo">'+__("by")+' <span><%- commentUserName %></span>  <%- commentTimeCreation %></div>'+
+  '<% } %>'+
+  '<div class="commentInfo"><span><%- commentUserName %></span>  <%- commentTimeCreation %></div>'+
 '</div>';
 
 geozzy.commentComponents.adminListCommentTemplate = ''+
