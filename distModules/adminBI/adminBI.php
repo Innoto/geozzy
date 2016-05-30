@@ -3,7 +3,7 @@
 Cogumelo::load("coreController/Module.php");
 
 
-class bi extends Module
+class adminBI extends Module
 {
   public $name = "bi";
   public $version = 1.0;

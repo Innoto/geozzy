@@ -73,7 +73,7 @@ $C_ENABLED_MODULES = array(
   'filedata',
   'geozzy',
   'appResourceBridge',
-  'bi',
+  'adminBI',
   'biMetrics',
   'admin',
   'form',
