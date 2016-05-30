@@ -27,7 +27,7 @@
 
   <div class="commentButtons">
     {if isset($commentButton)}
-      <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'comment');">{t}Post a comment{/t}</button>
+      <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'comment');"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a comment{/t}</button>
     {/if}
   </div>
 </div>
