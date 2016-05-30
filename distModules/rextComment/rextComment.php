@@ -23,6 +23,12 @@ class rextComment extends Module
      "includes" => array("backbone.js")
     ),
     array(
+     "id" => "font-awesome",
+     "params" => array("Font-Awesome"),
+     "installer" => "bower",
+     "includes" => array("css/font-awesome.min.css")
+    ),
+    array(
      "id" =>"bootstrap-star-rating",
      "params" => array("bootstrap-star-rating"),
      "installer" => "bower",
