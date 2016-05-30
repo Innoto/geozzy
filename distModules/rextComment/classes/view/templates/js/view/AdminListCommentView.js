@@ -44,7 +44,7 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
     _.each( commentsFiltered.toJSON() , function(item){
       data = {
         commentContent: item.content,
-        commentRate: item.rate,
+        commentRate: item.rate/20,
         commentUserName: false,
         commentTimeCreation: item.timeCreation,
         commentPublished: item.published
