@@ -286,6 +286,11 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
       'default' => '/rincones/',
       'gl' => '/recunchos/',
       'en' => '/places/'
+    ),
+    'rtypeFavourites' => array(
+      'default' => '/favoritos/',
+      'gl' => '/favoritos/',
+      'en' => '/favourites/'
     )
   )
 );

@@ -137,6 +137,11 @@ class RExtFavouriteAPIView extends View {
     }
 
     if( $resourceId !== null && $userId !== null ) {
+      $resArray = explode( ',', $resourceId );
+      if( count( $resArray ) > 1 ) {
+        $resourceId = $resArray;
+      }
+
       $favCtrl = new RExtFavouriteController();
       $result = array(
         'result' => 'ok',

@@ -200,9 +200,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /*
 @import (less) '/vendor/bower/font-awesome/css/font-awesome.min.css';
 */
-.commonFav{
+.commonFav {
   list-style: none;
   color: @gzzColor-fav;
+
+
+  .rExtFavourite {
+    color: @gzzColor-fav;
+    &:hover { color: fade( @gzzColor-fav, 50% ); }
+  }
 
   /*
   .fav-off::before {

@@ -38,13 +38,11 @@
           <img class="iconTitleBar img-responsive" alt="Restaurantes" src="{$cogumelo.publicConf.media}/img/xantaresIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
+        {if isset($rextCommentAverageBlock)}
         <div class="stars hidden-xs col-sm-3 col-md-2">
-          <i class="fa fa-star-o"></i>
-          <i class="fa selected fa-star-o"></i>
-          <i class="fa selected fa-star-o"></i>
-          <i class="fa selected fa-star-o"></i>
-          <i class="fa selected fa-star-o"></i>
+          {$rextCommentAverageBlock}
         </div>
+        {/if}
       </div>
     </div>
   </div>

@@ -93,11 +93,21 @@ class ResourceModel extends Model {
       'type' => 'INT'
     ),
     'averageVotes' => array(
-      'type' => 'FLOAT'
+      'type' => 'SMALLINT'
     ),
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0
+    )
+  );
+
+  var $deploySQL = array(
+    array(
+      'version' => 'geozzy#1.3',
+      'sql'=> '
+        ALTER TABLE geozzy_resource
+        MODIFY COLUMN averageVotes SMALLINT
+      '
     )
   );
 
