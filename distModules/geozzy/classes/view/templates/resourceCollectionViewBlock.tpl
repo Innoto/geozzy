@@ -2,7 +2,7 @@
 <div>{$collectionResources.col.shortDescription}</div>
 <div class="collectionBox owl-carousel owl-carousel-gzz">
     {foreach $collectionResources.res as $resId => $res}
-      <div class="item">
+      <div class="item resourceId" data-relatedResource="{$res.id}">
         <div class="itemImage">
 
             <img class="img-responsive" alt="{$res.title}" src="{$res.image}" data-image="{$res.imagebig|default:''}" data-description="{$res.title}">

@@ -1395,6 +1395,7 @@ class ResourceController {
               $urlAlias = $this->getUrlAlias($resVal->getter('id'));
 
               $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] = array(
+                'id' => $resVal->getter('id'),
                 'rType' => $resVal->getter('rTypeId'),
                 'title' => $resVal->getter('title_'.$this->actLang),
                 'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
