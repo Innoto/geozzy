@@ -1,13 +1,5 @@
 <?php
 /*
-  Previamente se definen las siguientes constantes:
-
-  WEB_BASE_PATH - Apache DocumentRoot (en index.php)
-  PRJ_BASE_PATH - Project Path (normalmente contiene app/ httpdocs/ formFiles/) (en index.php)
-  APP_BASE_PATH - App Path (en index.php)
-  IS_DEVEL_ENV  - Indica si estamos en el entorno de desarrollo (en setup.php)
-
-
   Normas de estilo:
 
   Nombres:
@@ -37,6 +29,8 @@
 //
 define( 'GA_ACCESS_USER', 'gaUser' );
 define( 'GA_ACCESS_PASSWORD', 'gz15005' );
+
+
 
 
 //
@@ -79,7 +73,7 @@ $C_ENABLED_MODULES = array(
   'filedata',
   'geozzy',
   'appResourceBridge',
-  'bi',
+  'adminBI',
   'biMetrics',
   'admin',
   'form',
@@ -201,9 +195,9 @@ cogumeloSetSetupValue( 'mod:geozzyUser', array(
 // Dependences PATH
 //
 cogumeloSetSetupValue( 'dependences', array(
-  'composerPath' => WEB_BASE_PATH.'/vendor/composer',
-  'bowerPath' => WEB_BASE_PATH.'/vendor/bower',
-  'manualPath' => WEB_BASE_PATH.'/vendor/manual',
+  'composerPath' => cogumeloGetSetupValue( 'setup:webBasePath' ).'/vendor/composer',
+  'bowerPath' => cogumeloGetSetupValue( 'setup:webBasePath' ).'/vendor/bower',
+  'manualPath' => cogumeloGetSetupValue( 'setup:webBasePath' ).'/vendor/manual',
   'manualRepositoryPath' => COGUMELO_LOCATION.'/packages/vendorPackages'
 ));
 
@@ -222,8 +216,8 @@ cogumeloSetSetupValue( 'mod:devel', array(
 //  i18n
 //
 cogumeloSetSetupValue( 'i18n', array(
-  'path' => APP_BASE_PATH.'/conf/i18n',
-  'localePath' => APP_BASE_PATH.'/conf/i18n/locale',
+  'path' => cogumeloGetSetupValue( 'setup:appBasePath' ).'/conf/i18n',
+  'localePath' => cogumeloGetSetupValue( 'setup:appBasePath' ).'/conf/i18n/locale',
   'gettextUpdate' => true // update gettext files when working in localhost
 ));
 
@@ -232,8 +226,10 @@ cogumeloSetSetupValue( 'i18n', array(
 //  Media server
 //
 cogumeloSetSetupValue( 'publicConf:globalVars', array( 'C_LANG', 'C_SESSION_ID' ) );
+
 cogumeloSetSetupValue( 'publicConf:setupFields',
   array( 'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone' ) );
+
 cogumeloSetSetupValue( 'publicConf:vars:langDefault', cogumeloGetSetupValue( 'lang:default' ) );
 cogumeloSetSetupValue( 'publicConf:vars:langAvailableIds', array_keys( cogumeloGetSetupValue( 'lang:available' ) ) );
 cogumeloSetSetupValue( 'publicConf:vars:mediaJs',

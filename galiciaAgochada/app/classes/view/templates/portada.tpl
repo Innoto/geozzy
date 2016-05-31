@@ -165,7 +165,7 @@
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/{$rd.data.urlAlias}">
+                  <a href="/{$rd.urlAlias}">
                     <h3>{$rd.data["title_$cogumelo.publicConf.C_LANG"]}</h3>
                   </a>
                 </div>

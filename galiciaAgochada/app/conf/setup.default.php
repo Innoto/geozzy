@@ -1,13 +1,5 @@
 <?php
 /*
-  Previamente se definen las siguientes constantes:
-
-  WEB_BASE_PATH - Apache DocumentRoot (en index.php)
-  PRJ_BASE_PATH - Project Path (normalmente contiene app/ httpdocs/ formFiles/) (en index.php)
-  APP_BASE_PATH - App Path (en index.php)
-  IS_DEVEL_ENV  - Indica si estamos en el entorno de desarrollo (en setup.php)
-
-
   Normas de estilo:
 
   Nombres:
@@ -33,12 +25,6 @@
 
 
 //
-// Ficheros temporales
-//
-define( 'APP_TMP_PATH', APP_BASE_PATH.'/tmp' );
-
-
-//
 // Dates
 //
 cogumeloSetSetupValue( 'date:timezone', 'Europe/Madrid');
@@ -47,7 +33,7 @@ cogumeloSetSetupValue( 'date:timezone', 'Europe/Madrid');
 //
 //  memcached
 //
-require_once( APP_BASE_PATH.'/conf/memcached.setup.php' );  //memcached options
+require_once( cogumeloGetSetupValue( 'setup:appBasePath' ).'/conf/memcached.setup.php' );  //memcached options
 
 
 //
@@ -67,26 +53,26 @@ define( 'SITE_URL_CURRENT', SITE_PROTOCOL == 'http' ? SITE_URL_HTTP : SITE_URL_H
 //  Templates
 //
 // Constante usada directamente por Smarty - No eliminar!!!
-define( 'SMARTY_DIR', WEB_BASE_PATH.'/vendor/composer/smarty/smarty/libs/' );
+define( 'SMARTY_DIR', cogumeloGetSetupValue( 'setup:webBasePath' ).'/vendor/composer/smarty/smarty/libs/' );
 cogumeloSetSetupValue( 'smarty', array(
-  'configPath' => APP_BASE_PATH.'/conf/smarty',
-  'compilePath' => APP_TMP_PATH.'/templates_c',
-  'cachePath' => APP_TMP_PATH.'/cache',
-  'tmpPath' => APP_TMP_PATH.'/tpl'
+  'configPath' => cogumeloGetSetupValue( 'setup:appBasePath' ).'/conf/smarty',
+  'compilePath' => cogumeloGetSetupValue( 'setup:appTmpPath' ).'/templates_c',
+  'cachePath' => cogumeloGetSetupValue( 'setup:appTmpPath' ).'/cache',
+  'tmpPath' => cogumeloGetSetupValue( 'setup:appTmpPath' ).'/tpl'
 ));
 
 
 //
 // Backups
 //
-cogumeloSetSetupValue( 'script:backupPath', APP_BASE_PATH.'/backups/' ); //backups directory
+cogumeloSetSetupValue( 'script:backupPath', cogumeloGetSetupValue( 'setup:appBasePath' ).'/backups/' ); //backups directory
 
 
 //
 //  Logs
 //
 cogumeloSetSetupValue( 'logs', array(
-  'path' => APP_BASE_PATH.'/log', // log files directory
+  'path' => cogumeloGetSetupValue( 'setup:appBasePath' ).'/log', // log files directory
   'rawSql' => false, // Log RAW all SQL ¡WARNING! application passwords will dump into log files
   'debug' => true, // Set Debug mode to log debug messages on log
   'error' => true // Display errors on screen. If you use devel module, you might disable it
@@ -126,7 +112,7 @@ cogumeloSetSetupValue( 'mail', array(
 //
 cogumeloSetSetupValue( 'mod:form', array(
   'cssPrefix' => 'cgmMForm',
-  'tmpPath' => APP_TMP_PATH.'/formFiles'
+  'tmpPath' => cogumeloGetSetupValue( 'setup:appTmpPath' ).'/formFiles'
 ));
 
 
@@ -134,8 +120,8 @@ cogumeloSetSetupValue( 'mod:form', array(
 //  Filedata Mod
 //
 cogumeloSetSetupValue( 'mod:filedata', array(
-  'filePath' => PRJ_BASE_PATH.'/formFiles',
-  'cachePath' => WEB_BASE_PATH.'/cgmlImg'
+  'filePath' => cogumeloGetSetupValue( 'setup:prjBasePath' ).'/formFiles',
+  'cachePath' => cogumeloGetSetupValue( 'setup:webBasePath' ).'/cgmlImg'
 ));
 include 'filedataImageProfiles.php';
 
@@ -151,7 +137,7 @@ ini_set( 'session.cookie_lifetime', 365*24*60*60 ); // 1 year
 ini_set( 'session.gc_probability', 1 );
 ini_set( 'session.gc_divisor', 100 );
 // Our own session save path
-cogumeloSetSetupValue( 'session:savePath', APP_BASE_PATH . '/php-sessions' );
+cogumeloSetSetupValue( 'session:savePath', cogumeloGetSetupValue( 'setup:appBasePath' ).'/php-sessions' );
 session_save_path( cogumeloGetSetupValue( 'session:savePath' ) );
 
 

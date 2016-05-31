@@ -23,8 +23,8 @@ class AdminViewMaster extends View
       $this->langAvailable = array_keys( $langsConf );
     }
 
-    if( class_exists( 'bi' ) ) {
-      bi::autoIncludes();
+    if( class_exists( 'adminBI' ) ) {
+      adminBI::autoIncludes();
     }
   }
 
@@ -86,7 +86,7 @@ class AdminViewMaster extends View
     $topicPermission = $useraccesscontrol->checkPermissions('topic:list', 'admin:full');
     $this->template->assign( 'topicPermission' , $topicPermission);
 
-    if( class_exists( 'bi' ) ) {
+    if( class_exists( 'adminBI' ) ) {
       $this->template->assign( 'biInclude' , true);
     }
     //

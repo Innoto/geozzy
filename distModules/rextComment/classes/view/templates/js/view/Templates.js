@@ -24,7 +24,7 @@ geozzy.commentComponents.commentFormOkTemplate = ''+
 geozzy.commentComponents.listCommentTemplate = ''+
 '<div class="commentListContainer">'+
   '<div class="commentList"><%= comments %></div>'+
-  '<% if(commentsToShow){ %> <div class="commentShowMore">'+__("See all comments")+'</div> <% } %>'+
+  '<% if(commentsToShow){ %> <div class="commentShowMore">'+__("See all comments")+'<i class="fa fa-caret-down" aria-hidden="true"></i></div> <% } %>'+
 '</div>';
 
 geozzy.commentComponents.listCommentItemTemplate = ''+
@@ -41,7 +41,7 @@ geozzy.commentComponents.listCommentItemTemplate = ''+
     '}  %>'+
   '</div>'+
   '<% } %>'+
-  '<div class="commentInfo"><span><%- commentUserName %></span>  <%- commentTimeCreation %></div>'+
+  '<div class="commentInfo"><span><%- commentUserName %></span>  <%- commentTimeCreation %> </div>'+
 '</div>';
 
 geozzy.commentComponents.adminListCommentTemplate = ''+
@@ -72,7 +72,9 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
         '<li><button class="btn btn-default deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
       '</ul>'+
     '</div>'+
-    '<div class="col-md-12"><span class="commentTypeLabel">'+__("Comment")+'</span><span class="commentStars">'+
+    '<div class="col-md-12"><span class="commentTypeLabel">'+__("Comment")+'</span>'+
+      '<% if(commentRate != 0){ %>'+
+      '<span class="commentStars">'+
       '<% for (var i = 0; i < 5; i++) { '+
         'if(commentRate > i){'+
           '%><i class="fa fa-star" aria-hidden="true"></i><%'+
@@ -80,6 +82,7 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
           '%><i class="fa fa-star-o" aria-hidden="true"></i><%'+
         '}'+
       '}  %> </span>'+
+      '<% } %>'+
     '</div>'+
     '<div class="col-md-12 commentContent"><%- commentContent %></div>'+
   '</div>'+

@@ -10,7 +10,11 @@
   }
 
   .titleBar{
-    
+    .averageRate{
+      margin-top: 8px;
+      text-align: right;
+      .star{ margin: 0 10px; font-size: 18px; color: @gzzColor-star; }
+    }
   }
 
   .resource{
@@ -475,16 +479,51 @@
     }
 
     .commentSec{
+      .rExtCommentBar{
+        margin-top: 30px;
+        border-top: 1px solid @gzzColor-bck-9;
+        border-bottom: 1px solid @gzzColor-bck-9;
+        padding: 15px 0;
+        h4{ float: left; margin:0; margin-top: 5px;}
+        .averageRate{
+          float:left;
+          width: 300px;
+          margin-top: 5px;
+          .star{ margin: 0 10px; float:left; font-size: 18px; color: @gzzColor-star; }
+          .number{ float: left; margin-top: 3px;}
+        }
+        .commentButtons{
+          float: right;
+          button{
+            background: @gzzColor-bck-8;
+            border:0;
+            font-size: 14px;
+            &:hover{
+              background: @gzzColor-bck-7;
+            }
+            i{ margin-right: 5px; }
+          }
+        }
+      }
       .rExtCommentList{
         .commentItem{
           padding: 20px 0;
-          border-bottom: 1px solid @gzzColor-bck-4;
+          border-bottom: 1px dashed @gzzColor-bck-7;
           .commentContent{ margin-bottom: 10px;}
-          .commentRate{ font-size:13px; color:#fed671; }
+          .commentRate{ font-size:13px; color:@gzzColor-star; }
           .commentInfo{
             font-size: 13px;
             span{ font-weight: 600; }
           }
+        }
+        .commentShowMore{
+          margin-top: 30px;
+          border-top: 1px solid @gzzColor-bck-9;
+          border-bottom: 1px solid @gzzColor-bck-9;
+          padding: 15px 0;
+          font-weight: 600;
+          cursor: pointer;
+          i{ margin-left: 10px; font-size: 16px; }
         }
       }//.rExtCommentList
     }//.commentSec
