@@ -7,7 +7,7 @@
 
 <script type="text/template" id="recommendedListTemplate">
 
-    <div class="item">
+    <div class="item isResource" data-related-resource-id="{$rExt.id}">
       <div class="itemImage">
 
           <img class="img-responsive" alt="<%- title %>" src="/cgmlImg/<%- image %>/fast_cut/<%- image %>.jpg" data-description="<%- title %>">

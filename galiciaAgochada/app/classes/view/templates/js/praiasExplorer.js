@@ -124,6 +124,7 @@
 
       that.infowindow = new geozzy.explorerComponents.mapInfoView();
       that.listaMini = new geozzy.explorerComponents.activeListTinyView({ el:$('.explorer-container-gallery')});
+      that.listaRecomendados =  new geozzy.explorerComponents.reccommendedListView();
       that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
           clusterize:false,
@@ -148,6 +149,7 @@
 
 
       that.explorer.addDisplay( that.listaMini );
+      that.explorer.addDisplay( that.listaRecomendados );
       that.explorer.addDisplay( that.mapa );
       that.explorer.addDisplay( that.infowindow );
 

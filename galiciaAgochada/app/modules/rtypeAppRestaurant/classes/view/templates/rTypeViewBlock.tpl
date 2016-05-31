@@ -172,6 +172,12 @@
     {/if}
   </section>
 
+  {if isset($rextReccommendedBlock)}
+    <section class="reccommendedSec container gzSection">
+      {$rextReccommendedBlock}
+    </section>
+  {/if}
+
   {if isset($multimediaGalleries)}
     <section class="multimediaSec container gzSection">
       {$multimediaGalleries}

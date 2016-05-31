@@ -7,7 +7,7 @@ class rtypeAppHotel extends Module {
   public $name = 'rtypeAppHotel';
   public $version = '1.0';
   public $rext = array( 'rextAccommodation', 'rextContact', 'rextSocialNetwork', 'rextAppZona',
-    'rextBI', 'rextMap', 'rextMapDirections', 'rextComment', 'rextFavourite' );
+    'rextBI', 'rextMap', 'rextMapDirections', 'rextComment', 'rextReccommended', 'rextFavourite' );
 
   public $dependences = array();
 

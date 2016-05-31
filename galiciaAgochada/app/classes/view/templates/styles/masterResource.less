@@ -166,12 +166,13 @@
 
             .share-open{
               padding:4px 6px;
-              background-color:#fff;
+              background-color:@gzzColor-bck-1;
               border:1px solid #777;
               border-radius:3px;
               position:absolute;
               top:8px;
               right:0px;
+              z-index:1;
 
               .share-net {
                 padding:2px;
@@ -533,6 +534,8 @@
   .rtypeAppHotel{
     .reservationBtb{
       background-color: @gzzColor-aloxamento;
+      .showReservation, .showAverageRate{color:@gzzColor-text-light;}
+      a{color:@gzzColor-text-light;}
     }
     .contentSec{
       .taxStarsBox{
@@ -565,7 +568,8 @@
   .rtypeAppRestaurant{
     .reservationBtb{
       background-color: @gzzColor-xantares;
-      .showReservation{color:@gzzColor-bck-1;}
+      .showReservation, .showAverageRate{color:@gzzColor-text-light;}
+      a{color:@gzzColor-text-light;}
     }
     .reservationBtb:hover{
       background-color: @gzzColor-xantares + #111111;
@@ -597,14 +601,24 @@
         .accordion-group{
           margin-bottom:10px;
           padding:10px;
-          a{color:@gzzColor-festas;}
-          .date{
-            text-transform: uppercase;
-            .arrow{font-size:22px;float:left;}
-            .dateContent{margin-left:15px;}
+          background-color:@gzzColor-bck-2;
+
+          .accordion-heading{
+            margin-left:0px;
+            a.date{
+              color:@gzzColor-text-dark-2;
+              i{color:@gzzColor-festas;}
+              text-transform: uppercase;
+              .arrow{font-size:26px;float:left;}
+              .dateContent{margin-left:20px;}
+            }
           }
 
+
           .extendedData{
+            background-color:@gzzColor-bck-1;
+            padding:10px;
+            margin-top:10px;
             .eventDescription{
               padding:0px 20px;
               text-align:justify;
@@ -631,8 +645,8 @@
         .accordion-group{
           margin-bottom:10px;
           padding:10px;
-          a{color:@gzzColor-festas;}
-          .date{
+          a.date{
+            i{color:@gzzColor-festas;}
             text-transform: uppercase;
             .arrow{font-size:22px;float:left;}
             .dateContent{margin-left:15px;}
@@ -661,7 +675,6 @@
       }
     }
   }
-
 
   .rtypeAppEspazoNatural{
     .destResourceMoreInfo a{
