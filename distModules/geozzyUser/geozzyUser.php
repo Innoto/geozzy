@@ -55,8 +55,8 @@ class geozzyUser extends Module
       'idName' => 'user',
       'rType' => 'rtypePage',
       'title' => array(
-        'en' => 'Usuario',
-        'es' => 'User',
+        'en' => 'User',
+        'es' => 'Usuario',
         'gl' => 'Usuario'
       ),
       'shortDescription' => array(),
