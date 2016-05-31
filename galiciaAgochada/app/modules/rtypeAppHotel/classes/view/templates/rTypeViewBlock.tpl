@@ -141,14 +141,13 @@
 
       <div class="taxIcons col-xs-12 col-sm-10">
         {foreach $allServices as $termId => $term}
-
             <div class="icon clearfix {if !is_array($res.data.accommodationServices) || !$termId|array_key_exists:$res.data.accommodationServices}light{/if}">
               <img alt="{$term.name}" title="{$term.name}" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
             </div>
         {/foreach}
 
         {foreach $allFacilities as $termId => $term}
-            <div class="icon clearfix {if !is_array($res.data.accommodationServices) || !$termId|array_key_exists:$res.data.accommodationFacilities}light{/if}">
+            <div class="icon clearfix {if !is_array($res.data.accommodationFacilities) || !$termId|array_key_exists:$res.data.accommodationFacilities}light{/if}">
               <img alt="{$term.name}" title="{$term.name}" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
             </div>
         {/foreach}
@@ -212,6 +211,12 @@
   {if isset($multimediaGalleries)}
     <section class="multimediaSec container gzSection">
       {$multimediaGalleries}
+    </section>
+  {/if}
+
+  {if isset($rextReccommendedBlock)}
+    <section class="reccommendedSec container gzSection">
+      {$rextReccommendedBlock}
     </section>
   {/if}
 
