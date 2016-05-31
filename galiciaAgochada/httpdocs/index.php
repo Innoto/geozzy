@@ -1,9 +1,11 @@
 <?php
 
 // Project location
-define( 'WEB_BASE_PATH', getcwd() );
-define( 'PRJ_BASE_PATH', realpath( WEB_BASE_PATH.'/..' ) );
-define( 'APP_BASE_PATH', PRJ_BASE_PATH.'/app' );
+define( 'WEB_BASE_PATH', getcwd() ); // Apache DocumentRoot
+define( 'PRJ_BASE_PATH', realpath( WEB_BASE_PATH.'/..' ) ); // Project Path (normalmente contiene app/ httpdocs/ formFiles/)
+define( 'APP_BASE_PATH', PRJ_BASE_PATH.'/app' ); // App Path
+
+
 
 // Include cogumelo core Location
 set_include_path( '.:'.APP_BASE_PATH );
