@@ -7,6 +7,7 @@
   APP_BASE_PATH - App Path (en index.php)
 */
 
+define( 'APP_TMP_PATH', APP_BASE_PATH.'/tmp' ); // Ficheros temporales
 
 require_once( 'setup.utils.php' );
 
@@ -16,6 +17,7 @@ define( 'IS_DEVEL_ENV', !file_exists( APP_BASE_PATH . '/conf/setup.final.php' ) 
 cogumeloSetSetupValue( 'setup:webBasePath', WEB_BASE_PATH );
 cogumeloSetSetupValue( 'setup:prjBasePath', PRJ_BASE_PATH );
 cogumeloSetSetupValue( 'setup:appBasePath', APP_BASE_PATH );
+cogumeloSetSetupValue( 'setup:appTmpPath', APP_TMP_PATH );
 cogumeloSetSetupValue( 'setup:isDevelEnv', IS_DEVEL_ENV );
 
 // Configuracion inicial

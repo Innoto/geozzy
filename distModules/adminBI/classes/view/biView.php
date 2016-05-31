@@ -1,7 +1,7 @@
 <?php
 Cogumelo::load('coreView/View.php');
 
-bi::autoIncludes();
+adminBI::autoIncludes();
 
 
 
@@ -18,7 +18,7 @@ class biView extends View
 
   public function dashboard() {
     $template = new Template( $this->baseDir );
-    $template->setTpl( 'bi.tpl', 'bi' );
+    $template->setTpl( 'bi.tpl', 'adminBI' );
     return $template;
   }
 
