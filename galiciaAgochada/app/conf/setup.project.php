@@ -287,6 +287,11 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
       'default' => '/favoritos/',
       'gl' => '/favoritos/',
       'en' => '/favourites/'
+    ),
+    'rtypeFesta' => array(
+      'default' => '/fiestas/',
+      'gl' => '/festas/',
+      'en' => '/parties/'
     )
   )
 );

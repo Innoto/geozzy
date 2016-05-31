@@ -12,14 +12,15 @@
 
   {foreach $eventsByDate as $k=>$eventDate}
     <div class="event accordion-group">
-      <div class="accordion-heading row">
+      <div class="accordion-heading">
         <a class="date accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href=".ele{$eventDate.id}">
-          <i class="arrow fa fa-caret-right" aria-hidden="true"></i>
+          <i class="arrow arrow-right fa fa-caret-right" aria-hidden="true"></i>
+          <i class="arrow arrow-down fa fa-caret-down" aria-hidden="true"></i>
           <div class="dateContent">
             {$eventDate.formatedDate.l}, {$eventDate.formatedDate.j} de {$eventDate.formatedDate.F}
           </div>
         </a>
-      </div><hr/>
+      </div>
       <div class="ele{$eventDate.id} accordion-body collapse {if $eventDate@first}in{/if}">
         {foreach $eventDate.data as $i => $elm}
         <div class="extendedData accordion-inner row">
@@ -36,12 +37,12 @@
           </div>
           <img class="col-md-5" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/basicEvent/{$elm.resource.image}.jpg"/>
 
-        </div><hr/>
+        </div>
         {/foreach}
       </div>
     </div>
   {/foreach}
 
-{/if}  
+{/if}
 
 </div>
