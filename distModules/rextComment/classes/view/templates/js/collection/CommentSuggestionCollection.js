@@ -6,7 +6,7 @@ geozzy.commentComponents.CommentSuggestionCollection = Backbone.Collection.exten
     this.resource = options.resource;
   },
   url: function() {
-    return '/api/admin/commentsuggestion/list/resource/'+this.resource;
+    return '/api/admin/commentsuggestion/resource/'+this.resource;
   },
   model: geozzy.commentComponents.CommentModel,
   sortKey: 'timeCreation',
@@ -14,9 +14,7 @@ geozzy.commentComponents.CommentSuggestionCollection = Backbone.Collection.exten
 
   search: function( opts ){
     var result = this.where( opts );
-
     var resultCollection = new geozzy.commentComponents.CommentSuggestionCollection(result, {resource: this.resource});
-
     return resultCollection;
   },
   comparator: function(item){
@@ -25,5 +23,8 @@ geozzy.commentComponents.CommentSuggestionCollection = Backbone.Collection.exten
   sortByField: function(fieldName) {
     this.sortKey = fieldName;
 		this.sort();
+  },
+  editableUrl: function(){
+    this.url = '/api/admin/commentsuggestion/resource/'+this.resource+'/comment/';
   }
 });

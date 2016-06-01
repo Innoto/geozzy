@@ -11,7 +11,11 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
   adminListSuggestionItemTemplate : false,
 
   events: {
-    "change .typeComment": "changeCType"
+    "change .typeComment": "changeCType",
+    "click .commentItem .deleteComment": "deleteComment",
+    "click .commentItem .commentPublished": "commentPublished",
+    "click .commentItem .greatSuggest": "greatSuggest",
+    "click .commentItem .irrelevantSuggest": "irrelevantSuggest"
   },
 
   initialize: function( idResource ) {
@@ -43,6 +47,7 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
 
     _.each( commentsFiltered.toJSON() , function(item){
       data = {
+        commentId: item.id,
         commentContent: item.content,
         commentRate: item.rate/20,
         commentUserName: false,
@@ -78,6 +83,61 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
     var that = this;
     that.commentType = that.$el.find('.typeComment').val();
     that.render();
-  }
+  },
 
+  deleteComment: function( e ){
+    var that = this;
+    var r = confirm(__("Are you sure you want to delete this comment?"));
+    if (r == true) {
+      var commentID = $(e.target).closest('.commentItem').attr('data-rextcomment-id');
+      var comment = false;
+      if( commentID ){
+        that.comments.editableUrl();
+        var comment = that.comments.get(commentID);
+        comment.destroy({success: function(model, response) {
+          that.render();
+        }});
+      }
+    }
+  },
+  commentPublished: function( e ){
+    var that = this;
+
+    var commentID = $(e.target).closest('.commentItem').attr('data-rextcomment-id');
+    that.comments.editableUrl();
+    var comment = that.comments.get(commentID);
+    if( $(e.target).is(':checked') ){
+      comment.set("published",'1')
+    }else{
+      comment.set("published",'0')
+    }
+    comment.save();
+
+  },
+  greatSuggest: function( e ){
+    var that = this;
+    var r = confirm(__("Are you sure you want to try this suggestion?"));
+    if (r == true) {
+      var commentID = $(e.target).closest('.commentItem').attr('data-rextcomment-id');
+
+      that.comments.editableUrl();
+      var comment = that.comments.get(commentID);
+      comment.set("statusIdName",'commentValidated');
+
+      comment.save();
+    }
+  },
+  irrelevantSuggest: function( e ){
+    var that = this;
+    var r = confirm(__("Are you sure you want to mark as irrelevant this suggestion?"));
+    if (r == true) {
+      var commentID = $(e.target).closest('.commentItem').attr('data-rextcomment-id');
+
+      that.comments.editableUrl();
+      var comment = that.comments.get(commentID);
+      comment.set("statusIdName",'commentDenied');
+
+      comment.save();
+    }
+  }
 });

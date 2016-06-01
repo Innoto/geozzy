@@ -48,7 +48,7 @@ geozzy.commentComponents.adminListCommentTemplate = ''+
 '<div class="commentList"><%= comments %></div>';
 
 geozzy.commentComponents.adminListCommentItemTemplate = ''+
-'<div class="commentItem">'+
+'<div class="commentItem" data-rextcomment-id="<%- commentId %>">'+
   '<div class="row">'+
     '<div class="col-md-8">'+
       '<div class="commentTimeCreation"><%- commentTimeCreation %></div>'+
@@ -62,12 +62,10 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
     '<div class="col-md-4">'+
       '<ul class="commentOptions clearfix pull-right">'+
         '<li>'+
-          '<label><input type="checkbox" class="commentPublished switchery" checked="<% if(commentPublished === true){'+
+          '<label><input type="checkbox" class="commentPublished switchery" <% if(commentPublished === 1){'+
             '%>checked<%'+
-          '}else{'+
-            '%>false<%'+
           '} %>'+
-          '" value="1" name="commentPublished"><span class="labelText">'+__("Published")+'</span></label>'+
+          ' value="1" name="commentPublished"><span class="labelText">'+__("Published")+'</span></label>'+
         '</li>'+
         '<li><button class="btn btn-default deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
       '</ul>'+
@@ -89,7 +87,7 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
 '</div>';
 
 geozzy.commentComponents.adminListSuggestionItemTemplate = ''+
-'<div class="commentItem">'+
+'<div class="commentItem" data-rextcomment-id="<%- commentId %>">'+
   '<div class="row">'+
     '<div class="col-md-8">'+
       '<div class="commentTimeCreation"><%- commentTimeCreation %></div>'+
