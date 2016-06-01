@@ -73,7 +73,7 @@ var geozzy = geozzy || {};
 
 
 geozzy.rExtMapDirectionsData = {
-  title: '{$rExt.data.title|escape:'quotes'}',
+  title: '{$rExt.data.title|escape:'javascript'}',
   lat: {$rExt.data.locLat},
   lng: {$rExt.data.locLon},
   zoom: {$rExt.data.defaultZoom},
