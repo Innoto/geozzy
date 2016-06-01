@@ -248,4 +248,24 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
   }
 
 
+  public function getFavouritesUrl( $favUser ) {
+    $favsUrl = false;
+
+    $favModel = new FavouritesListViewModel();
+    $favList = $favModel->listItems( array( 'filters' => array( 'user' => $favUser ) ) );
+    $favObj = ( $favList ) ? $favList->fetch() : false;
+    if( $favObj ) {
+      $favsId = $favObj->getter('id');
+
+      geozzy::load( 'controller/ResourceController.php' );
+      $resCtrl = new ResourceController();
+
+      $favsUrl = $resCtrl->getUrlAlias( $favsId );
+    }
+
+    return $favsUrl;
+  }
+
+
+
 } // class RExtFavouriteController

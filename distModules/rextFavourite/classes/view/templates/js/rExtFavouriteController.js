@@ -119,6 +119,22 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     status = $favField.attr( 'data-favourite-status' );
     return( status );
   },
+  gotoFavouritesPage: function gotoFavouritesPage() {
+    var that = this;
+
+    var formData = new FormData();
+    formData.append( 'cmd', 'getFavouritesUrl' );
+    $.ajax({
+      url: '/api/favourites', type: 'POST',
+      data: formData, cache: false, contentType: false, processData: false,
+      success: function getFavouritesUrlSuccess( $jsonData, $textStatus, $jqXHR ) {
+        if ( $jsonData.result === 'ok' ) {
+          console.log( $jsonData.status );
+          window.location = window.location.protocol+'//'+window.location.host+$jsonData.status;
+        }
+      }
+    });
+  },
   eventClick: function eventClick( event ) {
     event.stopPropagation();
     geozzy.rExtFavouriteController.changeStatus( $( this ).data( 'favouriteResource' ) );
@@ -126,6 +142,15 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
   setBinds: function setBinds() {
     $('.rExtFavourite[data-favourite-bind!="1"]').attr( 'data-favourite-bind', 1 ).on(
       'click', geozzy.rExtFavouriteController.eventClick );
+
+    $('.rExtFavouriteUserLink').css( 'cursor', 'pointer' ).on(
+      'click', function() {
+        geozzy.userSessionInstance.userControlAccess( function() {
+          geozzy.rExtFavouriteController.gotoFavouritesPage();
+        });
+      }
+    );
+
   },
   setBindsAndGetStatus: function setBindsAndGetStatus() {
     var that = this;

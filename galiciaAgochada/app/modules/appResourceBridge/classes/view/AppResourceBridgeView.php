@@ -8,6 +8,16 @@ geozzy::load( 'controller/ResourceController.php' );
 class AppResourceBridgeView extends MasterView {
 
   public function __construct( $baseDir ) {
+
+    /*
+    TODO: Esto farase no modulo user
+    */
+    $useraccesscontrol = new UserAccessController();
+    $user = $useraccesscontrol->getSessiondata();
+    Cogumelo::setSetupValue( 'user:session', $user['data'] );
+
+
+
     parent::__construct( $baseDir );
   }
 

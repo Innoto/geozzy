@@ -228,8 +228,8 @@ cogumeloSetSetupValue( 'i18n', array(
 //
 cogumeloSetSetupValue( 'publicConf:globalVars', array( 'C_LANG', 'C_SESSION_ID' ) );
 
-cogumeloSetSetupValue( 'publicConf:setupFields',
-  array( 'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone' ) );
+cogumeloSetSetupValue( 'publicConf:setupFields', array( 'session:lifetime', 'lang:available',
+  'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone', 'user:session:id' ) );
 
 cogumeloSetSetupValue( 'publicConf:vars:langDefault', cogumeloGetSetupValue( 'lang:default' ) );
 cogumeloSetSetupValue( 'publicConf:vars:langAvailableIds', array_keys( cogumeloGetSetupValue( 'lang:available' ) ) );
