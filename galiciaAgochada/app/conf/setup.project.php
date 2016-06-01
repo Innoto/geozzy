@@ -110,7 +110,8 @@ $C_REXT_MODULES = array(
   'rextComment',
   'rextFavourite',
   'rextRoutes',
-  'rextReccommended'
+  'rextReccommended',
+  'rextAudioguide'
 );
 
 // resource Types
@@ -292,6 +293,11 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
       'default' => '/fiestas/',
       'gl' => '/festas/',
       'en' => '/parties/'
+    ),
+    'rtypeAppRuta' => array(
+      'default' => '/rutas/',
+      'gl' => '/rutas/',
+      'en' => '/routes/'
     )
   )
 );
