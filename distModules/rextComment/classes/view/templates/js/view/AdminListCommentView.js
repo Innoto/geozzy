@@ -52,6 +52,7 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
         commentRate: item.rate/20,
         commentUserName: false,
         commentTimeCreation: item.timeCreation,
+        commentStatusIdName: item.statusIdName,
         commentPublished: item.published
       }
       if(item.userName){
@@ -118,7 +119,10 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
     var that = this;
     var r = confirm(__("Are you sure you want to try this suggestion?"));
     if (r == true) {
-      var commentID = $(e.target).closest('.commentItem').attr('data-rextcomment-id');
+      var commentID = $(e.currentTarget).closest('.commentItem').attr('data-rextcomment-id');
+
+      $(e.currentTarget).closest('.suggestOptions').find('button').removeClass('selected');
+      $(e.currentTarget).addClass('selected');
 
       that.comments.editableUrl();
       var comment = that.comments.get(commentID);
@@ -131,7 +135,10 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
     var that = this;
     var r = confirm(__("Are you sure you want to mark as irrelevant this suggestion?"));
     if (r == true) {
-      var commentID = $(e.target).closest('.commentItem').attr('data-rextcomment-id');
+      var commentID = $(e.currentTarget).closest('.commentItem').attr('data-rextcomment-id');
+
+      $(e.currentTarget).closest('.suggestOptions').find('button').removeClass('selected');
+      $(e.currentTarget).addClass('selected');
 
       that.comments.editableUrl();
       var comment = that.comments.get(commentID);

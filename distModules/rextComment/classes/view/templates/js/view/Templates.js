@@ -100,8 +100,8 @@ geozzy.commentComponents.adminListSuggestionItemTemplate = ''+
     '</div>'+
     '<div class="col-md-4">'+
       '<ul class="suggestOptions clearfix pull-right">'+
-        '<li><button class="btn btn-primary greatSuggest"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></li>'+
-        '<li><button class="btn btn-danger irrelevantSuggest"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-primary greatSuggest <% if(commentStatusIdName == "commentValidated"){ %> selected <% } %>"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-danger irrelevantSuggest <% if(commentStatusIdName == "commentDenied"){ %> selected <% } %>"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></li>'+
         '<li><button class="btn btn-default deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
       '</ul>'+
     '</div>'+

@@ -262,7 +262,7 @@ class CommentAdminAPIView extends View
             }
             $suggestStatus = $valueobject->getterDependence('status');
             if($suggestStatus){
-              $allData['statusIdName'] = $suggestType[0]->getter('idName');
+              $allData['statusIdName'] = $suggestStatus[0]->getter('idName');
             }
 
             echo $c.json_encode($allData);
