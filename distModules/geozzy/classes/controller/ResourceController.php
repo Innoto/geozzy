@@ -1239,6 +1239,30 @@ class ResourceController {
 
 
 
+  // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
+  public function getUrlAlias( $resId, $lang = false ) {
+    $urlAlias = false;
+
+    global $C_LANG; // Idioma actual, cogido de la url
+    $urlAliasModel = new UrlAliasModel();
+
+    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array(
+      'canonical' => 1,
+      'resource' => $resId,
+      'lang' => ( $lang ) ? $lang : $C_LANG
+    )));
+
+    $urlAliasObj = ( $urlAliasList ) ? $urlAliasList->fetch() : false;
+    if( $urlAliasObj ) {
+      $urlAlias = $lang.$urlAliasList->getter('urlFrom');
+    }
+    else {
+      $urlAlias = SITE_FOLDER.Cogumelo::getSetupValue( 'mod:geozzy:resource:directUrl' ).'/'.$resId;
+    }
+
+    return $urlAlias;
+  }
+
 
 
   /**
@@ -1297,7 +1321,7 @@ class ResourceController {
       }
       $prof = array_key_exists( 'profile', $param ) ? $param['profile'].'/' : '';
       $thumbImg = Cogumelo::getSetupValue('publicConf:vars:mediaHost').'cgmlImg/'.$param['imageId'].
-          '/'.$prof.$param['imageName'];
+        '/'.$prof.$param['imageName'];
     }
     else {
       if( array_key_exists( 'url', $param ) ){
@@ -1435,11 +1459,9 @@ class ResourceController {
         $template->assign( 'collectionResources', $collection );
         $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
         break;
+    }
 
-   }
-   return $template;
-
-
+    return $template;
   }
 
 
@@ -1451,24 +1473,6 @@ class ResourceController {
     $template->assign( 'multimediaAll', $multimedia );
     $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
     return $template;
-  }
-
-  // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
-  public function getUrlAlias( $resId, $lang = false ) {
-    $urlAliasModel = new UrlAliasModel();
-
-    if ($lang){
-      $langId = $lang;
-    }
-    else{
-      $langId = $this->actLang;
-    }
-    $urlAlias = false;
-    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'resource' => $resId, 'lang' => $langId ) ) )->fetch();
-    if ($urlAliasList){
-      $urlAlias = $langId.$urlAliasList->getter('urlFrom');
-    }
-    return $urlAlias;
   }
 
 }

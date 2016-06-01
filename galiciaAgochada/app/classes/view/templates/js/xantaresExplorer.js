@@ -155,9 +155,10 @@
           categories: that.eatAndDrinkTypes,
           tplElement: xantaresElementTpl
       });
+      that.listaRecomendados =  new geozzy.explorerComponents.reccommendedListView();
       that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
-          clusterize:true,
+          clusterize:false,
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
             var retObj = false;
@@ -202,6 +203,7 @@
 */
 
       that.explorer.addDisplay( that.listaMini );
+      that.explorer.addDisplay( that.listaRecomendados );
       that.explorer.addDisplay( that.mapa );
       //that.explorer2.addDisplay( that.mapa2 );
       that.explorer.addDisplay( that.infowindow );

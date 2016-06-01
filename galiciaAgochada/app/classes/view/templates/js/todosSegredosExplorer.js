@@ -122,6 +122,7 @@
           el:$('.explorer-container-gallery'),
           categories: that.eatAndDrinkTypes
       });
+      that.listaRecomendados =  new geozzy.explorerComponents.reccommendedListView();
       that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
           clusterize:true,
@@ -182,6 +183,7 @@
 
 
       that.explorer.addDisplay( that.listaMini );
+      that.explorer.addDisplay( that.listaRecomendados );
       that.explorer.addDisplay( that.mapa );
       that.explorer.addDisplay( that.infowindow );
 

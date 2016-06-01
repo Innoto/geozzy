@@ -82,7 +82,8 @@ class rextEventCollection extends Module {
   public $dependences = array();
 
   public $includesCommon = array(
-    'controller/RExtEventCollectionController.php'
+    'controller/RExtEventCollectionController.php',
+    'js/rextEventCollectionPublic.js',
   );
 
 

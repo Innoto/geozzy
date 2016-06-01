@@ -26,7 +26,7 @@ class RExtFavouriteAPIView extends View {
     }
 
     $this->apiParams = array( 'cmd', 'status' );
-    $this->apiCommands = array( 'setStatus', 'getStatus', 'listFavs', 'listResources', 'listUsers' );
+    $this->apiCommands = array( 'setStatus', 'getStatus', 'listFavs', 'listResources', 'listUsers', 'getFavouritesUrl' );
     $this->apiFilters = array( 'favouritesId', 'resourceId', 'userId' );
 
     parent::__construct( $base_dir ); // Esto lanza el accessCheck
@@ -76,6 +76,9 @@ class RExtFavouriteAPIView extends View {
         break;
       case 'listUsers':
         $result = $this->apiListUsers( $filters );
+        break;
+      case 'getFavouritesUrl':
+        $result = $this->getFavouritesUrl();
         break;
       default:
         $result = array(
@@ -297,6 +300,28 @@ class RExtFavouriteAPIView extends View {
           $result['user'][ $userId ]['favourites'][] = $favouritesId;
         }
       }
+    }
+    else {
+      $result = array(
+        'result' => 'error',
+        'msg' => 'Access denied'
+      );
+    }
+
+    return $result;
+  }
+
+
+  public function getFavouritesUrl() {
+    $result = null;
+
+    // Solo pueden acceder si $this->extendAPIAccess
+    if( $this->userId !== false ) {
+      $favCtrl = new RExtFavouriteController();
+      $result = array(
+        'result' => 'ok',
+        'status' => $favCtrl->getFavouritesUrl( $this->userId )
+      );
     }
     else {
       $result = array(

@@ -98,6 +98,13 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $templates['location']->assign( 'res', $formBlockInfo );
     $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
 
+    if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
+      $templates['comment'] = new Template();
+      $templates['comment']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+      $templates['comment']->assign( 'title', __( 'Comments' ) );
+      $templates['comment']->setFragment( 'blockContent', $formBlockInfo['ext']['rextComment']['template']['adminExt'] );
+    }
+
     // TEMPLATE panel localización
     $templates['contact'] = new Template();
     $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -134,6 +141,13 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $formFieldsNames = array( 'image' );
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
 
+/*
+    // TEMPLATE panel audioguide
+    $templates['audioguide'] = new Template();
+    $templates['audioguide']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['audioguide']->assign( 'title', __( 'Audioguide' ) );
+    $templates['audioguide']->setFragment( 'blockContent', $formBlockInfo['ext']['rextAudioguide']['template']['full'] );
+*/
     // TEMPLATE panel categorization
     $templates['categorization'] = new Template();
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -183,6 +197,9 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $templates['adminFull']->addToFragment( 'col8', $templates['contact'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['social'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
+    if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
+     $templates['adminFull']->addToFragment( 'col8', $templates['comment'] );
+    }
     $templates['adminFull']->addToFragment( 'col8', $templates['multimedia'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['collections'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['seo'] );
@@ -190,6 +207,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
     $templates['adminFull']->addToFragment( 'col4', $templates['image'] );
     $templates['adminFull']->addToFragment( 'col4', $templates['categorization'] );
+    //$templates['adminFull']->addToFragment( 'col4', $templates['audioguide'] );
     $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
 
 
@@ -279,6 +297,10 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
           }
         }
       }
+    }
+
+    if( class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts) ) {
+     $template->addToFragment( 'rextCommentAverageBlock', $viewBlockInfo['ext']['rextComment']['template']['headerAverage'] );
     }
 
     $viewBlockInfo['template']['full'] = $template;
