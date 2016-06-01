@@ -22,7 +22,8 @@
 
 
 {block name="socialMeta" append}
-  <meta property="og:title" content="{$res.data.headTitle}" />
+  {$l = $cogumelo.publicConf.C_LANG}
+  <meta property="og:title" content="{$res.data["title_$l"]}" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Galicia Agochada" />
   <meta property="og:image" content="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" />

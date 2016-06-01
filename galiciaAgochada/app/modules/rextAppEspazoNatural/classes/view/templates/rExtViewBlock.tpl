@@ -6,8 +6,9 @@
     <label>{t}Espazo natural type{/t}</label>
     {if isset($rExt.data.appEspazoNaturalType)}
     <ul>
+    {$l = $cogumelo.publicConf.C_LANG}
     {foreach from=$rExt.data.appEspazoNaturalType item=termInfo}
-      <li>{$termInfo.name_es} ({$termInfo.id})</li>
+      <li>{$termInfo["name_$l"} ({$termInfo.id})</li>
     {/foreach}
     </ul>
     {/if}

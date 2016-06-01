@@ -48,7 +48,7 @@ geozzy.commentComponents.adminListCommentTemplate = ''+
 '<div class="commentList"><%= comments %></div>';
 
 geozzy.commentComponents.adminListCommentItemTemplate = ''+
-'<div class="commentItem">'+
+'<div class="commentItem" data-rextcomment-id="<%- commentId %>">'+
   '<div class="row">'+
     '<div class="col-md-8">'+
       '<div class="commentTimeCreation"><%- commentTimeCreation %></div>'+
@@ -62,12 +62,10 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
     '<div class="col-md-4">'+
       '<ul class="commentOptions clearfix pull-right">'+
         '<li>'+
-          '<label><input type="checkbox" class="commentPublished switchery" checked="<% if(commentPublished === true){'+
+          '<label><input type="checkbox" class="commentPublished switchery" <% if(commentPublished === 1){'+
             '%>checked<%'+
-          '}else{'+
-            '%>false<%'+
           '} %>'+
-          '" value="1" name="commentPublished"><span class="labelText">'+__("Published")+'</span></label>'+
+          ' value="1" name="commentPublished"><span class="labelText">'+__("Published")+'</span></label>'+
         '</li>'+
         '<li><button class="btn btn-default deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
       '</ul>'+
@@ -89,7 +87,7 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
 '</div>';
 
 geozzy.commentComponents.adminListSuggestionItemTemplate = ''+
-'<div class="commentItem">'+
+'<div class="commentItem" data-rextcomment-id="<%- commentId %>">'+
   '<div class="row">'+
     '<div class="col-md-8">'+
       '<div class="commentTimeCreation"><%- commentTimeCreation %></div>'+
@@ -102,8 +100,8 @@ geozzy.commentComponents.adminListSuggestionItemTemplate = ''+
     '</div>'+
     '<div class="col-md-4">'+
       '<ul class="suggestOptions clearfix pull-right">'+
-        '<li><button class="btn btn-primary greatSuggest"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></li>'+
-        '<li><button class="btn btn-danger irrelevantSuggest"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-primary greatSuggest <% if(commentStatusIdName == "commentValidated"){ %> selected <% } %>"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button></li>'+
+        '<li><button class="btn btn-danger irrelevantSuggest <% if(commentStatusIdName == "commentDenied"){ %> selected <% } %>"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button></li>'+
         '<li><button class="btn btn-default deleteComment"><i class="fa fa-times" aria-hidden="true"></i></button></li>'+
       '</ul>'+
     '</div>'+
