@@ -4,6 +4,15 @@
 var geozzy = geozzy || {};
 
 geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
+  getUrlApi: function getUrlApi() {
+    var url = '/api/favourites';
+
+    if( typeof cogumelo.publicConf.C_LANG === 'string' ) {
+      url = '/'+cogumelo.publicConf.C_LANG+url;
+    }
+
+    return url;
+  },
   setStatus: function setStatus( resource, status ) {
     var that = this;
 
@@ -30,7 +39,7 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     formData.append( 'resourceId', that.resource );
     formData.append( 'status', that.status );
     $.ajax({
-      url: '/api/favourites', type: 'POST',
+      url: this.getUrlApi(), type: 'POST',
       data: formData, cache: false, contentType: false, processData: false,
       success: function setStatusSuccess( $jsonData, $textStatus, $jqXHR ) {
         if ( $jsonData.result === 'ok' ) {
@@ -81,7 +90,7 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     formData.append( 'cmd', 'getStatus' );
     formData.append( 'resourceId', that.resource );
     $.ajax({
-      url: '/api/favourites', type: 'POST',
+      url: this.getUrlApi(), type: 'POST',
       data: formData, cache: false, contentType: false, processData: false,
       success: function setStatusSuccess( $jsonData, $textStatus, $jqXHR ) {
         if ( $jsonData.result === 'ok' ) {
@@ -119,6 +128,22 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     status = $favField.attr( 'data-favourite-status' );
     return( status );
   },
+  gotoFavouritesPage: function gotoFavouritesPage() {
+    var that = this;
+
+    var formData = new FormData();
+    formData.append( 'cmd', 'getFavouritesUrl' );
+    $.ajax({
+      url: this.getUrlApi(), type: 'POST',
+      data: formData, cache: false, contentType: false, processData: false,
+      success: function getFavouritesUrlSuccess( $jsonData, $textStatus, $jqXHR ) {
+        if ( $jsonData.result === 'ok' ) {
+          // console.log( $jsonData.status );
+          window.location = window.location.protocol+'//'+window.location.host+$jsonData.status;
+        }
+      }
+    });
+  },
   eventClick: function eventClick( event ) {
     event.stopPropagation();
     geozzy.rExtFavouriteController.changeStatus( $( this ).data( 'favouriteResource' ) );
@@ -126,6 +151,15 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
   setBinds: function setBinds() {
     $('.rExtFavourite[data-favourite-bind!="1"]').attr( 'data-favourite-bind', 1 ).on(
       'click', geozzy.rExtFavouriteController.eventClick );
+
+    $('.rExtFavouriteUserLink').css( 'cursor', 'pointer' ).on(
+      'click', function() {
+        geozzy.userSessionInstance.userControlAccess( function() {
+          geozzy.rExtFavouriteController.gotoFavouritesPage();
+        });
+      }
+    );
+
   },
   setBindsAndGetStatus: function setBindsAndGetStatus() {
     var that = this;

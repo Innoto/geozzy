@@ -208,23 +208,28 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
       $colId = $this->getCollectionId( $favUser );
 
       if( !$colId ) {
-        // Hai que crear toda la estructura previa: res rtypeFavourites, col, rc
-        $favsResInfo = array( 'rTypeId' => $this->getFavRTypeId(), 'user' => $favUser,
-          'title' => 'Favs. user '.$favUser,
-          'title_'.Cogumelo::getSetupValue( 'lang:default' ) => 'Favs. user '.$favUser,
-          'published' => true, 'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) );
-        $resModel = new ResourceModel( $favsResInfo );
-        $resModel->save();
-        $resMainId = $resModel->getter('id');
+        // Hai que crear toda la estructura: resource rtypeFavourites, collection, resource-collection
+        $favsStructure = newFavouritesStructure( $favUser );
+        $colId = $favsStructure['colId'];
+        /*
+          // Hai que crear toda la estructura previa: res rtypeFavourites, col, rc
+          $favsResInfo = array( 'rTypeId' => $this->getFavRTypeId(), 'user' => $favUser,
+            'title' => 'Favs. user '.$favUser,
+            'title_'.Cogumelo::getSetupValue( 'lang:default' ) => 'Favs. user '.$favUser,
+            'published' => true, 'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) );
+          $resModel = new ResourceModel( $favsResInfo );
+          $resModel->save();
+          $resMainId = $resModel->getter('id');
 
-        $colModel = new CollectionModel( array( 'idName' => 'FAV_'.$favUser, 'collectionType' => 'favourites',
-          'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );
-        $colModel->save();
+          $colModel = new CollectionModel( array( 'idName' => 'FAV_'.$favUser, 'collectionType' => 'favourites',
+            'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );
+          $colModel->save();
 
-        $colId = $colModel->getter('id');
+          $colId = $colModel->getter('id');
 
-        $rcModel = new ResourceCollectionsModel( array( 'resource' => $resMainId, 'collection' => $colId ) );
-        $rcModel->save();
+          $rcModel = new ResourceCollectionsModel( array( 'resource' => $resMainId, 'collection' => $colId ) );
+          $rcModel->save();
+        */
       }
 
       $crModel = new CollectionResourcesModel( array( 'collection' => $colId, 'resource' => $resId,
@@ -233,9 +238,44 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
       // error_log( 'Creando crModel' );
     }
 
-
     return( $newStatus === $this->getStatus( $resId, $favUser ) );
   }
+
+
+  public function newFavouritesStructure( $favUser ) {
+    // Hai que crear toda la estructura: resource rtypeFavourites, collection, resource-collection
+
+    // Creamos el recurso de favoritos
+    $favsResInfo = array( 'rTypeId' => $this->getFavRTypeId(), 'user' => $favUser,
+      'title' => 'Favs. user '.$favUser,
+      'title_'.Cogumelo::getSetupValue( 'lang:default' ) => 'Favs. user '.$favUser,
+      'published' => true, 'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) );
+    $resModel = new ResourceModel( $favsResInfo );
+    $resModel->save();
+    $resMainId = $resModel->getter('id');
+
+    // Creamos las URLs del recurso de favoritos
+    geozzy::load( 'controller/ResourceController.php' );
+    $resCtrl = new ResourceController();
+    $allLang = Cogumelo::getSetupValue( 'lang:available' );
+    foreach( $allLang as $langKey => $langInfo ) {
+      $favsUrl = $resCtrl->getUrlByPattern( $resMainId, $langKey, $resMainId );
+      $resCtrl->setUrl( $resMainId, $langKey, $favsUrl );
+    }
+
+    // Creamos la coleccion de favoritos
+    $colModel = new CollectionModel( array( 'idName' => 'FAV_'.$favUser, 'collectionType' => 'favourites',
+      'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );
+    $colModel->save();
+    $colId = $colModel->getter('id');
+
+    // Relacionamos el recurso de favoritos y su coleccion
+    $rcModel = new ResourceCollectionsModel( array( 'resource' => $resMainId, 'collection' => $colId ) );
+    $rcModel->save();
+
+    return( array( 'favsId' => $resMainId, 'colId' => $colId ) );
+  }
+
 
 
   public function getFavRTypeId() {
@@ -246,6 +286,29 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
 
     return( $rTypeId );
   }
+
+
+  public function getFavouritesUrl( $favUser ) {
+    $favsUrl = false;
+
+    $favModel = new FavouritesListViewModel();
+    $favList = $favModel->listItems( array( 'filters' => array( 'user' => $favUser ) ) );
+    $favObj = ( $favList ) ? $favList->fetch() : false;
+    if( $favObj ) {
+      $favsId = $favObj->getter('id');
+    }
+    else {
+      $favsStructure = $this->newFavouritesStructure( $favUser );
+      $favsId = $favsStructure['favsId'];
+    }
+    geozzy::load( 'controller/ResourceController.php' );
+    $resCtrl = new ResourceController();
+
+    $favsUrl = $resCtrl->getUrlAlias( $favsId );
+
+    return $favsUrl;
+  }
+
 
 
 } // class RExtFavouriteController

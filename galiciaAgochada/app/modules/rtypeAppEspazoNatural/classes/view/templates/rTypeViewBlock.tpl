@@ -65,7 +65,8 @@
         {foreach from=$res.data.rextAppEspazoNaturalType item=termInfo}
           <li>
             <img src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$termInfo.icon}/typeIconMini/{$termInfo.icon}.svg" />
-            <div class="name">{$termInfo.name_es}</div>
+            {$l = $cogumelo.publicConf.C_LANG}
+            <div class="name">{$termInfo["name_$l"]}</div>
           </li>
           {break}
         {/foreach}

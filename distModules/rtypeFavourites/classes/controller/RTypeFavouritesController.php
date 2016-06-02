@@ -214,7 +214,7 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
       $favsData = array();
       while( $favObj = $favList->fetch() ) {
         $allData = $favObj->getAllData( 'onlydata' );
-        if( $allData['id'] !== null ) { // Por si hay col. pero no recursos
+        if( isset( $allData['id'] ) && $allData['id'] !== null ) { // Por si hay col. pero no recursos
           $favsData[] = $allData;
         }
       }

@@ -157,7 +157,7 @@ class rextComment extends Module
     $this->addUrlPatterns( '#^api/comment/list/(.*)$#', 'view:CommentAPIView::comments' );
     $this->addUrlPatterns( '#^api/comments.json$#', 'view:CommentAPIView::commentsJson' );
 
-    $this->addUrlPatterns( '#^api/admin/commentsuggestion/list/(.*)$#', 'view:CommentAdminAPIView::commentsSuggestions' );
+    $this->addUrlPatterns( '#^api/admin/commentsuggestion/(.*)$#', 'view:CommentAdminAPIView::commentsSuggestions' );
     $this->addUrlPatterns( '#^api/admin/adminCommentSuggestion.json$#', 'view:CommentAdminAPIView::commentsSuggestionsJson' );
   }
 

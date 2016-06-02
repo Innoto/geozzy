@@ -110,7 +110,8 @@ $C_REXT_MODULES = array(
   'rextComment',
   'rextFavourite',
   'rextRoutes',
-  'rextReccommended'
+  'rextReccommended',
+  'rextAudioguide'
 );
 
 // resource Types
@@ -227,8 +228,8 @@ cogumeloSetSetupValue( 'i18n', array(
 //
 cogumeloSetSetupValue( 'publicConf:globalVars', array( 'C_LANG', 'C_SESSION_ID' ) );
 
-cogumeloSetSetupValue( 'publicConf:setupFields',
-  array( 'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone' ) );
+cogumeloSetSetupValue( 'publicConf:setupFields', array( 'session:lifetime', 'lang:available',
+  'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone', 'user:session:id' ) );
 
 cogumeloSetSetupValue( 'publicConf:vars:langDefault', cogumeloGetSetupValue( 'lang:default' ) );
 cogumeloSetSetupValue( 'publicConf:vars:langAvailableIds', array_keys( cogumeloGetSetupValue( 'lang:available' ) ) );
@@ -287,6 +288,16 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
       'default' => '/favoritos/',
       'gl' => '/favoritos/',
       'en' => '/favourites/'
+    ),
+    'rtypeAppFesta' => array(
+      'default' => '/fiestas/',
+      'gl' => '/festas/',
+      'en' => '/parties/'
+    ),
+    'rtypeAppRuta' => array(
+      'default' => '/rutas/',
+      'gl' => '/rutas/',
+      'en' => '/routes/'
     )
   )
 );

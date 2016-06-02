@@ -1150,7 +1150,7 @@ class ResourceController {
     }
   }
 
-  public function getUrlByPattern( $resId, $langId = false ) {
+  public function getUrlByPattern( $resId, $langId = false, $title = false ) {
     // error_log( "getUrlByPattern( $resId, $langId )" );
     $urlAlias = '/'. Cogumelo::getSetupValue( 'mod:geozzy:resource:directUrl' ) .'/'.$resId;
 
@@ -1172,29 +1172,32 @@ class ResourceController {
       }
     }
 
-    $resData = $this->getResourceData( $resId );
-    if( $resData ) {
-      if( $langId ) {
-        if( isset( $resData[ 'title_'.$langId ] ) && $resData[ 'title_'.$langId ] !== '' ) {
-          $urlAlias = $pattern . strtolower( $resData[ 'title_'.$langId ] );
-        }
-        else {
-          if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
-            $urlAlias = $pattern . strtolower( $resData[ 'title_'.$this->defLang ] );
+    if( !$title ) {
+      if( $resData = $this->getResourceData( $resId ) ) {
+        if( $langId ) {
+          if( isset( $resData[ 'title_'.$langId ] ) && $resData[ 'title_'.$langId ] !== '' ) {
+            $title = strtolower( $resData[ 'title_'.$langId ] );
+          }
+          else {
+            if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
+              $title = strtolower( $resData[ 'title_'.$this->defLang ] );
+            }
           }
         }
-      }
-      else {
-        if( isset( $resData['title'] ) && $resData['title'] !== '' ) {
-          $urlAlias = $pattern . strtolower( $resData['title'] );
-        }
         else {
-          if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
-            $urlAlias = $pattern . strtolower( $resData[ 'title_'.$this->defLang ] );
+          if( isset( $resData['title'] ) && $resData['title'] !== '' ) {
+            $title = strtolower( $resData['title'] );
+          }
+          else {
+            if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
+              $title = strtolower( $resData[ 'title_'.$this->defLang ] );
+            }
           }
         }
       }
     }
+
+    $urlAlias = ( $title ) ? $pattern.$title : $pattern.$resId;
 
     return $this->sanitizeUrl( $urlAlias );
   }
@@ -1238,6 +1241,33 @@ class ResourceController {
   }
 
 
+  // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
+  public function getUrlAlias( $resId, $lang = false ) {
+    $urlAlias = false;
+
+    global $C_LANG; // Idioma actual, cogido de la url
+    if( !$lang ) {
+      $lang = $C_LANG;
+    }
+
+    $urlAliasModel = new UrlAliasModel();
+
+    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array(
+      'canonical' => 1,
+      'resource' => $resId,
+      'lang' => ( $lang ) ? $lang : $C_LANG
+    )));
+
+    $urlAliasObj = ( $urlAliasList ) ? $urlAliasList->fetch() : false;
+    if( $urlAliasObj ) {
+      $urlAlias = '/'.$lang.$urlAliasObj->getter('urlFrom');
+    }
+    else {
+      $urlAlias = '/'.$lang.'/'.Cogumelo::getSetupValue( 'mod:geozzy:resource:directUrl' ).'/'.$resId;
+    }
+
+    return $urlAlias;
+  }
 
 
 
@@ -1297,7 +1327,7 @@ class ResourceController {
       }
       $prof = array_key_exists( 'profile', $param ) ? $param['profile'].'/' : '';
       $thumbImg = Cogumelo::getSetupValue('publicConf:vars:mediaHost').'cgmlImg/'.$param['imageId'].
-          '/'.$prof.$param['imageName'];
+        '/'.$prof.$param['imageName'];
     }
     else {
       if( array_key_exists( 'url', $param ) ){
@@ -1435,11 +1465,9 @@ class ResourceController {
         $template->assign( 'collectionResources', $collection );
         $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
         break;
+    }
 
-   }
-   return $template;
-
-
+    return $template;
   }
 
 
@@ -1451,24 +1479,6 @@ class ResourceController {
     $template->assign( 'multimediaAll', $multimedia );
     $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
     return $template;
-  }
-
-  // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
-  public function getUrlAlias( $resId, $lang = false ) {
-    $urlAliasModel = new UrlAliasModel();
-
-    if ($lang){
-      $langId = $lang;
-    }
-    else{
-      $langId = $this->actLang;
-    }
-    $urlAlias = false;
-    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'resource' => $resId, 'lang' => $langId ) ) )->fetch();
-    if ($urlAliasList){
-      $urlAlias = $langId.$urlAliasList->getter('urlFrom');
-    }
-    return $urlAlias;
   }
 
 }

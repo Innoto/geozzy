@@ -32,23 +32,12 @@ class rextFavourite extends Module {
   public $includesCommon = array(
     'js/rExtFavouriteController.js',
     'controller/RExtFavouriteController.php',
-    'model/FavouritesViewModel.php',
-    /*
-    'js/router/UserRouter.js',
-    'js/model/UserSessionModel.js',
-    'js/view/Templates.js',
-    'js/view/UserLoginBoxView.js',
-    'js/view/UserRegisterBoxView.js',
-    'js/view/UserRegisterOkBoxView.js',
-    'js/UserSession.js',
-    'js/userSessionInstance.js'
-    */
+    'model/FavouritesViewModel.php'
   );
 
 
   public function __construct() {
-    $this->addUrlPatterns( '#^geozzyFavourite/command$#', 'view:RExtFavouriteView::execCommand' );
-
+    // $this->addUrlPatterns( '#^geozzyFavourite/command$#', 'view:RExtFavouriteView::execCommand' );
     $this->addUrlPatterns( '#^api/favourites$#', 'view:RExtFavouriteAPIView::apiQuery' );
     $this->addUrlPatterns( '#^api/favourites.json$#', 'view:RExtFavouriteAPIView::apiInfoJson' );
   }

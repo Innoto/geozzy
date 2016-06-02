@@ -14,6 +14,7 @@ geozzy.commentComponents.CommentModel = Backbone.Model.extend({
     suggestType: 0,
     suggestTypeName: '',
     status: 0,
+    statusIdName: '',
     anonymousName: '',
     anonymousEmail: '',
     user: 0,
