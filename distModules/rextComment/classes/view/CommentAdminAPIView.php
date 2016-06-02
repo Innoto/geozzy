@@ -2,6 +2,7 @@
 
 require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
+Cogumelo::load('coreController/MailController.php');
 
 /**
 * Clase Master to extend other application methods
@@ -193,6 +194,33 @@ class CommentAdminAPIView extends View
 
             if($term && $term->getter('id') !== $putData['status']){
               $comment->setter('status', $term->getter('id') );
+
+              $tpl = new Template();
+              switch ( $term->getter('idName') ) {
+                case 'commentDenied':
+                  $tpl->setTpl( 'mailCommentDenied.tpl', 'rextComment');
+                  $titleMail = __("Gracias por su aportación");
+                  break;
+                case 'commentValidated':
+                  $tpl->setTpl( 'mailCommentValidated.tpl', 'rextComment');
+                  $titleMail = __("Gracias por su aportación");
+                  break;
+              }
+
+              if($comment->getter('user') && is_numeric($comment->getter('user'))){
+                $userModel = new UserModel();
+                $user = $userModel->listItems( array('filters' => array('id' => $comment->getter('user') ) ) )->fetch();
+                $to = $user->getter('email');
+              }
+              else{
+                $to = $comment->getter('anonymousEmail');
+              }
+
+              $mailControl = new MailController();
+              $mailControl->clear();
+              $mailControl->setBodyHtml( $tpl );
+              $mailControl->send( array( $to ), $titleMail );
+
             }
           }
           $comment->save();
