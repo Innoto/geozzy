@@ -136,7 +136,7 @@
       that.setFilters();
 
       that.explorer.exec();
-      that.explorer2.exec();
+      //that.explorer2.exec();
 
     }
 
