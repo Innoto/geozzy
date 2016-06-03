@@ -29,7 +29,7 @@ geozzy.commentComponents.listCommentTemplate = ''+
 
 geozzy.commentComponents.listCommentItemTemplate = ''+
 '<div class="commentItem">'+
-  '<div class="commentContent"><%- commentContent %></div>'+
+  '<div class="commentContent"><%= commentContent %></div>'+
   '<% if(commentRate != 0){ %>'+
   '<div class="commentRate">'+
     '<% for (var i = 0; i < 5; i++) { '+
@@ -82,7 +82,7 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
       '}  %> </span>'+
       '<% } %>'+
     '</div>'+
-    '<div class="col-md-12 commentContent"><%- commentContent %></div>'+
+    '<div class="col-md-12 commentContent"><%= commentContent %></div>'+
   '</div>'+
 '</div>';
 
