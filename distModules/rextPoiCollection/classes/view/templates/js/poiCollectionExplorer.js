@@ -5,7 +5,8 @@
     var ex = new geozzy.explorer({
       explorerId:'pois',
       explorerSectionName:'Puntos de interese',
-      debug:false
+      debug:false,
+      aditionalParameters:geozzy.rExtPOIOptions
     });
 
 
