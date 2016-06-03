@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
           <img class="iconTitleBar img-responsive" alt="Restaurantes" src="{$cogumelo.publicConf.media}/img/xantaresIcon.png"></img>
-          <h1>{$res.data.title}</h1>
+          <h1>{$res.data.title|escape:'htmlall'}</h1>
         </div>
         {if isset($rextCommentAverageBlock)}
         <div class="stars hidden-xs col-sm-3 col-md-2">
@@ -119,7 +119,7 @@
     </div>
 
     <div class="mediumDescription">
-      {$res.data.mediumDescription|escape:'htmlall'}
+      {$res.data.mediumDescription|escape:'htmlall'|nl2br}
     </div>
 
     <div class="content">
