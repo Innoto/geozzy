@@ -89,6 +89,9 @@ class AdminViewMaster extends View
     if( class_exists( 'adminBI' ) ) {
       $this->template->assign( 'biInclude' , true);
     }
+    if( class_exists( 'rextComment' ) ) {
+      $this->template->assign( 'rextCommentInclude' , true);
+    }
     //
     $this->template->exec();
   }
