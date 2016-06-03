@@ -1150,7 +1150,7 @@ class ResourceController {
     }
   }
 
-  public function getUrlByPattern( $resId, $langId = false ) {
+  public function getUrlByPattern( $resId, $langId = false, $title = false ) {
     // error_log( "getUrlByPattern( $resId, $langId )" );
     $urlAlias = '/'. Cogumelo::getSetupValue( 'mod:geozzy:resource:directUrl' ) .'/'.$resId;
 
@@ -1172,29 +1172,32 @@ class ResourceController {
       }
     }
 
-    $resData = $this->getResourceData( $resId );
-    if( $resData ) {
-      if( $langId ) {
-        if( isset( $resData[ 'title_'.$langId ] ) && $resData[ 'title_'.$langId ] !== '' ) {
-          $urlAlias = $pattern . strtolower( $resData[ 'title_'.$langId ] );
-        }
-        else {
-          if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
-            $urlAlias = $pattern . strtolower( $resData[ 'title_'.$this->defLang ] );
+    if( !$title ) {
+      if( $resData = $this->getResourceData( $resId ) ) {
+        if( $langId ) {
+          if( isset( $resData[ 'title_'.$langId ] ) && $resData[ 'title_'.$langId ] !== '' ) {
+            $title = strtolower( $resData[ 'title_'.$langId ] );
+          }
+          else {
+            if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
+              $title = strtolower( $resData[ 'title_'.$this->defLang ] );
+            }
           }
         }
-      }
-      else {
-        if( isset( $resData['title'] ) && $resData['title'] !== '' ) {
-          $urlAlias = $pattern . strtolower( $resData['title'] );
-        }
         else {
-          if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
-            $urlAlias = $pattern . strtolower( $resData[ 'title_'.$this->defLang ] );
+          if( isset( $resData['title'] ) && $resData['title'] !== '' ) {
+            $title = strtolower( $resData['title'] );
+          }
+          else {
+            if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
+              $title = strtolower( $resData[ 'title_'.$this->defLang ] );
+            }
           }
         }
       }
     }
+
+    $urlAlias = ( $title ) ? $pattern.$title : $pattern.$resId;
 
     return $this->sanitizeUrl( $urlAlias );
   }
@@ -1238,12 +1241,15 @@ class ResourceController {
   }
 
 
-
   // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
   public function getUrlAlias( $resId, $lang = false ) {
     $urlAlias = false;
 
     global $C_LANG; // Idioma actual, cogido de la url
+    if( !$lang ) {
+      $lang = $C_LANG;
+    }
+
     $urlAliasModel = new UrlAliasModel();
 
     $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array(
@@ -1254,10 +1260,10 @@ class ResourceController {
 
     $urlAliasObj = ( $urlAliasList ) ? $urlAliasList->fetch() : false;
     if( $urlAliasObj ) {
-      $urlAlias = $lang.$urlAliasList->getter('urlFrom');
+      $urlAlias = '/'.$lang.$urlAliasObj->getter('urlFrom');
     }
     else {
-      $urlAlias = SITE_FOLDER.Cogumelo::getSetupValue( 'mod:geozzy:resource:directUrl' ).'/'.$resId;
+      $urlAlias = '/'.$lang.'/'.Cogumelo::getSetupValue( 'mod:geozzy:resource:directUrl' ).'/'.$resId;
     }
 
     return $urlAlias;

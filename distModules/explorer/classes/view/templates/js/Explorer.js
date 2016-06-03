@@ -21,6 +21,8 @@ geozzy.explorer = function( opts ) {
     explorerAPIHost: '/api/explorer/',
     explorerId: 'default',
 
+    aditionalParameters: {},
+
     // cache times (in seconds)
     cacheTimeIndex: 20,
     debug: false,
@@ -78,7 +80,9 @@ geozzy.explorer = function( opts ) {
   that.exec = function() {
     // set multiple fetches
     lang = that.getLang();
+
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
+
 
     // set explorer router
     geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
@@ -121,19 +125,14 @@ geozzy.explorer = function( opts ) {
     that.resourceMinimalList.fetch(
       {
         cache: true,
+        type: 'POST',
+        data: that.options.aditionalParameters ,
         expires: that.options.cacheTimeIndex ,
         success: function() {
-
-
-
           that.timeDebugerMain.log('&nbsp;- Fetch first resource index with '+ that.resourceMinimalList.length + ' elements');
-
           that.resourceIndex = new Backbone.Obscura(that.resourceMinimalList);
           that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
-
-
           that.applyFilters();
-
         }
       }
 

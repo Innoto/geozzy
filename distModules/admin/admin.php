@@ -198,6 +198,11 @@ class admin extends Module
     $this->addUrlPatterns( '#^admin/category/(\d+)/term/edit/(\d+)$#', 'view:AdminViewTaxonomy::categoryForm' );
     $this->addUrlPatterns( '#^admin/category/term/sendcategoryterm$#', 'view:AdminViewTaxonomy::sendCategoryForm' );
 
+    $this->addUrlPatterns( '#^admin/comment/list$#', 'view:AdminViewComment::listComments' );
+    $this->addUrlPatterns( '#^admin/comment/table$#', 'view:AdminViewComment::listCommentsTable' );
+    $this->addUrlPatterns( '#^admin/suggestion/list$#', 'view:AdminViewComment::listSuggestions' );
+    $this->addUrlPatterns( '#^admin/suggestion/table$#', 'view:AdminViewComment::listSuggestionsTable' );
+
     $this->addUrlPatterns( '#^admin/topics$#', 'view:AdminViewTopic::topicsSync' );
 
 
