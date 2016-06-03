@@ -50,13 +50,15 @@ define( 'SITE_URL_CURRENT', SITE_PROTOCOL == 'http' ? SITE_URL_HTTP : SITE_URL_H
 cogumeloSetSetupValue( 'setup:webBaseUrl', array(
   'protocol' => 'SITE_PROTOCOL',
   'host' => 'SITE_HOST',
-  'port' => $_SERVER['SERVER_PORT'],
   'folder' => 'SITE_FOLDER',
   'url' => 'SITE_URL',
   'urlHttp' => 'SITE_URL_HTTP',
   'urlHttps' => 'SITE_URL_HTTPS',
   'urlCurrent' => 'SITE_URL_CURRENT'
 ));
+if( isset( $_SERVER['SERVER_PORT'] ) ) {
+  cogumeloSetSetupValue( 'setup:webBaseUrl:port' => $_SERVER['SERVER_PORT'] );
+}
 
 
 //
