@@ -126,7 +126,7 @@
     <div class="locationLight">
       <div class="location container">
         <div class="title">
-          {t}Contact{/t}
+          {t}Location{/t}
         </div>
         <div class="{$res.data.rTypeIdName} accommodation">
           {$rextContactBlock}
