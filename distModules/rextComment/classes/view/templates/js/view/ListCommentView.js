@@ -45,7 +45,7 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
       commentNumber++;
       data = {
         commentId: item.id,
-        commentContent: item.content,
+        commentContent: item.content.replace(/\n/g, '<br>\n'),
         commentRate: item.rate/20,
         commentUserName: false,
         commentTimeCreation: item.timeCreation

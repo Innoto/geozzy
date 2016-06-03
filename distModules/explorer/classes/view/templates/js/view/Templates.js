@@ -32,13 +32,12 @@ geozzy.explorerComponents.activeListTinyViewElement = ''+
     '<div class="elementImg">'+
       '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/fast_cut/<%- img %>.jpg" />'+
       '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
-        '<ul class="elementOptions container-fluid">'+
-          '<li class="elementOpt elementFav">'+
-            '<div style="display:none;" data-favourite-resource="<%- id %>" data-favourite-status="0" class="rExtFavourite rExtFavouriteHidden">'+
-              '<i class="fa fa-heart-o fav-off"></i><i class="fa fa-heart fav-on"></i>'+
-            '</div>'+
-          '</li>'+
-        '</ul>'+
+        '<ul class="elementOptions container-fluid"></ul>'+
+      '</div>'+
+      '<div class="elementFav">'+
+        '<div data-favourite-resource="<%- id %>" data-favourite-status="0" class="rExtFavourite rExtFavouriteHidden">'+
+          '<i class="fa fa-heart-o fav-off"></i><i class="fa fa-heart fav-on"></i>'+
+        '</div>'+
       '</div>'+
     '</div>'+
 
@@ -68,13 +67,12 @@ geozzy.explorerComponents.activeListViewElement = '' +
     '<div class="elementImg">'+
       '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%- img %>/explorerXantaresImg/<%- img %>.jpg" />'+
       '<div data-resource-id="<%- id %>" class="elementHover accessButton">'+
-        '<ul class="elementOptions container-fluid">'+
-          '<li class="elementOpt elementFav">'+
-            '<div style="display:none;" data-favourite-resource="<%- id %>" data-favourite-status="0" class="rExtFavourite rExtFavouriteHidden">'+
-              '<i class="fa fa-heart-o fav-off"></i><i class="fa fa-heart fav-on"></i>'+
-            '</div>'+
-          '</li>'+
-        '</ul>'+
+        '<ul class="elementOptions container-fluid"></ul>'+
+      '</div>'+
+      '<div class="elementFav">'+
+        '<div style="display:none;" data-favourite-resource="<%- id %>" data-favourite-status="0" class="rExtFavourite rExtFavouriteHidden">'+
+          '<i class="fa fa-heart-o fav-off"></i><i class="fa fa-heart fav-on"></i>'+
+        '</div>'+
       '</div>'+
     '</div>'+
     '<div class="elementInfo">'+
