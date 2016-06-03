@@ -57,7 +57,7 @@ cogumeloSetSetupValue( 'setup:webBaseUrl', array(
   'urlCurrent' => 'SITE_URL_CURRENT'
 ));
 if( isset( $_SERVER['SERVER_PORT'] ) ) {
-  cogumeloSetSetupValue( 'setup:webBaseUrl:port' => $_SERVER['SERVER_PORT'] );
+  cogumeloSetSetupValue( 'setup:webBaseUrl:port', $_SERVER['SERVER_PORT'] );
 }
 
 
