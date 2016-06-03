@@ -351,6 +351,8 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
+      $resData = $this->defResCtrl->getResourceData();
+      $rExtViewBlockInfo['data']['id'] = $resData['id'];
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       biMetrics::autoIncludes();
       explorer::autoIncludes();
