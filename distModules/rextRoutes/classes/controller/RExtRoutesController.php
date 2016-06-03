@@ -74,7 +74,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Circular itinerary') ))
       ),
       'durationMinutes' => array(
-        'params' => array( 'label' => __( 'Duration of route' ) ),
+        'params' => array( 'label' => __( 'Route duration (minutes)' ) ),
         'rules' => array( 'digits' => true )
       ),
       'slopeUp' => array(
@@ -86,7 +86,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
         'rules' => array( 'digits' => true )
       ),
       'travelDistance' => array(
-        'params' => array( 'label' => __( 'Travel distance' ) ),
+        'params' => array( 'label' => __( 'Travel distance (meters)' ) ),
         'rules' => array( 'digits' => true )
       ),
       'difficultyEnvironment' => array(
@@ -94,11 +94,11 @@ class RExtRoutesController extends RExtController implements RExtInterface {
         'rules' => array( 'digits' => true )
       ),
       'difficultyItinerary' => array(
-        'params' => array( 'label' => __( 'Difficulty of the itinerary' ) ),
+        'params' => array( 'label' => __( 'Itinerary difficulty' ) ),
         'rules' => array( 'digits' => true )
       ),
       'difficultyDisplacement' => array(
-        'params' => array( 'label' => __( 'Difficulty of displacement' ) ),
+        'params' => array( 'label' => __( 'Displacement difficulty' ) ),
         'type' => 'INT'
       ),
       'difficultyEffort' => array(
@@ -279,6 +279,11 @@ class RExtRoutesController extends RExtController implements RExtInterface {
        $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
 
        $rExtViewBlockInfo['template']['full'] = new Template();
+       $hours = floor($rExtViewBlockInfo['data']['durationMinutes'] / 60);
+       $minutes = ($rExtViewBlockInfo['data']['durationMinutes'] % 60);
+       $rExtViewBlockInfo['data']['durationHours'] = date('G', mktime(0,$rExtViewBlockInfo['data']['durationMinutes']));
+       $rExtViewBlockInfo['data']['durationMinutes'] = date('i', mktime(0,$rExtViewBlockInfo['data']['durationMinutes']));
+       $rExtViewBlockInfo['data']['travelDistanceKm'] = $rExtViewBlockInfo['data']['travelDistance']/1000;
        $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
        $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextRoutes' );
 

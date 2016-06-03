@@ -35,7 +35,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
-          <img class="iconTitleBar img-responsive" alt="Aloxamentos con encanto" src="{$cogumelo.publicConf.media}/img/festasIcon.png"></img>
+          <img class="iconTitleBar img-responsive" alt="Rutas" src="{$cogumelo.publicConf.media}/img/rutasIcon.png"></img>
           <h1>{$res.data.title}</h1>
         </div>
         {if isset($rextCommentAverageBlock)}
@@ -48,11 +48,40 @@
   </div>
 
   <section class="imageSec gzSection">
+
     <div class="reservationSec container">
       <a href="javascript:history.go(-1);" class="backExplorer">
         <div class="arrow-left"></div>
-        <p>{t}volver{/t}</p>
+        <p>{t}back{/t}</p>
       </a>
+
+      <div class="resumeBox">
+        <div class="topBox">
+          <div class="travelDistance col-md-6">
+            {$res.ext.rextRoutes.data.travelDistanceKm} Km
+          </div>
+          <div class="durationMinutes col-md-6">{$res.ext.rextRoutes.data.durationHours}h {$res.ext.rextRoutes.data.durationMinutes}min</div>
+        </div>
+        <div class="bottomBox">
+          <div class="difficultyGlobal col-md-6">
+            <div class="barraEsfuerzo ruta_{$res.ext.rextRoutes.data.difficultyGlobal}"></div>
+            <div class="text">{t}Global difficulty{/t}</div>
+          </div>
+          <div class="circular col-md-6">
+            {if $res.ext.rextRoutes.data.circular}
+              <div class="rutaCircular">
+                <img class="img-responsive" alt="circular" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/circular_color.png"></img>
+                <div class="text">{t}Circular{/t}</div>
+              </div>
+            {else}
+              <div class="rutaLineal">
+                <img class="img-responsive" alt="lineal" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/lineal_color.png"></img>
+                <div class="text">{t}Lineal{/t}</div>
+              </div>
+            {/if}
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

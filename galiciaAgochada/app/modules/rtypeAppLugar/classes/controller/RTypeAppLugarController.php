@@ -142,11 +142,12 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE panel audioguide
+    /*
     $templates['audioguide'] = new Template();
     $templates['audioguide']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['audioguide']->assign( 'title', __( 'Audioguide' ) );
     $templates['audioguide']->setFragment( 'blockContent', $formBlockInfo['ext']['rextAudioguide']['template']['full'] );
-
+*/
     // TEMPLATE panel categorization
     $templates['categorization'] = new Template();
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -206,7 +207,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
     $templates['adminFull']->addToFragment( 'col4', $templates['image'] );
     $templates['adminFull']->addToFragment( 'col4', $templates['categorization'] );
-    $templates['adminFull']->addToFragment( 'col4', $templates['audioguide'] );
+    //$templates['adminFull']->addToFragment( 'col4', $templates['audioguide'] );
     $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
 
 
