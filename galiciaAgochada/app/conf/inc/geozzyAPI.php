@@ -1,10 +1,14 @@
 <?php
 global $GEOZZY_API_DOC_URLS;
+$GEOZZY_API_DOC_URLS = array();
 
 define( 'GEOZZY_API_ACTIVE', true);
 
 user::autoIncludes();
 $useraccesscontrol = new UserAccessController();
+
+
+// APIs que requieren un usuario logueado con permisos admin:access o admin:full
 if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) ){
   $GEOZZY_API_DOC_URLS_ADMIN = array(
     array(
@@ -32,11 +36,28 @@ if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( arr
 else {
   $GEOZZY_API_DOC_URLS_ADMIN = array();
 }
+$GEOZZY_API_DOC_URLS = array_merge( $GEOZZY_API_DOC_URLS, $GEOZZY_API_DOC_URLS_ADMIN );
 
 
 
+// APIs que requieren un usuario logueado
+if( $useraccesscontrol->isLogged() ) {
+  $GEOZZY_API_DOC_URLS = array_merge(
+    $GEOZZY_API_DOC_URLS,
+    array(
+      array(
+        'path'=> '/favourites.json',
+        'description' => 'Favourites API'
+      )
+    )
+  );
+}
+
+
+
+// APIs que no requieren un usuario logueado
 $GEOZZY_API_DOC_URLS =  array_merge(
-  $GEOZZY_API_DOC_URLS_ADMIN,
+  $GEOZZY_API_DOC_URLS,
   array(
     array(
       'path' => '/bi.json',
@@ -93,10 +114,6 @@ $GEOZZY_API_DOC_URLS =  array_merge(
     array(
       'path'=> '/routes.json',
       'description' => 'Routes API'
-    ),
-    array(
-      'path'=> '/favourites.json',
-      'description' => 'Favourites API'
     )
   )
 );
