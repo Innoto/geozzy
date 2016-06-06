@@ -78,7 +78,7 @@ class RoutesModel extends Model
             routeEnd_es VARCHAR(100),
             routeEnd_en VARCHAR(100),
             routeEnd_gl VARCHAR(100),
-            circular BOOLEAN)'
+            circular BOOLEAN);'
     )
   );
 
