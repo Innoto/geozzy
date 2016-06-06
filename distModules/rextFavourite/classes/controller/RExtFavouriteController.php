@@ -209,7 +209,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
 
       if( !$colId ) {
         // Hai que crear toda la estructura: resource rtypeFavourites, collection, resource-collection
-        $favsStructure = newFavouritesStructure( $favUser );
+        $favsStructure = $this->newFavouritesStructure( $favUser );
         $colId = $favsStructure['colId'];
         /*
           // Hai que crear toda la estructura previa: res rtypeFavourites, col, rc
