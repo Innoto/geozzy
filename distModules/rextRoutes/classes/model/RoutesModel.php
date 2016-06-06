@@ -66,6 +66,22 @@ class RoutesModel extends Model
     )
   );
 
+  var $deploySQL = array(
+    array(
+      'version' => 'rextRoutes#1.1',
+      'sql'=> '
+        ALTER TABLE geozzy_resource_rext_routes
+        ADD (difficultyGlobal INT DEFAULT NULL,
+            routeStart_es VARCHAR(100),
+            routeStart_en VARCHAR(100),
+            routeStart_gl VARCHAR(100),
+            routeEnd_es VARCHAR(100),
+            routeEnd_en VARCHAR(100),
+            routeEnd_gl VARCHAR(100),
+            circular BOOLEAN)'
+    )
+  );
+
   static $extraFilters = array();
 
 
