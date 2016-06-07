@@ -28,7 +28,16 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
 
 
     if( that.parentExplorer.displays.map  && that.parentExplorer.displays.map.isReady() ) {
-      var bounds = that.parentExplorer.displays.map.getMapBoundsInArray();
+      var bounds = [
+                    [
+                      that.parentExplorer.displays.map.getMapBoundsInArray()[0][1],
+                      that.parentExplorer.displays.map.getMapBoundsInArray()[0][0]
+                    ],
+                    [
+                      that.parentExplorer.displays.map.getMapBoundsInArray()[1][1],
+                      that.parentExplorer.displays.map.getMapBoundsInArray()[1][0]
+                    ]
+                   ];
     }
     else {
       var bounds = [[0,0],[0,0]];
