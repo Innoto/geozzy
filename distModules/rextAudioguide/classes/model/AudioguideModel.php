@@ -17,14 +17,31 @@ class AudioguideModel extends Model
       'key' => 'id'
     ),
     'audioFile' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'FiledataModel',
+      'type'=>'INT',
       'key' => 'id',
-      //'multilang' => true,
+      'multilang' => true,
+      //Gardamos o id do ficheiro en cada idioma na carpeta definida, e procesamos a dependencia cos ficheiros a man
       'uploadDir'=> '/RExtAudioFiles/'
     ),
     'distance' => array(
       'type' => 'INT'
+    )
+  );
+
+  var $deploySQL = array(
+    array(
+      'version' => 'rextAudioguide#1.1',
+      'sql'=> '
+      CREATE TABLE geozzy_resource_rext_audioguide (
+        `id` INT NOT NULL auto_increment,
+        `resource` INT,
+        `audioFile_es` INT,
+        `audioFile_gl` INT,
+        `audioFile_en` INT,
+        `distance` INT,
+        PRIMARY KEY USING BTREE (`id`),
+        INDEX (`resource`)
+      ) ENGINE = InnoDB AUTO_INCREMENT = 10 DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci ;'
     )
   );
 
