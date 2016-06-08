@@ -743,10 +743,10 @@ class geozzyAPIView extends View {
               $collData[ $key ] = $coll->getter( $key );
             }
 
-            if( $coll->getter( 'collectionType' ) == 'multimedia' ) {
+            if( $coll->getter( 'collectionType' ) === 'multimedia' ) {
               $collsMmedia[ $collData['id'] ] = $collData;
             }
-            else {
+            elseif( $coll->getter( 'collectionType' ) === 'base' ) {
               $collsOther[ $collData['id'] ] = $collData;
             }
           }
