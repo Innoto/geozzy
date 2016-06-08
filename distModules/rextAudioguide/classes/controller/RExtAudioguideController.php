@@ -31,6 +31,16 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
     }
 
+    $fileData = new FiledataModel();
+    // para cada idioma tenemos q traernos los ficheros!!!!!!
+
+    foreach (cogumeloGetSetupValue('publicConf:vars:langAvailableIds') as $lang){
+      if( isset($rExtData['audioFile_'.$lang]) ){
+        $audioguide[$lang] = $fileData->listItems(array('filters' => array('id' => $rExtData['audioFile_'.$lang])))->fetch()->getAllData( 'onlydata' );
+        $rExtData['audioFile_'.$lang] = $audioguide[$lang];
+      }
+    }
+
     return $rExtData;
   }
 
@@ -129,30 +139,31 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
    * @param $resource ResourceModel
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
+
     if( !$form->existErrors() ) {
-      //$numericFields = array( 'averagePrice', 'capacity' );
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
 
-      $valuesArray[ 'resource' ] = $resource->getter( 'id' );
+      $valuesRextArray[ 'resource' ] = $resource->getter( 'id' );
+      $valuesRextArray[ 'distance' ] = $valuesArray['distance'];
 
-      $rExtModel = new AudioguideModel( $valuesArray );
-      if( $rExtModel === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
+      $this->rExtModel = new AudioguideModel( $valuesRextArray );
+
+      if ($this->rExtModel) {
+        foreach (cogumeloGetSetupValue('publicConf:vars:langAvailableIds') as $lang){
+
+          $fileField[$lang] = $this->addPrefix( 'audioFile_'.$lang );
+          if( $form->isFieldDefined( $fileField[$lang] ) ) {
+            $this->defResCtrl->setFormFiledata( $form, $fileField[$lang], 'audioFile_'.$lang, $this->rExtModel );
+            $this->rExtModel->save();
+          }
+        }
       }
-    }
 
-    $fileField = $this->addPrefix( 'audioFile' );
-    if( !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
-      //var_dump($rExtModel);exit;
-
-      $this->defResCtrl->setFormFiledata( $form, $fileField, 'audioFile', $this->rExtModel );
-      $this->rExtModel->save();
-    }
-
-    if( !$form->existErrors() ) {
-      $saveResult = $rExtModel->save();
-      if( $saveResult === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
+      if( !$form->existErrors() ) {
+        $saveResult = $this->rExtModel->save();
+        if( $saveResult === false ) {
+          $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
+        }
       }
     }
   }
@@ -172,6 +183,25 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-   //parent::getViewBlockInfo();
+   public function getViewBlockInfo() {
 
-} // class RExtAccommodationController
+     $rExtViewBlockInfo = parent::getViewBlockInfo();
+
+     if( $rExtViewBlockInfo['data'] ) {
+       // TODO: esto será un campo da BBDD
+       $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
+
+       if (isset($rExtViewBlockInfo['data']['audioFile'])){
+
+         $rExtViewBlockInfo['template']['full'] = new Template();
+         $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+         $rExtViewBlockInfo['template']['full']->addClientScript('js/rextAudioguide.js', 'rextAudioguide');
+         $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextAudioguide' );
+       }
+     }
+
+
+     return $rExtViewBlockInfo;
+   }
+
+} // class RExtAudioguideController

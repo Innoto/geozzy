@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextRoutes extends Module {
 
   public $name = 'rextRoutes';
-  public $version = 1.0;
+  public $version = 1.1;
 
 
 
@@ -41,16 +41,10 @@ class rextRoutes extends Module {
   public $dependences = array(
     array(
       "id" => "geophp",
-      "params" => array("phayes/geophp", "1.2"),
+      "params" => array("innoto/geophp", "dev-master"),
       "installer" => "composer",
       "includes" => array("geoPHP.inc")
     ),
-/*    array(
-      "id" => "c-pchart",
-      "params" => array("szymach/c-pchart", "2.0.2"), // REQUIRES php5-gd installed on server
-      "installer" => "composer",
-      "includes" => array("src/Resources/data/constants.php", "src/Chart/BaseDraw.php","src/Chart/Draw.php","src/Chart/Image.php","src/Chart/Data.php")
-    ),*/
 
     array(
       "id" => "dygraphs",
@@ -69,8 +63,6 @@ class rextRoutes extends Module {
     'js/model/RouteModel.js',
     'js/collection/RouteCollection.js',
     'js/view/routesExplorerView.js'
-
-
   );
 
 
@@ -84,7 +76,7 @@ class rextRoutes extends Module {
 // END TEST CODE
 
 
-    $this->addUrlPatterns( '#^api/routes$#', 'view:RoutesAPIView::routes' );
+    $this->addUrlPatterns( '#^api/routes/(.*)$#', 'view:RoutesAPIView::routes' );
     $this->addUrlPatterns( '#^api/routes.json#', 'view:RoutesAPIView::routesJson' );
 
   }

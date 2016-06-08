@@ -137,6 +137,10 @@ cogumeloSetSetupValue( 'mod:filedata', array(
 ));
 include 'filedataImageProfiles.php';
 
+//
+//  Client localStorage
+//
+cogumeloSetSetupValue( 'clientLocalStorage:lifetime', 60 ); // 1h.
 
 //
 //  SESSION
@@ -157,4 +161,3 @@ session_save_path( cogumeloGetSetupValue( 'session:savePath' ) );
 // Url to load resource view from ID
 //
 cogumeloSetSetupValue( 'mod:geozzy:resource:directUrl', 'resource' );
-

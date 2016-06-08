@@ -88,17 +88,21 @@ class RExtMapController extends RExtController implements RExtInterface {
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
     $resData = $this->defResCtrl->getResourceData();
+    $rExtViewBlockInfo['data']['title'] = $resData['title'];
 
     if( isset( $resData['locLat'] ) && $resData['locLat'] !== '' ) {
-      $rExtViewBlockInfo['data']['title'] = $resData['title'];
       $rExtViewBlockInfo['data']['locLat'] = $resData['locLat'];
       $rExtViewBlockInfo['data']['locLon'] = $resData['locLon'];
       $rExtViewBlockInfo['data']['defaultZoom'] = $resData['defaultZoom'];
-
-      $rExtViewBlockInfo['template']['full'] = new Template();
-      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextMap' );
     }
+    else{
+      $rExtViewBlockInfo['data']['locLat'] = 0;
+      $rExtViewBlockInfo['data']['locLon'] = 0;
+      $rExtViewBlockInfo['data']['defaultZoom'] = 0;
+    }
+    $rExtViewBlockInfo['template']['full'] = new Template();
+    $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+    $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextMap' );
 
     return $rExtViewBlockInfo;
   }
