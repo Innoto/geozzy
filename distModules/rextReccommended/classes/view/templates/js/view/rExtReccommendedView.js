@@ -24,7 +24,7 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
 
     var that = this;
     var col = new geozzy.collection.ResourceCollection({urlAlias: true});
-
+alert( geozzy.rExtReccommendedOptions.resId)
     var recommendedResources = geozzy.biMetricsInstances.recommender.resource( geozzy.rExtReccommendedOptions.resId, function(res){
 
       // Para pruebas

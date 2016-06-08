@@ -47,20 +47,20 @@ class RoutesAPIView extends View
               "nickname": "explorer",
               "parameters": [
                 {
-                  "name": "ids",
-                  "description": "ids",
+                  "name": "id",
+                  "description": "id",
                   "type": "array",
                   "items": {
                     "type": "integer"
                   },
-                  "paramType": "form",
+                  "paramType": "path",
                   "required": false
                 }
               ],
               "summary": "Fetches explorer data"
             }
           ],
-          "path": "/routes",
+          "path": "/routes/id/{id}",
           "description": ""
         }
       ]
@@ -71,61 +71,28 @@ class RoutesAPIView extends View
 
 
   // explorer
-  public function routes(  ) {
-    rextRoutes::autoIncludes();
+  public function routes( $urlParams  ) {
 
+
+    $validation = array( 'id'=> '#^\d+$#');
+    $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
+
+
+    rextRoutes::autoIncludes();
     rextRoutes::load('controller/RoutesController.php');
     $routesControl = new RoutesController();
 
 
-    $rutaJSON = json_encode( [ $routesControl->getRoute('/home/pblanco/Descargas/nova.gpx', 117), $routesControl->getRoute('/home/pblanco/Descargas/Incio_oural_.gpx', 110) ]);
-
-
     header('Content-type: application/json');
-    echo $rutaJSON;
 
-    /*
-    require_once APP_BASE_PATH."/conf/inc/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
-    global $GEOZZY_EXPLORERS;
-
-    $validation = array(
-
-    );
-
-    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
-
-    if( isset($urlParamsList['request']) && isset($urlParamsList['explorer']) && isset( $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ] ) ) {
-      $explorerConf = $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ];
-
-      // Include controller
-      eval( $explorerConf['module'].'::load("'.$explorerConf['controllerFile'].'");' );
-
-      // constructor;
-      $explorer = new $explorerConf['controllerName']();
-
-      if( $urlParamsList['request'] == 'minimal' ) {
-        if( isset($urlParamsList['updatedfrom']) ) {
-          header('Content-type: application/json');
-          $explorer->serveMinimal( $urlParamsList['updatedfrom'] );
-        }
-        else {
-          header('Content-type: application/json');
-          $explorer->serveMinimal();
-        }
-      }
-      else {
-        if( $urlParamsList['request'] == 'partial' ) {
-          header('Content-type: application/json');
-          $explorer->servePartial();
-        }
-        else {
-          header("HTTP/1.0 404 Not Found");
-        }
-      }
+    if( isset($urlParamsList['id']) ) {
+      echo json_encode(  $routesControl->getRoute( $urlParamsList['id'] ) );
     }
     else {
-      header("HTTP/1.0 404 Not Found");
-    }*/
+      echo '[]';
+    }
+
+
   }
 
 }
