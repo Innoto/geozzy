@@ -56,6 +56,15 @@
         <div class="arrow-left"></div>
         <p>{t}volver{/t}</p>
       </a>
+
+      {if (isset($rextAudioguideBlock) && $rextAudioguideBlock!="")}
+      <div class="resumeBox">
+        <div class="playAudio">
+            {$rextAudioguideBlock}
+        </div>
+      </div>
+      {/if}
+
     </div>
   </section>
 
@@ -111,16 +120,21 @@
       {/if}
     </div>
   </section>
+
   {if isset($multimediaGalleries)}
     <section class="multimediaSec container gzSection">
       {$multimediaGalleries}
     </section>
   {/if}
+
   <section class="contentSec container gzSection">
     <div class="content">
       {$res.data.content}
     </div>
   </section>
+
+
+
   <section class="locationSec gzSection">
     {if (isset($rextContactBlock) && $rextContactBlock!="")}
     <div class="locationLight">
