@@ -90,16 +90,23 @@ class RExtMapDirectionsController extends RExtController implements RExtInterfac
 
     $resData = $this->defResCtrl->getResourceData();
 
+    $rExtViewBlockInfo['data']['title'] = $resData['title'];
+
     if( isset( $resData['locLat'] ) && $resData['locLat'] !== '' ) {
-      $rExtViewBlockInfo['data']['title'] = $resData['title'];
       $rExtViewBlockInfo['data']['locLat'] = $resData['locLat'];
       $rExtViewBlockInfo['data']['locLon'] = $resData['locLon'];
       $rExtViewBlockInfo['data']['defaultZoom'] = $resData['defaultZoom'];
+    }
+    else {
+      $rExtViewBlockInfo['data']['locLat'] = 0;
+      $rExtViewBlockInfo['data']['locLon'] = 0;
+      $rExtViewBlockInfo['data']['defaultZoom'] = 0;
+    }
 
       $rExtViewBlockInfo['template']['full'] = new Template();
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextMapDirections' );
-    }
+
 
     return $rExtViewBlockInfo;
   }
