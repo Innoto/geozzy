@@ -157,7 +157,10 @@ geozzy.explorer = function( opts ) {
     that.timeDebugerMain.reset();
     that.timeDebugerExtended.reset();
 
-    that.resourceIndex.removePagination();
+    if(typeof that.resourceIndex.removePagination != 'undefined'){
+      that.resourceIndex.removePagination();      
+    }
+
 
     // Set filters for current index
 
