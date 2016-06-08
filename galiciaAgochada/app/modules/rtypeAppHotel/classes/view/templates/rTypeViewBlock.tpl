@@ -124,19 +124,20 @@
 
 
     <div class="taxonomyBar row clearfix">
-
-      {if isset($res.data.rTypeIdName) && $res.data.rTypeIdName == 'rtypeAppHotel'}
-      <div class="taxStars col-xs-12 col-sm-2">
-        {if isset($res.data.accommodationCategory)}
-          <div class="taxStarsBox">
-          {foreach from=$res.data.accommodationCategory item=termInfo}
-            {for $foo=1 to $termInfo.idName|substr:0:1}
-              <i class="fa fa-star"></i>
-            {/for}
-          </div>
+      {if isset($res.data.accommodationType)}
+        {foreach $res.data.accommodationType as $term}
+          {if $term.idName == 'hoteles' && isset($res.data.accommodationCategory)}
+            <div class="taxStars col-xs-12 col-sm-2">
+              <div class="taxStarsBox">
+                {foreach from=$res.data.accommodationCategory item=termInfo}
+                  {for $foo=1 to $termInfo.idName|substr:0:1}
+                    <i class="fa fa-star"></i>
+                  {/for}
+                {/foreach}
+              </div>
+            </div>
+          {/if}
         {/foreach}
-        {/if}
-      </div>
       {/if}
 
       <div class="taxIcons col-xs-12 col-sm-10">
