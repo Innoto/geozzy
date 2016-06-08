@@ -82,7 +82,7 @@ class TestRouteView extends View
 
     rextRoutes::load('controller/RoutesController.php');
     $routesControl = new RoutesController();
-    $filePath = '/home/pblanco/Descargas/Incio_oural_.gpx';
+    $filePath = '/home/pblanco/Descargas/porto.gpx';
     $rutaJSON = json_encode(    $routesControl->getRoute($filePath, 10) );
 
 

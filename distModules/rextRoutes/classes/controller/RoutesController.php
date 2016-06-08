@@ -37,40 +37,55 @@ class RoutesController {
   }
 
 
-  public function getRoute( $filePath, $id ) {
+  public function getRoute( $ids ) {
     rextRoutes::autoIncludes();
 
     $route = false;
-    //$filePath = '/home/pblanco/Descargas/Felechosa_final.gpx';
 
-    if ( file_exists( $filePath ) ) {
+    $routesModel = new RoutesModel();
+    $routesList = $routesModel->listItems( array('affectsDependences'=> array('FiledataModel') , 'filters'=>['resource'=>$ids ] ) );
 
-      $fnSplited = explode( '.', $filePath );
-      /*array_pop( $fnSplited )*/
+//var_dump( cogumeloGetSetupValue( 'mod:filedata')['filePath'].$routesList->fetch()->getterDependence('routeFile')[0]->getter('absLocation') );
+//exit;
 
-      try {
-        $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
-        /*echo "<pre>";
-        var_dump( $polygon->getGeomType() );
-        echo "<br>--------------------<br>";
-        var_dump( json_encode( $this->extractPoints( $polygon )) );*/
-        $cent = $polygon->getCentroid();
+    $routes = [];
 
-        $route = [];
-        $route['id'] =  $id;
-        $route['centroid'] =  [ $cent->y(), $cent->x() ];
-        $route['trackPoints'] = $this->extractPoints( $polygon );
+    while( $routeVO = $routesList->fetch() ) {
+
+      $route = [];
+      $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'] . $routeVO->getterDependence('routeFile')[0]->getter('absLocation');
+
+      if ( file_exists( $filePath ) ) {
+
+        $fnSplited = explode( '.', $filePath );
+        /*array_pop( $fnSplited )*/
+
+        try {
+          $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
+          /*echo "<pre>";
+          var_dump( $polygon->getGeomType() );
+          echo "<br>--------------------<br>";
+          var_dump( json_encode( $this->extractPoints( $polygon )) );*/
+          $cent = $polygon->getCentroid();
+
+          $route['id'] =  $routeVO->getter('resource');
+          $route['centroid'] =  [ $cent->y(), $cent->x() ];
+          $route['trackPoints'] = $this->extractPoints( $polygon );
+        }
+        catch(Exception $e) {
+            Cogumelo::error( $e->getMessage() );
+        }
       }
-      catch(Exception $e) {
-          Cogumelo::error( $e->getMessage() );
+      else {
+        Cogumelo::error('File not found: '. $filePath);
       }
-    }
-    else {
-      Cogumelo::error('File not found: '. $filePath);
+
+      $routes[] = $route;
+
     }
 
 
-    return $route;
+    return $routes;
   }
 
 
