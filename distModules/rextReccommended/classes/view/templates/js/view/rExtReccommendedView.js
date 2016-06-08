@@ -39,7 +39,7 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
           $(res_ids).each(function(i, e){
             var elm = false;
             if (elm = collection.get(e)){
-              $(that.el).append(that.template({
+              $(that.el).prepend(that.template({
                 id:elm.get('id'),
                 title:elm.get('title'),
                 image:elm.get('image'),
