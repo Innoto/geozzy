@@ -87,29 +87,31 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
 
     var contentHtml = '';
-    $.each(  this.visibleResources, function(i,e){
+    if( this.visibleResources) {
+      $.each(  this.visibleResources, function(i,e){
 
-      var element = {
-        contador: contador,
-        title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
-        id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
-        inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible'),
-        img: that.parentExplorer.resourceMinimalList.get( e ).get('img')
-      };
+        var element = {
+          contador: contador,
+          title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
+          id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
+          inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible'),
+          img: that.parentExplorer.resourceMinimalList.get( e ).get('img')
+        };
 
 
-      // metrics
-      that.parentExplorer.metricsResourceController.eventPrint(
-        that.parentExplorer.resourcePartialList.get( e ).get('id'),
-        'Explorer: '+that.parentExplorer.options.explorerSectionName
-      );
+        // metrics
+        that.parentExplorer.metricsResourceController.eventPrint(
+          that.parentExplorer.resourcePartialList.get( e ).get('id'),
+          'Explorer: '+that.parentExplorer.options.explorerSectionName
+        );
 
-      contentHtml += that.tplElement(element);
-      contador++;
-    });
+        contentHtml += that.tplElement(element);
+        contador++;
+      });
 
-    that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) );
-
+      that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) );
+    }
+    
     that.onRenderComplete();
   },
 
