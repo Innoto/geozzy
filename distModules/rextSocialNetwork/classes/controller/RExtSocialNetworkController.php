@@ -60,15 +60,15 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       ),
       'textFb' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Text to share on facebook' ), 'type' => 'textarea', 'placeholder' => 'You should visit #TITLE#. Seen in en #URL#' ),
+        'params' => array( 'label' => __( 'Text to share on facebook' ), 'type' => 'textarea', 'placeholder' => __('You should visit #TITLE#. Seen in en #URL#') ),
         'rules' => array( 'maxlength' => '2000' )
       ),
       'activeTwitter' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Activate share on twitter' ))
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activate share on twitter') ))
       ),
       'textTwitter' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Text to share on twitter' ), 'type' => 'textarea', 'placeholder' => 'I liked this place: #TITLE# via #URL#' ),
+        'params' => array( 'label' => __( 'Text to share on twitter' ), 'type' => 'textarea', 'placeholder' => __('I liked this place: #TITLE# via #URL#' )),
         'rules' => array( 'maxlength' => '2000' )
       )
 
