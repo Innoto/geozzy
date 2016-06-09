@@ -55,7 +55,9 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
   getVisibleResourceIds: function() {
     var that = this;
-    this.parentExplorer.resourceIndex.removePagination();
+    if(typeof that.parentExplorer.resourceIndex.removePagination != 'undefined'){
+      that.parentExplorer.resourceIndex.removePagination();
+    }
 
     var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.options.itemsEachPage);
 
