@@ -43,8 +43,13 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
       var bounds = [[0,0],[0,0]];
     }
 
+    var recommenderFilters = [];
+    $.each(that.parentExplorer.filters, function(i,e) {
+      recommenderFilters = $.merge( recommenderFilters, e.getSelectedTerms() );
 
-    geozzy.biMetricsInstances.recommender.explorer( that.parentExplorer.options.explorerId , bounds, function(res){
+    });
+
+    geozzy.biMetricsInstances.recommender.explorer( that.parentExplorer.options.explorerId , bounds, recommenderFilters, function(res){
 
       // Para pruebas
       if (res.length>0){
