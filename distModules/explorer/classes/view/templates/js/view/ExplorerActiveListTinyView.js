@@ -55,22 +55,26 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
   getVisibleResourceIds: function() {
     var that = this;
+    var ret = false;
+
     if(typeof that.parentExplorer.resourceIndex.removePagination != 'undefined'){
       that.parentExplorer.resourceIndex.removePagination();
+
+      var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.options.itemsEachPage);
+
+      visibleResources.setSort('mapVisible', 'desc');
+
+      // get total packages
+      that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
+
+      // set current page
+      visibleResources.setPage(that.currentPage);
+
+      that.visibleResources = visibleResources.pluck( 'id' );
+      ret = visibleResources.pluck( 'id' );
     }
 
-    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.options.itemsEachPage);
-
-    visibleResources.setSort('mapVisible', 'desc');
-
-    // get total packages
-    that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
-
-    // set current page
-    visibleResources.setPage(that.currentPage);
-
-    that.visibleResources = visibleResources.pluck( 'id' );
-    return visibleResources.pluck( 'id' );
+    return ret;
   },
 
   render: function() {
