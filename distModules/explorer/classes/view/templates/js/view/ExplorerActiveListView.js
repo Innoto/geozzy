@@ -52,24 +52,30 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
   getVisibleResourceIds: function() {
     var that = this;
-
+    var ret = false;
     if(typeof that.parentExplorer.resourceIndex.removePagination != 'undefined'){
       that.parentExplorer.resourceIndex.removePagination();
+
+
+      var visibleResources = that.parentExplorer.resourceIndex.setPerPage(30);
+
+
+      visibleResources.setSort('mapVisible', 'desc');
+
+      // get total packages
+      that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
+
+      // set current page
+      visibleResources.setPage(that.currentPage);
+
+      that.visibleResources = visibleResources.pluck( 'id' );
+
+      ret = visibleResources.pluck( 'id' );
     }
 
-    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(30);
 
+    return ret;
 
-    visibleResources.setSort('mapVisible', 'desc');
-
-    // get total packages
-    that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
-
-    // set current page
-    visibleResources.setPage(that.currentPage);
-
-    that.visibleResources = visibleResources.pluck( 'id' );
-    return visibleResources.pluck( 'id' );
   },
 
 
