@@ -55,20 +55,26 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
   getVisibleResourceIds: function() {
     var that = this;
-    this.parentExplorer.resourceIndex.removePagination();
+    var ret = false;
 
-    var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.options.itemsEachPage);
+    if(typeof that.parentExplorer.resourceIndex.removePagination != 'undefined'){
+      that.parentExplorer.resourceIndex.removePagination();
 
-    visibleResources.setSort('mapVisible', 'desc');
+      var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.options.itemsEachPage);
 
-    // get total packages
-    that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
+      visibleResources.setSort('mapVisible', 'desc');
 
-    // set current page
-    visibleResources.setPage(that.currentPage);
+      // get total packages
+      that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
 
-    that.visibleResources = visibleResources.pluck( 'id' );
-    return visibleResources.pluck( 'id' );
+      // set current page
+      visibleResources.setPage(that.currentPage);
+
+      that.visibleResources = visibleResources.pluck( 'id' );
+      ret = visibleResources.pluck( 'id' );
+    }
+
+    return ret;
   },
 
   render: function() {
@@ -81,29 +87,31 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
 
     var contentHtml = '';
-    $.each(  this.visibleResources, function(i,e){
+    if( this.visibleResources) {
+      $.each(  this.visibleResources, function(i,e){
 
-      var element = {
-        contador: contador,
-        title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
-        id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
-        inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible'),
-        img: that.parentExplorer.resourceMinimalList.get( e ).get('img')
-      };
+        var element = {
+          contador: contador,
+          title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
+          id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
+          inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible'),
+          img: that.parentExplorer.resourceMinimalList.get( e ).get('img')
+        };
 
 
-      // metrics
-      that.parentExplorer.metricsResourceController.eventPrint(
-        that.parentExplorer.resourcePartialList.get( e ).get('id'),
-        'Explorer: '+that.parentExplorer.options.explorerSectionName
-      );
+        // metrics
+        that.parentExplorer.metricsResourceController.eventPrint(
+          that.parentExplorer.resourcePartialList.get( e ).get('id'),
+          'Explorer: '+that.parentExplorer.options.explorerSectionName
+        );
 
-      contentHtml += that.tplElement(element);
-      contador++;
-    });
+        contentHtml += that.tplElement(element);
+        contador++;
+      });
 
-    that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) );
-
+      that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) );
+    }
+    
     that.onRenderComplete();
   },
 
