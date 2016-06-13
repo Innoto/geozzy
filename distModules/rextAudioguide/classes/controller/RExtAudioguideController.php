@@ -143,10 +143,9 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
     if( !$form->existErrors() ) {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
 
-      $valuesRextArray[ 'resource' ] = $resource->getter( 'id' );
-      $valuesRextArray[ 'distance' ] = $valuesArray['distance'];
+      $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      $this->rExtModel = new AudioguideModel( $valuesRextArray );
+      $this->rExtModel = new AudioguideModel( $valuesArray );
 
       if ($this->rExtModel) {
         foreach (cogumeloGetSetupValue('publicConf:vars:langAvailableIds') as $lang){
