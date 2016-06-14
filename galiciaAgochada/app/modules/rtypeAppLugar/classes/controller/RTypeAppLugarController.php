@@ -145,7 +145,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
     $templates['audioguide'] = new Template();
     $templates['audioguide']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['audioguide']->assign( 'title', __( 'Audioguide' ) );
-    $templates['audioguide']->setFragment( 'blockContent', $formBlockInfo['ext']['rextAudioguide']['template']['full'] );
+    $templates['audioguide']->setFragment( 'blockContent', $formBlockInfo['ext']['rextAudioguide']['template']['basic'] );
 
     // TEMPLATE panel categorization
     $templates['categorization'] = new Template();

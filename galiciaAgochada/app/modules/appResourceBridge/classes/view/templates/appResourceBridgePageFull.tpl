@@ -22,7 +22,6 @@
 
 
 {block name="socialMeta" append}
-
   {$l = $cogumelo.publicConf.C_LANG}
   <meta property="og:url" content="{$cogumelo.publicConf.site_host}{$res.data["urlAlias"]}" />
   <meta property="og:type" content="article" />
@@ -30,14 +29,6 @@
   <meta property="og:image" content="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/big/{$res.data.image.id}.jpg" />
   <meta property="og:description" content='{$res.ext.rextSocialNetwork.data["textFb"]|escape:"html"}' />
   <meta property="og:locale" content="{$cogumelo.publicConf.lang_available[$l]['i18n']}"/>
-
-  <!--<meta property="og:site_name" content="Galicia Agochada" />-->
-  <!--<link href="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg" rel="image_src">-->
-
-  <!--
-  {if isset($res.ext.rextSocialNetwork.data['textFb'])}
-  <meta property="og:description" content='{$res.ext.rextSocialNetwork.data["textFb"]|escape:"html"}' />
-  {/if}-->
 {/block}
 
 
