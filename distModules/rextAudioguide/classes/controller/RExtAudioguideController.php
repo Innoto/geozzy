@@ -5,6 +5,7 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
 
   public function __construct( $defRTypeCtrl ){
     parent::__construct( $defRTypeCtrl, new rextAudioguide(), 'rExtAudioguide_' );
+    rextAudioguide::autoIncludes();
   }
 
   /**
@@ -121,7 +122,21 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
-  // parent::getFormBlockInfo( $form );
+   public function getFormBlockInfo( FormController $form ) {
+
+     $formBlockInfo = parent::getFormBlockInfo( $form );
+     $templates = $formBlockInfo['template'];
+
+     $templates['basic'] = new Template();
+     $templates['basic']->setTpl( 'rExtFormBlock.tpl', 'rextAudioguide' );
+     $templates['basic']->assign( 'rExt', $formBlockInfo );
+
+     $templates['basic']->addClientScript('js/rextAudioguideAdmin.js', 'rextAudioguide');
+
+     $formBlockInfo['template'] = $templates;
+
+     return $formBlockInfo;
+   }
 
 
   /**

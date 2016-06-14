@@ -14,7 +14,14 @@ class rextAudioguide extends Module {
 
   public $taxonomies = array();
 
-  public $dependences = array();
+  public $dependences = array(
+    array(
+     "id" =>"ionrangeslider",
+     "params" => array("ionrangeslider#2"),
+     "installer" => "bower",
+     "includes" => array("js/ion.rangeSlider.js", "css/ion.rangeSlider.css")
+    )
+  );
 
   public $includesCommon = array(
     'controller/RExtAudioguideController.php',
