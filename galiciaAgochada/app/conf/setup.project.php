@@ -63,6 +63,7 @@ cogumeloSetSetupValue( 'urlAliasController:classFile', COGUMELO_DIST_LOCATION.'/
 //
 global $C_ENABLED_MODULES;
 $C_ENABLED_MODULES = array(
+  'cogumeloSession',
   'i18nGetLang',
   'i18nServer',
   'mediaserver',
@@ -144,10 +145,11 @@ $C_ULTIMATE_MODULES = array(
 $C_ENABLED_MODULES = array_merge( $C_ENABLED_MODULES, $C_REXT_MODULES, $C_RTYPE_MODULES, $C_ULTIMATE_MODULES );
 
 
-// before app/Cogumelo.php execution
-// Needed for modules with their own urls
+// Before app/Cogumelo.php execution
+// Needed for modules with their own URLs
 global $C_INDEX_MODULES;
 $C_INDEX_MODULES  = array(
+  'cogumeloSession',
   'i18nGetLang',
   'i18nServer',
   'mediaserver',
