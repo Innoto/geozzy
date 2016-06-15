@@ -436,6 +436,113 @@ class geozzyAPIView extends View {
     <?php
   }
 
+  public function userLoginJson() {
+    header('Content-type: application/json');
+    ?>
+      {
+        "resourcePath": "/userLogin.json",
+        "basePath": "/api",
+        "apis": [
+          {
+            "operations": [
+              {
+                "errorResponses": [
+                  {
+                    "reason": "Not found",
+                    "code": 404
+                  }
+                ],
+                "httpMethod": "POST",
+                "nickname": "userLogin",
+                "parameters": [
+                  {
+                    "name": "user",
+                    "description": "User login",
+                    "type": "string",
+                    "paramType": "form",
+                    "required": true
+                  },
+                  {
+                    "name": "pass",
+                    "description": "Password",
+                    "type": "string",
+                    "paramType": "form",
+                    "required": true
+                  }
+                ],
+                "summary": "User Login"
+              }
+            ],
+            "path": "/core/userlogin",
+            "description": ""
+          }
+        ]
+      }
+    <?php
+  }
+
+  public function userLogoutJson() {
+    header('Content-type: application/json');
+    ?>
+      {
+        "resourcePath": "/userLogout.json",
+        "basePath": "/api",
+        "apis": [
+          {
+            "operations": [
+              {
+                "errorResponses": [
+                  {
+                    "reason": "Not found",
+                    "code": 404
+                  }
+                ],
+                "httpMethod": "POST",
+                "nickname": "userLogout",
+                "parameters": [],
+                "summary": "User Logout"
+              }
+            ],
+            "path": "/core/userlogout",
+            "description": ""
+          }
+        ]
+      }
+    <?php
+  }
+
+  public function cgmlSessionJson() {
+    header('Content-type: application/json');
+    ?>
+      {
+        "resourcePath": "/cgml-session.json",
+        "basePath": "/",
+        "apis": [
+          {
+            "operations": [
+              {
+                "errorResponses": [
+                  {
+                    "reason": "Not found",
+                    "code": 404
+                  }
+                ],
+                "httpMethod": "GET",
+                "nickname": "CogumeloSession",
+                "parameters": [],
+                "summary": "Get Cogumelo session info"
+              }
+            ],
+            "path": "/cgml-session.json",
+            "description": ""
+          }
+        ]
+      }
+    <?php
+  }
+
+
+
   public function userSessionJson() {
     header('Content-type: application/json');
     ?>
@@ -645,7 +752,7 @@ class geozzyAPIView extends View {
       $urlAliasList = $urlAliasModel->listItems( );
       $urls = array();
       while( $urlAlias = $urlAliasList->fetch() ) {
-        $urls[$urlAlias->getter('resource')] = $urlAlias->getter('urlFrom');
+        $urls[ $urlAlias->getter('resource') ] = $urlAlias->getter('urlFrom');
       }
     }
 
@@ -655,29 +762,28 @@ class geozzyAPIView extends View {
     $c = '';
     while( $valueobject = $resourceList->fetch() ) {
 
-
-
       //$allCols = $valueobject->getCols(false);
-      $allCols = array('id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
-                       'image', 'loc', 'defaultZoom', 'externalUrl', 'averageVotes');
-      foreach ($allCols as $col){
+      $allCols = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
+        'image', 'loc', 'defaultZoom', 'externalUrl', 'averageVotes' );
+      foreach( $allCols as $col ) {
         $allData[$col] = $valueobject->getter($col);
       }
+      if( isset( $allData['loc'] ) ) {
+        $loc = DBUtils::decodeGeometry( $allData['loc'] );
+        $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
+      }
 
+
+      // URLAlias precargados. TODOS!!!
       if( isset( $extraParams['urlAlias'] ) && $extraParams['urlAlias'] === 'true' ) {
-
-        if (array_key_exists($valueobject->getter('id'), $urls)){
-          $allData['urlAlias'] = $urls[$valueobject->getter('id')];
+        if( array_key_exists( $valueobject->getter('id'), $urls ) ) {
+          $allData['urlAlias'] = $urls[ $valueobject->getter('id') ];
         }
         else{
           $allData['urlAlias'] = '/resource/'.$valueobject->getter('id');
         }
       }
 
-      if( isset( $allData['loc'] ) ) {
-        $loc = DBUtils::decodeGeometry( $allData['loc'] );
-        $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
-      }
 
       // Category
       if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
@@ -712,7 +818,7 @@ class geozzyAPIView extends View {
 
           if( method_exists( $relModel, 'getAllData' ) ) {
             $allCols = $relModel->getCols(false);
-            foreach($allCols as $key => $col){
+            foreach( $allCols as $key => $col ) {
               $rexData_cols[$key] = $relModel->getter($key);
             }
 
@@ -743,17 +849,14 @@ class geozzyAPIView extends View {
               $collData[ $key ] = $coll->getter( $key );
             }
 
-            if( $coll->getter( 'collectionType' ) === 'multimedia' ) {
-              $collsMmedia[ $collData['id'] ] = $collData;
-            }
-            elseif( $coll->getter( 'collectionType' ) === 'base' ) {
+            if( $coll->getter( 'collectionType' ) === 'base' ) {
               $collsOther[ $collData['id'] ] = $collData;
+            }
+            elseif( $coll->getter( 'collectionType' ) === 'multimedia' ) {
+              $collsMmedia[ $collData['id'] ] = $collData;
             }
           }
         }
-
-
-
 
         $allData[ 'collectionsGeneral' ] = array();
         if( count( $collsOther ) > 0 ) {
@@ -780,10 +883,9 @@ class geozzyAPIView extends View {
                   $loc = DBUtils::decodeGeometry( $resCollData_tmp[$resColl->getter('id')]['loc'] );
                   $resCollData_tmp[$resColl->getter('id')]['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
                 }
-
               }
               /* Reordenamos los recursos de la colección por el orden q traian*/
-              foreach ($resIds as $id){
+              foreach( $resIds as $id ) {
                 array_push($resCollData, $resCollData_tmp[$id]);
               }
               $coll[ 'resourcesData' ][] = $resCollData;
@@ -814,7 +916,7 @@ class geozzyAPIView extends View {
                 }
               }
               /* Reordenamos los recursos de la colección por el orden q traian*/
-              foreach ($resIds as $id){
+              foreach( $resIds as $id ) {
                 array_push($resCollData, $resCollData_tmp[$id]);
               }
               $coll[ 'resourcesData' ][] = $resCollData;
@@ -823,7 +925,6 @@ class geozzyAPIView extends View {
           }
         }
       }
-
 
 
       echo $c.json_encode( $allData );
@@ -979,6 +1080,28 @@ class geozzyAPIView extends View {
     $topicModel = new TopicModel();
     $topicList = $topicModel->listItems( );
     $this->syncModelList( $topicList );
+  }
+
+  // User login
+  public function userLogin() {
+    $status = false;
+
+    if( isset( $_POST['user'] ) && isset( $_POST['pass'] ) ) {
+      $useraccesscontrol = new UserAccessController();
+      $status = $useraccesscontrol->userLogin( $_POST['user'], $_POST['pass'] );
+    }
+
+    header('Content-type: application/json');
+    echo json_encode( $status );
+  }
+
+  // User logout
+  public function userLogout() {
+    $useraccesscontrol = new UserAccessController();
+    $status = $useraccesscontrol->userLogout();
+
+    header('Content-type: application/json');
+    echo json_encode( $status );
   }
 
   // userSession
