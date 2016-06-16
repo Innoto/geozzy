@@ -40,6 +40,8 @@ class FavouritesListViewModel extends Model {
   );
 
   static $extraFilters = array(
+    'idIn' => ' geozzy_favourites_list_view.id IN (?) ',
+    'userIn' => ' geozzy_favourites_list_view.user IN (?) ',
     'resourceListNotNull' => ' resourceList IS NOT NULL ',
     'inResourceList' => ' ( resourceList like concat(?,",%") OR resourceList LIKE CONCAT("%,",?,",%") OR resourceList LIKE CONCAT("%,",?)  OR resourceList = ? ) '
   );

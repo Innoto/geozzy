@@ -5,7 +5,6 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
 
   public function __construct( $defRTypeCtrl ){
     parent::__construct( $defRTypeCtrl, new rextAudioguide(), 'rExtAudioguide_' );
-    rextAudioguide::autoIncludes();
   }
 
   /**
@@ -131,6 +130,8 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
      $templates['basic']->setTpl( 'rExtFormBlock.tpl', 'rextAudioguide' );
      $templates['basic']->assign( 'rExt', $formBlockInfo );
 
+
+     $templates['basic']->addClientScript('ionrangeslider/js/ion.rangeSlider.js', 'vendor/bower');
      $templates['basic']->addClientScript('js/rextAudioguideAdmin.js', 'rextAudioguide');
 
      $formBlockInfo['template'] = $templates;

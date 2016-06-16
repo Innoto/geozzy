@@ -92,6 +92,18 @@ $GEOZZY_API_DOC_URLS =  array_merge(
       'description' => 'Topics'
     ),
     array(
+      'path' => '/userLogin.json',
+      'description' => 'User Login'
+    ),
+    array(
+      'path' => '/userLogout.json',
+      'description' => 'User Logout'
+    ),
+    array(
+      'path' => '/cgml-session.json',
+      'description' => 'Get Cogumelo session info'
+    ),
+    array(
       'path' => '/userSession.json',
       'description' => 'User Session'
     ),
