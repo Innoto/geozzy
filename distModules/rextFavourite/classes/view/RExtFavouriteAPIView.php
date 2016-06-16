@@ -172,10 +172,22 @@ class RExtFavouriteAPIView extends View {
         $listFilters['inResourceList'] = $filters['resourceId'];
       }
       if( $filters['userId'] !== null ) {
-        $listFilters['user'] = $filters['userId'];
+        $userArray = explode( ',', $filters['userId'] );
+        if( count( $userArray ) > 1 ) {
+          $listFilters['userIn'] = $userArray;
+        }
+        else {
+          $listFilters['user'] = $filters['userId'];
+        }
       }
       if( $filters['favouritesId'] !== null ) {
-        $listFilters['id'] = $filters['favouritesId'];
+        $favsArray = explode( ',', $filters['favouritesId'] );
+        if( count( $favsArray ) > 1 ) {
+          $listFilters['idIn'] = $favsArray;
+        }
+        else {
+          $listFilters['id'] = $filters['favouritesId'];
+        }
       }
 
       $favModel = new FavouritesListViewModel();
@@ -219,10 +231,22 @@ class RExtFavouriteAPIView extends View {
         $listFilters['inResourceList'] = $filters['resourceId'];
       }
       if( $filters['userId'] !== null ) {
-        $listFilters['user'] = $filters['userId'];
+        $userArray = explode( ',', $filters['userId'] );
+        if( count( $userArray ) > 1 ) {
+          $listFilters['userIn'] = $userArray;
+        }
+        else {
+          $listFilters['user'] = $filters['userId'];
+        }
       }
       if( $filters['favouritesId'] !== null ) {
-        $listFilters['id'] = $filters['favouritesId'];
+        $favsArray = explode( ',', $filters['favouritesId'] );
+        if( count( $favsArray ) > 1 ) {
+          $listFilters['idIn'] = $favsArray;
+        }
+        else {
+          $listFilters['id'] = $filters['favouritesId'];
+        }
       }
 
       $favModel = new FavouritesListViewModel();
@@ -274,10 +298,22 @@ class RExtFavouriteAPIView extends View {
         $listFilters['inResourceList'] = $filters['resourceId'];
       }
       if( $filters['userId'] !== null ) {
-        $listFilters['user'] = $filters['userId'];
+        $userArray = explode( ',', $filters['userId'] );
+        if( count( $userArray ) > 1 ) {
+          $listFilters['userIn'] = $userArray;
+        }
+        else {
+          $listFilters['user'] = $filters['userId'];
+        }
       }
       if( $filters['favouritesId'] !== null ) {
-        $listFilters['id'] = $filters['favouritesId'];
+        $favsArray = explode( ',', $filters['favouritesId'] );
+        if( count( $favsArray ) > 1 ) {
+          $listFilters['idIn'] = $favsArray;
+        }
+        else {
+          $listFilters['id'] = $filters['favouritesId'];
+        }
       }
 
       $favModel = new FavouritesListViewModel();
@@ -379,21 +415,21 @@ class RExtFavouriteAPIView extends View {
             },
             {
               "name": "resourceId",
-              "description": "Limit command by Resource Id",
+              "description": "Filter by Resource Id",
               "type": "integer",
               "paramType": "form",
               "required": false
             },
             {
               "name": "favouritesId",
-              "description": "Limit command by Favourites Id",
+              "description": "Filter by Favourites Id or array",
               "type": "integer",
               "paramType": "form",
               "required": false
             },
             {
               "name": "userId",
-              "description": "Limit command by User Id",
+              "description": "Filter by User Id or array",
               "type": "integer",
               "paramType": "form",
               "required": false
