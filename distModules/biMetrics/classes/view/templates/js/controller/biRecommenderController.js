@@ -18,7 +18,8 @@ geozzy.biMetricsComponents.biRecommender = Backbone.Collection.extend({
   getUserIdentifier: function() {
     var retID;
 
-    if( geozzy.userSessionInstance.user) {
+
+    if( geozzy.userSessionInstance.user.get('id')) {
       retID = geozzy.userSessionInstance.user.get('id');
     }
     else {
