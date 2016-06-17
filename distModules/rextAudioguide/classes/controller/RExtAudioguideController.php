@@ -130,8 +130,8 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
      $templates['basic']->setTpl( 'rExtFormBlock.tpl', 'rextAudioguide' );
      $templates['basic']->assign( 'rExt', $formBlockInfo );
 
-
-     $templates['basic']->addClientScript('ionrangeslider/js/ion.rangeSlider.js', 'vendor/bower');
+     // $templates['basic']->addClientStyles('ionrangeslider/css/ion.rangeSlider.css', 'vendor/bower');
+     // $templates['basic']->addClientScript('ionrangeslider/js/ion.rangeSlider.js', 'vendor/bower');
      $templates['basic']->addClientScript('js/rextAudioguideAdmin.js', 'rextAudioguide');
 
      $formBlockInfo['template'] = $templates;
