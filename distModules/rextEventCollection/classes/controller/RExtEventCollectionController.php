@@ -212,7 +212,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
-    $templates['full']->addClientScript('js/rextEventCollection.js', 'rextEventCollection');
+    $templates['full']->addClientScript('js/rextEventCollectionAdmin.js', 'rextEventCollection');
 
     $formBlockInfo['template'] = $templates;
 
