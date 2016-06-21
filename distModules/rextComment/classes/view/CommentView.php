@@ -206,8 +206,6 @@ class CommentView extends View
       //Consultamos el valor de valoracion media y lo guardamos en el recurso
       $averageVotesModel = new AverageVotesViewModel();
       $resAverageVotes = $averageVotesModel->listItems( array('filters' => array('id' => $comment->getter('resource')) ))->fetch();
-      $resourceModel = new ResourceModel( array('id' => $comment->getter('resource'), 'averageVotes' => $resAverageVotes->getter('averageVotes') ));
-      $resourceModel->save();
 
     }
     return $comment;
