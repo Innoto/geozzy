@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if (! geozzy.explorerComponents) { geozzy.explorerComponents= {} }
+if (! geozzy.rextRoutes) { geozzy.rextRoutes= {} }
 
-geozzy.explorerComponents.routeModel = Backbone.Model.extend({
+geozzy.rextRoutes.routeModel = Backbone.Model.extend({
   defaults: {
     id: false,
     centroid: false,

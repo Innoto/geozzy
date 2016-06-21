@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if (! geozzy.explorerComponents) { geozzy.explorerComponents= {} }
+if (! geozzy.rextRoutes) { geozzy.rextRoutes= {} }
 
-geozzy.explorerComponents.routeCollection = Backbone.Collection.extend({
+geozzy.rextRoutes.routeCollection = Backbone.Collection.extend({
   url: '/api/routes',
-  model: geozzy.explorerComponents.routeModel
+  model: geozzy.rextRoutes.routeModel
 });

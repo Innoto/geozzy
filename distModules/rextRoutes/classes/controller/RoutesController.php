@@ -45,15 +45,19 @@ class RoutesController {
     $routesModel = new RoutesModel();
     $routesList = $routesModel->listItems( array('affectsDependences'=> array('FiledataModel') , 'filters'=>['resource'=>$ids ] ) );
 
-//var_dump( cogumeloGetSetupValue( 'mod:filedata')['filePath'].$routesList->fetch()->getterDependence('routeFile')[0]->getter('absLocation') );
-//exit;
-
     $routes = [];
 
     while( $routeVO = $routesList->fetch() ) {
 
-      $route = [];
-      $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'] . $routeVO->getterDependence('routeFile')[0]->getter('absLocation');
+      $route = [ ];
+
+      if(  $routeVO->getter('routeFile') ) {
+        $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'] . $routeVO->getterDependence('routeFile')[0]->getter('absLocation');
+      }
+      else {
+        $filePath = false;
+      }
+
 
       if ( file_exists( $filePath ) ) {
 
@@ -77,7 +81,7 @@ class RoutesController {
         }
       }
       else {
-        Cogumelo::error('File not found: '. $filePath);
+        Cogumelo::log('Route file not found: '. $filePath);
       }
 
       $routes[] = $route;
@@ -114,7 +118,7 @@ class RoutesController {
       }
     }
     else {
-      Cogumelo::error('File not found: '. $filePath);
+      Cogumelo::log('Route file not found: '. $filePath);
     }
 
 
