@@ -1,5 +1,6 @@
 <?php
 
+Cogumelo::load('coreController/I18nController.php');
 
 class RExtSocialNetworkController extends RExtController implements RExtInterface {
 
@@ -58,21 +59,22 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       'activeFb' => array(
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activate share on facebook') ))
       ),
-      'textFb' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Text to share on facebook' ), 'type' => 'textarea', 'placeholder' => __('You should visit #TITLE#. Seen in en #URL#') ),
-        'rules' => array( 'maxlength' => '2000' )
-      ),
       'activeTwitter' => array(
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activate share on twitter') ))
-      ),
-      'textTwitter' => array(
-        'translate' => true,
-        'params' => array( 'label' => __( 'Text to share on twitter' ), 'type' => 'textarea', 'placeholder' => __('I liked this place: #TITLE# via #URL#' )),
-        'rules' => array( 'maxlength' => '2000' )
       )
-
     );
+
+    $i18nCtrl = new I18nController();
+
+    $fieldsInfo3 = array();
+    foreach (Cogumelo::getSetupValue( 'lang:available' ) as $key => $lang){
+      $fieldsInfo3['textFb_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key, 'label' => __( 'Text to share on facebook' ), 'type' => 'textarea', 'placeholder' => $i18nCtrl->getLangTranslation('You should visit #TITLE#. Seen in en #URL#', $lang['i18n']) ),
+        'rules' => array( 'maxlength' => '2000' ));
+      $fieldsInfo3['textTwitter_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key, 'label' => __( 'Text to share on twitter' ), 'type' => 'textarea', 'placeholder' => $i18nCtrl->getLangTranslation('I liked this place: #TITLE# via #URL#', $lang['i18n']) ),
+        'rules' => array( 'maxlength' => '2000' ));
+
+    }
+    $fieldsInfo = array_merge($fieldsInfo, $fieldsInfo3);
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
@@ -163,18 +165,22 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      $textFb = $form->multilangFieldNames( 'textFb' );
-      foreach( $textFb as $text ) {
-        if ($valuesArray[$text]==""){
-          $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
-          $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
+      if ($valuesArray['activeFb']){
+        $textFb = $form->multilangFieldNames( 'textFb' );
+        foreach( $textFb as $text ) {
+          if ($valuesArray[$text]==""){
+            $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
+            $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
+          }
         }
       }
-      $twitterFb = $form->multilangFieldNames( 'textTwitter' );
-      foreach( $twitterFb as $text ) {
-        if( $valuesArray[$text]=="" ) {
-          $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
-          $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
+      if ($valuesArray['activeTwitter']){
+        $twitterFb = $form->multilangFieldNames( 'textTwitter' );
+        foreach( $twitterFb as $text ) {
+          if( $valuesArray[$text]=="" ) {
+            $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
+            $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
+          }
         }
       }
 
