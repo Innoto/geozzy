@@ -26,7 +26,7 @@ class RExtFavouriteAPIView extends View {
     }
 
     $this->apiParams = array( 'cmd', 'status' );
-    $this->apiCommands = array( 'setStatus', 'getStatus', 'listFavs', 'listResources', 'listUsers', 'getFavouritesUrl' );
+    $this->apiCommands = array( 'setStatus', 'getStatus', 'getFavouritesUrl', 'listFavs', 'listResources', 'listUsers' );
     $this->apiFilters = array( 'favouritesId', 'resourceId', 'userId' );
 
     parent::__construct( $base_dir ); // Esto lanza el accessCheck
@@ -165,8 +165,17 @@ class RExtFavouriteAPIView extends View {
   public function apiListFavs( $filters ) {
     $result = null;
 
-    // Solo pueden acceder si $this->extendAPIAccess
-    if( $this->extendAPIAccess ) {
+    $access = $this->extendAPIAccess;
+
+    if( !$access && $this->userId !== false ) {
+      if( $filters['userId'] === null || $filters['userId'] === strval( $this->userId ) ) {
+        $filters['userId'] = $this->userId;
+        $access = true;
+      }
+    }
+
+    // Solo se puede acceder si $this->extendAPIAccess o un usuario a su propios datos
+    if( $access ) {
       $listFilters = array();
       if( $filters['resourceId'] !== null ) {
         $listFilters['inResourceList'] = $filters['resourceId'];
@@ -224,8 +233,17 @@ class RExtFavouriteAPIView extends View {
   public function apiListResources( $filters ) {
     $result = null;
 
-    // Solo pueden acceder si $this->extendAPIAccess
-    if( $this->extendAPIAccess ) {
+    $access = $this->extendAPIAccess;
+
+    if( !$access && $this->userId !== false ) {
+      if( $filters['userId'] === null || $filters['userId'] === strval( $this->userId ) ) {
+        $filters['userId'] = $this->userId;
+        $access = true;
+      }
+    }
+
+    // Solo se puede acceder si $this->extendAPIAccess o un usuario a su propios datos
+    if( $access ) {
       $listFilters = array();
       if( $filters['resourceId'] !== null ) {
         $listFilters['inResourceList'] = $filters['resourceId'];
