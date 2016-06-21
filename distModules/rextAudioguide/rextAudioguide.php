@@ -27,7 +27,7 @@ class rextAudioguide extends Module {
     'controller/RExtAudioguideController.php',
     'model/AudioguideModel.php'
   );
-
+  public $autoIncludeAlways = true;
 
   public function __construct() {
   }

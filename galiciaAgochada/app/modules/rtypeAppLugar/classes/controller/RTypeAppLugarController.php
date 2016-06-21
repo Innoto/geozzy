@@ -302,6 +302,7 @@ class RTypeAppLugarController extends RTypeController implements RTypeInterface 
      $template->addToFragment( 'rextCommentAverageBlock', $viewBlockInfo['ext']['rextComment']['template']['headerAverage'] );
     }
 
+    $template->addClientScript('js/rextAudioguideAdmin.js', 'rextAudioguide');
     $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
