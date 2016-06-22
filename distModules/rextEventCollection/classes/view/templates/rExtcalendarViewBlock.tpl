@@ -13,10 +13,15 @@
     <div class="event accordion-group">
       <div class="accordion-heading row">
         <a class="date accordion-toggle col-md-4" data-toggle="collapse" data-parent="#accordion2" href=".ele{$eventDate.id}">
-          <i class="arrow fa fa-caret-right" aria-hidden="true"></i>
-          <div class="dateContent">
-            {$eventDate.formatedDate.l}, {$eventDate.formatedDate.j} {t}de{/t} {$eventDate.formatedDate.F}
-          </div>
+
+          {if $eventDate@first}
+            <i class="arrow arrow-down fa fa-caret-down" aria-hidden="true"></i>
+            <i style="display:none;" class="arrow arrow-right fa fa-caret-right" aria-hidden="true"></i>
+          {else}
+            <i style="display:none;" class="arrow arrow-down fa fa-caret-down" aria-hidden="true"></i>
+            <i class="arrow arrow-right fa fa-caret-right" aria-hidden="true"></i>
+          {/if}
+          {$eventDate.formatedDate.l}, <span class="dateContent">{$eventDate.formatedDate.j} de {$eventDate.formatedDate.F}</span>
         </a>
       </div><hr/>
       <div class="ele{$eventDate.id} accordion-body collapse {if $eventDate@first}in{/if} clearfix">
@@ -25,15 +30,20 @@
           <div class="externalBox col-md-4 col-sm-6 col-xs-12">
             <div class="box">
               <div class="eventImg">
-                <img src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/calendarEvent/{$elm.resource.image}.jpg"/>
+                <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/calendarEvent/{$elm.resource.image}.jpg"/>
               </div>
               <div class="eventText">
                 <div class="eventTitle">
-                  <p><b>{$elm.resource.title}</b></p>
+                  <span>{$elm.event.formatedDate.time} h.</span>{$elm.resource.title}</p>
                 </div>
-                <div class="time">
-                  <p><b>{$elm.event.formatedDate.time} h.</b></p>
+                <div class="eventDescription">
+                  {$elm.resource.mediumDescription}
                 </div>
+
+                <div class="btn more">
+                  <i class="fa fa-plus" aria-hidden="true"></i> {t}More{/t}
+                </div>
+
               </div>
             </div>
           </div>
@@ -42,7 +52,7 @@
       </div>
     </div>
   {/foreach}
-  
+
 {/if}
 
 </div>

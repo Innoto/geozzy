@@ -642,6 +642,7 @@
     }
 
     .eventSection{
+
       .listCollectionView{
         .accordion-group{
           margin-bottom:10px;
@@ -652,23 +653,47 @@
             margin-left:0px;
             a.date{
               color:@gzzColor-text-dark-2;
-              i{color:@gzzColor-festas;}
-              text-transform: uppercase;
-              .arrow{font-size:26px;float:left;}
-              .dateContent{margin-left:20px;}
+              font-size:20px;
+              line-height: 20px;
+              text-transform:capitalize;
+              i{
+                color:@gzzColor-festas;
+                vertical-align:middle;
+              }
+              .arrow{font-size:30px;}
+              span.dateContent{
+                font-weight:500;
+                text-transform:lowercase;
+              }
+            }
+          }
+          .accordion-body{
+            margin-left:0px;
+            padding-left:0px;
+            .extendedData{
+              background-color:@gzzColor-bck-1;
+              margin-top:10px;
+              padding:10px;
+              .eventTime{font-size:20px;}
+              .eventTitle{
+                font-size:18px;
+                padding-left:10px;
+              }
+              .row{
+
+                .eventDescription{
+                  padding:0px 20px;
+                  text-align:justify;
+                }
+                .eventImg{
+                  img{width:100%;}
+                }
+
+              }
+
             }
           }
 
-
-          .extendedData{
-            background-color:@gzzColor-bck-1;
-            padding:10px;
-            margin-top:10px;
-            .eventDescription{
-              padding:0px 20px;
-              text-align:justify;
-            }
-          }
         }
       }
 
@@ -679,39 +704,92 @@
             border:1px solid @gzzColor-text-dark-2;
             text-align: center;
             min-height:110px;
-            padding:10px 0px;
-            .eventDate{font-weight:bold;margin-top:10px;}
-            .eventTime{font-size:22px;}
+            padding:10px;
+            .eventImg{
+              img{width:100%;}
+            }
+            .eventContent{
+              background-color:@gzzColor-bck-2;
+              margin-top: 12px;
+              padding: 6px;
+              .eventDate{
+                font-weight:600;
+              }
+              .eventTitle {
+              }
+              .eventTime{
+                font-size:22px;
+                height:30px;
+                margin-top:6px;
+                i{
+                  color:@gzzColor-festas;
+                  vertical-align:middle;
+                  padding-right:5px;
+                }
+                .arrow{font-size:30px;}
+                span.dateContent{
+                  font-weight:500;
+                  text-transform:lowercase;
+                }
+              }
+            }
+
           }
         }
       }
 
       .calendarCollectionView{
+
         .accordion-group{
           margin-bottom:10px;
           padding:10px;
           a.date{
-            i{color:@gzzColor-festas;}
-            text-transform: uppercase;
+            color:@gzzColor-text-dark;
+            text-transform: capitalize;
+            font-size:20px;
+            height:20px;
+            line-height:20px;
+            i{
+              color:@gzzColor-festas;
+              font-size:20px;
+              vertical-align:middle;
+            }
+
             .arrow{font-size:22px;float:left;}
             .dateContent{margin-left:15px;}
           }
           .extendedData{
             .externalBox{
-              padding:10px;
               .box{
                 min-height:110px;
-                text-align: center;
-                padding:10px 0px;
+                padding:10px;
                 border:1px solid @gzzColor-text-dark-2;
+                .eventImg{
+                  img{width:100%;}
+                }
                 .eventText{
                   margin-top:15px;
-                  font-size:18px;
+                  .eventTitle{
+                    text-alig:center;
+                    font-size:18px;
+                    span{
+                      font-weight:600;
+                      padding-right:5px;
+                    }
+                  }
+                  .eventDescription{
+                    font-size:14px;
+                    margin-top:12px;
+                    height:220px;
+                    overflow:auto;
+                  }
+                  .more{
+                    margin:10px;
+                    background-color:@gzzColor-festas;
+                    color: @gzzColor-text-light;
+                  }
                 }
-                .eventDescription{
-                  margin-top:15px;
-                  font-size:18px;
-                }
+
               }
             }
           }
@@ -736,19 +814,27 @@
       font-weight:bold;
     }
 
-    .audioguideBlock{
-      .audio{margin-top:10px;margin-bottom:5px;}
-    }
-
     .resumeBox{
       position:absolute;
       bottom:0px;
       right:0px;
-      background-color: rgba(255,255,255,0.6);
-      padding:10px 18px 5px 18px;
+      background-color: rgba(255,255,255,0.7);
+      padding: 10px 0 4px 0px;
       .playAudio{
-        font-weight:600;
-        font-size:18px;
+        color: @gzzColor-text-dark;
+        .audioguideBlock{
+          .title{
+            font-weight:500;
+            i{
+              font-size:32px;
+              float:left;
+            }
+            .text{
+              margin-left:38px;
+              padding-top:6px;
+            }
+          }
+        }
       }
     }
   }
@@ -879,5 +965,6 @@
         }//.taxonomyBar
       }//.contentSec
     }//.resource
+
   }//.bodyContent
 } /*767px*/

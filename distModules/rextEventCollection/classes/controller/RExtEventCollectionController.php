@@ -212,7 +212,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
-    $templates['full']->addClientScript('js/rextEventCollection.js', 'rextEventCollection');
+    $templates['full']->addClientScript('js/rextEventCollectionAdmin.js', 'rextEventCollection');
 
     $formBlockInfo['template'] = $templates;
 
@@ -381,7 +381,13 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
         /* Cargamos los datos de la extensión */
         while( $event = $eventList->fetch() ){
+
+          echo '<pre>';
+          print_r($event);
+          echo '</pre>';
+
           $eventInfo = $event->getAllData('onlydata');
+          $eventCollection[$event->getter('resource')]['event']['relatedResource'] = $eventInfo['relatedResource'];
           $initDate = new DateTime($eventInfo['initDate']);
           $eventDate = $initDate->format('Y').$initDate->format('m').$initDate->format('d');
           $today = date('Ymd');
@@ -403,6 +409,7 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         $resourceModel =  new ResourceModel();
         $resourceList = $resourceModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArrayFinal) ));
         while( $resource = $resourceList->fetch() ){
+
           $eventCollection[$resource->getter('id')]['resource']['title'] = $resource->getter('title');
           $eventCollection[$resource->getter('id')]['resource']['mediumDescription'] = $resource->getter('mediumDescription');
           $eventCollection[$resource->getter('id')]['resource']['image'] = $resource->getter('image');
