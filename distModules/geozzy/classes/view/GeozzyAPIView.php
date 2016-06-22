@@ -817,12 +817,11 @@ class geozzyAPIView extends View {
           $rexData = array( 'MODELNAME' => $relModelIdName );
 
           if( method_exists( $relModel, 'getAllData' ) ) {
-            $allCols = $relModel->getCols(false);
-            foreach( $allCols as $key => $col ) {
-              $rexData_cols[$key] = $relModel->getter($key);
+            $allCols = $relModel->getCols( false );
+            foreach( $allCols as $colName => $colInfo ) {
+              $rexData[ $colName ] = $relModel->getter( $colName );
             }
 
-            $rexData = array_merge( $rexData, $rexData_cols);
             $allData['rextmodels'][] = $rexData;
           }
         }
