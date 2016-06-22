@@ -92,9 +92,6 @@ class ResourceModel extends Model {
     'countVisits' => array(
       'type' => 'INT'
     ),
-    'averageVotes' => array(
-      'type' => 'SMALLINT'
-    ),
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0

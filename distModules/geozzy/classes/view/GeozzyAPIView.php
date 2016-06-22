@@ -764,7 +764,7 @@ class geozzyAPIView extends View {
 
       //$allCols = $valueobject->getCols(false);
       $allCols = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
-        'image', 'loc', 'defaultZoom', 'externalUrl', 'averageVotes' );
+        'image', 'loc', 'defaultZoom', 'externalUrl' );
       foreach( $allCols as $col ) {
         $allData[$col] = $valueobject->getter($col);
       }
