@@ -285,6 +285,9 @@ class RExtRoutesController extends RExtController implements RExtInterface {
        $rExtViewBlockInfo['data']['durationMinutes'] = date('i', mktime(0,$rExtViewBlockInfo['data']['durationMinutes']));
        $rExtViewBlockInfo['data']['travelDistanceKm'] = $rExtViewBlockInfo['data']['travelDistance']/1000;
        $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+
+       $rExtViewBlockInfo['template']['full']->addClientScript('js/rextRoutes.js', 'rextRoutes');
+
        $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextRoutes' );
 
      }

@@ -1,5 +1,5 @@
 var geozzy = geozzy || {};
-if(!geozzy.explorerComponents) geozzy.explorerComponents={};
+if(!geozzy.rextRoutes) geozzy.rextRoutes={};
 
 
 geozzy.rextRoutes.routeView = Backbone.View.extend({
@@ -23,25 +23,18 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     });
     that.options = $.extend(true, {}, options, opts);
+
+    that.render();
   },
 
   render: function() {
     var that = this;
 
 
-    if( that.routesCollection === false ) {
-      that.routesCollection = new geozzy.explorerComponents.routeCollection();
-      that.routesCollection.fetch({
-        success: function( res ) {
-          that.renderMapRoutes();
-          that.renderGraphRoutes();
-        }
-      });
+    if( that.options.routeModel !== false ) {
+      that.renderMapRoute();
+      that.renderGraphRoute();
     }
-    /*else {
-      //that.renderMapRoute();
-      //that.renderGraphRoute();
-    }*/
 
   },
 
@@ -50,47 +43,39 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
   renderMapRoutes: function(){
     var that = this;
-    that.mapRoutes = [];
-/*
-    var route =  that.routesCollection.get(126)
-*/
 
-    that.routesCollection.each( function(e,i){
-      var route = e;
+      var route = that.options.routeModel;
 
 
-      var routeMap = {};
-      var routeData = [ ];
+    var routeMap = {};
+    var routeData = [ ];
 
-      $.each( route.get('trackPoints') , function(i,e){
-        routeData.push({id:i, lat: e[0], lng:e[1] });
-      });
+    $.each( route.get('trackPoints') , function(i,e){
+      routeData.push({id:i, lat: e[0], lng:e[1] });
+    });
 
 
 
-      routeMap.id = route.get('id');
+    routeMap.id = route.get('id');
 
-      //console.log(route.get('trackPoints')[route.get('trackPoints').length - 1])
+    //console.log(route.get('trackPoints')[route.get('trackPoints').length - 1])
 
-      routeMap.markerStart = marker = new google.maps.Marker({
-        position:  {lat: route.get('trackPoints')[0][0], lng: route.get('trackPoints')[0][1]},
-        title: __('Route start'),
-        icon: {
-          url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_start.png' ,
-          anchor: new google.maps.Point(16,16)
-        }
-      });
+    routeMap.markerStart = marker = new google.maps.Marker({
+      position:  {lat: route.get('trackPoints')[0][0], lng: route.get('trackPoints')[0][1]},
+      title: __('Route start'),
+      icon: {
+        url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_start.png' ,
+        anchor: new google.maps.Point(16,16)
+      }
+    });
 
-      routeMap.markerEnd = marker = new google.maps.Marker({
-        position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
-        title: __('Route End'),
-        icon: {
-          url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_finish.png' ,
-          anchor: new google.maps.Point(2,14)
-        }
-
-      });
-
+    routeMap.markerEnd = marker = new google.maps.Marker({
+      position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
+      title: __('Route End'),
+      icon: {
+        url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_finish.png' ,
+        anchor: new google.maps.Point(2,14)
+      }
 
 
 

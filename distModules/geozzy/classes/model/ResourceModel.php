@@ -103,6 +103,13 @@ class ResourceModel extends Model {
 
   var $deploySQL = array(
     array(
+      'version' => 'geozzy#1.4',
+      'sql'=> '
+        ALTER TABLE geozzy_resource
+        DROP COLUMN averageVotes
+      '
+    ),
+    array(
       'version' => 'geozzy#1.3',
       'sql'=> '
         ALTER TABLE geozzy_resource

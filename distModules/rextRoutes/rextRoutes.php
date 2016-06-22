@@ -62,6 +62,7 @@ class rextRoutes extends Module {
     'controller/RoutesController.php',
     'js/model/RouteModel.js',
     'js/collection/RouteCollection.js',
+    'js/view/routeView.js',
     'js/view/routesExplorerView.js'
   );
 
@@ -76,7 +77,7 @@ class rextRoutes extends Module {
 // END TEST CODE
 
 
-    $this->addUrlPatterns( '#^api/routes/(.*)$#', 'view:RoutesAPIView::routes' );
+    $this->addUrlPatterns( '#^api/routes/?(.*)$#', 'view:RoutesAPIView::routes' );
     $this->addUrlPatterns( '#^api/routes.json#', 'view:RoutesAPIView::routesJson' );
 
   }
