@@ -696,8 +696,18 @@ class geozzyAPIView extends View {
 
     //$queryParameters = apiFiltersController::resourceListOptions( $param );
 
+
+    // Cargo la tabla de tipos de recurso (RTypes)
+    $infoRTypes = $this->loadInfoRTypes();
+    $infoRTypeIdNames = array_column( $infoRTypes, 'id', 'idName' );
+
     $resourceModel = new ResourceModel();
-    $queryParameters = array( );
+    $queryParameters = array();
+
+
+    // Bloqueo recursos no deseados
+    $queryParameters['filters']['notInRtype'] = array( $infoRTypeIdNames['rtypeFavourites'] );
+
 
     // Resource type
     if( isset( $extraParams['rtype'] ) && $extraParams['rtype'] !== 'false' ) {

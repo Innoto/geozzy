@@ -21,28 +21,28 @@
               <i style="display:none;" class="arrow arrow-down fa fa-caret-down" aria-hidden="true"></i>
               <i class="arrow arrow-right fa fa-caret-right" aria-hidden="true"></i>
             {/if}
-
-          <div class="dateContent">
-            {$eventDate.formatedDate.l}, {$eventDate.formatedDate.j} de {$eventDate.formatedDate.F}
-          </div>
+            {$eventDate.formatedDate.l}, <span class="dateContent">{$eventDate.formatedDate.j} de {$eventDate.formatedDate.F}</span>
         </a>
       </div>
       <div id="ele{$eventDate.id}" class="accordion-body collapse {if $eventDate@first}in{/if}">
         {foreach $eventDate.data as $i => $elm}
-        <div class="extendedData accordion-inner row">
-
-          <div class="eventTime col-md-1">
-            <p><b>{$elm.event.formatedDate.time} h.</b></p>
+        <div class="extendedData accordion-inner">
+          <p>
+            <span class="eventTime">
+              {$elm.event.formatedDate.time} h.
+            </span>
+            <span class="eventTitle">
+              {$elm.resource.title}
+            </span>
+          </p>
+          <div class="row">
+            <div class="eventDescription col-md-7">
+              <p>{$elm.resource.mediumDescription}</p>
+            </div>
+            <div class="eventImg col-md-5">
+              <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/basicEvent/{$elm.resource.image}.jpg"/>
+            </div>
           </div>
-          <div class="eventTitle col-md-11">
-            <p><b>{$elm.resource.title}</b></p>
-          </div>
-
-          <div class="eventDescription col-md-7">
-            <p>{$elm.resource.mediumDescription}</p>
-          </div>
-          <img class="col-md-5" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/basicEvent/{$elm.resource.image}.jpg"/>
-
         </div>
         {/foreach}
       </div>

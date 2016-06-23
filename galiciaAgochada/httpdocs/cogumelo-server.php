@@ -94,7 +94,7 @@ else {
 
 
 function rmdirRec( $dir ) {
-  error_log( "rmdirRec( $dir )" );
+  // error_log( "rmdirRec( $dir )" );
   if( is_dir( $dir ) ) {
     $dirElements = scandir( $dir );
     if( is_array( $dirElements ) && count( $dirElements ) > 0 ) {

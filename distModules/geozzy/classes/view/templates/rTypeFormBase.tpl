@@ -21,7 +21,9 @@
 {/foreach}
 {/if}
 
+{$res.dataForm.formFieldsArray.cancel}
 {$res.dataForm.formFieldsArray.submit}
+
 
 {$res.dataForm.formClose}
 

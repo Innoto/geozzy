@@ -37,6 +37,9 @@ body {
   .headerActionsContainer,
   .footerActionsContainer{
     float: right;
+    & > *{
+      margin-left: 10px;
+    }
   }
   .headSection {
     padding: 40px 30px 15px 30px ;
@@ -85,13 +88,11 @@ body {
 
 
 // Login Page
-
 .login-panel {
   margin-top: 25%;
 }
 
 // --MENU
-
 #menu-wrapper{
   &.navbar{
     min-height: auto;
@@ -188,6 +189,38 @@ body {
 
 
 /*BUTTON BASE*/
+
+//LABEL
+label { display: block;
+  &.formError{
+    margin: 5px 0px;
+    border-radius: 0;
+  }
+}
+
+.contentSection{
+  input[type="button"],
+  button{
+    .btn;
+    .btn-info;
+    .btn-outline;
+    background-color: transparent;
+  }
+
+  input[type="submit"],
+  button[type="submit"]{
+    .btn;
+    .btn-primary;
+  }
+}
+//CHECKBOX
+input[type="checkbox"]{
+  margin-right: 5px;
+  margin-top:0px;
+  vertical-align: middle;
+}
+
+
 .btn{
   .btn-gzz(30);
   text-transform: uppercase;
@@ -209,6 +242,7 @@ body {
     border: 2px solid @gzzColor-rest;
   }
 }
+
 .btn-primary, .btn-success {
   &:hover {
     background-color: @gzzColor-positive-hover;
@@ -218,6 +252,7 @@ body {
     border: 2px solid @gzzColor-positive;
   }
 }
+
 .btn-danger, .btn-warning {
   &:hover {
     background-color: @gzzColor-negative-hover;
@@ -233,22 +268,6 @@ body {
     background-color: transparent;
     transition: all .5s;
 }
-
-
-input[type="button"],
-button{
-  .btn;
-  .btn-info;
-  .btn-outline;
-  background-color: transparent;
-}
-
-input[type="submit"],
-button[type="submit"]{
-  .btn;
-  .btn-primary;
-}
-
 .btn-icon{
   background-color: transparent;
 
@@ -280,20 +299,7 @@ button[type="submit"]{
   }
 }
 
-//CHECKBOX
-input[type="checkbox"]{
-  margin-right: 5px;
-  margin-top:0px;
-  vertical-align: middle;
-}
 
-//LABEL
-label { display: block;
-  &.formError{
-    margin: 5px 0px;
-    border-radius: 0;
-  }
-}
 
 /*PANEL BASE*/
 .panel{

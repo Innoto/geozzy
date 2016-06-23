@@ -14,7 +14,7 @@
     </div>
     <div class="routeFile">
       <a class="btn" href="{$cogumelo.publicConf.mediaHost}cgmlformfilewd/{$rExt.data.routeFile.id}/{$rExt.data.routeFile.originalName}">
-        Descargar ruta <i class="fa fa-download" aria-hidden="true"></i>
+        {t}Download route{/t} <i class="fa fa-download" aria-hidden="true"></i>
       </a>
     </div>
   </div>

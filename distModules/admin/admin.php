@@ -46,7 +46,7 @@ class admin extends Module
     ),
     array(
      "id" =>"metismenu",
-     "params" => array("metisMenu#v2.4"),
+     "params" => array("metisMenu"),
      "installer" => "bower",
      "includes" => array("dist/metisMenu.min.css", "dist/metisMenu.min.js")
     ),
