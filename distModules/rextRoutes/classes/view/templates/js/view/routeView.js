@@ -78,6 +78,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       }
 
 
+          });
 
       routeMap.polyline = new google.maps.Polyline({
         path: routeData,
@@ -146,7 +147,6 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
-    });
 
   },
 
