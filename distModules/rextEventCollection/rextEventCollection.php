@@ -83,7 +83,7 @@ class rextEventCollection extends Module {
 
   public $includesCommon = array(
     'controller/RExtEventCollectionController.php',
-    'js/rextEventCollectionPublic.js',
+    'js/rextEventCollection.js',
   );
 
 

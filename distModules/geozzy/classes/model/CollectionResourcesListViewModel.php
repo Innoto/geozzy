@@ -60,7 +60,9 @@ class CollectionResourcesListViewModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'collectionTypeNotIn' => ' geozzy_collection_resourcelist_view.collectionType NOT IN (?) ',
+  );
 
   var $notCreateDBTable = true;
 
