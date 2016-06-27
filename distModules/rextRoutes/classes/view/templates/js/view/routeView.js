@@ -75,16 +75,19 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       map: that.options.map
     });
 
-    routeMap.markerEnd = marker = new google.maps.Marker({
-      position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
-      title: __('Route End'),
-      icon: {
-        url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_finish.png' ,
-        anchor: new google.maps.Point(2,14)
-      }
-      ,
-      map: that.options.map
-    });
+
+    if( route.get('circular') !== 1 ) {
+      routeMap.markerEnd = marker = new google.maps.Marker({
+        position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
+        title: __('Route End'),
+        icon: {
+          url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_finish.png' ,
+          anchor: new google.maps.Point(2,14)
+        }
+        ,
+        map: that.options.map
+      });
+    }
 
     that.polyline = new google.maps.Polyline({
       path: routeData,
