@@ -33,7 +33,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     if( that.options.routeModel !== false ) {
       that.renderMapRoute();
-      that.renderGraphRoute();
+      //that.renderGraphRoute();
     }
 
   },
@@ -41,7 +41,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
-  renderMapRoutes: function(){
+  renderMapRoute: function(){
     var that = this;
 
       var route = that.options.routeModel;
@@ -78,6 +78,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       }
 
 
+          });
 
       routeMap.polyline = new google.maps.Polyline({
         path: routeData,
@@ -102,7 +103,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       });
 
 
-      that.mapRoutes.push( routeMap );
+      that.mapRoute = routeMap;
 
       //recorridoPolyline.setMap( map );
 /*
@@ -146,11 +147,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
-    });
 
   },
 
-  renderGraphRoutes: function() {
+  renderGraphRoute: function() {
     /*
     var that = this;
 

@@ -60,11 +60,11 @@ var AdminView = Backbone.View.extend({
     that.childView = false;
 
     if (that.chartsLoaded == false){
-      $("#page-wrapper").load( url, {}, function(){ 
+      $("#page-wrapper").load( url, {}, function(){
         that.render();
-        that.chartsLoaded = $('#page-wrapper').html(); 
+        that.chartsLoaded = $('#page-wrapper').html();
       });
-      
+
     }else{
       $('#page-wrapper').html(that.chartsLoaded);
     }
@@ -116,6 +116,16 @@ var AdminView = Backbone.View.extend({
           cloneButtonTop.addClass( 'btn btn-primary' );
           cloneButtonBottom.addClass( 'btn btn-primary' );
         }
+
+        if($(this).attr('data-href')){
+          cloneButtonTop.on( 'click', function(){
+            window.location = $(this).attr('data-href');
+          });
+          cloneButtonBottom.on( 'click', function(){
+            window.location = $(this).attr('data-href');
+          });
+        }
+
         cloneButtonTop.appendTo( ".headSection .headerActionsContainer" );
         cloneButtonBottom.appendTo( ".footerSection .footerActionsContainer" );
         $(this).hide();

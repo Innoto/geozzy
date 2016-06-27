@@ -766,29 +766,23 @@ class geozzyAPIView extends View {
       }
     }
 
+
     header('Content-type: application/json');
     echo '[';
     $c = '';
     while( $valueobject = $resourceList->fetch() ) {
-      $allData = array(
-        'id' => $valueobject->getter('id'),
-        'rTypeId' => $valueobject->getter('rTypeId'),
-        'rTypeIdName' => $infoRTypes[ $valueobject->getter('rTypeId') ]['idName'],
-        'title' => $valueobject->getter('title'),
-        'shortDescription' => $valueobject->getter('shortDescription'),
-        'mediumDescription' => $valueobject->getter('mediumDescription'),
-        'content' => $valueobject->getter('content'),
-        'image' => $valueobject->getter('image'),
-        'loc' => $valueobject->getter('loc'),
-        'defaultZoom' => $valueobject->getter('defaultZoom'),
-        'externalUrl' => $valueobject->getter('externalUrl'),
-        'averageVotes' => $valueobject->getter('averageVotes')
-      );
 
+      //$allCols = $valueobject->getCols(false);
+      $allCols = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
+        'image', 'loc', 'defaultZoom', 'externalUrl', 'averageVotes' );
+      foreach( $allCols as $col ) {
+        $allData[$col] = $valueobject->getter($col);
+      }
       if( isset( $allData['loc'] ) ) {
         $loc = DBUtils::decodeGeometry( $allData['loc'] );
         $allData['loc'] = array( 'lat' => floatval( $loc['data'][0] ) , 'lng' => floatval( $loc['data'][1] ) );
       }
+
 
       // URLAlias precargados. TODOS!!!
       if( isset( $extraParams['urlAlias'] ) && $extraParams['urlAlias'] === 'true' ) {
@@ -830,10 +824,6 @@ class geozzyAPIView extends View {
         $relatedModels = $valueobject->getRextModels();
 
         foreach( $relatedModels as $relModelIdName => $relModel ) {
-          if( $relModelIdName === 'FavouritesViewModel' ) {
-            continue;
-          }
-
           $rexData = array( 'MODELNAME' => $relModelIdName );
 
           if( method_exists( $relModel, 'getAllData' ) ) {
@@ -853,10 +843,7 @@ class geozzyAPIView extends View {
         // Cargo los datos de Collections del recurso
         $resCollModel =  new CollectionResourcesListViewModel();
         $collResList = $resCollModel->listItems( array(
-          'filters' => array(
-            'resourceMain' => $allData['id'],
-            'collectionTypeNotIn' => array( 'favourites' )
-          )
+          'filters' => array( 'resourceMain' => $allData['id'] )
         ) );
         // error_log( 'resColl: collResList='.print_r( $collResList, true ) );
         if( $collResList !== false ) {
@@ -980,12 +967,12 @@ class geozzyAPIView extends View {
     }
 
     // types
-    if( isset($queryFilters['types']) && $queryFilters['types']!= 'false'  ) {
+    if(  isset($queryFilters['types']) && $queryFilters['types']!= 'false'  ) {
       $queryFiltersFinal['types'] = array_map('intval', explode(',',$queryFilters['types']) );
     }
 
     // topics
-    if( isset($queryFilters['topics']) && $queryFilters['topics']!= 'false'  ) {
+    if(  isset($queryFilters['topics']) && $queryFilters['topics']!= 'false'  ) {
       $queryFiltersFinal['topics'] = array_map('intval', explode(',', $queryFilters['topics'] ) );
     }
 
@@ -1020,33 +1007,15 @@ class geozzyAPIView extends View {
     echo ']';
   }
 
-
-
   public function resourceTypes() {
     geozzy::load('model/ResourcetypeModel.php');
-    $resourcetypeModel = new ResourcetypeModel();
-    $resourcetypeList = $resourcetypeModel->listItems();
-
-    header('Content-type: application/json');
-    echo '[';
-    $c = '';
-
-    while( $valueobject = $resourcetypeList->fetch() ) {
-      if( $valueobject->getter('idName') === 'rtypeFavourites' ) {
-        continue;
-      }
-      $allData = array( 'id' => $valueobject->getter('id'), 'idName' => $valueobject->getter('idName'),
-        'name' => $valueobject->getter('name'), 'taxgroup' => $valueobject->getter('taxgroup'),
-        'icon' => $valueobject->getter('icon'), 'weight' => $valueobject->getter('weight'));
-      echo $c.json_encode( $allData);
-      $c=',';
-    }
-    echo ']';
+    $resourcetypeModel = new ResourcetypeModel( );
+    $resourcetypeList = $resourcetypeModel->listItems( ) ;
+    $this->syncModelList( $resourcetypeList );
   }
 
-
-
   // Starred
+
   public function starred() {
     $taxtermModel = new TaxonomytermModel();
     $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
@@ -1060,13 +1029,12 @@ class geozzyAPIView extends View {
     while( $starred = $starredList->fetch() ) {
 
       $allCols = $starred->getCols(false);
-      foreach( $allCols as $key => $col ) {
+      foreach($allCols as $key => $col){
         $starData[$key] = $starred->getter($key);
       }
 
       $starredResourceModel = new StarredResourcesModel();
-      $starredResources = $starredResourceModel->listItems( array( 'filters' => array(
-        'taxonomyterm' => $starData['id'] ), 'order' => array( 'weight' => 1 ) ) );
+      $starredResources = $starredResourceModel->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']), 'order'=>array('weight'=>1)) );
 
       while( $starredResource = $starredResources->fetch() ){
         $starData['resources'][] = $starredResource->getAllData('onlydata');
@@ -1122,7 +1090,7 @@ class geozzyAPIView extends View {
   public function topicList() {
     geozzy::load('model/TopicModel.php');
     $topicModel = new TopicModel();
-    $topicList = $topicModel->listItems();
+    $topicList = $topicModel->listItems( );
     $this->syncModelList( $topicList );
   }
 
@@ -1208,18 +1176,5 @@ class geozzyAPIView extends View {
     header('Content-type: application/json');
     $data = $model->getAllData('onlydata');
     echo json_encode( $data );
-  }
-
-  public function loadInfoRTypes() {
-    $infoRTypes = array();
-
-    $rTypeModel = new ResourcetypeModel();
-    $rTypeList = $rTypeModel->listItems();
-    while( $rTypeObj = $rTypeList->fetch() ) {
-      $allData = $rTypeObj->getAllData('onlydata');
-      $infoRTypes[ $allData['id'] ] = $allData;
-    }
-
-    return $infoRTypes;
   }
 }

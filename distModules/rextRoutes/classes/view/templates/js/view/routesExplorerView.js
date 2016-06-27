@@ -2,7 +2,7 @@ var geozzy = geozzy || {};
 if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
 
-
+/*
 geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
@@ -63,10 +63,6 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
         }
       });
     }
-    /*else {
-      //that.renderMapRoute();
-      //that.renderGraphRoute();
-    }*/
 
   },
 
@@ -76,9 +72,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   renderMapRoutes: function(){
     var that = this;
     that.mapRoutes = [];
-/*
-    var route =  that.routesCollection.get(126)
-*/
+
 
     that.routesCollection.each( function(e,i){
       var route = e;
@@ -145,39 +139,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       that.mapRoutes.push( routeMap );
 
       //recorridoPolyline.setMap( map );
-/*
-      recorridoPolylineBK1.setMap( map );
-      recorridoPolylineBK2.setMap( map );
-*/
 
-
-
-
-
-      /*
-      recorridoPolylineBK2.addListener('mouseover', function(ev){
-        findPoint(ev.latLng.lat(), ev.latLng.lng());
-        isTrackHover = true;
-      });
-      recorridoPolylineBK1.addListener('mouseover', function(ev){
-        findPoint(ev.latLng.lat(), ev.latLng.lng());
-        isTrackHover = true;
-      });
-      recorridoPolyline.addListener('mouseover', function(ev){
-        findPoint(ev.latLng.lat(), ev.latLng.lng());
-        isTrackHover = true;
-      });
-      */
-      /*
-      recorridoPolylineBK2.addListener('mouseout', function(ev){
-        outRecorrido();
-      });
-      recorridoPolylineBK1.addListener('mouseout', function(ev){
-        outRecorrido();
-      });
-      recorridoPolyline.addListener('mouseout', function(ev){
-        outRecorrido();
-      });*/
 
 
 
@@ -191,38 +153,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   },
 
   renderGraphRoutes: function() {
-    /*
-    var that = this;
 
-    var chartString = "step,Altitude\n";
-    $.each( route.trackPoints, function(i,e){
-        chartString += i + "," + e[2] + "\n";
-    });
-
-
-
-
-    grafico = new Dygraph( document.getElementById("graph"),
-      chartString
-    );
-
-    grafico.updateOptions( {
-      annotationMouseOverHandler: function(annotation, point, dygraph, event) {
-          alert('')
-      }
-    });
-
-    $("#graph").mousemove(function(e) {
-        var seleccionado = grafico.getSelection();
-
-        that.hoverRoute( seleccionado )
-
-    }).mouseleave(function(e) {
-        var seleccionada = grafico.getSelection();
-        outRecorrido();
-
-
-    });*/
   },
 
 
@@ -314,6 +245,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
 
-
-
 });
+
+
+*/
