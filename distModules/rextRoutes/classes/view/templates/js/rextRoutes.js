@@ -17,7 +17,8 @@ $( document ).ready(function() {
       success: function( res ) {
         var route = new geozzy.rextRoutes.routeView({
           map: geozzy.rExtMapInstance.resourceMap,
-          routeModel: routesCollection.get( geozzy.rExtRoutesOptions.resourceId )
+          routeModel: routesCollection.get( geozzy.rExtRoutesOptions.resourceId ),
+          showGraph: true
         });
       }
     });

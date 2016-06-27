@@ -14,6 +14,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var that = this;
     var options = new Object({
       map: false,
+      showGraph: false,
       strokeColor: '#000',
       strokeOpacity: 1,
       strokeWeight: 3,
@@ -33,7 +34,11 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     if( that.options.routeModel !== false ) {
       that.renderMapRoute();
-      that.renderGraphRoute();
+
+      if( that.options.showGraph ) {
+        that.renderGraphRoute();
+      }
+
     }
 
   },
@@ -156,6 +161,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var that = this;
     var route = that.options.routeModel;
 
+//    var divName =
+
 
 
     $('body').append('');
@@ -177,7 +184,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     google.maps.event.addListener( that.options.map, 'idle', function() {
 
-      if( !that.graph ) {
+      if( !that.grafico ) {
         var chartString = "step,Altitude\n";
         $.each( route.get('trackPoints'), function(i,e){
             chartString += i + "," + e[2] + "\n";
@@ -260,7 +267,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var route = that.options.routeModel;
 
     //grafico.setSelection(id);
-    that.grafico.setSelection(id) ;
+    if(that.grafico) {
+      that.grafico.setSelection(id) ;
+    }
+
 
     if( trackCircle ) {
 
@@ -313,7 +323,9 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var map = that.options.map;
 
     //grafico.setSelection(id);
-    that.grafico.setSelection(id) ;
+    if( that.grafico ) {
+      that.grafico.setSelection(id) ;
+    }
 
     if( that.trackCircle ) {
       that.trackCircle.setMap(null);
