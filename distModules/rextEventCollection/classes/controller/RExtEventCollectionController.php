@@ -354,6 +354,10 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
 
     $rExtViewBlockInfo = parent::getViewBlockInfo();
 
+    // Obtenemos el rtype de los microeventos
+    $rtypeModel = new ResourcetypeModel();
+    $rtypeEventId = $rtypeModel->listItems(array('filters' => array('idNameExists' => 'rtypeEvent')))->fetch()->getter('id');
+
     if( $rExtViewBlockInfo['data'] ) {
 
       $resId = $this->defResCtrl->resObj->getter('id');
@@ -366,7 +370,6 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         foreach( $eventIdList as $eventId){
           $eventIdsArray[] = $eventId;
         }
-
 
         foreach ($rExtViewBlockInfo['data']['rextEventCollectionFilter'] as $eventFilterTerm){
           $eventFilterSelectedTerm = $eventFilterTerm;
@@ -382,12 +385,8 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         /* Cargamos los datos de la extensión */
         while( $event = $eventList->fetch() ){
 
-          echo '<pre>';
-          print_r($event);
-          echo '</pre>';
-
           $eventInfo = $event->getAllData('onlydata');
-          $eventCollection[$event->getter('resource')]['event']['relatedResource'] = $eventInfo['relatedResource'];
+
           $initDate = new DateTime($eventInfo['initDate']);
           $eventDate = $initDate->format('Y').$initDate->format('m').$initDate->format('d');
           $today = date('Ymd');
@@ -395,7 +394,13 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
             continue;
           }
           $eventIdsArrayFinal[] = $event->getter('resource');
-          $eventCollection[$event->getter('resource')]['event'] = $event->getAllData('onlydata');
+          $eventCollection[$event->getter('resource')]['event'] = $eventInfo;
+
+          $relatedResourceAlias = $this->defResCtrl->getUrlAlias($eventInfo['relatedResource']);
+          if (isset($eventInfo['relatedResource']) && $eventInfo['relatedResource']!=0){
+            $eventCollection[$event->getter('resource')]['event']['relatedResource'] = $relatedResourceAlias;
+          }
+
           $eventCollection[$event->getter('resource')]['event']['formatedDate']['initDate'] = $initDate->format('Ymd');
           $eventCollection[$event->getter('resource')]['event']['formatedDate']['j'] = $initDate->format('j');
           $eventCollection[$event->getter('resource')]['event']['formatedDate']['l'] = strftime('%A', $initDate->format('U'));
@@ -409,16 +414,15 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
         $resourceModel =  new ResourceModel();
         $resourceList = $resourceModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArrayFinal) ));
         while( $resource = $resourceList->fetch() ){
-
+          if ($resource->getter('rTypeId') != $rtypeEventId){ // No es un microevento
+            $eventCollection[$resource->getter('id')]['resource']['urlAlias'] = $this->defResCtrl->getUrlAlias($resource->getter('id'));
+          }
           $eventCollection[$resource->getter('id')]['resource']['title'] = $resource->getter('title');
           $eventCollection[$resource->getter('id')]['resource']['mediumDescription'] = $resource->getter('mediumDescription');
           $eventCollection[$resource->getter('id')]['resource']['image'] = $resource->getter('image');
         }
         $rExtViewBlockInfo['data']['events'] = $eventCollection;
       }
-
-
-
 
         $taxViewModel =  new TaxonomyViewModel();
         /* Cargamos todos los términos de la taxonomía de visualización de eventCollection*/
