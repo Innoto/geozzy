@@ -35,7 +35,7 @@ class GeozzyResourceView extends View {
 
 
   /**
-   * Defino el formulario y creo su Bloque con su TPL
+   * Defino el formulario de edición y creo su Bloque con su TPL
    *
    * @param $formName string Nombre del form
    * @param $urlAction string URL del action
@@ -56,7 +56,7 @@ class GeozzyResourceView extends View {
 
 
   /**
-   * Action del formulario
+   * Action del formulario de edición
    */
   public function actionResourceForm() {
     // error_log( "GeozzyResourceView: actionResourceForm()" );
@@ -77,7 +77,7 @@ class GeozzyResourceView extends View {
 
 
   /**
-   * Action del formulario Process
+   * Process del Action del formulario
    */
   public function actionResourceFormProcess( $form ) {
     // error_log( "GeozzyResourceView: actionResourceFormProcess()" );
@@ -130,7 +130,7 @@ class GeozzyResourceView extends View {
 
 
   /**
-   * Action del formulario Success
+   * Success del Action del formulario
    */
   public function actionResourceFormSuccess( $form, $resource ) {
     // error_log( "GeozzyResourceView: actionResourceFormSuccess()" );
