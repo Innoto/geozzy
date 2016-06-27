@@ -71,79 +71,83 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       icon: {
         url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_start.png' ,
         anchor: new google.maps.Point(16,16)
-      }
+      },
+      map: that.options.map
     });
 
-    routeMap.markerEnd = marker = new google.maps.Marker({
-      position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
-      title: __('Route End'),
-      icon: {
-        url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_finish.png' ,
-        anchor: new google.maps.Point(2,14)
-      }
 
-
-          });
-
-      that.polyline = new google.maps.Polyline({
-        path: routeData,
-        geodesic: true,
-        strokeColor: that.options.strokeColor,
-        strokeOpacity: that.options.strokeOpacity,
-        strokeWeight: that.options.strokeWeight
+    if( route.get('circular') !== 1 ) {
+      routeMap.markerEnd = marker = new google.maps.Marker({
+        position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
+        title: __('Route End'),
+        icon: {
+          url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_finish.png' ,
+          anchor: new google.maps.Point(2,14)
+        }
+        ,
+        map: that.options.map
       });
+    }
 
-      that.polylineBG1 = new google.maps.Polyline({
-        path: routeData,
-        geodesic: true,
-        strokeOpacity: 0,
-        strokeWeight: 20
-      });
+    that.polyline = new google.maps.Polyline({
+      path: routeData,
+      geodesic: true,
+      strokeColor: that.options.strokeColor,
+      strokeOpacity: that.options.strokeOpacity,
+      strokeWeight: that.options.strokeWeight
+    });
 
-      that.polylineBG2 = new google.maps.Polyline({
-        path: routeData,
-        geodesic: true,
-        strokeOpacity: 0,
-        strokeWeight: 10
-      });
+    that.polylineBG1 = new google.maps.Polyline({
+      path: routeData,
+      geodesic: true,
+      strokeOpacity: 0,
+      strokeWeight: 20
+    });
 
-
-      that.mapRoute = routeMap;
-
-      that.polyline.setMap( that.options.map );
-
-      that.polylineBG1.setMap( that.options.map );
-      that.polylineBG2.setMap( that.options.map );
-
-
-
+    that.polylineBG2 = new google.maps.Polyline({
+      path: routeData,
+      geodesic: true,
+      strokeOpacity: 0,
+      strokeWeight: 10
+    });
 
 
+    that.mapRoute = routeMap;
+
+    that.polyline.setMap( that.options.map );
+
+    that.polylineBG1.setMap( that.options.map );
+    that.polylineBG2.setMap( that.options.map );
 
 
-      that.polylineBG2.addListener('mouseover', function(ev){
-        that.findPoint(ev.latLng.lat(), ev.latLng.lng());
-        isTrackHover = true;
-      });
-      that.polylineBG1.addListener('mouseover', function(ev){
-        that.findPoint(ev.latLng.lat(), ev.latLng.lng());
-        isTrackHover = true;
-      });
-      that.polyline.addListener('mouseover', function(ev){
-        that.findPoint(ev.latLng.lat(), ev.latLng.lng());
-        isTrackHover = true;
-      });
 
 
-      that.polylineBG2.addListener('mouseout', function(ev){
-        that.outRecorrido();
-      });
-      that.polylineBG1.addListener('mouseout', function(ev){
-        that.outRecorrido();
-      });
-      that.polyline.addListener('mouseout', function(ev){
-        that.outRecorrido();
-      });
+
+
+
+    that.polylineBG2.addListener('mouseover', function(ev){
+      that.findPoint(ev.latLng.lat(), ev.latLng.lng());
+      isTrackHover = true;
+    });
+    that.polylineBG1.addListener('mouseover', function(ev){
+      that.findPoint(ev.latLng.lat(), ev.latLng.lng());
+      isTrackHover = true;
+    });
+    that.polyline.addListener('mouseover', function(ev){
+      that.findPoint(ev.latLng.lat(), ev.latLng.lng());
+      isTrackHover = true;
+    });
+
+
+    that.polylineBG2.addListener('mouseout', function(ev){
+      that.outRecorrido();
+    });
+    that.polylineBG1.addListener('mouseout', function(ev){
+      that.outRecorrido();
+    });
+    that.polyline.addListener('mouseout', function(ev){
+      that.outRecorrido();
+    });
 
 
 
