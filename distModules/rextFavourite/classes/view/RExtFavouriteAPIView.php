@@ -291,7 +291,7 @@ class RExtFavouriteAPIView extends View {
               }
             }
           }
-          error_log( 'resourceList: '.$favObj->getter('resourceList') );
+          // error_log( 'resourceList: '.$favObj->getter('resourceList') );
         }
       }
     }

@@ -278,6 +278,9 @@ class RExtRoutesController extends RExtController implements RExtInterface {
        // TODO: esto será un campo da BBDD
        $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
 
+       $resData = $this->defResCtrl->getResourceData();
+       $rExtViewBlockInfo['data']['resourceId'] = $resData['id'];
+
        $rExtViewBlockInfo['template']['full'] = new Template();
        $hours = floor($rExtViewBlockInfo['data']['durationMinutes'] / 60);
        $minutes = ($rExtViewBlockInfo['data']['durationMinutes'] % 60);

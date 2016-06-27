@@ -87,3 +87,11 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  var geozzy = geozzy || {};
+
+  geozzy.rExtRoutesOptions = {
+    resourceId: {$rExt.data.resourceId}
+  };
+</script>

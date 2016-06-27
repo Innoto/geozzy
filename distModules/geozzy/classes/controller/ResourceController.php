@@ -43,12 +43,12 @@ class ResourceController {
    *  Cargando controlador del RType
    */
   public function getRTypeCtrl( $rTypeId = false ) {
-    // error_log( "GeozzyResourceView: getRTypeCtrl( $rTypeId )" );
+    // error_log( "ResourceController: getRTypeCtrl( $rTypeId )" );
 
     if( !$this->rTypeCtrl ) {
       $rTypeIdName = $this->getRTypeIdName( $rTypeId );
       if( class_exists( $rTypeIdName ) ) {
-        // error_log( "GeozzyResourceView: getRTypeCtrl = $rTypeIdName" );
+        // error_log( "ResourceController: getRTypeCtrl = $rTypeIdName" );
         $rTypeIdName::autoIncludes();
         $rTypeCtrlClassName = $rTypeIdName.'Controller';
         $this->rTypeCtrl = new $rTypeCtrlClassName( $this );
@@ -63,7 +63,7 @@ class ResourceController {
    *  Cargando IdName del RType
    */
   public function getRTypeIdName( $rTypeId = false, $resId = false ) {
-    //error_log( "GeozzyResourceView: getRTypeIdName( $rTypeId )" );
+    //error_log( "ResourceController: getRTypeIdName( $rTypeId )" );
     $rTypeIdName = false;
 
     if( $rTypeId === false ) {
@@ -121,17 +121,7 @@ class ResourceController {
         $langAvailable = array_keys( $langsConf );
       }
 
-      /*
-      if( $translate ) {
-        $resourceData = array();
-        foreach( $this->resObj->getCols() as $key => $value ) {
-          $resourceData[ $key ] = $this->resObj->getter( $key );
-        }
-      }
-      else {
-        $resourceData = $this->resObj->getAllData( 'onlydata' );
-      }
-      */
+      // Mezclamos todos los campos con los campos en el idioma actual
       $resourceData = $this->resObj->getAllData( 'onlydata' );
       $resourceFields = $this->resObj->getCols();
       foreach( $resourceFields as $key => $value ) {
@@ -246,6 +236,9 @@ class ResourceController {
 
     if($successArray){
       foreach( $successArray as $tSuccess => $success ) {
+        if($tSuccess == "redirect"){
+          $cancelButton = $success;
+        }
         $form->setSuccess( $tSuccess, $success );
       }
     }
@@ -406,11 +399,13 @@ class ResourceController {
       }
 
       $form->loadArrayValues( $valuesArray );
-      // error_log( 'GeozzyResourceView getFormObj: ' . print_r( $valuesArray, true ) );
+      // error_log( 'ResourceController getFormObj: ' . print_r( $valuesArray, true ) );
     }
 
     $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Send' ), 'class' => 'gzzAdminToMove' ) );
-
+    if($cancelButton){
+      $form->setField( 'cancel', array( 'type' => 'button', 'value' => __( 'Cancel' ), 'class' => 'btn btn-warning gzzAdminToMove', 'data-href' => $cancelButton ) );
+    }
     // Una vez que lo tenemos definido, guardamos el form en sesion
     $form->saveToSession();
 
@@ -1275,7 +1270,7 @@ class ResourceController {
    * Datos y template por defecto del ResourceBlock
    */
   public function getViewBlockInfo( $resId = false ) {
-    // error_log( "GeozzyResourceView: getViewBlockInfo()" );
+    // error_log( "ResourceController: getViewBlockInfo()" );
 
     $viewBlockInfo = array(
       'template' => false,
@@ -1286,7 +1281,7 @@ class ResourceController {
     if( $this->loadResourceObject( $resId ) && $this->resObj->getter( 'published' ) ) {
       $viewBlockInfo['data'] = $this->getResourceData( $resId, true );
       if( $this->getRTypeCtrl() ) {
-        // error_log( 'GeozzyResourceView: rTypeCtrl->getViewBlockInfo' );
+        // error_log( 'ResourceController: rTypeCtrl->getViewBlockInfo' );
         $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
       }
     }

@@ -35,7 +35,7 @@ geozzy.rExtMapController = function( opts ) {
         zoom: that.options.zoom,
         scrollwheel: false
       };
-      
+
       that.resourceMap = new google.maps.Map( $mapContainer.get(0), that.resourceMapOptions );
 
 

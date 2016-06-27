@@ -45,6 +45,7 @@ $( document ).ready(function() {
   $(window).bind("load resize", function() {
     calculateHeightMenu();
   });
+  calculateHeightMenu();
   $('#side-menu').metisMenu();
 
 });
