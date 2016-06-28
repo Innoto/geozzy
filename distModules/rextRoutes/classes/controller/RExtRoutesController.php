@@ -155,6 +155,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
 
     }
+
     $form->loadArrayValues( $valuesArray );
     //var_dump($valuesArray);exit;
     // Add RExt info to form
@@ -167,11 +168,14 @@ class RExtRoutesController extends RExtController implements RExtInterface {
       }
     }
 
+
     /*******************************************************************
      * Importante: Guardar la lista de campos del RExt en 'FieldNames' *
      *******************************************************************/
     //$rExtFieldNames[] = 'FieldNames';
     $form->setField( $this->addPrefix( 'FieldNames' ), array( 'type' => 'reserved', 'value' => $rExtFieldNames ) );
+
+    $form->setSuccess( 'onFileUpload', 'adminRextRoutesFileUpload' );
 
     $form->saveToSession();
 
@@ -193,6 +197,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     //$templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'rextRoutes' );
+    $templates['full']->addClientScript('js/adminRextRoutes.js', 'rextRoutes');
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
 

@@ -1,3 +1,4 @@
+
 <div class="rExtRoutes formBlock">
 
   <div class="left-column col-lg-6">
@@ -36,3 +37,5 @@
 {/foreach}
 -->
 </div>
+
+{$client_includes}
