@@ -39,11 +39,23 @@ class RoutesController {
 
   public function getRoute( $ids ) {
     rextRoutes::autoIncludes();
+    $useraccesscontrol = new UserAccessController();
 
     $route = false;
 
+    $f = array();
+    $f['ResourceModel.id'] = $ids;
+
+
+    if(! ($useraccesscontrol->checkPermissions('resource:create', 'admin:full') || $useraccesscontrol->checkPermissions('resource:edit', 'admin:full')) ) {
+      $f['ResourceModel.published'] = 1;
+    }
+
+//
+//var_dump(array('affectsDependences'=> array('FiledataModel') , 'filters' => $f ))
+
     $routesModel = new RoutesModel();
-    $routesList = $routesModel->listItems( array('affectsDependences'=> array('FiledataModel') , 'filters'=>['resource'=>$ids ] ) );
+    $routesList = $routesModel->listItems( array('joinType'=>'RIGHT','affectsDependences'=> array('ResourceModel') , 'filters' => $f ));
 
     $routes = [];
 
@@ -52,7 +64,9 @@ class RoutesController {
       $route = [ ];
 
       if(  $routeVO->getter('routeFile') ) {
-        $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'] . $routeVO->getterDependence('routeFile')[0]->getter('absLocation');
+
+        $fileDataList = (new FiledataModel(['id'=> $routeVO->getter('routeFile') ]) )->save();
+        $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'] . $fileDataList->getter('absLocation');
       }
       else {
         $filePath = false;
