@@ -1177,4 +1177,18 @@ class geozzyAPIView extends View {
     $data = $model->getAllData('onlydata');
     echo json_encode( $data );
   }
+
+
+  public function loadInfoRTypes() {
+    $infoRTypes = array();
+
+    $rTypeModel = new ResourcetypeModel();
+    $rTypeList = $rTypeModel->listItems();
+    while( $rTypeObj = $rTypeList->fetch() ) {
+      $allData = $rTypeObj->getAllData('onlydata');
+      $infoRTypes[ $allData['id'] ] = $allData;
+    }
+
+    return $infoRTypes;
+  }
 }

@@ -643,6 +643,49 @@
 
     .eventSection{
 
+      .basicCollectionView{
+        .event{
+          padding:10px;
+          a{
+            color: @gzzColor-text-dark-2;
+            .box{
+              border:1px solid @gzzColor-text-dark-2;
+              text-align: center;
+              min-height:110px;
+              padding:10px;
+              .eventImg{
+                img{width:100%;}
+              }
+              .eventContent{
+                background-color:@gzzColor-bck-2;
+                margin-top: 12px;
+                padding: 6px;
+                .eventDate{
+                  font-weight:600;
+                }
+                .eventTitle {
+                }
+                .eventTime{
+                  font-size:22px;
+                  height:30px;
+                  margin-top:6px;
+                  i{
+                    color:@gzzColor-festas;
+                    vertical-align:middle;
+                    padding-right:5px;
+                  }
+                  .arrow{font-size:30px;}
+                  span.dateContent{
+                    font-weight:500;
+                    text-transform:lowercase;
+                  }
+                }
+              }/*.eventContent*/
+            }/*.box*/
+          }/*a*/
+        }/*.event*/
+      }/*.basicCollectionView*/
+
       .listCollectionView{
         .accordion-group{
           margin-bottom:10px;
@@ -680,63 +723,26 @@
                 padding-left:10px;
               }
               .row{
-
                 .eventDescription{
                   padding:0px 20px;
                   text-align:justify;
+                  max-height:270px;
+                }
+                .moreInfo{
+                  margin:10px;
+                  background-color:@gzzColor-festas;
+                  color: @gzzColor-text-light;
                 }
                 .eventImg{
                   img{width:100%;}
                 }
+              }/*.row*/
 
-              }
+            }/*extendedData*/
+          }/*.accordion-body*/
 
-            }
-          }
-
-        }
-      }
-
-      .basicCollectionView{
-        .event{
-          padding:10px;
-          .box{
-            border:1px solid @gzzColor-text-dark-2;
-            text-align: center;
-            min-height:110px;
-            padding:10px;
-            .eventImg{
-              img{width:100%;}
-            }
-            .eventContent{
-              background-color:@gzzColor-bck-2;
-              margin-top: 12px;
-              padding: 6px;
-              .eventDate{
-                font-weight:600;
-              }
-              .eventTitle {
-              }
-              .eventTime{
-                font-size:22px;
-                height:30px;
-                margin-top:6px;
-                i{
-                  color:@gzzColor-festas;
-                  vertical-align:middle;
-                  padding-right:5px;
-                }
-                .arrow{font-size:30px;}
-                span.dateContent{
-                  font-weight:500;
-                  text-transform:lowercase;
-                }
-              }
-            }
-
-          }
-        }
-      }
+        }/*.accordion-group*/
+      }/*.listCollectionView*/
 
       .calendarCollectionView{
 
@@ -744,25 +750,25 @@
           margin-bottom:10px;
           padding:10px;
           a.date{
-            color:@gzzColor-text-dark;
-            text-transform: capitalize;
+            color:@gzzColor-text-dark-2;
             font-size:20px;
-            height:20px;
-            line-height:20px;
+            line-height: 20px;
+            text-transform:capitalize;
             i{
               color:@gzzColor-festas;
-              font-size:20px;
               vertical-align:middle;
             }
-
-            .arrow{font-size:22px;float:left;}
-            .dateContent{margin-left:15px;}
+            .arrow{font-size:30px;}
+            span.dateContent{
+              font-weight:500;
+              text-transform:lowercase;
+            }
           }
           .extendedData{
             .externalBox{
               .box{
                 min-height:110px;
-                padding:10px;
+                padding: 10px 10px 14px;
                 border:1px solid @gzzColor-text-dark-2;
                 .eventImg{
                   img{width:100%;}
@@ -778,26 +784,31 @@
                     }
                   }
                   .eventDescription{
-                    font-size:14px;
-                    margin-top:12px;
-                    height:220px;
-                    overflow:auto;
+                    font-size: 14px;
+                    height: 220px;
+                    margin-bottom: 10px;
+                    margin-top: 12px;
+                    overflow: auto;
+                    padding: 0 10px 10px 0;
+                    text-align: justify;
                   }
-                  .more{
-                    margin:10px;
+                  .moreInfo{
+                    margin: 10px 0 0;
                     background-color:@gzzColor-festas;
                     color: @gzzColor-text-light;
                   }
                 }
 
-              }
-            }
-          }
+              }/*.box*/
+            }/*.externalBox*/
+          }/*.extendedData*/
 
-        }
-      }
-    }
-  }
+        }/*.accordion-group*/
+      }/*.calendarCollectionView*/
+
+    }/*.eventSection*/
+
+  }/*.rtypeAppFesta*/
 
   .rtypeAppEspazoNatural{
     .destResourceMoreInfo a{
