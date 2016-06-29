@@ -197,7 +197,15 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     //$templates['full']->setTpl( 'rExtFormBlock.tpl', 'geozzy' );
     $templates['full']->setTpl( 'rExtFormBlock.tpl', 'rextRoutes' );
+
+    $templates['full']->addClientScript('js/view/routeView.js', 'rextRoutes');
+    $templates['full']->addClientScript('js/collection/RouteCollection.js', 'rextRoutes');
+    $templates['full']->addClientScript('js/model/RouteModel.js', 'rextRoutes');
+
+
     $templates['full']->addClientScript('js/adminRextRoutes.js', 'rextRoutes');
+
+
     $templates['full']->assign( 'rExtName', $this->rExtName );
     $templates['full']->assign( 'rExt', $formBlockInfo );
 

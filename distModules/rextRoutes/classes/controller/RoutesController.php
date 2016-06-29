@@ -37,6 +37,42 @@ class RoutesController {
   }
 
 
+  public function getRouteInForm( $idForm ) {
+    $route = [];
+
+    $formRoute = new FormController( );
+    $formRoute->loadFromSession( $idForm );
+
+
+
+
+    try {
+      $filePath = $formRoute->getFieldValue('rExtRoutes_routeFile')['temp']['absLocation'];
+      $fnSplited = explode( '.', $filePath );
+      $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
+      /*echo "<pre>";
+      var_dump( $polygon->getGeomType() );
+      echo "<br>--------------------<br>";
+      var_dump( json_encode( $this->extractPoints( $polygon )) );*/
+      $cent = $polygon->getCentroid();
+
+      $route['id'] =  1;
+      $route['circular'] = 1;
+      $route['centroid'] =  [ $cent->y(), $cent->x() ];
+      $route['trackPoints'] = $this->extractPoints( $polygon );
+    }
+    catch(Exception $e) {
+        Cogumelo::error( $e->getMessage() );
+    }
+
+
+
+    return [$route];
+  }
+
+
+
+
   public function getRoute( $ids ) {
     rextRoutes::autoIncludes();
     $useraccesscontrol = new UserAccessController();
@@ -51,8 +87,6 @@ class RoutesController {
       $f['ResourceModel.published'] = 1;
     }
 
-//
-//var_dump(array('affectsDependences'=> array('FiledataModel') , 'filters' => $f ))
 
     $routesModel = new RoutesModel();
     $routesList = $routesModel->listItems( array('joinType'=>'RIGHT','affectsDependences'=> array('ResourceModel') , 'filters' => $f ));

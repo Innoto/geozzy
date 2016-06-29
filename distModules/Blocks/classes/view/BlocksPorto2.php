@@ -40,4 +40,3 @@ class BlocksPorto2 extends View
   }
 
 }
-
