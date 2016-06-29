@@ -39,32 +39,31 @@ class RoutesController {
 
   public function getRouteInForm( $idForm ) {
     $route = [];
+    $useraccesscontrol = new UserAccessController();
+    if( $useraccesscontrol->checkPermissions('resource:create', 'admin:full') || $useraccesscontrol->checkPermissions('resource:edit', 'admin:full') ) {
 
-    $formRoute = new FormController( );
-    $formRoute->loadFromSession( $idForm );
+      $formRoute = new FormController( );
+      $formRoute->loadFromSession( $idForm );
 
+      try {
+        $filePath = $formRoute->getFieldValue('rExtRoutes_routeFile')['temp']['absLocation'];
+        $fnSplited = explode( '.', $filePath );
+        $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
+        /*echo "<pre>";
+        var_dump( $polygon->getGeomType() );
+        echo "<br>--------------------<br>";
+        var_dump( json_encode( $this->extractPoints( $polygon )) );*/
+        $cent = $polygon->getCentroid();
 
-
-
-    try {
-      $filePath = $formRoute->getFieldValue('rExtRoutes_routeFile')['temp']['absLocation'];
-      $fnSplited = explode( '.', $filePath );
-      $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
-      /*echo "<pre>";
-      var_dump( $polygon->getGeomType() );
-      echo "<br>--------------------<br>";
-      var_dump( json_encode( $this->extractPoints( $polygon )) );*/
-      $cent = $polygon->getCentroid();
-
-      $route['id'] =  1;
-      $route['circular'] = 0;
-      $route['centroid'] =  [ $cent->y(), $cent->x() ];
-      $route['trackPoints'] = $this->extractPoints( $polygon );
+        $route['id'] =  1;
+        $route['circular'] = 0;
+        $route['centroid'] =  [ $cent->y(), $cent->x() ];
+        $route['trackPoints'] = $this->extractPoints( $polygon );
+      }
+      catch(Exception $e) {
+          Cogumelo::error( $e->getMessage() );
+      }
     }
-    catch(Exception $e) {
-        Cogumelo::error( $e->getMessage() );
-    }
-
 
 
     return [$route];
