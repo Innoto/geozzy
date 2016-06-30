@@ -45,8 +45,19 @@ class RoutesController {
       $formRoute = new FormController( );
       $formRoute->loadFromSession( $idForm );
 
+
+
+      if( isset($formRoute->getFieldValue('rExtRoutes_routeFile')['temp']) ) {
+        $filePath = $formRoute->getFieldValue('rExtRoutes_routeFile')[ 'temp' ]['absLocation'];
+      }
+      else {
+        $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'].  $formRoute->getFieldValue('rExtRoutes_routeFile')[ 'prev' ]['absLocation'];
+      }
+
+
+
       try {
-        $filePath = $formRoute->getFieldValue('rExtRoutes_routeFile')['temp']['absLocation'];
+
         $fnSplited = explode( '.', $filePath );
         $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
         /*echo "<pre>";

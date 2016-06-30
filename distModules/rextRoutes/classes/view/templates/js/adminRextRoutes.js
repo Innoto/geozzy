@@ -1,4 +1,9 @@
 
+$('document').ready(function(){
+  adminRextRoutesFileUpload( $('form.cgmMForm-form-resourceEdit').attr('id') );
+});
+
+
 
 function adminRextRoutesFileUpload( idForm, fieldName ) {
 
