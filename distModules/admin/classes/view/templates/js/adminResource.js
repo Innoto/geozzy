@@ -1,6 +1,9 @@
 
 var app = app || {};
 
+var resourceMap = false;
+var resourceMarker = false;
+
 
 $(document).ready(function(){
 
@@ -108,7 +111,7 @@ function initializeMap( form ){
         zoom: zoom,
         scrollwheel: false
       };
-      var resourceMap = new google.maps.Map(document.getElementById('resourceLocationMap_'+form), mapOptions);
+      resourceMap = new google.maps.Map(document.getElementById('resourceLocationMap_'+form), mapOptions);
 
       // add marker
 
@@ -122,7 +125,7 @@ function initializeMap( form ){
         anchor: new google.maps.Point(13, 36)
       };
 
-      var resourceMarker = new google.maps.Marker({
+      resourceMarker = new google.maps.Marker({
         position: new google.maps.LatLng( latValue, lonValue ),
         title: 'Resource location',
         icon: my_marker,
