@@ -12,6 +12,8 @@ $( document ).ready(function() {
 
     var routesCollection = new geozzy.rextRoutes.routeCollection();
 
+    geozzy.rExtMapInstance.resourceMarker.setMap(null);
+
     routesCollection.url = '/api/routes/id/' + geozzy.rExtRoutesOptions.resourceId
     routesCollection.fetch({
       success: function( res ) {
