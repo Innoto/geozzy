@@ -124,6 +124,10 @@ $GEOZZY_API_DOC_URLS =  array_merge(
       'description' => 'Comments API'
     ),
     array(
+      'path'=> '/commentList.json',
+      'description' => 'Comment List API'
+    ),
+    array(
       'path'=> '/routes.json',
       'description' => 'Routes API'
     )

@@ -121,24 +121,23 @@ class RExtCommentController extends RExtController implements RExtInterface {
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
-    public function getFormBlockInfo( FormController $form ) {
+  public function getFormBlockInfo( FormController $form ) {
+    $formBlockInfo = parent::getFormBlockInfo( $form );
+    $templates = $formBlockInfo['template'];
 
-      $formBlockInfo = parent::getFormBlockInfo( $form );
-      $templates = $formBlockInfo['template'];
+    $templates['adminExt'] = new Template();
+    $templates['adminExt']->setTpl( 'rExtFormBlock.tpl', 'rextComment' );
+    $templates['adminExt']->assign( 'rExt', $formBlockInfo );
+    $templates['adminExt']->assign( 'rExtName', $this->rExtName );
 
-      $templates['adminExt'] = new Template();
-      $templates['adminExt']->setTpl( 'rExtFormBlock.tpl', 'rextComment' );
-      $templates['adminExt']->assign( 'rExt', $formBlockInfo );
-      $templates['adminExt']->assign( 'rExtName', $this->rExtName );
+    $rControl = new ResourceController();
+    $commentTypeOptions = $rControl->getOptionsTax('commentType');
+    $templates['adminExt']->assign( 'commentTypeOptions', $commentTypeOptions );
+    $templates['adminExt']->addClientScript('js/rextAdminCommentList.js', 'rextComment');
 
-      $rControl = new ResourceController();
-      $commentTypeOptions = $rControl->getOptionsTax('commentType');
-      $templates['adminExt']->assign( 'commentTypeOptions', $commentTypeOptions );
-      $templates['adminExt']->addClientScript('js/rextAdminCommentList.js', 'rextComment');
+    $formBlockInfo['template'] = $templates;
 
-      $formBlockInfo['template'] = $templates;
-
-      return $formBlockInfo;
+    return $formBlockInfo;
   }
 
 
@@ -209,13 +208,13 @@ class RExtCommentController extends RExtController implements RExtInterface {
 
     $averageVotesModel = new AverageVotesViewModel();
     $resAverageData = $averageVotesModel->listItems( array('filters' => array('id' => $resID) ))->fetch();
-    if($resAverageData){
+    if( $resAverageData ) {
       $resAverageVotes = $resAverageData->getter('averageVotes');
       $resNumberVotes = $resAverageData->getter('commentsVotes');
     }
 
     $perms = $this->getCommentPermissions( $resID );
-    if(in_array('comment', $perms)){
+    if( $perms && in_array( 'comment', $perms ) ) {
       $rExtViewBlockInfo['template']['full']->assign( 'commentButton', true );
     }
     $rExtViewBlockInfo['template']['full']->assign( 'resID', $resID);
@@ -244,37 +243,111 @@ class RExtCommentController extends RExtController implements RExtInterface {
    *
    * @return Array $permissions{ 'comment', 'suggest' }
    */
-  public function getCommentPermissions($id) {
-    $perms = array();
+  public function getCommentPermissions( $resId ) {
 
-    $resourceModel = new ResourceModel();
-    $res = $resourceModel->listItems(
-      array(
-        'filters'=> array('id' => $id),
-        'affectsDependences' => array('ResourcetypeModel')
-      )
-    )->fetch();
+    $permsTmp = $this->getPermissions( $resId );
+    $perms = isset( $permsTmp[ $resId ]['ctype'] ) ? $permsTmp[ $resId ]['ctype'] : array();
 
-    $rtype = $res->getterDependence('rTypeId', 'ResourcetypeModel');
-    $commentRules = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules');
-    if($commentRules){
-      if(array_key_exists($rtype[0]->getter('idName'), $commentRules)){
-        $perms = $commentRules[$rtype[0]->getter('idName')]['ctype'];
-      }else{
-        $perms = $commentRules['default']['ctype'];
+    /*
+      $resourceModel = new ResourceModel();
+      $res = $resourceModel->listItems(
+        array(
+          'filters'=> array('id' => $resId),
+          'affectsDependences' => array('ResourcetypeModel')
+        )
+      )->fetch();
+
+      if( $res ) {
+        $perms = array();
+        $rtype = $res->getterDependence( 'rTypeId', 'ResourcetypeModel' );
+        $commentRules = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules' );
+
+        if( $commentRules ) {
+          if( array_key_exists($rtype[0]->getter('idName'), $commentRules) ){
+            $perms = $commentRules[ $rtype[0]->getter('idName') ]['ctype'];
+          }
+          else {
+            $perms = $commentRules['default']['ctype'];
+          }
+        }
+
+        if( in_array('comment', $perms) ) {
+          $resExtCommentModel = new ResourceCommentModel();
+          $resExtComment = $resExtCommentModel->listItems(
+            array('filters'=> array('resource' => $resId)) )->fetch();
+
+          if( $resExtComment && !$resExtComment->getter('activeComment') ) {
+            $unsetKey = array_search( 'comment', $perms );
+            unset( $perms[$unsetKey] );
+          }
+        }
       }
-    }
-    if(in_array('comment', $perms)){
-      $resExtCommentModel = new ResourceCommentModel();
-      $resExtComment = $resExtCommentModel->listItems(
-      array('filters'=> array('resource' => $id)))->fetch();
+    */
 
-      if($resExtComment && !$resExtComment->getter('activeComment')){
-        $unsetKey = array_search('comment', $perms);
-        unset($perms[$unsetKey]);
-      }
-    }
     return $perms;
+  }
+
+  /**
+   * Metodo que comprueba si es posible enviar un comentario o sugerencia
+   *
+   * @return Array $permissions{ 'comment', 'suggest' }
+   */
+  public function getPermissions( $resId ) {
+    $commRules = array();
+
+    $setup = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules' );
+    if( !isset( $setup['default'] ) ) {
+      if( !is_array( $setup ) ) {
+        $setup = array();
+      }
+      $setup['default'] = array(
+        'moderation' => 'all', // none|verified|all
+        'ctype' => array() // 'comment','suggest'
+      );
+    }
+
+    $filters = array();
+    if( $resId ) {
+      $inArray = explode( ',', $resId );
+      if( count( $inArray ) > 1 ) {
+        $filters['idIn'] = $inArray;
+      }
+      else {
+        $filters['id'] = intval( $resId );
+      }
+    }
+
+    $suggestTypeTerms = $this->getSuggestTypeTerms();
+    $suggestTypeTermsArray = array();
+    foreach( $suggestTypeTerms as $term ) {
+      $suggestTypeTermsArray[ $term['id'] ] = $term['name'];
+    }
+
+    $resCommModel = new ResourceCommentViewModel();
+    $resPermsList = $resCommModel->listItems( array( 'filters'=> $filters ) );
+
+
+    while( $resPerms = $resPermsList->fetch() ) {
+      $resId = $resPerms->getter( 'id' );
+      $rTypeIdName = $resPerms->getter( 'rTypeIdName' );
+
+      $perms = isset($setup[ $rTypeIdName ]) ? $setup[ $rTypeIdName ] : $setup['default'];
+
+      if( in_array('comment', $perms['ctype']) ) {
+        if( $resPerms->getter('activeComment') ) {
+          $unsetKey = array_search( 'comment', $perms['ctype'] );
+          unset( $perms['ctype'][ $unsetKey ] );
+        }
+      }
+
+      if( in_array('suggest', $perms['ctype']) ) {
+        $perms['suggestType'] = $suggestTypeTermsArray;
+      }
+
+      $commRules[ $resId ] = $perms;
+    }
+
+    return $commRules;
   }
 
   /**
@@ -282,13 +355,13 @@ class RExtCommentController extends RExtController implements RExtInterface {
    *
    * @return Bool true or false
    */
-  public function commentPublish($id) {
+  public function commentPublish( $resId ) {
     $publish = false;
 
     $resourceModel = new ResourceModel();
     $res = $resourceModel->listItems(
       array(
-        'filters'=> array('id' => $id),
+        'filters'=> array('id' => $resId),
         'affectsDependences' => array('ResourcetypeModel')
       )
     )->fetch();
@@ -298,7 +371,8 @@ class RExtCommentController extends RExtController implements RExtInterface {
     if($commentRules){
       if(array_key_exists($rtype[0]->getter('idName'), $commentRules)){
         $moderation = $commentRules[$rtype[0]->getter('idName')]['moderation'];
-      }else{
+      }
+      else{
         $moderation = $commentRules['default']['moderation'];
       }
       switch ($moderation) {
@@ -315,6 +389,59 @@ class RExtCommentController extends RExtController implements RExtInterface {
       }
     }
     return $publish;
+  }
+
+  public function getCommentTypeTerms( $typeIdNames = array( 'comment', 'suggest' ) ) {
+    $commentTypeTerms = array();
+
+    $taxModelControl = new TaxonomygroupModel();
+    $termModelControl = new TaxonomytermModel();
+    // Data Options Comment Type
+    $commentTypeTax = $taxModelControl->listItems( array('filters' => array('idName' => 'commentType')) )->fetch();
+    $commentTypeTermsList = $termModelControl->listItems(
+      array('filters' =>
+        array( 'taxgroup' => $commentTypeTax->getter('id'), 'idNames' => $typeIdNames )
+      )
+    );
+
+    while( $commentTypeTermObj = $commentTypeTermsList->fetch() ) {
+      $commentTypeTerms[ $commentTypeTermObj->getter('id') ] = $commentTypeTermObj->getter('idName');
+    }
+
+    return $commentTypeTerms;
+  }
+
+  public function getCommentTypeTermId( $typeIdName ) {
+    $commentTypeTermId = false;
+
+    $commentTypeTermInfo = $this->getCommentTypeTerms( $typeIdName );
+    if( count( $commentTypeTermInfo ) === 1 ) {
+      $commentTypeTermKeys = array_keys( $commentTypeTermInfo );
+      $commentTypeTermId = array_shift( $commentTypeTermKeys );
+    }
+
+    return $commentTypeTermId;
+  }
+
+  public function getSuggestTypeTerms() {
+    $suggestTypeTerms = array();
+
+    $taxModelControl = new TaxonomygroupModel();
+    $termModelControl = new TaxonomytermModel();
+
+    $suggestTypeTax = $taxModelControl->listItems( array('filters' => array('idName' => 'suggestType')) )->fetch();
+    $suggestTypeTermsList = $termModelControl->listItems( array('filters' =>
+      array('taxgroup' => $suggestTypeTax->getter('id'))) );
+
+    while( $suggestTypeTermObj = $suggestTypeTermsList->fetch() ) {
+      $suggestTypeTerms[ $suggestTypeTermObj->getter('id') ] = array (
+        'id' => $suggestTypeTermObj->getter('id'),
+        'idName' => $suggestTypeTermObj->getter('idName'),
+        'name' => $suggestTypeTermObj->getter('name')
+      );
+    }
+
+    return $suggestTypeTerms;
   }
 
 } // class RExtAccommodationController

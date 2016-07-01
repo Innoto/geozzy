@@ -6,8 +6,7 @@ geozzy::autoIncludes();
 form::autoIncludes();
 form::loadDependence( 'ckeditor' );
 
-class CommentView extends View
-{
+class CommentView extends View {
 
   public function __construct( $base_dir ) {
     parent::__construct($base_dir);
@@ -35,93 +34,87 @@ class CommentView extends View
     $resourceID = $extraParams['resource'];
     $ctype = array_key_exists( 'commenttype', $extraParams) ? $extraParams['commenttype'] : false;
 
-    $rextCommentControl = new RExtCommentController();
-    $permissionsComment = $rextCommentControl->getCommentPermissions($resourceID);
-    $publishComment = $rextCommentControl->commentPublish($resourceID);
+    $commentCtrl = new RExtCommentController();
+    $permissionsComment = $commentCtrl->getCommentPermissions($resourceID);
+    $publishComment = $commentCtrl->commentPublish($resourceID);
 
     $ctypeParamTerms = $permissionsComment;
-    if($ctype){
-      $ctypeParamTerms = ( in_array($ctype, $permissionsComment) ? array($ctype) : $permissionsComment );
+    if( $ctype ) {
+      $ctypeParamTerms = ( in_array( $ctype, $permissionsComment ) ? array( $ctype ) : $permissionsComment );
     }
 
-    $taxModelControl = new TaxonomygroupModel();
-    $termModelControl = new TaxonomytermModel();
-    // Data Options Comment Type
-    $commentTypeTax = $taxModelControl->listItems( array('filters' => array('idName' => 'commentType')) )->fetch();
-    $commentTypeTerms = $termModelControl->listItems(
-      array('filters' =>
-        array(
-          'taxgroup' => $commentTypeTax->getter('id'),
-          'idNames' => $ctypeParamTerms
-        )
-      )
-    )->fetchAll();
+    $commentTypeTerms = $commentCtrl->getCommentTypeTerms( $ctypeParamTerms );
+
+    $commentTypeDefault = false;
     $commentTypeTermsArray = array();
-    $firstTermCount = 1;
-    foreach ($commentTypeTerms as $term) {
-      if($firstTermCount){
-        $commentTypeDefault = $term->getter('id');
-        $firstTermCount = 0;
+    foreach( $commentTypeTerms as $termId => $termIdName ) {
+      if( $commentTypeDefault === false ) {
+        $commentTypeDefault = $termId;
       }
-      if($term->getter('idName') === 'comment'){
-        $commentTermID = $term->getter('id');
-        $commentTypeTermsArray[$term->getter('id')] = __('A public comment and evaluation');
-      }elseif ($term->getter('idName')  === 'suggest'){
-        $suggestTermID = $term->getter('id');
-        $commentTypeTermsArray[$term->getter('id')] = __('A private suggestion about this content');
+      if( $termIdName === 'comment') {
+        $commentTermID = $termId;
+        $commentTypeTermsArray[ $termId ] = __('A public comment and evaluation');
+      }
+      elseif( $termIdName === 'suggest' ) {
+        $suggestTermID = $termId;
+        $commentTypeTermsArray[ $termId ] = __('A private suggestion about this content');
       }
     }
+
+
     // Data Options Suggest Type
-    $suggestTypeTax = $taxModelControl->listItems( array('filters' => array('idName' => 'suggestType')) )->fetch();
-    $suggestTypeTerms = $termModelControl->listItems( array('filters' => array('taxgroup' => $suggestTypeTax->getter('id'))) )->fetchAll();
+    $suggestTypeTerms = $commentCtrl->getSuggestTypeTerms();
     $suggestTypeTermsArray = array();
-    foreach ($suggestTypeTerms as $term) {
-      $suggestTypeTermsArray[$term->getter('id')] = $term->getter('name');
+    foreach( $suggestTypeTerms as $term ) {
+      $suggestTypeTermsArray[ $term['id'] ] = $term['name'];
     }
+
+
     // If exist user session
     $useraccesscontrol = new UserAccessController();
     $userSess = $useraccesscontrol->getSessiondata();
-    if($userSess){
-      $userID = $userSess['data']['id'];
-    }else{
-      $userID = NULL;
-    }
+    $userID = ($userSess) ? $userSess['data']['id'] : null;
 
     $form = new FormController('commentForm'); //actionform
-    $form->setAction('/comment/sendcommentform');
+    $form->setAction( '/comment/sendcommentform' );
     $form->setSuccess( 'jsEval', 'geozzy.commentInstance.successCommentBox('.$resourceID.');' );
 
     $fieldsInfo = array();
     $fieldsInfo['id'] = array(
       'params' => array( 'type' => 'reserved', 'value' => null )
     );
-    if( count($commentTypeTermsArray) > 1){
+
+    if( count($commentTypeTermsArray) > 1 ) {
       $fieldsInfo['type'] = array(
         'params' => array( 'type' => 'radio', 'label' => __('What do you contribute?'), 'value' => $commentTypeDefault,
           'options'=> $commentTypeTermsArray
         ),
         'rules' => array( 'required' => true )
       );
-    }else{
+    }
+    else {
       $fieldsInfo['type'] = array(
         'params' => array( 'type' => 'reserved', 'value' => $commentTypeDefault )
       );
     }
-    if(!$userID){
+
+    if( !$userID ) {
       $fieldsInfo['anonymousName'] = array(
-        'params' => array( 'label' => __('Your name')),
+        'params' => array( 'label' => __('Your name') ),
         'rules' => array( 'required' => true )
       );
       $fieldsInfo['anonymousEmail'] = array(
-        'params' => array( 'label' => __('Your email')),
-        'rules' => array( 'required' => true )
+        'params' => array( 'label' => __('Your email') ),
+        'rules' => array( 'required' => true, 'email' => true )
       );
     }
+
     if(in_array('comment', $ctypeParamTerms)){
       $fieldsInfo['rate'] = array(
         'params' => array( 'label' => __('How do we value?'), 'class' => 'inputRating', 'value' => 0 )
       );
     }
+
     if(in_array('suggest', $ctypeParamTerms)){
       $fieldsInfo['suggestType'] = array(
         'params' => array( 'label' => __( 'What do we suggest?' ), 'type' => 'select',
@@ -129,6 +122,7 @@ class CommentView extends View
         )
       );
     }
+
     $fieldsInfo['content'] = array(
       'params' => array( 'label' => __( 'Your comment' ), 'type' => 'textarea' ),
       'rules' => array( 'required' => true )
@@ -161,23 +155,24 @@ class CommentView extends View
 
     if( count($commentTypeTermsArray) > 1){
       $commentCustomScript = '<script> var suggestTermID = '.$suggestTermID.';  var commentTermID = '.$commentTermID.'; </script>';
-    }else{
+    }
+    else {
       $commentCustomScript = '<script> var suggestTermID = false;  var commentTermID = false; </script>';
     }
 
     $template->assign("commentCustomScript", $commentCustomScript);
     $template->setTpl('comment.tpl', 'rextComment');
     $template->exec();
-
   }
 
 
   public function sendCommentForm() {
     $form = $this->actionCommentForm();
-    $this->commentOk($form);
+    $this->commentOk( $form );
     $form->sendJsonResponse();
   }
-  public function actionCommentForm(){
+
+  public function actionCommentForm() {
     $form = new FormController();
     if( $form->loadPostInput() ) {
       $form->validateForm();
@@ -186,14 +181,18 @@ class CommentView extends View
       $valuesArray = $form->getValuesArray();
       if(!$valuesArray['resource']){
         $form->addFormError(__('An unexpected error has occurred'));
-      }else{
+      }
+      else {
         //Comprobar que el recurso tiene comentarios o sugerencias activadas en Conf y en BBDD
       }
     }
 
     return $form;
   }
-  public function commentOk($form){
+
+  public function commentOk( $form ) {
+    $comment = false;
+
     //Si tod0 esta OK!
     if( !$form->existErrors() ){
       $valuesArray = $form->getValuesArray();
@@ -203,11 +202,12 @@ class CommentView extends View
       $valuesArray['rate'] = $valuesArray['rate'] * 20;
       $comment = new CommentModel( $valuesArray );
       $comment->save();
-      //Consultamos el valor de valoracion media y lo guardamos en el recurso
-      $averageVotesModel = new AverageVotesViewModel();
-      $resAverageVotes = $averageVotesModel->listItems( array('filters' => array('id' => $comment->getter('resource')) ))->fetch();
 
+      // Consultamos el valor de valoracion media y lo guardamos en el recurso
+      // $averageVotesModel = new AverageVotesViewModel();
+      // $resAverageVotes = $averageVotesModel->listItems( array('filters' => array('id' => $comment->getter('resource')) ))->fetch();
     }
+
     return $comment;
   }
 

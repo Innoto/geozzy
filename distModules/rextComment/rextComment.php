@@ -1,14 +1,13 @@
 <?php
 Cogumelo::load("coreController/Module.php");
 
-class rextComment extends Module
-{
-  public $name = "rextComment";
-  public $version = 1.1;
+class rextComment extends Module {
 
-  public $models = array(
-    'CommentModel'
-  );
+  public $name = "rextComment";
+  public $version = 1.2;
+
+  public $models = array( 'CommentModel' );
+
   public $dependences = array(
     array(
      "id" =>"underscore",
@@ -150,13 +149,21 @@ class rextComment extends Module
     )
   );
 
-  function __construct() {
+  public function __construct() {
+    // Form de creacion de comentario
     $this->addUrlPatterns( '#^comment/form/(.*)#', 'view:CommentView::commentForm' );
+    // Action del Form de creacion de comentario
     $this->addUrlPatterns( '#^comment/sendcommentform$#', 'view:CommentView::sendCommentForm' );
 
-    $this->addUrlPatterns( '#^api/comment/list/(.*)$#', 'view:CommentAPIView::comments' );
-    $this->addUrlPatterns( '#^api/comments.json$#', 'view:CommentAPIView::commentsJson' );
+    // API publica de comentarios
+    $this->addUrlPatterns( '#^api/(comments(/.*)?)$#', 'view:CommentAPIView::comments' );
+    $this->addUrlPatterns( '#^api/comments.json$#', 'view:CommentAPIView::commentsDescription' );
 
+    // API de listado de comentarios
+    $this->addUrlPatterns( '#^api/comment/list/(.*)$#', 'view:CommentAPIView::commentList' );
+    $this->addUrlPatterns( '#^api/commentList.json$#', 'view:CommentAPIView::commentListDescription' );
+
+    // API de administracion de comentarios
     $this->addUrlPatterns( '#^api/admin/commentsuggestion/(.*)$#', 'view:CommentAdminAPIView::commentsSuggestions' );
     $this->addUrlPatterns( '#^api/admin/adminCommentSuggestion.json$#', 'view:CommentAdminAPIView::commentsSuggestionsJson' );
   }

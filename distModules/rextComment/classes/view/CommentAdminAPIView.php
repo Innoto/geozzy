@@ -22,7 +22,7 @@ class CommentAdminAPIView extends View
     $res = true;
 
     if( !GEOZZY_API_ACTIVE || !$useraccesscontrol->isLogged() ){
-     $res = false;
+      $res = false;
     }
 
     $access = $useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full');
@@ -38,6 +38,161 @@ class CommentAdminAPIView extends View
     }
 
     return $res;
+  }
+
+
+
+  // URL: /api/admin/commentsuggestion/
+  public function commentsSuggestions( $urlParams ) {
+
+    $validation = array( 'comment' => '#\d+$#', 'resource' => '#\d+$#' );
+    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
+    $commentId = isset( $urlParamsList['comment'] ) ? $urlParamsList['comment'] : false;
+    $resourceId = isset( $urlParamsList['resource'] ) ? $urlParamsList['resource'] : false;
+
+    geozzy::load('model/TaxonomygroupModel.php');
+    geozzy::load('model/TaxonomytermModel.php');
+    rextComment::load('model/CommentModel.php');
+
+    // header('Content-type: application/json');
+
+    switch( $_SERVER['REQUEST_METHOD'] ) {
+      case 'PUT':
+        $putData = json_decode( file_get_contents('php://input'), true );
+
+        $commentModel = new CommentModel();
+        $comment = $commentModel->listItems(  array( 'filters' => array( 'id'=> $putData['id'] ) ))->fetch();
+        if($comment){
+          if( isset( $putData['published'] ) ) {
+            if($putData['published']){
+              $comment->setter('published', true );
+            }
+            else{
+              $comment->setter('published', false);
+            }
+          }
+          if( isset( $putData['status'] ) &&  isset($putData['statusIdName'])  ) {
+
+            $taxTermModel = new TaxonomytermModel( );
+            $term = $taxTermModel->listItems( array('filters' => array('idName' => $putData['statusIdName'] ) ))->fetch();
+
+            if($term && $term->getter('id') !== $putData['status']){
+              $comment->setter('status', $term->getter('id') );
+
+              $tpl = new Template();
+              switch ( $term->getter('idName') ) {
+                case 'commentDenied':
+                  $tpl->setTpl( 'mailCommentDenied.tpl', 'rextComment');
+                  $titleMail = __("Gracias por su aportación");
+                  break;
+                case 'commentValidated':
+                  $tpl->setTpl( 'mailCommentValidated.tpl', 'rextComment');
+                  $titleMail = __("Gracias por su aportación");
+                  break;
+              }
+
+              if($comment->getter('user') && is_numeric($comment->getter('user'))){
+                $userModel = new UserModel();
+                $user = $userModel->listItems( array('filters' => array('id' => $comment->getter('user') ) ) )->fetch();
+                $to = $user->getter('email');
+              }
+              else{
+                $to = $comment->getter('anonymousEmail');
+              }
+
+              $mailControl = new MailController();
+              $mailControl->clear();
+              $mailControl->setBodyHtml( $tpl );
+              $mailControl->send( array( $to ), $titleMail );
+
+            }
+          }
+          $comment->save();
+          $commentData = $comment->getAllData();
+          header('Content-type: application/json');
+          echo json_encode( $commentData['data'] );
+        }
+        else {
+          header("HTTP/1.0 404 Not Found");
+          header('Content-type: application/json');
+          echo '[]';
+        }
+      break;
+      case 'DELETE':
+        $commentModel = new CommentModel();
+        $comment = $commentModel->listItems(
+          array(
+            'filters' => array('id'=> $commentId)
+          )
+        );
+        if( $comment && $c = $comment->fetch() ) {
+          $c->delete();
+
+          $averageVotesModel = new AverageVotesViewModel();
+          $resAverageVotes = $averageVotesModel->listItems( array('filters' => array('id' => $c->getter('resource')) ))->fetch();
+          $resourceModel = new ResourceModel( array('id' => $c->getter('resource'), 'averageVotes' => $resAverageVotes->getter('averageVotes') ));
+          $resourceModel->save();
+
+          header('Content-type: application/json');
+          echo '[]';
+        }
+        else {
+          header("HTTP/1.0 404 Not Found");
+          header('Content-type: application/json');
+          echo '[]';
+        }
+      break;
+      case 'GET':
+        if( isset( $resourceId ) && is_numeric( $resourceId ) ) {
+          $commentModel = new CommentModel();
+          $commentsList = $commentModel->listItems(  array(
+            'filters' => array( 'resource'=> $resourceId ),
+            'order' => array( 'timeCreation' => -1 ),
+            'affectsDependences' => array('UserModel','TaxonomytermModel')
+          ) );
+
+          header('Content-type: application/json');
+          echo '[';
+          $c = '';
+          global $C_LANG;
+
+          while ($valueobject = $commentsList->fetch() ) {
+            $allData = $valueobject->getAllData('onlydata');
+            $user = $valueobject->getterDependence('user');
+
+            if($user){
+              $allData['userName'] = $user[0]->getter('name');
+              $allData['userEmail'] = $user[0]->getter('email');
+              $allData['userVerified'] = $user[0]->getter('verified');
+            }
+            $ctype = $valueobject->getterDependence('type');
+            if($ctype){
+              $allData['typeIdName'] = $ctype[0]->getter('idName');
+            }
+            $suggestType = $valueobject->getterDependence('suggestType');
+            if($suggestType){
+              $allData['suggestTypeName'] = $suggestType[0]->getter('name');
+            }
+            $suggestStatus = $valueobject->getterDependence('status');
+            if($suggestStatus){
+              $allData['statusIdName'] = $suggestStatus[0]->getter('idName');
+            }
+
+            echo $c.json_encode($allData);
+            $c=',';
+          }
+          echo ']';
+        }
+        else {
+          header("HTTP/1.0 404 Not Found");
+          header('Content-type: application/json');
+          echo '{}';
+        }
+      break;
+      default:
+        header("HTTP/1.0 404 Not Found");
+      break;
+    }
   }
 
 
@@ -146,166 +301,4 @@ class CommentAdminAPIView extends View
       }
     <?php
   }
-
-
-
-  // comments
-  public function commentsSuggestions( $urlParams ) {
-
-    $validation = array('comment'=> '#\d+$#', 'resource'=> '#\d+$#');
-    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
-    if( isset( $urlParamsList['comment'] ) ){
-      $commentId = $urlParamsList['comment'];
-    }
-    else {
-      $commentId = false;
-    }
-    if( isset( $urlParamsList['resource'] ) ){
-      $resourceId = $urlParamsList['resource'];
-    }
-    else {
-      $resourceId = false;
-    }
-    geozzy::load('model/TaxonomygroupModel.php');
-    geozzy::load('model/TaxonomytermModel.php');
-    rextComment::load('model/CommentModel.php');
-
-    header('Content-type: application/json');
-
-    switch( $_SERVER['REQUEST_METHOD'] ) {
-
-      case 'PUT':
-        $putData = json_decode(file_get_contents('php://input'), true);
-
-        $commentModel = new CommentModel();
-        $comment = $commentModel->listItems(  array( 'filters' => array( 'id'=> $putData['id'] ) ))->fetch();
-        if($comment){
-          if( isset( $putData['published'] ) ) {
-            if($putData['published']){
-              $comment->setter('published', true );
-            }else{
-              $comment->setter('published', false);
-            }
-          }
-          if( isset( $putData['status']) &&  isset($putData['statusIdName'])  ) {
-
-            $taxTermModel = new TaxonomytermModel( );
-            $term = $taxTermModel->listItems( array('filters' => array('idName' => $putData['statusIdName'] ) ))->fetch();
-
-            if($term && $term->getter('id') !== $putData['status']){
-              $comment->setter('status', $term->getter('id') );
-
-              $tpl = new Template();
-              switch ( $term->getter('idName') ) {
-                case 'commentDenied':
-                  $tpl->setTpl( 'mailCommentDenied.tpl', 'rextComment');
-                  $titleMail = __("Gracias por su aportación");
-                  break;
-                case 'commentValidated':
-                  $tpl->setTpl( 'mailCommentValidated.tpl', 'rextComment');
-                  $titleMail = __("Gracias por su aportación");
-                  break;
-              }
-
-              if($comment->getter('user') && is_numeric($comment->getter('user'))){
-                $userModel = new UserModel();
-                $user = $userModel->listItems( array('filters' => array('id' => $comment->getter('user') ) ) )->fetch();
-                $to = $user->getter('email');
-              }
-              else{
-                $to = $comment->getter('anonymousEmail');
-              }
-
-              $mailControl = new MailController();
-              $mailControl->clear();
-              $mailControl->setBodyHtml( $tpl );
-              $mailControl->send( array( $to ), $titleMail );
-
-            }
-          }
-          $comment->save();
-          $commentData = $comment->getAllData();
-          echo json_encode( $commentData['data'] );
-        }else{
-          header("HTTP/1.0 404 Not Found");
-          header('Content-type: application/json');
-          echo '[]';
-        }
-
-      break;
-      case 'DELETE':
-        $commentModel = new CommentModel();
-        $comment = $commentModel->listItems(
-          array(
-            'filters' => array('id'=> $commentId)
-          )
-        );
-        if( $comment && $c = $comment->fetch() ) {
-          $c->delete();
-
-          $averageVotesModel = new AverageVotesViewModel();
-          $resAverageVotes = $averageVotesModel->listItems( array('filters' => array('id' => $c->getter('resource')) ))->fetch();
-          $resourceModel = new ResourceModel( array('id' => $c->getter('resource'), 'averageVotes' => $resAverageVotes->getter('averageVotes') ));
-          $resourceModel->save();
-
-          header('Content-type: application/json');
-          echo '[]';
-        }
-        else {
-          header("HTTP/1.0 404 Not Found");
-          header('Content-type: application/json');
-          echo '[]';
-        }
-
-      break;
-      case 'GET':
-        if( isset( $resourceId ) && is_numeric( $resourceId ) ) {
-          $commentModel = new CommentModel();
-          $commentsList = $commentModel->listItems(  array(
-            'filters' => array( 'resource'=> $resourceId ),
-            'order' => array( 'timeCreation' => -1 ),
-            'affectsDependences' => array('UserModel','TaxonomytermModel')
-          ) );
-
-          echo '[';
-          $c = '';
-          global $C_LANG;
-
-          while ($valueobject = $commentsList->fetch() ) {
-            $allData = $valueobject->getAllData('onlydata');
-            $user = $valueobject->getterDependence('user');
-
-            if($user){
-              $allData['userName'] = $user[0]->getter('name');
-              $allData['userEmail'] = $user[0]->getter('email');
-              $allData['userVerified'] = $user[0]->getter('verified');
-            }
-            $ctype = $valueobject->getterDependence('type');
-            if($ctype){
-              $allData['typeIdName'] = $ctype[0]->getter('idName');
-            }
-            $suggestType = $valueobject->getterDependence('suggestType');
-            if($suggestType){
-              $allData['suggestTypeName'] = $suggestType[0]->getter('name');
-            }
-            $suggestStatus = $valueobject->getterDependence('status');
-            if($suggestStatus){
-              $allData['statusIdName'] = $suggestStatus[0]->getter('idName');
-            }
-
-            echo $c.json_encode($allData);
-            $c=',';
-          }
-          echo ']';
-        }
-        else {
-          header("HTTP/1.0 404 Not Found");
-          header('Content-type: application/json');
-          echo '{}';
-        }
-      break;
-    }
-  }
-
-
 }

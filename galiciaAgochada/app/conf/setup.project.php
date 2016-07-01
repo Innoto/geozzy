@@ -363,15 +363,18 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
 cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
   array(
     'default' => array(
-      'moderation' => 'none', // none|verified|all
+      'moderation' => 'all', // none|verified|all
+      'anonymous' => false,
       'ctype' => array() // 'comment','suggest'
     ),
     'rtypeAppHotel' => array(
       'moderation' => 'none', // none|verified|all
+      'anonymous' => false,
       'ctype' => array('comment','suggest') // 'comment','suggest'
     ),
     'rtypeAppRestaurant' => array(
       'moderation' => 'verified', // none|verified|all
+      'anonymous' => false,
       'ctype' => array('suggest') // 'comment','suggest'
     )
   )

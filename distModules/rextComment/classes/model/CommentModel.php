@@ -60,7 +60,10 @@ class CommentModel extends Model {
     )
   );
 
-  static $extraFilters = array( );
+  static $extraFilters = array(
+    'idIn' => ' geozzy_comment.id IN (?) ',
+    'resourceIn' => ' geozzy_comment.resource IN (?) '
+  );
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {
