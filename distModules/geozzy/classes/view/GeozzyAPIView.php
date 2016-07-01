@@ -673,7 +673,7 @@ class geozzyAPIView extends View {
   }
 
 
-  // /resourcelist
+  // /resourcelist (Declarado en resources.json)
   public function resourceList( $param ) {
     Cogumelo::load('coreModel/DBUtils.php');
     geozzy::load('model/ResourceModel.php');
@@ -919,7 +919,7 @@ class geozzyAPIView extends View {
               $resCollData_tmp = array();
               while( $resColl = $resList->fetch() ) {
                 $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'timeCreation',
-                  'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'urlAlias' );
+                  'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' );
                 foreach( $k as $key ) {
                   $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
                 }
