@@ -6,6 +6,7 @@
   {foreach $rExt.data.events as $key=>$res}
     {$eventsByDate[$res.event.formatedDate.initDate]['id'] = $res.event.resource}
     {$eventsByDate[$res.event.formatedDate.initDate]['formatedDate'] = $res.event.formatedDate}
+    {$eventsByDate[$res.event.formatedDate.initDate]['relatedResource'] = $res.event.relatedResource}
     {$eventsByDate[$res.event.formatedDate.initDate]['data'][] = $res}
   {/foreach}
 
@@ -36,8 +37,20 @@
             </span>
           </p>
           <div class="row">
-            <div class="eventDescription col-md-7">
-              <p>{$elm.resource.mediumDescription}</p>
+            <div class="col-md-7">
+              <div class="eventDescription">
+                <p>{$elm.resource.mediumDescription}</p>
+              </div>
+              {if $eventDate.relatedResource}
+              <a href="{$eventDate.relatedResource}" class="btn moreInfo">
+                <i class="fa fa-plus" aria-hidden="true"></i> {t}More information{/t}
+              </a>
+              {/if}
+              {if $elm.resource.urlAlias}
+              <a href="{$elm.resource.urlAlias}" class="btn moreInfo">
+                <i class="fa fa-plus" aria-hidden="true"></i> {t}More information{/t}
+              </a>
+              {/if}
             </div>
             <div class="eventImg col-md-5">
               <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$elm.resource.image}/basicEvent/{$elm.resource.image}.jpg"/>

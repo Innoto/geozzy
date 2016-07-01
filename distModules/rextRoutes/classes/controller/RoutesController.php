@@ -37,13 +37,69 @@ class RoutesController {
   }
 
 
+  public function getRouteInForm( $idForm ) {
+    $route = [];
+    $useraccesscontrol = new UserAccessController();
+    if( $useraccesscontrol->checkPermissions('resource:create', 'admin:full') || $useraccesscontrol->checkPermissions('resource:edit', 'admin:full') ) {
+
+      $formRoute = new FormController( );
+      $formRoute->loadFromSession( $idForm );
+
+
+
+      if( isset($formRoute->getFieldValue('rExtRoutes_routeFile')['temp']) ) {
+        $filePath = $formRoute->getFieldValue('rExtRoutes_routeFile')[ 'temp' ]['absLocation'];
+      }
+      else {
+        $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'].  $formRoute->getFieldValue('rExtRoutes_routeFile')[ 'prev' ]['absLocation'];
+      }
+
+
+
+      try {
+
+        $fnSplited = explode( '.', $filePath );
+        $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
+        /*echo "<pre>";
+        var_dump( $polygon->getGeomType() );
+        echo "<br>--------------------<br>";
+        var_dump( json_encode( $this->extractPoints( $polygon )) );*/
+        $cent = $polygon->getCentroid();
+
+        $route['id'] =  1;
+        $route['circular'] = 0;
+        $route['centroid'] =  [ $cent->y(), $cent->x() ];
+        $route['trackPoints'] = $this->extractPoints( $polygon );
+      }
+      catch(Exception $e) {
+          Cogumelo::error( $e->getMessage() );
+      }
+    }
+
+
+    return [$route];
+  }
+
+
+
+
   public function getRoute( $ids ) {
     rextRoutes::autoIncludes();
+    $useraccesscontrol = new UserAccessController();
 
     $route = false;
 
+    $f = array();
+    $f['ResourceModel.id'] = $ids;
+
+
+    if(! ($useraccesscontrol->checkPermissions('resource:create', 'admin:full') || $useraccesscontrol->checkPermissions('resource:edit', 'admin:full')) ) {
+      $f['ResourceModel.published'] = 1;
+    }
+
+
     $routesModel = new RoutesModel();
-    $routesList = $routesModel->listItems( array('affectsDependences'=> array('FiledataModel') , 'filters'=>['resource'=>$ids ] ) );
+    $routesList = $routesModel->listItems( array('joinType'=>'RIGHT','affectsDependences'=> array('ResourceModel') , 'filters' => $f ));
 
     $routes = [];
 
@@ -52,7 +108,9 @@ class RoutesController {
       $route = [ ];
 
       if(  $routeVO->getter('routeFile') ) {
-        $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'] . $routeVO->getterDependence('routeFile')[0]->getter('absLocation');
+
+        $fileDataList = (new FiledataModel(['id'=> $routeVO->getter('routeFile') ]) )->save();
+        $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'] . $fileDataList->getter('absLocation');
       }
       else {
         $filePath = false;

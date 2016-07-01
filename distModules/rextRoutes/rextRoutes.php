@@ -78,7 +78,7 @@ class rextRoutes extends Module {
 
     $this->addUrlPatterns( '#^api/routes.json#', 'view:RoutesAPIView::routesJson' );
     $this->addUrlPatterns( '#^api/routes/?(.*)$#', 'view:RoutesAPIView::routes' );
-
+    $this->addUrlPatterns( '#^api/adminRoutes/?(.*)$#', 'view:RoutesAPIView::adminRoutes' );    
 
   }
 

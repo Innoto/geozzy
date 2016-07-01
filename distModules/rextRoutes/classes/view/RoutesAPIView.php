@@ -70,7 +70,6 @@ class RoutesAPIView extends View
 
 
 
-  // explorer
   public function routes( $urlParams  ) {
 
 
@@ -94,5 +93,31 @@ class RoutesAPIView extends View
 
 
   }
+
+
+  public function adminRoutes( $urlParams  ) {
+
+
+    $validation = array( 'idForm'=> '#(.*)#');
+    $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
+
+
+    rextRoutes::autoIncludes();
+    rextRoutes::load('controller/RoutesController.php');
+    $routesControl = new RoutesController();
+
+
+    header('Content-type: application/json');
+
+    if( isset($urlParamsList['idForm']) ) {
+      echo json_encode(  $routesControl->getRouteInForm( $urlParamsList['idForm'] ) );
+    }
+    else {
+      echo '[]';
+    }
+
+
+  }
+
 
 }
