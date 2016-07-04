@@ -1024,9 +1024,9 @@ class geozzyAPIView extends View {
     header('Content-type: application/json');
 
     echo '[';
-
     $c = '';
     while( $starred = $starredList->fetch() ) {
+      $starData = array();
 
       $allCols = $starred->getCols(false);
       foreach($allCols as $key => $col){
