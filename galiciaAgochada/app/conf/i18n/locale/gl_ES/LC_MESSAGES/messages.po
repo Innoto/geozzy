@@ -1598,7 +1598,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:86
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:191
 msgid "Repeat email"
-msgstr ""
+msgstr "Repite o email"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:90
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:195
