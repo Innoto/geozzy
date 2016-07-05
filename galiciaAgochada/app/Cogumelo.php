@@ -104,6 +104,10 @@ class Cogumelo extends CogumeloClass
     $this->addUrlPatterns( '#^exampleComarca#', 'view:MasterView::exampleComarca' );
     $this->addUrlPatterns( '#^mailexample#', 'view:MailExample::mail' );
 
+    // Prueba Form
+    $this->addUrlPatterns( '#^webview/?$#', 'view:ExamplesView::registerForm' );
+    $this->addUrlPatterns( '#^webview/senduserregister$#', 'view:ExamplesView::sendRegisterForm' );
+
     /*Real urls*/
     /*Explorers*/
     /*
