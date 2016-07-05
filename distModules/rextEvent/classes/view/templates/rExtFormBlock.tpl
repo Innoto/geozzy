@@ -26,9 +26,9 @@
       </div>
       <input class="cgmMForm-field cgmMForm-field-rextEvent_endDate" type="hidden" form="{$rExt.dataForm.formId}" value="{$rExt.data.endDate}" name="rextEvent_endDate">
     </div>
-  </div>   
+  </div>
 
-  {$rExt.dataForm.formFieldsArray.rextEvent_rextEventType}
+  {$rExt.dataForm.formFieldsArray.rextEvent_rextEventType|default:''}
 
-  {$rExt.dataForm.formFieldsArray.rextEvent_relatedResource}
+  {$rExt.dataForm.formFieldsArray.rextEvent_relatedResource|default:''}
 </div>
