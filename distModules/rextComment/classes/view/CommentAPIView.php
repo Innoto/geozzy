@@ -475,7 +475,7 @@ class CommentAPIView extends View {
                     "name": "resource",
                     "paramType": "form",
                     "allowMultiple": false,
-                    "defaultValue": "false",
+                    "defaultValue": false,
                     "description": "resource id"
                   },
                   {
@@ -489,11 +489,20 @@ class CommentAPIView extends View {
                   },
                   {
                     "required": false,
+                    "dataType": "string",
+                    "name": "content",
+                    "paramType": "form",
+                    "allowMultiple": false,
+                    "defaultValue": false,
+                    "description": "Comment text"
+                  },
+                  {
+                    "required": false,
                     "dataType": "int",
                     "name": "rate",
                     "paramType": "form",
                     "allowMultiple": false,
-                    "defaultValue": "false",
+                    "defaultValue": false,
                     "description": "rate: 1 to 100 (type=comment)"
                   },
                   {
@@ -502,17 +511,8 @@ class CommentAPIView extends View {
                     "name": "suggestTypeId",
                     "paramType": "form",
                     "allowMultiple": false,
-                    "defaultValue": "false",
+                    "defaultValue": false,
                     "description": "suggestType Id (type=suggest)"
-                  },
-                  {
-                    "required": false,
-                    "dataType": "string",
-                    "name": "content",
-                    "paramType": "form",
-                    "allowMultiple": false,
-                    "defaultValue": "false",
-                    "description": "Comment text"
                   },
                   {
                     "required": false,
@@ -520,7 +520,7 @@ class CommentAPIView extends View {
                     "name": "anonymousName",
                     "paramType": "form",
                     "allowMultiple": false,
-                    "defaultValue": "false",
+                    "defaultValue": false,
                     "description": "anonymousName"
                   },
                   {
@@ -529,7 +529,7 @@ class CommentAPIView extends View {
                     "name": "anonymousEmail",
                     "paramType": "form",
                     "allowMultiple": false,
-                    "defaultValue": "false",
+                    "defaultValue": false,
                     "description": "anonymousEmail"
                   }
                 ],
