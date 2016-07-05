@@ -89,14 +89,14 @@ class CommentAPIView extends View {
 
     switch( $_SERVER['REQUEST_METHOD'] ) {
       case 'GET':
-        $validation = array( 'resources' => '#^\d+(,\d+)*$#', 'comments' => '#^\d+(,\d+)*$#', 'options' => '#^true$#' );
+        $validation = array( 'resources' => '#^\d+(,\d+)*$#', 'comments' => '#^\d+(,\d+)*$#', 'options' => '#^(permissions|votes)$#' );
         $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
         $resourcesId = isset( $urlParamsList['resources'] ) ? $urlParamsList['resources'] : false;
         $commentsId = isset( $urlParamsList['comments'] ) ? $urlParamsList['comments'] : false;
         $options = isset( $urlParamsList['options'] ) ? $urlParamsList['options'] : false;
 
         if( $options ) {
-          $this->sendJsonCommentsOptions( $resourcesId );
+          $this->sendJsonCommentsOptions( $resourcesId, $options );
         }
         else {
           $this->sendJsonCommentsInfo( $resourcesId, $commentsId );
@@ -315,12 +315,21 @@ class CommentAPIView extends View {
   }
 
 
-  private function sendJsonCommentsOptions( $resourcesId ) {
+  private function sendJsonCommentsOptions( $resourcesId, $options ) {
+    $commentsOptions = null;
 
     // error_log( "sendJsonCommentsOptions( $resourcesId )" );
 
     $commentCtrl = new RExtCommentController();
-    $commentsOptions = $commentCtrl->getPermissions( $resourcesId );
+
+    switch( $options ) {
+      case 'permissions':
+        $commentsOptions = $commentCtrl->getPermissions( $resourcesId );
+        break;
+      case 'votes':
+        $commentsOptions = $commentCtrl->getVotes( $resourcesId );
+        break;
+    }
 
     header('Content-type: application/json; charset=utf-8');
     echo json_encode( $commentsOptions );
@@ -414,12 +423,12 @@ class CommentAPIView extends View {
                   },
                   {
                     "required": false,
-                    "dataType": "boolean",
+                    "dataType": "string",
                     "name": "options",
                     "paramType": "path",
                     "allowMultiple": false,
                     "defaultValue": "false",
-                    "description": "Get options"
+                    "description": "Get alternative info: false|permissions|votes"
                   }
                 ],
                 "summary": "Fetches comments"

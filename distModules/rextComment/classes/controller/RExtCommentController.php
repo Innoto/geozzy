@@ -331,7 +331,7 @@ class RExtCommentController extends RExtController implements RExtInterface {
       $resId = $resPerms->getter( 'id' );
       $rTypeIdName = $resPerms->getter( 'rTypeIdName' );
 
-      $perms = isset($setup[ $rTypeIdName ]) ? $setup[ $rTypeIdName ] : $setup['default'];
+      $perms = isset( $setup[ $rTypeIdName ] ) ? $setup[ $rTypeIdName ] : $setup['default'];
 
       if( in_array('comment', $perms['ctype']) ) {
         if( $resPerms->getter('activeComment') ) {
@@ -344,10 +344,47 @@ class RExtCommentController extends RExtController implements RExtInterface {
         $perms['suggestType'] = $suggestTypeTermsArray;
       }
 
-      $commRules[ $resId ] = $perms;
+      if( is_array( $perms['ctype'] ) && count( $perms['ctype'] ) > 0 ) {
+        $commRules[ $resId ] = $perms;
+      }
     }
 
     return $commRules;
+  }
+
+  /**
+   * Metodo que recupera la informacion sobre los votos
+   *
+   * @return Array $votes{ 'id', 'count', 'average' }
+   */
+  public function getVotes( $resId ) {
+    $votes = array();
+
+    $filters = array();
+    if( $resId ) {
+      $inArray = explode( ',', $resId );
+      if( count( $inArray ) > 1 ) {
+        $filters['idIn'] = $inArray;
+      }
+      else {
+        $filters['id'] = intval( $resId );
+      }
+    }
+
+    $votesModel = new AverageVotesViewModel();
+    $votesList = $votesModel->listItems( array( 'filters'=> $filters ) );
+
+
+    while( $votesObj = $votesList->fetch() ) {
+      $resId = $votesObj->getter( 'id' );
+      $votes[ $resId ] = array(
+        'id' => $resId,
+        'count' => $votesObj->getter( 'commentsVotes' ),
+        'average' => $votesObj->getter( 'averageVotes' )
+      );
+    }
+
+    return $votes;
   }
 
   /**
