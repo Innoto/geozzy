@@ -673,7 +673,7 @@ class geozzyAPIView extends View {
   }
 
 
-  // /resourcelist
+  // /resourcelist (Declarado en resources.json)
   public function resourceList( $param ) {
     Cogumelo::load('coreModel/DBUtils.php');
     geozzy::load('model/ResourceModel.php');
@@ -919,7 +919,7 @@ class geozzyAPIView extends View {
               $resCollData_tmp = array();
               while( $resColl = $resList->fetch() ) {
                 $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'timeCreation',
-                  'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'urlAlias' );
+                  'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' );
                 foreach( $k as $key ) {
                   $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
                 }
@@ -1018,23 +1018,25 @@ class geozzyAPIView extends View {
 
   public function starred() {
     $taxtermModel = new TaxonomytermModel();
-    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
+      'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
 
     geozzy::load('model/StarredResourcesModel.php');
     header('Content-type: application/json');
 
     echo '[';
-
     $c = '';
     while( $starred = $starredList->fetch() ) {
+      $starData = array();
 
       $allCols = $starred->getCols(false);
-      foreach($allCols as $key => $col){
-        $starData[$key] = $starred->getter($key);
+      foreach( $allCols as $key => $col ){
+        $starData[ $key ] = $starred->getter( $key );
       }
 
       $starredResourceModel = new StarredResourcesModel();
-      $starredResources = $starredResourceModel->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']), 'order'=>array('weight'=>1)) );
+      $starredResources = $starredResourceModel->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']),
+        'order'=>array('weight'=>1)) );
 
       while( $starredResource = $starredResources->fetch() ){
         $starData['resources'][] = $starredResource->getAllData('onlydata');
