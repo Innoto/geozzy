@@ -79,6 +79,7 @@ class geozzyAPIView extends View {
       "basePath": "/api",
       "apis": [
         {
+          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/votes/{votes}/updatedfrom/{updatedfrom}/urlAlias/{urlAlias}",
           "operations": [
             {
               "errorResponses": [
@@ -162,6 +163,14 @@ class geozzyAPIView extends View {
                   "required": false
                 },
                 {
+                  "name": "votes",
+                  "description": "Votes data",
+                  "dataType": "boolean",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
                   "name": "updatedfrom",
                   "description": "updated from (UTC timestamp)",
                   "dataType": "int",
@@ -181,7 +190,6 @@ class geozzyAPIView extends View {
               "summary": "Fetches resource list"
             }
           ],
-          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/updatedfrom/{updatedfrom}/urlAlias/{urlAlias}",
           "description": ""
         }
       ]
@@ -198,6 +206,7 @@ class geozzyAPIView extends View {
         "basePath": "/api",
         "apis": [
           {
+            "path": "/core/resourceIndex/taxonomyterms/{taxonomyterms}/types/{types}/topics/{topics}/bounds/{bounds}",
             "operations": [
               {
                 "errorResponses": [
@@ -245,7 +254,6 @@ class geozzyAPIView extends View {
                 "summary": "Fetches resource list"
               }
             ],
-            "path": "/core/resourceIndex/taxonomyterms/{taxonomyterms}/types/{types}/topics/{topics}/bounds/{bounds}",
             "description": ""
           }
         ]
@@ -688,11 +696,21 @@ class geozzyAPIView extends View {
       'rextmodels'=> '#^(true|false)$#',
       'category'=> '#^(true|false)$#',
       'collection'=> '#^(true|false)$#',
+      'votes'=> '#^(true|false)$#',
       'updatedfrom' => '#^(\d+)$#',
       'urlAlias' => '#(.*)#'
     );
 
     $extraParams = RequestController::processUrlParams( $param, $validation );
+
+    // Validamos el parametro "ids" y, si es correcto, lo añadimos en $extraParams['ids']
+    $extraParams['ids'] = false;
+    if( isset( $_POST['ids'] ) ) {
+      $tmpIds = is_array( $_POST['ids'] ) ? implode( ',', $_POST['ids'] ) : $_POST['ids'];
+
+      $extraParams['ids'] = preg_match( '/^\d+(,\d+)*$/', $tmpIds ) ? $tmpIds : false;
+    }
+
 
     //$queryParameters = apiFiltersController::resourceListOptions( $param );
 
@@ -700,6 +718,15 @@ class geozzyAPIView extends View {
     // Cargo la tabla de tipos de recurso (RTypes)
     $infoRTypes = $this->loadInfoRTypes();
     $infoRTypeIdNames = array_column( $infoRTypes, 'id', 'idName' );
+
+
+    // Cargo la tabla de votos en recursos (comentarios)
+    $votesInfo = false;
+    if( isset( $extraParams['votes'] ) && $extraParams['votes'] === 'true' ) {
+      $commCtrl = new RExtCommentController();
+      $votesInfo = $commCtrl->getVotes( $extraParams['ids'] );
+    }
+
 
     $resourceModel = new ResourceModel();
     $queryParameters = array();
@@ -745,12 +772,14 @@ class geozzyAPIView extends View {
       }
     */
 
-    if( isset( $_POST['ids'] ) ) {
-      if( is_array( $_POST['ids'] ) ) {
-        $queryParameters['filters']['ids'] = array_map( 'intval', $_POST['ids'] );
+
+    if( $extraParams['ids'] ) {
+      $inArray = explode( ',', $extraParams['ids'] );
+      if( count( $inArray ) > 1 ) {
+        $queryParameters['filters']['ids'] = $inArray;
       }
-      else if( intval( $_POST['ids'] ) ) {
-        $queryParameters['filters']['ids'] = $_POST['ids'];
+      else {
+        $queryParameters['filters']['id'] = intval( $extraParams['ids'] );
       }
     }
 
@@ -774,7 +803,7 @@ class geozzyAPIView extends View {
 
       //$allCols = $valueobject->getCols(false);
       $allCols = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
-        'image', 'loc', 'defaultZoom', 'externalUrl', 'averageVotes' );
+        'image', 'loc', 'defaultZoom', 'externalUrl' );
       foreach( $allCols as $col ) {
         $allData[$col] = $valueobject->getter($col);
       }
@@ -938,6 +967,14 @@ class geozzyAPIView extends View {
       }
 
 
+      // Votes
+      if( $votesInfo && isset( $votesInfo[ $allData['id'] ] ) ) {
+        $allData['votes'] = array(
+          'count' => intval( $votesInfo[ $allData['id'] ]['count'] ),
+          'average' => intval( $votesInfo[ $allData['id'] ]['average'] )
+        );
+      }
+
       echo $c.json_encode( $allData );
       $c=',';
     } // while
@@ -1018,23 +1055,25 @@ class geozzyAPIView extends View {
 
   public function starred() {
     $taxtermModel = new TaxonomytermModel();
-    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
+      'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
 
     geozzy::load('model/StarredResourcesModel.php');
     header('Content-type: application/json');
 
     echo '[';
-
     $c = '';
     while( $starred = $starredList->fetch() ) {
+      $starData = array();
 
       $allCols = $starred->getCols(false);
-      foreach($allCols as $key => $col){
-        $starData[$key] = $starred->getter($key);
+      foreach( $allCols as $key => $col ){
+        $starData[ $key ] = $starred->getter( $key );
       }
 
       $starredResourceModel = new StarredResourcesModel();
-      $starredResources = $starredResourceModel->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']), 'order'=>array('weight'=>1)) );
+      $starredResources = $starredResourceModel->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']),
+        'order'=>array('weight'=>1)) );
 
       while( $starredResource = $starredResources->fetch() ){
         $starData['resources'][] = $starredResource->getAllData('onlydata');

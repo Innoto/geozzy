@@ -21,7 +21,9 @@ class AverageVotesViewModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'idIn' => ' geozzy_resource_averagevote_view.id IN (?) '
+  );
 
   var $notCreateDBTable = true;
   var $deploySQL = array(
