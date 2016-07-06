@@ -1423,6 +1423,7 @@ class geozzyAPIView extends View {
 
 
   private function extendCollBase( $resourceSonList ) {
+    Cogumelo::load('coreModel/DBUtils.php');
     $resCollData = array();
 
     $resIds = explode( ',', $resourceSonList );
