@@ -61,6 +61,9 @@ class CollectionResourcesListViewModel extends Model {
   );
 
   static $extraFilters = array(
+    'idIn' => ' geozzy_collection_resourcelist_view.id IN (?) ',
+    'resourceMainIn' => ' geozzy_collection_resourcelist_view.resourceMain IN (?) ',
+    'collectionTypeIn' => ' geozzy_collection_resourcelist_view.collectionType IN (?) ',
     'collectionTypeNotIn' => ' geozzy_collection_resourcelist_view.collectionType NOT IN (?) ',
   );
 
