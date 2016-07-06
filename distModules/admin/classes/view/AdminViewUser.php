@@ -187,7 +187,7 @@ class AdminViewUser extends AdminViewMaster
     $formChange->setAction('/admin/user/changepassword');
     $formChange->setSuccess( 'redirect', '/admin#user/list' );
     $changePasswordBlock = $userView->userChangePasswordFormGetBlock( $formChange );
-    $this->template->addToFragment( 'col4', $this->getPanelBlock( $changePasswordBlock, 'Change Password', 'fa-key' ) );
+    $this->template->addToFragment( 'col4', $this->getPanelBlock( $changePasswordBlock, __('Change Password'), 'fa-key' ) );
 
     /*--------------------*/
 
@@ -196,7 +196,7 @@ class AdminViewUser extends AdminViewMaster
     $userRolesForm->setAction('/admin/user/assignroles');
     $userRolesForm->setSuccess( 'redirect', '/admin#user/list' );
     $userRolesFormBlock = $userView->userRolesFormGetBlock( $userRolesForm );
-    $this->template->addToFragment( 'col4', $this->getPanelBlock( $userRolesFormBlock, 'Edit Roles', 'fa-unlock-alt' ) );
+    $this->template->addToFragment( 'col4', $this->getPanelBlock( $userRolesFormBlock, __('Edit Roles'), 'fa-unlock-alt' ) );
     /*--------------------*/
 
     $this->template->assign( 'headTitle', __('Edit user') );

@@ -704,10 +704,11 @@ class geozzyAPIView extends View {
     $extraParams = RequestController::processUrlParams( $param, $validation );
 
     // Validamos el parametro "ids" y, si es correcto, lo añadimos en $extraParams['ids']
+    $extraParams['ids'] = false;
     if( isset( $_POST['ids'] ) ) {
       $tmpIds = is_array( $_POST['ids'] ) ? implode( ',', $_POST['ids'] ) : $_POST['ids'];
 
-      $extraParams['ids'] = ( preg_match( '/^\d+(,\d+)*$/', $tmpIds ) ) ? $tmpIds : false;
+      $extraParams['ids'] = preg_match( '/^\d+(,\d+)*$/', $tmpIds ) ? $tmpIds : false;
     }
 
 
