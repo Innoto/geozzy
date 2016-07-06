@@ -1217,7 +1217,7 @@ class geozzyAPIView extends View {
         while( $coll = $collResList->fetch() ) {
           $collFields = array();
           $fields = array( 'id', 'collectionType', 'title', 'shortDescription', 'description', 'weight',
-            'weightMain', 'resourceSonList' );
+            'weightMain', 'resourceMain', 'resourceSonList' );
           foreach( $fields as $fieldName ) {
             $collFields[ $fieldName ] = $coll->getter( $fieldName );
           }
