@@ -403,7 +403,7 @@ class ResourceController {
     }
 
     $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Send' ), 'class' => 'gzzAdminToMove' ) );
-    if($cancelButton){
+    if(isset($cancelButton) && $cancelButton){
       $form->setField( 'cancel', array( 'type' => 'button', 'value' => __( 'Cancel' ), 'class' => 'btn btn-warning gzzAdminToMove', 'data-href' => $cancelButton ) );
     }
     // Una vez que lo tenemos definido, guardamos el form en sesion
