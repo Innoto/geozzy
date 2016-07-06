@@ -395,7 +395,7 @@ class RExtFavouriteAPIView extends View {
    * API info to swagger
    */
   public function apiInfoJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
 ?>
 {
   "resourcePath": "/favourites.json",

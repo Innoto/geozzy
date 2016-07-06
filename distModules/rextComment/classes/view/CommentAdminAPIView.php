@@ -7,9 +7,9 @@ Cogumelo::load('coreController/MailController.php');
 /**
 * Clase Master to extend other application methods
 */
-class CommentAdminAPIView extends View
-{
-  public function __construct( $baseDir ) {
+class CommentAdminAPIView extends View {
+
+  public function __construct( $baseDir = false ) {
     parent::__construct( $baseDir );
   }
 
@@ -19,25 +19,25 @@ class CommentAdminAPIView extends View
   */
   public function accessCheck() {
     $useraccesscontrol = new UserAccessController();
-    $res = true;
+    $access = true;
 
     if( !GEOZZY_API_ACTIVE || !$useraccesscontrol->isLogged() ){
-      $res = false;
+      $access = false;
     }
 
     $access = $useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full');
     if(!$access){
-      $res = false;
+      $access = false;
     }
 
-    if( $res == false ) {
+    if( !$access ) {
       header("HTTP/1.0 401");
-      header('Content-type: application/json');
+      header('Content-Type: application/json; charset=utf-8');
       echo '[]';
       exit;
     }
 
-    return $res;
+    return $access;
   }
 
 
@@ -54,7 +54,7 @@ class CommentAdminAPIView extends View
     geozzy::load('model/TaxonomytermModel.php');
     rextComment::load('model/CommentModel.php');
 
-    // header('Content-type: application/json');
+    // header('Content-Type: application/json; charset=utf-8');
 
     switch( $_SERVER['REQUEST_METHOD'] ) {
       case 'PUT':
@@ -109,12 +109,12 @@ class CommentAdminAPIView extends View
           }
           $comment->save();
           $commentData = $comment->getAllData();
-          header('Content-type: application/json');
+          header('Content-Type: application/json; charset=utf-8');
           echo json_encode( $commentData['data'] );
         }
         else {
           header("HTTP/1.0 404 Not Found");
-          header('Content-type: application/json');
+          header('Content-Type: application/json; charset=utf-8');
           echo '[]';
         }
       break;
@@ -133,12 +133,12 @@ class CommentAdminAPIView extends View
           $resourceModel = new ResourceModel( array('id' => $c->getter('resource'), 'averageVotes' => $resAverageVotes->getter('averageVotes') ));
           $resourceModel->save();
 
-          header('Content-type: application/json');
+          header('Content-Type: application/json; charset=utf-8');
           echo '[]';
         }
         else {
           header("HTTP/1.0 404 Not Found");
-          header('Content-type: application/json');
+          header('Content-Type: application/json; charset=utf-8');
           echo '[]';
         }
       break;
@@ -151,7 +151,7 @@ class CommentAdminAPIView extends View
             'affectsDependences' => array('UserModel','TaxonomytermModel')
           ) );
 
-          header('Content-type: application/json');
+          header('Content-Type: application/json; charset=utf-8');
           echo '[';
           $c = '';
           global $C_LANG;
@@ -185,7 +185,7 @@ class CommentAdminAPIView extends View
         }
         else {
           header("HTTP/1.0 404 Not Found");
-          header('Content-type: application/json');
+          header('Content-Type: application/json; charset=utf-8');
           echo '{}';
         }
       break;
@@ -197,7 +197,7 @@ class CommentAdminAPIView extends View
 
 
   public function commentsSuggestionsJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "commentsuggestion.json",
