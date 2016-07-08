@@ -203,6 +203,55 @@ cogumeloSetSetupValue( 'mod:filedata:profile:basicEvent', array( 'width' => 600,
 cogumeloSetSetupValue( 'mod:filedata:profile:listEvent', array( 'width' => 240, 'height' => 120) );
 cogumeloSetSetupValue( 'mod:filedata:profile:calendarEvent', array( 'width' => 320, 'height' => 200) );
 cogumeloSetSetupValue( 'mod:filedata:profile:calendarEventSmall', array( 'width' => 240, 'height' => 180) );
+
+/*---------------------------- PERFILES PARA APPS ---------------------------------*/
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerLugaresMarkerSingularApp', array(
+  'width' => 64, 'height' => 64, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
+  'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerLugaresMarkerNoSingularApp', array(
+  'width' => 64, 'height' => 64, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
+  'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerEventosMarkerSingularApp', array(
+  'width' => 64, 'height' => 64, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
+  'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerEventosMarkerNoSingularApp', array(
+  'width' => 64, 'height' => 64, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
+  'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerLugaresSectorFilterApp', array(
+  'width' => 64, 'height' => 64, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
+  'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerLugaresServicioFilterApp', array(
+  'width' => 64, 'height' => 64, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
+  'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerLugaresExperienciaFilterApp', array( 'width' => 320, 'height' => 100) );  
+
+cogumeloSetSetupValue( 'mod:filedata:profile:explorerEventosTipoFilterApp', array(
+  'width' => 64, 'height' => 64, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
+  'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:resourceLugaresServicioApp', array(
+  'width' => 64, 'height' => 64, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
+  'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:resourceLugaresPrecioApp', array(
+  'width' => 64, 'height' => 64, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
+  'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
 /*
 // TEST
 cogumeloSetSetupValue( 'mod:filedata:profile:svgTest',
