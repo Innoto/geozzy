@@ -57,7 +57,7 @@ class CommentAPIView extends View {
 
 
 
-      header('Content-type: application/json');
+      header('Content-Type: application/json; charset=utf-8');
       echo '[';
       $c = '';
       global $C_LANG;
@@ -76,30 +76,30 @@ class CommentAPIView extends View {
     }
     else {
       header("HTTP/1.0 404 Not Found");
-      header('Content-type: application/json');
+      header('Content-Type: application/json; charset=utf-8');
       echo '{}';
     }
   }
 
 
-  // URL: /api/comments (Porto)
+  // URL: /api/comments
   public function comments( $urlParams = false ) {
     // error_log( 'comments( '.json_encode($urlParams).' )' );
     // error_log( 'comments POST: '.json_encode($_POST) );
 
     switch( $_SERVER['REQUEST_METHOD'] ) {
       case 'GET':
-        $validation = array( 'resources' => '#^\d+(,\d+)*$#', 'comments' => '#^\d+(,\d+)*$#', 'options' => '#^(permissions|votes)$#' );
+        $validation = array( 'comments' => '#^\d+(,\d+)*$#', 'resources' => '#^\d+(,\d+)*$#', 'options' => '#^(permissions|votes)$#' );
         $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
-        $resourcesId = isset( $urlParamsList['resources'] ) ? $urlParamsList['resources'] : false;
         $commentsId = isset( $urlParamsList['comments'] ) ? $urlParamsList['comments'] : false;
+        $resourcesId = isset( $urlParamsList['resources'] ) ? $urlParamsList['resources'] : false;
         $options = isset( $urlParamsList['options'] ) ? $urlParamsList['options'] : false;
 
         if( $options ) {
           $this->sendJsonCommentsOptions( $resourcesId, $options );
         }
         else {
-          $this->sendJsonCommentsInfo( $resourcesId, $commentsId );
+          $this->sendJsonCommentsInfo( $commentsId, $resourcesId );
         }
       break;
       //case 'PUT':
@@ -109,8 +109,6 @@ class CommentAPIView extends View {
       break;
       default:
         header("HTTP/1.0 400 Bad Request");
-        // header('Content-type: application/json');
-        // echo '[]';
       break;
     }
   }
@@ -263,9 +261,9 @@ class CommentAPIView extends View {
   }
 
 
-  private function sendJsonCommentsInfo( $resourcesId, $commentsId = false ) {
+  private function sendJsonCommentsInfo( $commentsId, $resourcesId ) {
 
-    // error_log( "sendJsonCommentsInfo( $resourcesId, $commentsId )" );
+    // error_log( "sendJsonCommentsInfo( $commentsId, $resourcesId )" );
 
     rextComment::load('model/CommentModel.php');
     $commentModel = new CommentModel();
@@ -339,7 +337,7 @@ class CommentAPIView extends View {
   // Swagger
 
   public function commentListDescription() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "basePath": "/api",
@@ -379,7 +377,7 @@ class CommentAPIView extends View {
   }
 
   public function commentsDescription() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "/comments.json",

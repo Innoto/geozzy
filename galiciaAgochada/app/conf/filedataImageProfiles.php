@@ -203,6 +203,8 @@ cogumeloSetSetupValue( 'mod:filedata:profile:basicEvent', array( 'width' => 600,
 cogumeloSetSetupValue( 'mod:filedata:profile:listEvent', array( 'width' => 240, 'height' => 120) );
 cogumeloSetSetupValue( 'mod:filedata:profile:calendarEvent', array( 'width' => 320, 'height' => 200) );
 cogumeloSetSetupValue( 'mod:filedata:profile:calendarEventSmall', array( 'width' => 240, 'height' => 180) );
+
+
 /*
 // TEST
 cogumeloSetSetupValue( 'mod:filedata:profile:svgTest',

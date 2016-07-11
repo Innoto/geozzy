@@ -76,6 +76,10 @@ $GEOZZY_API_DOC_URLS =  array_merge(
       'description' => 'Resource index'
     ),
     array(
+      'path' => '/collections.json',
+      'description' => 'Get collections'
+    ),
+    array(
       'path' => '/starred.json',
       'description' => 'Starred terms with resources'
     ),

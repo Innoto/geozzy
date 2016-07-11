@@ -67,7 +67,7 @@ class Cogumelo extends CogumeloClass
       "id" =>"unitegallery",
       "params" => array("unitegallery#1.7"),
       "installer" => "bower",
-      "includes" => array("package/unitegallery/js/unitegallery.min.js", "package/unitegallery/css/unite-gallery.css","package/unitegallery/themes/tiles/ug-theme-tiles.js", "package/unitegallery/themes/default/ug-theme-default.css")
+      "includes" => array("dist/js/unitegallery.min.js", "dist/css/unite-gallery.css","dist/themes/tiles/ug-theme-tiles.js", "dist/themes/default/ug-theme-default.css")
     ),
     array(
       "id" =>"owlcarousel",

@@ -24,7 +24,7 @@ class geozzyAPIView extends View {
 
 
   public function biJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
     {
       "resourcePath": "/bi.json",
@@ -72,7 +72,7 @@ class geozzyAPIView extends View {
 
 
   public function resourcesJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
     {
       "resourcePath": "/resources.json",
@@ -199,7 +199,7 @@ class geozzyAPIView extends View {
 
 
   public function resourceIndexJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "/resources.json",
@@ -263,7 +263,7 @@ class geozzyAPIView extends View {
 
 
   public function resourceTypesJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "/resourceTypes.json",
@@ -292,9 +292,79 @@ class geozzyAPIView extends View {
     <?php
   }
 
+  public function collectionsJson() {
+    header('Content-Type: application/json; charset=utf-8');
+    ?>
+      {
+        "resourcePath": "/collections.json",
+        "basePath": "/api",
+        "apis": [
+          {
+            "path": "/collections/{collections}/typeNames/{typeNames}/resources/{resources}/options/{options}",
+            "description": "",
+            "operations": [
+              {
+                "errorResponses": [
+                  {
+                    "reason": "Bad Request",
+                    "code": 400
+                  },
+                  {
+                    "reason": "Not found",
+                    "code": 404
+                  }
+                ],
+                "httpMethod": "GET",
+                "nickname": "Get collections",
+                "parameters": [
+                  {
+                    "required": false,
+                    "dataType": "int",
+                    "name": "collections",
+                    "paramType": "path",
+                    "allowMultiple": true,
+                    "defaultValue": "false",
+                    "description": "Collections Ids"
+                  },
+                  {
+                    "required": false,
+                    "dataType": "string",
+                    "name": "typeNames",
+                    "paramType": "path",
+                    "allowMultiple": true,
+                    "defaultValue": "false",
+                    "description": "CollectionType names"
+                  },
+                  {
+                    "required": false,
+                    "dataType": "int",
+                    "name": "resources",
+                    "paramType": "path",
+                    "allowMultiple": true,
+                    "defaultValue": "false",
+                    "description": "Resource Ids"
+                  },
+                  {
+                    "required": false,
+                    "dataType": "string",
+                    "name": "options",
+                    "paramType": "path",
+                    "allowMultiple": false,
+                    "defaultValue": "false",
+                    "description": "Alter results: plain, extend, ..."
+                  }
+                ],
+                "summary": "Get collections"
+              }
+            ]
+          }
+        ]
+      }
+    <?php
+  }
 
   public function starredJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
     {
       "resourcePath": "/starred.json",
@@ -334,7 +404,7 @@ class geozzyAPIView extends View {
 
 
   public function categoryListJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "/categoryList.json",
@@ -365,7 +435,7 @@ class geozzyAPIView extends View {
 
 
   public function categoryTermsJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "/categoryTerms.json",
@@ -415,7 +485,7 @@ class geozzyAPIView extends View {
 
 
   public function topicListJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "/topicList.json",
@@ -445,7 +515,7 @@ class geozzyAPIView extends View {
   }
 
   public function userLoginJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "/userLogin.json",
@@ -490,7 +560,7 @@ class geozzyAPIView extends View {
   }
 
   public function userLogoutJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "/userLogout.json",
@@ -520,7 +590,7 @@ class geozzyAPIView extends View {
   }
 
   public function cgmlSessionJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "/cgml-session.json",
@@ -552,7 +622,7 @@ class geozzyAPIView extends View {
 
 
   public function userSessionJson() {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     ?>
       {
         "resourcePath": "/userSession.json",
@@ -583,7 +653,7 @@ class geozzyAPIView extends View {
 
   /*
     public function uiEventListJson() {
-      header('Content-type: application/json');
+      header('Content-Type: application/json; charset=utf-8');
       ?>
             {
                 "resourcePath": "/uieventList.json",
@@ -618,7 +688,7 @@ class geozzyAPIView extends View {
   // BI data
   public function bi( $urlParams ) {
     require_once APP_BASE_PATH."/conf/inc/geozzyBI.php";
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     global $BI_SITE_SECTIONS, $BI_DEVICES, $BI_METRICS_EXPLORER, $BI_METRICS_RESOURCE, $BI_GEOZZY_UI_EVENTS, $BI_RECOMMENDS;
 
     $langs = array(
@@ -718,6 +788,7 @@ class geozzyAPIView extends View {
     // Cargo la tabla de tipos de recurso (RTypes)
     $infoRTypes = $this->loadInfoRTypes();
     $infoRTypeIdNames = array_column( $infoRTypes, 'id', 'idName' );
+    $infoRTypeNameIds = array_column( $infoRTypes, 'idName', 'id' );
 
 
     // Cargo la tabla de votos en recursos (comentarios)
@@ -733,7 +804,9 @@ class geozzyAPIView extends View {
 
 
     // Bloqueo recursos no deseados
-    $queryParameters['filters']['notInRtype'] = array( $infoRTypeIdNames['rtypeFavourites'] );
+    if( isset( $infoRTypeIdNames['rtypeFavourites'] ) ) {
+      $queryParameters['filters']['notInRtype'] = array( $infoRTypeIdNames['rtypeFavourites'] );
+    }
 
 
     // Resource type
@@ -796,7 +869,7 @@ class geozzyAPIView extends View {
     }
 
 
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     echo '[';
     $c = '';
     while( $valueobject = $resourceList->fetch() ) {
@@ -805,7 +878,10 @@ class geozzyAPIView extends View {
       $allCols = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
         'image', 'loc', 'defaultZoom', 'externalUrl' );
       foreach( $allCols as $col ) {
-        $allData[$col] = $valueobject->getter($col);
+        $allData[ $col ] = $valueobject->getter( $col );
+        if( $col === 'rTypeId' ) {
+          $allData[ 'rTypeIdName' ] = $infoRTypeNameIds[ $allData[ 'rTypeId' ] ];
+        }
       }
       if( isset( $allData['loc'] ) ) {
         $loc = DBUtils::decodeGeometry( $allData['loc'] );
@@ -876,8 +952,9 @@ class geozzyAPIView extends View {
         ) );
         // error_log( 'resColl: collResList='.print_r( $collResList, true ) );
         if( $collResList !== false ) {
-          $collsOther = array();
-          $collsMmedia = array();
+          $allData[ 'collections' ] = array();
+          //$collsOther = array();
+          //$collsMmedia = array();
           while( $coll = $collResList->fetch() ) {
             // error_log( 'resColl: '.print_r( $coll->getAllData( 'onlydata' ), true ) );
             $collData = array();
@@ -887,80 +964,102 @@ class geozzyAPIView extends View {
               $collData[ $key ] = $coll->getter( $key );
             }
 
-            if( $coll->getter( 'collectionType' ) === 'base' ) {
+            $collType = $coll->getter( 'collectionType' );
+            $allData[ 'collections' ][ $collType ][ $collData['id'] ] = $collData;
+
+            /*
+            if( $collType === 'base' ) {
               $collsOther[ $collData['id'] ] = $collData;
             }
             elseif( $coll->getter( 'collectionType' ) === 'multimedia' ) {
               $collsMmedia[ $collData['id'] ] = $collData;
             }
+            */
           }
         }
 
         $allData[ 'collectionsGeneral' ] = array();
-        if( count( $collsOther ) > 0 ) {
-          foreach( $collsOther as $collId => $coll ) {
-            $coll[ 'resourcesData' ] = array();
+        if( isset( $allData['collections']['base'] ) && count( $allData['collections']['base'] ) > 0 ) {
+          foreach( $allData['collections']['base'] as $collId => $coll ) {
 
-            $resIds = explode( ',', $coll['resourceSonList'] );
-            unset( $coll['resourceSonList'] );
+            /*
+              $coll[ 'resourcesData' ] = array();
 
-            $resModel =  new ResourceModel();
-            $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ) ) );
+              $resIds = explode( ',', $coll['resourceSonList'] );
+              unset( $coll['resourceSonList'] );
 
-            if( $resList !== false ) {
-              $resCollData_tmp = array();
-              while( $resColl = $resList->fetch() ) {
-                $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription',
-                  'image', 'loc', 'timeCreation', 'timeLastUpdate', 'weight' );
-                foreach( $k as $key ) {
-                  $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
+              $resModel =  new ResourceModel();
+              $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ) ) );
+
+              if( $resList !== false ) {
+                $resCollData_tmp = array();
+                while( $resColl = $resList->fetch() ) {
+                  $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription',
+                    'image', 'loc', 'timeCreation', 'timeLastUpdate', 'weight' );
+                  foreach( $k as $key ) {
+                    $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
+                  }
+                  if( isset( $resCollData_tmp[ $resColl->getter('id') ]['loc'] ) ) {
+                    $loc = DBUtils::decodeGeometry( $resCollData_tmp[ $resColl->getter('id') ]['loc'] );
+                    $resCollData_tmp[ $resColl->getter('id') ]['loc'] = array(
+                      'lat' => floatval( $loc['data'][0] ), 'lng' => floatval( $loc['data'][1] ) );
+                  }
                 }
-                if( isset( $resCollData_tmp[ $resColl->getter('id') ]['loc'] ) ) {
-                  $loc = DBUtils::decodeGeometry( $resCollData_tmp[ $resColl->getter('id') ]['loc'] );
-                  $resCollData_tmp[ $resColl->getter('id') ]['loc'] = array(
-                    'lat' => floatval( $loc['data'][0] ), 'lng' => floatval( $loc['data'][1] ) );
+                // Reordenamos los recursos de la colección por el orden q traian
+                $resCollData = array();
+                foreach( $resIds as $id ) {
+                  array_push($resCollData, $resCollData_tmp[$id]);
                 }
+                // $coll[ 'resourcesData' ][] = $resCollData;
+                $coll[ 'resourcesData' ] = $resCollData;
               }
-              /* Reordenamos los recursos de la colección por el orden q traian*/
-              $resCollData = array();
-              foreach( $resIds as $id ) {
-                array_push($resCollData, $resCollData_tmp[$id]);
-              }
-              // $coll[ 'resourcesData' ][] = $resCollData;
-              $coll[ 'resourcesData' ] = $resCollData;
-            }
+            */
+
+            // unset( $coll['resourceSonList'] );
+
+            $coll[ 'resourcesData' ] = $this->extendCollBase( $coll['resourceSonList'] );
+
             $allData[ 'collectionsGeneral' ][] = $coll;
           }
         }
 
         $allData[ 'collectionsMultimedia' ] = array();
-        if( count( $collsMmedia ) > 0 ) {
-          foreach( $collsMmedia as $collId => $coll ) {
-            $coll[ 'resourcesData' ] = array();
+        if( isset( $allData['collections']['multimedia'] ) && count( $allData['collections']['multimedia'] ) > 0 ) {
+          foreach( $allData['collections']['multimedia'] as $collId => $coll ) {
 
-            $resIds = explode( ',', $coll['resourceSonList'] );
-            unset( $coll['resourceSonList'] );
+            /*
+              $coll[ 'resourcesData' ] = array();
 
-            $resModel =  new ResourceMultimediaViewModel();
-            $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 )) );
+              $resIds = explode( ',', $coll['resourceSonList'] );
+              unset( $coll['resourceSonList'] );
 
-            if( $resList !== false ) {
-              $resCollData_tmp = array();
-              while( $resColl = $resList->fetch() ) {
-                $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'timeCreation',
-                  'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' );
-                foreach( $k as $key ) {
-                  $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
+              $resModel =  new ResourceMultimediaViewModel();
+              $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 )) );
+
+              if( $resList !== false ) {
+                $resCollData_tmp = array();
+                while( $resColl = $resList->fetch() ) {
+                  $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'timeCreation',
+                    'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' );
+                  foreach( $k as $key ) {
+                    $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
+                  }
                 }
+                // Reordenamos los recursos de la colección por el orden q traian
+                $resCollData = array();
+                foreach( $resIds as $id ) {
+                  array_push($resCollData, $resCollData_tmp[$id]);
+                }
+                // $coll[ 'resourcesData' ][] = $resCollData;
+
+                $coll[ 'resourcesData' ] = $resCollData;
               }
-              /* Reordenamos los recursos de la colección por el orden q traian*/
-              $resCollData = array();
-              foreach( $resIds as $id ) {
-                array_push($resCollData, $resCollData_tmp[$id]);
-              }
-              // $coll[ 'resourcesData' ][] = $resCollData;
-              $coll[ 'resourcesData' ] = $resCollData;
-            }
+            */
+
+            // unset( $coll['resourceSonList'] );
+
+            $coll[ 'resourcesData' ] = $this->extendCollMultimedia( $coll['resourceSonList'] );
+
             $allData[ 'collectionsMultimedia' ][] = $coll;
           }
         }
@@ -980,6 +1079,7 @@ class geozzyAPIView extends View {
     } // while
     echo ']';
   }
+
 
 
   // /resourceIndex
@@ -1034,7 +1134,7 @@ class geozzyAPIView extends View {
     $queryFiltersFinal['published'] = 1;
 
     $resourceList = $resourceIndexModel->listItems( array('filters' => $queryFiltersFinal, 'groupBy'=>'id') );
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     echo '[';
     $c = '';
     while( $valueobject = $resourceList->fetch() ) {
@@ -1051,6 +1151,114 @@ class geozzyAPIView extends View {
     $this->syncModelList( $resourcetypeList );
   }
 
+
+
+  // URL: /api/collections
+  public function collections( $urlParams = false ) {
+    // error_log( 'collections( '.json_encode($urlParams).' )' );
+
+    $collsData = array();
+
+    if( $_SERVER['REQUEST_METHOD'] === 'GET' ) {
+      $validation = array( 'collections' => '#^\d+(,\d+)*$#', 'typeNames' => '#^[a-z]+(,[a-z]+)*$#',
+        'resources' => '#^\d+(,\d+)*$#', 'options' => '#^[a-z]+(,[a-z]+)*$#' );
+      $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
+      $collectionsId = isset( $urlParamsList['collections'] ) ? $urlParamsList['collections'] : false;
+      $typeNames = isset( $urlParamsList['typeNames'] ) ? $urlParamsList['typeNames'] : false;
+      $resourcesId = isset( $urlParamsList['resources'] ) ? $urlParamsList['resources'] : false;
+      if( isset( $urlParamsList['options'] ) && $urlParamsList['options'] !== false ) {
+        $options = explode( ',', $urlParamsList['options'] );
+      }
+      else {
+        $options = false;
+      }
+
+      $filters = array( 'collectionTypeNotIn' => array( 'favourites' ) );
+
+      if( $collectionsId && $collectionsId !== 'false' ) {
+        $inArray = explode( ',', $collectionsId );
+        if( count( $inArray ) > 1 ) {
+          $filters['idIn'] = $inArray;
+        }
+        else {
+          $filters['id'] = intval( $collectionsId );
+        }
+      }
+      if( $typeNames && $typeNames !== 'false' ) {
+        $inArray = explode( ',', $typeNames );
+        if( count( $inArray ) > 1 ) {
+          $filters['collectionTypeIn'] = $inArray;
+        }
+        else {
+          $filters['collectionType'] = $typeNames;
+        }
+      }
+      if( $resourcesId && $resourcesId !== 'false' ) {
+        $inArray = explode( ',', $resourcesId );
+        if( count( $inArray ) > 1 ) {
+          $filters['resourceMainIn'] = $inArray;
+        }
+        else {
+          $filters['resourceMain'] = intval( $resourcesId );
+        }
+      }
+
+      $format = 'byType';
+      if( $options ) {
+        if( in_array( 'plain', $options ) ) {
+          $format = 'plain';
+        }
+      }
+
+      // Cargo los datos de Collections del recurso
+      $resCollModel =  new CollectionResourcesListViewModel();
+      $collResList = $resCollModel->listItems( array( 'filters' => $filters ) );
+      if( $collResList !== false ) {
+        while( $coll = $collResList->fetch() ) {
+          $collFields = array();
+          $fields = array( 'id', 'collectionType', 'title', 'shortDescription', 'description', 'weight',
+            'weightMain', 'resourceMain', 'resourceSonList' );
+          foreach( $fields as $fieldName ) {
+            $collFields[ $fieldName ] = $coll->getter( $fieldName );
+          }
+
+          if( $options && in_array( 'extend', $options ) ) {
+            switch( $collFields[ 'collectionType' ] ) {
+              case 'base':
+                $collFields[ 'resourcesData' ] = $this->extendCollBase( $collFields[ 'resourceSonList' ] );
+                break;
+              case 'multimedia':
+                $collFields[ 'resourcesData' ] = $this->extendCollMultimedia( $collFields[ 'resourceSonList' ] );
+                break;
+            }
+          }
+
+          switch( $format ) {
+            case 'byType':
+              $collsData[ $collFields['collectionType'] ][ $collFields['id'] ] = $collFields;
+              break;
+
+            case 'plain':
+              $collsData[] = $collFields;
+              break;
+
+            default:
+              $collsData[ $collFields['collectionType'] ][ $collFields['id'] ] = $collFields;
+              break;
+          }
+        }
+      }
+
+      header('Content-Type: application/json; charset=utf-8');
+      echo json_encode( $collsData );
+    }
+    else {
+      header("HTTP/1.0 400 Bad Request");
+    }
+  }
+
+
+
   // Starred
 
   public function starred() {
@@ -1059,7 +1267,7 @@ class geozzyAPIView extends View {
       'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
 
     geozzy::load('model/StarredResourcesModel.php');
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
 
     echo '[';
     $c = '';
@@ -1120,7 +1328,7 @@ class geozzyAPIView extends View {
     }
     else {
       header("HTTP/1.0 404 Not Found");
-      header('Content-type: application/json');
+      header('Content-Type: application/json; charset=utf-8');
       echo '{}';
     }
   }
@@ -1142,7 +1350,7 @@ class geozzyAPIView extends View {
       $status = $useraccesscontrol->userLogin( $_POST['user'], $_POST['pass'] );
     }
 
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     echo json_encode( $status );
   }
 
@@ -1151,7 +1359,7 @@ class geozzyAPIView extends View {
     $useraccesscontrol = new UserAccessController();
     $status = $useraccesscontrol->userLogout();
 
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     echo json_encode( $status );
   }
 
@@ -1178,7 +1386,7 @@ class geozzyAPIView extends View {
       }
     }
 
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     echo json_encode( $userInfo );
   }
 
@@ -1189,13 +1397,13 @@ class geozzyAPIView extends View {
       require_once APP_BASE_PATH."/conf/inc/geozzyUIEvents.php";
       global  $GEOZZY_UI_EVENTS;
 
-      header('Content-type: application/json');
+      header('Content-Type: application/json; charset=utf-8');
       echo json_encode( $GEOZZY_UI_EVENTS );
     }
   */
 
   public function syncModelList( $result, $lang = false ) {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     echo '[';
     $c = '';
     global $C_LANG;
@@ -1212,11 +1420,10 @@ class geozzyAPIView extends View {
   }
 
   public function syncModel( $model ) {
-    header('Content-type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     $data = $model->getAllData('onlydata');
     echo json_encode( $data );
   }
-
 
   public function loadInfoRTypes() {
     $infoRTypes = array();
@@ -1230,4 +1437,71 @@ class geozzyAPIView extends View {
 
     return $infoRTypes;
   }
+
+
+  private function extendCollBase( $resourceSonList ) {
+    Cogumelo::load('coreModel/DBUtils.php');
+    $resCollData = array();
+
+    $resIds = explode( ',', $resourceSonList );
+
+    if( count( $resIds ) > 0 ) {
+      $resModel =  new ResourceModel();
+      $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ) ) );
+
+      if( $resList !== false ) {
+        $resCollData_tmp = array();
+        while( $resColl = $resList->fetch() ) {
+          $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription',
+            'image', 'loc', 'timeCreation', 'timeLastUpdate', 'weight' );
+          foreach( $k as $key ) {
+            $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
+          }
+          if( isset( $resCollData_tmp[ $resColl->getter('id') ]['loc'] ) ) {
+            $loc = DBUtils::decodeGeometry( $resCollData_tmp[ $resColl->getter('id') ]['loc'] );
+            $resCollData_tmp[ $resColl->getter('id') ]['loc'] = array(
+              'lat' => floatval( $loc['data'][0] ), 'lng' => floatval( $loc['data'][1] ) );
+          }
+        }
+        /* Reordenamos los recursos de la colección por el orden que traian */
+        foreach( $resIds as $id ) {
+          array_push($resCollData, $resCollData_tmp[$id]);
+        }
+      }
+    }
+
+    return $resCollData;
+  }
+
+
+  private function extendCollMultimedia( $resourceSonList ) {
+    $resCollData = array();
+
+    $resIds = explode( ',', $resourceSonList );
+
+    if( count( $resIds ) > 0 ) {
+
+      $resModel =  new ResourceMultimediaViewModel();
+      $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 )) );
+
+      if( $resList !== false ) {
+        $resCollData_tmp = array();
+        while( $resColl = $resList->fetch() ) {
+          $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'timeCreation',
+            'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' );
+          foreach( $k as $key ) {
+            $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
+          }
+        }
+
+        /* Reordenamos los recursos de la colección por el orden que traian */
+        foreach( $resIds as $id ) {
+          array_push($resCollData, $resCollData_tmp[$id]);
+        }
+      }
+    }
+
+    return $resCollData;
+  }
+
 }
