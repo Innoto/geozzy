@@ -173,15 +173,9 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
     var controlUI = document.createElement('div');
-    //controlUI.style.backgroundColor = '#fff';
-    //controlUI.style.border = '2px solid #fff';
-    controlUI.style.cursor = 'pointer';
-    controlUI.style.marginBottom = '22px';
-    controlUI.style.width = '400px';
-    controlUI.style.height = '150px';
-    controlUI.style.textAlign = 'center';
     controlUI.title = 'Click to recenter the map';
-    controlUI.innerHTML = '<div id="graph" style="width:100%;height:150px;"></div>';
+    controlUI.className = 'resourceRouteGraphContainer';
+    controlUI.innerHTML = '<div class="resourceRouteGraph"></div>';
 
 
     that.options.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlUI);
@@ -195,17 +189,51 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         });
 
 
-        that.grafico = new Dygraph( document.getElementById("graph"),
-          chartString
+
+
+
+        that.grafico = new Dygraph( $(".resourceRouteGraph")[0] ,
+          chartString,
+
+
+          {
+            // options go here. See http://dygraphs.com/options.html
+            axisLineWidth: 2,
+
+            fillGraph: true,
+            strokeWidth: 2,
+            fillAlpha: 0.6,
+            drawXGrid: true,
+            drawYGrid: true,
+
+            axisLabelColor: 'white',
+            axisLineColor: 'white',
+
+            colors: ["#EF7C1F"],
+            axisLabelFontSize: 12,
+            hideOverlayOnMouseOut: true,
+            axes: {
+              x: {
+                drawAxis: true,
+                axisLabelFormatter: function(x) {
+                    return null;
+                }
+              },
+              y: {
+                drawAxis: true
+              }
+            }
+          }
+
         );
 
         that.grafico.updateOptions( {
           annotationMouseOverHandler: function(annotation, point, dygraph, event) {
-              alert('')
+
           }
         });
 
-        $("#graph").mousemove(function(e) {
+        $($(".resourceRouteGraph")[0]).mousemove(function(e) {
             var seleccionado = that.grafico.getSelection();
             that.hoverRoute( seleccionado )
         }).mouseleave(function(e) {
