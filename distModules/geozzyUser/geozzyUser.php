@@ -1,11 +1,10 @@
 <?php
 
-
 Cogumelo::load("coreController/Module.php");
 
 
-class geozzyUser extends Module
-{
+class geozzyUser extends Module {
+
   public $name = "geozzyUser";
   public $version = 1.0;
 
@@ -47,10 +46,10 @@ class geozzyUser extends Module
     $this->addUrlPatterns( '#^geozzyuser/profile#', 'view:GeozzyUserView::myProfileForm' );
     $this->addUrlPatterns( '#^geozzyuser/senduserbaseprofile#', 'view:GeozzyUserView::sendUserBaseProfileForm' );
     $this->addUrlPatterns( '#^geozzyuser/resource/sendresource#', 'view:GeozzyUserView::sendUserProfileResourceForm' );
+    $this->addUrlPatterns( '#^geozzyuser/verify/(\d+)/(.+)$#', 'view:GeozzyUserView::checkVerifyLink' );
   }
 
   public function moduleRc() {
-
     $res = array(
       'idName' => 'user',
       'rType' => 'rtypePage',
@@ -68,11 +67,9 @@ class geozzyUser extends Module
       )
     );
 
-
     initResources::load('controller/InitResourcesController.php');
     $initResources = new InitResourcesController();
     $initResources->generateResource( $res );
-
   }
 
 }
