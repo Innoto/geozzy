@@ -86,7 +86,6 @@ class Cogumelo extends CogumeloClass {
 
   public function __construct() {
     parent::__construct();
-
     /*Explorer (Param = Sagan||Dora||Indiana)*/
     $this->addUrlPatterns( '#^explorerLayout/(.*)$#', 'view:ExplorerView::explorerLayout' );
     $this->addUrlPatterns( '#^explorerLayout$#', 'view:ExplorerView::explorerLayout' );
@@ -110,6 +109,9 @@ class Cogumelo extends CogumeloClass {
     $this->addUrlPatterns( '#^sabrosos-xantares#', 'view:ExplorerView::xantaresExplorer' );
     $this->addUrlPatterns( '#^aloxamentos-con-encanto#', 'view:ExplorerView::aloxamentosExplorer' );
     $this->addUrlPatterns( '#^segredos#', 'view:ExplorerView::todosSegredosExplorer' );*/
+
+    $this->addUrlPatterns( '#^participation/xantaresExplorer/?$#', 'view:ParticipationView::xantaresForm' );
+    $this->addUrlPatterns( '#^participation/xantaresExplorer/send$#', 'view:ParticipationView::sendXantaresForm' );
 
     /*MasterView*/
     //$this->addUrlPatterns( '#^$#', 'view:MasterView::home' );
