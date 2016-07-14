@@ -619,6 +619,44 @@ class geozzyAPIView extends View {
     <?php
   }
 
+  public function userUnknownPassJson() {
+    header('Content-Type: application/json; charset=utf-8');
+    ?>
+      {
+        "resourcePath": "/userUnknownPass.json",
+        "basePath": "/api",
+        "apis": [
+          {
+            "operations": [
+              {
+                "errorResponses": [
+                  {
+                    "reason": "Not found",
+                    "code": 404
+                  }
+                ],
+                "httpMethod": "POST",
+                "nickname": "userUnknownPass",
+                "parameters": [
+                  {
+                    "name": "user",
+                    "description": "User login",
+                    "type": "string",
+                    "paramType": "form",
+                    "required": true
+                  }
+                ],
+                "summary": "User unknown password"
+              }
+            ],
+            "path": "/core/userunknownpass",
+            "description": ""
+          }
+        ]
+      }
+    <?php
+  }
+
 
 
   public function userSessionJson() {
@@ -824,10 +862,17 @@ class geozzyAPIView extends View {
     // $queryParameters['affectsDependences'][] = 'ResourceTopicModel';
 
 
-
+    global $C_LANG;
     // fields
+    $fieldsToFilter = false;
     if( isset( $extraParams['fields'] ) && $extraParams['fields'] !== 'false' ) {
-      $queryParameters['fields'] = apiFiltersController::clearFields( explode( ',', $extraParams['fields'] ) );
+      $fieldsP = explode( ',', $extraParams['fields'] );
+      $fieldsToFilter = array();
+      foreach( $fieldsP as $fieldName ) {
+        $fieldsToFilter[] = $fieldName;
+        $fieldsToFilter[] = $fieldName.'_'.$C_LANG;
+      }
+      $queryParameters['fields'] = apiFiltersController::clearFields( $fieldsToFilter );
     }
 
 
@@ -879,7 +924,7 @@ class geozzyAPIView extends View {
       $allCols = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
         'image', 'loc', 'defaultZoom', 'externalUrl' );
       foreach( $allCols as $col ) {
-        if( !isset($queryParameters['fields']) || in_array( $col, $queryParameters['fields'] ) ) {
+        if( !$fieldsToFilter || in_array( $col, $fieldsToFilter ) ) {
           $allData[ $col ] = $valueobject->getter( $col );
           if( $col === 'rTypeId' ) {
             $allData[ 'rTypeIdName' ] = isset($infoRTypeNameIds[ $allData[ 'rTypeId' ] ]) ? $infoRTypeNameIds[ $allData[ 'rTypeId' ] ] : null;
@@ -1278,6 +1323,29 @@ class geozzyAPIView extends View {
   public function userLogout() {
     $useraccesscontrol = new UserAccessController();
     $status = $useraccesscontrol->userLogout();
+
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode( $status );
+  }
+
+  // User new password
+  public function userUnknownPass() {
+    $status = false;
+
+    if( isset( $_POST['user'] ) ) {
+      geozzyUser::load( 'view/GeozzyUserView.php' );
+      $userView = new GeozzyUserView();
+      $userVO = $userView->getUserVO( false, $_POST['user'] );
+      $userData = ( $userVO ) ? $userVO->getAllData('onlydata') : false;
+      if( $userData ) {
+        $status = $userView->sendUnknownPassEmail( $userData );
+
+        $status = true;
+      }
+      else {
+        error_log( '(Notice) Intento de recuperacion de contraseña con usuario desconocido: '.$_POST['user'] );
+      }
+    }
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode( $status );

@@ -48,6 +48,7 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^api/topicList.json$#', 'view:GeozzyAPIView::topicListJson' );
     $this->addUrlPatterns( '#^api/userLogin.json$#', 'view:GeozzyAPIView::userLoginJson' );
     $this->addUrlPatterns( '#^api/userLogout.json$#', 'view:GeozzyAPIView::userLogoutJson' );
+    $this->addUrlPatterns( '#^api/userUnknownPass.json$#', 'view:GeozzyAPIView::userUnknownPassJson' );
     $this->addUrlPatterns( '#^api/cgml-session.json$#', 'view:GeozzyAPIView::cgmlSessionJson' );
     $this->addUrlPatterns( '#^api/userSession.json$#', 'view:GeozzyAPIView::userSessionJson' );
     //$this->addUrlPatterns( '#^api/uiEventList.json$#', 'view:GeozzyAPIView::uiEventListJson' );
@@ -75,6 +76,7 @@ class geozzy extends Module {
     // geozzy api Users
     $this->addUrlPatterns( '#^api/core/userlogin#', 'view:GeozzyAPIView::userLogin' );
     $this->addUrlPatterns( '#^api/core/userlogout#', 'view:GeozzyAPIView::userLogout' );
+    $this->addUrlPatterns( '#^api/core/userunknownpass#', 'view:GeozzyAPIView::userUnknownPass' );
     $this->addUrlPatterns( '#^api/core/usersession#', 'view:GeozzyAPIView::userSession' );
 
     // geozzy api UI events

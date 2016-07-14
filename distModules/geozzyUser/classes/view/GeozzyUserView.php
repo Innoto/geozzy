@@ -11,7 +11,7 @@ user::autoIncludes();
 class GeozzyUserView extends View
 {
 
-  public function __construct( $base_dir ) {
+  public function __construct( $base_dir = false ) {
     parent::__construct($base_dir);
   }
 
@@ -158,7 +158,7 @@ class GeozzyUserView extends View
 
     // ^geozzyuser/verify/([0-9a-f]+)$
     $url = Cogumelo::getSetupValue( 'setup:webBaseUrl:urlCurrent' ).
-      'geozzyuser/verify/'.$userData['id'].'/'.$this->hashVerifyUser( $userData );
+      'geozzyuser/verify/'.$userData['id'].'/'.$this->hashVerifyUser( $userData, 'VerifyEmailLabel' );
 
     $bodyPlain = new Template();
     $bodyHtml = new Template();
@@ -190,7 +190,7 @@ class GeozzyUserView extends View
 
     if( $userVO ) {
       $userData = $userVO->getAllData('onlydata');
-      $hash = $this->hashVerifyUser( $userData );
+      $hash = $this->hashVerifyUser( $userData, 'VerifyEmailLabel' );
 
 
       if ( $urlCode === $hash ) {
@@ -202,24 +202,90 @@ class GeozzyUserView extends View
       else {
         echo "<pre>\n\nKO. URL no valida.\n\n\n";
 
-        var_dump( $urlParams );
-        var_dump( $userData );
-        var_dump( $hash );
+        error_log( '(Notice) checkVerifyLink: URL no valida. $urlParams '.print_r( $urlParams, true ) );
+        error_log( '$userData '.print_r( $userData, true ) );
+        error_log( '$hash '.print_r( $hash, true ) );
       }
-      /*
-      if( hash_equals( $hashed_password, crypt( $urlCode, $hashed_password ) ) ) {
-         echo "Password verified!";
+    }
+  }
+
+  public function sendUnknownPassEmail( $userData ) {
+    error_log( 'sendUnknownPassEmail: '.json_encode( $userData ) );
+    $status = false;
+
+    Cogumelo::load( 'coreController/MailController.php' );
+    $mailCtrl = new MailController();
+
+    $adresses = $userData['email'];
+    $name = $userData['name'].' '.$userData['surname'];
+
+    // ^geozzyuser/verify/([0-9a-f]+)$
+    $url = Cogumelo::getSetupValue( 'setup:webBaseUrl:urlCurrent' ).
+      'geozzyuser/unknownpass/'.$userData['id'].'/'.$this->hashVerifyUser( $userData, 'UnknownPassLabel' );
+
+    $bodyPlain = new Template();
+    $bodyHtml = new Template();
+
+    $bodyPlain->setTpl( 'unknownpassPlain.tpl', 'geozzyUser' );
+    $bodyHtml->setTpl( 'unknownpassHtml.tpl', 'geozzyUser' );
+
+    $vars = array(
+      'name' => $name,
+      'email' => $adresses,
+      'url' => $url
+    );
+
+    $mailCtrl->setBody( $bodyPlain, $bodyHtml, $vars );
+    $status = $mailCtrl->send( $adresses, 'Recuperar contraseña' );
+
+    error_log( 'sendUnknownPassEmail vars: '.print_r( $vars, true ) );
+
+    return $status;
+  }
+
+
+  public function checkUnknownPass( $urlParams ) {
+    error_log( 'checkUnknownPass: UID='.$urlParams['1'].' CODE='.$urlParams['2'] );
+
+    $userId = $urlParams['1'];
+    $urlCode = $urlParams['2'];
+    $saltString = '$5$rounds=5000$usesomesillystringforsalt$';
+
+    $userVO = $this->getUserVO( $userId );
+
+    if( $userVO ) {
+      $userData = $userVO->getAllData('onlydata');
+      $hash = $this->hashVerifyUser( $userData, 'UnknownPassLabel' );
+
+
+      if ( $urlCode === $hash ) {
+        $userVO->setter( 'timeLastUpdate', date( 'Y-m-d H:i:s', time() ) );
+        $userVO->save();
+
+        // AutoLogueamos al usuario
+        $useraccesscontrol = new UserAccessController();
+        $useraccesscontrol->userAutoLogin( $userData['login'] );
+
+        Cogumelo::redirect( '/userprofile#user/profile' );
+
+        error_log( '(Notice) OK, URL de recuperacion de contraseña. Login:'.$userData['login'].' Email:'.$userData['email'] );
       }
-      */
+      else {
+        echo "<pre>\n\nKO. URL no valida.\n\n\n";
+
+        error_log( '(Notice) checkUnknownPass: URL no valida. $urlParams '.print_r( $urlParams, true ) );
+        error_log( '$userData '.print_r( $userData, true ) );
+        error_log( '$hash '.print_r( $hash, true ) );
+      }
     }
   }
 
 
-  public function hashVerifyUser( $userData ) {
+  public function hashVerifyUser( $userData, $label = 'general' ) {
     $hash = false;
 
     $saltString = '$5$rounds=5000$usesomesillystringforsalt$';
-    $str = $userData['verified'].$userData['id'].$userData['login'].$userData['email'].$userData['timeCreateUser'];
+    $str = $label.$userData['verified'].$userData['id'].$userData['login'].$userData['email'].$userData['timeCreateUser'];
     if( isset( $userData['timeLastUpdate'] ) ) {
       $str .= $userData['timeLastUpdate'];
     }
@@ -230,16 +296,22 @@ class GeozzyUserView extends View
   }
 
 
-  public function getUserVO( $id ) {
+  public function getUserVO( $id, $login = false ) {
     $userVO = false;
 
     $user = new UserModel();
-    $userList = $user->listItems( array(
-      'filters' => array( 'id' => $id ),
-      'affectsDependences' => array( 'FiledataModel' )
-    ));
+    $filter = false;
 
-    $userVO = ( $userList ) ? $userList->fetch() : false;
+    if( $id ) {
+      $filter = array( 'id' => $id );
+    }
+    if( $login ) {
+      $filter = array( 'login' => $login );
+    }
+    if( $filter ) {
+      $userList = $user->listItems( array( 'filters' => $filter, 'affectsDependences' => array( 'FiledataModel' ) ) );
+      $userVO = ( $userList ) ? $userList->fetch() : false;
+    }
 
     return $userVO;
   }

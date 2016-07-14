@@ -104,6 +104,10 @@ $GEOZZY_API_DOC_URLS =  array_merge(
       'description' => 'User Logout'
     ),
     array(
+      'path' => '/userUnknownPass.json',
+      'description' => 'User new password'
+    ),
+    array(
       'path' => '/cgml-session.json',
       'description' => 'Get Cogumelo session info'
     ),
