@@ -233,13 +233,25 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $templates['participationFull']->assign( 'headTitle', __( 'Participation Form' ) );
 
       $participationBlockInfo = $formBlockInfo;
-      $participationBlockInfo['objForm']->setFieldParam( 'title_es', 'label', '¿Cómo se llama el lugar?' );
-      $participationBlockInfo['objForm']->setFieldParam( 'mediumDescription_es', 'label', '¿A?' );
-      $participationBlockInfo['objForm']->setFieldParam( 'rExtContact_city', 'label', '¿B?' );
-      $participationBlockInfo['objForm']->setFieldParam( 'rExtContact_province', 'label', '¿C?' );
-      $participationBlockInfo['objForm']->setFieldParam( 'rExtContact_url', 'label', '¿D?' );
-      $participationBlockInfo['objForm']->setFieldParam( 'rExtContact_phone', 'label', '¿E?' );
-      $participationBlockInfo['objForm']->saveToSession();
+      $partForm = $participationBlockInfo['objForm'];
+      $partForm->setFieldParam( 'title_es', 'label', '¿Cómo se llama el lugar?' );
+      $partForm->setFieldParam( 'mediumDescription_es', 'label', '¿A?' );
+      $partForm->setFieldParam( 'rExtContact_city', 'label', '¿B?' );
+      $partForm->setFieldParam( 'rExtContact_province', 'label', '¿C?' );
+      $partForm->setFieldParam( 'rExtContact_url', 'label', '¿D?' );
+      $partForm->setFieldParam( 'rExtContact_phone', 'label', '¿E?' );
+
+      $participationBlockInfo['dataForm'] = array(
+        'formOpen' => $partForm->getHtmpOpen(),
+        'formFieldsArray' => $partForm->getHtmlFieldsArray(),
+        'formFieldsHiddenArray' => array(),
+        'formFields' => $partForm->getHtmlFieldsAndGroups(),
+        'formClose' => $partForm->getHtmlClose(),
+        'formValidations' => $partForm->getScriptCode()
+      );
+
+      $participationBlockInfo['objForm'] = $partForm;
+      //$participationBlockInfo['objForm']->saveToSession();
 
       $templates['participationFull']->assign( 'res', $participationBlockInfo );
       $templates['participationFull']->assign( 'formFieldsNamesStp1', $formFieldsNamesStp1 );
