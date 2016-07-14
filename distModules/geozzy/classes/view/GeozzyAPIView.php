@@ -777,7 +777,6 @@ class geozzyAPIView extends View {
     $extraParams['ids'] = false;
     if( isset( $_POST['ids'] ) ) {
       $tmpIds = is_array( $_POST['ids'] ) ? implode( ',', $_POST['ids'] ) : $_POST['ids'];
-
       $extraParams['ids'] = preg_match( '/^\d+(,\d+)*$/', $tmpIds ) ? $tmpIds : false;
     }
 
@@ -831,6 +830,8 @@ class geozzyAPIView extends View {
       $queryParameters['fields'] = apiFiltersController::clearFields( explode( ',', $extraParams['fields'] ) );
     }
 
+
+
     $queryParameters['filters']['published'] = 1;
 
     // updatedfrom
@@ -878,9 +879,11 @@ class geozzyAPIView extends View {
       $allCols = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
         'image', 'loc', 'defaultZoom', 'externalUrl' );
       foreach( $allCols as $col ) {
-        $allData[ $col ] = $valueobject->getter( $col );
-        if( $col === 'rTypeId' ) {
-          $allData[ 'rTypeIdName' ] = $infoRTypeNameIds[ $allData[ 'rTypeId' ] ];
+        if( !isset($queryParameters['fields']) || in_array( $col, $queryParameters['fields'] ) ) {
+          $allData[ $col ] = $valueobject->getter( $col );
+          if( $col === 'rTypeId' ) {
+            $allData[ 'rTypeIdName' ] = isset($infoRTypeNameIds[ $allData[ 'rTypeId' ] ]) ? $infoRTypeNameIds[ $allData[ 'rTypeId' ] ] : null;
+          }
         }
       }
       if( isset( $allData['loc'] ) ) {
@@ -925,7 +928,7 @@ class geozzyAPIView extends View {
 
 
       // Load all REXT related models
-      if( $extraParams['rextmodels'] === 'true') {
+      if( isset($extraParams['rextmodels']) && $extraParams['rextmodels'] === 'true') {
         $relatedModels = $valueobject->getRextModels();
 
         foreach( $relatedModels as $relModelIdName => $relModel ) {
@@ -950,75 +953,25 @@ class geozzyAPIView extends View {
         $collResList = $resCollModel->listItems( array(
           'filters' => array( 'resourceMain' => $allData['id'] )
         ) );
-        // error_log( 'resColl: collResList='.print_r( $collResList, true ) );
+
         if( $collResList !== false ) {
           $allData[ 'collections' ] = array();
-          //$collsOther = array();
-          //$collsMmedia = array();
           while( $coll = $collResList->fetch() ) {
-            // error_log( 'resColl: '.print_r( $coll->getAllData( 'onlydata' ), true ) );
             $collData = array();
             $k = array( 'id', 'title', 'shortDescription', 'description', 'weight',
               'weightMain', 'resourceSonList' );
             foreach( $k as $key ) {
               $collData[ $key ] = $coll->getter( $key );
             }
-
             $collType = $coll->getter( 'collectionType' );
             $allData[ 'collections' ][ $collType ][ $collData['id'] ] = $collData;
-
-            /*
-            if( $collType === 'base' ) {
-              $collsOther[ $collData['id'] ] = $collData;
-            }
-            elseif( $coll->getter( 'collectionType' ) === 'multimedia' ) {
-              $collsMmedia[ $collData['id'] ] = $collData;
-            }
-            */
           }
         }
 
         $allData[ 'collectionsGeneral' ] = array();
         if( isset( $allData['collections']['base'] ) && count( $allData['collections']['base'] ) > 0 ) {
           foreach( $allData['collections']['base'] as $collId => $coll ) {
-
-            /*
-              $coll[ 'resourcesData' ] = array();
-
-              $resIds = explode( ',', $coll['resourceSonList'] );
-              unset( $coll['resourceSonList'] );
-
-              $resModel =  new ResourceModel();
-              $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ) ) );
-
-              if( $resList !== false ) {
-                $resCollData_tmp = array();
-                while( $resColl = $resList->fetch() ) {
-                  $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription',
-                    'image', 'loc', 'timeCreation', 'timeLastUpdate', 'weight' );
-                  foreach( $k as $key ) {
-                    $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
-                  }
-                  if( isset( $resCollData_tmp[ $resColl->getter('id') ]['loc'] ) ) {
-                    $loc = DBUtils::decodeGeometry( $resCollData_tmp[ $resColl->getter('id') ]['loc'] );
-                    $resCollData_tmp[ $resColl->getter('id') ]['loc'] = array(
-                      'lat' => floatval( $loc['data'][0] ), 'lng' => floatval( $loc['data'][1] ) );
-                  }
-                }
-                // Reordenamos los recursos de la colección por el orden q traian
-                $resCollData = array();
-                foreach( $resIds as $id ) {
-                  array_push($resCollData, $resCollData_tmp[$id]);
-                }
-                // $coll[ 'resourcesData' ][] = $resCollData;
-                $coll[ 'resourcesData' ] = $resCollData;
-              }
-            */
-
-            // unset( $coll['resourceSonList'] );
-
             $coll[ 'resourcesData' ] = $this->extendCollBase( $coll['resourceSonList'] );
-
             $allData[ 'collectionsGeneral' ][] = $coll;
           }
         }
@@ -1026,40 +979,7 @@ class geozzyAPIView extends View {
         $allData[ 'collectionsMultimedia' ] = array();
         if( isset( $allData['collections']['multimedia'] ) && count( $allData['collections']['multimedia'] ) > 0 ) {
           foreach( $allData['collections']['multimedia'] as $collId => $coll ) {
-
-            /*
-              $coll[ 'resourcesData' ] = array();
-
-              $resIds = explode( ',', $coll['resourceSonList'] );
-              unset( $coll['resourceSonList'] );
-
-              $resModel =  new ResourceMultimediaViewModel();
-              $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 )) );
-
-              if( $resList !== false ) {
-                $resCollData_tmp = array();
-                while( $resColl = $resList->fetch() ) {
-                  $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'timeCreation',
-                    'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' );
-                  foreach( $k as $key ) {
-                    $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
-                  }
-                }
-                // Reordenamos los recursos de la colección por el orden q traian
-                $resCollData = array();
-                foreach( $resIds as $id ) {
-                  array_push($resCollData, $resCollData_tmp[$id]);
-                }
-                // $coll[ 'resourcesData' ][] = $resCollData;
-
-                $coll[ 'resourcesData' ] = $resCollData;
-              }
-            */
-
-            // unset( $coll['resourceSonList'] );
-
             $coll[ 'resourcesData' ] = $this->extendCollMultimedia( $coll['resourceSonList'] );
-
             $allData[ 'collectionsMultimedia' ][] = $coll;
           }
         }

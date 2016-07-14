@@ -120,40 +120,145 @@ class GeozzyUserView extends View
 
   public function sendRegisterForm() {
     $this->loginCheck();
+
     $userView = new UserView();
     $form = $userView->actionUserForm();
-    if( $form->existErrors() ) {
-      echo $form->getJsonError();
-    }
-    else {
-      $user = $userView->userFormOk( $form );
-      // AutoLogueamos al usuario
-      if($user){
-        $useraccesscontrol = new UserAccessController();
-        $useraccesscontrol->userAutoLogin( $user->getter('login') );
-      }
-      // Enviamos un mail de verificación
 
-      echo $form->getJsonOk();
+    if( !$form->existErrors() ) {
+      $user = $userView->userFormOk( $form );
+
+      if( $user ) {
+        $userData = $user->getAllData('onlydata');
+        error_log( 'USER: '.json_encode( $userData ) );
+
+        // AutoLogueamos al usuario
+        $useraccesscontrol = new UserAccessController();
+        $useraccesscontrol->userAutoLogin( $userData['login'] );
+
+        // Enviamos un mail de verificación
+        if( $userData['active'] === 1 && $userData['verified'] === 0 && $userData['email'] !== '' ) {
+
+          $this->sendVerifyEmail( $userData );
+        }
+      }
+    }
+
+    $form->sendJsonResponse();
+  }
+
+
+  public function sendVerifyEmail( $userData ) {
+    error_log( 'sendVerifyEmail: '.json_encode( $userData ) );
+
+    Cogumelo::load( 'coreController/MailController.php' );
+    $mailCtrl = new MailController();
+
+    $adresses = $userData['email'];
+    $name = $userData['name'].' '.$userData['surname'];
+
+    // ^geozzyuser/verify/([0-9a-f]+)$
+    $url = Cogumelo::getSetupValue( 'setup:webBaseUrl:urlCurrent' ).
+      'geozzyuser/verify/'.$userData['id'].'/'.$this->hashVerifyUser( $userData );
+
+    $bodyPlain = new Template();
+    $bodyHtml = new Template();
+
+    $bodyPlain->setTpl( 'verifyPlain.tpl', 'geozzyUser' );
+    $bodyHtml->setTpl( 'verifyHtml.tpl', 'geozzyUser' );
+
+    $vars = array(
+      'name' => $name,
+      'email' => $adresses,
+      'url' => $url
+    );
+
+    $mailCtrl->setBody( $bodyPlain, $bodyHtml, $vars );
+    $mailCtrl->send( $adresses, 'Verifica tu email' );
+
+    error_log( 'sendVerifyEmail vars: '.print_r( $vars, true ) );
+  }
+
+
+  public function checkVerifyLink( $urlParams ) {
+    error_log( 'checkVerifyLink: UID='.$urlParams['1'].' CODE='.$urlParams['2'] );
+
+    $userId = $urlParams['1'];
+    $urlCode = $urlParams['2'];
+    $saltString = '$5$rounds=5000$usesomesillystringforsalt$';
+
+    $userVO = $this->getUserVO( $userId );
+
+    if( $userVO ) {
+      $userData = $userVO->getAllData('onlydata');
+      $hash = $this->hashVerifyUser( $userData );
+
+
+      if ( $urlCode === $hash ) {
+        $userVO->setter( 'verified', 1 );
+        $userVO->setter( 'timeLastUpdate', date( 'Y-m-d H:i:s', time() ) );
+        $userVO->save();
+        echo "OK, verificado.\n";
+      }
+      else {
+        echo "<pre>\n\nKO. URL no valida.\n\n\n";
+
+        var_dump( $urlParams );
+        var_dump( $userData );
+        var_dump( $hash );
+      }
+      /*
+      if( hash_equals( $hashed_password, crypt( $urlCode, $hashed_password ) ) ) {
+         echo "Password verified!";
+      }
+      */
     }
   }
-  public function myProfileForm() {
 
+
+  public function hashVerifyUser( $userData ) {
+    $hash = false;
+
+    $saltString = '$5$rounds=5000$usesomesillystringforsalt$';
+    $str = $userData['verified'].$userData['id'].$userData['login'].$userData['email'].$userData['timeCreateUser'];
+    if( isset( $userData['timeLastUpdate'] ) ) {
+      $str .= $userData['timeLastUpdate'];
+    }
+    $criptString = strtr( crypt( $str, $saltString ), '/', '_' );
+    $hash = 'A'.strtr( preg_replace( '/^\$\d\$rounds=\d+\$[^\$]+\$/', '', $criptString ), '/', '_' ).'Z'; // Quito saltString
+
+    return $hash;
+  }
+
+
+  public function getUserVO( $id ) {
+    $userVO = false;
+
+    $user = new UserModel();
+    $userList = $user->listItems( array(
+      'filters' => array( 'id' => $id ),
+      'affectsDependences' => array( 'FiledataModel' )
+    ));
+
+    $userVO = ( $userList ) ? $userList->fetch() : false;
+
+    return $userVO;
+  }
+
+
+  public function myProfileForm() {
     $useraccesscontrol = new UserAccessController();
     $userSess = $useraccesscontrol->getSessiondata();
-    $user = new UserModel();
-    $dataVO = $user->listItems( array(
-      'filters' => array('id' => $userSess['data']['id'] ),
-      'affectsDependences' => array( 'FiledataModel')
-    ))->fetch();
 
-    if(!$dataVO){
+    $userVO = $this->getUserVO( $userSess['data']['id'] );
+
+    if( !$userVO ) {
       Cogumelo::redirect( SITE_URL.'404' );
+      die();
     }
 
-    $data = $dataVO->getAllData('onlydata');
-    unset( $data['password']);
-    $fileDep = $dataVO->getterDependence( 'avatar' );
+    $data = $userVO->getAllData( 'onlydata' );
+    unset( $data['password'] );
+    $fileDep = $userVO->getterDependence( 'avatar' );
     if( $fileDep !== false ) {
       foreach( $fileDep as $fileModel ) {
         $fileData = $fileModel->getAllData();

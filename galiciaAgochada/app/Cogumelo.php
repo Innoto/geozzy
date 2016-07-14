@@ -1,20 +1,17 @@
 <?php
 
 
-class Cogumelo extends CogumeloClass
-{
+class Cogumelo extends CogumeloClass {
+
   public static $version = 1.7;
 
   public $dependences = array(
-
-
     array(
       "id" =>"featurejs",
       "params" => array("feature.js"),
       "installer" => "bower",
       "includes" => array('feature.min.js')
     ),
-
     array(
       "id" =>"devicejs",
       "params" => array("devicejs"),
@@ -81,18 +78,14 @@ class Cogumelo extends CogumeloClass
       "installer" => "bower",
       "includes" => array("zonaMap.js","zonaMap.css")
     )
-
   );
+
   public $includesCommon = array(
   );
 
 
   public function __construct() {
     parent::__construct();
-
-    /* Probando Recursos */
-//    $this->addUrlPatterns( '#^recurso/?$#', 'view:RecursoView::verRecurso' );
-//    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:RecursoView::verRecurso' );
 
     /*Explorer (Param = Sagan||Dora||Indiana)*/
     $this->addUrlPatterns( '#^explorerLayout/(.*)$#', 'view:ExplorerView::explorerLayout' );
