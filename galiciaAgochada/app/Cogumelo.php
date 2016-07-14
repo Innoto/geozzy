@@ -86,7 +86,6 @@ class Cogumelo extends CogumeloClass {
 
   public function __construct() {
     parent::__construct();
-
     /*Explorer (Param = Sagan||Dora||Indiana)*/
     $this->addUrlPatterns( '#^explorerLayout/(.*)$#', 'view:ExplorerView::explorerLayout' );
     $this->addUrlPatterns( '#^explorerLayout$#', 'view:ExplorerView::explorerLayout' );
