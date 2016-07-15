@@ -454,5 +454,11 @@
 
         }
       });
+
+      
+    }
+
+    that.closeParticipationStep2 = function(){
+
     }
   }
