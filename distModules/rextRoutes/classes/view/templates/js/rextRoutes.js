@@ -1,7 +1,6 @@
 
 $( document ).ready(function() {
 
-
   if( typeof geozzy.rExtRoutesOptions != 'undefined' && typeof geozzy.rExtMapInstance != 'undefined') {
 
 

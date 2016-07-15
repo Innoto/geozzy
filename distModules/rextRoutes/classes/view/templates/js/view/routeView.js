@@ -15,11 +15,15 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var options = new Object({
       map: false,
       showGraph: false,
-      strokeColor: "#EF7C1F",
-      strokeBorderColor: "#FFFFFF",
-      strokeOpacity: 1,
-      strokeWeight: 3,
-      routeModel: false
+      strokeColor:  cogumelo.publicConf.rextRoutesConf.strokeColor,
+      strokeBorderColor: cogumelo.publicConf.rextRoutesConf.strokeBorderColor,
+      strokeOpacity: cogumelo.publicConf.rextRoutesConf.strokeOpacity,
+      strokeWeight: cogumelo.publicConf.rextRoutesConf.strokeWeight,
+      strokeBorderWeight: cogumelo.publicConf.rextRoutesConf.strokeBorderWeight,
+      routeModel: false,
+      markerStart: cogumelo.publicConf.rextRoutesConf.markerStart,
+      markerEnd: cogumelo.publicConf.rextRoutesConf.markerEnd,
+
 
       //tpl: geozzy.explorerComponents.routesViewTemplate ,
 
@@ -70,8 +74,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       position:  {lat: route.get('trackPoints')[0][0], lng: route.get('trackPoints')[0][1]},
       title: __('Route start'),
       icon: {
-        url: cogumelo.publicConf.media + '/module/rextRoutes/img/markerStart.png' ,
-        anchor: new google.maps.Point(3,40)
+        url: cogumelo.publicConf.media +  that.options.markerStart.img  , //'/module/rextRoutes/img/markerStart.png'
+        anchor: new google.maps.Point( that.options.markerStart.anchor[0], that.options.markerStart.anchor[1] ) // 3,40
       },
       map: that.options.map
     });
@@ -82,10 +86,9 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
         title: __('Route End'),
         icon: {
-          url: cogumelo.publicConf.media + '/module/rextRoutes/img/markerEnd.png' ,
-          anchor: new google.maps.Point(3,40)
-        }
-        ,
+          url: cogumelo.publicConf.media + that.options.markerEnd.img, //'/module/rextRoutes/img/markerEnd.png'
+          anchor: new google.maps.Point(  that.options.markerEnd.anchor[0],   that.options.markerEnd.anchor[1] ) //// 3,40
+        },
         map: that.options.map
       });
     }
@@ -112,7 +115,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       geodesic: true,
       strokeColor: that.options.strokeBorderColor,
       strokeOpacity: that.options.strokeOpacity,
-      strokeWeight: 8,
+      strokeWeight: that.options.strokeBorderWeight,
       zIndex:1
     });
 
@@ -189,7 +192,6 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
-
         that.grafico = new Dygraph( $(".resourceRouteGraph")[0] ,
           chartString,
 
@@ -206,10 +208,11 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
             axisLabelColor: 'white',
             axisLineColor: 'white',
-
+            //labels:["step", "Altitude"],
             colors: ["#EF7C1F"],
             axisLabelFontSize: 12,
             hideOverlayOnMouseOut: true,
+
             axes: {
               x: {
                 drawAxis: true,
@@ -218,7 +221,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
                 }
               },
               y: {
-                drawAxis: true
+                drawAxis: true,
+                axisLabelFormatter: function(x) {
+                    return null;
+                }
               }
             }
           }
@@ -338,7 +344,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
               position: {lat: route.get('trackPoints')[id][0] , lng: route.get('trackPoints')[id][1]},
               icon: {
                 url: cogumelo.publicConf.media + '/module/rextRoutes/img/markerTrack.png' ,
-                anchor: new google.maps.Point(15,45)
+                anchor: new google.maps.Point(10,27)
               },
               zIndex: 4,
               map: that.options.map
