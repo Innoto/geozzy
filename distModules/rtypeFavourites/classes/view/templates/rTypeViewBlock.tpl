@@ -1,6 +1,16 @@
 {block name="headCssIncludes" append}
 <style type="text/css">
-  .favouritesElement img { max-width: 150px; max-height: 150px; }
+  .favouritesElement { height: 250px; }
+  .favouritesElement img { width: 100%; }
+  .favDelete {
+    background-color: yellow;
+    color: red;
+    display: block;
+    padding: 2px;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+  }
 </style>
 {/block}
 
@@ -37,9 +47,13 @@
         {if $favsResourcesInfo|@is_array && $favsResourcesInfo|@count gt 0}
         <div class="row">
           {foreach $favsResourcesInfo as $favsResInfo}
-          <div class="col-sm-6 col-md-3 favouritesElement">
-            <a href="{$favsResInfo.url}"><img src="/cgmlImg/{$favsResInfo.image}/fast/{$favsResInfo.image}.jpg"></a>
-            <br><a href="{$favsResInfo.url}">{$favsResInfo.title}</a>
+          {* title shortDescription image url rTypeId *}
+          <div class="col-sm-6 col-md-2 favouritesElement rtid{$favsResInfo.rTypeId}" data-id="{$favsResInfo.id}" data-rTypeId="{$favsResInfo.rTypeId}">
+            <a href="{$favsResInfo.url}">
+              <img style="whi" src="/cgmlImg/{$favsResInfo.image}/fast_cut/{$favsResInfo.image}.jpg">
+              <div class="title">T: {$favsResInfo.title}</div>
+              <div class="shortDescription">SD: {$favsResInfo.shortDescription}</div>
+            </a>
           </div>
           {/foreach}
         </div>

@@ -189,6 +189,7 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
     $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeFavourites' );
 
+    $template->addClientScript( 'js/rExtFavouriteController.js', 'rextFavourite' );
 
     $favsResources = $this->getFavsResources( $viewBlockInfo['data']['id'] );
     $favsResourcesInfo = ($favsResources) ? $this->getResourcesInfo( $favsResources ) : false;
@@ -251,12 +252,12 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
     while( $resObj = $resourceList->fetch() ) {
       $resId = $resObj->getter('id');
       $resInfo[ $resId ] = array(
+        'id' => $resObj->getter('id'),
         'title' => $resObj->getter('title'),
         'shortDescription' => $resObj->getter('shortDescription'),
         'image' => $resObj->getter('image'),
         'url' => $urls[ $resId ],
-        'rTypeId' => $resObj->getter('rTypeId'),
-        'averageVotes' => $resObj->getter('averageVotes')
+        'rTypeId' => $resObj->getter('rTypeId')
       );
     }
 
