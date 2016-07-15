@@ -234,12 +234,28 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
 
       $participationBlockInfo = $formBlockInfo;
       $partForm = $participationBlockInfo['objForm'];
-      $partForm->setFieldParam( 'title_es', 'label', '¿Cómo se llama el lugar?' );
-      $partForm->setFieldParam( 'mediumDescription_es', 'label', '¿A?' );
-      $partForm->setFieldParam( 'rExtContact_city', 'label', '¿B?' );
-      $partForm->setFieldParam( 'rExtContact_province', 'label', '¿C?' );
-      $partForm->setFieldParam( 'rExtContact_url', 'label', '¿D?' );
-      $partForm->setFieldParam( 'rExtContact_phone', 'label', '¿E?' );
+
+      $partForm->setFieldParam( 'title_es', 'label', __('¿Cómo se llama el lugar?') );
+      $partForm->setFieldParam( 'title_es', 'class', '' );
+      $partForm->setFieldParam( 'mediumDescription_es', 'label', __('Descríbelo brevemente') );
+      $partForm->setFieldParam( 'mediumDescription_es', 'class', '' );
+      $partForm->setFieldParam( 'rextEatAndDrink_eatanddrinkType', 'label', __('¿Cómo clasificarías este lugar?') );
+      $partForm->setFieldParam( 'rExtContact_city', 'label', __('¿En qué localidad se encuentra?') );
+      $partForm->setFieldParam( 'rExtContact_province', 'label', __('¿En qué provincia se encuentra?') );
+      $partForm->setFieldParam( 'rExtContact_url', 'label', __('¿Tiene página web?') );
+      $partForm->setFieldParam( 'rExtContact_phone', 'label', __('¿Teléfono?') );
+
+      //$form->removeValidationRules('topics');
+      $partForm->removeField( 'externalUrl');
+      $partForm->removeField( 'published');
+      $partForm->removeField( 'rextEatAndDrink_reservationURL');
+      $partForm->removeField( 'rextEatAndDrink_averagePrice');
+      $partForm->removeField( 'rextEatAndDrink_eatanddrinkSpecialities');
+      $partForm->removeField( 'rExtContact_email');
+      $partForm->removeField( 'rExtSocialNetwork_activeFb');
+      $partForm->removeField( 'rExtSocialNetwork_activeTwitter');
+      $partForm->removeField( 'urlAlias_es');
+
 
       $participationBlockInfo['dataForm'] = array(
         'formOpen' => $partForm->getHtmpOpen(),

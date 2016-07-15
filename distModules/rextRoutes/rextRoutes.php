@@ -1,4 +1,5 @@
 <?php
+require_once('conf/inc/geozzyRextRoutes.php');
 Cogumelo::load( 'coreController/Module.php' );
 
 
@@ -78,7 +79,7 @@ class rextRoutes extends Module {
 
     $this->addUrlPatterns( '#^api/routes.json#', 'view:RoutesAPIView::routesJson' );
     $this->addUrlPatterns( '#^api/routes/?(.*)$#', 'view:RoutesAPIView::routes' );
-    $this->addUrlPatterns( '#^api/adminRoutes/?(.*)$#', 'view:RoutesAPIView::adminRoutes' );    
+    $this->addUrlPatterns( '#^api/adminRoutes/?(.*)$#', 'view:RoutesAPIView::adminRoutes' );
 
   }
 
