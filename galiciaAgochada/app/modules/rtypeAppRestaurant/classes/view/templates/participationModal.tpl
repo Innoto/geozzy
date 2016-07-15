@@ -10,6 +10,9 @@
 
 
         {$res.dataForm.formOpen}
+        {$res.dataForm.formFieldsArray.cgIntFrmId}
+        {if isset($res.dataForm.formFieldsArray.id)}{$res.dataForm.formFieldsArray.id}{/if}
+
         <div class="subStep subStep1">
           {if isset($formFieldsNamesStp1)}
             {foreach $formFieldsNamesStp1 as $name}

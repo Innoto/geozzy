@@ -1,5 +1,9 @@
 <?php
 Cogumelo::load('view/MasterView.php');
+geozzy::autoIncludes();
+geozzy::load( 'view/GeozzyResourceView.php' );
+form::autoIncludes();
+form::loadDependence( 'ckeditor' );
 
 
 class ParticipationView extends MasterView

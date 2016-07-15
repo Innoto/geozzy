@@ -245,6 +245,18 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $partForm->setFieldParam( 'rExtContact_url', 'label', __('¿Tiene página web?') );
       $partForm->setFieldParam( 'rExtContact_phone', 'label', __('¿Teléfono?') );
 
+      //$form->removeValidationRules('topics');
+      $partForm->removeField( 'externalUrl');
+      $partForm->removeField( 'published');
+      $partForm->removeField( 'rextEatAndDrink_reservationURL');
+      $partForm->removeField( 'rextEatAndDrink_averagePrice');
+      $partForm->removeField( 'rextEatAndDrink_eatanddrinkSpecialities');
+      $partForm->removeField( 'rExtContact_email');
+      $partForm->removeField( 'rExtSocialNetwork_activeFb');
+      $partForm->removeField( 'rExtSocialNetwork_activeTwitter');
+      $partForm->removeField( 'urlAlias_es');
+
+
       $participationBlockInfo['dataForm'] = array(
         'formOpen' => $partForm->getHtmpOpen(),
         'formFieldsArray' => $partForm->getHtmlFieldsArray(),
