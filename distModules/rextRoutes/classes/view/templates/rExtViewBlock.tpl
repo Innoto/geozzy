@@ -90,17 +90,17 @@
 
 <style>
   .resourceRouteGraphContainer {
-    border-radius: 7px;
+    border-radius: 4px;
     cursor:pointer;
     margin-bottom:22px;
     background-color:rgba(32, 32, 32, 0.7 );
   }
 
     .resourceRouteGraphContainer .resourceRouteGraph {
-      width:400px;
-      height:150px;
-      border-radius:5px;
-      margin-right:40px;
+      width:300px;
+      height:100px;
+
+      margin-right:20px;
       margin-top:30px;
       margin-bottom:10px;
     }
