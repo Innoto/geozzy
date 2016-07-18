@@ -3,10 +3,12 @@ $( document ).ready(function() {
 
   if( typeof geozzy.rExtRoutesOptions != 'undefined' && typeof geozzy.rExtMapInstance != 'undefined') {
 
+    // Set new map container height
+    $($(geozzy.rExtMapInstance.options.wrapper)[0]).height( cogumelo.publicConf.rextRoutesConf.newMapHeight );
 
     // Desactivar como chegar en caso de existir
     if(typeof geozzy.rExtMapDirectionsController.mapClickEvent != 'undefined' ){
-      console.log( geozzy.rExtMapDirectionsController.mapClickEvent.remove());
+      geozzy.rExtMapDirectionsController.mapClickEvent.remove();
     }
 
     var routesCollection = new geozzy.rextRoutes.routeCollection();

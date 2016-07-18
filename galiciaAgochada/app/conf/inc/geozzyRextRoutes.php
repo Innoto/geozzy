@@ -2,6 +2,7 @@
 
 cogumeloSetSetupValue('mod:mediaserver:publicConf:javascript:vars:rextRoutesConf',
   array(
+    'newMapHeight' => 450,
     'strokeColor' => '#EF7C1F',
     'strokeBorderColor' => '#FFFFFF',
     'strokeOpacity' => 1,
