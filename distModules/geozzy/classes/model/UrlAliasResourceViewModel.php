@@ -40,6 +40,12 @@ class UrlAliasResourceViewModel extends Model {
       'size' => 45,
       'unique' => true
     ),
+    'timeCreation' => array(
+      'type' => 'DATETIME'
+    ),
+    'timeLastUpdate' => array(
+      'type' => 'DATETIME'
+    ),
   );
 
   static $extraFilters = array(
@@ -51,8 +57,8 @@ class UrlAliasResourceViewModel extends Model {
   );
 
 
+
   var $deploySQL = array(
-    // All Times
     array(
       'version' => 'geozzy#1.5',
       'executeOnGenerateModelToo' => true,
@@ -63,15 +69,16 @@ class UrlAliasResourceViewModel extends Model {
 
           SELECT
             ua.id, ua.resource, ua.lang, ua.urlFrom, ua.weight,
-            r.rTypeId AS rTypeId, rt.idname AS rTypeIdName
+            r.rTypeId AS rTypeId, rt.idname AS rTypeIdName,
+            r.timeCreation, r.timeLastUpdate
           FROM
             geozzy_url_alias AS ua, geozzy_resource AS r, geozzy_resourcetype AS rt
           WHERE
             ua.resource=r.id AND r.rTypeId=rt.id AND
-            http=0 AND canonical=TRUE
+            ua.http=0 AND ua.canonical=TRUE AND r.published=TRUE
           ;
       '
-    )
+    ),
   );
 
 
