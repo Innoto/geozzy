@@ -3,13 +3,14 @@
   .favouritesElement { height: 250px; }
   .favouritesElement img { width: 100%; }
   .favDelete {
-    background-color: yellow;
-    color: red;
-    display: block;
-    padding: 2px;
     position: absolute;
     right: 20px;
     top: 5px;
+    display: block;
+    padding: 2px;
+    /* background-color: yellow; */
+    color: #FF2222;
+    font-size: 20px;
   }
 </style>
 {/block}

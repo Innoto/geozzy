@@ -1339,12 +1339,13 @@ class geozzyAPIView extends View {
       $userData = ( $userVO ) ? $userVO->getAllData('onlydata') : false;
       if( $userData ) {
         $status = $userView->sendUnknownPassEmail( $userData );
-
-        $status = true;
       }
       else {
         error_log( '(Notice) Intento de recuperacion de contraseña con usuario desconocido: '.$_POST['user'] );
       }
+
+      // Ocultamos el estado interno
+      $status = true;
     }
 
     header('Content-Type: application/json; charset=utf-8');
