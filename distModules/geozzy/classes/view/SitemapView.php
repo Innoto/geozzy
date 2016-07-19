@@ -17,7 +17,36 @@ class SitemapView extends View {
    **/
   public function accessCheck() {
 
-    return true;
+    $accessValid = false;
+
+    $validIp = array(
+      '213.60.18.106', // Innoto
+      '176.83.204.135', '91.117.124.2', // ITG
+      '91.116.191.224', // Zadia
+      '127.0.0.1'
+    );
+
+    $conectionIP = isset( $_SERVER['HTTP_X_REAL_IP'] ) ? $_SERVER['HTTP_X_REAL_IP'] : $_SERVER['REMOTE_ADDR'];
+    if( in_array( $conectionIP, $validIp ) || strpos( $conectionIP, '10.77.' ) === 0 ) {
+      $accessValid = true;
+    }
+    else {
+      if(
+        ( !isset( $_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER']!= GA_ACCESS_USER ) &&
+        ( !isset( $_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_PW']!= GA_ACCESS_PASSWORD ) )
+      {
+        error_log( 'BLOQUEO --- Acceso Denegado!!!' );
+        header('WWW-Authenticate: Basic realm="Galicia Agochada"');
+        header('HTTP/1.0 401 Unauthorized');
+        echo 'Acceso Denegado.';
+        // exit;
+      }
+      else {
+        $accessValid = true;
+      }
+    }
+
+    return $accessValid;
   }
 
 
