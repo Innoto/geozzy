@@ -156,14 +156,14 @@
                 <div class="itemImage">
                   <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
                   <div class="trama">
-                      <div class="destResourceMoreInfo">
-                        <p>{$rd.data["shortDescription_$l"]}</p>
-                        <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
-                      </div>
+                    <div class="destResourceMoreInfo">
+                      <p>{$rd.data["shortDescription_$l"]}</p>
+                      <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                    </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/{$rd.data.urlAlias}">
+                  <a href="/{$rd.urlAlias}">
                     <h3>{$rd.data["title_$l"]}</h3>
                   </a>
                 </div>

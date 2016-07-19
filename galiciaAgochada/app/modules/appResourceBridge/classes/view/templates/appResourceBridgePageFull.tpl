@@ -27,7 +27,9 @@
   <meta property="og:type" content="article" />
   <meta property="og:title" content='{$res.data["title_$l"]|escape:"html"}'/>
   <meta property="og:image" content="{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/big/{$res.data.image.id}.jpg" />
-  <meta property="og:description" content='{$res.ext.rextSocialNetwork.data["textFb"]|escape:"html"}' />
+  {if isset($res.ext.rextSocialNetwork.data["textFb"])}
+    <meta property="og:description" content='{$res.ext.rextSocialNetwork.data["textFb"]|escape:"html"}' />
+  {/if}
   <meta property="og:locale" content="{$cogumelo.publicConf.lang_available[$l]['i18n']}"/>
 {/block}
 
