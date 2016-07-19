@@ -12,6 +12,9 @@
     color: #FF2222;
     font-size: 20px;
   }
+  .favouritesElement .shortDescription {
+    font-size: 90%
+  }
 </style>
 {/block}
 
@@ -52,8 +55,8 @@
           <div class="col-sm-6 col-md-2 favouritesElement rtid{$favsResInfo.rTypeId}" data-id="{$favsResInfo.id}" data-rTypeId="{$favsResInfo.rTypeId}">
             <a href="{$favsResInfo.url}">
               <img style="whi" src="/cgmlImg/{$favsResInfo.image}/fast_cut/{$favsResInfo.image}.jpg">
-              <div class="title">T: {$favsResInfo.title}</div>
-              <div class="shortDescription">SD: {$favsResInfo.shortDescription}</div>
+              <div class="title">{$favsResInfo.title}</div>
+              <div class="shortDescription">{$favsResInfo.shortDescription}</div>
             </a>
           </div>
           {/foreach}
