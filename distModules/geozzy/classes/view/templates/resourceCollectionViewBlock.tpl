@@ -15,7 +15,7 @@
 
         </div>
         <div class="itemTitle">
-          <a target="_blank" href="{$res.urlAlias}">
+          <a href="{$res.urlAlias}">
             <h3>{$res.title}</h3>
           </a>
         </div>
