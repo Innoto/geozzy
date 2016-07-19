@@ -12,6 +12,9 @@
     color: #FF2222;
     font-size: 20px;
   }
+  .favouritesElement .title {
+    text-decoration: underline;
+  }
   .favouritesElement .shortDescription {
     font-size: 90%
   }
