@@ -14,19 +14,19 @@ class PaisaxesExplorerModel extends Model
      array(
       'version' => 'appExplorer#1.2',
       'executeOnGenerateModelToo' => true,
-      'sql'=> "
+      'sql'=> '
         DROP VIEW IF EXISTS geozzy_paisaxes_explorer_index;
         CREATE VIEW geozzy_paisaxes_explorer_index AS
         SELECT
           geozzy_resource.id as id,
           geozzy_resourcetype.idName as rtype,
-          geozzy_resource.title_en as title_en,
-          geozzy_resource.title_es as title_es,
-          geozzy_resource.title_gl as title_gl,
+
+          {multilang:geozzy_resource.title_$lang as title_$lang,}
+
           geozzy_resource.image as image,
-          geozzy_resource.mediumDescription_es as mediumDescription_es,
-          geozzy_resource.mediumDescription_en as mediumDescription_en,
-          geozzy_resource.mediumDescription_gl as mediumDescription_gl,
+
+          {multilang:geozzy_resource.mediumDescription_$lang as mediumDescription_$lang,}
+
           geozzy_resource.loc as loc,
           geozzy_resource_rext_contact.city as city,
           geozzy_resource.timeCreation as timeCreation,
@@ -46,9 +46,9 @@ class PaisaxesExplorerModel extends Model
 
         WHERE
           geozzy_resource.published = 1 AND
-          geozzy_topic.idName = 'PaisaxesEspectaculares'
+          geozzy_topic.idName = `PaisaxesEspectaculares`
         group by geozzy_resource.id;
-      "
+      '
     )
   );
 

@@ -35,9 +35,9 @@ class AudioguideModel extends Model
       CREATE TABLE geozzy_resource_rext_audioguide (
         `id` INT NOT NULL auto_increment,
         `resource` INT,
-        `audioFile_es` INT,
-        `audioFile_gl` INT,
-        `audioFile_en` INT,
+
+        {multilang:`audioFile_$lang` INT,}
+
         `distance` INT,
         PRIMARY KEY USING BTREE (`id`),
         INDEX (`resource`)

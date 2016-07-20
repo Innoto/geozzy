@@ -70,9 +70,9 @@ class ResourceTaxonomyAllModel extends Model {
           SELECT
             geozzy_taxonomyterm.id AS id,
             geozzy_taxonomyterm.idName AS idName,
-            geozzy_taxonomyterm.name_es AS name_es,
-            geozzy_taxonomyterm.name_gl AS name_gl,
-            geozzy_taxonomyterm.name_en AS name_en,
+
+            {multilang:geozzy_taxonomyterm.name_$lang AS name_$lang,}
+            
             geozzy_taxonomyterm.parent AS parent,
             geozzy_taxonomyterm.weight AS weight,
             geozzy_taxonomyterm.icon AS icon,

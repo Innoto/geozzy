@@ -96,8 +96,8 @@ class ResourceMultimediaViewModel extends Model {
         CREATE VIEW geozzy_resource_multimedia_view AS
 
           SELECT r.id, r.rTypeId, r.user, r.userUpdate, r.published,
-            r.title_es, r.title_gl, r.title_en,
-            r.shortDescription_es, r.shortDescription_gl, r.shortDescription_en,
+            {multilang:r.title_$lang,}
+            {multilang:r.shortDescription_$lang,}
             r.image, r.timeCreation, r.timeLastUpdate, r.weight,
             rf.author AS author, rf.file, NULL AS embed, NULL AS url
           FROM geozzy_resource AS r, geozzy_resource_rext_file AS rf, geozzy_resourcetype as rtype
@@ -107,8 +107,8 @@ class ResourceMultimediaViewModel extends Model {
           UNION ALL
 
           SELECT r.id, r.rTypeId, r.user, r.userUpdate, r.published,
-            r.title_es, r.title_gl, r.title_en,
-            r.shortDescription_es, r.shortDescription_gl, r.shortDescription_en,
+            {multilang:r.title_$lang,}
+            {multilang:r.shortDescription_$lang,}
             r.image, r.timeCreation, r.timeLastUpdate, r.weight,
             ru.author AS author, NULL AS file, ru.embed, ru.url
           FROM geozzy_resource AS r, geozzy_resource_rext_url AS ru, geozzy_resourcetype as rtype
@@ -125,8 +125,8 @@ class ResourceMultimediaViewModel extends Model {
         CREATE VIEW geozzy_resource_multimedia_view AS
 
           SELECT r.id, r.rTypeId, r.user, r.userUpdate, r.published,
-            r.title_es, r.title_gl, r.title_en,
-            r.shortDescription_es, r.shortDescription_gl, r.shortDescription_en,
+            {multilang:r.title_$lang,}
+            {multilang:r.shortDescription_$lang,}
             r.image, r.timeCreation, r.timeLastUpdate, r.averageVotes, r.weight,
             rf.author AS author, rf.file, NULL AS embed, NULL AS url
           FROM geozzy_resource AS r, geozzy_resource_rext_file AS rf, geozzy_resourcetype as rtype
@@ -136,8 +136,8 @@ class ResourceMultimediaViewModel extends Model {
           UNION ALL
 
           SELECT r.id, r.rTypeId, r.user, r.userUpdate, r.published,
-            r.title_es, r.title_gl, r.title_en,
-            r.shortDescription_es, r.shortDescription_gl, r.shortDescription_en,
+            {multilang:r.title_$lang,}
+            {multilang:r.shortDescription_$lang,}
             r.image, r.timeCreation, r.timeLastUpdate, r.averageVotes, r.weight,
             ru.author AS author, NULL AS file, ru.embed, ru.url
           FROM geozzy_resource AS r, geozzy_resource_rext_url AS ru, geozzy_resourcetype as rtype

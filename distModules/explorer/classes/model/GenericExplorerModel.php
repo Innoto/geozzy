@@ -19,13 +19,9 @@ class GenericExplorerModel extends Model
         CREATE VIEW geozzy_generic_explorer_index AS
           SELECT
             geozzy_resource.id as id,
-            geozzy_resource.title_en as title_en,
-            geozzy_resource.title_es as title_es,
-            geozzy_resource.title_gl as title_gl,
+            {multilang:geozzy_resource.title_$lang as title_$lang,}
             geozzy_resource.image as image,
-            geozzy_resource.shortDescription_es as shortDescription_es,
-            geozzy_resource.shortDescription_en as shortDescription_en,
-            geozzy_resource.shortDescription_gl as shortDescription_gl,
+            {multilang: geozzy_resource.shortDescription_$lang as shortDescription_$lang, }
             geozzy_resource.loc as loc,
             geozzy_resource.timeLastUpdate as timeLastUpdate,
             group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms

@@ -14,20 +14,21 @@ class PoisExplorerModel extends Model
     array(
       'version' => 'rextPoiCollection#1.1',
       'executeOnGenerateModelToo' => true,
-      'sql'=> "
+      'sql'=> '
         DROP VIEW IF EXISTS geozzy_pois_explorer_index;
         CREATE VIEW geozzy_pois_explorer_index AS
         SELECT
           geozzy_resource_collections.resource as resourceMain,
           geozzy_resource_collections.collection as collection,
           geozzy_collection_resources.resource as id,
-          geozzy_resource.title_en as title_en,
-          geozzy_resource.title_es as title_es,
-          geozzy_resource.title_gl as title_gl,
+
+
+          {multilang:geozzy_resource.title_$lang as title_$lang,}
+
           geozzy_resource.image as image,
-          geozzy_resource.shortDescription_es as shortDescription_es,
-          geozzy_resource.shortDescription_en as shortDescription_en,
-          geozzy_resource.shortDescription_gl as shortDescription_gl,
+
+          {multilang:geozzy_resource.shortDescription_$lang as shortDescription_$lang,}
+
           geozzy_resource.loc as loc
         FROM geozzy_resource_collections
         LEFT JOIN geozzy_collection
@@ -37,9 +38,9 @@ class PoisExplorerModel extends Model
         LEFT JOIN geozzy_resource
         ON geozzy_collection_resources.resource = geozzy_resource.id
         WHERE
-          geozzy_collection.collectionType = 'poi'
+          geozzy_collection.collectionType = `poi`
         group by geozzy_collection_resources.resource;
-      "
+      '
     )
   );
 

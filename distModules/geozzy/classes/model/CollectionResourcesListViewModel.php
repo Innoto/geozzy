@@ -80,15 +80,14 @@ class CollectionResourcesListViewModel extends Model {
           SELECT
             geozzy_collection.id AS id,
             geozzy_collection.idName AS idName,
-            geozzy_collection.title_es AS title_es,
-            geozzy_collection.title_gl AS title_gl,
-            geozzy_collection.title_en AS title_en,
-            geozzy_collection.shortDescription_es AS shortDescription_es,
-            geozzy_collection.shortDescription_gl AS shortDescription_gl,
-            geozzy_collection.shortDescription_en AS shortDescription_en,
-            geozzy_collection.description_es AS description_es,
-            geozzy_collection.description_gl AS description_gl,
-            geozzy_collection.description_en AS description_en,
+
+            {multilang:geozzy_collection.title_$lang AS title_$lang,}
+
+            {multilang:geozzy_collection.shortDescription_$lang AS shortDescription_$lang,}
+
+            {multilang:geozzy_collection.description_$lang AS description_$lang,}
+
+
             geozzy_collection.image AS image,
             geozzy_collection.share AS share,
             geozzy_collection.collectionType AS collectionType,
