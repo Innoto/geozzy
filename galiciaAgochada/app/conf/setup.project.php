@@ -380,3 +380,19 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
     )
   )
 );
+
+
+
+//
+//
+//
+cogumeloSetSetupValue( 'mod:geozzy:sitemap:ignoreRTypes', array(
+  'rtypeUrl',
+  'rtypeFile',
+  'rtypeFavourites',
+  'rtypeEvent'
+));
+cogumeloSetSetupValue( 'mod:geozzy:sitemap:default:change', 'weekly' );
+cogumeloSetSetupValue( 'mod:geozzy:sitemap:rtypePage:change', 'daily' );
+cogumeloSetSetupValue( 'mod:geozzy:sitemap:rtypePage:priority', '0.8' );
+cogumeloSetSetupValue( 'mod:geozzy:sitemap:rtypeAppFesta:change', 'daily' );
