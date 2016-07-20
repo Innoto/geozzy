@@ -24,7 +24,7 @@
 </style>
 {/block}
 
-<!-- rTypeViewBlock.tpl en rTypeAppRestaurant module -->
+<!-- rTypeViewBlock.tpl en rTypePage module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
@@ -89,7 +89,7 @@
     </div>
 
     <div class="mediumDescription">
-      {$res.data.mediumDescription|escape:'htmlall'}
+      {$res.data.mediumDescription|escape:'htmlall'|nl2br}
     </div>
 
     <div class="content">
@@ -124,7 +124,7 @@
           {if isset( $res.data.loc )}
           <div class="indications row" style="display:none;">
             <div class="col-lg-8">
-              {$res.ext.rextContact.data.directions|escape:'htmlall'}
+              {$res.ext.rextContact.data.directions|escape:'htmlall'|nl2br}
             </div>
             <div class="col-lg-4">
               <div class="search">
@@ -134,7 +134,7 @@
           </div>
           {else}
           <div class="indications" style="display:none;">
-            {$res.ext.rextContact.data.directions|escape:'htmlall'}
+            {$res.ext.rextContact.data.directions|escape:'htmlall'|nl2br}
           </div>
           {/if}
         </div>
@@ -168,4 +168,4 @@
   {/if}
 
 </div><!-- /.resource .resViewBlock -->
-<!-- /rTypeViewBlock.tpl en rTypeAppRestaurant module -->
+<!-- /rTypeViewBlock.tpl en rTypePage module -->
