@@ -60,6 +60,7 @@ class SitemapView extends View {
         $urlsInfo[] = $params;
         /*
         <changefreq>always,hourly,daily,weekly,monthly,yearly,never</changefreq>
+        <priority>0.0 to 1.0</priority> (default: 0.5)
         URLs con multiidioma:
         <url>
           <loc>http://www.example.com/</loc>

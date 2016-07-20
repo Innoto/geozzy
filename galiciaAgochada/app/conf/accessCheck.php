@@ -27,10 +27,11 @@ if( true ) {
   $urlFull = ltrim( $_SERVER['REQUEST_URI'], '/' ); // $_SERVER["REDIRECT_URL"]
   $url = preg_replace( '/^'.$patron.'\/?/', '', $urlFull );
 
+
   if( $url !== preg_replace( $privateUrlPatterns, '', $url ) ) {
     // La url actual coincide con alguno de los patrones
 
-    error_log( 'conf/accessCheck.php - Control de acceso para URL: '.$url );
+    // error_log( 'conf/accessCheck.php - Control de acceso para URL: '.$url );
 
     if( in_array( $conectionIP, $validIp ) || strpos( $conectionIP, '10.77.' ) === 0 ) {
       // Se permite al acceso por IP
