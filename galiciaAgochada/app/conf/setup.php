@@ -35,3 +35,7 @@ else {
 // Configuracion proyecto
 require_once( 'setup.project.php' );
 
+// Global access check
+if( file_exists( APP_BASE_PATH . '/conf/accessCheck.php' ) ) {
+  require_once( 'accessCheck.php' );
+}
