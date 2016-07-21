@@ -1,8 +1,8 @@
-<!-- rTypeViewBlock.tpl en geozzy module -->
+<!-- rTypeViewBlock.tpl en rtypeUrl module -->
 
-<p> --- rTypeViewBlock.tpl en geozzy module --- </p>
+<p> --- rTypeViewBlock.tpl en rtypeUrl module --- </p>
 
-<div class="resViewBlock">
+<div class="resViewBlock rtypeUrl">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
@@ -16,16 +16,6 @@
     {$res.data.shortDescription|escape:'htmlall'}
   </div>
 
-  <div class="mediumDescription">
-    <label for="mediumDescription" class="cgmMForm">{t}Medium description{/t}</label>
-    {$res.data.mediumDescription}
-  </div>
-
-  <div class="content">
-    <label for="content" class="cgmMForm">{t}Content{/t}</label>
-    {$res.data.content}
-  </div>
-
   <div class="image cgmMForm-fileField">
     <label for="imgResource" class="cgmMForm">{t}Image{/t}</label>
     {if isset( $res.data.image )}
@@ -37,7 +27,7 @@
     {/if}
   </div>
 
-  <div class="rTypeUrl">
+  <div class="rExtViewBlock rTypeUrl">
     <p> --- rTypeUrl Ext --- </p>
     <div class="rTypeUrl rExtUrl">
       {$rextUrlBlock}
@@ -46,4 +36,4 @@
 
 </div>
 
-<!-- /rTypeViewBlock.tpl en geozzy module -->
+<!-- /rTypeViewBlock.tpl en rtypeUrl module -->

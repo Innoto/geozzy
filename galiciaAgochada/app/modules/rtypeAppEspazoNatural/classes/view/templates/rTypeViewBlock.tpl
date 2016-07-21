@@ -25,10 +25,12 @@
 {/block}
 
 
+
+<!-- rTypeViewBlock.tpl en rTypeAppEspazoNatural module -->
+
 {$rextPoiCollectionBlock}
 {$rextBIBlock}
 
-<!-- rTypeViewBlock.tpl en rTypeEspazoNatural module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}" data-resource="{$res.data.id}">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
@@ -103,7 +105,7 @@
 
     <div class="mediumDescription">
       {if $res.data.mediumDescription}
-        {$res.data.mediumDescription|escape:'htmlall'}
+        {$res.data.mediumDescription|escape:'htmlall'|nl2br}
       {else}
         {$res.data.shortDescription|escape:'htmlall'}
       {/if}
@@ -146,7 +148,7 @@
             {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")}
               <div class="indications row" style="display:none;">
                 <div class="col-md-12">
-                  {$res.ext.rextContact.data.directions|escape:'htmlall'}
+                  {$res.ext.rextContact.data.directions|escape:'htmlall'|nl2br}
                 </div>
               </div>
             {/if}
@@ -183,4 +185,4 @@
   {/if}
 
 </div><!-- /.resource .resViewBlock -->
-<!-- /rTypeViewBlock.tpl en rTypeEspazoNatural module -->
+<!-- /rTypeViewBlock.tpl en rTypeAppEspazoNatural module -->

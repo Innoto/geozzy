@@ -142,13 +142,13 @@
 
       <div class="taxIcons col-xs-12 col-sm-10">
         {foreach $allServices as $termId => $term}
-            <div class="icon clearfix {if !is_array($res.data.accommodationServices) || !$termId|array_key_exists:$res.data.accommodationServices}light{/if}">
+            <div class="icon clearfix {if !isset( $res.data.accommodationServices ) || !is_array( $res.data.accommodationServices ) || !$termId|array_key_exists:$res.data.accommodationServices}light{/if}">
               <img alt="{$term.name}" title="{$term.name}" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
             </div>
         {/foreach}
 
         {foreach $allFacilities as $termId => $term}
-            <div class="icon clearfix {if !is_array($res.data.accommodationFacilities) || !$termId|array_key_exists:$res.data.accommodationFacilities}light{/if}">
+            <div class="icon clearfix {if !isset($res.data.accommodationFacilities) || !is_array($res.data.accommodationFacilities) || !$termId|array_key_exists:$res.data.accommodationFacilities}light{/if}">
               <img alt="{$term.name}" title="{$term.name}" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$term.icon}/typeIconCategory/{$term.icon}.png" />
             </div>
         {/foreach}
@@ -156,7 +156,7 @@
     </div>
 
     <div class="mediumDescription">
-      {$res.data.mediumDescription|escape:'htmlall'}
+      {$res.data.mediumDescription|escape:'htmlall'|nl2br}
     </div>
 
     <div class="content">
@@ -189,7 +189,7 @@
             {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")}
               <div class="indications row" style="display:none;">
                 <div class="col-md-12">
-                  {$res.ext.rextContact.data.directions|escape:'htmlall'}
+                  {$res.ext.rextContact.data.directions|escape:'htmlall'|nl2br}
                 </div>
               </div>
             {/if}
@@ -233,3 +233,4 @@
     </section>
   {/if}
 </div>
+<!-- /rTypeViewBlock.tpl en rTypeAppHotel module -->

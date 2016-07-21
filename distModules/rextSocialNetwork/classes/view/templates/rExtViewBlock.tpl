@@ -1,6 +1,9 @@
-<!-- rExtFormBasic.tpl en rExtContact module -->
+<!-- rExtViewBlock.tpl en rextSocialNetwork module -->
 
-<div class="rExtContact formBlock formBasic">
+<p>rExtViewBlock.tpl en rextSocialNetwork module</p>
+
+{*
+<div class="rextSocialNetwork formBlock formBasic">
 {$rExt.dataForm.formFieldsArray['rExtSocialNetwork_activeFb']}
 {foreach $textFb as $text}
   {$rExt.dataForm.formFieldsArray[$text]}
@@ -14,5 +17,6 @@
 {/foreach}
 <div class="defaultFb-box">{$default_textTwitter}</div>
 </div>
+*}
 
-<!-- /rExtFormBasic.tpl en rExtContact module -->
+<!-- /rExtViewBlock.tpl en rextSocialNetwork module -->

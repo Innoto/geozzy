@@ -87,7 +87,7 @@ class geozzy extends Module {
     //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
 
     // Sitemap
-    $this->addUrlPatterns( '#^sitemap.xml#', 'view:SitemapView::showSitemap' );
+    $this->addUrlPatterns( '#^sitemap.xml$#', 'view:SitemapView::showSitemap' );
   }
 
 

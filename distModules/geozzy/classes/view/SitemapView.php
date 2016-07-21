@@ -17,36 +17,7 @@ class SitemapView extends View {
    **/
   public function accessCheck() {
 
-    $accessValid = false;
-
-    $validIp = array(
-      '213.60.18.106', // Innoto
-      '176.83.204.135', '91.117.124.2', // ITG
-      '91.116.191.224', // Zadia
-      '127.0.0.1'
-    );
-
-    $conectionIP = isset( $_SERVER['HTTP_X_REAL_IP'] ) ? $_SERVER['HTTP_X_REAL_IP'] : $_SERVER['REMOTE_ADDR'];
-    if( in_array( $conectionIP, $validIp ) || strpos( $conectionIP, '10.77.' ) === 0 ) {
-      $accessValid = true;
-    }
-    else {
-      if(
-        ( !isset( $_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER']!= GA_ACCESS_USER ) &&
-        ( !isset( $_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_PW']!= GA_ACCESS_PASSWORD ) )
-      {
-        error_log( 'BLOQUEO --- Acceso Denegado!!!' );
-        header('WWW-Authenticate: Basic realm="Galicia Agochada"');
-        header('HTTP/1.0 401 Unauthorized');
-        echo 'Acceso Denegado.';
-        // exit;
-      }
-      else {
-        $accessValid = true;
-      }
-    }
-
-    return $accessValid;
+    return true;
   }
 
 
@@ -54,7 +25,6 @@ class SitemapView extends View {
    *  Defino un formulario con su TPL como Bloque
    */
   public function showSitemap() {
-    error_log( "SitemapView: showSitemap()" );
 
     $urlsInfo = array();
 
@@ -62,19 +32,43 @@ class SitemapView extends View {
     $langsConf = Cogumelo::getSetupValue( 'lang:available' );
     $langAvailable = is_array( $langsConf ) ? array_keys( $langsConf ) : array( $langDefault );
 
+    $defConf = Cogumelo::GetSetupValue( 'mod:geozzy:sitemap:default' );
+    $ignoreRTypes = Cogumelo::GetSetupValue( 'mod:geozzy:sitemap:ignoreRTypes' );
+    $conf = Cogumelo::GetSetupValue( 'mod:geozzy:sitemap' );
 
+    $filters = is_array( $ignoreRTypes ) ? array( 'rTypeIdNameNotIn' => $ignoreRTypes ) : array();
     $urlAliasResModel = new UrlAliasResourceViewModel();
-    $urlAliasResList = $urlAliasResModel->listItems( array( 'filters' => array() ) );
+    $urlAliasResList = $urlAliasResModel->listItems( array( 'filters' => $filters ) );
     if( $urlAliasResList ) {
       while( $urlAliasRes = $urlAliasResList->fetch() ) {
         $info = $urlAliasRes->getAllData( 'onlydata' );
-        $modDate = (isset($info['timeLastUpdate'])) ? $info['timeLastUpdate'] : $info['timeCreation'];
+        $modDate = isset( $info['timeLastUpdate'] ) ? $info['timeLastUpdate'] : $info['timeCreation'];
         $objDate = new DateTime($modDate);
         $modDate = $objDate->format( DateTime::ATOM );
-        $urlsInfo[] = array(
+        $params = array(
           'loc' => htmlspecialchars('/'.$info['lang'].$info['urlFrom']),
           'mod' => $modDate
         );
+        $tConf = isset( $conf[ $info['rTypeIdName'] ] ) ? $conf[ $info['rTypeIdName'] ] : false;
+        if( isset( $defConf['change'] ) || isset( $tConf['change'] )  ) {
+          $params['changefreq'] = isset( $tConf['change'] ) ? $tConf['change'] : $defConf['change'];
+        }
+        if( isset( $defConf['priority'] ) || isset( $tConf['priority'] )  ) {
+          $params['priority'] = isset( $tConf['priority'] ) ? $tConf['priority'] : $defConf['priority'];
+        }
+
+        $urlsInfo[] = $params;
+        /*
+        <changefreq>always,hourly,daily,weekly,monthly,yearly,never</changefreq>
+        <priority>0.0 to 1.0</priority> (default: 0.5)
+        URLs con multiidioma:
+        <url>
+          <loc>http://www.example.com/</loc>
+          <xhtml:link rel="alternate" hreflang="en" href="http://www.example.com/en/" />
+          <xhtml:link rel="alternate" hreflang="de-ch" href="http://www.example.com/ch/" />
+          <xhtml:link rel="alternate" hreflang="de" href="http://www.example.com/de/" />
+        </url>
+        */
       }
     }
 

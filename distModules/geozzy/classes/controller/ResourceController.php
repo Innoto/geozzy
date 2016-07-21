@@ -121,12 +121,18 @@ class ResourceController {
         $langAvailable = array_keys( $langsConf );
       }
 
-      // Mezclamos todos los campos con los campos en el idioma actual
+      // Cargamos todos los campos "en bruto"
       $resourceData = $this->resObj->getAllData( 'onlydata' );
+
+      // Añadimos los campos en el idioma actual o el idioma principal
       $resourceFields = $this->resObj->getCols();
       foreach( $resourceFields as $key => $value ) {
         if( !isset( $resourceData[ $key ] ) ) {
           $resourceData[ $key ] = $this->resObj->getter( $key );
+          // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
+          if( $resourceData[ $key ] === '' && isset( $resourceData[ $key.'_'.$langDefault ] ) ) {
+            $resourceData[ $key ] = $resourceData[ $key.'_'.$langDefault ];
+          }
         }
       }
 
@@ -1102,8 +1108,15 @@ class ResourceController {
   );
 
   private function sanitizeUrl( $url ) {
+    // "Aplanamos" caracteres no ASCII7
     $url = str_replace( $this->urlTranslate[ 'from' ], $this->urlTranslate[ 'to' ], $url );
-    $url = preg_replace( '/[_\'" \+\.]/i', '-', $url );
+    // Solo admintimos a-z A-Z 0-9 _ - / El resto pasan a ser -
+    $url = preg_replace( '/[^\w-\/]/', '-', $url );
+    // Eliminamos - sobrantes
+    $url = preg_replace( '/--+/', '-', $url );
+    $url = preg_replace( '/-*\/-*/', '/', $url );
+    $url = trim( $url, '-' );
+    // Por si ha quedado algo, pasamos el validador de PHP
     $url = filter_var( $url, FILTER_SANITIZE_URL );
 
     return $url;

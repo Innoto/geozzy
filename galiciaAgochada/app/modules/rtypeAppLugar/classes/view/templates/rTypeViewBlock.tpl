@@ -1,7 +1,4 @@
 {block name="headCssIncludes" append}
-
-<!-- rTypeViewBlock.tpl en rTypeLugar module -->
-
 <style type="text/css">
   .imageSec{
     background: rgba(0, 0, 0, 0) url("{$cogumelo.publicConf.mediaHost}cgmlImg/{$res.data.image.id}/fast/{$res.data.image.id}.jpg") no-repeat scroll center center / cover;
@@ -27,8 +24,11 @@
 </style>
 {/block}
 
-{$rextBIBlock}
 
+
+<!-- rTypeViewBlock.tpl en rTypeAppLugar module -->
+
+{$rextBIBlock}
 
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}" data-resource="{$res.data.id}">
 
@@ -114,7 +114,7 @@
 
     <div class="mediumDescription">
       {if $res.data.mediumDescription}
-        {$res.data.mediumDescription|escape:'htmlall'}
+        {$res.data.mediumDescription|escape:'htmlall'|nl2br}
       {else}
         {$res.data.shortDescription|escape:'htmlall'}
       {/if}
@@ -160,7 +160,7 @@
             {if (isset($res.ext.rextContact.data.directions) && $res.ext.rextContact.data.directions!== "")}
               <div class="indications row" style="display:none;">
                 <div class="col-md-12">
-                  {$res.ext.rextContact.data.directions|escape:'htmlall'}
+                  {$res.ext.rextContact.data.directions|escape:'htmlall'|nl2br}
                 </div>
               </div>
             {/if}
@@ -191,4 +191,4 @@
   {/if}
 
 </div><!-- /.resource .resViewBlock -->
-<!-- /rTypeViewBlock.tpl en rTypeLugar module -->
+<!-- /rTypeViewBlock.tpl en rTypeAppLugar module -->
