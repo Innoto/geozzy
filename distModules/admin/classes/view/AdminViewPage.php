@@ -60,7 +60,7 @@ class AdminViewPage extends AdminViewMaster {
 
     $tabla = new TableController( $resource );
 
-    $tabla->setTabs(__('published'), array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
+    $tabla->setTabs('published', array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
     // set id search reference.
     $tabla->setSearchRefId('find');
