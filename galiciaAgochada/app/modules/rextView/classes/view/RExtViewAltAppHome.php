@@ -25,7 +25,7 @@ class RExtViewAltAppHome {
   public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
     //error_log( "RExtViewAltAppHome: alterViewBlockInfo( viewBlockInfo, $templateName )" );
 
-    $masterPageView = new MasterPageView(false);
+    $masterPageView = new MasterPageView();
     $masterPageView->home();
     $viewBlockInfo['template']['full'] = $masterPageView->template;
 
@@ -33,7 +33,8 @@ class RExtViewAltAppHome {
   }
 
   // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
-  public function getUrlAlias($resId, $lang = false){
+  /*
+  public function getUrlAlias( $resId, $lang = false ) {
     $urlAliasModel = new UrlAliasModel();
 
     if ($lang){
@@ -51,5 +52,6 @@ class RExtViewAltAppHome {
 
     return $urlAlias;
   }
+  */
 
 } // class RExtViewAltAppMylandpage

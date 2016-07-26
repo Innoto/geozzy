@@ -12,10 +12,9 @@ Cogumelo::autoIncludes();
 /**
 * Clase Master to extend other application methods
 */
-class MasterPageView extends View
-{
+class MasterPageView extends View {
 
-  public function __construct( $baseDir ) {
+  public function __construct( $baseDir = false ) {
     parent::__construct( $baseDir );
     global $C_LANG;
     $this->actLang = $C_LANG;
@@ -71,10 +70,11 @@ class MasterPageView extends View
   }
 
   public function home() {
+    $resourceCtrl = new ResourceController();
 
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
-    
+
 
     // Autodetección idioma
     $i18nCtrl = new I18nController();
@@ -82,6 +82,24 @@ class MasterPageView extends View
 
     $resourceTaxAllModel = new ResourceTaxonomyAllModel( );
     $resourceModel = new ResourceModel( );
+
+
+    /*
+     * Informacion de exploradores
+     */
+    $resList = $resourceModel->listItems( array( 'filters'=> array( 'idNameIn' => array(
+      'xantaresExplorer','aloxamentosExplorer','rinconsExplorer',
+      'praiasExplorer','paisaxesExplorer','festasExplorer','segredosExplorer'
+    ))));
+
+    $resourceExploradores = array();
+    while ( $res = $resList->fetch() ) {
+      $resIdName = $res->getter('idName');
+      $resourceExploradores[$resIdName]['title'] = $res->getter('title');
+      $resourceExploradores[$resIdName]['shortDescription'] = $res->getter('shortDescription');
+      $resourceExploradores[$resIdName]['url'] = $resourceCtrl->getUrlAlias( $res->getter('id') );
+    }
+    $this->template->assign( 'explorersInfo', $resourceExploradores );
 
     /**
     Destacados de RecantosConEstilo
@@ -103,11 +121,11 @@ class MasterPageView extends View
       $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
       $resourceArrayRecantos[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayRecantos[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
       $resourceArrayRecantos[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-    usort($resourceArrayRecantos, function($a, $b) {
-        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    usort( $resourceArrayRecantos, function( $a, $b ) {
+      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
     });
     $this->template->assign('rdRecantosConEstilo', $resourceArrayRecantos);
 
@@ -131,11 +149,11 @@ class MasterPageView extends View
       $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
       $resourceArrayFesta[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayFesta[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
       $resourceArrayFesta[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-    usort($resourceArrayFesta, function($a, $b) {
-        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    usort($resourceArrayFesta, function( $a, $b ) {
+      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
     });
     $this->template->assign('rdFestaRachada', $resourceArrayFesta);
 
@@ -159,18 +177,17 @@ class MasterPageView extends View
       $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
       $resourceArrayPraias[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayPraias[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
       $resourceArrayPraias[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-    usort($resourceArrayPraias, function($a, $b) {
-        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    usort($resourceArrayPraias, function( $a, $b ) {
+      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
     });
     $this->template->assign('rdPraiasDeEnsono', $resourceArrayPraias);
 
     /**
     Destacados de PaisaxesEspectaculares
     **/
-
     $resList = $resourceModel->listItems(
       array(
         'filters'=> array(
@@ -187,11 +204,11 @@ class MasterPageView extends View
       $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
       $resourceArrayPaisaxes[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayPaisaxes[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
       $resourceArrayPaisaxes[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-    usort($resourceArrayPaisaxes, function($a, $b) {
-        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    usort($resourceArrayPaisaxes, function( $a, $b ) {
+      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
     });
     $this->template->assign('rdPaisaxesEspectaculares', $resourceArrayPaisaxes);
 
@@ -215,11 +232,11 @@ class MasterPageView extends View
       $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
       $resourceArrayAloxamentos[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayAloxamentos[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
       $resourceArrayAloxamentos[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-    usort($resourceArrayAloxamentos, function($a, $b) {
-        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    usort($resourceArrayAloxamentos, function( $a, $b ) {
+      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
     });
     $this->template->assign('rdAloxamentoConEncanto', $resourceArrayAloxamentos);
 
@@ -243,11 +260,11 @@ class MasterPageView extends View
       $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
       $resourceArrayGastronomia[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
       $resourceArrayGastronomia[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $this->getUrlAlias($res->getter('id'));
+      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
       $resourceArrayGastronomia[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-    usort($resourceArrayGastronomia, function($a, $b) {
-        return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
+    usort($resourceArrayGastronomia, function( $a, $b ) {
+      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
     });
     $this->template->assign('rdAutenticaGastronomia', $resourceArrayGastronomia);
 
@@ -263,7 +280,7 @@ class MasterPageView extends View
   }
 
   // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
-  public function getUrlAlias($resId, $lang = false){
+  public function getUrlAlias( $resId, $lang = false ) {
     $urlAliasModel = new UrlAliasModel();
 
     if ($lang){

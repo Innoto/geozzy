@@ -33,7 +33,11 @@ $initResources = array(
       'es' => 'Sabrosas comidas',
       'gl' => 'Sabrosos xantares'
     ),
-    'shortDescription' => array(),
+    'shortDescription' => array(
+      'en' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'es' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
+    ),
     'img' => false,
     'viewType' => 'viewAppXantaresExplorer',
     'urlAlias' => array(
@@ -52,7 +56,11 @@ $initResources = array(
       'es' => 'Alojamientos con encanto',
       'gl' => 'Aloxamentos con encanto'
     ),
-    'shortDescription' => array(),
+    'shortDescription' => array(
+      'en' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'es' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
+    ),
     'img' => false,
     'viewType' => 'viewAppAloxamentosExplorer',
     'urlAlias' => array(
@@ -71,7 +79,11 @@ $initResources = array(
       'es' => 'Rincones con encanto',
       'gl' => 'Rincons con encanto'
     ),
-    'shortDescription' => array(),
+    'shortDescription' => array(
+      'en' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'es' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
+    ),
     'img' => false,
     'viewType' => 'viewAppRinconsExplorer',
     'urlAlias' => array(
@@ -90,7 +102,11 @@ $initResources = array(
       'es' => 'Playas de ensueño',
       'gl' => 'Praias de ensono'
     ),
-    'shortDescription' => array(),
+    'shortDescription' => array(
+      'en' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'es' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
+    ),
     'img' => false,
     'viewType' => 'viewAppPraiasExplorer',
     'urlAlias' => array(
@@ -109,13 +125,40 @@ $initResources = array(
       'es' => 'Paisajes Espectaculares',
       'gl' => 'Paisaxes Espectaculares'
     ),
-    'shortDescription' => array(),
+    'shortDescription' => array(
+      'en' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'es' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
+    ),
     'img' => false,
     'viewType' => 'viewAppPaisaxesExplorer',
     'urlAlias' => array(
       'en' => '/spectacular-landscapes',
       'es' => '/paisajes-espectaculares',
       'gl' => '/paisaxes-espectaculares'
+    )
+  ),
+  array(
+    'version' =>'Cogumelo#1.0',
+    'executeOnGenerateModelToo' => true,
+    'idName' => 'festasExplorer',
+    'rType' => 'rtypePage',
+    'title' => array(
+      'en' => 'Parties',
+      'es' => 'Fiestas',
+      'gl' => 'Festas'
+    ),
+    'shortDescription' => array(
+      'en' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'es' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
+    ),
+    'img' => false,
+    'viewType' => 'viewAppPaisaxesExplorer',
+    'urlAlias' => array(
+      'en' => '/parties',
+      'es' => '/fiestas',
+      'gl' => '/festas'
     )
   ),
   array(
@@ -128,7 +171,11 @@ $initResources = array(
       'es' => 'Descúbrelos todos juntos',
       'gl' => 'Descúbreos todos xuntos'
     ),
-    'shortDescription' => array(),
+    'shortDescription' => array(
+      'en' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'es' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
+    ),
     'img' => false,
     'viewType' => 'viewAppTodosSegredosExplorer',
     'urlAlias' => array(

@@ -34,85 +34,85 @@
       <h2>{t}Os segredos de Galicia{/t}</h2>
       <div class="row">
         <div class="segredoItem segredoRincons col-lg-4 col-sm-6">
-          <a href="/{$cogumelo.publicConf.C_LANG}/rincons-con-encanto">
+          <a href="{$explorersInfo['rinconsExplorer']['url']}">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="{$cogumelo.publicConf.media}/img/rincons.png">
               <div class="info">
-                <h3>{t}Rincóns con encanto{/t}</h3>
-                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+                <h3>{$explorersInfo['rinconsExplorer']['title']}</h3>
+                <p>{$explorersInfo['rinconsExplorer']['shortDescription']}</p>
               </div>
             </div>
           </a>
         </div>
         <div class="segredoItem segredoPaisaxes col-lg-4 col-sm-6">
-          <a href="/{$cogumelo.publicConf.C_LANG}/paisaxes-espectaculares">
+          <a href="{$explorersInfo['paisaxesExplorer']['url']}">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="{$cogumelo.publicConf.media}/img/paisaxes.png">
               <div class="info">
-                <h3>{t}Paisaxes espectaculares{/t}</h3>
-                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+                <h3>{$explorersInfo['paisaxesExplorer']['title']}</h3>
+                <p>{$explorersInfo['paisaxesExplorer']['shortDescription']}</p>
               </div>
             </div>
           </a>
         </div>
         <div class="segredoItem segredoPraias col-lg-4 col-sm-6">
-          <a href="/{$cogumelo.publicConf.C_LANG}/praias-ensono">
+          <a href="{$explorersInfo['praiasExplorer']['url']}">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="{$cogumelo.publicConf.media}/img/praias.png">
               <div class="info">
-                <h3>{t}Praias de ensono{/t}</h3>
-                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+                <h3>{$explorersInfo['praiasExplorer']['title']}</h3>
+                <p>{$explorersInfo['praiasExplorer']['shortDescription']}</p>
               </div>
             </div>
           </a>
         </div>
         <div class="segredoItem segredoXantares col-lg-4 col-sm-6">
-          <a href="/{$cogumelo.publicConf.C_LANG}/sabrosos-xantares">
+          <a href="{$explorersInfo['xantaresExplorer']['url']}">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="{$cogumelo.publicConf.media}/img/xantares.png">
               <div class="info">
-                <h3>{t}Sabrosos xantares{/t}</h3>
-                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+                <h3>{$explorersInfo['xantaresExplorer']['title']}</h3>
+                <p>{$explorersInfo['xantaresExplorer']['shortDescription']}</p>
               </div>
             </div>
           </a>
         </div>
         <div class="segredoItem segredoAloxamentos col-lg-4 col-sm-6">
-          <a href="/{$cogumelo.publicConf.C_LANG}/aloxamentos-con-encanto">
+          <a href="{$explorersInfo['aloxamentosExplorer']['url']}">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="{$cogumelo.publicConf.media}/img/aloxamentos.png">
               <div class="info">
-                <h3>{t}Aloxamentos con encanto{/t}</h3>
-                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+                <h3>{$explorersInfo['aloxamentosExplorer']['title']}</h3>
+                <p>{$explorersInfo['aloxamentosExplorer']['shortDescription']}</p>
               </div>
             </div>
           </a>
         </div>
         <div class="segredoItem segredoFestas col-lg-4 col-sm-6">
-          <a href="#">
+          <a href="{$explorersInfo['festasExplorer']['url']}">
             <div class="segredoItemImg">
               <div class="icon"></div>
               <div class="trama"></div>
               <img class="img-responsive" src="{$cogumelo.publicConf.media}/img/festas.png">
               <div class="info">
-                <h3>{t}Festas{/t}</h3>
-                <p>Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum nibh sollicitudin eu. Nunc rutrum tellus nec leo suscipit, id consectetur mauris gravida</p>
+                <h3>{$explorersInfo['festasExplorer']['title']}</h3>
+                <p>{$explorersInfo['festasExplorer']['shortDescription']}</p>
               </div>
             </div>
           </a>
         </div>
       </div>
-      <a class="segredosAll" href="/{$cogumelo.publicConf.C_LANG}/segredos">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
+      <a class="segredosAll" href="{$explorersInfo['segredosExplorer']['url']}">{t}Descúbreos todos xuntos{/t} <i class="fa fa-long-arrow-right"></i></a>
     </div>
   </section>
 
