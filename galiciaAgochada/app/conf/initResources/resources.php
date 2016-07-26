@@ -1,122 +1,122 @@
 <?php
 $initResources = array(
   array(
-      'version' =>'Cogumelo#1.0',
-      'executeOnGenerateModelToo' => true,
-      'idName' => 'home',
-      'rType' => 'rtypePage',
-      'title' => array(
-        'en' => 'Home',
-        'es' => 'Portada',
-        'gl' => 'Portada'
-      ),
-      'shortDescription' => array(
-        'en' => 'From Lapamán sunsets to Saiáns sights Walking by the best bars in Galicia',
-        'es' => 'De las puestas de sol en Lapamán a las vistas de Saiáns Ruta por los mejores chiringuitos de Galicia',
-        'gl' => 'Das postas do sol en Lapamán ás vistas de Saiáns Ruta polos mellores chiringuitos de Galicia'
-      ),
-      'img' => 'default.jpg',
-      'viewType' => 'viewAppHome',
-      'urlAlias' => array(
-        'en' => '/',
-        'es' => '/',
-        'gl' => '/'
-      )
+    'version' =>'Cogumelo#1.0',
+    'executeOnGenerateModelToo' => true,
+    'idName' => 'home',
+    'rType' => 'rtypePage',
+    'title' => array(
+      'en' => 'Home',
+      'es' => 'Portada',
+      'gl' => 'Portada'
+    ),
+    'shortDescription' => array(
+      'en' => 'From Lapamán sunsets to Saiáns sights Walking by the best bars in Galicia',
+      'es' => 'De las puestas de sol en Lapamán a las vistas de Saiáns Ruta por los mejores chiringuitos de Galicia',
+      'gl' => 'Das postas do sol en Lapamán ás vistas de Saiáns Ruta polos mellores chiringuitos de Galicia'
+    ),
+    'img' => 'default.jpg',
+    'viewType' => 'viewAppHome',
+    'urlAlias' => array(
+      'en' => '/',
+      'es' => '/',
+      'gl' => '/'
+    )
   ),
   array(
-      'version' =>'Cogumelo#1.0',
-      'executeOnGenerateModelToo' => true,
-      'idName' => 'xantaresExplorer',
-      'rType' => 'rtypePage',
-      'title' => array(
-        'en' => 'Tasty meals',
-        'es' => 'Sabrosas comidas',
-        'gl' => 'Sabrosos xantares'
-      ),
-      'shortDescription' => array(),
-      'img' => false,
-      'viewType' => 'viewAppXantaresExplorer',
-      'urlAlias' => array(
-        'en' => '/tasty-meals',
-        'es' => '/sabrosas-comidas',
-        'gl' => '/sabrosos-xantares'
-      )
+    'version' =>'Cogumelo#1.0',
+    'executeOnGenerateModelToo' => true,
+    'idName' => 'xantaresExplorer',
+    'rType' => 'rtypePage',
+    'title' => array(
+      'en' => 'Tasty meals',
+      'es' => 'Sabrosas comidas',
+      'gl' => 'Sabrosos xantares'
+    ),
+    'shortDescription' => array(),
+    'img' => false,
+    'viewType' => 'viewAppXantaresExplorer',
+    'urlAlias' => array(
+      'en' => '/tasty-meals',
+      'es' => '/sabrosas-comidas',
+      'gl' => '/sabrosos-xantares'
+    )
   ),
   array(
-      'version' =>'Cogumelo#1.0',
-      'executeOnGenerateModelToo' => true,
-      'idName' => 'aloxamentosExplorer',
-      'rType' => 'rtypePage',
-      'title' => array(
-        'en' => 'Charming accommodations',
-        'es' => 'Alojamientos con encanto',
-        'gl' => 'Aloxamentos con encanto'
-      ),
-      'shortDescription' => array(),
-      'img' => false,
-      'viewType' => 'viewAppAloxamentosExplorer',
-      'urlAlias' => array(
-        'en' => '/charming-accommodations',
-        'es' => '/alojamientos-con-encanto',
-        'gl' => '/aloxamentos-con-encanto'
-      )
+    'version' =>'Cogumelo#1.0',
+    'executeOnGenerateModelToo' => true,
+    'idName' => 'aloxamentosExplorer',
+    'rType' => 'rtypePage',
+    'title' => array(
+      'en' => 'Charming accommodations',
+      'es' => 'Alojamientos con encanto',
+      'gl' => 'Aloxamentos con encanto'
+    ),
+    'shortDescription' => array(),
+    'img' => false,
+    'viewType' => 'viewAppAloxamentosExplorer',
+    'urlAlias' => array(
+      'en' => '/charming-accommodations',
+      'es' => '/alojamientos-con-encanto',
+      'gl' => '/aloxamentos-con-encanto'
+    )
   ),
   array(
-      'version' =>'Cogumelo#1.0',
-      'executeOnGenerateModelToo' => true,
-      'idName' => 'rinconsExplorer',
-      'rType' => 'rtypePage',
-      'title' => array(
-        'en' => 'Charming spots',
-        'es' => 'Rincones con encanto',
-        'gl' => 'Rincons con encanto'
-      ),
-      'shortDescription' => array(),
-      'img' => false,
-      'viewType' => 'viewAppRinconsExplorer',
-      'urlAlias' => array(
-        'en' => '/charming-spots',
-        'es' => '/rincones-con-encanto',
-        'gl' => '/rincons-con-encanto'
-      )
+    'version' =>'Cogumelo#1.0',
+    'executeOnGenerateModelToo' => true,
+    'idName' => 'rinconsExplorer',
+    'rType' => 'rtypePage',
+    'title' => array(
+      'en' => 'Charming spots',
+      'es' => 'Rincones con encanto',
+      'gl' => 'Rincons con encanto'
+    ),
+    'shortDescription' => array(),
+    'img' => false,
+    'viewType' => 'viewAppRinconsExplorer',
+    'urlAlias' => array(
+      'en' => '/charming-spots',
+      'es' => '/rincones-con-encanto',
+      'gl' => '/rincons-con-encanto'
+    )
   ),
   array(
-      'version' =>'Cogumelo#1.0',
-      'executeOnGenerateModelToo' => true,
-      'idName' => 'praiasExplorer',
-      'rType' => 'rtypePage',
-      'title' => array(
-        'en' => 'Dreamlike beaches',
-        'es' => 'Playas de ensueño',
-        'gl' => 'Praias de ensono'
-      ),
-      'shortDescription' => array(),
-      'img' => false,
-      'viewType' => 'viewAppPraiasExplorer',
-      'urlAlias' => array(
-        'en' => '/dreamlike-beaches',
-        'es' => '/playas-ensueño',
-        'gl' => '/praias-ensono'
-      )
+    'version' =>'Cogumelo#1.0',
+    'executeOnGenerateModelToo' => true,
+    'idName' => 'praiasExplorer',
+    'rType' => 'rtypePage',
+    'title' => array(
+      'en' => 'Dreamlike beaches',
+      'es' => 'Playas de ensueño',
+      'gl' => 'Praias de ensono'
+    ),
+    'shortDescription' => array(),
+    'img' => false,
+    'viewType' => 'viewAppPraiasExplorer',
+    'urlAlias' => array(
+      'en' => '/dreamlike-beaches',
+      'es' => '/playas-ensueño',
+      'gl' => '/praias-ensono'
+    )
   ),
   array(
-      'version' =>'Cogumelo#1.0',
-      'executeOnGenerateModelToo' => true,
-      'idName' => 'paisaxesExplorer',
-      'rType' => 'rtypePage',
-      'title' => array(
-        'en' => 'Spectacular landscapes',
-        'es' => 'Paisajes Espectaculares',
-        'gl' => 'Paisaxes Espectaculares'
-      ),
-      'shortDescription' => array(),
-      'img' => false,
-      'viewType' => 'viewAppPaisaxesExplorer',
-      'urlAlias' => array(
-        'en' => '/spectacular-landscapes',
-        'es' => '/paisajes-espectaculares',
-        'gl' => '/paisaxes-espectaculares'
-      )
+    'version' =>'Cogumelo#1.0',
+    'executeOnGenerateModelToo' => true,
+    'idName' => 'paisaxesExplorer',
+    'rType' => 'rtypePage',
+    'title' => array(
+      'en' => 'Spectacular landscapes',
+      'es' => 'Paisajes Espectaculares',
+      'gl' => 'Paisaxes Espectaculares'
+    ),
+    'shortDescription' => array(),
+    'img' => false,
+    'viewType' => 'viewAppPaisaxesExplorer',
+    'urlAlias' => array(
+      'en' => '/spectacular-landscapes',
+      'es' => '/paisajes-espectaculares',
+      'gl' => '/paisaxes-espectaculares'
+    )
   ),
   array(
     'version' =>'Cogumelo#1.0',

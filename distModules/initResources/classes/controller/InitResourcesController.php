@@ -7,21 +7,14 @@ geozzy::load('model/ResourceModel.php');
 
 class InitResourcesController{
 
-  public function __construct(){
-
+  public function __construct() {
   }
 
-  public function generateResources( $isFirstGenerateModel = false ){
 
-
-
+  public function generateResources( $isFirstGenerateModel = false ) {
     include(APP_BASE_PATH.'/conf/initResources/resources.php');
 
-
-
-
     foreach( $initResources as $initRes ) {
-
       if( preg_match( '#^(.*)\#(\d{1,10}(.\d{1,10})?)#', $initRes['version'], $matches ) ) {
         $deployModuleName = $matches[1];
 
@@ -31,29 +24,28 @@ class InitResourcesController{
         $deployModuleVersion = (float) $matches[2];
 
         if( class_exists( $deployModuleName ) ) {
-
-          if( $isFirstGenerateModel === true && isset( $initRes['executeOnGenerateModelToo']) && $initRes['executeOnGenerateModelToo'] === true){
-            $this->generateResource($initRes);
-
+          if( $isFirstGenerateModel === true
+            && isset( $initRes['executeOnGenerateModelToo'])
+            && $initRes['executeOnGenerateModelToo'] === true )
+          {
+            $this->generateResource( $initRes );
           }
-          else if( $deployModuleVersion > $registeredModuleVersion  &&  $deployModuleVersion <= $currentModuleVersion )  {
-
-            $this->generateResource($initRes);
+          elseif( $deployModuleVersion > $registeredModuleVersion
+            &&  $deployModuleVersion <= $currentModuleVersion )
+          {
+            $this->generateResource( $initRes );
           }
         }
-
       }
     }
 
     echo 'Base resources created';
-
   }
 
 
 
 
-  public function generateResource($initRes){
-
+  public function generateResource( $initRes ) {
     $resourcecontrol = new ResourceController();
     $resourceType = new ResourcetypeModel();
     $fileControl = new FiledataController();
@@ -62,11 +54,16 @@ class InitResourcesController{
 
     // Tipo e recurso base
     $rtypeIdName = $initRes['rType'];
-    $rType = $resourceType->listItems(array('filters' => array('idName'=>$rtypeIdName)))->fetch();
+    $rType = $resourceType->listItems( array('filters' => array('idName'=>$rtypeIdName)) )->fetch();
 
     $timeCreation = date( "Y-m-d H:i:s", time() );
 
-    $resData = array( 'rTypeId'=>$rType->getter('id'), 'published' => 1, 'timeCreation' => $timeCreation );
+    $resData = array(
+      'idName' => $initRes['idName'],
+      'rTypeId' => $rType->getter('id'),
+      'published' => 1,
+      'timeCreation' => $timeCreation
+    );
 
     // Campos multiidioma: título e descripción
     foreach( Cogumelo::getSetupValue('lang:available') as $key => $lang ) {
@@ -79,7 +76,7 @@ class InitResourcesController{
     }
 
     // creamos o recurso
-    $resource = new ResourceModel($resData);
+    $resource = new ResourceModel( $resData );
     $resource->save();
 
     // Unha vez creado o recurso, creamos as súas relacións
@@ -113,7 +110,7 @@ class InitResourcesController{
     //urlAlias multiidioma
     foreach( Cogumelo::getSetupValue('lang:available') as $key => $lang ) {
       if( isset( $initRes['urlAlias'][$key] ) ) {
-        $resourcecontrol->setUrl($resource->getter('id'), $key, $initRes['urlAlias'][$key]);
+        $resourcecontrol->setUrl( $resource->getter('id'), $key, $initRes['urlAlias'][$key] );
       }
     }
   }

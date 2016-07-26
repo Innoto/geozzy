@@ -13,6 +13,10 @@ class ResourceModel extends Model {
       'primarykey' => true,
       'autoincrement' => true
     ),
+    'idName' => array(
+      'type' => 'VARCHAR',
+      'size' => 100
+    ),
     'rTypeId' => array(
       'type'=>'FOREIGN',
       'vo' => 'ResourcetypeModel',
@@ -100,6 +104,13 @@ class ResourceModel extends Model {
 
   var $deploySQL = array(
     array(
+      'version' => 'geozzy#1.6',
+      'sql'=> '
+        ALTER TABLE geozzy_resource
+        ADD COLUMN idName VARCHAR(100) NULL AFTER id
+      '
+    ),
+    array(
       'version' => 'geozzy#1.4',
       'sql'=> '
         ALTER TABLE geozzy_resource
@@ -123,6 +134,8 @@ class ResourceModel extends Model {
     'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
     'ids' => ' geozzy_resource.id IN (?) ',
     'inId' => ' geozzy_resource.id IN (?) ',
+    'inIdName' => ' geozzy_resource.idName IN (?) ',
+    'idNameIn' => ' geozzy_resource.idName IN (?) ',
     'notInId' => ' geozzy_resource.id NOT IN (?) ',
     'updatedfrom' => ' ( geozzy_resource.timeCreation >= ? OR geozzy_resource.timeLastUpdate >= ? ) '
   );
