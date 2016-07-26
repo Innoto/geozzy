@@ -1110,8 +1110,8 @@ class ResourceController {
   private function sanitizeUrl( $url ) {
     // "Aplanamos" caracteres no ASCII7
     $url = str_replace( $this->urlTranslate[ 'from' ], $this->urlTranslate[ 'to' ], $url );
-    // Solo admintimos a-z A-Z 0-9 _ - / El resto pasan a ser -
-    $url = preg_replace( '/[^\w-\/]/', '-', $url );
+    // Solo admintimos a-z A-Z 0-9 - / El resto pasan a ser -
+    $url = preg_replace( '/[^a-z0-9\-\/]/i', '-', $url );
     // Eliminamos - sobrantes
     $url = preg_replace( '/--+/', '-', $url );
     $url = preg_replace( '/-*\/-*/', '/', $url );
