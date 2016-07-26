@@ -40,7 +40,7 @@ class AdminViewComment extends AdminViewMaster {
     table::autoIncludes();
     $commentModel =  new CommentModel();
     $tabla = new TableController( $commentModel );
-    $tabla->setTabs(__('published'), array('1'=>__('Published'), '0'=>__('Unpublished') ), '0');
+    $tabla->setTabs('published', array('1'=>__('Published'), '0'=>__('Unpublished') ), '0');
 
     // set id search reference.
     $tabla->setSearchRefId('find');
@@ -115,7 +115,7 @@ class AdminViewComment extends AdminViewMaster {
     table::autoIncludes();
     $commentModel =  new CommentModel();
     $tabla = new TableController( $commentModel );
-    $tabla->setTabs(__('published'), array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
+    $tabla->setTabs( 'published' , array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
     // set id search reference.
     $tabla->setSearchRefId('find');
