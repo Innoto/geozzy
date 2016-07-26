@@ -1249,7 +1249,15 @@ class ResourceController {
   }
 
 
-  // Obtiene la url del recurso en el idioma especificado y sino, en el idioma actual
+
+  /**
+   * Get resource URL
+   *
+   * @param $resId integer|string Id o IdName del recurso
+   * @param $lang string Idioma
+   *
+   * @return string
+   */
   public function getUrlAlias( $resId, $lang = false ) {
     $urlAlias = false;
 
@@ -1258,17 +1266,21 @@ class ResourceController {
       $lang = $C_LANG;
     }
 
-    $urlAliasModel = new UrlAliasModel();
+    $filters = array( 'lang' => $lang );
 
-    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array(
-      'canonical' => 1,
-      'resource' => $resId,
-      'lang' => ( $lang ) ? $lang : $C_LANG
-    )));
+    if( is_int( $resId ) ) {
+      $filters['resource'] = $resId;
+    }
+    else {
+      $filters['resourceIdName'] = $resId;
+    }
 
-    $urlAliasObj = ( $urlAliasList ) ? $urlAliasList->fetch() : false;
-    if( $urlAliasObj ) {
-      $urlAlias = '/'.$lang.$urlAliasObj->getter('urlFrom');
+    $urlModel = new UrlAliasResourceViewModel();
+    $urlList = $urlModel->listItems( array( 'filters' => $filters ));
+
+    $urlObj = ( $urlList ) ? $urlList->fetch() : false;
+    if( $urlObj ) {
+      $urlAlias = '/'.$lang.$urlObj->getter('urlFrom');
     }
     else {
       $urlAlias = '/'.$lang.'/'.Cogumelo::getSetupValue( 'mod:geozzy:resource:directUrl' ).'/'.$resId;
