@@ -5,6 +5,8 @@ Cogumelo::load('coreModel/Model.php');
 
 class UrlAliasResourceViewModel extends Model {
 
+  var $notCreateDBTable = true; // Es una vista
+
   static $tableName = 'geozzy_url_alias_resource_view';
 
   static $cols = array(
@@ -31,14 +33,11 @@ class UrlAliasResourceViewModel extends Model {
       'default' => 0
     ),
     'rTypeId' => array(
-      'type' => 'INT',
-      'primarykey' => true,
-      'autoincrement' => true
+      'type' => 'INT'
     ),
     'rTypeIdName' => array(
       'type' => 'VARCHAR',
-      'size' => 45,
-      'unique' => true
+      'size' => 45
     ),
     'timeCreation' => array(
       'type' => 'DATETIME'
