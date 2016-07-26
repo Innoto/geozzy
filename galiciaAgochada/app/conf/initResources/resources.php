@@ -6,9 +6,9 @@ $initResources = array(
       'idName' => 'home',
       'rType' => 'rtypePage',
       'title' => array(
-        'en' => 'Use Home',
-        'es' => 'Usar Portada',
-        'gl' => 'Usar Portada'
+        'en' => 'Home',
+        'es' => 'Portada',
+        'gl' => 'Portada'
       ),
       'shortDescription' => array(
         'en' => 'From Lapamán sunsets to Saiáns sights Walking by the best bars in Galicia',
@@ -29,16 +29,16 @@ $initResources = array(
       'idName' => 'xantaresExplorer',
       'rType' => 'rtypePage',
       'title' => array(
-        'en' => 'Xantares Explorer',
-        'es' => 'Explorador de Xantares',
-        'gl' => 'Usar Explorador de Xantares'
+        'en' => 'Tasty meals',
+        'es' => 'Sabrosas comidas',
+        'gl' => 'Sabrosos xantares'
       ),
       'shortDescription' => array(),
       'img' => false,
       'viewType' => 'viewAppXantaresExplorer',
       'urlAlias' => array(
-        'en' => '/sabrosos-xantares',
-        'es' => '/sabrosos-xantares',
+        'en' => '/tasty-meals',
+        'es' => '/sabrosas-comidas',
         'gl' => '/sabrosos-xantares'
       )
   ),
@@ -48,16 +48,16 @@ $initResources = array(
       'idName' => 'aloxamentosExplorer',
       'rType' => 'rtypePage',
       'title' => array(
-        'en' => 'Aloxamentos Explorer',
-        'es' => 'Explorador de Aloxamentos',
-        'gl' => 'Usar Explorador de Aloxamentos'
+        'en' => 'Charming accommodations',
+        'es' => 'Alojamientos con encanto',
+        'gl' => 'Aloxamentos con encanto'
       ),
       'shortDescription' => array(),
       'img' => false,
       'viewType' => 'viewAppAloxamentosExplorer',
       'urlAlias' => array(
-        'en' => '/aloxamentos-con-encanto',
-        'es' => '/aloxamentos-con-encanto',
+        'en' => '/charming-accommodations',
+        'es' => '/alojamientos-con-encanto',
         'gl' => '/aloxamentos-con-encanto'
       )
   ),
@@ -67,16 +67,16 @@ $initResources = array(
       'idName' => 'rinconsExplorer',
       'rType' => 'rtypePage',
       'title' => array(
-        'en' => 'Use Rincons Explorer',
-        'es' => 'Usar Explorador de Rincons',
-        'gl' => 'Usar Explorador de Rincons'
+        'en' => 'Charming spots',
+        'es' => 'Rincones con encanto',
+        'gl' => 'Rincons con encanto'
       ),
       'shortDescription' => array(),
       'img' => false,
       'viewType' => 'viewAppRinconsExplorer',
       'urlAlias' => array(
-        'en' => '/rincons-con-encanto',
-        'es' => '/rincons-con-encanto',
+        'en' => '/charming-spots',
+        'es' => '/rincones-con-encanto',
         'gl' => '/rincons-con-encanto'
       )
   ),
@@ -86,16 +86,16 @@ $initResources = array(
       'idName' => 'praiasExplorer',
       'rType' => 'rtypePage',
       'title' => array(
-        'en' => 'Use Praias Explorer',
-        'es' => 'Usar Explorador de Praias',
-        'gl' => 'Usar Explorador de Praias'
+        'en' => 'Dreamlike beaches',
+        'es' => 'Playas de ensueño',
+        'gl' => 'Praias de ensono'
       ),
       'shortDescription' => array(),
       'img' => false,
       'viewType' => 'viewAppPraiasExplorer',
       'urlAlias' => array(
-        'en' => '/praias-ensono',
-        'es' => '/praias-ensono',
+        'en' => '/dreamlike-beaches',
+        'es' => '/playas-ensueño',
         'gl' => '/praias-ensono'
       )
   ),
@@ -105,16 +105,16 @@ $initResources = array(
       'idName' => 'paisaxesExplorer',
       'rType' => 'rtypePage',
       'title' => array(
-        'en' => 'Use Paisaxes Explorer',
-        'es' => 'Usar Explorador de Paisaxes',
-        'gl' => 'Usar Explorador de Paisaxes'
+        'en' => 'Spectacular landscapes',
+        'es' => 'Paisajes Espectaculares',
+        'gl' => 'Paisaxes Espectaculares'
       ),
       'shortDescription' => array(),
       'img' => false,
       'viewType' => 'viewAppPaisaxesExplorer',
       'urlAlias' => array(
-        'en' => '/paisaxes-espectaculares',
-        'es' => '/paisaxes-espectaculares',
+        'en' => '/spectacular-landscapes',
+        'es' => '/paisajes-espectaculares',
         'gl' => '/paisaxes-espectaculares'
       )
   ),
@@ -124,17 +124,17 @@ $initResources = array(
     'idName' => 'segredosExplorer',
     'rType' => 'rtypePage',
     'title' => array(
-      'en' => 'Use Segredos Explorer',
-      'es' => 'Usar Explorador de Segredos',
-      'gl' => 'Usar Explorador de Segredos'
+      'en' => 'Discover them all togheter',
+      'es' => 'Descúbrelos todos juntos',
+      'gl' => 'Descúbreos todos xuntos'
     ),
     'shortDescription' => array(),
     'img' => false,
     'viewType' => 'viewAppTodosSegredosExplorer',
     'urlAlias' => array(
-      'en' => '/segredos',
-      'es' => '/segredos',
-      'gl' => '/segredos'
+      'en' => '/discover',
+      'es' => '/descubrelos',
+      'gl' => '/descubreos'
     )
   )
 );
