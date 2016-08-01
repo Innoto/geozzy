@@ -71,9 +71,9 @@ class explorer extends Module {
 
   public function __construct() {
     $this->addUrlPatterns( '#^api/explorer/(.*)#', 'view:ExplorerAPIView::explorer' );
-    $this->addUrlPatterns( '#^api/explorer.json#', 'view:ExplorerAPIView::explorerJson' ); // Main swagger JSON
+    $this->addUrlPatterns( '#^api/doc/explorer.json#', 'view:ExplorerAPIView::explorerJson' ); // Main swagger JSON
     $this->addUrlPatterns( '#^api/explorerList$#', 'view:ExplorerAPIView::explorerList' );
-    $this->addUrlPatterns( '#^api/explorerList.json$#', 'view:ExplorerAPIView::explorerListJson' ); // Main swagger JSON
+    $this->addUrlPatterns( '#^api/doc/explorerList.json$#', 'view:ExplorerAPIView::explorerListJson' ); // Main swagger JSON
   }
 
 }
