@@ -184,7 +184,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     google.maps.event.addListener( that.options.map, 'idle', function() {
 
       if( !that.grafico ) {
-        var chartString = "step," + __('Altitude') +"\n";
+        var chartString = "step,"+__('Altitude')+"\n";
         $.each( route.get('trackPoints'), function(i,e){
             chartString += i + "," + e[2] + "\n";
         });
@@ -205,6 +205,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
             fillAlpha: 0.6,
             drawXGrid: true,
             drawYGrid: true,
+
+
+            highlightCircleSize: 5,
+            drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
 
             axisLabelColor: 'white',
             axisLineColor: 'white',
@@ -379,10 +383,4 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     }
 
   }
-
-
-
-
-
-
 });
