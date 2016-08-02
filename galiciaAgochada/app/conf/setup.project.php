@@ -57,6 +57,12 @@ cogumeloSetSetupValue( 'lang', array(
 //
 cogumeloSetSetupValue( 'urlAliasController:classFile', COGUMELO_DIST_LOCATION.'/distModules/geozzy/classes/controller/UrlAliasController.php' );
 
+//
+// Error404 en una URL.
+//   View = View que se muestra como aviso del error
+//
+cogumeloSetSetupValue( 'urlError404:view', 'MasterView::page404' );
+
 
 //
 //  Module load

@@ -51,6 +51,8 @@ class UrlAliasController {
       }
     }
 
+    // error_log( '(Notice) UrlAliasController::getAlternative urlFrom='.$urlFrom.' Alternative='.json_encode($alternative) );
+
     return $alternative;
   }
 
