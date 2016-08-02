@@ -215,16 +215,20 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
             axes: {
               x: {
-                drawAxis: true,
-                axisLabelFormatter: function(x) {
-                    return null;
-                }
+                  axisLabelFormatter: function (x) {
+                      return '';
+                  },
+                  valueFormatter: function (x) {
+                      return '';
+                  }
               },
               y: {
-                drawAxis: true,
-                axisLabelFormatter: function(x) {
-                    return null;
-                }
+                 axisLabelFormatter: function (y) {
+                     return '<b>' + y  + ' m </b>';
+                 },
+                 valueFormatter: function (y) {
+                     return '<b>' + y  + ' m </b>';
+                 }
               }
             }
           }
