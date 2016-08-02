@@ -89,6 +89,13 @@
 </div>
 
 <style>
+  .dygraph-legend {
+    background-color: #fff !important;
+    padding: 3px;
+    border: 0;
+    border-radius: 3px;
+    /*box-shadow: 4px 4px 4px #888;*/
+  }
   .resourceRouteGraphContainer {
     border-radius: 4px;
     cursor:pointer;

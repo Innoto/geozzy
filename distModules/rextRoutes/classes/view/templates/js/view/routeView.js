@@ -184,7 +184,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     google.maps.event.addListener( that.options.map, 'idle', function() {
 
       if( !that.grafico ) {
-        var chartString = "step,Altitude\n";
+        var chartString = "step," + __('Altitude') +"\n";
         $.each( route.get('trackPoints'), function(i,e){
             chartString += i + "," + e[2] + "\n";
         });
@@ -212,7 +212,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
             colors: ["#EF7C1F"],
             axisLabelFontSize: 12,
             hideOverlayOnMouseOut: true,
-
+            legend: 'follow',
             axes: {
               x: {
                   axisLabelFormatter: function (x) {
