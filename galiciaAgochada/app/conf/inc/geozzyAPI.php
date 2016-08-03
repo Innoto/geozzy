@@ -30,6 +30,14 @@ if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( arr
     array(
       'path' => '/admin/adminCommentSuggestion.json',
       'description' => 'Admin Comments and Suggestions'
+    ),
+    array(
+      'path' => '/admin/adminStories.json',
+      'description' => 'Admin Stories'
+    ),
+    array(
+      'path' => '/admin/adminStorySteps.json',
+      'description' => 'Admin Story Steps'
     )
   );
 }

@@ -48,7 +48,14 @@
           <li class="pages">
             <a href="/admin#resourcepage/list"><i class="fa fa-files-o fa-fw"></i> {t}Pages{/t} </a>
           </li>
+          {if isset($rextStoryInclude)}
+            <li class="stories">
+              <a href="/admin#storysteps"><i class="fa fa-eye fa-fw" aria-hidden="true"></i> {t}Stories{/t}<span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level storiesList">
 
+              </ul>
+            </li>
+          {/if}
           <li class="starred">
             <a href="/admin#starred"><i class="fa fa-star fa-fw"></i> {t}Starred{/t} <span class="fa arrow"></span></a>
               <ul class="nav nav-second-level starredList">

@@ -190,7 +190,19 @@ class ResourceModel extends Model {
     return true;
   }
 
+  /**
+   * Create relation between resource and starred taxonomy
+   *
+   * @return boolean
+   */
+  public function createCollectionRelation( $collectionId, $resourceId ) {
+    //$this->dataFacade->transactionStart();
+    $resourcecollection =  new CollectionResourcesModel(array("resource" => $resourceId, "collection" => $collectionId));
+    $resourcecollection->save();
+    //$this->dataFacade->transactionEnd();
 
+    return true;
+  }
 
 
 

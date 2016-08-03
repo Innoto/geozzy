@@ -112,7 +112,9 @@ $C_REXT_MODULES = array(
   'rextFavourite',
   'rextRoutes',
   'rextReccommended',
-  'rextAudioguide'
+  'rextAudioguide',
+  'rextStoryStep',
+  'rextStory'
 );
 
 // resource Types
@@ -130,7 +132,9 @@ $C_RTYPE_MODULES = array(
   'rtypeAppUser',
   'rtypeFavourites',
   'rtypePoi',
-  'rtypeEvent'
+  'rtypeEvent',
+  'rtypeStory',
+  'rtypeStoryStep'
 );
 
 
@@ -170,6 +174,8 @@ $C_INDEX_MODULES  = array(
   'rextFavourite',
   'rtypeEvent',
   'rtypePoi',
+  'rtypeStory',
+  'rtypeStoryStep',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 
@@ -180,9 +186,11 @@ $C_INDEX_MODULES  = array(
 cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes', array(
   'rtypeUrl',
   'rtypePage',
+  'rtypeStory',
   'rtypeFavourites',
   'rtypeFile',
-  'rtypeEvent'
+  'rtypeEvent',
+  'rtypePoi'
 ));
 
 
@@ -306,7 +314,7 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
 
 
 //
-//
+// Tipo de recurso permitido en colecciones de cada tipo de recurso
 //
 cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
   array(
@@ -314,42 +322,56 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
       'multimedia' => array('rtypeUrl', 'rtypeFile'),
       'eventos' => array('rtypeEvent'),
       'poi' => array('rtypePoi'),
+      'pasos' => array(),
       'base' => array()
     ),
     'rtypeAppHotel' => array(
       'multimedia' => array(),
       'eventos' => array('rtypeEvent'),
       'poi' => array(),
+      'pasos' => array(),
       'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
     ),
     'rtypeAppRestaurant' => array(
       'multimedia' => array(),
       'eventos' => array('rtypeEvent'),
       'poi' => array(),
+      'pasos' => array(),
       'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
     ),
     'rtypeAppEspazoNatural' => array(
       'multimedia' => array(),
       'eventos' => array(),
       'poi' => array('rtypePoi'),
+      'pasos' => array(),
       'base' => array()
     ),
     'rtypeAppLugar' => array(
       'multimedia' => array(),
       'eventos' => array(),
       'poi' => array(),
+      'pasos' => array(),
       'base' => array()
     ),
     'rtypeAppFesta' => array(
       'multimedia' => array(),
       'eventos' => array('rtypeAppFesta', 'rtypeEvent'),
       'poi' => array(),
+      'pasos' => array(),
       'base' => array()
     ),
     'rtypeAppRuta' => array(
       'multimedia' => array(),
       'eventos' => array(),
       'poi' => array('rtypePoi'),
+      'pasos' => array(),
+      'base' => array()
+    ),
+    'rtypeStory' => array(
+      'multimedia' => array(),
+      'eventos' => array(),
+      'poi' => array(),
+      'pasos' => array('rtypeStoryStep'),
       'base' => array()
     )
   )
