@@ -119,7 +119,7 @@ $C_REXT_MODULES = array(
   'rextRoutes',
   'rextReccommended',
   'rextStoryStep',
-  'rextStory'
+  'rextStory',
   //'rextParticipation',
   'rextAudioguide'
 );
