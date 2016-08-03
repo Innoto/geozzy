@@ -61,16 +61,16 @@ class TaxonomyViewModel extends Model {
           SELECT
             geozzy_taxonomyterm.id AS id,
             geozzy_taxonomyterm.idName AS idName,
-            geozzy_taxonomyterm.name_es AS name_es,
-            geozzy_taxonomyterm.name_gl AS name_gl,
-            geozzy_taxonomyterm.name_en AS name_en,
+
+            {multilang:geozzy_taxonomyterm.name_$lang AS name_$lang,}
+
+            {multilang:geozzy_taxonomygroup.name_$lang AS taxGroupName_$lang,}
+
             geozzy_taxonomyterm.weight AS weight,
             geozzy_taxonomyterm.icon AS icon,
             geozzy_taxonomyterm.taxgroup AS taxgroup,
-            geozzy_taxonomygroup.idName AS taxGroupIdName,
-            geozzy_taxonomygroup.name_es AS taxGroupName_es,
-            geozzy_taxonomygroup.name_gl AS taxGroupName_gl,
-            geozzy_taxonomygroup.name_en AS taxGroupName_en
+            geozzy_taxonomygroup.idName AS taxGroupIdName
+
           FROM `geozzy_taxonomygroup`
             JOIN `geozzy_taxonomyterm`
           WHERE geozzy_taxonomyterm.taxgroup = geozzy_taxonomygroup.id

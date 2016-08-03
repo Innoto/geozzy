@@ -157,15 +157,15 @@ class rextComment extends Module {
 
     // API publica de comentarios
     $this->addUrlPatterns( '#^api/(comments(/.*)?)$#', 'view:CommentAPIView::comments' );
-    $this->addUrlPatterns( '#^api/comments.json$#', 'view:CommentAPIView::commentsDescription' );
+    $this->addUrlPatterns( '#^api/doc/comments.json$#', 'view:CommentAPIView::commentsDescription' );
 
     // API de listado de comentarios
     $this->addUrlPatterns( '#^api/comment/list/(.*)$#', 'view:CommentAPIView::commentList' );
-    $this->addUrlPatterns( '#^api/commentList.json$#', 'view:CommentAPIView::commentListDescription' );
+    $this->addUrlPatterns( '#^api/doc/commentList.json$#', 'view:CommentAPIView::commentListDescription' );
 
     // API de administracion de comentarios
     $this->addUrlPatterns( '#^api/admin/commentsuggestion/(.*)$#', 'view:CommentAdminAPIView::commentsSuggestions' );
-    $this->addUrlPatterns( '#^api/admin/adminCommentSuggestion.json$#', 'view:CommentAdminAPIView::commentsSuggestionsJson' );
+    $this->addUrlPatterns( '#^api/doc/admin/adminCommentSuggestion.json$#', 'view:CommentAdminAPIView::commentsSuggestionsJson' );
   }
 
 

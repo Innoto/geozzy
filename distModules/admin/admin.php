@@ -3,10 +3,11 @@
 Cogumelo::load("coreController/Module.php");
 
 
-class admin extends Module
-{
+class admin extends Module {
+
   public $name = "admin";
   public $version = 1.0;
+
   public $dependences = array(
     array(
      "id" =>"underscore",
@@ -208,17 +209,12 @@ class admin extends Module
 
     // data Admin API
     $this->addUrlPatterns( '#^api/admin/categoryterms(\?.*|\/.*)$#', 'view:AdminDataAPIView::categoryTerms' );
-    $this->addUrlPatterns( '#^api/admin/adminCategoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/doc/admin/adminCategoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
-    $this->addUrlPatterns( '#^api/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/doc/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/resourcesTerm/(.*)$#', 'view:AdminDataAPIView::resourcesTerm' );
-    $this->addUrlPatterns( '#^api/admin/adminResourcesTerm.json$#', 'view:AdminDataAPIView::resourcesTermJson' ); // Swagger
+    $this->addUrlPatterns( '#^api/doc/admin/adminResourcesTerm.json$#', 'view:AdminDataAPIView::resourcesTermJson' ); // Swagger
     $this->addUrlPatterns( '#^api/admin/starred$#', 'view:AdminDataAPIView::starred' );
-    $this->addUrlPatterns( '#^api/admin/adminStarred.json$#', 'view:AdminDataAPIView::starredJson' ); // Swagger
-
-
-
+    $this->addUrlPatterns( '#^api/doc/admin/adminStarred.json$#', 'view:AdminDataAPIView::starredJson' ); // Swagger
   }
-
-
 }

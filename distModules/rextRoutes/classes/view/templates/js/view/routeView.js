@@ -4,7 +4,7 @@ if(!geozzy.rextRoutes) geozzy.rextRoutes={};
 
 geozzy.rextRoutes.routeView = Backbone.View.extend({
 
-  trackCircle: false,
+  trackMarker: false,
   grafico: false,
   events: {
     //  "click .explorerListPager .next" : "nextPage"
@@ -15,10 +15,15 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var options = new Object({
       map: false,
       showGraph: false,
-      strokeColor: '#000',
-      strokeOpacity: 1,
-      strokeWeight: 3,
-      routeModel: false
+      strokeColor:  cogumelo.publicConf.rextRoutesConf.strokeColor,
+      strokeBorderColor: cogumelo.publicConf.rextRoutesConf.strokeBorderColor,
+      strokeOpacity: cogumelo.publicConf.rextRoutesConf.strokeOpacity,
+      strokeWeight: cogumelo.publicConf.rextRoutesConf.strokeWeight,
+      strokeBorderWeight: cogumelo.publicConf.rextRoutesConf.strokeBorderWeight,
+      routeModel: false,
+      markerStart: cogumelo.publicConf.rextRoutesConf.markerStart,
+      markerEnd: cogumelo.publicConf.rextRoutesConf.markerEnd,
+
 
       //tpl: geozzy.explorerComponents.routesViewTemplate ,
 
@@ -69,8 +74,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       position:  {lat: route.get('trackPoints')[0][0], lng: route.get('trackPoints')[0][1]},
       title: __('Route start'),
       icon: {
-        url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_start.png' ,
-        anchor: new google.maps.Point(16,16)
+        url: cogumelo.publicConf.media +  that.options.markerStart.img  , //'/module/rextRoutes/img/markerStart.png'
+        anchor: new google.maps.Point( that.options.markerStart.anchor[0], that.options.markerStart.anchor[1] ) // 3,40
       },
       map: that.options.map
     });
@@ -81,10 +86,9 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
         title: __('Route End'),
         icon: {
-          url: cogumelo.publicConf.media + '/module/rextRoutes/img/marker_finish.png' ,
-          anchor: new google.maps.Point(2,14)
-        }
-        ,
+          url: cogumelo.publicConf.media + that.options.markerEnd.img, //'/module/rextRoutes/img/markerEnd.png'
+          anchor: new google.maps.Point(  that.options.markerEnd.anchor[0],   that.options.markerEnd.anchor[1] ) //// 3,40
+        },
         map: that.options.map
       });
     }
@@ -94,30 +98,35 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       geodesic: true,
       strokeColor: that.options.strokeColor,
       strokeOpacity: that.options.strokeOpacity,
-      strokeWeight: that.options.strokeWeight
+      strokeWeight: that.options.strokeWeight,
+      zIndex:3
     });
 
     that.polylineBG1 = new google.maps.Polyline({
       path: routeData,
       geodesic: true,
       strokeOpacity: 0,
-      strokeWeight: 20
+      strokeWeight: 20,
+      zIndex:2
     });
 
     that.polylineBG2 = new google.maps.Polyline({
       path: routeData,
       geodesic: true,
-      strokeOpacity: 0,
-      strokeWeight: 10
+      strokeColor: that.options.strokeBorderColor,
+      strokeOpacity: that.options.strokeOpacity,
+      strokeWeight: that.options.strokeBorderWeight,
+      zIndex:1
     });
 
 
     that.mapRoute = routeMap;
-
+    that.polylineBG2.setMap( that.options.map );
+    that.polylineBG1.setMap( that.options.map );
     that.polyline.setMap( that.options.map );
 
-    that.polylineBG1.setMap( that.options.map );
-    that.polylineBG2.setMap( that.options.map );
+
+
 
 
 
@@ -149,14 +158,6 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       that.outRecorrido();
     });
 
-
-
-
-
-
-
-
-
   },
 
 
@@ -173,15 +174,9 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
     var controlUI = document.createElement('div');
-    //controlUI.style.backgroundColor = '#fff';
-    //controlUI.style.border = '2px solid #fff';
-    controlUI.style.cursor = 'pointer';
-    controlUI.style.marginBottom = '22px';
-    controlUI.style.width = '400px';
-    controlUI.style.height = '150px';
-    controlUI.style.textAlign = 'center';
     controlUI.title = 'Click to recenter the map';
-    controlUI.innerHTML = '<div id="graph" style="width:100%;height:150px;"></div>';
+    controlUI.className = 'resourceRouteGraphContainer';
+      controlUI.innerHTML = '<div class="resourceRouteGraphLegend" style="display:none;"></div><div class="resourceRouteGraph"></div>';
 
 
     that.options.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlUI);
@@ -189,23 +184,79 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     google.maps.event.addListener( that.options.map, 'idle', function() {
 
       if( !that.grafico ) {
-        var chartString = "step,Altitude\n";
+        var chartString = "step,"+__('Altitude')+"\n";
         $.each( route.get('trackPoints'), function(i,e){
             chartString += i + "," + e[2] + "\n";
         });
 
 
-        that.grafico = new Dygraph( document.getElementById("graph"),
-          chartString
+
+
+        that.grafico = new Dygraph( $(".resourceRouteGraph")[0] ,
+          chartString,
+
+
+          {
+            // options go here. See http://dygraphs.com/options.html
+            axisLineWidth: 2,
+
+            fillGraph: true,
+            strokeWidth: 2,
+            fillAlpha: 0.6,
+            drawXGrid: true,
+            drawYGrid: true,
+
+
+            highlightCircleSize: 5,
+            drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
+
+            axisLabelColor: 'white',
+            axisLineColor: 'white',
+            //labels:["step", "Altitude"],
+            colors: ["#EF7C1F"],
+            axisLabelFontSize: 12,
+            hideOverlayOnMouseOut: true,
+            legend: 'follow',
+            axes: {
+              x: {
+                  axisLabelFormatter: function (x) {
+                      return '';
+                  },
+                  valueFormatter: function (x) {
+                      return '';
+                  }
+              },
+              y: {
+                 axisLabelFormatter: function (y) {
+                     return '<b>' + y  + ' m </b>';
+                 },
+                 valueFormatter: function (y) {
+                     return '<b>' + y  + ' m </b>';
+                 }
+              }
+            },
+
+            highlightCallback: function(e, x, pts, row) {
+              $($(".resourceRouteGraphLegend")[0]).html(x+' m');
+              $($(".resourceRouteGraphLegend")[0]).show();
+            },
+
+            unhighlightCallback: function(e) {
+              $($(".resourceRouteGraphLegend")[0]).hide();
+            }
+
+
+          }
+
         );
 
         that.grafico.updateOptions( {
           annotationMouseOverHandler: function(annotation, point, dygraph, event) {
-              alert('')
+
           }
         });
 
-        $("#graph").mousemove(function(e) {
+        $($(".resourceRouteGraph")[0]).mousemove(function(e) {
             var seleccionado = that.grafico.getSelection();
             that.hoverRoute( seleccionado )
         }).mouseleave(function(e) {
@@ -259,39 +310,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
   outRecorrido: function( ) {
     var that = this;
 
-    if( that.trackCircle ) {
-      that.trackCircle.setMap(null);
+    if( that.trackMarker ) {
+      that.trackMarker.setMap(null);
     }
 
-  },
-
-
-  hoverRecorrido: function( id ) {
-    var that = this;
-    var route = that.options.routeModel;
-
-    //grafico.setSelection(id);
-    if(that.grafico) {
-      that.grafico.setSelection(id) ;
-    }
-
-
-    if( trackCircle ) {
-
-      trackCircle.setMap(null);
-    }
-    var scale = Math.pow(2, map.getZoom());
-
-
-
-    trackCircle = new google.maps.Circle({
-        center: {lat: route.trackPoints[id][0] , lng: route.get('trackPoints')[id][1]},
-        radius: 850000/scale,
-        strokeWeight:0,
-        fillColor: "#0000FF",
-        fillOpacity: 1,
-        map: map
-    });
   },
 
 
@@ -331,34 +353,45 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       that.grafico.setSelection(id) ;
     }
 
-    if( that.trackCircle ) {
-      that.trackCircle.setMap(null);
-    }
-
     var scale = Math.pow(2, map.getZoom());
 
-    that.trackCircle = new google.maps.Circle({
-        center: {lat: route.get('trackPoints')[id][0] , lng: route.get('trackPoints')[id][1]},
-        radius: 850000/scale,
-        strokeWeight:0,
-        fillColor: "#0000FF",
-        fillOpacity: 1,
-        map: map
-    });
+    if( typeof route.get('trackPoints') != 'undefined' ) {
+
+
+      if(that.trackMarker === false) {
+        that.trackMarker = new google.maps.Marker({
+              position: {lat: route.get('trackPoints')[id][0] , lng: route.get('trackPoints')[id][1]},
+              icon: {
+                url: cogumelo.publicConf.media + '/module/rextRoutes/img/markerTrack.png' ,
+                anchor: new google.maps.Point(10,27)
+              },
+              zIndex: 4,
+              map: that.options.map
+          });
+
+        that.trackMarker.addListener('mouseover', function() {
+          //that.trackMarker.setMap(null);
+        });
+      }
+      else {
+        that.trackMarker.setPosition({lat: route.get('trackPoints')[id][0] , lng: route.get('trackPoints')[id][1]});
+        if( that.trackMarker.getMap() === null ) {
+          that.trackMarker.setMap(that.options.map);
+        }
+
+      }
+
+    }
+
+
   },
 
   mideBall: function( ) {
     var that = this;
 
-    if( that.trackCircle ) {
-      that.trackCircle.setMap(null);
+    if( that.trackMarker ) {
+      //that.trackMarker.setMap(null);
     }
 
   }
-
-
-
-
-
-
 });

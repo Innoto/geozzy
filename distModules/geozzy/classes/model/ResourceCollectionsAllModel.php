@@ -72,12 +72,11 @@ class ResourceCollectionsAllModel extends Model {
           SELECT
             geozzy_collection.id AS id,
             geozzy_collection.idName AS idName,
-            geozzy_collection.title_es AS title_es,
-            geozzy_collection.title_gl AS title_gl,
-            geozzy_collection.title_en AS title_en,
-            geozzy_collection.shortDescription_es AS shortDescription_es,
-            geozzy_collection.shortDescription_gl AS shortDescription_gl,
-            geozzy_collection.shortDescription_en AS shortDescription_en,
+
+            {multilang:geozzy_collection.title_$lang AS title_$lang,}
+
+            {multilang:geozzy_collection.shortDescription_$lang AS shortDescription_$lang,}
+
             geozzy_collection.collectionType AS collectionType,
             geozzy_collection.weight AS weight,
             geozzy_collection.image AS image,

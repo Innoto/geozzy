@@ -133,6 +133,7 @@
 
       that.setDisplays();
       that.setFilters();
+      that.setParticipation();
 
       that.explorer.exec();
       //that.explorer2.exec();
@@ -353,4 +354,111 @@
       chooseFTLayer( val, that.zonaCategories,  that.resourceMap, that.mapOptions );
     }
 
+/*****************************************************************************************************************************************************/
+    that.bindsParticipationStep1 = [];
+    that.participationZoom = false;
+    that.participationLat = false;
+    that.participationLng = false;
+    that.participationMarker = false;
+
+    that.setParticipation = function(){
+      that.bindsParticipation();
+    }
+    that.bindsParticipation = function(){
+      $('#initParticipacion').on('click', function(){
+        that.initParticipationStep1();
+      });
+    }
+    that.initParticipationStep1 = function(){
+      //Map Events
+      var my_marker = {
+         url: cogumelo.publicConf.media+'/module/admin/img/geozzy_marker.png',
+         // This marker is 20 pixels wide by 36 pixels high.
+         size: new google.maps.Size(30, 36),
+         // The origin for this image is (0, 0).
+         origin: new google.maps.Point(0, 0),
+         // The anchor for this image is the base of the flagpole at (0, 36).
+         anchor: new google.maps.Point(13, 36)
+       };
+       if(!that.participationMarker){
+         that.participationMarker = new google.maps.Marker({
+           //position: new google.maps.LatLng( latValue, lonValue ),
+           title: 'Location',
+           icon: my_marker,
+           draggable: true
+         });
+       }else{
+         that.participationMarker.setMap(that.mapa.map);
+       }
+       // Draggend event
+       google.maps.event.addListener( that.participationMarker, 'dragend' ,function(e) {
+         that.participationLat =  that.participationMarker.position.lat() ;
+         that.participationLng =  that.participationMarker.position.lng() ;
+       });
+       // Click map event
+       google.maps.event.addListener(that.mapa.map, 'click', function(e) {
+
+         that.participationMarker.setPosition( e.latLng )
+         that.participationMarker.setMap( that.mapa.map );
+         that.participationLat =  that.participationMarker.position.lat() ;
+         that.participationLng =  that.participationMarker.position.lng() ;
+         that.participationZoom = that.mapa.map.getZoom();
+
+         $('.participation-step1 .next').prop("disabled", false);
+       });
+       // map zoom changed
+       google.maps.event.addListener(that.mapa, 'zoom_changed', function(e) {
+         that.participationZoom = that.mapa.map.getZoom();
+       });
+
+
+      //Eventos de botones
+      $('.participation-step1').show();
+      that.bindsParticipationStep1[that.bindsParticipationStep1.length] = $('.participation-step1 .cancel').on('click.participationButtons', function(){
+        that.closeParticipationStep1();
+      });
+      that.bindsParticipationStep1[that.bindsParticipationStep1.length] = $('.participation-step1 .next').on('click.participationButtons', function(){
+        if(!$(this).attr('disabled')){
+          that.initParticipationStep2();
+        }
+      });
+    }
+    that.closeParticipationStep1 = function( ){
+      //Desactivar mapa y permitir click en mapa
+      $('.participation-step1').hide();
+      $.each(that.bindsParticipationStep1, function( index, bind ) {
+        bind.off();
+      });
+      google.maps.event.clearListeners(that.mapa.map, 'dragend');
+      google.maps.event.clearListeners(that.mapa.map, 'click');
+      google.maps.event.clearListeners(that.mapa.map, 'zoom_changed');
+      that.participationMarker.setMap(null);
+
+      that.bindsParticipationStep1 = [];
+    }
+    that.initParticipationStep2 = function(){
+
+      that.closeParticipationStep1();
+
+      console.log('paso 2 Form');
+      console.log(that.participationLat);
+      console.log(that.participationLng);
+      console.log(that.participationZoom);
+
+      $.ajax({
+        url: "/participation/xantaresExplorer",
+        method: "POST",
+        data: { lat : that.participationLat, lng:that.participationLng, zoom:that.participationZoom },
+        success: function(data){
+          $('body').append(data);
+
+        }
+      });
+
+      
+    }
+
+    that.closeParticipationStep2 = function(){
+
+    }
   }

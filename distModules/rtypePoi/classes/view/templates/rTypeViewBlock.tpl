@@ -28,7 +28,7 @@
 
 </script>
 
-<!-- rTypeViewBlock.tpl en rTypeAppHotel module -->
+<!-- rTypeViewBlock.tpl en rTypePoi module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
@@ -105,7 +105,7 @@
     </div>
 
     <div class="mediumDescription">
-      {$res.data.mediumDescription|escape:'htmlall'}
+      {$res.data.mediumDescription|escape:'htmlall'|nl2br}
     </div>
 
     <div class="content">
@@ -146,3 +146,4 @@
   {/if}
 
 </div>
+<!-- /rTypeViewBlock.tpl en rTypePoi module -->

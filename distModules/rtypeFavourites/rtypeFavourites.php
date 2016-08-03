@@ -27,7 +27,8 @@ class rtypeFavourites extends Module {
 
   public $includesCommon = array(
     'controller/RTypeFavouritesController.php',
-    'view/RTypeFavouritesView.php'
+    'view/RTypeFavouritesView.php',
+    'js/favouritesView.js'
   );
 
 

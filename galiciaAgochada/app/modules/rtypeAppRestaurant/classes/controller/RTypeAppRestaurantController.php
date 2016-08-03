@@ -43,12 +43,15 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
    * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'ext' => array }
    */
   public function getFormBlockInfo( FormController $form ) {
+    global $C_LANG;
 
     // Cargamos la informacion del form, los datos y lanzamos los getFormBlockInfo de las extensiones
     $formBlockInfo = parent::getFormBlockInfo( $form );
 
     $eatCtrl = new RExtEatAndDrinkController( $this );
     $zonaCtrl = new RExtAppZonaController( $this );
+    $contactCtrl = new RExtContactController( $this );
+
 
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
@@ -215,6 +218,67 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
     $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
 
 
+    // TEMPLATE con todos los pasos para participacion
+    if(class_exists( 'rextParticipation' ) && in_array('rextParticipation', $this->rExts)) {
+      $participationCtrl = new RExtParticipationController( $this );
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      $formFieldsNamesStp1 = array( 'title_'.$C_LANG, 'mediumDescription_'.$C_LANG, 'rTypeIdName' );
+      $formFieldsNamesStp2 = $eatCtrl->prefixArray( array('eatanddrinkType') );
+      $formFieldsNamesStp3 = $contactCtrl->prefixArray( array('city', 'province', 'url', 'phone') );
+      $formFieldsNamesStp4 = array( 'image' );
+      $formFieldsNamesStp5 = $participationCtrl->prefixArray( array('observation') );
+
+      $templates['participationFull'] = new Template();
+      $templates['participationFull']->setTpl( 'participationModal.tpl', 'rtypeAppRestaurant' );
+      $templates['participationFull']->assign( 'headTitle', __( 'Participation Form' ) );
+
+      $participationBlockInfo = $formBlockInfo;
+      $partForm = $participationBlockInfo['objForm'];
+
+      $partForm->setFieldParam( 'title_es', 'label', __('¿Cómo se llama el lugar?') );
+      $partForm->setFieldParam( 'title_es', 'class', '' );
+      $partForm->setFieldParam( 'mediumDescription_es', 'label', __('Descríbelo brevemente') );
+      $partForm->setFieldParam( 'mediumDescription_es', 'class', '' );
+      $partForm->setFieldParam( 'rextEatAndDrink_eatanddrinkType', 'label', __('¿Cómo clasificarías este lugar?') );
+      $partForm->setFieldParam( 'rExtContact_city', 'label', __('¿En qué localidad se encuentra?') );
+      $partForm->setFieldParam( 'rExtContact_province', 'label', __('¿En qué provincia se encuentra?') );
+      $partForm->setFieldParam( 'rExtContact_url', 'label', __('¿Tiene página web?') );
+      $partForm->setFieldParam( 'rExtContact_phone', 'label', __('¿Teléfono?') );
+
+      //$form->removeValidationRules('topics');
+      $partForm->removeField( 'externalUrl');
+      $partForm->removeField( 'published');
+      $partForm->removeField( 'rextEatAndDrink_reservationURL');
+      $partForm->removeField( 'rextEatAndDrink_averagePrice');
+      $partForm->removeField( 'rextEatAndDrink_eatanddrinkSpecialities');
+      $partForm->removeField( 'rExtContact_email');
+      $partForm->removeField( 'rExtSocialNetwork_activeFb');
+      $partForm->removeField( 'rExtSocialNetwork_activeTwitter');
+      $partForm->removeField( 'urlAlias_es');
+
+
+      $participationBlockInfo['dataForm'] = array(
+        'formOpen' => $partForm->getHtmpOpen(),
+        'formFieldsArray' => $partForm->getHtmlFieldsArray(),
+        'formFieldsHiddenArray' => array(),
+        'formFields' => $partForm->getHtmlFieldsAndGroups(),
+        'formClose' => $partForm->getHtmlClose(),
+        'formValidations' => $partForm->getScriptCode()
+      );
+
+      $participationBlockInfo['objForm'] = $partForm;
+      //$participationBlockInfo['objForm']->saveToSession();
+
+      $templates['participationFull']->assign( 'res', $participationBlockInfo );
+      $templates['participationFull']->assign( 'formFieldsNamesStp1', $formFieldsNamesStp1 );
+      $templates['participationFull']->assign( 'formFieldsNamesStp2', $formFieldsNamesStp2 );
+      $templates['participationFull']->assign( 'formFieldsNamesStp3', $formFieldsNamesStp3 );
+      $templates['participationFull']->assign( 'formFieldsNamesStp4', $formFieldsNamesStp4 );
+      $templates['participationFull']->assign( 'formFieldsNamesStp5', $formFieldsNamesStp5 );
+
+
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
     // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();
     $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );

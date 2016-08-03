@@ -4,7 +4,6 @@
 define( 'WEB_BASE_PATH', getcwd() ); // Apache DocumentRoot
 define( 'PRJ_BASE_PATH', realpath( WEB_BASE_PATH.'/..' ) ); // Project Path (normalmente contiene app/ httpdocs/ formFiles/)
 define( 'APP_BASE_PATH', PRJ_BASE_PATH.'/app' ); // App Path
-define( 'APP_TMP_PATH', APP_BASE_PATH.'/tmp' ); // Ficheros temporales
 
 
 

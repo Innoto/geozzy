@@ -1,20 +1,17 @@
 <?php
 
 
-class Cogumelo extends CogumeloClass
-{
+class Cogumelo extends CogumeloClass {
+
   public static $version = 1.7;
 
   public $dependences = array(
-
-
     array(
       "id" =>"featurejs",
       "params" => array("feature.js"),
       "installer" => "bower",
       "includes" => array('feature.min.js')
     ),
-
     array(
       "id" =>"devicejs",
       "params" => array("devicejs"),
@@ -67,7 +64,7 @@ class Cogumelo extends CogumeloClass
       "id" =>"unitegallery",
       "params" => array("unitegallery#1.7"),
       "installer" => "bower",
-      "includes" => array("package/unitegallery/js/unitegallery.min.js", "package/unitegallery/css/unite-gallery.css","package/unitegallery/themes/tiles/ug-theme-tiles.js", "package/unitegallery/themes/default/ug-theme-default.css")
+      "includes" => array("dist/js/unitegallery.min.js", "dist/css/unite-gallery.css","dist/themes/tiles/ug-theme-tiles.js", "dist/themes/default/ug-theme-default.css")
     ),
     array(
       "id" =>"owlcarousel",
@@ -81,19 +78,14 @@ class Cogumelo extends CogumeloClass
       "installer" => "bower",
       "includes" => array("zonaMap.js","zonaMap.css")
     )
-
   );
+
   public $includesCommon = array(
   );
 
 
   public function __construct() {
     parent::__construct();
-
-    /* Probando Recursos */
-//    $this->addUrlPatterns( '#^recurso/?$#', 'view:RecursoView::verRecurso' );
-//    $this->addUrlPatterns( '#^recurso/(\d+)$#', 'view:RecursoView::verRecurso' );
-
     /*Explorer (Param = Sagan||Dora||Indiana)*/
     $this->addUrlPatterns( '#^explorerLayout/(.*)$#', 'view:ExplorerView::explorerLayout' );
     $this->addUrlPatterns( '#^explorerLayout$#', 'view:ExplorerView::explorerLayout' );
@@ -117,6 +109,9 @@ class Cogumelo extends CogumeloClass
     $this->addUrlPatterns( '#^sabrosos-xantares#', 'view:ExplorerView::xantaresExplorer' );
     $this->addUrlPatterns( '#^aloxamentos-con-encanto#', 'view:ExplorerView::aloxamentosExplorer' );
     $this->addUrlPatterns( '#^segredos#', 'view:ExplorerView::todosSegredosExplorer' );*/
+
+    $this->addUrlPatterns( '#^participation/xantaresExplorer/?$#', 'view:ParticipationView::xantaresForm' );
+    $this->addUrlPatterns( '#^participation/xantaresExplorer/send$#', 'view:ParticipationView::sendXantaresForm' );
 
     /*MasterView*/
     //$this->addUrlPatterns( '#^$#', 'view:MasterView::home' );

@@ -1,4 +1,5 @@
 <?php
+require_once('conf/inc/geozzyRextRoutes.php');
 Cogumelo::load( 'coreController/Module.php' );
 
 
@@ -50,7 +51,7 @@ class rextRoutes extends Module {
       "id" => "dygraphs",
       "params" => array("dygraphs#v1.1.0"),
       "installer" => "bower",
-      "includes" => array("dygraph-combined.js")
+      "includes" => array("dygraph-combined.js","extras/shapes.js")
     )
   );
 
@@ -78,7 +79,7 @@ class rextRoutes extends Module {
 
     $this->addUrlPatterns( '#^api/routes.json#', 'view:RoutesAPIView::routesJson' );
     $this->addUrlPatterns( '#^api/routes/?(.*)$#', 'view:RoutesAPIView::routes' );
-    $this->addUrlPatterns( '#^api/adminRoutes/?(.*)$#', 'view:RoutesAPIView::adminRoutes' );    
+    $this->addUrlPatterns( '#^api/adminRoutes/?(.*)$#', 'view:RoutesAPIView::adminRoutes' );
 
   }
 

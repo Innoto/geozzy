@@ -48,13 +48,13 @@ define( 'SITE_URL_HTTP', 'http://'.$_SERVER['HTTP_HOST'] . SITE_FOLDER );
 define( 'SITE_URL_HTTPS', 'https://'.$_SERVER['HTTP_HOST'] . SITE_FOLDER );
 define( 'SITE_URL_CURRENT', SITE_PROTOCOL == 'http' ? SITE_URL_HTTP : SITE_URL_HTTPS );
 cogumeloSetSetupValue( 'setup:webBaseUrl', array(
-  'protocol' => 'SITE_PROTOCOL',
-  'host' => 'SITE_HOST',
-  'folder' => 'SITE_FOLDER',
-  'url' => 'SITE_URL',
-  'urlHttp' => 'SITE_URL_HTTP',
-  'urlHttps' => 'SITE_URL_HTTPS',
-  'urlCurrent' => 'SITE_URL_CURRENT'
+  'protocol' => SITE_PROTOCOL,
+  'host' => SITE_HOST,
+  'folder' => SITE_FOLDER,
+  'url' => SITE_URL,
+  'urlHttp' => SITE_URL_HTTP,
+  'urlHttps' => SITE_URL_HTTPS,
+  'urlCurrent' => SITE_URL_CURRENT
 ));
 if( isset( $_SERVER['SERVER_PORT'] ) ) {
   cogumeloSetSetupValue( 'setup:webBaseUrl:port', $_SERVER['SERVER_PORT'] );

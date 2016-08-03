@@ -88,6 +88,39 @@
   </div>
 </div>
 
+<style>
+  .resourceRouteGraphLegend {
+    position:absolute;
+    top:15px;
+    right:30px;
+    color:#fff;
+    font-weight:bold;
+  }
+
+  .dygraph-legend {
+
+    display:none;
+    /*box-shadow: 4px 4px 4px #888;*/
+  }
+  .resourceRouteGraphContainer {
+    border-radius: 4px;
+    cursor:pointer;
+    margin-bottom:22px;
+    background-color:rgba(32, 32, 32, 0.7 );
+  }
+
+    .resourceRouteGraphContainer .resourceRouteGraph {
+      width:300px;
+      height:130px;
+
+      margin-right:20px;
+      margin-top:30px;
+      margin-bottom:10px;
+    }
+
+</style>
+
+
 <script type="text/javascript">
   var geozzy = geozzy || {};
 
