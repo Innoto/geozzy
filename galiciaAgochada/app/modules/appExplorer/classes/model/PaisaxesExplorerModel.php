@@ -46,7 +46,7 @@ class PaisaxesExplorerModel extends Model
 
         WHERE
           geozzy_resource.published = 1 AND
-          geozzy_topic.idName = `PaisaxesEspectaculares`
+          geozzy_topic.idName = \'PaisaxesEspectaculares\'
         group by geozzy_resource.id;
       '
     )
