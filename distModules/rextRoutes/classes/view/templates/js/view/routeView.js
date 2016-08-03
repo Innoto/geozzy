@@ -176,7 +176,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var controlUI = document.createElement('div');
     controlUI.title = 'Click to recenter the map';
     controlUI.className = 'resourceRouteGraphContainer';
-    controlUI.innerHTML = '<div class="resourceRouteGraph"></div>';
+      controlUI.innerHTML = '<div class="resourceRouteGraphLegend" style="display:none;"></div><div class="resourceRouteGraph"></div>';
 
 
     that.options.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlUI);
@@ -234,7 +234,18 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
                      return '<b>' + y  + ' m </b>';
                  }
               }
+            },
+
+            highlightCallback: function(e, x, pts, row) {
+              $($(".resourceRouteGraphLegend")[0]).html(x+' m');
+              $($(".resourceRouteGraphLegend")[0]).show();
+            },
+
+            unhighlightCallback: function(e) {
+              $($(".resourceRouteGraphLegend")[0]).hide();
             }
+
+
           }
 
         );

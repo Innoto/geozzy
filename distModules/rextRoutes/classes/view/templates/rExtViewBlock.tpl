@@ -89,11 +89,17 @@
 </div>
 
 <style>
+  .resourceRouteGraphLegend {
+    position:absolute;
+    top:15px;
+    right:30px;
+    color:#fff;
+    font-weight:bold;
+  }
+
   .dygraph-legend {
-    background-color: #fff !important;
-    padding: 3px;
-    border: 0;
-    border-radius: 3px;
+
+    display:none;
     /*box-shadow: 4px 4px 4px #888;*/
   }
   .resourceRouteGraphContainer {
