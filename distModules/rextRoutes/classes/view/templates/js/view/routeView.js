@@ -176,7 +176,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var controlUI = document.createElement('div');
     controlUI.title = 'Click to recenter the map';
     controlUI.className = 'resourceRouteGraphContainer';
-    controlUI.innerHTML = '<div class="resourceRouteGraph"></div>';
+      controlUI.innerHTML = '<div class="resourceRouteGraphLegend" style="display:none;"></div><div class="resourceRouteGraph"></div>';
 
 
     that.options.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlUI);
@@ -184,7 +184,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     google.maps.event.addListener( that.options.map, 'idle', function() {
 
       if( !that.grafico ) {
-        var chartString = "step,Altitude\n";
+        var chartString = "step,"+__('Altitude')+"\n";
         $.each( route.get('trackPoints'), function(i,e){
             chartString += i + "," + e[2] + "\n";
         });
@@ -206,27 +206,46 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
             drawXGrid: true,
             drawYGrid: true,
 
+
+            highlightCircleSize: 5,
+            drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
+
             axisLabelColor: 'white',
             axisLineColor: 'white',
             //labels:["step", "Altitude"],
             colors: ["#EF7C1F"],
             axisLabelFontSize: 12,
             hideOverlayOnMouseOut: true,
-
+            legend: 'follow',
             axes: {
               x: {
-                drawAxis: true,
-                axisLabelFormatter: function(x) {
-                    return null;
-                }
+                  axisLabelFormatter: function (x) {
+                      return '';
+                  },
+                  valueFormatter: function (x) {
+                      return '';
+                  }
               },
               y: {
-                drawAxis: true,
-                axisLabelFormatter: function(x) {
-                    return null;
-                }
+                 axisLabelFormatter: function (y) {
+                     return '<b>' + y  + ' m </b>';
+                 },
+                 valueFormatter: function (y) {
+                     return '<b>' + y  + ' m </b>';
+                 }
               }
+            },
+
+            highlightCallback: function(e, x, pts, row) {
+              $($(".resourceRouteGraphLegend")[0]).html(x+' m');
+              $($(".resourceRouteGraphLegend")[0]).show();
+            },
+
+            unhighlightCallback: function(e) {
+              $($(".resourceRouteGraphLegend")[0]).hide();
             }
+
+
           }
 
         );
@@ -375,10 +394,4 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     }
 
   }
-
-
-
-
-
-
 });

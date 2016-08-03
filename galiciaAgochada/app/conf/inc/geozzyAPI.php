@@ -12,23 +12,23 @@ $useraccesscontrol = new UserAccessController();
 if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) ){
   $GEOZZY_API_DOC_URLS_ADMIN = array(
     array(
-      'path' => '/admin/adminCategories.json',
+      'path' => '/doc/admin/adminCategories.json',
       'description' => 'Admin Categories'
     ),
     array(
-      'path' => '/admin/adminCategoryterms.json',
+      'path' => '/doc/admin/adminCategoryterms.json',
       'description' => 'Admin CategoryTerms'
     ),
     array(
-      'path' => '/admin/adminResourcesTerm.json',
+      'path' => '/doc/admin/adminResourcesTerm.json',
       'description' => 'Admin ResourcesTerm'
     ),
     array(
-      'path' => '/admin/adminStarred.json',
+      'path' => '/doc/admin/adminStarred.json',
       'description' => 'Admin StarredTerms'
     ),
     array(
-      'path' => '/admin/adminCommentSuggestion.json',
+      'path' => '/doc/admin/adminCommentSuggestion.json',
       'description' => 'Admin Comments and Suggestions'
     )
   );
@@ -46,7 +46,7 @@ if( $useraccesscontrol->isLogged() ) {
     $GEOZZY_API_DOC_URLS,
     array(
       array(
-        'path'=> '/favourites.json',
+        'path'=> '/doc/favourites.json',
         'description' => 'Favourites API'
       )
     )
@@ -60,83 +60,83 @@ $GEOZZY_API_DOC_URLS =  array_merge(
   $GEOZZY_API_DOC_URLS,
   array(
     array(
-      'path' => '/bi.json',
+      'path' => '/doc/bi.json',
       'description' => 'BI dashboard utils'
     ),
     array(
-      'path' => '/resourceTypes.json',
+      'path' => '/doc/resourceTypes.json',
       'description' => 'resourceTypes'
     ),
     array(
-      'path' => '/resources.json',
+      'path' => '/doc/resources.json',
       'description' => 'Core Resource'
     ),
     array(
-      'path' => '/resourceIndex.json',
+      'path' => '/doc/resourceIndex.json',
       'description' => 'Resource index'
     ),
     array(
-      'path' => '/collections.json',
+      'path' => '/doc/collections.json',
       'description' => 'Get collections'
     ),
     array(
-      'path' => '/starred.json',
+      'path' => '/doc/starred.json',
       'description' => 'Starred terms with resources'
     ),
     array(
-      'path' => '/categoryList.json',
+      'path' => '/doc/categoryList.json',
       'description' => 'Category List'
     ),
     array(
-      'path' => '/categoryTerms.json',
+      'path' => '/doc/categoryTerms.json',
       'description' => 'CategoryTerms by category'
     ),
     array(
-      'path' => '/topicList.json',
+      'path' => '/doc/topicList.json',
       'description' => 'Topics'
     ),
     array(
-      'path' => '/userLogin.json',
+      'path' => '/doc/userLogin.json',
       'description' => 'User Login'
     ),
     array(
-      'path' => '/userLogout.json',
+      'path' => '/doc/userLogout.json',
       'description' => 'User Logout'
     ),
     array(
-      'path' => '/userUnknownPass.json',
+      'path' => '/doc/userUnknownPass.json',
       'description' => 'User new password'
     ),
     array(
-      'path' => '/cgml-session.json',
+      'path' => '/doc/cgml-session.json',
       'description' => 'Get Cogumelo session info'
     ),
     array(
-      'path' => '/userSession.json',
+      'path' => '/doc/userSession.json',
       'description' => 'User Session'
     ),
     /* array(
-      'path' => '/uiEventList.json',
+      'path' => '/doc/uiEventList.json',
       'description' => 'UI Events'
     ),*/
     array(
-      'path'=> '/explorer.json',
+      'path'=> '/doc/explorer.json',
       'description' => 'Explorer API'
     ),
     array(
-      'path'=> '/explorerList.json',
+      'path'=> '/doc/explorerList.json',
       'description' => 'Explorer List API'
     ),
     array(
-      'path'=> '/comments.json',
+      'path'=> '/doc/comments.json',
       'description' => 'Comments API'
     ),
     array(
-      'path'=> '/commentList.json',
+      'path'=> '/doc/commentList.json',
       'description' => 'Comment List API'
     ),
     array(
-      'path'=> '/routes.json',
+      'path'=> '/doc/routes.json',
       'description' => 'Routes API'
     )
   )

@@ -31,5 +31,11 @@ if( !cogumeloGetSetupValue( 'logs:error' ) ) { // Metodo de setup porque no se h
 
 global $_C;
 $_C = Cogumelo::get();
+
+// Cogumelo first access check
+if( file_exists( APP_BASE_PATH . '/conf/accessCheckIndex.php' ) ) {
+  require_once( APP_BASE_PATH . '/conf/accessCheckIndex.php' );
+}
+
 $_C->exec();
 

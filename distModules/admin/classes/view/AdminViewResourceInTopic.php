@@ -67,6 +67,17 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $tabla->setTabs('published', array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
+    $filterByRtypeOpts = [];
+    foreach ($resourcetypelist as $typeId => $type){
+      $filterByRtypeOpts[$typeId] = $type->getter('name');
+    }
+    $filterByRtypeOpts['*'] = __('All');
+
+
+    if(sizeof($filterByRtypeOpts)>2) {
+      $tabla->setExtraFilter( 'rTypeId',  'combo', __('Resource type'), $filterByRtypeOpts, '*' );
+    }
+    //$tabla->setExtraFilter( 'times',  'combo', __('Published'), $filterByRtypeOpts, '*' );
 
     // set id search reference.
     $tabla->setSearchRefId('find');
