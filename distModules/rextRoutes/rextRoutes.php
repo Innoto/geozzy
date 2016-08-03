@@ -52,6 +52,12 @@ class rextRoutes extends Module {
       "params" => array("dygraphs#v1.1.0"),
       "installer" => "bower",
       "includes" => array("dygraph-combined.js","extras/shapes.js")
+    ),
+    array(
+      'id' =>'pChart',
+      'params' => array('pChart'),
+      'installer' => 'manual',
+      'includes' => array('pChart.php','pChart.php')
     )
   );
 
