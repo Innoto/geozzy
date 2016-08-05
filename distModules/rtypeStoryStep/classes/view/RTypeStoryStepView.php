@@ -129,23 +129,22 @@ class RTypeStoryStepView extends View
 
     /*  Relación historias - colecciones de pasos */
     $collection = new CollectionModel( );
-    $resourceCollectionsModel = new ResourceCollectionsModel();
-    $resourceCollectionsList = $resourceCollectionsModel->listItems(
+    $resourceCollections = new ResourceCollectionsModel();
+
+    // obtenemos las colección de pasos de una historia
+    $resourceCollectionsList = $resourceCollections->listItems(
       array('filters' => array('resource' => $story['1'])) );
 
-    $collectionId = false;
-    while($resCol = $resourceCollectionsList->fetch()){
-      $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
-      if($typecol->getter('collectionType')==='steps'){
-        $collectionId = $typecol->getter('id');
+    if(isset($resourceCollectionsList)){
+      $collectionId = false;
+      while($resCol = $resourceCollectionsList->fetch()){
+        $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
+        if(isset($typecol)){
+          if($typecol->getter('collectionType')==='steps'){
+            $collectionId = $typecol->getter('id');
+          }
+        }
       }
-    }
-
-    $colResources = array();
-    $collectionResources = new CollectionResourcesModel();
-    $collectionResourcesList = $collectionResources->listItems(array('filters'=> array('collection'=>$collectionId)));
-    while($colRes = $collectionResourcesList->fetch()){
-      $colResources[] = $colRes->getter('resource');
     }
 
     $tabla->setActionMethod(__('Assign'), 'assign', 'createCollectionRelation('.$collectionId.',$rowId)');
@@ -154,8 +153,13 @@ class RTypeStoryStepView extends View
     $typeModel =  new ResourcetypeModel();
     $rtype = $typeModel->listItems(array( 'filters' => array( 'idName' => 'rtypeStoryStep' ) ))->fetch();
 
-    // Filtrar por rtype y además que no esté asignado ya a esa colección de steps de esa story
-    $tabla->setDefaultFilters( array('rTypeId'=> $rtype->getter('id'), 'notInId' => $colResources) );
+    if (sizeof($collectionId)>0){
+      // Filtrar por rtype y además que no esté asignado ya a esa colección de steps de esa story
+      $tabla->setDefaultFilters( array('rTypeId'=> $rtype->getter('id'), 'notInCollectionId' => $collectionId) );
+    }
+    else{
+      $tabla->setDefaultFilters( array('rTypeId'=> $rtype->getter('id')) );
+    }
 
     // imprimimos o JSON da taboa
     $tabla->exec();

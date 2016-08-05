@@ -46,11 +46,11 @@ class StoryStepAdminAPIView extends View {
   // URL: /api/admin/commentsuggestion/
   public function storySteps( $urlParams ) {
 
-    $validation = array( 'resource' => '#\d+$#' );
+    $validation = array( 'resource' => '#\d+$#', 'step' => '#\d+$#' );
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
     $resourceId = isset( $urlParamsList['resource'] ) ? $urlParamsList['resource'] : false;
-
-    //rextStoryStep::load('model/RExtStoryStepModel.php');
+    $stepId = isset( $urlParamsList['step'] ) ? $urlParamsList['step'] : false;
+    //var_dump($urlParamsList);
 
     switch( $_SERVER['REQUEST_METHOD'] ) {
 
@@ -74,7 +74,7 @@ class StoryStepAdminAPIView extends View {
         $resourceData = $resource->getAllData();
         echo json_encode( $resourceData['data'] );
 
-      break;
+        break;
 
       case 'GET':
         if( isset( $resourceId ) && is_numeric( $resourceId ) ) {
@@ -89,8 +89,9 @@ class StoryStepAdminAPIView extends View {
               }
             }
           }
-          $collectionResources = array();
-          if($collectionId){
+
+          if(isset($collectionId)){
+            $collectionResources = array();
             $collectionResourcesModel = new CollectionResourcesModel();
             $collectionResources = $collectionResourcesModel->listItems(  array(
               'filters' => array( 'collection'=> $collectionId ),
@@ -103,13 +104,14 @@ class StoryStepAdminAPIView extends View {
           $c = '';
           global $C_LANG;
 
-          while( $col = $collectionResources->fetch() ){
-
-            $resource = $col->getterDependence('resource', 'ResourceModel');
-            $allData['id'] = $resource[0]->getter('id');
-            $allData['title'] = $resource[0]->getter('title');
-            echo $c.json_encode($allData);
-            $c=',';
+          if (isset($collectionResources) && sizeof($collectionResources)>0){
+            while( $col = $collectionResources->fetch() ){
+              $resource = $col->getterDependence('resource', 'ResourceModel');
+              $allData['id'] = $resource[0]->getter('id');
+              $allData['title'] = $resource[0]->getter('title');
+              echo $c.json_encode($allData);
+              $c=',';
+            }
           }
           echo ']';
         }
@@ -118,7 +120,24 @@ class StoryStepAdminAPIView extends View {
           header('Content-Type: application/json; charset=utf-8');
           echo '{}';
         }
+        break;
+
+      case 'DELETE':
+        $collectionResourceModel = new CollectionResourcesModel();
+        $collectionResource = $collectionResourceModel->listItems(array('filters' => array('resource'=> $stepId)));
+        if( $collectionResource && $res = $collectionResource->fetch() ) {
+          $res->delete();
+          header('Content-type: application/json');
+          echo '[]';
+        }
+        else {
+          header("HTTP/1.0 404 Not Found");
+          header('Content-type: application/json');
+          echo '[]';
+        }
+
       break;
+
       default:
         header("HTTP/1.0 404 Not Found");
       break;

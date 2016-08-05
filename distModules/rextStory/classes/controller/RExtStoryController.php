@@ -248,11 +248,11 @@ class RExtStoryController extends RExtController implements RExtInterface {
         }
       }
 
-      if (!$elemId && $newResources){ // creamos a coleccion
+      if (!$elemId){ // creamos a coleccion
         $collection->setter('collectionType', 'steps');
         $collection->save();
         $elemId = $collection->getter('id');
-        $resourceCollection = new ResourceCollectionsModel(array('resource'=>$resource->getter('id'), 'collection' => $collection->getter('id')));
+        $resourceCollection = new ResourceCollectionsModel(array('resource'=>$resource->getter('id'), 'collection' => $elemId));
         $resourceCollection->save();
       }
     }

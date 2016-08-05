@@ -34,16 +34,15 @@ geozzy.storystepsComponents.StorystepCollection = Backbone.Collection.extend({
   },
 
   save: function(story){
-
+    var that = this;
     var mA = [];
-
     _(this.models).each( function(m) {
       mA.push(m);
     } );
 
     _(mA).each( function(m2) {
       if( m2.get('deleted') == 1 ){
-        m2.destroy();
+        m2.destroy( { url: that.baseUrl + '/resource/'+story + '/step/' + m2.get('id') } );
       }
       else {
         m2.save();

@@ -42,7 +42,6 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
   updateList: function() {
     var that = this;
     this.listStoryStepItemTemplate = _.template( geozzy.storystepsComponents.StorystepTemplate );
-
     that.stepList = $("#storyStepsList");
     that.stepList.html('');
     var steps = that.storysteps.search({deleted:0});
@@ -50,7 +49,6 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
     _.each( steps.toJSON() , function(item){
       that.stepList.append( that.listStoryStepItemTemplate({ id: item.get('id'), title: item.get('title') }) );
     });
-
     $("#storyStepsList.dd").nestable({
       'maxDepth': 1,
       'dragClass': "gzznestable dd-dragel",
@@ -64,19 +62,14 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
   saveList: function(){
 
     var that = this;
-    console.log(that.stepList)
     var jsonNestableResult = $("#storyStepsList").nestable('serialize');
     var itemWeight = 0;
-    console.log('saveList')
-    console.log(jsonNestableResult)
     _.each( jsonNestableResult , function( e , i ){
 
       var element = that.storysteps.get(e.id);
-      console.log('element',element)
       element.set({ weight: itemWeight });
       itemWeight++;
     });
-    console.log('end SAVELIST')
     that.saveChangesVisible(true);
   },
 
@@ -88,8 +81,8 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
   removeStoryStep: function( el ) {
     var that = this;
     var rId = parseInt($(el.currentTarget).attr('data-id'));
-    var rs = that.storysteps.get( rId );
-    rs.set({deleted:1})
+    var deletedStep = that.storysteps.get( rId );
+    deletedStep.set({deleted:1})
     that.updateList();
     that.saveChangesVisible(true);
    },
@@ -101,7 +94,9 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
 
   saveStoryStep: function() {
     var that = this;
-    that.storysteps.save(that.story.id);
+    that.storysteps.save(that.story);
+    console.log('saveStoryStep')
+    that.updateList();
     that.saveChangesVisible(false);
   },
 

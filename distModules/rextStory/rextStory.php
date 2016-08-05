@@ -8,9 +8,7 @@ class rextStory extends Module {
   public $version = 1.0;
 
 
-  public $models = array(
-    'RExtStoryModel'
-  );
+  public $models = array( );
 
   public $taxonomies = array();
 

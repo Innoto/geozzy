@@ -167,7 +167,7 @@ class AdminViewResource extends AdminViewMaster {
           }
         }
         // Creando un storystep dentro dunha story
-        if( $resourceItem ) {
+        if( isset($resourceItem )) {
           // A partir do id da story recuperamos a súa collection 'steps'
           $collection = new CollectionModel( );
           $resourceCollectionsModel = new ResourceCollectionsModel();
