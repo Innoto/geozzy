@@ -439,12 +439,6 @@
     that.initParticipationStep2 = function(){
 
       that.closeParticipationStep1();
-
-      console.log('paso 2 Form');
-      console.log(that.participationLat);
-      console.log(that.participationLng);
-      console.log(that.participationZoom);
-
       $.ajax({
         url: "/participation/xantaresExplorer",
         method: "POST",
@@ -455,7 +449,7 @@
         }
       });
 
-      
+
     }
 
     that.closeParticipationStep2 = function(){
