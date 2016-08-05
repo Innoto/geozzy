@@ -55,12 +55,22 @@ class RoutesAPIView extends View
                   },
                   "paramType": "path",
                   "required": false
+                },
+                {
+                  "name": "resolution",
+                  "description": "resolution",
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "paramType": "path",
+                  "required": false
                 }
               ],
               "summary": "Fetches explorer data"
             }
           ],
-          "path": "/routes/id/{id}",
+          "path": "/routes/id/{id}/resolution/{resolution}",
           "description": ""
         }
       ]
@@ -73,7 +83,7 @@ class RoutesAPIView extends View
   public function routes( $urlParams  ) {
 
 
-    $validation = array( 'id'=> '#^\d+$#');
+    $validation = array( 'id'=> '#^\d+$#', 'resolution'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
 
@@ -84,8 +94,15 @@ class RoutesAPIView extends View
 
     header('Content-type: application/json');
 
+
+
     if( isset($urlParamsList['id']) ) {
-      echo json_encode(  $routesControl->getRoute( $urlParamsList['id'] ) );
+      if( isset($urlParamsList['resolution']) ) {
+        echo json_encode(  $routesControl->getRoute( $urlParamsList['id'], $urlParamsList['resolution'] ) );
+      }
+      else {
+        echo json_encode(  $routesControl->getRoute( $urlParamsList['id'] ) );
+      }
     }
     else {
       echo '[]';

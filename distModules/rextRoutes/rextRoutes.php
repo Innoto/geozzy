@@ -52,13 +52,14 @@ class rextRoutes extends Module {
       "params" => array("dygraphs#v1.1.0"),
       "installer" => "bower",
       "includes" => array("dygraph-combined.js","extras/shapes.js")
-    ),
+    )
+    /*,
     array(
       'id' =>'pChart',
       'params' => array('pChart'),
       'installer' => 'manual',
       'includes' => array('pChart.php','pChart.php')
-    )
+    )*/
   );
 
 
@@ -83,7 +84,7 @@ class rextRoutes extends Module {
     $this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
 // END TEST CODE
 
-    $this->addUrlPatterns( '#^api/routes.json#', 'view:RoutesAPIView::routesJson' );
+    $this->addUrlPatterns( '#^api/doc/routes.json#', 'view:RoutesAPIView::routesJson' );
     $this->addUrlPatterns( '#^api/routes/?(.*)$#', 'view:RoutesAPIView::routes' );
     $this->addUrlPatterns( '#^api/adminRoutes/?(.*)$#', 'view:RoutesAPIView::adminRoutes' );
 

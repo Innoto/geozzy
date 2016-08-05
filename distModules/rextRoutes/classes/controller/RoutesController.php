@@ -83,7 +83,7 @@ class RoutesController {
 
 
 
-  public function getRoute( $ids ) {
+  public function getRoute( $ids, $resolution = 100 ) {
     rextRoutes::autoIncludes();
     $useraccesscontrol = new UserAccessController();
 
@@ -130,10 +130,12 @@ class RoutesController {
           var_dump( json_encode( $this->extractPoints( $polygon )) );*/
           $cent = $polygon->getCentroid();
 
+
           $route['id'] =  $routeVO->getter('resource');
+
           $route['circular'] = $routeVO->getter('circular');
           $route['centroid'] =  [ $cent->y(), $cent->x() ];
-          $route['trackPoints'] = $this->extractPoints( $polygon );
+          $route['trackPoints'] = $this->simplifyPoints(  $polygon, $resolution );
         }
         catch(Exception $e) {
             Cogumelo::error( $e->getMessage() );
@@ -151,6 +153,97 @@ class RoutesController {
     return $routes;
   }
 
+
+  private function simplifyPoints($polygon, $resolution) {
+    $pointsFinal = [];
+    $points = $this->extractPoints( $polygon );
+    $cent = $polygon->centroid();
+    $centroid = [ $cent->y(), $cent->x() ];
+
+
+    $minX = $centroid[0];
+    $minY = $centroid[1];
+    $maxX = $centroid[0];
+    $maxY = $centroid[1];
+
+
+
+    if(sizeof($points)) {
+
+      // get max and min
+      foreach($points as $pk => $point) {
+        if( $point[0] < $minX ) {
+          $minX = $point[0];
+        }
+        else
+        if( $point[0] > $minX ) {
+          $maxX = $point[0];
+        }
+
+        if( $point[1] < $minY ) {
+          $minY = $point[1];
+        }
+        else
+        if( $point[1] > $minY ) {
+          $maxY = $point[1];
+        }
+
+      }
+
+      // distance beetwen max and min coordinates
+      $geomMaxDist = $this->distanceAB( [$minX,$minY], [$maxX,$maxY] );
+      $admisibleDistBetweenPoints =  $geomMaxDist - (($resolution  )/100) * $geomMaxDist;
+
+
+
+      $previusPoint = false;
+      foreach( $points as $pk => $point ) {
+
+        /*if( $pk == sizeof($points)-1 ) {
+          $previusPoint = false;
+        }*/
+
+        if($previusPoint) {
+          //$points[$pk][2] = $this->distanceAB( $previusPoint, $point  );
+          //$points[$pk][3] = $geomMaxDist;
+          //$points[$pk][3] = $this->distanceAB( $previusPoint, $point  );
+          //$points[$pk][4] = $admisibleDistBetweenPoints;
+
+          if( $this->distanceAB( $previusPoint, $point  ) > $admisibleDistBetweenPoints ) {
+            $pointsFinal[] = $point;
+            $previusPoint = $point;
+          }
+        }
+        else {
+          $pointsFinal[] = $point;
+          $previusPoint = $point;
+        }
+      }
+
+      // allways set final point
+      $pointsFinal[sizeof($pointsFinal)-1] = $point;
+    }
+
+    return $pointsFinal;
+  }
+
+  private function distanceAB($coorA, $coorB) {
+    $distance = 0;
+
+    $delta_lat = $coorB[0] - $coorA[0];
+    $delta_lon = $coorB[1] - $coorA[1];
+
+    $earth_radius = 6372.795477598;
+
+    $alpha    = $delta_lat/2;
+    $beta     = $delta_lon/2;
+    $a        = sin(deg2rad($alpha)) * sin(deg2rad($alpha)) + cos(deg2rad($coorB[1])) * cos(deg2rad( $coorA[1])) * sin(deg2rad($beta)) * sin(deg2rad($beta)) ;
+    $c        = asin(min(1, sqrt($a)));
+    $distance = 2*$earth_radius * $c;
+
+
+    return $distance;
+  }
 
 
   public function validateRoute( $filePath ) {
