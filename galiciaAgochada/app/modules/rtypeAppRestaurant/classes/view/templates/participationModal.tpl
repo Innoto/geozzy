@@ -99,7 +99,7 @@
               {$res.dataForm.formFieldsArray[$name]}
             {/foreach}
           {/if}
-
+          <div class="formErrors"></div>
           <div class="subStepActions">
             <div class="row">
               <div class="col-sm-6">
@@ -135,13 +135,48 @@
 
   $('.participation-step2 .subStepActions .next').on('click', function (e) {
     var substep = $(this).attr('data-goStep');
-    $('.participation-step2 .subStep').hide();
-    $('.participation-step2 .subStep'+substep).show();
+    var formId ='participationXantaresForm';
+    var fieldsNamesArray = new Array();
+    var isOk = true;
+
+
+    switch (substep) {
+      case '2':
+        fieldsNamesArray = ['title_es', 'mediumDescription_es'];
+        $.each(fieldsNamesArray, function( index, field ) {
+          if(!$('[form="'+formId+'"][name="'+field+'"]' ).valid()){
+            isOk = false;
+          }
+        });
+        break;
+      case '3':
+        fieldsNamesArray = ['rextEatAndDrink_eatanddrinkType'];
+        $.each(fieldsNamesArray, function( index, field ) {
+          if(!$('[form="'+formId+'"][name="'+field+'"]' ).valid()){
+            isOk = false;
+          }
+        });
+        break;
+    }
+    if(isOk){
+      $('.participation-step2 .subStep').hide();
+      $('.participation-step2 .subStep'+substep).show();
+    }
+
   });
   $('.participation-step2 .subStepActions .previous').on('click', function (e) {
     var substep = $(this).attr('data-goStep');
     $('.participation-step2 .subStep').hide();
     $('.participation-step2 .subStep'+substep).show();
   });
+
+
+  var geozzy = geozzy || {};
+
+  geozzy.xantaresParticipationForm = {
+    closeModal: function closeModal() {
+      $('.participation-step2').modal('hide');
+    }
+  };
 
 </script>

@@ -222,32 +222,33 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
     if(class_exists( 'rextParticipation' ) && in_array('rextParticipation', $this->rExts)) {
       $participationCtrl = new RExtParticipationController( $this );
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      $formFieldsNamesStp1 = array( 'title_'.$C_LANG, 'mediumDescription_'.$C_LANG, 'rTypeIdName' );
-      $formFieldsNamesStp2 = $eatCtrl->prefixArray( array('eatanddrinkType') );
-      $formFieldsNamesStp3 = $contactCtrl->prefixArray( array('city', 'province', 'url', 'phone') );
-      $formFieldsNamesStp4 = array( 'image' );
-      $formFieldsNamesStp5 = $participationCtrl->prefixArray( array('observation') );
-
-      $templates['participationFull'] = new Template();
-      $templates['participationFull']->setTpl( 'participationModal.tpl', 'rtypeAppRestaurant' );
-      $templates['participationFull']->assign( 'headTitle', __( 'Participation Form' ) );
 
       $participationBlockInfo = $formBlockInfo;
-      $partForm = $participationBlockInfo['objForm'];
+      $partForm = clone $participationBlockInfo['objForm'];
 
       $partForm->setFieldParam( 'title_es', 'label', __('¿Cómo se llama el lugar?') );
       $partForm->setFieldParam( 'title_es', 'class', '' );
       $partForm->setFieldParam( 'mediumDescription_es', 'label', __('Descríbelo brevemente') );
       $partForm->setFieldParam( 'mediumDescription_es', 'class', '' );
+      $partForm->setValidationRule( 'mediumDescription_es', 'required', true );
       $partForm->setFieldParam( 'rextEatAndDrink_eatanddrinkType', 'label', __('¿Cómo clasificarías este lugar?') );
+      $partForm->setValidationRule( 'rextEatAndDrink_eatanddrinkType', 'required', true );
       $partForm->setFieldParam( 'rExtContact_city', 'label', __('¿En qué localidad se encuentra?') );
       $partForm->setFieldParam( 'rExtContact_province', 'label', __('¿En qué provincia se encuentra?') );
       $partForm->setFieldParam( 'rExtContact_url', 'label', __('¿Tiene página web?') );
       $partForm->setFieldParam( 'rExtContact_phone', 'label', __('¿Teléfono?') );
+      $partForm->setFieldParam( 'locLat', 'type', 'reserved');
+      $partForm->setFieldParam( 'locLon', 'type', 'reserved');
+      $partForm->setFieldParam( 'defaultZoom', 'type', 'reserved');
+      $partForm->setFieldParam( 'published', 'type', 'reserved');
+      $partForm->setFieldParam( 'published', 'value', false);
+      $partForm->setFieldValue( 'rExtParticipation_participation', true);
+
+      $partForm->setField( 'acceptCond',  array( 'type' => 'checkbox', 'options' => array( 'accept' => __( 'Acepto las condiciones del servicio y la política de privacidad' ) ) ) );
+      $partForm->setValidationRule( 'acceptCond', 'required', true );
 
       //$form->removeValidationRules('topics');
       $partForm->removeField( 'externalUrl');
-      $partForm->removeField( 'published');
       $partForm->removeField( 'rextEatAndDrink_reservationURL');
       $partForm->removeField( 'rextEatAndDrink_averagePrice');
       $partForm->removeField( 'rextEatAndDrink_eatanddrinkSpecialities');
@@ -268,6 +269,16 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
 
       $participationBlockInfo['objForm'] = $partForm;
       //$participationBlockInfo['objForm']->saveToSession();
+      $formFieldsNamesStp1 = array( 'title_'.$C_LANG, 'mediumDescription_'.$C_LANG, 'rTypeIdName' );
+      $formFieldsNamesStp2 = $eatCtrl->prefixArray( array('eatanddrinkType') );
+      $formFieldsNamesStp3 = $contactCtrl->prefixArray( array('city', 'province', 'url', 'phone') );
+      $formFieldsNamesStp4 = array( 'image' );
+      $formFieldsNamesStp5 = $participationCtrl->prefixArray( array('observation') );
+      array_push( $formFieldsNamesStp5, 'acceptCond' );
+
+      $templates['participationFull'] = new Template();
+      $templates['participationFull']->setTpl( 'participationModal.tpl', 'rtypeAppRestaurant' );
+      $templates['participationFull']->assign( 'headTitle', __( 'Participation Form' ) );
 
       $templates['participationFull']->assign( 'res', $participationBlockInfo );
       $templates['participationFull']->assign( 'formFieldsNamesStp1', $formFieldsNamesStp1 );

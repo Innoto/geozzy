@@ -366,7 +366,9 @@
     }
     that.bindsParticipation = function(){
       $('#initParticipacion').on('click', function(){
-        that.initParticipationStep1();
+        geozzy.userSessionInstance.userControlAccess( function(){
+          that.initParticipationStep1();
+        });        
       });
     }
     that.initParticipationStep1 = function(){
