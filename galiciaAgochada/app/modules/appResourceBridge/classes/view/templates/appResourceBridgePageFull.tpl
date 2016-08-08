@@ -27,7 +27,7 @@
 {if isset($res.ext.rextSocialNetwork.data["textFb"])}
   <meta property="og:description" content='{$res.ext.rextSocialNetwork.data["textFb"]|escape:"html"}' />
 {/if}
-  <meta property="og:locale" content="{$cogumelo.publicConf.lang_available[$lang]['i18n']}"/>
+<meta property="og:locale" content="{$cogumelo.publicConf.lang_available[$lang]['i18n']}"/>
 {/block}
 
 

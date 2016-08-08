@@ -28,11 +28,13 @@ var AdminRouter = Backbone.Router.extend({
     "resourceouttopic/list/topic/:id": "resourceouttopicList",
     "starred/:id": "starredList",
     "starred/star/:id/assign": "starredAssign",
-    "resource/create(/star/:star)(/topic/:topicId)/resourcetype/:resourcetype" : "resourceCreate",
-    "resource/edit/id/:id(/topic/:topicId)(/type/:typeId)" : "resourceEdit",
+    "resource/create(/star/:star)(/topic/:topicId)(/story/:storyId)/resourcetype/:resourcetype" : "resourceCreate",
+    "resource/edit/id/:id(/topic/:topicId)(/type/:typeId)(/story/:storyId)" : "resourceEdit",
     "collection/create" : "collectionCreate",
-    "collection/edit/:id" : "collectionEdit"
-
+    "collection/edit/:id" : "collectionEdit",
+    //"stories/:id": "storiesList",
+    "storysteps/:story": "storyStepsList",
+    "storysteps/story/:id/assign": "storyStepsAdd",
   },
 
   default: function() {
@@ -155,7 +157,7 @@ var AdminRouter = Backbone.Router.extend({
     app.mainView.setBodyClass('starredAssign');
   },
 
-  resourceCreate:function(star, topic, resourcetype) {
+  resourceCreate:function(star, topic, story, resourcetype) {
     if (star !== null){
       app.mainView.loadAjaxContent( '/admin/resource/create/star/'+star+'/resourcetype/'+resourcetype);
     }
@@ -164,7 +166,12 @@ var AdminRouter = Backbone.Router.extend({
         app.mainView.loadAjaxContent( '/admin/resource/create/topic/'+topic+'/resourcetype/'+resourcetype);
       }
       else{
-        app.mainView.loadAjaxContent( '/admin/resource/create/resourcetype/'+resourcetype);
+        if (story !== null){
+          app.mainView.loadAjaxContent( '/admin/resource/create/story/'+story+'/resourcetype/'+resourcetype);
+        }
+        else{
+          app.mainView.loadAjaxContent( '/admin/resource/create/resourcetype/'+resourcetype);
+        }
       }
       app.mainView.setBodyClass('resourceCreate');
     }
@@ -174,7 +181,7 @@ var AdminRouter = Backbone.Router.extend({
     app.mainView.loadAjaxContent( '/admin/resource/create/'+topic+'/'+resourcetype);
     app.mainView.setBodyClass('resourceCreateinTopic');
   },
-  resourceEdit:function( id, topic, type ) {
+  resourceEdit:function( id, topic, type, story ) {
     if (topic !== null){
       app.mainView.loadAjaxContent( '/admin/resource/edit/resourceId/'+id+'/topic/'+topic);
     }
@@ -183,7 +190,12 @@ var AdminRouter = Backbone.Router.extend({
         app.mainView.loadAjaxContent( '/admin/resource/edit/resourceId/'+id+'/type/'+type);
       }
       else{
-        app.mainView.loadAjaxContent( '/admin/resource/edit/resourceId/'+id);
+        if (story !== null){
+          app.mainView.loadAjaxContent( '/admin/resource/edit/resourceId/'+id+'/story/'+story);
+        }
+        else{
+          app.mainView.loadAjaxContent( '/admin/resource/edit/resourceId/'+id);
+        }
       }
     }
     app.mainView.setBodyClass('resourceEdit');
@@ -196,6 +208,21 @@ var AdminRouter = Backbone.Router.extend({
   collectionEdit:function( id )   {
     app.mainView.loadAjaxContent( '/admin/collection/edit/collectionId/' + id);
     app.mainView.setBodyClass('collectionEdit');
-  }
+  },
+
+  storyStepsList: function( story ){
+
+     if (typeof(geozzy.story)!='undefined'){
+       console.log('storyStepsList');
+       app.mainView.loadAjaxContent( '/admin/storysteps/story/' + story);
+    //   app.mainView.menuSelect('story_'+story);
+    //   app.mainView.setBodyClass('storyStepsList');
+     }
+  },
+  storyStepsAdd: function(id) {
+    console.log('storyStepsAdd');
+    app.mainView.loadAjaxContent( '/admin/storysteps/story/' + id +'/assign');
+    app.mainView.setBodyClass('storyStepsAdd');
+  },
 
 });

@@ -124,7 +124,7 @@ class AdminViewResource extends AdminViewMaster {
 
     $recursoData = false;
     /* Validamos os parámetros da url e obtemos un array de volta*/
-    $validation = array( 'topic'=> '#^\d+$#', 'resourcetype' => '#^\d+$#', 'star' => '#^\d+$#' );
+    $validation = array( 'topic'=> '#^\d+$#', 'resourcetype' => '#^\d+$#', 'star' => '#^\d+$#', 'story' => '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
     if( $urlParamsList ) {
@@ -141,6 +141,12 @@ class AdminViewResource extends AdminViewMaster {
         $urlParamRtype = $urlParamsList['resourcetype'];
         $rtypeControl = new ResourcetypeModel();
         $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $urlParamRtype ) ) )->fetch();
+      }
+
+      if( isset( $urlParamsList['story'] ) ) {
+        $urlParamStory = $urlParamsList['story'];
+        $resourceControl = new ResourceModel();
+        $resourceItem = $resourceControl->ListItems( array( 'filters' => array( 'id' => $urlParamStory ) ) )->fetch();
       }
 
       if( $rTypeItem ) {
@@ -160,6 +166,24 @@ class AdminViewResource extends AdminViewMaster {
             $recursoData['topics'] = $topicItem->getter('id');
           }
         }
+        // Creando un storystep dentro dunha story
+        if( isset($resourceItem )) {
+          // A partir do id da story recuperamos a súa collection 'steps'
+          $collection = new CollectionModel( );
+          $resourceCollectionsModel = new ResourceCollectionsModel();
+          $resourceCollectionsList = $resourceCollectionsModel->listItems(
+            array('filters' => array('resource' => $urlParamStory)) );
+          $collectionId = false;
+          while($resCol = $resourceCollectionsList->fetch()){
+            $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
+            if($typecol->getter('collectionType')==='steps'){
+              $collectionId = $typecol->getter('id');
+            }
+          }
+          $recursoData['collection'] = $collectionId;
+          $recursoData['storyAssignReturn'] = $resourceItem->getter('id');
+        }
+
       }
     }
 
@@ -184,7 +208,7 @@ class AdminViewResource extends AdminViewMaster {
     $typeItem = false;
 
     /* Validamos os parámetros da url e obtemos un array de volta*/
-    $validation = array( 'topic'=> '#^\d+$#', 'resourceId'=> '#^\d+$#', 'type'=> '#^\d+$#' );
+    $validation = array( 'topic'=> '#^\d+$#', 'resourceId'=> '#^\d+$#', 'type'=> '#^\d+$#', 'story'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
     $resCtrl = new ResourceController();
@@ -199,6 +223,11 @@ class AdminViewResource extends AdminViewMaster {
     if (isset( $urlParamsList['type'])){
       $typeItem = $urlParamsList['type'];
       $recursoData['typeReturn'] = $typeItem;
+    }
+
+    if (isset( $urlParamsList['story'])){
+      $typeItem = $urlParamsList['story'];
+      $recursoData['storyReturn'] = $typeItem;
     }
 
     if( $topicItem ) {
@@ -227,23 +256,32 @@ class AdminViewResource extends AdminViewMaster {
     if( !$resCtrl ) {
       $resCtrl = new ResourceController();
     }
-
-    if( !isset($valuesArray['topicReturn']) ) {
-      if (isset($valuesArray['typeReturn'])){ // tabla de páginas
-        $rtypeControl = new ResourcetypeModel();
-        $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $valuesArray['typeReturn'] ) ) )->fetch();
-        if($rTypeItem && $rTypeItem->getter('idName') === "rtypePage"){
-          $successArray[ 'redirect' ] = SITE_URL . 'admin#resourcepage/list';
-        }else{
-          $successArray[ 'redirect' ] = SITE_URL . 'admin#resource/list';
+    if( !isset($valuesArray['storyReturn']) ) {
+      if( !isset($valuesArray['storyAssignReturn']) ) {
+        if( !isset($valuesArray['topicReturn']) ) {
+          if (isset($valuesArray['typeReturn'])){ // tabla de páginas
+            $rtypeControl = new ResourcetypeModel();
+            $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $valuesArray['typeReturn'] ) ) )->fetch();
+            if($rTypeItem && $rTypeItem->getter('idName') === "rtypePage"){
+              $successArray[ 'redirect' ] = SITE_URL . 'admin#resourcepage/list';
+            }else{
+              $successArray[ 'redirect' ] = SITE_URL . 'admin#resource/list';
+            }
+          }
+          else{ // tabla general de contenidos
+            $successArray[ 'redirect' ] = SITE_URL . 'admin#resource/list';
+          }
+        }
+        else { // tabla de recursos de una temática
+          $successArray[ 'redirect' ] = SITE_URL . 'admin#topic/'.$valuesArray['topicReturn'];
         }
       }
-      else{ // tabla general de contenidos
-        $successArray[ 'redirect' ] = SITE_URL . 'admin#resource/list';
+      else { // tabla de recursos de una temática
+        $successArray[ 'redirect' ] = SITE_URL . 'admin#storysteps/story/'.$valuesArray['storyAssignReturn'].'/assign';
       }
     }
     else { // tabla de recursos de una temática
-      $successArray[ 'redirect' ] = SITE_URL . 'admin#topic/'.$valuesArray['topicReturn'];
+      $successArray[ 'redirect' ] = SITE_URL . 'admin#storysteps/'.$valuesArray['storyReturn'];
     }
     $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
 
