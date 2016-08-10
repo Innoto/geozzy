@@ -52,6 +52,7 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
 
     // Necesito estos controles
     $accomCtrl = new RExtAccommodationController( $this );
+    $accomReserveCtrl = new RExtAccommodationReserveController( $this );
     $zonaCtrl = new RExtAppZonaController( $this );
 
 
@@ -99,7 +100,8 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     $templates['reservation']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['reservation']->assign( 'title', __( 'Reservation' ) );
     $templates['reservation']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = $accomCtrl->prefixArray(array( 'reservationURL', 'reservationPhone', 'reservationEmail' ));
+    $formFieldsNames = $accomCtrl->prefixArray( [ 'reservationURL', 'reservationPhone', 'reservationEmail' ] );
+    $formFieldsNames = array_merge( $formFieldsNames, $accomReserveCtrl->prefixArray( [ 'channel', 'idRelate' ] ) );
     $templates['reservation']->assign( 'formFieldsNames', $formFieldsNames );
 
 
@@ -316,6 +318,10 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
 
     if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
       $template->addToFragment( 'rextCommentAverageBlock', $viewBlockInfo['ext']['rextComment']['template']['headerAverage'] );
+    }
+
+    if( in_array('rextAccommodationReserve', $this->rExts) ) {
+      $template->addToFragment( 'rextAccommodationReserve', $viewBlockInfo['ext']['rextAccommodationReserve']['template']['full'] );
     }
 
     $taxtermModel = new TaxonomytermModel();

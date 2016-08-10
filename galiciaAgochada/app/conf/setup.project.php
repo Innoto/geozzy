@@ -96,6 +96,7 @@ $C_ENABLED_MODULES = array(
 global $C_REXT_MODULES;
 $C_REXT_MODULES = array(
   'rextAccommodation',
+  'rextAccommodationReserve',
   'rextEatAndDrink',
   'rextContact',
   'rextBI',
