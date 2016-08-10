@@ -98,8 +98,10 @@
     left: 70px;
     margin-right: 60px;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.9);
-    border: 2px solid @gzzColor-bck-9;
+    background: rgba(54, 83, 81, 0.7);
+    color: @gzzColor-text-light;
+    text-align: center;
+    padding: 10px;
 
     .contentModalParticipation{
       padding: 10px 20px;
@@ -107,6 +109,77 @@
     .actionsModalParticipation{
       padding: 10px 20px;
     }
+  }
+}
+
+#participationXantaresForm{
+  .subStep2{
+    .customEatanddrinkType{
+      margin: 20px 0;
+      .customEatanddrinkTypeItem{
+        cursor:pointer;
+        text-align: center;
+        &:hover,
+        &.selected{
+          .icon{
+            border: 2px solid @gzzColor-page;
+            .normal{ display:none; }
+            .selected{ display:inline; }
+          }
+        }
+        &.selected{
+          .text{
+            font-weight: bold;
+            color: @gzzColor-page;
+          }
+        }
+        .icon{
+          padding: 15px;
+          border: 2px solid @gzzColor-bck-5;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          .normal{ display:inline; }
+          .selected{ display:none; }
+        }
+        .text{  margin-top: 10px; }
+      }
+    }
+  }
+  .subStep4{
+    text-align: center;
+    #fileFieldDropZone_participationXantaresForm_image{
+      i{
+        background: url("@{cogumelo_publicConf_media}/img/upload.png") center center no-repeat;
+
+        height: 143px;
+        width: 143px;
+        margin-bottom: 20px;
+        &:before{
+           content: "";
+        }
+      }
+    }
+  }
+  .subStep5{
+    .cgmMForm-field-acceptCond .labelText{
+      font-weight: normal;
+      span{ font-weight: bold; }
+    }
+    .termsConditions{
+      padding: 20px;
+      background-color: @gzzColor-bck-3;
+      height: 250px;
+      overflow: auto;
+    }
+  }
+  .cgmMForm-field-submit{
+    margin: 0;
+  }
+  .subStepActions{
+    margin-top: 20px;
+    text-align: left;
+    button.next{ float:right; }
   }
 }
 

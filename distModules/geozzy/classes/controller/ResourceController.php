@@ -744,6 +744,20 @@ class ResourceController {
 
     return $options;
   }
+  public function getOptionsTaxAdvancedArray( $taxIdName ) {
+    $options = array();
+    $taxTermModel =  new TaxonomyTermModel();
+    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ),
+      'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
+    while( $taxTerm = $taxTermList->fetch() ){
+      $options[ $taxTerm->getter( 'id' ) ] = array(
+        'text' => $taxTerm->getter( 'name', Cogumelo::getSetupValue( 'lang:default' )),
+        'data-term-icon' => $taxTerm->getter('icon'),
+        'value' => $taxTerm->getter( 'id' )
+      );
+    }
+    return $options;
+  }
 
 
 

@@ -125,6 +125,15 @@ cogumeloSetSetupValue( 'mod:filedata:profile:explorerXantaresMarkerApp', array(
   'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaXantares64x64.png',
   'padding' => 10, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
 
+
+cogumeloSetSetupValue( 'mod:filedata:profile:typeXantaresParticipationFilter', array(
+  'width' => 75, 'height' => 75, 'cut' => false, 'rasterColor' => '#BABABA',
+  'saveName' => 'icon.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:typeXantaresParticipationFilterActive', array(
+  'width' => 75, 'height' => 75, 'cut' => false, 'rasterColor' => '#425452',
+  'saveName' => 'icon.png', 'saveFormat' => 'PNG' ) );
+
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR ALOXAMENTOS----------------------------------------*/
 cogumeloSetSetupValue( 'mod:filedata:profile:typeIconAloxamentos', array(
   'width' => 36, 'height' => 36,
