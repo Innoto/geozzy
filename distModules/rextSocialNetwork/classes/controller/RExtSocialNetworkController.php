@@ -165,7 +165,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      if ($valuesArray['activeFb']){
+      if (isset($valuesArray['activeFb'])){
         $textFb = $form->multilangFieldNames( 'textFb' );
         foreach( $textFb as $text ) {
           if ($valuesArray[$text]==""){
@@ -174,7 +174,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
           }
         }
       }
-      if ($valuesArray['activeTwitter']){
+      if (isset($valuesArray['activeTwitter'])){
         $twitterFb = $form->multilangFieldNames( 'textTwitter' );
         foreach( $twitterFb as $text ) {
           if( $valuesArray[$text]=="" ) {

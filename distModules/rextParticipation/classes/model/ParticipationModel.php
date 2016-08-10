@@ -18,6 +18,10 @@ class ParticipationModel extends Model
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
+    'participation' => array(
+      'type' => 'BOOLEAN',
+      'default' => 0
+    ),
     'observation' => array(
       'type' => 'VARCHAR',
       'size' => 200
@@ -31,5 +35,5 @@ class ParticipationModel extends Model
     parent::__construct( $datarray, $otherRelObj );
   }
 
-  
+
 }
