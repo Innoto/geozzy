@@ -1,0 +1,91 @@
+
+booking.com
+
+rExt info:
+type='srcLink'
+pattern='http://www.booking.com/hotel/<$langName>/<$idRelation>.html?checkin=<$checkin>;checkout=<$checkout>;group_adults=<$adults>;no_rooms=<$rooms>'
+dateFormat='Y-m-d'
+
+params rExt:
+idRelation='hesperia-coruna'
+
+params internal:
+langName=es
+
+params public:
+checkin=2016-11-15
+checkout=2016-11-16
+adults=4
+rooms=2
+
+
+Resultado:
+http://www.booking.com/hotel/es/hesperia-coruna.html?checkin=2016-11-15;checkout=2016-11-16;group_adults=4;no_rooms=2
+
+---
+---
+
+netubi.com
+
+rExt info:
+type='srcLink'
+pattern='https://www.netubi.com/m/<$langName>/<$idRelation>/1/<$checkin>/<$checkout>'
+dateFormat='d-m-Y'
+
+params rExt:
+idRelation='hotel-abeiras'
+
+params internal:
+langName=es
+
+params public:
+checkin=2016-11-15
+checkout=2016-11-16
+
+
+Resultado:
+https://www.netubi.com/m/es/hotel-abeiras/1/05-08-2016/06-08-2016
+
+---
+---
+
+thebookingbutton.com
+
+rExt info:
+type='embedIframe' o 'srcIframe'
+pattern='https://app.thebookingbutton.com/properties/<$idRelation>/widget?locale=<$langName>&number_of_days=14&start_date=<$checkin>'
+dateFormat='Y-m-d'
+
+params rExt:
+idRelation='campingbielsadirect'
+
+params internal:
+langName=es
+
+params public:
+checkin=2016-11-15
+
+
+Resultado:
+<iframe src="https://app.thebookingbutton.com/properties/campingbielsadirect/widget?locale=es&number_of_days=14&start_date=2016-09-22" height="500" width="100%" frameborder="0" scrolling="yes" allowtransparency="true"></iframe>
+
+---
+---
+
+ruralgest.net
+
+rExt info:
+type='embedScript' o 'srcScript'
+http://www.ruralgest.net/scr/modulos/recursos_ext/js_ext/ext_v001.php?id_casa=<$idRelation>&amp;id_idioma=0&amp;espacio=2&amp;n_c=1
+
+params rExt:
+idRelation='575983'
+
+params internal:
+
+params public:
+
+
+Resultado:
+<script src="http://www.ruralgest.net/scr/modulos/recursos_ext/js_ext/ext_v001.php?id_casa=575983&amp;id_idioma=0&amp;espacio=2&amp;n_c=1"></script>
+

@@ -164,6 +164,13 @@
     </div>
   </section>
 
+  {if isset($rextAccommodationReserve) }
+  <section class="reserveSec container gzSection">
+    <p>Section reserveSec:</p>
+    {$rextAccommodationReserve}
+  </section>
+  {/if}
+
   <section class="locationSec gzSection">
     {if (isset($rextContactBlock) && $rextContactBlock!="")}
     <div class="locationLight">
