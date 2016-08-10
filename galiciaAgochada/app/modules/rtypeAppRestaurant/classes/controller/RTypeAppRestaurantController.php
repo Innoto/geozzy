@@ -244,7 +244,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $partForm->setFieldParam( 'published', 'value', false);
       $partForm->setFieldValue( 'rExtParticipation_participation', true);
 
-      $partForm->setField( 'acceptCond',  array( 'type' => 'checkbox', 'options' => array( 'accept' => __( 'Acepto las condiciones del servicio y la política de privacidad' ) ) ) );
+      $partForm->setField( 'acceptCond',  array( 'type' => 'checkbox', 'options' => array( 'accept' => __( 'Acepto las <span>condiciones del servicio y la política de privacidad</span>' ) ) ) );
       $partForm->setValidationRule( 'acceptCond', 'required', true );
 
       //$form->removeValidationRules('topics');
