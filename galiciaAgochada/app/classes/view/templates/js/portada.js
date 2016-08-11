@@ -39,6 +39,7 @@ $( document ).ready(function(){
   /*Effect Anchor*/
   initEffectNavs();
 
+  sectionParticipation();
 });
 
 function initEffectNavs(){
@@ -53,5 +54,11 @@ function initEffectNavs(){
         event.preventDefault();
       }
     }
+  });
+}
+
+function sectionParticipation(){
+  $('.secParticipa #whereParticipationSend').on('click', function(e){
+    window.location.href=$('.secParticipa #whereParticipationSelect').val();
   });
 }

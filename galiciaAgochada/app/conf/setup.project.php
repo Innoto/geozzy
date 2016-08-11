@@ -96,7 +96,7 @@ $C_ENABLED_MODULES = array(
 global $C_REXT_MODULES;
 $C_REXT_MODULES = array(
   'rextAccommodation',
-  'rextAccommodationReserve',
+  /*'rextAccommodationReserve',*/
   'rextEatAndDrink',
   'rextContact',
   'rextBI',
@@ -120,8 +120,10 @@ $C_REXT_MODULES = array(
   'rextRoutes',
   'rextReccommended',
   'rextParticipation',
-  /*'rextStoryStep',
-  'rextStory',*/
+/*
+  'rextStoryStep',
+  'rextStory',
+*/
   'rextAudioguide'
 );
 
@@ -140,11 +142,11 @@ $C_RTYPE_MODULES = array(
   'rtypeAppUser',
   'rtypeFavourites',
   'rtypePoi',
-  'rtypeEvent'
-/*
-  'rtypeStory',
-  'rtypeStoryStep'
-  */
+  'rtypeEvent'//,
+
+  //'rtypeStory',
+  //'rtypeStoryStep'
+
 );
 
 
@@ -184,8 +186,8 @@ $C_INDEX_MODULES  = array(
   'rextFavourite',
   'rtypeEvent',
   'rtypePoi',
-  /*'rtypeStory',
-  'rtypeStoryStep',*/
+  //'rtypeStory',
+  //'rtypeStoryStep',
   'devel'
 ); // DEVEL SIEMPRE DE ULTIMO!!!
 
