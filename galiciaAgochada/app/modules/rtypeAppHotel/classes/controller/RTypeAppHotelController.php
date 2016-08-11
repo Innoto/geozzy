@@ -52,8 +52,12 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
 
     // Necesito estos controles
     $accomCtrl = new RExtAccommodationController( $this );
-    $accomReserveCtrl = new RExtAccommodationReserveController( $this );
     $zonaCtrl = new RExtAppZonaController( $this );
+
+
+    if( class_exists( 'RExtAccommodationReserveController' ) && in_array( 'rextAccommodationReserve', $this->rExts ) ) {
+      $accomReserveCtrl = new RExtAccommodationReserveController( $this );
+    }
 
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
@@ -101,7 +105,9 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     $templates['reservation']->assign( 'title', __( 'Reservation' ) );
     $templates['reservation']->assign( 'res', $formBlockInfo );
     $formFieldsNames = $accomCtrl->prefixArray( [ 'reservationURL', 'reservationPhone', 'reservationEmail' ] );
-    $formFieldsNames = array_merge( $formFieldsNames, $accomReserveCtrl->prefixArray( [ 'channel', 'idRelate' ] ) );
+    if( isset( $accomReserveCtrl ) ) {
+      $formFieldsNames = array_merge( $formFieldsNames, $accomReserveCtrl->prefixArray( [ 'channel', 'idRelate' ] ) );
+    }
     $templates['reservation']->assign( 'formFieldsNames', $formFieldsNames );
 
 
