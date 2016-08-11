@@ -363,12 +363,18 @@
 
     that.setParticipation = function(){
       that.bindsParticipation();
-    }
-    that.bindsParticipation = function(){
-      $('#initParticipacion').on('click', function(){
+
+      if(geozzy.xantaresParticipationForm.initParticipation){
         geozzy.userSessionInstance.userControlAccess( function(){
           that.initParticipationStep1();
-        });        
+        });
+      }
+    }
+    that.bindsParticipation = function(){
+      $('#initParticipation').on('click', function(){
+        geozzy.userSessionInstance.userControlAccess( function(){
+          that.initParticipationStep1();
+        });
       });
     }
     that.initParticipationStep1 = function(){
