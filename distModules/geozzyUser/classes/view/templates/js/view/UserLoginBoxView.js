@@ -9,7 +9,9 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
 
   events: {
     "click .gotoregister": "goToRegister",
-    "click .close": "abortLoginModal"
+    "click .close": "abortLoginModal",
+    "click .initRecoveryPass": "initRecoveryPass",
+    "click .recoveryPassSubmit": "sendRecoveryPass"
   },
 
   initLoginModal: function(){
@@ -60,6 +62,23 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
     var that = this;
     that.closeLoginModal();
     that.userSessionParent.initRegisterBox();
+  },
+  initRecoveryPass: function(){
+    var that = this;
+    $('#loginModal .initRecoveryPass').hide();
+    $('#loginModal .recoveryPasswordForm').show();
+  },
+  sendRecoveryPass:function(){
+    var userEmail = $('.recoveryPassEmail').val();
+    $.ajax({
+      url: "/api/core/userunknownpass",
+      data: {'user': userEmail },
+      method: "POST",
+    }).done(function( data ) {
+      console.log(data);
+      $('#loginModal .recoveryPasswordForm').hide();
+      $('#loginModal .recoveryPasswordFinalMsg').show();
+    });
   }
 
 });

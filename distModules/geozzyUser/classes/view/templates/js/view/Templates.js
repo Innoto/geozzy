@@ -23,7 +23,16 @@ geozzy.userSessionComponents.userLoginBoxTemplate = ''+
 '<h3>'+__("¿Ya tienes una cuenta?")+'</h3>'+
 '<h3>'+__("Inicia tu sesión para continuar")+'</h3>'+
 '<div class="loginModalForm"></div>'+
-'<a href="#">'+__("He olvidado mi contraseña")+'</a>';
+'<a class="initRecoveryPass">'+__("He olvidado mi contraseña")+'</a>'+
+'<div class="recoveryPasswordForm" style="display:none;">'+
+  '<h3>'+__("Recovery password")+'</h3>'+
+  '<p>'+__("Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un enlace para restablecer tu contraseña")+'</p>'+
+  '<form><div class="cgmMForm-wrap"><input type="text" class="recoveryPassEmail" placeholder="Email"></div>'+
+  '<div class="cgmMForm-wrap"><input value="'+__("Send")+'" type="button" class="recoveryPassSubmit btn btn-success pull-right"></div></form>'+
+'</div>'+
+'<div class="recoveryPasswordFinalMsg" style="display:none;">'+
+  '<div class="alert alert-success" role="alert"><i class="fa fa-check-circle-o" aria-hidden="true"></i>    '+__("Correo electrónico enviado correctamente")+'</div>'+
+'</div>';
 
 geozzy.userSessionComponents.userRegisterBoxTemplate = ''+
 '<h3>'+__("Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente formulario")+'.</h3>'+
