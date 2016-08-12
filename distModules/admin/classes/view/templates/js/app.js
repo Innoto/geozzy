@@ -1,6 +1,7 @@
 
 
 var app = app || {};
+var geozzy = geozzy || {};
 
 
  if( window.location.pathname != '/admin/login') {
@@ -29,7 +30,7 @@ $( document ).ready(function() {
 
   /* Só se executa se está o modulo Stories */
   var storiesFetch = true;
-  if( typeof geozzy !== 'undefined' && typeof geozzy.story !== 'undefined' ) {
+  if( typeof geozzy.story !== 'undefined' ) {
     if( typeof geozzy.storiesInstance === 'undefined' ) {
       geozzy.storiesInstance = new geozzy.story();
       geozzy.storiesInstance.listStories();
@@ -49,7 +50,7 @@ $( document ).ready(function() {
       Backbone.history.start();
     }
     // só en caso de módulo Stories activado
-    if( typeof geozzy !== 'undefined' && typeof geozzy.story !== 'undefined' ) {
+    if( typeof geozzy.story !== 'undefined' ) {
       geozzy.storiesInstance.listStoryView.render();
     }
   });
