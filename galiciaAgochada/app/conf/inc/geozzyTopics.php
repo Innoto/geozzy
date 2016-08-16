@@ -159,5 +159,26 @@ $geozzyTopicsInfo = array(
     'taxgroup' => 12,
     'icon' => '',
     'weight' => 1
+  ),
+  'participation' => array(
+    'name' => array(
+      'es' => 'Participación',
+      'en' => 'Participation',
+      'gl' => 'Participación'
+    ),
+    'resourceTypes' => array(
+      'rtypeAppRestaurant' => array(
+        'weight' => 2
+      )
+    ),
+    'table' => array(
+      'actions' => array(
+        'viewHtml' => 'auto',
+        'action' => 'auto'
+      ),
+    ),
+    'taxgroup' => 12,
+    'icon' => '',
+    'weight' => 1
   )
 );

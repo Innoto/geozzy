@@ -91,6 +91,10 @@ class ExplorerPageView extends MasterView
     $this->template->addClientStyles('styles/rExtFavourite.less', 'rextFavourite' );
     $this->template->addClientScript('js/rExtFavouriteController.js', 'rextFavourite' );
 
+    if( isset($_GET['participation']) ){
+      $this->template->assign( 'initParticipation', $_GET['participation'] );
+    }
+
     $this->template->setTpl('xantaresExplorerPage.tpl');
   }
   public function aloxamentosExplorer(){

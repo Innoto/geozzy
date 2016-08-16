@@ -1,6 +1,5 @@
 <?php
 Cogumelo::load('coreView/View.php');
-
 common::autoIncludes();
 geozzy::autoIncludes();
 admin::autoIncludes();
@@ -8,7 +7,9 @@ form::autoIncludes();
 form::loadDependence( 'ckeditor' );
 user::autoIncludes();
 table::autoIncludes();
-
+if( class_exists( 'rtypeStory' ) ) {
+  rtypeStory::autoIncludes();
+}
 
 class AdminViewMaster extends View
 {
@@ -91,6 +92,9 @@ class AdminViewMaster extends View
     }
     if( class_exists( 'rextComment' ) ) {
       $this->template->assign( 'rextCommentInclude' , true);
+    }
+    if( class_exists( 'rextStoryStep' ) ) {
+      $this->template->assign( 'rextStoryInclude' , true);
     }
     //
     $this->template->exec();

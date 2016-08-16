@@ -363,22 +363,30 @@
 
     that.setParticipation = function(){
       that.bindsParticipation();
+
+      if(geozzy.xantaresParticipationForm.initParticipation){
+        geozzy.userSessionInstance.userControlAccess( function(){
+          that.initParticipationStep1();
+        });
+      }
     }
     that.bindsParticipation = function(){
-      $('#initParticipacion').on('click', function(){
-        that.initParticipationStep1();
+      $('#initParticipation').on('click', function(){
+        geozzy.userSessionInstance.userControlAccess( function(){
+          that.initParticipationStep1();
+        });
       });
     }
     that.initParticipationStep1 = function(){
       //Map Events
       var my_marker = {
-         url: cogumelo.publicConf.media+'/module/admin/img/geozzy_marker.png',
+         url: cogumelo.publicConf.media+'/img/aamarker.png',
          // This marker is 20 pixels wide by 36 pixels high.
-         size: new google.maps.Size(30, 36),
+         size: new google.maps.Size(40, 50),
          // The origin for this image is (0, 0).
          origin: new google.maps.Point(0, 0),
          // The anchor for this image is the base of the flagpole at (0, 36).
-         anchor: new google.maps.Point(13, 36)
+         anchor: new google.maps.Point(20, 50)
        };
        if(!that.participationMarker){
          that.participationMarker = new google.maps.Marker({
@@ -439,12 +447,6 @@
     that.initParticipationStep2 = function(){
 
       that.closeParticipationStep1();
-
-      console.log('paso 2 Form');
-      console.log(that.participationLat);
-      console.log(that.participationLng);
-      console.log(that.participationZoom);
-
       $.ajax({
         url: "/participation/xantaresExplorer",
         method: "POST",
@@ -455,7 +457,7 @@
         }
       });
 
-      
+
     }
 
     that.closeParticipationStep2 = function(){

@@ -1,11 +1,15 @@
 
+console.log('Cargamos adminResource.js');
+
+
 var app = app || {};
 
 var resourceMap = false;
 var resourceMarker = false;
 
 
-$(document).ready(function(){
+$(document).ready( function() {
+  console.log('Inicializamos adminResource.js');
 
   var els = $('.switchery');
   els.each(function( index )  {
@@ -13,6 +17,9 @@ $(document).ready(function(){
   });
 
   bindResourceForm();
+
+  // Porto 160810
+  initializeMap( formId );
 });
 
 function bindResourceForm(){
@@ -88,7 +95,9 @@ function initializeMap( form ){
 
     var mapContainer = $(formName+' .mapContainer');
 
-    if( mapContainer.length ) {
+    // Porto 160810    if( mapContainer.length ) {
+    if( mapContainer.length && mapContainer.children('#resourceLocationMap_'+form).length < 1 ) {
+
       mapContainer.append('<div class="resourceLocationMap" id="resourceLocationMap_'+form+'"></div>');
 
       // latInput.parent().hide();
@@ -99,7 +108,7 @@ function initializeMap( form ){
       var lonValue = 0;
       var zoom = 1;
 
-      if( latInput.val() != '' && latInput.val() != '') {
+      if( latInput.val() !== '' && latInput.val() !== '') {
         latValue = parseFloat( latInput.val() );
         lonValue = parseFloat( lonInput.val() );
         zoom = parseInt( defaultZoom.val() );
@@ -140,7 +149,7 @@ function initializeMap( form ){
 
       // Click map event
       google.maps.event.addListener(resourceMap, 'click', function(e) {
-        resourceMarker.setPosition( e.latLng )
+        resourceMarker.setPosition( e.latLng );
         resourceMarker.setMap( resourceMap );
         latInput.val( resourceMarker.position.lat() );
         lonInput.val( resourceMarker.position.lng() );
@@ -154,7 +163,7 @@ function initializeMap( form ){
       });
 
 
-      if( latInput.val() != '') {
+      if( latInput.val() !== '') {
         resourceMarker.setMap( resourceMap);
       }
 
@@ -206,6 +215,7 @@ function editCollection(e){
   var rtypeParent = $('#rTypeIdName').val();
   app.mainView.loadAjaxContentModal('/admin/collection/edit/'+e.value+'/'+rtypeParent, 'editCollectionsModal', 'Edit Collection');
 }
+
 function editMultimediaGallery(e){
   app.mainView.loadAjaxContentModal('/admin/multimedia/edit/'+e.value, 'editMultimediaGalleryModal', 'Edit Multimedia Gallery');
 }

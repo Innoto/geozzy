@@ -39,6 +39,14 @@ class rextView extends Module {
             'es' => 'Vacío',
             'gl' => 'Vacío'
           )
+        ),
+        'tplDefault' => array(
+          'idName' => 'tplDefault',
+          'name' => array(
+            'en' => 'Default',
+            'es' => 'Vista por defecto',
+            'gl' => 'Vista por defecto'
+          )
         )
       )
     )

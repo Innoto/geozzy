@@ -8,7 +8,8 @@ geozzy.userSessionComponents.modalMdTemplate = ''+
     '<div class="modal-content">'+
       '<div class="modal-header">'+
         '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-        '<h3 class="modal-title"><%- modalTitle %></h3>'+
+        '<img class="iconModal img-responsive" src="'+cogumelo.publicConf.media+'/img/iconModal.png"></img>'+
+        //'<h3 class="modal-title"><%- modalTitle %></h3>'+
       '</div>'+
       '<div class="modal-body"></div>'+
     '</div>'+
@@ -22,7 +23,16 @@ geozzy.userSessionComponents.userLoginBoxTemplate = ''+
 '<h3>'+__("¿Ya tienes una cuenta?")+'</h3>'+
 '<h3>'+__("Inicia tu sesión para continuar")+'</h3>'+
 '<div class="loginModalForm"></div>'+
-'<a href="#">'+__("He olvidado mi contraseña")+'</a>';
+'<a class="initRecoveryPass">'+__("He olvidado mi contraseña")+'</a>'+
+'<div class="recoveryPasswordForm" style="display:none;">'+
+  '<h3>'+__("Recovery password")+'</h3>'+
+  '<p>'+__("Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un enlace para restablecer tu contraseña")+'</p>'+
+  '<form><div class="cgmMForm-wrap"><input type="text" class="recoveryPassEmail" placeholder="Email"></div>'+
+  '<div class="cgmMForm-wrap"><input value="'+__("Send")+'" type="button" class="recoveryPassSubmit btn btn-success pull-right"></div></form>'+
+'</div>'+
+'<div class="recoveryPasswordFinalMsg" style="display:none;">'+
+  '<div class="alert alert-success" role="alert"><i class="fa fa-check-circle-o" aria-hidden="true"></i>    '+__("Correo electrónico enviado correctamente")+'</div>'+
+'</div>';
 
 geozzy.userSessionComponents.userRegisterBoxTemplate = ''+
 '<h3>'+__("Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente formulario")+'.</h3>'+

@@ -28,7 +28,7 @@ class RExtParticipationController extends RExtController implements RExtInterfac
 
     $rExtModel = new ParticipationModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
-    $rExtObj = ( gettype( $rExtList ) === object ) ? $rExtList->fetch() : false;
+    $rExtObj = ( gettype( $rExtList ) === 'object' ) ? $rExtList->fetch() : false;
 
     if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
@@ -36,9 +36,11 @@ class RExtParticipationController extends RExtController implements RExtInterfac
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
       $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
       if( $termsGroupedIdName !== false ) {
-        foreach( $this->taxonomies as $tax ) {
-          if( isset( $termsGroupedIdName[ $tax[ 'idName' ] ] ) ) {
-            $rExtData[ $tax['idName'] ] = $termsGroupedIdName[ $tax[ 'idName' ] ];
+        if( is_array($this->taxonomies) && count($this->taxonomies) > 0  ){
+          foreach( $this->taxonomies as $tax ) {
+            if( isset( $termsGroupedIdName[ $tax[ 'idName' ] ] ) ) {
+              $rExtData[ $tax['idName'] ] = $termsGroupedIdName[ $tax[ 'idName' ] ];
+            }
           }
         }
       }
@@ -60,6 +62,9 @@ class RExtParticipationController extends RExtController implements RExtInterfac
     $fieldsInfo = array(
       'observation' => array(
         'params' => array( 'label' => __( 'Observation' ), 'type' => 'textarea' )
+      ),
+      'participation' => array(
+        'params' => array('type' => 'reserved' )
       )
     );
 

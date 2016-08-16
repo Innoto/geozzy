@@ -8,7 +8,9 @@
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=Edge"><![endif]-->
   <title>galiciaagochada</title>
 
-  <script src="https://maps.googleapis.com/maps/api/js">  </script>
+{$gMaps = "https://maps.googleapis.com/maps/api/js?language=`$cogumelo.publicConf.lang_available[$cogumelo.publicConf.C_LANG].i18n`"}
+{if isset($cogumelo.publicConf.google_maps_key)}{$gMaps = "`$gMaps`&key=`$cogumelo.publicConf.google_maps_key`"}{/if}
+  <script type="text/javascript" src="{$gMaps}&libraries=places""></script>
   {$client_includes}
 
 </head>
