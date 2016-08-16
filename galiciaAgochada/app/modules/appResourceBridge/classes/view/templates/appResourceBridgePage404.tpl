@@ -15,7 +15,7 @@
       <br><br><br>
       <h1><i class="fa fa-smile-o"></i> Error 404</h1>
       <h3>{t}La página indicada no existe.{/t}</h3>
-      <p>{t}Ya puede anotar horas por todo el tiempo perdido en el visionado.{/t}</p>
+      <p>{t}--.{/t}</p>
 
     </div>
   </div>
