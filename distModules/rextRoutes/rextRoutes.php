@@ -71,7 +71,7 @@ class rextRoutes extends Module {
     'js/model/RouteModel.js',
     'js/collection/RouteCollection.js',
     'js/view/routeView.js',
-    'js/view/routesExplorerView.js'
+    'js/view/ExplorerRoutesView.js'
   );
 
 
