@@ -393,5 +393,23 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       //that.trackMarker.setMap(null);
     }
 
+  },
+
+  hideRoute: function() {
+    var that = this;
+
+    if( typeof that.mapRoute != 'undefined' ) {
+      if( typeof that.mapRoute.markerStart  != 'undefined') {
+        that.mapRoute.markerStart.setMap(null);
+      }
+
+      if( typeof that.mapRoute.markerEnd  != 'undefined') {
+        that.mapRoute.markerEnd.setMap(null);
+      }
+    }
+
+    that.polyline.setMap(null);
+    that.polylineBG1.setMap(null);
+    that.polylineBG2.setMap(null);
   }
 });
