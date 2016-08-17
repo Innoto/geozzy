@@ -181,92 +181,89 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     that.options.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlUI);
 
-    google.maps.event.addListener( that.options.map, 'idle', function() {
 
-      if( !that.grafico ) {
-        var chartString = "step,"+__('Altitude')+"\n";
-        $.each( route.get('trackPoints'), function(i,e){
-            chartString += i + "," + e[2] + "\n";
-        });
-
+    if( !that.grafico ) {
+      var chartString = "step,"+__('Altitude')+"\n";
+      $.each( route.get('trackPoints'), function(i,e){
+          chartString += i + "," + e[2] + "\n";
+      });
 
 
 
-        that.grafico = new Dygraph( $(".resourceRouteGraph")[0] ,
-          chartString,
+      that.grafico = new Dygraph( $(".resourceRouteGraph")[0] ,
+        chartString,
 
 
-          {
-            // options go here. See http://dygraphs.com/options.html
-            axisLineWidth: 2,
+        {
+          // options go here. See http://dygraphs.com/options.html
+          axisLineWidth: 2,
 
-            fillGraph: true,
-            strokeWidth: 2,
-            fillAlpha: 0.6,
-            drawXGrid: true,
-            drawYGrid: true,
+          fillGraph: true,
+          strokeWidth: 2,
+          fillAlpha: 0.6,
+          drawXGrid: true,
+          drawYGrid: true,
 
 
-            highlightCircleSize: 5,
-            drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
+          highlightCircleSize: 5,
+          drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
 
-            axisLabelColor: 'white',
-            axisLineColor: 'white',
-            //labels:["step", "Altitude"],
-            colors: ["#EF7C1F"],
-            axisLabelFontSize: 12,
-            hideOverlayOnMouseOut: true,
-            legend: 'follow',
-            axes: {
-              x: {
-                  axisLabelFormatter: function (x) {
-                      return '';
-                  },
-                  valueFormatter: function (x) {
-                      return '';
-                  }
-              },
-              y: {
-                 axisLabelFormatter: function (y) {
-                     return '<b>' + y  + ' m </b>';
-                 },
-                 valueFormatter: function (y) {
-                     return '<b>' + y  + ' m </b>';
-                 }
-              }
+          axisLabelColor: 'white',
+          axisLineColor: 'white',
+          //labels:["step", "Altitude"],
+          colors: ["#EF7C1F"],
+          axisLabelFontSize: 12,
+          hideOverlayOnMouseOut: true,
+          legend: 'follow',
+          axes: {
+            x: {
+                axisLabelFormatter: function (x) {
+                    return '';
+                },
+                valueFormatter: function (x) {
+                    return '';
+                }
             },
-
-            highlightCallback: function(e, x, pts, row) {
-              $($(".resourceRouteGraphLegend")[0]).html(x+' m');
-              $($(".resourceRouteGraphLegend")[0]).show();
-            },
-
-            unhighlightCallback: function(e) {
-              $($(".resourceRouteGraphLegend")[0]).hide();
+            y: {
+               axisLabelFormatter: function (y) {
+                   return '<b>' + y  + ' m </b>';
+               },
+               valueFormatter: function (y) {
+                   return '<b>' + y  + ' m </b>';
+               }
             }
+          },
 
+          highlightCallback: function(e, x, pts, row) {
+            $($(".resourceRouteGraphLegend")[0]).html(x+' m');
+            $($(".resourceRouteGraphLegend")[0]).show();
+          },
 
+          unhighlightCallback: function(e) {
+            $($(".resourceRouteGraphLegend")[0]).hide();
           }
 
-        );
 
-        that.grafico.updateOptions( {
-          annotationMouseOverHandler: function(annotation, point, dygraph, event) {
+        }
 
-          }
-        });
+      );
 
-        $($(".resourceRouteGraph")[0]).mousemove(function(e) {
-            var seleccionado = that.grafico.getSelection();
-            that.hoverRoute( seleccionado )
-        }).mouseleave(function(e) {
-            var seleccionada = that.grafico.getSelection();
-            that.outRecorrido();
-        });
-      }
+      that.grafico.updateOptions( {
+        annotationMouseOverHandler: function(annotation, point, dygraph, event) {
+
+        }
+      });
+
+      $($(".resourceRouteGraph")[0]).mousemove(function(e) {
+          var seleccionado = that.grafico.getSelection();
+          that.hoverRoute( seleccionado )
+      }).mouseleave(function(e) {
+          var seleccionada = that.grafico.getSelection();
+          that.outRecorrido();
+      });
+    }
 
 
-    });
 
   },
 

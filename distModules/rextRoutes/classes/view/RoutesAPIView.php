@@ -81,7 +81,7 @@ class RoutesAPIView extends View
 
 
   public function routes( $urlParams  ) {
-
+sleep(5);
 
     $validation = array( 'id'=> '#^\d+$#', 'resolution'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );

@@ -16,15 +16,21 @@ $( document ).ready(function() {
     geozzy.rExtMapInstance.resourceMarker.setMap(null);
 
     routesCollection.url = '/api/routes/id/' + geozzy.rExtRoutesOptions.resourceId
-    routesCollection.fetch({
-      success: function( res ) {
-        var route = new geozzy.rextRoutes.routeView({
-          map: geozzy.rExtMapInstance.resourceMap,
-          routeModel: routesCollection.get( geozzy.rExtRoutesOptions.resourceId ),
-          showGraph: true
-        });
-      }
+
+    google.maps.event.addListenerOnce( geozzy.rExtMapInstance.resourceMap, 'idle', function() {
+
+      routesCollection.fetch({
+        success: function( res ) {
+          var route = new geozzy.rextRoutes.routeView({
+            map: geozzy.rExtMapInstance.resourceMap,
+            routeModel: routesCollection.get( geozzy.rExtRoutesOptions.resourceId ),
+            showGraph: true
+          });
+        }
+      });
+
     });
+
   }
   else {
     console.log('Routes: resource id or MAP^not found');
