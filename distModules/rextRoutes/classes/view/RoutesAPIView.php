@@ -83,12 +83,20 @@ class RoutesAPIView extends View
   public function routes( $urlParams  ) {
 
 
+
+
+    $cacheRouteQueryKey = 'rextRoutesCache';
+    $retRoute = '[]';
+
     $validation = array( 'id'=> '#^\d+$#', 'resolution'=> '#^\d+$#' );
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
 
     rextRoutes::autoIncludes();
     rextRoutes::load('controller/RoutesController.php');
+    Cogumelo::load('coreController/Cache.php');
+
+    $routeCacheControl =  new Cache();
     $routesControl = new RoutesController();
 
 
@@ -96,18 +104,30 @@ class RoutesAPIView extends View
 
 
 
-    if( isset($urlParamsList['id']) ) {
-      if( isset($urlParamsList['resolution']) ) {
-        echo json_encode(  $routesControl->getRoute( $urlParamsList['id'], $urlParamsList['resolution'] ) );
-      }
-      else {
-        echo json_encode(  $routesControl->getRoute( $urlParamsList['id'] ) );
-      }
+    $cacheRouteQueryKey .= ( isset($urlParamsList['id']) )? '_'.$urlParamsList['id'] : '' ;
+    $cacheRouteQueryKey .= ( isset($urlParamsList['resolution']) )? '_'.$urlParamsList['resolution'] : '' ;
+
+
+
+    if( $cachedRoute = $routeCacheControl->getCache( $cacheRouteQueryKey ) ) {
+
+      $retRoute = $cachedRoute;
     }
     else {
-      echo '[]';
+      if( isset($urlParamsList['id']) ) {
+
+        if( isset($urlParamsList['resolution']) ) {
+          $retRoute = json_encode(  $routesControl->getRoute( $urlParamsList['id'], $urlParamsList['resolution'] ) );
+        }
+        else {
+          $retRoute = json_encode(  $routesControl->getRoute( $urlParamsList['id'] ) );
+        }
+      }
+
+      $routeCacheControl->setCache( $cacheRouteQueryKey, $retRoute, Cogumelo::getSetupValue( 'mod:mediaserver:publicConf:javascript:vars:rextRoutesConf:cacheTime' ));
     }
 
+    echo $retRoute;
 
   }
 

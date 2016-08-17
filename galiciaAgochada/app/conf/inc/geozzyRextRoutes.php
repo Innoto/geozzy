@@ -2,6 +2,7 @@
 
 cogumeloSetSetupValue('mod:mediaserver:publicConf:javascript:vars:rextRoutesConf',
   array(
+    'cacheTime' => 3600, // cache in server memory routes time (in seconds)
     'newMapHeight' => 450,
     'strokeColor' => '#EF7C1F',
     'strokeBorderColor' => '#FFFFFF',
