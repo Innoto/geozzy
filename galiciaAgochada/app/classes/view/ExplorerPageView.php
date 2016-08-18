@@ -54,11 +54,16 @@ class ExplorerPageView extends MasterView
     $this->template->addClientStyles('styles/masterRinconsExplorer.less');
     $this->template->addClientScript('js/rinconsExplorer.js');
 
-
+    rextRoutes::autoIncludes();
+    $this->template->addClientScript('js/view/routeView.js', 'rextRoutes' );
+    $this->template->addClientScript('js/view/ExplorerRoutesView.js', 'rextRoutes' );
+    
+/*
     $this->template->addClientScript('js/model/RouteModel.js', 'rextRoutes' );
     $this->template->addClientScript('js/collection/RouteCollection.js', 'rextRoutes' );
     $this->template->addClientScript('js/view/routeView.js', 'rextRoutes' );
-    $this->template->addClientScript('js/view/ExplorerRoutesView.js', 'rextRoutes' );
+  */
+
 
 
     $this->template->addClientStyles('styles/rExtFavourite.less', 'rextFavourite' );
