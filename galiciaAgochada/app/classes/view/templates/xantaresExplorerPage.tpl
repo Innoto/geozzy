@@ -23,7 +23,7 @@
     <div class="explorerContainer explorer-container-map">
       <div class="explorerMap"></div>
       <!-- Participation -->
-      <button id="initParticipation"><i class="fa fa-map-pin" aria-hidden="true"></i></button>
+      <button id="initParticipation"><i class="fa fa-plus" aria-hidden="true"></i> {t}Suxerir lugar{/t}</button>
       <div class="participation-step1" style="display:none;">
         <div class="contentModalParticipation">
           <h3>{t}Estas engadindo un novo contido?{/t}</h3>
