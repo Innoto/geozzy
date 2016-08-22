@@ -736,7 +736,7 @@ class ResourceController {
   public function getOptionsTax( $taxIdName ) {
     $options = array();
     $taxTermModel =  new TaxonomyTermModel();
-    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ),
+    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ), 'order' => array('weight' => 1),
       'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
     while( $taxTerm = $taxTermList->fetch() ){
       $options[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'name', Cogumelo::getSetupValue( 'lang:default' ) );
@@ -747,7 +747,7 @@ class ResourceController {
   public function getOptionsTaxAdvancedArray( $taxIdName ) {
     $options = array();
     $taxTermModel =  new TaxonomyTermModel();
-    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ),
+    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ), 'order' => array('weight' => 1),
       'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
     while( $taxTerm = $taxTermList->fetch() ){
       $options[ $taxTerm->getter( 'id' ) ] = array(
