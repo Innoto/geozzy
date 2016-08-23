@@ -162,7 +162,15 @@
               //console.log(e.get('id'))
               //console.debug(markerData.get('terms'))
 
+              if( parseInt(markerData.get('isRoute')) === 1 ) {
+
+                iconUrl = cogumelo.publicConf.media + '/img/rutaMarker.png';
+                return false;
+              }
+              else
               if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
+
+
 
                 if( jQuery.isNumeric( e.get('icon') )  ){
                   iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/explorerRinconsMarker/marker.png';
