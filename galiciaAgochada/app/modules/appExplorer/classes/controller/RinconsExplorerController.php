@@ -19,7 +19,7 @@ class RinconsExplorerController extends ExplorerController {
 
 
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image', 'isRoute'), 'filters'=> $filters ) );
 
     $coma = '';
 
@@ -48,6 +48,8 @@ class RinconsExplorerController extends ExplorerController {
         if( isset($resourceDataArray['image']) ) {
           $row['img'] = $resourceDataArray['image'];
         }
+
+        $row['isRoute'] =  ( isset($resourceDataArray['isRoute']) )?$resourceDataArray['isRoute']:false;
 
 
         echo json_encode( $row );
@@ -84,8 +86,14 @@ class RinconsExplorerController extends ExplorerController {
         echo $coma;
         $row = array();
 
-        $resourceDataArray = array('id' => $resource->getter('id'), 'title' => $resource->getter('title'),
-                                   'mediumDescription' => $resource->getter('mediumDescription'), 'city' => $resource->getter('city'));
+        $resourceDataArray = array(
+          'id' => $resource->getter('id'),
+          'title' => $resource->getter('title'),
+          'mediumDescription' => $resource->getter('mediumDescription'),
+          'city' => $resource->getter('city'),
+          'difficultyGlobal' => $resource->getter('difficultyGlobal'),
+          'travelDistance' => $resource->getter('travelDistance')
+        );
 
 
         $row['id'] = $resourceDataArray['id'];
@@ -93,6 +101,10 @@ class RinconsExplorerController extends ExplorerController {
         $row['description'] = ( isset($resourceDataArray['mediumDescription']) )?$resourceDataArray['mediumDescription']:false;
         $row['city'] =  ( isset($resourceDataArray['city']) )?$resourceDataArray['city']:false;
 
+
+
+        $row['difficultyGlobal'] =  ( isset($resourceDataArray['difficultyGlobal']) )?$resourceDataArray['difficultyGlobal']:false;
+        $row['travelDistance'] =  ( isset($resourceDataArray['travelDistance']) )?$resourceDataArray['travelDistance']:false;
 
 
 
