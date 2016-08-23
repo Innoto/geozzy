@@ -14,6 +14,7 @@ geozzy.explorerComponents.mapInfoViewTemplate = ''+
       '<div class="gempiDescription"><%-description%></div>'+
       '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
     '</div>'+
+    '<div class="extraBottomContent"></div>'+
   '</div>';
 
 

@@ -15,6 +15,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var options = new Object({
       map: false,
       showGraph: false,
+      graphContainer:false,
       strokeColor:  cogumelo.publicConf.rextRoutesConf.strokeColor,
       strokeBorderColor: cogumelo.publicConf.rextRoutesConf.strokeBorderColor,
       strokeOpacity: cogumelo.publicConf.rextRoutesConf.strokeOpacity,
@@ -23,7 +24,9 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       routeModel: false,
       markerStart: cogumelo.publicConf.rextRoutesConf.markerStart,
       markerEnd: cogumelo.publicConf.rextRoutesConf.markerEnd,
-
+      drawXGrid: true,
+      drawYGrid: true,
+      showLabels: true
 
       //tpl: geozzy.explorerComponents.routesViewTemplate ,
 
@@ -188,65 +191,74 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
           chartString += i + "," + e[2] + "\n";
       });
 
+      if( that.options.graphContainer === false) {
+        var containerGraph = $('.resourceRouteGraph')[0];
+      }
+      else {
+        var containerGraph = $(that.options.graphContainer)[0];
+
+      }
 
 
-      that.grafico = new Dygraph( $(".resourceRouteGraph")[0] ,
-        chartString,
+      var graphOptions = {
+        // options go here. See http://dygraphs.com/options.html
+        axisLineWidth: 2,
+
+        fillGraph: true,
+        strokeWidth: 2,
+        fillAlpha: 0.6,
+        drawXGrid: that.options.drawXGrid,
+        drawYGrid: that.options.drawYrid,
 
 
-        {
-          // options go here. See http://dygraphs.com/options.html
-          axisLineWidth: 2,
+        highlightCircleSize: 5,
+        drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
 
-          fillGraph: true,
-          strokeWidth: 2,
-          fillAlpha: 0.6,
-          drawXGrid: true,
-          drawYGrid: true,
+        axisLabelColor: 'white',
+        axisLineColor: 'white',
+        //labels:["step", "Altitude"],
+        colors: ["#EF7C1F"],
+        axisLabelFontSize: 12,
+        hideOverlayOnMouseOut: true,
+        legend: 'follow',
 
-
-          highlightCircleSize: 5,
-          drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
-
-          axisLabelColor: 'white',
-          axisLineColor: 'white',
-          //labels:["step", "Altitude"],
-          colors: ["#EF7C1F"],
-          axisLabelFontSize: 12,
-          hideOverlayOnMouseOut: true,
-          legend: 'follow',
-          axes: {
-            x: {
-                axisLabelFormatter: function (x) {
-                    return '';
-                },
-                valueFormatter: function (x) {
-                    return '';
-                }
-            },
-            y: {
-               axisLabelFormatter: function (y) {
-                   return '<b>' + y  + ' m </b>';
-               },
-               valueFormatter: function (y) {
-                   return '<b>' + y  + ' m </b>';
-               }
-            }
+        axes: {
+          x: {
+              axisLabelFormatter: function (x) {
+                  return '';
+              },
+              valueFormatter: function (x) {
+                  return '';
+              }
           },
-
-          highlightCallback: function(e, x, pts, row) {
-            $($(".resourceRouteGraphLegend")[0]).html(x+' m');
-            $($(".resourceRouteGraphLegend")[0]).show();
-          },
-
-          unhighlightCallback: function(e) {
-            $($(".resourceRouteGraphLegend")[0]).hide();
+          y: {
+             axisLabelFormatter: function (y) {
+                 return '<b>' + y  + ' m </b>';
+             },
+             valueFormatter: function (y) {
+                 return '<b>' + y  + ' m </b>';
+             }
           }
+        },
 
+        highlightCallback: function(e, x, pts, row) {
+          $($(".resourceRouteGraphLegend")[0]).html(x+' m');
+          $($(".resourceRouteGraphLegend")[0]).show();
+        },
 
+        unhighlightCallback: function(e) {
+          $($(".resourceRouteGraphLegend")[0]).hide();
         }
 
-      );
+      };
+
+
+      if( that.options.showLabels != true) {
+        graphOptions.yAxisLabelWidth = 0;
+      }
+
+
+      that.grafico = new Dygraph( containerGraph , chartString, graphOptions );
 
       that.grafico.updateOptions( {
         annotationMouseOverHandler: function(annotation, point, dygraph, event) {
@@ -405,8 +417,11 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       }
     }
 
-    that.polyline.setMap(null);
-    that.polylineBG1.setMap(null);
-    that.polylineBG2.setMap(null);
+    if( typeof that.polyline != 'undefined') {
+      that.polyline.setMap(null);
+      that.polylineBG1.setMap(null);
+      that.polylineBG2.setMap(null);
+    }
+
   }
 });
