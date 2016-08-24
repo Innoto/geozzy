@@ -121,10 +121,35 @@
     that.setDisplays = function() {
 
 
-      that.infowindow = new geozzy.explorerComponents.mapInfoView();
+      var infoWindowPlantilla = ''+
+        '<div class="gempiContentRutas">'+
+          '<div class="gempiImg">'+
+            '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" />'+
+            '<div class="gempiFav"><% if(touchAccess){ %><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i> <% } %></div>'+
+          '</div>'+
+          '<div class="gempiInfo">'+
+            '<div class="gempiTitle"><%-title%></div>'+
+            '<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+
+
+            '<% console.log(  parseInt(isRoute)  ); if( parseInt(isRoute) == 1 ){ %> ' +
+              '<div class="gempiRouteDetails">'+
+                '<% if(difficultyGlobal){ %>  Dificultad:<%- difficultyGlobal %> <% } %>' +
+                '<% if(travelDistance){ %>  Distancia:<%- travelDistance/1000 %> Km <% } %>' +
+              '</div>'+
+            '<% } %>'+
+
+            '<div class="gempiDescription"><%-description%></div>'+
+            '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
+          '</div>'+
+          '<% if( parseInt(isRoute) == 1 ){ %> ' +
+            '<div class="routeGraph" style="border:2px solid black;width:100%;height:90px;margin-top:0px;"></div> ' +
+          '<% } %>'+
+        '</div>';
+
+      that.infowindow = new geozzy.explorerComponents.mapInfoView({ tpl:infoWindowPlantilla });
       that.listaMini = new geozzy.explorerComponents.activeListTinyView({ el:$('.explorer-container-gallery')});
       that.listaRecomendados =  new geozzy.explorerComponents.reccommendedListView();
-      that.rutas = new geozzy.explorerComponents.routesView()
+      that.rutas = new geozzy.explorerComponents.routesView({ showGraph:true, hoverGraphDiv: '.gempiContentRutas .routeGraph' })
       that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
           clusterize:false,
@@ -137,7 +162,15 @@
               //console.log(e.get('id'))
               //console.debug(markerData.get('terms'))
 
+              if( parseInt(markerData.get('isRoute')) === 1 ) {
+
+                iconUrl = cogumelo.publicConf.media + '/img/rutaMarker.png';
+                return false;
+              }
+              else
               if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
+
+
 
                 if( jQuery.isNumeric( e.get('icon') )  ){
                   iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/explorerRinconsMarker/marker.png';

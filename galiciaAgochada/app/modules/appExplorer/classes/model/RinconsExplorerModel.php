@@ -12,7 +12,7 @@ class RinconsExplorerModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'appExplorer#1.2',
+      'version' => 'appExplorer#1.3',
       'executeOnGenerateModelToo' => true,
       'sql'=> "
           DROP VIEW IF EXISTS geozzy_rincons_explorer_index;
@@ -29,6 +29,9 @@ class RinconsExplorerModel extends Model
             geozzy_resource.mediumDescription_gl as mediumDescription_gl,
             geozzy_resource.loc as loc,
             geozzy_resource_rext_contact.city as city,
+            not(isnull(geozzy_resource_rext_routes.id)) as isRoute,
+            geozzy_resource_rext_routes.difficultyGlobal as difficultyGlobal,
+            geozzy_resource_rext_routes.travelDistance as travelDistance,
             geozzy_resource.timeCreation as timeCreation,
             geozzy_resource.timeLastUpdate as timeLastUpdate,
             group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
@@ -43,6 +46,9 @@ class RinconsExplorerModel extends Model
           ON geozzy_resource_topic.topic = geozzy_topic.id
           LEFT JOIN geozzy_resource_rext_contact
           ON geozzy_resource.id = geozzy_resource_rext_contact.resource
+
+          LEFT JOIN geozzy_resource_rext_routes
+          ON geozzy_resource.id = geozzy_resource_rext_routes.resource
 
           WHERE
             geozzy_resource.published = 1 AND
@@ -68,6 +74,15 @@ class RinconsExplorerModel extends Model
     'mediumDescription' => array(
       'type' => 'VARCHAR',
       'multilang' => true
+    ),
+    'isRoute' => array(
+      'type' => 'BOOLEAN'
+    ),
+    'difficultyGlobal' => array(
+      'type' => 'INT'
+    ),
+    'travelDistance' => array(
+      'type' => 'INT'
     ),
     'image' => array(
       'type' => 'INT'
