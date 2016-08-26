@@ -26,6 +26,11 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       map : false,
       clusterize: false,
       clustererStyles: false,
+      
+      clustererMaxZoom: 15,
+      clustererGridSize: 90,
+      clustererZoomOnClick: true,
+
       chooseMarkerIcon: function() {return false},
       mapZones: {
         outerMargin: {
@@ -239,9 +244,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
       that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
-        maxZoom: 15,
-        gridSize: 90,
-        zoomOnClick: true,
+        maxZoom: that.options.clustererMaxZoom, // 15,
+        gridSize: that.options.clustererGridSize, //90,
+        zoomOnClick: that.options.clustererZoomOnClick, //true,
         styles: that.options.clustererStyles
       });
 
