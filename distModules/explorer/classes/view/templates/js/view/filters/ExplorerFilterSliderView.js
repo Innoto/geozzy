@@ -30,6 +30,8 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         titleSummary: false,
         summaryContainerClass: false,
 
+        keyToFilter: 'averagePrice',
+
         filteredValue: false,
         valueMin: 3,
         valueMax: 100,
@@ -46,7 +48,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       var ret = true;
 
 
-      var price =  model.get('averagePrice');
+      var price =  model.get(that.options.keyToFilter);
 
       if(typeof price != "undefined" ) {
         if( price <= that.options.filteredValue || that.options.filteredValue == false ) {

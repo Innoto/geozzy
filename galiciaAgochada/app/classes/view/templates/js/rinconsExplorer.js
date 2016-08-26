@@ -46,7 +46,6 @@
 
 
 
-
     /**
       setInitialData. Preset objects and get values for the filters
      */
@@ -291,6 +290,28 @@
           }
         )
       );
+
+      that.explorer.addFilter(
+        that.filterSwitch = new geozzy.explorerComponents.filters.filterSwitchView(
+          {
+            mainContainerClass: that.explorerclass+' .explorer-container-isrouteswitch',
+            containerClass: 'isRoute',
+            keyToFilter: 'isRoute',
+            onChange: function() {
+              that.layoutDistributeSize();
+            }
+          }
+        )
+      );
+
+      that.explorer.addFilter(
+        new geozzy.explorerComponents.filters.filterSliderView(
+          {
+            mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-dificultad',
+            containerClass: 'distancia'
+          }
+        )
+      );
     }
 
 
@@ -361,12 +382,22 @@
     /**
       layoutDistributeSize. util method
      */
-    that.layoutDistributeSize = function(){
+    that.layoutDistributeSize = function( ){
+
+      if( typeof that.filterSwitch.filterValue !== 'undefined' && that.filterSwitch.filterValue  ) {
+        $('.rinconsExplorer .explorer-container-filter-routes').show();
+        var hRutasFilters = $('.rinconsExplorer .explorer-container-filter-routes').height();
+      }
+      else {
+        $('.rinconsExplorer .explorer-container-filter-routes').hide();
+        var hRutasFilters = 0;
+      }
+
       var hExplorerLayout = $('.rinconsExplorer').height();
       var hExplorerFilters = $('.rinconsExplorer .explorer-container-filter').height();
       var hExplorerGallery = $('.rinconsExplorer .explorer-container-gallery').height();
       var hHeader = 60;
-      var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
+      var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader + hRutasFilters );
 
       $('.rinconsExplorer .explorer-container-map').height( hExplorerMap );
     }
