@@ -29,7 +29,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         containerClass: false,
         titleSummary: false,
         summaryContainerClass: false,
-
+        postfix: '€',
         keyToFilter: 'averagePrice',
 
         filteredValue: false,
@@ -94,7 +94,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           min: that.options.valueMin,
           max: that.options.valueMax,
           from: that.filteredValue,
-          postfix: "€",
+          postfix: that.options.postfix,
           keyboard: true,
           onStart: function (data) {
               //console.log("onStart");
