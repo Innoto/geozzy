@@ -309,7 +309,25 @@
           {
             mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-distancia',
             containerClass: 'distancia',
-            postfix: ' km'
+            postfix: ' km',
+            keyToFilter: 'travelDistance',
+            valueMin: 0,
+            valueMax: 20,
+            type:'double'
+          }
+        )
+      );
+
+      that.explorer.addFilter(
+        new geozzy.explorerComponents.filters.filterSliderView(
+          {
+            mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-dificultad',
+            containerClass: 'distancia',
+            postfix: '',
+            keyToFilter: 'difficultyGlobal',
+            valueMin: 0,
+            valueMax: 10,
+            type:'single'
           }
         )
       );
