@@ -36,18 +36,19 @@ class GeozzyCollectionView extends View
 
     // $form->setSuccess( 'accept', __( 'Thank you' ) );
     // $form->setSuccess( 'redirect', SITE_URL . 'admin#collection/list' );
-
     // Recursos disponibles
+    $valueCollectionId = ( array_key_exists('id', $valuesArray ) ) ? $valuesArray['id'] : false;
     $valueCollectionType = ( array_key_exists('collectionType', $valuesArray ) ) ? $valuesArray['collectionType'] : 'base';
     $valueRTypeFilterParent = ( array_key_exists('filterRTypeParent', $valuesArray ) ) ? $valuesArray['filterRTypeParent'] : false;
 
-    $elemList = $this->getAvailableResources( $valueCollectionType, $valueRTypeFilterParent );
+
+    $elemList = $this->getAvailableResources( $valueCollectionId, $valueCollectionType, $valueRTypeFilterParent );
 
     $resControl = new ResourceController();
 
     $resOptions = array();
-    while( $res = $elemList->fetch() ) {
 
+    foreach ($elemList as $key => $res) {
       $thumbSettings = array(
         'profile' => 'squareCut',
         'imageId' => $res->getter( 'image' ),
@@ -102,6 +103,12 @@ class GeozzyCollectionView extends View
       );
       $fieldsInfo['addResourceExterno'] = array(
         'params' => array( 'id' => 'addResourceExternal', 'type' => 'button', 'value' => __( 'Link or embed multimedia' ))
+      );
+    }
+
+    if( array_key_exists('collectionType', $valuesArray ) && $valuesArray['collectionType'] === 'base' ){
+      $fieldsInfo['addResourceExterno'] = array(
+        'params' => array( 'id' => 'addResourceExternal', 'type' => 'button', 'value' => __( 'Add external link' ))
       );
     }
 
@@ -343,61 +350,99 @@ class GeozzyCollectionView extends View
 
   } // function actionCollectionForm()
 
-  public function getAvailableResources( $collectionType, $filterRTypeParent ){
-
-    switch($collectionType){
-      case 'multimedia':
-        //$filter = array( "rtypeUrl", "rtypeFile" );
-        $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:multimedia' );
-        break;
-      case 'base':
-        if( $filterRTypeParent && class_exists($filterRTypeParent) ){
-          /*$rtypeMod = new $filterRTypeParent();
-          $rtypeFilter = (isset($rtypeMod->collectionRTypeFilter)) ? $rtypeMod->collectionRTypeFilter : false;
-          $rtypeFilter = ( is_array($rtypeFilter) && count($rtypeFilter)>0 ) ? $rtypeFilter : false;
-          $filter = $rtypeFilter;*/
-          $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':base' );
-        }else{
-          $filter = false;
-        }
-        break;
-    }
+  public function getAvailableResources( $collectionId, $collectionType, $filterRTypeParent ){
 
     $resourceModel = new ResourceModel();
+    $collectionResourcesModel = new CollectionResourcesModel();
     $rtypeControl = new ResourcetypeModel();
 
-    if( !$filter ){
+    switch($collectionType){
+      /////////////////////////////////////////////////////////////////////////////////////
+      case 'multimedia':
+        //Traemos todos los recursos de esa coleccion
+        $colRes = $collectionResourcesModel->listItems(
+          array(
+            'filters' => array( 'collection' => $collectionId ),
+            'affectsDependences' => array('ResourceModel', 'RExtUrlModel')
+          )
+        )->fetchAll();
+        $elemList = array();
+        foreach ($colRes as $key => $value) {
+          $elemList = array_merge($elemList, $value->getterDependence('resource'));
+        }
+      break;
+      /////////////////////////////////////////////////////////////////////////////////////
+      case 'base':
 
-      $filterNotIn = array( "rtypeUrl", "rtypeFile" );
-      $rtypeArray = $rtypeControl->listItems(
-        array( 'filters' => array( 'idNameExists' => $filterNotIn ) )
-      );
-      $filterRtype = array();
-      while( $res = $rtypeArray->fetch() ){
-        array_push( $filterRtype, $res->getter('id') );
-      }
-      $elemList = $resourceModel->listItems(
-        array( 'filters' => array( 'notInRtype' => $filterRtype ) )
-      );
+        if( $filterRTypeParent && class_exists($filterRTypeParent) ){
+          //CON FILTROS ESTABLECIDOS
+          $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':base:all' );
+          if( !isset($filter) || count($filter) == 0 ){
+            $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:base:all' );
+          }
+          //Se traen los rtypes establecidos en Conf
+          $rtypeArray = $rtypeControl->listItems(
+            array( 'filters' => array( 'idNameExists' => $filter ) )
+          );
+          //Creamos un array con los ids de los rtypes
+          $filterRtype = array();
+          while( $res = $rtypeArray->fetch() ){
+            array_push( $filterRtype, $res->getter('id') );
+          }
+          //Traemos todos los recursos disponibles
+          $elemList = $resourceModel->listItems(
+            array(
+              'filters' => array( 'inRtype' => $filterRtype ),
+              'affectsDependences' => array('RExtUrlModel')
+            )
+          )->fetchAll();
 
-    }else{
 
-      $rtypeArray = $rtypeControl->listItems(
-        array( 'filters' => array( 'idNameExists' => $filter ) )
-      );
+          if($collectionId){
+            // ENTIDADES DEBILES
+            $filterWeak = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':base:manual' );
+            if( !isset($filterWeak) || count($filterWeak) == 0 ){
+              $filterWeak = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:base:manual' );
+            }
+            //Se traen los rtypes establecidos en Conf
+            $rtypeArray = $rtypeControl->listItems(
+              array( 'filters' => array( 'idNameExists' => $filterWeak ) )
+            );
+            //Creamos un array con los ids de los rtypes
+            $filterRtype = array();
+            while( $res = $rtypeArray->fetch() ){
+              array_push( $filterRtype, $res->getter('id') );
+            }
+            //Traemos todos los recursos de esa coleccion que tengan el rtype manual de conf
+            $colRes = $collectionResourcesModel->listItems(
+              array(
+                'filters' => array( 'collection' => $collectionId, 'ResourceModel.rTypeId' => $filterRtype ),
+                'joinType' => 'RIGHT',
+                'affectsDependences' => array('ResourceModel', 'RExtUrlModel')
+              )
+            )->fetchAll();
 
-      $filterRtype = array();
-      while( $res = $rtypeArray->fetch() ){
-        array_push( $filterRtype, $res->getter('id') );
-      }
+            foreach ($colRes as $key => $value) {
+              $elemList = array_merge($elemList, $value->getterDependence('resource'));
+            }
+          }
 
-      $elemList = $resourceModel->listItems(
-        array(
-          'filters' => array( 'inRtype' => $filterRtype ),
-          'affectsDependences' => array('RExtUrlModel')
-        )
-      );
+        }else{
+          //SIN FILTROS ESTABLECIDOS
+          $filterNotIn = array( "rtypeUrl", "rtypeFile" );
+          $rtypeArray = $rtypeControl->listItems(
+            array( 'filters' => array( 'idNameExists' => $filterNotIn ) )
+          );
+          $filterRtype = array();
+          while( $res = $rtypeArray->fetch() ){
+            array_push( $filterRtype, $res->getter('id') );
+          }
+          $elemList = $resourceModel->listItems(
+            array( 'filters' => array( 'notInRtype' => $filterRtype ) )
+          )->fetchAll();
 
+        }
+      break;
     }
 
     return $elemList;
