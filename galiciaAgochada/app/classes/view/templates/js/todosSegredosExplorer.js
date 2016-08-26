@@ -126,6 +126,8 @@
       that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
           clusterize:true,
+          clustererMaxZoom: 15,
+          clustererGridSize: 40,
           chooseMarkerIcon: function( markerData ) {
 
             var iconUrl = false;
