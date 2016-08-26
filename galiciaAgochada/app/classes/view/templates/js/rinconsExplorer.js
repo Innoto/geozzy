@@ -133,7 +133,7 @@
             '<% console.log(  parseInt(isRoute)  ); if( parseInt(isRoute) == 1 ){ %> ' +
               '<div class="gempiRouteDetails">'+
                 '<% if(difficultyGlobal){ %>  Dificultad:<%- difficultyGlobal %> <% } %>' +
-                '<% if(travelDistance){ %>  Distancia:<%- travelDistance/1000 %> Km <% } %>' +
+                '<% if(travelDistance){ %>  Distancia:<%- travelDistance %> Km <% } %>' +
               '</div>'+
             '<% } %>'+
 
@@ -307,8 +307,27 @@
       that.explorer.addFilter(
         new geozzy.explorerComponents.filters.filterSliderView(
           {
+            mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-distancia',
+            containerClass: 'distancia',
+            postfix: ' km',
+            keyToFilter: 'travelDistance',
+            valueMin: 0,
+            valueMax: 20,
+            type:'double'
+          }
+        )
+      );
+
+      that.explorer.addFilter(
+        new geozzy.explorerComponents.filters.filterSliderView(
+          {
             mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-dificultad',
-            containerClass: 'distancia'
+            containerClass: 'distancia',
+            postfix: '',
+            keyToFilter: 'difficultyGlobal',
+            valueMin: 0,
+            valueMax: 10,
+            type:'single'
           }
         )
       );

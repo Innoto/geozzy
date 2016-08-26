@@ -19,7 +19,7 @@ class RinconsExplorerController extends ExplorerController {
 
 
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image', 'isRoute'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image', 'isRoute', 'travelDistance', 'difficultyGlobal'), 'filters'=> $filters ) );
 
     $coma = '';
 
@@ -50,6 +50,8 @@ class RinconsExplorerController extends ExplorerController {
         }
 
         $row['isRoute'] =  ( isset($resourceDataArray['isRoute']) )?$resourceDataArray['isRoute']:false;
+        $row['travelDistance'] =  ( isset($resourceDataArray['travelDistance']) )?$resourceDataArray['travelDistance']/1000:false;
+        $row['difficultyGlobal'] =  ( isset($resourceDataArray['difficultyGlobal']) )?$resourceDataArray['difficultyGlobal']:false;
 
 
         echo json_encode( $row );
@@ -90,9 +92,7 @@ class RinconsExplorerController extends ExplorerController {
           'id' => $resource->getter('id'),
           'title' => $resource->getter('title'),
           'mediumDescription' => $resource->getter('mediumDescription'),
-          'city' => $resource->getter('city'),
-          'difficultyGlobal' => $resource->getter('difficultyGlobal'),
-          'travelDistance' => $resource->getter('travelDistance')
+          'city' => $resource->getter('city')
         );
 
 
@@ -103,8 +103,8 @@ class RinconsExplorerController extends ExplorerController {
 
 
 
-        $row['difficultyGlobal'] =  ( isset($resourceDataArray['difficultyGlobal']) )?$resourceDataArray['difficultyGlobal']:false;
-        $row['travelDistance'] =  ( isset($resourceDataArray['travelDistance']) )?$resourceDataArray['travelDistance']:false;
+        //$row['difficultyGlobal'] =  ( isset($resourceDataArray['difficultyGlobal']) )?$resourceDataArray['difficultyGlobal']:false;
+        //$row['travelDistance'] =  ( isset($resourceDataArray['travelDistance']) )?$resourceDataArray['travelDistance']:false;
 
 
 
