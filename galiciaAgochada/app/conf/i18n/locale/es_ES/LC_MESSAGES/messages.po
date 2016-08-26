@@ -1763,15 +1763,15 @@ msgstr "Fichero audioguía"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/ParticipationView.php:17
 msgid "¡Moitas grazas!"
-msgstr ""
+msgstr "¡Muchas gracias!"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/ParticipationView.php:18
 msgid "Revisaremos a túa achega. Se nos gusta publicarémola."
-msgstr ""
+msgstr "Revisaremos a tu aportación. Si nos gusta la publicaremos."
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/ParticipationView.php:19
 msgid "Manterémoste informad@ por e-mail."
-msgstr ""
+msgstr "Te mantendremos informad@ por e-mail."
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppEspazoNatural/classes/controller/RTypeAppEspazoNaturalController.php:131
 msgid "POI collection"

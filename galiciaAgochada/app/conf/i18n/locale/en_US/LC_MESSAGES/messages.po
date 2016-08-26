@@ -1729,15 +1729,15 @@ msgstr ""
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/ParticipationView.php:17
 msgid "¡Moitas grazas!"
-msgstr ""
+msgstr "Thank you very much!"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/ParticipationView.php:18
 msgid "Revisaremos a túa achega. Se nos gusta publicarémola."
-msgstr ""
+msgstr "We will review your contribution. If we like the post."
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/classes/view/ParticipationView.php:19
 msgid "Manterémoste informad@ por e-mail."
-msgstr ""
+msgstr "We'll keep you informed by email."
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppEspazoNatural/classes/controller/RTypeAppEspazoNaturalController.php:131
 msgid "POI collection"
