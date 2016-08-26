@@ -26,7 +26,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       map : false,
       clusterize: false,
       clustererStyles: false,
-      
       clustererMaxZoom: 15,
       clustererGridSize: 90,
       clustererZoomOnClick: true,
