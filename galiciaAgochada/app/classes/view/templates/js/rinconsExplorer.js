@@ -294,7 +294,7 @@
       that.explorer.addFilter(
         that.filterSwitch = new geozzy.explorerComponents.filters.filterSwitchView(
           {
-            mainContainerClass: that.explorerclass+' .explorer-container-isrouteswitch',
+            mainContainerClass: that.explorerclass+' .is-route-filter .is-route-switch',
             containerClass: 'isRoute',
             keyToFilter: 'isRoute',
             onChange: function() {
@@ -402,6 +402,8 @@
       layoutDistributeSize. util method
      */
     that.layoutDistributeSize = function( ){
+
+
 
       if( typeof that.filterSwitch.filterValue !== 'undefined' && that.filterSwitch.filterValue  ) {
         $('.rinconsExplorer .explorer-container-filter-routes').show();

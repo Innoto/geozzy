@@ -9,7 +9,47 @@
   .explorerBase( @explFilter-h: 50px,  @explGallery-h: auto,  @explMap-h: 52% );
 }
 
+
+
 .rinconsExplorer{
+
+
+  .is-route-filter {
+    background-color: #fff;
+    border-radius: 5px;
+    height: 35px;
+    padding: 4px;
+    position: absolute;
+    right: 100px;
+    top: 80px;
+    width: 80px;
+    z-index: 10000;
+
+    .is-route-switch-icon {
+      color:blue;
+      float:left;
+      width:30px;
+      height: 17px;
+      margin-right: 5px;
+      margin-top:5px;
+      background: url('@{cogumelo_publicConf_media}/img/rutaSwitch.png') no-repeat;
+    }
+    .is-route-switch {
+      .switchery {
+        width:30px;
+        height: 10px;
+
+
+        small {
+          margin-top:-3px;
+          width:16px;
+          height:16px;
+        }
+      }
+    }
+  }
+
+
   .explorer-container-filter{
     .explorerFilters{
       .explorerFilterElement{
