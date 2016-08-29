@@ -226,12 +226,12 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $participationBlockInfo = $formBlockInfo;
       $partForm = clone $participationBlockInfo['objForm'];
 
-      $partForm->setFieldParam( 'title_es', 'label', __('Cómo se chama o lugar?') );
-      $partForm->setFieldParam( 'title_es', 'class', '' );
-      $partForm->setFieldParam( 'mediumDescription_es', 'label', __('Descríbeo brevemente') );
-      $partForm->setFieldParam( 'mediumDescription_es', 'class', '' );
-      $partForm->setValidationRule( 'mediumDescription_es', 'required', true );
-      $partForm->setFieldParam( 'rextEatAndDrink_eatanddrinkType', 'label', __('Como clasificarías este lugar?') );
+      $partForm->setFieldParam( 'title_'.$C_LANG, 'label', __('Cómo se chama o lugar?') );
+      $partForm->setFieldParam( 'title_'.$C_LANG, 'class', '' );
+      $partForm->setFieldParam( 'mediumDescription_'.$C_LANG, 'label', __('Descríbeo brevemente') );
+      $partForm->setFieldParam( 'mediumDescription_'.$C_LANG, 'class', '' );
+      $partForm->setValidationRule( 'mediumDescription_'.$C_LANG, 'required', true );
+      $partForm->setFieldParam( 'rextEatAndDrink_eatanddrinkType', 'label', __('Cómo clasificarías este lugar?') );
       $partForm->setValidationRule( 'rextEatAndDrink_eatanddrinkType', 'required', true );
       $partForm->setFieldParam( 'rExtContact_city', 'label', __('¿En qué localidade se encontra?') );
       $partForm->setFieldParam( 'rExtContact_province', 'label', __('¿En qué provincia se encontra?') );
@@ -255,7 +255,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $partForm->removeField( 'rExtContact_email');
       $partForm->removeField( 'rExtSocialNetwork_activeFb');
       $partForm->removeField( 'rExtSocialNetwork_activeTwitter');
-      $partForm->removeField( 'urlAlias_es');
+      $partForm->removeField( 'urlAlias_'.$C_LANG);
 
 
       $participationBlockInfo['dataForm'] = array(
@@ -269,6 +269,8 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
 
       $participationBlockInfo['objForm'] = $partForm;
       //$participationBlockInfo['objForm']->saveToSession();
+var_dump($C_LANG);
+
       $formFieldsNamesStp1 = array( 'title_'.$C_LANG, 'mediumDescription_'.$C_LANG, 'rTypeIdName' );
       $formFieldsNamesStp2 = $eatCtrl->prefixArray( array('eatanddrinkType') );
       $formFieldsNamesStp3 = $contactCtrl->prefixArray( array('city', 'province', 'url', 'phone') );

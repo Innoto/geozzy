@@ -1805,36 +1805,36 @@ msgstr ""
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:229
 msgid "Cómo se chama o lugar?"
-msgstr ""
+msgstr "What is the name the place?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:231
 msgid "Descríbeo brevemente"
-msgstr ""
+msgstr "Describe it briefly"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:234
-msgid "Como clasificarías este lugar?"
-msgstr ""
+msgid "Cómo clasificarías este lugar?"
+msgstr "How would you classify this place?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:236
 msgid "¿En qué localidade se encontra?"
-msgstr ""
+msgstr "What town are you?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:237
 msgid "¿En qué provincia se encontra?"
-msgstr ""
+msgstr "What province is?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:238
 msgid "¿Ten páxina web?"
-msgstr ""
+msgstr "Do you have a website?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:239
 msgid "¿Teléfono?"
-msgstr ""
+msgstr "Phone?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:247
 msgid ""
 "Acepto as <span>condicións do servicio e a política de privacidade</span>"
-msgstr ""
+msgstr "I accept the <span>Terms of Service and Privacy Policy</span>"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:281
 msgid "Participation Form"
@@ -2618,11 +2618,11 @@ msgstr "Do all the zoom you can to be precise"
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_galiciaAgochada_app_modules_rtypeAppRestaurant_classes_view_templates_participationModal.tpl:85
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_galiciaAgochada_app_modules_rtypeAppRestaurant_classes_view_templates_participationModal.tpl:114
 msgid "Cancelar"
-msgstr ""
+msgstr "Cancel"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_galiciaAgochada_app_classes_view_templates_xantaresExplorerPage.tpl:35
 msgid "Continuar"
-msgstr ""
+msgstr "Continue"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/tmp/tpl/geozzy_distModules_rtypeStoryStep_classes_view_templates_listSteps.tpl:4
 msgid "Steps available"

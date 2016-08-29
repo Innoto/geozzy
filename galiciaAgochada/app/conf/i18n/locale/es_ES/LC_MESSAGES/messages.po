@@ -1843,27 +1843,27 @@ msgstr "Categorización"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:229
 msgid "Cómo se chama o lugar?"
-msgstr ""
+msgstr "¿Cómo se llama el lugar?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:231
 msgid "Descríbeo brevemente"
-msgstr ""
+msgstr "Descríbelo brevemente"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:234
-msgid "Como clasificarías este lugar?"
-msgstr ""
+msgid "Cómo clasificarías este lugar?"
+msgstr "¿Cómo clasificarías este lugar?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:236
 msgid "¿En qué localidade se encontra?"
-msgstr ""
+msgstr "¿En qué localidad se encuentra?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:237
 msgid "¿En qué provincia se encontra?"
-msgstr ""
+msgstr "¿En qué provincia se encuentra?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:238
 msgid "¿Ten páxina web?"
-msgstr ""
+msgstr "¿Tiene página web?"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:239
 msgid "¿Teléfono?"
@@ -1872,11 +1872,11 @@ msgstr ""
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:247
 msgid ""
 "Acepto as <span>condicións do servicio e a política de privacidade</span>"
-msgstr ""
+msgstr "Acepto las <span>condiciones de servicio y la política de privacidad</span>"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:281
 msgid "Participation Form"
-msgstr ""
+msgstr "Formulario de participación"
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRuta/classes/controller/RTypeAppRutaController.php:100
 msgid "Routes"
