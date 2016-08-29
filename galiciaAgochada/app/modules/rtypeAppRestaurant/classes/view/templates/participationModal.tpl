@@ -25,7 +25,7 @@
                 <button type="button" class="btn btn-warning cancel" data-dismiss="modal" aria-label="Close">{t}Cancelar{/t}</button>
               </div>
               <div class="col-sm-6">
-                <button type="button" class="btn btn-success next" data-goStep="2">{t}Siguiente{/t}</button>
+                <button type="button" class="btn btn-success next" data-goStep="2">{t}Seguinte{/t}</button>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@
                 <button type="button" class="btn btn-warning cancel" data-dismiss="modal" aria-label="Close">{t}Cancelar{/t}</button>
               </div>
               <div class="col-sm-6">
-                <button type="button" class="btn btn-success next" data-goStep="3">{t}Siguiente{/t}</button>
+                <button type="button" class="btn btn-success next" data-goStep="3">{t}Seguinte{/t}</button>
               </div>
             </div>
           </div>
@@ -63,21 +63,21 @@
                 <button type="button" class="btn btn-warning cancel" data-dismiss="modal" aria-label="Close">{t}Cancelar{/t}</button>
               </div>
               <div class="col-sm-6">
-                <button type="button" class="btn btn-success next" data-goStep="4">{t}Siguiente{/t}</button>
+                <button type="button" class="btn btn-success next" data-goStep="4">{t}Seguinte{/t}</button>
               </div>
             </div>
           </div>
         </div>
 
         <div class="subStep subStep4" style="display:none;">
-          <h4>{t}¿Tienes alguna foto de calidad del lugar?{/t}</h4>
-          <p>{t}Selecciona o arrástrala hasta el siguiente icono{/t}</p>
+          <h4>{t}Tes algunha foto de calidade do lugar?{/t}</h4>
+          <p>{t}Selecciona ou arrástraa ata a seguinte icona{/t}</p>
           {if isset($formFieldsNamesStp4)}
             {foreach $formFieldsNamesStp4 as $name}
               {$res.dataForm.formFieldsArray[$name]}
             {/foreach}
           {/if}
-          <p>{t}Si no tienes ninguna foto, pulsa en siguiente{/t}</p>
+          <p>{t}Se non tes ningunha foto, pulsa en seguinte{/t}</p>
           <div class="subStepActions">
             <div class="row">
               <div class="col-sm-6">
@@ -85,15 +85,15 @@
                 <button type="button" class="btn btn-warning cancel" data-dismiss="modal" aria-label="Close">{t}Cancelar{/t}</button>
               </div>
               <div class="col-sm-6">
-                <button type="button" class="btn btn-success next" data-goStep="5">{t}Siguiente{/t}</button>
+                <button type="button" class="btn btn-success next" data-goStep="5">{t}Seguinte{/t}</button>
               </div>
             </div>
           </div>
         </div>
 
         <div class="subStep subStep5" style="display:none;">
-          <h4>{t}¿Todo listo?{/t}</h4>
-          <p>{t}Cuéntanos algo más que quieras y envíanos tu sugerencia{/t}</p>
+          <h4>{t}Todo listo?{/t}</h4>
+          <p>{t}Cóntanos algo máis que queiras e envíanos a túa suxestión{/t}</p>
           {if isset($formFieldsNamesStp5)}
             {foreach $formFieldsNamesStp5 as $name}
               {$res.dataForm.formFieldsArray[$name]}

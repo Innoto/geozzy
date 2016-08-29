@@ -226,16 +226,16 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $participationBlockInfo = $formBlockInfo;
       $partForm = clone $participationBlockInfo['objForm'];
 
-      $partForm->setFieldParam( 'title_es', 'label', __('¿Cómo se llama el lugar?') );
+      $partForm->setFieldParam( 'title_es', 'label', __('Cómo se chama o lugar?') );
       $partForm->setFieldParam( 'title_es', 'class', '' );
-      $partForm->setFieldParam( 'mediumDescription_es', 'label', __('Descríbelo brevemente') );
+      $partForm->setFieldParam( 'mediumDescription_es', 'label', __('Descríbeo brevemente') );
       $partForm->setFieldParam( 'mediumDescription_es', 'class', '' );
       $partForm->setValidationRule( 'mediumDescription_es', 'required', true );
-      $partForm->setFieldParam( 'rextEatAndDrink_eatanddrinkType', 'label', __('¿Cómo clasificarías este lugar?') );
+      $partForm->setFieldParam( 'rextEatAndDrink_eatanddrinkType', 'label', __('Como clasificarías este lugar?') );
       $partForm->setValidationRule( 'rextEatAndDrink_eatanddrinkType', 'required', true );
-      $partForm->setFieldParam( 'rExtContact_city', 'label', __('¿En qué localidad se encuentra?') );
-      $partForm->setFieldParam( 'rExtContact_province', 'label', __('¿En qué provincia se encuentra?') );
-      $partForm->setFieldParam( 'rExtContact_url', 'label', __('¿Tiene página web?') );
+      $partForm->setFieldParam( 'rExtContact_city', 'label', __('¿En qué localidade se encontra?') );
+      $partForm->setFieldParam( 'rExtContact_province', 'label', __('¿En qué provincia se encontra?') );
+      $partForm->setFieldParam( 'rExtContact_url', 'label', __('¿Ten páxina web?') );
       $partForm->setFieldParam( 'rExtContact_phone', 'label', __('¿Teléfono?') );
       $partForm->setFieldParam( 'locLat', 'type', 'reserved');
       $partForm->setFieldParam( 'locLon', 'type', 'reserved');
@@ -244,7 +244,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $partForm->setFieldParam( 'published', 'value', false);
       $partForm->setFieldValue( 'rExtParticipation_participation', true);
 
-      $partForm->setField( 'acceptCond',  array( 'type' => 'checkbox', 'options' => array( 'accept' => __( 'Acepto las <span>condiciones del servicio y la política de privacidad</span>' ) ) ) );
+      $partForm->setField( 'acceptCond',  array( 'type' => 'checkbox', 'options' => array( 'accept' => __( 'Acepto as <span>condicións do servicio e a política de privacidade</span>' ) ) ) );
       $partForm->setValidationRule( 'acceptCond', 'required', true );
 
       //$form->removeValidationRules('topics');
