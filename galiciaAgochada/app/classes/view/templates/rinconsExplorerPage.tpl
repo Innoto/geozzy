@@ -1,7 +1,10 @@
 
   <div class="rinconsExplorer explorerCommonBase">
     <div class="explorerLayout clearfix">
-      <div class="explorerContainer explorer-container-isrouteswitch" style="position:absolute;top:100px;right:100px;z-index:32234234234;"></div>
+      <div class="explorerContainer is-route-filter" >
+        <div class="is-route-switch-icon"></div>
+        <div class="is-route-switch"></div>
+      </div>
       <!--duContainer -->
       <div class="explorerContainer explorer-container-du"></div>
       <!--filterContainer -->
