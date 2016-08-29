@@ -29,7 +29,8 @@ class geozzy extends Module {
     'controller/ResourceController.php',
     'model/ResourceModel.php',
     'model/UrlAliasModel.php',
-    'view/GeozzyTaxonomytermView.php'
+    'view/GeozzyTaxonomytermView.php',
+    'js/generateModal.js'
   );
 
 

@@ -29,11 +29,13 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         containerClass: false,
         titleSummary: false,
         summaryContainerClass: false,
+        postfix: '€',
+        keyToFilter: 'averagePrice',
 
         filteredValue: false,
         valueMin: 3,
         valueMax: 100,
-
+        type: 'single'  // (single|double)
       }
 
 
@@ -46,9 +48,11 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       var ret = true;
 
 
-      var price =  model.get('averagePrice');
+      var price =  model.get(that.options.keyToFilter);
 
-      if(typeof price != "undefined" ) {
+
+      if( that.options.type === 'single'  && typeof price != "undefined") {
+
         if( price <= that.options.filteredValue || that.options.filteredValue == false ) {
           ret = true;
         }
@@ -56,12 +60,26 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         {
           ret = false;
         }
+
+
+
+      }
+      else
+      if(  that.options.type === 'double'  && typeof price != "undefined"  ) {
+
+        if( (price >= that.options.filteredValue[0] && price <= that.options.filteredValue[1] ) || that.options.filteredValue == false ) {
+          ret = true;
+        }
+        else
+        {
+          ret = false;
+        }
+
+
       }
       else{
         ret = true;
       }
-
-
 
       return ret;
     },
@@ -88,11 +106,11 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
     instanceSlider: function() {
       var that = this;
       $( ".explorerFilterElement ."+that.options.containerClass+" input" ).ionRangeSlider({
-          type: "single",
+          type: that.options.type,
           min: that.options.valueMin,
           max: that.options.valueMax,
           from: that.filteredValue,
-          postfix: "€",
+          postfix: that.options.postfix,
           keyboard: true,
           onStart: function (data) {
               //console.log("onStart");
@@ -102,7 +120,15 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           },
           onFinish: function (data) {
 
-            that.options.filteredValue = data.from;
+            if( that.options.type === 'single') {
+              that.options.filteredValue = data.from;
+            }
+            else {
+              that.options.filteredValue = [data.from, data.to];
+            }
+
+
+
             that.parentExplorer.applyFilters();
 
 

@@ -14,8 +14,12 @@ class ParticipationView extends MasterView
 
   public function xantaresForm() {
 
+    $htmlModalOk = '<h2>'. __("¡Moitas grazas!").'</h2>';
+    $htmlModalOk .= '<p>'. __("Revisaremos a túa achega. Se nos gusta publicarémola.").'</p>';
+    $htmlModalOk .= '<p>'. __("Manterémoste informad@ por e-mail.").'</p>';
+
     $successArray = false;
-    $successArray[ 'jsEval' ] = 'geozzy.xantaresParticipationForm.closeModal();';
+    $successArray[ 'jsEval' ] = 'new geozzy.generateModal( "xantaresParticipationOk", "", "'.$htmlModalOk.'" ,geozzy.xantaresParticipationForm.closeModal());';
     $rTypeItem = false;
     $rtypeControl = new ResourcetypeModel();
     $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'idName' => 'rtypeAppRestaurant' ) ) )->fetch();

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Innoto">
 
-    <title>Sign in Geozzy Admin</title>
+    <title>Log in Geozzy Admin</title>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,7 +29,7 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="login-panel panel panel-default">
           <div class="panel-heading">
-              <h3 class="panel-title">Sign In</h3>
+              <h3 class="panel-title">Log In</h3>
           </div>
           <div class="panel-body">
             {$loginHtml}

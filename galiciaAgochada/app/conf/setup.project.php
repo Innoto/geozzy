@@ -328,56 +328,54 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
 cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
   array(
     'default' => array(
-      'multimedia' => array('rtypeUrl', 'rtypeFile'),
       'eventos' => array('rtypeEvent'),
-      'poi' => array('rtypePoi'),
+      'poi' => array('rtypeAppHotel', 'rtypeAppRestaurant'),
       'pasos' => array(),
       'base' => array()
     ),
     'rtypeAppHotel' => array(
-      'multimedia' => array(),
       'eventos' => array('rtypeEvent'),
       'poi' => array(),
       'pasos' => array(),
-      'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
+      'base' => array(
+        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant'),
+        'manual' => array('rtypeUrl')
+      )
     ),
     'rtypeAppRestaurant' => array(
-      'multimedia' => array(),
       'eventos' => array('rtypeEvent'),
       'poi' => array(),
       'pasos' => array(),
-      'base' => array('rtypeAppHotel', 'rtypeAppRestaurant')
+      'base' => array(
+        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant'),
+        'manual' => array('rtypeUrl')
+      )
     ),
     'rtypeAppEspazoNatural' => array(
-      'multimedia' => array(),
       'eventos' => array(),
-      'poi' => array('rtypePoi'),
+      'poi' => array('rtypeAppHotel', 'rtypeAppRestaurant'),
       'pasos' => array(),
       'base' => array()
     ),
     'rtypeAppLugar' => array(
-      'multimedia' => array(),
       'eventos' => array(),
       'poi' => array(),
       'pasos' => array(),
       'base' => array()
     ),
     'rtypeAppFesta' => array(
-      'multimedia' => array(),
       'eventos' => array('rtypeAppFesta', 'rtypeEvent'),
       'poi' => array(),
       'pasos' => array(),
       'base' => array()
     ),
     'rtypeAppRuta' => array(
-      'multimedia' => array(),
       'eventos' => array(),
-      'poi' => array('rtypePoi'),
+      'poi' => array('rtypeAppHotel', 'rtypeAppRestaurant'),
       'pasos' => array(),
       'base' => array()
     ),
     'rtypeStory' => array(
-      'multimedia' => array(),
       'eventos' => array(),
       'poi' => array(),
       'pasos' => array('rtypeStoryStep'),
