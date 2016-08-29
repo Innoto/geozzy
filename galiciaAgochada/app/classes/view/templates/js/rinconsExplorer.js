@@ -322,7 +322,7 @@
         new geozzy.explorerComponents.filters.filterSliderView(
           {
             mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-dificultad',
-            containerClass: 'distancia',
+            containerClass: 'dificultad',
             postfix: '',
             keyToFilter: 'difficultyGlobal',
             valueMin: 0,

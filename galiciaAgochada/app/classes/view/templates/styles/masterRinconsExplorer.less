@@ -1,5 +1,6 @@
 @import "primary/primary.less";
 @import "themeLibs/select2ThemeGA.less";
+@import "themeLibs/ionSliderGATheme.less";
 @import "/explorer/classes/view/templates/styles/explorerMixins.less";
 @import "common/explorerCommon.less";
 @import "common/explorerCommonBase.less";
@@ -13,6 +14,51 @@
 
 .rinconsExplorer{
 
+/*
+  .xantaresPrice{
+    .ionSliderTheme( @gzzColor-xantares );
+    .irs-min, .irs-max{
+      display: none;
+    }
+  }//xantaresPrice
+*/
+
+  .explorer-container-filter-routes {
+      width:100%;
+      height:50px;
+      background-color: @gzzColor-bck-7;
+
+      .slider-container {
+
+
+        float:left;
+        height:46px;
+        width:400px;
+
+
+
+        margin-left:60px;
+        padding-left:55px;
+
+
+        background: url('@{cogumelo_publicConf_media}/img/rutaFiltroDistancia.png') no-repeat;
+        .distancia, .dificultad {
+
+          .ionSliderTheme( #fff , #fff , #fff);
+          .irs-min, .irs-max{
+            display: none;
+          }// slider distancia
+        }
+
+        .dificultad {
+          .irs-single { display:none; }
+        }
+      }
+
+
+      .filtro-distancia {background: url('@{cogumelo_publicConf_media}/img/rutaFiltroDistancia.png') 0px 5px no-repeat;}
+      .filtro-dificultad {background: url('@{cogumelo_publicConf_media}/img/rutaFiltroDificultad.png') 0px 5px  no-repeat;}
+  }
 
   .is-route-filter {
     background-color: #fff;
