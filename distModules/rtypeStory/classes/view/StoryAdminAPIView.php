@@ -47,33 +47,37 @@ class StoryAdminAPIView extends View {
     switch( $_SERVER['REQUEST_METHOD'] ) {
       case 'GET':
         $rtypeModel = new ResourcetypeModel();
-        $rtypeEl = $rtypeModel->listItems(  array(
-          'filters' => array( 'idName'=> 'rtypeStory' )
-        ))->fetch();
-
-        if ($rtypeEl){
-          $rtype = $rtypeEl->getter('id');
-        }
-
-
-        $resourceModel = new ResourceModel();
-        $storiesList = $resourceModel->listItems(  array(
-          'filters' => array( 'rTypeId'=> $rtype ),
-          'order' => array( 'timeCreation' => -1 )
-        ));
 
         header('Content-Type: application/json; charset=utf-8');
-        echo '[';
-        $c = '';
-        global $C_LANG;
 
-        while ($valueobject = $storiesList->fetch() ) {
-          $allData = $valueobject->getAllData('onlydata');
+        if( $rtypeEl = $rtypeModel->listItems(  array(
+          'filters' => array( 'idName'=> 'rtypeStory' )
+        ))->fetch() ) {
+          $rtype = $rtypeEl->getter('id');
 
-          echo $c.json_encode($allData);
-          $c=',';
+          $resourceModel = new ResourceModel();
+          $storiesList = $resourceModel->listItems(  array(
+            'filters' => array( 'rTypeId'=> $rtype ),
+            'order' => array( 'timeCreation' => -1 )
+          ));
+
+
+          echo '[';
+          $c = '';
+          global $C_LANG;
+
+          while ($valueobject = $storiesList->fetch() ) {
+            $allData = $valueobject->getAllData('onlydata');
+
+            echo $c.json_encode($allData);
+            $c=',';
+          }
+          echo ']';
         }
-        echo ']';
+        else {
+          echo '[]';
+        }
+
       break;
       default:
         header("HTTP/1.0 404 Not Found");
