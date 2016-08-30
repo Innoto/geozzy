@@ -228,6 +228,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
 
       $partForm->setFieldParam( 'title_'.$C_LANG, 'label', __('Cómo se chama o lugar?') );
       $partForm->setFieldParam( 'title_'.$C_LANG, 'class', '' );
+      $partForm->setValidationRule( 'title_'.$C_LANG, 'required', true );
       $partForm->setFieldParam( 'mediumDescription_'.$C_LANG, 'label', __('Descríbeo brevemente') );
       $partForm->setFieldParam( 'mediumDescription_'.$C_LANG, 'class', '' );
       $partForm->setValidationRule( 'mediumDescription_'.$C_LANG, 'required', true );
@@ -255,7 +256,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $partForm->removeField( 'rExtContact_email');
       $partForm->removeField( 'rExtSocialNetwork_activeFb');
       $partForm->removeField( 'rExtSocialNetwork_activeTwitter');
-      $partForm->removeField( 'urlAlias_'.$C_LANG);
+      $partForm->removeField( 'urlAlias_es');
 
 
       $participationBlockInfo['dataForm'] = array(
@@ -269,7 +270,6 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
 
       $participationBlockInfo['objForm'] = $partForm;
       //$participationBlockInfo['objForm']->saveToSession();
-var_dump($C_LANG);
 
       $formFieldsNamesStp1 = array( 'title_'.$C_LANG, 'mediumDescription_'.$C_LANG, 'rTypeIdName' );
       $formFieldsNamesStp2 = $eatCtrl->prefixArray( array('eatanddrinkType') );

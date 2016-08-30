@@ -45,7 +45,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:26
 msgid "Accept"
-msgstr ""
+msgstr "Aceptar"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:78
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routesExplorerView.js:102
