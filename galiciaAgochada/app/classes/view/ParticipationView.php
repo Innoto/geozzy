@@ -13,7 +13,7 @@ class ParticipationView extends MasterView
   }
 
   public function xantaresForm() {
-
+    global $C_LANG;
     $htmlModalOk = '<h2>'. __("¡Moitas grazas!").'</h2>';
     $htmlModalOk .= '<p>'. __("Revisaremos a túa achega. Se nos gusta publicarémola.").'</p>';
     $htmlModalOk .= '<p>'. __("Manterémoste informad@ por e-mail.").'</p>';
@@ -36,7 +36,7 @@ class ParticipationView extends MasterView
     }
 
     $resCtrl = new ResourceController();
-    $formBlockInfo = $resCtrl->getFormBlockInfo( "participationXantaresForm", "/participation/xantaresExplorer/send", $successArray, $recursoData );
+    $formBlockInfo = $resCtrl->getFormBlockInfo( "participationXantaresForm", "/".$C_LANG."/participation/xantaresExplorer/send", $successArray, $recursoData );
     //$formBlockInfo['objForm']->saveToSession();
 
     $formBlockInfo['template']['participationFull']->exec();

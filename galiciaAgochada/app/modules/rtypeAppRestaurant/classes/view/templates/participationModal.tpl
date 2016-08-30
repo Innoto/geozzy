@@ -149,7 +149,7 @@
 
     switch (substep) {
       case '2':
-        fieldsNamesArray = ['title_es', 'mediumDescription_es'];
+        fieldsNamesArray = ['title_'+cogumelo.publicConf.C_LANG, 'mediumDescription_'+cogumelo.publicConf.C_LANG];
         $.each(fieldsNamesArray, function( index, field ) {
           if(!$('[form="'+formId+'"][name="'+field+'"]' ).valid()){
             isOk = false;
