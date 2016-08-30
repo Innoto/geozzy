@@ -1,7 +1,10 @@
 
   <div class="rinconsExplorer explorerCommonBase">
     <div class="explorerLayout clearfix">
-      <div class="explorerContainer explorer-container-isrouteswitch" style="position:absolute;top:100px;right:100px;z-index:32234234234;"></div>
+      <div class="explorerContainer is-route-filter" >
+        <div class="is-route-switch-icon"></div>
+        <div class="is-route-switch"></div>
+      </div>
       <!--duContainer -->
       <div class="explorerContainer explorer-container-du"></div>
       <!--filterContainer -->
@@ -9,9 +12,9 @@
       <!--mapContainer -->
       <div class="explorerContainer explorer-container-map">  <div class="explorerMap"></div> </div>
       <!--galleryContainer -->
-      <div class="explorerContainer explorer-container-filter-routes" style="width:100%;height:50px;background-color:grey;  ">
-        <div class="filtro-distancia" style="float:left;height:40px;width:300px;border:1px solid black;"></div>
-        <div class="filtro-dificultad" style="float:left;height:40px;width:300px;border:1px solid black;"></div>
+      <div class="explorerContainer explorer-container-filter-routes" >
+        <div class="filtro-distancia slider-container" ></div>
+        <div class="filtro-dificultad slider-container" ></div>
       </div>
       <!--filterContainerRoutes -->
       <div class="explorerContainer explorer-container-gallery"></div>

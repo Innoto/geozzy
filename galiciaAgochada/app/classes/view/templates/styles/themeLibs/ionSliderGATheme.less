@@ -1,4 +1,4 @@
-.ionSliderTheme( @gzzColor-ion-hover : #000 ){
+.ionSliderTheme( @gzzColor-ion-hover : #000, @gzzColor-ion-bar : @gzzColor-bck-8, @gzzColor-ion-text : @gzzColor-text-dark ){
   .irs {
       height: 55px;
   }
@@ -7,7 +7,7 @@
   }
   .irs-line {
       height: 1px; top: 33px;
-      background: @gzzColor-bck-8;
+      background: @gzzColor-ion-bar;
       //border: 1px solid #CCC;
       border-radius: 16px;
       -moz-border-radius: 16px;
@@ -49,7 +49,7 @@
   .irs-slider {
       top: 25px;
       width: 16px; height: 16px;
-      background: @gzzColor-bck-8;
+      background: @gzzColor-ion-bar;
       border-radius: 16px;
       -moz-border-radius: 16px;
       cursor: pointer;
@@ -60,7 +60,7 @@
   }
 
   .irs-min, .irs-max {
-      color: @gzzColor-text-dark;
+      color: @gzzColor-ion-text;
       font-size: 12px; line-height: 1.333;
       text-shadow: none;
       top: 0;
@@ -75,7 +75,7 @@
   }
 
   .irs-from, .irs-to, .irs-single {
-      color: @gzzColor-text-dark;
+      color: @gzzColor-ion-text;
       font-size: 16px; line-height: 1.333;
       text-shadow: none;
       padding: 1px 5px;

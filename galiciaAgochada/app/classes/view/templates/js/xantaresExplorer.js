@@ -448,7 +448,7 @@
 
       that.closeParticipationStep1();
       $.ajax({
-        url: "/participation/xantaresExplorer",
+        url:  '/'+cogumelo.publicConf.C_LANG+'/participation/xantaresExplorer',
         method: "POST",
         data: { lat : that.participationLat, lng:that.participationLng, zoom:that.participationZoom },
         success: function(data){

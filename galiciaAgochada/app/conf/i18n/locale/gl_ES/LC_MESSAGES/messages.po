@@ -1851,7 +1851,7 @@ msgid "Descríbeo brevemente"
 msgstr ""
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:234
-msgid "Como clasificarías este lugar?"
+msgid "Cómo clasificarías este lugar?"
 msgstr ""
 
 #: /home/proxectos/geozzy/galiciaAgochada/app/modules/rtypeAppRestaurant/classes/controller/RTypeAppRestaurantController.php:236
