@@ -18,8 +18,10 @@ $(document).ready( function() {
 
   bindResourceForm();
 
+
   // Porto 160810
-  initializeMap( formId );
+  if (typeof hasMap!=='undefined')
+    initializeMap( formId );
 });
 
 function bindResourceForm(){
@@ -80,7 +82,7 @@ function bindResourceForm(){
   $('select.cgmMForm-field-rExtAppZona_rextAppZonaType').select2();
   $('select.cgmMForm-field-weight').select2();
   $('select.cgmMForm-field-rExtView_viewAlternativeMode').select2();
-
+  $('select.cgmMForm-field-rExtAppFesta_rextAppFestaType').select2();
 }
 
 function initializeMap( form ){

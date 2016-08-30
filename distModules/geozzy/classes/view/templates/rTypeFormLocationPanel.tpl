@@ -5,6 +5,7 @@
 
 <script>
   var formId = '{$res.dataForm.formId}';
+  var hasMap = true;
 </script>
 
 <div class="row location {$res.dataForm.formId}">

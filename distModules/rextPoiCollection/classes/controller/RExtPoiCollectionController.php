@@ -90,14 +90,27 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
         'filters' => array( 'inRtype' => $filterRtype ),
         'affectsDependences' => array('RExtUrlModel')
       )
-    );
+    )->fetchAll();
 
+    $rtypePoiId = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => 'rtypePoi' ) ))->fetch()->getter('id');
+
+    // Si es una edicion, añadimos el ID y cargamos los datos
+     $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
+
+     $elemPoiList = $resourceModel->listItems(
+       array(
+         'filters' => array( 'inId'=> $valuesArray['pois'],'inRtype' => $rtypePoiId ),
+         'affectsDependences' => array('RExtUrlModel')
+       )
+     )->fetchAll();
+
+    $elemListFinal = array_merge($elemList, $elemPoiList);
     $resControl = new ResourceController();
 
     $resOptions = array();
 
-    if ($elemList){
-      while( $res = $elemList->fetch() ) {
+    if ($elemListFinal){
+      foreach ($elemListFinal as $key => $res) {
 
         $thumbSettings = array(
           'profile' => 'squareCut',
@@ -141,8 +154,7 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
     //$form->removeValidationRule( 'pois', 'inArray' );
     $form->removeValidationRule( 'rExtPoiCollection_pois', 'inArray' );
 
-    // Si es una edicion, añadimos el ID y cargamos los datos
-     $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
+
 
      if( $valuesArray ) {
        $valuesArray = $this->prefixArrayKeys( $valuesArray );
