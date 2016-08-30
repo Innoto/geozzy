@@ -47,9 +47,14 @@ class StoryAdminAPIView extends View {
     switch( $_SERVER['REQUEST_METHOD'] ) {
       case 'GET':
         $rtypeModel = new ResourcetypeModel();
-        $rtype = $rtypeModel->listItems(  array(
+        $rtypeEl = $rtypeModel->listItems(  array(
           'filters' => array( 'idName'=> 'rtypeStory' )
-        ))->fetch()->getter('id');
+        ))->fetch();
+
+        if ($rtypeEl){
+          $rtype = $rtypeEl->getter('id');
+        }
+
 
         $resourceModel = new ResourceModel();
         $storiesList = $resourceModel->listItems(  array(
