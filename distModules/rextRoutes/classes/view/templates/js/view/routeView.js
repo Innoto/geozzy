@@ -242,7 +242,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         },
 
         highlightCallback: function(e, x, pts, row) {
-          $($(".resourceRouteGraphLegend")[0]).html(x+' m');
+          console.log( pts );
+          $($(".resourceRouteGraphLegend")[0]).html(row+' m');
           $($(".resourceRouteGraphLegend")[0]).show();
         },
 
