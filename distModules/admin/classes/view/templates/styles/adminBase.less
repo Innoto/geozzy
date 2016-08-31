@@ -354,33 +354,43 @@ input[type="checkbox"]{
     top:1px;
   }
 }
-/*SELECT LANG*/
-.langSwitch {
-  float: right;
-  margin:0;
-  padding:0;
 
-  li {
-    display: none;
-    padding: 1px 0.5em;
-    cursor: pointer;
-    font-weight: bold;
-    color: @gzzColor-text-light2;
-    background: transparent;
-    line-height: 18px;
-    text-transform: uppercase;
-    &:hover{
-      color: @gzzColor-text-dark;
+
+/*SELECT LANG*/
+.langSwitch-wrap {
+  &.langSwitch-file {
+    height:30px;
+  }
+  .langSwitch {
+    float: right;
+    margin:0;
+    padding:0;
+
+    li {
+      display: none;
+      padding: 1px 0.5em;
+      cursor: pointer;
+      font-weight: bold;
+      color: @gzzColor-text-light2;
+      background: @gzzColor-bck-3;
+      line-height: 18px;
+      text-transform: uppercase;
+      &:hover{
+        color: @gzzColor-text-dark;
+      }
+    }
+    &:hover li{
+      display: inline;
+    }
+    .langActive {
+      cursor: no-drop;
+      display:inline;
+      background: transparent;
+      color: @gzzColor-text-dest;
     }
   }
-  &:hover li{
-    display: inline;
-  }
-  .langActive {
-    color: @gzzColor-text-dest;
-  }
 }
-.langSwitchIcon { margin-top:-4px; font-size: 20px; color: @gzzColor-text-dark; }
+.langSwitchIcon { margin-top:-4px; font-size: 20px; color: @gzzColor-text-dark; float: right;}
 
 .select2-container,
 select.cgmMForm-field{ width: 100% !important; }

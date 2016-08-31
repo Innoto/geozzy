@@ -79,6 +79,7 @@ function bindResourceForm(){
     icon: '<i class="fa fa-arrows"></i>'
   });
 
+  $('select.cgmMForm-field-rExtAccommodation_accommodationCategory').select2();
   $('select.cgmMForm-field-rExtAppZona_rextAppZonaType').select2();
   $('select.cgmMForm-field-weight').select2();
   $('select.cgmMForm-field-rExtView_viewAlternativeMode').select2();

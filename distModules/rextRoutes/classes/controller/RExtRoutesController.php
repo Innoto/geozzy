@@ -69,6 +69,8 @@ class RExtRoutesController extends RExtController implements RExtInterface {
     'placeholder' => __( 'File' ), 'destDir' => CollectionModel::$cols['image']['uploadDir'] ),
     'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true' )
 */
+    $options = array('--',1,2,3,4,5);
+
     $fieldsInfo = array(
       'circular' => array(
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Circular itinerary') ))
@@ -90,24 +92,29 @@ class RExtRoutesController extends RExtController implements RExtInterface {
         'rules' => array( 'digits' => true )
       ),
       'difficultyEnvironment' => array(
-        'params' => array( 'label' => __( 'Natural environment difficulty' ) ),
-        'rules' => array( 'digits' => true )
+        'params' => array( 'label' => __( 'Natural environment difficulty' ), 'type' => 'select',
+          'options' => $options
+        )
       ),
       'difficultyItinerary' => array(
-        'params' => array( 'label' => __( 'Itinerary difficulty' ) ),
-        'rules' => array( 'digits' => true )
+        'params' => array( 'label' => __( 'Itinerary difficulty' ), 'type' => 'select',
+          'options' => $options
+        )
       ),
       'difficultyDisplacement' => array(
-        'params' => array( 'label' => __( 'Displacement difficulty' ) ),
-        'type' => 'INT'
+        'params' => array( 'label' => __( 'Displacement difficulty' ) , 'type' => 'select',
+          'options' => $options
+        )
       ),
       'difficultyEffort' => array(
-        'params' => array( 'label' => __( 'Effort level' ) ),
-        'type' => 'INT'
+        'params' => array( 'label' => __( 'Effort level' ), 'type' => 'select',
+          'options' => $options
+        )
       ),
       'difficultyGlobal' => array(
-        'params' => array( 'label' => __( 'Global difficulty' ) ),
-        'type' => 'INT'
+        'params' => array( 'label' => __( 'Global difficulty' ), 'type' => 'select',
+          'options' => $options
+        )
       ),
       'routeStart' => array(
         'translate' => true,
