@@ -132,7 +132,7 @@
             '<%  if( parseInt(isRoute) == 1 ){ %> ' +
               '<div class="gempiRouteDetails">'+
                 '<% if(travelDistance){ %> <%- travelDistance %> Km  <% } %>' +
-                '<% if(difficultyGlobal){ %> <div class="dificultad"> <%- __("Dificultad") %>  <div class="barraEsfuerzo ruta_<%-  difficultyGlobal %>"></div> </div> <% } %>' +
+                '<% if(difficultyGlobal){ %> <div class="dificultad"> <%- __("Dificultad") %>  <div class="barraEsfuerzo <%-  "ruta_"+difficultyGlobal %>"></div> </div> <% } %>' +
               '</div>'+
             '<% } %>'+
 
@@ -146,7 +146,7 @@
               '<div class="routeGraph" ></div> ' +
             '<% } %>'+
           '</div>'+
-          '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+             
+          '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
         '</div>';
 
       that.infowindow = new geozzy.explorerComponents.mapInfoView({ tpl:infoWindowPlantilla });
