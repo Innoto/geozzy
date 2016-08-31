@@ -309,7 +309,7 @@ class AdminViewResource extends AdminViewMaster {
 
 
     $form = $formBlockInfo['objForm'];
-    $form->setFieldParam('image', 'label', 'Thumbnail image (Optional)');
+    $form->setFieldParam('image', 'label', __('Thumbnail image (Optional)'));
     $form->setFieldParam('published', 'type', 'reserved');
     $form->setFieldParam('published', 'value', '1');
     $urlAliasLang = $form->multilangFieldNames('urlAlias');

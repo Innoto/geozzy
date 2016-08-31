@@ -7,6 +7,7 @@ function bindResourceForm(){
     itemActions : [
       { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editModalForm }
     ],
+    placeholder: __('Select options')
   });
   $('#addPois').on('click', function(){
     app.mainView.loadAjaxContentModal('/rtypePoi/poi/create', 'createPoiModal', 'Create POI');
