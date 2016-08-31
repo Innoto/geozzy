@@ -14,7 +14,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var that = this;
     var options = new Object({
       map: false,
-      
+      showRoute: false,
       showGraph: false,
       graphContainer:false,
       strokeColor:  cogumelo.publicConf.rextRoutesConf.strokeColor,
@@ -42,7 +42,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
     if( that.options.routeModel !== false ) {
-      that.renderMapRoute();
+      if(that.options.showRoute) {
+        that.renderMapRoute();
+      }
+
 
       if( that.options.showGraph ) {
         that.renderGraphRoute();
