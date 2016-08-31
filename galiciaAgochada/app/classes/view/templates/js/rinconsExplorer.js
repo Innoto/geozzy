@@ -121,7 +121,8 @@
 
 
       var infoWindowPlantilla = ''+
-        '<div class="gempiContent rincons">'+
+        '<div class="gempiContent <% if( parseInt(isRoute) == 1 ){ %> rincons <% } %>">'+
+
           '<div class="gempiImg">'+
             '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" />'+
             '<div class="gempiFav"><% if(touchAccess){ %><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i> <% } %></div>'+
@@ -131,7 +132,7 @@
             '<%  if( parseInt(isRoute) == 1 ){ %> ' +
               '<div class="gempiRouteDetails">'+
                 '<% if(travelDistance){ %> <%- travelDistance %> Km  <% } %>' +
-                '<% if(difficultyGlobal){ %> <div class="dificultad"> <%- __("Dificultad") %>  <div class="barraEsfuerzo ruta_<%-  difficultyGlobal %>"></div> </div> <% } %>' +
+                '<% if(difficultyGlobal){ %> <div class="dificultad"> <%- __("Dificultad") %>  <div class="barraEsfuerzo <%-  "ruta_"+difficultyGlobal %>"></div> </div> <% } %>' +
               '</div>'+
             '<% } %>'+
 
@@ -140,17 +141,18 @@
 
 
             '<div class="gempiDescription"><%-description%></div>'+
-            '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
+
+            '<% if( parseInt(isRoute) == 1 ){ %> ' +
+              '<div class="routeGraph" ></div> ' +
+            '<% } %>'+
           '</div>'+
-          '<% if( parseInt(isRoute) == 1 ){ %> ' +
-            '<div class="routeGraph" style="border:2px solid black;width:100%;height:90px;margin-top:0px;"></div> ' +
-          '<% } %>'+
+          '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
         '</div>';
 
       that.infowindow = new geozzy.explorerComponents.mapInfoView({ tpl:infoWindowPlantilla });
       that.listaMini = new geozzy.explorerComponents.activeListTinyView({ el:$('.explorer-container-gallery')});
       that.listaRecomendados =  new geozzy.explorerComponents.reccommendedListView();
-      that.rutas = new geozzy.explorerComponents.routesView({ showGraph:true, hoverGraphDiv: '.gempiContentRutas .routeGraph' })
+      that.rutas = new geozzy.explorerComponents.routesView({ showGraph:true, hoverGraphDiv: '.gempiContent.rincons .routeGraph' })
       that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
           clusterize:false,

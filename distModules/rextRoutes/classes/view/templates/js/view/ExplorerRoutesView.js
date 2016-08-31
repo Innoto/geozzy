@@ -15,7 +15,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     var that = this;
     var options = new Object({
       showGraph: false,
-      hoverGraphDiv: false
+      hoverGraphDiv: false,
+      ShowRouteInZoomLevel: 10
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -27,6 +28,15 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     that.parentExplorer = parentExplorer;
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
+
+
+      // Show route?
+      if( that.parentExplorer.displays.map.map.getZoom() >= that.options.ShowRouteInZoomLevel ) {
+        var showRoute = true;
+      }
+      else {
+        var showRoute = false;
+      }
 
       //that.hideRoute();
       //alert(params.id)
@@ -41,7 +51,10 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
             routeModel: routesCollection.get( params.id ),
             showGraph: that.options.showGraph,
             graphContainer: that.options.hoverGraphDiv ,
-            showLabels: false
+            showLabels: false,
+            markerEnd:false,
+            allowsTrackHover:false,
+            showRoute: showRoute
           });
         }
       });
