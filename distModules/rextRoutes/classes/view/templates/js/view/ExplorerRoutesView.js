@@ -41,7 +41,9 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
             routeModel: routesCollection.get( params.id ),
             showGraph: that.options.showGraph,
             graphContainer: that.options.hoverGraphDiv ,
-            showLabels: false
+            showLabels: false,
+            markerEnd:false,
+            allowsTrackHover:false
           });
         }
       });

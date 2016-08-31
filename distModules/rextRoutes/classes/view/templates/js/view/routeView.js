@@ -26,8 +26,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       markerEnd: cogumelo.publicConf.rextRoutesConf.markerEnd,
       drawXGrid: true,
       drawYGrid: true,
-      showLabels: true
-
+      showLabels: true,
+      allowsTrackHover: true
       //tpl: geozzy.explorerComponents.routesViewTemplate ,
 
     });
@@ -73,18 +73,20 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     //console.log(route.get('trackPoints')[route.get('trackPoints').length - 1])
 
-    routeMap.markerStart = marker = new google.maps.Marker({
-      position:  {lat: route.get('trackPoints')[0][0], lng: route.get('trackPoints')[0][1]},
-      title: __('Route start'),
-      icon: {
-        url: cogumelo.publicConf.media +  that.options.markerStart.img  , //'/module/rextRoutes/img/markerStart.png'
-        anchor: new google.maps.Point( that.options.markerStart.anchor[0], that.options.markerStart.anchor[1] ) // 3,40
-      },
-      map: that.options.map
-    });
 
+    if( that.options.markerStart ) {
+      routeMap.markerStart = marker = new google.maps.Marker({
+        position:  {lat: route.get('trackPoints')[0][0], lng: route.get('trackPoints')[0][1]},
+        title: __('Route start'),
+        icon: {
+          url: cogumelo.publicConf.media +  that.options.markerStart.img  , //'/module/rextRoutes/img/markerStart.png'
+          anchor: new google.maps.Point( that.options.markerStart.anchor[0], that.options.markerStart.anchor[1] ) // 3,40
+        },
+        map: that.options.map
+      });
+    }
 
-    if( route.get('circular') !== 1 ) {
+    if( route.get('circular') !== 1 && that.options.markerEnd ) {
       routeMap.markerEnd = marker = new google.maps.Marker({
         position: { lat: route.get('trackPoints')[route.get('trackPoints').length - 1][0], lng: route.get('trackPoints')[route.get('trackPoints').length - 1][1] },
         title: __('Route End'),
@@ -136,30 +138,32 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
+    if( that.options.allowsTrackHover ) {
 
-    that.polylineBG2.addListener('mouseover', function(ev){
-      that.findPoint(ev.latLng.lat(), ev.latLng.lng());
-      isTrackHover = true;
-    });
-    that.polylineBG1.addListener('mouseover', function(ev){
-      that.findPoint(ev.latLng.lat(), ev.latLng.lng());
-      isTrackHover = true;
-    });
-    that.polyline.addListener('mouseover', function(ev){
-      that.findPoint(ev.latLng.lat(), ev.latLng.lng());
-      isTrackHover = true;
-    });
+      that.polylineBG2.addListener('mouseover', function(ev){
+        that.findPoint(ev.latLng.lat(), ev.latLng.lng());
+        isTrackHover = true;
+      });
+      that.polylineBG1.addListener('mouseover', function(ev){
+        that.findPoint(ev.latLng.lat(), ev.latLng.lng());
+        isTrackHover = true;
+      });
+      that.polyline.addListener('mouseover', function(ev){
+        that.findPoint(ev.latLng.lat(), ev.latLng.lng());
+        isTrackHover = true;
+      });
 
 
-    that.polylineBG2.addListener('mouseout', function(ev){
-      that.outRecorrido();
-    });
-    that.polylineBG1.addListener('mouseout', function(ev){
-      that.outRecorrido();
-    });
-    that.polyline.addListener('mouseout', function(ev){
-      that.outRecorrido();
-    });
+      that.polylineBG2.addListener('mouseout', function(ev){
+        that.outRecorrido();
+      });
+      that.polylineBG1.addListener('mouseout', function(ev){
+        that.outRecorrido();
+      });
+      that.polyline.addListener('mouseout', function(ev){
+        that.outRecorrido();
+      });
+    }
 
   },
 
