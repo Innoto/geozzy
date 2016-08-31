@@ -11,6 +11,44 @@
 }
 
 
+#geozzyExplorerMapInfo {
+
+  .gempiContent.rincons{
+
+    .gempiRouteDetails {
+      font-size:14px;
+      background-color:@gzzColor-bck-7;
+      color:#fff;
+
+      padding-left:5px;
+      padding-right:5px;
+
+      .dificultad {
+        float:right;
+
+
+        .barraEsfuerzo{
+          margin-top:3px;
+          margin-left:10px;
+          float:right;
+          background: url("@{cogumelo_publicConf_media}/module/rextRoutes/img/esforzoSmall.png") 0px 0px;
+          width:80px;
+          height:14px;
+
+          &.ruta_0{background-position: 0px 0px;}
+          &.ruta_1{background-position: 0px -14px;}
+          &.ruta_2{background-position: 0px -31px;}
+          &.ruta_3{background-position: 0px -48px;}
+          &.ruta_4{background-position: 0px -65px;}
+          &.ruta_5{background-position: 0px -82px;}
+        }
+      }
+
+    }
+  }//.gempiContent
+}
+
+
 
 .rinconsExplorer{
 
@@ -27,13 +65,13 @@
       width:100%;
       height:50px;
       background-color: @gzzColor-bck-7;
-
+      text-align:right;
       .slider-container {
 
 
         float:left;
         height:46px;
-        width:400px;
+        width:300px;
 
 
 
@@ -55,6 +93,7 @@
         }
       }
 
+      .slider-containers { width:800px;margin-left: auto;margin-right:auto;}
 
       .filtro-distancia {background: url('@{cogumelo_publicConf_media}/img/rutaFiltroDistancia.png') 0px 5px no-repeat;}
       .filtro-dificultad {background: url('@{cogumelo_publicConf_media}/img/rutaFiltroDificultad.png') 0px 5px  no-repeat;}

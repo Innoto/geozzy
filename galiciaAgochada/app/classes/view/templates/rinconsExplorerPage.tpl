@@ -13,8 +13,10 @@
       <div class="explorerContainer explorer-container-map">  <div class="explorerMap"></div> </div>
       <!--galleryContainer -->
       <div class="explorerContainer explorer-container-filter-routes" >
-        <div class="filtro-distancia slider-container" ></div>
-        <div class="filtro-dificultad slider-container" ></div>
+        <div class="slider-containers">
+          <div class="filtro-distancia slider-container" ></div>
+          <div class="filtro-dificultad slider-container" ></div>
+        </div>
       </div>
       <!--filterContainerRoutes -->
       <div class="explorerContainer explorer-container-gallery"></div>

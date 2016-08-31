@@ -121,21 +121,23 @@
 
 
       var infoWindowPlantilla = ''+
-        '<div class="gempiContentRutas">'+
+        '<div class="gempiContent rincons">'+
           '<div class="gempiImg">'+
             '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" />'+
             '<div class="gempiFav"><% if(touchAccess){ %><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i> <% } %></div>'+
           '</div>'+
           '<div class="gempiInfo">'+
+
+            '<%  if( parseInt(isRoute) == 1 ){ %> ' +
+              '<div class="gempiRouteDetails">'+
+                '<% if(travelDistance){ %> <%- travelDistance %> Km  <% } %>' +
+                '<% if(difficultyGlobal){ %> <div class="dificultad"> <%- __("Dificultad") %>  <div class="barraEsfuerzo ruta_<%-  difficultyGlobal %>"></div> </div> <% } %>' +
+              '</div>'+
+            '<% } %>'+
+
             '<div class="gempiTitle"><%-title%></div>'+
             '<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+
 
-            '<% console.log(  parseInt(isRoute)  ); if( parseInt(isRoute) == 1 ){ %> ' +
-              '<div class="gempiRouteDetails">'+
-                '<% if(difficultyGlobal){ %>  Dificultad:<%- difficultyGlobal %> <% } %>' +
-                '<% if(travelDistance){ %>  Distancia:<%- travelDistance %> Km <% } %>' +
-              '</div>'+
-            '<% } %>'+
 
             '<div class="gempiDescription"><%-description%></div>'+
             '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
@@ -325,7 +327,7 @@
             containerClass: 'dificultad',
             postfix: '',
             keyToFilter: 'difficultyGlobal',
-            valueMin: 0,
+            valueMin: 1,
             valueMax: 10,
             type:'single'
           }

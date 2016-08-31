@@ -1,6 +1,11 @@
 
 $('document').ready(function(){
   adminRextRoutesFileUpload( $('form.cgmMForm-form-resourceEdit').attr('id') );
+  $('select.cgmMForm-field-rExtRoutes_difficultyEnvironment').select2();
+  $('select.cgmMForm-field-rExtRoutes_difficultyItinerary').select2();
+  $('select.cgmMForm-field-rExtRoutes_difficultyDisplacement').select2();
+  $('select.cgmMForm-field-rExtRoutes_difficultyEffort').select2();
+  $('select.cgmMForm-field-rExtRoutes_difficultyGlobal').select2();
 });
 
 
