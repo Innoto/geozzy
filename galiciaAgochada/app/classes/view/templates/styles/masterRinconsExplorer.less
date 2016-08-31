@@ -95,7 +95,9 @@
 
         float:left;
         height:46px;
-        width:300px;
+//        width:300px;
+        width:100%;
+        max-width: 300px;
 
 
 
@@ -117,7 +119,12 @@
         }
       }
 
-      .slider-containers { width:800px;margin-left: auto;margin-right:auto;}
+      .slider-containers {
+        width:100%;
+        max-width:800px;
+        margin-left: auto;
+        margin-right:auto;
+      }
 
       .filtro-distancia {background: url('@{cogumelo_publicConf_media}/img/rutaFiltroDistancia.png') 0px 5px no-repeat;}
       .filtro-dificultad {background: url('@{cogumelo_publicConf_media}/img/rutaFiltroDificultad.png') 0px 5px  no-repeat;}
@@ -241,5 +248,13 @@
 
 }/*991px*/
 @media screen and (max-width: 767px) {
+
+  .rinconsExplorer{
+    .explorer-container-filter-routes {
+
+        height:95px;
+        .slider-containers { max-width:400px;}
+    }
+  }
 
 } /*767px*/
