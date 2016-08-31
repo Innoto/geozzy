@@ -31,11 +31,6 @@
     {$rExt.dataForm.formFieldsArray.rExtRoutes_routeFile}
   </div>
 
-<!--
-{foreach $rExt.dataForm.formFieldsArray as $key=>$formField}
-  {$formField}
-{/foreach}
--->
 </div>
 
 {$client_includes}
