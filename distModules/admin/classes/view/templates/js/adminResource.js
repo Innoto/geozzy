@@ -29,7 +29,8 @@ function bindResourceForm(){
     itemActions : [
       { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editCollection }
     ],
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
   });
 
   $('#resourceAddCollection').on('click', function(){
@@ -42,41 +43,49 @@ function bindResourceForm(){
     itemActions : [
       { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editMultimediaGallery }
     ],
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
   });
 
   $('#resourceAddMultimediaGallery').on('click', function(){
     //PARAMS( URL - ID - TITLE )
-    app.mainView.loadAjaxContentModal('/admin/multimedia/create', 'createMultimediaGalleryModal', 'Create Multimedia Gallery');
+    app.mainView.loadAjaxContentModal('/admin/multimedia/create', 'createMultimediaGalleryModal', __('Create Multimedia Gallery'));
   });
 
   $('select.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
   });
   $('select.cgmMForm-field-rExtAccommodation_accommodationServices').multiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
   });
   $('select.cgmMForm-field-rExtAccommodation_accommodationFacilities').multiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
   });
   $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkType').multiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
   });
   $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').multiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
   });
   $('select.cgmMForm-field-rExtAppLugar_rextAppLugarType').multiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
   });
   $('select.cgmMForm-field-rExtAppEspazoNatural_rextAppEspazoNaturalType').multiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
   });
 
   $('select.cgmMForm-field-rExtAccommodation_accommodationCategory').select2();

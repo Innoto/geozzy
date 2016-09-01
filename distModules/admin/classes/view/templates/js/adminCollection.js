@@ -9,17 +9,17 @@ function colBinds(){
     orientation: 'Horizontal',
     itemImage: true,
     icon: '<i class="fa fa-arrows"></i>',
-    placeholder: 'Add existing resources'
+    placeholder: __('Add existing resources')
   });
 
 
   $('#addResourceLocal').on('click', function(){
     //PARAMS( URL - ID - TITLE MD OR LG)
-    app.mainView.loadAjaxContentModal('/admin/resourcetypefile/create/', 'createResourceLocalModal', 'Upload multimedia resource', 'md');
+    app.mainView.loadAjaxContentModal('/admin/resourcetypefile/create/', 'createResourceLocalModal', __('Upload multimedia resource'), 'md');
   });
   $('#addResourceExternal').on('click', function(){
     //PARAMS( URL - ID - TITLE - MD OR LG)
-    app.mainView.loadAjaxContentModal('/admin/resourcetypeurl/create/', 'createResourceExternalModal', 'Link or embed multimedia resource', 'md');
+    app.mainView.loadAjaxContentModal('/admin/resourcetypeurl/create/', 'createResourceExternalModal', __('Link or embed multimedia resource'), 'md');
   });
 }
 
