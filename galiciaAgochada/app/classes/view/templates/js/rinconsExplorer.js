@@ -155,7 +155,7 @@
       that.rutas = new geozzy.explorerComponents.routesView({ showGraph:true, hoverGraphDiv: '.gempiContent.rincons .routeGraph' })
       that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
-          clusterize:false,
+          clusterize:true,
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
             var retObj = false;
@@ -198,7 +198,25 @@
             }
 
             return retObj;
-          }
+          },
+
+          clustererStyles: [{
+                url: cogumelo.publicConf.media+"/img/segredosClusterIconSmall.png",
+                height: 28,
+                width: 28,
+                textColor: '#FFFFFF',
+                anchor:[0,100],
+                textSize: 13
+              },
+              {
+                url: cogumelo.publicConf.media+"/img/segredosClusterIcon.png",
+                height: 32,
+                width: 32,
+                textColor: '#FFFFFF',
+                anchor:[0,100],
+                textSize: 14
+              }]
+
       });
 
 
