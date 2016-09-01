@@ -14,7 +14,7 @@ geozzy.rextRoutes.routeCollection = Backbone.Collection.extend({
     col.fetch({
       success: function(res){
 
-        if( res.toJSON()[0].length > 0 ) {
+        if( res.toJSON()[0].id  ) {
           that.add( res.toJSON()[0] );
           callback();
 
