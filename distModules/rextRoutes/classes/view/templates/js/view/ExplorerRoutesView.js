@@ -19,7 +19,9 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       showGraph: false,
       hoverGraphDiv: false,
       ShowRouteInZoomLevel: 10,
-      routeResolution: 90
+      routeResolution: 90,
+      showMarkerStart: false,
+      showMarkerEnd: false
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -55,19 +57,29 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
             var r = geozzy.explorerComponents.routesCollectionInstance.get(params.id);
 
 
-            r.set('routeViewInstance', new geozzy.rextRoutes.routeView({
+            var routeOpts = {
                   map: that.parentExplorer.displays.map.map,
                   routeModel: r,
                   showGraph: that.options.showGraph,
                   graphContainer: that.options.hoverGraphDiv ,
                   showLabels: false,
-                  markerEnd:false,
                   allowsTrackHover:false,
                   ShowRouteInZoomLevel: that.options.ShowRouteInZoomLevel,
                   drawXGrid: false,
                   drawYGrid: false,
-                })
-              );
+                };
+
+            if( that.options.showMarkerStart == false ) {
+              routeOpts.markerStart = false;
+            }
+
+            if( that.options.showMarkerEnd == false ) {
+              routeOpts.markerEnd = false;
+            }
+
+
+
+            r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
 
 
               //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );

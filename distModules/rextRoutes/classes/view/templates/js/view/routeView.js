@@ -4,6 +4,7 @@ if(!geozzy.rextRoutes) geozzy.rextRoutes={};
 
 geozzy.rextRoutes.routeView = Backbone.View.extend({
 
+  options: false,
   trackMarker: false,
   grafico: false,
   events: {
@@ -184,17 +185,9 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 //    var divName =
 
 
-    $('body').append('');
-
-    if( $('.resourceRouteGraphContainer').length == 0 ) {
-      var controlUI = document.createElement('div');
-      controlUI.title = 'Click to recenter the map';
-      controlUI.className = 'resourceRouteGraphContainer';
-      controlUI.innerHTML = '<div class="resourceRouteGraphLegend" style="display:none;"></div><div class="resourceRouteGraph"></div>';
-    }
 
 
-    that.options.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlUI);
+
 
 
     if( !that.grafico || forceReload == true ) {
@@ -207,6 +200,14 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       });
 
       if( that.options.graphContainer === false) {
+        if( $('.resourceRouteGraphContainer').length == 0 ) {
+          var controlUI = document.createElement('div');
+          controlUI.title = 'Click to recenter the map';
+          controlUI.className = 'resourceRouteGraphContainer';
+          controlUI.innerHTML = '<div class="resourceRouteGraphLegend" style="display:none;"></div><div class="resourceRouteGraph"></div>';
+          that.options.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlUI);
+
+        }
         var containerGraph = '.resourceRouteGraph';
       }
       else {
@@ -223,7 +224,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         fillAlpha: 0.6,
         drawXGrid: that.options.drawXGrid,
         drawYGrid: that.options.drawYrid,
-
+        pixelsPerLabel:20,
 
         highlightCircleSize: 5,
         drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
@@ -256,8 +257,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         },
 
         highlightCallback: function(e, x, pts, row) {
-          console.log( pts );
-          $($(".resourceRouteGraphLegend")[0]).html(row+' m');
+          //console.log(route.get('trackPoints')[x][2]);
+          $($(".resourceRouteGraphLegend")[0]).html( route.get('trackPoints')[x][2] +' m');
           $($(".resourceRouteGraphLegend")[0]).show();
         },
 
@@ -297,23 +298,6 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
          }
       }, 5);
 
-/*
-
-      that.grafico = new Dygraph( $('.routeGraph')[0] , chartString, graphOptions );
-
-      that.grafico.updateOptions( {
-        annotationMouseOverHandler: function(annotation, point, dygraph, event) {
-
-        }
-      });
-
-      $($(".resourceRouteGraph")[0]).mousemove(function(e) {
-          var seleccionado = that.grafico.getSelection();
-          that.hoverRoute( seleccionado )
-      }).mouseleave(function(e) {
-          var seleccionada = that.grafico.getSelection();
-          that.outRecorrido();
-      });*/
     }
 
 

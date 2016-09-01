@@ -111,7 +111,7 @@
 
     .resourceRouteGraphContainer .resourceRouteGraph {
       width:300px;
-      height:130px;
+      height:80px;
 
       margin-right:20px;
       margin-top:30px;
