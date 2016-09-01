@@ -348,7 +348,7 @@
             postfix: '',
             keyToFilter: 'difficultyGlobal',
             valueMin: 1,
-            valueMax: 10,
+            valueMax: 5,
             type:'single'
           }
         )
