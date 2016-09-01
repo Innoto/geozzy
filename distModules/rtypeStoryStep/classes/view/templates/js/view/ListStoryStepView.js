@@ -27,9 +27,7 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
     that.storysteps.fetchById(that.story, function(){
       that.updateList();
     });
-
     that.render();
-
   },
 
   render: function() {
@@ -42,13 +40,14 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
   updateList: function() {
     var that = this;
     this.listStoryStepItemTemplate = _.template( geozzy.storystepsComponents.StorystepTemplate );
-    that.stepList = $("#storyStepsList");
+    that.stepList = $("#storyStepsList .story");
     that.stepList.html('');
     var steps = that.storysteps.search({deleted:0});
     steps.sortByField('weight');
     _.each( steps.toJSON() , function(item){
       that.stepList.append( that.listStoryStepItemTemplate({ id: item.get('id'), title: item.get('title') }) );
     });
+
     $("#storyStepsList.dd").nestable({
       'maxDepth': 1,
       'dragClass': "gzznestable dd-dragel",
@@ -60,7 +59,6 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
   },
 
   saveList: function(){
-
     var that = this;
     var jsonNestableResult = $("#storyStepsList").nestable('serialize');
     var itemWeight = 0;
@@ -95,7 +93,6 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
   saveStoryStep: function() {
     var that = this;
     that.storysteps.save(that.story);
-    console.log('saveStoryStep')
     that.updateList();
     that.saveChangesVisible(false);
   },
