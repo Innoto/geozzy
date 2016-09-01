@@ -29,6 +29,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       drawXGrid: true,
       drawYGrid: true,
       showLabels: true,
+      pixelsPerLabel: 15,
       allowsTrackHover: true
       //tpl: geozzy.explorerComponents.routesViewTemplate ,
 
@@ -40,7 +41,6 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
   render: function() {
     var that = this;
-
 
     if( that.options.routeModel !== false ) {
 
@@ -214,7 +214,6 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         var containerGraph = that.options.graphContainer;
       }
 
-
       var graphOptions = {
         // options go here. See http://dygraphs.com/options.html
         axisLineWidth: 2,
@@ -224,7 +223,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         fillAlpha: 0.6,
         drawXGrid: that.options.drawXGrid,
         drawYGrid: that.options.drawYrid,
-        pixelsPerLabel:20,
+        pixelsPerLabel: that.options.pixelsPerLabel,
 
         highlightCircleSize: 5,
         drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
