@@ -71,23 +71,10 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
 
     // Si es una edicion, añadimos el ID y cargamos los datos
     $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
+
     if( $valuesArray ) {
       $valuesArray = $this->prefixArrayKeys( $valuesArray );
       $form->setField( $this->addPrefix( 'id' ), array( 'type' => 'reserved', 'value' => null ) );
-
-      // Limpiando la informacion de terms para el form
-      if( $this->taxonomies ) {
-        foreach( $this->taxonomies as $tax ) {
-          $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-          if( isset( $valuesArray[ $taxFieldName ] ) && is_array( $valuesArray[ $taxFieldName ] ) ) {
-            $taxFieldValues = array();
-            foreach( $valuesArray[ $taxFieldName ] as $value ) {
-              $taxFieldValues[] = ( is_array( $value ) ) ? $value[ 'id' ] : $value;
-            }
-            $valuesArray[ $taxFieldName ] = $taxFieldValues;
-          }
-        }
-      }
 
       $form->loadArrayValues( $valuesArray );
     }
@@ -161,25 +148,28 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      $this->rExtModel = new AudioguideModel( $valuesArray );
+      $rExtModel = new AudioguideModel( $valuesArray );
 
-      if ($this->rExtModel) {
+      if( $rExtModel === false ) {
+        $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
+      }
+      else{
         foreach (cogumeloGetSetupValue('publicConf:vars:langAvailableIds') as $lang){
-
           $fileField[$lang] = $this->addPrefix( 'audioFile_'.$lang );
           if( $form->isFieldDefined( $fileField[$lang] ) ) {
-            $this->defResCtrl->setFormFiledata( $form, $fileField[$lang], 'audioFile_'.$lang, $this->rExtModel );
-            $this->rExtModel->save();
+            $this->defResCtrl->setFormFiledata( $form, $fileField[$lang], 'audioFile_'.$lang, $rExtModel );
+            //$rExtModel->save();
           }
         }
       }
 
       if( !$form->existErrors() ) {
-        $saveResult = $this->rExtModel->save();
+        $saveResult = $rExtModel->save();
         if( $saveResult === false ) {
           $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
         }
       }
+
     }
   }
 
