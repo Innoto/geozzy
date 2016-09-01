@@ -18,7 +18,8 @@ function bindPoiForm(modal){
   // tuneamos los selectores
   $(modal+'select.cgmMForm-field-rextPoi_rextPoiType').multiList({
     orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>'
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
   });
 
 }

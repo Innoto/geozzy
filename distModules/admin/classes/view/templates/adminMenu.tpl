@@ -16,10 +16,10 @@
                   <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="/admin#user/show"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-                    <li><a href="/admin#user/edit/id/{$user['data']['id']}"><i class="fa fa-edit fa-fw"></i> Edit Profile</a></li>
+                    <li><a href="/admin#user/show"><i class="fa fa-user fa-fw"></i> {t}User Profile{/t}</a></li>
+                    <li><a href="/admin#user/edit/id/{$user['data']['id']}"><i class="fa fa-edit fa-fw"></i>{t}Edit Profile{/t}</a></li>
                     <li class="divider"></li>
-                    <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                    <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i>{t}Logout{/t}</a></li>
                 </ul>
                 <!-- /.dropdown-user -->
             </li>
@@ -90,7 +90,7 @@
           {/if}
           <!-- Categories -->
           <li class="categories">
-            <a href="#"><i class="fa fa-tags fa-fw"></i> Categories <span class="fa arrow"></span></a>
+            <a href="#"><i class="fa fa-tags fa-fw"></i> {t}Categories{/t} <span class="fa arrow"></span></a>
               <ul class="nav nav-second-level categoriesList">
                 <script type="text/template" id="menuCategoryElement">
                   <% for(var categoryK in categories) { %>

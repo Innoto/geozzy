@@ -5,5 +5,5 @@
       {$rExt.dataForm.formFieldsArray["rExtAudioguide_audioFile_$lang"]}
   {/foreach}
   <label class="cgmMForm cgmMForm-order">{t}Activation distance (m.){/t}</label>
-  <input type="text" id="rextAudioguide_distance" name="rextAudioguide_distance" value="{$rExt.data.distance}" />
+  <input type="text" id="rExtAudioguide_distance" class="cgmMForm-field cgmMForm-field-rExtAudioguide_distance" form="resourceEdit" name="rExtAudioguide_distance" value="{$rExt.data.distance}">
 </div>

@@ -2,7 +2,6 @@ var geozzy = geozzy || {};
 if(!geozzy.storystepsComponents) geozzy.storystepsComponents={};
 
 geozzy.storystepsComponents.StorystepTemplate = ''+
-  '<ol class="story dd-list">'+
     '<li class="dd-item" data-id="<%- id %>">'+
       '<div class="dd-item-container clearfix">'+
         '<div class="dd-content">'+
@@ -16,5 +15,4 @@ geozzy.storystepsComponents.StorystepTemplate = ''+
           '<%- title %>'+
         '</div>'+
       '</div>'+
-    '</li>'+
-  '</ol>';
+    '</li>';

@@ -32,7 +32,7 @@ class AdminViewCollection extends AdminViewMaster
 
     // Template base
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
-    $this->template->addToFragment( 'col12', $this->getPanelBlock( $formBlock, 'Create Collection', 'fa-archive' ) );
+    $this->template->addToFragment( 'col12', $this->getPanelBlock( $formBlock, __('Create Collection'), 'fa-archive' ) );
     $this->template->exec();
   } // function createForm()
 
@@ -132,7 +132,7 @@ class AdminViewCollection extends AdminViewMaster
 
     // Template base
     $this->template->setTpl( 'adminContent-12.tpl', 'admin' );
-    $this->template->addToFragment( 'col12', $this->getPanelBlock( $formBlock, 'Create Gallery', 'fa-archive' ) );
+    $this->template->addToFragment( 'col12', $this->getPanelBlock( $formBlock, __('Create Gallery'), 'fa-archive' ) );
     $this->template->exec();
   } // function createMultimediaForm()
 
