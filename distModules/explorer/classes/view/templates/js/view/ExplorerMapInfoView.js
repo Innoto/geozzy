@@ -151,6 +151,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
     that.ready = false;
     $('#'+that.divId).hide();
+    $('#'+that.divId+ ' *').remove();
   },
 
   getTopLeftPosition: function() {

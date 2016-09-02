@@ -107,17 +107,23 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
         icono.bind('click', function(iconoRoseta){
           that.hide();
-          that.options.mapView.markerClick( $(iconoRoseta.target).attr('data-resource-id') );
+          //that.options.mapView.markerClick( $(iconoRoseta.target).attr('data-resource-id') );
+          that.options.mapView.parentExplorer.triggerEvent('resourceClick', {id: $(iconoRoseta.target).attr('data-resource-id') });
+          that.options.mapView.parentExplorer.triggerEvent('resourceMouseOut', {id: $(iconoRoseta.target).attr('data-resource-id') });
         });
 
-        icono.hover( function(iconoRoseta){
-          that.options.mapView.markerHover( $(iconoRoseta.target).attr('data-resource-id') );
+        icono.bind('mouseenter', function(iconoRoseta){
+          //that.options.mapView.markerHover( $(iconoRoseta.target).attr('data-resource-id') );
+
+          that.options.mapView.parentExplorer.triggerEvent('resourceHover', {id: $(iconoRoseta.target).attr('data-resource-id') });
           icono.css('margin', '1px');
           icono.css( 'cursor', 'pointer' );
         });
 
         icono.bind('mouseleave', function(iconoRoseta){
-          that.options.mapView.markerOut( $(iconoRoseta.target).attr('data-resource-id') );
+        //  that.options.mapView.markerOut( $(iconoRoseta.target).attr('data-resource-id') );
+
+          that.options.mapView.parentExplorer.triggerEvent('resourceMouseOut', {id: $(iconoRoseta.target).attr('data-resource-id') });
 
           icono.css('margin', '0px');
           icono.css( 'cursor', 'arrow' );

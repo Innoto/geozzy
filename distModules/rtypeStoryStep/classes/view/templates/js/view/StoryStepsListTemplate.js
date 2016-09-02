@@ -34,7 +34,9 @@ geozzy.storystepsComponents.StorystepslistTemplate = ''+
           '</div>'+
           '<div class="panel-body">'+
             '<div id="storyStepsList" class="gzznestable dd">'+
-
+              '<ol class="story dd-list">'+
+            
+              '</ol>'+
             '</div>'+
           '</div>'+
         '</div>'+
@@ -48,6 +50,6 @@ geozzy.storystepsComponents.StorystepslistTemplate = ''+
     '<span class="saveChanges">'+
       '<button class="btn btn-danger cancel">Cancel</button>'+
       '<button class="btn btn-primary save">Save</button>'+
-    '</span>'+  
+    '</span>'+
   '</div>'+
 '</div>';

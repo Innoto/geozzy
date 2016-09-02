@@ -60,6 +60,7 @@ class RTypeStoryStepView extends View
     $template = new Template( $this->baseDir );
 
     $template->assign('stepsTable', table::getTableHtml( 'RTypeStoryStepView', '/admin/story/table/'.$story ) );
+    $template->addClientScript('js/adminRtypeStoryStep.js', 'rtypeStoryStep');
     $template->setTpl('listSteps.tpl', 'rtypeStoryStep');
 
     $resourcetype =  new ResourcetypeModel();

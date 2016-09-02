@@ -19,6 +19,7 @@ $( document ).ready(function() {
 
     google.maps.event.addListenerOnce( geozzy.rExtMapInstance.resourceMap, 'idle', function() {
 
+      console.log( geozzy.rExtMapInstance.resourceMap);
       routesCollection.fetch({
         success: function( res ) {
           var route = new geozzy.rextRoutes.routeView({

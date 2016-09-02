@@ -4,6 +4,7 @@ if(!geozzy.rextRoutes) geozzy.rextRoutes={};
 
 geozzy.rextRoutes.routeView = Backbone.View.extend({
 
+  options: false,
   trackMarker: false,
   grafico: false,
   events: {
@@ -14,7 +15,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var that = this;
     var options = new Object({
       map: false,
-      showRoute: false,
+      ShowRouteInZoomLevel: 0,
       showGraph: false,
       graphContainer:false,
       strokeColor:  cogumelo.publicConf.rextRoutesConf.strokeColor,
@@ -28,6 +29,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       drawXGrid: true,
       drawYGrid: true,
       showLabels: true,
+      pixelsPerLabel: 15,
       allowsTrackHover: true
       //tpl: geozzy.explorerComponents.routesViewTemplate ,
 
@@ -40,9 +42,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
   render: function() {
     var that = this;
 
-
     if( that.options.routeModel !== false ) {
-      if(that.options.showRoute) {
+
+
+      if(that.options.ShowRouteInZoomLevel <= that.options.map.getZoom()) {
         that.renderMapRoute();
       }
 
@@ -60,6 +63,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
   renderMapRoute: function(){
     var that = this;
+
+
 
     var route = that.options.routeModel;
 
@@ -172,7 +177,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
   },
 
 
-  renderGraphRoute: function() {
+  renderGraphRoute: function( forceReload ) {
 
     var that = this;
     var route = that.options.routeModel;
@@ -181,32 +186,33 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
-    $('body').append('');
 
 
-    var controlUI = document.createElement('div');
-    controlUI.title = 'Click to recenter the map';
-    controlUI.className = 'resourceRouteGraphContainer';
-      controlUI.innerHTML = '<div class="resourceRouteGraphLegend" style="display:none;"></div><div class="resourceRouteGraph"></div>';
 
 
-    that.options.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlUI);
+    if( !that.grafico || forceReload == true ) {
 
 
-    if( !that.grafico ) {
+
       var chartString = "step,"+__('Altitude')+"\n";
       $.each( route.get('trackPoints'), function(i,e){
           chartString += i + "," + e[2] + "\n";
       });
 
       if( that.options.graphContainer === false) {
-        var containerGraph = $('.resourceRouteGraph')[0];
+        if( $('.resourceRouteGraphContainer').length == 0 ) {
+          var controlUI = document.createElement('div');
+          controlUI.title = 'Click to recenter the map';
+          controlUI.className = 'resourceRouteGraphContainer';
+          controlUI.innerHTML = '<div class="resourceRouteGraphLegend" style="display:none;"></div><div class="resourceRouteGraph"></div>';
+          that.options.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlUI);
+
+        }
+        var containerGraph = '.resourceRouteGraph';
       }
       else {
-        var containerGraph = $(that.options.graphContainer)[0];
-
+        var containerGraph = that.options.graphContainer;
       }
-
 
       var graphOptions = {
         // options go here. See http://dygraphs.com/options.html
@@ -217,7 +223,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         fillAlpha: 0.6,
         drawXGrid: that.options.drawXGrid,
         drawYGrid: that.options.drawYrid,
-
+        pixelsPerLabel: that.options.pixelsPerLabel,
 
         highlightCircleSize: 5,
         drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
@@ -250,8 +256,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         },
 
         highlightCallback: function(e, x, pts, row) {
-          console.log( pts );
-          $($(".resourceRouteGraphLegend")[0]).html(row+' m');
+          //console.log(route.get('trackPoints')[x][2]);
+          $($(".resourceRouteGraphLegend")[0]).html( route.get('trackPoints')[x][2] +' m');
           $($(".resourceRouteGraphLegend")[0]).show();
         },
 
@@ -267,28 +273,37 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       }
 
 
-      that.grafico = new Dygraph( containerGraph , chartString, graphOptions );
 
-      that.grafico.updateOptions( {
-        annotationMouseOverHandler: function(annotation, point, dygraph, event) {
+      // wait until graph container exist
+      var checkExist = setInterval(function() {
+         if ($(containerGraph).length) {
 
-        }
-      });
+           that.grafico = new Dygraph( $(containerGraph)[0] , chartString, graphOptions );
 
-      $($(".resourceRouteGraph")[0]).mousemove(function(e) {
-          var seleccionado = that.grafico.getSelection();
-          that.hoverRoute( seleccionado )
-      }).mouseleave(function(e) {
-          var seleccionada = that.grafico.getSelection();
-          that.outRecorrido();
-      });
+           that.grafico.updateOptions( {
+             annotationMouseOverHandler: function(annotation, point, dygraph, event) {
+             }
+           });
+           $($(".resourceRouteGraph")[0]).mousemove(function(e) {
+               var seleccionado = that.grafico.getSelection();
+               that.hoverRoute( seleccionado )
+           }).mouseleave(function(e) {
+               var seleccionada = that.grafico.getSelection();
+               that.outRecorrido();
+           });
+
+
+            clearInterval(checkExist);
+         }
+      }, 5);
+
     }
 
 
 
   },
 
-
+/*
   showRoute: function( id ) {
 
     var that = this;
@@ -319,7 +334,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     });
   },
 
-
+*/
 
 
 
@@ -413,12 +428,31 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
   },
 
+
+  showRoute: function() {
+    var that = this;
+
+    if(that.options.ShowRouteInZoomLevel <= that.options.map.getZoom()) {
+      that.renderMapRoute();
+    }
+
+    if(that.options.showGraph) {
+      that.renderGraphRoute(true);
+    }
+
+  },
+
+
   hideRoute: function() {
     var that = this;
 
     if( typeof that.mapRoute != 'undefined' ) {
       if( typeof that.mapRoute.markerStart  != 'undefined') {
         that.mapRoute.markerStart.setMap(null);
+      }
+
+      if( typeof that.mapRoute.markerEnd  != 'undefined') {
+        that.mapRoute.markerEnd.setMap(null);
       }
 
       if( typeof that.mapRoute.markerEnd  != 'undefined') {

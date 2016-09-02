@@ -22,7 +22,7 @@
   <div class="middle-column col-md-4 col-sd-4">
 
     <div class="duration row">
-      <div class="travelDistance col-md-6 col-sd-6">{$rExt.data.travelDistance} Km</div>
+      <div class="travelDistance col-md-6 col-sd-6">{$rExt.data.travelDistance/1000} Km</div>
       <div class="travelTime col-md-6 col-sd-6">{$rExt.data.durationHours}h {$rExt.data.durationMinutes}min</div>
     </div>
 
@@ -111,7 +111,7 @@
 
     .resourceRouteGraphContainer .resourceRouteGraph {
       width:300px;
-      height:130px;
+      height:80px;
 
       margin-right:20px;
       margin-top:30px;
