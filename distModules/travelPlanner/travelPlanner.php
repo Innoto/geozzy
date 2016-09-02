@@ -21,7 +21,13 @@ class travelPlanner extends Module {
      "params" => array("backbone#1.1.2"),
      "installer" => "bower",
      "includes" => array("backbone.js")
-    )
+   ),
+   array(
+     "id" =>"nestable2",
+     "params" => array("nestable2-old"),
+     "installer" => "bower",
+     "includes" => array("jquery.nestable.js")
+   )
   );
 
 
