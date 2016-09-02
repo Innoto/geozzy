@@ -31,6 +31,13 @@
     {$rExt.dataForm.formFieldsArray.rExtRoutes_routeFile}
   </div>
 
+  <div style="display:none;">
+    {$rExt.dataForm.formFieldsArray.rExtRoutes_locStartLat}
+    {$rExt.dataForm.formFieldsArray.rExtRoutes_locStartLon}
+
+    {$rExt.dataForm.formFieldsArray.rExtRoutes_locEndLat}
+    {$rExt.dataForm.formFieldsArray.rExtRoutes_locEndLon}
+  </div>
 </div>
 
 {$client_includes}

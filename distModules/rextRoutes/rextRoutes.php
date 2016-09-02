@@ -6,7 +6,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextRoutes extends Module {
 
   public $name = 'rextRoutes';
-  public $version = 1.1;
+  public $version = 1.2;
 
 
 
