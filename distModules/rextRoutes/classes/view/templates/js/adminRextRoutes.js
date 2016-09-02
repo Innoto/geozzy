@@ -21,10 +21,13 @@ function adminRextRoutesFileUpload( idForm, fieldName ) {
     success: function( ) {
       var ruta = routesCollection.get( 1 );
 
-      resourceMap.setCenter(new google.maps.LatLng(ruta.get('centroid')[0],ruta.get('centroid')[1])); //(ruta.get('centroid'));
-      resourceMap.setZoom(10);
 
-      resourceMarker.setPosition(new google.maps.LatLng(ruta.get('centroid')[0],ruta.get('centroid')[1]));
+      // If resource is not created, set centroid from route
+      if( typeof resourceViewData.id == 'undefined' ) {
+        resourceMap.setCenter(new google.maps.LatLng(ruta.get('centroid')[0],ruta.get('centroid')[1])); //(ruta.get('centroid'));
+        resourceMap.setZoom(10);
+        resourceMarker.setPosition(new google.maps.LatLng(ruta.get('centroid')[0],ruta.get('centroid')[1]));
+      }
 
       var route = new geozzy.rextRoutes.routeView({
         map: resourceMap,
