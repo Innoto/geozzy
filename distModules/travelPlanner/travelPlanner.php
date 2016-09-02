@@ -27,16 +27,11 @@ class travelPlanner extends Module {
 
   public $autoIncludeAlways = true;
   public $includesCommon = array(
-/*
-    'js/router/UserRouter.js',
-    'js/model/UserSessionModel.js',
-    'js/view/Templates.js',
-    'js/view/UserLoginBoxView.js',
-    'js/view/UserRegisterBoxView.js',
-    'js/view/UserRegisterOkBoxView.js',
-    'js/UserSession.js',
-    'js/userSessionInstance.js'
-*/
+
+    'js/router/TravelPlannerRouter.js',
+    'js/TravelPlannerApp.js',
+    'js/travelPlannerInstance.js'
+
   );
 
   function __construct() {
