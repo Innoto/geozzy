@@ -1,91 +1,154 @@
 <div class="rExtRoutes container">
-  <div class="left-column col-md-4 col-sd-4">
-    <div class="route">
-      <div class="routeStart">
-        <div class="icon">
-          {$rExt.data.routeStart}
+  <div class="col-md-4 col-sm-6  col-xs-12">
+    <div class="left-column">
+      <div class="route">
+        <div class="routeStart">
+          <div class="icon">
+            {$rExt.data.routeStart}
+          </div>
+        </div>
+        <div class="routeEnd">
+          <div class="icon">
+            {$rExt.data.routeEnd}
+          </div>
         </div>
       </div>
-      <div class="routeEnd">
-        <div class="icon">
-          {$rExt.data.routeEnd}
-        </div>
+      <div class="routeFile">
+        <a class="btn" href="{$cogumelo.publicConf.mediaHost}cgmlformfilewd/{$rExt.data.routeFile.id}/{$rExt.data.routeFile.originalName}">
+          {t}Download route{/t} <i class="fa fa-download" aria-hidden="true"></i>
+        </a>
       </div>
-    </div>
-    <div class="routeFile">
-      <a class="btn" href="{$cogumelo.publicConf.mediaHost}cgmlformfilewd/{$rExt.data.routeFile.id}/{$rExt.data.routeFile.originalName}">
-        {t}Download route{/t} <i class="fa fa-download" aria-hidden="true"></i>
-      </a>
     </div>
   </div>
 
-  <div class="middle-column col-md-4 col-sd-4">
+  <div class="row">
 
-    <div class="duration row">
-      <div class="travelDistance col-md-6 col-sd-6">{$rExt.data.travelDistance/1000} Km</div>
-      <div class="travelTime col-md-6 col-sd-6">{$rExt.data.durationHours}h {$rExt.data.durationMinutes}min</div>
-    </div>
-
-    <div class="circular row">
-      {if $rExt.data.circular}
-        <div class="title col-md-6 col-sd-6">
-          <div class="text">{t}Circular route{/t}</div>
+    <div class="col-md-4 col-sm-6  col-xs-12">
+      <div class="middle-column">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="travelDistance duration">
+            {$rExt.data.travelDistance/1000} Km
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="travelTime duration">
+              {$rExt.data.durationHours}h {$rExt.data.durationMinutes}min
+            </div>
+          </div>
         </div>
-        <div class="icon col-md-4 col-sd-4">
-          <img class="img-responsive" alt="{t}circular{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/circular.png"></img>
+
+        <div class="row">
+          <div class="circular">
+            {if $rExt.data.circular}
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="title">
+                <div class="text">{t}Circular route{/t}</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="icon">
+                <img class="img-responsive" alt="{t}circular{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/circular.png"></img>
+              </div>
+            </div>
+            {else}
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="title">
+                <div class="text">{t}Lineal route{/t}</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="icon">
+                <img class="img-responsive" alt="{t}lineal{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/lineal.png"></img>
+              </div>
+            </div>
+            {/if}
+          </div><!--circular-->
         </div>
-      {else}
-        <div class="title col-md-6 col-sd-6">
-          <div class="text">{t}Circular route{/t}</div>
+
+        <div class="row">
+          <div class="slope">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="title">
+                <div class="text">{t}Slopes{/t}</div>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+              <div class="slope-up icon">
+                <img class="img-responsive" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png"></img>
+                <div class="text">{$rExt.data.slopeUp} m.</div>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-6">
+              <div class="slope-down icon">
+                <img class="img-responsive" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png"></img>
+                <div class="text">{$rExt.data.slopeDown} m.</div>
+              </div>
+            </div>
+          </div><!--slope-->
         </div>
-        <div class="icon col-md-4 col-sd-4">
-          <img class="img-responsive" alt="{t}lineal{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/lineal.png"></img>
-        </div>
-      {/if}
+      </div><!--middle-column-->
     </div>
 
-    <div class="slope row">
-      <div class="title col-md-4 col-sd-4">
-        <div class="text">{t}Slopes{/t}</div>
-      </div>
-      <div class="slope-up icon col-md-4 col-sd-4">
-        <img class="img-responsive" alt="{t}slope up{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/ascendente.png"></img>
-        <div class="text">{$rExt.data.slopeUp} m.</div>
-      </div>
-      <div class="slope-down icon col-md-4 col-sd-4">
-        <img class="img-responsive" alt="{t}slope down{/t}" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/descendente.png"></img>
-        <div class="text">{$rExt.data.slopeDown} m.</div>
-      </div>
-    </div>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="right-column">
+        <div class="row">
+          <div class="bar environment">
+            <div class="col-md-6 col-sm-6 col-xs-4">
+              <div class="title">{t}Environment{/t}</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-8">
+              <div class="squares">
+                <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEnvironment}"></div>
+              </div>
+            </div>
+          </div><!-- environment-->
+        </div>
 
-  </div>
+        <div class="row">
+          <div class="bar itinerary">
+            <div class="col-md-6 col-sm-6 col-xs-4">
+              <div class="title">{t}Itinerary{/t}</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-8">
+              <div class="squares">
+                <div class="barraEsfuerzo ruta_{$rExt.data.difficultyItinerary}"></div>
+              </div>
+            </div>
+          </div><!-- itinerary-->
+        </div>
 
-  <div class="right-column col-md-4 col-sd-4">
-    <div class="bar environment">
-      <div class="title col-md-6 col-sd-6">{t}Environment{/t}</div>
-      <div class="squares col-md-6 col-sd-6">
-        <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEnvironment}"></div>
-      </div>
+        <div class="row">
+          <div class="bar displacement">
+            <div class="col-md-6 col-sm-6 col-xs-4">
+              <div class="title">{t}Displacement{/t}</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-8">
+              <div class="squares">
+                <div class="barraEsfuerzo ruta_{$rExt.data.difficultyDisplacement}"></div>
+              </div>
+            </div>
+          </div><!-- displacement-->
+        </div>
+
+        <div class="row">
+          <div class="bar effort">
+            <div class="col-md-6 col-sm-6 col-xs-4">
+              <div class="title">{t}Effort{/t}</div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-8">
+              <div class="squares">
+                <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEffort}"></div>
+              </div>
+            </div>
+          </div><!-- effort-->
+        </div>
+
+      </div><!-- right-column-->
     </div>
-    <div class="bar itinerary">
-      <div class="title col-md-6 col-sd-6">{t}Itinerary{/t}</div>
-      <div class="squares col-md-6 col-sd-6">
-        <div class="barraEsfuerzo ruta_{$rExt.data.difficultyItinerary}"></div>
-      </div>
-    </div>
-    <div class="bar displacement">
-      <div class="title col-md-6 col-sd-6">{t}Displacement{/t}</div>
-      <div class="squares col-md-6 col-sd-6">
-        <div class="barraEsfuerzo ruta_{$rExt.data.difficultyDisplacement}"></div>
-      </div>
-    </div>
-    <div class="bar effort">
-      <div class="title col-md-6 col-sd-6">{t}Effort{/t}</div>
-      <div class="squares col-md-6 col-sd-6">
-        <div class="barraEsfuerzo ruta_{$rExt.data.difficultyEffort}"></div>
-      </div>
-    </div>
-  </div>
+  </div> <!--row-->
 </div>
 
 <style>

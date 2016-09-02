@@ -394,7 +394,7 @@
         }
 
         .left-column{
-          padding: 5px 20px 5px 10px;
+          padding: 5px 20px 5px 0px;
           .route{
             padding-top:20px;
             .icon{
@@ -423,17 +423,18 @@
 
         }/*left-column*/
         .middle-column{
-          padding: 5px 20px 5px 10px;
+          padding: 5px 20px 5px 20px;
           .duration{
             padding:20px 0px;
             font-weight: 600;
-            .travelDistance{
-              font-size:27px;
-            }
-            .travelTime{
-              font-size:22px;
-            }
           }
+          .travelDistance{
+            font-size:27px;
+          }
+          .travelTime{
+            font-size:22px;
+          }
+
           .circular{
             padding: 5px 0px;
             .title{
@@ -455,9 +456,10 @@
           .bar{
             height: 52px;
             margin: 0;
-            padding: 26px 0 20px 30px;
+            padding: 26px 0 20px 20px;
             .title{
               height: 40px;
+              font-size: 14px;
               padding: 8px 0 0 55px;
               text-transform:uppercase;
             }
@@ -466,7 +468,7 @@
             }
             &.environment{
               .title{
-                background: url("@{cogumelo_publicConf_media}/module/rextRoutes/img/terreno.png") 0px 0px no-repeat;
+                background: url("@{cogumelo_publicConf_media}/module/rextRoutes/img/terreno.png") left no-repeat;
               }
             }
             &.itinerary{
