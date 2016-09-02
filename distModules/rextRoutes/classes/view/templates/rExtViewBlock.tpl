@@ -1,27 +1,26 @@
 <div class="rExtRoutes container">
-  <div class="col-md-4 col-sm-6  col-xs-12">
-    <div class="left-column">
-      <div class="route">
-        <div class="routeStart">
-          <div class="icon">
-            {$rExt.data.routeStart}
+  <div class="row">
+    <div class="col-md-4 col-sm-6  col-xs-12">
+      <div class="left-column">
+        <div class="route">
+          <div class="routeStart">
+            <div class="icon">
+              {$rExt.data.routeStart}
+            </div>
+          </div>
+          <div class="routeEnd">
+            <div class="icon">
+              {$rExt.data.routeEnd}
+            </div>
           </div>
         </div>
-        <div class="routeEnd">
-          <div class="icon">
-            {$rExt.data.routeEnd}
-          </div>
+        <div class="routeFile">
+          <a class="btn" href="{$cogumelo.publicConf.mediaHost}cgmlformfilewd/{$rExt.data.routeFile.id}/{$rExt.data.routeFile.originalName}">
+            {t}Download route{/t} <i class="fa fa-download" aria-hidden="true"></i>
+          </a>
         </div>
-      </div>
-      <div class="routeFile">
-        <a class="btn" href="{$cogumelo.publicConf.mediaHost}cgmlformfilewd/{$rExt.data.routeFile.id}/{$rExt.data.routeFile.originalName}">
-          {t}Download route{/t} <i class="fa fa-download" aria-hidden="true"></i>
-        </a>
       </div>
     </div>
-  </div>
-
-  <div class="row">
 
     <div class="col-md-4 col-sm-6  col-xs-12">
       <div class="middle-column">
