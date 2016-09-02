@@ -29,6 +29,15 @@ function adminRextRoutesFileUpload( idForm, fieldName ) {
         resourceMarker.setPosition(new google.maps.LatLng(ruta.get('centroid')[0],ruta.get('centroid')[1]));
       }
 
+
+      // start and end from route
+      $('input[form='+idForm+'].cgmMForm-field-rExtRoutes_locStartLat').val(ruta.get('start')[0]);
+      $('input[form='+idForm+'].cgmMForm-field-rExtRoutes_locStartLon').val(ruta.get('start')[1]);
+
+      $('input[form='+idForm+'].cgmMForm-field-rExtRoutes_locEndLat').val(ruta.get('end')[0]);
+      $('input[form='+idForm+'].cgmMForm-field-rExtRoutes_locEndLon').val(ruta.get('end')[1]);
+
+
       var route = new geozzy.rextRoutes.routeView({
         map: resourceMap,
         routeModel: ruta

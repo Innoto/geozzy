@@ -126,11 +126,32 @@ class RExtRoutesController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Route end' ) ),
         'rules' => array( 'maxlength' => '100' )
       ),
+
+      'locStartLat' => array(
+        'params' => array( 'label' => __( 'Startroute Latitude' ) ),
+        'rules' => array( 'number' => true )
+      ),
+      'locStartLon' => array(
+        'params' => array( 'label' => __( 'Startroute Longitude' ) ),
+        'rules' => array( 'number' => true )
+      ),
+
+      'locEndLat' => array(
+        'params' => array( 'label' => __( 'Endroute Latitude' ) ),
+        'rules' => array( 'number' => true )
+      ),
+      'locEndLon' => array(
+        'params' => array( 'label' => __( 'Endroute Longitude' ) ),
+        'rules' => array( 'number' => true )
+      ),
+
       'routeFile' => array(
         'params' => array( 'label' => __( 'Route file' ), 'type' => 'file',
         'placeholder' => __( 'File' ), 'destDir' => RoutesModel::$cols['routeFile']['uploadDir'] ),
         'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'accept' => ',application/xml,application\/gpx,application\/gpx\+xml,application\/vnd.google\-earth\.kml\+xml' )
       )
+
+
 
     );
 
@@ -242,6 +263,45 @@ class RExtRoutesController extends RExtController implements RExtInterface {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
 
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
+
+
+//
+//
+//
+//
+
+      //Route end LOCATION
+      if( isset( $valuesArray[ 'locEndLat' ] ) && isset( $valuesArray[ 'locEndLon' ] ) ) {
+        Cogumelo::load( 'coreModel/DBUtils.php' );
+        $valuesArray[ 'locEnd' ] = DBUtils::encodeGeometry(
+          array(
+            'type' => 'POINT',
+            'data'=> array( $valuesArray[ 'locEndLat' ], $valuesArray[ 'locEndLon' ] )
+          )
+        );
+        unset( $valuesArray[ 'locEndLat' ] );
+        unset( $valuesArray[ 'locEndLon' ] );
+      }
+
+      //Route start LOCATION
+      if( isset( $valuesArray[ 'locStartLat' ] ) && isset( $valuesArray[ 'locStartLon' ] ) ) {
+        Cogumelo::load( 'coreModel/DBUtils.php' );
+        $valuesArray[ 'locStart' ] = DBUtils::encodeGeometry(
+          array(
+            'type' => 'POINT',
+            'data'=> array( $valuesArray[ 'locStartLat' ], $valuesArray[ 'locStartLon' ] )
+          )
+        );
+        unset( $valuesArray[ 'locStartLat' ] );
+        unset( $valuesArray[ 'locStartLon' ] );
+      }
+
+//
+//
+//
+//
+
+
 
       $this->rExtModel = new RoutesModel( $valuesArray );
       if( $this->rExtModel === false ) {

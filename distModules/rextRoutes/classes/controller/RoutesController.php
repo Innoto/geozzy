@@ -65,10 +65,14 @@ class RoutesController {
         echo "<br>--------------------<br>";
         var_dump( json_encode( $this->extractPoints( $polygon )) );*/
         $cent = $polygon->getCentroid();
+        $start = $polygon->startPoint();
+        $end = $polygon->endPoint();
 
         $route['id'] =  1;
         $route['circular'] = 0;
         $route['centroid'] =  [ $cent->y(), $cent->x() ];
+        $route['start'] =  [ $start->y(), $start->x() ];
+        $route['end'] =  [ $end->y(), $end->x() ];        
         $route['trackPoints'] = $this->extractPoints( $polygon );
       }
       catch(Exception $e) {
