@@ -12,7 +12,7 @@ class RutasExplorerModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'appExplorer#1.4',
+      'version' => 'appExplorer#1.7',
       'executeOnGenerateModelToo' => true,
       'sql'=> "
           DROP VIEW IF EXISTS geozzy_rutas_explorer_index;
@@ -27,7 +27,7 @@ class RutasExplorerModel extends Model
             geozzy_resource.mediumDescription_es as mediumDescription_es,
             geozzy_resource.mediumDescription_en as mediumDescription_en,
             geozzy_resource.mediumDescription_gl as mediumDescription_gl,
-            geozzy_resource.loc as loc,
+            geozzy_resource_rext_routes.locStart as loc,
             geozzy_resource_rext_contact.city as city,
             not(isnull(geozzy_resource_rext_routes.id)) as isRoute,
             geozzy_resource_rext_routes.difficultyGlobal as difficultyGlobal,
