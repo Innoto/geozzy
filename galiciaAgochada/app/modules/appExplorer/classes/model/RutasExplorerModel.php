@@ -5,18 +5,18 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class RinconsExplorerModel extends Model
+class RutasExplorerModel extends Model
 {
   var $notCreateDBTable = true;
 
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'appExplorer#1.6',
+      'version' => 'appExplorer#1.4',
       'executeOnGenerateModelToo' => true,
       'sql'=> "
-          DROP VIEW IF EXISTS geozzy_rincons_explorer_index;
-          CREATE VIEW geozzy_rincons_explorer_index AS
+          DROP VIEW IF EXISTS geozzy_rutas_explorer_index;
+          CREATE VIEW geozzy_rutas_explorer_index AS
           SELECT
             geozzy_resource.id as id,
             geozzy_resourcetype.idName as rtype,
@@ -29,9 +29,9 @@ class RinconsExplorerModel extends Model
             geozzy_resource.mediumDescription_gl as mediumDescription_gl,
             geozzy_resource.loc as loc,
             geozzy_resource_rext_contact.city as city,
-
-            isnull(geozzy_resource_rext_routes.id),
-
+            not(isnull(geozzy_resource_rext_routes.id)) as isRoute,
+            geozzy_resource_rext_routes.difficultyGlobal as difficultyGlobal,
+            geozzy_resource_rext_routes.travelDistance as travelDistance,
             geozzy_resource.timeCreation as timeCreation,
             geozzy_resource.timeLastUpdate as timeLastUpdate,
             group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
@@ -47,19 +47,17 @@ class RinconsExplorerModel extends Model
           LEFT JOIN geozzy_resource_rext_contact
           ON geozzy_resource.id = geozzy_resource_rext_contact.resource
 
-          LEFT JOIN geozzy_resource_rext_routes
+          RIGHT JOIN geozzy_resource_rext_routes
           ON geozzy_resource.id = geozzy_resource_rext_routes.resource
 
           WHERE
-            geozzy_resource.published = 1 AND
-            geozzy_topic.idName = 'RecantosConEstilo' AND
-            isnull(geozzy_resource_rext_routes.id) = TRUE
+            geozzy_resource.published = 1
           group by geozzy_resource.id;
       "
     )
   );
 
-  static $tableName = 'geozzy_rincons_explorer_index';
+  static $tableName = 'geozzy_rutas_explorer_index';
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -76,7 +74,15 @@ class RinconsExplorerModel extends Model
       'type' => 'VARCHAR',
       'multilang' => true
     ),
-
+    'isRoute' => array(
+      'type' => 'BOOLEAN'
+    ),
+    'difficultyGlobal' => array(
+      'type' => 'INT'
+    ),
+    'travelDistance' => array(
+      'type' => 'INT'
+    ),
     'image' => array(
       'type' => 'INT'
     ),
@@ -99,7 +105,7 @@ class RinconsExplorerModel extends Model
 
   static $extraFilters = array(
     'ids' => ' id IN (?)',
-    'updatedfrom' => ' ( geozzy_rincons_explorer_index.timeCreation >= ? OR geozzy_rincons_explorer_index.timeLastUpdate >= ? ) '
+    'updatedfrom' => ' ( geozzy_rutas_explorer_index.timeCreation >= ? OR geozzy_rutas_explorer_index.timeLastUpdate >= ? ) '
 
   );
 
