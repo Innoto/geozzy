@@ -196,8 +196,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     that.hideAllMarkers();
 
-    if( that.options.clusterize ) {
-      this.markerClusterer.clearMarkers();
+    if( that.options.clusterize && that.markerClusterer != false  ) {
+      that.markerClusterer.clearMarkers();
     }
 
   },

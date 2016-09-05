@@ -206,6 +206,7 @@
 
                 if( jQuery.isNumeric( e.get('icon') )  ){
                   iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/explorerRinconsMarker/marker.png';
+                  alert(iconUrl)
                   return false;
                 }
 
