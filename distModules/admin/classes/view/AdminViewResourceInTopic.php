@@ -59,6 +59,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
 
+    $tiposArray = array();
     foreach ($resourcetypelist as $typeId => $type){
       $tiposArray[$typeId] = $typeId;
     }
