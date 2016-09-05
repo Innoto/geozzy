@@ -149,7 +149,7 @@
           '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
         '</div>';
 
-      that.infowindow = new geozzy.explorerComponents.mapInfoView({ tpl:infoWindowPlantilla });
+      that.infowindow = new geozzy.explorerComponents.mapInfoView({  });
       that.listaMini = new geozzy.explorerComponents.activeListTinyView({ el:$('.explorer-container-gallery')});
       that.listaRecomendados =  new geozzy.explorerComponents.reccommendedListView();
       that.rutas = new geozzy.explorerComponents.routesView({ showGraph:true, hoverGraphDiv: '.gempiContent.rincons .routeGraph' })
@@ -165,12 +165,12 @@
               //console.log(e.get('id'))
               //console.debug(markerData.get('terms'))
 
-              if( parseInt(markerData.get('isRoute')) === 1 ) {
+          /*    if( parseInt(markerData.get('isRoute')) === 1 ) {
 
                 iconUrl = cogumelo.publicConf.media + '/img/rutaMarker.png';
                 return false;
               }
-              else
+              else*/
               if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
 
 
