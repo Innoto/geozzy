@@ -104,5 +104,11 @@ $GEOZZY_EXPLORERS = array(
     'controllerFile' => 'controller/PoisExplorerController.php',
     'controllerName' => 'PoisExplorerController',
     'name' => __('Puntos de interese')
+  ),
+  'rutas' => array(
+    'module' => 'appExplorer',
+    'controllerFile' => 'controller/RutasExplorerController.php',
+    'controllerName' => 'RutasExplorerController',
+    'name' => __('Rutas')
   )
 );

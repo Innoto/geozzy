@@ -2,12 +2,12 @@
 
 explorer::load('controller/ExplorerController.php');
 
-class RinconsExplorerController extends ExplorerController {
+class RutasExplorerController extends ExplorerController {
 
   public function serveMinimal( $updatedFrom = false ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    appExplorer::load('model/RinconsExplorerModel.php');
-    $resourceModel = new RinconsExplorerModel();
+    appExplorer::load('model/RutasExplorerModel.php');
+    $resourceModel = new RutasExplorerModel();
 
 
     if( $updatedFrom ) {
@@ -19,7 +19,7 @@ class RinconsExplorerController extends ExplorerController {
 
 
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'rtype', 'loc', 'terms', 'image', 'isRoute', 'travelDistance', 'difficultyGlobal'), 'filters'=> $filters ) );
 
     $coma = '';
 
@@ -49,6 +49,9 @@ class RinconsExplorerController extends ExplorerController {
           $row['img'] = $resourceDataArray['image'];
         }
 
+        $row['isRoute'] =  ( isset($resourceDataArray['isRoute']) )?$resourceDataArray['isRoute']:false;
+        $row['travelDistance'] =  ( isset($resourceDataArray['travelDistance']) )?$resourceDataArray['travelDistance']/1000:false;
+        $row['difficultyGlobal'] =  ( isset($resourceDataArray['difficultyGlobal']) )?$resourceDataArray['difficultyGlobal']:false;
 
 
         echo json_encode( $row );
@@ -62,8 +65,8 @@ class RinconsExplorerController extends ExplorerController {
 
   public function servePartial( ) {
     Cogumelo::load('coreModel/DBUtils.php');
-    appExplorer::load('model/RinconsExplorerModel.php');
-    $resourceModel = new RinconsExplorerModel();
+    appExplorer::load('model/RutasExplorerModel.php');
+    $resourceModel = new RutasExplorerModel();
 
     $filters = array();
 

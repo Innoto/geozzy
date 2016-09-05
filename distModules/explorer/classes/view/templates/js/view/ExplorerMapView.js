@@ -191,6 +191,17 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     });
   },
 
+  hide: function() {
+    var that = this;
+
+    that.hideAllMarkers();
+
+    if( that.options.clusterize && that.markerClusterer != false  ) {
+      that.markerClusterer.clearMarkers();
+    }
+
+  },
+
   renderWithoutCluster: function() {
     var that = this;
 

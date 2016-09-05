@@ -61,6 +61,12 @@ class RoutesModel extends Model
       'size' => 100,
       'multilang' => true
     ),
+    'locStart' => array(
+      'type' => 'GEOMETRY'
+    ),
+    'locEnd' => array(
+      'type' => 'GEOMETRY'
+    ),
     'circular' => array(
       'type' => 'BOOLEAN'
     )
@@ -79,6 +85,15 @@ class RoutesModel extends Model
             `routeEnd_en` VARCHAR(100),
             `routeEnd_gl` VARCHAR(100),
             `circular` BOOLEAN);'
+    ),
+    array(
+      'version' => 'rextRoutes#1.2',
+      'sql'=> '
+        ALTER TABLE `geozzy_resource_rext_routes`
+        ADD (
+          `locStart` GEOMETRY,
+          `locEnd` GEOMETRY
+        );'
     )
   );
 
