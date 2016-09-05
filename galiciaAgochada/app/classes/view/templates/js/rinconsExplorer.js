@@ -164,7 +164,7 @@
             '<% } %>'+
 
             '<div class="gempiTitle"><%-title%></div>'+
-            /*'<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+*/
+            '<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+
 
 
             '<div class="gempiDescription"><%-description%></div>'+
