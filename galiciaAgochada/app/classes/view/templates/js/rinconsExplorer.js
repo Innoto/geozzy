@@ -62,6 +62,10 @@
         explorador.layoutDistributeSize();
       });
 
+      google.maps.event.addListener( that.resourceMap , 'zoom_changed', function(){
+        that.layoutDistributeSize();
+      });
+
       mapControlUtils = new mapControlsUtils();
       mapControlUtils.changeMapControls(that.resourceMap);
 
@@ -108,6 +112,29 @@
 
       });
 
+      that.explorerRutas = new geozzy.explorer({
+        debug: false,
+        explorerId:'rutas',
+        explorerSectionName:'Rincons espectaculares',
+        resourceAccess: function(id) {
+          $(".explorerContainer.explorer-loading").show();
+          $(".explorerContainer.explorer-container-du").load(
+            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
+            { pf: 'blk' },
+            function() {
+              $(".explorerContainer.explorer-loading").hide();
+              $(".explorerContainer.explorer-container-du").show();
+            }
+          );
+
+        },
+        resourceQuit: function() {
+          $(".explorerContainer.explorer-container-du").hide();
+          $(".explorerContainer.explorer-container-du").html('');
+        }
+
+      });
+
     }
 
 
@@ -120,7 +147,7 @@
     that.setDisplays = function() {
 
 
-      var infoWindowPlantilla = ''+
+      var infoWindowRutasPlantilla = ''+
         '<div class="gempiContent <% if( parseInt(isRoute) == 1 ){ %> rincons <% } %>">'+
 
           '<div class="gempiImg">'+
@@ -149,13 +176,15 @@
           '<div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div>'+
         '</div>';
 
+      that.infowindowRutas = new geozzy.explorerComponents.mapInfoView({ tpl:infoWindowRutasPlantilla });
       that.infowindow = new geozzy.explorerComponents.mapInfoView({  });
       that.listaMini = new geozzy.explorerComponents.activeListTinyView({ el:$('.explorer-container-gallery')});
       that.listaRecomendados =  new geozzy.explorerComponents.reccommendedListView();
-      that.rutas = new geozzy.explorerComponents.routesView({ showGraph:true, hoverGraphDiv: '.gempiContent.rincons .routeGraph' })
+      that.rutas = new geozzy.explorerComponents.routesView({ showGraph:true, hoverGraphDiv: '.gempiContent.rincons .routeGraph', ShowRouteInZoomLevel: 12, })
       that.mapa = new geozzy.explorerComponents.mapView({
           map: that.resourceMap,
-          clusterize:true,
+          clusterize:false,
+
           chooseMarkerIcon: function( markerData ) {
             var iconUrl = false;
             var retObj = false;
@@ -219,12 +248,56 @@
 
       });
 
+      that.mapaRutas = new geozzy.explorerComponents.mapView({
+          map: that.resourceMap,
+          clusterize: true,
+          clustererMaxZoom:40,
+          clustererGridSize: 70,
+          chooseMarkerIcon: function( markerData ) {
+
+            return {
+              url: cogumelo.publicConf.media + '/img/rutaMarker.png',
+              // This marker is 20 pixels wide by 36 pixels high.
+              size: new google.maps.Size(24, 24),
+              // The origin for this image is (0, 0).
+              origin: new google.maps.Point(0, 0),
+              // The anchor for this image is the base of the flagpole at (0, 36).
+              anchor: new google.maps.Point(12, 12)
+            };
+
+
+          },
+
+          clustererStyles: [{
+                url: cogumelo.publicConf.media+"/img/segredosClusterIconSmall.png",
+                height: 28,
+                width: 28,
+                textColor: '#FFFFFF',
+                anchor:[0,100],
+                textSize: 13
+              },
+              {
+                url: cogumelo.publicConf.media+"/img/segredosClusterIcon.png",
+                height: 32,
+                width: 32,
+                textColor: '#FFFFFF',
+                anchor:[0,100],
+                textSize: 14
+              }]
+
+      });
+
+
+
 
       that.explorer.addDisplay( that.listaMini );
       that.explorer.addDisplay( that.listaRecomendados );
-      that.explorer.addDisplay( that.rutas );
+      that.explorerRutas.addDisplay( that.rutas );
+      that.explorerRutas.addDisplay( that.mapaRutas );
+      that.explorerRutas.addDisplay( that.infowindowRutas );
       that.explorer.addDisplay( that.mapa );
       that.explorer.addDisplay( that.infowindow );
+
 
     }
 
@@ -313,12 +386,13 @@
         )
       );
 
-      that.explorer.addFilter(
+      that.explorerRutas.addFilter(
         that.filterSwitch = new geozzy.explorerComponents.filters.filterSwitchView(
           {
             mainContainerClass: that.explorerclass+' .is-route-filter .is-route-switch',
             containerClass: 'isRoute',
             keyToFilter: 'isRoute',
+            defaultValue: true,
             onChange: function() {
               that.layoutDistributeSize();
             }
@@ -326,7 +400,7 @@
         )
       );
 
-      that.explorer.addFilter(
+      that.explorerRutas.addFilter(
         new geozzy.explorerComponents.filters.filterSliderView(
           {
             mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-distancia',
@@ -340,7 +414,7 @@
         )
       );
 
-      that.explorer.addFilter(
+      that.explorerRutas.addFilter(
         new geozzy.explorerComponents.filters.filterSliderView(
           {
             mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-dificultad',
@@ -365,6 +439,7 @@
     that.exec = function(){
 
       that.explorer.exec();
+      that.explorerRutas.exec();
 
 
       $('select.select2GeozzyCustom').select2({
@@ -427,14 +502,32 @@
 
 
 
-      if( typeof that.filterSwitch.filterValue !== 'undefined' && that.filterSwitch.filterValue  ) {
-        $('.rinconsExplorer .explorer-container-filter-routes').show();
-        var hRutasFilters = $('.rinconsExplorer .explorer-container-filter-routes').height();
-      }
-      else {
+      if( that.resourceMap.getZoom() < 10 ) {
+
+
+        that.mapaRutas.hide();
+
+        $(that.explorerclass+' .is-route-filter').hide();
         $('.rinconsExplorer .explorer-container-filter-routes').hide();
         var hRutasFilters = 0;
       }
+      else {
+        that.mapaRutas.render();
+        $(that.explorerclass+' .is-route-filter').show();
+
+        if( typeof that.filterSwitch.filterValue !== 'undefined' && that.filterSwitch.filterValue  ) {
+          $('.rinconsExplorer .explorer-container-filter-routes').show();
+          var hRutasFilters = $('.rinconsExplorer .explorer-container-filter-routes').height();
+        }
+        else {
+          $('.rinconsExplorer .explorer-container-filter-routes').hide();
+          var hRutasFilters = 0;
+        }
+
+      }
+
+
+
 
       var hExplorerLayout = $('.rinconsExplorer').height();
       var hExplorerFilters = $('.rinconsExplorer .explorer-container-filter').height();
