@@ -89,6 +89,7 @@
     that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
+        firstLoadSuccess: function(){ that.layoutDistributeSize() },        
         debug: false,
         explorerId:'praias',
         explorerSectionName:'Praias de ensono',

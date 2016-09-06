@@ -90,6 +90,7 @@
     that.setExplorer = function() { zoomControl: false
 
       that.explorer = new geozzy.explorer({
+        firstLoadSuccess: function(){ that.layoutDistributeSize() },        
         debug: false,
         explorerId:'paisaxes',
         explorerSectionName:'Paisaxes espectaculares',
