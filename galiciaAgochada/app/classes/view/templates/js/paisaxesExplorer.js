@@ -121,7 +121,7 @@
         partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         explorerId:'rutas',
-        explorerSectionName:'Rincons espectaculares',
+        explorerSectionName:'Rutas',
         resourceAccess: function(id) {
           $(".explorerContainer.explorer-loading").show();
           $(".explorerContainer.explorer-container-du").load(
@@ -366,7 +366,54 @@
           }
         )
       );
+
+      that.explorerRutas.addFilter(
+        that.filterSwitch = new geozzy.explorerComponents.filters.filterSwitchView(
+          {
+            mainContainerClass: that.explorerclass+' .is-route-filter .is-route-switch',
+            containerClass: 'isRoute',
+            keyToFilter: 'isRoute',
+            defaultValue: true,
+            onChange: function() {
+              that.layoutDistributeSize();
+            }
+          }
+        )
+      );
+
+
+      that.explorerRutas.addFilter(
+        new geozzy.explorerComponents.filters.filterSliderView(
+          {
+            mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-distancia',
+            containerClass: 'distancia',
+            postfix: ' km',
+            keyToFilter: 'travelDistance',
+            valueMin: 0,
+            valueMax: 20,
+            type:'double'
+          }
+        )
+      );
+
+      that.explorerRutas.addFilter(
+        new geozzy.explorerComponents.filters.filterSliderView(
+          {
+            mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-dificultad',
+            containerClass: 'dificultad',
+            postfix: '',
+            keyToFilter: 'difficultyGlobal',
+            valueMin: 1,
+            valueMax: 5,
+            type:'single'
+          }
+        )
+      );
+
+
+
     }
+
 
 
 
@@ -444,7 +491,7 @@
         that.mapaRutas.hide();
 
         $(that.explorerclass+' .is-route-filter').hide();
-        $('.rinconsExplorer .explorer-container-filter-routes').hide();
+        $('.paisaxesExplorer .explorer-container-filter-routes').hide();
         var hRutasFilters = 0;
       }
       else {
@@ -452,11 +499,11 @@
         $(that.explorerclass+' .is-route-filter').show();
 
         if( typeof that.filterSwitch.filterValue !== 'undefined' && that.filterSwitch.filterValue  ) {
-          $('.rinconsExplorer .explorer-container-filter-routes').show();
-          var hRutasFilters = $('.rinconsExplorer .explorer-container-filter-routes').height();
+          $('.paisaxesExplorer .explorer-container-filter-routes').show();
+          var hRutasFilters = $('.paisaxesExplorer .explorer-container-filter-routes').height();
         }
         else {
-          $('.rinconsExplorer .explorer-container-filter-routes').hide();
+          $('.paisaxesExplorer .explorer-container-filter-routes').hide();
           var hRutasFilters = 0;
         }
 

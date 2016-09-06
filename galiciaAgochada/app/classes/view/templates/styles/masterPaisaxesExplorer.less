@@ -1,5 +1,6 @@
 @import "primary/primary.less";
 @import "themeLibs/select2ThemeGA.less";
+@import "themeLibs/ionSliderGATheme.less";
 @import "/explorer/classes/view/templates/styles/explorerMixins.less";
 @import "common/explorerCommon.less";
 @import "common/explorerCommonBase.less";
@@ -75,6 +76,90 @@
 
 
 .paisaxesExplorer{
+
+
+  .explorer-container-filter-routes {
+      width:100%;
+      height:50px;
+      background-color: @gzzColor-bck-7;
+      text-align:right;
+
+      .slider-container {
+
+
+        float:left;
+        height:46px;
+//        width:300px;
+        width:100%;
+        max-width: 300px;
+
+
+
+        margin-left:60px;
+        padding-left:55px;
+
+
+        background: url('@{cogumelo_publicConf_media}/img/rutaFiltroDistancia.png') no-repeat;
+        .distancia, .dificultad {
+
+          .ionSliderTheme( #fff , #fff , #fff);
+          .irs-min, .irs-max{
+            display: none;
+          }// slider distancia
+        }
+
+        .dificultad {
+          .irs-single { display:none; }
+        }
+      }
+
+      .slider-containers {
+        width:100%;
+        max-width:800px;
+        margin-left: auto;
+        margin-right:auto;
+      }
+
+      .filtro-distancia {background: url('@{cogumelo_publicConf_media}/img/rutaFiltroDistancia.png') 0px 5px no-repeat;}
+      .filtro-dificultad {background: url('@{cogumelo_publicConf_media}/img/rutaFiltroDificultad.png') 0px 5px  no-repeat;}
+  }
+
+  .is-route-filter {
+    background-color: #fff;
+    border-radius: 5px;
+    height: 35px;
+    padding: 4px;
+    position: absolute;
+    right: 100px;
+    top: 80px;
+    width: 80px;
+    z-index: 2;
+
+    .is-route-switch-icon {
+      color:blue;
+      float:left;
+      width:30px;
+      height: 17px;
+      margin-right: 5px;
+      margin-top:5px;
+      background: url('@{cogumelo_publicConf_media}/img/rutaSwitch.png') no-repeat;
+    }
+    .is-route-switch {
+      .switchery {
+        width:30px;
+        height: 10px;
+
+
+        small {
+          margin-top:-3px;
+          width:16px;
+          height:16px;
+        }
+      }
+    }
+  }
+
+
   .explorer-container-filter{
     .explorerFilters{
       .explorerFilterElement{
@@ -139,8 +224,8 @@
       .gempiTouchAccess{
         button{
           border: none;
-          background-color: @gzzColor-paisaxes;
-          &:hover{ background-color: @gzzColor-paisaxes-hover; }
+          background-color: @gzzColor-rincons;
+          &:hover{ background-color: @gzzColor-rincons-hover; }
         }//button
       }//.gempiTouchAccess
     }//.gempiContent
@@ -157,5 +242,13 @@
 
 }/*991px*/
 @media screen and (max-width: 767px) {
+
+  .paisaxesExplorer{
+    .explorer-container-filter-routes {
+
+        height:95px;
+        .slider-containers { max-width:400px;}
+    }
+  }
 
 } /*767px*/
