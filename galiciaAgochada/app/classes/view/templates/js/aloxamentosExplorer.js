@@ -89,7 +89,7 @@
     that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
-        firstLoadSuccess: function(){ that.layoutDistributeSize() },        
+        partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         explorerId:'aloxamentos',
         explorerSectionName:'Aloxamentos con encanto',

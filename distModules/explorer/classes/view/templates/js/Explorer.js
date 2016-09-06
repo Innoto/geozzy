@@ -21,7 +21,8 @@ geozzy.explorer = function( opts ) {
     explorerAPIHost: '/api/explorer/',
     explorerId: 'default',
 
-    firstLoadSuccess: function() {},
+    minimalLoadSuccess: function() {},
+    partialLoadSuccess: function() {},
 
     aditionalParameters: {},
 
@@ -135,7 +136,7 @@ geozzy.explorer = function( opts ) {
           that.resourceIndex = new Backbone.Obscura(that.resourceMinimalList);
           that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
           that.applyFilters();
-          that.options.firstLoadSuccess();
+          that.options.minimalLoadSuccess();
         }
       }
 
@@ -298,6 +299,8 @@ geozzy.explorer = function( opts ) {
 
         that.timeDebugerExtended.log( '&nbsp;- Render lists' );
 
+        that.options.partialLoadSuccess();
+        alert();
       }
 
     );

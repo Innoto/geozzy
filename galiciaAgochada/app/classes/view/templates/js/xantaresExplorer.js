@@ -109,7 +109,7 @@
       });
 */
       that.explorer = new geozzy.explorer({
-        firstLoadSuccess: function(){ that.layoutDistributeSize() },        
+        partialLoadSuccess: function(){ that.layoutDistributeSize() },        
         debug: false,
         explorerId:'xantares',
         explorerSectionName:'Sabrosos xantares',

@@ -91,7 +91,7 @@
 
 
       that.explorer = new geozzy.explorer({
-        firstLoadSuccess: function(){ that.layoutDistributeSize() },
+        partialLoadSuccess: function(){ that.layoutDistributeSize();  },
         debug: false,
         explorerId:'rincons',
         explorerSectionName:'Rincons espectaculares',
@@ -115,7 +115,7 @@
       });
 
       that.explorerRutas = new geozzy.explorer({
-        firstLoadSuccess: function(){ that.layoutDistributeSize() },        
+        partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         explorerId:'rutas',
         explorerSectionName:'Rincons espectaculares',
