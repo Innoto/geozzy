@@ -21,6 +21,8 @@ geozzy.explorer = function( opts ) {
     explorerAPIHost: '/api/explorer/',
     explorerId: 'default',
 
+    firstLoadSuccess: function() {},
+
     aditionalParameters: {},
 
     // cache times (in seconds)
@@ -77,7 +79,7 @@ geozzy.explorer = function( opts ) {
   // First Execution
   //
 
-  that.exec = function() {
+  that.exec = function( ) {
     // set multiple fetches
     lang = that.getLang();
 
@@ -133,6 +135,7 @@ geozzy.explorer = function( opts ) {
           that.resourceIndex = new Backbone.Obscura(that.resourceMinimalList);
           that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
           that.applyFilters();
+          that.options.firstLoadSuccess();
         }
       }
 
@@ -158,7 +161,7 @@ geozzy.explorer = function( opts ) {
     that.timeDebugerExtended.reset();
 
     if(typeof that.resourceIndex.removePagination != 'undefined'){
-      that.resourceIndex.removePagination();      
+      that.resourceIndex.removePagination();
     }
 
 

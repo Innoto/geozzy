@@ -87,9 +87,11 @@
     /**
       setExplorer. instance the explorer object
      */
-    that.setExplorer = function() { zoomControl: false
+    that.setExplorer = function() {
+
 
       that.explorer = new geozzy.explorer({
+        firstLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         explorerId:'rincons',
         explorerSectionName:'Rincons espectaculares',
@@ -113,6 +115,7 @@
       });
 
       that.explorerRutas = new geozzy.explorer({
+        firstLoadSuccess: function(){ that.layoutDistributeSize() },        
         debug: false,
         explorerId:'rutas',
         explorerSectionName:'Rincons espectaculares',
