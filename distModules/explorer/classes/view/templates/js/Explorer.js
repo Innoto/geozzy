@@ -300,7 +300,6 @@ geozzy.explorer = function( opts ) {
         that.timeDebugerExtended.log( '&nbsp;- Render lists' );
 
         that.options.partialLoadSuccess();
-        alert();
       }
 
     );
