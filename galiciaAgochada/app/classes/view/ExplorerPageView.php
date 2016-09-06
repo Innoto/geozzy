@@ -40,6 +40,10 @@ class ExplorerPageView extends MasterView
 
     $this->template->addClientStyles('styles/masterPaisaxesExplorer.less');
     $this->template->addClientScript('js/paisaxesExplorer.js');
+    
+    rextRoutes::autoIncludes();
+    $this->template->addClientScript('js/view/routeView.js', 'rextRoutes' );
+    $this->template->addClientScript('js/view/ExplorerRoutesView.js', 'rextRoutes' );
 
     $this->template->addClientStyles('styles/rExtFavourite.less', 'rextFavourite' );
     $this->template->addClientScript('js/rExtFavouriteController.js', 'rextFavourite' );
@@ -57,7 +61,7 @@ class ExplorerPageView extends MasterView
     rextRoutes::autoIncludes();
     $this->template->addClientScript('js/view/routeView.js', 'rextRoutes' );
     $this->template->addClientScript('js/view/ExplorerRoutesView.js', 'rextRoutes' );
-    
+
 /*
     $this->template->addClientScript('js/model/RouteModel.js', 'rextRoutes' );
     $this->template->addClientScript('js/collection/RouteCollection.js', 'rextRoutes' );
