@@ -25,7 +25,8 @@ geozzy.explorer = function( opts ) {
     partialLoadSuccess: function() {},
 
     aditionalParameters: {},
-
+    resetLocalStorage:false,
+    
     // cache times (in seconds)
     cacheTimeIndex: 20,
     debug: false,
@@ -319,6 +320,11 @@ geozzy.explorer = function( opts ) {
         });
 
       that.resourcePartialList = new partialCollection();
+
+      if( that.options.resetLocalStorage === true ) {
+        that.resourcePartialList.reset();
+        that.resourcePartialList.saveLocalStorage();
+      }
     }
 
 

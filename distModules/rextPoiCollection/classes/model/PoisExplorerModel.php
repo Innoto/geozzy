@@ -12,7 +12,7 @@ class PoisExplorerModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'rextPoiCollection#1.1',
+      'version' => 'rextPoiCollection#1.4',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_pois_explorer_index;
@@ -38,7 +38,7 @@ class PoisExplorerModel extends Model
         LEFT JOIN geozzy_resource
         ON geozzy_collection_resources.resource = geozzy_resource.id
         WHERE
-          geozzy_collection.collectionType = `poi`
+          geozzy_collection.collectionType = "poi"
         group by geozzy_collection_resources.resource;
       '
     )
