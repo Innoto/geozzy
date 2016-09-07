@@ -87,9 +87,11 @@
     /**
       setExplorer. instance the explorer object
      */
-    that.setExplorer = function() { zoomControl: false
+    that.setExplorer = function() {
+
 
       that.explorer = new geozzy.explorer({
+        partialLoadSuccess: function(){ that.layoutDistributeSize();  },
         debug: false,
         explorerId:'rincons',
         explorerSectionName:'Rincons espectaculares',
@@ -113,6 +115,7 @@
       });
 
       that.explorerRutas = new geozzy.explorer({
+        partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         explorerId:'rutas',
         explorerSectionName:'Rincons espectaculares',
@@ -164,7 +167,7 @@
             '<% } %>'+
 
             '<div class="gempiTitle"><%-title%></div>'+
-            /*'<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+*/
+            '<div class="gempiLocation"><% if(city){ %><% } %></div>'+
 
 
             '<div class="gempiDescription"><%-description%></div>'+

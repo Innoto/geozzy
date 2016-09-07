@@ -83,6 +83,7 @@
     that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
+        partialLoadSuccess: function(){ that.layoutDistributeSize() },        
         debug: false,
         explorerId:'todosSegredos',
         explorerSectionName:'Todos os segredos',

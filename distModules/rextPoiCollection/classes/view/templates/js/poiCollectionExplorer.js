@@ -6,7 +6,8 @@
       explorerId:'pois',
       explorerSectionName:'Puntos de interese',
       debug:false,
-      aditionalParameters:geozzy.rExtPOIOptions
+      aditionalParameters:geozzy.rExtPOIOptions,
+      resetLocalStorage: true
     });
 
 
@@ -18,6 +19,8 @@
           return cogumelo.publicConf.media+'/module/rextPoiCollection/img/poi.png';
         }
     });
+
+
 
     /* ADD DISPLAY TO EXPLORER */
     ex.addDisplay( explorerMapa );
