@@ -8,7 +8,9 @@ class PoisExplorerController extends ExplorerController {
     Cogumelo::load('coreModel/DBUtils.php');
     $resourceModel = new PoisExplorerModel();
 
-    $filters = array((int) $_POST['resourceID']);
+    $filters= [];
+    $filters['resourceMain'] = (int) $_POST['resourceID'];
+
     $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc'), 'filters'=> $filters ) );
 
     $coma = '';

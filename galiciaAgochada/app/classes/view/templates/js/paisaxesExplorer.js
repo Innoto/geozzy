@@ -485,8 +485,7 @@
      */
     that.layoutDistributeSize = function(){
 
-      if( that.resourceMap.getZoom() < 10 ) {
-
+      if( that.resourceMap.getZoom() < 12 ) {
 
         that.mapaRutas.hide();
 
@@ -515,7 +514,7 @@
       var hExplorerFilters = $('.paisaxesExplorer .explorer-container-filter').height();
       var hExplorerGallery = $('.paisaxesExplorer .explorer-container-gallery').height();
       var hHeader = 60;
-      var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader);
+      var hExplorerMap = hExplorerLayout - (hExplorerGallery + hExplorerFilters + hHeader + hRutasFilters );
 
       $('.paisaxesExplorer .explorer-container-map').height( hExplorerMap );
     }

@@ -53,16 +53,16 @@ geozzy.travelPlanner = function() {
                     htmlTravelPlanner += '</div>';
                   htmlTravelPlanner += '</li>';
                   ///////////////////////////////////////////////////////////////
-                  htmlTravelPlanner += '<li class="dd-item" data-id="12">';
+                  htmlTravelPlanner += '<li class="dd-item" data-id="11">';
                     htmlTravelPlanner += '<div class="dd-item-container clearfix">';
                       htmlTravelPlanner += '<div class="dd-content">';
                         htmlTravelPlanner += '<div class="nestableActions">';
-                	        htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="12" ><i class="fa fa-trash"></i></button>';
+                	        htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="11" ><i class="fa fa-trash"></i></button>';
                 	      htmlTravelPlanner += '</div>';
                   	  htmlTravelPlanner += '</div>';
                       htmlTravelPlanner += '<div class="dd-handle">';
                         htmlTravelPlanner += '<i class="fa fa-arrows icon-handle"></i>';
-                        htmlTravelPlanner += 'ITEM 12';
+                        htmlTravelPlanner += 'ITEM 11-2';
                       htmlTravelPlanner += '</div>';
                     htmlTravelPlanner += '</div>';
                   htmlTravelPlanner += '</li>';

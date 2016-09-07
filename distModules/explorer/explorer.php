@@ -42,7 +42,15 @@ class explorer extends Module {
      "params" => array("ionrangeslider#2"),
      "installer" => "bower",
      "includes" => array("js/ion.rangeSlider.js", "css/ion.rangeSlider.css")
+    ),
+    array(
+     "id" =>"tiny_map_utilities",
+     "params" => array("tiny_map_utilities"),
+     "installer" => "bower",
+     "includes" => array("smart_infowindow/smart_infowindow.js", "smart_infowindow/vendor/jQueryRotate.js")
     )
+
+
   );
 
   public $includesCommon = array(
@@ -57,7 +65,7 @@ class explorer extends Module {
     'js/view/filters/ExplorerFilterComboView.js',
     'js/view/filters/ExplorerFilterGeoView.js',
     'js/view/filters/ExplorerFilterSliderView.js',
-    'js/view/filters/ExplorerFilterSwitchView.js',    
+    'js/view/filters/ExplorerFilterSwitchView.js',
     'js/view/filters/ExplorerFilterResetView.js',
     'js/view/ExplorerActiveListView.js',
     'js/view/ExplorerActiveListTinyView.js',

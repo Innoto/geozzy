@@ -109,7 +109,7 @@
       });
 */
       that.explorer = new geozzy.explorer({
-        partialLoadSuccess: function(){ that.layoutDistributeSize() },        
+        //partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         explorerId:'xantares',
         explorerSectionName:'Sabrosos xantares',
@@ -362,7 +362,41 @@
     that.participationLng = false;
     that.participationMarker = false;
 
+
+    that.showParticipationButton = function( evento, clickCallback ) {
+      var buttonDOMId = 'engadirEnMapa';
+      var buttonLeft = false;
+      var buttonTop = false;
+
+      if( $('#'+buttonDOMId).length == 0 ) {
+        $('body').append('<div id="' + buttonDOMId + '">' + __('Suxerir lugar') + '<div>');
+
+      }
+
+      google.maps.event.addListenerOnce( that.mapa.map, 'click' ,function(e) {
+        $('#'+buttonDOMId).hide();
+      });
+      google.maps.event.addListenerOnce( that.mapa.map, 'idle' ,function(e) {
+        $('#'+buttonDOMId).hide();
+      });
+
+
+      $('#'+buttonDOMId).css('position', 'absolute');
+
+      $('#'+buttonDOMId).css('top', $( that.explorerclass+' .explorerMap').offset().top + evento.pixel.y );
+      $('#'+buttonDOMId).css('left', $( that.explorerclass+' .explorerMap').offset().left + evento.pixel.x );
+
+      $('#'+buttonDOMId).show();
+      $('#'+buttonDOMId).one('click', function(){
+        clickCallback();
+        $('#'+buttonDOMId).hide();
+      } );
+
+
+    }
+
     that.setParticipation = function(){
+
       that.bindsParticipation();
 
       if(geozzy.xantaresParticipationForm.initParticipation){
@@ -370,7 +404,21 @@
           that.initParticipationStep1();
         });
       }
+
+
+      google.maps.event.addListener( that.mapa.map, 'rightclick' ,function(e) {
+
+        that.showParticipationButton(e, function(){
+          geozzy.userSessionInstance.userControlAccess( function(){
+            that.initParticipationStep1();
+            that.setMarker(e);
+          });
+        });
+
+      });
+
     }
+
     that.bindsParticipation = function(){
       $('#initParticipation').on('click', function(){
         geozzy.userSessionInstance.userControlAccess( function(){
@@ -405,15 +453,9 @@
          that.participationLng =  that.participationMarker.position.lng() ;
        });
        // Click map event
+
        google.maps.event.addListener(that.mapa.map, 'click', function(e) {
-
-         that.participationMarker.setPosition( e.latLng )
-         that.participationMarker.setMap( that.mapa.map );
-         that.participationLat =  that.participationMarker.position.lat() ;
-         that.participationLng =  that.participationMarker.position.lng() ;
-         that.participationZoom = that.mapa.map.getZoom();
-
-         $('.participation-step1 .next').prop("disabled", false);
+         that.setMarker(e);
        });
        // map zoom changed
        google.maps.event.addListener(that.mapa, 'zoom_changed', function(e) {
@@ -432,6 +474,17 @@
         }
       });
     }
+
+    that.setMarker = function( e ) {
+      that.participationMarker.setPosition( e.latLng )
+      that.participationMarker.setMap( that.mapa.map );
+      that.participationLat =  that.participationMarker.position.lat() ;
+      that.participationLng =  that.participationMarker.position.lng() ;
+      that.participationZoom = that.mapa.map.getZoom();
+
+      $('.participation-step1 .next').prop("disabled", false);
+    };
+
     that.closeParticipationStep1 = function( ){
       //Desactivar mapa y permitir click en mapa
       $('.participation-step1').hide();

@@ -5,8 +5,10 @@ geozzy.travelPlannerComponents.mainRouter = Backbone.Router.extend({
     'travelPlanner': 'travelPlanner'
   },
   travelPlanner: function() {
-    if( window.location.pathname === "/travelPlanner" ){
+
+    //if( window.location.pathname === "/travelPlanner" ){
+      //alert('travelPlanner');
       geozzy.travelPlannerInstance.init();
-    }
+    //}
   }
 });
