@@ -487,7 +487,6 @@
 
       if( that.resourceMap.getZoom() < 12 ) {
 
-
         that.mapaRutas.hide();
 
         $(that.explorerclass+' .is-route-filter').hide();
