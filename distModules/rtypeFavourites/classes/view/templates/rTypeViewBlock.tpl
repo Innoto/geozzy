@@ -1,25 +1,22 @@
 {block name="headCssIncludes" append}
 <style type="text/css">
-  .favouritesElement { height: 250px; }
-  .favouritesElement img { width: 100%; }
-  .favDelete {
+  .favouritesElement .favsImage { position: relative; }
+  .favouritesElement .favsImage img { width: 100%; }
+  .favouritesElement .favsImage .favsDelete {
     position: absolute;
-    right: 20px;
-    top: 5px;
+    right: 10px;
+    bottom: 10px;
     display: block;
-    padding: 2px;
-    /* background-color: yellow; */
+    padding: 2px 4px;
+    background-color: white;
     color: #FF2222;
     font-size: 20px;
-  }
-  .favouritesElement .title {
-    text-decoration: underline;
-  }
-  .favouritesElement .shortDescription {
-    font-size: 90%
+    cursor: pointer;
   }
 </style>
 {/block}
+
+
 
 <!-- rTypeViewBlock.tpl en rTypeFavourites module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
@@ -47,20 +44,27 @@
     var geozzy = geozzy || {};
     geozzy.favsResourcesInfo = {$favsResourcesInfo|@json_encode}
   </script>
-  <section class="favouritesSec container gzSection">
-    <div class="favourites">
-      <div class="container">
+  <section class="favouritesSec gzSection">
+    <div class="container favsHeader">
+    </div>
+
+    <div class="container favsList">
+      <div class="favouritesList">
 
         {if $favsResourcesInfo|@is_array && $favsResourcesInfo|@count gt 0}
         <div class="row">
           {foreach $favsResourcesInfo as $favsResInfo}
           {* title shortDescription image url rTypeId *}
-          <div class="col-sm-6 col-md-2 favouritesElement rtid{$favsResInfo.rTypeId}" data-id="{$favsResInfo.id}" data-rTypeId="{$favsResInfo.rTypeId}">
+          <div class="col-sm-6 col-md-3 favouritesElement rtid{$favsResInfo.rTypeId}" data-id="{$favsResInfo.id}" data-rTypeId="{$favsResInfo.rTypeId}">
+            <div class="favsImage">
+              <a href="{$favsResInfo.url}"><img src="/cgmlImg/{$favsResInfo.image}/fast_cut/{$favsResInfo.image}.jpg"></a>
+            </div>
+            <div class="favsText">
             <a href="{$favsResInfo.url}">
-              <img style="whi" src="/cgmlImg/{$favsResInfo.image}/fast_cut/{$favsResInfo.image}.jpg">
               <div class="title">{$favsResInfo.title}</div>
               <div class="shortDescription">{$favsResInfo.shortDescription}</div>
             </a>
+            </div>
           </div>
           {/foreach}
         </div>
@@ -73,6 +77,9 @@
         {/if}
 
       </div>
+    </div>
+
+    <div class="container favsFooter">
     </div>
   </section>
 

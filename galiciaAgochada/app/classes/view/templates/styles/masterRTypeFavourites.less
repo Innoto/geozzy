@@ -1,0 +1,45 @@
+@import "primary/primary.less";
+
+
+.resource.rtypeFavourites {
+  background-color: @gzzColor-bck-4;
+
+  .contentSec {
+    background-color: @gzzColor-bck-4;
+  }
+
+  .favouritesSec {
+    margin-bottom: 0;
+    padding-bottom: 10px;
+
+    .favsHeader {
+      padding: 10px;
+    }
+    .favsList {
+      background-color: @gzzColor-bck-1;
+      color: @text-color;
+
+      .favouritesList {
+        padding: 30px 20px;
+
+        a {
+          color: @text-color;
+          text-decoration: none;
+        }
+        .title {
+          font-weight: 600;
+        }
+        .shortDescription {
+          font-size: 90%;
+        }
+        .favsText {
+          height: 100px;
+          overflow: hidden;
+        }
+      }
+    }
+    .favsFooter {
+      padding: 10px;
+    }
+  }
+}
