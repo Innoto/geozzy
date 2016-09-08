@@ -33,15 +33,17 @@
                             '<div class="poiTitle"><p><%-title%></p></div>'+
                             '<div class="poiDescription"><%-description%></div>'+
                           '</div>'
-                        '</div>'
+                        '</div>';
 
-    var infowindow = new geozzy.explorerComponents.mapInfoView({
+    var infowindow = new geozzy.explorerComponents.mapInfoBubbleView();
+    ex.addDisplay( infowindow );
+  /*  var infowindow = new geozzy.explorerComponents.mapInfoView({
       tpl: miniInfoWindow
     }
 
     );
     ex.addDisplay( infowindow );
-
+*/
     /* EXEC EXPLORER */
     ex.exec();
   });
