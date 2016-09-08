@@ -55,6 +55,7 @@
               <ul class="dropdown-menu">
                 <li><a href="/{$cogumelo.publicConf.C_LANG}#user/accessprofile">{t}Mi perfil{/t}</a></li>
                 <li><a class="rExtFavouriteUserLink">{t}Favoritos{/t}</a></li>
+                <li><a class="rExtTravelPlannerLink">{t}Travel Planner{/t}</a></li>
                 {if $cogumelo.publicConf.user_session}
                 <li><a href="/{$cogumelo.publicConf.C_LANG}/geozzyuser/logout">{t}Cerrar sessión{/t}</a></li>
                 {/if}

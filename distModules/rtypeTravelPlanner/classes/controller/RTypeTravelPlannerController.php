@@ -191,10 +191,8 @@ class RTypeTravelPlannerController extends RTypeController implements RTypeInter
 
     //$template->addClientScript( 'js/rExtFavouriteController.js', 'rextTravFavourite' );
 
-    $favsResources = $this->getFavsResources( $viewBlockInfo['data']['id'] );
-    $favsResourcesInfo = ($favsResources) ? $this->getResourcesInfo( $favsResources ) : false;
+    $favsResourcesInfo = ($viewBlockInfo['data']['id']) ? $this->getResourcesInfo( $viewBlockInfo['data']['id'] ) : false;
     $template->assign( 'favsResourcesInfo', $favsResourcesInfo );
-
 
     // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
     $viewBlockInfo['template']['full'] = $template;
@@ -202,40 +200,7 @@ class RTypeTravelPlannerController extends RTypeController implements RTypeInter
     return $viewBlockInfo;
   }
 
-  /**
-   * UTILS
-   */
-/*
-  public function getFavsData( $favsId ) {
-    $favsData = false;
 
-    $favModel = new FavouritesViewModel();
-    $favList = $favModel->listItems( array( 'filters' => array( 'resourceMain' => $favsId ) ) );
-    if( $favList ) {
-      $favsData = array();
-      while( $favObj = $favList->fetch() ) {
-        $allData = $favObj->getAllData( 'onlydata' );
-        if( isset( $allData['id'] ) && $allData['id'] !== null ) { // Por si hay col. pero no recursos
-          $favsData[] = $allData;
-        }
-      }
-    }
-
-    return $favsData;
-  }
-
-  public function getFavsResources( $favsId ) {
-    $favsResources = false;
-
-    $favModel = new FavouritesListViewModel();
-    $favList = $favModel->listItems( array( 'filters' => array( 'id' => $favsId, 'resourceListNotNull' => true ) ) );
-    $favObj = ( $favList ) ? $favList->fetch() : false;
-    $favData = ( $favObj ) ? $favObj->getAllData( 'onlydata' ) : false;
-    $favsResources = ( isset( $favData['resourceList'] ) ) ? explode( ',', $favData['resourceList'] ) : false;
-
-    return $favsResources;
-  }
-*/
   public function getResourcesInfo( $resIds ) {
     geozzy::load('model/ResourceModel.php');
     $resInfo = array();
