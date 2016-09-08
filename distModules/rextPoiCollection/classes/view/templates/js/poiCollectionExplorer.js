@@ -16,7 +16,16 @@
         map: geozzy.rExtMapInstance.resourceMap,
         clusterize:false,
         chooseMarkerIcon: function( markerData ) {
-          return cogumelo.publicConf.media+'/module/rextPoiCollection/img/poi.png';
+          //return cogumelo.publicConf.media+'/module/rextPoiCollection/img/poi.png';
+          return {
+            url: cogumelo.publicConf.media+'/module/rextPoiCollection/img/poi.png',
+            // This marker is 20 pixels wide by 36 pixels high.
+            size: new google.maps.Size(15, 15),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 36).
+            anchor: new google.maps.Point(6, 6)
+          }
         }
     });
 
@@ -33,15 +42,17 @@
                             '<div class="poiTitle"><p><%-title%></p></div>'+
                             '<div class="poiDescription"><%-description%></div>'+
                           '</div>'
-                        '</div>'
+                        '</div>';
 
-    var infowindow = new geozzy.explorerComponents.mapInfoView({
+    var infowindow = new geozzy.explorerComponents.mapInfoBubbleView({tpl:miniInfoWindow});
+    ex.addDisplay( infowindow );
+  /*  var infowindow = new geozzy.explorerComponents.mapInfoView({
       tpl: miniInfoWindow
     }
 
     );
     ex.addDisplay( infowindow );
-
+*/
     /* EXEC EXPLORER */
     ex.exec();
   });

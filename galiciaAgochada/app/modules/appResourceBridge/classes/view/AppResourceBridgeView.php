@@ -40,12 +40,12 @@ class AppResourceBridgeView extends MasterView {
         }
       }
 
-      $resData = array('data' => $resViewBlockInfo['data'], 'ext' => $resViewBlockInfo['ext']);
+      $resData = array( 'data' => $resViewBlockInfo['data'], 'ext' => $resViewBlockInfo['ext'] );
       // Si vienen datos de header o footer, se asignan
-      if (isset($resViewBlockInfo['header'])){
+      if( isset($resViewBlockInfo['header']) ) {
         $resData['header'] = $resViewBlockInfo['header'];
       }
-      if (isset($resViewBlockInfo['footer'])){
+      if( isset($resViewBlockInfo['footer']) ) {
         $resData['footer'] = $resViewBlockInfo['footer'];
       }
       $this->template->assign( 'res', $resData );
@@ -53,6 +53,15 @@ class AppResourceBridgeView extends MasterView {
       $this->template->assign( 'i18nlocale', Cogumelo::getSetupValue( 'i18n:localePath' ) );
 
       $this->template->addClientStyles( 'styles/masterResource.less' );
+
+      // Buscamos si existe un master{RTypeName}.less para el RType de este recurso
+      $rTypeIdName = str_replace( 'rtype', 'RType', $resourceCtrl->getRTypeIdName() );
+      $rTypeLess = 'master'.ucfirst( $rTypeIdName ).'.less';
+      if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/styles/'.$rTypeLess ) ) {
+        $this->template->addClientStyles( 'styles/'.$rTypeLess );
+      }
+
+
       //$this->template->addClientScript('js/resource.js');
 /*
       if( class_exists( 'geozzyUser' ) ) {
