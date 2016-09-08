@@ -12,12 +12,13 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
-      //tpl: geozzy.explorerComponents.mapInfoViewTemplate,
+      boxId: 'explorerInfoBubble',
+      tpl: geozzy.explorerComponents.mapInfoViewTemplate,
     });
 
     that.options = $.extend(true, {}, options, opts);
 
-    //that.template = _.template( that.options.tpl );
+    that.template = _.template( that.options.tpl );
 
 
 
@@ -52,36 +53,64 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
       that.infowindow = new smart_infowindow(
         {
           map: that.parentExplorer.displays.map.map,
+          marker_distance: [5,0], // [top, bottom]
+          max_height: 240,
+          width: 255,
+
           onAddSuccess: function() {
-            that.infowindow.open(m, 'click' ,"<br>molame<br>");
+            that.infowindow.open(m, 'mouseover' , that.renderContent(params.id), true);
           }
         }
       );
 
     }
     else {
-      that.infowindow.open(m, 'click' ,"<br>molameSecond<br>");
+      that.infowindow.open(m, 'mouseover' ,that.renderContent(params.id), true);
     }
 
 
-/*
-
-    setTimeout(
-      function() {
-        //google.maps.event.trigger(m, 'click');
-        that.infowindow.open(m, 'click' ,"<br>molame<br>");
-      }
-      , 100 );
-*/
   },
 
   hide: function( params) {
     var that = this;
-    that.infowindow.close();
+
+    setTimeout(
+      function() {
+        //smart_infowindow_click_event_opened = false;
+        if(smart_infowindow_is_on_infowindow == false) {
+          that.infowindow.close();
+        }
+      }
+    , 10 );
+
+  },
+
+  renderContent: function( id ) {
+    var that = this;
+
+    var retHtml = '';
+    var resourceInfo = new Backbone.Model(  );
+
+    resourceInfo.set(that.parentExplorer.resourceMinimalList.get(id).toJSON());
+
+    that.ready = id;
+
+    that.parentExplorer.fetchPartialList(
+      [id],
+      function() {
+
+         var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
+         var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
+
+         var element = $.extend( true, partJSON, minJSON );
+
+         element.touchAccess = that.parentExplorer.explorerTouchDevice;
+         retHtml = that.template( element );
+      }
+    );
+
+    return retHtml;
   }
-
-
-
 
   /*,
 
