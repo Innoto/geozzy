@@ -10,7 +10,12 @@ class rextTravelPlanner extends Module {
   public $dependences = array();
   public $taxonomies = array();
 
+  public $autoIncludeAlways = true;
   public $includesCommon = array(
+    'js/travelPlannerLoader.js',
+    'js/router/TravelPlannerRouter.js',
+    'js/TravelPlannerApp.js',
+    'js/travelPlannerInstance.js',
     'controller/RExtTravelPlannerController.php',
     'model/TravelPlannerModel.php'
   );

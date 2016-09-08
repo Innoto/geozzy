@@ -32,7 +32,7 @@ class rtypeTravelPlanner extends Module {
 
   public $includesCommon = array(
     'controller/RTypeTravelPlannerController.php',
-    'view/RTypeTravelView.php',
+    'view/RTypeTravelPlannerView.php',
   );
 
   public $nameLocations = array(
