@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<!-- defaultConHeader.tpl en app de Geozzy -->
-<html>
+{assign var=langPart value="_"|explode:$cogumelo.publicConf.lang_available[$cogumelo.publicConf.C_LANG]['i18n']}
+<html lang="{$langPart[0]}">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <title>{block name="headTitle"}Galicia Agochada | {/block}</title>
   <meta name="description" content="{block name="headDescription"}Galicia Agochada{/block}">
+  <meta name="keywords" content="{block name="headKeywords"}CMS, ICT, storytelling, community mapping, tools, data, interactive map, map creation, Open Source, app, mobile, web, user experience, tourism, dissemination, culture, heritage, tourist destination, interpretation, marketing{/block}">
   {block name="socialMeta"}{/block}
   {block name="headClientIncludes"}
     {$main_client_includes}
@@ -19,10 +19,8 @@
       });
     </script>
   {/block}
-
 </head>
-<body data-spy="scroll" data-target=".headContent">
-
+<body data-spy="scroll" data-target=".headContent"{if isset($bodySection)} data-section="{$bodySection}"{/if}>
   <article>
     {capture "headContent"}
       {block name="headContent"}
