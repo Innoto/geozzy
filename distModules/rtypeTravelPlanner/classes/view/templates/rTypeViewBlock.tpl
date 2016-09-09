@@ -30,51 +30,25 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
-          <img class="iconTitleBar img-responsive" alt="Páxina xeral" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>
-          <h1>Tus favoritos</h1>
+          <img class="iconTitleBar img-responsive" alt="{t}Page{/t}" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>
+          <h1>{t}Travel Planner{/t}</h1>
         </div>
       </div>
     </div>
   </div>
 
-  <section class="contentSec container gzSection">
-    <div class="content">
-      {$res.data.content}
-    </div>
+  <section id="travelPlannerSec" class="gzSection">
+    PLANIFICADOR!!!!!
   </section>
 
   <script type="text/javascript">
-    var geozzy = geozzy || {};
-    geozzy.favsResourcesInfo = {$favsResourcesInfo|@json_encode}
+    $(document).ready(function(){
+      if(typeof(geozzy.travelPlannerInstance)=='undefined'){
+        geozzy.travelPlannerInstance = new geozzy.travelPlanner();
+      }
+      geozzy.travelPlannerInstance.init();
+    });
   </script>
-  <section class="TravelPlannerSec container gzSection">
-    <div class="travelPlanner">
-      <div class="container">
-
-        {if $favsResourcesInfo|@is_array && $favsResourcesInfo|@count gt 0}
-        <div class="row">
-          {foreach $favsResourcesInfo as $favsResInfo}
-          {* title shortDescription image url rTypeId *}
-          <div class="col-sm-6 col-md-2 travelPlannerElement rtid{$favsResInfo.rTypeId}" data-id="{$favsResInfo.id}" data-rTypeId="{$favsResInfo.rTypeId}">
-            <a href="{$favsResInfo.url}">
-              <img style="whi" src="/cgmlImg/{$favsResInfo.image}/fast_cut/{$favsResInfo.image}.jpg">
-              <div class="title">{$favsResInfo.title}</div>
-              <div class="shortDescription">{$favsResInfo.shortDescription}</div>
-            </a>
-          </div>
-          {/foreach}
-        </div>
-        {else}
-        <div class="row">
-          <div class="travelPlannerEmpty">
-            <p>Parece que todavía no has añadido ningún elemento a tu lista de favoritos...</p>
-          </div>
-        </div>
-        {/if}
-
-      </div>
-    </div>
-  </section>
 
 
 </div><!-- /.resource .resViewBlock -->

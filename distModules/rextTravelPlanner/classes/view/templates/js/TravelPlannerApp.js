@@ -10,6 +10,7 @@ geozzy.travelPlanner = function() {
   // First Execution
   //
   that.init = function(  ) {
+
     var htmlTravelPlanner = '';
 
     htmlTravelPlanner += '<div class="plannerContainer">';
@@ -189,7 +190,7 @@ geozzy.travelPlanner = function() {
       htmlTravelPlanner += '</div>';
     htmlTravelPlanner += '</div>';
 
-    $('.bodyContent').html(htmlTravelPlanner);
+    $('#travelPlannerSec').html(htmlTravelPlanner);
 
     $('.gzznestable.dd').nestable({
       'maxDepth': 1,
@@ -206,11 +207,4 @@ geozzy.travelPlanner = function() {
     });
   }
 
-  that.travelPlannerRouter = new geozzy.travelPlannerComponents.mainRouter();
-
-  $(document).ready( function(){
-    if( !Backbone.History.started ){
-      Backbone.history.start();
-    }
-  });
 }

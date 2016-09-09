@@ -72,6 +72,7 @@ class explorer extends Module {
     'js/view/ExplorerReccommendedListTinyView.js',
     'js/view/ExplorerMapView.js',
     'js/view/ExplorerClusterRoseView.js',
+    'js/view/ExplorerMapInfoBubbleView.js',    
     'js/view/ExplorerMapInfoView.js',
     'js/Explorer.js',
     'styles/explorerMapArrows.less'
