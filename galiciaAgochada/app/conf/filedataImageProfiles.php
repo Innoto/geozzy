@@ -201,6 +201,15 @@ cogumeloSetSetupValue( 'mod:filedata:profile:explorerMarker', array(
   'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
 */
 
+
+/*-------------------------------- PERFILES DE POIS----------------------------------------*/
+cogumeloSetSetupValue( 'mod:filedata:profile:resourcePoisCollection', array(
+  'width' => 20, 'height' => 20, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/module/rextPoiCollection/img/chapaPOIS.png',
+  'padding' => 2, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
+
+
 cogumeloSetSetupValue( 'mod:filedata:profile:resourceLg', array( 'width' => 1200, 'height' => 500) );
 cogumeloSetSetupValue( 'mod:filedata:profile:resourceMd', array( 'width' => 992, 'height' => 400) );
 cogumeloSetSetupValue( 'mod:filedata:profile:resourceSm', array( 'width' => 768, 'height' => 300) );
