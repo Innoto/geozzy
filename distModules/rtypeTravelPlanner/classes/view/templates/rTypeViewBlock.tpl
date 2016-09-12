@@ -44,7 +44,7 @@
   <script type="text/javascript">
     $(document).ready(function(){
       if(typeof(geozzy.travelPlannerInstance)=='undefined'){
-        geozzy.travelPlannerInstance = new geozzy.travelPlanner();
+        geozzy.travelPlannerInstance = new geozzy.travelPlanner({$res.data.id});
       }
       geozzy.travelPlannerInstance.init();
     });
