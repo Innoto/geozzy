@@ -189,13 +189,11 @@ class RTypeTravelPlannerController extends RTypeController implements RTypeInter
     $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeTravelPlanner' );
 
-    //$template->addClientScript( 'js/rExtFavouriteController.js', 'rextTravFavourite' );
-
     $favsResourcesInfo = ($viewBlockInfo['data']['id']) ? $this->getResourcesInfo( $viewBlockInfo['data']['id'] ) : false;
     $template->assign( 'favsResourcesInfo', $favsResourcesInfo );
 
-    // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
     $viewBlockInfo['template']['full'] = $template;
+    $viewBlockInfo['footer'] = false;
 
     return $viewBlockInfo;
   }
