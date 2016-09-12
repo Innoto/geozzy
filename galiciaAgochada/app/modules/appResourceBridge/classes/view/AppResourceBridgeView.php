@@ -54,11 +54,21 @@ class AppResourceBridgeView extends MasterView {
 
       $this->template->addClientStyles( 'styles/masterResource.less' );
 
-      // Buscamos si existe un master{RTypeName}.less para el RType de este recurso
       $rTypeIdName = str_replace( 'rtype', 'RType', $resourceCtrl->getRTypeIdName() );
+
+      // Buscamos si existe un master{RTypeName}.less para el RType de este recurso
       $rTypeLess = 'master'.ucfirst( $rTypeIdName ).'.less';
       if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/styles/'.$rTypeLess ) ) {
         $this->template->addClientStyles( 'styles/'.$rTypeLess );
+      }
+
+      // Buscamos si existe un auto{RTypeName}.js para el RType de este recurso
+      $rTypeJs = 'auto'.ucfirst( $rTypeIdName ).'.js';
+      if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/js/'.$rTypeJs ) ) {
+        $this->template->addClientScript( 'js/'.$rTypeJs );
+      }
+      if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/script/'.$rTypeJs ) ) {
+        $this->template->addClientScript( 'script/'.$rTypeJs );
       }
 
 
