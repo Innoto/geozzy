@@ -1,6 +1,24 @@
 
   $(document).ready(function(){
 
+    //console.log('LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO' , geozzy.collection.CategorytermCollection );
+    var poisTypes = new geozzy.collection.CategorytermCollection();
+    poisTypes.setUrlByIdName('rextPoiType');
+
+
+    $.when( poisTypes.fetch() ).done(function() {
+      poisResourceExplorer( poisTypes );
+    });
+
+  });
+
+
+
+  /*
+  * Create the POIS resource explorer
+  */
+  function poisResourceExplorer( poisTypes ) {
+
     /* EXPLORER MAIN CLASS DECLARATION */
     var ex = new geozzy.explorer({
       explorerId:'pois',
@@ -9,6 +27,9 @@
       aditionalParameters:geozzy.rExtPOIOptions,
       resetLocalStorage: true
     });
+
+
+
 
 
     /* EXPLORER DISPLAY DECLARATION  (SET CUSTOM ICON TOO)  */
@@ -52,7 +73,7 @@
 
     );
     ex.addDisplay( infowindow );
-*/
+  */
     /* EXEC EXPLORER */
     ex.exec();
-  });
+  }
