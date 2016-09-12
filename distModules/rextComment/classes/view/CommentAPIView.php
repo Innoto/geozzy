@@ -62,10 +62,10 @@ class CommentAPIView extends View {
       $c = '';
       global $C_LANG;
 
-      while ($valueobject = $commentsList->fetch() ) {
+      while( $valueobject = $commentsList->fetch() ) {
         $allData = $valueobject->getAllData('onlydata');
         $user = $valueobject->getterDependence('user');
-        if($user){
+        if( $user ) {
           $allData['userName'] = $user[0]->getter('name');
           $allData['userEmail'] = $user[0]->getter('email');
         }
@@ -77,7 +77,7 @@ class CommentAPIView extends View {
     else {
       header("HTTP/1.0 404 Not Found");
       header('Content-Type: application/json; charset=utf-8');
-      echo '{}';
+      echo '[]';
     }
   }
 
@@ -330,7 +330,12 @@ class CommentAPIView extends View {
     }
 
     header('Content-type: application/json; charset=utf-8');
-    echo json_encode( $commentsOptions );
+    if( count( $commentsOptions ) > 0 ) {
+      echo json_encode( $commentsOptions );
+    }
+    else {
+      echo '{}';
+    }
   }
 
 
