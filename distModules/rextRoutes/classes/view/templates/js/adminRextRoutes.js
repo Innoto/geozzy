@@ -30,6 +30,9 @@ function adminRextRoutesFileUpload( idForm, fieldName ) {
       }
 
 
+      $('input[form='+idForm+'].cgmMForm-field-locLat').val( ruta.get('centroid')[0] );
+      $('input[form='+idForm+'].cgmMForm-field-locLon').val( ruta.get('centroid')[1] );
+
       // start and end from route
       $('input[form='+idForm+'].cgmMForm-field-rExtRoutes_locStartLat').val(ruta.get('start')[0]);
       $('input[form='+idForm+'].cgmMForm-field-rExtRoutes_locStartLon').val(ruta.get('start')[1]);
