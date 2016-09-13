@@ -1,15 +1,31 @@
 var geozzy = geozzy || {};
 
 
-geozzy.travelPlanner = function() {
+geozzy.travelPlanner = function( idTravelPlanner ) {
 
   var that = this;
 
-  that.travelPlannerRouter = false;
+  that.travelPlannerId = (idTravelPlanner) ? idTravelPlanner : false;
+  that.travelPlannerInterfaceView = false;
 
   // First Execution
   //
-  that.init = function(  ) {
+  that.init = function( ) {
+    console.log('travelPlannerID:'+ that.travelPlannerId );
+    that.initInterface();
+
+
+
+
+
+
+
+
+
+
+
+    /*
+
 
     var htmlTravelPlanner = '';
 
@@ -205,6 +221,12 @@ geozzy.travelPlanner = function() {
 
       }
     });
+
+    */
+  }
+
+  that.initInterface = function (){
+    that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView();
   }
 
 }

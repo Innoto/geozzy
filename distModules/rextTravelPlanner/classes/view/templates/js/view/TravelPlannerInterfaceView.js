@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
 if(!geozzy.travelPlannerComponents) geozzy.travelPlannerComponents={};
 
-geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
+geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend({
 
   interfaceTemplate : false,
 
@@ -11,7 +11,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
 
   loadInterfaceTravelPlanner: function(){
-
+    
     var that = this;
 
     that.interfaceTemplate = _.template( geozzy.travelPlannerComponents.travelPlannerInterfaceTemplate );

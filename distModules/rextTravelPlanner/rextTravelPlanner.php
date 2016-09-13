@@ -12,6 +12,9 @@ class rextTravelPlanner extends Module {
 
   public $autoIncludeAlways = true;
   public $includesCommon = array(
+    'js/view/Templates.js',
+    'js/view/TravelPlannerInterfaceView.js',
+    'js/model/TravelPlannerModel.js',
     'js/travelPlannerLoader.js',
     'js/TravelPlannerApp.js',
     'controller/RExtTravelPlannerController.php',
