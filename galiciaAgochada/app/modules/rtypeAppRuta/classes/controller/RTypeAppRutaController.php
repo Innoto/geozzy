@@ -130,6 +130,12 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     $formFieldsNames = array( 'collections', 'addCollections' );
     $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
 
+    // TEMPLATE panel poicollection
+    $templates['poiCollection'] = new Template();
+    $templates['poiCollection']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['poiCollection']->assign( 'title', __( 'POI collection' ) );
+    $templates['poiCollection']->setFragment( 'blockContent', $formBlockInfo['ext']['rextPoiCollection']['template']['full'] );
+
     // TEMPLATE panel image
     $templates['image'] = new Template();
     $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -186,6 +192,7 @@ class RTypeAppRutaController extends RTypeController implements RTypeInterface {
     if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
       $templates['adminFull']->addToFragment( 'col8', $templates['comment'] );
     }
+    $templates['adminFull']->addToFragment( 'col8', $templates['poiCollection'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['multimedia'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['collections'] );
     $templates['adminFull']->addToFragment( 'col8', $templates['seo'] );
