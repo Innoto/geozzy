@@ -1282,7 +1282,7 @@ class ResourceController {
 
     $filters = array( 'lang' => $lang );
 
-    if( is_int( $resId ) ) {
+    if( is_numeric( $resId ) ) {
       $filters['resource'] = $resId;
     }
     else {
@@ -1293,6 +1293,7 @@ class ResourceController {
     $urlList = $urlModel->listItems( array( 'filters' => $filters ));
 
     $urlObj = ( $urlList ) ? $urlList->fetch() : false;
+
     if( $urlObj ) {
       $urlAlias = '/'.$lang.$urlObj->getter('urlFrom');
     }
@@ -1457,6 +1458,7 @@ class ResourceController {
               $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
               $urlAlias = $this->getUrlAlias($resVal->getter('id'));
+              var_dump($urlAlias);
 
               $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] = array(
                 'id' => $resVal->getter('id'),
