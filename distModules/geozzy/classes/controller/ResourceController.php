@@ -1458,7 +1458,6 @@ class ResourceController {
               $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
               $urlAlias = $this->getUrlAlias($resVal->getter('id'));
-              var_dump($urlAlias);
 
               $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] = array(
                 'id' => $resVal->getter('id'),
