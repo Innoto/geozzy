@@ -74,15 +74,20 @@
 
     var miniInfoWindow ='<div class="poiInfoWindow">'+
                           '<div class="poiImg">'+
-                            '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/listEvent/<%-image%>.jpg" />'+
+                            '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
                           '</div>'+
                           '<div class="poiInfo">'+
                             '<div class="poiTitle"><p><%-title%></p></div>'+
                             '<div class="poiDescription"><%-description%></div>'+
+                            '<button class="btn btn-primary accessButton">' + __('Descúbreo') + '</button>'
                           '</div>'
                         '</div>';
 
-    var infowindow = new geozzy.explorerComponents.mapInfoBubbleView({tpl:miniInfoWindow});
+    var infowindow = new geozzy.explorerComponents.mapInfoBubbleView({
+      tpl:miniInfoWindow,
+      width: 350,
+      max_height:170
+    });
     ex.addDisplay( infowindow );
   /*  var infowindow = new geozzy.explorerComponents.mapInfoView({
       tpl: miniInfoWindow
