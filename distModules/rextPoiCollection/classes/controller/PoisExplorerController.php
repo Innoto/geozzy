@@ -11,7 +11,7 @@ class PoisExplorerController extends ExplorerController {
     $filters= [];
     $filters['resourceMain'] = (int) $_POST['resourceID'];
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc','terms'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc','isNormalResource','terms'), 'filters'=> $filters ) );
 
     $coma = '';
 
@@ -23,6 +23,9 @@ class PoisExplorerController extends ExplorerController {
 
         $resourceDataArray = $resource->getAllData('onlydata');
 
+
+
+        $row['isNormalResource'] = $resourceDataArray['isNormalResource'];
 
         if( isset($resourceDataArray['terms']) ) {
           $row['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
