@@ -91,7 +91,7 @@
     /**
       setExplorer. instance the explorer object
      */
-    that.setExplorer = function() { zoomControl: false
+    that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
         partialLoadSuccess: function(){ that.layoutDistributeSize() },
@@ -141,6 +141,26 @@
 
       });
 
+      that.explorerRestaurantes = new geozzy.explorer({
+        explorerId:'xantares',
+        resourceAccess: function(id) {
+          $(".explorerContainer.explorer-loading").show();
+          $(".explorerContainer.explorer-container-du").load(
+            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
+            { pf: 'blk' },
+            function() {
+              $(".explorerContainer.explorer-loading").hide();
+              $(".explorerContainer.explorer-container-du").show();
+            }
+          );
+
+        },
+        resourceQuit: function() {
+          $(".explorerContainer.explorer-container-du").hide();
+          $(".explorerContainer.explorer-container-du").html('');
+        }
+      });
+
     }
 
 
@@ -183,6 +203,26 @@
 
       that.infowindowRutas = new geozzy.explorerComponents.mapInfoView({ tpl:infoWindowRutasPlantilla });
       that.rutas = new geozzy.explorerComponents.routesView({ showGraph:true, hoverGraphDiv: '.gempiContent.rincons .routeGraph', ShowRouteInZoomLevel: 12, })
+
+
+      var infoWindowRestaurantesTpl =
+        '<div class="poiInfoWindow">'+
+          '<div class="poiImg">'+
+            '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/.jpg" />'+
+          '</div>'+
+          '<div class="poiInfo">'+
+            '<div class="poiTitle"><p><%-title%></p></div>'+
+            '<div class="poiDescription"><%-description%></div>'+
+          '</div>' +
+        '</div>';
+
+      that.infowindowRestaurantes = new geozzy.explorerComponents.mapInfoBubbleView({
+        tpl:infoWindowRestaurantesTpl,
+        width: 350,
+        max_height:170
+      });
+
+
       that.infowindow = new geozzy.explorerComponents.mapInfoView();
       that.listaMini = new geozzy.explorerComponents.activeListTinyView({ el:$('.explorer-container-gallery')});
       that.listaRecomendados =  new geozzy.explorerComponents.reccommendedListView();
@@ -269,6 +309,26 @@
       });
 
 
+      that.mapaRestaurantes = new geozzy.explorerComponents.mapView({
+          map: that.resourceMap,
+          chooseMarkerIcon: function( markerData ) {
+            //return cogumelo.publicConf.media+'/module/rextPoiCollection/img/poi.png';
+
+
+            var retMarker = {
+              url: cogumelo.publicConf.media+'/img/micropunto.png',
+              // This marker is 20 pixels wide by 36 pixels high.
+              size: new google.maps.Size(10, 110),
+              // The origin for this image is (0, 0).
+              origin: new google.maps.Point(0, 0),
+              // The anchor for this image is the base of the flagpole at (0, 36).
+              anchor: new google.maps.Point(5, 5)
+            };
+
+            return retMarker;
+          }
+      });
+
       //that.explorer.addDisplay( that.routes );
       that.explorer.addDisplay( that.listaMini );
       that.explorer.addDisplay( that.listaRecomendados );
@@ -276,6 +336,11 @@
       that.explorerRutas.addDisplay( that.rutas );
       that.explorerRutas.addDisplay( that.mapaRutas );
       that.explorerRutas.addDisplay( that.infowindowRutas );
+
+
+
+      that.explorerRestaurantes.addDisplay( that.mapaRestaurantes );
+      that.explorerRestaurantes.addDisplay( that.infowindowRestaurantes );
 
       that.explorer.addDisplay( that.mapa );
       that.explorer.addDisplay( that.infowindow );
@@ -426,6 +491,7 @@
 
       that.explorer.exec();
       that.explorerRutas.exec();
+      that.explorerRestaurantes.exec();
 
       $('select.select2GeozzyCustom').select2({
          minimumResultsForSearch: -1,
