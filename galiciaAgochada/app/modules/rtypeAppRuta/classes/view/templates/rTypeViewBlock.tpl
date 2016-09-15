@@ -60,17 +60,17 @@
 
       <div class="resumeBox">
         <div class="topBox">
-          <div class="travelDistance col-md-6">
+          <div class="travelDistance col-sm-6">
             {$res.ext.rextRoutes.data.travelDistanceKm} Km
           </div>
-          <div class="durationMinutes col-md-6">{$res.ext.rextRoutes.data.durationHours}h {$res.ext.rextRoutes.data.durationMinutes}min</div>
+          <div class="durationMinutes col-sm-6">{$res.ext.rextRoutes.data.durationHours}h {$res.ext.rextRoutes.data.durationMinutes}min</div>
         </div>
         <div class="bottomBox">
-          <div class="difficultyGlobal col-md-6">
+          <div class="difficultyGlobal col-sm-6">
             <div class="barraEsfuerzo ruta_{$res.ext.rextRoutes.data.difficultyGlobal}"></div>
             <div class="text">{t}Global difficulty{/t}</div>
           </div>
-          <div class="circular col-md-6">
+          <div class="circular col-sm-6 col-xs-12">
             {if $res.ext.rextRoutes.data.circular}
               <div class="rutaCircular">
                 <img class="img-responsive" alt="circular" src="{$cogumelo.publicConf.media}/module/rextRoutes/img/circular_color.png"></img>
