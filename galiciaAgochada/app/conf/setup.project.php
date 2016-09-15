@@ -65,6 +65,12 @@ cogumeloSetSetupValue( 'urlError404:view', 'MasterView::page404' );
 
 
 //
+// Google Maps key
+//
+// cogumeloSetSetupValue( 'google:maps:key', '----' );
+
+
+//
 //  Module load
 //
 global $C_ENABLED_MODULES;

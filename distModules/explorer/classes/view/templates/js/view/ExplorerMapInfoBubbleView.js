@@ -14,6 +14,9 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
     var options = new Object({
       boxId: 'explorerInfoBubble',
       tpl: geozzy.explorerComponents.mapInfoViewTemplate,
+      marker_distance: [5,0], // [top, bottom]
+      max_height: 240,
+      width: 255,
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -53,9 +56,9 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
       that.infowindow = new smart_infowindow(
         {
           map: that.parentExplorer.displays.map.map,
-          marker_distance: [5,0], // [top, bottom]
-          max_height: 240,
-          width: 255,
+          marker_distance: that.options.marker_distance, // [top, bottom]
+          max_height: that.options.max_height,
+          width: that.options.width,
 
           onAddSuccess: function() {
             that.infowindow.open(m, 'mouseover' , that.renderContent(params.id), true);

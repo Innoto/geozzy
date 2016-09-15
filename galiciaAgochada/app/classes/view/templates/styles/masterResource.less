@@ -1204,18 +1204,38 @@
     margin-top:3px;
   }
   .poiInfoWindow{
-    height:170px;
+    height:113px;
     background-color:#f4f4f4;
     padding:7px;
-    .poiInfo{
-      max-width:240px;
-      font-size:14px;
-      .poiTitle{
-        margin-top:7px;
-        font-weight:bold;
+    .poiImg {
+      float:left;
+      margin-right: 10px;
+      img {
+        width:100px;
+        height:100px;
       }
-      .poiDescription{
-        font-style: italic;
+    }
+    .poiInfo{
+      float:left;
+      max-width:245px;
+      font-size:13px;
+      .poiDescription {
+        width:210px;
+        height:55px;
+        overflow: hidden;
+      }
+      button {
+        position:absolute;
+        right:80px;
+        bottom:15px;
+        height: 22px;
+        font-size:10px;
+      }
+      .poiTitle{
+        font-weight:bold;
+        width:210px;
+        max-height:20px;
+        overflow:hidden;
       }
 
     }

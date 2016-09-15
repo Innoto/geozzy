@@ -11,7 +11,7 @@ class PoisExplorerController extends ExplorerController {
     $filters= [];
     $filters['resourceMain'] = (int) $_POST['resourceID'];
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc','terms'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc','isNormalResource','terms'), 'filters'=> $filters ) );
 
     $coma = '';
 
@@ -23,6 +23,9 @@ class PoisExplorerController extends ExplorerController {
 
         $resourceDataArray = $resource->getAllData('onlydata');
 
+
+
+        $row['isNormalResource'] = $resourceDataArray['isNormalResource'];
 
         if( isset($resourceDataArray['terms']) ) {
           $row['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
@@ -70,12 +73,12 @@ class PoisExplorerController extends ExplorerController {
         $row = array();
 
         $resourceDataArray = array('id' => $resource->getter('id'), 'title' => $resource->getter('title'),
-                                   'shortDescription' => $resource->getter('shortDescription'), 'image' => $resource->getter('image'));
+                                   'mediumDescription' => $resource->getter('mediumDescription'), 'image' => $resource->getter('image'));
 
 
         $row['id'] = $resourceDataArray['id'];
         $row['title'] = ( isset($resourceDataArray['title']) )?$resourceDataArray['title']:false;
-        $row['description'] = ( isset($resourceDataArray['shortDescription']) )?$resourceDataArray['shortDescription']:'';
+        $row['description'] = ( isset($resourceDataArray['mediumDescription']) )?$resourceDataArray['mediumDescription']:'';
         $row['image'] =  ( isset($resourceDataArray['image']) )?$resourceDataArray['image']:false;
 
         echo json_encode( $row );

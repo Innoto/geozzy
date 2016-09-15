@@ -203,40 +203,63 @@ class RExtViewController extends RExtController implements RExtInterface {
       $viewAlternativeMode = $term[ 'idName' ];
       // error_log( 'RExtViewController->alterViewBlockInfo: viewAlternativeMode: ' . $viewAlternativeMode );
 
+      if( isset($this->taxonomies['viewAlternativeMode']['initialTerms'][$viewAlternativeMode]) ) {
+        $viewAlternativeModeConf = $this->taxonomies['viewAlternativeMode']['initialTerms'][$viewAlternativeMode];
+      }
+
       if( strpos( $viewAlternativeMode, 'tpl' ) === 0 ) {
-        if( strpos( $viewAlternativeMode, 'tplApp' ) !== 0 ) {
-          $newTplFile = $viewAlternativeMode.'.tpl';
+        if( isset($viewAlternativeModeConf['tpl']) ) {
+          $altTplFile = $viewAlternativeModeConf['tpl'];
+        }
+        elseif( strpos( $viewAlternativeMode, 'tplApp' ) !== 0 ) {
+          $altTplFile = $viewAlternativeMode.'.tpl';
         }
         else {
-          $newTplFile = 'rExtViewAlt'.substr( $viewAlternativeMode, 3 ).'.tpl';
+          $altTplFile = 'rExtViewAlt'.substr( $viewAlternativeMode, 3 ).'.tpl';
         }
-        error_log( 'RExtViewController->alterViewBlockInfo: $newTplFile: '.$newTplFile );
-        $existFile = ModuleController::getRealFilePath( 'classes/view/templates/'.$newTplFile, $this->rExtName );
 
-        if( $existFile ) {
-          if( $templateName ) {
-            error_log( 'RExtViewController->alterViewBlockInfo: cambio el .tpl de '.$templateName );
-            $viewBlockInfo['template'][ $templateName ]->setTpl( $newTplFile, $this->rExtName );
-          }
-          else {
-            foreach( $viewBlockInfo['template'] as $templateName => $templateObj ) {
-              error_log( 'RExtViewController->alterViewBlockInfo: cambio el .tpl de '.$templateName );
-              $templateObj->setTpl( $newTplFile, $this->rExtName );
-            }
+        if( isset($viewAlternativeModeConf['module']) ) {
+          $altTplModule = ($viewAlternativeModeConf['module']) ? $viewAlternativeModeConf['module'] : 'cogumelo';
+        }
+        else {
+          $altTplModule = $this->rExtName;
+        }
+
+        // error_log( 'RExtViewController->alterViewBlockInfo: $altTplFile: '.$altTplFile.' in module '.$altTplModule );
+
+        if( $templateName ) {
+          // error_log( 'RExtViewController->alterViewBlockInfo: cambio el .tpl de '.$templateName );
+          $viewBlockInfo['template'][ $templateName ]->setTpl( $altTplFile, $altTplModule );
+        }
+        else {
+          foreach( $viewBlockInfo['template'] as $templateName => $templateObj ) {
+            // error_log( 'RExtViewController->alterViewBlockInfo: cambio el .tpl de '.$templateName );
+            $templateObj->setTpl( $altTplFile, $altTplModule );
           }
         }
       }
       elseif( strpos( $viewAlternativeMode, 'view' ) === 0 ) {
-        $altViewClass = 'RExtViewAlt'.substr( $viewAlternativeMode, 4 );
-        $altViewClassFile = $altViewClass.'.php';
-        error_log( 'RExtViewController->alterViewBlockInfo: ClassFile: '.$altViewClassFile );
-        $existFile = ModuleController::getRealFilePath( 'classes/view/'.$altViewClassFile, $this->rExtName );
-
-        if( $existFile ) {
-          rextView::load( 'view/'.$altViewClassFile );
-          $altViewCtrl = new $altViewClass( $this );
-          $viewBlockInfo = $altViewCtrl->alterViewBlockInfo( $viewBlockInfo, $templateName );
+        if( isset($viewAlternativeModeConf['view']) ) {
+          $altViewClass = $viewAlternativeModeConf['view'];
         }
+        else {
+          $altViewClass = 'RExtViewAlt'.substr( $viewAlternativeMode, 4 );
+        }
+        $altViewClassFile = $altViewClass.'.php';
+
+        if( isset($viewAlternativeModeConf['module']) ) {
+          $altViewClassModule = ($viewAlternativeModeConf['module']) ? $viewAlternativeModeConf['module'] : 'cogumelo';
+        }
+        else {
+          $altViewClassModule = $this->rExtName;
+        }
+
+        // error_log( 'RExtViewController->alterViewBlockInfo: ClassFile: '.$altViewClassFile.' in module '.$altViewClassModule );
+
+        // rextView::load( 'view/'.$altViewClassFile );
+        eval( $altViewClassModule.'::load( "view/".$altViewClassFile );' );
+        $altViewCtrl = new $altViewClass( $this );
+        $viewBlockInfo = $altViewCtrl->alterViewBlockInfo( $viewBlockInfo, $templateName );
       }
     }
 
