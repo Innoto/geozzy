@@ -156,15 +156,15 @@ class StoryAPIView extends View
     global $GEOZZY_STORIES;
 
     if( count( $GEOZZY_STORIES ) > 0 ) {
-      $explListInfo = array();
-      foreach( $GEOZZY_STORIES as $explId => $explInfo ) {
-        $explListInfo[ $explId ] = array(
-          'name' => $explInfo[ 'name' ]
+      $stListInfo = array();
+      foreach( $GEOZZY_STORIES as $stId => $stInfo ) {
+        $stListInfo[ $stId ] = array(
+          'name' => $stInfo[ 'name' ]
         );
       }
 
       header('Content-type: application/json');
-      echo json_encode( $explListInfo );
+      echo json_encode( $stListInfo );
     }
     else {
       header("HTTP/1.0 404 Not Found");
