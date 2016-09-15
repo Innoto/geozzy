@@ -141,6 +141,14 @@ $GEOZZY_API_DOC_URLS =  array_merge(
       'description' => 'Explorer List API'
     ),
     array(
+      'path'=> '/doc/story.json',
+      'description' => 'Stories API'
+    ),
+    array(
+      'path'=> '/doc/storyList.json',
+      'description' => 'Stories List API'
+    ),
+    array(
       'path'=> '/doc/comments.json',
       'description' => 'Comments API'
     ),
