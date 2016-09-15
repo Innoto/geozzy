@@ -101,20 +101,21 @@ class StoryAPIView extends View
   }
 
 
-/*
-  // explorer
-  public function explorer( $urlParams ) {
-    require_once APP_BASE_PATH."/conf/inc/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
-    global $GEOZZY_EXPLORERS;
 
+  // story
+  public function story( $urlParams ) {
+
+    require_once APP_BASE_PATH."/conf/inc/geozzyStories.php"; // Load $GEOZZY_STORIES
+    global $GEOZZY_STORIES;
+    /*
     $validation = array(
       'explorer'=> '#(.*)#',
       'request'=> '#(.*)#'
     );
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
-    if( isset($urlParamsList['request']) && isset($urlParamsList['explorer']) && isset( $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ] ) ) {
-      $explorerConf = $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ];
+    if( isset($urlParamsList['request']) && isset($urlParamsList['explorer']) && isset( $GEOZZY_STORIES[ $urlParamsList['explorer'] ] ) ) {
+      $explorerConf = $GEOZZY_STORIES[ $urlParamsList['explorer'] ];
 
       // Include controller
       eval( $explorerConf['module'].'::load("'.$explorerConf['controllerFile'].'");' );
@@ -145,20 +146,20 @@ class StoryAPIView extends View
     else {
       header("HTTP/1.0 404 Not Found");
     }
+    */
   }
 
-  // explorer list
-  public function explorerList() {
-    require_once APP_BASE_PATH."/conf/inc/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
-    global $GEOZZY_EXPLORERS;
+  // story list
+  public function storyList() {
 
-    if( count( $GEOZZY_EXPLORERS ) > 0 ) {
+    require_once APP_BASE_PATH."/conf/inc/geozzyStories.php"; // Load $GEOZZY_STORIES
+    global $GEOZZY_STORIES;
+
+    if( count( $GEOZZY_STORIES ) > 0 ) {
       $explListInfo = array();
-      foreach( $GEOZZY_EXPLORERS as $explId => $explInfo ) {
+      foreach( $GEOZZY_STORIES as $explId => $explInfo ) {
         $explListInfo[ $explId ] = array(
-          'name' => $explInfo[ 'name' ],
-          'mapBounds' => isset( $explInfo[ 'mapBounds' ] ) ? $explInfo[ 'mapBounds' ] : false,
-          'filters' => isset( $explInfo[ 'filters' ] ) ? $explInfo[ 'filters' ] : false
+          'name' => $explInfo[ 'name' ]
         );
       }
 
@@ -168,6 +169,7 @@ class StoryAPIView extends View
     else {
       header("HTTP/1.0 404 Not Found");
     }
+
   }
-  */
+
 }
