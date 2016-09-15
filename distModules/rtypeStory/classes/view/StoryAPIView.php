@@ -57,7 +57,7 @@ class StoryAPIView extends View
               "summary": "Fetches story steps"
             }
           ],
-          "path": "/stories/story/{story}",
+          "path": "/story/story/{story}",
           "description": ""
         }
       ]
@@ -107,16 +107,15 @@ class StoryAPIView extends View
 
     require_once APP_BASE_PATH."/conf/inc/geozzyStories.php"; // Load $GEOZZY_STORIES
     global $GEOZZY_STORIES;
-    /*
+
     $validation = array(
-      'explorer'=> '#(.*)#',
-      'request'=> '#(.*)#'
+      'story'=> '#(.*)#'
     );
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
-    if( isset($urlParamsList['request']) && isset($urlParamsList['explorer']) && isset( $GEOZZY_STORIES[ $urlParamsList['explorer'] ] ) ) {
-      $explorerConf = $GEOZZY_STORIES[ $urlParamsList['explorer'] ];
-
+    if( isset($urlParamsList['story']) && isset( $GEOZZY_STORIES[ $urlParamsList['story'] ] ) ) {
+      $storyConf = $GEOZZY_STORIES[ $urlParamsList['story'] ];
+/*
       // Include controller
       eval( $explorerConf['module'].'::load("'.$explorerConf['controllerFile'].'");' );
 
@@ -142,11 +141,13 @@ class StoryAPIView extends View
           header("HTTP/1.0 404 Not Found");
         }
       }
+*/
+
     }
     else {
       header("HTTP/1.0 404 Not Found");
     }
-    */
+
   }
 
   // story list
