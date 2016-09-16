@@ -121,7 +121,7 @@ class StoryAPIView extends View
       $explorer = new $storyConf['controllerName']();
 
       header('Content-type: application/json');
-      $explorer->serveStory();
+      $explorer->serveStory( $urlParamsList['story'] );
 
     }
     else {
