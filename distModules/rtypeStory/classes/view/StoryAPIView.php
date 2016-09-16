@@ -115,33 +115,13 @@ class StoryAPIView extends View
 
     if( isset($urlParamsList['story']) && isset( $GEOZZY_STORIES[ $urlParamsList['story'] ] ) ) {
       $storyConf = $GEOZZY_STORIES[ $urlParamsList['story'] ];
-/*
-      // Include controller
-      eval( $explorerConf['module'].'::load("'.$explorerConf['controllerFile'].'");' );
-
+      // include
+      eval( $storyConf['module'].'::load("'.$storyConf['controllerFile'].'");' );
       // constructor;
-      $explorer = new $explorerConf['controllerName']();
+      $explorer = new $storyConf['controllerName']();
 
-      if( $urlParamsList['request'] == 'minimal' ) {
-        if( isset($urlParamsList['updatedfrom']) ) {
-          header('Content-type: application/json');
-          $explorer->serveMinimal( $urlParamsList['updatedfrom'] );
-        }
-        else {
-          header('Content-type: application/json');
-          $explorer->serveMinimal();
-        }
-      }
-      else {
-        if( $urlParamsList['request'] == 'partial' ) {
-          header('Content-type: application/json');
-          $explorer->servePartial();
-        }
-        else {
-          header("HTTP/1.0 404 Not Found");
-        }
-      }
-*/
+      header('Content-type: application/json');
+      $explorer->serveMinimal();
 
     }
     else {
