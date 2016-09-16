@@ -149,7 +149,8 @@ $C_RTYPE_MODULES = array(
   'rtypePoi',
   'rtypeEvent',
   'rtypeStory',
-  'rtypeStoryStep'//,
+  'rtypeStoryStep',
+  'appStories'
   //'rtypeTravelPlanner'
 );
 
