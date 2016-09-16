@@ -11,16 +11,22 @@ class rtypeFavourites extends Module {
 
   public $dependences = array(
     array(
-     'id' =>'underscore',
-     'params' => array('underscore#1.8.3'),
-     'installer' => 'bower',
-     'includes' => array('underscore-min.js')
+      'id' =>'underscore',
+      'params' => array('underscore#1.8.3'),
+      'installer' => 'bower',
+      'includes' => array('underscore-min.js')
     ),
     array(
-     'id' =>'backbonejs',
-     'params' => array('backbone#1.1.2'),
-     'installer' => 'bower',
-     'includes' => array('backbone.js')
+      'id' =>'backbonejs',
+      'params' => array('backbone#1.1.2'),
+      'installer' => 'bower',
+      'includes' => array('backbone.js')
+    ),
+    array(
+      'id' =>'select2',
+      'params' => array('select2#4'),
+      'installer' => 'bower',
+      'includes' => array('dist/js/select2.full.js', 'dist/css/select2.css')
     )
   );
 

@@ -28,7 +28,7 @@ function createFavouritesSelector() {
 
 function showFavouritesSelector( rTypeIdsInfo ) {
   var options = {
-    '0':'All'
+    '0':'Todos'
   };
 
   var rTypeNames = {};
@@ -41,7 +41,7 @@ function showFavouritesSelector( rTypeIdsInfo ) {
     options[ rtypeid ] = rTypeNames[ rtypeid ];
   });
 
-  $favsSelector = $( '<select>' )
+  $favsSelector = $( '<select>', { name: 'favouritesSelector' } )
     .addClass( 'favouritesSelector' )
     .on( 'change', filterFavouritesView );
 
@@ -53,6 +53,7 @@ function showFavouritesSelector( rTypeIdsInfo ) {
   });
 
   $('.favsHeader').append( $favsSelector );
+  $favsSelector.select2();
 }
 
 function filterFavouritesView() {
@@ -66,9 +67,9 @@ function filterFavouritesView() {
 function addTravelPlannerLink() {
   $travelLink = $( '<a>' )
     .addClass( 'rExtTravelPlannerLink' )
-    .text( __('Travel Planner') );
-
-  $('.favsHeader, .favsFooter').append( $travelLink );
+    .text( __( 'Planificar visita' ) );
+  $travelWrap = $( '<div>' ).addClass( 'rExtTravelPlannerWrapLink' ).append( $travelLink );
+  $( '.favsHeader, .favsFooter' ).append( $travelWrap );
 
   if( geozzy.travelPlannerLoader ) {
     geozzy.travelPlannerLoader.setBinds();
