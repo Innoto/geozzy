@@ -1,4 +1,4 @@
-.select2Theme( @width, @height, @bckHeader, @colorHeader){
+.select2Theme( @width, @height, @bckHeader, @colorHeader ) {
   .select2{
     min-width: @width;
     .select2-selection{
@@ -13,8 +13,8 @@
       vertical-align: middle;
       outline: none;
 
-      .select2-selection__rendered{
-        color: #fff;
+      .select2-selection__rendered {
+        color: #fff; // color: @colorHeader; ?
         font-weight: bold;
         text-transform: uppercase;
         height: @height;
@@ -23,7 +23,7 @@
         padding: 0 25px 0 15px;
 
         img,
-        i{
+        i {
           margin-right: 5px;
         }
       }

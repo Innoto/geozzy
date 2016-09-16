@@ -155,12 +155,12 @@
                   <div class="trama">
                     <div class="destResourceMoreInfo">
                       <p>{$rd.data["shortDescription_$l"]}</p>
-                      <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                      <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/{$rd.urlAlias}">
+                  <a href="{$rd.urlAlias}">
                     <h3>{$rd.data["title_$l"]}</h3>
                   </a>
                 </div>
@@ -180,12 +180,12 @@
                   <div class="trama" >
                     <div class="destResourceMoreInfo">
                       <p>{$rd.data["shortDescription_$l"]}</p>
-                      <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                      <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/{$rd.urlAlias}">
+                  <a href="{$rd.urlAlias}">
                     <h3>{$rd.data["title_$l"]}</h3>
                   </a>
                 </div>
@@ -205,12 +205,12 @@
                   <div class="trama">
                     <div class="destResourceMoreInfo">
                       <p>{$rd.data["shortDescription_$l"]}</p>
-                      <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                      <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/{$rd.urlAlias}">
+                  <a href="{$rd.urlAlias}">
                     <h3>{$rd.data["title_$l"]}</h3>
                   </a>
                 </div>
@@ -231,12 +231,12 @@
                   <div class="trama">
                     <div class="destResourceMoreInfo">
                       <p>{$rd.data["shortDescription_$l"]}</p>
-                      <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                      <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/{$rd.urlAlias}">
+                  <a href="{$rd.urlAlias}">
                     <h3>{$rd.data["title_$l"]}</h3>
                   </a>
                 </div>
@@ -256,12 +256,12 @@
                   <div class="trama">
                     <div class="destResourceMoreInfo">
                       <p>{$rd.data["shortDescription_$l"]}</p>
-                      <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                      <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                     </div>
                   </div>
                 </div>
                 <div class="itemTitle">
-                  <a href="/{$rd.urlAlias}">
+                  <a href="{$rd.urlAlias}">
                     <h3>{$rd.data["title_$l"]}</h3>
                   </a>
                 </div>
@@ -281,12 +281,12 @@
                 <div class="trama">
                   <div class="destResourceMoreInfo">
                     <p>{$rd.data["shortDescription_$l"]}</p>
-                    <a href="/{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
+                    <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
                   </div>
                 </div>
               </div>
               <div class="itemTitle">
-                <a href="/{$rd.urlAlias}">
+                <a href="{$rd.urlAlias}">
                   <h3>{$rd.data["title_$l"]}</h3>
                 </a>
               </div>
