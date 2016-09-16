@@ -24,6 +24,7 @@ geozzy.storystepsComponents.StorystepslistTemplate = ''+
     '</div>'+
   '</div>'+
 '</div>'+
+
 '<div class="contentSection clearfix">'+
   '<div class="admin-cols-8-4">'+
     '<div class="row">'+
@@ -35,15 +36,28 @@ geozzy.storystepsComponents.StorystepslistTemplate = ''+
           '<div class="panel-body">'+
             '<div id="storyStepsList" class="gzznestable dd">'+
               '<ol class="story dd-list">'+
-            
+
               '</ol>'+
             '</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="col-lg-4">'+
+        '<div class="panel panel-default">'+
+          '<div class="panel-heading">'+__('Pasos')+'</div>'+
+          '<div class="panel-body">'+
+            '<div class="text-content">'+
+              '<p>'+__('Puedes dar orden a los pasos arrastrando sus correspondientes barras a la posición que les corresponda.')+'</p>'+
+              '<p>'+__('Aquí podrás editar los pasos básicos de la historia')+'</p>'+
+            '</div>'+
+            '<a href="#resource/edit/id/<%- id %>" class="btn btn-primary pull-right">'+__('Editar historia')+'</a>'+
           '</div>'+
         '</div>'+
       '</div>'+
     '</div>'+
   '</div>'+
 '</div>'+
+
 '<div class="footerSection clearfix">'+
   '<div class="headerActionsContainer">'+
     '<button type="button" class="addStoryStep btn btn-default">Añadir paso</button>'+

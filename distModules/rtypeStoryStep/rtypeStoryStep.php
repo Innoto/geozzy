@@ -7,7 +7,7 @@ class rtypeStoryStep extends Module {
 
   public $name = 'rtypeStoryStep';
   public $version = '1.0';
-  public $rext = array( 'rextContact', 'rextSocialNetwork', 'rextEvent', 'rextComment', 'rextAudioguide', 'rextStoryStep' );
+  public $rext = array( 'rextSocialNetwork', 'rextEvent', 'rextComment', 'rextAudioguide', 'rextStoryStep' );
 
   public $dependences = array();
 

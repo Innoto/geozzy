@@ -85,7 +85,7 @@ class RTypeStoryStepController extends RTypeController implements RTypeInterface
      $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
      $templates['location']->assign( 'title', __( 'Location' ) );
      $templates['location']->assign( 'res', $formBlockInfo );
-     $templates['location']->assign( 'directions', $form->multilangFieldNames( 'rExtContact_directions' ) );
+     //$templates['location']->assign( 'directions', $form->multilangFieldNames( 'rExtContact_directions' ) );
 
      // TEMPLATE panel comment
      if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
@@ -94,12 +94,6 @@ class RTypeStoryStepController extends RTypeController implements RTypeInterface
        $templates['comment']->assign( 'title', __( 'Comments' ) );
        $templates['comment']->setFragment( 'blockContent', $formBlockInfo['ext']['rextComment']['template']['adminExt'] );
      }
-     // TEMPLATE panel localización
-     $templates['contact'] = new Template();
-     $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-     $templates['contact']->assign( 'title', __( 'Contact' ) );
-     $templates['contact']->setFragment( 'blockContent', $formBlockInfo['ext']['rextContact']['template']['basic'] );
-
 
      // TEMPLATE panel social network
      $templates['social'] = new Template();
@@ -186,7 +180,6 @@ class RTypeStoryStepController extends RTypeController implements RTypeInterface
      $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
      $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
      $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
-     $templates['adminFull']->addToFragment( 'col8', $templates['contact'] );
      $templates['adminFull']->addToFragment( 'col8', $templates['social'] );
      $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
      // COL8
