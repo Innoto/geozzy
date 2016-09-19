@@ -136,6 +136,8 @@ class RTypeStoryStepView extends View
     $resourceCollectionsList = $resourceCollections->listItems(
       array('filters' => array('resource' => $story['1'])) );
 
+
+    // BUSCAMOS A COLECCIÓN
     if(isset($resourceCollectionsList)){
       $collectionId = false;
       while($resCol = $resourceCollectionsList->fetch()){
@@ -147,6 +149,19 @@ class RTypeStoryStepView extends View
         }
       }
     }
+
+
+    // SE A COLECCIÓN NON EXISTE CRÉASE (pblanco 19/9/2016)
+    if( $collectionId == false ) {
+      $newCollection = new CollectionModel(['collectionType'=>'steps']);
+      $newCollection->save();
+
+      $newResourceCollections = new ResourceCollectionsModel( [ 'collection'=>$newCollection->getter('id'), 'resource'=> $story[1] ] );
+      $newResourceCollections->save();
+
+      $collectionId = $newCollection->getter('id');
+    }
+
 
     $tabla->setActionMethod(__('Assign'), 'assign', 'createCollectionRelation('.$collectionId.',$rowId)');
 

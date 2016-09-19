@@ -183,6 +183,29 @@ $initResources = array(
       'es' => '/descubrelos',
       'gl' => '/descubreos'
     )
+  ),
+  array(
+    'version' =>'Cogumelo#1.0',
+    'executeOnGenerateModelToo' => true,
+    'idName' => 'segredosExplorer',
+    'rType' => 'rtypeStory',
+    'title' => array(
+      'en' => 'Castro',
+      'es' => 'Castro',
+      'gl' => 'Castro'
+    ),
+    'shortDescription' => array(
+      'en' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'es' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
+      'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
+    ),
+    'img' => false,
+    'viewType' => 'viewAppTodosSegredosExplorer',
+    'urlAlias' => array(
+      'en' => '/castro',
+      'es' => '/castro',
+      'gl' => '/castro'
+    )
   )
 );
   /*
