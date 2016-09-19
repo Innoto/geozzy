@@ -977,6 +977,10 @@ class geozzyAPIView extends View {
         $relatedModels = $valueobject->getRextModels();
 
         foreach( $relatedModels as $relModelIdName => $relModel ) {
+          if( $relModelIdName === 'FavouritesViewModel' ) {
+            next;
+          }
+
           $rexData = array( 'MODELNAME' => $relModelIdName );
 
           if( method_exists( $relModel, 'getAllData' ) ) {
