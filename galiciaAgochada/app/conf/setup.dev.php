@@ -24,6 +24,11 @@
 */
 
 
+
+cogumeloSetSetupValue( 'logs:error', true ); // Display errors on screen. If you use devel module, you might disable it
+
+
+
 //
 // Framework Path
 //
