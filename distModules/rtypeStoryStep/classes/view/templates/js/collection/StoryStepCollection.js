@@ -41,6 +41,7 @@ geozzy.storystepsComponents.StorystepCollection = Backbone.Collection.extend({
     } );
 
     _(mA).each( function(m2) {
+      console.log(m2.get('weight'));
       if( m2.get('deleted') == 1 ){
         m2.destroy( { url: that.baseUrl + '/resource/'+story + '/step/' + m2.get('id') } );
       }
