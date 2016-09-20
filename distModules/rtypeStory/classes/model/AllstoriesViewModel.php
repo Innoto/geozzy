@@ -19,34 +19,34 @@ class AllstoriesViewModel extends Model
         CREATE VIEW geozzy_allstories_index AS
 					SELECT
 						storyStep.id,
-
+						
 						storyStep.rTypeId,
 						storyStep.user,
 						storyStep.published,
-
-            {multilang: storyStep.title_$lang, }
-            {multilang: storyStep.shortDescription_$lang, }
-            {multilang: storyStep.mediumDescription_$lang, }
-            {multilang: storyStep.content_$lang, }
-
+						
+						{multilang: storyStep.title_$lang, }
+						{multilang: storyStep.shortDescription_$lang, }
+						{multilang: storyStep.mediumDescription_$lang, }
+						{multilang: storyStep.content_$lang, }
+						
 						storyStep.image,
 						storyStep.loc,
 						storyStep.defaultZoom,
 						storyStep.externalUrl,
-
-
-            {multilang: storyStep.headKeywords_$lang, }
-            {multilang: storyStep.headDescription_$lang, }
-            {multilang: storyStep.headTitle_$lang, }
-
+						
+						
+						{multilang: storyStep.headKeywords_$lang, }
+						{multilang: storyStep.headDescription_$lang, }
+						{multilang: storyStep.headTitle_$lang, }
+						
 						storyStep.timeCreation,
 						storyStep.timeLastUpdate,
 						storyStep.timeLastPublish,
 						storyStep.countVisits,
-
+						
 						geozzy_resource_rext_storystep.storystepResource as relatedResource,
 						geozzy_resource_rext_storystep.storystepLegend as legend,
-
+						
 						geozzy_collection_resources.weight as weight,
 						story.idName as storyName
 					FROM geozzy_resource as storyStep
