@@ -93,8 +93,9 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
   saveStoryStep: function() {
     var that = this;
     that.storysteps.save(that.story);
-    that.updateList();
+    //that.updateList();
     that.saveChangesVisible(false);
+
   },
 
   cancelStoryStep: function() {

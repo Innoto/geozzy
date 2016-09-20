@@ -59,17 +59,21 @@ class StoryStepAdminAPIView extends View {
         $resourceModel = new ResourceModel();
 
         if( is_numeric( $resourceId ) ) {  // UPDATE
-          $resource = $resourceModel->listItems(  array( 'filters' => array( 'id'=>$resourceId ) ))->fetch();
+          $resource = $resourceModel->listItems(  [ 'filters' => array( 'id'=>$putData['id'] ), 'affectsDependences'=>['CollectionResourcesModel'] ])->fetch();
         }
         else { // CREATE
           $resource = $resourceModel;
         }
 
         if( isset( $putData['weight'] ) ) {
-          $resource->setter('weight', $putData['weight'] );
+
+          $collectionResource = $resource->getterDependence('id', 'CollectionResourcesModel')[0];
+        
+          $collectionResource->setter('weight', $putData['weight'] );
+          $collectionResource->save( );
         }
 
-        $resource->save();
+        //$resource->save();
 
         $resourceData = $resource->getAllData();
         echo json_encode( $resourceData['data'] );
@@ -109,6 +113,7 @@ class StoryStepAdminAPIView extends View {
               $resource = $col->getterDependence('resource', 'ResourceModel');
               $allData['id'] = $resource[0]->getter('id');
               $allData['title'] = $resource[0]->getter('title');
+              $allData['weight'] = $col->getter('weight');
               echo $c.json_encode($allData);
               $c=',';
             }
