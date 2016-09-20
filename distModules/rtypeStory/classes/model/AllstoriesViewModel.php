@@ -42,15 +42,18 @@ class AllstoriesViewModel extends Model
 						storyStep.timeCreation,
 						storyStep.timeLastUpdate,
 						storyStep.timeLastPublish,
-						storyStep.countVisits,
 						
 						geozzy_resource_rext_storystep.storystepResource as relatedResource,
 						geozzy_resource_rext_storystep.storystepLegend as legend,
 						
 						geozzy_collection_resources.weight as weight,
 						story.idName as storyName
+	          group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
 					FROM geozzy_resource as storyStep
-
+  					
+          LEFT JOIN geozzy_resource_taxonomyterm
+          ON storyStep.id = geozzy_resource_taxonomyterm.resource
+        
 					RIGHT JOIN geozzy_resource_rext_storystep
 					ON geozzy_resource_rext_storystep.resource = storyStep.id
 
@@ -124,8 +127,38 @@ class AllstoriesViewModel extends Model
       'multilang' => true
     ),
     
+    /*
+
+						
+
+						
+						geozzy_collection_resources.weight as weight,
+						story.idName as storyName
+	*/
 
 
+    'timeCreation' => array(
+      'type'=>'DATETIME'
+    ),
+    'timeLastUpdate' => array(
+      'type'=>'DATETIME'
+    ),
+    'timeLastPublish' => array(
+      'type'=>'DATETIME'
+    ),
+
+    'relatedResource' => array(
+      'type'=>'INT'
+    ),
+    'legend' => array(
+      'type'=>'INT'
+    ),
+    'weight' => array(
+      'type'=>'INT'
+    ),
+    'storyName' => array(
+      'type'=>'VARCHAR'
+    ),
     'terms' => array(
       'type'=>'VARCHAR'
     )
