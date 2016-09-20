@@ -89,6 +89,31 @@ class AllstoriesViewModel extends Model
       'type' => 'VARCHAR',
       'multilang' => true
     ),
+    'mediumDescription' => array(
+      'type' => 'VARCHAR',
+      'multilang' => true
+    ),
+    'content' => array(
+      'type' => 'VARCHAR',
+      'multilang' => true
+    ),
+
+
+
+    'headKeywords' => array(
+      'type' => 'VARCHAR',
+      'multilang' => true
+    ),
+    'headDescription' => array(
+      'type' => 'VARCHAR',
+      'multilang' => true
+    ),
+    'headTitle' => array(
+      'type' => 'VARCHAR',
+      'multilang' => true
+    ),
+    
+/*
     'image' => array(
       'type' => 'INT'
     ),
@@ -100,7 +125,7 @@ class AllstoriesViewModel extends Model
     ),
     'timeLastUpdate' => array(
       'type'=>'GEOMETRY'
-    )
+    )*/
   );
 
   static $extraFilters = array(
