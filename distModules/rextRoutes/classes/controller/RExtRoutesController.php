@@ -64,11 +64,6 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     $rExtFieldNames = array();
 
-/*
-    'params' => array( 'label' => __( 'Multimedia file' ), 'type' => 'file', 'id' => 'rExtFileField',
-    'placeholder' => __( 'File' ), 'destDir' => CollectionModel::$cols['image']['uploadDir'] ),
-    'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true' )
-*/
     $options = array('--',1,2,3,4,5);
 
     $fieldsInfo = array(
