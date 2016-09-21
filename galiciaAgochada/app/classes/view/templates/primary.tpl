@@ -9,6 +9,9 @@
   <title>{block name="headTitle"}Galicia Agochada | {/block}</title>
   <meta name="description" content="{block name="headDescription"}Galicia Agochada{/block}">
   <meta name="keywords" content="{block name="headKeywords"}CMS, ICT, storytelling, community mapping, tools, data, interactive map, map creation, Open Source, app, mobile, web, user experience, tourism, dissemination, culture, heritage, tourist destination, interpretation, marketing{/block}">
+
+  <link rel="canonical" href="{$cogumelo.publicConf.site_host}{$res.data['urlAlias']}">
+
   {block name="socialMeta"}{/block}
   {block name="headClientIncludes"}
     {$main_client_includes}
