@@ -42,7 +42,6 @@ class SitemapView extends View {
     $urlAliasResList = $urlAliasResModel->listItems( array( 'filters' => $filters ) );
     if( $urlAliasResList ) {
       while( $urlAliasRes = $urlAliasResList->fetch() ) {
-        // error_log( 'URL: '.$info['urlFrom'] );
         $info = $urlAliasRes->getAllData( 'onlydata' );
         $modDate = isset( $info['timeLastUpdate'] ) ? $info['timeLastUpdate'] : $info['timeCreation'];
         $objDate = new DateTime($modDate);
