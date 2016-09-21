@@ -5,7 +5,7 @@ Cogumelo::load('coreModel/Model.php');
 
 
 
-class AllstoriesViewModel extends Model
+class AllstoryStepsViewModel extends Model
 {
   var $notCreateDBTable = true;
 
@@ -19,41 +19,41 @@ class AllstoriesViewModel extends Model
         CREATE VIEW geozzy_allstories_index AS
 					SELECT
 						storyStep.id,
-						
+
 						storyStep.rTypeId,
 						storyStep.user,
 						storyStep.published,
-						
+
 						{multilang: storyStep.title_$lang, }
 						{multilang: storyStep.shortDescription_$lang, }
 						{multilang: storyStep.mediumDescription_$lang, }
 						{multilang: storyStep.content_$lang, }
-						
+
 						storyStep.image,
 						storyStep.loc,
 						storyStep.defaultZoom,
 						storyStep.externalUrl,
-						
-						
+
+
 						{multilang: storyStep.headKeywords_$lang, }
 						{multilang: storyStep.headDescription_$lang, }
 						{multilang: storyStep.headTitle_$lang, }
-						
+
 						storyStep.timeCreation,
 						storyStep.timeLastUpdate,
 						storyStep.timeLastPublish,
-						
+
 						geozzy_resource_rext_storystep.storystepResource as relatedResource,
 						geozzy_resource_rext_storystep.storystepLegend as legend,
-						
+
 						geozzy_collection_resources.weight as weight,
 						story.idName as storyName
 	          group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
 					FROM geozzy_resource as storyStep
-  					
+
           LEFT JOIN geozzy_resource_taxonomyterm
           ON storyStep.id = geozzy_resource_taxonomyterm.resource
-        
+
 					RIGHT JOIN geozzy_resource_rext_storystep
 					ON geozzy_resource_rext_storystep.resource = storyStep.id
 
@@ -126,16 +126,6 @@ class AllstoriesViewModel extends Model
       'type' => 'VARCHAR',
       'multilang' => true
     ),
-    
-    /*
-
-						
-
-						
-						geozzy_collection_resources.weight as weight,
-						story.idName as storyName
-	*/
-
 
     'timeCreation' => array(
       'type'=>'DATETIME'
@@ -165,7 +155,7 @@ class AllstoriesViewModel extends Model
   );
 
   static $extraFilters = array(
-    'ids' => ' id IN (?)',
+    'storyName' => ' storyName = ? ',
     'updatedfrom' => ' timeLastUpdate > FROM_UNIXTIME(?) '
 
   );
