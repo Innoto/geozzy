@@ -12,7 +12,7 @@ class AllstoryStepsViewModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'rtypeStory#1.0',
+      'version' => 'rtypeStory#1.1',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_allstories_index;
