@@ -28,9 +28,10 @@ class SitemapView extends View {
 
     $urlsInfo = array();
 
-    $langDefault = Cogumelo::getSetupValue( 'lang:default' );
-    $langsConf = Cogumelo::getSetupValue( 'lang:available' );
-    $langAvailable = is_array( $langsConf ) ? array_keys( $langsConf ) : array( $langDefault );
+    $multiLang = ( count( Cogumelo::getSetupValue( 'lang:available' ) ) > 1 );
+    // $langsConf = Cogumelo::getSetupValue( 'lang:available' );
+    // $langDefault = Cogumelo::getSetupValue( 'lang:default' );
+    // $langAvailable = is_array( $langsConf ) ? array_keys( $langsConf ) : array( $langDefault );
 
     $defConf = Cogumelo::GetSetupValue( 'mod:geozzy:sitemap:default' );
     $ignoreRTypes = Cogumelo::GetSetupValue( 'mod:geozzy:sitemap:ignoreRTypes' );
@@ -41,14 +42,18 @@ class SitemapView extends View {
     $urlAliasResList = $urlAliasResModel->listItems( array( 'filters' => $filters ) );
     if( $urlAliasResList ) {
       while( $urlAliasRes = $urlAliasResList->fetch() ) {
+        // error_log( 'URL: '.$info['urlFrom'] );
         $info = $urlAliasRes->getAllData( 'onlydata' );
         $modDate = isset( $info['timeLastUpdate'] ) ? $info['timeLastUpdate'] : $info['timeCreation'];
         $objDate = new DateTime($modDate);
         $modDate = $objDate->format( DateTime::ATOM );
         $params = array(
-          'loc' => htmlspecialchars('/'.$info['lang'].$info['urlFrom']),
+          'loc' => htmlspecialchars( $info['urlFrom'] ),
           'mod' => $modDate
         );
+        if( $multiLang ) {
+          $params['loc'] = '/'.$info['lang'].$params['loc'];
+        }
         $tConf = isset( $conf[ $info['rTypeIdName'] ] ) ? $conf[ $info['rTypeIdName'] ] : false;
         if( isset( $defConf['change'] ) || isset( $tConf['change'] )  ) {
           $params['changefreq'] = isset( $tConf['change'] ) ? $tConf['change'] : $defConf['change'];
@@ -59,15 +64,15 @@ class SitemapView extends View {
 
         $urlsInfo[] = $params;
         /*
-        <changefreq>always,hourly,daily,weekly,monthly,yearly,never</changefreq>
-        <priority>0.0 to 1.0</priority> (default: 0.5)
-        URLs con multiidioma:
-        <url>
-          <loc>http://www.example.com/</loc>
-          <xhtml:link rel="alternate" hreflang="en" href="http://www.example.com/en/" />
-          <xhtml:link rel="alternate" hreflang="de-ch" href="http://www.example.com/ch/" />
-          <xhtml:link rel="alternate" hreflang="de" href="http://www.example.com/de/" />
-        </url>
+          <changefreq>always,hourly,daily,weekly,monthly,yearly,never</changefreq>
+          <priority>0.0 to 1.0</priority> (default: 0.5)
+          URLs con multiidioma:
+          <url>
+            <loc>http://www.example.com/</loc>
+            <xhtml:link rel="alternate" hreflang="en" href="http://www.example.com/en/" />
+            <xhtml:link rel="alternate" hreflang="de-ch" href="http://www.example.com/ch/" />
+            <xhtml:link rel="alternate" hreflang="de" href="http://www.example.com/de/" />
+          </url>
         */
       }
     }
