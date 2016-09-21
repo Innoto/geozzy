@@ -25,6 +25,35 @@ $(document).ready( function() {
 });
 
 function bindResourceForm(){
+
+  $('.resourceAddCollection').on('click', function(){
+    var rtypeParent = $('#rTypeIdName').val();
+
+    var data = {};
+    data.title = $(this).attr('data-col-title');
+    data.colSelect = $(this).attr('data-col-select');
+    data.colType = $(this).attr('data-col-type');
+
+    //PARAMS( URL - ID - DATA )
+    app.mainView.loadAjaxContentModal('/admin/collection/create/'+rtypeParent, data.colSelect+'Modal', data );
+  });
+
+/*
+  $('.resourceCollection').multiList({
+    itemActions : [
+      { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editCollection }
+    ],
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Select options')
+  });
+
+
+*/
+
+
+
+
+/*
   $('#resourceCollections').multiList({
     itemActions : [
       { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editCollection }
@@ -36,7 +65,7 @@ function bindResourceForm(){
   $('#resourceAddCollection').on('click', function(){
     var rtypeParent = $('#rTypeIdName').val();
     //PARAMS( URL - ID - TITLE )
-    app.mainView.loadAjaxContentModal('/admin/collection/create/'+rtypeParent, 'createCollectionsModal', 'Create Collection');
+    app.mainView.loadAjaxContentModal('/admin/collection/create/'+rtypeParent, 'createCollectionsModal', __('Create Collection'));
   });
 
   $('#resourceMultimediaGalleries').multiList({
@@ -51,6 +80,8 @@ function bindResourceForm(){
     //PARAMS( URL - ID - TITLE )
     app.mainView.loadAjaxContentModal('/admin/multimedia/create', 'createMultimediaGalleryModal', __('Create Multimedia Gallery'));
   });
+*/
+
 
   $('select.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
     orientation: 'horizontal',
@@ -93,6 +124,25 @@ function bindResourceForm(){
   $('select.cgmMForm-field-weight').select2();
   $('select.cgmMForm-field-rExtView_viewAlternativeMode').select2();
   $('select.cgmMForm-field-rExtAppFesta_rextAppFestaType').select2();
+}
+
+
+function editCollection(e){
+  var rtypeParent = $('#rTypeIdName').val();
+  app.mainView.loadAjaxContentModal('/admin/collection/edit/'+e.value+'/'+rtypeParent, 'editCollectionsModal', 'Edit Collection');
+}
+function successCollectionForm( data ){
+
+  if( $('#'+data.collectionSelect+' option[value='+data.id+']').length > 0 ){
+    $('#'+data.collectionSelect+' option[value='+data.id+']').text(data.title);
+    $('#'+data.collectionSelect+'Modal').modal('hide');
+  }
+  else{
+    $('#'+data.collectionSelect).append('<option selected="selected" value="'+data.id+'">'+data.title+'</option>');
+    $('#'+data.collectionSelect+'Modal').modal('hide');
+  }
+  $('#'+data.collectionSelect).trigger('change');
+
 }
 
 function initializeMap( form ){
@@ -195,39 +245,9 @@ function initializeMap( form ){
   }
 }
 
-function successCollectionForm( data ){
-
-  if(data.collectionType === 'multimedia'){
-    //Multimedia galery
-    if( $('#resourceMultimediaGalleries option[value='+data.id+']').length > 0 ){
-      $('#resourceMultimediaGalleries option[value='+data.id+']').text(data.title);
-      $('#editMultimediaGalleryModal').modal('hide');
-    }else{
-      $('#resourceMultimediaGalleries').append('<option selected="selected" value="'+data.id+'">'+data.title+'</option>');
-      $('#createMultimediaGalleryModal').modal('hide');
-    }
-    $('#resourceMultimediaGalleries').trigger('change');
-    //End multimedia
-  }else{
-    //Collection
-    if( $('#resourceCollections option[value='+data.id+']').length > 0 ){
-      $('#resourceCollections option[value='+data.id+']').text(data.title);
-      $('#editCollectionsModal').modal('hide');
-    }else{
-      $('#resourceCollections').append('<option selected="selected" value="'+data.id+'">'+data.title+'</option>');
-      $('#createCollectionsModal').modal('hide');
-    }
-    $('#resourceCollections').trigger('change');
-    //End collection
-  }
-
-}
-
-function editCollection(e){
-  var rtypeParent = $('#rTypeIdName').val();
-  app.mainView.loadAjaxContentModal('/admin/collection/edit/'+e.value+'/'+rtypeParent, 'editCollectionsModal', 'Edit Collection');
-}
+/*
 
 function editMultimediaGallery(e){
   app.mainView.loadAjaxContentModal('/admin/multimedia/edit/'+e.value, 'editMultimediaGalleryModal', 'Edit Multimedia Gallery');
 }
+*/
