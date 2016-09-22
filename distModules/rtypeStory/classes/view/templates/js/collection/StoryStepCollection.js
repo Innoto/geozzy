@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
 if(!geozzy.storyComponents) geozzy.storyComponents={};
 
-geozzy.storyComponents.StoryCollection = Backbone.Collection.extend({
+geozzy.storyComponents.StoryStepCollection = Backbone.Collection.extend({
   url: '/api/admin/adminStories',
-  model: ResourceModel
+  model: geozzy.storyComponents.StoryStepModel
 });

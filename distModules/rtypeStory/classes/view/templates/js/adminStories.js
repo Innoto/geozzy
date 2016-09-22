@@ -8,7 +8,7 @@ geozzy.story = function() {
   // First Execution
 
   that.listStories = function( ){
-    that.listStoryView = new geozzy.storyComponents.ListStoryView();
+    that.listStoryView = new geozzy.adminStoryComponents.ListStoryView();
   }
 
 }

@@ -13,10 +13,11 @@ class rtypeStory extends Module {
   public $includesCommon = array(
     'controller/RTypeStoryController.php',
     'view/RTypeStoryView.php',
-    'js/Stories.js',
-    'js/collection/StoryCollection.js',
-    'js/view/ListStoryView.js',
-    'js/view/StoryTemplate.js'
+    'js/adminStories.js',
+    'js/model/StoryStepModel.js',
+    'js/collection/StoryStepCollection.js',
+    'js/view/adminListStoryView.js',
+    'js/view/adminStoryTemplate.js'
   );
 
   public $nameLocations = array(
@@ -43,4 +44,6 @@ class rtypeStory extends Module {
     $rtUtilsControl = new RTUtilsController(__CLASS__);
     $rtUtilsControl->rTypeModuleRc();
   }
+
+
 }

@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.storyComponents) geozzy.storyComponents={};
+if(!geozzy.adminStoryComponents) geozzy.adminStoryComponents={};
 
-geozzy.storyComponents.ListStoryView = Backbone.View.extend({
+geozzy.adminStoryComponents.ListStoryView = Backbone.View.extend({
 
   el : $("#side-menu .storiesList"),
   tagName : '',
@@ -12,13 +12,13 @@ geozzy.storyComponents.ListStoryView = Backbone.View.extend({
 
   initialize: function(  ) {
     var that = this;
-    that.stories = new geozzy.storyComponents.StoryCollection();
+    that.stories = new geozzy.storyComponents.StoryStepCollection();
   },
 
   render: function() {
     var that = this;
     that.$el.html('');
-    that.listStoryItemTemplate =  _.template( geozzy.storyComponents.StoryTemplate );
+    that.listStoryItemTemplate =  _.template( geozzy.adminStoryComponents.StoryTemplate );
     _.each( that.stories.toJSON() , function(item){
       that.$el.append( that.listStoryItemTemplate(item) );
     });
