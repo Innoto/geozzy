@@ -153,6 +153,9 @@ class ResourceController {
             $resourceData[ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
             if( $urlLang === $this->actLang ) {
               $resourceData['urlAlias'] = $resourceData[ 'urlAlias_'.$urlLang ];
+              if( count( $this->allLang ) > 1 ) {
+                $resourceData['urlAlias'] = '/'.$urlLang.$resourceData[ 'urlAlias' ];
+              }
             }
           }
         }
