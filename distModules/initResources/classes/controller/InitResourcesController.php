@@ -59,7 +59,7 @@ class InitResourcesController{
     $timeCreation = date( "Y-m-d H:i:s", time() );
 
     $resData = array(
-      'idName' => $initRes['idName'],
+      'idName' => isset( $initRes['idName'] ) ? $initRes['idName'] : null,
       'rTypeId' => $rType->getter('id'),
       'published' => 1,
       'timeCreation' => $timeCreation
@@ -83,7 +83,7 @@ class InitResourcesController{
 
     // image
 
-    if( isset( $initRes['img']) && $initRes['img'] ) {
+    if( isset( $initRes['img'] ) && $initRes['img'] ) {
       $filedata = array(
         'name' => $initRes['img'],
         'destDir' => ResourceModel::$cols['image']['uploadDir'],
@@ -96,7 +96,7 @@ class InitResourcesController{
 
     // taxanomies
     if( isset( $initRes['viewType'] ) ) {
-      $taxterm = $taxonomyTerm->listItems(array('filters'=>array('idName' => $initRes['viewType'])))->fetch();
+      $taxterm = $taxonomyTerm->listItems( array( 'filters'=>array('idName' => $initRes['viewType']) ) )->fetch();
       if( $taxterm ) {
         $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'),
           'taxonomyterm' => $taxterm->getter('id'), 'weight' => 1));
