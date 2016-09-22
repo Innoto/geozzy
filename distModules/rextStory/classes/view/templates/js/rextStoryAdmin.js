@@ -8,7 +8,3 @@ function bindResourceForm(){
     placeholder: __('Select options')
   });
 }
-
-function editModalForm(e){
-  app.mainView.loadAjaxContentModal('/rtypeEvent/event/edit/'+e.value, 'editModalForm', 'Edit Event Collection');
-}

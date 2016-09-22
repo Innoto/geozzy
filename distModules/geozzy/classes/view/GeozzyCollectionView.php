@@ -94,6 +94,9 @@ class GeozzyCollectionView extends View
       ),
       'collectionType' => array(
         'params' => array('type' => 'reserved', 'value' => 'base' )
+      ),
+      'collectionSelect' => array(
+        'params' => array('type' => 'reserved' )
       )
     );
 
@@ -254,39 +257,6 @@ class GeozzyCollectionView extends View
           break;
       }
 
-      /*
-        switch( $imageFile['status'] ) {
-          case 'LOADED':
-            error_log( 'To Model: '.$imageFile['status'] );
-            $affectsDependences = true;
-            $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
-            break;
-          case 'REPLACE':
-            error_log( 'To Model: '.$imageFile['status'] );
-            // error_log( 'To Model - fileInfoPrev: '. print_r( $imageFile[ 'prev' ], true ) );
-            $affectsDependences = true;
-            // TODO: Falta eliminar o ficheiro anterior
-            $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
-            break;
-          case 'DELETE':
-            error_log( 'To Model: '.$imageFile['status'] );
-            // Apaño
-            $collection->setter( 'image', null );
-            // TODO
-            // $affectsDependences = true;
-            // $collection->setterDependence( 'image', new FiledataModel( $imageFile['values'] ) );
-            break;
-          case 'EXIST':
-            error_log( 'To Model: '.$imageFile['status'] );
-            $affectsDependences = true;
-            $collection->setterDependence( 'image', new FiledataModel( $imageFile[ 'values' ] ) );
-            break;
-          default:
-            error_log( 'To Model: DEFAULT='.$imageFile['status'] );
-            break;
-        }
-      */
-
     }
 
     // Procesamos o listado de recursos asociados
@@ -342,7 +312,7 @@ class GeozzyCollectionView extends View
       if( $collection->save( array( 'affectsDependences' => $affectsDependences ) ) ) {
         $form->addFormError( 'No se ha podido guardar el collection.','formError' );
       }else{
-        $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'", collectionType: "'.$collection->getter('collectionType').'" });' );
+        $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'", collectionType: "'.$collection->getter('collectionType').'", collectionSelect: "'.$form->getFieldValue('collectionSelect').'" });' );
       }
     }
 
