@@ -14,12 +14,12 @@ function colBinds(){
 
 
   $('#addResourceLocal').on('click', function(){
-    //PARAMS( URL - ID - TITLE MD OR LG)
-    app.mainView.loadAjaxContentModal('/admin/resourcetypefile/create/', 'createResourceLocalModal', __('Upload multimedia resource'), 'md');
+    //PARAMS( URL - ID - DATA MD OR LG)
+    app.mainView.loadAjaxContentModal('/admin/resourcetypefile/create/', 'createResourceLocalModal', { title: __('Upload multimedia resource') }, 'md');
   });
   $('#addResourceExternal').on('click', function(){
-    //PARAMS( URL - ID - TITLE - MD OR LG)
-    app.mainView.loadAjaxContentModal('/admin/resourcetypeurl/create/', 'createResourceExternalModal', __('Link or embed multimedia resource'), 'md');
+    //PARAMS( URL - ID - DATA - MD OR LG)
+    app.mainView.loadAjaxContentModal('/admin/resourcetypeurl/create/', 'createResourceExternalModal', { title: __('Link or embed multimedia resource') }, 'md');
   });
 }
 

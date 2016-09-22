@@ -10,10 +10,10 @@ function bindResourceForm(){
     placeholder: __('Select options')
   });
   $('#addEvents').on('click', function(){
-    app.mainView.loadAjaxContentModal('/rtypeEvent/event/create', 'createEventModal', 'Create Event');
+    app.mainView.loadAjaxContentModal('/rtypeEvent/event/create', 'createEventModal', { title: __('Create Event') } );
   });
 }
 
 function editModalForm(e){
-  app.mainView.loadAjaxContentModal('/rtypeEvent/event/edit/'+e.value, 'editModalForm', 'Edit Event Collection');
+  app.mainView.loadAjaxContentModal('/rtypeEvent/event/edit/'+e.value, 'editModalForm', { title: __('Edit Event Collection') } ) ;
 }

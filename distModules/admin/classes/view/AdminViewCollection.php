@@ -21,12 +21,15 @@ class AdminViewCollection extends AdminViewMaster
     if( isset( $urlParams['1'] ) ) {
       $urlParamRTypeParent = $urlParams['1'];
       $valuesArray['filterRTypeParent'] = $urlParamRTypeParent;
-    }else{
+    }
+    else{
       $valuesArray = false;
     }
 
-    $collectionView = new GeozzyCollectionView();
+    $valuesArray['collectionType'] = $_POST['colType'];
+    $valuesArray['collectionSelect'] = $_POST['colSelect'];
 
+    $collectionView = new GeozzyCollectionView();
     $formBlock = $collectionView->getFormBlock( $formName, $formUrl, $valuesArray );
     $formBlock->setTpl( 'collectionFormBlockBase.tpl', 'admin' );
 
@@ -85,6 +88,7 @@ class AdminViewCollection extends AdminViewMaster
         }
       }
 
+      $collectionData['collectionSelect'] = $_POST['colSelect'];
 
       $collectionView = new GeozzyCollectionView();
       error_log( 'collectionData para FORM: ' . print_r( $collectionData, true ) );
@@ -117,7 +121,7 @@ class AdminViewCollection extends AdminViewMaster
   /**
     Creacion/Edicion de Multimedia
   */
-
+/*
   public function createMultimediaForm() {
     $formName = 'multimediaCreate';
     $formUrl = '/admin/multimedia/sendmultimedia';
@@ -197,5 +201,5 @@ class AdminViewCollection extends AdminViewMaster
       cogumelo::error( 'Imposible acceder a la collection indicada.' );
     }
   } // function editMultimediaForm()
-
+*/
 }

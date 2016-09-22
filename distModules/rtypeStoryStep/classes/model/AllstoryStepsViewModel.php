@@ -12,7 +12,7 @@ class AllstoryStepsViewModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'rtypeStory#1.1',
+      'version' => 'rtypeStoryStep#1.5',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_allstories_index;
@@ -47,7 +47,7 @@ class AllstoryStepsViewModel extends Model
 						geozzy_resource_rext_storystep.storystepLegend as legend,
 
 						geozzy_collection_resources.weight as weight,
-						story.idName as storyName
+						story.idName as storyName,
 	          group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
 					FROM geozzy_resource as storyStep
 
@@ -69,7 +69,8 @@ class AllstoryStepsViewModel extends Model
 					RIGHT JOIN geozzy_resource as story
 					ON geozzy_resource_collections.resource = story.id
 
-					where storyStep.published = 1
+					WHERE storyStep.published = 1
+          GROUP BY storyStep.id
 					ORDER BY weight;
 
       '
@@ -78,7 +79,7 @@ class AllstoryStepsViewModel extends Model
 
 
 
-  static $tableName = 'geozzy_generic_explorer_index';
+  static $tableName = 'geozzy_allstories_index';
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -155,7 +156,6 @@ class AllstoryStepsViewModel extends Model
   );
 
   static $extraFilters = array(
-    'storyName' => ' storyName = ? ',
     'updatedfrom' => ' timeLastUpdate > FROM_UNIXTIME(?) '
 
   );

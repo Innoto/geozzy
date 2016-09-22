@@ -70,7 +70,7 @@ var AdminView = Backbone.View.extend({
     }
   },
 
-  loadAjaxContentModal: function( modalUrl, modalId, modalTitle, size ) {
+  loadAjaxContentModal: function( modalUrl, modalId, modalData, size ) {
 
     if( size && size === "md" ){
       var modalTemplate = _.template( $('#modalMdTemplate').html() );
@@ -79,8 +79,8 @@ var AdminView = Backbone.View.extend({
     }
 
 
-    $('body').append(modalTemplate({ 'modalId': modalId, 'modalTitle': modalTitle }));
-    $("#"+modalId+" .modal-body").load( modalUrl );
+    $('body').append(modalTemplate({ 'modalId': modalId, 'modalTitle': modalData.title }));
+    $("#"+modalId+" .modal-body").load( modalUrl, modalData );
     $("#"+modalId).modal({
       'show' : true
     });

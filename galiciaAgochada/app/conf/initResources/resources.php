@@ -184,6 +184,7 @@ $initResources = array(
       'gl' => '/descubreos'
     )
   ),
+
   array(
     'version' =>'Cogumelo#1.0',
     'executeOnGenerateModelToo' => true,
@@ -200,7 +201,7 @@ $initResources = array(
       'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
     ),
     'img' => false,
-    'viewType' => 'viewAppTodosSegredosExplorer',
+    'viewType' => 'viewAppStoryCastro',
     'urlAlias' => array(
       'en' => '/castro',
       'es' => '/castro',
@@ -223,7 +224,7 @@ $initResources = array(
       'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
     ),
     'img' => false,
-    'viewType' => 'viewAppTodosSegredosExplorer',
+    'viewType' => 'viewAppStoryCastro',
     'urlAlias' => array(
       'en' => '/detapas',
       'es' => '/detapas',

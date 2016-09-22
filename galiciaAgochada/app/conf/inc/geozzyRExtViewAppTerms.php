@@ -100,4 +100,13 @@ $rExtViewAppInitialTerms[] = array(
   )
 );
 
-
+$rExtViewAppInitialTerms[] = array(
+  'idName' => 'viewAppStoryCastro',
+  'view' => 'viewAppStoryCastro',
+  'module' => false, // La clase view indicada se encuentra en la App
+  'name' => array(
+    'es' => 'Historia castro',
+    'en' => 'History castro',
+    'gl' => 'Historia castro'
+  )
+);

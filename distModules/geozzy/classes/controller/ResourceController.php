@@ -349,18 +349,30 @@ class ResourceController {
         'rules' => array( 'maxlength' => '1000' )
       ),
       'collections' => array(
-        'params' => array( 'label' => __( 'Collections' ), 'type' => 'select', 'class' => 'cgmMForm-order',
+        'params' => array( 'label' => __( 'Collections' ), 'type' => 'select', 'class' => 'cgmMForm-order resourceCollection',
         'multiple' => true, 'options'=> $resCollections, 'id' => 'resourceCollections' )
       ),
       'addCollections' => array(
-        'params' => array( 'id' => 'resourceAddCollection', 'type' => 'button', 'value' => __( 'Add Collection' ))
+        'params' => array(
+          'id' => 'resourceAddCollection', 'class' => 'resourceAddCollection',
+          'data-col-type' => 'base',
+          'data-col-select' => 'resourceCollections',
+          'data-col-title' => __('Create Collection'),
+          'type' => 'button', 'value' => __( 'Add Collection' )
+        )
       ),
       'multimediaGalleries' => array(
-        'params' => array( 'label' => __( 'Galleries' ), 'type' => 'select', 'class' => 'cgmMForm-order',
+        'params' => array( 'label' => __( 'Galleries' ), 'type' => 'select', 'class' => 'cgmMForm-order resourceCollection',
         'multiple' => true, 'options'=> $resMultimedia, 'id' => 'resourceMultimediaGalleries' )
       ),
       'addMultimediaGalleries' => array(
-        'params' => array( 'id' => 'resourceAddMultimediaGallery', 'type' => 'button', 'value' => __( 'Add Multimedia Gallery' ))
+        'params' => array(
+          'id' => 'resourceAddMultimediaGallery', 'class' => 'resourceAddCollection',
+          'data-col-type' => 'multimedia',
+          'data-col-select' => 'resourceMultimediaGalleries',
+          'data-col-title' => __('Create Multimedia Gallery'),
+          'type' => 'button', 'value' => __( 'Add Multimedia Gallery' )
+        )
       ),
       'published' => array(
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => 'Publicado' ))
