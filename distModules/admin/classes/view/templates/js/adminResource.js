@@ -38,50 +38,14 @@ function bindResourceForm(){
     app.mainView.loadAjaxContentModal('/admin/collection/create/'+rtypeParent, data.colSelect+'Modal', data );
   });
 
-/*
-  $('.resourceCollection').multiList({
+
+  $('select.resourceCollection').multiMultiList({
     itemActions : [
       { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editCollection }
     ],
     icon: '<i class="fa fa-arrows"></i>',
     placeholder: __('Select options')
   });
-
-
-*/
-
-
-
-
-/*
-  $('#resourceCollections').multiList({
-    itemActions : [
-      { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editCollection }
-    ],
-    icon: '<i class="fa fa-arrows"></i>',
-    placeholder: __('Select options')
-  });
-
-  $('#resourceAddCollection').on('click', function(){
-    var rtypeParent = $('#rTypeIdName').val();
-    //PARAMS( URL - ID - TITLE )
-    app.mainView.loadAjaxContentModal('/admin/collection/create/'+rtypeParent, 'createCollectionsModal', __('Create Collection'));
-  });
-
-  $('#resourceMultimediaGalleries').multiList({
-    itemActions : [
-      { 'id': 'edit', 'html': '<i class="fa fa-pencil-square-o"></i>', 'action': editMultimediaGallery }
-    ],
-    icon: '<i class="fa fa-arrows"></i>',
-    placeholder: __('Select options')
-  });
-
-  $('#resourceAddMultimediaGallery').on('click', function(){
-    //PARAMS( URL - ID - TITLE )
-    app.mainView.loadAjaxContentModal('/admin/multimedia/create', 'createMultimediaGalleryModal', __('Create Multimedia Gallery'));
-  });
-*/
-
 
   $('select.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
     orientation: 'horizontal',
@@ -127,9 +91,15 @@ function bindResourceForm(){
 }
 
 
-function editCollection(e){
+function editCollection( e, selector ){
+
   var rtypeParent = $('#rTypeIdName').val();
-  app.mainView.loadAjaxContentModal('/admin/collection/edit/'+e.value+'/'+rtypeParent, 'editCollectionsModal', 'Edit Collection');
+
+  var data = {};
+  data.title = __('Edit Collection');
+  data.colSelect = $(selector).attr('id');
+
+  app.mainView.loadAjaxContentModal('/admin/collection/edit/'+e.value+'/'+rtypeParent, data.colSelect+'Modal', data);
 }
 function successCollectionForm( data ){
 
@@ -244,10 +214,3 @@ function initializeMap( form ){
     } // if( mapContainer.length )
   }
 }
-
-/*
-
-function editMultimediaGallery(e){
-  app.mainView.loadAjaxContentModal('/admin/multimedia/edit/'+e.value, 'editMultimediaGalleryModal', 'Edit Multimedia Gallery');
-}
-*/

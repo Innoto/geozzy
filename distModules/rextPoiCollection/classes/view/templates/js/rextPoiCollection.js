@@ -10,10 +10,10 @@ function bindResourceForm(){
     placeholder: __('Select options')
   });
   $('#addPois').on('click', function(){
-    app.mainView.loadAjaxContentModal('/rtypePoi/poi/create', 'createPoiModal', 'Create POI');
+    app.mainView.loadAjaxContentModal('/rtypePoi/poi/create', 'createPoiModal', { title: __('Create POI') } );
   });
 }
 
 function editModalForm(e){
-  app.mainView.loadAjaxContentModal('/rtypePoi/poi/edit/'+e.value, 'editModalForm', 'Edit POI Collection');
+  app.mainView.loadAjaxContentModal('/rtypePoi/poi/edit/'+e.value, 'editModalForm', { title: __('Edit POI Collection') } );
 }
