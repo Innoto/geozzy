@@ -12,7 +12,7 @@ class InitResourcesController{
 
 
   public function generateResources( $isFirstGenerateModel = false ) {
-    include(APP_BASE_PATH.'/conf/initResources/resources.php');
+    include( APP_BASE_PATH.'/conf/initResources/resources.php' );
 
     foreach( $initResources as $initRes ) {
       if( preg_match( '#^(.*)\#(\d{1,10}(.\d{1,10})?)#', $initRes['version'], $matches ) ) {
@@ -49,7 +49,7 @@ class InitResourcesController{
     $resourcecontrol = new ResourceController();
     $resourceType = new ResourcetypeModel();
     $fileControl = new FiledataController();
-    $taxonomyTerm = new TaxonomytermModel();
+    $taxViewModel = new TaxonomyViewModel();
     $urlAlias = new urlAliasModel();
 
     // Tipo e recurso base
@@ -82,7 +82,6 @@ class InitResourcesController{
     // Unha vez creado o recurso, creamos as súas relacións
 
     // image
-
     if( isset( $initRes['img'] ) && $initRes['img'] ) {
       $filedata = array(
         'name' => $initRes['img'],
@@ -94,18 +93,35 @@ class InitResourcesController{
       $resource->save(array('affectsDependences' => true));
     }
 
+
     // taxanomies
+    $confTerms = isset( $initRes['terms'] ) ? $initRes['terms'] : [];
+
     if( isset( $initRes['viewType'] ) ) {
-      $taxterm = $taxonomyTerm->listItems( array( 'filters'=>array('idName' => $initRes['viewType']) ) )->fetch();
-      if( $taxterm ) {
-        $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resource->getter('id'),
-          'taxonomyterm' => $taxterm->getter('id'), 'weight' => 1));
-        $resTaxterm->save();
-      }
-      else {
-        echo "\n".'  ERROR: No existe un taxTerm con idName '.$initRes['viewType']."\n";
+      $confTerms['viewAlternativeMode'] = $initRes['viewType'];
+    }
+
+    if( count( $confTerms ) > 0 ) {
+      $resId = $resource->getter('id');
+      foreach( $confTerms as $taxGroupIdName => $idName ) {
+        // echo "\n".'  Buscando un termino con idName '.$idName.' en taxGroupIdName '.$taxGroupIdName."\n";
+        $termList = $taxViewModel->listItems( array( 'filters'=>array(
+          'idName' => $idName,
+          'taxGroupIdName' => $taxGroupIdName
+        ) ) );
+        $termObj = ( $termList ) ? $termList->fetch() : false;
+        if( $termObj ) {
+          $termId = $termObj->getter('id');
+          echo '  Engado o termino '.$termId.' a '.$resId."\n";
+          $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resId, 'taxonomyterm' => $termId) );
+          $resTaxterm->save();
+        }
+        else {
+          echo "\n".'  ERROR: No existe un termino con idName '.$idName.' en taxGroupIdName '.$taxGroupIdName."\n";
+        }
       }
     }
+
 
     //urlAlias multiidioma
     foreach( Cogumelo::getSetupValue('lang:available') as $key => $lang ) {
