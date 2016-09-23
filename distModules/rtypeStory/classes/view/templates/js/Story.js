@@ -16,14 +16,20 @@ geozzy.story = function( opts ) {
 
 
   $.extend(true, that.options, opts);
-  // events
 
+  // step collection
   that.storySteps = new geozzy.storyComponents.StoryStepCollection();
+  // story events
   that.storyEvents = [];
-
+  // displays
+  that.displays = {
+    background: false,
+    list: false,
+    plugins: []
+  }
 
   /*
-  *   exec 
+  *   exec
   *   Fetch collections, initialize routers,and trigert first load events
   */
   that.exec = function() {
@@ -47,6 +53,7 @@ geozzy.story = function( opts ) {
     });
 
   };
+
 
 
   that.getLang= function(){
@@ -79,4 +86,25 @@ geozzy.story = function( opts ) {
       action: action
     });
   };
+
+  that.addDisplay = function( displayObj ){
+
+    if( displayObj.displayType == 'background' ) {
+      that.displays.background = displayObj;
+      that.displays.background.setParentStory( that );
+    }
+    else
+    if( displayObj.displayType == 'list' ) {
+      that.displays.list = displayObj;
+      that.displays.list.setParentStory( that );
+    }
+    else
+    if( displayObj.displayType == 'plugin' ) {
+      displayObj.setParentStory( that );
+      that.displays.plugins.push( displayObj );
+    }
+    else {
+      console.log('Geozzy story ERROR: Display type key not found');
+    }
+  }
 }
