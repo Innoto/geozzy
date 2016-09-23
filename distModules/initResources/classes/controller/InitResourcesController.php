@@ -112,7 +112,7 @@ class InitResourcesController{
         $termObj = ( $termList ) ? $termList->fetch() : false;
         if( $termObj ) {
           $termId = $termObj->getter('id');
-          echo '  Engado o termino '.$termId.' a '.$resId."\n";
+          // echo '  Engado o termino '.$termId.' a '.$resId."\n";
           $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resId, 'taxonomyterm' => $termId) );
           $resTaxterm->save();
         }
