@@ -22,8 +22,11 @@ geozzy.story = function( opts ) {
   that.storyEvents = [];
 
 
+  /*
+  *   exec 
+  *   Fetch collections, initialize routers,and trigert first load events
+  */
   that.exec = function() {
-
     if( !Backbone.History.started ){
       Backbone.history.start();
     }
