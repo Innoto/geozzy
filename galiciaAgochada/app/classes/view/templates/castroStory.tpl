@@ -5,6 +5,6 @@
       <h1>{t}Un percorrido polo castro{/t}</h1>
     </div>
   </div>
-  <div class="">
-    CONNTIDO
+  <div class="storyBody">
+
   </div>

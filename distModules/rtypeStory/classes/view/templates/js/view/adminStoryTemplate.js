@@ -1,7 +1,7 @@
 var geozzy = geozzy || {};
-if(!geozzy.storyComponents) geozzy.storyComponents={};
+if(!geozzy.adminStoryComponents) geozzy.adminStoryComponents={};
 
-geozzy.storyComponents.StoryTemplate = ''+
+geozzy.adminStoryComponents.StoryTemplate = ''+
 '<div id="menuStories">'+
   '<ul class="nav nav-second-level storiesList collapse in" aria-expanded="true" style="">'+
     '<li class="stories story_<%- id %>">'+

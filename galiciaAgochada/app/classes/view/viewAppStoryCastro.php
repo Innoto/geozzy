@@ -17,10 +17,10 @@ class viewAppStoryCastro extends MasterView
 
     $template->assign('isFront', false);
 
-    //$template->addClientScript('js/pageAbout.js');
+    $template->addClientScript('js/castroStory.js');
     //$template->addClientStyles('styles/masterPageAbout.less');
 
-    $template->setTpl('storyCastro.tpl');
+    $template->setTpl('castroStory.tpl');
 
 
     $viewBlockInfo['template'][ $templateName ] = $template;
