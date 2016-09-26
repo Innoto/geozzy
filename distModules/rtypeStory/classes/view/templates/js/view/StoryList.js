@@ -50,7 +50,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
       //data.marginTop =
       that.$el.append( that.tplElement( d ) );
     });
-
+    console.log( that.$el.find('.storyStep').toArray() );
   }
 
 });
