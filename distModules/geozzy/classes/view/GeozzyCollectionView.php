@@ -119,7 +119,7 @@ class GeozzyCollectionView extends View
     $fieldsInfo['image'] = array(
       'params' => array( 'label' => __( 'Descriptive image of the gallery (opcional)' ), 'type' => 'file', 'id' => 'imgCollection',
       'placeholder' => 'Escolle unha imaxe', 'destDir' => CollectionModel::$cols['image']['uploadDir']),
-      'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/jpeg' )
+      'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/jpeg,image/png' )
     );
 
     //$this->arrayToForm( $form, $fieldsInfo, $form->langAvailable );
@@ -312,7 +312,8 @@ class GeozzyCollectionView extends View
     if( !$form->existErrors()) {
       if( $collection->save( array( 'affectsDependences' => $affectsDependences ) ) ) {
         $form->addFormError( 'No se ha podido guardar el collection.','formError' );
-      }else{
+      }
+      else{
         $form->setSuccess( 'jsEval', ' successCollectionForm( { id : "'.$collection->getter('id').'", title: "'.$collection->getter('title_'.$form->langDefault).'", collectionType: "'.$collection->getter('collectionType').'", collectionSelect: "'.$form->getFieldValue('collectionSelect').'" });' );
       }
     }
@@ -344,13 +345,13 @@ class GeozzyCollectionView extends View
         }
       break;
       /////////////////////////////////////////////////////////////////////////////////////
-      case 'base':
-
-        if( $filterRTypeParent && class_exists($filterRTypeParent) ){
+      default:
+        // case 'base':
+        if( $filterRTypeParent && class_exists( $filterRTypeParent ) ) {
           //CON FILTROS ESTABLECIDOS
-          $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':base:all' );
-          if( !isset($filter) || count($filter) == 0 ){
-            $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:base:all' );
+          $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':'.$collectionType.':all' );
+          if( !isset($filter) || count($filter) === 0 ){
+            $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$collectionType.':all' );
           }
           //Se traen los rtypes establecidos en Conf
           $rtypeArray = $rtypeControl->listItems(
@@ -370,11 +371,11 @@ class GeozzyCollectionView extends View
           )->fetchAll();
 
 
-          if($collectionId){
+          if( $collectionId ){
             // ENTIDADES DEBILES
-            $filterWeak = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':base:manual' );
-            if( !isset($filterWeak) || count($filterWeak) == 0 ){
-              $filterWeak = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:base:manual' );
+            $filterWeak = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':'.$collectionType.':manual' );
+            if( !isset($filterWeak) || count($filterWeak) === 0 ){
+              $filterWeak = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$collectionType.':manual' );
             }
             //Se traen los rtypes establecidos en Conf
             $rtypeArray = $rtypeControl->listItems(
@@ -399,7 +400,7 @@ class GeozzyCollectionView extends View
             }
           }
 
-        }
+        } // if( $filterRTypeParent && class_exists($filterRTypeParent) ) //CON FILTROS ESTABLECIDOS
         else {
           //SIN FILTROS ESTABLECIDOS
           $filterNotIn = array( "rtypeUrl", "rtypeFile" );
