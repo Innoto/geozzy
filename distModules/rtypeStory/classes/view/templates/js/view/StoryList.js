@@ -4,7 +4,7 @@ if(!geozzy.storyComponents) geozzy.storyComponents={};
 geozzy.storyComponents.StoryListView = Backbone.View.extend({
   displayType: 'list',
   parentStory: false,
-
+  stepsDOM: false,
   initialize: function( opts ) {
     var that = this;
 
@@ -43,14 +43,23 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
 
     }
 
+
     that.$el.html('');
     that.parentStory.storySteps.each( function( step , i ) {
-
       var d = step.toJSON();
       //data.marginTop =
       that.$el.append( that.tplElement( d ) );
     });
-    console.log( that.$el.find('.storyStep').toArray() );
+
+    that.stepsDOM= that.$el.find('.storyStep').toArray();
+    that.calculatePositions();
+  },
+
+  caculatePositions: function() {
+    var that = this;
+    $(that.stepsDOM ).each(i,e) {
+
+    }
   }
 
 });

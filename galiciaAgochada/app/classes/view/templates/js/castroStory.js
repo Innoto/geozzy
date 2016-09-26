@@ -7,7 +7,7 @@ $(document).ready( function(){
   });
 
 
-  var displayLista = new geozzy.storyComponents.StoryListView({
+  displayLista = new geozzy.storyComponents.StoryListView({
     container: '.storyBody .lista'
   });
 
