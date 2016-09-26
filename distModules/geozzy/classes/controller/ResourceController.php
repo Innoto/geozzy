@@ -16,6 +16,7 @@ class ResourceController {
   public $resObj = null;
   public $resData = null;
   private $taxonomyAll = null;
+  private $collectionsAll = [];
   public $actLang = null;
   public $defLang = null;
   public $allLang = null;
@@ -819,8 +820,6 @@ class ResourceController {
   }
 
 
-
-
   /**
    * Devolve en grupos os taxterm asociados ao recurso dado e a info da taxonomía a maiores
    */
@@ -866,6 +865,45 @@ class ResourceController {
 
 
 
+
+
+  /**
+   * Devolve las collections asociadas al recurso dado o al actual agrupadas por tipo
+   */
+  public function getCollectionsAll( $resId = false ) {
+    $colsInfo = false;
+
+    $resId = ($resId) ? $resId : $this->resObj->getter('id');
+    error_log( "getCollectionsAll( $resId )" );
+
+    if( $resId ) {
+      if( isset( $this->collectionsAll[ $resId ] ) ) {
+        $colsInfo = $this->collectionsAll[ $resId ];
+      }
+      else {
+        $collResModel = new CollectionResourcesListViewModel();
+        $collResList = $collResModel->listItems( array(
+          'filters' => array( 'resourceMain' => $resId ),
+          'order' => array( 'weight' => 1, 'weightMain' => 1 )
+        ));
+        if( $collResList ) {
+          $colsInfo = [];
+          while( $collResObj = $collResList->fetch() ) {
+            $colId = $collResObj->getter('id');
+            $colType = $collResObj->getter('collectionType');
+            $colsInfo[ $colType ][ $colId ] = $collResObj->getAllData( 'onlydata' );
+          }
+        }
+
+        $this->collectionsAll[ $resId ] = $colsInfo;
+      }
+      error_log( "getCollectionsAll( $resId ): ".print_r( $colsInfo, true ) );
+    }
+
+    return $colsInfo;
+  }
+
+
   public function getCollectionsInfo( $resId ) {
     // error_log( "ResourceController: getCollectionsInfo( $resId )" );
     $colInfo = array(
@@ -893,7 +931,8 @@ class ResourceController {
         }
       }
     }
-     //error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
+
+    // error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
     return ( count( $colInfo['values'] ) > 0 ) ? $colInfo : false;
   }
 
