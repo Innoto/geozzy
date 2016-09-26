@@ -10,7 +10,7 @@ geozzy.story = function( opts ) {
   that.options = {
      storySectionName: 'Geozzy  story',
      storyAPIHost: '/api/story/',
-     storyId: false,
+     storyReference: false,
      aditionalParameters: {},
   };
 
@@ -42,19 +42,33 @@ geozzy.story = function( opts ) {
     }
 
     lang = that.getLang();
-    that.storySteps.url = lang + that.options.storyAPIHost + 'story/' + storyId  ;
+    that.storySteps.url = lang + that.options.storyAPIHost + 'story/' + that.options.storyReference  ;
 
     that.storySteps.fetch({
       type: 'POST',
       data: that.options.aditionalParameters,
       success: function() {
-
+        that.render();
       }
     });
 
   };
 
+  that.render = function() {
 
+    if( that.displays.background ) {
+      that.displays.background.render();
+    }
+
+    if( that.displays.list ) {
+      that.displays.list.render();
+    }
+
+    $(that.displays.plugins).each( function(i,e){
+      e.render();
+    });
+
+  };
 
   that.getLang= function(){
     var lang = false;

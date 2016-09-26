@@ -6,6 +6,7 @@ rtypeStory::load('controller/StoryController.php');
 class CastroStoryController extends StoryController {
   function serveStory( $idName ) {
 
+    Cogumelo::load('coreModel/DBUtils.php');
     // INSTANCIA + CONSULTA
     rtypeStoryStep::load('model/AllstoryStepsViewModel.php');
     $resourceModel = new AllstoryStepsViewModel();

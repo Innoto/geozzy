@@ -17,6 +17,16 @@ class viewAppStoryCastro extends MasterView
 
     $template->assign('isFront', false);
 
+    // Story includes
+    $template->addClientScript('js/model/StoryStepModel.js', 'rtypeStory');
+    $template->addClientScript('js/collection/StoryStepCollection.js', 'rtypeStory');
+    //$template->addClientScript('js/collection/StoryList.js', 'rtypeStory');
+    //$template->addClientScript('js/view/StoryTemplates.js', 'rtypeStory');
+    //$template->addClientScript('js/view/StoryList.js', 'rtypeStory');
+    $template->addClientScript('js/Story.js', 'rtypeStory');
+
+
+
     $template->addClientScript('js/castroStory.js');
     //$template->addClientStyles('styles/masterPageAbout.less');
 
