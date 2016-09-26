@@ -57,9 +57,9 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
 
   caculatePositions: function() {
     var that = this;
-    $(that.stepsDOM ).each(i,e) {
+    $(that.stepsDOM ).each( function(i,e) {
 
-    }
+    });
   }
 
 });
