@@ -963,7 +963,7 @@ class ResourceController {
       }
     }
 
-    // error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
+    // error_log( "ResourceController: getMultimediaInfo = ". print_r( $colInfo, true ) );
     return ( count( $multimediaInfo['values'] ) > 0 ) ? $multimediaInfo : false;
   }
 
