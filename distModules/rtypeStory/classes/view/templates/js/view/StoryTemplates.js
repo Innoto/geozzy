@@ -1,6 +1,7 @@
 var geozzy = geozzy || {};
 if(!geozzy.storyComponents) geozzy.storyComponents={};
 
-
-geozzy.storyComponents.listViewTemplate = 'LISTA';
-geozzy.storyComponents.listElementTemplate = 'ELEMENTO';
+geozzy.storyComponents.listElementTemplate = ''+
+    '<div>' +
+      '<div class=""><%= title %></div>'+
+    '</div>';

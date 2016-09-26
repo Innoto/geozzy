@@ -17,23 +17,26 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
 
     that.options = $.extend(true, {}, options, opts);
 
-    that.tpl = _.template(that.options.tpl);
+
     that.tplElement = _.template(that.options.tplElement);
+
     that.el = that.options.container;
+    that.$el = $(that.el);
+
   },
 
   setParentStory: function( obj ) {
     var that = this;
 
     that.parentStory = obj;
-  }
+  },
 
   render: function() {
     var that = this;
 
     // Calculate distances
     if( that.options.steepMargins ) {
-      
+
     }
     else
     if( typeof that.parentStory.displays.background != 'undefined') {
@@ -41,12 +44,11 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     }
 
     that.$el.html('');
-    that.parentStory.storyEvents.each( function( step , i ) {
+    that.parentStory.storySteps.each( function( step , i ) {
 
-      var data = step.toJSON();
+      var d = step.toJSON();
       //data.marginTop =
-
-      that.options.tplElement( data );
+      that.$el.append( that.tplElement( d ) );
     });
 
   }

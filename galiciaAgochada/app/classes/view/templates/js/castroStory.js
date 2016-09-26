@@ -6,5 +6,14 @@ $(document).ready( function(){
     storyReference:'castro'
   });
 
- historia.exec();
+
+  var displayLista = new geozzy.storyComponents.StoryListView({
+    container: '.storyBody .lista'
+  });
+
+
+  historia.addDisplay( displayLista );
+
+
+  historia.exec();
 });

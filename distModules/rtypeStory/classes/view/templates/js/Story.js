@@ -120,5 +120,6 @@ geozzy.story = function( opts ) {
     else {
       console.log('Geozzy story ERROR: Display type key not found');
     }
-  }
+
+  };
 }

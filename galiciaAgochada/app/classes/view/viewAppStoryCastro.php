@@ -13,6 +13,7 @@ class viewAppStoryCastro extends MasterView
 
   public function alterViewBlockInfo( $viewBlockInfo, $templateName = false ) {
     $templateName = ($templateName) ? $templateName : 'full';
+    $viewBlockInfo['footer'] = false; // sin footer
     $template = $viewBlockInfo['template'][ $templateName ];
 
     $template->assign('isFront', false);
@@ -20,9 +21,8 @@ class viewAppStoryCastro extends MasterView
     // Story includes
     $template->addClientScript('js/model/StoryStepModel.js', 'rtypeStory');
     $template->addClientScript('js/collection/StoryStepCollection.js', 'rtypeStory');
-    //$template->addClientScript('js/collection/StoryList.js', 'rtypeStory');
-    //$template->addClientScript('js/view/StoryTemplates.js', 'rtypeStory');
-    //$template->addClientScript('js/view/StoryList.js', 'rtypeStory');
+    $template->addClientScript('js/view/StoryTemplates.js', 'rtypeStory');
+    $template->addClientScript('js/view/StoryList.js', 'rtypeStory');
     $template->addClientScript('js/Story.js', 'rtypeStory');
 
 
