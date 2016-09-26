@@ -12,8 +12,11 @@
 
 
 {$res.dataForm.formOpen}
+{* hidden fields required *}
 {$res.dataForm.formFieldsArray.cgIntFrmId}
 {if isset($res.dataForm.formFieldsArray.id)}{$res.dataForm.formFieldsArray.id}{/if}
+{if isset($res.dataForm.formFieldsArray.rTypeIdName)}{$res.dataForm.formFieldsArray.rTypeIdName}{/if}
+{* /hidden fields required *}
 
 {if isset($formFieldsNames)}
 {foreach $formFieldsNames as $name}

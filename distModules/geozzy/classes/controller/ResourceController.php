@@ -871,14 +871,14 @@ class ResourceController {
    * Devolve las collections asociadas al recurso dado o al actual agrupadas por tipo
    */
   public function getCollectionsAll( $resId = false ) {
-    $colsInfo = false;
+    $collsInfo = false;
 
     $resId = ($resId) ? $resId : $this->resObj->getter('id');
     error_log( "getCollectionsAll( $resId )" );
 
     if( $resId ) {
       if( isset( $this->collectionsAll[ $resId ] ) ) {
-        $colsInfo = $this->collectionsAll[ $resId ];
+        $collsInfo = $this->collectionsAll[ $resId ];
       }
       else {
         $collResModel = new CollectionResourcesListViewModel();
@@ -887,20 +887,37 @@ class ResourceController {
           'order' => array( 'weight' => 1, 'weightMain' => 1 )
         ));
         if( $collResList ) {
-          $colsInfo = [];
+          $collsInfo = [];
           while( $collResObj = $collResList->fetch() ) {
             $colId = $collResObj->getter('id');
             $colType = $collResObj->getter('collectionType');
-            $colsInfo[ $colType ][ $colId ] = $collResObj->getAllData( 'onlydata' );
+            $collsInfo[ $colType ][ $colId ] = $collResObj->getAllData( 'onlydata' );
           }
         }
 
-        $this->collectionsAll[ $resId ] = $colsInfo;
+        $this->collectionsAll[ $resId ] = $collsInfo;
       }
-      error_log( "getCollectionsAll( $resId ): ".print_r( $colsInfo, true ) );
+      error_log( "getCollectionsAll( $resId ): ".print_r( $collsInfo, true ) );
     }
 
-    return $colsInfo;
+    return $collsInfo;
+  }
+
+  public function getCollectionsSelect( $collsInfo ) {
+    // error_log( "ResourceController: getCollectionsInfo( $resId )" );
+    $collsSelect = array(
+      'options' => array(),
+      'values' => array()
+    );
+
+    $langDefault = Cogumelo::getSetupValue( 'lang:default' );
+    foreach( $collsInfo as $collId => $collInfo ) {
+        $collsSelect[ 'options' ][ $collId ] = $collInfo[ 'title_'.$langDefault ];
+        $collsSelect[ 'values' ][] = $collId;
+    }
+
+    error_log( "ResourceController: getCollectionsSelect = ". print_r( $collsSelect, true ) );
+    return $collsSelect;
   }
 
 
@@ -1087,6 +1104,77 @@ class ResourceController {
       }
     }
   } // setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj )
+
+
+
+
+
+
+
+
+  public function saveFormCollectionField( $form, $baseObj, $fieldName ) {
+    // SOLO procesamos collections del tipo indicado en $fieldName
+
+    $baseId = $baseObj->getter( 'id' );
+
+    $formCollValues = $form->getFieldValue( $fieldName );
+    if( !is_array( $formCollValues ) ) {
+      $formCollValues = ( is_numeric( $formCollValues ) ) ? array( $formCollValues ) : array();
+    }
+
+    $formCollType = $form->getFieldParam( $fieldName, 'data-col-type' );
+
+    error_log( 'saveFormCollectionField( form, '.$baseId.', '.$fieldName.' ) tipo '.$formCollType );
+
+    $relPrevInfo = false;
+    // Si estamos editando, repasamos y borramos relaciones sobrantes
+    if( $baseId ) {
+      $relModel = new ResourceCollectionsModel();
+      $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
+      if( $relPrevList ) {
+        // estaban asignados antes
+        $relPrevInfo = array();
+        $colModel = new CollectionModel();
+        while( $relPrev = $relPrevList->fetch() ) {
+          $colList = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) );
+          $collection = ( $colList ) ? $colList->fetch() : false;
+          if( $collection && $collection->getter('collectionType') === $formCollType ) {
+            $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
+            if( !in_array( $relPrev->getter( 'collection' ), $formCollValues ) ) {
+              // desasignar
+              $relPrev->delete();
+            }
+          }
+        }
+      }
+    }
+
+    // Creamos-Editamos todas las relaciones
+    if( count( $formCollValues ) > 0 ) {
+      $weight = 0;
+      foreach( $formCollValues as $value ) {
+        $weight++;
+        $info = array( 'resource' => $baseId, 'collection' => $value, 'weight' => $weight );
+        if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
+          $info[ 'id' ] = $relPrevInfo[ $value ];
+        }
+        $relObj = new ResourceCollectionsModel( $info );
+        if( !$relObj->save() ) {
+          $form->addFieldRuleError( $fieldName, false, __( 'Error setting collection values' ) );
+          break;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
 
   private function setFormCollection( $form, $baseObj ) {
     // SOLO procesamos collections de tipo "base" o "multimedia"
@@ -1531,9 +1619,11 @@ class ResourceController {
   // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
   public function goOverCollections( array $collections, $collectionType ) {
     $collectionBlock = array();
+
     foreach( $collections as $idCollection => $collection ) {
       $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
     }
+
     return $collectionBlock;
   }
 
@@ -1543,7 +1633,7 @@ class ResourceController {
     $template = new Template();
     $template->assign( 'id', $collection['col']['id'] );
 
-    switch($colType = $collection['col']['collectionType']){
+    switch( $colType = $collection['col']['collectionType'] ) {
       case 'multimedia':
         $template->assign( 'max', 6 );
         $template->assign( 'multimediaAll', $collection );

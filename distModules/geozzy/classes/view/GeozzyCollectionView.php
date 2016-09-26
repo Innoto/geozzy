@@ -350,9 +350,13 @@ class GeozzyCollectionView extends View
         if( $filterRTypeParent && class_exists( $filterRTypeParent ) ) {
           //CON FILTROS ESTABLECIDOS
           $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':'.$collectionType.':all' );
-          if( !isset($filter) || count($filter) === 0 ){
+          if( !$filter || count($filter) === 0 ){
             $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$collectionType.':all' );
+            if( !$filter || count($filter) === 0 ) {
+              $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:default:all' );
+            }
           }
+
           //Se traen los rtypes establecidos en Conf
           $rtypeArray = $rtypeControl->listItems(
             array( 'filters' => array( 'idNameExists' => $filter ) )
@@ -374,29 +378,34 @@ class GeozzyCollectionView extends View
           if( $collectionId ){
             // ENTIDADES DEBILES
             $filterWeak = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':'.$collectionType.':manual' );
-            if( !isset($filterWeak) || count($filterWeak) === 0 ){
+            if( !$filterWeak || count($filterWeak) === 0 ){
               $filterWeak = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$collectionType.':manual' );
+              if( !$filterWeak || count($filterWeak) === 0 ) {
+                $filterWeak = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:default:manual' );
+              }
             }
             //Se traen los rtypes establecidos en Conf
-            $rtypeArray = $rtypeControl->listItems(
-              array( 'filters' => array( 'idNameExists' => $filterWeak ) )
-            );
-            //Creamos un array con los ids de los rtypes
-            $filterRtype = array();
-            while( $res = $rtypeArray->fetch() ){
-              array_push( $filterRtype, $res->getter('id') );
-            }
-            //Traemos todos los recursos de esa coleccion que tengan el rtype manual de conf
-            $colRes = $collectionResourcesModel->listItems(
-              array(
-                'filters' => array( 'collection' => $collectionId, 'ResourceModel.rTypeId' => $filterRtype ),
-                'joinType' => 'RIGHT',
-                'affectsDependences' => array('ResourceModel', 'RExtUrlModel')
-              )
-            )->fetchAll();
+            if( $filterWeak && count($filterWeak) > 0 ) {
+              $rtypeArray = $rtypeControl->listItems(
+                array( 'filters' => array( 'idNameExists' => $filterWeak ) )
+              );
+              //Creamos un array con los ids de los rtypes
+              $filterRtype = array();
+              while( $res = $rtypeArray->fetch() ){
+                array_push( $filterRtype, $res->getter('id') );
+              }
+              //Traemos todos los recursos de esa coleccion que tengan el rtype manual de conf
+              $colRes = $collectionResourcesModel->listItems(
+                array(
+                  'filters' => array( 'collection' => $collectionId, 'ResourceModel.rTypeId' => $filterRtype ),
+                  'joinType' => 'RIGHT',
+                  'affectsDependences' => array('ResourceModel', 'RExtUrlModel')
+                )
+              )->fetchAll();
 
-            foreach( $colRes as $key => $value ) {
-              $elemList = array_merge($elemList, $value->getterDependence('resource'));
+              foreach( $colRes as $key => $value ) {
+                $elemList = array_merge($elemList, $value->getterDependence('resource'));
+              }
             }
           }
 
