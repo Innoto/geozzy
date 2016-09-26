@@ -220,32 +220,33 @@ class RTypePageController extends RTypeController implements RTypeInterface {
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypePage' );
 
 
-    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $viewBlockInfo['data'][ 'id' ] );
+    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $viewBlockInfo['data']['id'] );
     if( $collectionArrayInfo ) {
-      $multimediaArray = $collectionArray = false;
+      $collectionArray = false;
+      $multimediaArray = false;
       foreach( $collectionArrayInfo as $key => $collectionInfo ) {
-        if( $collectionInfo['col']['multimedia'] == 1 ) { // colecciones multimedia
-          $multimediaArray[$key] = $collectionInfo;
-        }
-        else { // resto de colecciones
-          $collectionArray[$key] = $collectionInfo;
-        }
-      }
-
-      if( $multimediaArray ) {
-        $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, $multimedia = true );
-        if ($arrayMultimediaBlock){
-          foreach( $arrayMultimediaBlock as $multimediaBlock ) {
-            $template->addToFragment( 'multimediaGalleries', $multimediaBlock );
-          }
+        switch( $collectionInfo['col']['collectionType'] ) {
+          case 'base':
+            $collectionArray[ $key ] = $collectionInfo;
+            break;
+          case 'multimedia':
+            $multimediaArray[ $key ] = $collectionInfo;
+            break;
         }
       }
-
       if( $collectionArray ) {
-        $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, $multimedia = false  );
+        $arrayCollectionBlock = $this->defResCtrl->goOverCollections( $collectionArray, 'base' );
         if ($arrayCollectionBlock){
           foreach( $arrayCollectionBlock as $collectionBlock ) {
             $template->addToFragment( 'collections', $collectionBlock );
+          }
+        }
+      }
+      if( $multimediaArray ) {
+        $arrayMultimediaBlock = $this->defResCtrl->goOverCollections( $multimediaArray, 'multimedia' );
+        if ($arrayMultimediaBlock){
+          foreach( $arrayMultimediaBlock as $multimediaBlock ) {
+            $template->addToFragment( 'multimediaGalleries', $multimediaBlock );
           }
         }
       }
