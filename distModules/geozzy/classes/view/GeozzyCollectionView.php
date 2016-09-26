@@ -41,31 +41,32 @@ class GeozzyCollectionView extends View
     $valueCollectionType = ( array_key_exists('collectionType', $valuesArray ) ) ? $valuesArray['collectionType'] : 'base';
     $valueRTypeFilterParent = ( array_key_exists('filterRTypeParent', $valuesArray ) ) ? $valuesArray['filterRTypeParent'] : false;
 
+    $resOptions = array();
 
     $elemList = $this->getAvailableResources( $valueCollectionId, $valueCollectionType, $valueRTypeFilterParent );
 
-    $resControl = new ResourceController();
+    if( $elemList && is_array($elemList) && count($elemList) > 0 ) {
+      $resControl = new ResourceController();
+      foreach( $elemList as $key => $res ) {
+        $thumbSettings = array(
+          'profile' => 'squareCut',
+          'imageId' => $res->getter( 'image' ),
+          'imageName' => $res->getter( 'image' ).'.jpg'
+        );
+        $resDataExtArray = $res->getterDependence('id', 'RExtUrlModel');
+        if( $resDataExt = $resDataExtArray[0] ){
+          $thumbSettings['url'] = $resDataExt->getter('url');
+        }
+        $elOpt = array(
+          'value' => $res->getter( 'id' ),
+          'text' => $res->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ) ),
+          'data-image' => $resControl->getResourceThumbnail( $thumbSettings )
+        );
 
-    $resOptions = array();
-
-    foreach ($elemList as $key => $res) {
-      $thumbSettings = array(
-        'profile' => 'squareCut',
-        'imageId' => $res->getter( 'image' ),
-        'imageName' => $res->getter( 'image' ).'.jpg'
-      );
-      $resDataExtArray = $res->getterDependence('id', 'RExtUrlModel');
-      if( $resDataExt = $resDataExtArray[0] ){
-        $thumbSettings['url'] = $resDataExt->getter('url');
+        $resOptions[ $res->getter( 'id' ) ] = $elOpt;
       }
-      $elOpt = array(
-        'value' => $res->getter( 'id' ),
-        'text' => $res->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ) ),
-        'data-image' => $resControl->getResourceThumbnail( $thumbSettings )
-      );
-
-      $resOptions[ $res->getter( 'id' ) ] = $elOpt;
     }
+
 
     $fieldsInfo = array(
       'title' => array(
@@ -320,13 +321,14 @@ class GeozzyCollectionView extends View
 
   } // function actionCollectionForm()
 
-  public function getAvailableResources( $collectionId, $collectionType, $filterRTypeParent ){
+  public function getAvailableResources( $collectionId, $collectionType, $filterRTypeParent ) {
+    $elemList = array();
 
     $resourceModel = new ResourceModel();
     $collectionResourcesModel = new CollectionResourcesModel();
     $rtypeControl = new ResourcetypeModel();
 
-    switch($collectionType){
+    switch( $collectionType ) {
       /////////////////////////////////////////////////////////////////////////////////////
       case 'multimedia':
         //Traemos todos los recursos de esa coleccion
@@ -337,7 +339,7 @@ class GeozzyCollectionView extends View
           )
         )->fetchAll();
         $elemList = array();
-        foreach ($colRes as $key => $value) {
+        foreach( $colRes as $key => $value ) {
           $elemList = array_merge($elemList, $value->getterDependence('resource'));
         }
       break;
@@ -392,12 +394,13 @@ class GeozzyCollectionView extends View
               )
             )->fetchAll();
 
-            foreach ($colRes as $key => $value) {
+            foreach( $colRes as $key => $value ) {
               $elemList = array_merge($elemList, $value->getterDependence('resource'));
             }
           }
 
-        }else{
+        }
+        else {
           //SIN FILTROS ESTABLECIDOS
           $filterNotIn = array( "rtypeUrl", "rtypeFile" );
           $rtypeArray = $rtypeControl->listItems(
