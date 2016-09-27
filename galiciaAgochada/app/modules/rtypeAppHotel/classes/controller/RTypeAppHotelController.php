@@ -53,8 +53,6 @@ class RTypeAppHotelController extends RTypeController implements RTypeInterface 
     // Necesito estos controles
     $accomCtrl = new RExtAccommodationController( $this );
     $zonaCtrl = new RExtAppZonaController( $this );
-
-
     if( class_exists( 'RExtAccommodationReserveController' ) && in_array( 'rextAccommodationReserve', $this->rExts ) ) {
       $accomReserveCtrl = new RExtAccommodationReserveController( $this );
     }
