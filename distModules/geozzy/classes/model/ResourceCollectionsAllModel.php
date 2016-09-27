@@ -62,7 +62,7 @@ class ResourceCollectionsAllModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'geozzy#1.0',
+      'version' => 'geozzy#1.7',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_collectionsall;
@@ -76,6 +76,35 @@ class ResourceCollectionsAllModel extends Model {
             {multilang:geozzy_collection.shortDescription_$lang AS shortDescription_$lang,}
 
             {multilang:geozzy_collection.description_$lang AS description_$lang,}
+
+            geozzy_collection.collectionType AS collectionType,
+            geozzy_collection.weight AS weight,
+            geozzy_collection.image AS image,
+            geozzy_resource_collections.resource AS resourceMain,
+            geozzy_resource_collections.weight AS weightMain,
+            geozzy_collection_resources.resource AS resourceSon,
+            geozzy_collection_resources.weight AS weightSon
+          FROM `geozzy_resource_collections`
+            JOIN `geozzy_collection_resources`
+            JOIN `geozzy_collection`
+          WHERE geozzy_collection_resources.collection = geozzy_collection.id
+            AND geozzy_resource_collections.collection = geozzy_collection.id
+          ORDER BY geozzy_resource_collections.weight, geozzy_collection_resources.weight;
+      '
+    ),
+    array(
+      'version' => 'geozzy#1.0',
+      'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_resource_collectionsall;
+        CREATE VIEW geozzy_resource_collectionsall AS
+          SELECT
+            geozzy_collection.id AS id,
+            geozzy_collection.idName AS idName,
+
+            {multilang:geozzy_collection.title_$lang AS title_$lang,}
+
+            {multilang:geozzy_collection.shortDescription_$lang AS shortDescription_$lang,}
 
             geozzy_collection.collectionType AS collectionType,
             geozzy_collection.weight AS weight,
