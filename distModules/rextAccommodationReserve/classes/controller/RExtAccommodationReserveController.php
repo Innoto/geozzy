@@ -223,8 +223,14 @@ class RExtAccommodationReserveController extends RExtController implements RExtI
         ];
         $srcUrl = str_replace( $from, $to, $channelInfo['pattern'] );
         $rExtViewBlockInfo['template']['full']->assign( 'srcUrl', $srcUrl );
-
       }
+    }
+
+    // Template por defecto
+    if( !isset( $rExtViewBlockInfo['template']['full'] ) ) {
+      $rExtViewBlockInfo['template']['full'] = new Template();
+      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextAccommodationReserve' );
     }
 
     return $rExtViewBlockInfo;

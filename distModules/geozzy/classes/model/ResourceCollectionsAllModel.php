@@ -27,6 +27,10 @@ class ResourceCollectionsAllModel extends Model {
       'size' => 100,
       'multilang' => true
     ),
+    'description' => array(
+      'type' => 'TEXT',
+      'multilang' => true
+    ),
     'collectionType' => array(
       'type' => 'VARCHAR',
       'size' => 20
@@ -94,7 +98,6 @@ class ResourceCollectionsAllModel extends Model {
     ),
     array(
       'version' => 'geozzy#1.0',
-      'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_collectionsall;
         CREATE VIEW geozzy_resource_collectionsall AS

@@ -57,6 +57,10 @@ cogumelo::setSetupValue( 'mod:rextAccommodationReserve:channelOptions:thebooking
 */
 
 
+/*
+//
+// PELIGRO: Retirado porque causa conflictos en javascript !!!
+//
 cogumelo::setSetupValue( 'mod:rextAccommodationReserve:channelOptions:ruralgest.net', [
   'type' => 'srcScript',
   'pattern' => 'http://www.ruralgest.net/scr/modulos/recursos_ext/js_ext/ext_v001.php?id_casa=<$idRelate>&amp;id_idioma=0&amp;espacio=2&amp;n_c=1',
@@ -70,5 +74,7 @@ cogumelo::setSetupValue( 'mod:rextAccommodationReserve:channelOptions:ruralgest.
     'public' => 'ruralgest-net-public.tpl'
   ]
 ]);
-// <script src="http://www.ruralgest.net/scr/modulos/recursos_ext/js_ext/ext_v001.php?id_casa=575983&amp;id_idioma=0&amp;espacio=2&amp;n_c=1"></script>
-
+*/
+/*
+<script src="http://www.ruralgest.net/scr/modulos/recursos_ext/js_ext/ext_v001.php?id_casa=575983&amp;id_idioma=0&amp;espacio=2&amp;n_c=1"></script>
+*/
