@@ -226,6 +226,7 @@ class RExtAccommodationReserveController extends RExtController implements RExtI
       }
     }
 
+    // Template por defecto
     if( !isset( $rExtViewBlockInfo['template']['full'] ) ) {
       $rExtViewBlockInfo['template']['full'] = new Template();
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
