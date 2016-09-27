@@ -27,6 +27,10 @@ class ResourceCollectionsAllModel extends Model {
       'size' => 100,
       'multilang' => true
     ),
+    'description' => array(
+      'type' => 'TEXT',
+      'multilang' => true
+    ),
     'collectionType' => array(
       'type' => 'VARCHAR',
       'size' => 20
