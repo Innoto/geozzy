@@ -7,8 +7,14 @@ class rtypeStory extends Module {
   public $name = 'rtypeStory';
   public $version = 1.0;
   public $rext = array('rextStory', 'rextView', 'rextSocialNetwork','rextComment');
-
-  public $dependences = array();
+  public $dependences = array(
+    array(
+     "id" =>"mathjs",
+     "params" => array("mathjs"),
+     "installer" => "bower",
+     "includes" => array()
+    )
+  );
 
   public $includesCommon = array(
     'controller/RTypeStoryController.php',
