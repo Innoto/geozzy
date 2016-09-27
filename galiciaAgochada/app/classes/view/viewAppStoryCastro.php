@@ -28,7 +28,7 @@ class viewAppStoryCastro extends MasterView
 
 
     $template->addClientScript('js/castroStory.js');
-    //$template->addClientStyles('styles/masterPageAbout.less');
+    $template->addClientStyles('styles/masterCastroStory.less');
 
     $template->setTpl('castroStory.tpl');
 
