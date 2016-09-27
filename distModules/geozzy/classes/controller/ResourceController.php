@@ -1525,8 +1525,9 @@ class ResourceController {
 
   // Carga los datos de todas las colecciones de recursos asociadas al recurso dado
   public function getCollectionBlockInfo( $resId, $collectionType = false ) {
-    $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
     $collectionResources = false;
+
+    $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
     if( isset( $resId ) ) {
       $resCollectionList = $resourceCollectionsAllModel->listItems(
         array(
@@ -1591,12 +1592,12 @@ class ResourceController {
                   'rType' => $resVal->getter('rTypeId'),
                   'title' => $resVal->getter('title'),
                   'shortDescription' => $resVal->getter('shortDescription'),
-                  'multimediaUrl' => $multimediaUrl,
+                  'urlAlias' => $urlAlias,
                   'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
                   'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
                   'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
                   'image_big' => $imgUrl2,
-                  'urlAlias' => $urlAlias
+                  'multimediaUrl' => $multimediaUrl,
                 );
               }
               break;
@@ -1632,6 +1633,7 @@ class ResourceController {
         } // if
       }
     }
+
     return($collectionResources);
   }
 
@@ -1640,6 +1642,9 @@ class ResourceController {
     $collectionBlock = array();
 
     foreach( $collections as $idCollection => $collection ) {
+      if( $collectionType && $collectionType !== $collection['col']['collectionType'] ) {
+        continue;
+      }
       $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
     }
 
