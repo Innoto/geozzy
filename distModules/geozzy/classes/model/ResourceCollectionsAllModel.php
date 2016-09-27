@@ -59,8 +59,6 @@ class ResourceCollectionsAllModel extends Model {
 
   var $notCreateDBTable = true;
 
-
-
   var $deploySQL = array(
     // All Times
     array(
@@ -76,6 +74,8 @@ class ResourceCollectionsAllModel extends Model {
             {multilang:geozzy_collection.title_$lang AS title_$lang,}
 
             {multilang:geozzy_collection.shortDescription_$lang AS shortDescription_$lang,}
+
+            {multilang:geozzy_collection.description_$lang AS description_$lang,}
 
             geozzy_collection.collectionType AS collectionType,
             geozzy_collection.weight AS weight,
