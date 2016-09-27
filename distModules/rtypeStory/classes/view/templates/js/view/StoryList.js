@@ -52,14 +52,25 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     });
 
     that.stepsDOM= that.$el.find('.storyStep').toArray();
-    that.calculatePositions();
+    that.caculatePositions();
   },
 
   caculatePositions: function() {
     var that = this;
     $(that.stepsDOM ).each( function(i,e) {
-
+        console.log(i, that.isVisible(e) );
     });
+  },
+
+  isVisible: function(elem){
+
+      var docViewTop = $(window).scrollTop();
+      var docViewBottom = docViewTop + $(window).height();
+
+      var elemTop = $(elem).offset().top;
+      var elemBottom = elemTop + $(elem).height();
+
+      return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
   }
 
 });
