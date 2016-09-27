@@ -1524,18 +1524,25 @@ class ResourceController {
   }
 
   // Carga los datos de todas las colecciones de recursos asociadas al recurso dado
-  public function getCollectionBlockInfo( $resId ){
+  public function getCollectionBlockInfo( $resId, $collectionType = false ) {
     $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
     $collectionResources = false;
     if( isset( $resId ) ) {
       $resCollectionList = $resourceCollectionsAllModel->listItems(
         array(
-          'filters' => array( 'resourceMain' => $resId),
+          'filters' => array( 'resourceMain' => $resId ),
           'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-          'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias')
+          'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias' )
         )
       );
       while( $collection = $resCollectionList->fetch() ) {
+        $collType = $collection->getter('collectionType');
+        if( $collectionType && $collType !== $collectionType ) {
+          continue;
+        }
+        if( !$collectionType && !in_array( $collType, [ 'base', 'multimedia' ] ) ) {
+          continue;
+        }
         $collectionResources[ $collection->getter('id') ]['col'] = array(
           'id' => $collection->getter('id'),
           'title' => $collection->getter('title'),
@@ -1580,15 +1587,21 @@ class ResourceController {
                 $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
 
                 $collectionResources[ $collection->getter('id') ]['res'][ $resVal->getter('id') ] = array(
+                  'id' => $resVal->getter('id'),
                   'rType' => $resVal->getter('rTypeId'),
-                  'title' => $resVal->getter('title_'.$this->actLang),
-                  'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
-                  'multimediaUrl' => $multimediaUrl, 'image' => $imgUrl, 'image_big' => $imgUrl2,
+                  'title' => $resVal->getter('title'),
+                  'shortDescription' => $resVal->getter('shortDescription'),
+                  'multimediaUrl' => $multimediaUrl,
+                  'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
+                  'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
+                  'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
+                  'image_big' => $imgUrl2,
                   'urlAlias' => $urlAlias
                 );
               }
               break;
             case 'base':
+            default:
               foreach( $resources as $resVal ) {
                 $thumbSettings = array(
                   'imageId' => $resVal->getter( 'image' ),
@@ -1606,9 +1619,12 @@ class ResourceController {
                 $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] = array(
                   'id' => $resVal->getter('id'),
                   'rType' => $resVal->getter('rTypeId'),
-                  'title' => $resVal->getter('title_'.$this->actLang),
-                  'shortDescription' => $resVal->getter('shortDescription_'.$this->actLang),
-                  'image' => $imgUrl, 'urlAlias' => $urlAlias
+                  'title' => $resVal->getter('title'),
+                  'shortDescription' => $resVal->getter('shortDescription'),
+                  'urlAlias' => $urlAlias,
+                  'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
+                  'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
+                  'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
                 );
               }
               break;
@@ -1620,7 +1636,7 @@ class ResourceController {
   }
 
   // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
-  public function goOverCollections( array $collections, $collectionType ) {
+  public function goOverCollections( array $collections, $collectionType = false ) {
     $collectionBlock = array();
 
     foreach( $collections as $idCollection => $collection ) {
@@ -1642,8 +1658,8 @@ class ResourceController {
         $template->assign( 'multimediaAll', $collection );
         $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
         break;
-
       case 'base':
+      default;
         $template->assign( 'collectionResources', $collection );
         $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
         break;
