@@ -1,6 +1,22 @@
 $(document).ready( function(){
 
 
+  // Instanciar MAPA
+  var mapOptions = {
+    center: { lat: 43.1, lng: -7.36 },
+    mapTypeControl: false,
+    zoom: 8,
+    scrollwheel: false,
+    disableDoubleClickZoom: true
+    //styles : mapTheme
+  };
+
+  var resourceMap = new google.maps.Map( $('.storyBody .mapa').get( 0 ), mapOptions);
+
+  setSizes();
+  $(window).on('resize', setSizes);
+  google.maps.event.addListener(resourceMap, "idle", setSizes);
+
 
   var historia  = new geozzy.story({
     storyReference:'castro'
@@ -16,4 +32,16 @@ $(document).ready( function(){
 
 
   historia.exec();
+  setSizes();
 });
+
+
+
+function setSizes() {
+  var altoCabeceira = ($('header.headContent').height() + $('.bodyContent .titleBar').height() );
+
+  $('.storyBody .mapa').height( $(window).height() - altoCabeceira);
+  $('.storyBody .mapa').width( $(window).width() );
+  $('.storyBody .mapa').css( 'position', 'fixed' );
+  $('.storyBody .mapa').css( 'top', altoCabeceira );
+}

@@ -6,6 +6,6 @@
     </div>
   </div>
   <div class="storyBody">
-    <div class="lista"></div>
     <div class="mapa"></div>
+    <div class="lista"></div>
   </div>
