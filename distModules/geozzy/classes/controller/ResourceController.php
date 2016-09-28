@@ -1167,61 +1167,6 @@ class ResourceController {
 
     $this->saveFormCollectionField( $form, $baseObj, 'collections' );
     $this->saveFormCollectionField( $form, $baseObj, 'multimediaGalleries' );
-
-    /*
-    $baseId = $baseObj->getter( 'id' );
-    $formValuesCol = $form->getFieldValue( 'collections' ); // collectionType "base"
-    $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' ); // collectionType "multimedia"
-
-    if( !is_array( $formValuesCol ) ) {
-      $formValuesCol = ( is_numeric( $formValuesCol ) ) ? array( $formValuesCol ) : array();
-    }
-    if( !is_array( $formValuesMulti ) ) {
-      $formValuesMulti = ( is_numeric( $formValuesMulti ) ) ? array( $formValuesMulti ) : array();
-    }
-    $formValues = array_merge( $formValuesCol, $formValuesMulti );
-
-    $relPrevInfo = false;
-    // Si estamos editando, repasamos y borramos relaciones sobrantes
-    if( $baseId ) {
-      $relModel = new ResourceCollectionsModel();
-      $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
-      if( $relPrevList ) {
-        // estaban asignados antes
-        $relPrevInfo = array();
-        $colModel = new CollectionModel();
-        while( $relPrev = $relPrevList->fetch() ) {
-          $colList = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) );
-          $collection = ( $colList ) ? $colList->fetch() : false;
-          if( $collection && in_array( $collection->getter('collectionType'), array( 'base', 'multimedia' ) ) ) {
-            $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
-            if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ) {
-              // desasignar
-              $relPrev->delete();
-            }
-          }
-        }
-      }
-    }
-
-    // Creamos-Editamos todas las relaciones
-    if( count( $formValues ) > 0 ) {
-      $weight = 0;
-      foreach( $formValues as $value ) {
-        $weight++;
-        $info = array( 'resource' => $baseId, 'collection' => $value, 'weight' => $weight );
-        if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
-          $info[ 'id' ] = $relPrevInfo[ $value ];
-        }
-        $relObj = new ResourceCollectionsModel( $info );
-        if( !$relObj->save() ) {
-          $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );
-          break;
-        }
-      }
-    }
-
-    */
   }
 
 
