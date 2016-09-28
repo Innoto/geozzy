@@ -1524,26 +1524,26 @@ class ResourceController {
   }
 
   // Carga los datos de todas las colecciones de recursos asociadas al recurso dado
-  public function getCollectionBlockInfo( $resId, $collectionType = false ) {
+  public function getCollectionBlockInfo( $resId, $collectionTypes = false ) {
     $collectionResources = false;
+
+    if( $collectionTypes === false ) {
+      $collTypesFilter = [ 'base', 'multimedia' ];
+    }
+    else {
+      $collTypesFilter = is_array( $collectionTypes ) ? $collectionTypes : [ $collectionTypes ];
+    }
 
     $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
     if( isset( $resId ) ) {
       $resCollectionList = $resourceCollectionsAllModel->listItems(
         array(
-          'filters' => array( 'resourceMain' => $resId ),
+          'filters' => array( 'resourceMain' => $resId, 'collectionTypeIn' => $collTypesFilter ),
           'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
           'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias' )
         )
       );
       while( $collection = $resCollectionList->fetch() ) {
-        $collType = $collection->getter('collectionType');
-        if( $collectionType && $collType !== $collectionType ) {
-          continue;
-        }
-        if( !$collectionType && !in_array( $collType, [ 'base', 'multimedia' ] ) ) {
-          continue;
-        }
         $collectionResources[ $collection->getter('id') ]['col'] = array(
           'id' => $collection->getter('id'),
           'title' => $collection->getter('title'),
@@ -1552,9 +1552,6 @@ class ResourceController {
           'image' => $collection->getter('image'),
           'collectionType' => $collection->getter('collectionType')
         );
-
-        // $collectionResourcesFirst[ $collection->getter('id') ]['col'] = $collectionResources[ $collection->getter('id') ]['col'];
-
         $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
         if( $resources && is_array($resources) && count($resources) > 0 ) {
           switch( $collection->getter('collectionType') ) {

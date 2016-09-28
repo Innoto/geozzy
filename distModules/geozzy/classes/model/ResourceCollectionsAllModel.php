@@ -59,7 +59,9 @@ class ResourceCollectionsAllModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'collectionTypeIn' => ' geozzy_resource_collectionsall.collectionType IN (?) ',
+  );
 
   var $notCreateDBTable = true;
 
