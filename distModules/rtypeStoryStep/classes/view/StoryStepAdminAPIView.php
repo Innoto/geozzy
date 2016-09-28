@@ -68,7 +68,7 @@ class StoryStepAdminAPIView extends View {
         if( isset( $putData['weight'] ) ) {
 
           $collectionResource = $resource->getterDependence('id', 'CollectionResourcesModel')[0];
-        
+
           $collectionResource->setter('weight', $putData['weight'] );
           $collectionResource->save( );
         }
@@ -84,8 +84,16 @@ class StoryStepAdminAPIView extends View {
         if( isset( $resourceId ) && is_numeric( $resourceId ) ) {
 
           $resController = new ResourceController();
-          $collectionArrayInfo = $resController->getCollectionBlockInfo( $resourceId );
+          $collectionArrayInfo = $resController->getCollectionsAll( $resourceId );
 
+
+          if( isset( $collectionArrayInfo['steps']) && is_array($collectionArrayInfo['steps']) ) {
+            $collectionIds = array_keys($collectionArrayInfo['steps']);
+            $collectionId = $collectionIds[0];
+          }
+
+
+/*
           if ($collectionArrayInfo){
             foreach ($collectionArrayInfo as $key => $collectionInfo){
               if ($collectionInfo['col']['collectionType'] == 'steps'){
@@ -93,7 +101,7 @@ class StoryStepAdminAPIView extends View {
               }
             }
           }
-
+*/
           if(isset($collectionId)){
             $collectionResources = array();
             $collectionResourcesModel = new CollectionResourcesModel();
