@@ -7,6 +7,7 @@ $(document).ready( function(){
     mapTypeControl: false,
     zoom: 8,
     scrollwheel: false,
+    draggable: !("ontouchend" in document),
     disableDoubleClickZoom: true
     //styles : mapTheme
   };
@@ -23,13 +24,17 @@ $(document).ready( function(){
   });
 
 
-  displayLista = new geozzy.storyComponents.StoryListView({
+  var displayLista = new geozzy.storyComponents.StoryListView({
     container: '.storyBody .lista'
+  });
+
+  var displayMapa = new geozzy.storyComponents.StoryBackgroundView({
+    map: resourceMap
   });
 
 
   historia.addDisplay( displayLista );
-
+  historia.addDisplay( displayMapa );
 
   historia.exec();
   setSizes();

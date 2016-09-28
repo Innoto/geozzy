@@ -5,7 +5,8 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
   displayType: 'list',
   parentStory: false,
   stepsDOM: false,
-  currentStep: false,
+  stepsDOMEquivalences: false,
+  currentDOMStep: false,
   initialize: function( opts ) {
     var that = this;
 
@@ -50,13 +51,12 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     if( typeof that.parentStory.displays.background != 'undefined') {
 
     }
-
-
+    that.stepsDOMEquivalences = [];
     that.$el.html('');
     that.parentStory.storySteps.each( function( step , i ) {
       var d = step.toJSON();
-      //data.marginTop =
       that.$el.append( that.tplElement( d ) );
+      that.stepsDOMEquivalences.push( d.id );
     });
 
     that.stepsDOM= that.$el.find('.storyStep').toArray();
@@ -75,7 +75,6 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
         var previousDiv = $(that.stepsDOM[ i - 1 ]);
         var previousHeight = parseInt( previousDiv.css('top'), 10 ) + parseInt( previousDiv.css('height'), 10 );
         var topPosition = previousHeight + that.getVisibleHeight() - that.options.steepMarginsDifference ;
-
       }
 
       $(e).css('top', topPosition);
@@ -92,7 +91,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
 
 
     //console.log(mathjs)
-    console.log( math.intersect( [0, 0], [10, 10], [10, 0], [0, 10]) );
+    //console.log( math.intersect( [0, 0], [10, 10], [10, 0], [0, 10]) );
 
 
     var that = this;
@@ -101,17 +100,26 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     var maxVisibleKey = false;
 
     $( that.stepsDOM ).each( function(i,e) {
-      if( that.howMuchVisible(e) > maxVisible ) {
-        maxVisible = that.howMuchVisible(e);
+      if( that.howMuchVisibleFromDiv(e) > maxVisible ) {
+        maxVisible = that.howMuchVisibleFromDiv(e);
         maxVisibleKey = i;
       }
     });
 
-    that.currentStep = maxVisibleKey;
-    console.log(that.currentStep);
+
+    if( that.currentDOMStep != maxVisibleKey ) {
+      that.currentDOMStep = maxVisibleKey;
+      that.parentStory.triggerEvent('stepChange', {id: that.stepsDOMEquivalences[maxVisibleKey] , domElement: that.stepsDOM[maxVisibleKey] });
+      //console.log('stepChange', {id: that.stepsDOMEquivalences[maxVisibleKey] , domElement: that.stepsDOM[maxVisibleKey] });
+    }
+
+
+
+
+
   },
 
-  howMuchVisible: function(elem){
+  howMuchVisibleFromDiv: function(elem){
 
     var docViewTop = $(window).scrollTop();
     var docViewBottom = docViewTop + $(window).height();
