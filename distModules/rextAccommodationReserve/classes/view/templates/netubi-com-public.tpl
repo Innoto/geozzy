@@ -1,9 +1,27 @@
 
 <!-- Reserve TPL -->
-
-<a id="reserve_link_{$rExt.data.idRelate}" href="" target="_blank"
->Ver disponibilidad</a> en las fechas <span id="reserve_cal_{$rExt.data.idRelate}"
-style="font-weight: bold; text-decoration: underline; color: rgb(90, 183, 128);"> - </span>
+<div class="rextAccommodationReserve">
+  <span class="anchorResource" id="reserveAnchor"></span>
+  <h4>{t}Reserve{/t}</h4>
+  <form action="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
+          <div class="form-group has-feedback">
+            <label for="reserve_cal_{$rExt.data.idRelate}">{t}Check in date - Check out date{/t}</label>
+            <input type="text" id="reserve_cal_{$rExt.data.idRelate}" class="form-control" readonly>
+            <i class="fa fa-calendar form-control-feedback"></i>
+          </div>
+        </div>
+        <div class="col-md-8 col-sm-6 mid">
+          <div class="form-group">
+            <a id="reserve_link_{$rExt.data.idRelate}" href="" class="btn btn-lg" type="button" target="_blank">{t}Reserve{/t}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 
 
 <script type="text/javascript">

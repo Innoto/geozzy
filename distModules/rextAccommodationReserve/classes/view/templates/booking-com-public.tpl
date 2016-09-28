@@ -1,12 +1,51 @@
 
 <!-- Reserve TPL -->
-
-<a id="reserve_link_{$rExt.data.idRelate}" href="" target="_blank">Ver disponibilidad</a>
- en las fechas <span id="reserve_cal_{$rExt.data.idRelate}"
-style="font-weight: bold; text-decoration: underline; color: rgb(90, 183, 128);"> - </span>
- para <input id="reserve_adults_{$rExt.data.idRelate}" type="text" style="width: 3em; text-align: right;"> personas
- en <input id="reserve_rooms_{$rExt.data.idRelate}" type="text" style="width: 3em; text-align: right;"> habitaciones.
-
+<div class="rextAccommodationReserve">
+  <span class="anchorResource" id="reserveAnchor"></span>
+  <h4>{t}Reserve{/t}</h4>
+  <form action="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group has-feedback">
+            <label for="reserve_cal_{$rExt.data.idRelate}">{t}Check in date - Check out date{/t}</label>
+            <input type="text" id="reserve_cal_{$rExt.data.idRelate}" class="form-control" readonly>
+            <i class="fa fa-calendar form-control-feedback"></i>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="reserve_rooms_{$rExt.data.idRelate}">{t}Rooms{/t}</label>
+            <select class="form-control" id="reserve_adults_{$rExt.data.idRelate}">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="reserve_adults_{$rExt.data.idRelate}">{t}Adults{/t}</label>
+            <select class="form-control" id="reserve_rooms_{$rExt.data.idRelate}">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4 mid">
+          <div class="form-group">
+            <a id="reserve_link_{$rExt.data.idRelate}" href="" class="btn btn-lg" type="button" target="_blank">{t}Reserve{/t}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 
 <script type="text/javascript">
 /**

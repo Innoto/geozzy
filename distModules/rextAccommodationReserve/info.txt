@@ -63,7 +63,6 @@ params internal:
 langName=es
 
 params public:
-checkin=2016-11-15
 
 
 Resultado:
@@ -88,4 +87,3 @@ params public:
 
 Resultado:
 <script src="http://www.ruralgest.net/scr/modulos/recursos_ext/js_ext/ext_v001.php?id_casa=575983&amp;id_idioma=0&amp;espacio=2&amp;n_c=1"></script>
-

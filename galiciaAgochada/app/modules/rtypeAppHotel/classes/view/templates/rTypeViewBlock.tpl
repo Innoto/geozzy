@@ -57,12 +57,14 @@
       <div class="reservationBox">
         <div class="priceText">{t}Average night rate{/t}</div>
         <div class="priceAmount"><span class="num">{$res.ext.rextAccommodation.data.averagePrice|escape:'htmlall'}</span><span class="unit"> €</span></div>
-        {if $res.ext.rextAccommodation.data.reservationURL || $res.ext.rextAccommodation.data.reservationPhone}
+        {if $res.ext.rextAccommodation.data.reservationURL || $res.ext.rextAccommodation.data.reservationPhone || $res.ext.rextAccommodationReserve.data.channel != 'none'}
           <div class="reservationBtb">
-            {if $res.ext.rextAccommodation.data.reservationURL}
-              <a href="{$res.ext.rextAccommodation.data.reservationURL}" target="blank">{t}Reserve{/t}</a>
+            {if $res.ext.rextAccommodationReserve.data.channel != 'none'}
+              <a href="#reserveAnchor">{t}Reserva{/t}</a>
+            {elseif $res.ext.rextAccommodation.data.reservationURL}
+              <a href="{$res.ext.rextAccommodation.data.reservationURL}" target="blank">{t}Reserva{/t}</a>
             {elseif $res.ext.rextAccommodation.data.reservationPhone}
-              <div class="showReservation">{t}Reserve{/t}</div>
+              <div class="showReservation">{t}Reserva{/t}</div>
             {/if}
           </div>
         {/if}
@@ -167,7 +169,6 @@
 
   {if isset($rextAccommodationReserve) }
   <section class="reserveSec container gzSection">
-    <p>Section reserveSec:</p>
     {$rextAccommodationReserve}
   </section>
   {/if}
