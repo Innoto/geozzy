@@ -1,0 +1,46 @@
+.dateRangePickerTheme( @colorDatePicker : @gzzColor-geozzy ){
+  .daterangepicker{
+    .calendar{
+      &.left{
+        thead{
+          .prev{
+            i {
+              display: none;
+            }
+            &::after{
+              content: '<';
+            }
+          }
+        }
+        tbody{
+          .active{
+            background: @colorDatePicker;
+          }
+          .off{
+            background: none;
+          }
+        }
+      }
+      &.right{
+        thead{
+          .next{
+            i {
+              display: none;
+            }
+            &::after{
+              content: '>';
+            }
+          }
+        }
+        tbody{
+          .active{
+            background: @colorDatePicker;
+          }
+          .off{
+            background: none;
+          }
+        }
+      }
+    }
+  }
+}

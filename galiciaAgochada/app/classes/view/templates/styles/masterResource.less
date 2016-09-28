@@ -1,5 +1,10 @@
 @import "primary/primary.less";
 @import "themeLibs/owlGalleryGATheme.less";
+@import "themeLibs/dateRangePickerTheme.less";
+
+body{
+  .dateRangePickerTheme( @gzzColor-aloxamento );
+}
 
 .bodyContent{
   background-color: @gzzColor-text-light;
@@ -107,7 +112,6 @@
         }
       }
     }
-
     .contentSec{
       background-color: @gzzColor-text-light;
       text-align:justify;
@@ -207,7 +211,6 @@
         text-align:justify;
       }
     }
-
     .locationSec{
       margin-bottom:0px;
       .locationLight{
@@ -373,8 +376,6 @@
       }
 
     } /*locationSec*/
-
-
     .routesSec{
       background-color:#e4e4e4;
 
@@ -490,7 +491,6 @@
         }//right-column
       }//rextRoutes
     } //routesSec
-
     .collectionSec{
       .owl-carousel-gzz{
         position: relative;
@@ -502,7 +502,6 @@
         margin-bottom:30px;
       }
     }
-
     .multimediaSec{
       .galleryBox{
         min-height:200px;
@@ -517,15 +516,12 @@
         cursor: pointer;
       }
     }
-
     .reccommendedSec{
       .rExtReccommendedList{
         position: relative;
         .owlGalleryGATheme();
       }
-
     }
-
     .commentSec{
       .rExtCommentBar{
         margin-top: 30px;
@@ -575,6 +571,34 @@
         }
       }//.rExtCommentList
     }//.commentSec
+    .reserveSec{
+      .rextAccommodationReserve{
+        .row{
+          .mid{
+            height: 87px;
+            line-height: 87px;
+          }
+          .form-group{
+            label{
+              font-size: 12px;
+              font-weight: 600;
+              padding-left: 2px;
+            }
+            input[type='text']{
+              background: @gzzColor-bck-1;
+            }
+            a{
+              font-weight: bold;
+              font-size: @font-size-base;
+              padding-right: 50px;
+              padding-left: 50px;
+              color: @gzzColor-text-light;
+              background: @gzzColor-geozzy;
+            }
+          }
+        }
+      }
+    }
   }
 
   /* Fichas específicas */
@@ -610,8 +634,16 @@
         color:@gzzColor-aloxamento;
       }
     }
+    .reserveSec{
+      .rextAccommodationReserve{
+        .row{
+          .form-group{
+            a{ background: @gzzColor-aloxamento; }
+          }
+        }
+      }
+    }
   }
-
   .rtypeAppRestaurant{
     .reservationBtb{
       background-color: @gzzColor-xantares;
@@ -633,8 +665,6 @@
       }
     }
   }
-
-
   .rtypeAppFesta{
 
     .destResourceMoreInfo a{
@@ -811,7 +841,6 @@
     }/*.eventSection*/
 
   }/*.rtypeAppFesta*/
-
   .rtypeAppEspazoNatural{
     .destResourceMoreInfo a{
       background-color: @gzzColor-paisaxes;
@@ -819,7 +848,6 @@
       font-weight:bold;
     }
    }
-
   .rtypeAppLugar{
     .destResourceMoreInfo a{
       background-color: @gzzColor-rincons;
@@ -851,7 +879,6 @@
       }
     }
   }
-
   .rtypeAppRuta{
     .barraEsfuerzo{
       background: url("@{cogumelo_publicConf_media}/module/rextRoutes/img/esforzo.png") 0px 0px;
@@ -922,6 +949,36 @@
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

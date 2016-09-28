@@ -15,6 +15,7 @@
  *     'saveFormat' - ['JPEG','PNG'] default: Original format
  *     'saveName' - default: Filedata 'name'
  *     'saveQuality'
+ *     'cache' - default: true
  *
  *
  * Formatos de URL
@@ -193,7 +194,7 @@ cogumeloSetSetupValue( 'mod:filedata:profile:filterTypeRincons2', array(
 cogumeloSetSetupValue( 'mod:filedata:profile:explorerMarker', array(
   'width' => 24, 'height' => 24, 'cut' => false,
   'rasterColor' => '#FFFFFF', 'backgroundImg' => '/chapa_paisaxes.png',
-  'padding' => 5, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+  'padding' => 0, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
 /*
 cogumeloSetSetupValue( 'mod:filedata:profile:explorerMarker', array(
   'width' => 32, 'height' => 32, 'cut' => false,
@@ -206,7 +207,7 @@ cogumeloSetSetupValue( 'mod:filedata:profile:explorerMarker', array(
 cogumeloSetSetupValue( 'mod:filedata:profile:resourcePoisCollection', array(
   'width' => 20, 'height' => 20, 'cut' => false, 'rasterColor' => '#FFFFFF',
   'backgroundImg' => '/module/rextPoiCollection/img/chapaPOIS.png',
-  'padding' => 2, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+  'padding' => 4, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
 
 
 
