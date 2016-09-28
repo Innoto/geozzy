@@ -9,6 +9,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
   scrollDirection: 1,
   scrollPosition:0,
 
+  currentStepDOM:false,
   currentStepGeoLatLng: false,
 
   initialize: function( opts ) {
@@ -17,6 +18,9 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var options = new Object({
       map: false,
       drawLine:true,
+      lineColor: '#ffffff',
+      lineWidth: 2,
+      lineDotRadious: 10,
       moveToStep:true
     });
 
@@ -132,49 +136,47 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var canvasWidth = that.canvasLayer.canvas.width;
     var canvasHeight = that.canvasLayer.canvas.height;
     that.layerContext.clearRect(0, 0, canvasWidth, canvasHeight);
-    // we like our rectangles hideous
-    that.layerContext.fillStyle = 'rgba(230, 230, 26, 1)';
 
-
-    console.log(canvasWidth);
-
-    /* We need to scale and translate the map for current view.
-     * see https://developers.google.com/maps/documentation/javascript/maptypes#MapCoordinates
-     */
     var mapProjection = that.options.map.getProjection();
-    /**
-     * Clear transformation from last update by setting to identity matrix.
-     * Could use that.layerContext.resetTransform(), but most browsers don't support
-     * it yet.
-     */
-    that.layerContext.setTransform(1, 0, 0, 1, 0, 0);
 
-    // scale is just 2^zoom
-    // If canvasLayer is scaled (with resolutionScale), we need to scale by
-    // the same amount to account for the larger canvas.
+    that.layerContext.setTransform(1, 0, 0, 1, 0, 0);
     var scale = Math.pow(2, that.options.map.zoom) * window.devicePixelRatio || 1;
     that.layerContext.scale(scale, scale);
-    /* If the map was not translated, the topLeft corner would be 0,0 in
-     * world coordinates. Our translation is just the vector from the
-     * world coordinate of the topLeft corder to 0,0.
-     */
     var offset = mapProjection.fromLatLngToPoint(that.canvasLayer.getTopLeft());
     that.layerContext.translate(-offset.x, -offset.y);
-    // project rectLatLng to world coordinates and draw
 
     if( that.currentStepGeoLatLng != false ) {
       var rectLatLng = new google.maps.LatLng( that.currentStepGeoLatLng.lat, that.currentStepGeoLatLng.lng);
-      var rectWidth = 6.5;
-      var worldPoint = mapProjection.fromLatLngToPoint(rectLatLng);
+
+      var originPoint = mapProjection.fromLatLngToPoint(rectLatLng);
       //that.layerContext.fillRect(worldPoint.x, worldPoint.y, 1, 1);
 
-      that.layerContext.moveTo(worldPoint.x, worldPoint.y);
-      that.layerContext.lineWidth = 0.001;
-      that.layerContext.lineTo(worldPoint.x+10, worldPoint.x-10);
+      var destPoint = mapProjection.fromLatLngToPoint(
+        new google.maps.LatLng(
+          that.options.map.getBounds().getNorthEast().lat(),
+          that.options.map.getBounds().getSouthWest().lng()
+        )
+      );
+
+
+
+
+      // line
+      that.layerContext.moveTo( originPoint.x, originPoint.y);
+      that.layerContext.strokeStyle = that.options.lineColor;
+      that.layerContext.lineWidth = that.options.lineWidth / scale;
+      that.layerContext.lineTo( destPoint.x, destPoint.y );
+      that.layerContext.stroke();
+      that.layerContext.beginPath();
+
+      // circle
+      that.layerContext.fillStyle = that.options.lineColor;
+      that.layerContext.arc( originPoint.x, originPoint.y, that.options.lineDotRadious/scale ,0,  2*Math.PI);
+      that.layerContext.fill();
+      that.layerContext.stroke();
+      that.layerContext.beginPath();
     }
 
-    that.layerContext.stroke();
-    that.layerContext.beginPath();
   }
 
 
