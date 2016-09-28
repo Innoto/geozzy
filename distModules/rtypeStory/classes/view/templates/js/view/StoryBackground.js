@@ -51,9 +51,8 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
   setStep: function( obj ) {
     var that = this;
 
-
-
     var step = that.parentStory.storySteps.get( obj.id );
+    that.currentStepDOM = $(obj.domElement);
 
     var loc = false;
 
@@ -158,14 +157,14 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
         )
       );
 
-
-      console.log(originPoint.x);
+      var destPointVariation = that.getCurrentStepDOMPositionOverMap();
+console.log(destPointVariation);
 
       // line
       that.layerContext.moveTo( originPoint.x, originPoint.y);
       that.layerContext.strokeStyle = that.options.lineColor;
       that.layerContext.lineWidth = that.options.lineWidth / scale;
-      that.layerContext.lineTo( destPoint.x, destPoint.y );
+      that.layerContext.lineTo( destPoint.x - destPointVariation.x, (destPoint.y/scale) - (destPointVariation.y/scale) );
       that.layerContext.stroke();
       that.layerContext.beginPath();
 
@@ -177,7 +176,19 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
       that.layerContext.beginPath();
     }
 
-  }
+  },
 
+
+  getCurrentStepDOMPositionOverMap: function() {
+    var that = this;
+
+console.log(  that.currentStepDOM.css('top') )
+    var offset = that.currentStepDOM.offset();
+    var width = that.currentStepDOM.width();
+    var height = that.currentStepDOM.height();
+
+    return { x: offset.left + width / 2, y:offset.top + height / 2 };
+
+  }
 
 });
