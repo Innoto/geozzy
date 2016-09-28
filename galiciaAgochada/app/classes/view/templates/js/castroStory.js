@@ -8,8 +8,8 @@ $(document).ready( function(){
     zoom: 8,
     scrollwheel: false,
     draggable: !("ontouchend" in document),
-    disableDoubleClickZoom: true
-    //styles : mapTheme
+    disableDoubleClickZoom: true,
+    styles : mapTheme
   };
 
   var resourceMap = new google.maps.Map( $('.storyBody .mapa').get( 0 ), mapOptions);
