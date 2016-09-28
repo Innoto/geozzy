@@ -13,7 +13,13 @@ class rtypeStory extends Module {
      "params" => array("mathjs"),
      "installer" => "bower",
      "includes" => array()
-    )
+   ),
+   array(
+     'id' =>'CanvasLayer',
+     'params' => array('CanvasLayer'),
+     'installer' => 'manual',
+     'includes' => array()
+   )
   );
 
   public $includesCommon = array(

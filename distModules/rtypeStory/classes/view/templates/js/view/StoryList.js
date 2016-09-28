@@ -31,6 +31,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     that.$el = $(that.el);
 
     $(window).on('scroll', function(){ that.updateVisibleStep()} );
+    $(window).on('resize', function(){ that.caculatePositions()} );
 
   },
 
