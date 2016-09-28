@@ -15,7 +15,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
       topMargin: 100,
       bottomMargin:300,
       leftMargin:30,
-      rightMargin:20,
+      rightMargin:30,
       steepMarginsDifference: 160,
 
       //tpl: geozzy.storyComponents.listViewTemplate,
