@@ -51,17 +51,19 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
 
       if( that.options.map.getZoom() > step.get('defaultZoom') ) {
         that.options.map.setZoom(step.get('defaultZoom'));
+        window.setTimeout(function(){
+          that.options.map.panTo( new google.maps.LatLng( step.get('lat'), step.get('lng') ) );
+        }, 400);
       }
-      window.setTimeout(function(){
+      else {
         that.options.map.panTo( new google.maps.LatLng( step.get('lat'), step.get('lng') ) );
-      }, 400);
-
-      if( that.options.map.getZoom() <= step.get('defaultZoom') ) {
         window.setTimeout(function(){
           that.options.map.setZoom(step.get('defaultZoom'));
           that.blockSoftAnimation = false;
-        }, 900);
+        }, 400);
       }
+
+
     }
   },
 
