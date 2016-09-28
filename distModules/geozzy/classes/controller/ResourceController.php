@@ -868,13 +868,13 @@ class ResourceController {
 
 
   /**
-   * Devolve las collections asociadas al recurso dado o al actual agrupadas por tipo
+   * Devuelve las collections asociadas al recurso dado o al actual agrupadas por tipo
    */
   public function getCollectionsAll( $resId = false ) {
     $collsInfo = false;
 
     $resId = ($resId) ? $resId : $this->resObj->getter('id');
-    error_log( "getCollectionsAll( $resId )" );
+    // error_log( "getCollectionsAll( $resId )" );
 
     if( $resId ) {
       if( isset( $this->collectionsAll[ $resId ] ) ) {
@@ -897,7 +897,7 @@ class ResourceController {
 
         $this->collectionsAll[ $resId ] = $collsInfo;
       }
-      error_log( "getCollectionsAll( $resId ): ".print_r( $collsInfo, true ) );
+      // error_log( "getCollectionsAll( $resId ): ".print_r( $collsInfo, true ) );
     }
 
     return $collsInfo;
@@ -1107,11 +1107,6 @@ class ResourceController {
 
 
 
-
-
-
-
-
   public function saveFormCollectionField( $form, $baseObj, $fieldName ) {
     // SOLO procesamos collections del tipo indicado en $fieldName
 
@@ -1167,18 +1162,13 @@ class ResourceController {
     }
   }
 
-
-
-
-
-
-
-
-
-
   private function setFormCollection( $form, $baseObj ) {
     // SOLO procesamos collections de tipo "base" o "multimedia"
 
+    $this->saveFormCollectionField( $form, $baseObj, 'collections' );
+    $this->saveFormCollectionField( $form, $baseObj, 'multimediaGalleries' );
+
+    /*
     $baseId = $baseObj->getter( 'id' );
     $formValuesCol = $form->getFieldValue( 'collections' ); // collectionType "base"
     $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' ); // collectionType "multimedia"
@@ -1230,6 +1220,8 @@ class ResourceController {
         }
       }
     }
+
+    */
   }
 
 
