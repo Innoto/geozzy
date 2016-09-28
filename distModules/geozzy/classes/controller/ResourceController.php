@@ -868,13 +868,13 @@ class ResourceController {
 
 
   /**
-   * Devolve las collections asociadas al recurso dado o al actual agrupadas por tipo
+   * Devuelve las collections asociadas al recurso dado o al actual agrupadas por tipo
    */
   public function getCollectionsAll( $resId = false ) {
     $collsInfo = false;
 
     $resId = ($resId) ? $resId : $this->resObj->getter('id');
-    error_log( "getCollectionsAll( $resId )" );
+    // error_log( "getCollectionsAll( $resId )" );
 
     if( $resId ) {
       if( isset( $this->collectionsAll[ $resId ] ) ) {
@@ -897,7 +897,7 @@ class ResourceController {
 
         $this->collectionsAll[ $resId ] = $collsInfo;
       }
-      error_log( "getCollectionsAll( $resId ): ".print_r( $collsInfo, true ) );
+      // error_log( "getCollectionsAll( $resId ): ".print_r( $collsInfo, true ) );
     }
 
     return $collsInfo;
@@ -1107,11 +1107,6 @@ class ResourceController {
 
 
 
-
-
-
-
-
   public function saveFormCollectionField( $form, $baseObj, $fieldName ) {
     // SOLO procesamos collections del tipo indicado en $fieldName
 
@@ -1167,69 +1162,11 @@ class ResourceController {
     }
   }
 
-
-
-
-
-
-
-
-
-
   private function setFormCollection( $form, $baseObj ) {
     // SOLO procesamos collections de tipo "base" o "multimedia"
 
-    $baseId = $baseObj->getter( 'id' );
-    $formValuesCol = $form->getFieldValue( 'collections' ); // collectionType "base"
-    $formValuesMulti = $form->getFieldValue( 'multimediaGalleries' ); // collectionType "multimedia"
-
-    if( !is_array( $formValuesCol ) ) {
-      $formValuesCol = ( is_numeric( $formValuesCol ) ) ? array( $formValuesCol ) : array();
-    }
-    if( !is_array( $formValuesMulti ) ) {
-      $formValuesMulti = ( is_numeric( $formValuesMulti ) ) ? array( $formValuesMulti ) : array();
-    }
-    $formValues = array_merge( $formValuesCol, $formValuesMulti );
-
-    $relPrevInfo = false;
-    // Si estamos editando, repasamos y borramos relaciones sobrantes
-    if( $baseId ) {
-      $relModel = new ResourceCollectionsModel();
-      $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
-      if( $relPrevList ) {
-        // estaban asignados antes
-        $relPrevInfo = array();
-        $colModel = new CollectionModel();
-        while( $relPrev = $relPrevList->fetch() ) {
-          $colList = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) );
-          $collection = ( $colList ) ? $colList->fetch() : false;
-          if( $collection && in_array( $collection->getter('collectionType'), array( 'base', 'multimedia' ) ) ) {
-            $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
-            if( $formValues === false || !in_array( $relPrev->getter( 'collection' ), $formValues ) ) {
-              // desasignar
-              $relPrev->delete();
-            }
-          }
-        }
-      }
-    }
-
-    // Creamos-Editamos todas las relaciones
-    if( count( $formValues ) > 0 ) {
-      $weight = 0;
-      foreach( $formValues as $value ) {
-        $weight++;
-        $info = array( 'resource' => $baseId, 'collection' => $value, 'weight' => $weight );
-        if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
-          $info[ 'id' ] = $relPrevInfo[ $value ];
-        }
-        $relObj = new ResourceCollectionsModel( $info );
-        if( !$relObj->save() ) {
-          $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );
-          break;
-        }
-      }
-    }
+    $this->saveFormCollectionField( $form, $baseObj, 'collections' );
+    $this->saveFormCollectionField( $form, $baseObj, 'multimediaGalleries' );
   }
 
 
@@ -1524,26 +1461,26 @@ class ResourceController {
   }
 
   // Carga los datos de todas las colecciones de recursos asociadas al recurso dado
-  public function getCollectionBlockInfo( $resId, $collectionType = false ) {
+  public function getCollectionBlockInfo( $resId, $collectionTypes = false ) {
     $collectionResources = false;
+
+    if( $collectionTypes === false ) {
+      $collTypesFilter = [ 'base', 'multimedia' ];
+    }
+    else {
+      $collTypesFilter = is_array( $collectionTypes ) ? $collectionTypes : [ $collectionTypes ];
+    }
 
     $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
     if( isset( $resId ) ) {
       $resCollectionList = $resourceCollectionsAllModel->listItems(
         array(
-          'filters' => array( 'resourceMain' => $resId ),
+          'filters' => array( 'resourceMain' => $resId, 'collectionTypeIn' => $collTypesFilter ),
           'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
           'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias' )
         )
       );
       while( $collection = $resCollectionList->fetch() ) {
-        $collType = $collection->getter('collectionType');
-        if( $collectionType && $collType !== $collectionType ) {
-          continue;
-        }
-        if( !$collectionType && !in_array( $collType, [ 'base', 'multimedia' ] ) ) {
-          continue;
-        }
         $collectionResources[ $collection->getter('id') ]['col'] = array(
           'id' => $collection->getter('id'),
           'title' => $collection->getter('title'),
@@ -1552,9 +1489,6 @@ class ResourceController {
           'image' => $collection->getter('image'),
           'collectionType' => $collection->getter('collectionType')
         );
-
-        // $collectionResourcesFirst[ $collection->getter('id') ]['col'] = $collectionResources[ $collection->getter('id') ]['col'];
-
         $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
         if( $resources && is_array($resources) && count($resources) > 0 ) {
           switch( $collection->getter('collectionType') ) {
