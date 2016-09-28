@@ -159,7 +159,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
       );
 
 
-
+      console.log(originPoint.x);
 
       // line
       that.layerContext.moveTo( originPoint.x, originPoint.y);
