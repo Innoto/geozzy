@@ -44,7 +44,7 @@ class CastroStoryController extends StoryController {
         $row['title'] = $resource->getter('title');
         $row['shortDescription'] = $resource->getter('shortDescription');
         $row['mediumDescription'] = $resource->getter('mediumDescription');
-
+        $row['relatedResource'] = $resource->getter('relatedResource');
 
 
         echo json_encode( $row );
