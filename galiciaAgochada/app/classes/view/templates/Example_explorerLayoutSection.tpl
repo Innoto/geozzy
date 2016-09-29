@@ -11,7 +11,9 @@
   {$client_includes}
 
 {$gMaps = "https://maps.googleapis.com/maps/api/js?language=`$cogumelo.publicConf.lang_available[$cogumelo.publicConf.C_LANG].i18n`"}
-{if isset($cogumelo.publicConf.google_maps_key)}{$gMaps = "`$gMaps`&key=`$cogumelo.publicConf.google_maps_key`"}{/if}
+{if isset($cogumelo.publicConf.google_maps_key) && $cogumelo.publicConf.google_maps_key}
+{$gMaps = "`$gMaps`&key=`$cogumelo.publicConf.google_maps_key`"}
+{/if}
   <script src="{$gMaps}&libraries=places"></script>
 
 </head>
