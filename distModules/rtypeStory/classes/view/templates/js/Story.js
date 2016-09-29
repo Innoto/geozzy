@@ -72,6 +72,7 @@ geozzy.story = function( opts ) {
 
   that.getLang= function(){
     var lang = false;
+
     if (typeof(cogumelo.publicConf.C_LANG)!='undefined'){
       lang = '/'+cogumelo.publicConf.C_LANG;
     }
