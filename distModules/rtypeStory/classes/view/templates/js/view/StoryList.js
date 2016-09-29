@@ -15,7 +15,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
       topMargin: 100,
       bottomMargin:300,
       leftMargin:30,
-      rightMargin:20,
+      rightMargin:30,
       steepMarginsDifference: 160,
 
       //tpl: geozzy.storyComponents.listViewTemplate,
@@ -62,6 +62,8 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
 
     that.stepsDOM= that.$el.find('.storyStep').toArray();
     that.caculatePositions();
+
+    that.parentStory.triggerEvent('stepChange', {id: that.stepsDOMEquivalences[0] , domElement: that.stepsDOM[0] });
   },
 
   caculatePositions: function() {

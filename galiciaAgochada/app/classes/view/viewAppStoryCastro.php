@@ -31,7 +31,7 @@ class viewAppStoryCastro extends MasterView
     $template->addClientScript('js/Story.js', 'rtypeStory');
 
 
-
+    $template->addClientScript('js/galiciaAgochadaExplorersUtils.js');
     $template->addClientScript('js/castroStory.js');
     $template->addClientStyles('styles/masterCastroStory.less');
 
