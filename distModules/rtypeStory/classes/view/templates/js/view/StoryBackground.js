@@ -24,9 +24,9 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
       moveToStep:true,
       noPanZone:{
         left:300,
-        top:100 ,
+        top:200 ,
         right:10,
-        bottom:100
+        bottom:200
       }
     });
 
