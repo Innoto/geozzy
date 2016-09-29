@@ -213,6 +213,7 @@
           '<div class="poiInfo">'+
             '<div class="poiTitle"><p><%-title%></p></div>'+
             '<div class="poiDescription"><%-description%></div>'+
+            '<a  href="#resource/<%-id%>" ><button class="btn btn-primary accessButton">' + __('Descúbreo') + '</button> </a>' +
           '</div>' +
         '</div>';
 

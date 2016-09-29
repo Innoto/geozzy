@@ -41,8 +41,8 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
       //console.log(obj)
       that.setStep(obj);
     });
-    that.setCanvasLayer();
 
+    that.setCanvasLayer();
     $(window).on('scroll', function(){
       that.softAnimation( $(this) );
       that.updateCanvasLayer();
