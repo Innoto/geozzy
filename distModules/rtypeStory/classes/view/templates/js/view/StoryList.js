@@ -62,6 +62,8 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
 
     that.stepsDOM= that.$el.find('.storyStep').toArray();
     that.caculatePositions();
+
+    that.parentStory.triggerEvent('stepChange', {id: that.stepsDOMEquivalences[0] , domElement: that.stepsDOM[0] });
   },
 
   caculatePositions: function() {

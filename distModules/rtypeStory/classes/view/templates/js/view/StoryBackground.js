@@ -20,16 +20,11 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
       drawLine:true,
       lineColor: '#ffffff',
       lineWidth: 2,
-      lineDotRadious: 10,
+      lineDotRadious: 7,
       moveToStep:true
     });
 
     that.options = $.extend(true, {}, options, opts);
-
-    $(window).on('scroll', function(){
-      that.softAnimation( $(this) );
-    } );
-
 
   },
 
@@ -43,9 +38,15 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var that = this;
 
     that.parentStory.bindEvent('stepChange', function(obj){
+      //console.log(obj)
       that.setStep(obj);
     });
     that.setCanvasLayer();
+
+    $(window).on('scroll', function(){
+      that.softAnimation( $(this) );
+      that.updateCanvasLayer();
+    } );
   },
 
   setStep: function( obj ) {
@@ -188,7 +189,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var width = stepDiv.width();
     var height = stepDiv.height();
 
-    return { x: offset.left + width/2  , y: offset.top- that.scrollPosition + height/2 };
+    return { x: offset.left + width  , y: offset.top- that.scrollPosition + height/4 };
 
   }
 

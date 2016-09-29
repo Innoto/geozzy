@@ -9,7 +9,9 @@ $(document).ready( function(){
     scrollwheel: false,
     draggable: !("ontouchend" in document),
     disableDoubleClickZoom: true,
-    styles : mapTheme
+    styles : mapTheme,
+    mapTypeId: 'satellite'
+
   };
 
   var resourceMap = new google.maps.Map( $('.storyBody .mapa').get( 0 ), mapOptions);
