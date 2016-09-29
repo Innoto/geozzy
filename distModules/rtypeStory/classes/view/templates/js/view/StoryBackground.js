@@ -21,7 +21,13 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
       lineColor: '#ffffff',
       lineWidth: 2,
       lineDotRadious: 7,
-      moveToStep:true
+      moveToStep:true,
+      noPanZone:{
+        left:300,
+        top:100 ,
+        right:10,
+        bottom:100
+      }
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -58,26 +64,27 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var loc = false;
 
     if( that.options.moveToStep === true && step.get('lat') && typeof step.get('lng') ) {
-
       that.currentStepGeoLatLng = { lat: step.get('lat'), lng: step.get('lng') };
 
-      that.blockSoftAnimation = true;
+      if( that.latlngInNoPanZone( that.currentStepGeoLatLng.lat , that.currentStepGeoLatLng.lng ) == false || that.options.map.getZoom() != step.get('defaultZoom') ) {
 
-      if( that.options.map.getZoom() > step.get('defaultZoom') ) {
-        that.options.map.setZoom(step.get('defaultZoom'));
-        window.setTimeout(function(){
-          that.options.map.panTo( new google.maps.LatLng( that.currentStepGeoLatLng.lat, that.currentStepGeoLatLng.lng ) );
-          that.blockSoftAnimation = false;
-        }, 400);
-      }
-      else {
-        that.options.map.panTo( new google.maps.LatLng( that.currentStepGeoLatLng.lat, that.currentStepGeoLatLng.lng ) );
-        window.setTimeout(function(){
+        that.blockSoftAnimation = true;
+
+        if( that.options.map.getZoom() > step.get('defaultZoom') ) {
           that.options.map.setZoom(step.get('defaultZoom'));
-          that.blockSoftAnimation = false;
-        }, 400);
+          window.setTimeout(function(){
+            that.options.map.panTo( new google.maps.LatLng( that.currentStepGeoLatLng.lat, that.currentStepGeoLatLng.lng ) );
+            that.blockSoftAnimation = false;
+          }, 400);
+        }
+        else {
+          that.options.map.panTo( new google.maps.LatLng( that.currentStepGeoLatLng.lat, that.currentStepGeoLatLng.lng ) );
+          window.setTimeout(function(){
+            that.options.map.setZoom(step.get('defaultZoom'));
+            that.blockSoftAnimation = false;
+          }, 400);
+        }
       }
-
 
     }
   },
@@ -159,7 +166,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
       );
 
       var destPointVariation = that.getCurrentStepDOMPositionOverMap();
-//console.log(destPointVariation);
+
 
       // line
       that.layerContext.moveTo( originPoint.x, originPoint.y);
@@ -191,6 +198,41 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
 
     return { x: offset.left + width  , y: offset.top- that.scrollPosition + height/4 };
 
-  }
+  },
 
+
+  latlngInNoPanZone: function( lat, lng ) {
+    var that = this;
+
+    var inside = false;
+    var mb = that.getMapBounds();
+
+    var sw = mb[0];
+    var ne = mb[1];
+
+    var scale = Math.pow(2, that.options.map.getZoom());
+
+    var swInner = new google.maps.Point(   that.coordToPixel(sw ).x+ that.options.noPanZone.left /scale,   that.coordToPixel(sw).y- that.options.noPanZone.bottom /scale );
+    var neInner = new google.maps.Point(   that.coordToPixel(ne ).x- that.options.noPanZone.right /scale ,   that.coordToPixel(ne).y+ that.options.noPanZone.top /scale );
+
+    var swI = that.options.map.getProjection().fromPointToLatLng( swInner );
+    var neI = that.options.map.getProjection().fromPointToLatLng( neInner );
+
+    if( lat < neI.lat() && lng < neI.lng() && lat > swI.lat() && lng > swI.lng() ) {
+      inside = true;
+    }
+
+    return inside;
+  },
+
+  coordToPixel: function( latLng) {
+    var that = this;
+    return that.options.map.getProjection().fromLatLngToPoint( latLng );
+  },
+
+  getMapBounds: function() {
+    var that = this;
+
+    return [ that.options.map.getBounds().getSouthWest(), that.options.map.getBounds().getNorthEast() ];
+  }
 });
