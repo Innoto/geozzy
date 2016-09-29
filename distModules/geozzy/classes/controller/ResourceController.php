@@ -873,7 +873,9 @@ class ResourceController {
   public function getCollectionsAll( $resId = false ) {
     $collsInfo = false;
 
-    $resId = ($resId) ? $resId : $this->resObj->getter('id');
+    if( !$resId && gettype( $this->resObj ) === 'object' ) {
+      $resId = $this->resObj->getter('id');
+    }
     // error_log( "getCollectionsAll( $resId )" );
 
     if( $resId ) {
