@@ -350,8 +350,12 @@ class ResourceController {
         'rules' => array( 'maxlength' => '1000' )
       ),
       'collections' => array(
-        'params' => array( 'label' => __( 'Collections' ), 'type' => 'select', 'class' => 'cgmMForm-order resourceCollection',
-        'multiple' => true, 'options'=> $resCollections, 'id' => 'resourceCollections' )
+        'params' => array(
+          'id' => 'resourceCollections', 'class' => 'cgmMForm-order resourceCollection',
+          'label' => __( 'Collections' ), 'type' => 'select',
+          'data-col-type' => 'base',
+          'multiple' => true, 'options'=> $resCollections
+        )
       ),
       'addCollections' => array(
         'params' => array(
@@ -363,8 +367,12 @@ class ResourceController {
         )
       ),
       'multimediaGalleries' => array(
-        'params' => array( 'label' => __( 'Galleries' ), 'type' => 'select', 'class' => 'cgmMForm-order resourceCollection',
-        'multiple' => true, 'options'=> $resMultimedia, 'id' => 'resourceMultimediaGalleries' )
+        'params' => array(
+          'id' => 'resourceMultimediaGalleries', 'class' => 'cgmMForm-order resourceCollection',
+          'label' => __( 'Galleries' ), 'type' => 'select',
+          'data-col-type' => 'multimedia',
+          'multiple' => true, 'options'=> $resMultimedia
+        )
       ),
       'addMultimediaGalleries' => array(
         'params' => array(
