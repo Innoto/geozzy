@@ -72,6 +72,7 @@ geozzy.rExtAccommodationReserveController = geozzy.rExtAccommodationReserveContr
       {
         'showCustomRangeLabel': false,
         'startDate': geozzy.rExtAccommodationReserveInfo.values.checkin.format( calDateFormat ),
+        'minDate': geozzy.rExtAccommodationReserveInfo.values.checkin.format( calDateFormat ), /* Evitar poner fecha anterior al día actual */
         'endDate': geozzy.rExtAccommodationReserveInfo.values.checkout.format( calDateFormat ),
         'autoApply': true,
         'locale': {
