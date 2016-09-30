@@ -29,14 +29,14 @@ geozzy.rExtAccommodationReserveController = geozzy.rExtAccommodationReserveContr
     link = link.replace( '<$checkout>', values.checkout.format( urlDateFormat ) );
     $( geozzy.rExtAccommodationReserveInfo.idLink ).attr( 'href', link );
 
-    show = values.checkin.format( calDateFormat )+' - '+values.checkout.format( calDateFormat );
+    /*show = values.checkin.format( calDateFormat )+' - '+values.checkout.format( calDateFormat );
     $cal = $( geozzy.rExtAccommodationReserveInfo.idCal );
     if ( $cal.is( 'input' ) ) {
       $cal.val( show );
     }
     else {
       $cal.html( show );
-    }
+    }*/
   },
   initCalendar: function initCalendar() {
     calDateFormat=geozzy.rExtAccommodationReserveInfo.calDateFormat;
@@ -44,6 +44,7 @@ geozzy.rExtAccommodationReserveController = geozzy.rExtAccommodationReserveContr
       {
         'showCustomRangeLabel': false,
         'startDate': geozzy.rExtAccommodationReserveInfo.values.checkin.format( calDateFormat ),
+        'minDate': geozzy.rExtAccommodationReserveInfo.values.checkin.format( calDateFormat ), /* Evitar poner fecha anterior al día actual */
         'endDate': geozzy.rExtAccommodationReserveInfo.values.checkout.format( calDateFormat ),
         'autoApply': true,
         'locale': {
