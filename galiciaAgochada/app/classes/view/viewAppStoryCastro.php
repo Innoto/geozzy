@@ -24,6 +24,7 @@ class viewAppStoryCastro extends MasterView
     $template->addClientScript('CanvasLayer/src/CanvasLayer.js', 'vendor/manual');
     $template->addClientScript('mathjs/dist/math.min.js', 'vendor/bower');
     $template->addClientScript('js/model/StoryStepModel.js', 'rtypeStory');
+    $template->addClientScript('js/router/StoryRouter.js', 'rtypeStory');
     $template->addClientScript('js/collection/StoryStepCollection.js', 'rtypeStory');
     $template->addClientScript('js/view/StoryTemplates.js', 'rtypeStory');
     $template->addClientScript('js/view/StoryList.js', 'rtypeStory');

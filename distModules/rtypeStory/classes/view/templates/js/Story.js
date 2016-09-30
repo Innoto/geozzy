@@ -33,6 +33,10 @@ geozzy.story = function( opts ) {
   *   Fetch collections, initialize routers,and trigert first load events
   */
   that.exec = function() {
+
+    // set explorer router
+    geozzy.storyComponents.routerInstance = new geozzy.storyComponents.mainRouter();
+    geozzy.storyComponents.routerInstance.parentStory = that;
     if( !Backbone.History.started ){
       Backbone.history.start();
     }
