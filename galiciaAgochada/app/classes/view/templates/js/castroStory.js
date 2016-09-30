@@ -14,7 +14,7 @@ $(document).ready( function(){
 
   };
 
-  var resourceMap = new google.maps.Map( $('.storyBody .mapa').get( 0 ), mapOptions);
+  var resourceMap = new google.maps.Map( $('.storyLayout .mapa').get( 0 ), mapOptions);
 
   setSizes();
   $(window).on('resize', setSizes);
@@ -27,7 +27,7 @@ $(document).ready( function(){
 
 
   var displayLista = new geozzy.storyComponents.StoryListView({
-    container: '.storyBody .lista'
+    container: '.storyLayout .lista'
   });
 
   var displayMapa = new geozzy.storyComponents.StoryBackgroundView({
@@ -47,8 +47,8 @@ $(document).ready( function(){
 function setSizes() {
   var altoCabeceira = ($('header.headContent').height() + $('.bodyContent .titleBar').height() );
 
-  $('.storyBody .mapa').height( $(window).height() - altoCabeceira);
-  $('.storyBody .mapa').width( $(window).width() );
-  $('.storyBody .mapa').css( 'position', 'fixed' );
-  $('.storyBody .mapa').css( 'top', altoCabeceira );
+  $('.storyLayout .mapa').height( $(window).height() - altoCabeceira);
+  $('.storyLayout .mapa').width( $(window).width() );
+  $('.storyLayout .mapa').css( 'position', 'fixed' );
+  $('.storyLayout .mapa').css( 'top', altoCabeceira );
 }

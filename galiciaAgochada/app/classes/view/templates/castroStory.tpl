@@ -5,7 +5,8 @@
       <h1>{t}Un percorrido polo castro{/t}</h1>
     </div>
   </div>
-  <div class="storyBody">
+  <div class="storyLayout">
     <div class="mapa"></div>
     <div class="lista"></div>
+    <div class="storyContainer story-container-du" > </div>
   </div>
