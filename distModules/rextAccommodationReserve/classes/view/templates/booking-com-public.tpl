@@ -16,7 +16,7 @@
         <div class="col-md-2">
           <div class="form-group">
             <label for="reserve_rooms_{$rExt.data.idRelate}">{t}Rooms{/t}</label>
-            <select class="form-control" id="reserve_adults_{$rExt.data.idRelate}">
+            <select class="form-control" id="reserve_rooms_{$rExt.data.idRelate}">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -28,7 +28,7 @@
         <div class="col-md-2">
           <div class="form-group">
             <label for="reserve_adults_{$rExt.data.idRelate}">{t}Adults{/t}</label>
-            <select class="form-control" id="reserve_rooms_{$rExt.data.idRelate}">
+            <select class="form-control" id="reserve_adults_{$rExt.data.idRelate}">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
