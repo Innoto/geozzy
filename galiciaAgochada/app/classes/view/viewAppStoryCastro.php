@@ -20,7 +20,7 @@ class viewAppStoryCastro extends MasterView
 
     // Story includes
 
-
+    biMetrics::autoIncludes();
     $template->addClientScript('CanvasLayer/src/CanvasLayer.js', 'vendor/manual');
     $template->addClientScript('mathjs/dist/math.min.js', 'vendor/bower');
     $template->addClientScript('js/model/StoryStepModel.js', 'rtypeStory');
