@@ -38,6 +38,32 @@ $(document).ready( function(){
   historia.addDisplay( displayLista );
   historia.addDisplay( displayMapa );
 
+
+
+  historia.bindEvent('loadResource', function(resourceId){
+    $(".storyContainer.story-loading").show();
+    $(".storyContainer.story-container-du").load(
+      '/'+cogumelo.publicConf.C_LANG+'/resource/'+resourceId,
+      { pf: 'blk' },
+      function() {
+        $('html, body').css('overflowY', 'hidden');
+        $('.storyLayout .lista').hide();
+        $(".storyContainer.story-loading").hide();
+        $(".storyContainer.story-container-du").show();
+      }
+    );
+
+  });
+
+  historia.bindEvent('loadMain', function(){
+    $('.storyLayout .lista').show();
+    $(".storyContainer.story-container-du").hide();
+    $(".storyContainer.story-container-du").html('');
+    $('html, body').css('overflowY', 'visible');    
+  });
+
+
+
   historia.exec();
   setSizes();
 });

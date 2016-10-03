@@ -1,5 +1,5 @@
 var geozzy = geozzy || {};
-if (! geozzy.storyComponents) { geozzy.storyComponents= {} }
+if (! geozzy.storyComponents) { geozzy.storyComponents= {}; }
 
 geozzy.storyComponents.mainRouter = Backbone.Router.extend({
   parentStory: false,
@@ -11,18 +11,15 @@ geozzy.storyComponents.mainRouter = Backbone.Router.extend({
 
   main: function( ) {
     var that = this;
-/*
 
-    if( typeof that.parentStory.metricsResourceController != 'undefined') {
-      that.parentStory.metricsResourceController.eventAccessedEnd();
-    }
-    that.parentStory.options.resourceQuit();*/
+    that.parentStory.triggerEvent('loadMain');
   },
 
   resource: function( id ) {
     var that = this;
 
-    that.parentStory.options.resourceAccess(id);
+    //that.parentStory.options.parentStory.resourceAccess(id);
+    that.parentStory.triggerEvent('loadResource', id);
   }
 
 });
