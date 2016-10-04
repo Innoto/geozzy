@@ -42,6 +42,11 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
          }
        }
 
+
+        $rExtData[ 'drawLine' ] = $rExtObj->getter( 'drawLine' );
+        $rExtData[ 'mapType' ] = $rExtObj->getter( 'mapType' );        
+
+
        $fileDep = $rExtObj->getterDependence( 'storystepLegend' );
        if( $fileDep !== false ) {
          foreach( $fileDep as $fileModel ) {
@@ -225,10 +230,10 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
 
     $fileField = $this->addPrefix( 'storystepLegend' );
     if( !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
-
       $this->defResCtrl->setFormFiledata( $form, $fileField, 'storystepLegend', $this->rExtModel );
-      $this->rExtModel->save();
     }
+    $this->rExtModel->save();
+
 
     if( !$form->existErrors() && $this->taxonomies) {
       foreach( $this->taxonomies as $tax ) {

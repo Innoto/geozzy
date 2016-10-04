@@ -65,7 +65,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var loc = false;
 
     if( that.options.moveToStep === true && step.get('lat') && typeof step.get('lng') ) {
-      that.drawPointerLine = false;
+      that.drawPointerLine = step.get('drawLine');
       that.currentStepGeoLatLng = { lat: step.get('lat'), lng: step.get('lng') };
 
       if( that.latlngInNoPanZone( that.currentStepGeoLatLng.lat , that.currentStepGeoLatLng.lng ) == false || that.options.map.getZoom() != step.get('defaultZoom') ) {
@@ -154,7 +154,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var offset = mapProjection.fromLatLngToPoint(that.canvasLayer.getTopLeft());
     that.layerContext.translate(-offset.x, -offset.y);
 
-    if( that.currentStepGeoLatLng != false && that.drawPointerLine == true ) {
+    if( that.currentStepGeoLatLng != false && that.drawPointerLine == 1 ) {
       var rectLatLng = new google.maps.LatLng( that.currentStepGeoLatLng.lat, that.currentStepGeoLatLng.lng);
 
       var originPoint = mapProjection.fromLatLngToPoint(rectLatLng);
