@@ -23,12 +23,20 @@ class RExtStoryStepModel extends Model
       'vo' => 'ResourceModel',
       'key' => 'id'
     ),
+    'drawLine' => array(
+      'type'=>'BOOLEAN'
+    ),
+    'mapType' => array(
+      'type'=>'VARCHAR',
+      'size'=> 100
+    ),
     'storystepLegend' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
       'key' => 'id',
       'uploadDir' => '/RExtStoryStepFiles/'
-    ),
+    )
+
   );
 
   static $extraFilters = array();
@@ -37,5 +45,14 @@ class RExtStoryStepModel extends Model
   public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
+
+  var $deploySQL = array(
+    array(
+      'version' => 'rextStoryStep#1.1',
+      'sql'=> 'ALTER TABLE `geozzy_resource_rext_storystep`
+        ADD COLUMN `drawLine` BIT,
+        ADD COLUMN `mapType` VARCHAR(100) ;'
+    )
+  );
 
 }
