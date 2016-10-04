@@ -59,6 +59,7 @@ geozzy.story = function( opts ) {
   };
 
   that.render = function() {
+    var that = this;
 
     if( that.displays.background ) {
       that.displays.background.render();

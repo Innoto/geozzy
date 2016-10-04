@@ -234,22 +234,26 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var that = this;
 
     var inside = false;
+
     var mb = that.getMapBounds();
 
-    var sw = mb[0];
-    var ne = mb[1];
+    if( mb != false ) {
+      var sw = mb[0];
+      var ne = mb[1];
 
-    var scale = Math.pow(2, that.options.map.getZoom());
+      var scale = Math.pow(2, that.options.map.getZoom());
 
-    var swInner = new google.maps.Point(   that.coordToPixel(sw ).x+ that.options.noPanZone.left /scale,   that.coordToPixel(sw).y- that.options.noPanZone.bottom /scale );
-    var neInner = new google.maps.Point(   that.coordToPixel(ne ).x- that.options.noPanZone.right /scale ,   that.coordToPixel(ne).y+ that.options.noPanZone.top /scale );
+      var swInner = new google.maps.Point(   that.coordToPixel(sw ).x+ that.options.noPanZone.left /scale,   that.coordToPixel(sw).y- that.options.noPanZone.bottom /scale );
+      var neInner = new google.maps.Point(   that.coordToPixel(ne ).x- that.options.noPanZone.right /scale ,   that.coordToPixel(ne).y+ that.options.noPanZone.top /scale );
 
-    var swI = that.options.map.getProjection().fromPointToLatLng( swInner );
-    var neI = that.options.map.getProjection().fromPointToLatLng( neInner );
+      var swI = that.options.map.getProjection().fromPointToLatLng( swInner );
+      var neI = that.options.map.getProjection().fromPointToLatLng( neInner );
 
-    if( lat < neI.lat() && lng < neI.lng() && lat > swI.lat() && lng > swI.lng() ) {
-      inside = true;
+      if( lat < neI.lat() && lng < neI.lng() && lat > swI.lat() && lng > swI.lng() ) {
+        inside = true;
+      }
     }
+
 
     return inside;
   },
@@ -261,7 +265,10 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
 
   getMapBounds: function() {
     var that = this;
-
-    return [ that.options.map.getBounds().getSouthWest(), that.options.map.getBounds().getNorthEast() ];
+    var ret = false;
+    if( typeof that.options.map.getBounds() != 'undefined' ) {
+      ret = [ that.options.map.getBounds().getSouthWest(), that.options.map.getBounds().getNorthEast() ];
+    }
+    return ret;
   }
 });

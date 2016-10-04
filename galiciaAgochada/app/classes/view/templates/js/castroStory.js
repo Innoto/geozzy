@@ -34,10 +34,11 @@ $(document).ready( function(){
     map: resourceMap
   });
 
+  var displayLeyenda = new geozzy.storyComponents.StoryPluginLegendView();
 
   historia.addDisplay( displayLista );
   historia.addDisplay( displayMapa );
-
+  historia.addDisplay( displayLeyenda );
 
 
   historia.bindEvent('loadResource', function(resourceId){
@@ -59,7 +60,7 @@ $(document).ready( function(){
     $('.storyLayout .lista').show();
     $(".storyContainer.story-container-du").hide();
     $(".storyContainer.story-container-du").html('');
-    $('html, body').css('overflowY', 'visible');    
+    $('html, body').css('overflowY', 'visible');
   });
 
 
