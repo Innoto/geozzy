@@ -5,11 +5,19 @@ if(!geozzy.storyComponents) geozzy.storyComponents={};
 geozzy.storyComponents.StoryPluginLegendView = Backbone.View.extend({
   displayType: 'plugin',
   parentStory: false,
+  tplElement: false,
 
   initialize: function( opts ) {
-    /*var options = new Object({
+    var that = this;
+
+    var options = new Object({
+      container: false,
+      tplElement: '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-id%>/fast_cut/<%-id%>.png" />'
     });
-    that.options = $.extend(true, {}, options, opts);*/
+    that.options = $.extend(true, {}, options, opts);
+
+
+    that.tplElement = _.template(that.options.tplElement);
   },
 
   setParentStory: function( obj ) {
@@ -28,7 +36,19 @@ geozzy.storyComponents.StoryPluginLegendView = Backbone.View.extend({
 
   setStep: function( step ) {
     var that = this;
-    console.log('Leyenda', step);
+
+    var legend = that.parentStory.storySteps.get(step.id).get('legend');
+
+    if( legend != null ) {
+
+      $(that.options.container).html(that.tplElement({id:legend}));
+      $(that.options.container).fadeIn();
+    }
+    else {
+      $(that.options.container).fadeOut();
+    }
+
+
   }
 
 });

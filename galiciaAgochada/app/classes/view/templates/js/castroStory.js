@@ -34,7 +34,7 @@ $(document).ready( function(){
     map: resourceMap
   });
 
-  var displayLeyenda = new geozzy.storyComponents.StoryPluginLegendView();
+  var displayLeyenda = new geozzy.storyComponents.StoryPluginLegendView({container:'.storyLayout .castroLeyendaContainer'});
 
   historia.addDisplay( displayLista );
   historia.addDisplay( displayMapa );

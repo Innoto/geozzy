@@ -173,15 +173,19 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var canvasHeight = that.canvasLayer.canvas.height;
     that.layerContext.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    var mapProjection = that.options.map.getProjection();
+    var mapProjection = that.getMapProjection()
 
     that.layerContext.setTransform(1, 0, 0, 1, 0, 0);
-    var scale = Math.pow(2, that.options.map.zoom) * window.devicePixelRatio || 1;
-    that.layerContext.scale(scale, scale);
-    var offset = mapProjection.fromLatLngToPoint(that.canvasLayer.getTopLeft());
-    that.layerContext.translate(-offset.x, -offset.y);
 
-    if( that.currentStepGeoLatLng != false && that.drawPointerLine == 1 ) {
+
+    if( that.currentStepGeoLatLng != false && that.drawPointerLine == 1 && mapProjection != false ) {
+
+
+      var scale = Math.pow(2, that.options.map.zoom) * window.devicePixelRatio || 1;
+      that.layerContext.scale(scale, scale);
+      var offset = mapProjection.fromLatLngToPoint(that.canvasLayer.getTopLeft());
+      that.layerContext.translate(-offset.x, -offset.y);
+
       var rectLatLng = new google.maps.LatLng( that.currentStepGeoLatLng.lat, that.currentStepGeoLatLng.lng);
 
       var originPoint = mapProjection.fromLatLngToPoint(rectLatLng);
@@ -270,5 +274,17 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
       ret = [ that.options.map.getBounds().getSouthWest(), that.options.map.getBounds().getNorthEast() ];
     }
     return ret;
+  },
+
+  getMapProjection: function() {
+    var that = this;
+    var ret = false;
+
+    if( typeof that.options.map.getProjection() != 'undefined' ) {
+      ret = that.options.map.getProjection();
+    }
+
+    return ret;
   }
+
 });
