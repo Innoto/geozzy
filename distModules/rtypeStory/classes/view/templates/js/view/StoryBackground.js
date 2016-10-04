@@ -64,6 +64,10 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
 
     var loc = false;
 
+
+    that.setMapType( step.get('mapType') );
+
+
     if( that.options.moveToStep === true && step.get('lat') && typeof step.get('lng') ) {
       that.drawPointerLine = step.get('drawLine');
       that.currentStepGeoLatLng = { lat: step.get('lat'), lng: step.get('lng') };
@@ -91,6 +95,29 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     }
   },
 
+  setMapType: function( maptype ) {
+    var that = this;
+
+    switch( maptype ) {
+      case 'satellite':
+        var finalMaptype = google.maps.MapTypeId.SATELLITE;
+        break;
+      case 'roadmap':
+        var finalMaptype = google.maps.MapTypeId.ROADMAP;
+        break;
+      case 'hybrid':
+        var finalMaptype = google.maps.MapTypeId.HYBRID;
+        break;
+      case 'terrain':
+        var finalMaptype = google.maps.MapTypeId.TERRAIN;
+        break;
+      default:
+        var finalMaptype = google.maps.MapTypeId.SATELLITE;
+        break;
+    }
+
+    that.options.map.setMapTypeId( finalMaptype );
+  },
 
   setScrollDirection: function( scroll ) {
     var that = this;
