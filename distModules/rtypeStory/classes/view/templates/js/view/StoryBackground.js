@@ -64,8 +64,12 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
 
     var loc = false;
 
+
+    that.setMapType( step.get('mapType') );
+
+
     if( that.options.moveToStep === true && step.get('lat') && typeof step.get('lng') ) {
-      that.drawPointerLine = false;
+      that.drawPointerLine = step.get('drawLine');
       that.currentStepGeoLatLng = { lat: step.get('lat'), lng: step.get('lng') };
 
       if( that.latlngInNoPanZone( that.currentStepGeoLatLng.lat , that.currentStepGeoLatLng.lng ) == false || that.options.map.getZoom() != step.get('defaultZoom') ) {
@@ -91,6 +95,29 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     }
   },
 
+  setMapType: function( maptype ) {
+    var that = this;
+
+    switch( maptype ) {
+      case 'satellite':
+        var finalMaptype = google.maps.MapTypeId.SATELLITE;
+        break;
+      case 'roadmap':
+        var finalMaptype = google.maps.MapTypeId.ROADMAP;
+        break;
+      case 'hybrid':
+        var finalMaptype = google.maps.MapTypeId.HYBRID;
+        break;
+      case 'terrain':
+        var finalMaptype = google.maps.MapTypeId.TERRAIN;
+        break;
+      default:
+        var finalMaptype = google.maps.MapTypeId.SATELLITE;
+        break;
+    }
+
+    that.options.map.setMapTypeId( finalMaptype );
+  },
 
   setScrollDirection: function( scroll ) {
     var that = this;
@@ -146,15 +173,19 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var canvasHeight = that.canvasLayer.canvas.height;
     that.layerContext.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    var mapProjection = that.options.map.getProjection();
+    var mapProjection = that.getMapProjection()
 
     that.layerContext.setTransform(1, 0, 0, 1, 0, 0);
-    var scale = Math.pow(2, that.options.map.zoom) * window.devicePixelRatio || 1;
-    that.layerContext.scale(scale, scale);
-    var offset = mapProjection.fromLatLngToPoint(that.canvasLayer.getTopLeft());
-    that.layerContext.translate(-offset.x, -offset.y);
 
-    if( that.currentStepGeoLatLng != false && that.drawPointerLine == true ) {
+
+    if( that.currentStepGeoLatLng != false && that.drawPointerLine == 1 && mapProjection != false ) {
+
+
+      var scale = Math.pow(2, that.options.map.zoom) * window.devicePixelRatio || 1;
+      that.layerContext.scale(scale, scale);
+      var offset = mapProjection.fromLatLngToPoint(that.canvasLayer.getTopLeft());
+      that.layerContext.translate(-offset.x, -offset.y);
+
       var rectLatLng = new google.maps.LatLng( that.currentStepGeoLatLng.lat, that.currentStepGeoLatLng.lng);
 
       var originPoint = mapProjection.fromLatLngToPoint(rectLatLng);
@@ -207,22 +238,26 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     var that = this;
 
     var inside = false;
+
     var mb = that.getMapBounds();
 
-    var sw = mb[0];
-    var ne = mb[1];
+    if( mb != false ) {
+      var sw = mb[0];
+      var ne = mb[1];
 
-    var scale = Math.pow(2, that.options.map.getZoom());
+      var scale = Math.pow(2, that.options.map.getZoom());
 
-    var swInner = new google.maps.Point(   that.coordToPixel(sw ).x+ that.options.noPanZone.left /scale,   that.coordToPixel(sw).y- that.options.noPanZone.bottom /scale );
-    var neInner = new google.maps.Point(   that.coordToPixel(ne ).x- that.options.noPanZone.right /scale ,   that.coordToPixel(ne).y+ that.options.noPanZone.top /scale );
+      var swInner = new google.maps.Point(   that.coordToPixel(sw ).x+ that.options.noPanZone.left /scale,   that.coordToPixel(sw).y- that.options.noPanZone.bottom /scale );
+      var neInner = new google.maps.Point(   that.coordToPixel(ne ).x- that.options.noPanZone.right /scale ,   that.coordToPixel(ne).y+ that.options.noPanZone.top /scale );
 
-    var swI = that.options.map.getProjection().fromPointToLatLng( swInner );
-    var neI = that.options.map.getProjection().fromPointToLatLng( neInner );
+      var swI = that.options.map.getProjection().fromPointToLatLng( swInner );
+      var neI = that.options.map.getProjection().fromPointToLatLng( neInner );
 
-    if( lat < neI.lat() && lng < neI.lng() && lat > swI.lat() && lng > swI.lng() ) {
-      inside = true;
+      if( lat < neI.lat() && lng < neI.lng() && lat > swI.lat() && lng > swI.lng() ) {
+        inside = true;
+      }
     }
+
 
     return inside;
   },
@@ -234,7 +269,22 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
 
   getMapBounds: function() {
     var that = this;
+    var ret = false;
+    if( typeof that.options.map.getBounds() != 'undefined' ) {
+      ret = [ that.options.map.getBounds().getSouthWest(), that.options.map.getBounds().getNorthEast() ];
+    }
+    return ret;
+  },
 
-    return [ that.options.map.getBounds().getSouthWest(), that.options.map.getBounds().getNorthEast() ];
+  getMapProjection: function() {
+    var that = this;
+    var ret = false;
+
+    if( typeof that.options.map.getProjection() != 'undefined' ) {
+      ret = that.options.map.getProjection();
+    }
+
+    return ret;
   }
+
 });

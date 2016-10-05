@@ -146,6 +146,12 @@ class AllstoryStepsViewModel extends Model
     'legend' => array(
       'type'=>'INT'
     ),
+    'mapType' => array(
+      'type'=>'VARCHAR'
+    ),
+    'drawLine' => array(
+      'type'=>'BOOLEAN'
+    ),
     'weight' => array(
       'type'=>'INT'
     ),
