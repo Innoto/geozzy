@@ -224,6 +224,11 @@ cogumeloSetSetupValue( 'mod:filedata:profile:calendarEvent', array( 'width' => 3
 cogumeloSetSetupValue( 'mod:filedata:profile:calendarEventSmall', array( 'width' => 240, 'height' => 180) );
 
 
+cogumeloSetSetupValue( 'mod:filedata:profile:storyLegend',
+  array('width' => 300, 'height' => 1000,  'cut'=>false, 'enlarge'=>false , 'saveFormat' => 'PNG', 'saveQuality' => 50, 'cache'=> false )
+);
+
+
 /*
 // TEST
 cogumeloSetSetupValue( 'mod:filedata:profile:svgTest',
