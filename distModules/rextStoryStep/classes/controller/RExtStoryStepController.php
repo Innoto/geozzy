@@ -42,6 +42,11 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
          }
        }
 
+
+        $rExtData[ 'drawLine' ] = $rExtObj->getter( 'drawLine' );
+        $rExtData[ 'mapType' ] = $rExtObj->getter( 'mapType' );        
+
+
        $fileDep = $rExtObj->getterDependence( 'storystepLegend' );
        if( $fileDep !== false ) {
          foreach( $fileDep as $fileModel ) {
@@ -98,11 +103,21 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
         'placeholder' => 'Escolle unha imaxe', 'destDir' => RExtStoryStepModel::$cols['storystepLegend']['uploadDir'] ),
         'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/png' )
       ),
-      'storystepMapType' => array(
+
+      'drawLine' => array(
+        'params' => array( 'type' => 'checkbox', 'value'=>1, 'class' => 'switchery', 'options'=> array( '1' => __('Draw Pointer line') ))
+      ),
+      'mapType' => array(
         'params' => array( 'label' => __( 'Map type' ), 'type' => 'select',
-          'options' => $this->defResCtrl->getOptionsTax( 'storystepMapType' )
+          'options' => array(
+            'satellite' => __('Satellite'),
+            'roadmap' => __('Roadmap'),
+            'hybrid' => __('Hybrid'),
+            'terrain' => __('Terrain')
+          )
         )
       ),
+
       'storystepResource' => array(
         'params' => array( 'label' => __( 'Related resource' ), 'type' => 'select',
           'options' => $allRes
@@ -215,10 +230,10 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
 
     $fileField = $this->addPrefix( 'storystepLegend' );
     if( !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
-
       $this->defResCtrl->setFormFiledata( $form, $fileField, 'storystepLegend', $this->rExtModel );
-      $this->rExtModel->save();
     }
+    $this->rExtModel->save();
+
 
     if( !$form->existErrors() && $this->taxonomies) {
       foreach( $this->taxonomies as $tax ) {

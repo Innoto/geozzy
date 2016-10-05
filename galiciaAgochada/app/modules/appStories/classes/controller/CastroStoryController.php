@@ -46,6 +46,9 @@ class CastroStoryController extends StoryController {
         $row['mediumDescription'] = $resource->getter('mediumDescription');
         $row['relatedResource'] = $resource->getter('relatedResource');
 
+        $row['legend'] = $resource->getter('legend');
+        $row['drawLine'] = $resource->getter('drawLine');
+        $row['mapType'] = $resource->getter('mapType');
 
         echo json_encode( $row );
 
