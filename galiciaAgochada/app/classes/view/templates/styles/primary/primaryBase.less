@@ -360,8 +360,21 @@ form{
     margin-right:-4px;
 }
 .row-eq-height {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
+  .flex-display(flex);
+  .flex-wrap(wrap);
+
+  .row > [class*='col-'] {
+    .flex-display(flex);
+    .flex-direction(column);
+  }
+}
+.row-eq-height-vertical-centered{
+  .flex-display(flex);
+  .flex-wrap(wrap);
+  .align-items(center);
+
+  .row > [class*='col-'] {
+    .flex-display(flex);
+    .flex-direction(column);
+  }
 }
