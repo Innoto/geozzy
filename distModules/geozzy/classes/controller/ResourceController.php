@@ -1536,6 +1536,7 @@ class ResourceController {
                   'rType' => $resVal->getter('rTypeId'),
                   'title' => $resVal->getter('title'),
                   'shortDescription' => $resVal->getter('shortDescription'),
+                  'externalUrl' => $resVal->getter('externalUrl'),
                   'urlAlias' => $urlAlias,
                   'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
                   'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
@@ -1566,6 +1567,7 @@ class ResourceController {
                   'rType' => $resVal->getter('rTypeId'),
                   'title' => $resVal->getter('title'),
                   'shortDescription' => $resVal->getter('shortDescription'),
+                  'externalUrl' => $resVal->getter('externalUrl'),
                   'urlAlias' => $urlAlias,
                   'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
                   'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
