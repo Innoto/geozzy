@@ -157,6 +157,12 @@ class RExtFileController extends RExtController implements RExtInterface {
       if( $this->rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
+      else {
+        $saveResult = $this->rExtModel->save();
+        if( $saveResult === false ) {
+          $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
+        }
+      }
     }
 
 
