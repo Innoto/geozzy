@@ -3,7 +3,7 @@
 
 class Cogumelo extends CogumeloClass {
 
-  public static $version = 1.8;
+  public static $version = 1.9;
 
   public $dependences = array(
     array(
