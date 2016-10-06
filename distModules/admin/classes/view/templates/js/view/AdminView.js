@@ -51,7 +51,10 @@ var AdminView = Backbone.View.extend({
   loadAjaxContent: function( url ) {
     var that=this;
     that.childView = false;
-    $("#page-wrapper").load( url, {}, function(){ that.render(); } );
+    $("#page-wrapper").load( url, {}, function(){
+      that.render();
+      $( window ).scrollTop( 0 );
+    } );
 
   },
 
