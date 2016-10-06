@@ -95,7 +95,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
         )
       ),
       'accommodationCategory' => array(
-        'params' => array( 'label' => __( 'Accommodation category' ), 'type' => 'select', 'type' => 'gzzSelect2',
+        'params' => array( 'label' => __( 'Accommodation category' ), 'type' => 'select', 'class' => 'gzzSelect2',
           'options' => $this->defResCtrl->getOptionsTax( 'accommodationCategory' )
         )
       ),
