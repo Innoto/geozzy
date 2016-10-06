@@ -186,7 +186,7 @@ $initResources = array(
   ),
 
   array(
-    'version' =>'Cogumelo#1.0',
+    'version' =>'Cogumelo#1.8',
     'executeOnGenerateModelToo' => true,
     'idName' => 'castroStory',
     'rType' => 'rtypeStory',
@@ -206,29 +206,6 @@ $initResources = array(
       'en' => '/castro',
       'es' => '/castro',
       'gl' => '/castro'
-    )
-  ),
-  array(
-    'version' =>'Cogumelo#1.0',
-    'executeOnGenerateModelToo' => true,
-    'idName' => 'detapasStory',
-    'rType' => 'rtypeStory',
-    'title' => array(
-      'en' => 'De tapas',
-      'es' => 'De tapas',
-      'gl' => 'De tapas'
-    ),
-    'shortDescription' => array(
-      'en' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
-      'es' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.',
-      'gl' => 'Nam in mauris nisi. Duis dictum auctor sapien in aliquam. Cras laoreet sem tortor, quis rutrum.'
-    ),
-    'img' => false,
-    'viewType' => 'viewAppStoryCastro',
-    'urlAlias' => array(
-      'en' => '/detapas',
-      'es' => '/detapas',
-      'gl' => '/detapas'
     )
   )
 );
