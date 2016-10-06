@@ -47,47 +47,12 @@ function bindResourceForm(){
     placeholder: __('Select options')
   });
 
-  $('select.cgmMForm-field-rExtAccommodation_accommodationType').multiList({
+  $('select.gzzMultiList').multiMultiList({
     orientation: 'horizontal',
     icon: '<i class="fa fa-arrows"></i>',
     placeholder: __('Select options')
   });
-  $('select.cgmMForm-field-rExtAccommodation_accommodationServices').multiList({
-    orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>',
-    placeholder: __('Select options')
-  });
-  $('select.cgmMForm-field-rExtAccommodation_accommodationFacilities').multiList({
-    orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>',
-    placeholder: __('Select options')
-  });
-  $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkType').multiList({
-    orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>',
-    placeholder: __('Select options')
-  });
-  $('select.cgmMForm-field-rextEatAndDrink_eatanddrinkSpecialities').multiList({
-    orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>',
-    placeholder: __('Select options')
-  });
-  $('select.cgmMForm-field-rExtAppLugar_rextAppLugarType').multiList({
-    orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>',
-    placeholder: __('Select options')
-  });
-  $('select.cgmMForm-field-rExtAppEspazoNatural_rextAppEspazoNaturalType').multiList({
-    orientation: 'horizontal',
-    icon: '<i class="fa fa-arrows"></i>',
-    placeholder: __('Select options')
-  });
-
-  $('select.cgmMForm-field-rExtAccommodation_accommodationCategory').select2();
-  $('select.cgmMForm-field-rExtAppZona_rextAppZonaType').select2();
-  $('select.cgmMForm-field-weight').select2();
-  $('select.cgmMForm-field-rExtView_viewAlternativeMode').select2();
-  $('select.cgmMForm-field-rExtAppFesta_rextAppFestaType').select2();
+  $('select.gzzSelect2').select2();
 }
 
 

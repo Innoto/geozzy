@@ -54,7 +54,7 @@ class RExtAppFestaController extends RExtController implements RExtInterface {
 
     $fieldsInfo = array(
       'rextAppFestaType' => array(
-        'params' => array( 'label' => __( 'Festa type' ), 'type' => 'select', 'multiple' => true, 'class' => 'cgmMForm-order',
+        'params' => array( 'label' => __( 'Festa type' ), 'type' => 'select', 'multiple' => true, 'class' => 'cgmMForm-order gzzSelect2',
           'options' => $this->defResCtrl->getOptionsTax( 'rextAppFestaType' )
         )
       )

@@ -47,7 +47,9 @@ class RExtViewController extends RExtController implements RExtInterface {
 
     $fieldsInfo = array(
       'viewAlternativeMode' => array(
-        'params' => array( 'label' => __( 'viewAlternativeMode' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'viewAlternativeMode' ),
+          'type' => 'select',
+          'class' => 'gzzSelect2',
           'options' => $this->defResCtrl->getOptionsTax( 'viewAlternativeMode' )
         )
       )

@@ -90,22 +90,22 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
         'rules' => array( 'digits' => true )
       ),
       'accommodationType' => array(
-        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order',
+        'params' => array( 'label' => __( 'Accommodation type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order gzzMultiList',
           'options' => $this->defResCtrl->getOptionsTax( 'accommodationType' )
         )
       ),
       'accommodationCategory' => array(
-        'params' => array( 'label' => __( 'Accommodation category' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'Accommodation category' ), 'type' => 'select', 'type' => 'gzzSelect2',
           'options' => $this->defResCtrl->getOptionsTax( 'accommodationCategory' )
         )
       ),
       'accommodationServices' => array(
-        'params' => array( 'label' => __( 'Accommodation services' ), 'type' => 'select', 'multiple' => true,
+        'params' => array( 'label' => __( 'Accommodation services' ), 'type' => 'select', 'multiple' => true, 'class' => 'gzzMultiList',
           'options' => $this->defResCtrl->getOptionsTax( 'accommodationServices' )
         )
       ),
       'accommodationFacilities' => array(
-        'params' => array( 'label' => __( 'Accommodation facilities' ), 'type' => 'select', 'multiple' => true,
+        'params' => array( 'label' => __( 'Accommodation facilities' ), 'type' => 'select', 'multiple' => true, 'class' => 'gzzMultiList',
           'options' => $this->defResCtrl->getOptionsTax( 'accommodationFacilities' )
         )
       ),

@@ -321,7 +321,7 @@ class ResourceController {
         'rules' => array( 'maxlength' => '2000' )
       ),
       'weight' => array(
-        'params' => array( 'label' => __( 'Priority' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'Priority' ), 'type' => 'select', 'class' => 'gzzSelect2',
           'options'=> array( '0' => __( 'Normal' ), '-20' => __( 'High' ), '20' => __( 'Low' ) ) )
       ),
       'headKeywords' => array(

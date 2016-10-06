@@ -56,7 +56,7 @@ class RExtAppZonaController extends RExtController implements RExtInterface {
 */
     $fieldsInfo = array(
       'rextAppZonaType' => array(
-        'params' => array( 'label' => __( 'Zona' ), 'type' => 'select',
+        'params' => array( 'label' => __( 'Zona' ), 'type' => 'select', 'class' => 'gzzSelect2',
           'options' => $this->defResCtrl->getOptionsTax( 'rextAppZonaType' )
         )
       )

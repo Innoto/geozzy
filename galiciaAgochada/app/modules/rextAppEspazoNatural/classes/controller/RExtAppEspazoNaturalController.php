@@ -50,7 +50,7 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
 
     $fieldsInfo = array(
       'rextAppEspazoNaturalType' => array(
-        'params' => array( 'label' => __( 'Espazo natural type' ), 'type' => 'select', 'multiple' => true, 'class' => 'cgmMForm-order',
+        'params' => array( 'label' => __( 'Espazo natural type' ), 'type' => 'select', 'multiple' => true, 'class' => 'cgmMForm-order gzzMultiList',
           'options' => $this->defResCtrl->getOptionsTax( 'rextAppEspazoNaturalType' )
         )
       )

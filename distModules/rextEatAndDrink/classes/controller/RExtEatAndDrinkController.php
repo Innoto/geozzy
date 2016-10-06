@@ -72,12 +72,12 @@ class RExtEatAndDrinkController extends RExtController implements RExtInterface 
         'rules' => array( 'digits' => true )
       ),
       'eatanddrinkType' => array(
-        'params' => array( 'label' => __( 'EatAndDrink type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order',
+        'params' => array( 'label' => __( 'EatAndDrink type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order gzzMultiList',
           'options' => $this->defResCtrl->getOptionsTaxAdvancedArray( 'eatanddrinkType' )
         )
       ),
       'eatanddrinkSpecialities' => array(
-        'params' => array( 'label' => __( 'EatAndDrink specialities' ), 'type' => 'select', 'multiple' => true,
+        'params' => array( 'label' => __( 'EatAndDrink specialities' ), 'type' => 'select', 'multiple' => true, 'class' => 'cgmMForm-order gzzMultiList',
           'options' => $this->defResCtrl->getOptionsTax( 'eatanddrinkSpecialities' )
         )
       )
