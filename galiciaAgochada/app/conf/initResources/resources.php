@@ -186,7 +186,7 @@ $initResources = array(
   ),
 
   array(
-    'version' =>'Cogumelo#1.9',
+    'version' =>'Cogumelo#1.10',
     'executeOnGenerateModelToo' => true,
     'idName' => 'castroStory',
     'rType' => 'rtypeStory',
