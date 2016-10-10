@@ -1530,12 +1530,12 @@ class ResourceController {
                 $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
                 $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
-
                 $collectionResources[ $collection->getter('id') ]['res'][ $resVal->getter('id') ] = array(
                   'id' => $resVal->getter('id'),
                   'rType' => $resVal->getter('rTypeId'),
                   'title' => $resVal->getter('title'),
                   'shortDescription' => $resVal->getter('shortDescription'),
+                  'mediumDescription' => $resVal->getter('mediumDescription'),
                   'externalUrl' => $resVal->getter('externalUrl'),
                   'urlAlias' => $urlAlias,
                   'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
@@ -1567,6 +1567,7 @@ class ResourceController {
                   'rType' => $resVal->getter('rTypeId'),
                   'title' => $resVal->getter('title'),
                   'shortDescription' => $resVal->getter('shortDescription'),
+                  'mediumDescription' => $resVal->getter('mediumDescription'),
                   'externalUrl' => $resVal->getter('externalUrl'),
                   'urlAlias' => $urlAlias,
                   'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
