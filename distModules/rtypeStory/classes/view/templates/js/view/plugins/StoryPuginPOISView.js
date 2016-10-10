@@ -14,7 +14,7 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
 
     var options = new Object({
       container: false,
-      tplElement: '<%-id%>'
+      tplElement: geozzy.adminStoryComponents.InfowindowPOI
     });
     that.options = $.extend(true, {}, options, opts);
 
@@ -41,9 +41,9 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
 
     if( typeof that.poisExplorers[ step.id ] === 'undefined' )  {
 
-      var ex = that.getExplorer();
-      var ds = that.getExplorerMap();
-      var popup = that.getExplorerInfoWindow();
+      var ex = that.getExplorer( step.id );
+      var ds = that.getExplorerMap( step.id );
+      var popup = that.getExplorerInfoWindow( step.id );
 
       ex.addDisplay( ds );
       ex.addDisplay( popup );
@@ -58,14 +58,14 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
   },
 
 
-  getExplorer: function() {
+  getExplorer: function( stepId ) {
     var that = this;
 
     return explorer = new geozzy.explorer({
       explorerId:'pois',
       explorerSectionName: __('Points of interest'),
       debug:false,
-      aditionalParameters: {resourceID: step.id},
+      aditionalParameters: {resourceID: stepId },
       resetLocalStorage: true
     });
   },
@@ -107,22 +107,10 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
   },
 
   getExplorerInfoWindow: function() {
-    var miniInfoWindow = ''+
-      '<div class="poiInfoWindow">'+
-        '<div class="poiImg">'+
-          '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
-        '</div>'+
-        '<div class="poiInfo">'+
-          '<div class="poiTitle"><p><%-title%></p></div>'+
-          '<div class="poiDescription"><%-description%></div>'+
-          '<% if( isNormalResource == 1 ) { %> <a target="_blank" href="/resource/<%-id%>" ><button class="btn btn-primary accessButton">' + __('Discover') + '</button> </a><% }%>'
-
-        '</div>'
-      '</div>';
-
+    var that = this
 
     return new geozzy.explorerComponents.mapInfoBubbleView({
-      tpl:miniInfoWindow,
+      tpl: that.options.tplElement,
       width: 350,
       max_height:170
     });
