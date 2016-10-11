@@ -1491,15 +1491,18 @@ class ResourceController {
         )
       );
       while( $collection = $resCollectionList->fetch() ) {
-        $collectionResources[ $collection->getter('id') ]['col'] = array(
-          'id' => $collection->getter('id'),
-          'title' => $collection->getter('title'),
-          'shortDescription' => $collection->getter('shortDescription'),
-          'description' => $collection->getter('description'),
-          'image' => $collection->getter('image'),
-          'collectionType' => $collection->getter('collectionType')
-        );
-        $collectionResources[ $collection->getter('id') ]['res'] = [];
+        $collId = $collection->getter('id');
+        if( !isset( $collectionResources[ $collId ] ) ) {
+          $collectionResources[ $collId ]['col'] = array(
+            'id' => $collId,
+            'title' => $collection->getter('title'),
+            'shortDescription' => $collection->getter('shortDescription'),
+            'description' => $collection->getter('description'),
+            'image' => $collection->getter('image'),
+            'collectionType' => $collection->getter('collectionType')
+          );
+          $collectionResources[ $collId ]['res'] = [];
+        }
         $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
         if( $resources && is_array($resources) && count($resources) > 0 ) {
           switch( $collection->getter('collectionType') ) {
@@ -1536,7 +1539,7 @@ class ResourceController {
                 $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
                 $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
-                $collectionResources[ $collection->getter('id') ]['res'][ $resVal->getter('id') ] = array(
+                $collectionResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
                   'id' => $resVal->getter('id'),
                   'rType' => $resVal->getter('rTypeId'),
                   'title' => $resVal->getter('title'),
@@ -1573,7 +1576,7 @@ class ResourceController {
 
                 $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
 
-                $collectionResources[ $collection->getter('id') ]['res'][ $resVal->getter('id') ] = array(
+                $collectionResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
                   'id' => $resVal->getter('id'),
                   'rType' => $resVal->getter('rTypeId'),
                   'title' => $resVal->getter('title'),
