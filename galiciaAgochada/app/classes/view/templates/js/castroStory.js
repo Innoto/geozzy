@@ -36,10 +36,12 @@ $(document).ready( function(){
 
   var displayLeyenda = new geozzy.storyComponents.StoryPluginLegendView({container:'.storyLayout .castroLeyendaContainer'});
 
+  var displayPOIS = new geozzy.storyComponents.StoryPluginPOISView();
+
   historia.addDisplay( displayLista );
   historia.addDisplay( displayMapa );
   historia.addDisplay( displayLeyenda );
-
+  historia.addDisplay( displayPOIS );
 
   historia.bindEvent('loadResource', function(resourceId){
     $(".storyContainer.story-loading").show();

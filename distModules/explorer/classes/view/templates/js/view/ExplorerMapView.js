@@ -142,8 +142,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
 
 
-
-    that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceIndex.length+ 'recursos' );
+    if( that.parentExplorer.options.debug ) {
+      that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceIndex.length+ 'recursos' );
+    }
   },
 
   createAllMarkers: function() {

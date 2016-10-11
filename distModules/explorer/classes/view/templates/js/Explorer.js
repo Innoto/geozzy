@@ -26,7 +26,7 @@ geozzy.explorer = function( opts ) {
 
     aditionalParameters: {},
     resetLocalStorage:false,
-    
+
     // cache times (in seconds)
     cacheTimeIndex: 20,
     debug: false,
@@ -49,11 +49,11 @@ geozzy.explorer = function( opts ) {
   // events
   that.explorerEvents = [];
 
-
   //  Debuger
-  that.timeDebugerMain = new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer main'} );
-  that.timeDebugerExtended =  new TimeDebuger( {debug: that.options.debug, instanceName:'Explorer extended data'} );
-
+  if( that.options.debug ) {
+    that.timeDebugerMain = new TimeDebuger( {instanceName:'Explorer main'} );
+    that.timeDebugerExtended =  new TimeDebuger( {instanceName:'Explorer extended data'} );
+  }
 
   // Resource Collections and Indexes
   that.resourceIndex = false;
@@ -133,9 +133,14 @@ geozzy.explorer = function( opts ) {
         data: that.options.aditionalParameters ,
         expires: that.options.cacheTimeIndex ,
         success: function() {
-          that.timeDebugerMain.log('&nbsp;- Fetch first resource index with '+ that.resourceMinimalList.length + ' elements');
+
+          if( that.options.debug ) {
+            that.timeDebugerMain.log('&nbsp;- Fetch first resource index with '+ that.resourceMinimalList.length + ' elements');
+          }
           that.resourceIndex = new Backbone.Obscura(that.resourceMinimalList);
-          that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
+          if( that.options.debug ) {
+            that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
+          }
           that.applyFilters();
           that.options.minimalLoadSuccess();
         }
@@ -158,9 +163,10 @@ geozzy.explorer = function( opts ) {
 
   that.applyFilters = function() {
 
-
-    that.timeDebugerMain.reset();
-    that.timeDebugerExtended.reset();
+    if( that.options.debug ) {
+      that.timeDebugerMain.reset();
+      that.timeDebugerExtended.reset();
+    }
 
     if(typeof that.resourceIndex.removePagination != 'undefined'){
       that.resourceIndex.removePagination();
@@ -193,7 +199,10 @@ geozzy.explorer = function( opts ) {
       return ret;
 
     });
-    that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceIndex.length + ' Records' );
+
+    if( that.options.debug ) {
+      that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceIndex.length + ' Records' );
+    }
 
 
 
@@ -277,12 +286,16 @@ geozzy.explorer = function( opts ) {
 
 
     // Advanced Fetch
-    that.timeDebugerExtended.log('Starting second data fetch at')
+    if( that.options.debug ) {
+      that.timeDebugerExtended.log('Starting second data fetch at');
+    }
 
     that.fetchPartialList(
       resourcesToLoad,
       function() {
-        that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
+        if( that.options.debug ) {
+          that.timeDebugerExtended.log( '&nbsp;- Fetch partial resource data' );
+        }
 
         if(that.displays.activeList) {
           that.displays.activeList.render();
@@ -297,8 +310,9 @@ geozzy.explorer = function( opts ) {
             plugin.render();
           });
         }
-
-        that.timeDebugerExtended.log( '&nbsp;- Render lists' );
+        if( that.options.debug ) {
+          that.timeDebugerExtended.log( '&nbsp;- Render lists' );
+        }
 
         that.options.partialLoadSuccess();
       }
