@@ -1499,11 +1499,17 @@ class ResourceController {
           'image' => $collection->getter('image'),
           'collectionType' => $collection->getter('collectionType')
         );
+        $collectionResources[ $collection->getter('id') ]['res'] = [];
         $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
         if( $resources && is_array($resources) && count($resources) > 0 ) {
           switch( $collection->getter('collectionType') ) {
             case 'multimedia':
               foreach( $resources as $resVal ) {
+                // Saltamos recursos no publicados
+                if( !$resVal->getter( 'published' ) ) {
+                  continue;
+                }
+
                 $thumbSettings = array(
                   'profile' => 'imgMultimediaGallery'
                 );
@@ -1549,6 +1555,11 @@ class ResourceController {
             case 'base':
             default:
               foreach( $resources as $resVal ) {
+                // Saltamos recursos no publicados
+                if( !$resVal->getter( 'published' ) ) {
+                  continue;
+                }
+
                 $thumbSettings = array(
                   'imageId' => $resVal->getter( 'image' ),
                   'imageName' => $resVal->getter( 'image' ).'.jpg',
@@ -1560,9 +1571,9 @@ class ResourceController {
                 }
                 $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
-                $urlAlias = $this->getUrlAlias($resVal->getter('id'));
+                $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
 
-                $collectionResources[$collection->getter('id')]['res'][$resVal->getter('id')] = array(
+                $collectionResources[ $collection->getter('id') ]['res'][ $resVal->getter('id') ] = array(
                   'id' => $resVal->getter('id'),
                   'rType' => $resVal->getter('rTypeId'),
                   'title' => $resVal->getter('title'),
