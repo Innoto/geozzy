@@ -94,6 +94,7 @@ $C_ENABLED_MODULES = array(
   'table',
   'explorer',
   'appExplorer',
+  'appStories',
   // testing module
   'testData',
 );
@@ -128,7 +129,7 @@ $C_REXT_MODULES = array(
   'rextParticipation',
   'rextStoryStep',
   'rextStory',
-  //'rextTravelPlanner',
+  'rextTravelPlanner',
   'rextAudioguide'
 );
 
@@ -150,8 +151,7 @@ $C_RTYPE_MODULES = array(
   'rtypeEvent',
   'rtypeStory',
   'rtypeStoryStep',
-  'appStories'
-  //'rtypeTravelPlanner'
+  'rtypeTravelPlanner'
 );
 
 
@@ -186,11 +186,11 @@ $C_INDEX_MODULES  = array(
   'testData',
   'initResources',
   'explorer',
-  //'rtypeTravelPlanner',
+  'rtypeTravelPlanner',
   'rextRoutes',
   'rextComment',
   'rextFavourite',
-  //'rextTravelPlanner',
+  'rextTravelPlanner',
   'rtypeEvent',
   'rtypePoi',
   'rtypeStory',
@@ -207,7 +207,7 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes', array(
   'rtypePage',
   'rtypeStory',
   'rtypeFavourites',
-  //'rtypeTravelPlanner',
+  'rtypeTravelPlanner',
   'rtypeFile',
   'rtypeEvent',
   'rtypePoi'
