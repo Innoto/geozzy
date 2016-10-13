@@ -64,7 +64,7 @@ class ResourceController {
    *  Cargando IdName del RType
    */
   public function getRTypeIdName( $rTypeId = false, $resId = false ) {
-    //error_log( "ResourceController: getRTypeIdName( $rTypeId )" );
+    // error_log( "ResourceController: getRTypeIdName( $rTypeId )" );
     $rTypeIdName = false;
 
     if( $rTypeId === false ) {
@@ -926,7 +926,7 @@ class ResourceController {
         $collsSelect[ 'values' ][] = $collId;
     }
 
-    error_log( "ResourceController: getCollectionsSelect = ". print_r( $collsSelect, true ) );
+    // error_log( "ResourceController: getCollectionsSelect = ". print_r( $collsSelect, true ) );
     return $collsSelect;
   }
 
@@ -1129,7 +1129,7 @@ class ResourceController {
 
     $formCollType = $form->getFieldParam( $fieldName, 'data-col-type' );
 
-    error_log( 'saveFormCollectionField( form, '.$baseId.', '.$fieldName.' ) tipo '.$formCollType );
+    // error_log( 'saveFormCollectionField( form, '.$baseId.', '.$fieldName.' ) tipo '.$formCollType );
 
     $relPrevInfo = false;
     // Si estamos editando, repasamos y borramos relaciones sobrantes
