@@ -53,11 +53,14 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
       ex.exec();
 
       that.poisExplorers[ step.id ] = {
-        ex: ex ,
-        ds: ds,
+        explorer: ex ,
+        display: ds,
         popup: popup
       };
     }
+
+    that.poisExplorers[ step.id ].display.showAllMarkers();
+
   },
 
 
@@ -126,11 +129,13 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
   hideAllPOIS : function() {
     var that = this;
 
-/*
-    $.each( that.poisExplorers, function(i,e) {
-      e.ds.hideAllMarkers();
+    $.each( that.poisExplorers, function(i, explorer) {
+      if( typeof explorer != 'undefined') {
+        explorer.display.hideAllMarkers();
+      }
+
     });
-*/
   }
+
 
 });
