@@ -346,7 +346,9 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
   array(
     'default' => array(
       'eventos' => array('rtypeAppFesta'),
-      'poi' => array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar'),
+      'poi' => array(
+        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar')
+      ),
       'pasos' => array(),
       'base' => array(
         'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar', 'rtypeAppEspazoNatural', 'rtypeAppRuta', 'rtypeAppFesta'),
@@ -367,7 +369,9 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
     ),
     'rtypeAppEspazoNatural' => array(
       'eventos' => array(),
-      'poi' => array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar'),
+      'poi' => array(
+        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar')
+      ),
       'pasos' => array(),
       'base' => array()
     ),
@@ -385,13 +389,17 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
     ),
     'rtypeAppRuta' => array(
       'eventos' => array(),
-      'poi' => array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar', 'rtypeAppEspazoNatural'),
+      'poi' => array(
+        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar', 'rtypeAppEspazoNatural')
+      ),
       'pasos' => array(),
       'base' => array()
     ),
-    'rtypeStory' => array(
+    'rtypeStoryStep' => array(
       'eventos' => array(),
-      'poi' => array(),
+      'poi' => array(
+        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar')
+      ),
       'pasos' => array('rtypeStoryStep'),
       'base' => array()
     )

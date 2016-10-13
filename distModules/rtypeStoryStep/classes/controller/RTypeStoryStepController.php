@@ -117,6 +117,12 @@ class RTypeStoryStepController extends RTypeController implements RTypeInterface
      $formFieldsNames = array( 'collections', 'addCollections' );
      $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
 
+     // TEMPLATE panel poicollection
+     $templates['poiCollection'] = new Template();
+     $templates['poiCollection']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+     $templates['poiCollection']->assign( 'title', __( 'POI collection' ) );
+     $templates['poiCollection']->setFragment( 'blockContent', $formBlockInfo['ext']['rextPoiCollection']['template']['full'] );
+
      // TEMPLATE panel image
      $templates['image'] = new Template();
      $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -180,8 +186,10 @@ class RTypeStoryStepController extends RTypeController implements RTypeInterface
      $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
      $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
      $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
+     $templates['adminFull']->addToFragment( 'col8', $templates['poiCollection'] );
      $templates['adminFull']->addToFragment( 'col8', $templates['social'] );
      $templates['adminFull']->addToFragment( 'col8', $templates['location'] );
+
      // COL8
      if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
        $templates['adminFull']->addToFragment( 'col8', $templates['comment'] );
