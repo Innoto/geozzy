@@ -1,0 +1,38 @@
+//mixin with all css that depends on your style explorer
+/*******************************************************************************************/
+.mixinDevel(){
+  #travelPlannerSec{
+    .travelPlanner{
+      .travelPlannerList{
+        background-color: rgba( 71, 225, 118, .5 );
+      }//travelPlannerList
+      .travelPlannerPlan{
+        background-color: rgba( 225, 71, 71, .5 );
+      }//travelPlannerPlan
+    }
+  } //#travelPlannerSec
+
+}
+/*******************************************************************************************/
+.travelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpList-h: 100%  ) {
+  #travelPlannerSec{
+    padding: 0;
+    margin: 0;
+    .travelPlanner{
+      position: relative;
+      min-height: @tp-h;
+      
+      .travelPlannerList{
+        width: @tpList-w;
+        height: @tpList-h;
+        position: absolute;
+      }//travelPlannerList
+
+      .travelPlannerPlan{
+        margin-left: @tpList-w;
+        min-height: 500px;
+      }//travelPlannerPlan
+
+    }
+  } //#travelPlannerSec
+} //.travelPlanner()

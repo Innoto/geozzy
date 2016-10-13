@@ -9,17 +9,12 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
 
   },
 
-
   loadInterfaceTravelPlanner: function(){
-    
     var that = this;
 
     that.interfaceTemplate = _.template( geozzy.travelPlannerComponents.travelPlannerInterfaceTemplate );
-
     that.$el.html( that.interfaceTemplate );
-
   },
-
 
   initialize: function( opts ) {
     var that = this;
@@ -31,6 +26,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     that.loadInterfaceTravelPlanner();
 
   },
+  
   render: function() {
     var that = this;
     //that.$el.html( that.tpl({ content: contentHtml }) )
