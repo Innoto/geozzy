@@ -67,10 +67,17 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     $i18nCtrl = new I18nController();
 
     $fieldsInfo3 = array();
+    // Necesitamos poner los textos con __() para que entren en los PO
+    __('You should visit #TITLE#. Seen in #URL#');
+    __('I liked this place: #TITLE# via #URL#');
     foreach (Cogumelo::getSetupValue( 'lang:available' ) as $key => $lang){
-      $fieldsInfo3['textFb_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key, 'label' => __( 'Text to share on facebook' ), 'type' => 'textarea', 'placeholder' => $i18nCtrl->getLangTranslation('You should visit #TITLE#. Seen in en #URL#', $lang['i18n']) ),
+      $fieldsInfo3['textFb_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key,
+        'label' => __( 'Text to share on facebook' ), 'type' => 'textarea',
+        'placeholder' => $i18nCtrl->getLangTranslation('You should visit #TITLE#. Seen in #URL#', $lang['i18n']) ),
         'rules' => array( 'maxlength' => '2000' ));
-      $fieldsInfo3['textTwitter_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key, 'label' => __( 'Text to share on twitter' ), 'type' => 'textarea', 'placeholder' => $i18nCtrl->getLangTranslation('I liked this place: #TITLE# via #URL#', $lang['i18n']) ),
+      $fieldsInfo3['textTwitter_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key,
+        'label' => __( 'Text to share on twitter' ), 'type' => 'textarea',
+        'placeholder' => $i18nCtrl->getLangTranslation('I liked this place: #TITLE# via #URL#', $lang['i18n']) ),
         'rules' => array( 'maxlength' => '2000' ));
 
     }

@@ -7,14 +7,14 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
   parentStory: false,
   tplElement: false,
 
-  poisExplorers = [],
+  poisExplorers: [],
 
   initialize: function( opts ) {
     var that = this;
 
     var options = new Object({
       container: false,
-      tplElement: geozzy.adminStoryComponents.InfowindowPOI
+      tplElement: geozzy.storyComponents.InfowindowPOI
     });
     that.options = $.extend(true, {}, options, opts);
 
@@ -39,6 +39,9 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
   setStep: function( step ) {
     var that = this;
 
+    // hide other explorer POIS
+    that.hideAllPOIS();
+
     if( typeof that.poisExplorers[ step.id ] === 'undefined' )  {
 
       var ex = that.getExplorer( step.id );
@@ -50,11 +53,14 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
       ex.exec();
 
       that.poisExplorers[ step.id ] = {
-        ex: explorer ,
-        ds: display,
+        explorer: ex ,
+        display: ds,
         popup: popup
       };
     }
+
+    that.poisExplorers[ step.id ].display.showAllMarkers();
+
   },
 
 
@@ -70,13 +76,16 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
     });
   },
 
-  getExplorerMap: function {
+  getExplorerMap: function() {
     var that = this;
 
-    return new geozzy.explorerComponents.mapView({
+    if( typeof that.parentStory.displays.background.options.map == 'undefined' ) {
+      console.log('STORY ERROR: Story background map not defined')
+    }
 
-      map: geozzy.rExtMapInstance.resourceMap,
-      clusterize:false/*,
+    return new geozzy.explorerComponents.mapView({
+      map: that.parentStory.displays.background.options.map
+/*,
       chooseMarkerIcon: function( markerData ) {
           //return cogumelo.publicConf.media+'/module/rextPoiCollection/img/poi.png';
 
@@ -102,8 +111,9 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
             }
         });
 
-      }*/
-    }
+      }
+*/
+    });
   },
 
   getExplorerInfoWindow: function() {
@@ -114,6 +124,18 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
       width: 350,
       max_height:170
     });
+  },
+
+  hideAllPOIS : function() {
+    var that = this;
+
+    $.each( that.poisExplorers, function(i, explorer) {
+      if( typeof explorer != 'undefined') {
+        explorer.display.hideAllMarkers();
+      }
+
+    });
   }
+
 
 });
