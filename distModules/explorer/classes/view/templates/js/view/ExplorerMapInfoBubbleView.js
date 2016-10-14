@@ -17,6 +17,7 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
       marker_distance: [5,0], // [top, bottom]
       max_height: 240,
       width: 255,
+      map_scrollwhell_is_enabled: true
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -59,7 +60,7 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
           marker_distance: that.options.marker_distance, // [top, bottom]
           max_height: that.options.max_height,
           width: that.options.width,
-
+          map_scrollwhell_is_enabled: that.options.map_scrollwhell_is_enabled ,
           onAddSuccess: function() {
             that.infowindow.open(m, 'mouseover' , that.renderContent(params.id), true);
           }

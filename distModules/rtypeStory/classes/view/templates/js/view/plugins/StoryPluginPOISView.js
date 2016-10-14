@@ -130,7 +130,8 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
     return new geozzy.explorerComponents.mapInfoBubbleView({
       tpl: that.options.tplElement,
       width: 350,
-      max_height:170
+      max_height:170,
+      map_scrollwhell_is_enabled: false
     });
   },
 
