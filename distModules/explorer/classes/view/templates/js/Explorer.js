@@ -88,7 +88,7 @@ geozzy.explorer = function( opts ) {
 
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
 
-    if( that.options.useUrlRouter ) {
+    if( that.options.useUrlRouter == true ) {
       // set explorer router
       geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
       geozzy.explorerComponents.routerInstance.parentExplorer = that;
