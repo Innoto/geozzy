@@ -1458,7 +1458,9 @@ class geozzyAPIView extends View {
         }
         /* Reordenamos los recursos de la colección por el orden que traian */
         foreach( $resIds as $id ) {
-          array_push($resCollData, $resCollData_tmp[$id]);
+          if( isset($resCollData_tmp[$id]) ) {
+            array_push($resCollData, $resCollData_tmp[$id]);
+          }
         }
       }
     }
