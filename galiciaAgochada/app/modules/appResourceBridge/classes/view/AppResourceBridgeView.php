@@ -7,7 +7,7 @@ geozzy::load( 'controller/ResourceController.php' );
 
 class AppResourceBridgeView extends MasterView {
 
-  public function __construct( $baseDir ) {
+  public function __construct( $baseDir = false ) {
 
     /*
     TODO: Esto farase no modulo user
@@ -73,11 +73,12 @@ class AppResourceBridgeView extends MasterView {
 
 
       //$this->template->addClientScript('js/resource.js');
-/*
+      /*
       if( class_exists( 'geozzyUser' ) ) {
         geozzyUser::autoIncludes();
       }
-*/
+      */
+
       $tplFile = 'appResourceBridgePageFull.tpl';
       if( isset( $_REQUEST['pf'] ) && $_REQUEST['pf'] !== '' ) {
         $mark = preg_replace( '/[^0-9a-z_-]/i', '_', $_REQUEST['pf'] );
@@ -101,22 +102,36 @@ class AppResourceBridgeView extends MasterView {
     }
   }
 
-  /*
-  public function showResourcePageTmp( $urlParams = false ) {
-    error_log( "AppResourceBridgeView: showResourcePage()" . print_r( $urlParams, true ) );
 
-    $resourceView = new GeozzyResourceView();
-    $templateBlock = $resourceView->getResourceBlockTmp( $urlParams );
 
-    $this->template->setFragment( 'resourceBlock', $templateBlock );
+  public function page404() {
+    header( 'HTTP/1.0 404 Not Found' );
 
-    $this->template->addClientStyles('styles/masterResource.less');
-    $this->template->addClientScript('js/resource.js');
+    $this->template->assign( 'title', __( 'Página no encontrada' ) );
 
-    $this->template->setTpl( 'appResourceBridge.tpl', 'appResourceBridge');
+    $this->template->assign( 'res', false );
+    $this->template->assign( 'i18nlocale', Cogumelo::getSetupValue( 'i18n:localePath' ) );
+
+    $this->template->addClientStyles( 'styles/masterResource.less' );
+
+    $this->template->setTpl( 'appResourceBridgePage404.tpl', 'appResourceBridge' );
 
     $this->template->exec();
   }
-  */
 
+
+  public function page403() {
+    header( 'HTTP/1.0 403 Access Forbidden' );
+
+    $this->template->assign( 'title', __( 'Acceso no permitido' ) );
+
+    $this->template->assign( 'res', false );
+    $this->template->assign( 'i18nlocale', Cogumelo::getSetupValue( 'i18n:localePath' ) );
+
+    $this->template->addClientStyles( 'styles/masterResource.less' );
+
+    $this->template->setTpl( 'appResourceBridgePage403.tpl', 'appResourceBridge' );
+
+    $this->template->exec();
+  }
 } // class RTypeAppEspazoNaturalView
