@@ -74,7 +74,8 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
       explorerSectionName: __('Points of interest'),
       debug:false,
       aditionalParameters: {resourceID: stepId },
-      resetLocalStorage: true
+      resetLocalStorage: true,
+      useUrlRouter: false
     });
   },
 

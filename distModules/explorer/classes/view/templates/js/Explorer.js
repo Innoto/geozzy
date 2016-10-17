@@ -30,6 +30,7 @@ geozzy.explorer = function( opts ) {
     // cache times (in seconds)
     cacheTimeIndex: 20,
     debug: false,
+    useUrlRouter: true,
 
     // events
     filterChangeEvent: function(){},
@@ -87,19 +88,19 @@ geozzy.explorer = function( opts ) {
 
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
 
+    if( that.options.useUrlRouter == true ) {
+      // set explorer router
+      geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
+      geozzy.explorerComponents.routerInstance.parentExplorer = that;
 
-    // set explorer router
-    geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
-    geozzy.explorerComponents.routerInstance.parentExplorer = that;
-
-    if( !Backbone.History.started ){
-      Backbone.history.start();
+      if( !Backbone.History.started ){
+        Backbone.history.start();
+      }
+      else {
+        Backbone.history.stop();
+        Backbone.history.start();
+      }
     }
-    else {
-      Backbone.history.stop();
-      Backbone.history.start();
-    }
-
 
     that.bindEvent('resourceClick', function(param){
 
