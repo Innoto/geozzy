@@ -1,24 +1,5 @@
 {block name="headCssIncludes" append}
-<style type="text/css">
-  .TravelPlannerElement { height: 250px; }
-  .TravelPlannerElement img { width: 100%; }
-  .favDelete {
-    position: absolute;
-    right: 20px;
-    top: 5px;
-    display: block;
-    padding: 2px;
-    /* background-color: yellow; */
-    color: #FF2222;
-    font-size: 20px;
-  }
-  .TravelPlannerElement .title {
-    text-decoration: underline;
-  }
-  .TravelPlannerElement .shortDescription {
-    font-size: 90%
-  }
-</style>
+
 {/block}
 
 <!-- rTypeViewBlock.tpl en rTypeTravelPlanner module -->

@@ -71,7 +71,7 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
     $resId = $this->defResCtrl->resObj->getter('id');
 
     $rExtViewBlockInfo['template']['full'] = new Template();
-    $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+    $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );    
     $rExtViewBlockInfo['template']['full']->assign( 'resId', $resId );
     $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextTravelPlanner' );
 
@@ -278,7 +278,7 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
     if( $tpObj ) {
       $tpsId = $tpObj->getter('id');
     }
-    else {    
+    else {
       $tpStructure = $this->newTravelPlannerStructure( $user );
       $tpsId = $tpStructure['tpsId'];
     }
