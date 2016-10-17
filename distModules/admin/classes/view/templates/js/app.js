@@ -10,6 +10,9 @@ var geozzy = geozzy || {};
       statusCode: {
           401: function() {
               window.location.replace('/admin/login');
+          },
+          403: function() {
+              window.location.replace('/admin/login');
           }
       }
   });
