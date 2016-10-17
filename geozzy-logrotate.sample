@@ -1,0 +1,41 @@
+# Change HOST_PROYECT_DIRECTORY
+
+/HOST_PROYECT_DIRECTORY/logs/*.log {
+  # su innoto
+  create 640 innoto root
+  weekly
+  missingok
+  rotate 120
+  maxage 850
+  dateext
+  compress
+  notifempty
+
+  sharedscripts
+  postrotate
+    if /etc/init.d/apache2 status > /dev/null ; then \
+      /etc/init.d/apache2 reload > /dev/null; \
+    fi;
+  endscript
+  lastaction
+    chmod 400 /HOST_PROYECT_DIRECTORY/logs/*gz
+  endscript
+}
+
+
+/HOST_PROYECT_DIRECTORY/project/app/log/*.log {
+  su innoto www-data
+  create 660 innoto www-data
+  weekly
+  missingok
+  rotate 120
+  maxage 850
+  dateext
+  compress
+  notifempty
+  sharedscripts
+  lastaction
+    chmod 400 /HOST_PROYECT_DIRECTORY/project/app/log/*gz
+  endscript
+}
+
