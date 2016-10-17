@@ -34,3 +34,38 @@
 
 </div><!-- /.resource .resViewBlock -->
 <!-- /rTypeViewBlock.tpl en rTypeTravelPlanner module -->
+
+
+
+<script type="text/template" id="travelPlannerInterfaceTemplate">
+  <div class="travelPlanner">
+    <div class="travelPlannerList">
+      <div class="travelPlannerFilters">
+        <div class="filter">
+          <select>
+            <option value="1">All</option>
+            <option value="2">Favourites</option>
+          </select>
+        </div>
+        <div class="filter">
+          <select>
+            <option value="">All</option>
+            <option value="rtypeHotel">Hotel</option>
+            <option value="rtypeRestaurante">Restaurante</option>
+          </select>
+        </div>
+      </div>
+      <div class="travelPlannerResources"></div>
+    </div>
+    <div class="travelPlannerPlan"></div>
+  </div>
+</script>
+
+
+<script type="text/template" id="resourceItemTPTemplate">
+  <div class="tpResourceItem" data-resource-id="<%- resource.id %>">
+    <div class="title"><%- resource.title %></div>
+    <div class="description"><%- resource.mediumDescription %></div>
+    <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/fast_cut/<%- resource.image %>.jpg"></div>
+  </div>
+</script>
