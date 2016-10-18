@@ -1,10 +1,13 @@
 
 $(document).ready( function() {
-  new geozzy.rextReccommended.reccommendedView({
-    onRender:function(){
-      initMyOwl();
-    }
-  });
+
+  if( typeof geozzy.rextReccommended.reccommendedView != 'undefined') {
+    new geozzy.rextReccommended.reccommendedView({
+      onRender:function(){
+        initMyOwl();
+      }
+    });
+  }
 });
 
 function initMyOwl(){
