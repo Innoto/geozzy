@@ -1,23 +1,3 @@
-{block name="headCssIncludes" append}
-<style type="text/css">
-  .communityElement .commImage { position: relative; }
-  .communityElement .commImage img { width: 100%; }
-  .communityElement .commImage .commDelete {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    display: block;
-    padding: 2px 4px;
-    background-color: white;
-    color: #FF2222;
-    font-size: 20px;
-    cursor: pointer;
-  }
-</style>
-{/block}
-
-
-
 <!-- rTypeViewBlock.tpl en rTypeCommunity module -->
 <div class="resource resViewBlock {$res.data.rTypeIdName} res_{$res.data.id}">
 
@@ -38,25 +18,31 @@
     <div class="content">
       <p>Mi perfil</p>
       <div class="row">
-        <div class="col-sm-4 col-md-2 myInfo">
-          <div class="commImage">
-            <img src="/cgmlImg/{$myInfo.avatarFileId}/fast_cut/{$myInfo.avatarFileId}.jpg">
+        <div class="myInfo">
+          <div class="col-sm-5 col-md-4">
+            <div class="infoPersonal">
+              <div class="commImage">
+                <img src="/cgmlImg/{$myInfo.avatarFileId}/fast_cut/{$myInfo.avatarFileId}.jpg">
+              </div>
+              <div class="login">{$myInfo.login}</div>
+              <a href="/userprofile#user/profile">Editar perfil</a>
+            </div>
           </div>
-          <div class="login">{$myInfo.login}</div>
-          <a href="/userprofile#user/profile">Editar perfil</a>
-        </div>
-        <div class="col-sm-8 col-md-10 myInfo" data-id="{$myInfo.id}">
-          <div class="commText">
-            <div class="name">{$myInfo.name} {$myInfo.surname}</div>
-            <div class="row">
-              <div class="col-sm-12 col-md-12">
-                <div class="myShare">Compartir mis favoritos y redes sociales</div>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <div class="myFacebook">Bloque Facebook</div>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <div class="myTwitter">Bloque Twitter</div>
+          <div class="col-sm-7 col-md-8" data-id="{$myInfo.id}">
+            <div class="commText">
+              <div class="name">{$myInfo.name} {$myInfo.surname}</div>
+              <div class="row">
+                <div class="commRS">
+                  <div class="col-sm-12 col-md-12">
+                    <div class="myShare">Compartir mis favoritos y redes sociales</div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <div class="myFacebook">Bloque Facebook</div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <div class="myTwitter">Bloque Twitter</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
