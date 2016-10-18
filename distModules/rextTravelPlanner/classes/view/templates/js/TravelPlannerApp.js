@@ -18,6 +18,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   }
 
   that.resources = new geozzy.collection.ResourceCollection( resParam );
+  that.favInfo = false;
   that.favResources = false;
 
 
@@ -39,7 +40,8 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       contentType: false, processData: false,
       success: function setStatusSuccess( $jsonData, $textStatus, $jqXHR ) {
         if ( $jsonData.result === 'ok' ) {
-          that.favResources = $jsonData.resourceList;
+          that.favInfo = $jsonData.favourites;
+          that.favResources = $jsonData.favourites[Object.keys($jsonData.favourites)[0]].resourceList;
         }
       }
     });
