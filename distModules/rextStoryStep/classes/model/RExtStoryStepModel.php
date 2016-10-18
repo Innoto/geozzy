@@ -35,8 +35,13 @@ class RExtStoryStepModel extends Model
       'vo' => 'FiledataModel',
       'key' => 'id',
       'uploadDir' => '/RExtStoryStepFiles/'
+    ),
+    'storystepKML' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'FiledataModel',
+      'key' => 'id',
+      'uploadDir' => '/RExtStoryStepFiles/'
     )
-
   );
 
   static $extraFilters = array();
@@ -52,6 +57,11 @@ class RExtStoryStepModel extends Model
       'sql'=> 'ALTER TABLE `geozzy_resource_rext_storystep`
         ADD COLUMN `drawLine` BIT,
         ADD COLUMN `mapType` VARCHAR(100) ;'
+    ),
+    array(
+      'version' => 'rextStoryStep#1.2',
+      'sql'=> 'ALTER TABLE `geozzy_resource_rext_storystep`
+        ADD COLUMN `storystepKML` INT'
     )
   );
 
