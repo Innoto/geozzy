@@ -134,6 +134,7 @@ class ResourceModel extends Model {
     'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
     'ids' => ' geozzy_resource.id IN (?) ',
     'inId' => ' geozzy_resource.id IN (?) ',
+    'idIn' => ' geozzy_resource.id IN (?) ',
     'inIdName' => ' geozzy_resource.idName IN (?) ',
     'idNameIn' => ' geozzy_resource.idName IN (?) ',
     'notInId' => ' geozzy_resource.id NOT IN (?) ',
