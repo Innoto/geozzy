@@ -163,14 +163,11 @@ class RTypeCommunityController extends RTypeController implements RTypeInterface
 
     $usersIds = is_array( $usersIds ) ? $usersIds : array( $usersIds );
 
-    //geozzy::load( 'model/ResourceModel.php' );
-    RExtFavourite::load( 'controller/RExtFavouriteController.php' );
     $favCtrl = new RExtFavouriteController();
-
     $resModel = new ResourceModel();
-
     $userModel = new UserModel();
-    $userList = $userModel->listItems( array( 'filters' => array( 'inId' => $usersIds, 'active' => 1 ) ) );
+
+    $userList = $userModel->listItems( array( 'filters' => array( 'idIn' => $usersIds, 'active' => 1 ) ) );
     while( $userObj = $userList->fetch() ) {
       $userId = $userObj->getter('id');
       $usersInfo[ $userId ] = array(
