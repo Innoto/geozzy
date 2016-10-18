@@ -188,7 +188,6 @@ $C_INDEX_MODULES  = array(
   'rextComment',
   'rextFavourite',
   'rextCommunity',
-  'rextTravelPlanner',
   'rtypeEvent',
   'rtypePoi',
   'rtypeStory',
