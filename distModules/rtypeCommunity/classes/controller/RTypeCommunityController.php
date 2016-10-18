@@ -164,8 +164,9 @@ class RTypeCommunityController extends RTypeController implements RTypeInterface
     $usersIds = is_array( $usersIds ) ? $usersIds : array( $usersIds );
 
     $favCtrl = new RExtFavouriteController();
-    $resModel = new ResourceModel();
     $userModel = new UserModel();
+    $resModel = new ResourceModel();
+    $commModel = new RExtCommunityModel();
 
     $userList = $userModel->listItems( array( 'filters' => array( 'idIn' => $usersIds, 'active' => 1 ) ) );
     while( $userObj = $userList->fetch() ) {
@@ -180,6 +181,14 @@ class RTypeCommunityController extends RTypeController implements RTypeInterface
         'avatarFileId' => $userObj->getter('avatar'),
         'favList' => $favCtrl->getAllFavourites( $userId )
       );
+
+      $commList = $commModel->listItems( array( 'filters' => array( 'user' => $userId ) ) );
+      $commObj = ($commList) ? $commList->fetch() : false;
+      $usersInfo[ $userId ]['comm'] = (!$commObj) ? false : array(
+        'facebook' => $commObj->getter('facebook'),
+        'twitter' => $commObj->getter('twitter')
+      );
+
       $usersInfo[ $userId ]['favs'] = [];
       $resList = $resModel->listItems( array( 'filters' => array(
         'idIn' => $usersInfo[ $userId ]['favList'], 'published' => 1 ) ) );
