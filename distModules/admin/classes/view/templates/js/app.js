@@ -4,16 +4,19 @@ var app = app || {};
 var geozzy = geozzy || {};
 
 
- if( window.location.pathname != '/admin/login') {
+if( window.location.pathname != '/admin/login') {
   // Catch all ajax denied
   $.ajaxSetup({
-      statusCode: {
-          401: function() {
-              window.location.replace('/admin/login');
-          }
+    statusCode: {
+      401: function() {
+        window.location.replace('/admin/login');
+      },
+      403: function() {
+        window.location.replace('/admin/login');
       }
+    }
   });
- }
+}
 
 
 $( document ).ready(function() {

@@ -58,6 +58,10 @@ if( $useraccesscontrol->isLogged() ) {
         'description' => 'Favourites API'
       ),
       array(
+        'path'=> '/doc/community.json',
+        'description' => 'Community API'
+      ),
+      array(
         'path'=> '/doc/travelplanner.json',
         'description' => 'TravelPlanner API'
       )

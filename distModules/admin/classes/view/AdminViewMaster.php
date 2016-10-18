@@ -11,8 +11,7 @@ if( class_exists( 'rtypeStory' ) ) {
   rtypeStory::autoIncludes();
 }
 
-class AdminViewMaster extends View
-{
+class AdminViewMaster extends View {
 
   public function __construct( $base_dir ) {
     parent::__construct($base_dir);
@@ -36,7 +35,7 @@ class AdminViewMaster extends View
   public function accessCheck() {
     $useraccesscontrol = new UserAccessController();
     $res = true;
-    if(!$useraccesscontrol->isLogged()){
+    if( !$useraccesscontrol->isLogged() ) {
       if( $_SERVER['HTTP_X_REQUESTED_WITH'] ){
         header("HTTP/1.0 401");
       }
@@ -44,10 +43,11 @@ class AdminViewMaster extends View
         Cogumelo::redirect('/admin/login');
       }
       $res = false;
-    }else{
-      if(!$useraccesscontrol->checkPermissions('admin:access', 'admin:full')){
-        Cogumelo::redirect('/403/');
+    }
+    else {
+      if( !$useraccesscontrol->checkPermissions( 'admin:access', 'admin:full' ) ) {
         $res = false;
+        // Cogumelo::redirect('/403/');
       }
     }
 
