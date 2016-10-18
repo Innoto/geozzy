@@ -20,6 +20,34 @@ class ParticipationView extends MasterView
 
     $successArray = false;
     $successArray[ 'jsEval' ] = 'new geozzy.generateModal( "xantaresParticipationOk", "", "'.$htmlModalOk.'" ,geozzy.xantaresParticipationForm.closeModal());';
+
+    $recursoData = $this->xantaresCommonForm();
+
+    $resCtrl = new ResourceController();
+    $formBlockInfo = $resCtrl->getFormBlockInfo( "participationXantaresForm", "/".$C_LANG."/participation/xantaresExplorer/send", $successArray, $recursoData );
+    //$formBlockInfo['objForm']->saveToSession();
+
+    $formBlockInfo['template']['participationFull']->exec();
+
+  }
+
+  public function xantaresWebViewForm() {
+    global $C_LANG;
+
+    $successArray = false;
+    $successArray[ 'jsEval' ] = 'alert("AppMSG");';
+
+    $recursoData = $this->xantaresCommonForm();
+
+    $resCtrl = new ResourceController();
+    $formBlockInfo = $resCtrl->getFormBlockInfo( "participationXantaresForm", "/".$C_LANG."/participation/xantaresExplorer/send", $successArray, $recursoData );
+
+    $formBlockInfo['template']['participationWV']->addClientStyles( 'styles/master.less' );
+    $formBlockInfo['template']['participationWV']->exec();
+
+  }
+
+  public function xantaresCommonForm(){
     $rTypeItem = false;
     $rtypeControl = new ResourcetypeModel();
     $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'idName' => 'rtypeAppRestaurant' ) ) )->fetch();
@@ -34,13 +62,7 @@ class ParticipationView extends MasterView
       $recursoData['locLon'] = $_POST['lng'];
       $recursoData['defaultZoom'] = $_POST['zoom'];
     }
-
-    $resCtrl = new ResourceController();
-    $formBlockInfo = $resCtrl->getFormBlockInfo( "participationXantaresForm", "/".$C_LANG."/participation/xantaresExplorer/send", $successArray, $recursoData );
-    //$formBlockInfo['objForm']->saveToSession();
-
-    $formBlockInfo['template']['participationFull']->exec();
-
+    return $recursoData;
   }
 
   public function sendXantaresForm() {
@@ -48,13 +70,12 @@ class ParticipationView extends MasterView
     $resource = null;
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
     $form = $resourceView->defResCtrl->resFormLoad();
-
     if( !$form->existErrors() ) {
       // Validar y guardar los datos
       $resource = $resourceView->actionResourceFormProcess( $form );
     }
-
     // Enviamos el OK-ERROR a la BBDD y al formulario
     $resourceView->actionResourceFormSuccess( $form, $resource );
   }
+
 }

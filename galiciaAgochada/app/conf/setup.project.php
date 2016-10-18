@@ -124,8 +124,8 @@ $C_REXT_MODULES = array(
   'rextParticipation',
   'rextStoryStep',
   'rextStory',
-  //'rextTravelPlanner',
-  'rextAudioguide',
+  'rextTravelPlanner',
+  'rextAudioguide'
 );
 
 // resource Types
@@ -147,7 +147,7 @@ $C_RTYPE_MODULES = array(
   'rtypeEvent',
   'rtypeStory',
   'rtypeStoryStep',
-  //'rtypeTravelPlanner',
+  'rtypeTravelPlanner'
 );
 
 
@@ -182,11 +182,11 @@ $C_INDEX_MODULES  = array(
   'testData',
   'initResources',
   'explorer',
-  //'rtypeTravelPlanner',
-  //'rextTravelPlanner',
+  'rtypeTravelPlanner',
   'rextRoutes',
   'rextComment',
   'rextFavourite',
+  'rextTravelPlanner',
   'rextCommunity',
   'rtypeEvent',
   'rtypePoi',
@@ -204,8 +204,8 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes', array(
   'rtypePage',
   'rtypeStory',
   'rtypeFavourites',
+  'rtypeTravelPlanner',
   'rtypeCommunity',
-  //'rtypeTravelPlanner',
   'rtypeFile',
   'rtypeEvent',
   'rtypePoi'
