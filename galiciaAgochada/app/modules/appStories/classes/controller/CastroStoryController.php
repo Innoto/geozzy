@@ -47,6 +47,7 @@ class CastroStoryController extends StoryController {
         $row['relatedResource'] = $resource->getter('relatedResource');
 
         $row['legend'] = $resource->getter('legend');
+        $row['KML'] = $resource->getter('KML');
         $row['drawLine'] = $resource->getter('drawLine');
         $row['mapType'] = $resource->getter('mapType');
 
