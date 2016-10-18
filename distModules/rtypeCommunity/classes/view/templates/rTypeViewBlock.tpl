@@ -7,18 +7,24 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
-          <img class="iconTitleBar img-responsive" alt="Páxina xeral" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>
+          <img class="iconTitleBar img-responsive" alt="Tu Comunidad" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>
           <h1>Tu Comunidad</h1>
         </div>
       </div>
     </div>
   </div>
 
-  <section class="contentSec container gzSection" data-id="{$myInfo.id}">
-    <div class="content">
+
+  <script type="text/javascript">
+    var geozzy = geozzy || {};
+    geozzy.commFollowsInfo = {$commFollowsInfo|@json_encode}
+  </script>
+  <section class="communitySec gzSection">
+
+    <div class="container commHeader">
       <p>Mi perfil</p>
       <div class="row">
-        <div class="myInfo">
+        <div class="myInfo" data-id="{$myInfo.id}">
           <div class="col-sm-5 col-md-4">
             <div class="infoPersonal">
               <div class="commImage">
@@ -28,7 +34,7 @@
               <a href="/userprofile#user/profile">Editar perfil</a>
             </div>
           </div>
-          <div class="col-sm-7 col-md-8" data-id="{$myInfo.id}">
+          <div class="col-sm-7 col-md-8">
             <div class="commText">
               <div class="name">{$myInfo.name} {$myInfo.surname}</div>
               <div class="row">
@@ -37,10 +43,14 @@
                     <div class="myShare">Compartir mis favoritos y redes sociales</div>
                   </div>
                   <div class="col-sm-12 col-md-6">
-                    <div class="myFacebook">Bloque Facebook</div>
+                    <div class="myFacebook">
+                      Facebook: {$myInfo.comm.facebook|default:''}
+                    </div>
                   </div>
                   <div class="col-sm-12 col-md-6">
-                    <div class="myTwitter">Bloque Twitter</div>
+                    <div class="myTwitter">
+                      Twitter: {$myInfo.comm.twitter|default:''}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -49,18 +59,14 @@
         </div>
       </div>
     </div>
+
+
+    {if $res.data.content}
     <div class="content">
       {$res.data.content}
     </div>
-  </section>
+    {/if}
 
-  <script type="text/javascript">
-    var geozzy = geozzy || {};
-    geozzy.commFollowsInfo = {$commFollowsInfo|@json_encode}
-  </script>
-  <section class="communitySec gzSection">
-    <div class="container commHeader">
-    </div>
 
 <hr>
 
@@ -98,6 +104,16 @@
                   {/foreach}
                   </div>
                 </div><!-- /favs -->
+                {/if}
+                {if $userInfo.comm}
+                <div class="socialLinks">
+                  {if $userInfo.comm.facebook}
+                    <a href="https://www.facebook.com/{$userInfo.comm.facebook}" target="_blank">Facebook</a>
+                  {/if}
+                  {if $userInfo.comm.twitter}
+                    <a href="https://twitter.com/{$userInfo.comm.twitter}">Twitter</a>
+                  {/if}
+                </div>
                 {/if}
               </div>
             </div>
