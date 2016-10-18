@@ -35,14 +35,14 @@ class ParticipationView extends MasterView
     global $C_LANG;
 
     $successArray = false;
-    $successArray[ 'jsEval' ] = 'alert("AppMSG");';
+    $successArray[ 'jsEval' ] = 'GeozzyMobileApp.resultParticipation(true);';
 
     $recursoData = $this->xantaresCommonForm();
 
     $resCtrl = new ResourceController();
     $formBlockInfo = $resCtrl->getFormBlockInfo( "participationXantaresForm", "/".$C_LANG."/participation/xantaresExplorer/send", $successArray, $recursoData );
 
-    $formBlockInfo['template']['participationWV']->addClientStyles( 'styles/master.less' );
+    $formBlockInfo['template']['participationWV']->addClientStyles( 'styles/masterWV.less' );
     $formBlockInfo['template']['participationWV']->exec();
 
   }

@@ -21,10 +21,10 @@
           {/if}
           <div class="subStepActions">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-12">
                 <button type="button" class="btn btn-warning cancel" data-dismiss="modal" aria-label="Close">{t}Cancelar{/t}</button>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-12">
                 <button type="button" class="btn btn-success next" data-goStep="2">{t}Seguinte{/t}</button>
               </div>
             </div>
@@ -39,11 +39,11 @@
           {/if}
           <div class="subStepActions">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-12">
                 <button type="button" class="btn btn-success previous" data-goStep="1">{t}Anterior{/t}</button>
                 <button type="button" class="btn btn-warning cancel" data-dismiss="modal" aria-label="Close">{t}Cancelar{/t}</button>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-12">
                 <button type="button" class="btn btn-success next" data-goStep="3">{t}Seguinte{/t}</button>
               </div>
             </div>
@@ -58,11 +58,11 @@
           {/if}
           <div class="subStepActions">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-12">
                 <button type="button" class="btn btn-success previous" data-goStep="2">{t}Anterior{/t}</button>
                 <button type="button" class="btn btn-warning cancel" data-dismiss="modal" aria-label="Close">{t}Cancelar{/t}</button>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-12">
                 <button type="button" class="btn btn-success next" data-goStep="4">{t}Seguinte{/t}</button>
               </div>
             </div>
@@ -80,11 +80,11 @@
           <p>{t}Se non tes ningunha foto, pulsa en seguinte{/t}</p>
           <div class="subStepActions">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-12">
                 <button type="button" class="btn btn-success previous" data-goStep="3">{t}Anterior{/t}</button>
                 <button type="button" class="btn btn-warning cancel" data-dismiss="modal" aria-label="Close">{t}Cancelar{/t}</button>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-12">
                 <button type="button" class="btn btn-success next" data-goStep="5">{t}Seguinte{/t}</button>
               </div>
             </div>
@@ -109,11 +109,11 @@
           <div class="formErrors"></div>
           <div class="subStepActions">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-12">
                 <button type="button" class="btn btn-success previous" data-goStep="4">{t}Anterior{/t}</button>
                 <button type="button" class="btn btn-warning cancel" data-dismiss="modal" aria-label="Close">{t}Cancelar{/t}</button>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6 col-xs-12">
                 {$res.dataForm.formFieldsArray['submit']}
               </div>
             </div>
@@ -189,11 +189,11 @@
   var customSelectTypeHtml = '<div class="customEatanddrinkType"><div class="row">';
   $.each(selectXantaresTypeOpt, function( index, opt ) {
 
-    customSelectTypeHtml += '<div class="col-sm-2">';
+    customSelectTypeHtml += '<div class="col-sm-2 col-xs-6">';
       customSelectTypeHtml += '<div class="customEatanddrinkTypeItem" data-item-val="'+$(opt).val()+'">';
         customSelectTypeHtml += '<div class="icon">';
-          customSelectTypeHtml += '<img class="img-responsive normal" src="/cgmlImg/'+$(opt).attr("data-term-icon")+'/typeXantaresParticipationFilter/icon.png">';
-          customSelectTypeHtml += '<img class="img-responsive selected" src="/cgmlImg/'+$(opt).attr("data-term-icon")+'/typeXantaresParticipationFilterActive/icon.png">';
+          customSelectTypeHtml += '<img class="normal" src="/cgmlImg/'+$(opt).attr("data-term-icon")+'/typeXantaresParticipationFilter/icon.png">';
+          customSelectTypeHtml += '<img class="selected" src="/cgmlImg/'+$(opt).attr("data-term-icon")+'/typeXantaresParticipationFilterActive/icon.png">';
         customSelectTypeHtml += '</div>';
         customSelectTypeHtml += '<div class="text">'+$(opt).text()+'</div>';
       customSelectTypeHtml += '</div>';
