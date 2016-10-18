@@ -73,6 +73,8 @@ geozzy.story = function( opts ) {
       e.render();
     });
 
+    that.triggerEvent('storyReady');
+
   };
 
   that.getLang= function(){

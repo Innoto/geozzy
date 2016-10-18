@@ -124,7 +124,7 @@ $C_REXT_MODULES = array(
   'rextParticipation',
   'rextStoryStep',
   'rextStory',
-  'rextTravelPlanner',
+  //'rextTravelPlanner',
   'rextAudioguide',
 );
 
@@ -147,7 +147,7 @@ $C_RTYPE_MODULES = array(
   'rtypeEvent',
   'rtypeStory',
   'rtypeStoryStep',
-  'rtypeTravelPlanner',
+  //'rtypeTravelPlanner',
 );
 
 
@@ -182,7 +182,8 @@ $C_INDEX_MODULES  = array(
   'testData',
   'initResources',
   'explorer',
-  'rtypeTravelPlanner',
+  //'rtypeTravelPlanner',
+  //'rextTravelPlanner',
   'rextRoutes',
   'rextComment',
   'rextFavourite',
@@ -205,7 +206,7 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes', array(
   'rtypeStory',
   'rtypeFavourites',
   'rtypeCommunity',
-  'rtypeTravelPlanner',
+  //'rtypeTravelPlanner',
   'rtypeFile',
   'rtypeEvent',
   'rtypePoi'
@@ -249,44 +250,6 @@ cogumeloSetSetupValue( 'i18n', array(
   'localePath' => cogumeloGetSetupValue( 'setup:appBasePath' ).'/conf/i18n/locale',
   'gettextUpdate' => true // update gettext files when working in localhost
 ));
-
-
-//
-//  Media server
-//
-cogumeloSetSetupValue( 'publicConf:globalVars', array( 'C_LANG', 'C_SESSION_ID' ) );
-
-cogumeloSetSetupValue( 'publicConf:setupFields', array( 'google:maps:key', 'session:lifetime',
-  'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone',
-  'user:session:id' ) );
-
-cogumeloSetSetupValue( 'publicConf:vars:langDefault', cogumeloGetSetupValue( 'lang:default' ) );
-cogumeloSetSetupValue( 'publicConf:vars:langAvailableIds', array_keys( cogumeloGetSetupValue( 'lang:available' ) ) );
-cogumeloSetSetupValue( 'publicConf:vars:mediaJs',
-  ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true &&
-    cogumeloGetSetupValue( 'mod:mediaserver:notCacheJs' ) !== true )
-    ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
-    : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ) );
-cogumeloSetSetupValue( 'publicConf:vars:media',
-  ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true )
-    ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
-    : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ) );
-cogumeloSetSetupValue( 'publicConf:vars:mediaHost', cogumeloGetSetupValue( 'mod:mediaserver:host' ) );
-cogumeloSetSetupValue( 'publicConf:vars:site_host', SITE_HOST );
-
-cogumeloSetSetupValue( 'mod:mediaserver:publicConf:javascript',
-  cogumeloGetSetupValue( 'publicConf' )
-);
-cogumeloSetSetupValue( 'mod:mediaserver:publicConf:less',
-  cogumeloGetSetupValue( 'publicConf' )
-);
-cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty',
-  cogumeloGetSetupValue( 'publicConf' )
-);
-cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields',
-  array_merge( cogumeloGetSetupValue( 'publicConf:setupFields' ), array('user:session') )
-);
-
 
 //
 // Alias por defecto en recursos
@@ -409,8 +372,6 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
   )
 );
 
-
-
 //
 //
 //
@@ -435,9 +396,10 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
 );
 
 
+cogumeloSetSetupValue( 'mod:geozzy:travelPlanner',
+  array('rtypeAppHotel','rtypeAppRestaurant')
+);
 
-//
-//
 //
 cogumeloSetSetupValue( 'mod:geozzy:sitemap:ignoreRTypes', array(
   'rtypeUrl',
@@ -449,3 +411,41 @@ cogumeloSetSetupValue( 'mod:geozzy:sitemap:default:change', 'weekly' );
 cogumeloSetSetupValue( 'mod:geozzy:sitemap:rtypePage:change', 'daily' );
 cogumeloSetSetupValue( 'mod:geozzy:sitemap:rtypePage:priority', '0.8' );
 cogumeloSetSetupValue( 'mod:geozzy:sitemap:rtypeAppFesta:change', 'daily' );
+
+
+
+//
+//  Media server
+//
+cogumeloSetSetupValue( 'publicConf:globalVars', array( 'C_LANG', 'C_SESSION_ID' ) );
+
+cogumeloSetSetupValue( 'publicConf:setupFields', array( 'google:maps:key', 'session:lifetime',
+  'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone',
+  'user:session:id', 'mod:geozzy:travelPlanner' ) );
+
+cogumeloSetSetupValue( 'publicConf:vars:langDefault', cogumeloGetSetupValue( 'lang:default' ) );
+cogumeloSetSetupValue( 'publicConf:vars:langAvailableIds', array_keys( cogumeloGetSetupValue( 'lang:available' ) ) );
+cogumeloSetSetupValue( 'publicConf:vars:mediaJs',
+  ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true &&
+    cogumeloGetSetupValue( 'mod:mediaserver:notCacheJs' ) !== true )
+    ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
+    : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ) );
+cogumeloSetSetupValue( 'publicConf:vars:media',
+  ( cogumeloGetSetupValue( 'mod:mediaserver:productionMode' ) === true )
+    ? cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:cachePath' )
+    : cogumeloGetSetupValue( 'mod:mediaserver:host' ).cogumeloGetSetupValue( 'mod:mediaserver:path' ) );
+cogumeloSetSetupValue( 'publicConf:vars:mediaHost', cogumeloGetSetupValue( 'mod:mediaserver:host' ) );
+cogumeloSetSetupValue( 'publicConf:vars:site_host', SITE_HOST );
+
+cogumeloSetSetupValue( 'mod:mediaserver:publicConf:javascript',
+  cogumeloGetSetupValue( 'publicConf' )
+);
+cogumeloSetSetupValue( 'mod:mediaserver:publicConf:less',
+  cogumeloGetSetupValue( 'publicConf' )
+);
+cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty',
+  cogumeloGetSetupValue( 'publicConf' )
+);
+cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields',
+  array_merge( cogumeloGetSetupValue( 'publicConf:setupFields' ), array('user:session') )
+);

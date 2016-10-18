@@ -56,7 +56,7 @@ if( $useraccesscontrol->isLogged() ) {
       array(
         'path'=> '/doc/favourites.json',
         'description' => 'Favourites API'
-      ),
+      )/*,
       array(
         'path'=> '/doc/community.json',
         'description' => 'Community API'
@@ -64,7 +64,7 @@ if( $useraccesscontrol->isLogged() ) {
       array(
         'path'=> '/doc/travelplanner.json',
         'description' => 'TravelPlanner API'
-      )
+      )*/
     )
   );
 }

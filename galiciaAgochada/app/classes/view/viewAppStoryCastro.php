@@ -31,6 +31,8 @@ class viewAppStoryCastro extends MasterView
     $template->addClientScript('js/view/StoryList.js', 'rtypeStory');
     $template->addClientScript('js/view/StoryBackground.js', 'rtypeStory');
     $template->addClientScript('js/view/plugins/StoryPluginLegendView.js', 'rtypeStory');
+    $template->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');        
+    $template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
     $template->addClientScript('js/view/plugins/StoryPluginPOISView.js', 'rtypeStory');
     $template->addClientScript('js/Story.js', 'rtypeStory');
 

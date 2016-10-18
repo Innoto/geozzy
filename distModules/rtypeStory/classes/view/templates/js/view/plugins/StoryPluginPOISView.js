@@ -6,8 +6,9 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
   displayType: 'plugin',
   parentStory: false,
   tplElement: false,
-
+  currentPOISExplorer: false,
   poisExplorers: [],
+  poisTypes:false,
 
   initialize: function( opts ) {
     var that = this;
@@ -39,28 +40,29 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
   setStep: function( step ) {
     var that = this;
 
-    // hide other explorer POIS
-    that.hideAllPOIS();
+    that.loadPoisTypes( function() {
+      // hide other explorer POIS
+      that.hideAllPOIS();
 
-    if( typeof that.poisExplorers[ step.id ] === 'undefined' )  {
+      if( typeof that.poisExplorers[ step.id ] === 'undefined' )  {
 
-      var ex = that.getExplorer( step.id );
-      var ds = that.getExplorerMap( step.id );
-      var popup = that.getExplorerInfoWindow( step.id );
+        var ex = that.getExplorer( step.id );
+        var ds = that.getExplorerMap( step.id );
+        var popup = that.getExplorerInfoWindow( step.id );
 
-      ex.addDisplay( ds );
-      ex.addDisplay( popup );
-      ex.exec();
+        ex.addDisplay( ds );
+        ex.addDisplay( popup );
+        ex.exec();
 
-      that.poisExplorers[ step.id ] = {
-        explorer: ex ,
-        display: ds,
-        popup: popup
-      };
-    }
+        that.poisExplorers[ step.id ] = {
+          explorer: ex ,
+          display: ds,
+          popup: popup
+        };
+      }
 
-    that.poisExplorers[ step.id ].display.showAllMarkers();
-
+      that.poisExplorers[ step.id ].display.showAllMarkers();
+    });
   },
 
 
@@ -72,7 +74,8 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
       explorerSectionName: __('Points of interest'),
       debug:false,
       aditionalParameters: {resourceID: stepId },
-      resetLocalStorage: true
+      resetLocalStorage: true,
+      useUrlRouter: false
     });
   },
 
@@ -84,36 +87,42 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
     }
 
     return new geozzy.explorerComponents.mapView({
-      map: that.parentStory.displays.background.options.map
-/*,
+      map: that.parentStory.displays.background.options.map,
       chooseMarkerIcon: function( markerData ) {
-          //return cogumelo.publicConf.media+'/module/rextPoiCollection/img/poi.png';
-
-
-        var retMarker = {
-          url: cogumelo.publicConf.media+'/module/rextPoiCollection/img/chapaPOIS.png',
-          // This marker is 20 pixels wide by 36 pixels high.
-          size: new google.maps.Size(20, 20),
-          // The origin for this image is (0, 0).
-          origin: new google.maps.Point(0, 0),
-          // The anchor for this image is the base of the flagpole at (0, 36).
-          anchor: new google.maps.Point(10, 10)
-        };
-
-        poisTypes.each( function(e){
-            console.log(cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png')
-            if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
-              if( jQuery.isNumeric( e.get('icon') )  ){
-                retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png';
-                retMarker.size =  new google.maps.Size(20, 20);
-                return false;
-              }
-            }
-        });
+        return that.chooseMarker( markerData );
 
       }
-*/
     });
+  },
+
+  chooseMarker: function( markerData) {
+    var that = this;
+
+    //return cogumelo.publicConf.media+'/module/rextPoiCollection/img/poi.png';
+
+    var retMarker = {
+      url: cogumelo.publicConf.media+'/module/rextPoiCollection/img/chapaPOIS.png',
+      // This marker is 20 pixels wide by 36 pixels high.
+      size: new google.maps.Size(20, 20),
+      // The origin for this image is (0, 0).
+      origin: new google.maps.Point(0, 0),
+      // The anchor for this image is the base of the flagpole at (0, 36).
+      anchor: new google.maps.Point(10, 10)
+    };
+
+    that.poisTypes.each( function(e){
+        console.log(cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png')
+        if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
+          if( jQuery.isNumeric( e.get('icon') )  ){
+            retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png';
+            retMarker.size =  new google.maps.Size(20, 20);
+            return false; // FOREACH RETURN
+          }
+        }
+    });
+
+    return retMarker;
+
   },
 
   getExplorerInfoWindow: function() {
@@ -122,7 +131,8 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
     return new geozzy.explorerComponents.mapInfoBubbleView({
       tpl: that.options.tplElement,
       width: 350,
-      max_height:170
+      max_height:170,
+      map_scrollwhell_is_enabled: false
     });
   },
 
@@ -135,7 +145,24 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
       }
 
     });
-  }
+  },
 
+
+  loadPoisTypes: function( readyCallback ) {
+    var that = this;
+
+    if( that.poisTypes == false ) {
+      var poisTypes = new geozzy.collection.CategorytermCollection();
+      poisTypes.setUrlByIdName('rextPoiType');
+
+      $.when( poisTypes.fetch() ).done(function() {
+        that.poisTypes = poisTypes;
+        readyCallback();
+      });
+    }
+    else {
+      readyCallback();
+    }
+  }
 
 });

@@ -53,6 +53,14 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
            $rExtData[ 'storystepLegend' ] = $fileModel->getAllData( 'onlydata' );
          }
        }
+
+       $fileDep = $rExtObj->getterDependence( 'storystepKML' );
+       if( $fileDep !== false ) {
+         foreach( $fileDep as $fileModel ) {
+           $rExtData[ 'storystepKML' ] = $fileModel->getAllData( 'onlydata' );
+         }
+       }
+
      }
 
 
@@ -98,11 +106,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
 
 
     $fieldsInfo = array(
-      'storystepLegend' => array(
-        'params' => array( 'label' => __( 'Leggend' ), 'type' => 'file', 'id' => 'stepLegend',
-        'placeholder' => 'Escolle unha imaxe', 'destDir' => RExtStoryStepModel::$cols['storystepLegend']['uploadDir'] ),
-        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/png' )
-      ),
+
 
       'drawLine' => array(
         'params' => array( 'type' => 'checkbox', 'value'=>1, 'class' => 'switchery', 'options'=> array( '1' => __('Draw Pointer line') ))
@@ -122,6 +126,17 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Related resource' ), 'type' => 'select',
           'options' => $allRes
         )
+      ),
+      'storystepLegend' => array(
+        'params' => array( 'label' => __( 'Step leggend' ), 'type' => 'file', 'id' => 'stepLegend',
+        'placeholder' => __('Choose an image'), 'destDir' => RExtStoryStepModel::$cols['storystepLegend']['uploadDir'] ),
+        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/png' )
+      ),
+
+      'storystepKML' => array(
+        'params' => array( 'label' => __( 'Step KML layer' ), 'type' => 'file', 'id' => 'storystepKML',
+        'placeholder' =>   __('Choose an image'), 'destDir' => RExtStoryStepModel::$cols['storystepKML']['uploadDir'] ),
+        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'accept' => ',application/xml,application\/vnd.google\-earth\.kml\+xml' )
       )
     );
 
@@ -231,12 +246,17 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
         if( $saveResult === false ) {
           $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
         }
-      }      
+      }
     }
 
     $fileField = $this->addPrefix( 'storystepLegend' );
     if( !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
       $this->defResCtrl->setFormFiledata( $form, $fileField, 'storystepLegend', $this->rExtModel );
+    }
+
+    $fileField = $this->addPrefix( 'storystepKML' );
+    if( !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
+      $this->defResCtrl->setFormFiledata( $form, $fileField, 'storystepKML', $this->rExtModel );
     }
 
     $this->rExtModel->save();

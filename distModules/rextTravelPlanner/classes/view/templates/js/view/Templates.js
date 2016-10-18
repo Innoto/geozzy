@@ -15,13 +15,3 @@ geozzy.travelPlannerComponents.modalMdTemplate = ''+
     '</div>'+
   '</div>'+
 '</div>';
-
-geozzy.travelPlannerComponents.travelPlannerInterfaceTemplate = ''+
-'<div class="travelPlanner">'+
-  '<div class="travelPlannerList">'+
-
-  '</div>'+
-  '<div class="travelPlannerPlan">'+
-
-  '</div>'+
-'</div>';
