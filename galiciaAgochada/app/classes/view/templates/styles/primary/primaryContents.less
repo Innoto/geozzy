@@ -32,3 +32,102 @@
     }
   }
 }
+
+/*Participation*/
+#engadirEnMapa {
+  padding:10px;
+  padding-top:7px;
+  padding-bottom:7px;
+  font-size: 14px;
+  background-color: #fff;
+  cursor:pointer;
+  box-shadow: 0px 0px 5px #000;
+  &:hover {  background-color:@gzzColor-bck-4; }
+}
+#participationXantaresForm{
+  .subStep2{
+    .customEatanddrinkType{
+      margin: 20px 0;
+      .customEatanddrinkTypeItem{
+        cursor:pointer;
+        text-align: center;
+        &:hover,
+        &.selected{
+          .icon{
+            border: 2px solid @gzzColor-page;
+            .normal{ display:none; }
+            .selected{ display:inline; }
+          }
+        }
+        &.selected{
+          .text{
+            font-weight: bold;
+            color: @gzzColor-page;
+          }
+        }
+        .icon{
+          width: 105px;
+          height: 105px;
+          margin: 10px auto;
+          padding: 15px;
+          border: 2px solid @gzzColor-bck-5;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          .normal{ display:inline; }
+          .selected{ display:none; }
+        }
+        .text{  margin-top: 10px; }
+      }
+    }
+  }
+  .subStep4{
+    text-align: center;
+    #fileFieldDropZone_participationXantaresForm_image{
+      i{
+        background: url("@{cogumelo_publicConf_media}/img/upload.png") center center no-repeat;
+
+        height: 143px;
+        width: 143px;
+        margin-bottom: 20px;
+        &:before{
+           content: "";
+        }
+      }
+    }
+    .fileFieldInfo{
+      margin: 10px auto;
+      max-width: 400px;
+      img{ max-height: 270px; width: auto; .img-thumbnail }
+
+    }
+
+  }
+  .subStep5{
+    .cgmMForm-field-acceptCond .labelText{
+      font-weight: normal;
+      span{ font-weight: bold; }
+    }
+    .termsConditions{
+      padding: 20px;
+      background-color: @gzzColor-bck-3;
+      height: 250px;
+      overflow: auto;
+    }
+  }
+  .cgmMForm-field-submit{
+    margin: 0;
+  }
+  .subStepActions{
+    margin-top: 20px;
+    text-align: left;
+    button.next{ float:right; }
+  }
+}
+
+.gzzGenerateModal.xantaresParticipationOk{
+  text-align: center;
+  .modal-footer{
+    text-align: center;
+  }
+}

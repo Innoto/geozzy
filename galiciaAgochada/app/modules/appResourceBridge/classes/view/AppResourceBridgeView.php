@@ -52,7 +52,6 @@ class AppResourceBridgeView extends MasterView {
 
       $this->template->assign( 'i18nlocale', Cogumelo::getSetupValue( 'i18n:localePath' ) );
 
-      $this->template->addClientStyles( 'styles/master.less' );
       $this->template->addClientStyles( 'styles/masterResource.less' );
 
       $rTypeIdName = str_replace( 'rtype', 'RType', $resourceCtrl->getRTypeIdName() );
