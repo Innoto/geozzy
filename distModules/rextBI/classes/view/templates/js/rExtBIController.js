@@ -12,9 +12,11 @@ geozzy.rExtBIController = function( opts ) {
 
   that.initialize = function() {
     //alert( geozzy.rExtBIOptions.resourceID );
+    if( typeof geozzy.biMetricsInstances != 'undefined') {
+      geozzy.biMetricsInstances.resource.eventAccessedStart( geozzy.rExtBIOptions.resourceID, 'Resource page' );
+      that.bindRelatedResources();      
+    }
 
-    geozzy.biMetricsInstances.resource.eventAccessedStart( geozzy.rExtBIOptions.resourceID, 'Resource page' );
-    that.bindRelatedResources();
   };
 
   that.bindRelatedResources = function() {
