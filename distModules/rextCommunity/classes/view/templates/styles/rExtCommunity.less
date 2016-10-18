@@ -1,0 +1,16 @@
+
+@rExtCommunity-color: #006600;
+
+.rExtCommunity { display: inline-block; }
+
+.rExtCommunity { color: @rExtCommunity-color; }
+
+.rExtCommunity .comm-off { display: inline; }
+
+.rExtCommunity .comm-on { display: none; }
+
+.rExtCommunity.selected .comm-off { display: none; }
+
+.rExtCommunity.selected .comm-on { display: inline; }
+
+.rExtCommunity:hover { color: fade( @rExtCommunity-color, 50% ); }
