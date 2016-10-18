@@ -56,7 +56,7 @@ geozzy.rExtMapController = function( opts ) {
 
     } // if( $mapContainer.length )
     else {
-      console.log( 'prepareMap - ERROR: NON ENCONTRO O WRAPPER DO MAPA!!!' );
+      console.log( 'rextMap - NOTICE: I cant find map wrapper );
     }
   };
 
