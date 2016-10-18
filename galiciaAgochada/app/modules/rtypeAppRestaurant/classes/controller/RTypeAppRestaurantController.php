@@ -289,13 +289,15 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
 
       $templates['participationWV'] = new Template();
       $templates['participationWV']->setTpl( 'participationWV.tpl', 'rtypeAppRestaurant' );
-      $templates['participationWV']->assign( 'headTitle', __( 'Participation Form' ) );
+      $participationBlockInfo['header'] = false;
+      $participationBlockInfo['footer'] = false;
       $templates['participationWV']->assign( 'res', $participationBlockInfo );
       $templates['participationWV']->assign( 'formFieldsNamesStp1', $formFieldsNamesStp1 );
       $templates['participationWV']->assign( 'formFieldsNamesStp2', $formFieldsNamesStp2 );
       $templates['participationWV']->assign( 'formFieldsNamesStp3', $formFieldsNamesStp3 );
       $templates['participationWV']->assign( 'formFieldsNamesStp4', $formFieldsNamesStp4 );
       $templates['participationWV']->assign( 'formFieldsNamesStp5', $formFieldsNamesStp5 );
+
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
     // TEMPLATE en bruto con todos los elementos del form

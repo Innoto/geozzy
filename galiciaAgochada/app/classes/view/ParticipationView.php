@@ -42,6 +42,7 @@ class ParticipationView extends MasterView
     $resCtrl = new ResourceController();
     $formBlockInfo = $resCtrl->getFormBlockInfo( "participationXantaresForm", "/".$C_LANG."/participation/xantaresExplorer/send", $successArray, $recursoData );
 
+    $formBlockInfo['template']['participationWV']->addClientStyles( 'styles/master.less' );
     $formBlockInfo['template']['participationWV']->exec();
 
   }
