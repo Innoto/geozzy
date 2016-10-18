@@ -103,22 +103,6 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
 
     return $favData;
   }
-  /*
-  public function getAllFavourites( $favUser ) {
-    $favData = false;
-
-    $favModel = new FavouritesViewModel();
-    $favList = $favModel->listItems( array( 'filters' => array( 'user' => $favUser ) ) );
-    if( $favList ) {
-      $favData = array();
-      while( $favObj = $favList->fetch() ) {
-        $favData[] = $rExtObj->getAllData( 'onlydata' );
-      }
-    }
-
-    return $favData;
-  }
-  */
 
   /**
    * Localiza el id de la coleccion de favoritos (false si no existe)
