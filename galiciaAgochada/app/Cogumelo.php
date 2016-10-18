@@ -111,7 +111,9 @@ class Cogumelo extends CogumeloClass {
     $this->addUrlPatterns( '#^segredos#', 'view:ExplorerView::todosSegredosExplorer' );*/
 
     $this->addUrlPatterns( '#^participation/xantaresExplorer/?$#', 'view:ParticipationView::xantaresForm' );
+    $this->addUrlPatterns( '#^participation/wv/xantaresExplorer/?$#', 'view:ParticipationView::xantaresWebViewForm' );
     $this->addUrlPatterns( '#^participation/xantaresExplorer/send$#', 'view:ParticipationView::sendXantaresForm' );
+
 
     /*MasterView*/
     //$this->addUrlPatterns( '#^$#', 'view:MasterView::home' );

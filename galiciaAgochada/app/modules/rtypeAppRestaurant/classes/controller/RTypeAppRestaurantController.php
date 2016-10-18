@@ -219,10 +219,9 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
 
 
     // TEMPLATE con todos los pasos para participacion
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if(class_exists( 'rextParticipation' ) && in_array('rextParticipation', $this->rExts)) {
       $participationCtrl = new RExtParticipationController( $this );
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
       $participationBlockInfo = $formBlockInfo;
       $partForm = clone $participationBlockInfo['objForm'];
 
@@ -281,7 +280,6 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $templates['participationFull'] = new Template();
       $templates['participationFull']->setTpl( 'participationModal.tpl', 'rtypeAppRestaurant' );
       $templates['participationFull']->assign( 'headTitle', __( 'Participation Form' ) );
-
       $templates['participationFull']->assign( 'res', $participationBlockInfo );
       $templates['participationFull']->assign( 'formFieldsNamesStp1', $formFieldsNamesStp1 );
       $templates['participationFull']->assign( 'formFieldsNamesStp2', $formFieldsNamesStp2 );
@@ -289,7 +287,15 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $templates['participationFull']->assign( 'formFieldsNamesStp4', $formFieldsNamesStp4 );
       $templates['participationFull']->assign( 'formFieldsNamesStp5', $formFieldsNamesStp5 );
 
-
+      $templates['participationWV'] = new Template();
+      $templates['participationWV']->setTpl( 'participationWV.tpl', 'rtypeAppRestaurant' );
+      $templates['participationWV']->assign( 'headTitle', __( 'Participation Form' ) );
+      $templates['participationWV']->assign( 'res', $participationBlockInfo );
+      $templates['participationWV']->assign( 'formFieldsNamesStp1', $formFieldsNamesStp1 );
+      $templates['participationWV']->assign( 'formFieldsNamesStp2', $formFieldsNamesStp2 );
+      $templates['participationWV']->assign( 'formFieldsNamesStp3', $formFieldsNamesStp3 );
+      $templates['participationWV']->assign( 'formFieldsNamesStp4', $formFieldsNamesStp4 );
+      $templates['participationWV']->assign( 'formFieldsNamesStp5', $formFieldsNamesStp5 );
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
     // TEMPLATE en bruto con todos los elementos del form
