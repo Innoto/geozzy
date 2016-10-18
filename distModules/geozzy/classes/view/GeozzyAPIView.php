@@ -132,7 +132,7 @@ class geozzyAPIView extends View {
                 },
                 {
                   "name": "rtype",
-                  "description": "Resource Type",
+                  "description": "Resource Type (rtypeId separed by comma)",
                   "dataType": "string",
                   "paramType": "path",
                   "defaultValue": "false",
@@ -846,9 +846,16 @@ class geozzyAPIView extends View {
     }
 
 
-    // Resource type
+    // Resource types
     if( isset( $extraParams['rtype'] ) && $extraParams['rtype'] !== 'false' ) {
-      $queryParameters['affectsDependences'] = $resourceModel->dependencesByResourcetype( $extraParams['rtype'] ) ;
+      $paramRtypeIds = explode(',', $extraParams['rtype']);
+
+      $idsToFilter = [];
+      foreach( $paramRtypeIds as $paramRtypeId ) {
+        $idsToFilter[] = $infoRTypeIdNames[ $paramRtypeId ];
+      }
+
+      $queryParameters['filters']['inRtype'] =  $idsToFilter ;
     }
 
     // Category
