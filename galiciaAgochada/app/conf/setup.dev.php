@@ -36,6 +36,18 @@ define( 'COGUMELO_LOCATION', '/home/proxectos/cogumelo' );
 define( 'COGUMELO_DIST_LOCATION', '/home/proxectos/geozzy');
 
 
+/*************************
+** Se usa en setup.final
+*************************/
+/*
+//
+// Public Access User
+//
+define( 'GA_ACCESS_USER', 'gaUser' );
+define( 'GA_ACCESS_PASSWORD', 'gz15005' );
+*/
+
+
 //
 // cogumeloScript Url settings
 //

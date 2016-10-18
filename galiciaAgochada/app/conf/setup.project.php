@@ -24,13 +24,6 @@
 */
 
 
-//
-// Public Access User
-//
-define( 'GA_ACCESS_USER', 'gaUser' );
-define( 'GA_ACCESS_PASSWORD', 'gz15005' );
-
-
 
 
 //
@@ -61,7 +54,8 @@ cogumeloSetSetupValue( 'urlAliasController:classFile', COGUMELO_DIST_LOCATION.'/
 // Error404 en una URL.
 //   View = View que se muestra como aviso del error
 //
-cogumeloSetSetupValue( 'urlError404:view', 'MasterView::page404' );
+cogumeloSetSetupValue( 'urlError403:view', 'PageErrorView::page403' );
+cogumeloSetSetupValue( 'urlError404:view', 'PageErrorView::page404' );
 
 
 //
@@ -124,13 +118,14 @@ $C_REXT_MODULES = array(
   'rextPoiCollection',
   'rextComment',
   'rextFavourite',
+  'rextCommunity',
   'rextRoutes',
   'rextReccommended',
   'rextParticipation',
   'rextStoryStep',
   'rextStory',
   'rextTravelPlanner',
-  'rextAudioguide'
+  'rextAudioguide',
 );
 
 // resource Types
@@ -147,11 +142,12 @@ $C_RTYPE_MODULES = array(
   'rtypeAppFesta',
   'rtypeAppUser',
   'rtypeFavourites',
+  'rtypeCommunity',
   'rtypePoi',
   'rtypeEvent',
   'rtypeStory',
   'rtypeStoryStep',
-  'rtypeTravelPlanner'
+  'rtypeTravelPlanner',
 );
 
 
@@ -190,6 +186,7 @@ $C_INDEX_MODULES  = array(
   'rextRoutes',
   'rextComment',
   'rextFavourite',
+  'rextCommunity',
   'rextTravelPlanner',
   'rtypeEvent',
   'rtypePoi',
@@ -207,6 +204,7 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:systemRTypes', array(
   'rtypePage',
   'rtypeStory',
   'rtypeFavourites',
+  'rtypeCommunity',
   'rtypeTravelPlanner',
   'rtypeFile',
   'rtypeEvent',
@@ -319,6 +317,11 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
       'default' => '/favoritos/',
       'gl' => '/favoritos/',
       'en' => '/favourites/'
+    ),
+    'rtypeCommunity' => array(
+      'default' => '/comunidad/',
+      'gl' => '/comunidade/',
+      'en' => '/community/'
     ),
     'rtypeTravelPlanner' => array(
       'default' => '/travelplanner/',
