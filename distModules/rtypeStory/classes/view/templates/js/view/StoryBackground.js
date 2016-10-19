@@ -200,7 +200,7 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
 
       var destPointVariation = that.getCurrentStepDOMPositionOverMap();
 
-      that.canvasLayer.canvas.style.zIndex = 20;
+      that.canvasLayer.canvas.style.zIndex = 30;
       // line
       that.layerContext.moveTo( originPoint.x, originPoint.y);
       that.layerContext.strokeStyle = that.options.lineColor;
