@@ -35,8 +35,9 @@ geozzy.storyComponents.StoryPluginKMLView = Backbone.View.extend({
     http://test2.geozzy.com/cgmlformfilewd/5734/monte-pindo-fervenza-do-ezaro-18-11-km.gpx
     that.hideAll();
     var KMLID = that.parentStory.storySteps.get(step.id).get('KML');
+
     if( KMLID) {
-      var urlKML = cogumelo.publicConf.mediaHost+'cgmlformfilewd/'+KMLID+'/'+KMLID+'.kml';
+      var urlKML = cogumelo.publicConf.site_host+'/cgmlformfilewd/'+KMLID+'/'+KMLID+'.kml';
       console.log(urlKML);
       if( typeof that.kmlLayers[ step.id ] === 'undefined'  ) {
         that.kmlLayers[ step.id ] = new google.maps.KmlLayer({
@@ -45,7 +46,7 @@ geozzy.storyComponents.StoryPluginKMLView = Backbone.View.extend({
           suppressInfoWindows: false,
           preserveViewport:true
         });
-        that.kmlLayers[ step.id ].setMap( that.parentStory.displays.background.options.map );              
+        that.kmlLayers[ step.id ].setMap( that.parentStory.displays.background.options.map );
       }
 
     }
