@@ -24,6 +24,11 @@ class viewAppStoryCastro extends MasterView
     explorer::autoIncludes();
     $template->addClientScript('CanvasLayer/src/CanvasLayer.js', 'vendor/manual');
     $template->addClientScript('mathjs/dist/math.min.js', 'vendor/bower');
+
+    // Para plugin Timeline
+    $template->addClientScript('chap-links-library/js/src/timeline/timeline.js', 'vendor/bower');
+    $template->addClientStyles('chap-links-library/js/src/timeline/timeline.css', 'vendor/bower');
+
     $template->addClientScript('js/model/StoryStepModel.js', 'rtypeStory');
     $template->addClientScript('js/router/StoryRouter.js', 'rtypeStory');
     $template->addClientScript('js/collection/StoryStepCollection.js', 'rtypeStory');
