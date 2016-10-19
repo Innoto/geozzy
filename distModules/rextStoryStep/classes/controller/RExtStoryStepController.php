@@ -136,7 +136,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
       'storystepKML' => array(
         'params' => array( 'label' => __( 'Step KML layer' ), 'type' => 'file', 'id' => 'storystepKML',
         'placeholder' =>   __('Choose an image'), 'destDir' => RExtStoryStepModel::$cols['storystepKML']['uploadDir'] ),
-        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'accept' => ',application/xml,application\/vnd.google\-earth\.kml\+xml' )
+        'rules' => array( 'maxfilesize' => '5242880', 'accept' => ',application/xml,application\/vnd.google\-earth\.kml\+xml' )
       )
     );
 
