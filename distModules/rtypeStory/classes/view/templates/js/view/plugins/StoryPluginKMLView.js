@@ -37,7 +37,7 @@ geozzy.storyComponents.StoryPluginKMLView = Backbone.View.extend({
     var KMLID = that.parentStory.storySteps.get(step.id).get('KML');
     if( KMLID) {
       var urlKML = cogumelo.publicConf.mediaHost+'cgmlformfilewd/'+KMLID+'/'+KMLID+'.kml';
-
+      console.log(urlKML);
       if( typeof that.kmlLayers[ step.id ] === 'undefined'  ) {
         that.kmlLayers[ step.id ] = new google.maps.KmlLayer({
           url: urlKML,
@@ -46,9 +46,10 @@ geozzy.storyComponents.StoryPluginKMLView = Backbone.View.extend({
           preserveViewport:true
         });
       }
+      that.kmlLayers[ step.id ].setMap( that.parentStory.displays.background.options.map );      
     }
 
-    that.kmlLayers[ step.id ].setMap( that.parentStory.displays.background.options.map );
+
 
   },
 
