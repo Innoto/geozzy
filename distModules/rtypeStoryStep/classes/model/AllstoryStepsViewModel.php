@@ -12,7 +12,7 @@ class AllstoryStepsViewModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'rtypeStoryStep#1.6',
+      'version' => 'rtypeStoryStep#1.9',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_allstories_index;
@@ -45,8 +45,15 @@ class AllstoryStepsViewModel extends Model
 
 						geozzy_resource_rext_storystep.storystepResource as relatedResource,
 						geozzy_resource_rext_storystep.storystepLegend as legend,
+            geozzy_resource_rext_storystep.storystepKML as KML,
             geozzy_resource_rext_storystep.drawLine as drawLine,
+            geozzy_resource_rext_storystep.showTimeline as showTimeline,
             geozzy_resource_rext_storystep.mapType as mapType,
+
+
+
+            geozzy_resource_rext_event.initDate as initDate,
+            geozzy_resource_rext_event.endDate as endDate,
 
 						geozzy_collection_resources.weight as weight,
 						story.idName as storyName,
@@ -70,6 +77,9 @@ class AllstoryStepsViewModel extends Model
 
 					RIGHT JOIN geozzy_resource as story
 					ON geozzy_resource_collections.resource = story.id
+
+          LEFT JOIN geozzy_resource_rext_event
+					ON geozzy_resource_rext_event.resource = storyStep.id
 
 					WHERE storyStep.published = 1
           GROUP BY storyStep.id
@@ -146,11 +156,23 @@ class AllstoryStepsViewModel extends Model
     'legend' => array(
       'type'=>'INT'
     ),
+    'KML' => array(
+      'type'=>'INT'
+    ),
     'mapType' => array(
       'type'=>'VARCHAR'
     ),
     'drawLine' => array(
       'type'=>'BOOLEAN'
+    ),
+    'showTimeline' => array(
+      'type'=>'BOOLEAN'
+    ),
+    'initDate' => array(
+      'type'=>'DATETIME'
+    ),
+    'endDate' => array(
+      'type'=>'DATETIME'
     ),
     'weight' => array(
       'type'=>'INT'

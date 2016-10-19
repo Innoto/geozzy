@@ -26,6 +26,9 @@ class RExtStoryStepModel extends Model
     'drawLine' => array(
       'type'=>'BOOLEAN'
     ),
+    'showTimeline' => array(
+      'type'=>'BOOLEAN'
+    ),
     'mapType' => array(
       'type'=>'VARCHAR',
       'size'=> 100
@@ -62,6 +65,11 @@ class RExtStoryStepModel extends Model
       'version' => 'rextStoryStep#1.2',
       'sql'=> 'ALTER TABLE `geozzy_resource_rext_storystep`
         ADD COLUMN `storystepKML` INT'
+    ),
+    array(
+      'version' => 'rextStoryStep#1.4',
+      'sql'=> 'ALTER TABLE `geozzy_resource_rext_storystep`
+        ADD COLUMN `showTimeline` BIT'
     )
   );
 

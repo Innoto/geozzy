@@ -44,6 +44,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
 
 
         $rExtData[ 'drawLine' ] = $rExtObj->getter( 'drawLine' );
+        $rExtData[ 'showTimeline' ] = $rExtObj->getter( 'showTimeline' );
         $rExtData[ 'mapType' ] = $rExtObj->getter( 'mapType' );
 
 
@@ -111,6 +112,9 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
       'drawLine' => array(
         'params' => array( 'type' => 'checkbox', 'value'=>1, 'class' => 'switchery', 'options'=> array( '1' => __('Draw Pointer line') ))
       ),
+      'showTimeline' => array(
+        'params' => array( 'type' => 'checkbox', 'value'=>0, 'class' => 'switchery', 'options'=> array( '1' => __('Show timeline in step') ))
+      ),
       'mapType' => array(
         'params' => array( 'label' => __( 'Map type' ), 'type' => 'select',
           'options' => array(
@@ -136,7 +140,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
       'storystepKML' => array(
         'params' => array( 'label' => __( 'Step KML layer' ), 'type' => 'file', 'id' => 'storystepKML',
         'placeholder' =>   __('Choose an image'), 'destDir' => RExtStoryStepModel::$cols['storystepKML']['uploadDir'] ),
-        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'accept' => ',application/xml,application\/vnd.google\-earth\.kml\+xml' )
+        'rules' => array( 'maxfilesize' => '5242880', 'accept' => ',application/xml,application\/vnd.google\-earth\.kml\+xml' )
       )
     );
 
