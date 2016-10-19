@@ -13,12 +13,18 @@ class rtypeStory extends Module {
      "params" => array("mathjs"),
      "installer" => "bower",
      "includes" => array()
-   ),
-   array(
+    ),
+    array(
      'id' =>'CanvasLayer',
      'params' => array('CanvasLayer'),
      'installer' => 'manual',
      'includes' => array()
+   ),
+   array(
+    'id' =>'chap-links-library',
+    'params' => array('chap-links-library'),
+    'installer' => 'bower',
+    'includes' => array()
    )
   );
 
