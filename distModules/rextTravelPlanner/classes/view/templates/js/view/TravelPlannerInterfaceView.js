@@ -8,7 +8,8 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   parentTp : false,
 
   events: {
-
+    "change .travelPlannerFilters .filterByFavourites": "changeFilters",
+    "change .travelPlannerFilters .filterByRtype": "changeFilters",
   },
 
   initialize: function( parentTp ) {
@@ -24,29 +25,44 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
 
   render: function() {
     var that = this;
-
-    //that.$el.html( that.tpl({ content: contentHtml }) )
+    that.listResources();
   },
 
   loadInterfaceTravelPlanner: function(){
     var that = this;
-
     that.interfaceTemplate = _.template( $('#travelPlannerInterfaceTemplate').html() );
-    that.$el.html( that.interfaceTemplate );
 
-    that.createFilters();
-    that.listResources();
+    var rtypesFilters = [];
+    _.each( cogumelo.publicConf.mod_geozzy_travelPlanner, function(item){
+      rtypesFilters.push(that.parentTp.rtypes.where({ idName: item })[0].toJSON());
+    });
+    that.$el.html( that.interfaceTemplate({ rtypesFilters: rtypesFilters }) );
+
+    that.render();
   },
   listResources: function(){
     var that = this;
 
+    var filterByRtype = that.$el.find('select.filterByRtype').val();
+    var filterByFavourites = that.$el.find('select.filterByFavourites').val();
+    var resourcesToList = [];
+
+    resourcesToList = that.parentTp.resources;
+
+    if(filterByFavourites === "fav"){
+      resourcesToList = new geozzy.collection.ResourceCollection( resourcesToList.filterById(that.parentTp.favResources) );
+    }
+    if(filterByRtype !== "*"){
+      resourcesToList = new geozzy.collection.ResourceCollection( resourcesToList.where({ rTypeIdName: filterByRtype }) );
+    }
     that.$el.find('.travelPlannerResources').html('');
-    _.each( that.parentTp.resources.toJSON(), function(item){
+    $.each( resourcesToList.toJSON(), function(i ,item){
       that.resourceTemplate = _.template( $('#resourceItemTPTemplate').html() );
       that.$el.find('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
     });
   },
-  createFilters: function(){
-
+  changeFilters: function(e){
+    var that = this;
+    that.render();
   }
 });

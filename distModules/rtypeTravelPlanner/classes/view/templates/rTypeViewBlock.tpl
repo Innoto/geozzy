@@ -42,16 +42,18 @@
     <div class="travelPlannerList">
       <div class="travelPlannerFilters">
         <div class="filter">
-          <select>
-            <option value="1">All</option>
-            <option value="2">Favourites</option>
+          <select class="filterByFavourites">
+            <option value="*">{t}All{/t}</option>
+            <option value="fav">{t}Favourites{/t}</option>
           </select>
         </div>
         <div class="filter">
-          <select>
-            <option value="">All</option>
-            <option value="rtypeHotel">Hotel</option>
-            <option value="rtypeRestaurante">Restaurante</option>
+          <select class="filterByRtype">
+            <option value="*">{t}All{/t}</option>
+            <% _.each( rtypesFilters, function( elem ) { %>
+              <option value="<%= elem.idName %>"><%= elem.name %></option>
+            <% }); %>
+
           </select>
         </div>
       </div>
@@ -64,8 +66,8 @@
 
 <script type="text/template" id="resourceItemTPTemplate">
   <div class="tpResourceItem" data-resource-id="<%- resource.id %>">
+    <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/fast_cut/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
     <div class="description"><%- resource.mediumDescription %></div>
-    <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/fast_cut/<%- resource.image %>.jpg"></div>
   </div>
 </script>
