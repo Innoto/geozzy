@@ -44,7 +44,8 @@ geozzy.storyComponents.StoryPluginKMLView = Backbone.View.extend({
           url: urlKML,
           clickable:false,
           suppressInfoWindows: false,
-          preserveViewport:true
+          preserveViewport:true,
+          zIndex: 2
         });
         that.kmlLayers[ step.id ].setMap( that.parentStory.displays.background.options.map );
       }
