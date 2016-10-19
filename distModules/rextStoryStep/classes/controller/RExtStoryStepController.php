@@ -44,6 +44,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
 
 
         $rExtData[ 'drawLine' ] = $rExtObj->getter( 'drawLine' );
+        $rExtData[ 'showTimeline' ] = $rExtObj->getter( 'showTimeline' );
         $rExtData[ 'mapType' ] = $rExtObj->getter( 'mapType' );
 
 
@@ -110,6 +111,9 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
 
       'drawLine' => array(
         'params' => array( 'type' => 'checkbox', 'value'=>1, 'class' => 'switchery', 'options'=> array( '1' => __('Draw Pointer line') ))
+      ),
+      'showTimeline' => array(
+        'params' => array( 'type' => 'checkbox', 'value'=>0, 'class' => 'switchery', 'options'=> array( '1' => __('Show timeline in step') ))
       ),
       'mapType' => array(
         'params' => array( 'label' => __( 'Map type' ), 'type' => 'select',
