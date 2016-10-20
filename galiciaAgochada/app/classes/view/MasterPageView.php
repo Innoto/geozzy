@@ -40,18 +40,20 @@ class MasterPageView extends View {
       $accessValid = true;
     }
     else {
-      if(
-        ( !isset( $_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER']!= GA_ACCESS_USER ) &&
-        ( !isset( $_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_PW']!= GA_ACCESS_PASSWORD ) )
-      {
-        error_log( 'BLOQUEO --- Acceso Denegado!!!' );
-        header('WWW-Authenticate: Basic realm="Galicia Agochada"');
-        header('HTTP/1.0 401 Unauthorized');
-        echo 'Acceso Denegado.';
-        // exit;
-      }
-      else {
-        $accessValid = true;
+      if( defined('GA_ACCESS_USER') && defined('GA_ACCESS_PASSWORD')  ) {
+        if(
+          ( !isset( $_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER']!= GA_ACCESS_USER ) &&
+          ( !isset( $_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_PW']!= GA_ACCESS_PASSWORD ) )
+        {
+          error_log( 'BLOQUEO --- Acceso Denegado!!!' );
+          header('WWW-Authenticate: Basic realm="Galicia Agochada"');
+          header('HTTP/1.0 401 Unauthorized');
+          echo 'Acceso Denegado.';
+          // exit;
+        }
+        else {
+          $accessValid = true;
+        }
       }
     }
 
