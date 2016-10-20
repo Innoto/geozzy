@@ -26,6 +26,7 @@ class viewAppStoryCastro extends MasterView
     $template->addClientScript('mathjs/dist/math.min.js', 'vendor/bower');
 
     // Para plugin Timeline
+    $template->addClientScript('chap-links-library/js/src/timeline/timeline-locales.js', 'vendor/bower');
     $template->addClientScript('chap-links-library/js/src/timeline/timeline.js', 'vendor/bower');
     $template->addClientStyles('chap-links-library/js/src/timeline/timeline.css', 'vendor/bower');
 
