@@ -57,19 +57,19 @@ class RExtStoryStepModel extends Model
   var $deploySQL = array(
     array(
       'version' => 'rextStoryStep#1.1',
-      'sql'=> 'ALTER TABLE `geozzy_resource_rext_storystep`
-        ADD COLUMN `drawLine` BIT,
-        ADD COLUMN `mapType` VARCHAR(100) ;'
+      'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep
+        ADD COLUMN drawLine BIT,
+        ADD COLUMN mapType VARCHAR(100) ;'
     ),
     array(
       'version' => 'rextStoryStep#1.2',
-      'sql'=> 'ALTER TABLE `geozzy_resource_rext_storystep`
-        ADD COLUMN `storystepKML` INT'
+      'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep
+        ADD COLUMN storystepKML INT ;'
     ),
     array(
       'version' => 'rextStoryStep#1.4',
-      'sql'=> 'ALTER TABLE `geozzy_resource_rext_storystep`
-        ADD COLUMN `showTimeline` BIT'
+      'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep
+        ADD COLUMN showTimeline BIT ;'
     )
   );
 
