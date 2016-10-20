@@ -41,8 +41,7 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
           'style': 'box',
           /*'locale':'es',*/
           'zoomable': false,
-          'unselectable':false,
-          'cluster':true
+          'unselectable':false
       };
 
       // Instantiate our timeline object.
@@ -61,6 +60,8 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
         //console.log(selection[0].row);
         //console.log(that.timeline.getSelection()[0].row);
         that.parentStory.triggerEvent('forceStep', { id: that.timelineIndex[ selection[0].row ] } );
+        //that.timeline.box.align = 'center';
+        that.timeline.setVisibleChartRangeAuto();
       });
 
       // Draw our timeline with the created data and options
