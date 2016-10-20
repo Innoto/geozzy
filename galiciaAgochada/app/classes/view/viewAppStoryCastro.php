@@ -41,6 +41,7 @@ class viewAppStoryCastro extends MasterView
     $template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
     $template->addClientScript('js/view/plugins/StoryPluginPOISView.js', 'rtypeStory');
     $template->addClientScript('js/view/plugins/StoryPluginKMLView.js', 'rtypeStory');
+    $template->addClientScript('js/view/plugins/StoryPluginTimelineView.js', 'rtypeStory');    
     $template->addClientScript('js/Story.js', 'rtypeStory');
 
 
