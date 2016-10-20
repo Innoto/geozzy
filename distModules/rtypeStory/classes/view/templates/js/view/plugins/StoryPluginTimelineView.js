@@ -58,8 +58,9 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
       links.events.addListener(that.timeline, 'select', function( propiedades ) {
         var selection = that.timeline.getSelection();
 
-        console.log(selection[0].row);
+        //console.log(selection[0].row);
         //console.log(that.timeline.getSelection()[0].row);
+        that.parentStory.triggerEvent('forceStep', { id: that.timelineIndex[ selection[0].row ] } );
       });
 
       // Draw our timeline with the created data and options
