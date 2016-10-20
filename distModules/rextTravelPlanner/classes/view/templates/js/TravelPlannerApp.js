@@ -7,6 +7,8 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
 
   that.travelPlannerId = (idTravelPlanner) ? idTravelPlanner : false;
   that.travelPlannerInterfaceView = false;
+  that.travelPlannerDatesView = false;
+
   var resParam = {
     fields: false,
     filters: false,
@@ -21,9 +23,6 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.rtypes = new geozzy.collection.ResourcetypeCollection( );
   that.favInfo = false;
   that.favResources = false;
-
-
-
 
   that.getResourcesFav = function(){
     var formData = new FormData();
@@ -54,7 +53,11 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
 
     $.when( that.resources.fetch(), that.rtypes.fetch() ).done(function() {
       that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
+      that.initDatesModal();
     });
+  }
+  that.initDatesModal = function(){
+    that.travelPlannerDatesView = new geozzy.travelPlannerComponents.TravelPlannerDatesView(that);
   }
 }
 
