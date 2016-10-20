@@ -14,13 +14,7 @@
     </div>
   </div>
 
-
-  <script type="text/javascript">
-    var geozzy = geozzy || {};
-    geozzy.commFollowsInfo = {$commFollowsInfo|@json_encode}
-  </script>
   <section class="communitySec gzSection">
-
     <div class="container commHeader">
       <p>Mi perfil</p>
       <div class="row">
@@ -37,19 +31,54 @@
           <div class="col-sm-7 col-md-8">
             <div class="commText">
               <div class="name">{$myInfo.name} {$myInfo.surname}</div>
+              {$myInfo.comm|var_dump}
               <div class="row">
                 <div class="commRS">
-                  <div class="col-sm-12 col-md-12">
-                    <div class="myShare">Compartir mis favoritos y redes sociales</div>
+                  <div class="col-sm-9 col-md-9">
+                    <div class="myShare">Compartir mis favoritos y redes sociales:
+                      <span class="view">
+                        <span class="shareOn">Si</span>
+                        <span class="shareOff">No</span>
+                        <style type="text/css">
+                          {if $myInfo.comm.share && $myInfo.comm.share == 1}
+                          .myShare .shareOff { display: none; }
+                          {else}
+                          .myShare .shareOn { display: none; }
+                          {/if}
+                        </style>
+                      </span>
+                      <span class="edit">
+                        <input type="radio" name="shareStatus" class="shareStatusOn"
+                          value="1"{if $myInfo.comm.share && $myInfo.comm.share == 1} checked{/if}>
+                          Si
+                        <input type="radio" name="shareStatus" class="shareStatusOff"
+                          value="0"{if !$myInfo.comm.share || $myInfo.comm.share != 1} checked{/if}>
+                          No
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 col-md-3">
+                    <div class="actions">
+                      <span class="view actionEdit">Editar</span>
+                      <span class="edit actionSave">Guardar</span>
+                    </div>
                   </div>
                   <div class="col-sm-12 col-md-6">
                     <div class="myFacebook">
-                      Facebook: {$myInfo.comm.facebook|default:''}
+                      Facebook:
+                      <span class="view facebookAccount">{$myInfo.comm.facebook|default:'No indicado'}</span>
+                      <span class="edit">
+                        <input type="text" name="facebookAccount" value="{$myInfo.comm.facebook|default:''}">
+                      </span>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-6">
                     <div class="myTwitter">
-                      Twitter: {$myInfo.comm.twitter|default:''}
+                      Twitter:
+                      <span class="view twitterAccount">{$myInfo.comm.twitter|default:'No indicado'}</span>
+                      <span class="edit">
+                        <input type="text" name="twitterAccount" value="{$myInfo.comm.twitter|default:''}">
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -60,15 +89,13 @@
       </div>
     </div>
 
-
     {if $res.data.content}
     <div class="content">
       {$res.data.content}
     </div>
     {/if}
 
-
-<hr>
+    <hr>
 
     <div class="container commList">
       <div class="communityList">
@@ -111,7 +138,7 @@
                     <a href="https://www.facebook.com/{$userInfo.comm.facebook}" target="_blank">Facebook</a>
                   {/if}
                   {if $userInfo.comm.twitter}
-                    <a href="https://twitter.com/{$userInfo.comm.twitter}">Twitter</a>
+                    <a href="https://twitter.com/{$userInfo.comm.twitter}" target="_blank">Twitter</a>
                   {/if}
                 </div>
                 {/if}
@@ -130,7 +157,7 @@
       </div>
     </div>
 
-<hr>
+    <hr>
 
     {if $commProposeInfo|@is_array && $commProposeInfo|@count gt 0}
     <div class="container commPropose">
@@ -157,7 +184,21 @@
     <div class="container commFooter">
     </div>
   </section>
-
-
 </div><!-- /.resource .resViewBlock -->
+
+
+
+<script type="text/javascript">
+
+var geozzy = geozzy || {};
+geozzy.rTypeCommunityData = {
+  'myCommunity': {$myInfo.comm|@json_encode},
+  'commFollowsInfo': {$commFollowsInfo|@json_encode},
+  'commProposeInfo': {$commProposeInfo|@json_encode},
+}
+
+$('.commRS .edit').hide();
+$('.commRS .view').show();
+</script>
+
 <!-- /rTypeViewBlock.tpl en rTypeCommunity module -->

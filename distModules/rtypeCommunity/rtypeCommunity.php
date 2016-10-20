@@ -15,7 +15,7 @@ class rtypeCommunity extends Module {
   public $includesCommon = array(
     'controller/RTypeCommunityController.php',
     'view/RTypeCommunityView.php',
-    'js/communityView.js'
+    'js/rTypeCommunityController.js'
   );
 
 
