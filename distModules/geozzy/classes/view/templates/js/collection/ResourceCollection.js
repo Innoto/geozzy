@@ -37,6 +37,22 @@ geozzy.collection.ResourceCollection = Backbone.Collection.extend({
     that.url += '/urlAlias/'+that.options.urlAlias
   },
 
+  filterById: function(idArray) {
+    res = _.filter(this.toJSON(), function(r) {
+      return $.inArray(r.id.toString(), idArray) != -1;
+    }, this);
+
+/*
+    ids = _.filter(idArray, function(id) {
+      return this.get(id);
+    }, this);
+
+    res = _.map(ids, function(id) {
+      return this.get(id);
+    }, this);
+*/
+    return(res);
+  },
 
   fetchByIds: function( idsArray, fetchCallback ) {
     var that = this;

@@ -35,13 +35,18 @@ $(document).ready( function(){
   });
 
   var displayLeyenda = new geozzy.storyComponents.StoryPluginLegendView({container:'.storyLayout .castroLeyendaContainer'});
-
   var displayPOIS = new geozzy.storyComponents.StoryPluginPOISView();
+  var displayKML = new geozzy.storyComponents.StoryPluginKMLView();
+  var displayTimeline = new geozzy.storyComponents.StoryPluginTimelineView({container:'.storyLayout .castroTimelineContainer'});
+
 
   historia.addDisplay( displayLista );
   historia.addDisplay( displayMapa );
   historia.addDisplay( displayLeyenda );
   historia.addDisplay( displayPOIS );
+  historia.addDisplay( displayKML );
+  historia.addDisplay( displayTimeline );
+
 
   historia.bindEvent('loadResource', function(resourceId){
     $(".storyContainer.story-loading").show();

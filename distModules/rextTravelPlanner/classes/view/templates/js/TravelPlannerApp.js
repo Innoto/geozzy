@@ -18,6 +18,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   }
 
   that.resources = new geozzy.collection.ResourceCollection( resParam );
+  that.rtypes = new geozzy.collection.ResourcetypeCollection( );
   that.favInfo = false;
   that.favResources = false;
 
@@ -51,7 +52,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     console.log('travelPlannerID:'+ that.travelPlannerId );
     that.getResourcesFav();
 
-    $.when( that.resources.fetch() ).done(function() {
+    $.when( that.resources.fetch(), that.rtypes.fetch() ).done(function() {
       that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
     });
   }

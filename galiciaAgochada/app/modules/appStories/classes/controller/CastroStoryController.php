@@ -47,8 +47,24 @@ class CastroStoryController extends StoryController {
         $row['relatedResource'] = $resource->getter('relatedResource');
 
         $row['legend'] = $resource->getter('legend');
+        $row['KML'] = $resource->getter('KML');
         $row['drawLine'] = $resource->getter('drawLine');
         $row['mapType'] = $resource->getter('mapType');
+
+
+        // EVENTS
+        $due = strtotime('0000-00-00 00:00:00');
+        if( strtotime($resource->getter('initDate')) != $due ) {
+          $row['initDate'] = $resource->getter('initDate');
+        }
+        if( strtotime($resource->getter('endDate')) != $due ) {
+          $row['endDate'] = $resource->getter('endDate');
+        }
+
+        if( isset($row['endDate']) || isset($row['initDate']) ){
+          $row['showTimeline'] = $resource->getter('showTimeline');
+        }
+
 
         echo json_encode( $row );
 

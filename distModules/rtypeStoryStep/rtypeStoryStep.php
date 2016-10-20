@@ -6,7 +6,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rtypeStoryStep extends Module {
 
   public $name = 'rtypeStoryStep';
-  public $version = '1.6';
+  public $version = '1.9';
   public $rext = array( 'rextSocialNetwork', 'rextEvent', 'rextComment', 'rextAudioguide', 'rextStoryStep', 'rextPoiCollection' );
 
   public $dependences = array();
