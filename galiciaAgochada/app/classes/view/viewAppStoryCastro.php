@@ -26,6 +26,7 @@ class viewAppStoryCastro extends MasterView
     $template->addClientScript('mathjs/dist/math.min.js', 'vendor/bower');
 
     // Para plugin Timeline
+    $template->addClientScript('chap-links-library/js/src/timeline/timeline-locales.js', 'vendor/bower');
     $template->addClientScript('chap-links-library/js/src/timeline/timeline.js', 'vendor/bower');
     $template->addClientStyles('chap-links-library/js/src/timeline/timeline.css', 'vendor/bower');
 
@@ -40,6 +41,7 @@ class viewAppStoryCastro extends MasterView
     $template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
     $template->addClientScript('js/view/plugins/StoryPluginPOISView.js', 'rtypeStory');
     $template->addClientScript('js/view/plugins/StoryPluginKMLView.js', 'rtypeStory');
+    $template->addClientScript('js/view/plugins/StoryPluginTimelineView.js', 'rtypeStory');    
     $template->addClientScript('js/Story.js', 'rtypeStory');
 
 

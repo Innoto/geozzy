@@ -33,19 +33,17 @@ cogumeloSetSetupValue( 'logs:error', true ); // Display errors on screen. If you
 // Framework Path
 //
 define( 'COGUMELO_LOCATION', '/home/proxectos/cogumelo' );
-define( 'COGUMELO_DIST_LOCATION', '/home/proxectos/geozzy');
+define( 'COGUMELO_DIST_LOCATION', '/home/proxectos/geozzy' );
 
 
 /*************************
 ** Se usa en setup.final
 *************************/
-/*
 //
 // Public Access User
 //
-define( 'GA_ACCESS_USER', 'gaUser' );
-define( 'GA_ACCESS_PASSWORD', 'gz15005' );
-*/
+// define( 'GA_ACCESS_USER', 'gaUser' );
+// define( 'GA_ACCESS_PASSWORD', 'gz15005' );
 
 
 //

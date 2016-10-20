@@ -3,10 +3,22 @@ geozzy::load( 'controller/RExtController.php' );
 
 class RExtCommunityController extends RExtController implements RExtInterface {
 
+  var $userId = false;
+  var $userSession = false;
+
   public function __construct( $defRTypeCtrl = false ) {
     // Este RExt funciona tambien como modulo "autonomo"
     if( $defRTypeCtrl !== false ) {
       parent::__construct( $defRTypeCtrl, new rextCommunity(), 'rExtCommunity_' );
+    }
+
+    user::load( 'controller/UserAccessController.php' );
+    $userCtrl = new UserAccessController();
+    $userInfo = $userCtrl->getSessiondata();
+
+    if( isset( $userInfo['data']['id'] ) ) {
+      $this->userId = $userInfo['data']['id'];
+      $this->userSession = $userInfo;
     }
   }
 
@@ -91,51 +103,28 @@ class RExtCommunityController extends RExtController implements RExtInterface {
    *
    * @return array OR false
    */
-  public function getAllCommunity( $commUser ) {
+  public function getAllCommunity( $commUser = false ) {
     $commData = false;
 
-    $commModel = new RExtCommunityModel();
-    $commList = $commModel->listItems( array( 'filters' => array( 'user' => $commUser ) ) );
-    $commObj = ( $commList ) ? $commList->fetch() : false;
+    $commObj = $this->getCommunityObj( $commUser );
     if( $commObj ) {
       $commData = ( $commObj->getter('resourceList') ) ? explode( ',', $commObj->getter('resourceList') ) : array();
     }
 
     return $commData;
   }
-  /*
-  public function getAllCommunity( $commUser ) {
-    $commData = false;
 
-    $commModel = new RExtCommunityModel();
-    $commList = $commModel->listItems( array( 'filters' => array( 'user' => $commUser ) ) );
-    if( $commList ) {
-      $commData = array();
-      while( $commObj = $commList->fetch() ) {
-        $commData[] = $rExtObj->getAllData( 'onlydata' );
-      }
-    }
 
-    return $commData;
-  }
-  */
+  public function getCommunityObj( $commUser = false ) {
+    $commObj = false;
 
-  /**
-   * Localiza el id de la coleccion de community (false si no existe)
-   *
-   * @param $commUser integer
-   *
-   * @return integer
-   */
-  public function getCollectionId( $commUser ) {
-    $colId = false;
+    $commUser = ($commUser !== false) ? $commUser : $this->userId;
 
     $commModel = new RExtCommunityModel();
     $commList = $commModel->listItems( array( 'filters' => array( 'user' => $commUser ) ) );
     $commObj = ( $commList ) ? $commList->fetch() : false;
-    $colId = ( $commObj ) ? $commObj->getter( 'colId' ) : false;
 
-    return $colId;
+    return $commObj;
   }
 
 
@@ -160,78 +149,57 @@ class RExtCommunityController extends RExtController implements RExtInterface {
 
 
   /**
-   * Carga el estado del community
+   * Establece el estado de community indicado en el usuario
    *
-   * @param $resId integer Id del recurso
-   * @param $commUser integer Id del usuario
+   * @param $status string Estado 0-1. Se admite false-true
+   * @param $commUser integer Id del recurso
    *
-   * @return integer
+   * @return bool
    */
-  public function getStatus( $resId, $commUser ) {
-    if( !is_array( $resId ) ) {
-      $status = ( $this->getStatusInfo( $resId, $commUser ) ) ? 1 : 0;
-    }
-    else {
-      $status = array();
-      $commResources = $this->getAllCommunity( $commUser );
-      foreach( $resId as $id ) {
-        $status[ $id ] = ( in_array( $id, $commResources ) ) ? 1 : 0;
-      }
+  public function setShare( $status, $commUser = false ) {
+    $statusResult = false;
+
+    $commObj = $this->getCommunityObj( $commUser );
+    if( $commObj ) {
+      $commObj->setter( 'share', ($status) ? 1 : 0 );
+      $commObj->save();
+      $statusResult = ( $commObj->getter( 'share' ) ) ? 1 : 0;
     }
 
-    return $status;
+    return( $statusResult );
   }
 
 
   /**
-   * Establece el estado de community indicado en el recurso
+   * Establece la cuenta de Facebook en community indicado en el usuario
    *
-   * @param $resId integer Id del recurso
-   * @param $status integer Estado 0-1. Se admite false-true
+   * @param $status string Estado 0-1. Se admite false-true
+   * @param $commUser integer Id del recurso
    *
    * @return bool
    */
-  public function setStatus( $resId, $newStatus, $commUser ) {
-    $newStatus = ( $newStatus ) ? 1 : 0;
+  public function setSocial( $socialNet, $account, $commUser = false ) {
+    $accountResult = false;
 
-    $commData = $this->getStatusInfo( $resId, $commUser );
-    $preStatus = ( $commData ) ? 1 : 0;
-    if( $preStatus === 1 && $newStatus === 0 ) {
-      // Estamos con status 1 y queremos status 0
-      $crModel = new CollectionResourcesModel( array( 'id' => $commData['id'] ) );
-      // error_log( 'Borrando crModel' );
-      $crModel->delete();
-    }
+    error_log("setSocial( $socialNet, $account, $commUser )");
 
-    if( $preStatus === 0 && $newStatus === 1 ) {
-      // Estamos con status 0 y queremos status 1
-      $colId = $this->getCollectionId( $commUser );
+    $socialNet = strtolower( trim( $socialNet ) );
+    $account = ( $socialNet === 'twitter' ) ? trim( $account, ' @' ) : trim( $account );
 
-      if( !$colId ) {
-        // Hai que crear toda la estructura: resource rtypeCommunity, collection, resource-collection
-        $commStructure = $this->newCommunityStructure( $commUser );
-        $colId = $commStructure['colId'];
+    if( $socialNet === 'facebook' || $socialNet === 'twitter' ) {
+      $commObj = $this->getCommunityObj( $commUser );
+      if( $commObj ) {
+        $commObj->setter( $socialNet, ( $account !== '' ) ? $account : null );
+        $commObj->save();
+        $accountResult = $commObj->getter( $socialNet );
+        $accountResult = ( $accountResult !== null ) ? $accountResult : '';
       }
-
-      $crModel = new CollectionResourcesModel( array( 'collection' => $colId, 'resource' => $resId,
-        'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) ) );
-      $crModel->save();
-      // error_log( 'Creando crModel' );
     }
 
-    return( $newStatus === $this->getStatus( $resId, $commUser ) );
+    return( $accountResult );
   }
 
 
-
-  public function getCommRTypeId() {
-    $rTypeModel = new ResourcetypeModel();
-    $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'idName' => 'rtypeCommunity' ) ) );
-    $rTypeObj = ( $rTypeList ) ? $rTypeList->fetch() : false;
-    $rTypeId = ( $rTypeObj ) ? $rTypeObj->getter( 'id' ) : false;
-
-    return( $rTypeId );
-  }
 
 
   public function getCommunityUrl( $commUser ) {
@@ -253,6 +221,16 @@ class RExtCommunityController extends RExtController implements RExtInterface {
     $commUrl = $resCtrl->getUrlAlias( $resId );
 
     return $commUrl;
+  }
+
+
+  public function getCommRTypeId() {
+    $rTypeModel = new ResourcetypeModel();
+    $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'idName' => 'rtypeCommunity' ) ) );
+    $rTypeObj = ( $rTypeList ) ? $rTypeList->fetch() : false;
+    $rTypeId = ( $rTypeObj ) ? $rTypeObj->getter( 'id' ) : false;
+
+    return( $rTypeId );
   }
 
 
@@ -285,5 +263,112 @@ class RExtCommunityController extends RExtController implements RExtInterface {
 
     return( array( 'commId' => $commId, 'resId' => $resId ) );
   }
+
+
+
+  /**
+   * UTILS
+   */
+  public function getCommData( $commId ) {
+    $commData = false;
+
+    $commModel = new CommunityViewModel();
+    $commList = $commModel->listItems( array( 'filters' => array( 'resourceMain' => $commId ) ) );
+    if( $commList ) {
+      $commData = array();
+      while( $commObj = $commList->fetch() ) {
+        $allData = $commObj->getAllData( 'onlydata' );
+        if( isset( $allData['id'] ) && $allData['id'] !== null ) { // Por si hay col. pero no recursos
+          $commData[] = $allData;
+        }
+      }
+    }
+
+    return $commData;
+  }
+
+  public function getCommFollows( $commUser ) {
+    // error_log( "getCommFollows( $commUser )" );
+    $commFollow = false;
+
+    $commModel = new RExtCommunityFollowModel();
+    $commList = $commModel->listItems( array( 'filters' => array( 'user' => $commUser ) ) );
+    if( $commList ) {
+      while( $commObj = $commList->fetch() ) {
+        $commFollow[] = $commObj->getter( 'follow' );
+      }
+    }
+
+    return $commFollow;
+  }
+
+  public function getCommPropose( $commUser, $commFollows = false ) {
+    // error_log( "getCommPropose( $commUser )" );
+    $commPropose = false;
+
+    $ignore = is_array( $commFollows ) ? $commFollows : array();
+    $ignore[] = $commUser;
+
+    /*
+    ** APAÑO TEMPORAL !!!
+    */
+    $userModel = new UserModel();
+    $userList = $userModel->listItems();
+    while( $userObj = $userList->fetch() ) {
+      $userId = $userObj->getter('id');
+      if( !in_array( $userId, $ignore ) ) {
+        $commPropose[] = $userId;
+      }
+    }
+
+    return $commPropose;
+  }
+
+  public function getUsersInfo( $usersIds, $getFavs = false ) {
+    $usersInfo = array();
+
+    $usersIds = is_array( $usersIds ) ? $usersIds : array( $usersIds );
+
+    $favCtrl = new RExtFavouriteController();
+    $userModel = new UserModel();
+    $resModel = new ResourceModel();
+
+    $userList = $userModel->listItems( array( 'filters' => array( 'idIn' => $usersIds, 'active' => 1 ) ) );
+    while( $userObj = $userList->fetch() ) {
+      $userId = $userObj->getter('id');
+      $usersInfo[ $userId ] = array(
+        'id' => $userObj->getter('id'),
+        'login' => $userObj->getter('login'),
+        'name' => $userObj->getter('name'),
+        'surname' => $userObj->getter('surname'),
+        'email' => $userObj->getter('email'),
+        'description' => $userObj->getter('description'),
+        'avatarFileId' => $userObj->getter('avatar')
+      );
+
+      $commObj = $this->getCommunityObj( $userId );
+      $usersInfo[ $userId ]['comm'] = (!$commObj) ? false : array(
+        'share' => ( $commObj->getter( 'share' ) ) ? 1 : 0,
+        'facebook' => ( $commObj->getter('facebook') !== null ) ? $commObj->getter('facebook') : '',
+        'twitter' => ( $commObj->getter('twitter') !== null ) ? $commObj->getter('twitter') : ''
+      );
+
+      if( $getFavs ) {
+        $usersInfo[ $userId ]['favList'] = $favCtrl->getAllFavourites( $userId );
+        $usersInfo[ $userId ]['favs'] = [];
+        $resList = $resModel->listItems( array( 'filters' => array(
+          'idIn' => $usersInfo[ $userId ]['favList'], 'published' => 1 ) ) );
+        while( $resObj = $resList->fetch() ) {
+          $usersInfo[ $userId ]['favs'][] = array(
+            'id' => $resObj->getter('id'),
+            'image' => $resObj->getter('image')
+          );
+        }
+      }
+    }
+
+    return $usersInfo;
+  }
+
 
 } // class RExtCommunityController

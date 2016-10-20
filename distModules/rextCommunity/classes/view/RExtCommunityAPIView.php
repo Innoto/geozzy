@@ -9,7 +9,7 @@ class RExtCommunityAPIView extends View {
 
   var $userId = false;
   var $userSession = false;
-  var $extendAPIAccess = false;
+  var $commCtrl = false;
 
   public function __construct( $base_dir ) {
     user::load( 'controller/UserAccessController.php' );
@@ -21,13 +21,10 @@ class RExtCommunityAPIView extends View {
       $this->userSession = $userInfo;
     }
 
-    if( GEOZZY_API_ACTIVE === true && $this->userSession && $this->userSession['data']['login'] === 'superAdmin' ) {
-      $this->extendAPIAccess = true;
-    }
+    $this->apiParams = array( 'cmd', 'status', 'facebook', 'twitter' );
+    $this->apiCommands = array( 'setMyCommunity', 'setShare', 'setFacebook', 'setTwitter', 'getCommunityUrl' /*, 'listFollowed'*/ );
 
-    $this->apiParams = array( 'cmd', 'status' );
-    $this->apiCommands = array( 'setStatus', 'getStatus', 'getCommunityUrl', 'listComm', 'listResources', 'listUsers' );
-    $this->apiFilters = array( 'communityId', 'resourceId', 'userId' );
+    $this->commCtrl = new RExtCommunityController();
 
     parent::__construct( $base_dir ); // Esto lanza el accessCheck
   }
@@ -46,345 +43,58 @@ class RExtCommunityAPIView extends View {
    * API router
    */
   public function apiQuery() {
-    $result = null;
-    $error = false;
+    $result = array(
+      'result' => 'error',
+      'msg' => 'Command error'
+    );
 
     $command = ( isset( $_POST['cmd'] ) && in_array( $_POST['cmd'], $this->apiCommands ) ) ? $_POST['cmd'] : null;
-
-    $status = null;
-    if( isset( $_POST['status'] ) ) {
-      $status = ( $_POST['status'] ) ? 1 : 0; // Manejamos status como 0-1 y no false-true
-    }
-
-    $filters = array();
-    foreach( $this->apiFilters as $key ) {
-      $filters[ $key ] = ( isset( $_POST[ $key ] ) ) ? $_POST[ $key ] : null;
-    }
+    $status = isset( $_POST['status'] ) ? $_POST['status'] : null;
+    $facebook = isset( $_POST['facebook'] ) ? $_POST['facebook'] : null;
+    $twitter = isset( $_POST['twitter'] ) ? $_POST['twitter'] : null;
 
     switch( $command ) {
-      case 'setStatus':
-        $result = $this->apiSetStatus( $status, $filters['resourceId'], $filters['userId'] );
+      case 'setMyCommunity':
+        $r['status'] = $this->commCtrl->setShare( $status );
+        $r['facebook'] = $this->commCtrl->setSocial( 'facebook', $facebook );
+        $r['twitter'] = $this->commCtrl->setSocial( 'twitter', $twitter );
+        if( $r['status'] !== false || $r['facebook'] !== false || $r['twitter'] !== false ) {
+          $result = array( 'result' => 'ok', 'status' => $r );
+        }
         break;
-      case 'getStatus':
-        $result = $this->apiGetStatus( $filters['resourceId'], $filters['userId'] );
+      case 'setShare':
+        $status = $this->commCtrl->setShare( $status );
+        if( $status !== false ) {
+          $result = array( 'result' => 'ok', 'status' => $status );
+        }
         break;
-      case 'listComm':
-        $result = $this->apiListComm( $filters );
+      case 'setFacebook':
+        $status = $this->commCtrl->setSocial( 'facebook', $status );
+        if( $status !== false ) {
+          $result = array( 'result' => 'ok', 'status' => $status );
+        }
         break;
-      case 'listResources':
-        $result = $this->apiListResources( $filters );
-        break;
-      case 'listUsers':
-        $result = $this->apiListUsers( $filters );
+      case 'setTwitter':
+        $status = $this->commCtrl->setSocial( 'twitter', $status );
+        if( $status !== false ) {
+          $result = array( 'result' => 'ok', 'status' => $status );
+        }
         break;
       case 'getCommunityUrl':
-        $result = $this->getCommunityUrl();
-        break;
-      default:
         $result = array(
-          'result' => 'error',
-          'msg' => 'Command error'
+          'result' => 'ok',
+          'status' => $this->commCtrl->getCommunityUrl( $this->userId )
         );
         break;
+      /*
+      case 'listFollowed':
+        $result = $this->apiListFollowed();
+        break;
+      */
     }
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode( $result );
-  }
-
-
-  public function apiSetStatus( $status, $resourceId, $userId ) {
-    $result = null;
-
-    // Si no hay usuario, el de session
-    if( $userId === null && $this->userId !== false ) {
-      $userId = strval( $this->userId );
-    }
-
-    // Solo pueden acceder a otros usuarios si $this->extendAPIAccess
-    if( !$this->extendAPIAccess && $userId !== strval( $this->userId ) ) {
-      $userId = null;
-    }
-
-    if( $status !== null && $resourceId !== null && $userId !== null ) {
-      $commCtrl = new RExtCommunityController();
-      if( $commCtrl->setStatus( $resourceId, $status, $userId ) ) {
-        $result = array(
-          'result' => 'ok',
-          'status' => $status
-        );
-      }
-    }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Parameters error'
-      );
-    }
-
-    return $result;
-  }
-
-
-  public function apiGetStatus( $resourceId, $userId ) {
-    $result = null;
-
-    // Si no hay usuario, el de session
-    if( $userId === null && $this->userId !== false ) {
-      $userId = strval( $this->userId );
-    }
-
-    // Solo pueden acceder a otros usuarios si $this->extendAPIAccess
-    if( !$this->extendAPIAccess && $userId !== strval( $this->userId ) ) {
-      $userId = null;
-    }
-
-    if( $resourceId !== null && $userId !== null ) {
-      $resArray = explode( ',', $resourceId );
-      if( count( $resArray ) > 1 ) {
-        $resourceId = $resArray;
-      }
-
-      $commCtrl = new RExtCommunityController();
-      $result = array(
-        'result' => 'ok',
-        'status' => $commCtrl->getStatus( $resourceId, $userId )
-      );
-    }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Parameters error'
-      );
-    }
-
-    return $result;
-  }
-
-
-  public function apiListComm( $filters ) {
-    $result = null;
-
-    $access = $this->extendAPIAccess;
-
-    if( !$access && $this->userId !== false ) {
-      if( $filters['userId'] === null || $filters['userId'] === strval( $this->userId ) ) {
-        $filters['userId'] = $this->userId;
-        $access = true;
-      }
-    }
-
-    // Solo se puede acceder si $this->extendAPIAccess o un usuario a su propios datos
-    if( $access ) {
-      $listFilters = array();
-      if( $filters['resourceId'] !== null ) {
-        $listFilters['inResourceList'] = $filters['resourceId'];
-      }
-      if( $filters['userId'] !== null ) {
-        $userArray = explode( ',', $filters['userId'] );
-        if( count( $userArray ) > 1 ) {
-          $listFilters['userIn'] = $userArray;
-        }
-        else {
-          $listFilters['user'] = $filters['userId'];
-        }
-      }
-      if( $filters['communityId'] !== null ) {
-        $commArray = explode( ',', $filters['communityId'] );
-        if( count( $commArray ) > 1 ) {
-          $listFilters['idIn'] = $commArray;
-        }
-        else {
-          $listFilters['id'] = $filters['communityId'];
-        }
-      }
-
-      $commModel = new CommunityListViewModel();
-      $commList = $commModel->listItems( array( 'filters' => $listFilters ) );
-      if( $commList ) {
-        $result = array(
-          'result' => 'ok',
-          'community' => array()
-        );
-        while( $commObj = $commList->fetch() ) {
-          $commData = $commObj->getAllData( 'onlydata' );
-          $result['community'][ $commData['id'] ] = array(
-            'id' => $commData['id'],
-            'user' => $commData['user'],
-            'resourceList' => ( isset( $commData['resourceList'] ) ) ? explode( ',', $commData['resourceList'] ) : array(),
-            'timeCreation' => $commData['timeCreation'],
-            // 'colId' => $commData['colId'],
-            'published' => $commData['published']
-          );
-        }
-      }
-    }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Access denied'
-      );
-    }
-
-    return $result;
-  }
-
-
-  public function apiListResources( $filters ) {
-    $result = null;
-
-    $access = $this->extendAPIAccess;
-
-    if( !$access && $this->userId !== false ) {
-      if( $filters['userId'] === null || $filters['userId'] === strval( $this->userId ) ) {
-        $filters['userId'] = $this->userId;
-        $access = true;
-      }
-    }
-
-    // Solo se puede acceder si $this->extendAPIAccess o un usuario a su propios datos
-    if( $access ) {
-      $listFilters = array();
-      if( $filters['resourceId'] !== null ) {
-        $listFilters['inResourceList'] = $filters['resourceId'];
-      }
-      if( $filters['userId'] !== null ) {
-        $userArray = explode( ',', $filters['userId'] );
-        if( count( $userArray ) > 1 ) {
-          $listFilters['userIn'] = $userArray;
-        }
-        else {
-          $listFilters['user'] = $filters['userId'];
-        }
-      }
-      if( $filters['communityId'] !== null ) {
-        $commArray = explode( ',', $filters['communityId'] );
-        if( count( $commArray ) > 1 ) {
-          $listFilters['idIn'] = $commArray;
-        }
-        else {
-          $listFilters['id'] = $filters['communityId'];
-        }
-      }
-
-      $commModel = new CommunityListViewModel();
-      $commList = $commModel->listItems( array( 'filters' => $listFilters ) );
-      if( $commList ) {
-        $result = array(
-          'result' => 'ok',
-          'resource' => array()
-        );
-        while( $commObj = $commList->fetch() ) {
-          $communityId = $commObj->getter( 'id' );
-          $resourceList = $commObj->getter('resourceList');
-          if( $resourceList ) {
-            $resourceList = explode( ',', $resourceList );
-            foreach( $resourceList as $resourceId ) {
-              if( $filters['resourceId'] === null || $filters['resourceId'] === $resourceId ) {
-                if( !isset( $result['resource'][ $resourceId ] ) ) {
-                  $result['resource'][ $resourceId ] = array(
-                    'id' => $resourceId,
-                    'community' => array()
-                  );
-                }
-                $result['resource'][ $resourceId ]['community'][] = $communityId;
-              }
-            }
-          }
-          // error_log( 'resourceList: '.$commObj->getter('resourceList') );
-        }
-      }
-    }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Access denied'
-      );
-    }
-
-    return $result;
-  }
-
-
-  public function apiListUsers( $filters ) {
-    $result = null;
-
-    // Solo pueden acceder si $this->extendAPIAccess
-    if( $this->extendAPIAccess ) {
-      $listFilters = array();
-      if( $filters['resourceId'] !== null ) {
-        $listFilters['inResourceList'] = $filters['resourceId'];
-      }
-      if( $filters['userId'] !== null ) {
-        $userArray = explode( ',', $filters['userId'] );
-        if( count( $userArray ) > 1 ) {
-          $listFilters['userIn'] = $userArray;
-        }
-        else {
-          $listFilters['user'] = $filters['userId'];
-        }
-      }
-      if( $filters['communityId'] !== null ) {
-        $commArray = explode( ',', $filters['communityId'] );
-        if( count( $commArray ) > 1 ) {
-          $listFilters['idIn'] = $commArray;
-        }
-        else {
-          $listFilters['id'] = $filters['communityId'];
-        }
-      }
-
-      $commModel = new CommunityListViewModel();
-      $commList = $commModel->listItems( array( 'filters' => $listFilters ) );
-      if( $commList ) {
-        $result = array(
-          'result' => 'ok',
-          'user' => array()
-        );
-        while( $commObj = $commList->fetch() ) {
-          $communityId = $commObj->getter( 'id' );
-          $userId = $commObj->getter( 'user' );
-
-          if( !isset( $result['user'][ $userId ] ) ) {
-            $result['user'][ $userId ] = array(
-              'id' => $userId,
-              'community' => array()
-            );
-          }
-          $result['user'][ $userId ]['community'][] = $communityId;
-        }
-      }
-    }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Access denied'
-      );
-    }
-
-    return $result;
-  }
-
-
-  public function getCommunityUrl() {
-    $result = null;
-
-    // Solo pueden acceder si $this->extendAPIAccess
-    if( $this->userId !== false ) {
-      $commCtrl = new RExtCommunityController();
-      $result = array(
-        'result' => 'ok',
-        'status' => $commCtrl->getCommunityUrl( $this->userId )
-      );
-    }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Access denied'
-      );
-    }
-
-    return $result;
   }
 
 
@@ -420,40 +130,19 @@ class RExtCommunityAPIView extends View {
             {
               "name": "cmd",
               "description": "Command ( <?php echo implode( ' | ', $this->apiCommands ); ?> )",
-              "type": "integer",
+              "type": "string",
               "paramType": "form",
               "required": true
             },
             {
               "name": "status",
-              "description": "Community status ( 0 | 1 )",
-              "type": "integer",
-              "paramType": "form",
-              "required": false
-            },
-            {
-              "name": "resourceId",
-              "description": "Filter by Resource Id",
-              "type": "integer",
-              "paramType": "form",
-              "required": false
-            },
-            {
-              "name": "communityId",
-              "description": "Filter by Community Id or array",
-              "type": "integer",
-              "paramType": "form",
-              "required": false
-            },
-            {
-              "name": "userId",
-              "description": "Filter by User Id or array",
-              "type": "integer",
+              "description": "Status",
+              "type": "string",
               "paramType": "form",
               "required": false
             }
           ],
-          "summary": "Fetches community data"
+          "summary": "Set community data"
         }
       ],
       "path": "/community",
