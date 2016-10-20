@@ -112,7 +112,9 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
 
     that.parentStory.storySteps.each( function(e,i){
 
-      if( e.get('initDate') != null ) {
+      var showTimeline = e.get('showTimeline');
+
+      if( showTimeline != null && showTimeline == 1 ) {
         that.timelineIndex.push(e.get('id'));
         timeLineData.push({
           'start': new Date(e.get('initDate')),
