@@ -23,35 +23,22 @@ class story extends Module {
       'id' =>'chap-links-library',
       'params' => array('chap-links-library'),
       'installer' => 'bower',
-      'includes' => array()
+      'includes' => array( 'js/src/timeline/timeline-locales.js', 'js/src/timeline/timeline.js', 'js/src/timeline/timeline.css' )
     )
   );
 
   public $includesCommon = array(
-/*
-    'js/router/ExplorerRouter.js',
-    'js/model/ExplorerResourceMinimalModel.js',
-    'js/model/ExplorerResourcePartialModel.js',
-    'js/collection/ExplorerResourceMinimalCollection.js',
-    'js/collection/ExplorerResourcePartialCollection.js',
-    'js/view/Templates.js',
-    'js/view/ExplorerFilterView.js',
-    'js/view/filters/ExplorerFilterButtonsView.js',
-    'js/view/filters/ExplorerFilterComboView.js',
-    'js/view/filters/ExplorerFilterGeoView.js',
-    'js/view/filters/ExplorerFilterSliderView.js',
-    'js/view/filters/ExplorerFilterSwitchView.js',
-    'js/view/filters/ExplorerFilterResetView.js',
-    'js/view/ExplorerActiveListView.js',
-    'js/view/ExplorerActiveListTinyView.js',
-    'js/view/ExplorerReccommendedListTinyView.js',
-    'js/view/ExplorerMapView.js',
-    'js/view/ExplorerClusterRoseView.js',
-    'js/view/ExplorerMapInfoBubbleView.js',
-    'js/view/ExplorerMapInfoView.js',
-    'js/Explorer.js',
-    'styles/explorerMapArrows.less'
-*/
+    'js/model/StoryStepModel.js',
+    'js/router/StoryRouter.js',
+    'js/collection/StoryStepCollection.js',
+    'js/view/StoryTemplates.js',
+    'js/view/StoryList.js',
+    'js/view/StoryBackground.js',
+    'js/view/plugins/StoryPluginLegendView.js',
+    'js/view/plugins/StoryPluginPOISView.js',
+    'js/view/plugins/StoryPluginKMLView.js',
+    'js/view/plugins/StoryPluginTimelineView.js',
+    'js/Story.js'
   );
 
 
