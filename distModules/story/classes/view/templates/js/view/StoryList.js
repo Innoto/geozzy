@@ -67,6 +67,10 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
       that.parentStory.triggerEvent('stepChange', {id: that.stepsDOMEquivalences[0] , domElement: that.stepsDOM[0] });
     });
 
+    that.parentStory.bindEvent( 'forceStep', function(obj){
+        that.forceStep(obj.id);
+    });
+
   },
 
   caculatePositions: function() {
@@ -151,6 +155,24 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     }
 
     return visibleHeight;
+  },
+
+  forceStep: function( step ){
+    var that = this;
+    var domElement = false;
+    $.each( that.stepsDOMEquivalences, function(i,e) {
+
+      if( e == step){
+        domElement = that.stepsDOM[i];
+      }
+    });
+
+    if( domElement != false) {
+      var top = parseInt( $(domElement).css('top'), 10);
+      //console.log('scroll a', top)
+      window.scrollTo( 0 , top );
+    }
+
   }
 
 });

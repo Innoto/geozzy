@@ -6,7 +6,8 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
   displayType: 'plugin',
   parentStory: false,
   tplElement: false,
-
+  timeline :false,
+  timelineIndex:[],
   initialize: function( opts ) {
     var that = this;
 
@@ -40,13 +41,12 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
           'style': 'box',
           /*'locale':'es',*/
           'zoomable': false,
-          'unselectable':false,
-          'cluster':true
+          'unselectable':false
       };
 
       // Instantiate our timeline object.
       that.timeline = new links.Timeline( $(that.options.container)[0] , options);
-      that.timeline.setSelection(3);
+
   /*
       function onRangeChanged(properties) {
           document.getElementById('info').innerHTML += 'rangechanged ' +
@@ -54,7 +54,15 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
       }
   */
       // attach an event listener using the links events handler
-      //links.events.addListener(timeline, 'rangechanged', onRangeChanged);
+      links.events.addListener(that.timeline, 'select', function( propiedades ) {
+        var selection = that.timeline.getSelection();
+
+        //console.log(selection[0].row);
+        //console.log(that.timeline.getSelection()[0].row);
+        that.parentStory.triggerEvent('forceStep', { id: that.timelineIndex[ selection[0].row ] } );
+        //that.timeline.box.align = 'center';
+        that.timeline.setVisibleChartRangeAuto();
+      });
 
       // Draw our timeline with the created data and options
       that.timeline.draw(that.getData());
@@ -69,52 +77,54 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
   setStep: function( step ) {
     var that = this;
 
-/*
-    var legend = that.parentStory.storySteps.get(step.id).get('legend');
 
-    if( legend != null ) {
+    var showTimeline = that.parentStory.storySteps.get(step.id).get('showTimeline');
 
-      $(that.options.container).html(that.tplElement({id:legend}));
+    if( showTimeline != null && showTimeline == 1 ) {
+      //$(that.options.container).html(that.tplElement({id:legend}));
+      /*console.log(that.timeline)
+      console.log(that.timeline.getData());
+      that.timeline.selectItem(0)*/
+      //that.timeline.setSelection([{row: 0}])
+
+      $.each( that.timelineIndex, function(i,e){
+        if( e == step.id) {
+          that.timeline.selectItem(i);
+        }
+      });
+
+      //console.log(that.timeline.getSelection())
       $(that.options.container).fadeIn();
     }
     else {
       $(that.options.container).fadeOut();
     }
 
-*/
+
 
   },
 
   getData: function( ) {
     var that = this;
-    var data = [
-        {
-            'start': new Date(1800,7,23),
-            'content': 'EV1'
-        },
-        {
-            'start': new Date(1900,7,23,23,0,0),
-            'content': 'EV2'
-        },
-        {
-            'start': new Date(1850,7,24,16,0,0),
-            'end': new Date(1900,7,24,16,0,0),
 
-            'content': 'EV3'
-        },
+    var timeLineData = [];
+    that.timelineIndex = [];
 
-        {
-            'start': new Date(1700,7,28),
-            'content': 'EV5'
-        },
+    that.parentStory.storySteps.each( function(e,i){
 
-        {
-            'start': new Date(2010,8,4,12,0,0),
-            'content': 'EV6'
-        }
-    ];
+      var showTimeline = e.get('showTimeline');
 
-    return data;
+      if( showTimeline != null && showTimeline == 1 ) {
+        that.timelineIndex.push(e.get('id'));
+        timeLineData.push({
+          'start': new Date(e.get('initDate')),
+          'end': new Date(e.get('endDate')),
+          'content': e.get('title')
+        });
+      }
+    });
+
+    return timeLineData;
   }
 
 });

@@ -10,5 +10,5 @@
     <div class="lista"></div>
     <div class="storyContainer story-container-du" > </div>
     <div class="castroLeyendaContainer"></div>
-    <div class="castroTimelineContainer" > BLABLA</div>
+    <div class="castroTimelineContainer" > </div>
   </div>
