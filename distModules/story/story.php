@@ -38,7 +38,10 @@ class story extends Module {
 
 
   public function __construct() {
-
+    $this->addUrlPatterns( '#^api/story/(.*)#', 'view:StoryAPIView::story' );
+    $this->addUrlPatterns( '#^api/doc/story.json#', 'view:StoryAPIView::storyJson' ); // Main swagger JSON
+    $this->addUrlPatterns( '#^api/storyList$#', 'view:StoryAPIView::storyList' );
+    $this->addUrlPatterns( '#^api/doc/storyList.json$#', 'view:StoryAPIView::storyListJson' ); // Main swagger JSON
   }
 
 }

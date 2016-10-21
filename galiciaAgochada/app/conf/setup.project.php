@@ -87,10 +87,12 @@ $C_ENABLED_MODULES = array(
   'Blocks',
   'table',
   'explorer',
+  'story',
   'appExplorer',
   'appStories',
   // testing module
-  'testData',
+  'testData'
+
 );
 
 // resource Extenssions
@@ -182,6 +184,7 @@ $C_INDEX_MODULES  = array(
   'testData',
   'initResources',
   'explorer',
+  'story',
   'rtypeTravelPlanner',
   'rextRoutes',
   'rextComment',
