@@ -1,6 +1,6 @@
 <?php
 
-rtypeStory::load('controller/StoryController.php');
+story::load('controller/StoryController.php');
 
 
 class CastroStoryController extends StoryController {
@@ -8,7 +8,7 @@ class CastroStoryController extends StoryController {
 
     Cogumelo::load('coreModel/DBUtils.php');
     // INSTANCIA + CONSULTA
-    rtypeStoryStep::load('model/AllstoryStepsViewModel.php');
+    story::load('model/AllstoryStepsViewModel.php');
     $resourceModel = new AllstoryStepsViewModel();
     $resources = $resourceModel->listItems( ['filters'=>['storyName'=>'castroStory']] );
 
