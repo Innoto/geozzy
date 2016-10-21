@@ -6,8 +6,9 @@
       .travelPlannerList{
         background-color: rgba( 71, 225, 118, .5 );
       }//travelPlannerList
-      .travelPlannerPlan{
-        background-color: rgba( 225, 71, 71, .5 );
+      .travelPlannerPlan{ background-color: rgba( 71, 156, 225, .7 );
+        .travelPlannerPlanHeader{  background-color: rgba( 199, 198, 73, .7 ); }
+        .travelPlannerPlanContent{ background-color: rgba( 225, 71, 71, .5 ); }
       }//travelPlannerPlan
     }
   } //#travelPlannerSec
@@ -27,11 +28,14 @@
         height: @tpList-h;
         position: fixed;
         overflow: auto;
+        padding: 20px;
       }//travelPlannerList
 
       .travelPlannerPlan{
         margin-left: @tpList-w;
         min-height: 500px;
+        padding: 20px;
+
       }//travelPlannerPlan
 
     }
