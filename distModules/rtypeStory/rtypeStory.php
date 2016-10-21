@@ -8,24 +8,7 @@ class rtypeStory extends Module {
   public $version = 1.0;
   public $rext = array('rextStory', 'rextView', 'rextSocialNetwork','rextComment');
   public $dependences = array(
-    array(
-     "id" =>"mathjs",
-     "params" => array("mathjs"),
-     "installer" => "bower",
-     "includes" => array()
-    ),
-    array(
-     'id' =>'CanvasLayer',
-     'params' => array('CanvasLayer'),
-     'installer' => 'manual',
-     'includes' => array()
-   ),
-   array(
-    'id' =>'chap-links-library',
-    'params' => array('chap-links-library'),
-    'installer' => 'bower',
-    'includes' => array()
-   )
+
   );
 
   public $includesCommon = array(

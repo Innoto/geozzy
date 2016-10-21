@@ -7,7 +7,24 @@ class story extends Module {
   public $version = 1.0;
 
   public $dependences = array(
-
+    array(
+      "id" =>"mathjs",
+      "params" => array("mathjs"),
+      "installer" => "bower",
+      "includes" => array('dist/math.min.js')
+    ),
+    array(
+      'id' =>'CanvasLayer',
+      'params' => array('CanvasLayer'),
+      'installer' => 'manual',
+      'includes' => array('src/CanvasLayer.js',)
+    ),
+    array(
+      'id' =>'chap-links-library',
+      'params' => array('chap-links-library'),
+      'installer' => 'bower',
+      'includes' => array()
+    )
   );
 
   public $includesCommon = array(
@@ -33,7 +50,8 @@ class story extends Module {
     'js/view/ExplorerMapInfoBubbleView.js',
     'js/view/ExplorerMapInfoView.js',
     'js/Explorer.js',
-    'styles/explorerMapArrows.less'*/
+    'styles/explorerMapArrows.less'
+*/
   );
 
 
