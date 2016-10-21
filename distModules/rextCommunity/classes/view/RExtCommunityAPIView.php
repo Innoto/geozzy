@@ -21,8 +21,9 @@ class RExtCommunityAPIView extends View {
       $this->userSession = $userInfo;
     }
 
-    $this->apiParams = array( 'cmd', 'status', 'facebook', 'twitter' );
-    $this->apiCommands = array( 'setMyCommunity', 'setShare', 'setFacebook', 'setTwitter', 'getCommunityUrl' /*, 'listFollowed'*/ );
+    $this->apiParams = array( 'cmd', 'status', 'user', 'facebook', 'twitter', 'followUser' );
+    $this->apiCommands = array( 'setMyCommunity', 'setShare', 'setFacebook', 'setTwitter',
+      'setFollow', 'getCommunityUrl' /*, 'listFollowed'*/ );
 
     $this->commCtrl = new RExtCommunityController();
 
@@ -34,7 +35,9 @@ class RExtCommunityAPIView extends View {
    * @return bool : true -> Access allowed
    */
   public function accessCheck() {
-    return( $this->userId !== false );
+    $postUserId = isset( $_POST['user'] ) ? intval( $_POST['user'] ) : null;
+
+    return( $this->userId !== false && $this->userId === $postUserId );
     // return( GEOZZY_API_ACTIVE === true );
   }
 
@@ -50,8 +53,10 @@ class RExtCommunityAPIView extends View {
 
     $command = ( isset( $_POST['cmd'] ) && in_array( $_POST['cmd'], $this->apiCommands ) ) ? $_POST['cmd'] : null;
     $status = isset( $_POST['status'] ) ? $_POST['status'] : null;
+    $userId = isset( $_POST['user'] ) ? $_POST['user'] : null;
     $facebook = isset( $_POST['facebook'] ) ? $_POST['facebook'] : null;
     $twitter = isset( $_POST['twitter'] ) ? $_POST['twitter'] : null;
+    $followUserId = isset( $_POST['followUser'] ) ? $_POST['followUser'] : null;
 
     switch( $command ) {
       case 'setMyCommunity':
@@ -76,6 +81,12 @@ class RExtCommunityAPIView extends View {
         break;
       case 'setTwitter':
         $status = $this->commCtrl->setSocial( 'twitter', $status );
+        if( $status !== false ) {
+          $result = array( 'result' => 'ok', 'status' => $status );
+        }
+        break;
+      case 'setFollow':
+        $status = $this->commCtrl->setFollow( $status, $followUserId );
         if( $status !== false ) {
           $result = array( 'result' => 'ok', 'status' => $status );
         }

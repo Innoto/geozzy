@@ -31,7 +31,6 @@
           <div class="col-sm-7 col-md-8">
             <div class="commText">
               <div class="name">{$myInfo.name} {$myInfo.surname}</div>
-              {$myInfo.comm|var_dump}
               <div class="row">
                 <div class="commRS">
                   <div class="col-sm-9 col-md-9">
@@ -112,6 +111,9 @@
                 </div>
               </div>
               <div class="col-sm-9">
+                <div class="actionFollow" data-id="{$userInfo.id}" data-follow="1">
+                  <span class="showStatus off" style="display: none;">Seguir</span><span class="showStatus on">Dejar de seguir</span>
+                </div>
                 <div class="commText">
                   <div class="name">{$userInfo.name} {$userInfo.surname}<span class="login"> ( {$userInfo.login} )</span></div>
                 </div>
@@ -167,6 +169,9 @@
           {foreach $commProposeInfo as $userInfo}
           {* id,login,name,surname,email,description,avatarFileId *}
           <div class="col-sm-6 col-md-3 communityElement" data-id="{$userInfo.id}">
+            <div class="actionFollow" data-id="{$userInfo.id}" data-follow="0">
+              <span class="showStatus off">Seguir</span><span class="showStatus on" style="display: none;">Siguiendo</span>
+            </div>
             <div class="commImage">
               <img src="/cgmlImg/{$userInfo.avatarFileId}/fast_cut/{$userInfo.avatarFileId}.jpg">
             </div>
@@ -192,6 +197,7 @@
 
 var geozzy = geozzy || {};
 geozzy.rTypeCommunityData = {
+  'userSessionId': '{$cogumelo.publicConf.user_session_id|default:''}',
   'myCommunity': {$myInfo.comm|@json_encode},
   'commFollowsInfo': {$commFollowsInfo|@json_encode},
   'commProposeInfo': {$commProposeInfo|@json_encode},

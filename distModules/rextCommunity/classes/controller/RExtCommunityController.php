@@ -91,29 +91,11 @@ class RExtCommunityController extends RExtController implements RExtInterface {
   }
 
 
+
+
   /***************/
   /***  UTILS  ***/
   /***************/
-
-
-  /**
-   * Carga los datos de todos los community de un usuario
-   *
-   * @param $resId integer
-   *
-   * @return array OR false
-   */
-  public function getAllCommunity( $commUser = false ) {
-    $commData = false;
-
-    $commObj = $this->getCommunityObj( $commUser );
-    if( $commObj ) {
-      $commData = ( $commObj->getter('resourceList') ) ? explode( ',', $commObj->getter('resourceList') ) : array();
-    }
-
-    return $commData;
-  }
-
 
   public function getCommunityObj( $commUser = false ) {
     $commObj = false;
@@ -181,7 +163,7 @@ class RExtCommunityController extends RExtController implements RExtInterface {
   public function setSocial( $socialNet, $account, $commUser = false ) {
     $accountResult = false;
 
-    error_log("setSocial( $socialNet, $account, $commUser )");
+    // error_log("setSocial( $socialNet, $account, $commUser )");
 
     $socialNet = strtolower( trim( $socialNet ) );
     $account = ( $socialNet === 'twitter' ) ? trim( $account, ' @' ) : trim( $account );
@@ -199,6 +181,49 @@ class RExtCommunityController extends RExtController implements RExtInterface {
     return( $accountResult );
   }
 
+  /**
+   * Establece el estado de follow indicado en el usuario
+   *
+   * @param $status string Estado 0-1. Se admite false-true
+   * @param $commUser integer Id del recurso
+   *
+   * @return bool
+   */
+  public function setFollow( $status, $followUser, $commUser = false ) {
+    $statusResult = false;
+
+    $commUser = ($commUser !== false) ? $commUser : $this->userId;
+
+    $followModel = new RExtCommunityFollowModel();
+    $followList = $followModel->listItems( array( 'filters' => array(
+      'user' => $commUser, 'follow' => $followUser
+    ) ) );
+    $followObj = ( $followList ) ? $followList->fetch() : false;
+
+    if( $status ) {
+      if( !$followObj ) {
+        $followModel = new RExtCommunityFollowModel( array(
+          'user' => $commUser,
+          'follow' => $followUser,
+          'timeCreation' => gmdate( "Y-m-d H:i:s", time() )
+        ));
+        $followModel->save();
+      }
+    }
+    else {
+      if( $followObj ) {
+        $followObj->delete();
+      }
+    }
+
+    // No se virifica
+    $statusResult = array(
+      'status' => $status,
+      'user' => $followUser
+    );
+
+    return( $statusResult );
+  }
 
 
 
@@ -223,7 +248,6 @@ class RExtCommunityController extends RExtController implements RExtInterface {
     return $commUrl;
   }
 
-
   public function getCommRTypeId() {
     $rTypeModel = new ResourcetypeModel();
     $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'idName' => 'rtypeCommunity' ) ) );
@@ -232,7 +256,6 @@ class RExtCommunityController extends RExtController implements RExtInterface {
 
     return( $rTypeId );
   }
-
 
   public function newCommunityStructure( $commUser ) {
     // Hai que crear toda la estructura: resource rtypeCommunity, collection, resource-collection
