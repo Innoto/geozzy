@@ -27,7 +27,7 @@
 
 
   /****************************
-    paisaxesExplorer
+    paisaxesExplorerF
    ****************************/
   function paisaxesExplorer() {
     var that = this;
@@ -115,6 +115,9 @@
         }
 
       });
+
+      // ADD BI METRICS ADAPTER for main explorer
+      that.explorer.addDisplay(new geozzy.explorerComponents.biView());
 
       that.explorerRutas = new geozzy.explorer({
         partialLoadSuccess: function(){ that.layoutDistributeSize() },
@@ -550,7 +553,6 @@
       layoutDistributeSize. util method
      */
     that.layoutDistributeSize = function(){
-      console.log('REDIMENSIONAR');
 
       if( that.resourceMap.getZoom() < 12 ) {
 

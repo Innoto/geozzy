@@ -42,8 +42,9 @@ geozzy.explorer = function( opts ) {
   $.extend(true, that.options, opts);
 
   that.explorerTouchDevice = $('html').hasClass('touch');
-  // metrics
-  that.metricsExplorerController = geozzy.biMetricsInstances.explorer;
+
+  // metrics DEPRECATED
+  //that.metricsExplorerController = geozzy.biMetricsInstances.explorer;
   that.metricsResourceController = geozzy.biMetricsInstances.resource;
 
 
@@ -106,7 +107,6 @@ geozzy.explorer = function( opts ) {
 
       if( that.options.resourceAccess(param.id) !== false ) {
         geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id);
-        //that.metricsResourceController.eventAccessed(param.id, 'Explorer: '+that.options.explorerSectionName );
       }
 
     });
@@ -265,8 +265,8 @@ geozzy.explorer = function( opts ) {
 
         });
 
-        // add metric
-        that.metricsExplorerController.addMetric(metricData);
+        // context changed and send metrics by parameter
+        that.triggerEvent('context_change', metricData );
       }
 
       if( !dontRenderMap ) {
@@ -354,17 +354,15 @@ geozzy.explorer = function( opts ) {
 
   }
 
-
+/*
   that.setMetricsExplorer = function( obj ) {
-
     that.metricsExplorerController = obj;//new geozzy.biMetrics.controller.explorer();
-
   }
-
-  that.setMetricsResource = function( obj) {
+*/
+/*  that.setMetricsResource = function( obj) {
 
     that.metricsResourceController = obj;
-  }
+  }*/
 
 
   that.triggerEvent = function( eventName, parameters) {
