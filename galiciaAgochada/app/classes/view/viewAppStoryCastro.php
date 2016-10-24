@@ -23,16 +23,7 @@ class viewAppStoryCastro extends MasterView
     biMetrics::autoIncludes();
     explorer::autoIncludes();
     story::autoIncludes();
-/*
-    $template->addClientScript('CanvasLayer/src/CanvasLayer.js', 'vendor/manual');
-    $template->addClientScript('mathjs/dist/math.min.js', 'vendor/bower');
-*/
-    // Para plugin Timeline
-    /*
-    $template->addClientScript('chap-links-library/', 'vendor/bower');
-    $template->addClientScript('chap-links-library/', 'vendor/bower');
-    $template->addClientStyles('chap-links-library/', 'vendor/bower');
-    */
+
     $template->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');
     $template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
 
