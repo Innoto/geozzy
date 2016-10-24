@@ -31,8 +31,6 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     that.$el = $(that.el);
 
     $(window).on('scroll', function(){ that.updateVisibleStep()} );
-    $(window).on('resize', function(){ that.caculatePositions()} );
-
   },
 
   setParentStory: function( obj ) {
@@ -68,8 +66,13 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     });
 
     that.parentStory.bindEvent( 'forceStep', function(obj){
-        that.forceStep(obj.id);
+      that.forceStep(obj.id);
     });
+
+    that.parentStory.bindEvent( 'windowResize', function(obj){
+      that.caculatePositions()
+    });
+
 
   },
 

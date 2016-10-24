@@ -16,9 +16,18 @@ $(document).ready( function(){
 
   var resourceMap = new google.maps.Map( $('.storyLayout .mapa').get( 0 ), mapOptions);
 
-  setSizes();
   $(window).on('resize', setSizes);
-  google.maps.event.addListener(resourceMap, "idle", setSizes);
+  google.maps.event.addListenerOnce( resourceMap , 'idle', function(){
+    setSizes();
+    historia.triggerEvent( 'windowResize');
+    google.maps.event.addListenerOnce( resourceMap , 'mousemove', function(){
+      setSizes();
+      historia.triggerEvent( 'windowResize');
+    });
+  });
+  google.maps.event.addListenerOnce( resourceMap , 'projection_changed', function(){
+
+  });
 
 
   var historia  = new geozzy.story({
@@ -79,6 +88,7 @@ $(document).ready( function(){
 
 
 function setSizes() {
+  console.log('RESIZE')
   var altoCabeceira = ($('header.headContent').height() + $('.bodyContent .titleBar').height() );
 
   $('.storyLayout .mapa').height( $(window).height() - altoCabeceira);
