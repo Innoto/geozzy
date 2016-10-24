@@ -2,7 +2,7 @@ var geozzy = geozzy || {};
 if(!geozzy.travelPlannerComponents) geozzy.travelPlannerComponents={};
 
 geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
-
+  el: "#travelPlannerSec",
   planTemplate : false,
   dayTemplate: false,
   reourceItemDayTemplate: false,
@@ -16,8 +16,6 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
   initialize: function( parentTp ) {
     var that = this;
 
-    that.el = "#travelPlannerSec";
-    that.$el = $(that.el);
     that.delegateEvents();
     that.parentTp = parentTp;
 
@@ -35,15 +33,11 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.planDays = 1 + that.parentTp.tpData.get('checkout').diff(that.parentTp.tpData.get('checkin'), 'days');
     console.log('Difference is ', that.planDays , 'days');
     that.dayTemplate = _.template( $('#dayTPTemplate').html() );
-    that.$el.find('.travelPlannerPlanDaysContainer').html('');
+    that.$('.travelPlannerPlanDaysContainer').html('');
     for (i = 0; i < that.planDays; i++) {
-      that.$el.find('.travelPlannerPlanDaysContainer').append( that.dayTemplate({ day: (i+1)}) );
+      that.$('.travelPlannerPlanDaysContainer').append( that.dayTemplate({ day: (i+1)}) );
     }
-/*
-    that.datesTemplate = _.template( $('#datesTPTemplate').html() );
-    that.$el.find('.travelPlannerPlanHeader').html( that.datesTemplate() );
 
-*/
     $('.gzznestable.dd').nestable({
       'maxDepth': 1,
       'dragClass': "gzznestable dd-dragel",
@@ -54,10 +48,6 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
         });
       }
     });
-
-    that.el = "#travelPlannerSec";
-    that.$el = $(that.el);
-    that.delegateEvents();
   }
 
 });

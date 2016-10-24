@@ -9,6 +9,9 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.travelPlannerInterfaceView = false;
   that.travelPlannerDatesView = false;
   that.travelPlannerPlanView = false;
+  that.travelPlannerResourceView = false;
+
+  moment.locale('es');
 
   var resParam = {
     fields: false,
@@ -70,6 +73,13 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.initPlan = function(){
     if( that.tpData.get('checkin') !== false || that.tpData.get('checkout') !== false ){
       that.travelPlannerPlanView = new geozzy.travelPlannerComponents.TravelPlannerPlanView(that);
+    }
+  }
+  that.addToPlan = function(idRes){
+    if( that.tpData.get('checkin') !== false || that.tpData.get('checkout') !== false ){
+      that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, idRes );
+    }else{
+      alert("Select dates first");
     }
   }
 }

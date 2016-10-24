@@ -2,7 +2,7 @@ var geozzy = geozzy || {};
 if(!geozzy.travelPlannerComponents) geozzy.travelPlannerComponents={};
 
 geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
-
+  el: "#travelPlannerSec",
   datesTemplate : false,
   modalTemplate : false,
   parentTp : false,
@@ -14,8 +14,6 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
   initialize: function( parentTp ) {
     var that = this;
 
-    that.el = "#travelPlannerSec";
-    that.$el = $(that.el);
     that.delegateEvents();
     that.parentTp = parentTp;
 
@@ -31,7 +29,7 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
     var that = this;
 
     that.datesTemplate = _.template( $('#datesTPTemplate').html() );
-    that.$el.find('.travelPlannerPlanHeader').html( that.datesTemplate() );
+    that.$('.travelPlannerPlanHeader').html( that.datesTemplate() );
 
     var calDateFormat = that.parentTp.dateFormat;
     var calCheckIn = false;
@@ -52,7 +50,6 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
         'startDate':  calCheckIn,
         'minDate':  calCheckIn,
         'endDate':  calCheckOut,
-        /*'opens': 'embed';*/
         'autoApply': true,
         'locale': {
           'format': calDateFormat,
@@ -68,10 +65,6 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
         that.parentTp.initPlan();
       }
     );
-
-    that.el = "#travelPlannerSec";
-    that.$el = $(that.el);
-    that.delegateEvents();
   }
 
 
