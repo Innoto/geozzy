@@ -106,20 +106,17 @@ class RExtCommunityAPIView extends View {
         */
       }
     }
+    elseif( ( $userId === null || $userId === 0 ) && $command === 'getCommunityUrl' ) {
+      $result = array(
+        'result' => 'ok',
+        'status' => $this->commCtrl->getCommunityUrl( $this->userId )
+      );
+    }
     else {
-      // getCommunityUrl funciona sin indicar user
-      if( $command === 'getCommunityUrl' ) {
-        $result = array(
-          'result' => 'ok',
-          'status' => $this->commCtrl->getCommunityUrl( $this->userId )
-        );
-      }
-      else {
-        $result = array(
-          'result' => 'error',
-          'msg' => 'User error'
-        );
-      }
+      $result = array(
+        'result' => 'error',
+        'msg' => 'User error'
+      );
     }
 
     header('Content-Type: application/json; charset=utf-8');
