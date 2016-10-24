@@ -41,8 +41,7 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
           'style': 'box',
           /*'locale':'es',*/
           'zoomable': false,
-          'unselectable':false,
-          'cluster':true
+          'unselectable':false
       };
 
       // Instantiate our timeline object.
@@ -58,8 +57,11 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
       links.events.addListener(that.timeline, 'select', function( propiedades ) {
         var selection = that.timeline.getSelection();
 
-        console.log(selection[0].row);
+        //console.log(selection[0].row);
         //console.log(that.timeline.getSelection()[0].row);
+        that.parentStory.triggerEvent('forceStep', { id: that.timelineIndex[ selection[0].row ] } );
+        //that.timeline.box.align = 'center';
+        that.timeline.setVisibleChartRangeAuto();
       });
 
       // Draw our timeline with the created data and options
@@ -110,7 +112,9 @@ geozzy.storyComponents.StoryPluginTimelineView = Backbone.View.extend({
 
     that.parentStory.storySteps.each( function(e,i){
 
-      if( e.get('initDate') != null ) {
+      var showTimeline = e.get('showTimeline');
+
+      if( showTimeline != null && showTimeline == 1 ) {
         that.timelineIndex.push(e.get('id'));
         timeLineData.push({
           'start': new Date(e.get('initDate')),

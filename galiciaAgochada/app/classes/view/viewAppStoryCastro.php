@@ -22,28 +22,10 @@ class viewAppStoryCastro extends MasterView
 
     biMetrics::autoIncludes();
     explorer::autoIncludes();
-    $template->addClientScript('CanvasLayer/src/CanvasLayer.js', 'vendor/manual');
-    $template->addClientScript('mathjs/dist/math.min.js', 'vendor/bower');
+    story::autoIncludes();
 
-    // Para plugin Timeline
-    $template->addClientScript('chap-links-library/js/src/timeline/timeline-locales.js', 'vendor/bower');
-    $template->addClientScript('chap-links-library/js/src/timeline/timeline.js', 'vendor/bower');
-    $template->addClientStyles('chap-links-library/js/src/timeline/timeline.css', 'vendor/bower');
-
-    $template->addClientScript('js/model/StoryStepModel.js', 'rtypeStory');
-    $template->addClientScript('js/router/StoryRouter.js', 'rtypeStory');
-    $template->addClientScript('js/collection/StoryStepCollection.js', 'rtypeStory');
-    $template->addClientScript('js/view/StoryTemplates.js', 'rtypeStory');
-    $template->addClientScript('js/view/StoryList.js', 'rtypeStory');
-    $template->addClientScript('js/view/StoryBackground.js', 'rtypeStory');
-    $template->addClientScript('js/view/plugins/StoryPluginLegendView.js', 'rtypeStory');
     $template->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');
     $template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
-    $template->addClientScript('js/view/plugins/StoryPluginPOISView.js', 'rtypeStory');
-    $template->addClientScript('js/view/plugins/StoryPluginKMLView.js', 'rtypeStory');
-    $template->addClientScript('js/view/plugins/StoryPluginTimelineView.js', 'rtypeStory');    
-    $template->addClientScript('js/Story.js', 'rtypeStory');
-
 
     $template->addClientScript('js/galiciaAgochadaExplorersUtils.js');
     $template->addClientScript('js/castroStory.js');

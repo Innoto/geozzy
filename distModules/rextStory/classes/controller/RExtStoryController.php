@@ -75,12 +75,10 @@ class RExtStoryController extends RExtController implements RExtInterface {
     $form_values = $form->getValuesArray();
     $filterRTypeParent = $form_values['rTypeIdName'];
 
-    $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':pasos' );
-
     $resourceModel = new ResourceModel();
     $rtypeControl = new ResourcetypeModel();
 
-    $rtypeArray = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => $filter )));
+    $rtypeArray = $rtypeControl->listItems();
 
     $filterRtype = array();
     while( $res = $rtypeArray->fetch() ){
