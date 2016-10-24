@@ -60,13 +60,12 @@
       mapControlUtils = new mapControlsUtils();
 
 
-      google.maps.event.addListenerOnce( that.resourceMap , 'idle', function(){
-        explorador.layoutDistributeSize();
+      google.maps.event.addListenerOnce( that.resourceMap , 'projection_changed', function(){
+        google.maps.event.addListenerOnce( that.resourceMap , 'mousemove', function(){
+            that.layoutDistributeSize();
+        });
       });
 
-      google.maps.event.addListener( that.resourceMap , 'zoom_changed', function(){
-        that.layoutDistributeSize();
-      });
 
       mapControlUtils.changeMapControls(that.resourceMap);
 
@@ -551,6 +550,7 @@
       layoutDistributeSize. util method
      */
     that.layoutDistributeSize = function(){
+      console.log('REDIMENSIONAR');
 
       if( that.resourceMap.getZoom() < 12 ) {
 
