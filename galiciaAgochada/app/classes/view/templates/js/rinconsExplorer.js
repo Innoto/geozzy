@@ -59,14 +59,12 @@
       };
       that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
 
-      google.maps.event.addListenerOnce( that.resourceMap , 'idle', function(){
-        explorador.layoutDistributeSize();
+      google.maps.event.addListenerOnce( that.resourceMap , 'projection_changed', function(){
+        google.maps.event.addListenerOnce( that.resourceMap , 'mousemove', function(){
+            that.layoutDistributeSize();
+        });
       });
-
-      google.maps.event.addListener( that.resourceMap , 'zoom_changed', function(){
-        that.layoutDistributeSize();
-      });
-
+      
       mapControlUtils = new mapControlsUtils();
       mapControlUtils.changeMapControls(that.resourceMap);
 
