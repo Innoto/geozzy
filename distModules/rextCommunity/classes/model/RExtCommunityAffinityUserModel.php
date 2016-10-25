@@ -4,23 +4,18 @@ Cogumelo::load( 'coreModel/Model.php' );
 
 
 
-class RExtCommunityAffinityModel extends Model {
+class RExtCommunityAffinityUserModel extends Model {
 
-  static $tableName = 'geozzy_resource_rext_community_affinity';
+  static $tableName = 'geozzy_resource_rext_community_affinity_user';
 
   static $cols = array(
     'id' => array(
       'type' => 'INT',
-      'primarykey' => true,
-      'autoincrement' => true
-    ),
-    'user' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'UserModel',
-      'key'=> 'id'
+      'primarykey' => true
     ),
     'affinityList' => array(
-      'type' => 'STRING'
+      'type' => 'VARCHAR',
+      'size' => 15000
     )
   );
 

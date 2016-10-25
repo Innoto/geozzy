@@ -335,6 +335,7 @@ class RExtCommunityController extends RExtController implements RExtInterface {
     /*
     ** APAÑO TEMPORAL !!!
     */
+    /*
     $userModel = new UserModel();
     $userList = $userModel->listItems();
     while( $userObj = $userList->fetch() ) {
@@ -343,6 +344,15 @@ class RExtCommunityController extends RExtController implements RExtInterface {
         $commPropose[] = $userId;
       }
     }
+    */
+    $afinModel = new RExtCommunityAffinityUserModel();
+    $afinList = $afinModel->listItems( array( 'filters' => array( 'id' => $commUser ) ) );
+    $afinObj = ( $afinList ) ? $afinList->fetch() : false;
+    if( $afinObj ) {
+      $commPropose = $afinObj->getter('affinityList');
+    }
+
+    error_log( 'commPropose = '.$commPropose )
 
     return $commPropose;
   }
