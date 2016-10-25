@@ -94,23 +94,10 @@
     that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
-        partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         useUrlRouter: true,
         explorerId:'paisaxes',
-        explorerSectionName:'Paisaxes espectaculares',
-        resourceAccess: function(id) {
-          $(".explorerContainer.explorer-loading").show();
-          $(".explorerContainer.explorer-container-du").load(
-            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
-            { pf: 'blk' },
-            function() {
-              $(".explorerContainer.explorer-loading").hide();
-              $(".explorerContainer.explorer-container-du").show();
-            }
-          );
-
-        }
+        explorerSectionName:'Paisaxes espectaculares'
 
       });
 
@@ -119,39 +106,13 @@
       that.explorer.addDisplay(new geozzy.explorerComponents.biView());
 
       that.explorerRutas = new geozzy.explorer({
-        partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         explorerId:'rutas',
-        explorerSectionName:'Rutas',
-        resourceAccess: function(id) {
-          $(".explorerContainer.explorer-loading").show();
-          $(".explorerContainer.explorer-container-du").load(
-            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
-            { pf: 'blk' },
-            function() {
-              $(".explorerContainer.explorer-loading").hide();
-              $(".explorerContainer.explorer-container-du").show();
-            }
-          );
-
-        }
-
+        explorerSectionName:'Rutas'
       });
 
       that.explorerRestaurantes = new geozzy.explorer({
-        explorerId:'xantares',
-        resourceAccess: function(id) {
-          $(".explorerContainer.explorer-loading").show();
-          $(".explorerContainer.explorer-container-du").load(
-            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
-            { pf: 'blk' },
-            function() {
-              $(".explorerContainer.explorer-loading").hide();
-              $(".explorerContainer.explorer-container-du").show();
-            }
-          );
-
-        }
+        explorerId:'xantares'
       });
 
     }
@@ -160,7 +121,7 @@
       setEvents. set explorer events
     */
     that.setEvents = function() {
-      console.log(that)
+      // Resource quit
       that.explorer.bindEvent('resourceQuit', function(){
         $(".explorerContainer.explorer-container-du").hide();
         $(".explorerContainer.explorer-container-du").html('');
@@ -175,6 +136,20 @@
         $(".explorerContainer.explorer-container-du").hide();
         $(".explorerContainer.explorer-container-du").html('');
       });
+
+      // Resource access
+      that.explorer.bindEvent('resourceAccess', function( ev){
+        $(".explorerContainer.explorer-loading").show();
+        $(".explorerContainer.explorer-container-du").load(
+          '/'+cogumelo.publicConf.C_LANG+'/resource/' + ev.id,
+          { pf: 'blk' },
+          function() {
+            $(".explorerContainer.explorer-loading").hide();
+            $(".explorerContainer.explorer-container-du").show();
+          }
+        );
+      });
+
 
     }
 

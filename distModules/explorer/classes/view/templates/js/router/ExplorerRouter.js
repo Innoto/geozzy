@@ -17,8 +17,8 @@ geozzy.explorerComponents.mainRouter = Backbone.Router.extend({
 
   resource: function( id ) {
     var that = this;
-
-    that.parentExplorer.options.resourceAccess(id);
+    that.parentExplorer.triggerEvent('resourceAccess', {id: id});
+    //that.parentExplorer.options.resourceAccess(id);
   }
 
 });

@@ -90,23 +90,10 @@
     that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
-        partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         useUrlRouter: true,
         explorerId:'praias',
-        explorerSectionName:'Praias de ensono',
-        resourceAccess: function(id) {
-          $(".explorerContainer.explorer-loading").show();
-          $(".explorerContainer.explorer-container-du").load(
-            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
-            { pf: 'blk' },
-            function() {
-              $(".explorerContainer.explorer-loading").hide();
-              $(".explorerContainer.explorer-container-du").show();
-            }
-          );
-
-        }
+        explorerSectionName:'Praias de ensono'
       });
 
     }
@@ -116,9 +103,23 @@
       setEvents. set explorer events
     */
     that.setEvents = function() {
+      // Resource Quit
       that.explorer.bindEvent('resourceQuit', function(){
         $(".explorerContainer.explorer-container-du").hide();
         $(".explorerContainer.explorer-container-du").html('');
+      });
+
+      // Resource access
+      that.explorer.bindEvent('resourceAccess', function( ev){
+        $(".explorerContainer.explorer-loading").show();
+        $(".explorerContainer.explorer-container-du").load(
+          '/'+cogumelo.publicConf.C_LANG+'/resource/' + ev.id,
+          { pf: 'blk' },
+          function() {
+            $(".explorerContainer.explorer-loading").hide();
+            $(".explorerContainer.explorer-container-du").show();
+          }
+        );
       });
     }
 

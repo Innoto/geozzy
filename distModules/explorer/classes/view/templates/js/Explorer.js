@@ -29,12 +29,9 @@ geozzy.explorer = function( opts ) {
     useUrlRouter: false,
 
     // events
-    minimalLoadSuccess: function() {},
-    partialLoadSuccess: function() {},
-    filterChangeEvent: function(){},
-    filteringEndEvent: function(){},
-    firstLoadEvent: function(){},
-    resourceAccess: function( ){ return false;},
+    //minimalLoadSuccess: function() {},
+    //partialLoadSuccess: function() {},
+    //resourceAccess: function( ){ return false;},
     //resourceQuit: function() {}
   }
   $.extend(true, that.options, opts);
@@ -43,7 +40,7 @@ geozzy.explorer = function( opts ) {
 
   // metrics into explorer core are DEPRECATED
   //that.metricsExplorerController = geozzy.biMetricsInstances.explorer;
-  that.metricsResourceController = geozzy.biMetricsInstances.resource;
+  //that.metricsResourceController = geozzy.biMetricsInstances.resource;
 
 
   // events
@@ -102,11 +99,7 @@ geozzy.explorer = function( opts ) {
     }
 
     that.bindEvent('resourceClick', function(param){
-
-      if( that.options.resourceAccess(param.id) !== false ) {
-        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id);
-      }
-
+      geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
     });
 
 
@@ -141,7 +134,8 @@ geozzy.explorer = function( opts ) {
             that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
           }
           that.applyFilters();
-          that.options.minimalLoadSuccess();
+          //that.options.minimalLoadSuccess();
+          that.triggerEvent('minimalLoadSuccess',{})
         }
       }
 
@@ -313,7 +307,7 @@ geozzy.explorer = function( opts ) {
           that.timeDebugerExtended.log( '&nbsp;- Render lists' );
         }
 
-        that.options.partialLoadSuccess();
+        that.triggerEvent('partialLoadSuccess', {})
       }
 
     );
