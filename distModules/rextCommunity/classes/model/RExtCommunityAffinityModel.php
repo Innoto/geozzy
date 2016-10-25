@@ -19,13 +19,8 @@ class RExtCommunityAffinityModel extends Model {
       'vo' => 'UserModel',
       'key'=> 'id'
     ),
-    'follow' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'UserModel',
-      'key'=> 'id'
-    ),
-    'affinity' => array(
-      'type' => 'INT'
+    'affinityList' => array(
+      'type' => 'STRING'
     )
   );
 
