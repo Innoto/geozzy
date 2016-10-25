@@ -33,7 +33,7 @@
   function paisaxesExplorer() {
     var that = this;
 
-
+    that.explorer = false;
     that.explorerclass = '.paisaxesExplorer';
     that.mapOptions = false;
     that.resourceMap  = false;
@@ -159,8 +159,8 @@
     /**
       setEvents. set explorer events
     */
-    that.setExplorer = function() {
-
+    that.setEvents = function() {
+      console.log(that)
       that.explorer.bindEvent('resource_quit', function(){
         $(".explorerContainer.explorer-container-du").hide();
         $(".explorerContainer.explorer-container-du").html('');

@@ -94,6 +94,7 @@
       that.explorer = new geozzy.explorer({
         partialLoadSuccess: function(){ that.layoutDistributeSize();  },
         debug: false,
+        useUrlRouter: true,
         explorerId:'rincons',
         explorerSectionName:'Rincons espectaculares',
         resourceAccess: function(id) {
@@ -134,7 +135,7 @@
     /**
       setEvents. set explorer events
     */
-    that.setExplorer = function() {
+    that.setEvents = function() {
       that.explorer.bindEvent('resource_quit', function(){
         $(".explorerContainer.explorer-container-du").hide();
         $(".explorerContainer.explorer-container-du").html('');

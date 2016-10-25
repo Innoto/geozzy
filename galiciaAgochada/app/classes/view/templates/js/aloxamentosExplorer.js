@@ -92,6 +92,7 @@
       that.explorer = new geozzy.explorer({
         partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
+        useUrlRouter: true,
         explorerId:'aloxamentos',
         explorerSectionName:'Aloxamentos con encanto',
         resourceAccess: function(id) {
@@ -115,7 +116,7 @@
     /**
       setEvents. set explorer events
     */
-    that.setExplorer = function() {
+    that.setEvents = function() {
 
       that.explorer.bindEvent('resource_quit', function(){
         $(".explorerContainer.explorer-container-du").hide();
