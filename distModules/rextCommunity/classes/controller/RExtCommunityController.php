@@ -345,12 +345,14 @@ class RExtCommunityController extends RExtController implements RExtInterface {
       }
     }
     */
+
     $afinModel = new RExtCommunityAffinityUserModel();
     $afinList = $afinModel->listItems( array( 'filters' => array( 'id' => $commUser ) ) );
     $afinObj = ( $afinList ) ? $afinList->fetch() : false;
     if( $afinObj ) {
-      if( $commPropose = $afinObj->getter('affinityList') ) {
-        $commPropose = explode( ',', $commPropose );
+      $afinCSV = $afinObj->getter('affinityList');
+      if( $afinCSV ) {
+        $commPropose = array_diff( explode( ',', $afinCSV ), $ignore );
       }
     }
 
