@@ -221,8 +221,6 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
             section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
           });
 
-          // call metrics event
-          //that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
       break;
       case 'mouseenter':
         if( that.parentExplorer.displays.map ) {

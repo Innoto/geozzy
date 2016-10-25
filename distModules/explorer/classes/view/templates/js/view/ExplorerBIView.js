@@ -48,7 +48,6 @@ geozzy.explorerComponents.biView = Backbone.View.extend({
     });
 
     that.parentExplorer.bindEvent('resourceMouseOut', function( metric ){
-      console.log('OUT!')
       that.options.metricsResourceController.eventHoverEnd( metric.id );
     });
 
