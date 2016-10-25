@@ -8,6 +8,7 @@
 
     explorador.setInitialData( function() {
       explorador.setExplorer();
+      explorador.setEvents();
       explorador.setDisplays();
       explorador.setFilters();
       explorador.exec();
@@ -83,7 +84,7 @@
     that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
-        partialLoadSuccess: function(){ that.layoutDistributeSize() },        
+        partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         explorerId:'todosSegredos',
         explorerSectionName:'Todos os segredos',
@@ -110,6 +111,16 @@
     }
 
 
+
+    /**
+      setEvents. set explorer events
+    */
+    that.setExplorer = function() {
+      that.explorer.bindEvent('resource_quit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
+    }
 
 
 

@@ -6,6 +6,7 @@
 
     explorador.setInitialData( function() {
       explorador.setExplorer();
+      explorador.setEvents();
       explorador.setDisplays();
       explorador.setFilters();
       explorador.exec();
@@ -113,10 +114,6 @@
 
       });
 
-      that.explorer.bindEvent('resource_quit', function(){
-        $(".explorerContainer.explorer-container-du").hide();
-        $(".explorerContainer.explorer-container-du").html('');
-      })
 
       // ADD BI METRICS ADAPTER for main explorer
       that.explorer.addDisplay(new geozzy.explorerComponents.biView());
@@ -137,10 +134,6 @@
             }
           );
 
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
         }
 
       });
@@ -158,16 +151,32 @@
             }
           );
 
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
         }
       });
 
     }
 
+    /**
+      setEvents. set explorer events
+    */
+    that.setExplorer = function() {
 
+      that.explorer.bindEvent('resource_quit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
+
+      that.explorerRutas.bindEvent('resource_quit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
+
+      that.explorerRestaurantes.bindEvent('resource_quit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
+
+    }
 
 
 

@@ -26,6 +26,7 @@
 
     explorador.presetExplorer( function() {
       explorador.setExplorer();
+      explorador.setEvents();
     });
 
   });
@@ -96,18 +97,7 @@
       setExplorer. instance the explorer object
      */
     that.setExplorer = function() {
-/*
-      that.explorer2 =  new geozzy.explorer({
-        debug: false,
-        explorerId:'paisaxes',
-        explorerSectionName:'Paisaxes',
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
-        }
 
-      });
-*/
       that.explorer = new geozzy.explorer({
         //partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
@@ -124,12 +114,7 @@
             }
           );
 
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
         }
-
       });
 
       that.setDisplays();
@@ -137,11 +122,26 @@
       that.setParticipation();
 
       that.explorer.exec();
-      //that.explorer2.exec();
-
     }
 
 
+    /**
+      setEvents. set explorer events
+    */
+    that.setExplorer = function() {
+      that.explorer.bindEvent('resource_quit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
+    }
+
+
+    /**
+      setEvents. set explorer events
+    */
+    that.setExplorer = function() {
+      that.explorer.
+    }
 
 
 
