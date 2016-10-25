@@ -31,6 +31,27 @@ geozzy.explorerComponents.biView = Backbone.View.extend({
       that.options.metricsResourceController.eventAccessedEnd();
     });
 
+    that.parentExplorer.bindEvent('resourceClick', function( metric ){
+      that.options.metricsResourceController.eventClick( metric.id, metric.section );
+    });
+
+    that.parentExplorer.bindEvent('resource_print', function( metric ){
+      that.options.metricsResourceController.eventPrint( metric.id, metric.section );
+    });
+
+    that.parentExplorer.bindEvent('resource_print', function( metric ){
+      that.options.metricsResourceController.eventPrint( metric.id, metric.section );
+    });
+
+    that.parentExplorer.bindEvent('resourceHover', function( metric ){
+      that.options.metricsResourceController.eventHoverStart( metric.id, metric.section );
+    });
+
+    that.parentExplorer.bindEvent('resourceMouseOut', function( metric ){
+      console.log('OUT!')
+      that.options.metricsResourceController.eventHoverEnd( metric.id );
+    });
+
 /*
 
 

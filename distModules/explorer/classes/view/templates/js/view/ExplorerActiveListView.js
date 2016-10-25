@@ -121,10 +121,14 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       element.category = elementCategory;
 
       // metrics
-      that.parentExplorer.metricsResourceController.eventPrint(
+      /*that.parentExplorer.metricsResourceController.eventPrint(
         that.parentExplorer.resourcePartialList.get( e ).get('id'),
         'Explorer: '+that.parentExplorer.options.explorerSectionName
-      );
+      );*/
+      that.parentExplorer.triggerEvent('resource_print',{
+        id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
+        section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+      });
 
       contentHtml += that.tplElement(element);
       contador++;
@@ -212,10 +216,13 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     var that = this;
     switch (eventType) {
       case 'click':
-          that.parentExplorer.triggerEvent('resourceClick',{id:$(element.currentTarget).attr('data-resource-id')} );
+          that.parentExplorer.triggerEvent('resourceClick',{
+            id: $(element.currentTarget).attr('data-resource-id'),
+            section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+          });
 
           // call metrics event
-          that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
+          //that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
       break;
       case 'mouseenter':
         if( that.parentExplorer.displays.map ) {
@@ -223,12 +230,13 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
           that.parentExplorer.displays.map.markerHover( $(element.currentTarget).attr('data-resource-id') );
           that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
         }
-        else {
-          that.parentExplorer.metricsResourceController.eventHoverStart(
-            $(element.currentTarget).attr('data-resource-id') ,
-            'Explorer: '+that.parentExplorer.options.explorerSectionName
-          );
-        }
+
+        that.parentExplorer.triggerEvent('resourceHover', {
+          id: $(element.currentTarget).attr('data-resource-id'),
+          section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+        });
+
+
       break;
       case 'mouseleave':
         if( that.parentExplorer.displays.map ) {
@@ -236,9 +244,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
           that.parentExplorer.displays.map.markerBounceEnd( $(element.currentTarget).attr('data-resource-id') );
         }
 
-        that.parentExplorer.metricsResourceController.eventHoverEnd(
-          $(element.currentTarget).attr('data-resource-id')
-        );
+        that.parentExplorer.triggerEvent('resourceMouseOut', {id:$(element.currentTarget).attr('data-resource-id')});
 
       break;
     }

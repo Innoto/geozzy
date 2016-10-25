@@ -95,6 +95,7 @@
       that.explorer = new geozzy.explorer({
         partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
+        useUrlRouter: true,
         explorerId:'paisaxes',
         explorerSectionName:'Paisaxes espectaculares',
         resourceAccess: function(id) {
@@ -108,13 +109,14 @@
             }
           );
 
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
         }
 
       });
+
+      that.explorer.bindEvent('resource_quit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      })
 
       // ADD BI METRICS ADAPTER for main explorer
       that.explorer.addDisplay(new geozzy.explorerComponents.biView());

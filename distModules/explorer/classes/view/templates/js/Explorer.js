@@ -30,20 +30,19 @@ geozzy.explorer = function( opts ) {
     // cache times (in seconds)
     cacheTimeIndex: 20,
     debug: false,
-    useUrlRouter: true,
+    useUrlRouter: false,
 
     // events
     filterChangeEvent: function(){},
     filteringEndEvent: function(){},
     firstLoadEvent: function(){},
     resourceAccess: function( ){ return false;},
-    resourceQuit: function( ) { return false;}
   }
   $.extend(true, that.options, opts);
 
   that.explorerTouchDevice = $('html').hasClass('touch');
 
-  // metrics DEPRECATED
+  // metrics into explorer core are DEPRECATED
   //that.metricsExplorerController = geozzy.biMetricsInstances.explorer;
   that.metricsResourceController = geozzy.biMetricsInstances.resource;
 
@@ -367,7 +366,6 @@ geozzy.explorer = function( opts ) {
 
   that.triggerEvent = function( eventName, parameters) {
     var that = this;
-
 
     $.each( that.explorerEvents, function( i, event ){
       if( typeof event.name != 'undefined' && event.name == eventName  ) {

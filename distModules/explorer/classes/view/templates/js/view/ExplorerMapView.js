@@ -644,24 +644,21 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var that = this;
 
     // call metrics event
-    that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
-    that.parentExplorer.triggerEvent('resourceClick', {id:id});
+    //that.parentExplorer.metricsResourceController.eventClick( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
+    that.parentExplorer.triggerEvent('resourceClick', {
+      id: id,
+      section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+    });
   },
 
   markerHover: function( id ){
     var that = this;
 
-    // call metrics event
-    that.parentExplorer.metricsResourceController.eventHoverStart( id, 'Explorer: '+that.parentExplorer.options.explorerSectionName );
-
-    that.parentExplorer.triggerEvent('resourceHover', {id:id});
+    that.parentExplorer.triggerEvent('resourceHover', { id: id, section: 'Explorer: '+that.parentExplorer.options.explorerSectionName});
 
   },
   markerOut: function( id ) {
     var that = this;
-
-    // call metrics event end
-    that.parentExplorer.metricsResourceController.eventHoverEnd( id );
 
     if( that.parentExplorer.displays.activeList ) {
       that.panToLastCenter();
