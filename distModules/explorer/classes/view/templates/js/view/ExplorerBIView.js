@@ -23,11 +23,11 @@ geozzy.explorerComponents.biView = Backbone.View.extend({
 
     that.parentExplorer = parentExplorer;
 
-    that.parentExplorer.bindEvent('context_change', function( metricData ){
+    that.parentExplorer.bindEvent('contextChange', function( metricData ){
       that.options.metricsExplorerController.addMetric(metricData);
     });
 
-    that.parentExplorer.bindEvent('resource_quit', function( ){
+    that.parentExplorer.bindEvent('resourceQuit', function( ){
       that.options.metricsResourceController.eventAccessedEnd();
     });
 
@@ -35,11 +35,11 @@ geozzy.explorerComponents.biView = Backbone.View.extend({
       that.options.metricsResourceController.eventClick( metric.id, metric.section );
     });
 
-    that.parentExplorer.bindEvent('resource_print', function( metric ){
+    that.parentExplorer.bindEvent('resourcePrint', function( metric ){
       that.options.metricsResourceController.eventPrint( metric.id, metric.section );
     });
 
-    that.parentExplorer.bindEvent('resource_print', function( metric ){
+    that.parentExplorer.bindEvent('resourcePrint', function( metric ){
       that.options.metricsResourceController.eventPrint( metric.id, metric.section );
     });
 

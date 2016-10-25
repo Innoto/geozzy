@@ -161,17 +161,17 @@
     */
     that.setEvents = function() {
       console.log(that)
-      that.explorer.bindEvent('resource_quit', function(){
+      that.explorer.bindEvent('resourceQuit', function(){
         $(".explorerContainer.explorer-container-du").hide();
         $(".explorerContainer.explorer-container-du").html('');
       });
 
-      that.explorerRutas.bindEvent('resource_quit', function(){
+      that.explorerRutas.bindEvent('resourceQuit', function(){
         $(".explorerContainer.explorer-container-du").hide();
         $(".explorerContainer.explorer-container-du").html('');
       });
 
-      that.explorerRestaurantes.bindEvent('resource_quit', function(){
+      that.explorerRestaurantes.bindEvent('resourceQuit', function(){
         $(".explorerContainer.explorer-container-du").hide();
         $(".explorerContainer.explorer-container-du").html('');
       });

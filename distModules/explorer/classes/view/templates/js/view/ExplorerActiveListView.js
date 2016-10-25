@@ -125,7 +125,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
         that.parentExplorer.resourcePartialList.get( e ).get('id'),
         'Explorer: '+that.parentExplorer.options.explorerSectionName
       );*/
-      that.parentExplorer.triggerEvent('resource_print',{
+      that.parentExplorer.triggerEvent('resourcePrint',{
         id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
         section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
       });

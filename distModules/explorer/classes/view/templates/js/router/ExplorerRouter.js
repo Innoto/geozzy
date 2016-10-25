@@ -12,7 +12,7 @@ geozzy.explorerComponents.mainRouter = Backbone.Router.extend({
   main: function( ) {
     var that = this;
 
-    that.parentExplorer.triggerEvent('resource_quit', {});
+    that.parentExplorer.triggerEvent('resourceQuit', {});
   },
 
   resource: function( id ) {

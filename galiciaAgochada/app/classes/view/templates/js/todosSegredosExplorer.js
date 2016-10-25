@@ -112,7 +112,7 @@
       setEvents. set explorer events
     */
     that.setEvents = function() {
-      that.explorer.bindEvent('resource_quit', function(){
+      that.explorer.bindEvent('resourceQuit', function(){
         $(".explorerContainer.explorer-container-du").hide();
         $(".explorerContainer.explorer-container-du").html('');
       });

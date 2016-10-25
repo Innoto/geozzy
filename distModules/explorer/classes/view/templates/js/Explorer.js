@@ -264,7 +264,7 @@ geozzy.explorer = function( opts ) {
         });
 
         // context changed and send metrics by parameter
-        that.triggerEvent('context_change', metricData );
+        that.triggerEvent('contextChange', metricData );
       }
 
       if( !dontRenderMap ) {
