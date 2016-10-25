@@ -23,7 +23,6 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
 
     recommenderActiveDebug = true;
     that.debuger = new TimeDebuger( {debug:true} );
-    that.debuger.log('ola');
   },
 
   setParentExplorer: function( parentExplorer ) {
