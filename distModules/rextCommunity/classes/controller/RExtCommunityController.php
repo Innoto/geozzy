@@ -349,10 +349,12 @@ class RExtCommunityController extends RExtController implements RExtInterface {
     $afinList = $afinModel->listItems( array( 'filters' => array( 'id' => $commUser ) ) );
     $afinObj = ( $afinList ) ? $afinList->fetch() : false;
     if( $afinObj ) {
-      $commPropose = $afinObj->getter('affinityList');
+      if( $commPropose = $afinObj->getter('affinityList') ) {
+        $commPropose = explode( ',', $commPropose );
+      }
     }
 
-    error_log( 'commPropose = '.$commPropose )
+    error_log( 'commPropose = '. json_encode( $commPropose ) );
 
     return $commPropose;
   }
