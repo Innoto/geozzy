@@ -12,7 +12,7 @@ class AloxamentosExplorerModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'appExplorer#1.2',
+      'version' => 'appExplorer#1.8',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_aloxamentos_explorer_index;
@@ -50,7 +50,7 @@ class AloxamentosExplorerModel extends Model
 
         WHERE
           geozzy_resource.published = 1 AND
-          geozzy_topic.idName = `AloxamentoConEncanto`
+          geozzy_topic.idName = \'AloxamentoConEncanto\'
         group by geozzy_resource.id;
       '
     )

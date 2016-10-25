@@ -23,30 +23,34 @@ geozzy.explorerComponents.biView = Backbone.View.extend({
 
     that.parentExplorer = parentExplorer;
 
-    that.parentExplorer.bindEvent('context_change', function( metricData ){
+    that.parentExplorer.bindEvent('contextChange', function( metricData ){
       that.options.metricsExplorerController.addMetric(metricData);
     });
 
-    that.parentExplorer.bindEvent('resource_quit', function( ){
+    that.parentExplorer.bindEvent('resourceQuit', function( ){
       that.options.metricsResourceController.eventAccessedEnd();
     });
 
-/*
-
-
-    that.parentExplorer.bindEvent('resourceHover', function( params ){
-      that.show(params.id);
+    that.parentExplorer.bindEvent('resourceClick', function( metric ){
+      that.options.metricsResourceController.eventClick( metric.id, metric.section );
     });
 
-    that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
-      that.hide(params.id);
+    that.parentExplorer.bindEvent('resourcePrint', function( metric ){
+      that.options.metricsResourceController.eventPrint( metric.id, metric.section );
     });
 
-
-    that.parentExplorer.bindEvent('resourceClick', function( params ){
-      //that.show(params.id);
+    that.parentExplorer.bindEvent('resourcePrint', function( metric ){
+      that.options.metricsResourceController.eventPrint( metric.id, metric.section );
     });
-*/
+
+    that.parentExplorer.bindEvent('resourceHover', function( metric ){
+      that.options.metricsResourceController.eventHoverStart( metric.id, metric.section );
+    });
+
+    that.parentExplorer.bindEvent('resourceMouseOut', function( metric ){
+      that.options.metricsResourceController.eventHoverEnd( metric.id );
+    });
+
   },
 
   render: function( ) {

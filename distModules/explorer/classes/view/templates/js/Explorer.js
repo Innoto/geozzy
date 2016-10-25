@@ -20,32 +20,27 @@ geozzy.explorer = function( opts ) {
     explorerSectionName: 'Geozzy Explorer',
     explorerAPIHost: '/api/explorer/',
     explorerId: 'default',
-
-    minimalLoadSuccess: function() {},
-    partialLoadSuccess: function() {},
-
     aditionalParameters: {},
     resetLocalStorage:false,
 
     // cache times (in seconds)
     cacheTimeIndex: 20,
     debug: false,
-    useUrlRouter: true,
+    useUrlRouter: false,
 
     // events
-    filterChangeEvent: function(){},
-    filteringEndEvent: function(){},
-    firstLoadEvent: function(){},
-    resourceAccess: function( ){ return false;},
-    resourceQuit: function( ) { return false;}
+    //minimalLoadSuccess: function() {},
+    //partialLoadSuccess: function() {},
+    //resourceAccess: function( ){ return false;},
+    //resourceQuit: function() {}
   }
   $.extend(true, that.options, opts);
 
   that.explorerTouchDevice = $('html').hasClass('touch');
 
-  // metrics DEPRECATED
+  // metrics into explorer core are DEPRECATED
   //that.metricsExplorerController = geozzy.biMetricsInstances.explorer;
-  that.metricsResourceController = geozzy.biMetricsInstances.resource;
+  //that.metricsResourceController = geozzy.biMetricsInstances.resource;
 
 
   // events
@@ -104,11 +99,7 @@ geozzy.explorer = function( opts ) {
     }
 
     that.bindEvent('resourceClick', function(param){
-
-      if( that.options.resourceAccess(param.id) !== false ) {
-        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id);
-      }
-
+      geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
     });
 
 
@@ -143,7 +134,8 @@ geozzy.explorer = function( opts ) {
             that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
           }
           that.applyFilters();
-          that.options.minimalLoadSuccess();
+          //that.options.minimalLoadSuccess();
+          that.triggerEvent('minimalLoadSuccess',{})
         }
       }
 
@@ -266,7 +258,7 @@ geozzy.explorer = function( opts ) {
         });
 
         // context changed and send metrics by parameter
-        that.triggerEvent('context_change', metricData );
+        that.triggerEvent('contextChange', metricData );
       }
 
       if( !dontRenderMap ) {
@@ -315,7 +307,7 @@ geozzy.explorer = function( opts ) {
           that.timeDebugerExtended.log( '&nbsp;- Render lists' );
         }
 
-        that.options.partialLoadSuccess();
+        that.triggerEvent('partialLoadSuccess', {})
       }
 
     );
@@ -367,7 +359,6 @@ geozzy.explorer = function( opts ) {
 
   that.triggerEvent = function( eventName, parameters) {
     var that = this;
-
 
     $.each( that.explorerEvents, function( i, event ){
       if( typeof event.name != 'undefined' && event.name == eventName  ) {

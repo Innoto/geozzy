@@ -6,6 +6,7 @@
 
     explorador.setInitialData( function() {
       explorador.setExplorer();
+      explorador.setEvents();
       explorador.setDisplays();
       explorador.setFilters();
       explorador.exec();
@@ -32,7 +33,7 @@
   function paisaxesExplorer() {
     var that = this;
 
-
+    that.explorer = false;
     that.explorerclass = '.paisaxesExplorer';
     that.mapOptions = false;
     that.resourceMap  = false;
@@ -93,79 +94,64 @@
     that.setExplorer = function() {
 
       that.explorer = new geozzy.explorer({
-        partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
+        useUrlRouter: true,
         explorerId:'paisaxes',
-        explorerSectionName:'Paisaxes espectaculares',
-        resourceAccess: function(id) {
-          $(".explorerContainer.explorer-loading").show();
-          $(".explorerContainer.explorer-container-du").load(
-            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
-            { pf: 'blk' },
-            function() {
-              $(".explorerContainer.explorer-loading").hide();
-              $(".explorerContainer.explorer-container-du").show();
-            }
-          );
-
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
-        }
+        explorerSectionName:'Paisaxes espectaculares'
 
       });
+
 
       // ADD BI METRICS ADAPTER for main explorer
       that.explorer.addDisplay(new geozzy.explorerComponents.biView());
 
       that.explorerRutas = new geozzy.explorer({
-        partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
         explorerId:'rutas',
-        explorerSectionName:'Rutas',
-        resourceAccess: function(id) {
-          $(".explorerContainer.explorer-loading").show();
-          $(".explorerContainer.explorer-container-du").load(
-            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
-            { pf: 'blk' },
-            function() {
-              $(".explorerContainer.explorer-loading").hide();
-              $(".explorerContainer.explorer-container-du").show();
-            }
-          );
-
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
-        }
-
+        explorerSectionName:'Rutas'
       });
 
       that.explorerRestaurantes = new geozzy.explorer({
-        explorerId:'xantares',
-        resourceAccess: function(id) {
-          $(".explorerContainer.explorer-loading").show();
-          $(".explorerContainer.explorer-container-du").load(
-            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
-            { pf: 'blk' },
-            function() {
-              $(".explorerContainer.explorer-loading").hide();
-              $(".explorerContainer.explorer-container-du").show();
-            }
-          );
-
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
-        }
+        explorerId:'xantares'
       });
 
     }
 
+    /**
+      setEvents. set explorer events
+    */
+    that.setEvents = function() {
+      // Resource quit
+      that.explorer.bindEvent('resourceQuit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
 
+      that.explorerRutas.bindEvent('resourceQuit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
+
+      that.explorerRestaurantes.bindEvent('resourceQuit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
+
+      // Resource access
+      that.explorer.bindEvent('resourceAccess', function( ev){
+        $(".explorerContainer.explorer-loading").show();
+        $(".explorerContainer.explorer-container-du").load(
+          '/'+cogumelo.publicConf.C_LANG+'/resource/' + ev.id,
+          { pf: 'blk' },
+          function() {
+            $(".explorerContainer.explorer-loading").hide();
+            $(".explorerContainer.explorer-container-du").show();
+          }
+        );
+      });
+
+
+    }
 
 
 

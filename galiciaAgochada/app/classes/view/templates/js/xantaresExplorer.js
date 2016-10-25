@@ -26,6 +26,7 @@
 
     explorador.presetExplorer( function() {
       explorador.setExplorer();
+      explorador.setEvents();
     });
 
   });
@@ -96,40 +97,12 @@
       setExplorer. instance the explorer object
      */
     that.setExplorer = function() {
-/*
-      that.explorer2 =  new geozzy.explorer({
-        debug: false,
-        explorerId:'paisaxes',
-        explorerSectionName:'Paisaxes',
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
-        }
 
-      });
-*/
       that.explorer = new geozzy.explorer({
-        //partialLoadSuccess: function(){ that.layoutDistributeSize() },
         debug: false,
+        useUrlRouter: true,
         explorerId:'xantares',
-        explorerSectionName:'Sabrosos xantares',
-        resourceAccess: function(id) {
-          $(".explorerContainer.explorer-loading").show();
-          $(".explorerContainer.explorer-container-du").load(
-            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
-            { pf: 'blk' },
-            function() {
-              $(".explorerContainer.explorer-loading").hide();
-              $(".explorerContainer.explorer-container-du").show();
-            }
-          );
-
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
-        }
-
+        explorerSectionName:'Sabrosos xantares'
       });
 
       that.setDisplays();
@@ -137,11 +110,32 @@
       that.setParticipation();
 
       that.explorer.exec();
-      //that.explorer2.exec();
-
     }
 
 
+    /**
+      setEvents. set explorer events
+    */
+    that.setEvents = function() {
+      // Resource Quit
+      that.explorer.bindEvent('resourceQuit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
+
+      // Resource access
+      that.explorer.bindEvent('resourceAccess', function( ev){
+        $(".explorerContainer.explorer-loading").show();
+        $(".explorerContainer.explorer-container-du").load(
+          '/'+cogumelo.publicConf.C_LANG+'/resource/' + ev.id,
+          { pf: 'blk' },
+          function() {
+            $(".explorerContainer.explorer-loading").hide();
+            $(".explorerContainer.explorer-container-du").show();
+          }
+        );
+      });
+    }
 
 
 
