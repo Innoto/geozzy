@@ -1,6 +1,8 @@
 var geozzy = geozzy || {};
 if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
+var recommenderActiveDebug = false;
+var activateRecommenderDebug = false;
 geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
 
   displayType: 'reccomendList',
@@ -11,8 +13,17 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
   },
 
   initialize: function( opts ) {
+    var that = this;
 
+    activateRecommenderDebug = function(){that.activateDebug()};
+  },
 
+  activateDebug: function() {
+    var that = this;
+
+    recommenderActiveDebug = true;
+    that.debuger = new TimeDebuger( {debug:true} );
+    that.debuger.log('ola');
   },
 
   setParentExplorer: function( parentExplorer ) {
@@ -58,7 +69,11 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
 
         $.each(res, function(i,e){
           res_ids.push(e.resource_id)
-          console.log('recomendado por ITG:', e.resource_id)
+          //console.log('recomendado por ITG:', e.resource_id)
+
+          if( that.recommenderActiveDebug === true ) {
+            that.debuger.log('Recurso recomendado:', e.resource_id);
+          }
         });
 
         col.fetchByIds(res_ids, function(){
