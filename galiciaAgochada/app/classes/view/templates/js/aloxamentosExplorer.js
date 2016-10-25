@@ -7,6 +7,7 @@
 
     explorador.setInitialData( function() {
       explorador.setExplorer();
+      explorador.setEvents();
       explorador.setDisplays();
       explorador.setFilters();
       explorador.exec();
@@ -104,12 +105,21 @@
             }
           );
 
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
         }
 
+      });
+
+    }
+
+
+    /**
+      setEvents. set explorer events
+    */
+    that.setExplorer = function() {
+
+      that.explorer.bindEvent('resource_quit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
       });
 
     }

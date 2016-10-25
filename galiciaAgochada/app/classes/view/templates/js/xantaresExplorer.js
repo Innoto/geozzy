@@ -135,15 +135,7 @@
       });
     }
 
-
-    /**
-      setEvents. set explorer events
-    */
-    that.setExplorer = function() {
-      that.explorer.
-    }
-
-
+    
 
     /**
       setDisplays. set explorer display objects

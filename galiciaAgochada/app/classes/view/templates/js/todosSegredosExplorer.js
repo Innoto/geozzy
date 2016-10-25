@@ -100,12 +100,7 @@
             }
           );
 
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
         }
-
       });
 
     }
