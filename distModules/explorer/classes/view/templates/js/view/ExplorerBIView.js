@@ -51,22 +51,6 @@ geozzy.explorerComponents.biView = Backbone.View.extend({
       that.options.metricsResourceController.eventHoverEnd( metric.id );
     });
 
-/*
-
-
-    that.parentExplorer.bindEvent('resourceHover', function( params ){
-      that.show(params.id);
-    });
-
-    that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
-      that.hide(params.id);
-    });
-
-
-    that.parentExplorer.bindEvent('resourceClick', function( params ){
-      //that.show(params.id);
-    });
-*/
   },
 
   render: function( ) {

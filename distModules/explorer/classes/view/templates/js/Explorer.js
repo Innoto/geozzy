@@ -20,10 +20,6 @@ geozzy.explorer = function( opts ) {
     explorerSectionName: 'Geozzy Explorer',
     explorerAPIHost: '/api/explorer/',
     explorerId: 'default',
-
-    minimalLoadSuccess: function() {},
-    partialLoadSuccess: function() {},
-
     aditionalParameters: {},
     resetLocalStorage:false,
 
@@ -33,10 +29,13 @@ geozzy.explorer = function( opts ) {
     useUrlRouter: false,
 
     // events
+    minimalLoadSuccess: function() {},
+    partialLoadSuccess: function() {},
     filterChangeEvent: function(){},
     filteringEndEvent: function(){},
     firstLoadEvent: function(){},
     resourceAccess: function( ){ return false;},
+    //resourceQuit: function() {}
   }
   $.extend(true, that.options, opts);
 
