@@ -51,16 +51,16 @@ class adminBI extends Module
      "includes" => array()
     ),
     array(
-     "id" =>"leaflet",
-     "params" => array("leaflet"),
-     "installer" => "bower",
-     "includes" => array('dist/leaflet.js','dist/leaflet.css')
-    ),
-    array(
      "id" =>"heatmap.js-amd",
      "params" => array("heatmap.js-amd#v2.0"),
      "installer" => "bower",
      "includes" => array('plugins/leaflet-heatmap/leaflet-heatmap.js','build/heatmap.js')
+    ),
+    array(
+     "id" =>"leaflet",
+     "params" => array("leaflet"),
+     "installer" => "bower",
+     "includes" => array('dist/leaflet.js','dist/leaflet.css')
     ),
     array(
      "id" =>"leaflet-areaselect",

@@ -9,5 +9,13 @@ geozzy.travelPlannerComponents.TravelPlannerModel = Backbone.Model.extend({
     checkout: false,
     list: false
   },
-  urlRoot: '/api/travelplanner'
+  urlRoot: '/api/travelplanner',
+
+  save: function() {
+
+  },
+
+  fetch: function() {
+
+  }
 });

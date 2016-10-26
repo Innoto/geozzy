@@ -50,10 +50,13 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       'maxDepth': 1,
       'dragClass': "gzznestable dd-dragel",
       callback: function(l, e) {
-        $('.gzznestable').each(function( index ) {
-          console.log('DAY'+ (index))
-          console.log($(this).nestable('serialize'));
-        });
+
+$('.gzznestable').each(function( index ) {
+  console.log('DAY'+ (index))
+  console.log($(this).nestable('serialize'));
+});
+
+        that.fromHtmlToModel();
       }
     });
   },
@@ -62,19 +65,48 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     $.each( days, function(i,d){
       that.addResourceToDay( idResource, d);
     });
+    that.fromHtmlToModel();
   },
   addResourceToDay: function( idResource, day){
     var that = this;
     var resource = that.parentTp.resources.get(idResource);
     that.$('.plannerDay-'+day+' ol.dd-list').append( that.resourcePlanItemTemplate({ resource : resource.toJSON() }) );
+    /*-------------------------------------- AÑADIR ---------------------------*/
+
   },
   removeResourceToDay: function(e){
-    $(e.target).closest('.dd-item').remove(); 
+    $(e.target).closest('.dd-item').remove();
   },
   resourceInPlan: function( idResource ){
     var that = this;
     var days = [];
 
     return days;
+  },
+
+
+
+  fromHtmlToModel: function() {
+    var that = this;
+
+    var days = [];
+
+    $('.gzznestable').each(function( index ) {
+      var day = [];
+      $($(this).nestable('serialize')).each( function( i, planItemId ) {
+        day.push({ id:planItemId });
+      });
+      days.push(day);
+    });
+
+    that.parentTp.tpData.set('list', days);
+
+  },
+
+  fromModeltoHtml: function() {
+    var that = this;
+
+
   }
+
 });
