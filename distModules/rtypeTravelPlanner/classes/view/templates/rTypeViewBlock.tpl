@@ -68,10 +68,13 @@
 
 <script type="text/template" id="resourceItemTPTemplate">
   <div class="tpResourceItem" data-resource-id="<%- resource.id %>">
-    <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/fast_cut/<%- resource.image %>.jpg"></div>
+    <div class="image">
+      <img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerList/<%- resource.image %>.jpg">
+      <button class="addToPlan btn btn-primary"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></button>
+    </div>
     <div class="title"><%- resource.title %></div>
     <div class="description"><%- resource.mediumDescription %></div>
-    <button class="addToPlan btn btn-primary">{t}Add to plan{/t}</button>
+
   </div>
 </script>
 

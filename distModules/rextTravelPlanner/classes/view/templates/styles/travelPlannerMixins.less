@@ -15,7 +15,7 @@
 
 }
 /*******************************************************************************************/
-.travelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpList-h: 100%, @colorDays:#333 ) {
+.travelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpList-h: 100%, @tpFilters-h: 140px, @colorDays:#333 ) {
   #travelPlannerSec{
     padding: 0;
     margin: 0;
@@ -27,8 +27,18 @@
         width: @tpList-w;
         height: @tpList-h;
         position: fixed;
-        overflow: auto;
         padding: 20px;
+        .travelPlannerFilters{
+          position: fixed;
+          width: @tpList-w;
+          height: @tpFilters-h;
+          z-index: 103;
+        }
+        .travelPlannerResources{
+          overflow: auto;
+          height: calc(~'100% -' @tpFilters-h);
+          margin-top: @tpFilters-h;
+        }
       }//travelPlannerList
 
       .travelPlannerPlan{
