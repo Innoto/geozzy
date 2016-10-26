@@ -11,7 +11,7 @@ class RExtCommunityAPIView extends View {
   var $userSession = false;
   var $commCtrl = false;
 
-  public function __construct( $base_dir ) {
+  public function __construct( $base_dir = false ) {
     user::load( 'controller/UserAccessController.php' );
     $userCtrl = new UserAccessController();
     $userInfo = $userCtrl->getSessiondata();
@@ -23,7 +23,7 @@ class RExtCommunityAPIView extends View {
 
     $this->apiParams = array( 'cmd', 'status', 'user', 'facebook', 'twitter', 'followUser' );
     $this->apiCommands = array( 'setMyCommunity', 'setShare', 'setFacebook', 'setTwitter',
-      'setFollow', 'getCommunityUrl' /*, 'listFollowed'*/ );
+      'setFollow', 'getCommunityUrl', 'getOtherCommunityView' /*, 'listFollowed'*/ );
 
     $this->commCtrl = new RExtCommunityController();
 
@@ -35,11 +35,12 @@ class RExtCommunityAPIView extends View {
    * @return bool : true -> Access allowed
    */
   public function accessCheck() {
-
     // $postUserId = isset( $_POST['user'] ) ? intval( $_POST['user'] ) : null;
     // return( $this->userId !== false && $this->userId === $postUserId );
-    return( $this->userId !== false );
+
     // return( GEOZZY_API_ACTIVE === true );
+
+    return( $this->userId !== false || strpos( $_SERVER['REQUEST_URI'], 'doc/community.json' ) !== false );
   }
 
 
@@ -91,6 +92,12 @@ class RExtCommunityAPIView extends View {
           $status = $this->commCtrl->setFollow( $status, $followUserId );
           if( $status !== false ) {
             $result = array( 'result' => 'ok', 'status' => $status );
+          }
+          break;
+        case 'getOtherCommunityView':
+          $view = $this->commCtrl->getOtherCommunityView( $followUserId );
+          if( $status !== false ) {
+            $result = array( 'result' => 'ok', 'view' => $view );
           }
           break;
         case 'getCommunityUrl':
