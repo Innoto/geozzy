@@ -32,6 +32,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.dateFormat = 'DD/MM/YYYY';
 
   that.tpData = new geozzy.travelPlannerComponents.TravelPlannerModel();
+  that.tpData.set('id',idTravelPlanner);
 
   that.getResourcesFav = function(){
     var formData = new FormData();
@@ -43,7 +44,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       url = '/'+cogumelo.publicConf.C_LANG+url;
     }
 
-    $.ajax({
+    return $.ajax({
       url: url, type: 'POST',
       data: formData, cache: false,
       contentType: false, processData: false,
@@ -58,12 +59,17 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       }
     });
   }
+
   // First Execution
   that.init = function( ) {
     console.log('travelPlannerID:'+ that.travelPlannerId );
-    that.getResourcesFav();
 
-    $.when( that.resources.fetch(), that.rtypes.fetch() ).done(function() {
+    $.when(
+      that.resources.fetch(),
+      that.rtypes.fetch(),
+      that.getResourcesFav(),
+      that.tpData.fetch()
+    ).done( function() {
 
 //Temporalmente para no cubrir las fechas!-----------------------
 that.tpData.set('checkin', moment().add( 0, 'days' ));
