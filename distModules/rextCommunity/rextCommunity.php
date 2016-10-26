@@ -21,7 +21,7 @@ class rextCommunity extends Module {
     'controller/RExtCommunityController.php',
     'model/RExtCommunityModel.php',
     'model/RExtCommunityFollowModel.php',
-    'model/RExtCommunityAffinityModel.php'
+    'model/RExtCommunityAffinityUserModel.php'
   );
 
 

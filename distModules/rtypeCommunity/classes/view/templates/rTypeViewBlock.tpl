@@ -188,6 +188,25 @@
 
     <div class="container commFooter">
     </div>
+
+    <div id="communityFavsModal" class="communityFavsModal modal fade" tabindex="-1" role="dialog" aria-labelledby="communityFavsModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <img class="iconModal img-responsive" src="{$cogumelo.publicConf.media}/img/iconModal.png"></img>
+          </div>
+          <div class="modal-body">
+
+            <!-- Contenido de favoritos de cada usuario -->
+            <p>Ola meu</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </section>
 </div><!-- /.resource .resViewBlock -->
 

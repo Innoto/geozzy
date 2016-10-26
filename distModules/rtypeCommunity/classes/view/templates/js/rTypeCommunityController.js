@@ -150,6 +150,16 @@ geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
   unbindFollow: function unbindFollow() {
     $('.rtypeCommunity .actionFollow').off( 'click.rTypeCommunityController' );
   }, // unbindFollow()
+
+  // Show Favourites
+  openModal: function openModal() {
+    $('#communityFavsModal').modal({
+      'show' : true,
+      'keyboard': false,
+      'backdrop' : 'static'
+    });
+  }
+
 }; // geozzy.rTypeCommunityController
 
 
