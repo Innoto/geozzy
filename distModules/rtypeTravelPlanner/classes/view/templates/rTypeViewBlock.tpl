@@ -85,41 +85,13 @@
 
 <script type="text/template" id="dayTPTemplate">
 
-  <div class="plannerDay plannerDay-<%- day %>" data-day="<%- day %>">
-    <h2>{t}Day {/t}<%- day %></h2>
+  <div class="plannerDay plannerDay-<%- day.id %>" data-day="<%- day.id %>">
+    <h2><%- day.dayName %> <%- day.day %> <%- day.month %></h2>
     <div class="plannerDayPlanner gzznestable dd">
       <ol class="dd-list">
-        <!--///////////////////////////////////////////////////////////////-->
-        <li class="dd-item" data-id="10">
-          <div class="dd-item-container clearfix">
-            <div class="dd-content">
-              <div class="nestableActions">
-                <button class="btnDelete btn-icon btn-danger" data-id="10" ><i class="fa fa-trash"></i></button>
-              </div>
-            </div>
-            <div class="dd-handle">
-              <i class="fa fa-arrows icon-handle"></i>
-              ITEM 10
-            </div>
-          </div>
-        </li>
-        <!--///////////////////////////////////////////////////////////////-->
-        <!--///////////////////////////////////////////////////////////////-->
-        <li class="dd-item" data-id="11">
-          <div class="dd-item-container clearfix">
-            <div class="dd-content">
-              <div class="nestableActions">
-                <button class="btnDelete btn-icon btn-danger" data-id="11" ><i class="fa fa-trash"></i></button>
-              </div>
-            </div>
-            <div class="dd-handle">
-              <i class="fa fa-arrows icon-handle"></i>
-              ITEM 11
-            </div>
-          </div>
-        </li>
-        <!--///////////////////////////////////////////////////////////////-->
+
       </ol>
+      <!--<div class="dd-empty"></div>-->
     </div>
   </div>
 
@@ -131,7 +103,7 @@
     <div class="title"><%- resource.title %></div>
     <ul class="selectorDays clearfix">
       <% _.each(dates, function(i) { %>
-        <li class="day-<%= i.id %>" data-day="<%= i.id %>">
+        <li class="day-<%= i.id %> <% if(i.inPlan){ %> inPlan <% } %>" data-day="<%= i.id %>">
           <div class="dayName"><%= i.dayName %></div>
           <div class="dayNumber"><%= i.day %></div>
           <div class="month"><%= i.month %></div>
@@ -151,7 +123,7 @@
     <div class="dd-item-container clearfix">
       <div class="dd-content">
         <div class="nestableActions">
-          <button class="btnDelete btn-icon btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-trash"></i></button>
+          <button class="btnDelete btn-icon btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-times"></i></button>
         </div>
       </div>
       <div class="dd-handle">
