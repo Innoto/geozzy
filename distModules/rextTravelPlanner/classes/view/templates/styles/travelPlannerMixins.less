@@ -6,15 +6,16 @@
       .travelPlannerList{
         background-color: rgba( 71, 225, 118, .5 );
       }//travelPlannerList
-      .travelPlannerPlan{
-        background-color: rgba( 225, 71, 71, .5 );
+      .travelPlannerPlan{ background-color: rgba( 71, 156, 225, .7 );
+        .travelPlannerPlanHeader{  background-color: rgba( 199, 198, 73, .7 ); }
+        .travelPlannerPlanContent{ background-color: rgba( 225, 71, 71, .5 ); }
       }//travelPlannerPlan
     }
   } //#travelPlannerSec
 
 }
 /*******************************************************************************************/
-.travelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpList-h: 100%  ) {
+.travelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpList-h: 100%, @colorDays:#333 ) {
   #travelPlannerSec{
     padding: 0;
     margin: 0;
@@ -27,13 +28,36 @@
         height: @tpList-h;
         position: fixed;
         overflow: auto;
+        padding: 20px;
       }//travelPlannerList
 
       .travelPlannerPlan{
         margin-left: @tpList-w;
         min-height: 500px;
+        padding: 20px;
+
       }//travelPlannerPlan
 
     }
   } //#travelPlannerSec
+  #resourceTpModal{
+    .resourceTp{
+      .selectorDays{
+        list-style: none;
+        list-style-type: none;
+        li{
+          cursor: pointer;
+          border: 1px solid @colorDays;
+          float: left;
+          width: calc(~ '25% - 4px' );
+          padding: 10px;
+          margin: 2px;
+          &.active{
+            color: white;
+            background: @colorDays;
+          }
+        }
+      }
+    }
+  }
 } //.travelPlanner()

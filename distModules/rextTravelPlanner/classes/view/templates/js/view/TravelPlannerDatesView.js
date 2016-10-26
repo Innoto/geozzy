@@ -1,10 +1,10 @@
 var geozzy = geozzy || {};
 if(!geozzy.travelPlannerComponents) geozzy.travelPlannerComponents={};
 
-geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend({
-
-  interfaceTemplate : false,
-  resourceTemplate : false,
+geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
+  el: "#travelPlannerSec",
+  datesTemplate : false,
+  modalTemplate : false,
   parentTp : false,
 
   events: {
@@ -14,76 +14,58 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   initialize: function( parentTp ) {
     var that = this;
 
-    that.el = "#travelPlannerSec";
-    that.$el = $(that.el);
     that.delegateEvents();
     that.parentTp = parentTp;
 
+
+    that.initDatesInterface();
   },
 
   render: function() {
     var that = this;
-  }
-});
-
-
-
-/*
-
-var geozzy = geozzy || {};
-if(!geozzy.commentComponents) geozzy.commentComponents={};
-
-geozzy.commentComponents.CreateCommentView = Backbone.View.extend({
-  commentFormTemplate : false,
-  modalTemplate : false,
-  idResource: false,
-  commentType : false,
-  events: {
-
   },
 
-  initCreateCommentModal: function(){
+  initDatesInterface: function(){
     var that = this;
 
-    $('body').append( that.modalTemplate({ 'modalId': 'createCommentModal', 'modalTitle': 'Make comment' }) );
-    $("#createCommentModal .modal-body").html( that.commentFormTemplate() );
-    var urlForm = '';
-    if(that.commentType){
-      urlForm = '/comment/form/resource/'+that.idResource+'/commenttype/'+that.commentType;
+    that.datesTemplate = _.template( $('#datesTPTemplate').html() );
+    that.$('.travelPlannerPlanHeader').html( that.datesTemplate() );
+
+    var calDateFormat = that.parentTp.dateFormat;
+    var calCheckIn = false;
+    var calCheckOut = false;
+
+    if( that.parentTp.tpData.get('checkin') === false || that.parentTp.tpData.get('checkout') === false ){
+      calCheckIn = moment().add( 0, 'days' );
+      calCheckOut = moment().add( 0, 'days' );
     }else{
-      urlForm = '/comment/form/resource/'+that.idResource;
+      calCheckIn = that.parentTp.tpData.get('checkin');
+      calCheckOut = that.parentTp.tpData.get('checkout');
     }
-    $("#createCommentModal .modal-body .commentFormModal").load( urlForm );
-    $("#createCommentModal").modal({
-      'show' : true,
-      'keyboard': false,
-      'backdrop' : 'static'
-    });
-    $("#createCommentModal").on('hidden.bs.modal', function (e) {
-      e.target.remove();
-    });
-    $(document).on('hidden.bs.modal', '.modal', function () {
-      $('.modal:visible').length && $(document.body).addClass('modal-open');
-    });
-    that.el = "#createCommentModal";
-    that.$el = $(that.el);
-    that.delegateEvents();
-  },
-  closeCreateCommentModal: function() {
-    var that = this;
-    $("#createCommentModal").modal('hide');
-  },
-  initialize: function( opt ) {
-    var that = this;
-    that.idResource = opt.idResource;
-    that.commentType = opt.commentType;
-    that.commentFormTemplate = _.template( geozzy.commentComponents.commentFormTemplate );
-    that.modalTemplate = _.template( geozzy.commentComponents.modalMdTemplate );
-    that.initCreateCommentModal();
-  },
-  render: function() {
-    var that = this;
-    //that.$el.html( that.tpl({ content: contentHtml }) )
+
+
+    $( '#checkTpDates' ).daterangepicker(
+      {
+        'showCustomRangeLabel': true,
+        'startDate':  calCheckIn,
+        'minDate':  calCheckIn,
+        'endDate':  calCheckOut,
+        'autoApply': true,
+        'locale': {
+          'format': calDateFormat,
+          'firstDay': 1
+        }
+      },
+      function( start, end, label ) {
+        that.parentTp.tpData.set('checkin', start);
+        that.parentTp.tpData.set('checkout', end);
+
+        console.log( 'From: ' + that.parentTp.tpData.get('checkin').format( calDateFormat ) + ' to ' + that.parentTp.tpData.get('checkout').format( calDateFormat ) );
+        console.log('initPlan DATESVIEW');
+        that.parentTp.initPlan();
+      }
+    );
   }
+
 
 });

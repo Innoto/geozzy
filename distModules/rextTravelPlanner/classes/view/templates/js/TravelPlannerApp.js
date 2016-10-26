@@ -8,6 +8,12 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.travelPlannerId = (idTravelPlanner) ? idTravelPlanner : false;
   that.travelPlannerInterfaceView = false;
   that.travelPlannerDatesView = false;
+  that.travelPlannerPlanView = false;
+  that.travelPlannerResourceView = false;
+
+  if( typeof cogumelo.publicConf.C_LANG === 'string' ) {
+    moment.locale(cogumelo.publicConf.C_LANG);
+  }
 
   var resParam = {
     fields: false,
@@ -23,6 +29,9 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.rtypes = new geozzy.collection.ResourcetypeCollection( );
   that.favInfo = false;
   that.favResources = false;
+  that.dateFormat = 'DD/MM/YYYY';
+
+  that.tpData = new geozzy.travelPlannerComponents.TravelPlannerModel();
 
   that.getResourcesFav = function(){
     var formData = new FormData();
@@ -41,7 +50,10 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       success: function setStatusSuccess( $jsonData, $textStatus, $jqXHR ) {
         if ( $jsonData.result === 'ok' ) {
           that.favInfo = $jsonData.favourites;
-          that.favResources = $jsonData.favourites[Object.keys($jsonData.favourites)[0]].resourceList;
+
+          if ( $jsonData.favourites.length > 0 ){
+           that.favResources = $jsonData.favourites[Object.keys($jsonData.favourites)[0]].resourceList;
+         }
         }
       }
     });
@@ -52,211 +64,34 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     that.getResourcesFav();
 
     $.when( that.resources.fetch(), that.rtypes.fetch() ).done(function() {
+
+//Temporalmente para no cubrir las fechas!-----------------------
+that.tpData.set('checkin', moment().add( 0, 'days' ));
+that.tpData.set('checkout', moment().add( 7, 'days' ));
+//---------------------------------------------------------------
+
       that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
-      that.initDatesModal();
+      that.initDates();
+
+      if( that.tpData.get('checkin') !== false || that.tpData.get('checkout') !== false ){
+        console.log('initPlan INIT');
+        that.initPlan();
+      }
     });
   }
-  that.initDatesModal = function(){
+  that.initDates = function(){
     that.travelPlannerDatesView = new geozzy.travelPlannerComponents.TravelPlannerDatesView(that);
   }
-}
-
-/*
-
-
-var htmlTravelPlanner = '';
-
-htmlTravelPlanner += '<div class="plannerContainer">';
-  htmlTravelPlanner += '<div class="plannerList">';
-
-  htmlTravelPlanner += '</div>';
-  htmlTravelPlanner += '<div class="planner">';
-    htmlTravelPlanner += '<div class="row">';
-      htmlTravelPlanner += '<div class="col-md-4">';
-        htmlTravelPlanner += '<div class="plannerDay">';
-          htmlTravelPlanner += '<h2>DAY 1</h2>';
-          htmlTravelPlanner += '<div class="plannerDayPlanner gzznestable dd">';
-
-            htmlTravelPlanner += '<ol class="dd-list">';
-              ///////////////////////////////////////////////////////////////
-              htmlTravelPlanner += '<li class="dd-item" data-id="10">';
-                htmlTravelPlanner += '<div class="dd-item-container clearfix">';
-                  htmlTravelPlanner += '<div class="dd-content">';
-                    htmlTravelPlanner += '<div class="nestableActions">';
-                      htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="10" ><i class="fa fa-trash"></i></button>';
-                    htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '<div class="dd-handle">';
-                    htmlTravelPlanner += '<i class="fa fa-arrows icon-handle"></i>';
-                    htmlTravelPlanner += 'ITEM 10';
-                  htmlTravelPlanner += '</div>';
-                htmlTravelPlanner += '</div>';
-              htmlTravelPlanner += '</li>';
-              ///////////////////////////////////////////////////////////////
-              htmlTravelPlanner += '<li class="dd-item" data-id="11">';
-                htmlTravelPlanner += '<div class="dd-item-container clearfix">';
-                  htmlTravelPlanner += '<div class="dd-content">';
-                    htmlTravelPlanner += '<div class="nestableActions">';
-                      htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="11" ><i class="fa fa-trash"></i></button>';
-                    htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '<div class="dd-handle">';
-                    htmlTravelPlanner += '<i class="fa fa-arrows icon-handle"></i>';
-                    htmlTravelPlanner += 'ITEM 11';
-                  htmlTravelPlanner += '</div>';
-                htmlTravelPlanner += '</div>';
-              htmlTravelPlanner += '</li>';
-              ///////////////////////////////////////////////////////////////
-              htmlTravelPlanner += '<li class="dd-item" data-id="11">';
-                htmlTravelPlanner += '<div class="dd-item-container clearfix">';
-                  htmlTravelPlanner += '<div class="dd-content">';
-                    htmlTravelPlanner += '<div class="nestableActions">';
-                      htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="11" ><i class="fa fa-trash"></i></button>';
-                    htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '<div class="dd-handle">';
-                    htmlTravelPlanner += '<i class="fa fa-arrows icon-handle"></i>';
-                    htmlTravelPlanner += 'ITEM 11-2';
-                  htmlTravelPlanner += '</div>';
-                htmlTravelPlanner += '</div>';
-              htmlTravelPlanner += '</li>';
-              ///////////////////////////////////////////////////////////////
-              htmlTravelPlanner += '<li class="dd-item" data-id="13">';
-                htmlTravelPlanner += '<div class="dd-item-container clearfix">';
-                  htmlTravelPlanner += '<div class="dd-content">';
-                    htmlTravelPlanner += '<div class="nestableActions">';
-                      htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="13" ><i class="fa fa-trash"></i></button>';
-                    htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '<div class="dd-handle">';
-                    htmlTravelPlanner += '<i class="fa fa-arrows icon-handle"></i>';
-                    htmlTravelPlanner += 'ITEM 13';
-                  htmlTravelPlanner += '</div>';
-                htmlTravelPlanner += '</div>';
-              htmlTravelPlanner += '</li>';
-              ///////////////////////////////////////////////////////////////
-              htmlTravelPlanner += '<li class="dd-item" data-id="14">';
-                htmlTravelPlanner += '<div class="dd-item-container clearfix">';
-                  htmlTravelPlanner += '<div class="dd-content">';
-                    htmlTravelPlanner += '<div class="nestableActions">';
-                      htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="14" ><i class="fa fa-trash"></i></button>';
-                    htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '<div class="dd-handle">';
-                    htmlTravelPlanner += '<i class="fa fa-arrows icon-handle"></i>';
-                    htmlTravelPlanner += 'ITEM 14';
-                  htmlTravelPlanner += '</div>';
-                htmlTravelPlanner += '</div>';
-              htmlTravelPlanner += '</li>';
-              ///////////////////////////////////////////////////////////////
-            htmlTravelPlanner += '</ol>';
-
-          htmlTravelPlanner += '</div>';
-        htmlTravelPlanner += '</div>';
-      htmlTravelPlanner += '</div>';
-      htmlTravelPlanner += '<div class="col-md-4">';
-
-        htmlTravelPlanner += '<div class="plannerDay">';
-          htmlTravelPlanner += '<h2>DAY 2</h2>';
-          htmlTravelPlanner += '<div class="plannerDayPlanner gzznestable dd">';
-
-            htmlTravelPlanner += '<ol class="dd-list">';
-              ///////////////////////////////////////////////////////////////
-              htmlTravelPlanner += '<li class="dd-item" data-id="15">';
-                htmlTravelPlanner += '<div class="dd-item-container clearfix">';
-                  htmlTravelPlanner += '<div class="dd-content">';
-                    htmlTravelPlanner += '<div class="nestableActions">';
-                      htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="15" ><i class="fa fa-trash"></i></button>';
-                    htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '<div class="dd-handle">';
-                    htmlTravelPlanner += '<i class="fa fa-arrows icon-handle"></i>';
-                    htmlTravelPlanner += 'ITEM 15';
-                  htmlTravelPlanner += '</div>';
-                htmlTravelPlanner += '</div>';
-              htmlTravelPlanner += '</li>';
-              ///////////////////////////////////////////////////////////////
-              htmlTravelPlanner += '<li class="dd-item" data-id="16">';
-                htmlTravelPlanner += '<div class="dd-item-container clearfix">';
-                  htmlTravelPlanner += '<div class="dd-content">';
-                    htmlTravelPlanner += '<div class="nestableActions">';
-                      htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="16" ><i class="fa fa-trash"></i></button>';
-                    htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '<div class="dd-handle">';
-                    htmlTravelPlanner += '<i class="fa fa-arrows icon-handle"></i>';
-                    htmlTravelPlanner += 'ITEM 16';
-                  htmlTravelPlanner += '</div>';
-                htmlTravelPlanner += '</div>';
-              htmlTravelPlanner += '</li>';
-              ///////////////////////////////////////////////////////////////
-              htmlTravelPlanner += '<li class="dd-item" data-id="17">';
-                htmlTravelPlanner += '<div class="dd-item-container clearfix">';
-                  htmlTravelPlanner += '<div class="dd-content">';
-                    htmlTravelPlanner += '<div class="nestableActions">';
-                      htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="17" ><i class="fa fa-trash"></i></button>';
-                    htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '<div class="dd-handle">';
-                    htmlTravelPlanner += '<i class="fa fa-arrows icon-handle"></i>';
-                    htmlTravelPlanner += 'ITEM 17';
-                  htmlTravelPlanner += '</div>';
-                htmlTravelPlanner += '</div>';
-              htmlTravelPlanner += '</li>';
-
-              ///////////////////////////////////////////////////////////////
-            htmlTravelPlanner += '</ol>';
-
-          htmlTravelPlanner += '</div>';
-        htmlTravelPlanner += '</div>';
-
-      htmlTravelPlanner += '</div>';
-      htmlTravelPlanner += '<div class="col-md-4">';
-
-        htmlTravelPlanner += '<div class="plannerDay">';
-          htmlTravelPlanner += '<h2>DAY 3</h2>';
-          htmlTravelPlanner += '<div class="plannerDayPlanner gzznestable dd">';
-
-            htmlTravelPlanner += '<ol class="dd-list">';
-              ///////////////////////////////////////////////////////////////
-              htmlTravelPlanner += '<li class="dd-item" data-id="18">';
-                htmlTravelPlanner += '<div class="dd-item-container clearfix">';
-                  htmlTravelPlanner += '<div class="dd-content">';
-                    htmlTravelPlanner += '<div class="nestableActions">';
-                      htmlTravelPlanner += '<button class="btnDelete btn-icon btn-danger" data-id="18" ><i class="fa fa-trash"></i></button>';
-                    htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '</div>';
-                  htmlTravelPlanner += '<div class="dd-handle">';
-                    htmlTravelPlanner += '<i class="fa fa-arrows icon-handle"></i>';
-                    htmlTravelPlanner += 'ITEM 18';
-                  htmlTravelPlanner += '</div>';
-                htmlTravelPlanner += '</div>';
-              htmlTravelPlanner += '</li>';
-              ///////////////////////////////////////////////////////////////
-            htmlTravelPlanner += '</ol>';
-
-          htmlTravelPlanner += '</div>';
-        htmlTravelPlanner += '</div>';
-
-      htmlTravelPlanner += '</div>';
-    htmlTravelPlanner += '</div>';
-  htmlTravelPlanner += '</div>';
-htmlTravelPlanner += '</div>';
-
-$('#travelPlannerSec').html(htmlTravelPlanner);
-
-$('.gzznestable.dd').nestable({
-  'maxDepth': 1,
-  'dragClass': "gzznestable dd-dragel",
-  callback: function(l, e) {
-
-    $('.gzznestable').each(function( index ) {
-      console.log('DAY'+index)
-      console.log($(this).nestable('serialize'));
-    });
-
-
+  that.initPlan = function(){
+    if( that.tpData.get('checkin') !== false || that.tpData.get('checkout') !== false ){
+      that.travelPlannerPlanView = new geozzy.travelPlannerComponents.TravelPlannerPlanView(that);
+    }
   }
-});
-
-*/
+  that.addToPlan = function(idRes){
+    if( that.tpData.get('checkin') !== false || that.tpData.get('checkout') !== false ){
+      that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, idRes );
+    }else{
+      alert("Select dates first");
+    }
+  }
+}

@@ -14,7 +14,7 @@ class PraiasExplorerModel extends Model
     array(
       'version' => 'appExplorer#1.2',
       'executeOnGenerateModelToo' => true,
-      'sql'=> "
+      'sql'=> '
           DROP VIEW IF EXISTS geozzy_praias_explorer_index;
           CREATE VIEW geozzy_praias_explorer_index AS
           SELECT
@@ -46,9 +46,9 @@ class PraiasExplorerModel extends Model
 
           WHERE
             geozzy_resource.published = 1 AND
-            geozzy_topic.idName = 'PraiasDeEnsono'
+            geozzy_topic.idName = \'PraiasDeEnsono\'
           group by geozzy_resource.id;
-      "
+      '
     )
   );
 

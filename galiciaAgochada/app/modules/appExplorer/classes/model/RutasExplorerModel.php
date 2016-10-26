@@ -14,7 +14,7 @@ class RutasExplorerModel extends Model
     array(
       'version' => 'appExplorer#1.7',
       'executeOnGenerateModelToo' => true,
-      'sql'=> "
+      'sql'=> '
           DROP VIEW IF EXISTS geozzy_rutas_explorer_index;
           CREATE VIEW geozzy_rutas_explorer_index AS
           SELECT
@@ -53,7 +53,7 @@ class RutasExplorerModel extends Model
           WHERE
             geozzy_resource.published = 1
           group by geozzy_resource.id;
-      "
+      '
     )
   );
 

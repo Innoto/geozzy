@@ -2,7 +2,7 @@ var geozzy = geozzy || {};
 if(!geozzy.travelPlannerComponents) geozzy.travelPlannerComponents={};
 
 geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend({
-
+  el: "#travelPlannerSec",
   interfaceTemplate : false,
   resourceTemplate : false,
   parentTp : false,
@@ -10,13 +10,12 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   events: {
     "change .travelPlannerFilters .filterByFavourites": "changeFilters",
     "change .travelPlannerFilters .filterByRtype": "changeFilters",
+    "click .addToPlan": "addToPlan"
   },
 
   initialize: function( parentTp ) {
     var that = this;
 
-    that.el = "#travelPlannerSec";
-    that.$el = $(that.el);
     that.delegateEvents();
     that.parentTp = parentTp;
 
@@ -43,8 +42,8 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   listResources: function(){
     var that = this;
 
-    var filterByRtype = that.$el.find('select.filterByRtype').val();
-    var filterByFavourites = that.$el.find('select.filterByFavourites').val();
+    var filterByRtype = that.$('select.filterByRtype').val();
+    var filterByFavourites = that.$('select.filterByFavourites').val();
     var resourcesToList = [];
 
     resourcesToList = that.parentTp.resources;
@@ -58,11 +57,17 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     that.$el.find('.travelPlannerResources').html('');
     $.each( resourcesToList.toJSON(), function(i ,item){
       that.resourceTemplate = _.template( $('#resourceItemTPTemplate').html() );
-      that.$el.find('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
+      that.$('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
     });
   },
   changeFilters: function(e){
     var that = this;
     that.render();
+  },
+  addToPlan: function(e){
+    var that = this;
+    console.log('ADD TO PLAN: '+$(e.target).closest('.tpResourceItem').attr('data-resource-id'));
+    that.parentTp.addToPlan($(e.target).closest('.tpResourceItem').attr('data-resource-id'));
   }
+
 });
