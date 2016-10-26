@@ -5,7 +5,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
   el: "#travelPlannerSec",
   planTemplate : false,
   dayTemplate: false,
-  reourceItemDayTemplate: false,
+  resourcePlanItemTemplate: false,
   planDays: false,
   parentTp : false,
 
@@ -18,24 +18,20 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     that.delegateEvents();
     that.parentTp = parentTp;
+    that.dayTemplate = _.template( $('#dayTPTemplate').html() );
+    that.resourcePlanItemTemplate = _.template( $('#resourcePlanItemTemplate').html() );
+    that.planDays = 1 + that.parentTp.tpData.get('checkout').diff(that.parentTp.tpData.get('checkin'), 'days');
 
-
-    that.initPlanInterface();
+    that.render();
   },
 
   render: function() {
     var that = this;
-  },
-
-  initPlanInterface: function(){
-    var that = this;
-
-    that.planDays = 1 + that.parentTp.tpData.get('checkout').diff(that.parentTp.tpData.get('checkin'), 'days');
     console.log('Difference is ', that.planDays , 'days');
-    that.dayTemplate = _.template( $('#dayTPTemplate').html() );
+
     that.$('.travelPlannerPlanDaysContainer').html('');
     for (i = 0; i < that.planDays; i++) {
-      that.$('.travelPlannerPlanDaysContainer').append( that.dayTemplate({ day: (i+1)}) );
+      that.$('.travelPlannerPlanDaysContainer').append( that.dayTemplate({ day: (i)}) );
     }
 
     $('.gzznestable.dd').nestable({
@@ -48,6 +44,22 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
         });
       }
     });
-  }
+  },
+  addResourcesPlan: function (idResource, days){
+    var that = this;
+    $.each( days, function(i,d){
+      that.addResourceToDay( idResource, d);
+    });
+  },
+  addResourceToDay: function( idResource, day){
+    var that = this;
+    var resource = that.parentTp.resources.get(idResource);
+    that.$('.plannerDay-'+day+' ol.dd-list').append( that.resourcePlanItemTemplate({ resource : resource.toJSON() }) );
+  },
+  resourceInPlan: function( idResource ){
+    var that = this;
+    var days = [];
 
+    return days;
+  }
 });

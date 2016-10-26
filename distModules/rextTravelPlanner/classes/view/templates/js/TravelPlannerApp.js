@@ -11,7 +11,9 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.travelPlannerPlanView = false;
   that.travelPlannerResourceView = false;
 
-  moment.locale('es');
+  if( typeof cogumelo.publicConf.C_LANG === 'string' ) {
+    moment.locale(cogumelo.publicConf.C_LANG);
+  }
 
   var resParam = {
     fields: false,
@@ -59,8 +61,15 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     that.getResourcesFav();
 
     $.when( that.resources.fetch(), that.rtypes.fetch() ).done(function() {
+
+//Temporalmente para no cubrir las fechas!-----------------------
+that.tpData.set('checkin', moment().add( 0, 'days' ));
+that.tpData.set('checkout', moment().add( 7, 'days' ));
+//---------------------------------------------------------------
+
       that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
       that.initDates();
+
       if( that.tpData.get('checkin') !== false || that.tpData.get('checkout') !== false ){
         console.log('initPlan INIT');
         that.initPlan();

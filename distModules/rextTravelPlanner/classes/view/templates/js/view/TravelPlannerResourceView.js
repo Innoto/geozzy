@@ -10,7 +10,9 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
   planDays : false,
 
   events: {
-
+    'click .selectorDays li': 'selectorDays',
+    'click .cancelAdd' : 'closeModalResource',
+    'click .acceptAdd' : 'addToPlan'
   },
 
   initialize: function( parentTp, idResource ) {
@@ -36,10 +38,20 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
 
     var checkin = moment(that.parentTp.tpData.get('checkin'));
     var dates = [];
+
+    var selectedDays = that.parentTp.travelPlannerPlanView.resourceInPlan(that.idResource);
     for (i = 0; i < that.planDays; i++) {
-      console.log(that.parentTp.tpData.get('checkin').format('LL'));
-      console.log(checkin.format('LL'));
-      console.log(checkin.format('dddd'));
+      dates[i] = {
+        id: i,
+        date: checkin.format('LL'),
+        dayName: checkin.format('ddd'),
+        day: checkin.format('DD'),
+        month: checkin.format('MMM'),
+        inPlan: false
+      };
+      if($.inArray(i, selectedDays)){
+        dates[i].inPlan = true;
+      }
       checkin.add(1, 'days');
     }
 
@@ -64,7 +76,26 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
   closeModalResource: function(){
     var that = this;
     that.$el.modal('hide');
+  },
+
+  selectorDays: function (e){
+    var day = $(e.target).closest('.selectorDays li');
+    if(day.hasClass('active')){
+      day.removeClass('active');
+    }else{
+      day.addClass('active');
+    }
+  },
+
+  addToPlan: function(e){
+    var that = this;
+    var daysSelectorActive = $('.selectorDays li.active');
+    var daysActive = [];
+    console.log(daysSelectorActive);
+    daysSelectorActive.each(function( index ) {
+      daysActive.push($( this ).attr('data-day'));
+    });
+    that.parentTp.travelPlannerPlanView.addResourcesPlan(that.idResource, daysActive);
+    that.closeModalResource();
   }
-
-
 });

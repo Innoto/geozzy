@@ -129,5 +129,35 @@
   <div class="resourceTp" data-resource-id="<%- resource.id %>">
     <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/fast_cut/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
+    <ul class="selectorDays clearfix">
+      <% _.each(dates, function(i) { %>
+        <li class="day-<%= i.id %>" data-day="<%= i.id %>">
+          <div class="dayName"><%= i.dayName %></div>
+          <div class="dayNumber"><%= i.day %></div>
+          <div class="month"><%= i.month %></div>
+        </li>
+      <% }); %>
+    </ul>
+
+    <div class="buttonActions">
+      <button type="button" class="cancelAdd btn btn-warning">{t}Cancelar{/t}</button>
+      <button type="button" class="acceptAdd btn btn-success">{t}Add to plan{/t}</button>
+    <div>
   </div>
+</script>
+
+<script type="text/template" id="resourcePlanItemTemplate">
+  <li class="dd-item" data-id="<%- resource.id %>">
+    <div class="dd-item-container clearfix">
+      <div class="dd-content">
+        <div class="nestableActions">
+          <button class="btnDelete btn-icon btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+      <div class="dd-handle">
+        <i class="fa fa-arrows icon-handle"></i>
+        <%- resource.title %>
+      </div>
+    </div>
+  </li>
 </script>

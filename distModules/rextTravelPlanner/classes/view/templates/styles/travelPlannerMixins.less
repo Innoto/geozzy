@@ -15,7 +15,7 @@
 
 }
 /*******************************************************************************************/
-.travelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpList-h: 100%  ) {
+.travelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpList-h: 100%, @colorDays:#333 ) {
   #travelPlannerSec{
     padding: 0;
     margin: 0;
@@ -40,4 +40,24 @@
 
     }
   } //#travelPlannerSec
+  #resourceTpModal{
+    .resourceTp{
+      .selectorDays{
+        list-style: none;
+        list-style-type: none;
+        li{
+          cursor: pointer;
+          border: 1px solid @colorDays;
+          float: left;
+          width: calc(~ '25% - 4px' );
+          padding: 10px;
+          margin: 2px;
+          &.active{
+            color: white;
+            background: @colorDays;
+          }
+        }
+      }
+    }
+  }
 } //.travelPlanner()
