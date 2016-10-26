@@ -152,12 +152,48 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
     $tpList = $tpModel->listItems(
       array(
         'filters' => array( 'user' => $user, 'rTypeId' => $this->getTravelPlannerRTypeId() ),
-        'affectsDependences' => ['TravelPlannerModel']
+//        'affectsDependences' => ['TravelPlannerModel']
       )
     );
 
     $tpObj = ( $tpList ) ? $tpList->fetch() : false;
     if( $tpObj ) {
+
+
+      $tpObj->setterDependence('id', (new TravelPlannerModel())->listItems(['filter'=>['id'=>$tpObj->getter('id')]])->fetch() );
+      $res = $tpObj;
+    }
+
+    return $res;
+  }
+
+
+  public function setTravelPlanner( $data ) {
+    $res = false;
+
+
+    $tpModel = new ResourceModel();
+    $tpList = $tpModel->listItems(
+      array(
+        'filters' => array('id'=>$data['id']),
+//        'affectsDependences' => ['TravelPlannerModel']
+      )
+    );
+
+    $tpObj = ( $tpList ) ? $tpList->fetch() : false;
+    if( $tpObj ) {
+
+      $dep = (new TravelPlannerModel())->listItems(['filter'=>['id'=>$tpObj->getter('id')]])->fetch();
+
+
+      $dep->setter('travelPlannerJson', json_encode($data['list']) );
+      $dep->setter('checkIn', $data['checkin'] );
+      $dep->setter('checkOut', $data['checkout'] );
+
+      $tpObj->setterDependence('id', $dep );
+
+
+      $tpObj->save(['affectsDependences'=>true]);
       $res = $tpObj;
     }
 
