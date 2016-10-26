@@ -14,7 +14,7 @@ class RinconsExplorerModel extends Model
     array(
       'version' => 'appExplorer#1.6',
       'executeOnGenerateModelToo' => true,
-      'sql'=> "
+      'sql'=> '
           DROP VIEW IF EXISTS geozzy_rincons_explorer_index;
           CREATE VIEW geozzy_rincons_explorer_index AS
           SELECT
@@ -52,10 +52,10 @@ class RinconsExplorerModel extends Model
 
           WHERE
             geozzy_resource.published = 1 AND
-            geozzy_topic.idName = 'RecantosConEstilo' AND
+            geozzy_topic.idName = \'RecantosConEstilo\' AND
             isnull(geozzy_resource_rext_routes.id) = TRUE
           group by geozzy_resource.id;
-      "
+      '
     )
   );
 
