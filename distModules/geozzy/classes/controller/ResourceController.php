@@ -1407,11 +1407,22 @@ class ResourceController {
       'ext' => array()
     );
 
-    if( $this->loadResourceObject( $resId ) && $this->resObj->getter( 'published' ) ) {
-      $viewBlockInfo['data'] = $this->getResourceData( $resId, true );
-      if( $this->getRTypeCtrl() ) {
-        // error_log( 'ResourceController: rTypeCtrl->getViewBlockInfo' );
-        $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
+    $useraccesscontrol = new UserAccessController();
+    $user = $useraccesscontrol->getSessiondata();
+
+    if( $this->loadResourceObject( $resId ) ) {
+      if( $this->resObj->getter( 'published' ) || $user ) {
+        $viewBlockInfo['data'] = $this->getResourceData( $resId, true );
+        if( $this->getRTypeCtrl() ) {
+          $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
+        }
+
+        if( !$this->resObj->getter( 'published' ) ) {
+          // Recurso NO publicado
+          $viewBlockInfo = array(
+            'unpublished' => $viewBlockInfo
+          );
+        }
       }
     }
 
