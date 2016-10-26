@@ -151,7 +151,39 @@ geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
     $('.rtypeCommunity .actionFollow').off( 'click.rTypeCommunityController' );
   }, // unbindFollow()
 
-  // Show Favourites
+
+  // Show other user Community
+
+  showOtherCommunity: function showOtherCommunity( evnt ) {
+    geozzy.rTypeCommunityController.unbindShowOtherCommunity();
+
+    var formData = new FormData();
+    formData.append( 'cmd', 'getOtherCommunityView' );
+    formData.append( 'user', geozzy.rTypeCommunityData.userSessionId );
+    formData.append( 'followUser', $( this ).attr('data-id') );
+
+    $.ajax({
+      url: '/api/community', type: 'POST',
+      data: formData, cache: false, contentType: false, processData: false,
+      success: function setStatusSuccess( jsonData, textStatus, $jqXHR ) {
+        if ( jsonData.result === 'ok' ) {
+          geozzy.rTypeCommunityController.updateModal( jsonData.view );
+        }
+        else {
+          console.log( 'geozzy rTypeCommunityController success error', jsonData, textStatus, $jqXHR );
+          location.reload();
+        }
+      },
+      error: geozzy.rTypeCommunityController.ajaxError
+    });
+  },
+
+  updateModal: function updateModal( htmlContent ) {
+    $('#communityFavsModal .modal-body').html( htmlContent );
+    this.openModal();
+    this.bindShowOtherCommunity();
+  },
+
   openModal: function openModal() {
     // geozzy.rTypeCommunityController.openModal();
     $('#communityFavsModal').modal({
@@ -159,7 +191,18 @@ geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
       'keyboard': false,
       'backdrop' : 'static'
     });
-  }
+  },
+
+  bindShowOtherCommunity: function bindShowOtherCommunity() {
+    $('.rtypeCommunity .actionShowAll')
+      .off( 'click.rTypeCommunityController' )
+      .on( 'click.rTypeCommunityController', geozzy.rTypeCommunityController.showOtherCommunity );
+  },
+
+  unbindShowOtherCommunity: function bindShowOtherCommunity() {
+    $('.rtypeCommunity .actionShowAll')
+      .off( 'click.rTypeCommunityController' );
+  },
 
 }; // geozzy.rTypeCommunityController
 
@@ -168,5 +211,6 @@ geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
 $( document ).ready(function() {
   geozzy.rTypeCommunityController.bindMyCommunity();
   geozzy.rTypeCommunityController.bindFollow();
+  geozzy.rTypeCommunityController.bindShowOtherCommunity();
 });
 

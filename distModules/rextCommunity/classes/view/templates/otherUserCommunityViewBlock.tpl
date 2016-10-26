@@ -1,5 +1,5 @@
 {* id, login, name, surname, email, description, avatarFileId, comm, favList, favs *}
-<div class="col-sm-12 col-md-6 communityElement" data-id="{$otherUserInfo.id}">
+<div class="communityOther" data-id="{$otherUserInfo.id}">
   <div class="row">
     <div class="col-sm-3">
       <div class="commImage">

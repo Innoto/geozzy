@@ -108,7 +108,6 @@ class RExtCommunityController extends RExtController implements RExtInterface {
 
         $template = new Template();
         $template->assign( 'myUserId', $this->userId );
-        $template->assign( 'otherUserId', $otherUserId );
         $template->assign( 'otherUserInfo', $otherUserInfo[ $otherUserId ] );
         $template->setTpl( 'otherUserCommunityViewBlock.tpl', 'rextCommunity' );
 

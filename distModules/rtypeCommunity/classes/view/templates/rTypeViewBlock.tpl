@@ -132,6 +132,9 @@
                     </div>
                   {/foreach}
                   </div>
+                  {if $fav@iteration > 6}
+                    <span class="actionShowAll" data-id="{$userInfo.id}">Ver todo!!!</span>
+                  {/if}
                 </div><!-- /favs -->
                 {/if}
                 {if $userInfo.comm}
