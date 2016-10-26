@@ -36,7 +36,7 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
 
     item = that.parentTp.resources.get(that.idResource);
 
-    var checkin = moment(that.parentTp.tpData.get('checkin'));
+    var checkin = that.parentTp.momentDate(that.parentTp.tpData.get('checkin'));
     var dates = [];
 
     var selectedDays = that.parentTp.travelPlannerPlanView.resourceInPlan(that.idResource);
