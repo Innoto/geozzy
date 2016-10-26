@@ -153,6 +153,7 @@ geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
 
   // Show Favourites
   openModal: function openModal() {
+    // geozzy.rTypeCommunityController.openModal();
     $('#communityFavsModal').modal({
       'show' : true,
       'keyboard': false,

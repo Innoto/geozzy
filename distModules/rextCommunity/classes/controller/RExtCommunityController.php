@@ -91,6 +91,35 @@ class RExtCommunityController extends RExtController implements RExtInterface {
   }
 
 
+  /**
+   * Preparamos la visualización de la comunidad de un usuario
+   *
+   * @return String HTML
+   */
+  public function getOtherCommunityView( $otherUserId ) {
+    $viewHtml = '';
+
+    $template = null;
+
+    if( $this->userId ) {
+      $commObj = $this->getCommunityObj( $otherUserId );
+      if( $commObj && $commObj->getter( 'share' ) ) {
+        $otherUserInfo = $this->getUsersInfo( $otherUserId, $getFavs = true );
+
+        $template = new Template();
+        $template->assign( 'myUserId', $this->userId );
+        $template->assign( 'otherUserId', $otherUserId );
+        $template->assign( 'otherUserInfo', $otherUserInfo[ $otherUserId ] );
+        $template->setTpl( 'otherUserCommunityViewBlock.tpl', 'rextCommunity' );
+
+        $viewHtml = $template->execToString();
+      }
+    }
+
+    return $viewHtml;
+  }
+
+
 
 
   /***************/
@@ -121,9 +150,12 @@ class RExtCommunityController extends RExtController implements RExtInterface {
   public function getStatusInfo( $resId, $commUser ) {
     $commData = false;
 
+    /*
     $commModel = new RExtCommunityModel();
     $commList = $commModel->listItems( array( 'filters' => array( 'resource' => $resId, 'user' => $commUser ) ) );
     $commObj = ( $commList ) ? $commList->fetch() : false;
+    */
+    $commObj = $this->getCommunityObj( $commUser );
     $commData = ( $commObj ) ? $commObj->getAllData( 'onlydata' ) : false;
 
     return $commData;
