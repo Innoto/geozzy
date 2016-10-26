@@ -91,7 +91,6 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
     var that = this;
     var daysSelectorActive = $('.selectorDays li.active');
     var daysActive = [];
-    console.log(daysSelectorActive);
     daysSelectorActive.each(function( index ) {
       daysActive.push($( this ).attr('data-day'));
     });
