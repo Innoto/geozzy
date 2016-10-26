@@ -21,7 +21,7 @@ class rextCommunity extends Module {
     'controller/RExtCommunityController.php',
     'model/RExtCommunityModel.php',
     'model/RExtCommunityFollowModel.php',
-    'model/RExtCommunityAffinityModel.php'
+    'model/RExtCommunityAffinityUserModel.php'
   );
 
 
@@ -29,6 +29,8 @@ class rextCommunity extends Module {
     // $this->addUrlPatterns( '#^geozzyCommunity/command$#', 'view:RExtCommunityView::execCommand' );
     $this->addUrlPatterns( '#^api/community$#', 'view:RExtCommunityAPIView::apiQuery' );
     $this->addUrlPatterns( '#^api/doc/community.json$#', 'view:RExtCommunityAPIView::apiInfoJson' );
+
+    $this->addUrlPatterns( '#^cgml_cron/rextCommunity/prepareAffinity$#', 'view:RExtCommunityAffinityView::prepareAffinity' );
   }
 
 

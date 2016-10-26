@@ -6,6 +6,7 @@
 
     explorador.setInitialData( function() {
       explorador.setExplorer();
+      explorador.setEvents();
       explorador.setDisplays();
       explorador.setFilters();
       explorador.exec();
@@ -58,14 +59,12 @@
       };
       that.resourceMap = new google.maps.Map( $( that.explorerclass+' .explorerMap').get( 0 ), that.mapOptions);
 
-      google.maps.event.addListenerOnce( that.resourceMap , 'idle', function(){
-        explorador.layoutDistributeSize();
+      google.maps.event.addListenerOnce( that.resourceMap , 'projection_changed', function(){
+        google.maps.event.addListenerOnce( that.resourceMap , 'mousemove', function(){
+            that.layoutDistributeSize();
+        });
       });
-
-      google.maps.event.addListener( that.resourceMap , 'zoom_changed', function(){
-        that.layoutDistributeSize();
-      });
-
+      
       mapControlUtils = new mapControlsUtils();
       mapControlUtils.changeMapControls(that.resourceMap);
 
@@ -93,25 +92,9 @@
       that.explorer = new geozzy.explorer({
         partialLoadSuccess: function(){ that.layoutDistributeSize();  },
         debug: false,
+        useUrlRouter: true,
         explorerId:'rincons',
-        explorerSectionName:'Rincons espectaculares',
-        resourceAccess: function(id) {
-          $(".explorerContainer.explorer-loading").show();
-          $(".explorerContainer.explorer-container-du").load(
-            '/'+cogumelo.publicConf.C_LANG+'/resource/'+id,
-            { pf: 'blk' },
-            function() {
-              $(".explorerContainer.explorer-loading").hide();
-              $(".explorerContainer.explorer-container-du").show();
-            }
-          );
-
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
-        }
-
+        explorerSectionName:'Rincons espectaculares'
       });
 
       that.explorerRutas = new geozzy.explorer({
@@ -129,19 +112,40 @@
               $(".explorerContainer.explorer-container-du").show();
             }
           );
-
-        },
-        resourceQuit: function() {
-          $(".explorerContainer.explorer-container-du").hide();
-          $(".explorerContainer.explorer-container-du").html('');
         }
-
       });
 
     }
 
 
+    /**
+      setEvents. set explorer events
+    */
+    that.setEvents = function() {
+      // Resource Quit
+      that.explorer.bindEvent('resourceQuit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
 
+      that.explorerRutas.bindEvent('resourceQuit', function(){
+        $(".explorerContainer.explorer-container-du").hide();
+        $(".explorerContainer.explorer-container-du").html('');
+      });
+
+      // Resource access
+      that.explorer.bindEvent('resourceAccess', function( ev){
+        $(".explorerContainer.explorer-loading").show();
+        $(".explorerContainer.explorer-container-du").load(
+          '/'+cogumelo.publicConf.C_LANG+'/resource/' + ev.id,
+          { pf: 'blk' },
+          function() {
+            $(".explorerContainer.explorer-loading").hide();
+            $(".explorerContainer.explorer-container-du").show();
+          }
+        );
+      });
+    }
 
 
     /**
