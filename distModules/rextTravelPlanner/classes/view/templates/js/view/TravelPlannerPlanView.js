@@ -77,12 +77,20 @@ $('.gzznestable').each(function( index ) {
   addResourceToDay: function( idResource, day){
     var that = this;
     var resource = that.parentTp.resources.get(idResource);
+
+    if(that.$('.plannerDay-'+day+' .dd ol.dd-list').length === 0){
+      that.$('.plannerDay-'+day+' .dd').html('<ol class="dd-list"></ol>');
+    }
     that.$('.plannerDay-'+day+' ol.dd-list').append( that.resourcePlanItemTemplate({ resource : resource.toJSON() }) );
     /*-------------------------------------- AÑADIR ---------------------------*/
 
   },
   removeResourceToDay: function(e){
+    var list = $(e.target).closest('.dd-list');
     $(e.target).closest('.dd-item').remove();
+    if(list.children().length === 0){
+      list.parent().html('<div class="dd-empty"></div>');
+    }
   },
   resourceInPlan: function( idResource ){
     var that = this;
