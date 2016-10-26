@@ -89,36 +89,7 @@
     <h2>{t}Day {/t}<%- day %></h2>
     <div class="plannerDayPlanner gzznestable dd">
       <ol class="dd-list">
-        <!--///////////////////////////////////////////////////////////////-->
-        <li class="dd-item" data-id="10">
-          <div class="dd-item-container clearfix">
-            <div class="dd-content">
-              <div class="nestableActions">
-                <button class="btnDelete btn-icon btn-danger" data-id="10" ><i class="fa fa-trash"></i></button>
-              </div>
-            </div>
-            <div class="dd-handle">
-              <i class="fa fa-arrows icon-handle"></i>
-              ITEM 10
-            </div>
-          </div>
-        </li>
-        <!--///////////////////////////////////////////////////////////////-->
-        <!--///////////////////////////////////////////////////////////////-->
-        <li class="dd-item" data-id="11">
-          <div class="dd-item-container clearfix">
-            <div class="dd-content">
-              <div class="nestableActions">
-                <button class="btnDelete btn-icon btn-danger" data-id="11" ><i class="fa fa-trash"></i></button>
-              </div>
-            </div>
-            <div class="dd-handle">
-              <i class="fa fa-arrows icon-handle"></i>
-              ITEM 11
-            </div>
-          </div>
-        </li>
-        <!--///////////////////////////////////////////////////////////////-->
+      
       </ol>
     </div>
   </div>
