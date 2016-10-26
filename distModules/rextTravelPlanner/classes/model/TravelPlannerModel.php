@@ -20,6 +20,12 @@ class TravelPlannerModel extends Model
     ),
     'travelPlannerJson' => array(
       'type' => 'TEXT'
+    ),
+    'checkIn' => array(
+      'type' => 'DATETIME'
+    ),
+    'checkOut' => array(
+      'type' => 'DATETIME'
     )
   );
 

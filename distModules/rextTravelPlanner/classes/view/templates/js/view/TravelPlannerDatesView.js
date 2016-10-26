@@ -35,12 +35,12 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
     var calCheckIn = false;
     var calCheckOut = false;
 
-    if( that.parentTp.tpData.get('checkin') === false || that.parentTp.tpData.get('checkout') === false ){
+    if( that.parentTp.tpData.get('checkin') === null || that.parentTp.tpData.get('checkout') === null ){
       calCheckIn = moment().add( 0, 'days' );
       calCheckOut = moment().add( 0, 'days' );
     }else{
-      calCheckIn = that.parentTp.tpData.get('checkin');
-      calCheckOut = that.parentTp.tpData.get('checkout');
+      calCheckIn = that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
+      calCheckOut = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
     }
 
 
@@ -57,11 +57,11 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
         }
       },
       function( start, end, label ) {
-        that.parentTp.tpData.set('checkin', start);
-        that.parentTp.tpData.set('checkout', end);
+        that.parentTp.tpData.set('checkin', start.format( that.parentTp.timeServerFormat ) );
+        that.parentTp.tpData.set('checkout', end. format( that.parentTp.timeServerFormat ) );
 
-        console.log( 'From: ' + that.parentTp.tpData.get('checkin').format( calDateFormat ) + ' to ' + that.parentTp.tpData.get('checkout').format( calDateFormat ) );
-        console.log('initPlan DATESVIEW');
+        //console.log( 'From: ' + that.parentTp.momentDate(that.parentTp.tpData.get('checkin')).format( calDateFormat ) + ' to ' + that.parentTp.momentDate(that.parentTp.tpData.get('checkout')).format( calDateFormat ) );
+        //console.log('initPlan DATESVIEW');
         that.parentTp.initPlan();
       }
     );

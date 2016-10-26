@@ -5,17 +5,24 @@ geozzy.travelPlannerComponents.TravelPlannerModel = Backbone.Model.extend({
   defaults: {
     id: false,
     user: false,
-    checkin: false,
-    checkout: false,
+    checkin: null,
+    checkout: null,
     list: false
   },
   urlRoot: '/api/travelplanner',
 
-  save: function() {
-
+  saveData: function(){
+    var that = this;
   },
 
-  fetch: function() {
-
+  fetchData: function() {
+    var that = this;
+    return that.fetch({
+      url: that.urlRoot,
+      data: {
+        cmd: 'getTravelPlanner'
+      },
+      type: 'POST'
+    });
   }
 });

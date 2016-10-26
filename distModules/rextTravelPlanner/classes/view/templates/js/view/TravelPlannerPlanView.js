@@ -20,7 +20,13 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.parentTp = parentTp;
     that.dayTemplate = _.template( $('#dayTPTemplate').html() );
     that.resourcePlanItemTemplate = _.template( $('#resourcePlanItemTemplate').html() );
-    that.planDays = 1 + that.parentTp.tpData.get('checkout').diff(that.parentTp.tpData.get('checkin'), 'days');
+
+    var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
+    var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
+
+
+
+    that.planDays = 1 + checkout.diff( checkin, 'days');
 
     that.render();
   },
@@ -30,7 +36,8 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     console.log('Difference is ', that.planDays , 'days');
 
     that.$('.travelPlannerPlanDaysContainer').html('');
-    var checkin = moment(that.parentTp.tpData.get('checkin'));
+
+    var checkin = that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
 
     for (i = 0; i < that.planDays; i++) {
       var day = {
@@ -108,7 +115,7 @@ $('.gzznestable').each(function( index ) {
     });
 
     that.parentTp.tpData.set('list', days);
-
+    console.log( that.parentTp.tpData.toJSON() );
   },
 
   fromModeltoHtml: function() {
