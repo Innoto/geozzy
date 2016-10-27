@@ -114,10 +114,14 @@ $('.gzznestable').each(function( index ) {
     $('.gzznestable').each(function( index ) {
       var day = [];
       $($(this).nestable('serialize')).each( function( i, planItemId ) {
+        console.log(planItemId);
         day.push(planItemId);
       });
       days.push(day);
     });
+
+
+
     that.parentTp.tpData.set('list', days);
     that.parentTp.tpData.saveData();
   },
