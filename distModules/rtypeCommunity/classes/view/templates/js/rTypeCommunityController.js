@@ -47,19 +47,53 @@ geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
   updateCommunityInfo: function updateCommunityInfo( commInfo ) {
     geozzy.rTypeCommunityData.myCommunity = commInfo;
 
+    // Compartir datos con comunidad
     if( commInfo.status ) {
-      $('.commRS .shareOff' ).hide();
-      $('.commRS .shareOn' ).show();
+      $('.myShare .shareOff' ).hide();
+      $('.myShare .shareOn' ).show();
     }
     else {
-      $('.commRS .shareOff' ).show();
-      $('.commRS .shareOn' ).hide();
+      $('.myShare .shareOff' ).show();
+      $('.myShare .shareOn' ).hide();
     }
-    $('.commRS .facebookAccount').text( (commInfo.facebook) ? commInfo.facebook : 'No indicado' );
-    $('.commRS input[name=facebookAccount]').val(commInfo.facebook);
 
-    $('.commRS .twitterAccount').text( (commInfo.twitter) ? commInfo.twitter : 'No indicado' );
-    $('.commRS input[name=twitterAccount]').val(commInfo.twitter);
+    // Enlazar con Facebook
+    if( commInfo.facebook ) {
+      $('.rs .myFacebook .shareOff' ).hide();
+      $('.rs .myFacebook .shareOn' ).show();
+      if( $('.rs .myFacebook').hasClass('noShare')) {
+        $('.rs .myFacebook').removeClass('noShare');
+      }
+    }
+    else{
+      $('.rs .myFacebook .shareOff' ).show();
+      $('.rs .myFacebook .shareOn' ).hide();
+      if( !$('.rs .myFacebook').hasClass('noShare')) {
+        $('.rs .myFacebook').addClass('noShare');
+      }
+    }
+
+    // Enlazar con Twitter
+    if( commInfo.twitter ) {
+      $('.rs .myTwitter .shareOff' ).hide();
+      $('.rs .myTwitter .shareOn' ).show();
+      if( $('.rs .myTwitter').hasClass('noShare')) {
+        $('.rs .myTwitter').removeClass('noShare');
+      }
+    }
+    else{
+      $('.rs .myTwitter .shareOff' ).show();
+      $('.rs .myTwitter .shareOn' ).hide();
+      if( !$('.rs .myTwitter').hasClass('noShare')) {
+        $('.rs .myTwitter').addClass('noShare');
+      }
+    }
+
+    // $('.commRS .facebookAccount').text( (commInfo.facebook) ? commInfo.facebook : 'No indicado' );
+    // $('.commRS input[name=facebookAccount]').val(commInfo.facebook);
+    //
+    // $('.commRS .twitterAccount').text( (commInfo.twitter) ? commInfo.twitter : 'No indicado' );
+    // $('.commRS input[name=twitterAccount]').val(commInfo.twitter);
 
     geozzy.rTypeCommunityController.bindMyCommunity();
     geozzy.rTypeCommunityController.viewMode();
@@ -213,4 +247,3 @@ $( document ).ready(function() {
   geozzy.rTypeCommunityController.bindFollow();
   geozzy.rTypeCommunityController.bindShowOtherCommunity();
 });
-
