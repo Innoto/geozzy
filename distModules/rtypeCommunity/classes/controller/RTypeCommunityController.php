@@ -64,29 +64,37 @@ class RTypeCommunityController extends RTypeController implements RTypeInterface
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
   public function getViewBlockInfo() {
+    $viewBlockInfo = false;
 
-    // Preparamos los datos para visualizar el Recurso con sus extensiones
-    $viewBlockInfo = parent::getViewBlockInfo();
+    $userAccessCtrl = new UserAccessController();
+    $userInfo = $userAccessCtrl->getSessiondata();
 
-    // $template = new Template();
-    $template = $viewBlockInfo['template']['full'];
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeCommunity' );
+    $resUser = $this->defResCtrl->resObj->getter('user');
 
-    $template->addClientScript( 'js/rExtCommunityController.js', 'rextCommunity' );
+    if( $userInfo && $userInfo['data']['id'] === $resUser ) {
+      // Preparamos los datos para visualizar el Recurso con sus extensiones
+      $viewBlockInfo = parent::getViewBlockInfo();
 
-    $myInfo = $this->rExtCommCtrl->getUsersInfo( $viewBlockInfo['data']['user'] )[ $viewBlockInfo['data']['user'] ];
-    $template->assign( 'myInfo', $myInfo );
+      // $template = new Template();
+      $template = $viewBlockInfo['template']['full'];
+      $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeCommunity' );
 
-    $commFollows = $this->rExtCommCtrl->getCommFollows( $viewBlockInfo['data']['user'] );
-    $commFollowsInfo = ( $commFollows ) ? $this->rExtCommCtrl->getUsersInfo( $commFollows, $getFavs = true ) : false;
-    $template->assign( 'commFollowsInfo', $commFollowsInfo );
+      $template->addClientScript( 'js/rExtCommunityController.js', 'rextCommunity' );
 
-    $commPropose = $this->rExtCommCtrl->getCommPropose( $viewBlockInfo['data']['user'], $commFollows );
-    $commProposeInfo = ( $commPropose ) ? $this->rExtCommCtrl->getUsersInfo( $commPropose, $getFavs = true ) : false;
-    $template->assign( 'commProposeInfo', $commProposeInfo );
+      $myInfo = $this->rExtCommCtrl->getUsersInfo( $viewBlockInfo['data']['user'] )[ $viewBlockInfo['data']['user'] ];
+      $template->assign( 'myInfo', $myInfo );
 
-    // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-    $viewBlockInfo['template']['full'] = $template;
+      $commFollows = $this->rExtCommCtrl->getCommFollows( $viewBlockInfo['data']['user'] );
+      $commFollowsInfo = ( $commFollows ) ? $this->rExtCommCtrl->getUsersInfo( $commFollows, $getFavs = true ) : false;
+      $template->assign( 'commFollowsInfo', $commFollowsInfo );
+
+      $commPropose = $this->rExtCommCtrl->getCommPropose( $viewBlockInfo['data']['user'], $commFollows );
+      $commProposeInfo = ( $commPropose ) ? $this->rExtCommCtrl->getUsersInfo( $commPropose, $getFavs = true ) : false;
+      $template->assign( 'commProposeInfo', $commProposeInfo );
+
+      // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+      $viewBlockInfo['template']['full'] = $template;
+    }
 
     return $viewBlockInfo;
   }
