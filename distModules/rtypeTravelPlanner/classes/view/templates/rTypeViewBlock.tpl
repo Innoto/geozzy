@@ -19,7 +19,6 @@
   </div>
 
   <section id="travelPlannerSec" class="gzSection">
-    PLANIFICADOR!!!!!
   </section>
 
   <script type="text/javascript">
