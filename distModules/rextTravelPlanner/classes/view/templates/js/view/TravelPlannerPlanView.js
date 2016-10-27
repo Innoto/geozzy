@@ -83,11 +83,14 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
   },
   removeResourceToDay: function(e){
+    var that = this;
     var list = $(e.target).closest('.dd-list');
     $(e.target).closest('.dd-item').remove();
     if(list.children().length === 0){
       list.parent().html('<div class="dd-empty"></div>');
     }
+
+    that.fromHtmlToModel();
   },
   resourceInPlan: function( idResource ){
     var that = this;
@@ -103,7 +106,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     $('.gzznestable').each(function( index ) {
       var day = [];
       $($(this).nestable('serialize')).each( function( i, planItemId ) {
-        console.log(planItemId);
+        //console.log(planItemId);
         day.push(planItemId);
       });
       days.push(day);

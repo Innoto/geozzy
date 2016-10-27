@@ -1,27 +1,177 @@
 @import "primary/primary.less";
 
 .bodyContent{
-
-  .myInfo{
+  .communitySec{
     padding-top: 20px;
-    .infoPersonal{
-      text-align: center;
-      .commImage{
-        padding-bottom: 20px;
-        img{
-          width: 250px;
-          height: 250px;
-          border-radius: 50%;
+
+    .myInfo{
+      .infoPersonal{
+        .commImage{
+          padding-bottom: 20px;
+
+          img{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid rgba(200, 200, 200, 0.9); /* Intentar borde transpartente */
+          }
         }
-      }
-    }
-    .commText{
-      .name{ font-weight: bold; }
-      .commRS{
-        padding-top: 20px;
-      }
-    }
-  }
+      }//.infoPersonal
+
+      .commText{
+        .commRS{
+          padding-top: 20px;
+
+          .myShare{
+            width: 320px;
+            position: relative;
+            background: @gzzColor-geozzy;
+            color: @gzzColor-text-light;
+            text-transform: uppercase;
+            border-radius: 10px;
+            padding: 20px;
+
+            .view{
+              float: left;
+              background: @gzzColor-text-light;
+              height: 32px;
+              width: 32px;
+              border-radius: 5px;
+              position: absolute;
+              top: 50%;
+              -moz-transform: translateY(-50%);
+              -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+
+              i{
+                color:  @gzzColor-text-dark;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -moz-transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+              }
+            }//.view
+
+            .textShare{
+              display: block;
+              margin-left: 50px;
+            }
+
+            .edit{
+              display: block;
+              position: absolute;
+              top: 50%;
+              -moz-transform: translateY(-50%);
+              -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+
+              label{
+                display: block;
+              }
+            }//.edit
+          }//.myShare
+
+          .actions{
+            margin: 20px;
+            text-transform: uppercase;
+            span{ cursor: default; }
+
+            i{
+              padding: 7px;
+              border-radius: 5px;
+              color: @gzzColor-text-light;
+              background: @gzzColor-geozzy;
+            }
+
+            &:hover{
+              i{ background: @gzzColor-geozzy-hover; }
+            }
+          }//.actions
+        }//.commRS
+
+        .rs{
+          .myFacebook,
+          .myTwitter{
+            position: relative;
+            height: 80px;
+            width: 250px;
+            color: @gzzColor-text-light;
+            -moz-border-radius: 40px;
+            -webkit-border-radius: 40px;
+            border-radius: 40px;
+            padding: 8px;
+
+            .iconRs{
+              height: 64px;
+              width: 64px;
+              border-radius: 50%;
+              position: absolute;
+              top: 50%;
+              -moz-transform: translateY(-50%);
+              -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+
+              i{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -moz-transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+              }
+
+              &.rsFacebook{ background: #3a5795; }
+              &.rsTwitter{ background: #5eA9dd; }
+            }//.iconRs
+
+            .shareOn,
+            .edit{
+              margin-left: 60px;
+              position: absolute;
+              top: 50%;
+              left: 25%;
+              -moz-transform: translate(-25%, -50%);
+              -webkit-transform: translate(-25%, -50%);
+              transform: translate(-25%, -50%);
+            }
+
+            &.noShare{
+              background: @gzzColor-bck-4;
+              .iconRs{
+                &.rsFacebook,
+                &.rsTwitter{ background: @gzzColor-bck-5; }
+              }
+
+              .shareOff{
+                margin-left: 60px;
+                position: absolute;
+                top: 50%;
+                left: 25%;
+                -moz-transform: translate(-25%, -50%);
+                -webkit-transform: translate(-25%, -50%);
+                transform: translate(-25%, -50%);
+              }
+            }
+          }//.myFacebook,.myTwitter
+
+          .myFacebook{
+            background: #a3b5db;
+          }
+
+          .myTwitter{
+            background: #96c6e9;
+          }
+
+
+
+          [class*='col-']{ margin-bottom: 25px; }
+          [class*='col-']:last-child{ margin-bottom: 0; }
+        }//.rs
+      }//.commText
+    }//.myInfo
+  }//.communitySec
 
 
 /* CSS temporal - Porto */
@@ -55,5 +205,32 @@
 
 } /*991px*/
 @media screen and (max-width: 767px) {
+  .bodyContent{
+    .communitySec{
+      .myInfo{
+        .commText{
+          position: relative;
+          height: 380px;
 
+          .commRS{
+            position: absolute;
+            left: 50%;
+            -moz-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+
+            .actions{ text-align: center; }
+          }
+
+          .rs{
+            position: absolute;
+            left: 50%;
+            -moz-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+  }
 } /*767px*/
