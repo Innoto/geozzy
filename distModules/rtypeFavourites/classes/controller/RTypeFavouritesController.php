@@ -181,23 +181,31 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
   public function getViewBlockInfo() {
+    $viewBlockInfo = false;
 
-    // Preparamos los datos para visualizar el Recurso con sus extensiones
-    $viewBlockInfo = parent::getViewBlockInfo();
+    $userAccessCtrl = new UserAccessController();
+    $userInfo = $userAccessCtrl->getSessiondata();
 
-    // $template = new Template();
-    $template = $viewBlockInfo['template']['full'];
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeFavourites' );
+    $resUser = $this->defResCtrl->resObj->getter('user');
 
-    $template->addClientScript( 'js/rExtFavouriteController.js', 'rextFavourite' );
+    if( $userInfo && $userInfo['data']['id'] === $resUser ) {
+      // Preparamos los datos para visualizar el Recurso con sus extensiones
+      $viewBlockInfo = parent::getViewBlockInfo();
 
-    $favsResources = $this->getFavsResources( $viewBlockInfo['data']['id'] );
-    $favsResourcesInfo = ($favsResources) ? $this->getResourcesInfo( $favsResources ) : false;
-    $template->assign( 'favsResourcesInfo', $favsResourcesInfo );
+      // $template = new Template();
+      $template = $viewBlockInfo['template']['full'];
+      $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeFavourites' );
+
+      $template->addClientScript( 'js/rExtFavouriteController.js', 'rextFavourite' );
+
+      $favsResources = $this->getFavsResources( $viewBlockInfo['data']['id'] );
+      $favsResourcesInfo = ($favsResources) ? $this->getResourcesInfo( $favsResources ) : false;
+      $template->assign( 'favsResourcesInfo', $favsResourcesInfo );
 
 
-    // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-    $viewBlockInfo['template']['full'] = $template;
+      // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+      $viewBlockInfo['template']['full'] = $template;
+    }
 
     return $viewBlockInfo;
   }
