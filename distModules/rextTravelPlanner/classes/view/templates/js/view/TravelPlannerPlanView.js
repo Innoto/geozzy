@@ -42,13 +42,11 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     for (i = 0; i < that.planDays; i++) {
       var day = {
         id: i,
-        date: checkin.format('LL'),
-        dayName: checkin.format('ddd'),
+        date: checkin.format('L'),
+        dayName: checkin.format('dddd'),
         day: checkin.format('DD'),
-        month: checkin.format('MMM'),
-        inPlan: false
+        month: checkin.format('MMM')
       };
-
       checkin.add(1, 'days');
       that.$('.travelPlannerPlanDaysContainer').append( that.dayTemplate({ day: day }) );
     }
@@ -57,12 +55,6 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       'maxDepth': 1,
       'dragClass': "gzznestable dd-dragel",
       callback: function(l, e) {
-/*
-$('.gzznestable').each(function( index ) {
-  console.log('DAY'+ (index))
-  console.log($(this).nestable('serialize'));
-});
-*/
         that.fromHtmlToModel();
       }
     });
@@ -103,9 +95,6 @@ $('.gzznestable').each(function( index ) {
 
     return days;
   },
-
-
-
   fromHtmlToModel: function() {
     var that = this;
 
