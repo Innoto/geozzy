@@ -19,27 +19,27 @@
 
         .travelPlannerFilters{
           padding: 20px 20px 20px 10px ;
-          background: @gzzColor-bck-3;
+          background: @gzzColor-bck-1;
           -webkit-box-shadow: 0px 2px 3px rgba(0,0,0,.3);
           -moz-box-shadow: 0px 2px 3px rgba(0,0,0,.3);
           box-shadow: 0px 2px 3px rgba(0,0,0,.3);
 
           .filter{
-            padding: 5px 0;
+            padding: 5px 10px;
 
             select{
               font-size: 16px;
               height: 40px;
               display: block;
-              background: @gzzColor-bck-1 url('@{cogumelo_publicConf_media}/img/select_arrow.png') 96% 13px no-repeat;
-              border: 2px solid @gzzColor-bck-7;
-              padding: 7px 10px;
-              padding-right: 25px;
+              background: @gzzColor-bck-1 url('@{cogumelo_publicConf_media}/img/select_arrow.png') 93% 13px no-repeat;
+              border: 1px solid @gzzColor-bck-7;
+              padding: 7px 15px;
+              padding-right: 30px;
               color: @gzzColor-text-dark;
               width: 100%;
-              -webkit-border-radius: 2px;
-              -moz-border-radius: 2px;
-              border-radius: 2px;
+              -webkit-border-radius: 20px;
+              -moz-border-radius: 20px;
+              border-radius: 20px;
               -moz-appearance: none;
               -webkit-appearance: none;
               appearance: none;
@@ -48,15 +48,11 @@
           }
         }
         .travelPlannerResources{
-          background: @gzzColor-bck-2;
+          background: @gzzColor-bck-1;
+          padding: 0px 20px;
 
           .tpResourceItem{
-            background: @gzzColor-bck-1;
             margin-bottom: 20px;
-            -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,.3);
-            -moz-box-shadow: 2px 2px 3px rgba(0,0,0,.3);
-            box-shadow: 2px 2px 3px rgba(0,0,0,.3);
-            cursor:pointer;
 
             .image{
               position: relative;
@@ -64,22 +60,32 @@
               button{
                 position: absolute;
                 top: 50%;
-                left: 50%;
-                font-size: 32px;
-                z-index: 101;
-                opacity: 0;
-                -ms-transform: translate(-50%,-50%); /* IE 9 */
-               	-webkit-transform: translate(-50%,-50%); /* Safari */
-                transform: translate(-50%,-50%);
-                transition: opacity .45s ease-in-out;
-                -moz-transition: opacity .45s ease-in-out;
-                -webkit-transition: opacity .45s ease-in-out;
                 height: 60px;
                 width: 60px;
                 padding: 0;
+                font-size: 32px;
+                z-index: 101;
+                opacity: 0;
+                transition: opacity .45s ease-in-out;
+                -moz-transition: opacity .45s ease-in-out;
+                -webkit-transition: opacity .45s ease-in-out;
                 -webkit-border-radius: 50%;
                 -moz-border-radius: 50%;
                 border-radius: 50%;
+              }
+              .openResource{
+                left: 75%;
+                -ms-transform: translate(-75%,-50%); /* IE 9 */
+               	-webkit-transform: translate(-75%,-50%); /* Safari */
+                transform: translate(-75%,-50%);
+              }
+              .addToPlan{
+                left: 25%;
+                -ms-transform: translate(-25%,-50%); /* IE 9 */
+               	-webkit-transform: translate(-25%,-50%); /* Safari */
+                transform: translate(-25%,-50%);
+
+
 
                 i{
                   margin-left: 2px;
@@ -96,12 +102,11 @@
               }
             }
             .title{
-              padding: 5px 10px;
-              font-size: 18px;
+              padding: 5px 0px;
+              font-size: 16px;
               font-weight: 600;
             }
             .description{
-              padding: 5px 10px;
               font-size: 13px;
             }
 
@@ -125,13 +130,22 @@
         }//travelPlannerResources
       }//travelPlannerList
       .travelPlannerPlan{
+        padding: 20px 30px;
+        background-color: @gzzColor-bck-2;
         .travelPlannerPlanHeader{
-          .plannerDay{
 
-          }
         }
         .travelPlannerPlanDaysContainer{
-
+          .plannerDay{
+            .plannerDayPlanner{
+              background-color: @gzzColor-bck-1;
+              border-top: 2px solid @gzzColor-bck-3;
+              -webkit-border-radius: 2px;
+              -moz-border-radius: 2px;
+              border-radius: 2px;
+              padding: 20px;
+            }
+          }
         }
       }//travelPlannerPlan
     } //travelPlanner

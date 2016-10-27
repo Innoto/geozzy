@@ -124,7 +124,7 @@ $('.gzznestable').each(function( index ) {
   fromModeltoHtml: function() {
     var that = this;
 
-
+/*
 
     $(that.parentTp.tpData.get('list')).each( function(iday,day) {
       $(day).each( function(i,item){
@@ -132,7 +132,7 @@ $('.gzznestable').each(function( index ) {
         //that.addResourceToDay( iday,item.id );
       });
     });
-
+*/
 
   }
 

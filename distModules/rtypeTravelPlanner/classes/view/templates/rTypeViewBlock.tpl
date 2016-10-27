@@ -71,9 +71,10 @@
     <div class="image">
       <img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerList/<%- resource.image %>.jpg">
       <button class="addToPlan btn btn-primary"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></button>
+      <button class="openResource btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></i></button>
     </div>
     <div class="title"><%- resource.title %></div>
-    <div class="description"><%- resource.mediumDescription %></div>
+    <div class="description"><%- resource.shortDescription %></div>
 
   </div>
 </script>
@@ -131,6 +132,7 @@
       </div>
       <div class="dd-handle">
         <i class="fa fa-arrows icon-handle"></i>
+        <img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIcon/<%- resource.image %>.jpg">
         <%- resource.title %>
       </div>
     </div>

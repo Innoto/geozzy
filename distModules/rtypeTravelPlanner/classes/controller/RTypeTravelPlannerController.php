@@ -129,9 +129,7 @@ class RTypeTravelPlannerController extends RTypeController implements RTypeInter
 
     // COL8
     $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
-    if( $favsTemplate ) {
-      $templates['adminFull']->addToFragment( 'col8', $favsTemplate );
-    }
+  
     // $templates['adminFull']->addToFragment( 'col8', $templates['favResources'] );
     // COL4
     $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );

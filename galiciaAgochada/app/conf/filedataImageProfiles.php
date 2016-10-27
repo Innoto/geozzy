@@ -80,7 +80,10 @@ cogumeloSetSetupValue( 'mod:filedata:profile:imgMultimediaGallery', array(
 
 
   cogumeloSetSetupValue( 'mod:filedata:profile:travelPlannerList', array(
-    'width' => 400, 'height' => 200, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 70 ) );
+    'width' => 300, 'height' => 150, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 70 ) );
+  cogumeloSetSetupValue( 'mod:filedata:profile:travelPlannerListIcon', array(
+    'width' => 64, 'height' => 64, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 70 ) );
+
 
 
 
