@@ -3,8 +3,7 @@
 @import "themeLibs/nestableTheme.less";
 
 
-.travelPlanner( @tp-h:calc(~"100vh - "@headerTitleBarHeight ), @tpList-w: 320px, @tpList-h:calc(~"100vh - "@headerTitleBarHeight ) );
-.nestableTheme();
+.initTravelPlanner( @tp-h:calc(~"100vh - "@headerTitleBarHeight ), @tpList-w: 320px, @tpList-h:calc(~"100vh - "@headerTitleBarHeight ) );
 
 .bodyContent{
   #travelPlannerSec{
@@ -137,21 +136,68 @@
         }
         .travelPlannerPlanDaysContainer{
           .plannerDay{
+            .plannerDayHeader{
+              background-color: @gzzColor-bck-5;
+            }
             .plannerDayPlanner{
-              background-color: @gzzColor-bck-1;
+              background-color: @gzzColor-bck-2;
               border-top: 2px solid @gzzColor-bck-3;
               -webkit-border-radius: 2px;
               -moz-border-radius: 2px;
               border-radius: 2px;
-              padding: 20px;
-            }
-          }
-        }
+            }//.plannerDayPlanner
+          }//plannerDay
+        }//travelPlannerPlanDaysContainer
       }//travelPlannerPlan
     } //travelPlanner
   } //#travelPlannerSec
 }
-
+/*Se coloca aqui porque el elemento dd-item cuando esta siendo arrastrado esta directamente sobre body*/
+.gzznestable{
+  .dd-item{
+    .dd-item-container{
+      .dd-handle{
+        .iconHandle{
+          float:left;
+          margin: 10px 5px;
+          font-size: 30px;
+          .icon-handle{
+            color: @gzzColor-bck-3;
+            &:hover{
+              color: @gzzColor-text-dark;
+            }
+          }
+        }
+        .image{
+          float:left;
+        }
+        .info{
+          float:left;
+          margin-left: 10px;
+          .title{
+            font-weight: 600;
+          }
+        }
+      }
+      .dd-content{
+        opacity: 0;
+        transition: opacity .45s ease-in-out;
+        -moz-transition: opacity .45s ease-in-out;
+        -webkit-transition: opacity .45s ease-in-out;
+      }
+      &:hover{
+        .dd-content{
+          opacity: 1;
+        }
+      }
+    }//.dd-item-container
+  }//.dd-item
+  .dd-empty,
+  .dd-placeholder{
+    background: @gzzColor-bck-3;
+    border-color: @gzzColor-bck-4;
+  }
+}
 /**************************************************************************************/
 /**************************************************************************************/
 /**********************  RESPONSIVE MEDIA QUERIES  ************************************/

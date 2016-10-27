@@ -85,19 +85,38 @@
     <input type="text" id="checkTpDates" class="form-control" readonly>
   </div>
 </script>
-
+<!-- *************************** NESTABLE DAY LIST ************************************** -->
 <script type="text/template" id="dayTPTemplate">
-
   <div class="plannerDay plannerDay-<%- day.id %>" data-day="<%- day.id %>">
-    <h2><%- day.dayName %> <%- day.day %> <%- day.month %></h2>
+    <div class="plannerDayHeader">
+      <h2><span>{t}Day{/t}<span> <%- day.id+1 %></h2>
+      <div class="infoDay"><div><%- day.dayName %></div><div><%- day.date %></div></div>
+      <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> 3h 45min</div>
+    </div>
     <div class="plannerDayPlanner gzznestable dd">
-      <ol class="dd-list">
-
-      </ol>
-      <!--<div class="dd-empty"></div>-->
+      <div class="dd-empty"></div>
     </div>
   </div>
-
+</script>
+<!-- *************************** NESTABLE ITEM ************************************** -->
+<script type="text/template" id="resourcePlanItemTemplate">
+  <li class="dd-item" data-id="<%- resource.id %>">
+    <div class="dd-item-container clearfix">
+      <div class="dd-content">
+        <div class="nestableActions">
+          <button class="btnEdit btn-icon btn-primary" data-id="<%- resource.id %>" ><i class="fa fa-pencil" aria-hidden="true"></i></button>
+          <button class="btnDelete btn-icon btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="dd-handle clearfix">
+        <div class="iconHandle"><i class="fa fa-bars icon-handle"></i></div>
+        <div class="image"><img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIcon/<%- resource.image %>.jpg"></div>
+        <div class="info">
+          <div class="title"><%- resource.title %></div>
+          <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> 1h 30 min</div>
+      </div>
+    </div>
+  </li>
 </script>
 
 <script type="text/template" id="resourceTpModalTemplate">
@@ -119,21 +138,4 @@
       <button type="button" class="acceptAdd btn btn-success">{t}Add to plan{/t}</button>
     <div>
   </div>
-</script>
-
-<script type="text/template" id="resourcePlanItemTemplate">
-  <li class="dd-item" data-id="<%- resource.id %>">
-    <div class="dd-item-container clearfix">
-      <div class="dd-content">
-        <div class="nestableActions">
-          <button class="btnDelete btn-icon btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-times"></i></button>
-        </div>
-      </div>
-      <div class="dd-handle">
-        <i class="fa fa-arrows icon-handle"></i>
-        <img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIcon/<%- resource.image %>.jpg">
-        <%- resource.title %>
-      </div>
-    </div>
-  </li>
 </script>
