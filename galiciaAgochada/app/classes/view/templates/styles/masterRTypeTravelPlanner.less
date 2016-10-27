@@ -3,13 +3,201 @@
 @import "themeLibs/nestableTheme.less";
 
 
-.travelPlanner( @tp-h:calc(~"100vh - "@headerTitleBarHeight ), @tpList-h:calc(~"100% - "@headerTitleBarHeight ) );
-.nestableTheme();
+.initTravelPlanner( @tp-h:calc(~"100vh - "@headerTitleBarHeight ), @tpList-w: 320px, @tpList-h:calc(~"100vh - "@headerTitleBarHeight ) );
 
 .bodyContent{
-  
-}
+  #travelPlannerSec{
+    padding: 0;
+    margin: 0;
+    .travelPlanner{
+      .travelPlannerList{
+        padding: 0;
+        -webkit-box-shadow: 2px 0px 3px rgba(0,0,0,.3);
+        -moz-box-shadow: 2px 0px 3px rgba(0,0,0,.3);
+        box-shadow: 2px 0px 3px rgba(0,0,0,.3);
 
+        .travelPlannerFilters{
+          padding: 20px 20px 20px 10px ;
+          background: @gzzColor-bck-1;
+          -webkit-box-shadow: 0px 2px 3px rgba(0,0,0,.3);
+          -moz-box-shadow: 0px 2px 3px rgba(0,0,0,.3);
+          box-shadow: 0px 2px 3px rgba(0,0,0,.3);
+
+          .filter{
+            padding: 5px 10px;
+
+            select{
+              font-size: 16px;
+              height: 40px;
+              display: block;
+              background: @gzzColor-bck-1 url('@{cogumelo_publicConf_media}/img/select_arrow.png') 93% 13px no-repeat;
+              border: 1px solid @gzzColor-bck-7;
+              padding: 7px 15px;
+              padding-right: 30px;
+              color: @gzzColor-text-dark;
+              width: 100%;
+              -webkit-border-radius: 20px;
+              -moz-border-radius: 20px;
+              border-radius: 20px;
+              -moz-appearance: none;
+              -webkit-appearance: none;
+              appearance: none;
+              cursor: pointer;
+            }
+          }
+        }
+        .travelPlannerResources{
+          background: @gzzColor-bck-1;
+          padding: 0px 20px;
+
+          .tpResourceItem{
+            margin-bottom: 20px;
+
+            .image{
+              position: relative;
+              overflow: hidden;
+              button{
+                position: absolute;
+                top: 50%;
+                height: 60px;
+                width: 60px;
+                padding: 0;
+                font-size: 32px;
+                z-index: 101;
+                opacity: 0;
+                transition: opacity .45s ease-in-out;
+                -moz-transition: opacity .45s ease-in-out;
+                -webkit-transition: opacity .45s ease-in-out;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+              }
+              .openResource{
+                left: 75%;
+                -ms-transform: translate(-75%,-50%); /* IE 9 */
+               	-webkit-transform: translate(-75%,-50%); /* Safari */
+                transform: translate(-75%,-50%);
+              }
+              .addToPlan{
+                left: 25%;
+                -ms-transform: translate(-25%,-50%); /* IE 9 */
+               	-webkit-transform: translate(-25%,-50%); /* Safari */
+                transform: translate(-25%,-50%);
+
+
+
+                i{
+                  margin-left: 2px;
+                }
+              }
+              img{
+                width: 100%;
+
+                -webkit-transform: scale(1, 1); /* Saf3.1+, Chrome */
+                -moz-transform: scale(1, 1); /* FF3.5+ */
+                -ms-transform: scale(1, 1); /* IE9 */
+                 -o-transform: scale(1, 1); /* Opera 10.5+ */
+                    transform: scale(1, 1);
+              }
+            }
+            .title{
+              padding: 5px 0px;
+              font-size: 16px;
+              font-weight: 600;
+            }
+            .description{
+              font-size: 13px;
+            }
+
+            &:hover{
+              .image{
+                img{
+                  -webkit-transform: scale(1.08, 1.1); /* Saf3.1+, Chrome */
+                  -moz-transform: scale(1.08, 1.1); /* FF3.5+ */
+                  -ms-transform: scale(1.08, 1.1); /* IE9 */
+                   -o-transform: scale(1.08, 1.1); /* Opera 10.5+ */
+                      transform: scale(1.08, 1.1);
+                  transition-duration: 450ms;
+                  transition-timing-function: ease-out;
+                }
+                button{
+                  opacity: 1;
+                }
+              }
+            }//&:hover
+          }//tpResourceItem
+        }//travelPlannerResources
+      }//travelPlannerList
+      .travelPlannerPlan{
+        padding: 20px 30px;
+        background-color: @gzzColor-bck-2;
+        .travelPlannerPlanHeader{
+
+        }
+        .travelPlannerPlanDaysContainer{
+          .plannerDay{
+            .plannerDayHeader{
+              background-color: @gzzColor-bck-5;
+            }
+            .plannerDayPlanner{
+              background-color: @gzzColor-bck-2;
+              border-top: 2px solid @gzzColor-bck-3;
+              -webkit-border-radius: 2px;
+              -moz-border-radius: 2px;
+              border-radius: 2px;
+            }//.plannerDayPlanner
+          }//plannerDay
+        }//travelPlannerPlanDaysContainer
+      }//travelPlannerPlan
+    } //travelPlanner
+  } //#travelPlannerSec
+}
+/*Se coloca aqui porque el elemento dd-item cuando esta siendo arrastrado esta directamente sobre body*/
+.gzznestable{
+  .dd-item{
+    .dd-item-container{
+      .dd-handle{
+        .iconHandle{
+          float:left;
+          margin: 10px 5px;
+          font-size: 30px;
+          .icon-handle{
+            color: @gzzColor-bck-3;
+            &:hover{
+              color: @gzzColor-text-dark;
+            }
+          }
+        }
+        .image{
+          float:left;
+        }
+        .info{
+          float:left;
+          margin-left: 10px;
+          .title{
+            font-weight: 600;
+          }
+        }
+      }
+      .dd-content{
+        opacity: 0;
+        transition: opacity .45s ease-in-out;
+        -moz-transition: opacity .45s ease-in-out;
+        -webkit-transition: opacity .45s ease-in-out;
+      }
+      &:hover{
+        .dd-content{
+          opacity: 1;
+        }
+      }
+    }//.dd-item-container
+  }//.dd-item
+  .dd-empty,
+  .dd-placeholder{
+    background: @gzzColor-bck-3;
+    border-color: @gzzColor-bck-4;
+  }
+}
 /**************************************************************************************/
 /**************************************************************************************/
 /**********************  RESPONSIVE MEDIA QUERIES  ************************************/

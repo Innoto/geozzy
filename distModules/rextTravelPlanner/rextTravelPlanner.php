@@ -21,6 +21,12 @@ class rextTravelPlanner extends Module {
      'includes' => array( 'builds/moment-timezone-with-data.min.js' )
     ),
     array(
+      "id" =>"nestable2",
+      "params" => array("nestable2-old"),
+      "installer" => "bower",
+      "includes" => array("jquery.nestable.js")
+    ),
+    array(
      'id' =>'bootstrap-daterangepicker',
      'params' => array( 'bootstrap-daterangepicker' ),
      'installer' => 'bower',

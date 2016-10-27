@@ -21,7 +21,11 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
     that.delegateEvents();
     that.parentTp = parentTp;
     that.idResource = idResource;
-    that.planDays = 1 + that.parentTp.tpData.get('checkout').diff(that.parentTp.tpData.get('checkin'), 'days');
+
+    var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
+    var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
+
+    that.planDays = 1 + checkout.diff( checkin, 'days');
 
     that.modalTemplate = _.template( geozzy.travelPlannerComponents.modalMdTemplate );
     that.render();
@@ -36,7 +40,7 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
 
     item = that.parentTp.resources.get(that.idResource);
 
-    var checkin = moment(that.parentTp.tpData.get('checkin'));
+    var checkin = that.parentTp.momentDate(that.parentTp.tpData.get('checkin'));
     var dates = [];
 
     var selectedDays = that.parentTp.travelPlannerPlanView.resourceInPlan(that.idResource);

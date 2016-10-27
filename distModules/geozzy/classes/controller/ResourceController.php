@@ -1501,108 +1501,110 @@ class ResourceController {
           'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias' )
         )
       );
-      while( $collection = $resCollectionList->fetch() ) {
-        $collId = $collection->getter('id');
-        if( !isset( $collectionResources[ $collId ] ) ) {
-          $collectionResources[ $collId ]['col'] = array(
-            'id' => $collId,
-            'title' => $collection->getter('title'),
-            'shortDescription' => $collection->getter('shortDescription'),
-            'description' => $collection->getter('description'),
-            'image' => $collection->getter('image'),
-            'collectionType' => $collection->getter('collectionType')
-          );
-          $collectionResources[ $collId ]['res'] = [];
-        }
-        $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
-        if( $resources && is_array($resources) && count($resources) > 0 ) {
-          switch( $collection->getter('collectionType') ) {
-            case 'multimedia':
-              foreach( $resources as $resVal ) {
-                // Saltamos recursos no publicados
-                if( !$resVal->getter( 'published' ) ) {
-                  continue;
-                }
-
-                $thumbSettings = array(
-                  'profile' => 'imgMultimediaGallery'
-                );
-
-                $imgId = $resVal->getter( 'image' );
-
-                if( $imgId && $imgId !== 'null' ) {
-                  $thumbSettings['imageId'] = $imgId;
-                  $thumbSettings['imageName'] = $imgId.'.jpg';
-                }
-
-                $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-                $multimediaUrl = false;
-                if( $resDataExt = $resDataExtArray[0]){
-                  $thumbSettings['url'] = $resDataExt->getter('url');
-                  $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
-                  $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-                  if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
-                    $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
+      if( gettype( $resCollectionList ) === 'object' ) {
+        while( $collection = $resCollectionList->fetch() ) {
+          $collId = $collection->getter('id');
+          if( !isset( $collectionResources[ $collId ] ) ) {
+            $collectionResources[ $collId ]['col'] = array(
+              'id' => $collId,
+              'title' => $collection->getter('title'),
+              'shortDescription' => $collection->getter('shortDescription'),
+              'description' => $collection->getter('description'),
+              'image' => $collection->getter('image'),
+              'collectionType' => $collection->getter('collectionType')
+            );
+            $collectionResources[ $collId ]['res'] = [];
+          }
+          $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
+          if( $resources && is_array($resources) && count($resources) > 0 ) {
+            switch( $collection->getter('collectionType') ) {
+              case 'multimedia':
+                foreach( $resources as $resVal ) {
+                  // Saltamos recursos no publicados
+                  if( !$resVal->getter( 'published' ) ) {
+                    continue;
                   }
+
+                  $thumbSettings = array(
+                    'profile' => 'imgMultimediaGallery'
+                  );
+
+                  $imgId = $resVal->getter( 'image' );
+
+                  if( $imgId && $imgId !== 'null' ) {
+                    $thumbSettings['imageId'] = $imgId;
+                    $thumbSettings['imageName'] = $imgId.'.jpg';
+                  }
+
+                  $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
+                  $multimediaUrl = false;
+                  if( $resDataExt = $resDataExtArray[0]){
+                    $thumbSettings['url'] = $resDataExt->getter('url');
+                    $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
+                    $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+                    if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
+                      $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
+                    }
+                  }
+                  $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+                  $thumbSettings['profile'] = 'hdpi4';
+                  $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
+
+                  $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
+                  $collectionResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
+                    'id' => $resVal->getter('id'),
+                    'rType' => $resVal->getter('rTypeId'),
+                    'title' => $resVal->getter('title'),
+                    'shortDescription' => $resVal->getter('shortDescription'),
+                    'mediumDescription' => $resVal->getter('mediumDescription'),
+                    'externalUrl' => $resVal->getter('externalUrl'),
+                    'urlAlias' => $urlAlias,
+                    'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
+                    'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
+                    'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
+                    'image_big' => $imgUrl2,
+                    'multimediaUrl' => $multimediaUrl,
+                  );
                 }
-                $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-                $thumbSettings['profile'] = 'hdpi4';
-                $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
+                break;
+              case 'base':
+              default:
+                foreach( $resources as $resVal ) {
+                  // Saltamos recursos no publicados
+                  if( !$resVal->getter( 'published' ) ) {
+                    continue;
+                  }
 
-                $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
-                $collectionResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
-                  'id' => $resVal->getter('id'),
-                  'rType' => $resVal->getter('rTypeId'),
-                  'title' => $resVal->getter('title'),
-                  'shortDescription' => $resVal->getter('shortDescription'),
-                  'mediumDescription' => $resVal->getter('mediumDescription'),
-                  'externalUrl' => $resVal->getter('externalUrl'),
-                  'urlAlias' => $urlAlias,
-                  'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
-                  'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
-                  'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
-                  'image_big' => $imgUrl2,
-                  'multimediaUrl' => $multimediaUrl,
-                );
-              }
-              break;
-            case 'base':
-            default:
-              foreach( $resources as $resVal ) {
-                // Saltamos recursos no publicados
-                if( !$resVal->getter( 'published' ) ) {
-                  continue;
+                  $thumbSettings = array(
+                    'imageId' => $resVal->getter( 'image' ),
+                    'imageName' => $resVal->getter( 'image' ).'.jpg',
+                    'profile' => 'fast_cut'
+                  );
+                  $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
+                  if( $resDataExt = $resDataExtArray[0] ) {
+                    $thumbSettings['url'] = $resDataExt->getter('url');
+                  }
+                  $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+
+                  $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
+
+                  $collectionResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
+                    'id' => $resVal->getter('id'),
+                    'rType' => $resVal->getter('rTypeId'),
+                    'title' => $resVal->getter('title'),
+                    'shortDescription' => $resVal->getter('shortDescription'),
+                    'mediumDescription' => $resVal->getter('mediumDescription'),
+                    'externalUrl' => $resVal->getter('externalUrl'),
+                    'urlAlias' => $urlAlias,
+                    'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
+                    'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
+                    'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
+                  );
                 }
-
-                $thumbSettings = array(
-                  'imageId' => $resVal->getter( 'image' ),
-                  'imageName' => $resVal->getter( 'image' ).'.jpg',
-                  'profile' => 'fast_cut'
-                );
-                $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-                if( $resDataExt = $resDataExtArray[0] ) {
-                  $thumbSettings['url'] = $resDataExt->getter('url');
-                }
-                $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-
-                $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
-
-                $collectionResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
-                  'id' => $resVal->getter('id'),
-                  'rType' => $resVal->getter('rTypeId'),
-                  'title' => $resVal->getter('title'),
-                  'shortDescription' => $resVal->getter('shortDescription'),
-                  'mediumDescription' => $resVal->getter('mediumDescription'),
-                  'externalUrl' => $resVal->getter('externalUrl'),
-                  'urlAlias' => $urlAlias,
-                  'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
-                  'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
-                  'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
-                );
-              }
-              break;
-          } // switch
-        } // if
+                break;
+            } // switch
+          } // if
+        }
       }
     }
 

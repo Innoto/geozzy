@@ -292,7 +292,7 @@ class RTypeController {
       'template' => array(
         'full' => new Template() // Definimos un Template 'full' por defecto
       ),
-      'data' => $this->defResCtrl->getResourceData( false, true ),
+      'data' => $this->defResCtrl->getResourceData( false ),
       'ext' => array()
     );
 

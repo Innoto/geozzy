@@ -79,6 +79,14 @@ cogumeloSetSetupValue( 'mod:filedata:profile:imgMultimediaGallery', array(
 
 
 
+  cogumeloSetSetupValue( 'mod:filedata:profile:travelPlannerList', array(
+    'width' => 300, 'height' => 150, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 70 ) );
+  cogumeloSetSetupValue( 'mod:filedata:profile:travelPlannerListIcon', array(
+    'width' => 100, 'height' => 50, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 70 ) );
+
+
+
+
 /*-----------------------------------------TEMP ----------------------------------------------------------------------*/
 cogumeloSetSetupValue( 'mod:filedata:profile:typeIcon', array(
   'width' => 36, 'height' => 36,

@@ -64,29 +64,45 @@ class RTypeCommunityController extends RTypeController implements RTypeInterface
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
   public function getViewBlockInfo() {
+    $viewBlockInfo = false;
 
-    // Preparamos los datos para visualizar el Recurso con sus extensiones
-    $viewBlockInfo = parent::getViewBlockInfo();
+    $userAccessCtrl = new UserAccessController();
+    $userInfo = $userAccessCtrl->getSessiondata();
 
-    // $template = new Template();
-    $template = $viewBlockInfo['template']['full'];
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeCommunity' );
+    $resUser = $this->defResCtrl->resObj->getter('user');
 
-    $template->addClientScript( 'js/rExtCommunityController.js', 'rextCommunity' );
+    if( $userInfo && $userInfo['data']['id'] === $resUser ) {
 
-    $myInfo = $this->rExtCommCtrl->getUsersInfo( $viewBlockInfo['data']['user'] )[ $viewBlockInfo['data']['user'] ];
-    $template->assign( 'myInfo', $myInfo );
 
-    $commFollows = $this->rExtCommCtrl->getCommFollows( $viewBlockInfo['data']['user'] );
-    $commFollowsInfo = ( $commFollows ) ? $this->rExtCommCtrl->getUsersInfo( $commFollows, $getFavs = true ) : false;
-    $template->assign( 'commFollowsInfo', $commFollowsInfo );
+      // TODO: TEMPORAL!!! Se calculan las afinidades en cada acceso
+      rextCommunity::load('view/RExtCommunityAffinityView.php');
+      $afinCtrl = new RExtCommunityAffinityView();
+      $afinCtrl->updateAffinityModel();
 
-    $commPropose = $this->rExtCommCtrl->getCommPropose( $viewBlockInfo['data']['user'], $commFollows );
-    $commProposeInfo = ( $commPropose ) ? $this->rExtCommCtrl->getUsersInfo( $commPropose, $getFavs = true ) : false;
-    $template->assign( 'commProposeInfo', $commProposeInfo );
 
-    // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-    $viewBlockInfo['template']['full'] = $template;
+      // Preparamos los datos para visualizar el Recurso con sus extensiones
+      $viewBlockInfo = parent::getViewBlockInfo();
+
+      // $template = new Template();
+      $template = $viewBlockInfo['template']['full'];
+      $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeCommunity' );
+
+      $template->addClientScript( 'js/rExtCommunityController.js', 'rextCommunity' );
+
+      $myInfo = $this->rExtCommCtrl->getUsersInfo( $viewBlockInfo['data']['user'] )[ $viewBlockInfo['data']['user'] ];
+      $template->assign( 'myInfo', $myInfo );
+
+      $commFollows = $this->rExtCommCtrl->getCommFollows( $viewBlockInfo['data']['user'] );
+      $commFollowsInfo = ( $commFollows ) ? $this->rExtCommCtrl->getUsersInfo( $commFollows, $getFavs = true ) : false;
+      $template->assign( 'commFollowsInfo', $commFollowsInfo );
+
+      $commPropose = $this->rExtCommCtrl->getCommPropose( $viewBlockInfo['data']['user'], $commFollows );
+      $commProposeInfo = ( $commPropose ) ? $this->rExtCommCtrl->getUsersInfo( $commPropose, $getFavs = true ) : false;
+      $template->assign( 'commProposeInfo', $commProposeInfo );
+
+      // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+      $viewBlockInfo['template']['full'] = $template;
+    }
 
     return $viewBlockInfo;
   }

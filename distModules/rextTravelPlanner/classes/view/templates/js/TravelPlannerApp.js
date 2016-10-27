@@ -4,7 +4,7 @@ var geozzy = geozzy || {};
 geozzy.travelPlanner = function( idTravelPlanner ) {
 
   var that = this;
-
+  that.timeServerFormat = 'YYYY/MM/DD HH:mm:ss';
   that.travelPlannerId = (idTravelPlanner) ? idTravelPlanner : false;
   that.travelPlannerInterfaceView = false;
   that.travelPlannerDatesView = false;
@@ -68,18 +68,19 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       that.resources.fetch(),
       that.rtypes.fetch(),
       that.getResourcesFav(),
-      that.tpData.fetch()
+      that.tpData.fetchData()
     ).done( function() {
 
 //Temporalmente para no cubrir las fechas!-----------------------
-that.tpData.set('checkin', moment().add( 0, 'days' ));
-that.tpData.set('checkout', moment().add( 7, 'days' ));
+//that.tpData.set('checkin', moment().add( 0, 'days' ).format( that.timeServerFormat ) );
+//that.tpData.set('checkout', moment().add( 7, 'days' ).format( that.timeServerFormat ) );
 //---------------------------------------------------------------
 
       that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
+
       that.initDates();
 
-      if( that.tpData.get('checkin') !== false || that.tpData.get('checkout') !== false ){
+      if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
         console.log('initPlan INIT');
         that.initPlan();
       }
@@ -89,15 +90,19 @@ that.tpData.set('checkout', moment().add( 7, 'days' ));
     that.travelPlannerDatesView = new geozzy.travelPlannerComponents.TravelPlannerDatesView(that);
   }
   that.initPlan = function(){
-    if( that.tpData.get('checkin') !== false || that.tpData.get('checkout') !== false ){
+    if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerPlanView = new geozzy.travelPlannerComponents.TravelPlannerPlanView(that);
     }
   }
   that.addToPlan = function(idRes){
-    if( that.tpData.get('checkin') !== false || that.tpData.get('checkout') !== false ){
+    if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, idRes );
     }else{
       alert("Select dates first");
     }
+  }
+
+  that.momentDate = function( date ) {
+    return moment( date, that.timeServerFormat );
   }
 }

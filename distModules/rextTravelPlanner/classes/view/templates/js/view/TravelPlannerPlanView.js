@@ -20,7 +20,13 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.parentTp = parentTp;
     that.dayTemplate = _.template( $('#dayTPTemplate').html() );
     that.resourcePlanItemTemplate = _.template( $('#resourcePlanItemTemplate').html() );
-    that.planDays = 1 + that.parentTp.tpData.get('checkout').diff(that.parentTp.tpData.get('checkin'), 'days');
+
+    var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
+    var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
+
+
+
+    that.planDays = 1 + checkout.diff( checkin, 'days');
 
     that.render();
   },
@@ -30,18 +36,17 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     console.log('Difference is ', that.planDays , 'days');
 
     that.$('.travelPlannerPlanDaysContainer').html('');
-    var checkin = moment(that.parentTp.tpData.get('checkin'));
+
+    var checkin = that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
 
     for (i = 0; i < that.planDays; i++) {
       var day = {
         id: i,
-        date: checkin.format('LL'),
-        dayName: checkin.format('ddd'),
+        date: checkin.format('L'),
+        dayName: checkin.format('dddd'),
         day: checkin.format('DD'),
-        month: checkin.format('MMM'),
-        inPlan: false
+        month: checkin.format('MMM')
       };
-
       checkin.add(1, 'days');
       that.$('.travelPlannerPlanDaysContainer').append( that.dayTemplate({ day: day }) );
     }
@@ -50,15 +55,11 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       'maxDepth': 1,
       'dragClass': "gzznestable dd-dragel",
       callback: function(l, e) {
-
-$('.gzznestable').each(function( index ) {
-  console.log('DAY'+ (index))
-  console.log($(this).nestable('serialize'));
-});
-
         that.fromHtmlToModel();
       }
     });
+
+    that.fromModeltoHtml()
   },
   addResourcesPlan: function (idResource, days){
     var that = this;
@@ -71,19 +72,25 @@ $('.gzznestable').each(function( index ) {
     var that = this;
     var resource = that.parentTp.resources.get(idResource);
 
-    if(that.$('.plannerDay-'+day+' .dd ol.dd-list').length === 0){
-      that.$('.plannerDay-'+day+' .dd').html('<ol class="dd-list"></ol>');
+    //if( resouce !)
+    if(typeof resource != 'undefined') {
+      if(that.$('.plannerDay-'+day+' .dd ol.dd-list').length === 0){
+        that.$('.plannerDay-'+day+' .dd').html('<ol class="dd-list"></ol>');
+      }
+      that.$('.plannerDay-'+day+' ol.dd-list').append( that.resourcePlanItemTemplate({ resource : resource.toJSON() }) );
     }
-    that.$('.plannerDay-'+day+' ol.dd-list').append( that.resourcePlanItemTemplate({ resource : resource.toJSON() }) );
     /*-------------------------------------- AÑADIR ---------------------------*/
 
   },
   removeResourceToDay: function(e){
+    var that = this;
     var list = $(e.target).closest('.dd-list');
     $(e.target).closest('.dd-item').remove();
     if(list.children().length === 0){
       list.parent().html('<div class="dd-empty"></div>');
     }
+
+    that.fromHtmlToModel();
   },
   resourceInPlan: function( idResource ){
     var that = this;
@@ -91,9 +98,6 @@ $('.gzznestable').each(function( index ) {
 
     return days;
   },
-
-
-
   fromHtmlToModel: function() {
     var that = this;
 
@@ -102,18 +106,26 @@ $('.gzznestable').each(function( index ) {
     $('.gzznestable').each(function( index ) {
       var day = [];
       $($(this).nestable('serialize')).each( function( i, planItemId ) {
-        day.push({ id:planItemId });
+        //console.log(planItemId);
+        day.push(planItemId);
       });
       days.push(day);
     });
 
-    that.parentTp.tpData.set('list', days);
 
+
+    that.parentTp.tpData.set('list', days);
+    that.parentTp.tpData.saveData();
   },
 
   fromModeltoHtml: function() {
     var that = this;
 
+    $(that.parentTp.tpData.get('list')).each( function(iday,day) {
+      $(day).each( function(i,item){
+        that.addResourceToDay( item.id, iday );
+      });
+    });
 
   }
 
