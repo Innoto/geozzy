@@ -19,7 +19,10 @@ geozzy.travelPlannerComponents.TravelPlannerModel = Backbone.Model.extend({
         cmd: 'setTravelPlanner',
         resourceData: that.toJSON()
       },
-      type: 'POST'
+      type: 'POST',
+      success: function(data) {
+        that.set( 'list', JSON.parse(that.get('list')) );
+      }
     });
   },
 
@@ -30,7 +33,11 @@ geozzy.travelPlannerComponents.TravelPlannerModel = Backbone.Model.extend({
       data: {
         cmd: 'getTravelPlanner'
       },
-      type: 'POST'
+      type: 'POST',
+      success: function(data) {
+        console.log(that.get('list'))
+        that.set( 'list', JSON.parse(that.get('list')) );
+      }
     });
   }
 });

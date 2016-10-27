@@ -185,7 +185,6 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
 
       $dep = (new TravelPlannerModel())->listItems(['filter'=>['id'=>$tpObj->getter('id')]])->fetch();
 
-
       $dep->setter('travelPlannerJson', json_encode($data['list']) );
       $dep->setter('checkIn', $data['checkin'] );
       $dep->setter('checkOut', $data['checkout'] );

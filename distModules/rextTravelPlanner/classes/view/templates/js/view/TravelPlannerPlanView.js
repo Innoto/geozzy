@@ -66,6 +66,8 @@ $('.gzznestable').each(function( index ) {
         that.fromHtmlToModel();
       }
     });
+
+    that.fromModeltoHtml()
   },
   addResourcesPlan: function (idResource, days){
     var that = this;
@@ -121,6 +123,15 @@ $('.gzznestable').each(function( index ) {
 
   fromModeltoHtml: function() {
     var that = this;
+
+
+
+    $(that.parentTp.tpData.get('list')).each( function(iday,day) {
+      $(day).each( function(i,item){
+        console.log(iday,item)
+        //that.addResourceToDay( iday,item.id );
+      });
+    });
 
 
   }
