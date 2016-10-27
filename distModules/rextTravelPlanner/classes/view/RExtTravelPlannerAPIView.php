@@ -65,6 +65,7 @@ class RExtTravelPlannerAPIView extends View {
 
       case 'setTravelPlanner':
         //$result = $this->getTravelPlannerUrl();
+        $result = $this->setTravelPlanner( $_POST['resourceData'] );
         break;
       case 'getTravelPlanner':
         $result = $this->getTravelPlanner();
@@ -117,12 +118,7 @@ class RExtTravelPlannerAPIView extends View {
       $tpModel = $tpCtrl->getTravelPlanner( $this->userId );
       $tpModelRext = $tpModel->getterDependence('id', 'TravelPlannerModel')[0];
       $resutl = [];
-/*
-      id: false,
-      user: false,
-      checkin: false,
-      checkout: false,
-      list: false*/
+
 
       $result['id'] = $tpModel->getter('id');
       $result['user'] = $tpModel->getter('user');
@@ -143,7 +139,36 @@ class RExtTravelPlannerAPIView extends View {
     return $result;
   }
 
+  public function setTravelPlanner( $data ) {
+    $result = null;
 
+    // Solo pueden acceder si $this->extendAPIAccess
+    if( $this->userId !== false ) {
+      $tpCtrl = new RExtTravelPlannerController();
+
+      $tpModel = $tpCtrl->setTravelPlanner( $data );
+      $tpModelRext = $tpModel->getterDependence('id', 'TravelPlannerModel')[0];
+      $resutl = [];
+
+
+      $result['id'] = $tpModel->getter('id');
+      $result['user'] = $tpModel->getter('user');
+
+      $result['list'] = ( $tpModelRext->getter('travelPlannerJson') )?  json_decode($tpModelRext->getter('travelPlannerJson'))  : [];
+
+      $result['checkin'] = $tpModelRext->getter('checkIn');
+      $result['checkout'] = $tpModelRext->getter('checkOut');
+
+    }
+    else {
+      $result = array(
+        'result' => 'error',
+        'msg' => 'Access denied'
+      );
+    }
+
+    return $result;
+  }
 
   /**
    * API info to swagger

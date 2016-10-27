@@ -57,15 +57,17 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       'maxDepth': 1,
       'dragClass': "gzznestable dd-dragel",
       callback: function(l, e) {
-
+/*
 $('.gzznestable').each(function( index ) {
   console.log('DAY'+ (index))
   console.log($(this).nestable('serialize'));
 });
-
+*/
         that.fromHtmlToModel();
       }
     });
+
+    that.fromModeltoHtml()
   },
   addResourcesPlan: function (idResource, days){
     var that = this;
@@ -115,11 +117,21 @@ $('.gzznestable').each(function( index ) {
     });
 
     that.parentTp.tpData.set('list', days);
+    that.parentTp.tpData.saveData();
     console.log( that.parentTp.tpData.toJSON() );
   },
 
   fromModeltoHtml: function() {
     var that = this;
+
+
+
+    $(that.parentTp.tpData.get('list')).each( function(iday,day) {
+      $(day).each( function(i,item){
+        console.log(iday,item)
+        //that.addResourceToDay( iday,item.id );
+      });
+    });
 
 
   }
