@@ -72,6 +72,14 @@ class RTypeCommunityController extends RTypeController implements RTypeInterface
     $resUser = $this->defResCtrl->resObj->getter('user');
 
     if( $userInfo && $userInfo['data']['id'] === $resUser ) {
+
+
+      // TODO: TEMPORAL!!! Se calculan las afinidades en cada acceso
+      rextCommunity::load('view/RExtCommunityAffinityView.php');
+      $afinCtrl = new RExtCommunityAffinityView();
+      $afinCtrl->updateAffinityModel();
+
+
       // Preparamos los datos para visualizar el Recurso con sus extensiones
       $viewBlockInfo = parent::getViewBlockInfo();
 
