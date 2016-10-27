@@ -17,7 +17,7 @@ class rextCommunity extends Module {
 
   public $autoIncludeAlways = true;
   public $includesCommon = array(
-    'js/rExtCommunityController.js',
+    // 'js/rExtCommunityController.js',
     'controller/RExtCommunityController.php',
     'model/RExtCommunityModel.php',
     'model/RExtCommunityFollowModel.php',
