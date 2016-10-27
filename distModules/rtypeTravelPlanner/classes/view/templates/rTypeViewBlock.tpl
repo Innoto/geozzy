@@ -88,9 +88,9 @@
 <!-- *************************** NESTABLE DAY LIST ************************************** -->
 <script type="text/template" id="dayTPTemplate">
   <div class="plannerDay plannerDay-<%- day.id %>" data-day="<%- day.id %>">
-    <div class="plannerDayHeader">
-      <h2><span>{t}Day{/t}<span> <%- day.id+1 %></h2>
-      <div class="infoDay"><div><%- day.dayName %></div><div><%- day.date %></div></div>
+    <div class="plannerDayHeader clearfix">
+      <div class="dayTitle">{t}Day{/t}<span> <%- day.id+1 %><span> </div>
+      <div class="infoDay"><div class="day"><%- day.dayName %></div><div class="date"><%- day.date %></div></div>
       <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> 3h 45min</div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
