@@ -97,7 +97,7 @@ $('.gzznestable').each(function( index ) {
     if(list.children().length === 0){
       list.parent().html('<div class="dd-empty"></div>');
     }
-    
+
     that.fromHtmlToModel();
   },
   resourceInPlan: function( idResource ){
@@ -117,7 +117,7 @@ $('.gzznestable').each(function( index ) {
     $('.gzznestable').each(function( index ) {
       var day = [];
       $($(this).nestable('serialize')).each( function( i, planItemId ) {
-        console.log(planItemId);
+        //console.log(planItemId);
         day.push(planItemId);
       });
       days.push(day);
