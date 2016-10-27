@@ -216,9 +216,7 @@ class ResourceController {
       }
 
       // Cargo el campo rTypeIdName
-      $rtypeControl = new ResourcetypeModel();
-      $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $resourceData['rTypeId'] ) ) )->fetch();
-      $resourceData['rTypeIdName'] = $rTypeItem->getter('idName');
+      $resourceData['rTypeIdName'] = $this->getRTypeIdName( $resourceData['rTypeId'] );
 
       if( $resourceData ) {
         $this->resData = $resourceData;
@@ -280,6 +278,12 @@ class ResourceController {
       $valuesArray['locLat'] = $geoLocation['data'][0];
       $valuesArray['locLon'] = $geoLocation['data'][1];
     }
+
+
+    // if( !isset( $valuesArray[ 'timeCreation' ] ) ) {
+    //   $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
+    // }
+
 
     $fieldsInfo = array(
       'rTypeId' => array(

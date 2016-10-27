@@ -202,7 +202,6 @@ class RTypeController {
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
 
-
     // Lanzamos los getFormBlockInfo de los RExt de este RType
     if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
       foreach( $this->rExts as $rExtName ) {
@@ -212,6 +211,72 @@ class RTypeController {
         $formBlockInfo['ext'][ $rExtCtrl->rExtName ] = $rExtFormViewInfo;
       }
     }
+
+
+
+    // TEMPLATE panel estado de publicacion
+    $templates['publication'] = new Template();
+    $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['publication']->assign( 'title', __( 'Publication' ) );
+    $templates['publication']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'published', 'weight' );
+    $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel SEO
+    $templates['seo'] = new Template();
+    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['seo']->assign( 'title', __( 'SEO' ) );
+    $templates['seo']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array_merge(
+      $form->multilangFieldNames( 'urlAlias' ),
+      $form->multilangFieldNames( 'headKeywords' ),
+      $form->multilangFieldNames( 'headDescription' ),
+      $form->multilangFieldNames( 'headTitle' )
+    );
+    $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel image
+    $templates['image'] = new Template();
+    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['image']->assign( 'title', __( 'Select a image' ) );
+    $templates['image']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'image' );
+    $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel Informacion
+    $templates['info'] = new Template();
+    $templates['info']->setTpl( 'rTypeFormInfoPanel2.tpl', 'geozzy' );
+    $templates['info']->assign( 'title', __( 'Information' ) );
+    $templates['info']->assign( 'res', $formBlockInfo );
+
+    $timeCreation = gmdate( 'd/m/Y', strtotime($formBlockInfo['data']['timeCreation']) );
+    $templates['info']->assign( 'timeCreation', $timeCreation );
+
+    if( isset($formBlockInfo['data']['userUpdate']) ) {
+      $userModel = new UserModel();
+      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
+      $userUpdateName = $userUpdate->getter('name');
+      $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
+      $templates['info']->assign( 'update', [ 'time' =>$timeLastUpdate, 'user' => $userUpdateName ] );
+    }
+
+    $templates['info']->assign( 'res', $formBlockInfo );
+    $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel social network
+    if( isset( $formBlockInfo['ext']['rextSocialNetwork']['template']['basic'] ) ) {
+      $templates['social'] = new Template();
+      $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+      $templates['social']->assign( 'title', __( 'Social Networks' ) );
+      $templates['social']->setFragment( 'blockContent', $formBlockInfo['ext']['rextSocialNetwork']['template']['basic'] );
+    }
+
+
+    $formBlockInfo['template'] = $templates;
 
     return $formBlockInfo;
   }

@@ -6,7 +6,7 @@ class rtypeBlog extends Module {
 
   public $name = 'rtypeBlog';
   public $version = 1.0;
-  public $rext = array( 'rextSocialNetwork' );
+  public $rext = array( 'rextBlog', 'rextSocialNetwork', 'rextMap', 'rextMapDirections' );
 
   public $dependences = array();
 
