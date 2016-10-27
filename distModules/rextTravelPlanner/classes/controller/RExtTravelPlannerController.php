@@ -186,6 +186,7 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
       $dep = (new TravelPlannerModel())->listItems(['filter'=>['id'=>$tpObj->getter('id')]])->fetch();
 
       $cleanlist = [];
+      if( isset($data['list']) && sizeof($data['list'])>0  )
       foreach( $data['list'] as $l ) {
         $cleanlist[] = $l;
       }

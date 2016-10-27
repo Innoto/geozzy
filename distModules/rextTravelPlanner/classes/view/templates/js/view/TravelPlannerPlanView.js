@@ -91,11 +91,14 @@ $('.gzznestable').each(function( index ) {
 
   },
   removeResourceToDay: function(e){
+    var that = this;
     var list = $(e.target).closest('.dd-list');
     $(e.target).closest('.dd-item').remove();
     if(list.children().length === 0){
       list.parent().html('<div class="dd-empty"></div>');
     }
+    
+    that.fromHtmlToModel();
   },
   resourceInPlan: function( idResource ){
     var that = this;
