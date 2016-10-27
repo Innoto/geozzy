@@ -184,7 +184,6 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
     if( $tpObj ) {
 
       $dep = (new TravelPlannerModel())->listItems(['filter'=>['id'=>$tpObj->getter('id')]])->fetch();
-
       $dep->setter('travelPlannerJson', json_encode($data['list']) );
       $dep->setter('checkIn', $data['checkin'] );
       $dep->setter('checkOut', $data['checkout'] );
@@ -193,7 +192,9 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
 
 
       $tpObj->save(['affectsDependences'=>true]);
-      $res = $tpObj;
+      //$res = $tpObj;
+
+      $res = $this->getTravelPlanner( $tpObj->getter('user') );
     }
 
     return $res;

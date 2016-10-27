@@ -80,10 +80,13 @@ $('.gzznestable').each(function( index ) {
     var that = this;
     var resource = that.parentTp.resources.get(idResource);
 
-    if(that.$('.plannerDay-'+day+' .dd ol.dd-list').length === 0){
-      that.$('.plannerDay-'+day+' .dd').html('<ol class="dd-list"></ol>');
+    //if( resouce !)
+    if(typeof resource != 'undefined') {
+      if(that.$('.plannerDay-'+day+' .dd ol.dd-list').length === 0){
+        that.$('.plannerDay-'+day+' .dd').html('<ol class="dd-list"></ol>');
+      }
+      that.$('.plannerDay-'+day+' ol.dd-list').append( that.resourcePlanItemTemplate({ resource : resource.toJSON() }) );
     }
-    that.$('.plannerDay-'+day+' ol.dd-list').append( that.resourcePlanItemTemplate({ resource : resource.toJSON() }) );
     /*-------------------------------------- AÑADIR ---------------------------*/
 
   },
@@ -111,28 +114,22 @@ $('.gzznestable').each(function( index ) {
     $('.gzznestable').each(function( index ) {
       var day = [];
       $($(this).nestable('serialize')).each( function( i, planItemId ) {
-        day.push({ id:planItemId });
+        day.push(planItemId);
       });
       days.push(day);
     });
-
     that.parentTp.tpData.set('list', days);
     that.parentTp.tpData.saveData();
-    console.log( that.parentTp.tpData.toJSON() );
   },
 
   fromModeltoHtml: function() {
     var that = this;
 
-/*
-
     $(that.parentTp.tpData.get('list')).each( function(iday,day) {
       $(day).each( function(i,item){
-        console.log(iday,item)
-        //that.addResourceToDay( iday,item.id );
+        that.addResourceToDay( item.id, iday );
       });
     });
-*/
 
   }
 
