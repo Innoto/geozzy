@@ -72,8 +72,8 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     ).done( function() {
 
 //Temporalmente para no cubrir las fechas!-----------------------
-that.tpData.set('checkin', moment().add( 0, 'days' ).format( that.timeServerFormat ) );
-that.tpData.set('checkout', moment().add( 7, 'days' ).format( that.timeServerFormat ) );
+//that.tpData.set('checkin', moment().add( 0, 'days' ).format( that.timeServerFormat ) );
+//that.tpData.set('checkout', moment().add( 7, 'days' ).format( that.timeServerFormat ) );
 //---------------------------------------------------------------
 
       that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
