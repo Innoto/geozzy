@@ -23,18 +23,36 @@ class AppResourceBridgeView extends MasterView {
 
 
   public function showResourcePage( $urlParams = false ) {
-    // error_log( "AppResourceBridgeView: showResourcePage()" . print_r( $urlParams, true ) );
+    $resViewBlockInfo = false;
 
-    if( isset( $urlParams['1'] ) ) {
-      $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;
+    $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;
+
+    if( $resId ) {
+      $resourceCtrl = new ResourceController();
+      $resViewBlockInfo = $resourceCtrl->getViewBlockInfo( $resId );
     }
 
-    $resourceCtrl = new ResourceController();
-    $resViewBlockInfo = $resourceCtrl->getViewBlockInfo( $resId );
 
-    if( $resViewBlockInfo['data'] ) {
+    // Miro si el recurso NO esta publicado pero podemos verlo
+    if( isset( $resViewBlockInfo['unpublished'] ) ) {
+      $useraccesscontrol = new UserAccessController();
+      // $user = $useraccesscontrol->getSessiondata();
+      $unpublishedPermission = $useraccesscontrol->checkPermissions( 'admin:access' );
+      error_log( 'unpublishedPermission: '.json_encode( $unpublishedPermission ) );
 
-      if( $resViewBlockInfo['template'] ) {
+      if( $unpublishedPermission ) {
+        $resViewBlockInfo = $resViewBlockInfo['unpublished'];
+        // $this->template->addClientStyles( 'styles/masterResourceUnpublished.less' );
+        if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/js/unpublishedResource.js' ) ) {
+          $this->template->addClientScript( 'js/unpublishedResource.js' );
+        }
+      }
+    }
+
+
+    if( isset( $resViewBlockInfo['data'] ) && $resViewBlockInfo['data'] ) {
+
+      if( isset( $resViewBlockInfo['template'] ) && is_array( $resViewBlockInfo['template'] ) ) {
         foreach( $resViewBlockInfo['template'] as $nameBlock => $templateBlock ) {
           $this->template->addToFragment( 'resTemplateBlock', $templateBlock );
         }
@@ -93,12 +111,7 @@ class AppResourceBridgeView extends MasterView {
       $this->template->exec();
     }
     else {
-      header("HTTP/1.0 404 Not Found");
-      $this->template->addClientStyles('styles/masterResource.less');
-      $this->template->setTpl( 'appResourceBridgePage404.tpl', 'appResourceBridge');
-      $this->template->assign( 'title404', __( 'Página no encontrada' ) );
-
-      $this->template->exec();
+      $this->page404();
     }
   }
 

@@ -20,7 +20,13 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.parentTp = parentTp;
     that.dayTemplate = _.template( $('#dayTPTemplate').html() );
     that.resourcePlanItemTemplate = _.template( $('#resourcePlanItemTemplate').html() );
-    that.planDays = 1 + that.parentTp.tpData.get('checkout').diff(that.parentTp.tpData.get('checkin'), 'days');
+
+    var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
+    var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
+
+
+
+    that.planDays = 1 + checkout.diff( checkin, 'days');
 
     that.render();
   },
@@ -30,7 +36,8 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     console.log('Difference is ', that.planDays , 'days');
 
     that.$('.travelPlannerPlanDaysContainer').html('');
-    var checkin = moment(that.parentTp.tpData.get('checkin'));
+
+    var checkin = that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
 
     for (i = 0; i < that.planDays; i++) {
       var day = {
@@ -50,15 +57,17 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       'maxDepth': 1,
       'dragClass': "gzznestable dd-dragel",
       callback: function(l, e) {
-
+/*
 $('.gzznestable').each(function( index ) {
   console.log('DAY'+ (index))
   console.log($(this).nestable('serialize'));
 });
-
+*/
         that.fromHtmlToModel();
       }
     });
+
+    that.fromModeltoHtml()
   },
   addResourcesPlan: function (idResource, days){
     var that = this;
@@ -108,11 +117,21 @@ $('.gzznestable').each(function( index ) {
     });
 
     that.parentTp.tpData.set('list', days);
-
+    that.parentTp.tpData.saveData();
+    console.log( that.parentTp.tpData.toJSON() );
   },
 
   fromModeltoHtml: function() {
     var that = this;
+
+
+
+    $(that.parentTp.tpData.get('list')).each( function(iday,day) {
+      $(day).each( function(i,item){
+        console.log(iday,item)
+        //that.addResourceToDay( iday,item.id );
+      });
+    });
 
 
   }
