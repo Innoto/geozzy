@@ -38,12 +38,10 @@ class RExtCommunityAffinityView extends View {
       'msg' => 'prepareAffinity executado ;-)'
     ];
 
-    header('Content-Type: text/plain; charset=utf-8');
-
     $affinityAB = $this->updateAffinityModel();
 
-    // header('Content-Type: application/json; charset=utf-8');
-    // echo json_encode( $result );
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode( $result );
   }
 
   public function updateAffinityModel() {
@@ -99,7 +97,7 @@ class RExtCommunityAffinityView extends View {
       arsort( $affinityUsers );
       $affinityUsersCSV = implode( ',', array_slice( array_keys( $affinityUsers ), 0, 128 ) );
 
-      echo "Afins($aUserId) => ". $affinityUsersCSV ."\n";
+      //error_log( "Afins($aUserId) => ". $affinityUsersCSV );
 
       $afinModel = new RExtCommunityAffinityUserModel( [ 'id' => $aUserId, 'affinityList' => $affinityUsersCSV ] );
       $afinModel->save();
