@@ -123,7 +123,7 @@ class RExtTravelPlannerAPIView extends View {
       $result['id'] = $tpModel->getter('id');
       $result['user'] = $tpModel->getter('user');
 
-      $result['list'] = ( $tpModelRext->getter('travelPlannerJson') )?  $tpModelRext->getter('travelPlannerJson')  : [];
+      $result['list'] = ( $tpModelRext->getter('travelPlannerJson') )?  $tpModelRext->getter('travelPlannerJson')  : null;
 
       $result['checkin'] = $tpModelRext->getter('checkIn');
       $result['checkout'] = $tpModelRext->getter('checkOut');
