@@ -44,6 +44,7 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
     var dates = [];
 
     var selectedDays = that.parentTp.travelPlannerPlanView.resourceInPlan(that.idResource);
+
     for (i = 0; i < that.planDays; i++) {
       dates[i] = {
         id: i,

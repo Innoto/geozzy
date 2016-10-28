@@ -95,6 +95,17 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
   resourceInPlan: function( idResource ){
     var that = this;
     var days = [];
+    var list = that.parentTp.tpData.get('list');
+
+    $.each( list, function( k, day ) {
+
+      var inDay = $.grep(day, function(e){
+        return e.id == idResource;
+      })[0];
+      if(inDay){
+        days.push(k);
+      }
+    });
 
     return days;
   },
