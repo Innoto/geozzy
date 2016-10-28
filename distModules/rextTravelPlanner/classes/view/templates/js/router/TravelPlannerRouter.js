@@ -11,13 +11,11 @@ geozzy.travelPlannerComponents.mainRouter = Backbone.Router.extend({
 
   main: function( ) {
     var that = this;
-
-    //that.parentStory.triggerEvent('loadMain');
+    that.parentTp.closeResource();
   },
 
   resource: function( id ) {
     var that = this;
-
     that.parentTp.openResource(id);
   }
 

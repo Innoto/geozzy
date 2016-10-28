@@ -17,10 +17,9 @@
       </div>
     </div>
   </div>
-
+  <div class="tpDuResource" style="position:absolute;top:100px;left:400px;width:1300px;height:300px;background-color:#fff;z-index:200;"></div>
   <section id="travelPlannerSec" class="gzSection">
   </section>
-
   <script type="text/javascript">
     $(document).ready(function(){
       if(typeof(geozzy.travelPlannerInstance)=='undefined'){

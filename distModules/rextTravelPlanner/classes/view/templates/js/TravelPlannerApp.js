@@ -119,11 +119,20 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   },
 
   that.openResource = function( resourceId ) {
-
-    alert('Recurso aberto id:'+ resourceId);
+    $(".tpDuResource").show();
+    $(".tpDuResource").load(
+      '/'+cogumelo.publicConf.C_LANG+'/resource/'+resourceId,
+      { pf: 'blk' },
+      function() {
+        //$('html, body').css('overflowY', 'hidden');
+        //$(".storyContainer.story-loading").hide();
+        //$(".storyContainer.story-container-du").show();
+      }
+    );
   },
 
   that.closeResource = function() {
-
+    $('.tpDuResource').hide();
+    $('.tpDuResource').html('')
   }
 }
