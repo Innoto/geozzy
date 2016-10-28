@@ -3,7 +3,9 @@
  */
 var geozzy = geozzy || {};
 
+/*
 geozzy.rExtCommunityController = geozzy.rExtCommunityController || {
+
   getUrlApi: function getUrlApi() {
     var url = '/api/community';
 
@@ -13,6 +15,7 @@ geozzy.rExtCommunityController = geozzy.rExtCommunityController || {
 
     return url;
   },
+
   setStatus: function setStatus( resource, status ) {
     var that = this;
 
@@ -28,6 +31,7 @@ geozzy.rExtCommunityController = geozzy.rExtCommunityController || {
       geozzy.rExtCommunityController.sendSetStatus( that.resource, that.status );
     });
   },
+
   sendSetStatus: function sendSetStatus( resource, status ) {
     var that = this;
 
@@ -48,6 +52,7 @@ geozzy.rExtCommunityController = geozzy.rExtCommunityController || {
       }
     });
   },
+
   getStatus: function getStatus( resource ) {
     var that = this;
 
@@ -57,6 +62,7 @@ geozzy.rExtCommunityController = geozzy.rExtCommunityController || {
       geozzy.rExtCommunityController.sendGetStatus( that.resource );
     });
   },
+
   getStatusAll: function getStatusAll( limitTo ) {
     var that = this;
 
@@ -81,6 +87,7 @@ geozzy.rExtCommunityController = geozzy.rExtCommunityController || {
       }
     }
   },
+
   sendGetStatus: function sendGetStatus( resource ) {
     var that = this;
 
@@ -182,3 +189,6 @@ geozzy.rExtCommunityController = geozzy.rExtCommunityController || {
 $(document).ready(function(){
   geozzy.rExtCommunityController.setBinds();
 });
+
+
+*/

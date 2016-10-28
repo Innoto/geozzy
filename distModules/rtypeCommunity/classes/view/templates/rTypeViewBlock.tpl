@@ -43,9 +43,9 @@
                             <span class="shareOff"><i class="fa fa-lg fa-times" aria-hidden="true"></i></span>
                             <style type="text/css">
                               {if $myInfo.comm.share && $myInfo.comm.share == 1}
-                                .myShare .shareOff { display: none; }
+                              .myShare .shareOff { display: none; }
                               {else}
-                                .myShare .shareOn { display: none; }
+                              .myShare .shareOn { display: none; }
                               {/if}
                             </style>
                           </span>

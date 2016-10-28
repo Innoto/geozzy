@@ -99,7 +99,7 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
     daysSelectorActive.each(function( index ) {
       daysActive.push($( this ).attr('data-day'));
     });
-    that.parentTp.travelPlannerPlanView.addResourcesPlan(that.idResource, daysActive);
+    that.parentTp.travelPlannerPlanView.addResourcesPlan(that.idResource, daysActive, that.parentTp.travelPlannerDefaultVisitTime);
     that.closeModalResource();
   }
 });
