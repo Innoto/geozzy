@@ -10,6 +10,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.travelPlannerDatesView = false;
   that.travelPlannerPlanView = false;
   that.travelPlannerResourceView = false;
+  that.travelPlannerDefaultVisitTime = 116; // in minutes
 
   if( typeof cogumelo.publicConf.C_LANG === 'string' ) {
     moment.locale(cogumelo.publicConf.C_LANG);
@@ -62,7 +63,18 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
 
   // First Execution
   that.init = function( ) {
-    console.log('travelPlannerID:'+ that.travelPlannerId );
+
+    geozzy.travelPlannerComponents.routerInstance = new geozzy.travelPlannerComponents.mainRouter();
+    geozzy.travelPlannerComponents.routerInstance.parentTp = that;
+    if( !Backbone.History.started ){
+      Backbone.history.start();
+    }
+    else {
+      Backbone.history.stop();
+      Backbone.history.start();
+    }
+
+
 
     $.when(
       that.resources.fetch(),
@@ -104,5 +116,23 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
 
   that.momentDate = function( date ) {
     return moment( date, that.timeServerFormat );
+  },
+
+  that.openResource = function( resourceId ) {
+    $(".tpDuResource").show();
+    $(".tpDuResource").load(
+      '/'+cogumelo.publicConf.C_LANG+'/resource/'+resourceId,
+      { pf: 'blk' },
+      function() {
+        //$('html, body').css('overflowY', 'hidden');
+        //$(".storyContainer.story-loading").hide();
+        //$(".storyContainer.story-container-du").show();
+      }
+    );
+  },
+
+  that.closeResource = function() {
+    $('.tpDuResource').hide();
+    $('.tpDuResource').html('')
   }
 }

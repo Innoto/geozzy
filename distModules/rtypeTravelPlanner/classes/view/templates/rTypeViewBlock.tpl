@@ -17,10 +17,9 @@
       </div>
     </div>
   </div>
-
+  <div class="tpDuResource" style="position:absolute;top:100px;left:400px;width:1300px;height:300px;background-color:#fff;z-index:200;"></div>
   <section id="travelPlannerSec" class="gzSection">
   </section>
-
   <script type="text/javascript">
     $(document).ready(function(){
       if(typeof(geozzy.travelPlannerInstance)=='undefined'){
@@ -70,7 +69,9 @@
     <div class="image">
       <img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerList/<%- resource.image %>.jpg">
       <button class="addToPlan btn btn-primary"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></button>
-      <button class="openResource btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></i></button>
+      <a href="#resource/<%- resource.id %>">
+        <button class="openResource btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></i></button>
+      </a>
     </div>
     <div class="title"><%- resource.title %></div>
     <div class="description"><%- resource.shortDescription %></div>
@@ -81,7 +82,6 @@
 <script type="text/template" id="datesTPTemplate">
   <div class="datesTpContainer">
     <div class="title">{t}When you want to make your visit?{/t}</div>
-    <label for="checkTpDates">{t}Check in date - Check out date{/t}</label>
     <input type="text" id="checkTpDates" class="form-control" readonly>
   </div>
 </script>
@@ -91,7 +91,7 @@
     <div class="plannerDayHeader clearfix">
       <div class="dayTitle">{t}Day{/t}<span> <%- day.id+1 %><span> </div>
       <div class="infoDay"><div class="day"><%- day.dayName %></div><div class="date"><%- day.date %></div></div>
-      <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> 3h 45min</div>
+      <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
       <div class="dd-empty"></div>
@@ -100,11 +100,10 @@
 </script>
 <!-- *************************** NESTABLE ITEM ************************************** -->
 <script type="text/template" id="resourcePlanItemTemplate">
-  <li class="dd-item" data-id="<%- resource.id %>">
+  <li class="dd-item" data-id="<%- resource.serializedData %>">
     <div class="dd-item-container clearfix">
       <div class="dd-content">
         <div class="nestableActions">
-          <button class="btnEdit btn-icon btn-primary" data-id="<%- resource.id %>" ><i class="fa fa-pencil" aria-hidden="true"></i></button>
           <button class="btnDelete btn-icon btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-times" aria-hidden="true"></i></button>
         </div>
       </div>
@@ -113,15 +112,15 @@
         <div class="image"><img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIcon/<%- resource.image %>.jpg"></div>
         <div class="info">
           <div class="title"><%- resource.title %></div>
-          <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> 1h 30 min</div>
+          <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
       </div>
     </div>
   </li>
 </script>
-
+<!-- *************************** MODAL ITEM ************************************** -->
 <script type="text/template" id="resourceTpModalTemplate">
   <div class="resourceTp" data-resource-id="<%- resource.id %>">
-    <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/fast_cut/<%- resource.image %>.jpg"></div>
+    <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
     <ul class="selectorDays clearfix">
       <% _.each(dates, function(i) { %>
