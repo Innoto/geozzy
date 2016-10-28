@@ -91,7 +91,7 @@
     <div class="plannerDayHeader clearfix">
       <div class="dayTitle">{t}Day{/t}<span> <%- day.id+1 %><span> </div>
       <div class="infoDay"><div class="day"><%- day.dayName %></div><div class="date"><%- day.date %></div></div>
-      <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> 3h 45min</div>
+      <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
       <div class="dd-empty"></div>
@@ -100,7 +100,7 @@
 </script>
 <!-- *************************** NESTABLE ITEM ************************************** -->
 <script type="text/template" id="resourcePlanItemTemplate">
-  <li class="dd-item" data-id="<%- resource.id %>">
+  <li class="dd-item" data-id="<%- resource.serializedData %>">
     <div class="dd-item-container clearfix">
       <div class="dd-content">
         <div class="nestableActions">
@@ -113,7 +113,7 @@
         <div class="image"><img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIcon/<%- resource.image %>.jpg"></div>
         <div class="info">
           <div class="title"><%- resource.title %></div>
-          <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> 1h 30 min</div>
+          <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
       </div>
     </div>
   </li>

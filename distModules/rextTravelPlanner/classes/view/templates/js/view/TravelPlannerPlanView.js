@@ -56,28 +56,44 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       'dragClass': "gzznestable dd-dragel",
       callback: function(l, e) {
         that.fromHtmlToModel();
+        that.updateTotalTimes();
       }
     });
 
-    that.fromModeltoHtml()
+    that.fromModeltoHtml();
+    that.updateTotalTimes();
   },
-  addResourcesPlan: function (idResource, days){
+  addResourcesPlan: function (idResource, days, t){
     var that = this;
     $.each( days, function(i,d){
-      that.addResourceToDay( idResource, d);
+      that.addResourceToDay( idResource, d, t);
     });
     that.fromHtmlToModel();
+    that.updateTotalTimes();
   },
-  addResourceToDay: function( idResource, day){
+  addResourceToDay: function( idResource, day, t){
     var that = this;
     var resource = that.parentTp.resources.get(idResource);
 
+
+
     //if( resouce !)
     if(typeof resource != 'undefined') {
+
+      var resourceJSON = resource.toJSON();
+
+      resourceJSON.timeFormated = that.getFormatedTime(t);
+      //resourceJSON.timeFormated = t;
+
+      resourceJSON.serializedData = that.serializeRow({
+        id: idResource,
+        time: t
+      });
+
       if(that.$('.plannerDay-'+day+' .dd ol.dd-list').length === 0){
         that.$('.plannerDay-'+day+' .dd').html('<ol class="dd-list"></ol>');
       }
-      that.$('.plannerDay-'+day+' ol.dd-list').append( that.resourcePlanItemTemplate({ resource : resource.toJSON() }) );
+      that.$('.plannerDay-'+day+' ol.dd-list').append( that.resourcePlanItemTemplate({ resource : resourceJSON }) );
     }
     /*-------------------------------------- AÑADIR ---------------------------*/
 
@@ -98,6 +114,15 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     return days;
   },
+
+  getFormatedTime: function(mins) {
+    var h = mins / 60 | 0,
+        m = mins % 60 | 0;
+
+
+    return h + ' hours ' + m + ' min';
+  },
+
   fromHtmlToModel: function() {
     var that = this;
 
@@ -107,12 +132,10 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       var day = [];
       $($(this).nestable('serialize')).each( function( i, planItemId ) {
         //console.log(planItemId);
-        day.push(planItemId);
+        day.push(planItemId.id);
       });
       days.push(day);
     });
-
-
 
     that.parentTp.tpData.set('list', days);
     that.parentTp.tpData.saveData();
@@ -123,10 +146,31 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     $(that.parentTp.tpData.get('list')).each( function(iday,day) {
       $(day).each( function(i,item){
-        that.addResourceToDay( item.id, iday );
+        that.addResourceToDay( item.id, iday, item.time );
       });
     });
 
+  },
+
+  updateTotalTimes: function() {
+    var that = this;
+
+    $(that.parentTp.tpData.get('list')).each( function(iday,day) {
+      var hoursInDay = 0;
+      $(day).each( function(i,item){
+        hoursInDay += parseInt(item.time);
+      });
+      $('.plannerDay-' + iday +' .infoTime span').html( that.getFormatedTime(hoursInDay));
+    });
+
+  },
+
+  serializeRow: function( rowObj ) {
+    var that = this;
+    return JSON.stringify( rowObj );
   }
+
+
+
 
 });

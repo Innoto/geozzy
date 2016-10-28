@@ -10,6 +10,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.travelPlannerDatesView = false;
   that.travelPlannerPlanView = false;
   that.travelPlannerResourceView = false;
+  that.travelPlannerDefaultVisitTime = 116; // in minutes
 
   if( typeof cogumelo.publicConf.C_LANG === 'string' ) {
     moment.locale(cogumelo.publicConf.C_LANG);
