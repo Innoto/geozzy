@@ -63,10 +63,10 @@ class RExtCommunityAPIView extends View {
     if( $this->userId === $userId ) {
       switch( $command ) {
         case 'setMyCommunity':
-          $r['status'] = $this->commCtrl->setShare( $status );
+          $r['share'] = $this->commCtrl->setShare( $status );
           $r['facebook'] = $this->commCtrl->setSocial( 'facebook', $facebook );
           $r['twitter'] = $this->commCtrl->setSocial( 'twitter', $twitter );
-          if( $r['status'] !== false || $r['facebook'] !== false || $r['twitter'] !== false ) {
+          if( $r['share'] !== false || $r['facebook'] !== false || $r['twitter'] !== false ) {
             $result = array( 'result' => 'ok', 'status' => $r );
           }
           break;
@@ -215,4 +215,3 @@ class RExtCommunityAPIView extends View {
   } // function apiInfoJson()
 
 }
-

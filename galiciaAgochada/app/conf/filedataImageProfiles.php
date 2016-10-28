@@ -237,6 +237,14 @@ cogumeloSetSetupValue( 'mod:filedata:profile:storyLegend',
 );
 
 
+
+/*---------------------- PERFILES DE DESARROLLO PARA COMUNIDAD --------------------------------------------------*/
+cogumeloSetSetupValue( 'mod:filedata:profile:userFavsCommunity', array(
+  'width' => 500, 'height' => 500, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ) );
+  cogumeloSetSetupValue( 'mod:filedata:profile:userPhotoCommunity', array(
+    'width' => 400, 'height' => 300, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ) );
+
+
 /*
 // TEST
 cogumeloSetSetupValue( 'mod:filedata:profile:svgTest',

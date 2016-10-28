@@ -4,147 +4,131 @@
   .communitySec{
     padding-top: 20px;
 
-    .myInfo{
-      .infoPersonal{
-        .commImage{
-          padding-bottom: 20px;
+    .commHeader{
+      .myInfo{
+        .infoPersonal{
+          .commImage{
+            padding-bottom: 20px;
 
-          img{
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 5px solid rgba(200, 200, 200, 0.9); /* Intentar borde transpartente */
-          }
-        }
-      }//.infoPersonal
-
-      .commText{
-        .commRS{
-          padding-top: 20px;
-
-          .myShare{
-            width: 320px;
-            position: relative;
-            background: @gzzColor-geozzy;
-            color: @gzzColor-text-light;
-            text-transform: uppercase;
-            border-radius: 10px;
-            padding: 20px;
-
-            .view{
-              float: left;
-              background: @gzzColor-text-light;
-              height: 32px;
-              width: 32px;
-              border-radius: 5px;
-              position: absolute;
-              top: 50%;
-              -moz-transform: translateY(-50%);
-              -webkit-transform: translateY(-50%);
-              transform: translateY(-50%);
-
-              i{
-                color:  @gzzColor-text-dark;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                -moz-transform: translate(-50%, -50%);
-                -webkit-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-              }
-            }//.view
-
-            .textShare{
-              display: block;
-              margin-left: 50px;
-            }
-
-            .edit{
-              display: block;
-              position: absolute;
-              top: 50%;
-              -moz-transform: translateY(-50%);
-              -webkit-transform: translateY(-50%);
-              transform: translateY(-50%);
-
-              label{
-                display: block;
-              }
-            }//.edit
-          }//.myShare
-
-          .actions{
-            margin: 20px;
-            text-transform: uppercase;
-            span{ cursor: default; }
-
-            i{
-              padding: 7px;
-              border-radius: 5px;
-              color: @gzzColor-text-light;
-              background: @gzzColor-geozzy;
-            }
-
-            &:hover{
-              i{ background: @gzzColor-geozzy-hover; }
-            }
-          }//.actions
-        }//.commRS
-
-        .rs{
-          .myFacebook,
-          .myTwitter{
-            position: relative;
-            height: 80px;
-            width: 250px;
-            color: @gzzColor-text-light;
-            -moz-border-radius: 40px;
-            -webkit-border-radius: 40px;
-            border-radius: 40px;
-            padding: 8px;
-
-            .iconRs{
-              height: 64px;
-              width: 64px;
+            img{
+              width: 200px;
+              height: 200px;
               border-radius: 50%;
-              position: absolute;
-              top: 50%;
-              -moz-transform: translateY(-50%);
-              -webkit-transform: translateY(-50%);
-              transform: translateY(-50%);
+              border: 5px solid rgba(200, 200, 200, 0.9); /* Intentar borde transpartente */
+            }
+          }
+        }//.infoPersonal
 
-              i{
+        .commText{
+          .commRS{
+            padding-top: 20px;
+
+            .myShare{
+              width: 320px;
+              position: relative;
+              background: @gzzColor-geozzy;
+              color: @gzzColor-text-light;
+              text-transform: uppercase;
+              border-radius: 10px;
+              padding: 20px;
+
+              .view{
+                float: left;
+                background: @gzzColor-text-light;
+                height: 32px;
+                width: 32px;
+                border-radius: 5px;
                 position: absolute;
                 top: 50%;
-                left: 50%;
-                -moz-transform: translate(-50%, -50%);
-                -webkit-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
+                -moz-transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+
+                i{
+                  color:  @gzzColor-text-dark;
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  -moz-transform: translate(-50%, -50%);
+                  -webkit-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%);
+                }
+              }//.view
+
+              .textShare{
+                display: block;
+                margin-left: 50px;
               }
 
-              &.rsFacebook{ background: #3a5795; }
-              &.rsTwitter{ background: #5eA9dd; }
-            }//.iconRs
+              .edit{
+                display: block;
+                position: absolute;
+                top: 50%;
+                -moz-transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
 
-            .shareOn,
-            .edit{
-              margin-left: 60px;
-              position: absolute;
-              top: 50%;
-              left: 25%;
-              -moz-transform: translate(-25%, -50%);
-              -webkit-transform: translate(-25%, -50%);
-              transform: translate(-25%, -50%);
-            }
+                label{
+                  display: block;
+                }
+              }//.edit
+            }//.myShare
 
-            &.noShare{
-              background: @gzzColor-bck-4;
+            .actions{
+              margin: 20px;
+              text-transform: uppercase;
+              span{ cursor: default; }
+
+              i{
+                padding: 7px;
+                border-radius: 5px;
+                color: @gzzColor-text-light;
+                background: @gzzColor-geozzy;
+              }
+
+              &:hover{
+                i{ background: @gzzColor-geozzy-hover; }
+              }
+            }//.actions
+          }//.commRS
+
+          .rs{
+            .myFacebook,
+            .myTwitter{
+              position: relative;
+              height: 80px;
+              width: 250px;
+              color: @gzzColor-text-light;
+              -moz-border-radius: 40px;
+              -webkit-border-radius: 40px;
+              border-radius: 40px;
+              padding: 8px;
+
               .iconRs{
-                &.rsFacebook,
-                &.rsTwitter{ background: @gzzColor-bck-5; }
-              }
+                height: 64px;
+                width: 64px;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                -moz-transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
 
-              .shareOff{
+                i{
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  -moz-transform: translate(-50%, -50%);
+                  -webkit-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%);
+                }
+
+                &.rsFacebook{ background: #3a5795; }
+                &.rsTwitter{ background: #5eA9dd; }
+              }//.iconRs
+
+              .shareOn,
+              .edit{
                 margin-left: 60px;
                 position: absolute;
                 top: 50%;
@@ -153,42 +137,178 @@
                 -webkit-transform: translate(-25%, -50%);
                 transform: translate(-25%, -50%);
               }
+
+              &.noShare{
+                background: @gzzColor-bck-4;
+                .iconRs{
+                  &.rsFacebook,
+                  &.rsTwitter{ background: @gzzColor-bck-5; }
+                }
+
+                .shareOff{
+                  margin-left: 60px;
+                  position: absolute;
+                  top: 50%;
+                  left: 25%;
+                  -moz-transform: translate(-25%, -50%);
+                  -webkit-transform: translate(-25%, -50%);
+                  transform: translate(-25%, -50%);
+                }
+              }
+            }//.myFacebook,.myTwitter
+
+            .myFacebook{ background: #a3b5db; }
+            .myTwitter{ background: #96c6e9; }
+            [class*='col-']{ margin-bottom: 25px; }
+            [class*='col-']:last-child{ margin-bottom: 0; }
+          }//.rs
+        }//.commText
+      }//.myInfo
+    }//.commHeader
+
+    .commList,
+    .commPropose{
+      background: @gzzColor-bck-4;
+
+      .communityList{
+        padding: 20px 0;
+
+        .communityElement{
+          height: 100%;
+          padding: 20px;
+          background: @gzzColor-bck-1;
+          position: relative;
+
+          .socialUser{
+            .commImageUser{
+              img{
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border: 5px solid rgba(200, 200, 200, 0.9); /* Intentar borde transpartente */
+              }
             }
-          }//.myFacebook,.myTwitter
 
-          .myFacebook{
-            background: #a3b5db;
-          }
+            .perfilUser{
+              a{
+                text-decoration: none;
+                color: @gzzColor-text-dark;
+              }
+            }
 
-          .myTwitter{
-            background: #96c6e9;
-          }
+            .socialLinks{
+              span{
+                position: relative;
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                margin: 5px;
+                border-radius: 5px;
+
+                a{
+                  color: @gzzColor-text-light;
+
+                  i{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    -moz-transform: translate(-50%, -50%);
+                    -webkit-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+                  }
+                }
+              }//span
+
+              .goToFacebook{ background: #3a5795; }
+              .goToTwitter{ background: #5eA9dd; }
+            }//.socialLinks
+
+            .followUser{ display: none; }
+          }//.socialUser
 
 
+          .infoUser{
+            padding: 10px 0;
 
-          [class*='col-']{ margin-bottom: 25px; }
-          [class*='col-']:last-child{ margin-bottom: 0; }
-        }//.rs
-      }//.commText
-    }//.myInfo
+            .actionFollow{
+              position: absolute;
+              top: 0;
+              right: 20px;
+
+              .off{ color: @gzzColor-positive; }
+              .on{ color: @gzzColor-negative; }
+            }
+
+            .commText{
+              .name{
+                font-weight: bold;
+                padding-bottom: 10px;
+              }
+            }
+
+            .favs{
+              .actionShowAll{
+                margin-top: 10px;
+                display: block;
+                text-align: right;
+                text-decoration: underline;
+                cursor: pointer;
+              }
+            }
+          }//.infoUser
+        }//.communityElement
+
+        & > .row > [class*='col-']{ margin-bottom: 15px; }
+      }//.communityList
+    }//.commList,.commPropose
+
+    .commPropose{
+      background: @gzzColor-bck-3;
+
+      .communityList{
+        padding: 20px 0;
+
+        .communityElement{
+          height: 100%;
+          padding: 20px;
+          background: @gzzColor-bck-1;
+          position: relative;
+
+          .socialUser{
+            .perfilUser,
+            .socialLinks{
+              display: none;
+            }
+
+            .followUser{
+              display: block;
+              .actionFollow{
+                .btn{
+                  margin-top: 20px;
+                  color: @btn-primary-color;
+                  &.on{ background: @btn-primary-bg; }
+                  &.off{ background: @btn-default-bg; }
+                }
+              }
+            }//.followUser
+          }//.socialUser
+        }//.communityElement
+      }//.communityList
+
+      .infoUser{
+        .actionFollow{ display: none; }
+      }
+    }//.commPropose
+
+    .communityElement .commImage img { width: 100%; }
+
+    // Modal #communityFavsModal
+    .communityFavsModal{
+      .modal-body{}
+    }
+
   }//.communitySec
-
-
-/* CSS temporal - Porto */
-  .communityElement .commImage { position: relative; }
-  .communityElement .commImage img { width: 100%; }
-  .communityElement .commImage .commDelete {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    display: block;
-    padding: 2px 4px;
-    background-color: white;
-    color: #FF2222;
-    font-size: 20px;
-    cursor: pointer;
-  }
-}
+}//.bodyContent
 
 /**************************************************************************************/
 /**************************************************************************************/
@@ -207,27 +327,29 @@
 @media screen and (max-width: 767px) {
   .bodyContent{
     .communitySec{
-      .myInfo{
-        .commText{
-          position: relative;
-          height: 380px;
+      .commHeader{
+        .myInfo{
+          .commText{
+            position: relative;
+            height: 380px;
 
-          .commRS{
-            position: absolute;
-            left: 50%;
-            -moz-transform: translateX(-50%);
-            -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+            .commRS{
+              position: absolute;
+              left: 50%;
+              -moz-transform: translateX(-50%);
+              -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
 
-            .actions{ text-align: center; }
-          }
+              .actions{ text-align: center; }
+            }
 
-          .rs{
-            position: absolute;
-            left: 50%;
-            -moz-transform: translateX(-50%);
-            -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+            .rs{
+              position: absolute;
+              left: 50%;
+              -moz-transform: translateX(-50%);
+              -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+            }
           }
         }
       }

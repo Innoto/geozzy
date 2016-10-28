@@ -90,7 +90,6 @@ geozzy.rTypeCommunityController = geozzy.rTypeCommunityController || {
     }
 
     // $('.commRS .facebookAccount').text( (commInfo.facebook) ? commInfo.facebook : 'No indicado' );
-    //
     // $('.commRS .twitterAccount').text( (commInfo.twitter) ? commInfo.twitter : 'No indicado' );
 
     geozzy.rTypeCommunityController.bindMyCommunity();
