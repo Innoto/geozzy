@@ -69,7 +69,9 @@
     <div class="image">
       <img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerList/<%- resource.image %>.jpg">
       <button class="addToPlan btn btn-primary"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></button>
-      <button class="openResource btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></i></button>
+      <a href="#resource/<%- resource.id %>">
+        <button class="openResource btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></i></button>
+      </a>
     </div>
     <div class="title"><%- resource.title %></div>
     <div class="description"><%- resource.shortDescription %></div>
