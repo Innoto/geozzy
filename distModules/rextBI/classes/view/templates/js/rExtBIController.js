@@ -13,8 +13,9 @@ geozzy.rExtBIController = function( opts ) {
   that.initialize = function() {
     //alert( geozzy.rExtBIOptions.resourceID );
     if( typeof geozzy.biMetricsInstances != 'undefined') {
+      //alert('INSTANCE')
       geozzy.biMetricsInstances.resource.eventAccessedStart( geozzy.rExtBIOptions.resourceID, 'Resource page' );
-      that.bindRelatedResources();      
+      that.bindRelatedResources();
     }
 
   };

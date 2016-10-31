@@ -18,7 +18,13 @@ geozzy.rextReccommended.reccommendedView = Backbone.View.extend({
 
     that.options = $.extend(true, {}, that.options, opts);
 
-    that.render();
+    if( typeof geozzy.biMetricsInstances != 'undefined' ) {
+      that.render();
+    }
+    else {
+      console.log('rExtReccommender: geozzy.biMetricInstances not defined')
+    }
+
   },
   render: function() {
 
