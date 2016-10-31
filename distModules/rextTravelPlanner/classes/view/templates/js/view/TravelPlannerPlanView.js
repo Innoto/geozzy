@@ -149,6 +149,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     });
 
     that.parentTp.tpData.set('list', days);
+    //console.log(that.parentTp.tpData.toJSON())
     that.parentTp.tpData.saveData();
   },
 
