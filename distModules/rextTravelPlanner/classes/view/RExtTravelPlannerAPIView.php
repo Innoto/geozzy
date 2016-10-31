@@ -143,7 +143,9 @@ class RExtTravelPlannerAPIView extends View {
     $result = null;
 
     // Solo pueden acceder si $this->extendAPIAccess
-    if( $this->userId !== false ) {
+    //var_dump([ $this->userId , intval($result['user']) ]);
+
+    if( $this->userId !== false && $this->userId == intval($data['user']) ) {
       $tpCtrl = new RExtTravelPlannerController();
 
       $tpModel = $tpCtrl->setTravelPlanner( $data );
