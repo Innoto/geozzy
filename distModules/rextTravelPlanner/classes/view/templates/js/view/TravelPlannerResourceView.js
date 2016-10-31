@@ -54,7 +54,8 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
         month: checkin.format('MMM'),
         inPlan: false
       };
-      if($.inArray(i, selectedDays)){
+
+      if($.inArray(i, selectedDays) !== -1){
         dates[i].inPlan = true;
       }
       checkin.add(1, 'days');
