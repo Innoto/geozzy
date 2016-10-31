@@ -21,9 +21,9 @@
         <div class="row">
           <div class="myInfo" data-id="{$myInfo.id}">
             <div class="col-sm-5 col-md-4">
-              <div class="infoPersonal text-center">
+              <div class="infoPersonal">
                 <div class="commImage">
-                  <img src="/cgmlImg/{$myInfo.avatarFileId}/userPhotoCommunity/{$myInfo.avatarFileId}.jpg">
+                  <img class="img-responsive" src="/cgmlImg/{$myInfo.avatarFileId}/userPhotoCommunity/{$myInfo.avatarFileId}.jpg">
                 </div>
                 <!-- <div class="login">{$myInfo.login}</div> -->
                 <!-- <a href="/userprofile#user/profile"><i class="fa fa-2x fa-pencil-square" aria-hidden="true"></i> {t}Editar mi perfil{/t}</a> -->
@@ -37,39 +37,41 @@
                     <div class="col-md-6">
                       <!-- <div class="col-sm-9 col-md-9"> -->
                       <div class="row">
-                        <div class="col-xs-12">
-                          <div class="myShare">
-                            <span class="view">
-                              <span class="shareOn"><i class="fa fa-lg fa-check" aria-hidden="true"></i></span>
-                              <span class="shareOff"><i class="fa fa-lg fa-times" aria-hidden="true"></i></span>
-                            </span>
-                            <style type="text/css">
-                              {if $myInfo.comm.share && $myInfo.comm.share == 1}
-                                .myShare .shareOff { display: none; }
-                              {else}
-                                .myShare .shareOn { display: none; }
-                              {/if}
-                            </style>
-                            <span class="textShare">{t}Compartir mis datos con la comunidad{/t}</span>
-                            <span class="edit">
-                              <label>
-                                <input type="radio" name="shareStatus" class="shareStatusOn"
-                                value="1"{if $myInfo.comm.share && $myInfo.comm.share == 1} checked{/if}>
-                                <i class="fa fa-lg fa-check" aria-hidden="true"></i>
-                              </label>
-                              <label>
-                                <input type="radio" name="shareStatus" class="shareStatusOff"
-                                value="0"{if !$myInfo.comm.share || $myInfo.comm.share != 1} checked{/if}>
-                                <i class="fa fa-lg fa-times" aria-hidden="true"></i>
-                              </label>
-                            </span>
+                        <div class="shareComm">
+                          <!-- <div class="col-sm-3 col-md-3"> -->
+                          <div class="col-xs-12 ">
+                            <div class="actions">
+                              <span class="view actionEdit"><i class="fa fa-lg fa-pencil" aria-hidden="true"></i> {t}Editar{/t}</span>
+                              <span class="edit actionSave"><i class="fa fa-lg fa-floppy-o" aria-hidden="true"></i> {t}Guardar{/t}</span>
+                            </div>
                           </div>
-                        </div>
-                        <!-- <div class="col-sm-3 col-md-3"> -->
-                        <div class="col-xs-12">
-                          <div class="actions">
-                            <span class="view actionEdit"><i class="fa fa-lg fa-pencil" aria-hidden="true"></i> {t}Editar{/t}</span>
-                            <span class="edit actionSave"><i class="fa fa-lg fa-floppy-o" aria-hidden="true"></i> {t}Guardar{/t}</span>
+                          <div class="col-xs-12">
+                            <div class="myShare">
+                              <span class="view">
+                                <span class="shareOn"><i class="fa fa-lg fa-check" aria-hidden="true"></i></span>
+                                <span class="shareOff"><i class="fa fa-lg fa-times" aria-hidden="true"></i></span>
+                              </span>
+                              <style type="text/css">
+                                {if $myInfo.comm.share && $myInfo.comm.share == 1}
+                                  .myShare .shareOff { display: none; }
+                                {else}
+                                  .myShare .shareOn { display: none; }
+                                {/if}
+                              </style>
+                              <span class="textShare">{t}Compartir mis datos con la comunidad{/t}</span>
+                              <span class="edit">
+                                <label>
+                                  <input type="radio" name="shareStatus" class="shareStatusOn"
+                                  value="1"{if $myInfo.comm.share && $myInfo.comm.share == 1} checked{/if}>
+                                  <i class="fa fa-lg fa-check" aria-hidden="true"></i>
+                                </label>
+                                <label>
+                                  <input type="radio" name="shareStatus" class="shareStatusOff"
+                                  value="0"{if !$myInfo.comm.share || $myInfo.comm.share != 1} checked{/if}>
+                                  <i class="fa fa-lg fa-times" aria-hidden="true"></i>
+                                </label>
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -164,7 +166,7 @@
                         <div class="text-center">
                           <div class="socialUser">
                             <div class="commImageUser">
-                              <img src="/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg">
+                              <img class="img-responsive" src="/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg">
                             </div>
                             <div class="perfilUser">
                               <a href="#"> {t}Ver perfil{/t}</a>
@@ -210,9 +212,9 @@
                                   {if $fav@iteration > 4}
                                     {break}{* abort iterating the array *}
                                   {/if}
-                                  <div class="col-sm-3">
+                                  <div class="col-xs-3">
                                     <div class="commImage">
-                                      <img src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg">
+                                      <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg">
                                     </div>
                                   </div>
                                 {/foreach}
@@ -270,7 +272,7 @@
                         <div class="text-center">
                           <div class="socialUser">
                             <div class="commImageUser">
-                              <img src="/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg">
+                              <img class="img-responsive" src="/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg">
                             </div>
                             <div class="perfilUser">
                               <a href="#"> {t}Ver perfil{/t}</a>
@@ -316,9 +318,9 @@
                                   {if $fav@iteration > 4}
                                     {break}{* abort iterating the array *}
                                   {/if}
-                                  <div class="col-sm-3">
+                                  <div class="col-xs-3">
                                     <div class="commImage">
-                                      <img src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg">
+                                      <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg">
                                     </div>
                                   </div>
                                 {/foreach}
