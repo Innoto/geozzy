@@ -122,6 +122,8 @@
   <div class="resourceTp" data-resource-id="<%- resource.id %>">
     <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
+
+    <label>{t}Which days you want to visit?{/t}</label>
     <ul class="selectorDays clearfix">
       <% _.each(dates, function(i) { %>
         <li class="day-<%= i.id %> <% if(i.inPlan){ %> inPlan <% } %>" data-day="<%= i.id %>">
@@ -131,6 +133,16 @@
         </li>
       <% }); %>
     </ul>
+
+    <label>{t}How long?{/t}</label>
+    <div class="hoursContainer">
+      <input type="number" class="hlong-hour" min="0" max="23" value="1">
+    </div>
+    <div class="minContainer">
+      <input type="number" class="hlong-min" min="0" max="59" value="00">
+    </div>
+
+
 
     <div class="buttonActions">
       <button type="button" class="cancelAdd btn btn-warning">{t}Cancelar{/t}</button>

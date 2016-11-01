@@ -16,7 +16,7 @@
     display:none;
     overflow: auto;
   }
-  
+
   #travelPlannerSec{
     padding: 0;
     margin: 0;
@@ -214,6 +214,15 @@
 
 #resourceTpModal{
   .resourceTp{
+    .title{
+      padding: 5px 0px;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    label{
+      font-weight: normal;
+      font-size:18px;
+    }
     .selectorDays{
       li{
         cursor: pointer;
@@ -223,19 +232,33 @@
         border-radius: 4px;
         background:  @gzzColor-bck-1;
         float: left;
-        width: calc(~ '25% - 4px' );
+        width: calc(~ '20% - 20px' );
         padding: 10px;
-        margin: 2px;
+        margin: 10px;
         color: @gzzColor-geozzy;
+        font-weight: 500;
+        text-align: center;
+
         &.inPlan{
-          color: @gzzColor-rest;
-          border-color: @gzzColor-rest;
-          background: @gzzColor-bck-1;
+          color: @gzzColor-geozzy;
+          border-color: @gzzColor-geozzy;
+          background: @gzzColor-bck-3;
         }
         &.active{
           color: @gzzColor-text-light;
           border-color: @gzzColor-geozzy;
           background: @gzzColor-geozzy;
+        }
+
+        .dayName{
+          font-size: 14px;
+        }
+        .dayNumber{
+          margin: 4px 0;
+          font-size: 30px;
+        }
+        .month{
+          font-size: 18px;
         }
       }
     }

@@ -49,7 +49,7 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
       dates[i] = {
         id: i,
         date: checkin.format('LL'),
-        dayName: checkin.format('ddd'),
+        dayName: checkin.format('dddd'),
         day: checkin.format('DD'),
         month: checkin.format('MMM'),
         inPlan: false
