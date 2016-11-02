@@ -213,15 +213,22 @@
 
 
 #resourceTpModal{
+  .modal-dialog{
+    max-width: 500px;
+  }
   .resourceTp{
+    form{
+      input{ width: 100%; }
+    }
     .title{
       padding: 5px 0px;
       font-size: 24px;
       font-weight: 600;
     }
-    label{
+    .labelText{
       font-weight: normal;
       font-size:18px;
+      color: @gzzColor-text-dark;
     }
     .selectorDays{
       li{
@@ -232,7 +239,7 @@
         border-radius: 4px;
         background:  @gzzColor-bck-1;
         float: left;
-        width: calc(~ '20% - 20px' );
+        width: calc(~ '25% - 20px' );
         padding: 10px;
         margin: 10px;
         color: @gzzColor-geozzy;
@@ -261,6 +268,10 @@
           font-size: 18px;
         }
       }
+    }
+    .buttonActions{
+      margin-top: 20px;
+      .acceptAdd{ float:right; }
     }
   }
 }

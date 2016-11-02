@@ -123,7 +123,8 @@
     <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
 
-    <label>{t}Which days you want to visit?{/t}</label>
+    <form>
+    <div class="labelText">{t}Which days you want to visit?{/t}</div>
     <ul class="selectorDays clearfix">
       <% _.each(dates, function(i) { %>
         <li class="day-<%= i.id %> <% if(i.inPlan){ %> inPlan <% } %>" data-day="<%= i.id %>">
@@ -134,19 +135,21 @@
       <% }); %>
     </ul>
 
-    <label>{t}How long?{/t}</label>
-    <div class="hoursContainer">
-      <input type="number" class="hlong-hour" min="0" max="23" value="1">
+    <div class="labelText">{t}How long?{/t}</div>
+    <div class="hoursContainer row clearfix">
+      <div class="col-xs-6">
+        <label for="hlong-hour">{t}hours{/t}</label>
+        <input type="number" name="hlong-hour" class="hlong-hour" placeholder="{t}hours{/t}" min="0" max="23">
+      </div>
+      <div class="col-xs-6">
+        <label for="hlong-minutes">{t}minutes{/t}</label>
+        <input type="number" name="hlong-minutes" class="hlong-minutes" placeholder="{t}minutes{/t}" min="0" max="59">
+      </div>
     </div>
-    <div class="minContainer">
-      <input type="number" class="hlong-min" min="0" max="59" value="00">
-    </div>
-
-
-
     <div class="buttonActions">
       <button type="button" class="cancelAdd btn btn-warning">{t}Cancelar{/t}</button>
       <button type="button" class="acceptAdd btn btn-success">{t}Add to plan{/t}</button>
     <div>
+    </form>
   </div>
 </script>

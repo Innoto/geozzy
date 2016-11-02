@@ -408,6 +408,7 @@ class RExtCommunityController extends RExtController implements RExtInterface {
       );
 
       if( $getFavs ) {
+        geozzy::load('controller/ResourceController.php');
         $resCtrl = new ResourceController();
         $usersInfo[ $userId ]['favList'] = $favCtrl->getAllFavourites( $userId );
         $usersInfo[ $userId ]['favs'] = [];
