@@ -215,8 +215,14 @@ class ResourceController {
         }
       }
 
-      // Cargo el campo rTypeIdName
-      $resourceData['rTypeIdName'] = $this->getRTypeIdName( $resourceData['rTypeId'] );
+      // Amplio la informacion de rType
+      // $resourceData['rTypeIdName'] = $this->getRTypeIdName( $resourceData['rTypeId'] );
+      $rTypeModel = new ResourcetypeModel();
+      $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'id' => $resourceData['rTypeId'] ) ) );
+      if( $rTypeInfo = $rTypeList->fetch() ) {
+        $resourceData['rTypeName'] = $rTypeInfo->getter( 'name' );
+        $resourceData['rTypeIdName'] = $rTypeInfo->getter( 'idName' );
+      }
 
       if( $resourceData ) {
         $this->resData = $resourceData;
@@ -280,9 +286,9 @@ class ResourceController {
     }
 
 
-    // if( !isset( $valuesArray[ 'timeCreation' ] ) ) {
-    //   $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
-    // }
+    if( !isset( $valuesArray[ 'timeCreation' ] ) ) {
+      $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
+    }
 
 
     $fieldsInfo = array(
@@ -291,6 +297,10 @@ class ResourceController {
       ),
       'rTypeIdName' => array(
         'params' => array( 'id' => 'rTypeIdName', 'type' => 'hidden' )
+      ),
+      'timeCreation' => array(
+        'params' => array( 'label' => __( 'Time creation' ) ),
+        'rules' => array( 'dateTime' => true )
       ),
       'title' => array(
         'translate' => true,
@@ -539,7 +549,9 @@ class ResourceController {
       }
       else {
         $valuesArray[ 'user' ] = $user['data']['id'];
-        $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
+        if( !isset( $valuesArray[ 'timeCreation' ] ) || $valuesArray[ 'timeCreation' ] === '' ) {
+          $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
+        }
       }
 
       //Resource LOCATION

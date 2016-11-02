@@ -246,15 +246,38 @@ class RTypeController {
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
 
 
+    // TEMPLATE panel Localizacion
+    $templates['location'] = new Template();
+    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
+    $templates['location']->assign( 'title', __( 'Location' ) );
+    $templates['location']->assign( 'res', $formBlockInfo );
+
+
+    // TEMPLATE panel multimedia
+    $templates['multimedia'] = new Template();
+    $templates['multimedia']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['multimedia']->assign( 'title', __( 'Multimedia galleries' ) );
+    $templates['multimedia']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'multimediaGalleries', 'addMultimediaGalleries' );
+    $templates['multimedia']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+    // TEMPLATE panel collections
+    $templates['collections'] = new Template();
+    $templates['collections']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+    $templates['collections']->assign( 'title', __( 'Collections of related resources' ) );
+    $templates['collections']->assign( 'res', $formBlockInfo );
+    $formFieldsNames = array( 'collections', 'addCollections' );
+    $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
+
+
     // TEMPLATE panel Informacion
     $templates['info'] = new Template();
     $templates['info']->setTpl( 'rTypeFormInfoPanel2.tpl', 'geozzy' );
     $templates['info']->assign( 'title', __( 'Information' ) );
     $templates['info']->assign( 'res', $formBlockInfo );
-
     $timeCreation = gmdate( 'd/m/Y', strtotime($formBlockInfo['data']['timeCreation']) );
     $templates['info']->assign( 'timeCreation', $timeCreation );
-
     if( isset($formBlockInfo['data']['userUpdate']) ) {
       $userModel = new UserModel();
       $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
@@ -262,9 +285,32 @@ class RTypeController {
       $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
       $templates['info']->assign( 'update', [ 'time' =>$timeLastUpdate, 'user' => $userUpdateName ] );
     }
-
     $templates['info']->assign( 'res', $formBlockInfo );
     $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
+
+
+
+    /*
+     * Paneles de extensiones opcionales
+     */
+
+
+    // TEMPLATE panel comment
+    if( isset( $formBlockInfo['ext']['rextComment']['template']['adminExt'] ) ) {
+      $templates['comment'] = new Template();
+      $templates['comment']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+      $templates['comment']->assign( 'title', __( 'Comments' ) );
+      $templates['comment']->setFragment( 'blockContent', $formBlockInfo['ext']['rextComment']['template']['adminExt'] );
+    }
+
+
+    // TEMPLATE panel rextView
+    if( isset( $formBlockInfo['ext']['rextView']['template']['basic'] ) ) {
+      $templates['rextView'] = new Template();
+      $templates['rextView']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+      $templates['rextView']->assign( 'title', __( 'View' ) );
+      $templates['rextView']->setFragment( 'blockContent', $formBlockInfo['ext']['rextView']['template']['basic'] );
+    }
 
 
     // TEMPLATE panel social network
@@ -273,6 +319,24 @@ class RTypeController {
       $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
       $templates['social']->assign( 'title', __( 'Social Networks' ) );
       $templates['social']->setFragment( 'blockContent', $formBlockInfo['ext']['rextSocialNetwork']['template']['basic'] );
+    }
+
+
+    // TEMPLATE panel contacto
+    if( isset( $formBlockInfo['ext']['rextContact']['template']['basic'] ) ) {
+      $templates['contact'] = new Template();
+      $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+      $templates['contact']->assign( 'title', __( 'Contact' ) );
+      $templates['contact']->setFragment( 'blockContent', $formBlockInfo['ext']['rextContact']['template']['basic'] );
+    }
+
+
+    // TEMPLATE panel event
+    if( isset( $formBlockInfo['ext']['rextEvent']['template']['full'] ) ) {
+      $templates['event'] = new Template();
+      $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
+      $templates['event']->assign( 'title', __( 'Event' ) );
+      $templates['event']->setFragment( 'blockContent', $formBlockInfo['ext']['rextEvent']['template']['full'] );
     }
 
 
@@ -328,7 +392,6 @@ class RTypeController {
       }
     }
   }
-
 
   /**
    * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
