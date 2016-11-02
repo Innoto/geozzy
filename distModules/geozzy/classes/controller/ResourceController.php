@@ -276,8 +276,7 @@ class ResourceController {
         'params' => array( 'id' => 'rTypeIdName', 'type' => 'hidden' )
       ),
       'timeCreation' => array(
-        'params' => array( 'label' => __( 'Time creation' ) ),
-        'rules' => array( 'dateTime' => true )
+        'params' => array( 'label' => __( 'Time creation' ) )
       ),
       'title' => array(
         'translate' => true,
@@ -505,6 +504,15 @@ class ResourceController {
     if( $form->isFieldDefined( $fieldName ) ) {
       $this->evalFormUrlAlias( $form, 'urlAlias' );
     }
+
+    if( $form->isFieldDefined( 'timeCreation' ) ) {
+      $dt = $form->getFieldValue( 'timeCreation' );
+      if( $dt !== '' && preg_match( '/^(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{2}):(\d{2})$/', $dt ) !== 1 ) {
+        $form->addFieldError( 'timeCreation', 'La fecha de creación no es válida' );
+        error_log( 'addFieldError( timeCreation, La fecha de creación no es válida' );
+        // unset( $valuesArray[ 'timeCreation' ] );
+      }
+    }
   }
 
   /**
@@ -528,6 +536,12 @@ class ResourceController {
         $valuesArray[ 'user' ] = $user['data']['id'];
         if( !isset( $valuesArray[ 'timeCreation' ] ) || $valuesArray[ 'timeCreation' ] === '' ) {
           $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
+        }
+      }
+
+      if( isset( $valuesArray[ 'timeCreation' ] ) ) {
+        if( preg_match( '/^(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{2}):(\d{2})$/', $valuesArray[ 'timeCreation' ] ) !== 1 ) {
+          unset( $valuesArray[ 'timeCreation' ] );
         }
       }
 
