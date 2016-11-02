@@ -27,6 +27,12 @@ class rtypeTravelPlanner extends Module {
      "params" => array("nestable2-old"),
      "installer" => "bower",
      "includes" => array("jquery.nestable.js")
+   ),
+   array(
+     'id' => 'jquery-validation',
+     'params' => array( 'jquery-validate#1.14' ),
+     'installer' => 'bower',
+     'includes' => array( 'dist/jquery.validate.js', 'dist/additional-methods.js' )
    )
   );
 

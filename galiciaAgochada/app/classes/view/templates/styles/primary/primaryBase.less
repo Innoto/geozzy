@@ -310,42 +310,44 @@ form{
   .cgmMForm-wrap{
     margin: 15px 0px;
     .clearfix;
+  }
 
-    label{
-      font-weight: 600;
-      &.cgmMForm{
-        display:block;
-        width: 100%;
-      }
-      &.formError{
-        margin: 5px 0px;
-        border-radius: 0;
-      }
+  label{
+    font-weight: 600;
+    &.cgmMForm{
+      display:block;
+      width: 100%;
     }
-    input[type="text"],
-    input[type="password"],
-    input[type="email"]{
-      height: 50px;
-      padding: 10px 15px;
-      font-size: @font-size-base;
-      border: 1px solid @gzzColor-text-dark;
-    }
-    textarea{
-      padding: 10px 15px;
-      font-size: @font-size-base;
-      border: 1px solid @gzzColor-text-dark;
-    }
-
-    input[type="checkbox"]{
-      margin-right: 10px;
-    }
-    input[type="submit"],
-    .cgmMForm-field-submit input{
-      .btn;
-      .btn-primary;
-      .pull-right;
+    &.formError{
+      margin: 5px 0px;
+      border-radius: 0;
     }
   }
+  input[type="text"],
+  input[type="number"],
+  input[type="password"],
+  input[type="email"]{
+    height: 50px;
+    padding: 10px 15px;
+    font-size: @font-size-base;
+    border: 1px solid @gzzColor-text-dark;
+  }
+  textarea{
+    padding: 10px 15px;
+    font-size: @font-size-base;
+    border: 1px solid @gzzColor-text-dark;
+  }
+
+  input[type="checkbox"]{
+    margin-right: 10px;
+  }
+  input[type="submit"],
+  .cgmMForm-field-submit input{
+    .btn;
+    .btn-primary;
+    .pull-right;
+  }
+  
 }
 /*Columns*/
 .row-centered {

@@ -76,6 +76,18 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
 
+    that.$('.resourceTp form').validate({
+      lang: cogumelo.publicConf.C_LANG,
+      rules: {
+        'hlong-hour':{ 'min': 0 , 'max':23, 'digits': true, required: true },
+        'hlong-minutes':{ 'min':0, 'max':59, 'digits': true, required: true }
+      },
+      messages: {
+        'hlong-hour': __('Introduce entre 0 y 23 horas'),
+        'hlong-minutes': __('Introduce entre 0 y 59 minutos')
+      }
+    });
+
     return that;
   },
 
@@ -95,12 +107,18 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
 
   addToPlan: function(e){
     var that = this;
-    var daysSelectorActive = $('.selectorDays li.active');
-    var daysActive = [];
-    daysSelectorActive.each(function( index ) {
-      daysActive.push($( this ).attr('data-day'));
-    });
-    that.parentTp.travelPlannerPlanView.addResourcesPlan(that.idResource, daysActive, that.parentTp.travelPlannerDefaultVisitTime);
-    that.closeModalResource();
+    if( that.$('.resourceTp form').valid()){
+      var daysSelectorActive = $('.selectorDays li.active');
+      var daysActive = [];
+      daysSelectorActive.each(function( index ) {
+        daysActive.push($( this ).attr('data-day'));
+      });
+
+      var minVisitTime = 0;
+      minVisitTime = (parseInt(that.$('.resourceTp .hlong-hour').val()) * 60) + parseInt(that.$('.resourceTp .hlong-minutes').val());
+
+      that.parentTp.travelPlannerPlanView.addResourcesPlan(that.idResource, daysActive, minVisitTime);
+      that.closeModalResource();
+    }
   }
 });
