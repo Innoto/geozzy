@@ -25,20 +25,15 @@
                 <div class="commImage">
                   <img class="img-responsive" src="/cgmlImg/{$myInfo.avatarFileId}/userPhotoCommunity/{$myInfo.avatarFileId}.jpg">
                 </div>
-                <!-- <div class="login">{$myInfo.login}</div> -->
-                <!-- <a href="/userprofile#user/profile"><i class="fa fa-2x fa-pencil-square" aria-hidden="true"></i> {t}Editar mi perfil{/t}</a> -->
               </div>
             </div>
             <div class="col-sm-7 col-md-8">
               <div class="commText">
-                <!-- <div class="name">{$myInfo.name} {$myInfo.surname}</div> -->
                 <div class="row">
                   <div class="commRS">
                     <div class="col-md-6">
-                      <!-- <div class="col-sm-9 col-md-9"> -->
                       <div class="row">
                         <div class="shareComm">
-                          <!-- <div class="col-sm-3 col-md-3"> -->
                           <div class="col-xs-12 ">
                             <div class="actions">
                               <span class="view actionEdit"><i class="fa fa-lg fa-pencil" aria-hidden="true"></i> {t}Editar{/t}</span>
@@ -78,16 +73,8 @@
                     </div>
                     <div class="col-md-6">
                       <div class="row">
-                        <!-- <div class="col-sm-12 col-md-6"> -->
                         <div class="rs">
                           <div class="col-xs-12">
-                            <!-- <div class="myFacebook">
-                              <span class="iconRs rsFacebook"><i class="fa fa-fw fa-3x fa-facebook" aria-hidden="true"></i></span>
-                              <span class="view facebookAccount">{$myInfo.comm.facebook|default:'Enlazar con Facebook'}</span>
-                              <span class="edit">
-                                <input type="text" name="facebookAccount" value="{$myInfo.comm.facebook|default:''}">
-                              </span>
-                            </div> -->
                             <div class="myFacebook noShare">
                               <span class="iconRs rsFacebook"><i class="fa fa-fw fa-3x fa-facebook" aria-hidden="true"></i></span>
                               <div class="view">
@@ -106,15 +93,7 @@
                               {/if}
                             </style>
                           </div>
-                          <!-- <div class="col-sm-12 col-md-6"> -->
                           <div class="col-xs-12">
-                            <!-- <div class="myTwitter">
-                              <span class="iconRs rsTwitter"><i class="fa fa-fw fa-3x fa-twitter" aria-hidden="true"></i></span>
-                              <span class="view twitterAccount">{$myInfo.comm.twitter|default:'Enlazar con Twitter'}</span>
-                              <span class="edit">
-                                <input type="text" name="twitterAccount" value="{$myInfo.comm.twitter|default:''}">
-                              </span>
-                            </div> -->
                             <div class="myTwitter noShare">
                               <span class="iconRs rsTwitter"><i class="fa fa-fw fa-3x fa-twitter" aria-hidden="true"></i></span>
                               <div class="view">
@@ -168,9 +147,6 @@
                             <div class="commImageUser">
                               <img class="img-responsive" src="/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg">
                             </div>
-                            <div class="perfilUser">
-                              <a href="#"> {t}Ver perfil{/t}</a>
-                            </div>
                             {if $userInfo.comm}
                               <div class="socialLinks">
                                 {if $userInfo.comm.facebook}
@@ -202,7 +178,6 @@
                           </div>
                           <div class="commText">
                             <div class="name">{$userInfo.name} {$userInfo.surname}</div>
-                            <!-- <div class="name">{$userInfo.name} {$userInfo.surname}<span class="login"> ( {$userInfo.login} )</span></div> -->
                           </div>
                           {if $userInfo.favs|@is_array && $userInfo.favs|@count gt 0}
                             <div class="favs">
@@ -214,7 +189,9 @@
                                   {/if}
                                   <div class="col-xs-3">
                                     <div class="commImage">
-                                      <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg">
+                                      <a href="{$fav.url}" title="{$fav.title}">
+                                        <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg" alt="{$fav.title}">
+                                      </a>
                                     </div>
                                   </div>
                                 {/foreach}
@@ -252,19 +229,6 @@
             <div class="row row-eq-height">
               {foreach $commProposeInfo as $userInfo}
                 {* id,login,name,surname,email,description,avatarFileId *}
-                <!-- <div class="col-sm-6 col-md-3 communityElement" data-id="{$userInfo.id}">
-                  <div class="actionFollow" data-id="{$userInfo.id}" data-follow="0">
-                    <span class="showStatus off">Seguir</span>
-                    <span class="showStatus on" style="display: none;">Siguiendo</span>
-                  </div>
-                  <div class="commImage">
-                    <img src="/cgmlImg/{$userInfo.avatarFileId}/fast_cut/{$userInfo.avatarFileId}.jpg">
-                  </div>
-                  <div class="commText">
-                    <div class="login">{$userInfo.login}</div>
-                    <div class="name">{$userInfo.name} {$userInfo.surname}</div>
-                  </div>
-                </div> -->
                 <div class="col-sm-12 col-md-6" data-id="{$userInfo.id}">
                   <div class="communityElement">
                     <div class="row">
@@ -273,9 +237,6 @@
                           <div class="socialUser">
                             <div class="commImageUser">
                               <img class="img-responsive" src="/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg">
-                            </div>
-                            <div class="perfilUser">
-                              <a href="#"> {t}Ver perfil{/t}</a>
                             </div>
                             {if $userInfo.comm}
                               <div class="socialLinks">
@@ -308,7 +269,6 @@
                           </div>
                           <div class="commText">
                             <div class="name">{$userInfo.name} {$userInfo.surname}</div>
-                            <!-- <div class="name">{$userInfo.name} {$userInfo.surname}<span class="login"> ( {$userInfo.login} )</span></div> -->
                           </div>
                           {if $userInfo.favs|@is_array && $userInfo.favs|@count gt 0}
                             <div class="favs">
@@ -320,7 +280,9 @@
                                   {/if}
                                   <div class="col-xs-3">
                                     <div class="commImage">
-                                      <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg">
+                                      <a href="{$fav.url}" title="{$fav.title}">
+                                        <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg" alt="{$fav.title}">
+                                      </a>
                                     </div>
                                   </div>
                                 {/foreach}

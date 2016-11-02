@@ -32,7 +32,9 @@
             {foreach $otherUserInfo.favs as $fav}
               <div class="col-sm-2">
                 <div class="commImage">
-                  <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg">
+                  <a href="{$fav.url}" title="{$fav.title}">
+                    <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg" alt="{$fav.title}">
+                  </a>
                 </div>
               </div>
             {/foreach}
