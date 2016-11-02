@@ -46,6 +46,8 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
 
     $formBlockInfo = parent::getFormBlockInfo( $form );
 
+    $templates = $formBlockInfo['template'];
+
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
     $templates['formBase']->setTpl( 'rTypeFormBase.tpl', 'geozzy' );
@@ -60,37 +62,6 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
-    // TEMPLATE panel estado de publicacion
-    $templates['publication'] = new Template();
-    $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['publication']->assign( 'title', __( 'Publication' ) );
-    $templates['publication']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'published', 'weight' );
-    $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
-
-
-    // TEMPLATE panel SEO
-    $templates['seo'] = new Template();
-    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['seo']->assign( 'title', __( 'SEO' ) );
-    $templates['seo']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array_merge(
-      $form->multilangFieldNames( 'urlAlias' ),
-      $form->multilangFieldNames( 'headKeywords' ),
-      $form->multilangFieldNames( 'headDescription' ),
-      $form->multilangFieldNames( 'headTitle' )
-    );
-    $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
-
-    // TEMPLATE panel image
-    $templates['image'] = new Template();
-    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['image']->assign( 'title', __( 'Select a image' ) );
-    $templates['image']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'image' );
-    $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
-
-
     // TEMPLATE panel Poi
     $templates['poi'] = new Template();
     $templates['poi']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -98,37 +69,7 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     $templates['poi']->assign( 'res', $formBlockInfo );
     $templates['poi']->setFragment( 'blockContent', $formBlockInfo['ext']['rextPoi']['template']['adminExt'] );
 
-    // TEMPLATE panel cuadro informativo
-    $templates['info'] = new Template();
-    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'geozzy' );
-    $templates['info']->assign( 'title', __( 'Information' ) );
-    $templates['info']->assign( 'res', $formBlockInfo );
 
-    $resourceType = new ResourcetypeModel();
-    $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
-    if ($type){
-      $templates['info']->assign( 'rType', $type->getter('name_es') );
-    }
-
-    $timeCreation = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeCreation']));
-
-    $templates['info']->assign( 'timeCreation', $timeCreation );
-    if (isset($formBlockInfo['data']['userUpdate'])){
-      $userModel = new UserModel();
-      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
-      $userUpdateName = $userUpdate->getter('name');
-      $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
-      $templates['info']->assign( 'timeLastUpdate', $timeLastUpdate.' ('.$userUpdateName.')' );
-    }
-    if (isset($formBlockInfo['data']['averageVotes'])){
-      $templates['info']->assign( 'averageVotes', $formBlockInfo['data']['averageVotes']);
-    }
-    /* Temáticas */
-    if (isset($formBlockInfo['data']['topicsName'])){
-      $templates['info']->assign( 'resourceTopicList', $formBlockInfo['data']['topicsName']);
-    }
-    $templates['info']->assign( 'res', $formBlockInfo );
-    $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE con todos los paneles
     $templates['adminFull'] = new Template();

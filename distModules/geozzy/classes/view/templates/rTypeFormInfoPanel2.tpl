@@ -10,15 +10,22 @@
   </div>
   <div class="row">
     <div class="infoCol col-md-4">Tipo</div>
-    <div class="infoColData col-md-8">{$res.data.rTypeIdName|default:''}</div>
+    <div class="infoColData col-md-8">{$res.data.rTypeName|default:''}</div>
   </div>
   <div class="row">
     <div class="infoCol col-md-4">Creado</div>
-    <div class="infoColData col-md-8">{$timeCreation}</div>
+    <div class="infoColData col-md-8">
+      <style>
+        .cgmMForm-field-timeCreation label { display: none; }
+        .infoColData .cgmMForm-wrap { margin-bottom: 0; }
+      </style>
+      {$res.dataForm.formFieldsArray['timeCreation']}
+      {* $timeCreation *}
+    </div>
   </div>
   <div class="row">
     <div class="infoCol col-md-4">Actualizado</div>
-    <div class="infoColData col-md-8">{if isset($update)}{$update.time}<br>({$update.user}){/if}</div>
+    <div class="infoColData col-md-8">{if isset($update)}{$update.time} ({$update.user}){/if}</div>
   </div>
 
   {if isset($res.data.topicsName)}
