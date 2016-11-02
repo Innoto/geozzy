@@ -61,29 +61,6 @@ class ResourceController {
 
 
   /**
-   *  Cargando IdName del RType
-   */
-  public function getRTypeIdName( $rTypeId = false, $resId = false ) {
-    // error_log( "ResourceController: getRTypeIdName( $rTypeId )" );
-    $rTypeIdName = false;
-
-    if( $rTypeId === false ) {
-      $resData = $this->getResourceData( $resId );
-      $rTypeId = ( $resData ) ? $resData['rTypeId'] : false;
-    }
-    if( $rTypeId !== false ) {
-      $rTypeModel = new ResourcetypeModel();
-      $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
-      if( $rTypeInfo = $rTypeList->fetch() ) {
-        $rTypeIdName = $rTypeInfo->getter( 'idName' );
-      }
-    }
-
-    return $rTypeIdName;
-  }
-
-
-  /**
    * Load resource object
    *
    * @param $resId integer
@@ -646,6 +623,45 @@ class ResourceController {
   /**
    * Métodos para facilitar y organizar la verificación de los distintos elementos del recurso
    */
+
+
+  /**
+   *  Cargando IdName del RType
+   */
+  public function getRTypeIdName( $rTypeId = false, $resId = false ) {
+    // error_log( "ResourceController: getRTypeIdName( $rTypeId )" );
+    $rTypeIdName = false;
+
+    if( $rTypeId === false ) {
+      $resData = $this->getResourceData( $resId );
+      $rTypeId = ( $resData ) ? $resData['rTypeId'] : false;
+    }
+    if( $rTypeId !== false ) {
+      $rTypeModel = new ResourcetypeModel();
+      $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
+      if( $rTypeInfo = $rTypeList->fetch() ) {
+        $rTypeIdName = $rTypeInfo->getter( 'idName' );
+      }
+    }
+
+    return $rTypeIdName;
+  }
+
+
+  /**
+   *  Cargando Id del RType IdName
+   */
+  public function getRTypeIdByIdName( $rTypeIdName ) {
+    $rTypeId = false;
+
+    $rTypeModel = new ResourcetypeModel();
+    $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'idName' => $rTypeIdName ) ) );
+    if( gettype( $rTypeList ) === 'object' && ( $rTypeInfo = $rTypeList->fetch() ) ) {
+      $rTypeId = $rTypeInfo->getter( 'id' );
+    }
+
+    return $rTypeId;
+  }
 
 
   /**
