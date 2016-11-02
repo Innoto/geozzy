@@ -363,20 +363,6 @@ class RExtCommunityController extends RExtController implements RExtInterface {
     $ignore = is_array( $commFollows ) ? $commFollows : array();
     $ignore[] = $commUser;
 
-    /*
-    ** APAÑO TEMPORAL !!!
-    */
-    /*
-    $userModel = new UserModel();
-    $userList = $userModel->listItems();
-    while( $userObj = $userList->fetch() ) {
-      $userId = $userObj->getter('id');
-      if( !in_array( $userId, $ignore ) ) {
-        $commPropose[] = $userId;
-      }
-    }
-    */
-
     $afinModel = new RExtCommunityAffinityUserModel();
     $afinList = $afinModel->listItems( array( 'filters' => array( 'id' => $commUser ) ) );
     $afinObj = ( $afinList ) ? $afinList->fetch() : false;
@@ -429,7 +415,9 @@ class RExtCommunityController extends RExtController implements RExtInterface {
         while( $resObj = $resList->fetch() ) {
           $usersInfo[ $userId ]['favs'][] = array(
             'id' => $resObj->getter('id'),
-            'image' => $resObj->getter('image')
+            'title' => $resObj->getter('title'),
+            'image' => $resObj->getter('image'),
+            'url' => $this->defResCtrl->getUrlAlias( $resObj->getter('id') )
           );
         }
       }
