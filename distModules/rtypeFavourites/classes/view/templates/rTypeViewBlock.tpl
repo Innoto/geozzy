@@ -52,7 +52,7 @@
       <div class="favouritesList">
 
         {if $favsResourcesInfo|@is_array && $favsResourcesInfo|@count gt 0}
-        <div class="row">
+        <div class="row row-eq-height">
           {foreach $favsResourcesInfo as $favsResInfo}
           {* title shortDescription image url rTypeId *}
           <div class="col-sm-6 col-md-3 favouritesElement rtid{$favsResInfo.rTypeId}" data-id="{$favsResInfo.id}" data-rTypeId="{$favsResInfo.rTypeId}">
