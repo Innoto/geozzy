@@ -386,7 +386,6 @@ class RExtCommunityController extends RExtController implements RExtInterface {
     $favCtrl = new RExtFavouriteController();
     $userModel = new UserModel();
     $resModel = new ResourceModel();
-    $resCtrl = new ResourceController();
 
     $userList = $userModel->listItems( array( 'filters' => array( 'idIn' => $usersIds, 'active' => 1 ) ) );
     while( $userObj = $userList->fetch() ) {
@@ -409,6 +408,7 @@ class RExtCommunityController extends RExtController implements RExtInterface {
       );
 
       if( $getFavs ) {
+        $resCtrl = new ResourceController();
         $usersInfo[ $userId ]['favList'] = $favCtrl->getAllFavourites( $userId );
         $usersInfo[ $userId ]['favs'] = [];
         $resList = $resModel->listItems( array( 'filters' => array(
