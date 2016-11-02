@@ -135,6 +135,9 @@ class RTypePageController extends RTypeController implements RTypeInterface {
 
     $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $viewBlockInfo['data']['id'] );
     if( $collectionArrayInfo ) {
+      $template->assign( 'collectionArrayInfo', $collectionArrayInfo );
+      $template->assign( 'collectionByType', $this->defResCtrl->collectionsByType( $collectionArrayInfo ) );
+
       $collectionArray = false;
       $multimediaArray = false;
       foreach( $collectionArrayInfo as $key => $collectionInfo ) {

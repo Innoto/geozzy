@@ -1501,130 +1501,143 @@ class ResourceController {
   public function getCollectionBlockInfo( $resId, $collectionTypes = false ) {
     $collectionResources = false;
 
+    $collFilters['resourceMain'] = $resId;
+
     if( $collectionTypes === false ) {
-      $collTypesFilter = [ 'base', 'multimedia' ];
+      $collFilters['collectionTypeIn'] = [ 'base', 'multimedia' ];
     }
     else {
-      $collTypesFilter = is_array( $collectionTypes ) ? $collectionTypes : [ $collectionTypes ];
+      $collFilters['collectionTypeIn'] = is_array( $collectionTypes ) ? $collectionTypes : [ $collectionTypes ];
     }
 
-    $resourceCollectionsAllModel =  new ResourceCollectionsAllModel();
-    if( isset( $resId ) ) {
-      $resCollectionList = $resourceCollectionsAllModel->listItems(
-        array(
-          'filters' => array( 'resourceMain' => $resId, 'collectionTypeIn' => $collTypesFilter ),
-          'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-          'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias' )
-        )
-      );
-      if( gettype( $resCollectionList ) === 'object' ) {
-        while( $collection = $resCollectionList->fetch() ) {
-          $collId = $collection->getter('id');
-          if( !isset( $collectionResources[ $collId ] ) ) {
-            $collectionResources[ $collId ]['col'] = array(
-              'id' => $collId,
-              'title' => $collection->getter('title'),
-              'shortDescription' => $collection->getter('shortDescription'),
-              'description' => $collection->getter('description'),
-              'image' => $collection->getter('image'),
-              'collectionType' => $collection->getter('collectionType')
-            );
-            $collectionResources[ $collId ]['res'] = [];
-          }
-          $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
-          if( $resources && is_array($resources) && count($resources) > 0 ) {
-            switch( $collection->getter('collectionType') ) {
-              case 'multimedia':
-                foreach( $resources as $resVal ) {
-                  // Saltamos recursos no publicados
-                  if( !$resVal->getter( 'published' ) ) {
-                    continue;
-                  }
-
-                  $thumbSettings = array(
-                    'profile' => 'imgMultimediaGallery'
-                  );
-
-                  $imgId = $resVal->getter( 'image' );
-
-                  if( $imgId && $imgId !== 'null' ) {
-                    $thumbSettings['imageId'] = $imgId;
-                    $thumbSettings['imageName'] = $imgId.'.jpg';
-                  }
-
-                  $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-                  $multimediaUrl = false;
-                  if( $resDataExt = $resDataExtArray[0]){
-                    $thumbSettings['url'] = $resDataExt->getter('url');
-                    $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
-                    $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-                    if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
-                      $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
-                    }
-                  }
-                  $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-                  $thumbSettings['profile'] = 'hdpi4';
-                  $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
-
-                  $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
-                  $collectionResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
-                    'id' => $resVal->getter('id'),
-                    'rType' => $resVal->getter('rTypeId'),
-                    'title' => $resVal->getter('title'),
-                    'shortDescription' => $resVal->getter('shortDescription'),
-                    'mediumDescription' => $resVal->getter('mediumDescription'),
-                    'externalUrl' => $resVal->getter('externalUrl'),
-                    'urlAlias' => $urlAlias,
-                    'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
-                    'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
-                    'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
-                    'image_big' => $imgUrl2,
-                    'multimediaUrl' => $multimediaUrl,
-                  );
-                }
-                break;
-              case 'base':
-              default:
-                foreach( $resources as $resVal ) {
-                  // Saltamos recursos no publicados
-                  if( !$resVal->getter( 'published' ) ) {
-                    continue;
-                  }
-
-                  $thumbSettings = array(
-                    'imageId' => $resVal->getter( 'image' ),
-                    'imageName' => $resVal->getter( 'image' ).'.jpg',
-                    'profile' => 'fast_cut'
-                  );
-                  $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-                  if( $resDataExt = $resDataExtArray[0] ) {
-                    $thumbSettings['url'] = $resDataExt->getter('url');
-                  }
-                  $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-
-                  $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
-
-                  $collectionResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
-                    'id' => $resVal->getter('id'),
-                    'rType' => $resVal->getter('rTypeId'),
-                    'title' => $resVal->getter('title'),
-                    'shortDescription' => $resVal->getter('shortDescription'),
-                    'mediumDescription' => $resVal->getter('mediumDescription'),
-                    'externalUrl' => $resVal->getter('externalUrl'),
-                    'urlAlias' => $urlAlias,
-                    'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
-                    'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
-                    'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
-                  );
-                }
-                break;
-            } // switch
-          } // if
+    $resourceCollectionsAllModel = new ResourceCollectionsAllModel();
+    $resCollectionList = $resourceCollectionsAllModel->listItems( array(
+      'filters' => $collFilters,
+      'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
+      'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias' )
+    ));
+    if( gettype( $resCollectionList ) === 'object' ) {
+      while( $collection = $resCollectionList->fetch() ) {
+        $collId = $collection->getter('id');
+        if( !isset( $collectionResources[ $collId ] ) ) {
+          $collectionResources[ $collId ]['col'] = array(
+            'id' => $collId,
+            'title' => $collection->getter('title'),
+            'shortDescription' => $collection->getter('shortDescription'),
+            'description' => $collection->getter('description'),
+            'image' => $collection->getter('image'),
+            'collectionType' => $collection->getter('collectionType')
+          );
+          $collectionResources[ $collId ]['res'] = [];
         }
+        $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel');
+        if( $resources && is_array($resources) && count($resources) > 0 ) {
+          switch( $collection->getter('collectionType') ) {
+            case 'multimedia':
+              foreach( $resources as $resVal ) {
+                // Saltamos recursos no publicados
+                if( !$resVal->getter( 'published' ) ) {
+                  continue;
+                }
+
+                $thumbSettings = array(
+                  'profile' => 'imgMultimediaGallery'
+                );
+
+                $imgId = $resVal->getter( 'image' );
+
+                if( $imgId && $imgId !== 'null' ) {
+                  $thumbSettings['imageId'] = $imgId;
+                  $thumbSettings['imageName'] = $imgId.'.jpg';
+                }
+
+                $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
+                $multimediaUrl = false;
+                if( $resDataExt = $resDataExtArray[0]){
+                  $thumbSettings['url'] = $resDataExt->getter('url');
+                  $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
+                  $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+                  if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
+                    $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
+                  }
+                }
+                $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+                $thumbSettings['profile'] = 'hdpi4';
+                $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
+
+                $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
+                $collectionResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
+                  'id' => $resVal->getter('id'),
+                  'rType' => $resVal->getter('rTypeId'),
+                  'title' => $resVal->getter('title'),
+                  'shortDescription' => $resVal->getter('shortDescription'),
+                  'mediumDescription' => $resVal->getter('mediumDescription'),
+                  'externalUrl' => $resVal->getter('externalUrl'),
+                  'urlAlias' => $urlAlias,
+                  'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
+                  'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
+                  'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
+                  'image_big' => $imgUrl2,
+                  'multimediaUrl' => $multimediaUrl,
+                );
+              }
+              break;
+            case 'base':
+            default:
+              foreach( $resources as $resVal ) {
+                // Saltamos recursos no publicados
+                if( !$resVal->getter( 'published' ) ) {
+                  continue;
+                }
+
+                $thumbSettings = array(
+                  'imageId' => $resVal->getter( 'image' ),
+                  'imageName' => $resVal->getter( 'image' ).'.jpg',
+                  'profile' => 'fast_cut'
+                );
+                $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
+                if( $resDataExt = $resDataExtArray[0] ) {
+                  $thumbSettings['url'] = $resDataExt->getter('url');
+                }
+                $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+
+                $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
+
+                $collectionResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
+                  'id' => $resVal->getter('id'),
+                  'rType' => $resVal->getter('rTypeId'),
+                  'title' => $resVal->getter('title'),
+                  'shortDescription' => $resVal->getter('shortDescription'),
+                  'mediumDescription' => $resVal->getter('mediumDescription'),
+                  'externalUrl' => $resVal->getter('externalUrl'),
+                  'urlAlias' => $urlAlias,
+                  'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
+                  'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
+                  'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
+                );
+              }
+              break;
+          } // switch
+        } // if
       }
     }
 
     return($collectionResources);
+  }
+
+  public function collectionsByType( $collectionArrayInfo, $collectionTypes = false ) {
+    $collectionsByType = [];
+
+    foreach( $collectionArrayInfo as $collectionInfo ) {
+      if( $collectionTypes && !in_array( $collectionInfo['col']['collectionType'], $collectionTypes ) ) {
+        continue;
+      }
+      if( count( $collectionInfo['res'] ) > 0 ) {
+        $collectionsByType[ $collectionInfo['col']['collectionType'] ][] = $collectionInfo;
+      }
+    }
+
+    return $collectionsByType;
   }
 
   // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
@@ -1664,14 +1677,9 @@ class ResourceController {
   }
 
 
-  // Obtiene un bloque de una colección multimedia dada
+  // Alias - Obtiene un bloque de una colección multimedia dada
   public function getMultimediaBlock( $multimedia ) {
-    $template = new Template();
-    $template->assign( 'id', $multimedia['col']['id'] );
-    $template->assign( 'max', 6 );
-    $template->assign( 'multimediaAll', $multimedia );
-    $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
-    return $template;
+    return $this->getCollectionBlock( $multimedia );
   }
 
 }
