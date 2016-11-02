@@ -42,6 +42,7 @@ class RTypeTravelPlannerController extends RTypeController implements RTypeInter
     // Cargamos la informacion del form, los datos y lanzamos los getFormBlockInfo de las extensiones
     $formBlockInfo = parent::getFormBlockInfo( $form );
 
+    $templates = $formBlockInfo['template'];
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -57,80 +58,14 @@ class RTypeTravelPlannerController extends RTypeController implements RTypeInter
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 
-    // TEMPLATE panel estado de publicacion
-    $templates['publication'] = new Template();
-    $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['publication']->assign( 'title', __( 'Publication' ) );
-    $templates['publication']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'published', 'weight' );
-    $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
-
-
-    // TEMPLATE panel cuadro informativo
-    $templates['info'] = new Template();
-    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'geozzy' );
-    $templates['info']->assign( 'title', __( 'Information' ) );
-    $templates['info']->assign( 'res', $formBlockInfo );
-
-    $resourceType = new ResourcetypeModel();
-    $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
-    if( $type ) {
-      $templates['info']->assign( 'rType', $type->getter('name_es') );
-    }
-    $timeCreation = '';
-    if( isset($formBlockInfo['data']['timeCreation']) && $formBlockInfo['data']['timeCreation'] ) {
-      $timeCreation = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeCreation']));
-    }
-    $templates['info']->assign( 'timeCreation', $timeCreation );
-    if( isset($formBlockInfo['data']['userUpdate']) ) {
-      $userModel = new UserModel();
-      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
-      $userUpdateName = $userUpdate->getter('name');
-      $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
-      $templates['info']->assign( 'timeLastUpdate', $timeLastUpdate.' ('.$userUpdateName.')' );
-    }
-    if( isset($formBlockInfo['data']['averageVotes']) ){
-      $templates['info']->assign( 'averageVotes', $formBlockInfo['data']['averageVotes']);
-    }
-    /* Temáticas */
-    if( isset($formBlockInfo['data']['topicsName']) ) {
-      $templates['info']->assign( 'resourceTopicList', $formBlockInfo['data']['topicsName']);
-    }
-    $templates['info']->assign( 'res', $formBlockInfo );
-    $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
-
-
-
-
-/*
-    $favsTemplate = false;
-    if( $formBlockInfo['data']['id'] ) {
-      $favsData = $this->getFavsData( $formBlockInfo['data']['id'] );
-
-      if( $favsData ) {
-        // TEMPLATE panel estado de publicacion
-        $favsTemplate = new Template();
-        $favsTemplate->setTpl( 'favAdminFormPanel.tpl', 'rtypeFavourites' );
-        $favsTemplate->assign( 'title', __( 'Favoritos' ) );
-        $favsTemplate->assign( 'res', $formBlockInfo );
-        $favsTemplate->assign( 'favsData', $favsData );
-      }
-    }
-*/
-
-
-
 
     // TEMPLATE con todos los paneles
     $templates['adminFull'] = new Template();
     $templates['adminFull']->setTpl( 'adminContent-8-4.tpl', 'admin' );
     $templates['adminFull']->assign( 'headTitle', __( 'Edit Resource' ) );
 
-
     // COL8
     $templates['adminFull']->addToFragment( 'col8', $templates['formBase'] );
-  
-    // $templates['adminFull']->addToFragment( 'col8', $templates['favResources'] );
     // COL4
     $templates['adminFull']->addToFragment( 'col4', $templates['publication'] );
     $templates['adminFull']->addToFragment( 'col4', $templates['info'] );
