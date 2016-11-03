@@ -104,7 +104,8 @@
     <div class="dd-item-container clearfix">
       <div class="dd-content">
         <div class="nestableActions">
-          <button class="btnDelete btn-icon btn-danger" data-id="<%- resource.id %>" ><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button class="btnEdit btn-icon btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+          <button class="btnDelete btn-icon btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
         </div>
       </div>
       <div class="dd-handle clearfix">
@@ -124,32 +125,57 @@
     <div class="title"><%- resource.title %></div>
 
     <form>
-    <div class="labelText">{t}Which days you want to visit?{/t}</div>
-    <ul class="selectorDays clearfix">
-      <% _.each(dates, function(i) { %>
-        <li class="day-<%= i.id %> <% if(i.inPlan){ %> inPlan <% } %>" data-day="<%= i.id %>">
-          <div class="dayName"><%= i.dayName %></div>
-          <div class="dayNumber"><%= i.day %></div>
-          <div class="month"><%= i.month %></div>
-        </li>
-      <% }); %>
-    </ul>
+      <div class="labelText">{t}Which days you want to visit?{/t}</div>
+      <ul class="selectorDays clearfix">
+        <% _.each(dates, function(i) { %>
+          <li class="day-<%= i.id %> <% if(i.inPlan){ %> inPlan <% } %>" data-day="<%= i.id %>">
+            <div class="dayName"><%= i.dayName %></div>
+            <div class="dayNumber"><%= i.day %></div>
+            <div class="month"><%= i.month %></div>
+          </li>
+        <% }); %>
+      </ul>
 
-    <div class="labelText">{t}How long?{/t}</div>
-    <div class="hoursContainer row clearfix">
-      <div class="col-xs-6">
-        <label for="hlong-hour">{t}hours{/t}</label>
-        <input type="number" name="hlong-hour" class="hlong-hour" placeholder="{t}hours{/t}" min="0" max="23">
+      <div class="labelText">{t}How long?{/t}</div>
+      <div class="hoursContainer row clearfix">
+        <div class="col-xs-6">
+          <label for="hlong-hour">{t}hours{/t}</label>
+          <input type="number" name="hlong-hour" class="hlong-hour" placeholder="{t}hours{/t}" min="0" max="23">
+        </div>
+        <div class="col-xs-6">
+          <label for="hlong-minutes">{t}minutes{/t}</label>
+          <input type="number" name="hlong-minutes" class="hlong-minutes" placeholder="{t}minutes{/t}" min="0" max="59">
+        </div>
       </div>
-      <div class="col-xs-6">
-        <label for="hlong-minutes">{t}minutes{/t}</label>
-        <input type="number" name="hlong-minutes" class="hlong-minutes" placeholder="{t}minutes{/t}" min="0" max="59">
+      <div class="buttonActions">
+        <button type="button" class="cancelAdd btn btn-warning">{t}Cancel{/t}</button>
+        <button type="button" class="acceptAdd btn btn-success">{t}Add to plan{/t}</button>
+      <div>
+    </form>
+  </div>
+</script>
+
+<script type="text/template" id="resourceTpEditModalTemplate">
+  <div class="resourceTp" data-resource-id="<%- resource.id %>">
+    <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
+    <div class="title"><%- resource.title %></div>
+
+    <form>
+      <div class="labelText">{t}How long?{/t}</div>
+      <div class="hoursContainer row clearfix">
+        <div class="col-xs-6">
+          <label for="hlong-hour">{t}hours{/t}</label>
+          <input type="number" name="hlong-hour" class="hlong-hour" placeholder="{t}hours{/t}" min="0" max="23" value="<%- data.hours %>">
+        </div>
+        <div class="col-xs-6">
+          <label for="hlong-minutes">{t}minutes{/t}</label>
+          <input type="number" name="hlong-minutes" class="hlong-minutes" placeholder="{t}minutes{/t}" min="0" max="59" value="<%- data.minutes %>">
+        </div>
       </div>
-    </div>
-    <div class="buttonActions">
-      <button type="button" class="cancelAdd btn btn-warning">{t}Cancelar{/t}</button>
-      <button type="button" class="acceptAdd btn btn-success">{t}Add to plan{/t}</button>
-    <div>
+      <div class="buttonActions">
+        <button type="button" class="cancelEdit btn btn-warning">{t}Cancel{/t}</button>
+        <button type="button" class="acceptEdit btn btn-success">{t}Save{/t}</button>
+      <div>
     </form>
   </div>
 </script>

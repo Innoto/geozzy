@@ -59,8 +59,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
         }
       }
     });
-  }
-
+  },
   // First Execution
   that.init = function( ) {
 
@@ -83,11 +82,6 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       that.tpData.fetchData()
     ).done( function() {
 
-//Temporalmente para no cubrir las fechas!-----------------------
-//that.tpData.set('checkin', moment().add( 0, 'days' ).format( that.timeServerFormat ) );
-//that.tpData.set('checkout', moment().add( 7, 'days' ).format( that.timeServerFormat ) );
-//---------------------------------------------------------------
-
       that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
 
       that.initDates();
@@ -97,27 +91,28 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
         that.initPlan();
       }
     });
-  }
+  },
   that.initDates = function(){
     that.travelPlannerDatesView = new geozzy.travelPlannerComponents.TravelPlannerDatesView(that);
-  }
+  },
   that.initPlan = function(){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerPlanView = new geozzy.travelPlannerComponents.TravelPlannerPlanView(that);
     }
-  }
+  },
   that.addToPlan = function(idRes){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, idRes );
     }else{
       alert("Select dates first");
     }
-  }
-
+  },
+  that.editResourceToPlan = function(data){
+    that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, data.id, data, 'edit' );
+  },
   that.momentDate = function( date ) {
     return moment( date, that.timeServerFormat );
   },
-
   that.openResource = function( resourceId ) {
     $(".tpDuResource").show();
     $(".tpDuResource").load(
