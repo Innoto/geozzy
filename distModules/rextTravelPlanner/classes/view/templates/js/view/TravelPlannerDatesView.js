@@ -60,8 +60,6 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
         that.parentTp.tpData.set('checkin', start.format( that.parentTp.timeServerFormat ) );
         that.parentTp.tpData.set('checkout', end. format( that.parentTp.timeServerFormat ) );
 
-        //console.log( 'From: ' + that.parentTp.momentDate(that.parentTp.tpData.get('checkin')).format( calDateFormat ) + ' to ' + that.parentTp.momentDate(that.parentTp.tpData.get('checkout')).format( calDateFormat ) );
-        //console.log('initPlan DATESVIEW');
         that.parentTp.initPlan();
         that.parentTp.travelPlannerPlanView.fromHtmlToModel();
       }

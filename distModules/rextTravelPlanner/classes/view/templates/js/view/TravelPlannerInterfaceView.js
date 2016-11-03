@@ -66,7 +66,6 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   },
   addToPlan: function(e){
     var that = this;
-    console.log('ADD TO PLAN: '+$(e.target).closest('.tpResourceItem').attr('data-resource-id'));
     that.parentTp.addToPlan($(e.target).closest('.tpResourceItem').attr('data-resource-id'));
   }
 

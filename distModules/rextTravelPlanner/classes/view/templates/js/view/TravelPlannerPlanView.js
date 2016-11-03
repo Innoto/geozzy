@@ -104,7 +104,6 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     resourceInfo.day = day.attr('data-day');
     resourceInfo.positionDay = day.find('.dd-list li').index(item);
 
-    console.log('EDIT TO PLAN:', resourceInfo);
     that.parentTp.editResourceToPlan( resourceInfo );
   },
   editResourcesPlan: function( data ){
@@ -170,14 +169,12 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     $('.gzznestable').each(function( index ) {
       var day = [];
       $($(this).nestable('serialize')).each( function( i, planItemId ) {
-        //console.log(planItemId);
         day.push(planItemId.id);
       });
       days.push(day);
     });
 
     that.parentTp.tpData.set('list', days);
-    //console.log(that.parentTp.tpData.toJSON())
     that.parentTp.tpData.saveData();
   },
 

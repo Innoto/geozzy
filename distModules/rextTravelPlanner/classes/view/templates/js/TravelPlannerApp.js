@@ -87,7 +87,6 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       that.initDates();
 
       if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
-        console.log('initPlan INIT');
         that.initPlan();
       }
     });
