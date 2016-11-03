@@ -11,8 +11,6 @@
             <label for="reserve_cal_{$rExt.data.idRelate}">{t}Check in date - Check out date{/t}</label>
             <input type="text" id="reserve_cal_{$rExt.data.idRelate}" class="form-control" readonly>
             <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
-
-            <!-- <i class="fa fa-calendar form-control-feedback"></i> -->
           </div>
         </div>
         <div class="col-md-2">
