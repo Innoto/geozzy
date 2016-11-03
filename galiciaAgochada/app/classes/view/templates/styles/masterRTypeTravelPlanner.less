@@ -1,9 +1,13 @@
 @import "primary/primary.less";
 @import "/rextTravelPlanner/classes/view/templates/styles/travelPlannerMixins.less";
 @import "themeLibs/nestableTheme.less";
-
+@import "themeLibs/dateRangePickerTheme.less";
 
 .initTravelPlanner( @tp-h:calc(~"100vh - "@headerTitleBarHeight ), @tpList-w: 320px, @tpList-h:calc(~"100vh - "@headerTitleBarHeight ) );
+
+body{
+   .dateRangePickerTheme(@gzzColor-geozzy);
+}
 
 .bodyContent{
 
@@ -142,7 +146,6 @@
         .travelPlannerPlanHeader{
           padding: 10px;
           margin-bottom: 20px;
-          background: @gzzColor-bck-3;
           .datesTpContainer{
             text-align: center;
             .title{
@@ -272,6 +275,7 @@
     .buttonActions{
       margin-top: 20px;
       .acceptAdd{ float:right; }
+      .acceptEdit{ float:right; }
     }
   }
 }
@@ -300,6 +304,7 @@
           margin-left: 10px;
           .title{
             font-weight: 600;
+            height: 32px;
           }
         }
       }
@@ -308,6 +313,9 @@
         transition: opacity .45s ease-in-out;
         -moz-transition: opacity .45s ease-in-out;
         -webkit-transition: opacity .45s ease-in-out;
+        .nestableActions{
+          width: 30px;
+        }
       }
       &:hover{
         .dd-content{

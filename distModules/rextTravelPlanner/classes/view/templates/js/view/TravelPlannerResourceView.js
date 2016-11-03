@@ -3,19 +3,23 @@ if(!geozzy.travelPlannerComponents) geozzy.travelPlannerComponents={};
 
 geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend({
   el: "#resourceTpModal",
+  mode: 'add', //Add or Edit
   resourceTemplate : false,
   modalTemplate : false,
   parentTp : false,
   idResource : false,
   planDays : false,
+  dataRes : false,
 
   events: {
     'click .selectorDays li': 'selectorDays',
     'click .cancelAdd' : 'closeModalResource',
-    'click .acceptAdd' : 'addToPlan'
+    'click .acceptAdd' : 'addToPlan',
+    'click .cancelEdit' : 'closeModalResource',
+    'click .acceptEdit' : 'editToPlan'
   },
 
-  initialize: function( parentTp, idResource ) {
+  initialize: function( parentTp, idResource, dataRes, mode ) {
     var that = this;
 
     that.delegateEvents();
@@ -26,6 +30,9 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
     var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
 
     that.planDays = 1 + checkout.diff( checkin, 'days');
+
+    that.mode = ( mode == 'edit' || mode == 'add' ) ? mode : that.mode;
+    that.dataRes = (dataRes) ? dataRes : false;
 
     that.modalTemplate = _.template( geozzy.travelPlannerComponents.modalMdTemplate );
     that.render();
@@ -40,29 +47,37 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
 
     item = that.parentTp.resources.get(that.idResource);
 
-    var checkin = that.parentTp.momentDate(that.parentTp.tpData.get('checkin'));
-    var dates = [];
+    if(that.mode === 'edit'){
+      //Edit
+      that.dataRes.minutes = (that.dataRes.time % 60);
+      that.dataRes.hours = ((that.dataRes.time - that.dataRes.minutes )/ 60);
+      that.resourceTemplate = _.template( $('#resourceTpEditModalTemplate').html() );
+      that.$('.modal-body').html( that.resourceTemplate({ resource: item.toJSON(), data: that.dataRes }) );
+    }else{
+      //Add
+      var checkin = that.parentTp.momentDate(that.parentTp.tpData.get('checkin'));
+      var dates = [];
+      var selectedDays = that.parentTp.travelPlannerPlanView.resourceInPlan(that.idResource);
 
-    var selectedDays = that.parentTp.travelPlannerPlanView.resourceInPlan(that.idResource);
+      for (i = 0; i < that.planDays; i++) {
+        dates[i] = {
+          id: i,
+          date: checkin.format('LL'),
+          dayName: checkin.format('dddd'),
+          day: checkin.format('DD'),
+          month: checkin.format('MMM'),
+          inPlan: false
+        };
 
-    for (i = 0; i < that.planDays; i++) {
-      dates[i] = {
-        id: i,
-        date: checkin.format('LL'),
-        dayName: checkin.format('dddd'),
-        day: checkin.format('DD'),
-        month: checkin.format('MMM'),
-        inPlan: false
-      };
-
-      if($.inArray(i, selectedDays) !== -1){
-        dates[i].inPlan = true;
+        if($.inArray(i, selectedDays) !== -1){
+          dates[i].inPlan = true;
+        }
+        checkin.add(1, 'days');
       }
-      checkin.add(1, 'days');
-    }
 
-    that.resourceTemplate = _.template( $('#resourceTpModalTemplate').html() );
-    that.$('.modal-body').html( that.resourceTemplate({ resource: item.toJSON(), dates: dates }) );
+      that.resourceTemplate = _.template( $('#resourceTpModalTemplate').html() );
+      that.$('.modal-body').html( that.resourceTemplate({ resource: item.toJSON(), dates: dates }) );
+    }
 
     that.$el.modal({
       'show' : true,
@@ -114,10 +129,24 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
         daysActive.push($( this ).attr('data-day'));
       });
 
-      var minVisitTime = 0;
-      minVisitTime = (parseInt(that.$('.resourceTp .hlong-hour').val()) * 60) + parseInt(that.$('.resourceTp .hlong-minutes').val());
+      var visitTime = 0;
+      visitTime = (parseInt(that.$('.resourceTp .hlong-hour').val()) * 60) + parseInt(that.$('.resourceTp .hlong-minutes').val());
 
-      that.parentTp.travelPlannerPlanView.addResourcesPlan(that.idResource, daysActive, minVisitTime);
+      that.parentTp.travelPlannerPlanView.addResourcesPlan(that.idResource, daysActive, visitTime);
+      that.closeModalResource();
+    }
+  },
+  editToPlan: function(e){
+    var that = this;
+    if( that.$('.resourceTp form').valid()){
+      that.dataRes.hours = that.$('.resourceTp .hlong-hour').val();
+      that.dataRes.minutes = that.$('.resourceTp .hlong-minutes').val();
+
+      var visitTime = 0;
+      visitTime = (parseInt(that.dataRes.hours) * 60) + parseInt(that.dataRes.minutes);
+      that.dataRes.time = visitTime;
+
+      that.parentTp.travelPlannerPlanView.editResourcesPlan(that.dataRes);
       that.closeModalResource();
     }
   }

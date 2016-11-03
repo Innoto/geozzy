@@ -10,7 +10,7 @@
           <div class="form-group has-feedback">
             <label for="reserve_cal_{$rExt.data.idRelate}">{t}Check in date - Check out date{/t}</label>
             <input type="text" id="reserve_cal_{$rExt.data.idRelate}" class="form-control" readonly>
-            <i class="fa fa-calendar form-control-feedback"></i>
+            <span class="glyphicon glyphicon-calendar form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
         <div class="col-md-2">

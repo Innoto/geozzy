@@ -7,7 +7,7 @@ class rtypeTravelPlanner extends Module {
 
   public $name = "rtypeTravelPlanner";
   public $version = 1.0;
-
+  public $rext = array( 'rextTravelPlanner' );
 
   public $dependences = array(
     array(

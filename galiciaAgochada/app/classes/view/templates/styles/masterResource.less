@@ -3,7 +3,7 @@
 @import "themeLibs/dateRangePickerTheme.less";
 
 body{
-  .dateRangePickerTheme( @gzzColor-aloxamento );
+   .dateRangePickerTheme(@gzzColor-aloxamento);
 }
 
 .bodyContent{
@@ -585,8 +585,14 @@ body{
               padding-left: 2px;
             }
             input[type='text']{
+              height: 36px;
               background: @gzzColor-bck-1;
             }
+            input,
+            select {
+              border: 1px solid @gzzColor-bck-8; 
+            }
+
             a{
               font-weight: bold;
               font-size: @font-size-base;
@@ -597,8 +603,8 @@ body{
             }
           }
         }
-      }
-    }
+      }//.rextAccommodationReserve
+    }//.reserveSec
   }
 
   /* Fichas específicas */
@@ -631,7 +637,7 @@ body{
     .collectionSec,
     .multimediaSec{
       .more, .less{
-        color:@gzzColor-aloxamento;
+        color: @gzzColor-aloxamento;
       }
     }
     .reserveSec{

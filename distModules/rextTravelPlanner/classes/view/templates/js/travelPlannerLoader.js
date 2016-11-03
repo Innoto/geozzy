@@ -20,7 +20,6 @@ geozzy.travelPlannerLoader = geozzy.travelPlannerLoader || {
       data: formData, cache: false, contentType: false, processData: false,
       success: function getTravelPlannerUrlSuccess( $jsonData, $textStatus, $jqXHR ) {
         if ( $jsonData.result === 'ok' ) {
-          // console.log( $jsonData.status );
           window.location = window.location.protocol+'//'+window.location.host+$jsonData.status;
         }
       }
