@@ -10,7 +10,8 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
   parentTp : false,
 
   events: {
-    'click .travelPlannerPlan .plannerDay .dd-item .btnDelete': 'removeResourceToDay'
+    'click .travelPlannerPlan .plannerDay .dd-item .btnDelete': 'removeResourceToDay',
+    'click .travelPlannerPlan .plannerDay .dd-item .btnEdit': 'bindEditResourceToDay'
   },
 
   initialize: function( parentTp ) {
@@ -75,16 +76,12 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     var that = this;
     var resource = that.parentTp.resources.get(idResource);
 
-
-
     //if( resouce !)
     if(typeof resource != 'undefined') {
 
       var resourceJSON = resource.toJSON();
-
       resourceJSON.timeFormated = that.getFormatedTime(t);
       //resourceJSON.timeFormated = t;
-
       resourceJSON.serializedData = that.serializeRow({
         id: idResource,
         time: t
@@ -95,8 +92,39 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       }
       that.$('.plannerDay-'+day+' ol.dd-list').append( that.resourcePlanItemTemplate({ resource : resourceJSON }) );
     }
-    /*-------------------------------------- AÑADIR ---------------------------*/
 
+  },
+  bindEditResourceToDay: function(e){
+    var that = this;
+
+    var day = $(e.target).closest('.plannerDay');
+    var item = $(e.target).closest('.dd-item');
+
+    var resourceInfo = $.parseJSON(item.attr('data-id'));
+    resourceInfo.day = day.attr('data-day');
+    resourceInfo.positionDay = day.find('.dd-list li').index(item);
+
+    console.log('EDIT TO PLAN:', resourceInfo);
+    that.parentTp.editResourceToPlan( resourceInfo );
+  },
+  editResourcesPlan: function( data ){
+    var that = this;
+    var resource = that.parentTp.resources.get(data.id);
+
+    //if( resouce !)
+    if(typeof resource != 'undefined') {
+
+      var resourceJSON = resource.toJSON();
+      resourceJSON.timeFormated = that.getFormatedTime(data.time);
+      resourceJSON.serializedData = that.serializeRow({
+        id: data.id,
+        time: data.time
+      });
+      $(that.$('.plannerDay-'+data.day+' ol.dd-list li')[data.positionDay]).replaceWith( that.resourcePlanItemTemplate({ resource : resourceJSON }) );
+    }
+
+    that.fromHtmlToModel();
+    that.updateTotalTimes();
   },
   removeResourceToDay: function(e){
     var that = this;
@@ -107,6 +135,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     }
 
     that.fromHtmlToModel();
+    that.updateTotalTimes();
   },
   resourceInPlan: function( idResource ){
     var that = this;
@@ -129,7 +158,6 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
   getFormatedTime: function(mins) {
     var h = mins / 60 | 0,
         m = mins % 60 | 0;
-
 
     return h + ' hours ' + m + ' min';
   },

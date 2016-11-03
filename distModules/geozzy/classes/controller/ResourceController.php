@@ -509,8 +509,6 @@ class ResourceController {
       $dt = $form->getFieldValue( 'timeCreation' );
       if( $dt !== '' && preg_match( '/^(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{2}):(\d{2})$/', $dt ) !== 1 ) {
         $form->addFieldError( 'timeCreation', 'La fecha de creación no es válida' );
-        error_log( 'addFieldError( timeCreation, La fecha de creación no es válida' );
-        // unset( $valuesArray[ 'timeCreation' ] );
       }
     }
   }
