@@ -135,6 +135,11 @@ class RTypeBlogController extends RTypeController implements RTypeInterface {
     $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeBlog' );
 
+    $collectionArrayInfo = $this->defResCtrl->getCollectionBlockInfo( $viewBlockInfo['data']['id'] );
+    if( $collectionArrayInfo ) {
+      $template->assign( 'collectionArrayInfo', $collectionArrayInfo );
+      $template->assign( 'collectionByType', $this->defResCtrl->collectionsByType( $collectionArrayInfo ) );
+    }
 
     // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
     $viewBlockInfo['template']['full'] = $template;
