@@ -56,15 +56,6 @@ geozzy.rExtAccommodationReserveController = geozzy.rExtAccommodationReserveContr
     link = link.replace( '<$adults>', values.adults );
     link = link.replace( '<$rooms>', values.rooms );
     $( geozzy.rExtAccommodationReserveInfo.idLink ).attr( 'href', link );
-
-    /*show = values.checkin.format( calDateFormat )+' - '+values.checkout.format( calDateFormat );
-    $cal = $( geozzy.rExtAccommodationReserveInfo.idCal );
-    if ( $cal.is( 'input' ) ) {
-      $cal.val( show );
-    }
-    else {
-      $cal.html( show );
-    }*/
   },
   initCalendar: function initCalendar() {
     calDateFormat = geozzy.rExtAccommodationReserveInfo.calDateFormat;

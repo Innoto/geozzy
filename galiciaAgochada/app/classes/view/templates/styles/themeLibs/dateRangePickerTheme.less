@@ -1,46 +1,32 @@
 .dateRangePickerTheme( @colorDatePicker : @gzzColor-geozzy ){
   .daterangepicker{
     .calendar{
-      &.left{
-        thead{
-          .prev{
-            i {
-              display: none;
+      .calendar-table{
+        .table-condensed{
+          thead{
+            th{
+              border-radius: 0;
+              background: @gzzColor-bck-4;
             }
-            &::after{
-              content: '<';
+          }//thead
+
+          tbody{
+            td{
+              &.start-date{
+                background: @colorDatePicker;
+                &.in-range{ background: @colorDatePicker; }
+                &.off{ background: none; }
+              }
+
+              &.in-range{
+                background: @gzzColor-bck-3;
+                &.end-date{ background: @colorDatePicker; }
+                &.off{ background: none; }
+              }
             }
-          }
-        }
-        tbody{
-          .active{
-            background: @colorDatePicker;
-          }
-          .off{
-            background: none;
-          }
-        }
-      }
-      &.right{
-        thead{
-          .next{
-            i {
-              display: none;
-            }
-            &::after{
-              content: '>';
-            }
-          }
-        }
-        tbody{
-          .active{
-            background: @colorDatePicker;
-          }
-          .off{
-            background: none;
-          }
-        }
-      }
-    }
-  }
-}
+          }//tbody
+        }//.table-condensed
+      }//.calendar-table
+    }//.calendar
+  }//.daterangepicker
+}//.dateRangePickerTheme

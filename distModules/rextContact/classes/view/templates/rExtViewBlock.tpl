@@ -1,6 +1,6 @@
 <!-- rExtViewBlock.tpl en rExtContact module -->
 
-<address class="rExtContact row">
+<address class="rExtContact">
   {if (isset($rExt.data.address)&& $rExt.data.address!='')||
       (isset($rExt.data.cp)&& $rExt.data.cp!='') ||
       (isset($rExt.data.city)&& $rExt.data.city!='') ||
