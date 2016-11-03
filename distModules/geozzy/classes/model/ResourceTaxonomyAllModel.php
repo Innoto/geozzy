@@ -28,14 +28,14 @@ class ResourceTaxonomyAllModel extends Model {
     'weight' => array(
       'type' => 'INT',
     ),
-    'taxgroup' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'TaxonomygroupModel',
-      'key' => 'id'
-    ),
     'icon' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
+      'key' => 'id'
+    ),
+    'taxgroup' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'TaxonomygroupModel',
       'key' => 'id'
     ),
     'idNameTaxgroup' => array(
@@ -55,7 +55,10 @@ class ResourceTaxonomyAllModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'idIn' => ' geozzy_resource_taxonomyall.id IN (?) ',
+    'resourceIn' => ' geozzy_resource_taxonomyall.resource IN (?) ',
+  );
 
   var $notCreateDBTable = true;
 
@@ -72,7 +75,7 @@ class ResourceTaxonomyAllModel extends Model {
             geozzy_taxonomyterm.idName AS idName,
 
             {multilang:geozzy_taxonomyterm.name_$lang AS name_$lang,}
-            
+
             geozzy_taxonomyterm.parent AS parent,
             geozzy_taxonomyterm.weight AS weight,
             geozzy_taxonomyterm.icon AS icon,
