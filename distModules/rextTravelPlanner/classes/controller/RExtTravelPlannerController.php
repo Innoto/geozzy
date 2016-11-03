@@ -31,9 +31,6 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
     // error_log( 'USER: '.print_r( $userInfo, true ) );
     $userId = isset( $userInfo['data']['id'] ) ? $userInfo['data']['id'] : false;
 
-    if( $userId ) {
-      $rExtData = $this->getStatusInfo( $resId, $userId );
-    }
 
     return $rExtData;
   }
@@ -73,6 +70,10 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
     $rExtViewBlockInfo['template']['full'] = new Template();
     $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
     $rExtViewBlockInfo['template']['full']->assign( 'resId', $resId );
+    $rExtViewBlockInfo['template']['full']->addClientScript( 'js/model/ResourceModel.js' , 'geozzy');
+    $rExtViewBlockInfo['template']['full']->addClientScript( 'js/collection/ResourceCollection.js' , 'geozzy');
+    $rExtViewBlockInfo['template']['full']->addClientScript( 'js/model/ResourcetypeModel.js' , 'geozzy');
+    $rExtViewBlockInfo['template']['full']->addClientScript( 'js/collection/ResourcetypeCollection.js' , 'geozzy');
     $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextTravelPlanner' );
 
     return $rExtViewBlockInfo;
