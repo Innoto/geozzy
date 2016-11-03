@@ -1,9 +1,13 @@
 @import "primary/primary.less";
 @import "/rextTravelPlanner/classes/view/templates/styles/travelPlannerMixins.less";
 @import "themeLibs/nestableTheme.less";
-
+@import "themeLibs/dateRangePickerTheme.less";
 
 .initTravelPlanner( @tp-h:calc(~"100vh - "@headerTitleBarHeight ), @tpList-w: 320px, @tpList-h:calc(~"100vh - "@headerTitleBarHeight ) );
+
+body{
+   .dateRangePickerTheme(@gzzColor-geozzy);
+}
 
 .bodyContent{
 
