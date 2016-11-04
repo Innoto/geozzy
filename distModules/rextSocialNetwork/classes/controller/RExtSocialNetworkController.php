@@ -228,11 +228,12 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
 
-      foreach( $rExtViewBlockInfo['data'] as $key => $socialField ) {
-        $text[$key] = str_replace('#TITLE#', $this->defResCtrl->resObj->getter('title'), $socialField );
-        $text2[$key] = str_replace('#URL#', SITE_HOST.$this->defResCtrl->resData['urlAlias'], $text[$key] );
-        $rExtViewBlockInfo['data'][$key] = $text2[$key];
-      }
+      $from = array( '#TITLE#', '#URL#' );
+      $to   = array(
+        $this->defResCtrl->resObj->getter('title'),
+        SITE_HOST.$this->defResCtrl->resData['urlAlias']
+      );
+      $rExtViewBlockInfo['data'] = str_replace( $from, $to, $rExtViewBlockInfo['data'] );
 
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $template->setTpl( 'rExtViewBlock.tpl', 'rextSocialNetwork' );
