@@ -27,7 +27,7 @@
       <div class="participation-step1" style="display:none;">
         <div class="contentModalParticipation">
           <h3>{t}Estas engadindo un novo contido{/t}</h3>
-          <p>{t}Podes engadir unha nova ubicación ou axustar a seleccionada do lugar arrastrando é soltado. Pulsa continuar cando remates.{/t}</p>
+          <p>{t}Podes engadir unha nova ubicación facendo click sobre o mapa ou axustar a seleccionada do lugar arrastrando é soltado. Pulsa continuar cando remates.{/t}</p>
           <p>{t}Fai todo o zoom que podas para ser preciso{/t}</p>
         </div>
         <div class="actionsModalParticipation">

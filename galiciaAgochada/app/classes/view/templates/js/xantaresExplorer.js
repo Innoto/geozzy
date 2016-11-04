@@ -32,13 +32,6 @@
   });
 
 
-
-
-
-
-
-
-
   /****************************
     paisaxesExplorer
    ****************************/
@@ -137,8 +130,6 @@
       });
     }
 
-
-
     /**
       setDisplays. set explorer display objects
      */
@@ -204,10 +195,6 @@
       that.explorer.addDisplay( that.infowindow );
 
     }
-
-
-
-
 
 
     /**
@@ -348,7 +335,8 @@
     that.chooseFTLayer =  function( val ) {
       chooseFTLayer( val, that.zonaCategories,  that.resourceMap, that.mapOptions );
     }
-
+/*****************************************************************************************************************************************************/
+/******  PARTICIPATION  ******************************************************************************************************************************/
 /*****************************************************************************************************************************************************/
     that.bindsParticipationStep1 = [];
     that.participationZoom = false;
@@ -356,41 +344,7 @@
     that.participationLng = false;
     that.participationMarker = false;
 
-
-    that.showParticipationButton = function( evento, clickCallback ) {
-      var buttonDOMId = 'engadirEnMapa';
-      var buttonLeft = false;
-      var buttonTop = false;
-
-      if( $('#'+buttonDOMId).length == 0 ) {
-        $('body').append('<div id="' + buttonDOMId + '">' + __('Suxerir lugar') + '<div>');
-
-      }
-
-      google.maps.event.addListenerOnce( that.mapa.map, 'click' ,function(e) {
-        $('#'+buttonDOMId).hide();
-      });
-      google.maps.event.addListenerOnce( that.mapa.map, 'idle' ,function(e) {
-        $('#'+buttonDOMId).hide();
-      });
-
-
-      $('#'+buttonDOMId).css('position', 'absolute');
-
-      $('#'+buttonDOMId).css('top', $( that.explorerclass+' .explorerMap').offset().top + evento.pixel.y );
-      $('#'+buttonDOMId).css('left', $( that.explorerclass+' .explorerMap').offset().left + evento.pixel.x );
-
-      $('#'+buttonDOMId).show();
-      $('#'+buttonDOMId).one('click', function(){
-        clickCallback();
-        $('#'+buttonDOMId).hide();
-      } );
-
-
-    }
-
     that.setParticipation = function(){
-
       that.bindsParticipation();
 
       if(geozzy.xantaresParticipationForm.initParticipation){
@@ -398,19 +352,6 @@
           that.initParticipationStep1();
         });
       }
-
-
-      google.maps.event.addListener( that.mapa.map, 'rightclick' ,function(e) {
-
-        that.showParticipationButton(e, function(){
-          geozzy.userSessionInstance.userControlAccess( function(){
-            that.initParticipationStep1();
-            that.setMarker(e);
-          });
-        });
-
-      });
-
     }
 
     that.bindsParticipation = function(){
@@ -419,8 +360,56 @@
           that.initParticipationStep1();
         });
       });
+      that.bindRightClickOnMap();
+
     }
+    that.bindRightClickOnMap = function(){
+      google.maps.event.addListener( that.mapa.map, 'rightclick' ,function(e) {
+        that.showParticipationButton(e, function(){
+          geozzy.userSessionInstance.userControlAccess( function(){
+            that.initParticipationStep1();
+            that.setMarker(e);
+            google.maps.event.clearListeners(that.mapa.map, 'rightclick');
+          });
+        });
+      });
+    }
+
+    that.showParticipationButton = function( evento, clickCallback ) {
+      var buttonDOMId = 'engadirEnMapa';
+      var buttonLeft = false;
+      var buttonTop = false;
+
+      if( $('#'+buttonDOMId).length == 0 ) {
+        $('body').append('<div id="' + buttonDOMId + '">' + __('Suxerir lugar') + '<div>');
+      }
+
+      google.maps.event.addListenerOnce( that.mapa.map, 'click' ,function(e) {
+        $('#'+buttonDOMId).hide();
+        google.maps.event.clearListeners(that.mapa.map, 'click');
+      });
+      google.maps.event.addListenerOnce( that.mapa.map, 'idle' ,function(e) {
+        $('#'+buttonDOMId).hide();
+        google.maps.event.clearListeners(that.mapa.map, 'idle');
+      });
+
+      $('#'+buttonDOMId).css('position', 'absolute');
+      $('#'+buttonDOMId).css('top', $( that.explorerclass+' .explorerMap').offset().top + evento.pixel.y );
+      $('#'+buttonDOMId).css('left', $( that.explorerclass+' .explorerMap').offset().left + evento.pixel.x );
+
+      $('#'+buttonDOMId).show();
+
+      $('#'+buttonDOMId).off('click');
+      $('#'+buttonDOMId).on('click', function(){
+        clickCallback();
+        $('#'+buttonDOMId).hide();
+      });
+    }
+
     that.initParticipationStep1 = function(){
+      $('#initParticipation').hide();
+      google.maps.event.clearListeners(that.mapa.map, 'rightclick');
+
       //Map Events
       var my_marker = {
          url: cogumelo.publicConf.media+'/img/aamarker.png',
@@ -461,6 +450,7 @@
       $('.participation-step1').show();
       that.bindsParticipationStep1[that.bindsParticipationStep1.length] = $('.participation-step1 .cancel').on('click.participationButtons', function(){
         that.closeParticipationStep1();
+        $('#initParticipation').show();
       });
       that.bindsParticipationStep1[that.bindsParticipationStep1.length] = $('.participation-step1 .next').on('click.participationButtons', function(){
         if(!$(this).attr('disabled')){
@@ -488,6 +478,7 @@
       google.maps.event.clearListeners(that.mapa.map, 'dragend');
       google.maps.event.clearListeners(that.mapa.map, 'click');
       google.maps.event.clearListeners(that.mapa.map, 'zoom_changed');
+      that.bindRightClickOnMap();
       that.participationMarker.setMap(null);
 
       that.bindsParticipationStep1 = [];
@@ -509,6 +500,6 @@
     }
 
     that.closeParticipationStep2 = function(){
-
+      that.bindRightClickOnMap();
     }
   }
