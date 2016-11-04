@@ -1510,7 +1510,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:59
 #: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:55
 msgid "Restaurant reservation URL"
-msgstr "URL de reservas del hotel"
+msgstr "URL de reservas del restaurante"
 
 #: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:63
 #: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:59
