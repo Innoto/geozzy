@@ -103,9 +103,21 @@ cogumeloSetSetupValue( 'mod:filedata:profile:typeIconHover', array(
 
 cogumeloSetSetupValue( 'mod:filedata:profile:typeIconSelected', array(
   'width' => 36, 'height' => 36,
+  'backgroundImg' => '/app/classes/view/templates/img/chapas/chapa36x36.png',
+  'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+  'padding' => 5, 'saveName' => 'iconSelected.png', 'saveFormat' => 'PNG' ) );
+
+cogumeloSetSetupValue( 'mod:filedata:profile:typeIconSelectedRest', array(
+  'width' => 36, 'height' => 36,
   'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaRest36x36.png',
   'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
   'padding' => 5, 'saveName' => 'iconSelected.png', 'saveFormat' => 'PNG' ) );
+
+  cogumeloSetSetupValue( 'mod:filedata:profile:typeIconSelectedHotel', array(
+    'width' => 36, 'height' => 36,
+    'backgroundImg' => '/app/classes/view/templates/img/chapas/chapaHotel36x36.png',
+    'rasterColor' => '#ffffff', 'rasterResolution' => array( 'x'=>200, 'y'=>200 ),
+    'padding' => 5, 'saveName' => 'iconSelected.png', 'saveFormat' => 'PNG' ) );
 
 
 /*---------------------- PERFILES DE DESARROLLO PARA  ExPLORADOR XANTARES----------------------------------------*/
