@@ -96,6 +96,12 @@ class AdminViewMaster extends View {
     if( class_exists( 'rextStoryStep' ) ) {
       $this->template->assign( 'rextStoryInclude' , true);
     }
+
+    $logoPath = Cogumelo::getSetupValue( 'mod:admin:logoPath' );
+    if($logoPath){
+      $this->template->assign( 'logoCustom' , $logoPath);
+    }
+
     //
     $this->template->exec();
   }

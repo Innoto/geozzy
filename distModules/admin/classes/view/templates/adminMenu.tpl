@@ -4,7 +4,13 @@
 
         <div id="menuInfo">
           <div class="menuLogo">
-            <a href="/"><img src="{$cogumelo.publicConf.media}/module/geozzy/img/logo.png" class="img-responsive"></a>
+            <a href="/">
+              {if !isset($logoCustom)}
+                <img src="{$cogumelo.publicConf.media}/module/geozzy/img/logo.png" class="img-responsive">
+              {else}
+                <img src="{$cogumelo.publicConf.media}{$logoCustom}" class="img-responsive">
+              {/if}
+            </a>
           </div>
           <ul class="userInfo nav">
             <li class="dropdown">
