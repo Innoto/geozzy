@@ -281,8 +281,11 @@ class RTypeController {
     if( isset($formBlockInfo['data']['user']) ) {
       $userModel = new UserModel();
       $userCreate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['user']) ) )->fetch();
-      $userCreateLogin = $userCreate->getter('login');
-      $templates['info']->assign( 'create', [ 'time' =>$timeCreation, 'user' => $userCreateLogin ] );
+      if($userCreate){
+        var_dump('entro');
+        $userCreateLogin = $userCreate->getter('login');
+        $templates['info']->assign( 'create', [ 'time' =>$timeCreation, 'user' => $userCreateLogin ] );
+      }
     }
 
     $templates['info']->assign( 'timeCreation', $timeCreation );
