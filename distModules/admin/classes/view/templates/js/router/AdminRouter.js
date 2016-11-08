@@ -213,14 +213,12 @@ var AdminRouter = Backbone.Router.extend({
   storyStepsList: function( story ){
 
      if (typeof(geozzy.story)!='undefined'){
-       console.log('storyStepsList');
        app.mainView.loadAjaxContent( '/admin/storysteps/story/' + story);
-    //   app.mainView.menuSelect('story_'+story);
-    //   app.mainView.setBodyClass('storyStepsList');
+       app.mainView.menuSelect('story_'+story);
+       app.mainView.setBodyClass('storyStepsList');
      }
   },
   storyStepsAdd: function(id) {
-    console.log('storyStepsAdd');
     app.mainView.loadAjaxContent( '/admin/storysteps/story/' + id +'/assign');
     app.mainView.setBodyClass('storyStepsAdd');
   },

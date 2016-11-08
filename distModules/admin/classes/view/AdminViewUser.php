@@ -186,6 +186,11 @@ class AdminViewUser extends AdminViewMaster
     $formChange = $userView->userChangePasswordFormDefine($urlParamsList['id']);
     $formChange->setAction('/admin/user/changepassword');
     $formChange->setSuccess( 'redirect', '/admin#user/list' );
+    $onlySA = $useraccesscontrol->checkPermissions('only:SA');
+    if($onlySA){
+      $formChange->removeValidationRule('passwordOld', 'required');
+      $formChange->setFieldParam('passwordOld', 'type', 'reserved');
+    }
     $changePasswordBlock = $userView->userChangePasswordFormGetBlock( $formChange );
     $this->template->addToFragment( 'col4', $this->getPanelBlock( $changePasswordBlock, __('Change Password'), 'fa-key' ) );
 

@@ -282,8 +282,9 @@ class RTypeController {
       $userModel = new UserModel();
       $userCreate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['user']) ) )->fetch();
       $userCreateLogin = $userCreate->getter('login');
+      $templates['info']->assign( 'create', [ 'time' =>$timeCreation, 'user' => $userCreateLogin ] );
     }
-    $templates['info']->assign( 'create', [ 'time' =>$timeCreation, 'user' => $userCreateLogin ] );
+
     $templates['info']->assign( 'timeCreation', $timeCreation );
 
     if( isset($formBlockInfo['data']['userUpdate']) ) {
