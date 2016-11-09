@@ -158,8 +158,10 @@ class RExtController {
   public function __construct( $defRTypeCtrl, $rExtModule, $prefix = false ){
     // error_log( 'RExtController::__construct' );
 
-    $this->defRTypeCtrl = $defRTypeCtrl;
-    $this->defResCtrl = $defRTypeCtrl->defResCtrl;
+    if( $defRTypeCtrl ) {
+      $this->defRTypeCtrl = $defRTypeCtrl;
+      $this->defResCtrl = $defRTypeCtrl->defResCtrl;
+    }
     $this->rExtName = $rExtModule->name;
     $this->prefix = ( $prefix ) ? $prefix : $this->rExtName.'_';
 
