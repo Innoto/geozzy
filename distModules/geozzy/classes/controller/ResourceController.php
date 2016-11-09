@@ -855,7 +855,20 @@ class ResourceController {
       $taxAllList = $resourceTaxAllModel->listItems(array( 'filters' => array( 'resource' => $resId ) ));
       if( $taxAllList ) {
         while( $taxTerm = $taxAllList->fetch() ) {
-          $taxTerms[ $taxTerm->getter('id') ] = $taxTerm->getAllData( 'onlydata' );
+          $termId = $taxTerm->getter('id');
+          $taxTerms[ $termId ] = $taxTerm->getAllData( 'onlydata' );
+
+          // Añadimos los campos en el idioma actual o el idioma principal
+          $taxFields = $taxTerm->getCols();
+          foreach( $taxFields as $key => $value ) {
+            if( !isset( $taxTerms[ $termId ][ $key ] ) ) {
+              $taxTerms[ $termId ][ $key ] = $taxTerm->getter( $key );
+              // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
+              if( $taxTerms[ $termId ][ $key ] === '' && isset( $taxTerms[ $termId ][ $key.'_'.$langDefault ] ) ) {
+                $taxTerms[ $termId ][ $key ] = $taxTerms[ $termId ][ $key.'_'.$langDefault ];
+              }
+            }
+          }
         }
       }
 
