@@ -39,6 +39,7 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
 
     // Cargamos la informacion del form, los datos y lanzamos los getFormBlockInfo de las extensiones
     $formBlockInfo = parent::getFormBlockInfo( $form );
+    $templates = $formBlockInfo['template'];
 
     $festaCtrl = new RExtAppFestaController( $this );
 
@@ -58,92 +59,11 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     $formFieldsNames[] = 'rTypeIdName';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
-
-    // TEMPLATE panel estado de publicacion
-    $templates['publication'] = new Template();
-    $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['publication']->assign( 'title', __( 'Publication' ) );
-    $templates['publication']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'published', 'weight' );
-    $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
-
-
-    // TEMPLATE panel SEO
-    $templates['seo'] = new Template();
-    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['seo']->assign( 'title', __( 'SEO' ) );
-    $templates['seo']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array_merge(
-      $form->multilangFieldNames( 'urlAlias' ),
-      $form->multilangFieldNames( 'headKeywords' ),
-      $form->multilangFieldNames( 'headDescription' ),
-      $form->multilangFieldNames( 'headTitle' )
-    );
-    $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
-
-    // TEMPLATE panel contacto
-    $templates['location'] = new Template();
-    $templates['location']->setTpl( 'rTypeFormLocationPanel.tpl', 'geozzy' );
-    $templates['location']->assign( 'title', __( 'Location' ) );
-    $templates['location']->assign( 'res', $formBlockInfo );
-    $templates['location']->assign('directions', $form->multilangFieldNames( 'rExtContact_directions' ));
-
-    // TEMPLATE panel comment
-    if(class_exists( 'rextComment' ) && in_array('rextComment', $this->rExts)) {
-      $templates['comment'] = new Template();
-      $templates['comment']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-      $templates['comment']->assign( 'title', __( 'Comments' ) );
-      $templates['comment']->setFragment( 'blockContent', $formBlockInfo['ext']['rextComment']['template']['adminExt'] );
-    }
-
-    // TEMPLATE panel localización
-    $templates['contact'] = new Template();
-    $templates['contact']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['contact']->assign( 'title', __( 'Contact' ) );
-    $templates['contact']->setFragment( 'blockContent', $formBlockInfo['ext']['rextContact']['template']['basic'] );
-
-    // TEMPLATE panel social network
-    $templates['social'] = new Template();
-    $templates['social']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['social']->assign( 'title', __( 'Social Networks' ) );
-    $templates['social']->setFragment( 'blockContent', $formBlockInfo['ext']['rextSocialNetwork']['template']['basic'] );
-
-    // TEMPLATE panel multimedia
-    $templates['multimedia'] = new Template();
-    $templates['multimedia']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['multimedia']->assign( 'title', __( 'Multimedia galleries' ) );
-    $templates['multimedia']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'multimediaGalleries', 'addMultimediaGalleries' );
-    $templates['multimedia']->assign( 'formFieldsNames', $formFieldsNames );
-
-    // TEMPLATE panel collections
-    $templates['collections'] = new Template();
-    $templates['collections']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['collections']->assign( 'title', __( 'Collections of related resources' ) );
-    $templates['collections']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'collections', 'addCollections' );
-    $templates['collections']->assign( 'formFieldsNames', $formFieldsNames );
-
-    // TEMPLATE panel event
-    $templates['event'] = new Template();
-    $templates['event']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['event']->assign( 'title', __( 'Event' ) );
-    $templates['event']->setFragment( 'blockContent', $formBlockInfo['ext']['rextEvent']['template']['full'] );
-
     // TEMPLATE panel eventcollection
     $templates['eventCollection'] = new Template();
     $templates['eventCollection']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['eventCollection']->assign( 'title', __( 'Event collection' ) );
     $templates['eventCollection']->setFragment( 'blockContent', $formBlockInfo['ext']['rextEventCollection']['template']['full'] );
-
-    // TEMPLATE panel image
-    $templates['image'] = new Template();
-    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['image']->assign( 'title', __( 'Select a image' ) );
-    $templates['image']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'image' );
-    $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
-
     // TEMPLATE panel categorization
     $templates['categorization'] = new Template();
     $templates['categorization']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
@@ -151,36 +71,6 @@ class RTypeAppFestaController extends RTypeController implements RTypeInterface 
     $templates['categorization']->assign( 'res', $formBlockInfo );
     $formFieldsNames = $festaCtrl->prefixArray( array('rextAppFestaType'));
     $templates['categorization']->assign( 'formFieldsNames', $formFieldsNames );
-
-    // TEMPLATE panel cuadro informativo
-    $templates['info'] = new Template();
-    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'geozzy' );
-    $templates['info']->assign( 'title', __( 'Information' ) );
-    $templates['info']->assign( 'res', $formBlockInfo );
-
-    $resourceType = new ResourcetypeModel();
-    $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
-    if ($type){
-      $templates['info']->assign( 'rType', $type->getter('name_es') );
-    }
-    $timeCreation = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeCreation']));
-    $templates['info']->assign( 'timeCreation', $timeCreation );
-    if (isset($formBlockInfo['data']['userUpdate'])){
-      $userModel = new UserModel();
-      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
-      $userUpdateName = $userUpdate->getter('name');
-      $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
-      $templates['info']->assign( 'timeLastUpdate', $timeLastUpdate.' ('.$userUpdateName.')' );
-    }
-    if (isset($formBlockInfo['data']['averageVotes'])){
-      $templates['info']->assign( 'averageVotes', $formBlockInfo['data']['averageVotes']);
-    }
-    /* Temáticas */
-    if (isset($formBlockInfo['data']['topicsName'])){
-      $templates['info']->assign( 'resourceTopicList', $formBlockInfo['data']['topicsName']);
-    }
-    $templates['info']->assign( 'res', $formBlockInfo );
-    $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE con todos los paneles
     $templates['adminFull'] = new Template();

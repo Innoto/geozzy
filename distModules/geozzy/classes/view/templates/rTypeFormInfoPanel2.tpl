@@ -20,7 +20,7 @@
         .infoColData .cgmMForm-wrap { margin-bottom: 0; }
       </style>
       {$res.dataForm.formFieldsArray['timeCreation']}
-      {* $timeCreation *}
+      {if isset($create)}({$create.user}){/if}
     </div>
   </div>
   <div class="row">

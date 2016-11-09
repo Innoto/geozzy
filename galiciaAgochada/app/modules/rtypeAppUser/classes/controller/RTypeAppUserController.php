@@ -39,6 +39,7 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
   public function getFormBlockInfo( FormController $form ) {
 
     $formBlockInfo = parent::getFormBlockInfo( $form );
+    $templates = $formBlockInfo['template'];
 
     // TEMPLATE panel principa del form. Contiene los elementos globales del form.
     $templates['formBase'] = new Template();
@@ -52,71 +53,6 @@ class RTypeAppUserController extends RTypeController implements RTypeInterface {
       $form->multilangFieldNames( 'mediumDescription' )
     );
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
-
-
-    // TEMPLATE panel estado de publicacion
-    $templates['publication'] = new Template();
-    $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['publication']->assign( 'title', __( 'Publication' ) );
-    $templates['publication']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'published', 'weight' );
-    $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
-
-    // TEMPLATE panel SEO
-    $templates['seo'] = new Template();
-    $templates['seo']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['seo']->assign( 'title', __( 'SEO' ) );
-    $templates['seo']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array_merge(
-      $form->multilangFieldNames( 'urlAlias' ),
-      $form->multilangFieldNames( 'headKeywords' ),
-      $form->multilangFieldNames( 'headDescription' ),
-      $form->multilangFieldNames( 'headTitle' )
-    );
-    $templates['seo']->assign( 'formFieldsNames', $formFieldsNames );
-
-
-    // TEMPLATE panel image
-    $templates['image'] = new Template();
-    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['image']->assign( 'title', __( 'Select a image' ) );
-    $templates['image']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'image' );
-    $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
-
-    // TEMPLATE panel image
-    $templates['image'] = new Template();
-    $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['image']->assign( 'title', __( 'Select a image' ) );
-    $templates['image']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'image' );
-    $templates['image']->assign( 'formFieldsNames', $formFieldsNames );
-
-    // TEMPLATE panel cuadro informativo
-    $templates['info'] = new Template();
-    $templates['info']->setTpl( 'rTypeFormInfoPanel.tpl', 'geozzy' );
-    $templates['info']->assign( 'title', __( 'Information' ) );
-    $templates['info']->assign( 'res', $formBlockInfo );
-
-    $resourceType = new ResourcetypeModel();
-    $type = $resourceType->listItems(array('filters' => array('id' => $formBlockInfo['data']['rTypeId'])))->fetch();
-    if ($type){
-      $templates['info']->assign( 'rType', $type->getter('name_es') );
-    }
-    $timeCreation = date('d/m/Y', time($formBlockInfo['data']['timeCreation']));
-    $templates['info']->assign( 'timeCreation', $timeCreation );
-    if (isset($formBlockInfo['data']['userUpdate'])){
-      $userModel = new UserModel();
-      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
-      $userUpdateName = $userUpdate->getter('name');
-      $timeLastUpdate = date('d/m/Y', time($formBlockInfo['data']['timeLastUpdate']));
-      $templates['info']->assign( 'timeLastUpdate', $timeLastUpdate.' ('.$userUpdateName.')' );
-    }
-    if (isset($formBlockInfo['data']['averageVotes'])){
-      $templates['info']->assign( 'averageVotes', $formBlockInfo['data']['averageVotes']);
-    }
-    $templates['info']->assign( 'res', $formBlockInfo );
-    $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
 
     // TEMPLATE con todos los paneles
     $templates['adminFull'] = new Template();

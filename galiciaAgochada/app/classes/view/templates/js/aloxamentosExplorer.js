@@ -1,6 +1,3 @@
-
-
-
   $(document).ready(function(){
     explorador = new aloxamentosExplorer();
     explorador.interfaceFilters();
@@ -12,17 +9,7 @@
       explorador.setFilters();
       explorador.exec();
     });
-
-
   });
-
-
-
-
-
-
-
-
 
   /****************************
     paisaxesExplorer
@@ -42,9 +29,6 @@
     that.infowindow = false;
     that.listaMini = false;
     that.mapa = false;
-
-
-
 
     /**
       setInitialData. Preset objects and get values for the filters
@@ -81,9 +65,6 @@
       });
     }
 
-
-
-
     /**
       setExplorer. instance the explorer object
      */
@@ -97,7 +78,6 @@
       });
 
     }
-
 
     /**
       setEvents. set explorer events
@@ -122,10 +102,6 @@
         );
       });
     }
-
-
-
-
 
     /**
       setDisplays. set explorer display objects
@@ -162,27 +138,16 @@
             return iconUrl;
           }
       });
-
-
       that.explorer.addDisplay( that.listaMini );
       that.explorer.addDisplay( that.listaRecomendados );
       that.explorer.addDisplay( that.mapa );
       that.explorer.addDisplay( that.infowindow );
-
     }
-
-
-
-
-
 
     /**
       setFilters. set explorer filter objects
      */
     that.setFilters = function() {
-
-
-
 
       //TEMP ADD FILTER MAP*-----------------------------------------------------------------------------------------------------------------------
       var Coords = [
@@ -296,16 +261,7 @@
       that.explorer.addFilter( filtroPrezo );
       that.explorer.addFilter( filtroReset );
       that.explorer.addFilter( filtroZona );
-
-
-
-
-
     }
-
-
-
-
 
     /**
       exec. execs the explorer
@@ -315,10 +271,6 @@
       that.explorer.exec();
 
     }
-
-
-
-
 
     /**
       formatState. util method
@@ -341,7 +293,6 @@
       return $ret;
     }
 
-
     /**
       createInterfaceFilterContainers. util method
      */
@@ -355,9 +306,7 @@
       filterInterface += '<div class="filters_advancedFilters"></div>';
       filterInterface += '</div>';
       filterContainer.html(filterInterface);
-
     }
-
 
     that.chooseFTLayer =  function( val ) {
       chooseFTLayer( val, that.zonaCategories,  that.resourceMap, that.mapOptions );

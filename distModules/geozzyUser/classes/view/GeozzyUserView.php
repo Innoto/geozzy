@@ -400,7 +400,7 @@ class GeozzyUserView extends View
     $form->setValidationRule( 'avatar', 'minfilesize', 1024 );
     $form->setValidationRule( 'avatar', 'accept', 'image/jpeg' );
 
-
+    $data['repeatEmail'] = $data['email'];
     $form->loadArrayValues( $data );
 
     $form->saveToSession();

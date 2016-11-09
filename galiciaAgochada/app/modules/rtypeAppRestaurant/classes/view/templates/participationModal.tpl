@@ -138,6 +138,7 @@
 
   $('.participation-step2').on('hidden.bs.modal', function (e) {
     $(this).remove();
+    $('#initParticipation').show();
   });
 
   $('.participation-step2 .subStepActions .next').on('click', function (e) {
@@ -218,7 +219,7 @@
 
   geozzy.xantaresParticipationForm = {
     closeModal: function closeModal() {
-      $('.participation-step2').modal('hide');
+      $('.participation-step2').modal('hide');      
     }
   };
 

@@ -104,171 +104,33 @@ class MasterPageView extends View {
     $this->template->assign( 'explorersInfo', $resourceExploradores );
 
     /**
-    Destacados de RecantosConEstilo
+    Destacados de HoxeRecomendamos
     **/
 
     $resList = $resourceModel->listItems(
       array(
         'filters'=> array(
-          'ResourceTaxonomyAllModel.idName' => 'RecantosConEstilo',
+          'ResourceTaxonomyAllModel.idName' => 'HoxeRecomendamos',
           'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
         ),
         'affectsDependences' => array('ResourceTaxonomyAllModel'),
         'joinType' => 'RIGHT'
       )
     );
-    $resourceArrayRecantos = array();
+    $resourceArrayHoxeRecom = array();
     while ( $res = $resList->fetch() ) {
       $resAll = $res->getAllData();
       $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
-      $resourceArrayRecantos[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
-      $resourceArrayRecantos[$res->getter('id')]['data'] = $resAll['data'];
+      $resourceArrayHoxeRecom[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
+      $resourceArrayHoxeRecom[$res->getter('id')]['data'] = $resAll['data'];
       $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
-      $resourceArrayRecantos[$res->getter('id')]['urlAlias'] = $urlAlias;
+      $resourceArrayHoxeRecom[$res->getter('id')]['urlAlias'] = $urlAlias;
     }
-    usort( $resourceArrayRecantos, function( $a, $b ) {
+    usort( $resourceArrayHoxeRecom, function( $a, $b ) {
       return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
     });
-    $this->template->assign('rdRecantosConEstilo', $resourceArrayRecantos);
+    $this->template->assign('rdHoxeRecomendamos', $resourceArrayHoxeRecom);
 
-    /**
-    Destacados de Festa Rachada
-    **/
-
-    $resList = $resourceModel->listItems(
-      array(
-        'filters'=> array(
-          'ResourceTaxonomyAllModel.idName' => 'FestaRachada',
-          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
-        ),
-        'affectsDependences' => array('ResourceTaxonomyAllModel'),
-        'joinType' => 'RIGHT'
-      )
-    );
-    $resourceArrayFesta = array();
-    while ( $res = $resList->fetch() ) {
-      $resAll = $res->getAllData();
-      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
-      $resourceArrayFesta[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
-      $resourceArrayFesta[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
-      $resourceArrayFesta[$res->getter('id')]['urlAlias'] = $urlAlias;
-    }
-    usort($resourceArrayFesta, function( $a, $b ) {
-      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
-    });
-    $this->template->assign('rdFestaRachada', $resourceArrayFesta);
-
-    /**
-    Destacados de PraiasDeEnsono
-    **/
-
-    $resList = $resourceModel->listItems(
-      array(
-        'filters'=> array(
-          'ResourceTaxonomyAllModel.idName' => 'PraiasDeEnsono',
-          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
-        ),
-        'affectsDependences' => array('ResourceTaxonomyAllModel'),
-        'joinType' => 'RIGHT'
-      )
-    );
-    $resourceArrayPraias = array();
-    while ( $res = $resList->fetch() ) {
-      $resAll = $res->getAllData();
-      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
-      $resourceArrayPraias[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
-      $resourceArrayPraias[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
-      $resourceArrayPraias[$res->getter('id')]['urlAlias'] = $urlAlias;
-    }
-    usort($resourceArrayPraias, function( $a, $b ) {
-      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
-    });
-    $this->template->assign('rdPraiasDeEnsono', $resourceArrayPraias);
-
-    /**
-    Destacados de PaisaxesEspectaculares
-    **/
-    $resList = $resourceModel->listItems(
-      array(
-        'filters'=> array(
-          'ResourceTaxonomyAllModel.idName' => 'PaisaxesEspectaculares',
-          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
-        ),
-        'affectsDependences' => array('ResourceTaxonomyAllModel'),
-        'joinType' => 'RIGHT'
-      )
-    );
-    $resourceArrayPaisaxes = array();
-    while ( $res = $resList->fetch() ) {
-      $resAll = $res->getAllData();
-      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
-      $resourceArrayPaisaxes[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
-      $resourceArrayPaisaxes[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
-      $resourceArrayPaisaxes[$res->getter('id')]['urlAlias'] = $urlAlias;
-    }
-    usort($resourceArrayPaisaxes, function( $a, $b ) {
-      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
-    });
-    $this->template->assign('rdPaisaxesEspectaculares', $resourceArrayPaisaxes);
-
-    /**
-    Destacados de AloxamentoConEncantos
-    **/
-
-    $resList = $resourceModel->listItems(
-      array(
-        'filters'=> array(
-          'ResourceTaxonomyAllModel.idName' => 'AloxamentoConEncanto',
-          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
-        ),
-        'affectsDependences' => array('ResourceTaxonomyAllModel'),
-        'joinType' => 'RIGHT'
-      )
-    );
-    $resourceArrayAloxamentos = array();
-    while ( $res = $resList->fetch() ) {
-      $resAll = $res->getAllData();
-      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
-      $resourceArrayAloxamentos[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
-      $resourceArrayAloxamentos[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
-      $resourceArrayAloxamentos[$res->getter('id')]['urlAlias'] = $urlAlias;
-    }
-    usort($resourceArrayAloxamentos, function( $a, $b ) {
-      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
-    });
-    $this->template->assign('rdAloxamentoConEncanto', $resourceArrayAloxamentos);
-
-    /**
-    Destacados de AutenticaGastronomia
-    **/
-
-    $resList = $resourceModel->listItems(
-      array(
-        'filters'=> array(
-          'ResourceTaxonomyAllModel.idName' => 'AutenticaGastronomia',
-          'ResourceTaxonomyAllModel.idNameTaxgroup' => 'starred'
-        ),
-        'affectsDependences' => array('ResourceTaxonomyAllModel'),
-        'joinType' => 'RIGHT'
-      )
-    );
-    $resourceArrayGastronomia = array();
-    while ( $res = $resList->fetch() ) {
-      $resAll = $res->getAllData();
-      $dep = $res->getterDependence('id', 'ResourceTaxonomyAllModel');
-      $resourceArrayGastronomia[$res->getter('id')]['weightResTaxTerm'] = $dep[0]->getter('weightResTaxTerm');
-      $resourceArrayGastronomia[$res->getter('id')]['data'] = $resAll['data'];
-      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
-      $resourceArrayGastronomia[$res->getter('id')]['urlAlias'] = $urlAlias;
-    }
-    usort($resourceArrayGastronomia, function( $a, $b ) {
-      return $a['weightResTaxTerm'] - $b['weightResTaxTerm'];
-    });
-    $this->template->assign('rdAutenticaGastronomia', $resourceArrayGastronomia);
 
     $this->template->assign('isFront', true);
     $this->template->addClientScript('js/portada.js');

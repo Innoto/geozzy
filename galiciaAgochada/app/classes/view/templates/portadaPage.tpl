@@ -144,61 +144,11 @@
   <span class="anchor" id="recomendamos"></span>
   <section class="gzzSec secRecomendamos">
     <div class="container">
-      {if isset($rdRecantosConEstilo) && $rdRecantosConEstilo!=false}
+      {if isset($rdHoxeRecomendamos) && $rdHoxeRecomendamos!=false}
         <div class="destContainer destRecantosConEstilo">
-          <h2>{t}Recantos con Estilo{/t}</h2>
+          <h2>{t}Hoxe Recomendamos{/t}</h2>
           <div class="owl-carousel owl-carousel-gzz">
-            {foreach from=$rdRecantosConEstilo item=rd}
-              <div class="item">
-                <div class="itemImage">
-                  <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
-                  <div class="trama">
-                    <div class="destResourceMoreInfo">
-                      <p>{$rd.data["shortDescription_$l"]}</p>
-                      <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemTitle">
-                  <a href="{$rd.urlAlias}">
-                    <h3>{$rd.data["title_$l"]}</h3>
-                  </a>
-                </div>
-              </div>
-            {/foreach}
-          </div>
-        </div>
-      {/if}
-      {if isset($rdFestaRachada) && $rdFestaRachada!=false}
-        <div class="destContainer destFestaRachada">
-          <h2>{t}Festa Rachada{/t}</h2>
-          <div class="owl-carousel owl-carousel-gzz">
-            {foreach from=$rdFestaRachada item=rd}
-              <div class="item">
-                <div class="itemImage">
-                  <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
-                  <div class="trama" >
-                    <div class="destResourceMoreInfo">
-                      <p>{$rd.data["shortDescription_$l"]}</p>
-                      <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemTitle">
-                  <a href="{$rd.urlAlias}">
-                    <h3>{$rd.data["title_$l"]}</h3>
-                  </a>
-                </div>
-              </div>
-            {/foreach}
-          </div>
-        </div>
-      {/if}
-      {if isset($rdPraiasDeEnsono) && $rdPraiasDeEnsono!=false }
-        <div class="destContainer destPraiasDeEnsono">
-          <h2>{t}Praias de Ensono{/t}</h2>
-          <div class="owl-carousel owl-carousel-gzz">
-            {foreach from=$rdPraiasDeEnsono item=rd}
+            {foreach from=$rdHoxeRecomendamos item=rd}
               <div class="item">
                 <div class="itemImage">
                   <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
@@ -220,80 +170,5 @@
         </div>
       {/if}
 
-      {if isset($rdPaisaxesEspectaculares) && $rdPaisaxesEspectaculares!=false }
-        <div class="destContainer destPaisaxesEspectaculares">
-          <h2>{t}Paisaxes Espectaculares{/t}</h2>
-          <div class="owl-carousel owl-carousel-gzz">
-            {foreach from=$rdPaisaxesEspectaculares item=rd}
-              <div class="item">
-                <div class="itemImage">
-                  <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
-                  <div class="trama">
-                    <div class="destResourceMoreInfo">
-                      <p>{$rd.data["shortDescription_$l"]}</p>
-                      <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemTitle">
-                  <a href="{$rd.urlAlias}">
-                    <h3>{$rd.data["title_$l"]}</h3>
-                  </a>
-                </div>
-              </div>
-            {/foreach}
-          </div>
-        </div>
-      {/if}
-      {if isset($rdAloxamentoConEncanto) && $rdAloxamentoConEncanto!=false }
-        <div class="destContainer destAloxamentoConEncanto">
-          <h2>{t}Aloxamentos con Encanto{/t}</h2>
-          <div class="owl-carousel owl-carousel-gzz">
-            {foreach from=$rdAloxamentoConEncanto item=rd}
-              <div class="item">
-                <div class="itemImage">
-                  <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
-                  <div class="trama">
-                    <div class="destResourceMoreInfo">
-                      <p>{$rd.data["shortDescription_$l"]}</p>
-                      <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="itemTitle">
-                  <a href="{$rd.urlAlias}">
-                    <h3>{$rd.data["title_$l"]}</h3>
-                  </a>
-                </div>
-              </div>
-            {/foreach}
-          </div>
-        </div>
-      {/if}
-      {if isset($rdAutenticaGastronomia) && $rdAutenticaGastronomia!=false }
-      <div class="destContainer destAutenticaGastronomia">
-        <h2>{t}Auténtica Gastronomía{/t}</h2>
-        <div class="owl-carousel owl-carousel-gzz">
-          {foreach from=$rdAutenticaGastronomia item=rd}
-            <div class="item">
-              <div class="itemImage">
-                <img class="img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$rd.data.image}/fast_cut/{$rd.data.image}.jpg">
-                <div class="trama">
-                  <div class="destResourceMoreInfo">
-                    <p>{$rd.data["shortDescription_$l"]}</p>
-                    <a href="{$rd.urlAlias}" class="btn btn-primary">{t}Descúbreo{/t}</a>
-                  </div>
-                </div>
-              </div>
-              <div class="itemTitle">
-                <a href="{$rd.urlAlias}">
-                  <h3>{$rd.data["title_$l"]}</h3>
-                </a>
-              </div>
-            </div>
-          {/foreach}
-        </div>
-      </div>
-      {/if}
     </div>
   </section>
