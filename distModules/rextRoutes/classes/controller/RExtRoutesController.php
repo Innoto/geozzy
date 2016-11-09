@@ -64,7 +64,14 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     $rExtFieldNames = array();
 
-    $options = array('--',1,2,3,4,5);
+    $difficultyOptions = array(
+      '0' => '--',
+      '1' => '1 - Muy Baja',
+      '2' => '2 - Baja',
+      '3' => '3 - Media',
+      '4' => '4 - Alta',
+      '5' => '5 - Extrema'
+    );
 
     $fieldsInfo = array(
       'circular' => array(
@@ -88,27 +95,27 @@ class RExtRoutesController extends RExtController implements RExtInterface {
       ),
       'difficultyEnvironment' => array(
         'params' => array( 'label' => __( 'Natural environment difficulty' ), 'type' => 'select',
-          'options' => $options
+          'options' => $difficultyOptions
         )
       ),
       'difficultyItinerary' => array(
         'params' => array( 'label' => __( 'Itinerary difficulty' ), 'type' => 'select',
-          'options' => $options
+          'options' => $difficultyOptions
         )
       ),
       'difficultyDisplacement' => array(
         'params' => array( 'label' => __( 'Displacement difficulty' ) , 'type' => 'select',
-          'options' => $options
+          'options' => $difficultyOptions
         )
       ),
       'difficultyEffort' => array(
         'params' => array( 'label' => __( 'Effort level' ), 'type' => 'select',
-          'options' => $options
+          'options' => $difficultyOptions
         )
       ),
       'difficultyGlobal' => array(
         'params' => array( 'label' => __( 'Global difficulty' ), 'type' => 'select',
-          'options' => $options
+          'options' => $difficultyOptions
         )
       ),
       'routeStart' => array(
