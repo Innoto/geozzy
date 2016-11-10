@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
           </button>
           <!-- LOGO in brand section -->
-          {if isset($res.data) && $res.data["urlAlias"]=="/"}
+          {if isset($res.data) && ( $res.data["urlAlias"] == "/{$cogumelo.publicConf.C_LANG}/" || $res.data["urlAlias"] == "/" )}
             <a href="#inicio" class="navbar-brand page-scroll">
               <img alt="logo" class="logo img-responsive" src="{$cogumelo.publicConf.media}/img/logoGA.png"/>
             </a>
@@ -25,18 +25,18 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            {if isset($res.data) && $res.data["urlAlias"]=="/"}
+            {if isset($res.data) && ($res.data["urlAlias"] == "/{$cogumelo.publicConf.C_LANG}/" || $res.data["urlAlias"] == "/")}
               <li><a href="#inicio" class="page-scroll">{t}Inicio{/t}</a></li>
               <li><a href="#segredos" class="page-scroll">{t}Segredos{/t}</a></li>
               <li><a href="#participa" class="page-scroll">{t}Participa{/t}</a></li>
               <li><a href="#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
               <li><a href="#" class="page-scroll">{t}Acerca de{/t}</a></li>
             {else}
-              <li><a href="/{$cogumelo.publicConf.C_LANG}/#inicio" class="page-scroll">{t}Inicio{/t}</a></li>
-              <li><a href="/{$cogumelo.publicConf.C_LANG}/#segredos" class="page-scroll">{t}Segredos{/t}</a></li>
-              <li><a href="/{$cogumelo.publicConf.C_LANG}/#participa" class="page-scroll">{t}Participa{/t}</a></li>
-              <li><a href="/{$cogumelo.publicConf.C_LANG}/#recomendamos" class="page-scroll">{t}Recomendamos{/t}</a></li>
-              <li><a href="/{$cogumelo.publicConf.C_LANG}/#sobre-nosotros" class="page-scroll">{t}Acerca de{/t}</a></li>
+              <li><a href="/{$cogumelo.publicConf.C_LANG}/#inicio">{t}Inicio{/t}</a></li>
+              <li><a href="/{$cogumelo.publicConf.C_LANG}/#segredos">{t}Segredos{/t}</a></li>
+              <li><a href="/{$cogumelo.publicConf.C_LANG}/#participa">{t}Participa{/t}</a></li>
+              <li><a href="/{$cogumelo.publicConf.C_LANG}/#recomendamos">{t}Recomendamos{/t}</a></li>
+              <li><a href="/{$cogumelo.publicConf.C_LANG}/#sobre-nosotros">{t}Acerca de{/t}</a></li>
             {/if}
 
             <li class="dropdown langSelector">

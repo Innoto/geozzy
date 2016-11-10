@@ -8,7 +8,7 @@ class ExamplesView extends MasterView
   }
 
   public function registerForm() {
-
+/*
     $form = new FormController('registerForm'); //actionform
     $form->setAction('/webview/senduserregister');
     $form->setSuccess( 'accept', 'Usuario creado correctamente' );
@@ -68,10 +68,12 @@ class ExamplesView extends MasterView
     $template->setTpl('Example_register.tpl');
 
     $template->exec();
+*/
   }
 
 
   public function sendRegisterForm() {
+    /*
     $userView = new UserView();
     $form = $userView->actionUserForm();
     if( $form->existErrors() ) {
@@ -88,6 +90,7 @@ class ExamplesView extends MasterView
 
       echo $form->getJsonOk();
     }
+    */
   }
 
 }
