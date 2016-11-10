@@ -126,11 +126,18 @@ class CommentAdminAPIView extends View {
           )
         );
         if( $comment && $c = $comment->fetch() ) {
+          $idResource = $c->getter('resource');
           $c->delete();
-
           $averageVotesModel = new AverageVotesViewModel();
-          $resAverageVotes = $averageVotesModel->listItems( array('filters' => array('id' => $c->getter('resource')) ))->fetch();
-          $resourceModel = new ResourceModel( array('id' => $c->getter('resource'), 'averageVotes' => $resAverageVotes->getter('averageVotes') ));
+          $resAverageVotes = $averageVotesModel->listItems( array( 'filters' => array('id' => $idResource ) ))->fetch();
+
+          if(!$resAverageVotes){
+            $averageVotes = NULL;
+          }else{
+            $averageVotes = $resAverageVotes->getter('averageVotes');
+          }
+
+          $resourceModel = new ResourceModel( array('id' => $c->getter('resource'), 'averageVotes' => $averageVotes ));
           $resourceModel->save();
 
           header('Content-Type: application/json; charset=utf-8');
