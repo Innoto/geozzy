@@ -833,7 +833,7 @@ class ResourceController {
     $taxTerms = array();
 
     $taxTermModel =  new ResourceTaxonomytermModel();
-    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $taxTermList = $taxTermModel->listItems( array( 'filters' => ['resource' => $resId], 'order' => ['weight' => 1] ) );
 
     while( $taxTerm = $taxTermList->fetch() ) {
       $taxTerms[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'taxonomyterm' );
@@ -852,7 +852,8 @@ class ResourceController {
     if( !$this->taxonomyAll || $this->resObj->getter('id') != $resId ) {
 
       $resourceTaxAllModel = new ResourceTaxonomyAllModel();
-      $taxAllList = $resourceTaxAllModel->listItems(array( 'filters' => array( 'resource' => $resId ) ));
+      $taxAllList = $resourceTaxAllModel->listItems( array(
+        'filters' => array( 'resource' => $resId ), 'order' => ['weightResTaxTerm' => 1] ) );
       if( $taxAllList ) {
         while( $taxTerm = $taxAllList->fetch() ) {
           $termId = $taxTerm->getter('id');
