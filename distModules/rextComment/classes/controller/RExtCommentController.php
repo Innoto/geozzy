@@ -217,13 +217,31 @@ class RExtCommentController extends RExtController implements RExtInterface {
     if( $perms && in_array( 'comment', $perms ) ) {
       $rExtViewBlockInfo['template']['full']->assign( 'commentButton', true );
     }
+    if( $perms && in_array( 'suggest', $perms ) ) {
+      $rExtViewBlockInfo['template']['full']->assign( 'suggestButton', true );
+    }
     $rExtViewBlockInfo['template']['full']->assign( 'resID', $resID);
     if($resAverageData){
       $rExtViewBlockInfo['template']['full']->assign( 'resAverageVotes', $resAverageVotes);
       $rExtViewBlockInfo['template']['full']->assign( 'resNumberVotes', $resNumberVotes);
     }
+
+    $taxModelControl = new TaxonomygroupModel();
+    $termModelControl = new TaxonomytermModel();
+    // Data Options Comment Type
+    $commentTypeTax = $taxModelControl->listItems( array('filters' => array('idName' => 'commentType')) )->fetch();
+    $commentTypeTerm = $termModelControl->listItems(
+      array('filters' =>
+        array(
+          'taxgroup' => $commentTypeTax->getter('id'),
+          'idNames' => 'comment'
+        )
+      )
+    )->fetch();
+
     $commentModel = new commentModel();
-    $commentCount = $commentModel->listCount( array('filters' => array('resource' => $resID) ));
+    $commentCount = $commentModel->listCount( array('filters' => array('resource' => $resID, 'type' => $commentTypeTerm->getter('id')) ));
+
     if( !in_array('comment', $perms) && $commentCount === 0){
       $rExtViewBlockInfo['template']['full']->assign( 'commentEmpty', true);
     }

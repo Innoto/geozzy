@@ -199,7 +199,9 @@ class CommentView extends View {
 
       $valuesArray['timeCreation'] = date("Y-m-d H:i:s", time());
       //Añadir valor de published si dependiendo de conf de comentarios
-      $valuesArray['rate'] = $valuesArray['rate'] * 20;
+      if(array_key_exists('rate', $valuesArray)){
+        $valuesArray['rate'] = $valuesArray['rate'] * 20;
+      }
       $comment = new CommentModel( $valuesArray );
       $comment->save();
 

@@ -26,13 +26,37 @@
   </div>
 
   <div class="commentButtons">
-    {if isset($commentButton)}
-      <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'comment');"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a comment{/t}</button>
+    {if isset($suggestButton) && isset($commentButton)}
+
+      {if isset($commentButton)}
+        <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID});"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a comment or suggestion{/t}</button>
+      {/if}
+
+    {else}
+
+      {if isset($commentButton)}
+        <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'comment');"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a comment{/t}</button>
+      {/if}
+      {if isset($suggestButton)}
+        <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'suggest');"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a suggestion{/t}</button>
+      {/if}
+
     {/if}
   </div>
 </div>
 <div class="rExtCommentList">
 
 </div>
+
+{else}
+
+<div class="rExtCommentBar clearfix">
+  <div class="commentButtons">
+    {if isset($suggestButton)}
+      <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'suggest');"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a suggestion{/t}</button>
+    {/if}
+  </div>
+</div>
+
 {/if}
 <!-- /rExtViewBlock.tpl en rExtComment module -->
