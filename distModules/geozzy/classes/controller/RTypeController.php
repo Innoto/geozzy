@@ -194,6 +194,7 @@ class RTypeController {
       'formFieldsArray' => $form->getHtmlFieldsArray(),
       'formFieldsHiddenArray' => array(),
       'formFields' => $form->getHtmlFieldsAndGroups(),
+      'formCaptcha' => $form->getHtmlCaptcha(),
       'formClose' => $form->getHtmlClose(),
       'formValidations' => $form->getScriptCode()
     );
