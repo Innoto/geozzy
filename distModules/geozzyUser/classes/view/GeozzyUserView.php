@@ -50,21 +50,11 @@ class GeozzyUserView extends View
     $form = $userView->actionLoginForm();
     $form->sendJsonResponse();
   }
-
-
-
-  public function registerForm() {
-
-    $this->loginCheck();
-    $form = new FormController('registerModalForm'); //actionform
-    $form->setAction('/geozzyuser/senduserregister');
-    $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.successRegisterBox();' );
-
-    $fieldsInfo = array(
+  public function commonFields() {
+    return array(
       'id' => array(
         'params' => array( 'type' => 'reserved', 'value' => null )
       ),
-
       'login' => array(
         'params' => array( 'type' => 'reserved' ),
         'rules' => array( 'required' => true )
@@ -88,19 +78,43 @@ class GeozzyUserView extends View
       ),
       'password' => array(
         'params' => array( 'id' => 'password', 'type' => 'password', 'placeholder' => __('Password'), 'label' => __('Password') ),
-        'rules' => array( 'required' => true )
       ),
       'password2' => array(
         'params' => array( 'id' => 'password2', 'type' => 'password', 'placeholder' => __('Repeat password'), 'label' => __('Repeat password') ),
-        'rules' => array( 'required' => true )
+      ),
+      'avatar' => array(
+        'params' => array(
+          'type' => 'file',
+          'id' => 'inputFicheiro',
+          'placeholder' => 'Escolle un ficheiro',
+          'label' => 'Avatar',
+          'destDir' => '/users'
+        )
+      ),
+      'description' => array(
+        'params' => array( 'type' => 'textarea', 'placeholder' => 'Descripción'),
+        'translate' => true
       ),
       'submit' => array(
         'params' => array( 'type' => 'submit', 'value' => __('Create account') )
       )
     );
+  }
+  public function registerForm() {
 
-    $form->definitionsToForm( $fieldsInfo );
+    $this->loginCheck();
+    $form = new FormController('registerModalForm'); //actionform
+    $form->setAction('/geozzyuser/senduserregister');
+    $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.successRegisterBox();' );
 
+    $fields = $this->commonFields();
+    unset( $fields['description'] );
+    unset( $fields['avatar'] );
+
+    $form->definitionsToForm( $fields );
+
+    $form->setValidationRule( 'password', 'required', true );
+    $form->setValidationRule( 'password2', 'required', true );
     $form->setValidationRule( 'password', 'equalTo', '#password2' );
     $form->setValidationRule( 'email', 'email' );
     $form->setValidationRule( 'email', 'equalTo', '#repeatEmail' );
@@ -117,6 +131,56 @@ class GeozzyUserView extends View
     $template->exec();
   }
 
+  public function registerWVForm() {
+
+    $this->loginCheck();
+
+    $form = new FormController('registerModalForm'); //actionform
+    $form->setAction('/geozzyuser/senduserregister');
+    $form->setSuccess( 'jsEval', 'GeozzyMobileApp.resultGeozzyUserRegistration(true);' );
+
+    $fields = $this->commonFields();
+    unset( $fields['description'] );
+    unset( $fields['avatar'] );
+    $form->definitionsToForm( $fields );
+
+    $form->setValidationRule( 'password', 'required', true );
+    $form->setValidationRule( 'password2', 'required', true );
+    $form->setValidationRule( 'password', 'equalTo', '#password2' );
+    $form->setValidationRule( 'email', 'email' );
+    $form->setValidationRule( 'email', 'equalTo', '#repeatEmail' );
+
+    $form->saveToSession();
+
+    $template = new Template( $this->baseDir );
+    $template->assign("userFormOpen", $form->getHtmpOpen());
+    $template->assign("userFormFields", $form->getHtmlFieldsArray());
+    $template->assign("userFormClose", $form->getHtmlClose());
+    $template->assign("userFormValidations", $form->getScriptCode());
+    $template->setTpl('registerWV.tpl', 'geozzyUser');
+
+
+    // Usamos nuestros propios datos
+    $formBlockInfo['data']['title'] = __('User Registration');
+    $formBlockInfo['data']['headDescription'] = __('User Registration');
+    $formBlockInfo['data']['urlAlias'] = '/geozzyuser/registerWV';
+    $formBlockInfo['ext']= '';
+
+    // Nos quedamos solo con los template que nos interesan
+    $formBlockInfo['header'] = false;
+    $formBlockInfo['footer'] = false;
+    $formBlockInfo['template'] = [
+      'registerWV' => $template
+    ];
+
+    appResourceBridge::load('view/AppResourceBridgeView.php');
+    $bridgeCtrl = new AppResourceBridgeView();
+    $pageTemplate = $bridgeCtrl->getResourcePageTemplate( $formBlockInfo );
+    if( $pageTemplate ) {
+      $pageTemplate->addClientStyles( 'styles/masterWV.less' );
+      $pageTemplate->exec();
+    }
+  }
 
   public function sendRegisterForm() {
     $this->loginCheck();
@@ -145,7 +209,6 @@ class GeozzyUserView extends View
 
     $form->sendJsonResponse();
   }
-
 
   public function sendVerifyEmail( $userData ) {
     error_log( 'sendVerifyEmail: '.json_encode( $userData ) );
@@ -177,7 +240,6 @@ class GeozzyUserView extends View
 
     error_log( 'sendVerifyEmail vars: '.print_r( $vars, true ) );
   }
-
 
   public function checkVerifyLink( $urlParams ) {
     error_log( 'checkVerifyLink: UID='.$urlParams['1'].' CODE='.$urlParams['2'] );
@@ -243,7 +305,6 @@ class GeozzyUserView extends View
     return $status;
   }
 
-
   public function checkUnknownPass( $urlParams ) {
     error_log( 'checkUnknownPass: UID='.$urlParams['1'].' CODE='.$urlParams['2'] );
 
@@ -280,7 +341,6 @@ class GeozzyUserView extends View
     }
   }
 
-
   public function hashVerifyUser( $userData, $label = 'general' ) {
     $hash = false;
 
@@ -294,7 +354,6 @@ class GeozzyUserView extends View
 
     return $hash;
   }
-
 
   public function getUserVO( $id, $login = false ) {
     $userVO = false;
@@ -315,7 +374,6 @@ class GeozzyUserView extends View
 
     return $userVO;
   }
-
 
   public function myProfileForm() {
     $useraccesscontrol = new UserAccessController();
@@ -343,56 +401,9 @@ class GeozzyUserView extends View
     $form->setAction('/geozzyuser/senduserbaseprofile');
     $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.userRouter.successProfileForm();' );
 
-    $fieldsInfo = array(
-      'id' => array(
-        'params' => array( 'type' => 'reserved', 'value' => null )
-      ),
-      'login' => array(
-        'params' => array( 'type' => 'reserved' ),
-        'rules' => array( 'required' => true )
-      ),
-      'active' => array(
-        'params' => array( 'type' => 'reserved' )
-      ),
-      'name' => array(
-        'params' => array( 'placeholder' => __('Name'), 'label' => __('Name') ),
-      ),
-      'surname' => array(
-        'params' => array( 'placeholder' => __('Surname'), 'label' => __('Surname') ),
-      ),
-      'email' => array(
-        'params' => array( 'id' => 'email', 'placeholder' => __('Email'), 'label' => __('Email') ),
-        'rules' => array( 'required' => true )
-      ),
-      'repeatEmail' => array(
-        'params' => array( 'id' => 'repeatEmail', 'placeholder' => __('Repeat email'), 'label' => __('Repeat email') ),
-        'rules' => array( 'required' => true )
-      ),
-      'password' => array(
-        'params' => array( 'id' => 'password', 'type' => 'password', 'placeholder' => __('Password'), 'label' => __('Password') )
-      ),
-      'password2' => array(
-        'params' => array( 'id' => 'password2', 'type' => 'password', 'placeholder' => __('Repeat password'), 'label' => __('Repeat password') )
-      ),
-      'avatar' => array(
-        'params' => array(
-          'type' => 'file',
-          'id' => 'inputFicheiro',
-          'placeholder' => 'Escolle un ficheiro',
-          'label' => 'Avatar',
-          'destDir' => '/users'
-        )
-      ),
-      'description' => array(
-        'params' => array( 'type' => 'textarea', 'placeholder' => 'Descripción'),
-        'translate' => true
-      ),
-      'submit' => array(
-        'params' => array( 'type' => 'submit', 'value' => __('Send') )
-      )
-    );
-
-    $form->definitionsToForm( $fieldsInfo );
+    $fields = $this->commonFields();
+    $fields['submit']['params']['value'] = __('Send');
+    $form->definitionsToForm( $fields );
 
     $form->setValidationRule( 'password', 'equalTo', '#password2' );
     $form->setValidationRule( 'email', 'email' );
@@ -449,7 +460,6 @@ class GeozzyUserView extends View
 
     $template->exec();
   }
-
 
   public function sendUserBaseProfileForm() {
     $userView = new UserView();

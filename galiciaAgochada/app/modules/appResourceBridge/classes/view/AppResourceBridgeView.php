@@ -42,19 +42,37 @@ class AppResourceBridgeView extends MasterView {
 
       if( $unpublishedPermission ) {
         $resViewBlockInfo = $resViewBlockInfo['unpublished'];
-        // $this->template->addClientStyles( 'styles/masterResourceUnpublished.less' );
-        if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/js/unpublishedResource.js' ) ) {
-          $this->template->addClientScript( 'js/unpublishedResource.js' );
-        }
       }
     }
 
 
-    if( isset( $resViewBlockInfo['data'] ) && $resViewBlockInfo['data'] ) {
+    $pageTemplate = $this->getResourcePageTemplate( $resViewBlockInfo );
 
+    if( $pageTemplate ) {
+      if( isset( $resViewBlockInfo['unpublished'] ) && $unpublishedPermission ) {
+        // $pageTemplate->addClientStyles( 'styles/masterResourceUnpublished.less' );
+        if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/js/unpublishedResource.js' ) ) {
+          $pageTemplate->addClientScript( 'js/unpublishedResource.js' );
+        }
+      }
+
+      $pageTemplate->exec();
+    }
+    else {
+      $this->page404();
+    }
+  }
+
+
+  public function getResourcePageTemplate( $resViewBlockInfo ) {
+    // error_log( 'AppResourceBridgeView::getResourcePageTemplate()' );
+    $pageTemplate = null;
+
+    if( isset( $resViewBlockInfo['data'] ) && $resViewBlockInfo['data'] ) {
+      $pageTemplate = new Template();
       if( isset( $resViewBlockInfo['template'] ) && is_array( $resViewBlockInfo['template'] ) ) {
         foreach( $resViewBlockInfo['template'] as $nameBlock => $templateBlock ) {
-          $this->template->addToFragment( 'resTemplateBlock', $templateBlock );
+          $pageTemplate->addToFragment( 'resTemplateBlock', $templateBlock );
         }
       }
 
@@ -66,31 +84,34 @@ class AppResourceBridgeView extends MasterView {
       if( isset($resViewBlockInfo['footer']) ) {
         $resData['footer'] = $resViewBlockInfo['footer'];
       }
-      $this->template->assign( 'res', $resData );
+      $pageTemplate->assign( 'res', $resData );
 
-      $this->template->assign( 'i18nlocale', Cogumelo::getSetupValue( 'i18n:localePath' ) );
+      $pageTemplate->assign( 'i18nlocale', Cogumelo::getSetupValue( 'i18n:localePath' ) );
 
-      $this->template->addClientStyles( 'styles/masterResource.less' );
+      $pageTemplate->addClientStyles( 'styles/masterResource.less' );
 
-      $rTypeIdName = str_replace( 'rtype', 'RType', $resourceCtrl->getRTypeIdName() );
 
-      // Buscamos si existe un master{RTypeName}.less para el RType de este recurso
-      $rTypeLess = 'master'.ucfirst( $rTypeIdName ).'.less';
-      if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/styles/'.$rTypeLess ) ) {
-        $this->template->addClientStyles( 'styles/'.$rTypeLess );
+
+      if( isset( $resViewBlockInfo['data']['rTypeIdName'] ) ) {
+        $rTypeIdName = str_replace( 'rtype', 'RType', $resViewBlockInfo['data']['rTypeIdName'] );
+
+        // Buscamos si existe un master{RTypeName}.less para el RType de este recurso
+        $rTypeLess = 'master'.ucfirst( $rTypeIdName ).'.less';
+        if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/styles/'.$rTypeLess ) ) {
+          $pageTemplate->addClientStyles( 'styles/'.$rTypeLess );
+        }
+
+        // Buscamos si existe un auto{RTypeName}.js para el RType de este recurso
+        $rTypeJs = 'auto'.ucfirst( $rTypeIdName ).'.js';
+        if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/js/'.$rTypeJs ) ) {
+          $pageTemplate->addClientScript( 'js/'.$rTypeJs );
+        }
+        if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/script/'.$rTypeJs ) ) {
+          $pageTemplate->addClientScript( 'script/'.$rTypeJs );
+        }
       }
 
-      // Buscamos si existe un auto{RTypeName}.js para el RType de este recurso
-      $rTypeJs = 'auto'.ucfirst( $rTypeIdName ).'.js';
-      if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/js/'.$rTypeJs ) ) {
-        $this->template->addClientScript( 'js/'.$rTypeJs );
-      }
-      if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/script/'.$rTypeJs ) ) {
-        $this->template->addClientScript( 'script/'.$rTypeJs );
-      }
-
-
-      //$this->template->addClientScript('js/resource.js');
+      //$pageTemplate->addClientScript('js/resource.js');
       /*
       if( class_exists( 'geozzyUser' ) ) {
         geozzyUser::autoIncludes();
@@ -106,13 +127,9 @@ class AppResourceBridgeView extends MasterView {
         }
       }
 
-      $this->template->setTpl( $tplFile, 'appResourceBridge');
-
-      $this->template->exec();
+      $pageTemplate->setTpl( $tplFile, 'appResourceBridge');
     }
-    else {
-      $this->page404();
-    }
+    return $pageTemplate;
   }
 
 
