@@ -66,11 +66,11 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     $difficultyOptions = array(
       '0' => '--',
-      '1' => '1 - Muy Baja',
-      '2' => '2 - Baja',
-      '3' => '3 - Media',
-      '4' => '4 - Alta',
-      '5' => '5 - Extrema'
+      '1' => '1 - '.__('Very Low'),
+      '2' => '2 - '.__('Low'),
+      '3' => '3 - '.__('Medium'),
+      '4' => '4 - '.__('High'),
+      '5' => '5 - '.__('Extreme')
     );
 
     $fieldsInfo = array(
