@@ -170,12 +170,14 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $partForm->removeField( 'rExtSocialNetwork_activeTwitter');
       $partForm->removeField( 'urlAlias_es');
 
+      $partForm->captchaEnable( true );
 
       $participationBlockInfo['dataForm'] = array(
         'formOpen' => $partForm->getHtmpOpen(),
         'formFieldsArray' => $partForm->getHtmlFieldsArray(),
         'formFieldsHiddenArray' => array(),
         'formFields' => $partForm->getHtmlFieldsAndGroups(),
+        'formCaptcha' => $partForm->getHtmlCaptcha(),
         'formClose' => $partForm->getHtmlClose(),
         'formValidations' => $partForm->getScriptCode()
       );

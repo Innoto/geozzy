@@ -119,12 +119,15 @@ class GeozzyUserView extends View
     $form->setValidationRule( 'email', 'email' );
     $form->setValidationRule( 'email', 'equalTo', '#repeatEmail' );
 
+    $form->captchaEnable( true );
+
     $form->saveToSession();
 
     $template = new Template( $this->baseDir );
     $template->assign("userFormOpen", $form->getHtmpOpen());
     $template->assign("userFormFields", $form->getHtmlFieldsArray());
     $template->assign("userFormClose", $form->getHtmlClose());
+    $template->assign("formCaptcha" ,$form->getHtmlCaptcha());
     $template->assign("userFormValidations", $form->getScriptCode());
     $template->setTpl('createModalUser.tpl', 'geozzyUser');
 
@@ -150,12 +153,15 @@ class GeozzyUserView extends View
     $form->setValidationRule( 'email', 'email' );
     $form->setValidationRule( 'email', 'equalTo', '#repeatEmail' );
 
+    $form->captchaEnable( true );
+
     $form->saveToSession();
 
     $template = new Template( $this->baseDir );
     $template->assign("userFormOpen", $form->getHtmpOpen());
     $template->assign("userFormFields", $form->getHtmlFieldsArray());
     $template->assign("userFormClose", $form->getHtmlClose());
+    $template->assign("formCaptcha" ,$form->getHtmlCaptcha());
     $template->assign("userFormValidations", $form->getScriptCode());
     $template->setTpl('registerWV.tpl', 'geozzyUser');
 

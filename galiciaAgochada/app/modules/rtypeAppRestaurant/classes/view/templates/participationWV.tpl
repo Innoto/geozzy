@@ -99,7 +99,7 @@
         Proin interdum urna sit amet ante suscipit ullamcorper. Integer bibendum accumsan sagittis. Duis mollis ut justo ac aliquam. Integer scelerisque efficitur urna, eu lobortis turpis sagittis in. Vestibulum venenatis placerat augue, vel tincidunt massa dignissim ac. Donec eu libero sollicitudin, lobortis ipsum quis, porta dui. Fusce iaculis, sem ut mattis molestie, nulla sem fermentum lectus, eget scelerisque massa nibh sed sem. Nulla sed convallis quam, eu placerat elit. Ut id faucibus diam, sit amet ullamcorper nunc. Phasellus lacinia facilisis purus et vestibulum. Praesent sollicitudin mollis vulputate. Cras aliquet, mi id tincidunt dignissim, justo justo mattis ligula, blandit efficitur sem massa vitae arcu.
         Quisque hendrerit pellentesque arcu nec pharetra. Phasellus vitae neque a dolor auctor rutrum ut eget nunc. Cras euismod est tempus diam sollicitudin, nec varius arcu suscipit. Vestibulum fermentum leo tristique ornare porta. Curabitur hendrerit eleifend arcu, ut tempor velit sodales vitae. In viverra convallis turpis, euismod molestie nisl posuere sit amet. Cras at libero in mauris pulvinar volutpat. Etiam sit amet luctus urna.
       </div>
-
+      {$res.dataForm.formCaptcha}
       <div class="formErrors"></div>
       <div class="subStepActions">
         <div class="row">
