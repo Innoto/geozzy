@@ -34,14 +34,16 @@ class AppResourceBridgeView extends MasterView {
 
 
     // Miro si el recurso NO esta publicado pero podemos verlo
+    $unpublishedPermission = false;
     if( isset( $resViewBlockInfo['unpublished'] ) ) {
       $useraccesscontrol = new UserAccessController();
       // $user = $useraccesscontrol->getSessiondata();
       $unpublishedPermission = $useraccesscontrol->checkPermissions( 'admin:access' );
-      error_log( 'unpublishedPermission: '.json_encode( $unpublishedPermission ) );
+      // error_log( 'unpublishedPermission: '.json_encode( $unpublishedPermission ) );
 
       if( $unpublishedPermission ) {
         $resViewBlockInfo = $resViewBlockInfo['unpublished'];
+        $resViewBlockInfo['unpublished'] = true;
       }
     }
 
@@ -53,6 +55,7 @@ class AppResourceBridgeView extends MasterView {
         // $pageTemplate->addClientStyles( 'styles/masterResourceUnpublished.less' );
         if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/js/unpublishedResource.js' ) ) {
           $pageTemplate->addClientScript( 'js/unpublishedResource.js' );
+          $pageTemplate->assign( 'unpublished', true );
         }
       }
 
@@ -70,8 +73,9 @@ class AppResourceBridgeView extends MasterView {
 
     if( isset( $resViewBlockInfo['data'] ) && $resViewBlockInfo['data'] ) {
       $pageTemplate = new Template();
+
       if( isset( $resViewBlockInfo['template'] ) && is_array( $resViewBlockInfo['template'] ) ) {
-        foreach( $resViewBlockInfo['template'] as $nameBlock => $templateBlock ) {
+        foreach( $resViewBlockInfo['template'] as $templateBlock ) {
           $pageTemplate->addToFragment( 'resTemplateBlock', $templateBlock );
         }
       }
@@ -89,7 +93,6 @@ class AppResourceBridgeView extends MasterView {
       $pageTemplate->assign( 'i18nlocale', Cogumelo::getSetupValue( 'i18n:localePath' ) );
 
       $pageTemplate->addClientStyles( 'styles/masterResource.less' );
-
 
 
       if( isset( $resViewBlockInfo['data']['rTypeIdName'] ) ) {
@@ -111,7 +114,6 @@ class AppResourceBridgeView extends MasterView {
         }
       }
 
-      //$pageTemplate->addClientScript('js/resource.js');
       /*
       if( class_exists( 'geozzyUser' ) ) {
         geozzyUser::autoIncludes();
@@ -129,9 +131,9 @@ class AppResourceBridgeView extends MasterView {
 
       $pageTemplate->setTpl( $tplFile, 'appResourceBridge');
     }
+
     return $pageTemplate;
   }
-
 
 
   public function page404() {
