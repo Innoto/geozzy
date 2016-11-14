@@ -25,7 +25,7 @@ $( document ).ready(function() {
     calculateHeightMenu();
   });
   calculateHeightMenu();
-  //$('#side-menu').metisMenu();
+  $('#side-menu').metisMenu();
 
 
   app = {
