@@ -22,10 +22,10 @@ if( window.location.pathname != '/admin/login') {
 $( document ).ready(function() {
 
   $(window).bind("load resize", function() {
-    calculateHeightMenu();
+    //calculateHeightMenu();
   });
-  calculateHeightMenu();
-  $('#side-menu').metisMenu();
+  //calculateHeightMenu();
+//  $('#side-menu').metisMenu();
 
 
   app = {
