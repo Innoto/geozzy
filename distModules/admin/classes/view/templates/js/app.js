@@ -21,6 +21,13 @@ if( window.location.pathname != '/admin/login') {
 
 $( document ).ready(function() {
 
+  $(window).bind("load resize", function() {
+    calculateHeightMenu();
+  });
+  calculateHeightMenu();
+  $('#side-menu').metisMenu();
+
+
   app = {
     // data
     categories: new CategoryCollection(),
@@ -58,11 +65,7 @@ $( document ).ready(function() {
     }
   });
 
-  $(window).bind("load resize", function() {
-    calculateHeightMenu();
-  });
-  calculateHeightMenu();
-  $('#side-menu').metisMenu();
+
 });
 
 
