@@ -22,7 +22,7 @@ geozzy.adminStoryComponents.ListStoryView = Backbone.View.extend({
 
     _.each( that.stories.toJSON() , function(item){
       console.log( that.listStoryItemTemplate(item))
-      that.$el.append( that.listStoryItemTemplate(item) );
+      $(that.el).append( that.listStoryItemTemplate(item) );
     });
   }
 
