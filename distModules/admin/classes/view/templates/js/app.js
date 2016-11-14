@@ -62,7 +62,7 @@ $( document ).ready(function() {
     }
 
     calculateHeightMenu();
-    //$('#side-menu').metisMenu();
+    $('#side-menu').metisMenu();
   });
 
 
