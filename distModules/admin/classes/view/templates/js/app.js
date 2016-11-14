@@ -22,11 +22,8 @@ if( window.location.pathname != '/admin/login') {
 $( document ).ready(function() {
 
   $(window).bind("load resize", function() {
-    //calculateHeightMenu();
+    calculateHeightMenu();
   });
-  //calculateHeightMenu();
-//  $('#side-menu').metisMenu();
-
 
   app = {
     // data
@@ -63,6 +60,9 @@ $( document ).ready(function() {
     if( typeof geozzy.story !== 'undefined' ) {
       geozzy.storiesInstance.listStoryView.render();
     }
+
+    calculateHeightMenu();
+    $('#side-menu').metisMenu();
   });
 
 
