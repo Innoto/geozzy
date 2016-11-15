@@ -66,7 +66,7 @@
             that.layoutDistributeSize();
         });
       });
-      
+
       google.maps.event.addListener( that.resourceMap , 'zoom_changed', function(){
           that.layoutDistributeSize();
       });
@@ -543,6 +543,18 @@
      */
     that.layoutDistributeSize = function(){
 
+
+      // Shows and hides for RESTAURANTS
+
+      if( that.resourceMap.getZoom() < 11 ) {
+        that.mapaRestaurantes.hide();
+      }
+      else {
+        that.mapaRestaurantes.render();
+      }
+
+
+      // Shows and hides for ROUTES
       if( that.resourceMap.getZoom() < 12 ) {
 
         that.mapaRutas.hide();
@@ -553,6 +565,7 @@
       }
       else {
         that.mapaRutas.render();
+
         $(that.explorerclass+' .is-route-filter').show();
 
         if( typeof that.filterSwitch.filterValue !== 'undefined' && that.filterSwitch.filterValue  ) {
