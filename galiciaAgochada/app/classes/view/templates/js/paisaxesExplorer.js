@@ -458,11 +458,34 @@
           {
             mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-dificultad',
             containerClass: 'dificultad',
-            postfix: '',
             keyToFilter: 'difficultyGlobal',
             valueMin: 1,
             valueMax: 5,
-            type:'single'
+            type:'single',
+            postfix: '',
+            prettify: function (num) {
+              var numFinal;
+
+              switch(num) {
+                case 1:
+                  numFinal = __('Mínima');
+                  break;
+                case 2:
+                  numFinal = __('Baja');
+                  break;
+                case 3:
+                  numFinal = __('Media');
+                  break;
+                case 4:
+                  numFinal = __('Alta');
+                  break;
+                case 5:
+                  numFinal = __('Máxima');
+                  break;
+              }
+
+              return numFinal;
+            }
           }
         )
       );

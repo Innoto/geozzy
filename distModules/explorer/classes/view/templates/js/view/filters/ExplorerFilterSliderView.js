@@ -35,7 +35,8 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         filteredValue: false,
         valueMin: 3,
         valueMax: 100,
-        type: 'single'  // (single|double)
+        type: 'single',  // (single|double)
+        prettify: function(num) {return num;}
       }
 
 
@@ -112,6 +113,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           from: that.filteredValue,
           postfix: that.options.postfix,
           keyboard: true,
+          prettify: function(num) { return that.options.prettify(num); },
           onStart: function (data) {
               //console.log("onStart");
           },
