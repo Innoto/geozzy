@@ -461,26 +461,27 @@
             keyToFilter: 'difficultyGlobal',
             valueMin: 1,
             valueMax: 5,
-            type:'single',
+            type: 'double',
+  
             postfix: '',
             prettify: function (num) {
               var numFinal;
 
               switch(num) {
                 case 1:
-                  numFinal = __('Mínima');
+                  numFinal = __('Fácil');
                   break;
                 case 2:
-                  numFinal = __('Baja');
+                  numFinal = __('Moderado');
                   break;
                 case 3:
-                  numFinal = __('Media');
+                  numFinal = __('Dificil');
                   break;
                 case 4:
-                  numFinal = __('Alta');
+                  numFinal = __('Muy dificil');
                   break;
                 case 5:
-                  numFinal = __('Máxima');
+                  numFinal = __('Experto');
                   break;
               }
 
