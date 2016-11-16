@@ -19,8 +19,10 @@ geozzy.adminStoryComponents.ListStoryView = Backbone.View.extend({
     var that = this;
     that.$el.html('');
     that.listStoryItemTemplate =  _.template( geozzy.adminStoryComponents.StoryTemplate );
+
     _.each( that.stories.toJSON() , function(item){
-      that.$el.append( that.listStoryItemTemplate(item) );
+      //console.log( that.listStoryItemTemplate(item))
+      $(that.el).append( that.listStoryItemTemplate(item) );
     });
   }
 

@@ -66,7 +66,7 @@
             that.layoutDistributeSize();
         });
       });
-      
+
       google.maps.event.addListener( that.resourceMap , 'zoom_changed', function(){
           that.layoutDistributeSize();
       });
@@ -458,11 +458,34 @@
           {
             mainContainerClass: that.explorerclass+' .explorer-container-filter-routes .filtro-dificultad',
             containerClass: 'dificultad',
-            postfix: '',
             keyToFilter: 'difficultyGlobal',
             valueMin: 1,
             valueMax: 5,
-            type:'single'
+            type:'single',
+            postfix: '',
+            prettify: function (num) {
+              var numFinal;
+
+              switch(num) {
+                case 1:
+                  numFinal = __('Mínima');
+                  break;
+                case 2:
+                  numFinal = __('Baja');
+                  break;
+                case 3:
+                  numFinal = __('Media');
+                  break;
+                case 4:
+                  numFinal = __('Alta');
+                  break;
+                case 5:
+                  numFinal = __('Máxima');
+                  break;
+              }
+
+              return numFinal;
+            }
           }
         )
       );
@@ -543,6 +566,18 @@
      */
     that.layoutDistributeSize = function(){
 
+
+      // Shows and hides for RESTAURANTS
+
+      if( that.resourceMap.getZoom() < 11 ) {
+        that.mapaRestaurantes.hide();
+      }
+      else {
+        that.mapaRestaurantes.render();
+      }
+
+
+      // Shows and hides for ROUTES
       if( that.resourceMap.getZoom() < 12 ) {
 
         that.mapaRutas.hide();
@@ -553,6 +588,7 @@
       }
       else {
         that.mapaRutas.render();
+
         $(that.explorerclass+' .is-route-filter').show();
 
         if( typeof that.filterSwitch.filterValue !== 'undefined' && that.filterSwitch.filterValue  ) {

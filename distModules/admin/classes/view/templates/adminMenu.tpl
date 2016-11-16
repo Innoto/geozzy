@@ -58,7 +58,9 @@
             <li class="stories">
               <a href="/admin#storysteps"><i class="fa fa-eye fa-fw" aria-hidden="true"></i> {t}Stories{/t}<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level storiesList">
-
+                <li class="charts">
+                  fasasdfasfdasdf
+                </li>
               </ul>
             </li>
           {/if}

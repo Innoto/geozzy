@@ -21,6 +21,10 @@ if( window.location.pathname != '/admin/login') {
 
 $( document ).ready(function() {
 
+  $(window).bind("load resize", function() {
+    calculateHeightMenu();
+  });
+
   app = {
     // data
     categories: new CategoryCollection(),
@@ -56,13 +60,12 @@ $( document ).ready(function() {
     if( typeof geozzy.story !== 'undefined' ) {
       geozzy.storiesInstance.listStoryView.render();
     }
+
+    calculateHeightMenu();
+    $('#side-menu').metisMenu();
   });
 
-  $(window).bind("load resize", function() {
-    calculateHeightMenu();
-  });
-  calculateHeightMenu();
-  $('#side-menu').metisMenu();
+
 });
 
 
