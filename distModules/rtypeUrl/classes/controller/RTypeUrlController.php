@@ -116,24 +116,8 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
     $viewBlockInfo = parent::getViewBlockInfo();
 
     $template = $viewBlockInfo['template']['full'];
+
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
-
-    $this->rExtCtrl = $this->newRExtContr();
-    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
-
-    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-
-    if( $rExtViewInfo ) {
-      if( $rExtViewInfo['template'] ) {
-        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToFragment( 'rextUrlBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextUrlBlock', false );
-    }
 
     $viewBlockInfo['template']['full'] = $template;
 
