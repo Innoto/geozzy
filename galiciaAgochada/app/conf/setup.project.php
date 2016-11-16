@@ -59,9 +59,13 @@ cogumeloSetSetupValue( 'urlError404:view', 'PageErrorView::page404' );
 
 
 //
-// Google Maps key
+// Google keys
 //
 cogumeloSetSetupValue( 'google:maps:key', false );
+//
+// DATOS PARA PROBAS GEOZZY
+cogumeloSetSetupValue( 'google:recaptcha:key:site', '6LdUCwwUAAAAAOb026oMl2CS9_OT1pHbxmT6eqS6' );
+cogumeloSetSetupValue( 'google:recaptcha:key:secret', '6LdUCwwUAAAAAFUEkes0vOPahU9vfRztGrRqj3Q-' );
 
 
 //
