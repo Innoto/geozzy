@@ -423,12 +423,12 @@ cogumeloSetSetupValue( 'mod:geozzy:sitemap:rtypeAppFesta:change', 'daily' );
 
 
 //
-//  Media server
+//  Media server - SIEMPRE AL FINAL!!!
 //
 cogumeloSetSetupValue( 'publicConf:globalVars', array( 'C_LANG', 'C_SESSION_ID' ) );
 
-cogumeloSetSetupValue( 'publicConf:setupFields', array( 'google:maps:key', 'session:lifetime',
-  'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone',
+cogumeloSetSetupValue( 'publicConf:setupFields', array( 'google:maps:key', 'google:recaptcha:key:site',
+  'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone',
   'user:session:id', 'mod:geozzy:travelPlanner' ) );
 
 cogumeloSetSetupValue( 'publicConf:vars:langDefault', cogumeloGetSetupValue( 'lang:default' ) );
@@ -457,3 +457,6 @@ cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty',
 cogumeloSetSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields',
   array_merge( cogumeloGetSetupValue( 'publicConf:setupFields' ), array('user:session') )
 );
+//
+//  Media server - SIEMPRE AL FINAL!!!
+//
