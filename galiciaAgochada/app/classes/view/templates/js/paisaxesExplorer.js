@@ -115,7 +115,8 @@
       });
 
       that.explorerRestaurantes = new geozzy.explorer({
-        explorerId:'xantares'
+        explorerId:'xantares',
+        blockResourceClick: true
       });
 
     }

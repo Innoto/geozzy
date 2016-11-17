@@ -27,6 +27,7 @@ geozzy.explorer = function( opts ) {
     cacheTimeIndex: 20,
     debug: false,
     useUrlRouter: false,
+    blockResourceClick: false,
 
     // events
     //minimalLoadSuccess: function() {},
@@ -99,7 +100,9 @@ geozzy.explorer = function( opts ) {
     }
 
     that.bindEvent('resourceClick', function(param){
-      geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
+      if( that.options.blockResourceClick == false ) {
+        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
+      }
     });
 
 
