@@ -204,7 +204,7 @@
           '<div class="poiInfo">'+
             '<div class="poiTitle"><p><%-title%></p></div>'+
             '<div class="poiDescription"><%-description%></div>'+
-            '<a  href="#resource/<%-id%>" ><button class="btn btn-primary accessButton">' + __('Descúbreo') + '</button> </a>' +
+            //'<a  href="#resource/<%-id%>" ><button class="btn btn-primary accessButton">' + __('Descúbreo') + '</button> </a>' +
           '</div>' +
         '</div>';
 
@@ -462,7 +462,7 @@
             valueMin: 1,
             valueMax: 5,
             type: 'double',
-  
+
             postfix: '',
             prettify: function (num) {
               var numFinal;
@@ -571,7 +571,7 @@
       // Shows and hides for RESTAURANTS
 
       if( that.resourceMap.getZoom() < 11 ) {
-        that.mapaRestaurantes.hide();
+        //that.mapaRestaurantes.hide();
       }
       else {
         that.mapaRestaurantes.render();
