@@ -400,18 +400,18 @@ body{
             padding-top:20px;
             .icon{
               height: 40px;
-              margin-bottom: 35px;
+              margin-bottom: 20px;
               padding: 10px 0 0 55px;
               text-transform: uppercase;
             }
             .routeStart{
               .icon{
-                background: url("@{cogumelo_publicConf_media}/module/rextRoutes/img/inicio.png") 0px 0px no-repeat;
+                background: url("@{cogumelo_publicConf_media}/module/rextRoutes/img/inicio.png") center left no-repeat;
               }
             }
             .routeEnd{
               .icon{
-                background: url("@{cogumelo_publicConf_media}/module/rextRoutes/img/fin.png") 0px 0px no-repeat;
+                background: url("@{cogumelo_publicConf_media}/module/rextRoutes/img/fin.png") center left no-repeat;
               }
             }
           }
@@ -423,14 +423,17 @@ body{
           }
 
         }/*left-column*/
+
         .middle-column{
           padding: 5px 20px 5px 20px;
           .duration{
             padding:20px 0px;
             font-weight: 600;
+
+            i{ margin-right: 10px; }
           }
           .travelDistance{
-            font-size:24px;
+            font-size:22px;
           }
           .travelTime{
             font-size:22px;
@@ -442,14 +445,19 @@ body{
               padding-top:20px;
               text-transform:uppercase;
             }
+            .icon{ padding-top: 10px;}
           }
           .slope{
-            padding: 10px 20px 0 0;
+            padding: 20px 20px 0 0;
             .title{
               padding-top:20px;
               text-transform:uppercase;
             }
-            .text{text-align:left;}
+            .text{ text-align:left; }
+            .icon{
+              img{ margin: 0 auto; }
+              .text{ text-align: center; }
+            }
           }
         }/*middle-column*/
 
@@ -457,7 +465,7 @@ body{
           .bar{
             height: 52px;
             margin: 0;
-            padding: 26px 0 20px 20px;
+            padding: 15px 0 20px 20px;
             .title{
               height: 40px;
               font-size: 14px;
@@ -489,6 +497,7 @@ body{
             }
           }//bar
         }//right-column
+
       }//rextRoutes
     } //routesSec
     .collectionSec{
@@ -590,7 +599,7 @@ body{
             }
             input,
             select {
-              border: 1px solid @gzzColor-bck-8; 
+              border: 1px solid @gzzColor-bck-8;
             }
 
             a{
@@ -912,11 +921,13 @@ body{
         font-weight:600;
         .travelDistance{
           text-transform:capitalize;
-          font-size: 20px;
+          font-size: 18px;
+          i{ margin-right: 5px; }
         }
         .durationMinutes{
           text-transform:lowercase;
           font-size: 18px;
+          i{ margin-right: 5px; }
         }
       }
       .bottomBox{
@@ -1017,7 +1028,17 @@ body{
 
 }/*1199px*/
 @media screen and (max-width: 991px) {
-
+  .bodyContent{
+    .resource{
+      .routesSec{
+        .rExtRoutes{
+          .left-column{
+            .routeFile{ text-align: center; }
+          }//.left-column
+        }//.rExtRoutes
+      }//.routesSec
+    }//.resource
+  }//.bodyContent
 }/*991px*/
 @media screen and (max-width: 767px) {
   .bodyContent{
@@ -1036,6 +1057,15 @@ body{
           }//.taxIcons
         }//.taxonomyBar
       }//.contentSec
+
+      .routesSec{
+        .rExtRoutes{
+          .left-column, .middle-column{
+            border-bottom: 2px solid @gzzColor-bck-7;
+            padding-bottom: 20px;
+          }//.left-column, .middle-column
+        }//.rExtRoutes
+      }//.routesSec
     }//.resource
 
   }//.bodyContent

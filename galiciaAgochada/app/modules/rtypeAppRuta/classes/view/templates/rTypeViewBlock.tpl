@@ -61,9 +61,11 @@
       <div class="resumeBox">
         <div class="topBox">
           <div class="travelDistance col-sm-6">
-            {$res.ext.rextRoutes.data.travelDistanceKm} Km
+            <i class="fa fa-map-signs" aria-hidden="true"></i> {$res.ext.rextRoutes.data.travelDistanceKm} Km
           </div>
-          <div class="durationMinutes col-sm-6">{$res.ext.rextRoutes.data.durationHours}h {$res.ext.rextRoutes.data.durationMinutes}min</div>
+          <div class="durationMinutes col-sm-6">
+            <i class="fa fa-clock-o" aria-hidden="true"></i> {$res.ext.rextRoutes.data.durationHours}h {$res.ext.rextRoutes.data.durationMinutes}min
+          </div>
         </div>
         <div class="bottomBox">
           <div class="difficultyGlobal col-sm-6">
