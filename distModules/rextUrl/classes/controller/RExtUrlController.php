@@ -223,31 +223,6 @@ class RExtUrlController extends RExtController implements RExtInterface {
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
 
       $template->setTpl( 'rExtViewBlock.tpl', 'rextUrl' );
-      if( isset( $rExtViewBlockInfo['data'][ 'urlContentType' ] ) ) {
-        $urlContentType = array_pop( $rExtViewBlockInfo['data'][ 'urlContentType' ] );
-        $urlContentType = $urlContentType[ 'idName' ];
-        error_log( 'urlContentType: ' . $urlContentType );
-        switch( $urlContentType ) {
-          case 'page':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
-            break;
-          case 'file':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
-            break;
-          case 'media':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
-            break;
-          case 'image':
-            $template->setTpl( 'rExtViewBlockImage.tpl', 'rextUrl' );
-            break;
-          case 'audio':
-            $template->setTpl( 'rExtViewBlockPage.tpl', 'rextUrl' );
-            break;
-          case 'video':
-            $template->setTpl( 'rExtViewBlockVideo.tpl', 'rextUrl' );
-            break;
-        }
-      }
 
       $rExtViewBlockInfo['template'] = array( 'full' => $template );
     }

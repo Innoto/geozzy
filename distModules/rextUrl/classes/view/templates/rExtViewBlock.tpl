@@ -1,28 +1,31 @@
 <!-- rExtViewBlock.tpl en rExtUrl module -->
 
-<p> --- rExtViewBlock.tpl en rExtUrl module</p>
-
 <div class="rExtUrl">
 
-  <div class="url">
-    <label>{t}External URL{/t}</label>
-    {$rExt.data.url|escape:'htmlall'}
-  </div>
+  <!--
+  {$rExt.data.urlContentType|var_dump}
+  -->
 
-  <div class="urlContentType">
-    <label>{t}URL content type{/t}</label>
-    {$rExt.data.urlContentType|escape:'htmlall'}
-  </div>
+  {if isset($rExt.data.embed) && $rExt.data.embed ne ''}
 
-  <div class="embed">
-    <label>{t}Embed HTML{/t}</label>
-    {$rExt.data.embed}
-  </div>
+    <div class="embed">
+      {$rExt.data.embed}
+    </div>
 
+  {else}
+
+    <div class="urlLink">
+      <a href="{$rExt.data.url|default:''|escape:'htmlall'}" target="_blank">{$rExt.data.url|default:''|escape:'htmlall'}</a>
+    </div>
+
+  {/if}
+
+  {if isset($rExt.data.author) && $rExt.data.author ne ''}
   <div class="author">
     <label>{t}Author{/t}</label>
     {$rExt.data.author|escape:'htmlall'}
   </div>
+  {/if}
 
 </div>
 
