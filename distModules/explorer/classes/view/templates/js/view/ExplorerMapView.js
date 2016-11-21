@@ -643,6 +643,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     var that = this;
 
+    that.parentExplorer.triggerEvent('mapResourceClick', {
+      id: id
+    });
+
     that.parentExplorer.triggerEvent('resourceClick', {
       id: id,
       section: 'Explorer: '+that.parentExplorer.options.explorerSectionName

@@ -100,7 +100,7 @@ geozzy.explorer = function( opts ) {
     }
 
     that.bindEvent('resourceClick', function(param){
-      if( that.options.blockResourceClick == false ) {
+      if( typeof geozzy.explorerComponents.routerInstanc != 'undefined' && that.options.blockResourceClick == false ) {
         geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
       }
     });
