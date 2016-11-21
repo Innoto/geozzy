@@ -115,7 +115,8 @@
       });
 
       that.explorerRestaurantes = new geozzy.explorer({
-        explorerId:'xantares'
+        explorerId:'xantares',
+        blockResourceClick: true
       });
 
     }
@@ -204,7 +205,7 @@
           '<div class="poiInfo">'+
             '<div class="poiTitle"><p><%-title%></p></div>'+
             '<div class="poiDescription"><%-description%></div>'+
-            '<a  href="#resource/<%-id%>" ><button class="btn btn-primary accessButton">' + __('Descúbreo') + '</button> </a>' +
+            //'<a  href="#resource/<%-id%>" ><button class="btn btn-primary accessButton">' + __('Descúbreo') + '</button> </a>' +
           '</div>' +
         '</div>';
 
@@ -461,26 +462,27 @@
             keyToFilter: 'difficultyGlobal',
             valueMin: 1,
             valueMax: 5,
-            type:'single',
+            type: 'double',
+
             postfix: '',
             prettify: function (num) {
               var numFinal;
 
               switch(num) {
                 case 1:
-                  numFinal = __('Mínima');
+                  numFinal = __('Fácil');
                   break;
                 case 2:
-                  numFinal = __('Baja');
+                  numFinal = __('Moderado');
                   break;
                 case 3:
-                  numFinal = __('Media');
+                  numFinal = __('Dificil');
                   break;
                 case 4:
-                  numFinal = __('Alta');
+                  numFinal = __('Muy dificil');
                   break;
                 case 5:
-                  numFinal = __('Máxima');
+                  numFinal = __('Experto');
                   break;
               }
 
@@ -570,7 +572,7 @@
       // Shows and hides for RESTAURANTS
 
       if( that.resourceMap.getZoom() < 11 ) {
-        that.mapaRestaurantes.hide();
+        //that.mapaRestaurantes.hide();
       }
       else {
         that.mapaRestaurantes.render();

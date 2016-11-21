@@ -115,27 +115,16 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
   public function getViewBlockInfo() {
     $viewBlockInfo = parent::getViewBlockInfo();
 
-    $template = $viewBlockInfo['template']['full'];
-    $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
+    $viewBlockInfo['template']['full']->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
 
-    $this->rExtCtrl = $this->newRExtContr();
-    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
-
-    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-
-    if( $rExtViewInfo ) {
-      if( $rExtViewInfo['template'] ) {
-        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToFragment( 'rextUrlBlock', $templateBlock );
-        }
-      }
+    if( isset( $viewBlockInfo['ext']['rextUrl']['data']['url'] )
+      && $viewBlockInfo['ext']['rextUrl']['data']['url'] !== '' )
+    {
+      $viewBlockInfo['geozzyRedirect'] = [
+        'url' => $viewBlockInfo['ext']['rextUrl']['data']['url'],
+        'httpCode' => 302
+      ];
     }
-    else {
-      $template->assign( 'rextUrlBlock', false );
-    }
-
-    $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
   }

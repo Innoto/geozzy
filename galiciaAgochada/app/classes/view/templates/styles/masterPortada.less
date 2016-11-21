@@ -253,7 +253,7 @@
         select{
           margin:10px 0;
           width: 100%;
-          background-color: @gzzColor-bck-1;
+          background: @gzzColor-bck-1 url('@{cogumelo_publicConf_media}/img/select_arrow.png') 97% 17px no-repeat;
           border: 2px solid @gzzColor-bck-8;
           padding: 10px;
           text-transform: uppercase;
@@ -284,6 +284,13 @@
         }
         span{
           font-size: 14px;
+
+          .modalPropose{
+            cursor: default;
+            text-decoration: none;
+            color: @gzzColor-text-dark-2;
+            &:hover{ color: @gzzColor-text-dark; }
+          }
         }
       }//.propose
     }//.secParticipa
@@ -297,6 +304,13 @@
       }
     }//.secRecomendamos
   }//.gzzSec
+
+  .modal{
+    .modal-header{
+      .modal-title{ margin: 15px 0; }
+    }
+  }
+
 }//bodyContent
 
 

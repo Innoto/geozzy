@@ -132,10 +132,9 @@
           </div>
           <div class="col-lg-6">
             <button id="whereParticipationSend">{t}Propoñer{/t}</button>
-            <span>(?) {t}Qué lugares podo suxerir?{/t}</span>
+            <span><a class="modalPropose" data-toggle="modal" data-target="#modalProposeParticipation"><i class="fa fa-question-circle" aria-hidden="true"></i> {t}Qué lugares podo suxerir?{/t}</a></span>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -172,3 +171,18 @@
 
     </div>
   </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalProposeParticipation" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <p>Sed eleifend pharetra luctus. Cras commodo turpis placerat, laoreet risus vitae, consectetur augue. Fusce scelerisque nunc eu mattis ornare. Ut rhoncus urna imperdiet libero finibus efficitur. Fusce est mauris, placerat sit amet enim vitae, dapibus gravida arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer mi turpis, imperdiet non neque eget, feugiat interdum ligula. Vivamus vitae mauris libero. Nam neque orci, aliquet fermentum metus ut, ornare congue ipsum. Suspendisse euismod velit sed lacus posuere, ac vestibulum ipsum rhoncus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi facilisis, felis a facilisis accumsan, risus nisl tincidunt libero, a viverra urna dui ut quam. Vivamus accumsan eros eget metus fermentum, vitae eleifend sem iaculis. Donec ullamcorper elit eget felis interdum sollicitudin. Duis finibus dolor suscipit, pharetra ex vitae, volutpat ipsum. Suspendisse pellentesque mi consequat ante lacinia, id rutrum augue iaculis. Phasellus accumsan justo porta turpis hendrerit, ac porta est porta. In luctus nec libero sed consequat. Ut pharetra in turpis a interdum. Nullam vel sollicitudin eros. Aliquam erat volutpat. Phasellus in molestie justo. Sed malesuada augue eget mollis ultricies. Maecenas porta lacinia nisl eu pretium. Sed faucibus porttitor ipsum, sit amet gravida velit vehicula ut. Quisque non neque in mi porta facilisis. Nunc finibus urna sit amet viverra tempor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
