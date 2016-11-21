@@ -48,21 +48,42 @@ class AppResourceBridgeView extends MasterView {
     }
 
 
-    $pageTemplate = $this->getResourcePageTemplate( $resViewBlockInfo );
 
-    if( $pageTemplate ) {
-      if( isset( $resViewBlockInfo['unpublished'] ) && $unpublishedPermission ) {
-        // $pageTemplate->addClientStyles( 'styles/masterResourceUnpublished.less' );
-        if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/js/unpublishedResource.js' ) ) {
-          $pageTemplate->addClientScript( 'js/unpublishedResource.js' );
-          $pageTemplate->assign( 'unpublished', true );
+    if( !isset( $resViewBlockInfo['geozzyRedirect'] ) ) {
+      $pageTemplate = $this->getResourcePageTemplate( $resViewBlockInfo );
+
+      if( $pageTemplate ) {
+        if( isset( $resViewBlockInfo['unpublished'] ) && $unpublishedPermission ) {
+          // $pageTemplate->addClientStyles( 'styles/masterResourceUnpublished.less' );
+          if( file_exists( Cogumelo::GetSetupValue( 'setup:appBasePath' ).'/classes/view/templates/js/unpublishedResource.js' ) ) {
+            $pageTemplate->addClientScript( 'js/unpublishedResource.js' );
+            $pageTemplate->assign( 'unpublished', true );
+          }
         }
-      }
 
-      $pageTemplate->exec();
+        $pageTemplate->exec();
+      }
+      else {
+        $this->page404();
+      }
     }
     else {
-      $this->page404();
+      $httpCodeMsg = array (
+        '300' => "HTTP/1.1 300 Multiple Choices",
+        '301' => "HTTP/1.1 301 Moved Permanently",
+        '302' => "HTTP/1.1 302 Found",
+        '303' => "HTTP/1.1 303 See Other",
+        '304' => "HTTP/1.1 304 Not Modified",
+        '305' => "HTTP/1.1 305 Use Proxy",
+        '307' => "HTTP/1.1 307 Temporary Redirect",
+      );
+      $httpCode = '302';
+      if( isset($resViewBlockInfo['geozzyRedirect']['httpCode']) ) {
+        $httpCode = $resViewBlockInfo['geozzyRedirect']['httpCode'];
+      }
+
+      header( $httpCodeMsg[ $httpCode ] );
+      header( 'Location: '.$resViewBlockInfo['geozzyRedirect']['url'] );
     }
   }
 
