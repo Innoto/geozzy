@@ -116,7 +116,7 @@
 
       that.explorerRestaurantes = new geozzy.explorer({
         explorerId:'xantares'
-        //,blockResourceClick: true
+        //blockResourceClick: true
       });
 
     }
