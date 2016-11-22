@@ -133,7 +133,8 @@ cogumeloSetSetupValue( 'mod:form', array(
 //
 cogumeloSetSetupValue( 'mod:filedata', array(
   'filePath' => cogumeloGetSetupValue( 'setup:prjBasePath' ).'/formFiles',
-  'cachePath' => cogumeloGetSetupValue( 'setup:webBasePath' ).'/cgmlImg'
+  'cachePath' => cogumeloGetSetupValue( 'setup:webBasePath' ).'/cgmlImg',
+  'filePathPublic' => cogumeloGetSetupValue( 'setup:prjBasePath' ).'/formFiles/public',
 ));
 include 'filedataImageProfiles.php';
 
@@ -163,5 +164,3 @@ session_save_path( cogumeloGetSetupValue( 'session:savePath' ) );
 // Url to load resource view from ID
 //
 cogumeloSetSetupValue( 'mod:geozzy:resource:directUrl', 'resource' );
-
-
