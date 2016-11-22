@@ -115,13 +115,13 @@ class admin extends Module {
      'id' => 'elfinder',
      'params' => array('studio-42/elfinder', '2.1.17'),
      'installer' => 'composer',
-     'includes' => array('php/autoload.php')
+     'includes' => array('php/autoload.php', 'js/elfinder.min.js', 'css/elfinder.min.css', 'css/theme.css' )
     ),
     array( // required by elFinder
       "id" =>"jquery-ui",
       "params" => array("jquery-ui#1.12.1"),
       "installer" => "bower",
-      "includes" => array()
+      "includes" => array('jquery-ui.min.js','/themes/smoothness/jquery-ui.css')
     ),
 
 
@@ -141,6 +141,7 @@ class admin extends Module {
     'js/collection/StarredCollection.js',
     'js/collection/ResourcesStarredCollection.js',
     'js/app.js',
+    'js/adminFileUploader.js',
     'js/view/AdminView.js',
     'js/view/CategoryEditorView.js',
     'js/view/ResourcesStarredListView.js'
@@ -223,7 +224,7 @@ class admin extends Module {
     $this->addUrlPatterns( '#^admin/topics$#', 'view:AdminViewTopic::topicsSync' );
 
     // elFinder (file manager)
-    $this->addUrlPatterns( '#^admin/filemanagerfrontend$#', 'view:AdminViewElfinder::fileManagerFrontend' );
+    $this->addUrlPatterns( '#^admin/filemanagerfrontend#', 'view:AdminViewElfinder::fileManagerFrontend' );
     $this->addUrlPatterns( '#^admin/filemanagerbackend#', 'view:AdminViewElfinder::fileManagerBackend' );
 
     // data Admin API
