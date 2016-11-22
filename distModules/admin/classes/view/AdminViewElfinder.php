@@ -90,28 +90,15 @@ class AdminViewElfinder extends AdminViewMaster {
     					// , lang: 'ru'                    // language (OPTIONAL)
               uiOptions: {
                 toolbar : [
-                  // toolbar configuration
-                  //['back', 'forward'],
-                  //['reload'],
-                  //['home', 'up'],
-                  [/*'mkdir', 'mkfile', */'upload'],
+                  ['upload'],
                   ['open'],
-                  //['info'],
-                  //['quicklook'],
-                  //['copy', 'cut', 'paste'],
-                  ['rm'],
-                  //['duplicate', 'rename', 'edit'],
-                  //['extract', 'archive'],
-                  //['search'],
-                  //['view'],
-                  //['help']
+                  ['rm']
                 ]
               },
 
               contextmenu : {
                   files  : [
-                      'getfile', '|','open', '|', 'copy', 'cut', 'paste', '|',
-                      'rm'
+                      'getfile', '|','open', '|', 'copy', 'cut', 'paste', '|', 'rm'
                   ]
               }
     				});
