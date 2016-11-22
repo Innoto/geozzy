@@ -32,7 +32,7 @@ class AdminViewElfinder extends AdminViewMaster {
 
           'hidden' => true,
 
-          'URL'           => dirname($_SERVER['PHP_SELF']) . '/../files/', // URL to files (REQUIRED)
+          'URL'           =>  '/cgmlformpublic', // URL to files (REQUIRED)
     			'uploadDeny'    => array('all'),                // All Mimetypes not allowed to upload
     			'uploadAllow'   => array('image'),// Mimetype `image` and `text/plain` allowed to upload
     			'uploadOrder'   => array('deny', 'allow'),      // allowed Mimetype `image` and `text/plain` only
@@ -110,8 +110,8 @@ class AdminViewElfinder extends AdminViewMaster {
 
               contextmenu : {
                   files  : [
-                      'getfile', '|','open', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
-                      'rm', '|', 'edit', 'rename', '|', 'info'
+                      'getfile', '|','open', '|', 'copy', 'cut', 'paste', '|',
+                      'rm'
                   ]
               }
     				});
