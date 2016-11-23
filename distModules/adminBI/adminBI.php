@@ -52,7 +52,7 @@ class adminBI extends Module {
     ),
     array(
       "id" =>"leaflet",
-      "params" => array("leaflet"),
+      "params" => array("leaflet#1.0.1"),
       "installer" => "bower",
       "includes" => array('dist/leaflet.js','dist/leaflet.css')
     ),
