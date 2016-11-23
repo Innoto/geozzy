@@ -572,7 +572,7 @@
       // Shows and hides for RESTAURANTS
 
       if( that.resourceMap.getZoom() < 11 ) {
-        //that.mapaRestaurantes.hide();
+        that.mapaRestaurantes.hide();
       }
       else {
         that.mapaRestaurantes.render();
