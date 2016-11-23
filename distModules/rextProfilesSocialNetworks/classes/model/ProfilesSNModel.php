@@ -33,6 +33,23 @@ class ProfilesSNModel extends Model
     'linkedin' => array(
       'type' => 'VARCHAR',
       'size' => 100
+    ),
+    'email' => array(
+      'type' => 'VARCHAR',
+      'size' => 100
+    ),
+    'personalUrl' => array(
+      'type' => 'VARCHAR',
+      'size' => 2000
+    )
+  );
+
+  var $deploySQL = array(
+    array(
+      'version' => 'rextProfilesSocialNetworks#1.1',
+      'sql'=> '
+        ALTER TABLE geozzy_resource_rext_profiles_socialnetworks ADD COLUMN email VARCHAR(100) NULL,ADD COLUMN personalUrl VARCHAR(2000) NULL;
+      '
     )
   );
 
