@@ -166,7 +166,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
         marker.explorerResourceId = e.get('id');
 
-        marker.addListener('click', function() {
+        marker.addListener('mousedown', function() {
           that.markerClick( e.get('id') );
         });
         marker.addListener('mouseover', function() {
