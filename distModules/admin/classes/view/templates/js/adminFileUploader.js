@@ -1,7 +1,36 @@
-$(document).ready( function(){
-  //alert('')
-});
 
+
+
+var adminFileUploader={};
+
+$(document).ready( function(){
+  elfNode = $('<div>');
+
+  elfNode.dialog({
+    autoOpen: false,
+    modal: true,
+    width: '80%',
+
+    create: function (event, ui) {
+      var startPathHash = (elfDirHashMap[dialogName] && elfDirHashMap[dialogName])? elfDirHashMap[dialogName] : '';
+      // elFinder configure
+       elfInsrance = $(this).elfinder( elfinderOptions ).elfinder('instance');
+       hideElFinderToolbars();
+    },
+    open: function() {
+      elfNode.find('div.elfinder-toolbar input').blur();
+      setTimeout(function(){
+        elfInsrance.enable();
+      }, 100);
+      hideElFinderToolbars();
+    },
+    resizeStop: function() {
+      elfNode.trigger('resize');
+      hideElFinderToolbars();
+    }
+  }).parent().css({'zIndex':'11000'});
+
+});
 
 var elfNode, elfInsrance, dialogName,
     elfUrl				= '/admin/filemanagerbackend', // Your connector's URL
@@ -58,7 +87,9 @@ var elfNode, elfInsrance, dialogName,
     };
 
 
-function getShowImgSize(url, callback) {
+
+
+adminFileUploader.getShowImgSize = function(url, callback) {
   var ret = {};
   $('<img/>').attr('src', url).on('load', function() {
     var w = this.naturalWidth,
@@ -75,24 +106,24 @@ function getShowImgSize(url, callback) {
     }
     callback({width: w, height: h});
   });
-}
+};
 
 
 
 
 
-function iniciaUploader() {
+adminFileUploader.iniciaUploader = function() {
 
     CKEDITOR.on('dialogDefinition', function (event) {
       //console.log(event);
       if(event.data.name === 'image') {
-        dialogDefinition(event);
+        adminFileUploader.dialogDefinition(event);
       }
 
     });
 
     CKEDITOR.on('instanceReady', function(e) {
-      instanceReady(e);
+      adminFileUploader.instanceReady(e);
 
     });
 
@@ -102,36 +133,10 @@ function iniciaUploader() {
 function hideElFinderToolbars() {
   $('.ui-corner-bottom.elfinder-statusbar, .elfinder-navbar').css('display', 'none');
   $('.ui-dialog .ui-dialog-content').css('padding',0);
-}
+};
 
 
-function instanceReady(e) {
-  elfNode = $('<div>');
-
-  elfNode.dialog({
-    autoOpen: false,
-    modal: true,
-    width: '80%',
-
-    create: function (event, ui) {
-      var startPathHash = (elfDirHashMap[dialogName] && elfDirHashMap[dialogName])? elfDirHashMap[dialogName] : '';
-      // elFinder configure
-       elfInsrance = $(this).elfinder( elfinderOptions ).elfinder('instance');
-       hideElFinderToolbars();
-    },
-    open: function() {
-      elfNode.find('div.elfinder-toolbar input').blur();
-      setTimeout(function(){
-        elfInsrance.enable();
-      }, 100);
-      hideElFinderToolbars();
-    },
-    resizeStop: function() {
-      elfNode.trigger('resize');
-      hideElFinderToolbars();
-    }
-  }).parent().css({'zIndex':'11000'});
-
+adminFileUploader.instanceReady = function(e) {
   var cke = e.editor;
 
   cke.on('fileUploadRequest', function(e){
@@ -165,7 +170,7 @@ function instanceReady(e) {
 }
 
 
-function dialogDefinition(event) {
+adminFileUploader.dialogDefinition = function(event) {
 
   var editor = event.editor,
     dialogDefinition = event.data.definition,
@@ -242,7 +247,7 @@ function dialogDefinition(event) {
               dialog.selectPage('info');
               dialog.setValueOf('info', urlObj, url);
               if (dialogName == 'image') {
-                getShowImgSize(url, function(size) {
+                adminFileUploader.getShowImgSize(url, function(size) {
                   dialog.setValueOf('info', 'txtWidth', size.width);
                   dialog.setValueOf('info', 'txtHeight', size.height);
                   dialog.preview.$.style.width = size.width+'px';

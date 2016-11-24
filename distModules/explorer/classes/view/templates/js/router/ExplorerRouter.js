@@ -19,6 +19,9 @@ geozzy.explorerComponents.mainRouter = Backbone.Router.extend({
     var that = this;
     that.parentExplorer.triggerEvent('resourceAccess', {id: id});
     //that.parentExplorer.options.resourceAccess(id);
+    if(that.parentExplorer.explorerTouchDevice) {
+      that.parentExplorer.triggerEvent('resourceMouseOut', {id:0});
+    }
   }
 
 });
