@@ -54,6 +54,7 @@ var AdminView = Backbone.View.extend({
     $("#page-wrapper").load( url, {}, function(){
       that.render();
       $( window ).scrollTop( 0 );
+      iniciaUploader();
     } );
 
   },

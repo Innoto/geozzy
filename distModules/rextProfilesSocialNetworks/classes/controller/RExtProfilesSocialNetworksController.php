@@ -63,6 +63,14 @@ class RExtProfilesSocialNetworksController extends RExtController implements REx
       'linkedin' => array(
         'params' => array( 'label' => __( 'LinkedIn' ) ),
         'rules' => array( 'maxlength' => 100 )
+      ),
+      'email' => array(
+        'params' => array( 'label' => __( 'E-Mail' ) ),
+        'rules' => array( 'maxlength' => 100 )
+      ),
+      'personalUrl' => array(
+        'params' => array( 'label' => __( 'Personal URL' ) ),
+        'rules' => array( 'maxlength' => 2000, 'url' => true )
       )
     );
 

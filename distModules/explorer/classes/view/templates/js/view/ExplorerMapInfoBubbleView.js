@@ -14,7 +14,7 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
     var options = new Object({
       boxId: 'explorerInfoBubble',
       tpl: geozzy.explorerComponents.mapInfoViewTemplate,
-      marker_distance: [5,0], // [top, bottom]
+      marker_distance: [10,8], // [top, bottom]
       max_height: 240,
       width: 255,
       map_scrollwhell_is_enabled: true

@@ -290,11 +290,13 @@ class ResourceController {
       ),
       'mediumDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea' )
+        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea' ),
+        'rules' => array( 'maxlength' => '1000' )
       ),
       'content' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea', 'htmlEditor' => 'true' )
+        'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea', 'htmlEditor' => 'true' ),
+        'rules' => array( 'maxlength' => '15000' )
       ),
       'externalUrl' => array(
         'params' => array( 'label' => __( 'External URL' ) ),
