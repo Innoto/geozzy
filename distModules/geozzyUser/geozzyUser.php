@@ -38,7 +38,7 @@ class geozzyUser extends Module {
   );
 
   function __construct() {
-    $this->addUrlPatterns( '#^geozzyuser/logout$#', 'view:GeozzyUserView::sendLogout' );
+    $this->addUrlPatterns( '#^geozzyuser/logout(\/.+)?$#', 'view:GeozzyUserView::sendLogout' );
     $this->addUrlPatterns( '#^geozzyuser/login$#', 'view:GeozzyUserView::loginForm' );
     $this->addUrlPatterns( '#^geozzyuser/senduserlogin$#', 'view:GeozzyUserView::sendLoginForm' );
     $this->addUrlPatterns( '#^geozzyuser/register$#', 'view:GeozzyUserView::registerForm' );

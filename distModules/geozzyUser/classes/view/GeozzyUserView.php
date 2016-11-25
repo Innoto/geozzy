@@ -484,9 +484,17 @@ class GeozzyUserView extends View
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();
   }
-  public function sendLogout(){
+  public function sendLogout( $urlParams ){
+    $redirect = $urlParams['1'];
+
     $useraccesscontrol = new UserAccessController();
     $useraccesscontrol->userLogout();
-    Cogumelo::redirect('/');
+
+    if(array_key_exists('1', $urlParams )){
+      Cogumelo::redirect($redirect);
+    }else{
+      Cogumelo::redirect('/');
+    }
+    //
   }
 }
