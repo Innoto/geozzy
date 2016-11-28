@@ -197,7 +197,7 @@
 
 
       var infoWindowRestaurantesTpl =
-        '<div class="poiInfoWindow">'+
+        '<div class="poiInfoWindow" onclick="window.open(\'/resource/<%- id %>\')" >'+
           '<div class="poiImg">'+
             '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/.jpg" />'+
           '</div>'+
