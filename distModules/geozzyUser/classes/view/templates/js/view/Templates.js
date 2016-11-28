@@ -17,12 +17,14 @@ geozzy.userSessionComponents.modalMdTemplate = ''+
 '</div>';
 
 geozzy.userSessionComponents.userLoginBoxTemplate = ''+
-'<h3>'+__("Necesitas tener una cuenta para participar en Galicia Agochada")+'</h3>'+
-'<button type="button" class="gotoregister btn btn-primary">'+__("Crear una cuenta")+'</button>'+
-'<hr />'+
-'<h3>'+__("¿Ya tienes una cuenta?")+'</h3>'+
-'<h3>'+__("Inicia tu sesión para continuar")+'</h3>'+
-'<div class="loginModalForm"></div>'+
+'<div class="loginInfoContainer">'+
+  '<h3>'+__("Necesitas tener una cuenta para participar en Galicia Agochada")+'</h3>'+
+  '<button type="button" class="gotoregister btn btn-primary">'+__("Crear una cuenta")+'</button>'+
+  '<hr />'+
+  '<h3>'+__("¿Ya tienes una cuenta?")+'</h3>'+
+  '<h3>'+__("Inicia tu sesión para continuar")+'</h3>'+
+  '<div class="loginModalForm"></div>'+
+'</div>'+
 '<a class="initRecoveryPass">'+__("He olvidado mi contraseña")+'</a>'+
 '<div class="recoveryPasswordForm" style="display:none;">'+
   '<h3>'+__("Recovery password")+'</h3>'+
