@@ -34,15 +34,24 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
     that.parentExplorer = parentExplorer;
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
-      that.show( params );
+      if(!that.parentExplorer.explorerTouchDevice) {
+        that.show( params );
+      }
     });
 
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
-      that.hide( params );
+
+
+      if(!that.parentExplorer.explorerTouchDevice) {
+        that.hide( params );
+      }
     });
 
     that.parentExplorer.bindEvent('resourceClick', function( params ){
-      //that.show(params.id);
+
+      if(that.parentExplorer.explorerTouchDevice) {
+        that.show( params );
+      }
     });
 
   },
