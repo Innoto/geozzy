@@ -84,7 +84,7 @@
     /* ADD DISPLAY TO EXPLORER */
     ex.addDisplay( explorerMapa );
 
-    var miniInfoWindow ='<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/resource/<%- id %>\')"<%}%> >'+
+    var miniInfoWindow ='<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')"<%}%> >'+
                           '<div class="poiImg">'+
                             '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
                           '</div>'+
