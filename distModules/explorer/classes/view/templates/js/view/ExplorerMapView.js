@@ -75,7 +75,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     google.maps.event.addListener(this.map, "click", function() {
       if(that.parentExplorer.explorerTouchDevice) {
-        that.markerOut( 0 );
+        //that.markerOut( 0 );
+        that.parentExplorer.triggerEvent('resourceMouseOut',{id:0});
       }
     });
 
