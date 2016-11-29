@@ -804,28 +804,38 @@ class ResourceController {
   }
 
   public function getOptionsTax( $taxIdName ) {
-    $options = array();
-    $taxTermModel =  new TaxonomyTermModel();
-    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ), 'order' => array('weight' => 1),
-      'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
-    while( $taxTerm = $taxTermList->fetch() ){
-      $options[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'name', Cogumelo::getSetupValue( 'lang:default' ) );
+    $options = [];
+
+    $optArray = $this->getOptionsTaxAdvancedArray( $taxIdName );
+
+    if( count($optArray) ) {
+      foreach( $optArray as $termId => $termInfo ) {
+        $options[ $termId ] = $termInfo['text'];
+      }
     }
 
     return $options;
   }
   public function getOptionsTaxAdvancedArray( $taxIdName ) {
-    $options = array();
+    $options = [];
     $taxTermModel =  new TaxonomyTermModel();
-    $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'TaxonomygroupModel.idName' => $taxIdName ), 'order' => array('weight' => 1),
-      'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
-    while( $taxTerm = $taxTermList->fetch() ){
-      $options[ $taxTerm->getter( 'id' ) ] = array(
-        'text' => $taxTerm->getter( 'name', Cogumelo::getSetupValue( 'lang:default' )),
+    $taxTermList = $taxTermModel->listItems( [
+      'filters' => [ 'TaxonomygroupModel.idName' => $taxIdName ], 'order' => [ 'weight' => 1 ],
+      'affectsDependences' => [ 'TaxonomygroupModel' ], 'joinType' => 'RIGHT'
+    ] );
+    while( $taxTerm = $taxTermList->fetch() ) {
+      $optText = $taxTerm->getter('name');
+      if( !$optText || $optText === '' ) {
+        $optText = $taxTerm->getter( 'name', Cogumelo::getSetupValue( 'lang:default' ));
+      }
+      $options[ $taxTerm->getter('id') ] = array(
+        'text' => $optText,
         'data-term-icon' => $taxTerm->getter('icon'),
-        'value' => $taxTerm->getter( 'id' )
+        'data-term-idname' => $taxTerm->getter('idName'),
+        'value' => $taxTerm->getter('id')
       );
     }
+
     return $options;
   }
 

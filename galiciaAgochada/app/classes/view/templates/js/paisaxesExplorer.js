@@ -197,7 +197,7 @@
 
 
       var infoWindowRestaurantesTpl =
-        '<div class="poiInfoWindow">'+
+        '<div class="poiInfoWindow" onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')" >'+
           '<div class="poiImg">'+
             '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/.jpg" />'+
           '</div>'+
@@ -310,11 +310,11 @@
             var m = {
               url: cogumelo.publicConf.media+'/img/micropunto.png',
               // This marker is 20 pixels wide by 36 pixels high.
-              size: new google.maps.Size(20, 20),
+              size: new google.maps.Size(20, 15),
               // The origin for this image is (0, 0).
-              origin: new google.maps.Point(-2, -2),
+              origin: new google.maps.Point(-1, 0),
               // The anchor for this image is the base of the flagpole at (0, 36).
-              anchor: new google.maps.Point(7, 5)
+              anchor: new google.maps.Point(7, 2)
             };
 
             return m;

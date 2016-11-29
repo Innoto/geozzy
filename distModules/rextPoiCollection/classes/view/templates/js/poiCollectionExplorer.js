@@ -84,7 +84,7 @@
     /* ADD DISPLAY TO EXPLORER */
     ex.addDisplay( explorerMapa );
 
-    var miniInfoWindow ='<div class="poiInfoWindow">'+
+    var miniInfoWindow ='<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')"<%}%> >'+
                           '<div class="poiImg">'+
                             '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-image%>/squareCut/<%-image%>.jpg" />'+
                           '</div>'+
@@ -100,7 +100,8 @@
     var infowindow = new geozzy.explorerComponents.mapInfoBubbleView({
       tpl:miniInfoWindow,
       width: 350,
-      max_height:170
+      max_height:170,
+      marker_distance: [20,20]
     });
     ex.addDisplay( infowindow );
   /*  var infowindow = new geozzy.explorerComponents.mapInfoView({
