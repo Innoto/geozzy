@@ -310,11 +310,11 @@
             var m = {
               url: cogumelo.publicConf.media+'/img/micropunto.png',
               // This marker is 20 pixels wide by 36 pixels high.
-              size: new google.maps.Size(20, 20),
+              size: new google.maps.Size(20, 15),
               // The origin for this image is (0, 0).
-              origin: new google.maps.Point(-2, -2),
+              origin: new google.maps.Point(-1, -1),
               // The anchor for this image is the base of the flagpole at (0, 36).
-              anchor: new google.maps.Point(7, 5)
+              anchor: new google.maps.Point(7, -3)
             };
 
             return m;
