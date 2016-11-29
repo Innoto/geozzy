@@ -312,9 +312,9 @@
               // This marker is 20 pixels wide by 36 pixels high.
               size: new google.maps.Size(20, 15),
               // The origin for this image is (0, 0).
-              origin: new google.maps.Point(-1, -1),
+              origin: new google.maps.Point(-1, 0),
               // The anchor for this image is the base of the flagpole at (0, 36).
-              anchor: new google.maps.Point(7, -3)
+              anchor: new google.maps.Point(7, 2)
             };
 
             return m;
