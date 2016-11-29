@@ -583,6 +583,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         that.resetOuterPanTo();
         that.panTo( resource.get('id'), true );
       }
+      $('div.explorerPositionArrows div.' + outerPos  ).fadeOut(300).fadeIn(300); 
     }, 700);
 
 

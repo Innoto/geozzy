@@ -100,7 +100,8 @@
     var infowindow = new geozzy.explorerComponents.mapInfoBubbleView({
       tpl:miniInfoWindow,
       width: 350,
-      max_height:170
+      max_height:170,
+      marker_distance: [20,20]
     });
     ex.addDisplay( infowindow );
   /*  var infowindow = new geozzy.explorerComponents.mapInfoView({
