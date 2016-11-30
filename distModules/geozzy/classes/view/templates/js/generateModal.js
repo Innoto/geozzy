@@ -1,29 +1,33 @@
 var geozzy = geozzy || {};
 
-
-geozzy.generateModal = function( classCss, title, htmlBody, successCallback ) {
+geozzy.generateModal = function( options ) {
   var that = this;
-
-  that.classCss = classCss;
-  that.title = title;
-  that.htmlBody = htmlBody;
-  that.successCallback = successCallback;
+  //classCss, title, htmlBody, successCallback, size, btnClass
+  var opts = new Object({
+    classCss : 'generateModal',
+    title: '',
+    htmlBody: 'Hello world',
+    size: 'md',
+    btnClass: 'btn-primary',
+    successCallback: function() { return false; }
+  });
+  that.options = $.extend(true, {}, opts, options );
 
   // First Execution
   //
   that.createModalTemplate = function(){
     var html = '';
-    html += '<div class="gzzGenerateModal '+that.classCss+' modal fade" tabindex="-1" role="dialog">';
-      html += '<div class="modal-dialog modal-md">';
+    html += '<div class="gzzGenerateModal '+that.options.classCss+' modal fade" tabindex="-1" role="dialog">';
+      html += '<div class="modal-dialog modal-'+that.options.size+'">';
         html += '<div class="modal-content">';
           html += '<div class="modal-header">';
             html += '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-            if( typeof that.title != 'undefined' ){
-              html+= '<h3 class="modal-title">'+that.title+'</h3>';
+            if( typeof that.options.title != 'undefined' ){
+              html+= '<h3 class="modal-title">'+that.options.title+'</h3>';
             }
           html += '</div>';
-          html += '<div class="modal-body">'+that.htmlBody+'</div>';
-          html += '<div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">'+__("Accept")+'</button></div>';
+          html += '<div class="modal-body">'+that.options.htmlBody+'</div>';
+          html += '<div class="modal-footer"><button type="button" class="btn '+that.options.btnClass+'" data-dismiss="modal" aria-label="Close">'+__("Accept")+'</button></div>';
         html += '</div>';
       html += '</div>';
     html += '</div>';

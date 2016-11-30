@@ -95,10 +95,17 @@ class GeozzyUserView extends View
         'params' => array( 'type' => 'textarea', 'placeholder' => 'Descripción'),
         'translate' => true
       ),
+      'legal' => array(
+        'params' => array( 'type' => 'checkbox', 'name' => 'legal',
+          'options' => [ '1' => __( 'Acepto las <a class="gzzAppLegal">condiciones de servicio y la política de privacidad</a>' ) ]
+        ),
+        'rules' => [ 'required' => true ]
+      ),
       'submit' => array(
         'params' => array( 'type' => 'submit', 'value' => __('Create account') )
       )
     );
+    //data-toggle="modal" data-target="#link-info-legal"
   }
   public function registerForm() {
 
