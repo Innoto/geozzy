@@ -65,13 +65,19 @@ class InitResourcesController{
       'timeCreation' => $timeCreation
     );
 
-    // Campos multiidioma: título e descripción
-    foreach( Cogumelo::getSetupValue('lang:available') as $key => $lang ) {
-      if( isset( $initRes['title'][$key] ) ) {
-        $resData['title_'.$key] = $initRes['title'][$key];
+    // Campos multiidioma: título, descripción corta y media, y contenido
+    foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
+      if( isset( $initRes['title'][$langKey] ) ) {
+        $resData['title_'.$langKey] = $initRes['title'][$langKey];
       }
-      if( isset( $initRes['shortDescription'][$key] ) ) {
-        $resData['shortDescription_'.$key] = $initRes['shortDescription'][$key];
+      if( isset( $initRes['shortDescription'][$langKey] ) ) {
+        $resData['shortDescription_'.$langKey] = $initRes['shortDescription'][$langKey];
+      }
+      if( isset( $initRes['mediumDescription'][$langKey] ) ) {
+        $resData['mediumDescription_'.$langKey] = $initRes['mediumDescription'][$langKey];
+      }
+      if( isset( $initRes['content'][$langKey] ) ) {
+        $resData['content_'.$langKey] = $initRes['content'][$langKey];
       }
     }
 
@@ -124,9 +130,9 @@ class InitResourcesController{
 
 
     //urlAlias multiidioma
-    foreach( Cogumelo::getSetupValue('lang:available') as $key => $lang ) {
-      if( isset( $initRes['urlAlias'][$key] ) ) {
-        $resourcecontrol->setUrl( $resource->getter('id'), $key, $initRes['urlAlias'][$key] );
+    foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
+      if( isset( $initRes['urlAlias'][$langKey] ) ) {
+        $resourcecontrol->setUrl( $resource->getter('id'), $langKey, $initRes['urlAlias'][$langKey] );
       }
     }
   }
