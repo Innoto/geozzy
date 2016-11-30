@@ -79,7 +79,7 @@ class geozzyAPIView extends View {
       "basePath": "/api",
       "apis": [
         {
-          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/votes/{votes}/updatedfrom/{updatedfrom}/urlAlias/{urlAlias}",
+          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/filtervalues/{filtervalues}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/votes/{votes}/updatedfrom/{updatedfrom}/urlAlias/{urlAlias}",
           "operations": [
             {
               "errorResponses": [
@@ -891,12 +891,26 @@ class geozzyAPIView extends View {
       $queryParameters['filters']['updatedfrom'] = gmdate( 'Y-m-d H:i:s', $extraParams['updatedfrom'] );
     }
 
+
     // fields and fieldvalues
-    /*
-      if( isset( $extraParams['filters'], $extraParams['filtervalues'] ) && $extraParams['filters'] !== 'false' && $extraParams['filtervalues'] !== 'false' ) {
-        $queryParameters['filters'] = array('id' => 10);
+    if( isset( $extraParams['filters'], $extraParams['filtervalues'] ) && $extraParams['filters'] !== 'false' && $extraParams['filtervalues'] !== 'false' ) {
+
+      // check if number of parameters and values are the same
+      $autoFiltervalues = explode( ',', $extraParams['filtervalues'] );
+      $autoFilters = explode( ',', $extraParams['filters'] );
+
+      if( count($autoFiltervalues) === count($autoFilters) && count($autoFilters)>0 ) {
+
+
+        foreach( $autoFilters as $autoFilterK => $autoFilter ) {
+
+          $queryParameters['filters'][$autoFilter] = $autoFiltervalues[ $autoFilterK ];
+        }
       }
-    */
+
+
+    }
+
 
 
     if( $extraParams['ids'] ) {
