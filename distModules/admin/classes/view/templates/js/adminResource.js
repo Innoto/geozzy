@@ -104,17 +104,24 @@ function initializeMap( form ){
       var latValue = 0;
       var lonValue = 0;
       var zoom = 1;
+      // España con Canarias
+      var latInit = 38;
+      var lonInit = -3.7;
+      var zoomInit = 4;
 
       if( latInput.val() !== '' && latInput.val() !== '') {
         latValue = parseFloat( latInput.val() );
         lonValue = parseFloat( lonInput.val() );
         zoom = parseInt( defaultZoom.val() );
+        latInit = latValue;
+        lonInit = lonValue;
+        zoomInit = zoom;
       }
 
       // gmaps init
       var mapOptions = {
-        center: { lat: latValue, lng: lonValue },
-        zoom: zoom,
+        center: { lat: latInit, lng: lonInit },
+        zoom: zoomInit,
         scrollwheel: false
       };
       resourceMap = new google.maps.Map(document.getElementById('resourceLocationMap_'+form), mapOptions);
