@@ -1327,7 +1327,7 @@ class geozzyAPIView extends View {
   public function topicList() {
     geozzy::load('model/TopicModel.php');
     $topicModel = new TopicModel();
-    $topicList = $topicModel->listItems( );
+    $topicList = $topicModel->listItems( [ 'order' => [ 'weight' => 1, 'idName' => 1 ] ] );
     $this->syncModelList( $topicList );
   }
 

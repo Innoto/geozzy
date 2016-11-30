@@ -67,6 +67,7 @@ class RTUtilsController {
             foreach( $topicInfo['name'] as $langKey => $name ) {
               $topic[ 'name_'.$langKey ] = $name;
             }
+            $topic['weight'] = $topicInfo['weight'];
             $topicObj = new TopicModel( $topic );
             $topicObj->save();
           }
@@ -75,7 +76,7 @@ class RTUtilsController {
           $rTypeTopicParams = array(
             'topic' => $topicObj->getter('id'),
             'resourceType' => $rTypeId,
-            'weight' => $topicInfo['weight']
+            'weight' => $topicInfo['resourceTypes'][ $rTypeIdName ]['weight']
           );
           $resourcetypeTopicModel = new ResourcetypeTopicModel( $rTypeTopicParams );
           $resourcetypeTopicModel->save();
