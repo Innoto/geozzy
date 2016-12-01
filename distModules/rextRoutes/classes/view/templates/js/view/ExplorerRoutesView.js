@@ -54,37 +54,47 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
           'id/' + params.id + '/resolution/' + that.options.routeResolution ,
           function(  ) {
 
-            var r = geozzy.explorerComponents.routesCollectionInstance.get(params.id);
+
+            setTimeout(function(){
+
+              var r = geozzy.explorerComponents.routesCollectionInstance.get(params.id);
 
 
-            var routeOpts = {
-                  map: that.parentExplorer.displays.map.map,
-                  routeModel: r,
-                  showGraph: that.options.showGraph,
-                  graphContainer: that.options.hoverGraphDiv ,
-                  showLabels: false,
-                  allowsTrackHover:false,
-                  ShowRouteInZoomLevel: that.options.ShowRouteInZoomLevel,
-                  drawXGrid: false,
-                  drawYGrid: false,
-                  pixelsPerLabel:100,
-                };
+              var routeOpts = {
+                    map: that.parentExplorer.displays.map.map,
+                    routeModel: r,
+                    showGraph: that.options.showGraph,
+                    graphContainer: that.options.hoverGraphDiv ,
+                    showLabels: false,
+                    allowsTrackHover:false,
+                    ShowRouteInZoomLevel: that.options.ShowRouteInZoomLevel,
+                    drawXGrid: false,
+                    drawYGrid: false,
+                    pixelsPerLabel:100,
+                  };
 
-            if( that.options.showMarkerStart == false ) {
-              routeOpts.markerStart = false;
-            }
+              if( that.options.showMarkerStart == false ) {
+                routeOpts.markerStart = false;
+              }
 
-            if( that.options.showMarkerEnd == false ) {
-              routeOpts.markerEnd = false;
-            }
-
-
-
-            r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
+              if( that.options.showMarkerEnd == false ) {
+                routeOpts.markerEnd = false;
+              }
 
 
-              //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );
-              //console.log(geozzy.explorerComponents.routesCollectionInstance.get(params.id) );
+
+              r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
+
+
+                //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );
+                //console.log(geozzy.explorerComponents.routesCollectionInstance.get(params.id) );
+
+
+
+            }, 3000);
+
+
+
 
         });
       }
