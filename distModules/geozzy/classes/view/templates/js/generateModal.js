@@ -43,8 +43,8 @@ geozzy.generateModal = function( options ) {
     });
     $('.gzzGenerateModal').on('hidden.bs.modal', function (e) {
       $(this).remove();
-      if( typeof that.successCallback != 'undefined' ){
-        that.successCallback();
+      if( typeof that.options.successCallback != 'undefined' ){
+        that.options.successCallback();
       }
     });
   }
