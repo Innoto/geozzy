@@ -50,48 +50,46 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       else {
         //var routesCollectionProvisional = new geozzy.rextRoutes.routeCollection();
         //routesCollectionProvisional.url = '/api/routes/id/' + params.id + '/resolution/' + that.options.routeResolution;
+        that.hideRoutes();
         geozzy.explorerComponents.routesCollectionInstance.fetchOne(
           'id/' + params.id + '/resolution/' + that.options.routeResolution ,
           function(  ) {
 
-
-            setTimeout(function(){
-
-              var r = geozzy.explorerComponents.routesCollectionInstance.get(params.id);
+            //that.hideRoutes();
 
 
-              var routeOpts = {
-                    map: that.parentExplorer.displays.map.map,
-                    routeModel: r,
-                    showGraph: that.options.showGraph,
-                    graphContainer: that.options.hoverGraphDiv ,
-                    showLabels: false,
-                    allowsTrackHover:false,
-                    ShowRouteInZoomLevel: that.options.ShowRouteInZoomLevel,
-                    drawXGrid: false,
-                    drawYGrid: false,
-                    pixelsPerLabel:100,
-                  };
-
-              if( that.options.showMarkerStart == false ) {
-                routeOpts.markerStart = false;
-              }
-
-              if( that.options.showMarkerEnd == false ) {
-                routeOpts.markerEnd = false;
-              }
+            var r = geozzy.explorerComponents.routesCollectionInstance.get(params.id);
 
 
+            var routeOpts = {
+                  map: that.parentExplorer.displays.map.map,
+                  routeModel: r,
+                  showGraph: that.options.showGraph,
+                  graphContainer: that.options.hoverGraphDiv ,
+                  showLabels: false,
+                  allowsTrackHover:false,
+                  ShowRouteInZoomLevel: that.options.ShowRouteInZoomLevel,
+                  drawXGrid: false,
+                  drawYGrid: false,
+                  pixelsPerLabel:100,
+                };
 
-              r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
+            if( that.options.showMarkerStart == false ) {
+              routeOpts.markerStart = false;
+            }
 
-
-                //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );
-                //console.log(geozzy.explorerComponents.routesCollectionInstance.get(params.id) );
+            if( that.options.showMarkerEnd == false ) {
+              routeOpts.markerEnd = false;
+            }
 
 
 
-            }, 3000);
+            r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
+
+
+            //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );
+            //console.log(geozzy.explorerComponents.routesCollectionInstance.get(params.id) );
+
 
 
 
@@ -119,6 +117,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   hideRoutes: function() {
     var that = this;
 
+
+    console.log()
     if(geozzy.explorerComponents.routesCollectionInstance) {
       geozzy.explorerComponents.routesCollectionInstance.each(  function(e,i){
         e.get('routeViewInstance').hideRoute();
