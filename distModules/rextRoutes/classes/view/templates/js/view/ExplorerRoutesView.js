@@ -55,11 +55,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
           'id/' + params.id + '/resolution/' + that.options.routeResolution ,
           function(  ) {
 
-            //that.hideRoutes();
-
-
             var r = geozzy.explorerComponents.routesCollectionInstance.get(params.id);
-
 
             var routeOpts = {
                   map: that.parentExplorer.displays.map.map,
