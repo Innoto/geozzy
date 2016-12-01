@@ -34,28 +34,28 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
 
-      that.hideRoutes();
+      //that.hideRoute();
       //alert(params.id)
       if( geozzy.explorerComponents.routesCollectionInstance === false ) {
         geozzy.explorerComponents.routesCollectionInstance = new geozzy.rextRoutes.routeCollection();
       }
 
 
-/*
+
       if( typeof( geozzy.explorerComponents.routesCollectionInstance.get( params.id ) ) != 'undefined' ){
 
         geozzy.explorerComponents.routesCollectionInstance.get( params.id ).get('routeViewInstance').showRoute();
 
       }
-      else {*/
+      else {
         //var routesCollectionProvisional = new geozzy.rextRoutes.routeCollection();
         //routesCollectionProvisional.url = '/api/routes/id/' + params.id + '/resolution/' + that.options.routeResolution;
-
         geozzy.explorerComponents.routesCollectionInstance.fetchOne(
           'id/' + params.id + '/resolution/' + that.options.routeResolution ,
           function(  ) {
 
             var r = geozzy.explorerComponents.routesCollectionInstance.get(params.id);
+
 
             var routeOpts = {
                   map: that.parentExplorer.displays.map.map,
@@ -83,15 +83,11 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
             r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
 
 
-            //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );
-            //console.log(geozzy.explorerComponents.routesCollectionInstance.get(params.id) );
-
-
-
-
+              //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );
+              //console.log(geozzy.explorerComponents.routesCollectionInstance.get(params.id) );
 
         });
-      //}
+      }
 
 
 
@@ -113,9 +109,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   hideRoutes: function() {
     var that = this;
 
-
     if(geozzy.explorerComponents.routesCollectionInstance) {
-      console.log( geozzy.explorerComponents.routesCollectionInstance );
       geozzy.explorerComponents.routesCollectionInstance.each(  function(e,i){
         e.get('routeViewInstance').hideRoute();
       });
