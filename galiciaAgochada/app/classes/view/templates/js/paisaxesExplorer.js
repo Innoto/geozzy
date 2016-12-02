@@ -66,13 +66,14 @@
             that.layoutDistributeSize();
         });
       });
-
+/*
       google.maps.event.addListener( that.resourceMap , 'zoom_changed', function(){
           that.layoutDistributeSize();
       });
+*/
+
 
       mapControlUtils.changeMapControls(that.resourceMap);
-
 
 
       that.espazoNaturalCategories = new geozzy.collection.CategorytermCollection();
@@ -125,6 +126,13 @@
       setEvents. set explorer events
     */
     that.setEvents = function() {
+
+      that.explorer.bindEvent('zoomChanged', function(){
+        that.layoutDistributeSize();
+      });
+
+
+
       // Resource quit
       that.explorer.bindEvent('resourceQuit', function(){
         $(".explorerContainer.explorer-container-du").hide();
