@@ -84,6 +84,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     google.maps.event.addListener(this.map, "zoom_changed", function() {
       that.ready = true;
       that.parentExplorer.render(true);
+      that.parentExplorer.triggerEvent('zoomChanged', {});
     });
 
     // map first load
@@ -583,7 +584,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         that.resetOuterPanTo();
         that.panTo( resource.get('id'), true );
       }
-      $('div.explorerPositionArrows div.' + outerPos  ).fadeOut(300).fadeIn(300); 
+      $('div.explorerPositionArrows div.' + outerPos  ).fadeOut(300).fadeIn(300);
     }, 700);
 
 

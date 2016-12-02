@@ -32,6 +32,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     var  that = this;
     that.parentExplorer = parentExplorer;
 
+    that.parentExplorer.bindEvent('zoomChanged', function(){ that.hideRoutes(); });
+
     that.parentExplorer.bindEvent('resourceHover', function( params ){
 
       //that.hideRoute();
