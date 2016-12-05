@@ -488,8 +488,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       title: 'selected'
     });
     //}
+
     that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
+
+
     that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+
 
     //that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(google.maps.Animation.BOUNCE);
     //setTimeout(function(){ that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(null); }, 800);
@@ -502,7 +506,19 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       title: ''
     });
     that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
-    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+
+    if( that.options.clusterize != false ) {
+
+      $(that.markerClusterer.clusters_).each( function(i,e){
+
+        if( e.isMarkerAlreadyAdded( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker') ) == true ) {
+          if(e.markers_.length == 1) {
+            that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+          }
+        }
+      });
+
+    }
 
   },
 
