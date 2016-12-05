@@ -21,12 +21,6 @@
 
 
 
-
-
-
-
-
-
   /****************************
     paisaxesExplorerF
    ****************************/
@@ -66,11 +60,7 @@
             that.layoutDistributeSize();
         });
       });
-/*
-      google.maps.event.addListener( that.resourceMap , 'zoom_changed', function(){
-          that.layoutDistributeSize();
-      });
-*/
+
 
 
       mapControlUtils.changeMapControls(that.resourceMap);
@@ -610,7 +600,6 @@
         }
 
       }
-
 
 
       var hExplorerLayout = $('.paisaxesExplorer').height();
