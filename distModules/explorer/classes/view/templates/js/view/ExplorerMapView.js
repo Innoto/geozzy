@@ -519,6 +519,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       });
 
     }
+    else {
+      that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+    }
 
   },
 
