@@ -510,14 +510,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     if( that.options.clusterize != false ) {
 
       $(that.markerClusterer.clusters_).each( function(i,e){
-
         if( e.isMarkerAlreadyAdded( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker') ) == true ) {
           if(e.markers_.length == 1) {
             that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
           }
         }
       });
-
     }
     else {
       that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
