@@ -225,7 +225,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       case 'mouseenter':
         if( that.parentExplorer.displays.map ) {
           that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('data-resource-id') );
-          //that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
+          that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
         }
 
         that.parentExplorer.triggerEvent('resourceHover', {
@@ -237,7 +237,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       break;
       case 'mouseleave':
         if( that.parentExplorer.displays.map ) {
-          //that.parentExplorer.displays.map.markerOut( );
+          that.parentExplorer.displays.map.markerOut( );
           that.parentExplorer.displays.map.markerBounceEnd( $(element.currentTarget).attr('data-resource-id') );
         }
 
