@@ -225,7 +225,6 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       case 'mouseenter':
         if( that.parentExplorer.displays.map ) {
           that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('data-resource-id') );
-          that.parentExplorer.displays.map.markerHover( $(element.currentTarget).attr('data-resource-id') );
           that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
         }
 

@@ -95,10 +95,17 @@ class GeozzyUserView extends View
         'params' => array( 'type' => 'textarea', 'placeholder' => 'Descripción'),
         'translate' => true
       ),
+      'legal' => array(
+        'params' => array( 'type' => 'checkbox', 'name' => 'legal',
+          'options' => [ '1' => __( 'Acepto las <a class="gzzAppPrivacidad">condiciones de servicio y la política de privacidad</a>' ) ]
+        ),
+        'rules' => [ 'required' => true ]
+      ),
       'submit' => array(
         'params' => array( 'type' => 'submit', 'value' => __('Create account') )
       )
     );
+    //data-toggle="modal" data-target="#link-info-legal"
   }
   public function registerForm() {
 
@@ -119,12 +126,15 @@ class GeozzyUserView extends View
     $form->setValidationRule( 'email', 'email' );
     $form->setValidationRule( 'email', 'equalTo', '#repeatEmail' );
 
+    $form->captchaEnable( true );
+
     $form->saveToSession();
 
     $template = new Template( $this->baseDir );
     $template->assign("userFormOpen", $form->getHtmpOpen());
     $template->assign("userFormFields", $form->getHtmlFieldsArray());
     $template->assign("userFormClose", $form->getHtmlClose());
+    $template->assign("formCaptcha" ,$form->getHtmlCaptcha());
     $template->assign("userFormValidations", $form->getScriptCode());
     $template->setTpl('createModalUser.tpl', 'geozzyUser');
 
@@ -150,12 +160,15 @@ class GeozzyUserView extends View
     $form->setValidationRule( 'email', 'email' );
     $form->setValidationRule( 'email', 'equalTo', '#repeatEmail' );
 
+    $form->captchaEnable( true );
+
     $form->saveToSession();
 
     $template = new Template( $this->baseDir );
     $template->assign("userFormOpen", $form->getHtmpOpen());
     $template->assign("userFormFields", $form->getHtmlFieldsArray());
     $template->assign("userFormClose", $form->getHtmlClose());
+    $template->assign("formCaptcha" ,$form->getHtmlCaptcha());
     $template->assign("userFormValidations", $form->getScriptCode());
     $template->setTpl('registerWV.tpl', 'geozzyUser');
 
@@ -471,7 +484,9 @@ class GeozzyUserView extends View
 
 
     $template = new Template( $this->baseDir );
-    $template->setFragment( "profileBlock", $profileBlock );
+    if(isset($profileBlock)){
+      $template->setFragment( "profileBlock", $profileBlock );
+    }
     $template->addClientScript('js/userProfile.js', 'geozzyUser');
     $template->assign("userBaseFormOpen", $form->getHtmpOpen());
     $template->assign("userBaseFormFields", $form->getHtmlFieldsArray());
@@ -499,9 +514,17 @@ class GeozzyUserView extends View
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();
   }
-  public function sendLogout(){
+  public function sendLogout( $urlParams ){
+    $redirect = $urlParams['1'];
+
     $useraccesscontrol = new UserAccessController();
     $useraccesscontrol->userLogout();
-    Cogumelo::redirect('/');
+
+    if(array_key_exists('1', $urlParams )){
+      Cogumelo::redirect($redirect);
+    }else{
+      Cogumelo::redirect('/');
+    }
+    //
   }
 }

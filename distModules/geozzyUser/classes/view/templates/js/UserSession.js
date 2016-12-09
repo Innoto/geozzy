@@ -69,6 +69,10 @@ geozzy.userSession = function() {
     }, 500);
   }
 
+  that.getPrivacidad = function getPrivacidad( success ){
+    success(false);
+  }
+
   that.userRouter = new geozzy.userSessionComponents.mainRouter();
   that.userRouter.userSessionParent = that;
 
@@ -77,4 +81,10 @@ geozzy.userSession = function() {
       Backbone.history.start();
     }
   });
+}
+
+
+
+getPrivacidad: function getPrivacidad( success ){
+  success(false);
 }

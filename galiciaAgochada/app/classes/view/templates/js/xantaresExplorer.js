@@ -110,6 +110,13 @@
       setEvents. set explorer events
     */
     that.setEvents = function() {
+
+
+      // Resource Quit
+      that.explorer.bindEvent('zoomChanged', function(){
+
+      });
+
       // Resource Quit
       that.explorer.bindEvent('resourceQuit', function(){
         $(".explorerContainer.explorer-container-du").hide();

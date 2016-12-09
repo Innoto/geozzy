@@ -7,7 +7,8 @@ geozzy.userSessionComponents.userRegisterView = Backbone.View.extend({
   modalTemplate : false,
 
   events: {
-    "click .close": "abortRegisterModal"
+    "click .close": "abortRegisterModal",
+    "click .gzzAppPrivacidad": "showPrivacidad"
   },
 
   initRegisterModal: function(){
@@ -50,6 +51,14 @@ geozzy.userSessionComponents.userRegisterView = Backbone.View.extend({
   render: function() {
     var that = this;
     //that.$el.html( that.tpl({ content: contentHtml }) )
+  },
+  showPrivacidad: function(e) {
+    var that = this;
+    that.userSessionParent.getPrivacidad( function(data) {
+      if(data){
+        geozzy.generateModal(data.modal);
+      }
+    });
   }
 
 });

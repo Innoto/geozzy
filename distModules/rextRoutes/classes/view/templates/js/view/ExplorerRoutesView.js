@@ -32,6 +32,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     var  that = this;
     that.parentExplorer = parentExplorer;
 
+    that.parentExplorer.bindEvent('zoomChanged', function(){ that.hideRoutes(); });
+
     that.parentExplorer.bindEvent('resourceHover', function( params ){
 
       //that.hideRoute();
@@ -82,6 +84,11 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
             r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
 
+            if( that.getLoadingPromise(params.id) ) {
+
+              r.get('routeViewInstance').hideRoute();
+            }
+
 
               //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );
               //console.log(geozzy.explorerComponents.routesCollectionInstance.get(params.id) );
@@ -90,13 +97,11 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       }
 
 
-
-
     });
 
+
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
-      //that.hide(params.id);
-      that.hideRoutes();
+      that.hideRoute( params.id);
     });
 
 
@@ -106,15 +111,62 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
   },
 
+
+  hideRoute: function( id ) {
+    var that = this;
+
+    var route = geozzy.explorerComponents.routesCollectionInstance.get(id);
+
+    if( route &&  typeof route.get('routeViewInstance') != 'undefined') {
+      route.get('routeViewInstance').hideRoute();
+    }
+    else {
+      that.setLoadingPromise(id);
+    }
+
+
+  },
+
+
   hideRoutes: function() {
     var that = this;
 
+    if(geozzy.explorerComponents.routesCollectionInstance) {
+      geozzy.explorerComponents.routesCollectionInstance.each(  function(e,i){
+        e.get('routeViewInstance').hideRoute();
+      });
+    }
+  },
 
-    geozzy.explorerComponents.routesCollectionInstance.each(  function(e,i){
-      e.get('routeViewInstance').hideRoute();
+
+  hideLoadingPromises: [],
+  setLoadingPromise: function( id ) {
+    var that = this;
+
+    that.hideLoadingPromises.push(id);
+  },
+
+  getLoadingPromise: function(id) {
+    var that = this;
+    var endLoadingPromises = [];
+    var found = false;
+
+    $( that.hideLoadingPromises ).each( function(i,e){
+      if(e == id) {
+
+        found = true;
+      }
+      else {
+        endLoadingPromises.push(e);
+      }
     });
 
+    that.hideLoadingPromises = endLoadingPromises;
+
+    return found;
   }
+
+
 
 
 

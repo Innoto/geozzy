@@ -44,6 +44,12 @@ cogumeloSetSetupValue( 'lang', array(
   'default' => 'es'
 ));
 
+//
+// Google keys
+//
+cogumeloSetSetupValue( 'google:maps:key', 'AIzaSyDkNx9IA9093KtrCRMVwUfgRi7vp_A_npQ' );
+cogumeloSetSetupValue( 'google:recaptcha:key:site', '6LcEeQwTAAAAABvylWDu4npaLmHoavDXX-PTJAJT' );
+cogumeloSetSetupValue( 'google:recaptcha:key:secret', '6LcEeQwTAAAAAKGvHVRz1Nug5jTfHTP9Ub2yUK-d' );
 
 //
 // URL alias controller: Fichero que contiene una clase UrlAliasController con un metodo getAlternative

@@ -73,10 +73,18 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       that.parentExplorer.render(true);
     });
 
+    google.maps.event.addListener(this.map, "click", function() {
+      if(that.parentExplorer.explorerTouchDevice) {
+        //that.markerOut( 0 );
+        that.parentExplorer.triggerEvent('resourceMouseOut',{id:0});
+      }
+    });
+
     // zoom event on map
     google.maps.event.addListener(this.map, "zoom_changed", function() {
       that.ready = true;
       that.parentExplorer.render(true);
+      that.parentExplorer.triggerEvent('zoomChanged', {});
     });
 
     // map first load
@@ -166,14 +174,26 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
         marker.explorerResourceId = e.get('id');
 
-        marker.addListener('click', function() {
-          that.markerClick( e.get('id') );
+        marker.addListener('mousedown', function() {
+
+          if(!that.parentExplorer.explorerTouchDevice){
+            that.markerClick( e.get('id') );
+          }
+          else {
+          //  that.markerClick( e.get('id') );
+            that.markerHover( e.get('id') );
+          }
         });
         marker.addListener('mouseover', function() {
-          that.markerHover( e.get('id') );
+          if(!that.parentExplorer.explorerTouchDevice){
+            that.markerHover( e.get('id') );
+          }
+
         });
         marker.addListener('mouseout', function() {
-          that.markerOut( e.get('id') );
+          if(!that.parentExplorer.explorerTouchDevice){
+            that.markerOut( e.get('id') );
+          }
         });
 
         that.parentExplorer.resourceMinimalList.get( e.get('id') ).set('mapMarker', marker );
@@ -463,11 +483,17 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   markerBounce: function(id) {
     var that = this;
 
+    //if(!that.parentExplorer.explorerTouchDevice) {
     that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setOptions({
       title: 'selected'
     });
+    //}
+
     that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
+
+
     that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+
 
     //that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(google.maps.Animation.BOUNCE);
     //setTimeout(function(){ that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setAnimation(null); }, 800);
@@ -480,7 +506,20 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       title: ''
     });
     that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
-    that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+
+    if( that.options.clusterize != false ) {
+
+      $(that.markerClusterer.clusters_).each( function(i,e){
+        if( e.isMarkerAlreadyAdded( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker') ) == true ) {
+          if(e.markers_.length == 1) {
+            that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+          }
+        }
+      });
+    }
+    else {
+      that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
+    }
 
   },
 
@@ -562,6 +601,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         that.resetOuterPanTo();
         that.panTo( resource.get('id'), true );
       }
+      $('div.explorerPositionArrows div.' + outerPos  ).fadeOut(300).fadeIn(300);
     }, 700);
 
 
@@ -642,6 +682,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   markerClick: function( id ){
 
     var that = this;
+
+    that.parentExplorer.triggerEvent('mapResourceClick', {
+      id: id
+    });
 
     that.parentExplorer.triggerEvent('resourceClick', {
       id: id,

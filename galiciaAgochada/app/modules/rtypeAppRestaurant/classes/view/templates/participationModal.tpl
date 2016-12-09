@@ -106,6 +106,8 @@
             Quisque hendrerit pellentesque arcu nec pharetra. Phasellus vitae neque a dolor auctor rutrum ut eget nunc. Cras euismod est tempus diam sollicitudin, nec varius arcu suscipit. Vestibulum fermentum leo tristique ornare porta. Curabitur hendrerit eleifend arcu, ut tempor velit sodales vitae. In viverra convallis turpis, euismod molestie nisl posuere sit amet. Cras at libero in mauris pulvinar volutpat. Etiam sit amet luctus urna.
           </div>
 
+          {$res.dataForm.formCaptcha}
+
           <div class="formErrors"></div>
           <div class="subStepActions">
             <div class="row">
@@ -119,7 +121,6 @@
             </div>
           </div>
         </div>
-
 
         {$res.dataForm.formClose}
         {$res.dataForm.formValidations}
@@ -219,7 +220,7 @@
 
   geozzy.xantaresParticipationForm = {
     closeModal: function closeModal() {
-      $('.participation-step2').modal('hide');      
+      $('.participation-step2').modal('hide');
     }
   };
 

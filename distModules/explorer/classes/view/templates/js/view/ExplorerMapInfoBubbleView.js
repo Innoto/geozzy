@@ -14,7 +14,7 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
     var options = new Object({
       boxId: 'explorerInfoBubble',
       tpl: geozzy.explorerComponents.mapInfoViewTemplate,
-      marker_distance: [5,0], // [top, bottom]
+      marker_distance: [10,8], // [top, bottom]
       max_height: 240,
       width: 255,
       map_scrollwhell_is_enabled: true
@@ -34,7 +34,9 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
     that.parentExplorer = parentExplorer;
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
-      that.show( params );
+
+        that.show( params );
+
     });
 
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
@@ -42,7 +44,11 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
     });
 
     that.parentExplorer.bindEvent('resourceClick', function( params ){
-      //that.show(params.id);
+
+      /*if(that.parentExplorer.explorerTouchDevice) {
+        that.show( params );
+      }*/
+
     });
 
   },
@@ -60,7 +66,7 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
           marker_distance: that.options.marker_distance, // [top, bottom]
           max_height: that.options.max_height,
           width: that.options.width,
-          keep_open: false,
+          keep_open: true,
           map_scrollwhell_is_enabled: that.options.map_scrollwhell_is_enabled ,
           onAddSuccess: function() {
             that.infowindow.open(m, 'mouseover' , that.renderContent(params.id), true);

@@ -21,12 +21,6 @@
 
 
 
-
-
-
-
-
-
   /****************************
     paisaxesExplorerF
    ****************************/
@@ -67,12 +61,9 @@
         });
       });
 
-      google.maps.event.addListener( that.resourceMap , 'zoom_changed', function(){
-          that.layoutDistributeSize();
-      });
+
 
       mapControlUtils.changeMapControls(that.resourceMap);
-
 
 
       that.espazoNaturalCategories = new geozzy.collection.CategorytermCollection();
@@ -115,8 +106,8 @@
       });
 
       that.explorerRestaurantes = new geozzy.explorer({
-        explorerId:'xantares',
-        blockResourceClick: true
+        explorerId:'xantares'
+        //blockResourceClick: true
       });
 
     }
@@ -125,6 +116,13 @@
       setEvents. set explorer events
     */
     that.setEvents = function() {
+
+      that.explorer.bindEvent('zoomChanged', function(){
+        that.layoutDistributeSize();
+      });
+
+
+
       // Resource quit
       that.explorer.bindEvent('resourceQuit', function(){
         $(".explorerContainer.explorer-container-du").hide();
@@ -169,7 +167,6 @@
 
           '<div class="gempiImg">'+
             '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" />'+
-            '<div class="gempiFav"><% if(touchAccess){ %><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i> <% } %></div>'+
           '</div>'+
           '<div class="gempiInfo">'+
 
@@ -198,7 +195,7 @@
 
 
       var infoWindowRestaurantesTpl =
-        '<div class="poiInfoWindow">'+
+        '<div class="poiInfoWindow" onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')" >'+
           '<div class="poiImg">'+
             '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/.jpg" />'+
           '</div>'+
@@ -311,11 +308,11 @@
             var m = {
               url: cogumelo.publicConf.media+'/img/micropunto.png',
               // This marker is 20 pixels wide by 36 pixels high.
-              size: new google.maps.Size(10, 10),
+              size: new google.maps.Size(20, 15),
               // The origin for this image is (0, 0).
-              origin: new google.maps.Point(0, 0),
+              origin: new google.maps.Point(-1, 0),
               // The anchor for this image is the base of the flagpole at (0, 36).
-              anchor: new google.maps.Point(5, 5)
+              anchor: new google.maps.Point(7, 2)
             };
 
             return m;
@@ -572,7 +569,7 @@
       // Shows and hides for RESTAURANTS
 
       if( that.resourceMap.getZoom() < 11 ) {
-        //that.mapaRestaurantes.hide();
+        that.mapaRestaurantes.hide();
       }
       else {
         that.mapaRestaurantes.render();
@@ -603,7 +600,6 @@
         }
 
       }
-
 
 
       var hExplorerLayout = $('.paisaxesExplorer').height();

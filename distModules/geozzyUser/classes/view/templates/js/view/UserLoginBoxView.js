@@ -69,6 +69,7 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
     $('#loginModal .recoveryPasswordForm').show();
   },
   sendRecoveryPass:function(){
+    var that = this;
     var userEmail = $('.recoveryPassEmail').val();
     $.ajax({
       url: "/api/core/userunknownpass",
@@ -76,6 +77,7 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
       method: "POST",
     }).done(function( data ) {
       console.log(data);
+      that.$('.loginInfoContainer').hide();
       $('#loginModal .recoveryPasswordForm').hide();
       $('#loginModal .recoveryPasswordFinalMsg').show();
     });
