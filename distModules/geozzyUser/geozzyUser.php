@@ -53,26 +53,74 @@ class geozzyUser extends Module {
   }
 
   public function moduleRc() {
+
     $res = array(
-      'idName' => 'user',
-      'rType' => 'rtypePage',
-      'title' => array(
-        'en' => 'User',
-        'es' => 'Usuario',
-        'gl' => 'Usuario'
+      array(
+        'idName' => 'user',
+        'rType' => 'rtypePage',
+        'title' => array(
+          'en' => 'User',
+          'es' => 'Usuario',
+          'gl' => 'Usuario'
+        ),
+        'shortDescription' => array(),
+        'viewType' => 'tplEmpty',
+        'urlAlias' => array(
+          'en' => '/userprofile',
+          'es' => '/userprofile',
+          'gl' => '/userprofile'
+        )
       ),
-      'shortDescription' => array(),
-      'viewType' => 'tplEmpty',
-      'urlAlias' => array(
-        'en' => '/userprofile',
-        'es' => '/userprofile',
-        'gl' => '/userprofile'
+      array(
+        'idName' => 'userVerifiedOk',
+        'rType' => 'rtypePage',
+        'title' => array(
+          'en' => 'You have successfully completed registration',
+          'es' => 'Has completado el registro con éxito',
+          'gl' => 'Completaches o rexistro con éxito'
+        ),
+        'shortDescription' => array(
+          'en' => 'You have successfully completed registration',
+          'es' => 'Has completado el registro con éxito',
+          'gl' => 'Completaches o rexistro con éxito'
+        ),
+        'viewType' => 'tplDefault',
+        'urlAlias' => array(
+          'en' => '/userverified/ok',
+          'es' => '/userverified/ok',
+          'gl' => '/userverified/ok'
+        )
+      ),
+      array(
+        'idName' => 'userVerifiedNotOk',
+        'rType' => 'rtypePage',
+        'title' => array(
+          'en' => 'Verification link is no longer valid',
+          'es' => 'El enlace de verificación ya no es válido',
+          'gl' => 'A ligazón de verificación xa non é válido'
+        ),
+        'shortDescription' => array(
+          'en' => 'Verification link is no longer valid',
+          'es' => 'El enlace de verificación ya no es válido',
+          'gl' => 'A ligazón de verificación xa non é válido'
+        ),
+        'viewType' => 'tplDefault',
+        'urlAlias' => array(
+          'en' => '/userverified/notok',
+          'es' => '/userverified/notok',
+          'gl' => '/userverified/notok'
+        )
       )
+
     );
 
     initResources::load('controller/InitResourcesController.php');
     $initResources = new InitResourcesController();
-    $initResources->generateResource( $res );
+
+    foreach ($res as $r){
+      $initResources->generateResource( $r );
+    }
+
   }
 
 }

@@ -254,20 +254,41 @@ class GeozzyUserView extends View
       $userData = $userVO->getAllData('onlydata');
       $hash = $this->hashVerifyUser( $userData, 'VerifyEmailLabel' );
 
+      $resourceCtrl = new ResourceController();
+      $resourceModel = new ResourceModel( );
 
       if ( $urlCode === $hash ) {
         $userVO->setter( 'verified', 1 );
         $userVO->setter( 'timeLastUpdate', date( 'Y-m-d H:i:s', time() ) );
         $userVO->save();
-        echo "OK, verificado.\n";
+
+
+        $res = $resourceModel->listItems(
+          array(
+            'filters'=> array(
+              'idName' => 'userVerifiedOk'
+            )
+          )
+        )->fetch();
+
       }
       else {
-        echo "<pre>\n\nKO. URL no valida.\n\n\n";
+
+        $res = $resourceModel->listItems(
+          array(
+            'filters'=> array(
+              'idName' => 'userVerifiedNotOk'
+            )
+          )
+        )->fetch();
 
         error_log( '(Notice) checkVerifyLink: URL no valida. $urlParams '.print_r( $urlParams, true ) );
         error_log( '$userData '.print_r( $userData, true ) );
         error_log( '$hash '.print_r( $hash, true ) );
       }
+      
+      $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
+      Cogumelo::redirect( $urlAlias );
     }
   }
 
