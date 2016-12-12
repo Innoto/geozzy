@@ -68,7 +68,12 @@ class GeozzyTaxonomytermView extends View
       ),
       'name' => array(
         'translate' => true,
-        'params' => array( 'placeholder' => 'Name' )
+        'params' => array( 'label' => __('Name') )
+      ),
+      'mediumDescription' => array(
+        'translate' => true,
+        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea' ),
+        'rules' => array( 'maxlength' => '1000' )
       )
     );
 

@@ -36,10 +36,11 @@ class AdminViewMaster extends View {
     $useraccesscontrol = new UserAccessController();
     $res = true;
     if( !$useraccesscontrol->isLogged() ) {
-      if( $_SERVER['HTTP_X_REQUESTED_WITH'] ){
+      if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] ){
         header("HTTP/1.0 401");
       }
       else {
+        header("HTTP/1.0 403");
         Cogumelo::redirect('/admin/login');
       }
       $res = false;
@@ -47,6 +48,7 @@ class AdminViewMaster extends View {
     else {
       if( !$useraccesscontrol->checkPermissions( 'admin:access', 'admin:full' ) ) {
         $res = false;
+        header("HTTP/1.0 401");
         // Cogumelo::redirect('/403/');
       }
     }
