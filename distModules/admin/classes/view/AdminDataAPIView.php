@@ -49,7 +49,7 @@ class AdminDataAPIView extends View
     $useraccesscontrol = new UserAccessController();
     $access = $useraccesscontrol->checkPermissions( array('category:list', 'category:edit', 'category:delete' ), 'admin:full');
     if(!$access){
-      header("HTTP/1.0 403 Forbidden");
+      header("HTTP/1.0 401");
       header('Content-type: application/json');
       echo '[]';
       exit;
@@ -355,7 +355,7 @@ class AdminDataAPIView extends View
     $useraccesscontrol = new UserAccessController();
     $access = $useraccesscontrol->checkPermissions('starred:list', 'admin:full');
     if(!$access){
-      header("HTTP/1.0 403 Forbidden");
+      header("HTTP/1.0 401 Forbidden");
       header('Content-type: application/json');
       echo '[]';
       exit;
