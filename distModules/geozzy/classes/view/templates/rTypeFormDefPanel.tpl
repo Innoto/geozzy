@@ -2,6 +2,10 @@
 
 {block name="content"}
 
+{if isset($prevContent)}
+  {$prevContent}
+{/if}
+
 {if isset($formFieldsNames)}
   {foreach $formFieldsNames as $name}
     {$res.dataForm.formFieldsArray[$name]}
@@ -10,6 +14,10 @@
 
 {if isset($blockContent)}
   {$blockContent}
+{/if}
+
+{if isset($postContent)}
+  {$postContent}
 {/if}
 
 {/block}{*/content*}
