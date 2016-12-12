@@ -18,6 +18,12 @@ class TaxonomytermModel extends Model {
       'sql'=> '
         ALTER TABLE geozzy_taxonomyterm ADD CONSTRAINT taxgroup_idName UNIQUE (taxgroup, idName);
       '
+    ),
+    array(
+      'version' => 'geozzy#1.8',
+      'sql'=> '
+        {multilang:ALTER TABLE geozzy_taxonomyterm ADD COLUMN mediumDescription_$lang TEXT NULL;}
+      '
     )
   );
 
@@ -36,6 +42,10 @@ class TaxonomytermModel extends Model {
     'name' => array(
       'type' => 'VARCHAR',
       'size' => 100,
+      'multilang' => true
+    ),
+    'mediumDescription' => array(
+      'type' => 'TEXT',
       'multilang' => true
     ),
     'parent' => array(
