@@ -182,3 +182,14 @@ $geozzyTopicsInfo = array(
     'weight' => 1
   )
 );
+
+
+class geozzyTopicsTableExtras {
+  public function probasTopic( $tableObj ) {
+
+  }
+
+  public function probasTopic( $tableObj ) {
+
+  }
+}
