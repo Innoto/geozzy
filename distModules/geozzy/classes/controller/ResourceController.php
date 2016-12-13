@@ -1299,7 +1299,7 @@ class ResourceController {
     foreach( $form->multilangFieldNames( $fieldName ) as $fieldNameLang ) {
       $url = $form->getFieldValue( $fieldNameLang );
       $error = false;
-      if( $url !== '' ) {
+      if( $url !== null && $url !== '' ) {
         $url = $this->sanitizeUrl( $url );
 
         if( strpos( $url, '/' ) !== 0 ) {
