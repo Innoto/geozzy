@@ -98,14 +98,18 @@ class RTUtilsController {
           $tax['name_'.$langKey] = $name;
         }
         unset($tax['name']);
+
         $taxgroup = new TaxonomygroupModel( $tax );
         $taxgroup->save();
-        if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
+
+        $idByIdName = [];
+        $weight = 10;
+
+        if( isset($tax['initialTerms']) && count( $tax['initialTerms'] ) > 0 ) {
           foreach( $tax['initialTerms'] as $term ) {
             $term['taxgroup'] = $taxgroup->getter('id');
 
             if( isset( $term['icon'] ) ) {
-
               $iconPath = ModuleController::getRealFilePath( 'classes/'.$term['icon'] , $this->moduleClass );
 
               $iconPathSplit = explode('/',$iconPath);
@@ -116,20 +120,27 @@ class RTUtilsController {
               else{
                 unset( $term['icon'] );
               }
-
             }
-
 
             foreach( $term['name'] as $langKey => $name ) {
               $term['name_'.$langKey] = $name;
             }
             unset($term['name']);
+
+            if( isset( $term['parentIdName'] ) && isset( $idByIdName[ $term['parentIdName'] ] ) ) {
+              $term['parent'] = $idByIdName[ $term['parentIdName'] ];
+              unset( $term['parentIdName'] );
+            }
+
+            $term['weight'] = $weight;
+            $weight += 10;
+
             $taxterm = new TaxonomytermModel( $term );
             $taxterm->save();
+
+            $idByIdName[ $term['idName'] ] = $taxterm->getter('id');
           }
-
         }
-
       }
     }
   }
@@ -165,7 +176,7 @@ class RTUtilsController {
   }
 
 
-  /*
+/*
   static public function addResourceTypes( $rtArray ) {
     if( count( $rtArray ) > 0 ) {
       foreach( $rtArray as $key => $rt ) {
@@ -178,9 +189,8 @@ class RTUtilsController {
       }
     }
   }
-  */
 
-/*
+
   static public function getAllCategories( $rtArray ) {
     $returnCategories = array();
 
