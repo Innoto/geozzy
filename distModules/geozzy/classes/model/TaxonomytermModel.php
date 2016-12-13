@@ -6,10 +6,6 @@ Cogumelo::load('coreModel/Model.php');
 class TaxonomytermModel extends Model {
 
   // multiple unique constrait
-
-
-
-
   var $deploySQL = array(
     // All Times
     array(

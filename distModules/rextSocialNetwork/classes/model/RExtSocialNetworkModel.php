@@ -5,6 +5,17 @@ Cogumelo::load( 'coreModel/Model.php' );
 
 class RExtSocialNetworkModel extends Model {
 
+  var $deploySQL = array(
+
+    array(
+      'version' => 'rextSocialNetwork#1.1',
+      'sql'=> '
+        {multilang:ALTER TABLE geozzy_resource_rext_socialnetwork ADD COLUMN textGplus_$lang VARCHAR(2000) default NULL;}
+        ALTER TABLE geozzy_resource_rext_socialnetwork ADD COLUMN activeGplus INT default 0;
+      '
+    )
+  );
+
   static $tableName = 'geozzy_resource_rext_socialnetwork';
   static $cols = array(
     'id' => array(
@@ -21,6 +32,14 @@ class RExtSocialNetworkModel extends Model {
       'type' => 'INT'
     ),
     'textFb' => array(
+      'type' => 'VARCHAR',
+      'size' => 2000,
+      'multilang' => true
+    ),
+    'activeGplus' => array(
+      'type' => 'INT'
+    ),
+    'textGplus' => array(
       'type' => 'VARCHAR',
       'size' => 2000,
       'multilang' => true
