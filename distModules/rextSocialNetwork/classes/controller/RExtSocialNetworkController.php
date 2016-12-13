@@ -61,6 +61,9 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       ),
       'activeTwitter' => array(
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activate share on twitter') ))
+      ),
+      'activeGplus' => array(
+        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activate share on Google+') ))
       )
     );
 
@@ -78,6 +81,10 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       $fieldsInfo3['textTwitter_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key,
         'label' => __( 'Text to share on twitter' ), 'type' => 'textarea',
         'placeholder' => $i18nCtrl->getLangTranslation('I liked this place: #TITLE# via #URL#', $lang['i18n']) ),
+        'rules' => array( 'maxlength' => '2000' ));
+      $fieldsInfo3['textGplus_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key,
+        'label' => __( 'Text to share on Google+' ), 'type' => 'textarea',
+        'placeholder' => $i18nCtrl->getLangTranslation('You should visit #TITLE#. Seen in #URL#', $lang['i18n']) ),
         'rules' => array( 'maxlength' => '2000' ));
 
     }
@@ -139,10 +146,11 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     $templates = $formBlockInfo['template'];
 
     $templates['basic'] = new Template();
-    $templates['basic']->setTpl( 'rExtFormBasic.tpl', 'rextSocialNetwork' );
-    $templates['basic']->assign( 'rExt', $formBlockInfo );
+    $templates['basic']->setTpl('rExtFormBasic.tpl', 'rextSocialNetwork' );
+    $templates['basic']->assign('rExt', $formBlockInfo );
     $templates['basic']->assign('textFb', $form->multilangFieldNames( 'rExtSocialNetwork_textFb' ));
     $templates['basic']->assign('textTwitter', $form->multilangFieldNames( 'rExtSocialNetwork_textTwitter' ));
+    //$templates['basic']->assign('textGplus', $form->multilangFieldNames( 'rExtSocialNetwork_textGplus' ));
 
     $formBlockInfo['template'] = $templates;
 
@@ -182,15 +190,25 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
         }
       }
       if (isset($valuesArray['activeTwitter'])){
-        $twitterFb = $form->multilangFieldNames( 'textTwitter' );
-        foreach( $twitterFb as $text ) {
+        $textTwitter = $form->multilangFieldNames( 'textTwitter' );
+        foreach( $textTwitter as $text ) {
           if( $valuesArray[$text]=="" ) {
             $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
             $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
           }
         }
       }
-
+/*
+      if (isset($valuesArray['activeGplus'])){
+        $textGplus = $form->multilangFieldNames( 'textGplus' );
+        foreach( $textGplus as $text ) {
+          if( $valuesArray[$text]=="" ) {
+            $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
+            $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
+          }
+        }
+      }
+*/
       $rExtModel = new RExtSocialNetworkModel( $valuesArray );
 
       if( $rExtModel === false ) {
@@ -234,6 +252,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
         SITE_HOST.$this->defResCtrl->resData['urlAlias']
       );
       $rExtViewBlockInfo['data'] = str_replace( $from, $to, $rExtViewBlockInfo['data'] );
+      $rExtViewBlockInfo['data']['urlAlias'] = $this->defResCtrl->resData['urlAlias'];
 
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $template->setTpl( 'rExtViewBlock.tpl', 'rextSocialNetwork' );
