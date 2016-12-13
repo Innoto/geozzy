@@ -127,6 +127,13 @@ class RTUtilsController {
             }
             unset($term['name']);
 
+            if( isset( $term['mediumDescription'] ) ) {
+              foreach( $term['mediumDescription'] as $langKey => $name ) {
+                $term['mediumDescription_'.$langKey] = $name;
+              }
+              unset($term['mediumDescription']);
+            }
+
             if( isset( $term['parentIdName'] ) && isset( $idByIdName[ $term['parentIdName'] ] ) ) {
               $term['parent'] = $idByIdName[ $term['parentIdName'] ];
               unset( $term['parentIdName'] );
