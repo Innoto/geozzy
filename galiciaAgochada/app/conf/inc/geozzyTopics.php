@@ -185,11 +185,28 @@ $geozzyTopicsInfo = array(
 
 
 class geozzyTopicsTableExtras {
-  public function probasTopic( $tableObj ) {
+  public function AloxamentoConEncanto( $urlParamsList,  $tabla ) {
 
+
+    $topicId = $urlParamsList['topic'];
+    $resourcetype =  new ResourcetypeModel();
+    $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
+
+    $tiposArray = array();
+    foreach ($resourcetypelist as $typeId => $type){
+      $tiposArray[$typeId] = $typeId;
+    }
+
+
+    $filterByRtypeOpts = [];
+    foreach ($resourcetypelist as $typeId => $type){
+      $filterByRtypeOpts[$typeId] = $type->getter('name');
+    }
+    $filterByRtypeOpts['*'] = __('All');
+
+    //$tabla->setActionMethod(__('DeletOOO'), 'delete', 'listitems(array("filters" => array("id" => $rowId)))->fetch()->delete()');
+    $tabla->setExtraFilter( 'times',  'combo', __('Published'), $filterByRtypeOpts, '*' );
+    return $tabla;
   }
 
-  public function probasTopic( $tableObj ) {
-
-  }
 }
