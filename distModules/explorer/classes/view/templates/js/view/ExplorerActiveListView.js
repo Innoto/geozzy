@@ -111,7 +111,6 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
         }
       });
 
-
       var minJSON = that.parentExplorer.resourceMinimalList.get( e ).toJSON();
       var partJSON = that.parentExplorer.resourcePartialList.get( e ).toJSON();
 
@@ -142,7 +141,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
   onRenderComplete: function onRenderComplete() {
     //console.log( 'geozzy.explorerComponents.activeListView.onRenderComplete()' );
-    if( typeof geozzy.rExtFavouriteController.setBinds === 'function' ) {
+    if( typeof geozzy.rExtFavouriteController !='undefined'  && typeof geozzy.rExtFavouriteController.setBinds === 'function' ) {
       $( '.rExtFavouriteHidden' ).css( 'display', 'inline-block' ).removeClass( 'rExtFavouriteHidden' );
       geozzy.rExtFavouriteController.setBindsAndGetStatus();
     }

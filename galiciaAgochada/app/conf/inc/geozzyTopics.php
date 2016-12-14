@@ -182,3 +182,38 @@ $geozzyTopicsInfo = array(
     'weight' => 1
   )
 );
+
+
+class geozzyTopicsTableExtras {
+  public function AloxamentoConEncanto( $urlParamsList,  $tabla ) {
+
+/*
+    $topicId = $urlParamsList['topic'];
+    $resourcetype =  new ResourcetypeModel();
+    $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
+
+    $tiposArray = array();
+    foreach ($resourcetypelist as $typeId => $type){
+      $tiposArray[$typeId] = $typeId;
+    }
+
+
+    $filterByRtypeOpts = [];
+    foreach ($resourcetypelist as $typeId => $type){
+      $filterByRtypeOpts[$typeId] = $type->getter('name');
+    }
+    $filterByRtypeOpts['*'] = __('All');
+
+
+    $tabla->setExtraFilter( 'times',  'combo', __('Published'), $filterByRtypeOpts, '*' );
+*/
+
+    //$tabla->setCol('id', 'REFERENCIA');
+    $tabla->setColClasses('id', 'hidden-xs');
+    $tabla->setColClasses('rTypeId', 'hidden-xs');
+    //$tabla->unsetCol('published');
+    //$tabla->unsetCol('rTypeId');
+    return $tabla;
+  }
+
+}
