@@ -42,7 +42,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
 
 
     $this->template->assign( 'headTitle', __('Create and add resources') );
-    $this->template->assign( 'headActions', '<a href="/admin#resourceintopic/list/'.$topicId.'" class="btn btn-default"> '.__('Return').'</a>
+    $this->template->assign( 'headActions', '<a href="/admin#topic/'.$topicId.'" class="btn btn-default"> '.__('Return').'</a>
       <div class="btn-group assignResource AdminViewResourceOutTopic">
         <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>
@@ -52,7 +52,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
       <div class="btn btn-primary assignResource btnAssign"> '.__('Assign selected').'</div>'
     );
 
-    $this->template->assign( 'footerActions', '<a href="/admin#resourceintopic/list/'.$topicId.'" class="btn btn-default"> '.__('Return').'</a>
+    $this->template->assign( 'footerActions', '<a href="/admin#topic/'.$topicId.'" class="btn btn-default"> '.__('Return').'</a>
       <div class="btn-group assignResource">
         <button type="button" class="btn btn-default dropdown-toggle btnCreate" data-toggle="dropdown" aria-expanded="false">
           '.__('Crear').' <span class="caret"></span>
@@ -66,7 +66,7 @@ class AdminViewResourceOutTopic extends AdminViewMaster {
 
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
-    $panel = $this->getPanelBlock( '<ul style="list-style:none;"><li>__(Create a new resource)</li><li>Working with resource types)</li><li>Assign to this topic)</li></ul>', __('Assign resources: howto') );
+    $panel = $this->getPanelBlock( '<ul style="list-style:none;"><li>'. __("Create a new resource") .'</li><li>'. __("Working with resource types") .'</li><li>'. __("Assign to this topic") .'</li></ul>'. __("Assign resources: howto")  );
     $this->template->addToFragment( 'col4', $panel );
     $this->template->exec();
   }
