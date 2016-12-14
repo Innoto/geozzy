@@ -109,7 +109,9 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     // Nome das columnas
     $tabla->setCol('id', 'ID');
+    $tabla->setColClasses('id', 'hidden-xs'); // hide id in mobile version
     $tabla->setCol('rTypeId', __('Type'));
+    $tabla->setColClasses('rTypeId', 'hidden-xs'); // hide id rtypeId mobile version
     $tabla->setCol('title_'.Cogumelo::getSetupValue( 'lang:default' ), __('Title'));
     $tabla->setCol('published', __('Published'));
 
