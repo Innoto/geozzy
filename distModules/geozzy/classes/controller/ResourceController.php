@@ -828,12 +828,16 @@ class ResourceController {
       if( !$optText || $optText === '' ) {
         $optText = $taxTerm->getter( 'name', Cogumelo::getSetupValue( 'lang:default' ));
       }
-      $options[ $taxTerm->getter('id') ] = array(
+      $taxTermId = $taxTerm->getter('id');
+      $options[ $taxTermId ] = [
         'text' => $optText,
+        'value' => $taxTerm->getter('id'),
         'data-term-icon' => $taxTerm->getter('icon'),
-        'data-term-idname' => $taxTerm->getter('idName'),
-        'value' => $taxTerm->getter('id')
-      );
+        'data-term-idname' => $taxTerm->getter('idName')
+      ];
+      if( $taxTerm->getter('parent') ) {
+        $options[ $taxTermId ]['data-term-parent'] = $taxTerm->getter('parent');
+      }
     }
 
     return $options;
