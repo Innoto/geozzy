@@ -135,6 +135,27 @@ class AdminViewResourceInTopic extends AdminViewMaster
       $tabla->colRule('rTypeId', '#'.$id.'#', $type->getter('name'));
     }
 
+
+
+    // Class must exist in configuration file: app/conf/inc/geozzyTopics.php
+    require_once('conf/inc/geozzyTopics.php');
+
+    if( class_exists('geozzyTopicsTableExtras') ) {
+
+      // now, looking for method called with same name as topic idName
+      $topicmodel =  new TopicModel();
+      $topic = $topicmodel->listItems(array("filters" => array("id" => $topicId)))->fetch();
+
+      $geozzyTopicsTableExtrasInstance =  new geozzyTopicsTableExtras();
+
+      if( method_exists ( $geozzyTopicsTableExtrasInstance , $topic->getter('idName') ) ) {
+        $table = $geozzyTopicsTableExtrasInstance->{ $topic->getter('idName') }( $urlParamsList, $tabla);
+      }
+
+    }
+
+
+
     // imprimimos o JSON da taboa
     $tabla->exec();
   }
