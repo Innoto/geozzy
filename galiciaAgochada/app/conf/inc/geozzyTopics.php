@@ -15,13 +15,6 @@ $geozzyTopicsInfo = array(
         'weight' => 3
       )
     ),
-    'table' => array(
-      'actions' => array(
-        'viewHtml' => 'auto',
-        'action' => 'auto'
-      ),
-    ),
-    'taxgroup' => 12,
     'icon' => '',
     'weight' => 1
   ),
@@ -39,13 +32,6 @@ $geozzyTopicsInfo = array(
         'weight' => 1
       )
     ),
-    'table' => array(
-      'actions' => array(
-        'viewHtml' => 'auto',
-        'action' => 'auto'
-      ),
-    ),
-    'taxgroup' => 12,
     'icon' => '',
     'weight' => 1
   ),
@@ -66,13 +52,6 @@ $geozzyTopicsInfo = array(
         'weight' => 2
       )
     ),
-    'table' => array(
-      'actions' => array(
-        'viewHtml' => 'auto',
-        'action' => 'auto'
-      ),
-    ),
-    'taxgroup' => 12,
     'icon' => '',
     'weight' => 1
   ),
@@ -87,13 +66,6 @@ $geozzyTopicsInfo = array(
         'weight' => 2
       )
     ),
-    'table' => array(
-      'actions' => array(
-        'viewHtml' => 'auto',
-        'action' => 'auto'
-      ),
-    ),
-    'taxgroup' => 12,
     'icon' => '',
     'weight' => 1
   ),
@@ -108,13 +80,6 @@ $geozzyTopicsInfo = array(
         'weight' => 1
       )
     ),
-    'table' => array(
-      'actions' => array(
-        'viewHtml' => 'auto',
-        'action' => 'auto'
-      ),
-    ),
-    'taxgroup' => 12,
     'icon' => '',
     'weight' => 1
   ),
@@ -129,13 +94,6 @@ $geozzyTopicsInfo = array(
         'weight' => 1
       )
     ),
-    'table' => array(
-      'actions' => array(
-        'viewHtml' => 'auto',
-        'action' => 'auto'
-      ),
-    ),
-    'taxgroup' => 12,
     'icon' => '',
     'weight' => 1
   ),
@@ -150,13 +108,6 @@ $geozzyTopicsInfo = array(
         'weight' => 2
       )
     ),
-    'table' => array(
-      'actions' => array(
-        'viewHtml' => 'auto',
-        'action' => 'auto'
-      ),
-    ),
-    'taxgroup' => 12,
     'icon' => '',
     'weight' => 1
   ),
@@ -171,21 +122,53 @@ $geozzyTopicsInfo = array(
         'weight' => 2
       )
     ),
-    'table' => array(
-      'actions' => array(
-        'viewHtml' => 'auto',
-        'action' => 'auto'
+    'taxonomies' => array(
+      'idName'=> 'estados_participacion',
+      'name' => array(
+        'es' => 'Estados de participacion',
+        'en' => 'Participation states',
+        'gl' => 'Estados de participación'
+      ),
+      'editable' => 1,
+      'nestable' => 0,
+      'sortable' => 1,
+      'initialTerms' => array(
+        array(
+          'idName'=>'pendiente',
+          'name' => array(
+            'es' => 'Pendiente',
+            'en' => 'Pending',
+            'gl' => 'Pendente'
+          )
+        ),
+        array(
+          'idName'=>'aceptado',
+          'name' => array(
+            'es' => 'Aceptado',
+            'en' => 'Accepted',
+            'gl' => 'Aceptado'
+          )
+        ),
+        array(
+          'idName'=>'descartado',
+          'name' => array(
+            'es' => 'Descartado',
+            'en' => 'Discarded',
+            'gl' => 'Descartado'
+          )
+        )
       ),
     ),
-    'taxgroup' => 12,
+
     'icon' => '',
     'weight' => 1
   )
 );
 
 
+
 class geozzyTopicsTableExtras {
-  public function AloxamentoConEncanto( $urlParamsList,  $tabla ) {
+  public function AutenticaGastronomia( $urlParamsList,  $tabla ) {
 
 /*
     $topicId = $urlParamsList['topic'];
