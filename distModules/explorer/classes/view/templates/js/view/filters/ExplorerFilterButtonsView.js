@@ -11,13 +11,21 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   },
 
   isTaxonomyFilter: true,
-  template: _.template( geozzy.explorerComponents.filterButtonsViewTemplate ),
-
-  templateOption: _.template( geozzy.explorerComponents.filterButtonsViewOption  ),
+  template: false,
+  templateOption: false,
 
   initialize: function( opts ) {
     var that = this;
-    that.options = $.extend(true, {}, that.options, opts);
+
+    var options = {
+      template: geozzy.explorerComponents.filterButtonsViewTemplate,
+      templateOption: geozzy.explorerComponents.filterButtonsViewOption
+    };
+
+    that.options = $.extend(true, {}, options, opts);
+
+    that.template = _.template( that.options.template );
+    that.templateOption = _.template( that.options.templateOption  );
   },
 
   filterAction: function( model ) {
