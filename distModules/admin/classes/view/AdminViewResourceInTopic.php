@@ -54,7 +54,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $topicId = $urlParamsList['topic'];
 
     table::autoIncludes();
-    $resource =  new ResourceModel();
+    $resource =  new ResourceTopicViewModel();
     $resourcetype =  new ResourcetypeModel();
 
     $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
@@ -93,11 +93,16 @@ class AdminViewResourceInTopic extends AdminViewMaster
     if($assign){
       $tabla->setActionMethod(__('Unasign'), 'unasign', 'deleteTopicRelation('.$topicId.', $rowId)');
     }
+
+
+
     $delete = $useraccesscontrol->checkPermissions( array('resource:delete'), 'admin:full');
     if($delete){
       $tabla->setActionMethod(__('Delete'), 'delete', 'listitems(array("filters" => array("id" => $rowId)))->fetch()->delete()');
     }
 
+    // separador
+    $tabla->setActionSeparator();
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
@@ -111,21 +116,21 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setCol('id', 'ID');
     $tabla->setColClasses('id', 'hidden-xs'); // hide id in mobile version
     $tabla->setCol('rTypeId', __('Type'));
-    $tabla->setColClasses('rTypeId', 'hidden-xs'); // hide id rtypeId mobile version
+    $tabla->setColClasses('rTypeId', 'hidden-xs'); // hide id rtype mobile version
     $tabla->setCol('title_'.Cogumelo::getSetupValue( 'lang:default' ), __('Title'));
     $tabla->setCol('published', __('Published'));
 
     // Filtrar por temática
     $userSession = $useraccesscontrol->getSessiondata();
     if($userSession && in_array('resource:mylist', $userSession['permissions'])){
-      $filters = array( 'ResourceTopicModel.topic'=> $topicId, 'inRtype'=>$tiposArray, 'user' => $userSession['data']['id'] );
+      $filters = array( 'topic'=> $topicId, 'inRtype'=>$tiposArray, 'user' => $userSession['data']['id'] );
     }else{
-      $filters =  array('ResourceTopicModel.topic'=> $topicId, 'inRtype'=>$tiposArray );
+      $filters =  array('topic'=> $topicId, 'inRtype'=>$tiposArray );
     }
 
     $tabla->setDefaultFilters($filters);
-    $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
-    $tabla->setJoinType('INNER');
+    //$tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
+    //$tabla->setJoinType('INNER');
 
       // Contido especial
     $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
