@@ -1,5 +1,5 @@
 <?php
-
+global $geozzyTopicsInfo;
 $geozzyTopicsInfo = array(
   'PaisaxesEspectaculares' => array(
     'name' => array(

@@ -1,6 +1,6 @@
 <?php
 geozzy::load('model/ResourcetypeModel.php');
-
+require_once( APP_BASE_PATH.'/conf/inc/geozzyTopics.php');
 
 
 class RTUtilsController {
@@ -48,9 +48,10 @@ class RTUtilsController {
   }
 
 
-  public function addRTypeToTopics( $rTypeId, $rTypeIdName ) {
-    include APP_BASE_PATH.'/conf/inc/geozzyTopics.php';
 
+  public function addRTypeToTopics( $rTypeId, $rTypeIdName ) {
+
+    global $geozzyTopicsInfo;
     if( is_array( $geozzyTopicsInfo ) && count( $geozzyTopicsInfo ) > 0 ) {
       foreach( $geozzyTopicsInfo as $topicIdName => $topicInfo ) {
 
@@ -80,6 +81,32 @@ class RTUtilsController {
           );
           $resourcetypeTopicModel = new ResourcetypeTopicModel( $rTypeTopicParams );
           $resourcetypeTopicModel->save();
+
+
+          //
+          // ADD topic taxonomygroup & taxonomyterms
+          if( isset($topicInfo['taxonomies']) ) {
+            $tax = $topicInfo['taxonomies'];
+            foreach( $tax['name'] as $langKey => $name ) {
+              $tax['name_'.$langKey] = $name;
+            }
+            unset($tax['name']);
+            $taxgroup = new TaxonomygroupModel( $tax );
+            $taxgroup->save();
+            if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
+              foreach( $tax['initialTerms'] as $term ) {
+                $term['taxgroup'] = $taxgroup->getter('id');
+
+                foreach( $term['name'] as $langKey => $name ) {
+                   $term['name_'.$langKey] = $name;
+                }
+                unset($term['name']);
+                $taxterm = new TaxonomytermModel( $term );
+                $taxterm->save();
+              }
+            }
+          }
+
         }
       }
     }
