@@ -13,6 +13,9 @@ class ResourceTopicViewModel extends Model {
       'primarykey' => true,
       'autoincrement' => true
     ),
+    'topicTaxonomyterm' => array(
+      'type' => 'INT'
+    ),
     'idName' => array(
       'type' => 'VARCHAR',
       'size' => 100
@@ -118,15 +121,14 @@ class ResourceTopicViewModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'admin#1.1',
+      'version' => 'admin#1.4',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS resource_topic_view;
         CREATE VIEW resource_topic_view AS
           SELECT
-          geozzy_resource.id as id,
-          geozzy_resource_topic.id as topic,
-          geozzy_resource_topic.taxonomyterm as topic_taxonomyterm,
+          geozzy_resource_topic.id as id,
+          geozzy_resource_topic.taxonomyterm as topicTaxonomyterm,
           geozzy_resource.idName as idName,
           geozzy_resource.rTypeId as  rTypeId,
           geozzy_resource.user as user,
@@ -162,5 +164,12 @@ class ResourceTopicViewModel extends Model {
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
+  }
+
+  public function updateTopicTaxonomy( $id, $taxonomyTermId) {
+
+    $topic = (new ResourceTopicModel())->listItems(array("filters" => array("id" =>  $id )))->fetch();
+    $topic->setter('taxonomyterm', $taxonomyTermId );
+    $topic->save();
   }
 }

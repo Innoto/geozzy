@@ -122,12 +122,13 @@ $geozzyTopicsInfo = array(
         'weight' => 2
       )
     ),
+    'defaultTaxonomytermIdName' => 'pendiente',
     'taxonomies' => array(
       'idName'=> 'estados_participacion',
       'name' => array(
-        'es' => 'Estados de participacion',
-        'en' => 'Participation states',
-        'gl' => 'Estados de participación'
+        'es' => 'Estado',
+        'en' => 'State',
+        'gl' => 'Estado'
       ),
       'editable' => 1,
       'nestable' => 0,

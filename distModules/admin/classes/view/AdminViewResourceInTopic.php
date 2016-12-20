@@ -35,6 +35,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $topic = $topicmodel->listItems(array("filters" => array("id" => $topicId)));
     $name = $topic->fetch()->getter('name', Cogumelo::getSetupValue( 'lang:default' ));
 
+
     $this->template->addToFragment( 'col12', $template );
     $this->template->assign( 'headTitle', $name );
     $assign = $useraccesscontrol->checkPermissions( array('topic:assign'), 'admin:full');
@@ -101,8 +102,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
       $tabla->setActionMethod(__('Delete'), 'delete', 'listitems(array("filters" => array("id" => $rowId)))->fetch()->delete()');
     }
 
-    // separador
-    $tabla->setActionSeparator();
+
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
@@ -132,7 +132,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     //$tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
     //$tabla->setJoinType('INNER');
 
-      // Contido especial
+    // Contido especial
     $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
     $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
 
@@ -144,22 +144,49 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
 
 
+    // Topic have taxonomy states
+    $topicmodel =  new TopicModel();
+    $topic = $topicmodel->listItems(array("filters" => array("id" => $topicId)))->fetch();
+
+    if( $topic->getter('taxgroup') ) {
+
+      $taxonomyterms = (new TaxonomytermModel())->listItems(array("filters" => array("taxgroup" =>  $topic->getter('taxgroup') )))->fetchAll();
+      $taxonomygroup = (new TaxonomygroupModel())->listItems(array("filters" => array("id" =>  $topic->getter('taxgroup') )))->fetch();
+
+      $taxonomygroupName = $taxonomygroup->getter('name', Cogumelo::getSetupValue( 'lang:default' ));
+
+      $tabla->setCol('topicTaxonomyterm', $taxonomygroupName );
+      $tabla->setColClasses('topicTaxonomyterm', 'hidden-sm'); // hide in medium screen version
+
+      // Contido especial
+      if( is_array($taxonomyterms) && count($taxonomyterms) > 0 ) {
+        // separador
+        $tabla->setActionSeparator();
+
+        foreach($taxonomyterms as $term) {
+          $tabla->colRule('topicTaxonomyterm', '#'.$term->getter('id').'#', $term->getter('name', Cogumelo::getSetupValue( 'lang:default' ) ));
+          $tabla->setActionMethod(
+            $taxonomygroupName. ' ('.$term->getter('name', Cogumelo::getSetupValue( 'lang:default' )). ')' ,
+            'changeTaxonomytermTo'.$term->getter('idName'),
+            'updateTopicTaxonomy( $rowId, '.$term->getter('id').')'
+          );
+        }
+      }
+
+    }
+
+
     // Class must exist in configuration file: app/conf/inc/geozzyTopics.php
     require_once('conf/inc/geozzyTopics.php');
-
     if( class_exists('geozzyTopicsTableExtras') ) {
-
       // now, looking for method called with same name as topic idName
-      $topicmodel =  new TopicModel();
-      $topic = $topicmodel->listItems(array("filters" => array("id" => $topicId)))->fetch();
-
       $geozzyTopicsTableExtrasInstance =  new geozzyTopicsTableExtras();
 
       if( method_exists ( $geozzyTopicsTableExtrasInstance , $topic->getter('idName') ) ) {
         $table = $geozzyTopicsTableExtrasInstance->{ $topic->getter('idName') }( $urlParamsList, $tabla);
       }
-
     }
+
 
 
 

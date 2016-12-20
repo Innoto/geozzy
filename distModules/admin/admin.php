@@ -6,7 +6,7 @@ Cogumelo::load("coreController/Module.php");
 class admin extends Module {
 
   public $name = "admin";
-  public $version = 1.1;
+  public $version = 1.4;
 
   public $dependences = array(
     array(
