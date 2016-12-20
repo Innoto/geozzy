@@ -82,7 +82,6 @@ class RTUtilsController {
           $resourcetypeTopicModel = new ResourcetypeTopicModel( $rTypeTopicParams );
           $resourcetypeTopicModel->save();
 
-
           //
           // ADD topic taxonomygroup & taxonomyterms
           if( isset($topicInfo['taxonomies']) ) {
@@ -93,6 +92,7 @@ class RTUtilsController {
             unset($tax['name']);
             $taxgroup = new TaxonomygroupModel( $tax );
             $taxgroup->save();
+
             if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
               foreach( $tax['initialTerms'] as $term ) {
                 $term['taxgroup'] = $taxgroup->getter('id');
@@ -105,7 +105,13 @@ class RTUtilsController {
                 $taxterm->save();
               }
             }
+
+            // second save of topic taxgroup
+            $topicObj->setter( 'taxgroup',  $taxgroup->getter('id') );
+            $topicObj->save();
           }
+
+
 
         }
       }
