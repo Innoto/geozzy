@@ -129,6 +129,10 @@ class ResourceModel extends Model {
   static $extraFilters = array(
     'find' => " ( UPPER( geozzy_resource.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource.id = ? )",
     'nottopic' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+    'intopic' => '  geozzy_resource.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+
+    'inTopicTaxonomyterm' => '  geozzy_resource.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.taxonomyterm=? ) ',
+
     'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
     'inRtype' => ' geozzy_resource.rTypeId IN (?) ',
     'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
@@ -353,6 +357,35 @@ class ResourceModel extends Model {
 
     return $dependences;
   }
+
+
+
+    public function updateTopicTaxonomy( $idResource, $idTopic , $taxonomyTermId) {
+
+      $topic = (new ResourceTopicModel())->listItems(
+        array("filters" => array("resource" =>  $idResource, "topic" => $idTopic ))
+      )->fetch();
+
+      $topic->setter('taxonomyterm', $taxonomyTermId );
+      $topic->save();
+    }
+
+    public function setPublishedStatus( $idResource, $published) {
+
+      $resource = (new ResourceModel())->listItems(
+        array("filters" => array("id" =>  $idResource ))
+      )->fetch();
+
+      $resource->setter('published', $published );
+
+      $resource->save();
+    }
+
+
+    public function deleteResource( $resourceId ) {
+      $resource = (new ResourceTopicModel())->listItems( array('filters' => array('id' => $resourceId)))->fetch();
+      $resource->delete();
+    }
 
 
 }
