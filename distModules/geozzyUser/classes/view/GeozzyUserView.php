@@ -299,7 +299,7 @@ class GeozzyUserView extends View
         error_log( '$userData '.print_r( $userData, true ) );
         error_log( '$hash '.print_r( $hash, true ) );
       }
-      
+
       $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );
       Cogumelo::redirect( $urlAlias );
     }
@@ -436,6 +436,7 @@ class GeozzyUserView extends View
     $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.userRouter.successProfileForm();' );
 
     $fields = $this->commonFields();
+    unset($fields['legal']);
     $fields['submit']['params']['value'] = __('Send');
     $form->definitionsToForm( $fields );
 
