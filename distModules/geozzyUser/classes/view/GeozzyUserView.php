@@ -97,7 +97,7 @@ class GeozzyUserView extends View
       ),
       'legal' => array(
         'params' => array( 'type' => 'checkbox', 'name' => 'legal',
-          'options' => [ '1' => __( "Acepto las" ).'<a class="gzzAppPrivacidad"> '.__("condiciones de servicio y la política de privacidad").'</a>' ) ]
+          'options' => [ '1' => __( "Acepto las" ).'<a class="gzzAppPrivacidad"> '.__("condiciones de servicio y la política de privacidad").'</a>' ]
         ),
         'rules' => [ 'required' => true ]
       ),
