@@ -13,6 +13,9 @@ class ResourceTopicViewModel extends Model {
       'primarykey' => true,
       'autoincrement' => true
     ),
+    'resourceTopicId' => array(
+      'type' => 'INT'
+    ),
     'topicTaxonomyterm' => array(
       'type' => 'INT'
     ),
@@ -103,6 +106,7 @@ class ResourceTopicViewModel extends Model {
   static $extraFilters = array(
     'find' => " ( UPPER( geozzy_resource.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource.id = ? )",
     'nottopic' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+
     'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
     'inRtype' => ' rTypeId IN (?) ',
     'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
@@ -121,13 +125,14 @@ class ResourceTopicViewModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'admin#1.4',
+      'version' => 'admin#1.7',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS resource_topic_view;
         CREATE VIEW resource_topic_view AS
           SELECT
-          geozzy_resource_topic.id as id,
+          geozzy_resource.id as id,
+          geozzy_resource_topic.topic as resourceTopicId,
           geozzy_resource_topic.taxonomyterm as topicTaxonomyterm,
           geozzy_resource.idName as idName,
           geozzy_resource.rTypeId as  rTypeId,

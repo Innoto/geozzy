@@ -123,9 +123,9 @@ class AdminViewResourceInTopic extends AdminViewMaster
     // Filtrar por temática
     $userSession = $useraccesscontrol->getSessiondata();
     if($userSession && in_array('resource:mylist', $userSession['permissions'])){
-      $filters = array( 'topic'=> $topicId, 'inRtype'=>$tiposArray, 'user' => $userSession['data']['id'] );
+      $filters = array( 'resourceTopicId'=> $topicId, 'inRtype'=>$tiposArray, 'user' => $userSession['data']['id'] );
     }else{
-      $filters =  array('topic'=> $topicId, 'inRtype'=>$tiposArray );
+      $filters =  array('resourceTopicId'=> $topicId, 'inRtype'=>$tiposArray );
     }
 
     $tabla->setDefaultFilters($filters);
@@ -162,7 +162,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
       if( is_array($taxonomyterms) && count($taxonomyterms) > 0 ) {
         // separador
         $tabla->setActionSeparator();
-
+        $filterStates = array();
         foreach($taxonomyterms as $term) {
           $tabla->colRule('topicTaxonomyterm', '#'.$term->getter('id').'#', $term->getter('name', Cogumelo::getSetupValue( 'lang:default' ) ));
           $tabla->setActionMethod(
@@ -170,7 +170,11 @@ class AdminViewResourceInTopic extends AdminViewMaster
             'changeTaxonomytermTo'.$term->getter('idName'),
             'updateTopicTaxonomy( $rowId, '.$term->getter('id').')'
           );
+          $filterStates[$term->getter('id')] = $term->getter('name', Cogumelo::getSetupValue( 'lang:default' ));
         }
+
+        $filterStates['*'] = __('All');
+        $tabla->setTabs('topicTaxonomyterm', $filterStates , '*');
       }
 
     }
