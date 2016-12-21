@@ -181,7 +181,7 @@ class ResourceTopicViewModel extends Model {
     $topic->save();
   }
 
-  public function setPublished( $idResource, $published) {
+  public function setPublishedStatus( $idResource, $published) {
 
     $resource = (new ResourceModel())->listItems(
       array("filters" => array("id" =>  $idResource ))
@@ -190,5 +190,27 @@ class ResourceTopicViewModel extends Model {
     $resource->setter('published', $published );
 
     $resource->save();
+  }
+
+  public function deleteTopicRelation( $topicId, $resourceId ) {
+    $resourcetopic =  new ResourceTopicModel();
+    $resourceRel = $resourcetopic->listItems( array('filters' => array('resource' => $resourceId, 'topic'=> $topicId)))->fetch();
+
+    $deleted = false;
+    if ($resourceRel){
+      $deleted = $resourceRel->delete();
+    }
+
+    if ($deleted){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  public function deleteResource( $resourceId ) {
+    $resource = (new ResourceTopicModel())->listItems( array('filters' => array('id' => $resourceId)))->fetch();
+    $resource->delete();
   }
 }
