@@ -104,7 +104,7 @@ class ResourceTopicViewModel extends Model {
   );
 
   static $extraFilters = array(
-    'find' => " ( UPPER( geozzy_resource.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource.id = ? )",
+    'find' => " ( UPPER( title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR id = ? )",
     'nottopic' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
 
     'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
