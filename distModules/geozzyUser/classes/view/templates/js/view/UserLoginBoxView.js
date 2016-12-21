@@ -19,7 +19,7 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
 
     $('body').append( that.modalTemplate({ 'modalId': 'loginModal', 'modalTitle': 'Login' }) );
     $("#loginModal .modal-body").html( that.userLoginTemplate() );
-    $("#loginModal .modal-body .loginModalForm").load( '/geozzyuser/login' );
+    $("#loginModal .modal-body .loginModalForm").load( '/'+cogumelo.publicConf.C_LANG+'/geozzyuser/login' );
     $("#loginModal").modal({
       'show' : true,
       'keyboard': false,
