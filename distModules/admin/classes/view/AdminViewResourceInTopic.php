@@ -55,7 +55,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $topicId = $urlParamsList['topic'];
 
     table::autoIncludes();
-    $resource =  new ResourceTopicViewModel();
+    $resource =  new ResourceModel();
     $resourcetype =  new ResourcetypeModel();
 
     $resourcetypelist = $resourcetype->listItems( array( 'filters' => array( 'intopic' => $topicId ) ) )->fetchAll();
@@ -112,6 +112,19 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setEachRowUrl('"/admin#resource/edit/id/".$rowId."/topic/'.$topicId.'"');
     $tabla->setNewItemUrl('/admin#resource/create');
 
+
+    // Filtrar por temática
+    $userSession = $useraccesscontrol->getSessiondata();
+    if($userSession && in_array('resource:mylist', $userSession['permissions'])){
+      $filters = array( 'intopic'=> $topicId, 'inRtype'=>$tiposArray, 'user' => $userSession['data']['id'] );
+    }else{
+      $filters =  array('intopic'=> $topicId, 'inRtype'=>$tiposArray );
+    }
+
+    $tabla->setDefaultFilters($filters);
+    $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
+    $tabla->setJoinType('LEFT');
+
     // Nome das columnas
     $tabla->setCol('id', 'ID');
     $tabla->setColClasses('id', 'hidden-xs'); // hide id in mobile version
@@ -119,18 +132,9 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setColClasses('rTypeId', 'hidden-xs'); // hide id rtype mobile version
     $tabla->setCol('title_'.Cogumelo::getSetupValue( 'lang:default' ), __('Title'));
     $tabla->setCol('published', __('Published'));
+    //$tabla->setCol('EatAndDrinkModel.averagePrice', __('PRECI'));
 
-    // Filtrar por temática
-    $userSession = $useraccesscontrol->getSessiondata();
-    if($userSession && in_array('resource:mylist', $userSession['permissions'])){
-      $filters = array( 'resourceTopicId'=> $topicId, 'inRtype'=>$tiposArray, 'user' => $userSession['data']['id'] );
-    }else{
-      $filters =  array('resourceTopicId'=> $topicId, 'inRtype'=>$tiposArray );
-    }
 
-    $tabla->setDefaultFilters($filters);
-    //$tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
-    //$tabla->setJoinType('INNER');
 
     // Contido especial
     $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
@@ -155,8 +159,8 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
       $taxonomygroupName = $taxonomygroup->getter('name', Cogumelo::getSetupValue( 'lang:default' ));
 
-      $tabla->setCol('topicTaxonomyterm', $taxonomygroupName );
-      $tabla->setColClasses('topicTaxonomyterm', 'hidden-sm'); // hide in medium screen version
+      $tabla->setCol('ResourceTopicModel.taxonomyterm', $taxonomygroupName );
+      $tabla->setColClasses('ResourceTopicModel.taxonomyterm', 'hidden-sm'); // hide in medium screen version
 
       // Contido especial
       if( is_array($taxonomyterms) && count($taxonomyterms) > 0 ) {
@@ -164,7 +168,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
         $tabla->setActionSeparator();
         $filterStates = array();
         foreach($taxonomyterms as $term) {
-          $tabla->colRule('topicTaxonomyterm', '#'.$term->getter('id').'#', $term->getter('name', Cogumelo::getSetupValue( 'lang:default' ) ));
+          $tabla->colRule('ResourceTopicModel.taxonomyterm', '#'.$term->getter('id').'#', $term->getter('name', Cogumelo::getSetupValue( 'lang:default' ) ));
           $tabla->setActionMethod(
             $taxonomygroupName. ' ('.$term->getter('name', Cogumelo::getSetupValue( 'lang:default' )). ')' ,
             'changeTaxonomytermTo'.$term->getter('idName'),
@@ -174,7 +178,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
         }
 
         $filterStates['*'] = __('All');
-        $tabla->setTabs('topicTaxonomyterm', $filterStates , '*');
+        $tabla->setTabs('inTopicTaxonomyterm', $filterStates , '*');
       }
 
     }
