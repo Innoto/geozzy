@@ -171,10 +171,24 @@ class ResourceTopicViewModel extends Model {
     parent::__construct( $datarray, $otherRelObj );
   }
 
-  public function updateTopicTaxonomy( $id, $taxonomyTermId) {
+  public function updateTopicTaxonomy( $idResource, $idTopic , $taxonomyTermId) {
 
-    $topic = (new ResourceTopicModel())->listItems(array("filters" => array("id" =>  $id )))->fetch();
+    $topic = (new ResourceTopicModel())->listItems(
+      array("filters" => array("resource" =>  $idResource, "topic" => $idTopic ))
+    )->fetch();
+
     $topic->setter('taxonomyterm', $taxonomyTermId );
     $topic->save();
+  }
+
+  public function setPublished( $idResource, $published) {
+
+    $resource = (new ResourceModel())->listItems(
+      array("filters" => array("id" =>  $idResource ))
+    )->fetch();
+
+    $resource->setter('published', $published );
+
+    $resource->save();
   }
 }

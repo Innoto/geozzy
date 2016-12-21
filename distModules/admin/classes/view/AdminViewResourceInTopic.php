@@ -87,8 +87,8 @@ class AdminViewResourceInTopic extends AdminViewMaster
       // set table Actions
     $publish = $useraccesscontrol->checkPermissions( array('resource:publish'), 'admin:full');
     if($publish){
-      $tabla->setActionMethod(__('Publish'), 'changeStatusPublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>1 ))');
-      $tabla->setActionMethod(__('Unpublish'), 'changeStatusUnpublished', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "published", "changeValue"=>0 ))');
+      $tabla->setActionMethod(__('Publish'), 'changeStatusPublished', 'setPublished( $rowId, 1 )');
+      $tabla->setActionMethod(__('Unpublish'), 'changeStatusUnpublished', 'setPublished( $rowId, 0 )');
     }
     $assign = $useraccesscontrol->checkPermissions( array('topic:assign'), 'admin:full');
     if($assign){
@@ -168,7 +168,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
           $tabla->setActionMethod(
             $taxonomygroupName. ' ('.$term->getter('name', Cogumelo::getSetupValue( 'lang:default' )). ')' ,
             'changeTaxonomytermTo'.$term->getter('idName'),
-            'updateTopicTaxonomy( $rowId, '.$term->getter('id').')'
+            'updateTopicTaxonomy( $rowId, '.$topicId.', '.$term->getter('id').')'
           );
           $filterStates[$term->getter('id')] = $term->getter('name', Cogumelo::getSetupValue( 'lang:default' ));
         }
