@@ -70,9 +70,12 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setTabs('published', array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
     $filterByRtypeOpts = [];
+    $extendedModels = ['ResourceTopicModel'];
     foreach ($resourcetypelist as $typeId => $type){
       $filterByRtypeOpts[$typeId] = $type->getter('name');
+      $extendedModels = array_merge($extendedModels, json_decode($type->getter('relatedModels')));
     }
+
     $filterByRtypeOpts['*'] = __('All');
 
 
@@ -122,7 +125,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     }
 
     $tabla->setDefaultFilters($filters);
-    $tabla->setAffectsDependences( array('ResourceTopicModel') ) ;
+    $tabla->setAffectsDependences( $extendedModels ) ;
     $tabla->setJoinType('LEFT');
 
     // Nome das columnas
@@ -132,7 +135,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
     $tabla->setColClasses('rTypeId', 'hidden-xs'); // hide id rtype mobile version
     $tabla->setCol('title_'.Cogumelo::getSetupValue( 'lang:default' ), __('Title'));
     $tabla->setCol('published', __('Published'));
-    //$tabla->setCol('EatAndDrinkModel.averagePrice', __('PRECI'));
+
 
 
 
