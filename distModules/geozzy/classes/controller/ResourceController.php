@@ -1789,6 +1789,22 @@ class ResourceController {
     }
     return $resData;
   }
+  public function getAllTrData( $objModel ) {
+    $allData = [];
+
+    $defLang = Cogumelo::getSetupValue( 'lang:default' );
+    $rawData = $objModel->getAllData( 'onlydata' ); // Cargamos todos los campos "en bruto"
+
+    foreach( $objModel->getCols() as $fieldName => $fieldInfo ) {
+      $allData[ $fieldName ] = $objModel->getter( $fieldName );
+      // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
+      if( $allData[ $fieldName ] === '' && isset( $rawData[ $fieldName.'_'.$defLang ] ) ) {
+        $allData[ $fieldName ] = $rawData[ $fieldName.'_'.$defLang ];
+      }
+    }
+
+    return $allData;
+  }
 
   public function getResourceThumbnail( $param ) {
     // error_log( 'getResourceThumbnail :'.print_r($param,true));
