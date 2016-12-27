@@ -289,7 +289,10 @@ class GeozzyTaxonomytermView extends View
 
       // $taxterm->save( array( 'affectsDependences' => $affectsDependences ) );
 
-      $taxterm->setter( 'idName', $taxterm->getter('id') );
+      if( empty($taxterm->getter('idName')) ){
+        $taxterm->setter( 'idName', 'term-'.$taxterm->getter('id') );
+      }
+
 
       $taxterm->save();
     }
