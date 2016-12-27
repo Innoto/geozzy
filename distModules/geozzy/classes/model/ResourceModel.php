@@ -383,7 +383,8 @@ class ResourceModel extends Model {
 
 
     public function deleteResource( $resourceId ) {
-      $resource = (new ResourceTopicModel())->listItems( array('filters' => array('id' => $resourceId)))->fetch();
+
+      $resource = (new ResourceModel())->listItems( array('filters' => array('id' => $resourceId)))->fetch();
       $resource->delete();
     }
 

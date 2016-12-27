@@ -102,7 +102,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $delete = $useraccesscontrol->checkPermissions( array('resource:delete'), 'admin:full');
     if($delete){
-      $tabla->setActionMethod(__('Delete'), 'delete', 'deleteResource( $rowId)');
+      $tabla->setActionMethod(__('Delete'), 'delete', 'deleteResource( $rowId )');
     }
 
 
