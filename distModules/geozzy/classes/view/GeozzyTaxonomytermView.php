@@ -64,7 +64,10 @@ class GeozzyTaxonomytermView extends View
         'params' => array( 'type' => 'reserved', 'value' => $request['1'] )
       ),
       'icon' => array(
-        'params' => array( 'type' => 'file', 'placeholder' => __('Upload an image'), 'label' => __('Upload an image'), 'destDir' => TaxonomytermModel::$cols['icon']['uploadDir'])
+        'params' => array( 'type' => 'file', 'placeholder' => __('Upload an image'),
+          'id' => 'taxonomyTermIconFile', 'label' => __('Upload an image'),
+          'destDir' => TaxonomytermModel::$cols['icon']['uploadDir'] ),
+        'rules' => [ 'accept' => 'image/jpeg,image/png,image/svg*', 'maxfilesize' => '2097152' ]
       ),
       'name' => array(
         'translate' => true,
@@ -82,13 +85,11 @@ class GeozzyTaxonomytermView extends View
     $form->setField( 'submit', array( 'type' => 'submit', 'value' => 'Save', 'class' => 'gzzAdminToMove' ) );
 
     /* VALIDATIONS */
-    $form->setValidationRule( 'icon', 'accept', 'image/jpeg,image/png,image/svg*' );
-    //$form->setValidationRule( 'icon', 'required' );
     $form->setValidationRule( 'name_'.$langDefault, 'required' );
 
     if(isset($request[2])){
       $taxtermModel = new TaxonomytermModel();
-      $dataVO = $taxtermModel->listItems( array('filters' => array('id' => $request[2] ), 'affectsDependences' => array( 'FiledataModel')))->fetch();
+      $dataVO = $taxtermModel->listItems( array( 'filters' => [ 'id' => $request[2] ], 'affectsDependences' => [ 'FiledataModel' ] ) )->fetch();
 
       $taxtermData = $dataVO->getAllData();
       $taxtermData = $taxtermData['data'];
