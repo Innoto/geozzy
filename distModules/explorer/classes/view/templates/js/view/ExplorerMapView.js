@@ -537,6 +537,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       }
 
       console.log(mapDistanceToInnerMargin, mapOuterZone);
+      
       // PANTO
       var toMove = that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() ;
       var P = that.coordToPixel( toMove )
