@@ -296,7 +296,7 @@ class ResourceController {
       'content' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Content' ), 'type' => 'textarea', 'htmlEditor' => 'true' ),
-        'rules' => array( 'maxlength' => '15000' )
+        'rules' => array( 'maxlength' => '32000' )
       ),
       'externalUrl' => array(
         'params' => array( 'label' => __( 'External URL' ) ),
