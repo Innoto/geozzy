@@ -110,7 +110,16 @@ class GeozzyCollectionView extends View
       );
     }
 
-    if( array_key_exists('collectionType', $valuesArray ) && $valuesArray['collectionType'] === 'base' ){
+
+    $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':manual' );
+    if( !$setupConf || count($setupConf) === 0 ){
+      $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$valueCollectionType.':manual' );
+      if( !$setupConf || count($setupConf) === 0 ) {
+        $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:default:manual' );
+      }
+    }
+
+    if( in_array("rtypeUrl", $setupConf) ){
       $fieldsInfo['addResourceExterno'] = array(
         'params' => array( 'id' => 'addResourceExternal', 'type' => 'button', 'value' => __( 'Add external link' ))
       );
