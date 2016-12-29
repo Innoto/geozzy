@@ -114,8 +114,8 @@ var AdminView = Backbone.View.extend({
     if( buttonsToMove.size() > 0 ){
       buttonsToMove.each( function() {
         var that = this;
-        var cloneButtonTop = $(this).clone();
-        var cloneButtonBottom = $(this).clone();
+        var cloneButtonTop = $(this).clone(true, true);
+        var cloneButtonBottom = $(this).clone(true, true);
         if( !$(this).is('.btn, .btn-primary') ){
           cloneButtonTop.addClass( 'btn btn-primary' );
           cloneButtonBottom.addClass( 'btn btn-primary' );
