@@ -1183,9 +1183,9 @@ class ResourceController {
                 // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
                 $collResources[ $collId ]['res'][ $resValId ]['image'] = $imgUrl;
                 $collResources[ $collId ]['res'][ $resValId ]['imageUrl'] = $imgUrl;
-                if($rtypeObj->getter('idName') === 'rtypeUrl')
-                $collResources[ $collId ]['res'][ $resValId ]['multimediaUrl'] = $multimediaUrl;
-
+                if($rtypeObj->getter('idName') === 'rtypeUrl'){
+                  $collResources[ $collId ]['res'][ $resValId ]['multimediaUrl'] = $multimediaUrl;
+                }
 
               break;
             } // switch
