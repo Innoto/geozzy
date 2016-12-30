@@ -36,13 +36,13 @@
         <ul class="nav clearfix" id="side-menu">
           <!-- TOPIC -->
           <script type="text/template" id="menuTopics">
+          {if $topicPermission}
           <% _.each(topics, function(topic) { %>
-            {if $topicPermission}
-               <li class="topics topic_<%- topic.id %>">
-                  <a href="/admin#topic/<%- topic.id %>"><i class="fa fa-star fa-fw"></i> <%- topic.name_{$cogumelo.publicConf.langDefault} %> </a>
-               </li>
-            {/if}
+            <li class="topics topic_<%- topic.id %>">
+              <a href="/admin#topic/<%- topic.id %>"><i class="fa fa-star fa-fw"></i> <%- topic.name_{$cogumelo.publicConf.langDefault} %> </a>
+            </li>
           <% }); %>
+          {/if}
           </script>
           <!-- END TOPICS -->
 
@@ -92,9 +92,9 @@
           {/if}
 
           {if $superAdminPermission}
-          <li class="contents">
-            <a href="/admin#resource/list"><i class="fa fa-indent fa-fw"></i> {t}Contents{/t} </a>
-          </li>
+            <li class="contents">
+              <a href="/admin#resource/list"><i class="fa fa-indent fa-fw"></i> {t}Contents{/t} </a>
+            </li>
           {/if}
           <!-- Categories -->
           <li class="categories">
