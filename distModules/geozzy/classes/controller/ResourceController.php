@@ -1170,6 +1170,7 @@ class ResourceController {
 
               default: // base y resto
                 $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+                $multimediaUrl = false;
 
                 if( $thumbSettings['url'] ){
                   $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
@@ -1178,16 +1179,14 @@ class ResourceController {
                     $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
                   }
                 }
-                $thumbSettings['profile'] = 'hdpi4';
-                $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
                 // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
                 $collResources[ $collId ]['res'][ $resValId ]['image'] = $imgUrl;
                 $collResources[ $collId ]['res'][ $resValId ]['imageUrl'] = $imgUrl;
-                $collResources[ $collId ]['res'][ $resValId ]['image_big'] = $imgUrl2;
+                if($rtypeObj->getter('idName') === 'rtypeUrl')
                 $collResources[ $collId ]['res'][ $resValId ]['multimediaUrl'] = $multimediaUrl;
 
-              
+
               break;
             } // switch
           } // foreach
