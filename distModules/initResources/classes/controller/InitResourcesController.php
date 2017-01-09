@@ -58,9 +58,17 @@ class InitResourcesController{
 
     $timeCreation = date( "Y-m-d H:i:s", time() );
 
+
+    if( $rType === null) {
+      $rtypeID = null;
+    }
+    else {
+      $rtypeID = $rType->getter('id');
+    }
+
     $resData = array(
       'idName' => isset( $initRes['idName'] ) ? $initRes['idName'] : null,
-      'rTypeId' => $rType->getter('id'),
+      'rTypeId' => $rtypeID,
       'published' => 1,
       'timeCreation' => $timeCreation
     );

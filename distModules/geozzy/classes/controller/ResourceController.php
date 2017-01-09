@@ -1112,12 +1112,15 @@ class ResourceController {
 
             $resValId = $resVal->getter('id');
             $resValImage = $resVal->getter('image');
-
             $urlAlias = $this->getUrlAlias( $resValId );
+
+            $rtypeControl = new ResourcetypeModel();
+            $rtypeObj = $rtypeControl->listItems( array('filters' => array('id' => $resVal->getter('rTypeId')) ) )->fetch();
 
             $collResources[ $collId ]['res'][ $resValId ] = array(
               'id' => $resValId,
               'rType' => $resVal->getter('rTypeId'),
+              'rTypeIdName' => $rtypeObj->getter('idName'),
               'title' => $resVal->getter('title'),
               'shortDescription' => $resVal->getter('shortDescription'),
               'mediumDescription' => $resVal->getter('mediumDescription'),
@@ -1167,10 +1170,23 @@ class ResourceController {
 
               default: // base y resto
                 $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+                $multimediaUrl = false;
+
+                if( $thumbSettings['url'] ){
+                  $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
+                  $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+                  if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
+                    $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
+                  }
+                }
 
                 // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
                 $collResources[ $collId ]['res'][ $resValId ]['image'] = $imgUrl;
                 $collResources[ $collId ]['res'][ $resValId ]['imageUrl'] = $imgUrl;
+                if($rtypeObj->getter('idName') === 'rtypeUrl'){
+                  $collResources[ $collId ]['res'][ $resValId ]['multimediaUrl'] = $multimediaUrl;
+                }
+
               break;
             } // switch
           } // foreach
