@@ -378,36 +378,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     else if(lat < neO.lat() && lng < neO.lng() && lat > swO.lat() && lng > swO.lng() ) {
       ret.inMap = 1; // ********* IN OUTER MARGIN ********
     }
-/*
-    oNe = neI;
-    oSw = swI;
-*/
 
-/*
-    if( lat < swI.lat() ) {
-      //ret.outerZone = 'S';
-      //ret.distanceToInnerMargin = markerPixel.y - swInner.y;
-      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - swInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
-    }
-    else
-    if( lat > neI.lat() ) {
-      //ret.outerZone = 'N';
-      //ret.distanceToInnerMargin = -(markerPixel.y -neInner.y);
-      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
-    }
-    else
-    if( lng < swI.lng() ) {
-      //ret.outerZone = 'W';
-      //ret.distanceToInnerMargin = -(markerPixel.x -swInner.x);
-      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - swInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
-    }
-    else
-    if( lng > neI.lng() ) {
-      //ret.outerZone = 'E';
-      //ret.distanceToInnerMargin = markerPixel.x - neInner.x;
-      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - neInner.x, 2) );
-    }
-*/
 
     var centerToMarkerSegment = [ [ markerPixel.x, markerPixel .y ],[ mapcenterPixel.x, mapcenterPixel.y ] ];
     var TOPSegment = [[swInner.x, neInner.y], [neInner.x, neInner.y]];
@@ -418,25 +389,21 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var lineUtils = new twoLinesIntersection()
     // TOP segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, TOPSegment )){
-      console.log('TOP')
       var currentIntersectionSegment = TOPSegment;
     }
     else
     // RIGHT segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, RIGHTSegment )){
-      console.log('RIGHT');
       var currentIntersectionSegment = RIGHTSegment;
     }
     else
     // BOTTOM segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, BOTTOMSegment) ){
-      console.log('BOTTOM');
       var currentIntersectionSegment = BOTTOMSegment;
     }
     else
     // LEFT segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, LEFTSegment )){
-      console.log('LEFT');
       var currentIntersectionSegment = LEFTSegment;
     }
 
