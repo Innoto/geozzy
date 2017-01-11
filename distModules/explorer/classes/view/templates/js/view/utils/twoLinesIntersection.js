@@ -1,3 +1,9 @@
+/**
+  We modified the riginal code from:
+  @gagan-bansal https://github.com/geosquare/line-segments-intersect, Licensed with MIT 2015
+**/
+
+
 function twoLinesIntersection() {
   var that = this;
   // line-segments-intersect.js

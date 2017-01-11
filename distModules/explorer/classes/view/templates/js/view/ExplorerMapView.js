@@ -1,3 +1,54 @@
+function twoLinesIntersection() {
+  var that = this;
+  // line-segments-intersect.js
+  // intersection point https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection
+  // line 1: x1,y1,x2,y2
+  // line 2: x3,y3,x4,y4
+  // for comparing the float number, that.fixing the number to int to required
+  // precision
+  that.linesIntersect = function(seg1, seg2, precision) {
+    var x1 = seg1[0][0],
+      y1 = seg1[0][1],
+      x2 = seg1[1][0],
+      y2 = seg1[1][1],
+      x3 = seg2[0][0],
+      y3 = seg2[0][1],
+      x4 = seg2[1][0],
+      y4 = seg2[1][1],
+      intPt,x,y,result = false,
+      p = precision || 6,
+      denominator = (x1 - x2)*(y3 - y4) - (y1 -y2)*(x3 - x4);
+    if (denominator == 0) {
+      // check both segments are Coincident, we already know
+      // that these two are parallel
+      if (that.fix((y3 - y1)*(x2 - x1),p) == that.fix((y2 -y1)*(x3 - x1),p)) {
+        // second segment any end point lies on first segment
+        result = that.intPtOnSegment(x3,y3,x1,y1,x2,y2,p) ||
+          that.intPtOnSegment(x4,y4,x1,y1,x2,y2,p);
+      }
+    } else {
+      x = ((x1*y2 - y1*x2)*(x3 - x4) - (x1 - x2)*(x3*y4 - y3*x4))/denominator;
+      y = ((x1*y2 - y1*x2)*(y3 - y4) - (y1 - y2)*(x3*y4 - y3*x4))/denominator;
+      // check int point (x,y) lies on both segment
+      result = that.intPtOnSegment(x,y,x1,y1,x2,y2,p)
+        && that.intPtOnSegment(x,y,x3,y3,x4,y4,p);
+    }
+    return result;
+  };
+
+  that.intPtOnSegment = function(x,y,x1,y1,x2,y2,p) {
+    return that.fix(Math.min(x1,x2),p) <= that.fix(x,p) && that.fix(x,p) <= that.fix(Math.max(x1,x2),p)
+      && that.fix(Math.min(y1,y2),p) <= that.fix(y,p) && that.fix(y,p) <= that.fix(Math.max(y1,y2),p);
+  };
+
+  // that.fix to the precision
+  that.fix = function(n,p) {
+    return parseInt(n * Math.pow(10,p));
+  };
+
+}
+
+
 var geozzy = geozzy || {};
 if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
@@ -118,7 +169,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         distanceToInnerMargin: false
       };*/
 
-      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapOuterZone', markerPosition.outerZone );
+      //that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapOuterZone', markerPosition.outerZone );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', markerPosition.inMap  );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapDistanceToInnerMargin', markerPosition.distanceToInnerMargin  );
       //m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
@@ -331,10 +382,11 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     //google.maps.event.trigger( that.map, "resize");
 
     var markerPixel = that.coordToPixel( new google.maps.LatLng(lat, lng) );
+    var mapcenterPixel = that.coordToPixel( that.map.getCenter());
 
     var ret = {
       inMap:0, // NOT IN MAP OR BUFFER
-      outerZone:false,
+      //outerZone:false,
       distanceToInnerMargin: 0
     }
 
@@ -374,52 +426,72 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     else if(lat < neO.lat() && lng < neO.lng() && lat > swO.lat() && lng > swO.lng() ) {
       ret.inMap = 1; // ********* IN OUTER MARGIN ********
     }
-
+/*
     oNe = neI;
     oSw = swI;
+*/
 
-
-
-    // Get outer position
-    if(  lat > neI.lat() && lng < swI.lng() ) {
-      ret.outerZone = 'NW';
-      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
-    }
-    else
-    if( lat < swI.lat() && lng > neI.lng() ) {
-      ret.outerZone = 'SE';
-      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - swInner.y, 2 )  + Math.pow( markerPixel.x - neInner.x, 2) );
-    }
-    else
-    if( lat > neI.lat() && lng > neI.lng() ){
-      ret.outerZone = 'NE';
-      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - neInner.x, 2) );
-    }
-    else
-    if( lat < swI.lat() && lng < swI.lng() ) {
-      ret.outerZone = 'SW';
+/*
+    if( lat < swI.lat() ) {
+      //ret.outerZone = 'S';
+      //ret.distanceToInnerMargin = markerPixel.y - swInner.y;
       ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - swInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
     }
     else
-    if( lat < swI.lat() ) {
-      ret.outerZone = 'S';
-      ret.distanceToInnerMargin = markerPixel.y - swInner.y;
-    }
-    else
     if( lat > neI.lat() ) {
-      ret.outerZone = 'N';
-      ret.distanceToInnerMargin = -(markerPixel.y -neInner.y);
+      //ret.outerZone = 'N';
+      //ret.distanceToInnerMargin = -(markerPixel.y -neInner.y);
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
     }
     else
     if( lng < swI.lng() ) {
-      ret.outerZone = 'W';
-      ret.distanceToInnerMargin = -(markerPixel.x -swInner.x);
+      //ret.outerZone = 'W';
+      //ret.distanceToInnerMargin = -(markerPixel.x -swInner.x);
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - swInner.y, 2 )  + Math.pow( markerPixel.x - swInner.x, 2) );
     }
     else
     if( lng > neI.lng() ) {
-      ret.outerZone = 'E';
-      ret.distanceToInnerMargin = markerPixel.x - neInner.x;
+      //ret.outerZone = 'E';
+      //ret.distanceToInnerMargin = markerPixel.x - neInner.x;
+      ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - neInner.x, 2) );
     }
+*/
+
+    var centerToMarkerSegment = [ [ markerPixel.x, markerPixel .y ],[ mapcenterPixel.x, mapcenterPixel.y ] ];
+    var TOPSegment = [[swInner.x, neInner.y], [neInner.x, neInner.y]];
+    var RIGHTSegment = [[neInner.x, neInner.y], [neInner.x, swInner.y]];
+    var BOTTOMSegment = [[swInner.x, swInner.y], [neInner.x, neInner.y]];
+    var LEFTSegment = [[swInner.x, neInner.y], [swInner.x, swInner.y]];
+
+    var intersectionPoint = [];
+console.log(twoLinesIntersection);
+    var lineUtils = new twoLinesIntersection()
+    // TOP segment
+    if( lineUtils.linesIntersect( centerToMarkerSegment, TOPSegment )){
+      console.log('TOP');
+    }
+    else
+    // RIGHT segment
+    if( lineUtils.linesIntersect( centerToMarkerSegment, RIGHTSegment )){
+      console.log('RIGHT');
+
+    }
+    else
+    // BOTTOM segment
+    if( lineUtils.linesIntersect( centerToMarkerSegment, BOTTOMSegment) ){
+      console.log('BOTTOM');
+
+    }
+    else
+    // LEFT segment
+    if( lineUtils.linesIntersect( centerToMarkerSegment, LEFTSegment )){
+      console.log('LEFT');
+
+    }
+
+
+
+    ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - neInner.x, 2) );
 
     return ret;
   },
@@ -526,7 +598,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   panTo: function( id, forcePan ) {
     var that = this;
     var mapVisible = that.parentExplorer.resourceMinimalList.get( id ).get('mapVisible');
-    var mapOuterZone = that.parentExplorer.resourceMinimalList.get( id ).get('mapOuterZone');
+    //var mapOuterZone = that.parentExplorer.resourceMinimalList.get( id ).get('mapOuterZone');
     var mapDistanceToInnerMargin = that.parentExplorer.resourceMinimalList.get( id ).get('mapDistanceToInnerMargin');
     var scale = Math.pow(2, that.map.getZoom());
 
@@ -536,8 +608,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         that.lastCenter = that.map.getCenter();
       }
 
-      console.log(mapDistanceToInnerMargin, mapOuterZone);
-      
+      //console.log(mapDistanceToInnerMargin, mapOuterZone);
+
       // PANTO
       var toMove = that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() ;
       var P = that.coordToPixel( toMove )
@@ -574,35 +646,28 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     if( !$('div.explorerPositionArrows').length ) {
       $('<div class="explorerPositionArrows" style="display:none;">'+
           '<div class="pos N"> <div class="counter"></div> </div>'+
-          '<div class="pos NE"> <div class="counter"></div> </div>'+
-          '<div class="pos E"> <div class="counter"></div> </div>'+
-          '<div class="pos SE"> <div class="counter"></div> </div>'+
-          '<div class="pos S"> <div class="counter"></div> </div>'+
-          '<div class="pos SW"> <div class="counter"></div> </div>'+
-          '<div class="pos W"> <div class="counter"></div> </div>'+
-          '<div class="pos NW"> <div class="counter"></div> </div>'+
         '<div>').appendTo('body');
     }
 
     that.resetOuterPanTo();
-    var outerPos = resource.get('mapOuterZone');
+    var outerPos = 'N';
     $('div.explorerPositionArrows div.pos' ).hide();
     $('div.explorerPositionArrows' ).show();
-    $('div.explorerPositionArrows div.' + outerPos ).show();
+    $('div.explorerPositionArrows div.pos' ).show();
 
 
 
     that.outerPanToIntervalometerValue = 3;
-    $('div.explorerPositionArrows div.' + outerPos + ' div.counter' ).text(that.outerPanToIntervalometerValue);
+    $('div.explorerPositionArrows div.pos' + ' div.counter' ).text(that.outerPanToIntervalometerValue);
     that.outerPanToIntervalometer = setInterval( function(){
       that.outerPanToIntervalometerValue--;
-      $('div.explorerPositionArrows div.' + outerPos + ' div.counter' ).text(that.outerPanToIntervalometerValue);
+      $('div.explorerPositionArrows div.pos' +  ' div.counter' ).text(that.outerPanToIntervalometerValue);
 
       if( that.outerPanToIntervalometerValue == 0){
         that.resetOuterPanTo();
         that.panTo( resource.get('id'), true );
       }
-      $('div.explorerPositionArrows div.' + outerPos  ).fadeOut(300).fadeIn(300);
+      $('div.explorerPositionArrows div.pos'   ).fadeOut(300).fadeIn(300);
     }, 700);
 
 
@@ -613,12 +678,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         if(current && highestZindex < current) highestZindex = current+1;
     });
 
-    $('div.explorerPositionArrows div.' + outerPos ).css('position', 'absolute');
-    $('div.explorerPositionArrows div.' + outerPos ).css('z-index', highestZindex);
+    $('div.explorerPositionArrows div.pos' ).css('position', 'absolute');
+    $('div.explorerPositionArrows div.pos'  ).css('z-index', highestZindex);
 
     var arrowDivSize = {
-        w: $('div.explorerPositionArrows div.' + outerPos ).width(),
-        h: $('div.explorerPositionArrows div.' + outerPos ).height()
+        w: $('div.explorerPositionArrows div.pos'  ).width(),
+        h: $('div.explorerPositionArrows div.pos' ).height()
       };
 
     var mapTopLeft = $(that.map.getDiv()).offset();
@@ -627,33 +692,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var mapCenterWidth = mapWidth / 2 - arrowDivSize.w;
     var mapCenterHeight =  mapHeight / 2 - arrowDivSize.h;
 
-
-    switch( outerPos ) {
-      case 'N':
-        $('div.explorerPositionArrows').css({top: mapTopLeft.top , left: mapCenterWidth });
-        break;
-      case 'NE':
-        $('div.explorerPositionArrows').css({top: mapTopLeft.top , left: mapWidth - arrowDivSize.w });
-        break;
-      case 'E':
-        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapCenterHeight , left: mapWidth - arrowDivSize.w });
-        break;
-      case 'SE':
-        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapHeight - arrowDivSize.h , left: mapWidth - arrowDivSize.w });
-        break;
-      case 'S':
-        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapHeight - arrowDivSize.h , left: mapCenterWidth });
-        break;
-      case 'SW':
-        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapHeight - arrowDivSize.h , left: mapTopLeft.left });
-        break;
-      case 'W':
-        $('div.explorerPositionArrows').css({top: mapTopLeft.top + mapCenterHeight , left: mapTopLeft.left });
-        break;
-      case 'NW':
-        $('div.explorerPositionArrows').css({top: mapTopLeft.top , left: mapTopLeft.left  });
-        break;
-    }
+    $('div.explorerPositionArrows').css({top: mapTopLeft.top , left: mapCenterWidth });
 
   },
 
