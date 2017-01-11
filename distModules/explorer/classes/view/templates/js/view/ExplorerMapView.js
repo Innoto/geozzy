@@ -415,35 +415,34 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var BOTTOMSegment = [[swInner.x, swInner.y], [neInner.x, neInner.y]];
     var LEFTSegment = [[swInner.x, neInner.y], [swInner.x, swInner.y]];
 
-    var intersectionPoint = [];
-console.log(twoLinesIntersection);
     var lineUtils = new twoLinesIntersection()
     // TOP segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, TOPSegment )){
-      console.log('TOP');
+      console.log('TOP')
+      var currentIntersectionSegment = TOPSegment;
     }
     else
     // RIGHT segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, RIGHTSegment )){
       console.log('RIGHT');
-
+      var currentIntersectionSegment = RIGHTSegment;
     }
     else
     // BOTTOM segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, BOTTOMSegment) ){
       console.log('BOTTOM');
-
+      var currentIntersectionSegment = BOTTOMSegment;
     }
     else
     // LEFT segment
     if( lineUtils.linesIntersect( centerToMarkerSegment, LEFTSegment )){
       console.log('LEFT');
-
+      var currentIntersectionSegment = LEFTSegment;
     }
 
+    ret.intersectsWithInnerBox = lineUtils.getIntersectionPoint( centerToMarkerSegment , currentIntersectionSegment);
 
-
-    ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - neInner.y, 2 )  + Math.pow( markerPixel.x - neInner.x, 2) );
+    ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - ret.intersectsWithInnerBox.y, 2 )  + Math.pow( markerPixel.x - ret.intersectsWithInnerBox.x, 2) );
 
     return ret;
   },

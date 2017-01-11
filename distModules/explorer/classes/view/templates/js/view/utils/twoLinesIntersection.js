@@ -52,4 +52,43 @@ function twoLinesIntersection() {
     return parseInt(n * Math.pow(10,p));
   };
 
+  that.getIntersectionPoint = function(line1, line2) {
+      // if the lines intersect, the result contains the x and y of the intersection (treating the lines as infinite) and booleans for whether line segment 1 or line segment 2 contain the point
+      var denominator, a, b, numerator1, numerator2, result = {
+          x: null,
+          y: null,
+          onLine1: false,
+          onLine2: false
+      };
+      denominator = ((line2[1][1] - line2[0][1]) * (line1[1][0] - line1[0][0])) - ((line2[1][0] - line2[0][0]) * (line1[1][1] - line1[0][1]));
+      if (denominator == 0) {
+          return result;
+      }
+      a = line1[0][1] - line2[0][1];
+      b = line1[0][0] - line2[0][0];
+      numerator1 = ((line2[1][0] - line2[0][0]) * a) - ((line2[1][1] - line2[0][1]) * b);
+      numerator2 = ((line1[1][0] - line1[0][0]) * a) - ((line1[1][1] - line1[0][1]) * b);
+      a = numerator1 / denominator;
+      b = numerator2 / denominator;
+
+      // if we cast these lines infinitely in both directions, they intersect here:
+      result.x = line1[0][0] + (a * (line1[1][0] - line1[0][0]));
+      result.y = line1[0][1] + (a * (line1[1][1] - line1[0][1]));
+  /*
+          // it is worth noting that this should be the same as:
+          x = line2[0][0] + (b * (line2[1][0] - line2[0][0]));
+          y = line2[0][0] + (b * (line2[1][1] - line2[0][1]));
+          */
+      // if line1 is a segment and line2 is infinite, they intersect if:
+      if (a > 0 && a < 1) {
+          result.onLine1 = true;
+      }
+      // if line2 is a segment and line1 is infinite, they intersect if:
+      if (b > 0 && b < 1) {
+          result.onLine2 = true;
+      }
+      // if line1 and line2 are segments, they intersect if both of the above are true
+      return result;
+  };
+
 }
