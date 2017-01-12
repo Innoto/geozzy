@@ -7,12 +7,7 @@ class explorer extends Module {
   public $version = 3.0;
 
   public $dependences = array(
-    array(
-      'id' =>'CanvasLayer',
-      'params' => array('CanvasLayer'),
-      'installer' => 'manual',
-      'includes' => array('src/CanvasLayer.js',)
-    ),
+
     array(
      "id" =>"underscore",
      "params" => array("underscore#1.8.3"),

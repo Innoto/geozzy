@@ -56,7 +56,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     that.setMap( this.options.map );
 
-    that.setCanvasLayer();
   },
 
   setParentExplorer: function( parentExplorer ) {
@@ -572,25 +571,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       }
     }
   },
-
-  setCanvasLayer: function() {
-    var that = this;
-    // initialize the canvasLayer
-    var canvasLayerOptions = {
-      map: that.options.map,
-      //resizeHandler: function(){ that.resizeCanvasLayer() },
-      animate: false,
-      //updateHandler: function(){ that.updateCanvasLayer(); },
-      resolutionScale: function(){ return window.devicePixelRatio || 1; }
-    };
-
-    that.canvasLayer = new CanvasLayer(canvasLayerOptions);
-    that.layerContext = that.canvasLayer.canvas.getContext('2d');
-  },
-/*
-  resizeCanvasLayer: function() {
-
-  },*/
 
 
   getMapProjection: function() {
