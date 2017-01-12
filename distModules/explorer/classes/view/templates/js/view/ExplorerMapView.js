@@ -386,7 +386,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var centerToMarkerSegment = [ [ markerPixel.x, markerPixel .y ],[ mapcenterPixel.x, mapcenterPixel.y ] ];
     var TOPSegment = [[swInner.x, neInner.y], [neInner.x, neInner.y]];
     var RIGHTSegment = [[neInner.x, neInner.y], [neInner.x, swInner.y]];
-    var BOTTOMSegment = [[swInner.x, swInner.y], [neInner.x, neInner.y]];
+    var BOTTOMSegment = [[swInner.x, swInner.y], [neInner.x, swInner.y]];
     var LEFTSegment = [[swInner.x, neInner.y], [swInner.x, swInner.y]];
     var currentIntersectionSegment = false;
 
@@ -620,7 +620,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         width: 32,
         height: 32
       }).getUrl(),
-      anchor:new google.maps.Point(64, 64)
+      anchor:new google.maps.Point(32, 32)
 
     });
 
