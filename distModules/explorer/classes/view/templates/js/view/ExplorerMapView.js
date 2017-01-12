@@ -126,6 +126,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       //that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapOuterZone', markerPosition.outerZone );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', markerPosition.inMap  );
 
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'arrowAngle', markerPosition.arrowAngle  );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'intersectsWithInnerBox', markerPosition.intersectsWithInnerBox  );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapDistanceToInnerMargin', markerPosition.distanceToInnerMargin  );
       //m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
@@ -422,6 +423,15 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       ret.distanceToInnerMargin = 0;
     }
 
+    /*
+    var dLon = (lng2-lng1);
+         var y = Math.sin(dLon) * Math.cos(lat2);
+         var x = Math.cos(lat1)*Math.sin(lat2) - Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLon);
+         var rad = Math.atan2(y, x);
+         var brng = toDeg(rad);
+         return 360 - ((brng + 360) % 360);
+*/
+    ret.arrowAngle = 80;
 
     return ret;
   },
@@ -604,7 +614,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
 
     that.mapArrowMarker.setIcon( {
-      url: RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({deg: 50}).getUrl()
+      url: RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({deg: resource.get('arrowAngle')  }).getUrl()
     });
 
     that.mapArrowMarker.setPosition( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ) );
