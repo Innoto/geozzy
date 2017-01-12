@@ -43,10 +43,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
           bottom:100
         },
         innerMargin:{
-          left:400,
-          top:60 ,
-          right:60,
-          bottom:60
+          left:340,
+          top:30 ,
+          right:30,
+          bottom:30
         },
       }
     });
