@@ -44,9 +44,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         },
         innerMargin:{
           left:400,
-          top:100 ,
+          top:60 ,
           right:60,
-          bottom:100
+          bottom:60
         },
       }
     });
@@ -212,7 +212,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that.markersCreated = true;
   },
 
-
   hideAllMarkers: function() {
     var that = this;
     that.parentExplorer.resourceMinimalList.each( function(e) {
@@ -226,7 +225,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       e.mapMarker.setVisible(true);
     });
   },
-
 
   hide: function() {
     var that = this;
@@ -417,21 +415,25 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       ret.intersectsWithInnerBox = lineUtils.getIntersectionPoint( centerToMarkerSegment , currentIntersectionSegment);
       ret.distanceToInnerMargin = Math.sqrt( Math.pow( markerPixel.y - ret.intersectsWithInnerBox.y, 2 )  + Math.pow( markerPixel.x - ret.intersectsWithInnerBox.x, 2) );
 
+
+      if( mapcenterPixel.x > markerPixel.x) {
+        var r = 180;
+      }
+      else {
+        var r = 0;
+      }
+
+      var dy = mapcenterPixel.y - markerPixel.y;
+      var dx = mapcenterPixel.x -markerPixel.x;
+      ret.arrowAngle = Math.atan(dy/dx)
+      ret.arrowAngle *= 180/Math.PI // rads to degs
+      ret.arrowAngle = ret.arrowAngle + r + 90;
     }
     else {
       ret.intersectsWithInnerBox = 0;
       ret.distanceToInnerMargin = 0;
+      ret.arrowAngle = 0;
     }
-
-    /*
-    var dLon = (lng2-lng1);
-         var y = Math.sin(dLon) * Math.cos(lat2);
-         var x = Math.cos(lat1)*Math.sin(lat2) - Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLon);
-         var rad = Math.atan2(y, x);
-         var brng = toDeg(rad);
-         return 360 - ((brng + 360) % 360);
-*/
-    ret.arrowAngle = 80;
 
     return ret;
   },
@@ -606,15 +608,20 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var intersectsWithInnerBox = resource.get('intersectsWithInnerBox');
 
 
-    console.log( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ).lat(),  that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ).lng() );
-
-
     if( that.mapArrowMarker === false ) {
       that.mapArrowMarker = new google.maps.Marker();
     }
 
+    console.log('ANGULO',resource.get('arrowAngle') );
+
     that.mapArrowMarker.setIcon( {
-      url: RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({deg: resource.get('arrowAngle')  }).getUrl()
+      url: RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({
+        deg: resource.get('arrowAngle'),
+        width: 32,
+        height: 32
+      }).getUrl(),
+      anchor:new google.maps.Point(64, 64)
+
     });
 
     that.mapArrowMarker.setPosition( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ) );
