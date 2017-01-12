@@ -73,6 +73,7 @@ class explorer extends Module {
     'js/view/ExplorerActiveListTinyView.js',
     'js/view/ExplorerReccommendedListTinyView.js',
     'js/view/utils/twoLinesIntersection.js',
+    'js/view/utils/RotateMapArrow.js',    
     'js/view/ExplorerMapView.js',
     'js/view/ExplorerClusterRoseView.js',
     'js/view/ExplorerMapInfoBubbleView.js',

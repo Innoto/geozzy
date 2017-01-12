@@ -596,13 +596,16 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var intersectsWithInnerBox = resource.get('intersectsWithInnerBox');
 
 
-    console.log( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ).lat(),  that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ).lng()  );
+    console.log( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ).lat(),  that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ).lng() );
+
 
     if( that.mapArrowMarker === false ) {
-      that.mapArrowMarker = new google.maps.Marker({
-        icon: that.options.mapArrowImage
-      });
+      that.mapArrowMarker = new google.maps.Marker();
     }
+
+    that.mapArrowMarker.setIcon( {
+      url: RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({deg: 50}).getUrl()
+    });
 
     that.mapArrowMarker.setPosition( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ) );
     that.mapArrowMarker.setMap( that.map );
