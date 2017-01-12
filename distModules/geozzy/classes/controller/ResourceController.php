@@ -97,7 +97,7 @@ class ResourceController {
    *
    * @return array OR false
    */
-  public function getResourceData( $resId = false, $translate = false ) {
+  public function getResourceData( $resId = false ) {
     // error_log( "ResourceController: getResourceData()" );
     $resourceData = false;
 
@@ -1780,7 +1780,7 @@ class ResourceController {
 
     if( $resObj=$this->loadResourceObject( $resId ) ) {
       if( $resObj->getter( 'published' ) || $user ) {
-        $viewBlockInfo['data'] = $this->getResourceData( $resId, true );
+        $viewBlockInfo['data'] = $this->getResourceData( $resId );
         if( $this->getRTypeCtrl() ) {
           $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
         }
