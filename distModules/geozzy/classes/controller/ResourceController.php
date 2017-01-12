@@ -421,6 +421,7 @@ class ResourceController {
     // Si es una edicion, añadimos el ID y cargamos los datos
     if( $valuesArray !== false ){
       $form->setField( 'id', array( 'type' => 'reserved', 'value' => null ) );
+      $form->setField( 'internalValuesArray', array( 'type' => 'reserved', 'value' => $valuesArray ));
 
       // Limpiando la informacion de terms para el form
       foreach( array( 'starred' ) as $taxFieldName ) {
