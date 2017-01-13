@@ -610,17 +610,15 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that.resetOuterPanTo();
     var intersectsWithInnerBox = resource.get('intersectsWithInnerBox');
 
-/*
+
     if( that.mapArrowMarker === false ) {
-      that.mapArrowMarker = new google.maps.Marker();
+      that.mapArrowMarker = new MarkerWithLabel({
+         labelContent: "5",
+         labelAnchor: new google.maps.Point(-1,-2),
+         labelClass: "explorerArrowLabel", // the CSS class for the label
+         labelStyle: {opacity: 1}
+      });
     }
-*/
-    that.mapArrowMarker = new MarkerWithLabel({
-       labelContent: "5",
-       labelAnchor: new google.maps.Point(-1,-2),
-       labelClass: "explorerArrowLabel", // the CSS class for the label
-       labelStyle: {opacity: 1}
-    });
 
 
     var rotatedArrowUrl = RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({
@@ -638,6 +636,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     });
 
     that.mapArrowMarker.setPosition( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ) );
+
+
     that.mapArrowMarker.setMap( that.map );
 
 
