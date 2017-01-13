@@ -43,10 +43,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
           bottom:100
         },
         innerMargin:{
-          left:340,
+          left:345,
           top:30 ,
-          right:30,
-          bottom:30
+          right:55,
+          bottom:55
         },
       }
     });
@@ -616,10 +616,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
 */
     that.mapArrowMarker = new MarkerWithLabel({
-
-       labelContent: "$425K",
-       labelAnchor: new google.maps.Point(22, 0),
-       labelClass: "labels", // the CSS class for the label
+       labelContent: "5",
+       labelAnchor: new google.maps.Point(-1,-2),
+       labelClass: "explorerArrowLabel", // the CSS class for the label
        labelStyle: {opacity: 1}
     });
 
