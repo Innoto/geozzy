@@ -56,6 +56,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     that.setMap( this.options.map );
 
+    // Preload image
+    var arrow_img = new Image();
+    arrow_img.src = that.options.mapArrowImage;
   },
 
   setParentExplorer: function( parentExplorer ) {
@@ -607,19 +610,30 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that.resetOuterPanTo();
     var intersectsWithInnerBox = resource.get('intersectsWithInnerBox');
 
-
+/*
     if( that.mapArrowMarker === false ) {
       that.mapArrowMarker = new google.maps.Marker();
     }
+*/
+    that.mapArrowMarker = new MarkerWithLabel({
 
-    console.log('ANGULO',resource.get('arrowAngle') );
+       labelContent: "$425K",
+       labelAnchor: new google.maps.Point(22, 0),
+       labelClass: "labels", // the CSS class for the label
+       labelStyle: {opacity: 1}
+    });
+
+
+    var rotatedArrowUrl = RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({
+      deg: resource.get('arrowAngle'),
+      width: 32,
+      height: 32
+    }).getUrl();
+
+    //console.log('ANGULO',resource.get('arrowAngle') );
 
     that.mapArrowMarker.setIcon( {
-      url: RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({
-        deg: resource.get('arrowAngle'),
-        width: 32,
-        height: 32
-      }).getUrl(),
+      url: rotatedArrowUrl,
       anchor:new google.maps.Point(32, 32)
 
     });
