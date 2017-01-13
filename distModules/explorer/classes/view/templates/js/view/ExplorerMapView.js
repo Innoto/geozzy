@@ -44,9 +44,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         },
         innerMargin:{
           left:345,
-          top:30 ,
-          right:55,
-          bottom:55
+          top:50 ,
+          right:65,
+          bottom:65
         },
       }
     });
@@ -613,7 +613,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     if( that.mapArrowMarker === false ) {
       that.mapArrowMarker = new MarkerWithLabel({
-         labelContent: "5",
+         labelContent: "4",
          labelAnchor: new google.maps.Point(-1,-2),
          labelClass: "explorerArrowLabel", // the CSS class for the label
          labelStyle: {opacity: 1}
@@ -641,7 +641,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that.mapArrowMarker.setMap( that.map );
 
 
-    that.outerPanToIntervalometerValue = 4;
+    that.outerPanToIntervalometerValue = 3;
     that.outerPanToIntervalometer = setInterval( function(){
 
       $('.explorerArrowLabel').show();
