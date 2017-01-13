@@ -34,6 +34,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       clustererGridSize: 90,
       clustererZoomOnClick: true,
       mapArrowImage: cogumelo.publicConf.media+'/module/explorer/img/mapArrow.png',
+      mapArrowImageEmpty: cogumelo.publicConf.media+'/module/explorer/img/mapArrowEmpty.png',
       chooseMarkerIcon: function() {return false},
       mapZones: {
         outerMargin: {
@@ -621,19 +622,16 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
 
 
-    var rotatedArrowUrl = RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({
-      deg: resource.get('arrowAngle'),
-      width: 32,
-      height: 32
-    }).getUrl();
-
     //console.log('ANGULO',resource.get('arrowAngle') );
-
-    that.mapArrowMarker.setIcon( {
-      url: rotatedArrowUrl,
+    var icon = {
+      url: RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({
+        deg: resource.get('arrowAngle'),
+        width: 32,
+        height: 32
+      }).getUrl(),
       anchor:new google.maps.Point(32, 32)
-
-    });
+    };
+    that.mapArrowMarker.setIcon( icon );
 
     that.mapArrowMarker.setPosition( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ) );
 
@@ -644,15 +642,13 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that.outerPanToIntervalometerValue = 3;
     that.outerPanToIntervalometer = setInterval( function(){
 
-      $('.explorerArrowLabel').show();
+      //$('.explorerArrowLabel').show();
+      that.mapArrowMarker.setIcon( icon );
       $('.explorerArrowLabel').html(that.outerPanToIntervalometerValue);
-//      if( that.mapArrowMarker.getMap() === null ) {
-        //that.mapArrowMarker.setMap( that.map );
-        //$('.explorerArrowLabel').html(that.outerPanToIntervalometerValue);
-      //}
+
       setTimeout( function(){
-        //that.mapArrowMarker.setMap( null );
-        $('.explorerArrowLabel').hide();
+        //$('.explorerArrowLabel').hide();
+        that.mapArrowMarker.setIcon( that.options.mapArrowImageEmpty );
       }, 400 );
 
       if( that.outerPanToIntervalometerValue == 0){
