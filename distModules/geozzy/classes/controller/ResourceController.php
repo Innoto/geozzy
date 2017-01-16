@@ -68,16 +68,25 @@ class ResourceController {
    * @return array OR false
    */
   public function loadResourceObject( $resId = false ) {
-    if( $this->resObj === null || ( $resId && $resId !== $this->resObj->getter('id') ) ) {
+    $resourceobj = null;
+
+    if( !$this->resObj || ( $resId && $resId !== $this->resObj->getter('id') ) ) {
       $resModel = new ResourceModel();
-      $resList = $resModel->listItems( array( 'affectsDependences' =>
-        array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ),
-        // array( 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ResourceTaxonomytermModel', 'ExtraDataModel' ),
-        'filters' => array( 'id' => $resId, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ) ) );
-      $this->resObj = ( $resList ) ? $resList->fetch() : null;
+      $resList = $resModel->listItems( [
+        'affectsDependences' => [ 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ],
+        'filters' => [ 'id' => $resId, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ]
+      ] );
+      $resourceobj = ( gettype( $resList ) === 'object' ) ? $resList->fetch() : null;
+
+      if( $resourceobj && !$this->resObj ) {
+        $this->resObj = $resourceobj;
+      }
+    }
+    else {
+      $resourceobj = $this->resObj;
     }
 
-    return( $this->resObj !== null &&  $this->resObj !== false );
+    return( $resourceobj );
   }
 
 
@@ -88,10 +97,11 @@ class ResourceController {
    *
    * @return array OR false
    */
-  public function getResourceData( $resId = false, $translate = false ) {
+  public function getResourceData( $resId = false ) {
     // error_log( "ResourceController: getResourceData()" );
+    $resourceData = false;
 
-    if( (!$this->resData || ( $resId && $resId !== $this->resData['id'] ) ) && $this->loadResourceObject( $resId ) ) {
+    if( (!$this->resData || ( $resId && $resId !== $this->resData['id'] ) ) && $resObj=$this->loadResourceObject( $resId ) ) {
       $langDefault = Cogumelo::getSetupValue( 'lang:default' );
 
       $langsConf = Cogumelo::getSetupValue( 'lang:available' );
@@ -100,13 +110,13 @@ class ResourceController {
       }
 
       // Cargamos todos los campos "en bruto"
-      $resourceData = $this->resObj->getAllData( 'onlydata' );
+      $resourceData = $resObj->getAllData( 'onlydata' );
 
       // Añadimos los campos en el idioma actual o el idioma principal
-      $resourceFields = $this->resObj->getCols();
+      $resourceFields = $resObj->getCols();
       foreach( $resourceFields as $key => $value ) {
         if( !isset( $resourceData[ $key ] ) ) {
-          $resourceData[ $key ] = $this->resObj->getter( $key );
+          $resourceData[ $key ] = $resObj->getter( $key );
           // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
           if( $resourceData[ $key ] === '' && isset( $resourceData[ $key.'_'.$langDefault ] ) ) {
             $resourceData[ $key ] = $resourceData[ $key.'_'.$langDefault ];
@@ -123,7 +133,7 @@ class ResourceController {
       }
 
       // Cargo los datos de urlAlias dentro de los del recurso
-      $urlAliasDep = $this->resObj->getterDependence( 'id', 'UrlAliasModel' );
+      $urlAliasDep = $resObj->getterDependence( 'id', 'UrlAliasModel' );
       if( $urlAliasDep !== false ) {
         foreach( $urlAliasDep as $urlAlias ) {
           $urlLang = $urlAlias->getter('lang');
@@ -145,7 +155,7 @@ class ResourceController {
       }
 
       // Cargo los datos de image dentro de los del recurso
-      $fileDep = $this->resObj->getterDependence( 'image' );
+      $fileDep = $resObj->getterDependence( 'image' );
       if( $fileDep !== false ) {
         foreach( $fileDep as $fileModel ) {
           $resourceData[ 'image' ] = $fileModel->getAllData( 'onlydata' );
@@ -153,7 +163,7 @@ class ResourceController {
       }
 
       // Cargo los datos de temáticas con las que está asociado el recurso
-      $topicsDep = $this->resObj->getterDependence( 'id', 'ResourceTopicModel');
+      $topicsDep = $resObj->getterDependence( 'id', 'ResourceTopicModel');
       if( $topicsDep !== false ) {
         $topicsArray = array();
         foreach( $topicsDep as $topicRel ) {
@@ -183,7 +193,7 @@ class ResourceController {
       }
 
       // Cargo los datos del campo batiburrillo
-      $extraDataDep = $this->resObj->getterDependence( 'id', 'ExtraDataModel');
+      $extraDataDep = $resObj->getterDependence( 'id', 'ExtraDataModel');
       if( $extraDataDep !== false ) {
         foreach( $extraDataDep as $extraData ) {
           foreach( $langAvailable as $lang ) {
@@ -201,12 +211,15 @@ class ResourceController {
         $resourceData['rTypeIdName'] = $rTypeInfo->getter( 'idName' );
       }
 
-      if( $resourceData ) {
+      if( $resourceData && !$this->resData ) {
         $this->resData = $resourceData;
       }
     }
+    else {
+      $resourceData = $this->resData;
+    }
 
-    return $this->resData;
+    return $resourceData;
   }
 
 
@@ -408,6 +421,7 @@ class ResourceController {
     // Si es una edicion, añadimos el ID y cargamos los datos
     if( $valuesArray !== false ){
       $form->setField( 'id', array( 'type' => 'reserved', 'value' => null ) );
+      $form->setField( 'internalValuesArray', array( 'type' => 'reserved', 'value' => $valuesArray ));
 
       // Limpiando la informacion de terms para el form
       foreach( array( 'starred' ) as $taxFieldName ) {
@@ -519,7 +533,7 @@ class ResourceController {
    * Creación-Edición-Borrado de los elementos del recurso base e iniciar transaction
    */
   public function resFormProcess( $form ) {
-    $this->resObj = false;
+    $this->resObj = null;
 
     if( !$form->existErrors() ) {
       $useraccesscontrol = new UserAccessController();
@@ -563,7 +577,7 @@ class ResourceController {
     if( !$form->existErrors() ) {
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
       $this->resObj = new ResourceModel( $valuesArray );
-      if( $this->resObj === false ) {
+      if( $this->resObj === null ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
       }
     }
@@ -604,7 +618,7 @@ class ResourceController {
     /*
       DEPENDENCIAS (END)
     */
-    if( !$form->existErrors()) {
+    if( !$form->existErrors() ) {
       $saveResult = $this->resObj->save();
       if( $saveResult === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
@@ -865,7 +879,7 @@ class ResourceController {
   public function getTaxonomyAll( $resId ) {
     $taxTerms = array();
 
-    if( !$this->taxonomyAll || $this->resObj->getter('id') != $resId ) {
+    if( !$this->taxonomyAll || ( $this->resObj && $this->resObj->getter('id') !== $resId ) ) {
 
       $resourceTaxAllModel = new ResourceTaxonomyAllModel();
       $taxAllList = $resourceTaxAllModel->listItems( array(
@@ -955,7 +969,7 @@ class ResourceController {
   public function getCollectionsAll( $resId = false ) {
     $collsInfo = false;
 
-    if( !$resId && gettype( $this->resObj ) === 'object' ) {
+    if( !$resId && $this->resObj ) {
       $resId = $this->resObj->getter('id');
     }
     // error_log( "getCollectionsAll( $resId )" );
@@ -1764,14 +1778,14 @@ class ResourceController {
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
 
-    if( $this->loadResourceObject( $resId ) ) {
-      if( $this->resObj->getter( 'published' ) || $user ) {
-        $viewBlockInfo['data'] = $this->getResourceData( $resId, true );
+    if( $resObj=$this->loadResourceObject( $resId ) ) {
+      if( $resObj->getter( 'published' ) || $user ) {
+        $viewBlockInfo['data'] = $this->getResourceData( $resId );
         if( $this->getRTypeCtrl() ) {
           $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
         }
 
-        if( !$this->resObj->getter( 'published' ) ) {
+        if( !$resObj->getter( 'published' ) ) {
           // Recurso NO publicado
           $viewBlockInfo = array(
             'unpublished' => $viewBlockInfo
