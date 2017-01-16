@@ -631,6 +631,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       }).getUrl(),
       anchor:new google.maps.Point(32, 32)
     };
+
+    
     that.mapArrowMarker.setIcon( icon );
 
     that.mapArrowMarker.setPosition( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ) );
