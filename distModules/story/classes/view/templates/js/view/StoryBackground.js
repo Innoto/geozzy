@@ -32,7 +32,10 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
     });
 
     that.options = $.extend(true, {}, options, opts);
-
+    $(window).resize(function(){ // refresca canvas
+      google.maps.event.trigger(that.options.map, 'zoom_changed');
+      that.updateCanvasLayer();
+    });
   },
 
   setParentStory: function( obj ) {
