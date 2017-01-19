@@ -498,13 +498,12 @@ class ResourceController {
       $form->validateForm();
     }
     else {
-      $form->addFormError( 'El servidor no considera válidos los datos recibidos.', 'formError' );
+      $form->addFormError( __('El servidor no considera válidos los datos recibidos.'), 'formError' );
     }
 
     if( !$form->existErrors() ) {
       if( !$form->processFileFields() ) {
-        $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea '.
-          'necesario subirlos otra vez.', 'formError' );
+        $form->addFormError( __('Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario subirlos otra vez.'), 'formError' );
       }
     }
 
@@ -524,7 +523,7 @@ class ResourceController {
     if( $form->isFieldDefined( 'timeCreation' ) ) {
       $dt = $form->getFieldValue( 'timeCreation' );
       if( $dt !== '' && preg_match( '/^(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{2}):(\d{2})$/', $dt ) !== 1 ) {
-        $form->addFieldError( 'timeCreation', 'La fecha de creación no es válida' );
+        $form->addFieldError( 'timeCreation', __('La fecha de creación no es válida') );
       }
     }
   }
