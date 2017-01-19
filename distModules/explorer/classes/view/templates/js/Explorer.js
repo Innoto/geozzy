@@ -115,7 +115,10 @@ geozzy.explorer = function( opts ) {
 
     // render filters
     if( that.filters.length > 0 ) {
+
       $.each( that.filters, function(i,e){
+        console.log('FILTRO',e)
+
         e.render();
       });
     }
@@ -170,39 +173,41 @@ geozzy.explorer = function( opts ) {
 
 
     // Set filters for current index
+    if( typeof that.resourceIndex.filterBy != 'undefined') {
+      that.resourceIndex.filterBy( function(model) {
 
-    that.resourceIndex.filterBy( function(model) {
 
 
+        var matches = 0;
+        var ret = false;
 
-      var matches = 0;
-      var ret = false;
+        $.each( that.filters, function(i, filter){
 
-      $.each( that.filters, function(i, filter){
+          if( filter.filterAction( model ) ) {
+            matches++;
+            return;
+          }
 
-        if( filter.filterAction( model ) ) {
-          matches++;
-          return;
+        });
+
+        if( matches == that.filters.length ) {
+          ret = true
         }
+
+        // if matches number is same of filters number
+        return ret;
 
       });
 
-      if( matches == that.filters.length ) {
-        ret = true
+      if( that.options.debug ) {
+        that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceIndex.length + ' Records' );
       }
 
-      // if matches number is same of filters number
-      return ret;
 
-    });
 
-    if( that.options.debug ) {
-      that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceIndex.length + ' Records' );
+      that.render();
     }
 
-
-
-    that.render();
   }
 
   //

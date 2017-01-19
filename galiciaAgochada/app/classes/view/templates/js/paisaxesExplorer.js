@@ -117,11 +117,18 @@
     */
     that.setEvents = function() {
 
-      that.explorer.bindEvent('zoomChanged', function(){
-        that.layoutDistributeSize();
+      that.explorer.bindEvent('minimalLoadSuccess', function(){
+        $('select.select2GeozzyCustom').select2({
+           minimumResultsForSearch: -1,
+           templateSelection: that.formatStateSelection,
+           templateResult: that.formatState
+        });
       });
 
 
+      that.explorer.bindEvent('zoomChanged', function(){
+        that.layoutDistributeSize();
+      });
 
       // Resource quit
       that.explorer.bindEvent('resourceQuit', function(){
@@ -507,11 +514,7 @@
       that.explorerRutas.exec();
       that.explorerRestaurantes.exec();
 
-      $('select.select2GeozzyCustom').select2({
-         minimumResultsForSearch: -1,
-         templateSelection: that.formatStateSelection,
-         templateResult: that.formatState
-      });
+
 
     }
 
@@ -541,6 +544,7 @@
       return $ret;
     }
     that.formatStateSelection = function(state) {
+      console.log()
 
       $ret = false;
 

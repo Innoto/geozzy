@@ -7,6 +7,13 @@ class explorer extends Module {
   public $version = 3.0;
 
   public $dependences = array(
+
+    array(
+      "id" =>"google-maps-utility-library-v3-markerwithlabel",
+      "params" => array("google-maps-utility-library-v3-markerwithlabel"),
+      "installer" => "bower",
+      "includes" => array("dist/markerwithlabel.js")
+    ),
     array(
      "id" =>"underscore",
      "params" => array("underscore#1.8.3"),
@@ -71,12 +78,14 @@ class explorer extends Module {
     'js/view/ExplorerActiveListView.js',
     'js/view/ExplorerActiveListTinyView.js',
     'js/view/ExplorerReccommendedListTinyView.js',
+    'js/view/utils/twoLinesIntersection.js',
+    'js/view/utils/RotateMapArrow.js',
     'js/view/ExplorerMapView.js',
     'js/view/ExplorerClusterRoseView.js',
     'js/view/ExplorerMapInfoBubbleView.js',
     'js/view/ExplorerMapInfoView.js',
     'js/Explorer.js',
-    'styles/explorerMapArrows.less'
+    //'styles/explorerMapArrows.less'
   );
 
 
