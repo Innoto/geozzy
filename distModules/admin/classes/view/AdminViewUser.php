@@ -98,6 +98,7 @@ class AdminViewUser extends AdminViewMaster
     // set table Actions
     $tabla->setActionMethod(__('Active'), 'changeStatusActive', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=>1 ))');
     $tabla->setActionMethod(__('Inactive'), 'changeStatusLock', 'updateKey( array( "searchKey" => "id", "searchValue" => $rowId, "changeKey" => "active", "changeValue"=> 0 ))');
+    $tabla->setActionMethod(__('Delete'), 'delete', 'listitems(array("filters" => array("id" => $rowId)))->fetch()->delete()');
 
     // set list Count methods in controller
     $tabla->setListMethodAlias('listItems');
