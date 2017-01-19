@@ -115,7 +115,10 @@ geozzy.explorer = function( opts ) {
 
     // render filters
     if( that.filters.length > 0 ) {
+
       $.each( that.filters, function(i,e){
+        console.log('FILTRO',e)
+
         e.render();
       });
     }
@@ -195,15 +198,16 @@ geozzy.explorer = function( opts ) {
         return ret;
 
       });
+
+      if( that.options.debug ) {
+        that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceIndex.length + ' Records' );
+      }
+
+
+
+      that.render();
     }
 
-    if( that.options.debug ) {
-      that.timeDebugerMain.log( '&nbsp;- Resultado filtrado final '+ that.resourceIndex.length + ' Records' );
-    }
-
-
-
-    that.render();
   }
 
   //

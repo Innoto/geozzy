@@ -50,14 +50,18 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
     if ($elemId){
       $collectionResourcesModel = new CollectionResourcesModel();
+      $collectionResourceCount = $collectionResourcesModel->listCount(
+        array('filters' => array('collection' => $elemId)) );
       $collectionResourceList = $collectionResourcesModel->listItems(
         array('filters' => array('collection' => $elemId)) );
-
-      $resIds = array();
-      while($res = $collectionResourceList->fetch()){
-        $resIds[] = $res->getter('resource');
+      if($collectionResourceCount>0) {
+        $resIds = array();
+        while($res = $collectionResourceList->fetch()){
+          $resIds[] = $res->getter('resource');
+        }
+        $rExtData['pois'] = $resIds;
       }
-      $rExtData['pois'] = $resIds;
+
     }
 
     return $rExtData;
