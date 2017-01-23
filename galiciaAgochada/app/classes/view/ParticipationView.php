@@ -19,7 +19,7 @@ class ParticipationView extends MasterView
     $htmlModalOk .= '<p>'. __("Manterémoste informad@ por e-mail.").'</p>';
 
     $successArray = false;
-    $successArray[ 'jsEval' ] = 'new geozzy.generateModal( "xantaresParticipationOk", "", "'.$htmlModalOk.'" ,geozzy.xantaresParticipationForm.closeModal());';
+    $successArray[ 'jsEval' ] = 'new geozzy.generateModal({ classCss: "xantaresParticipationOk", htmlBody:"'.$htmlModalOk.'" , successCallback: geozzy.xantaresParticipationForm.closeModal()});';
 
     $recursoData = $this->xantaresCommonForm();
 

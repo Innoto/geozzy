@@ -168,6 +168,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $partForm->removeField( 'rExtContact_email');
       $partForm->removeField( 'rExtSocialNetwork_activeFb');
       $partForm->removeField( 'rExtSocialNetwork_activeTwitter');
+      $partForm->removeField( 'rExtSocialNetwork_activeGplus');
       $partForm->removeField( 'urlAlias_es');
 
       $partForm->captchaEnable( true );

@@ -411,7 +411,7 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:commentRules',
 
 
 cogumeloSetSetupValue( 'mod:geozzy:travelPlanner',
-  array('rtypeAppHotel','rtypeAppRestaurant')
+  array('rtypeAppLugar', 'rtypeAppEspazoNatural', 'rtypeAppRuta', 'rtypeAppFesta')
 );
 
 //
