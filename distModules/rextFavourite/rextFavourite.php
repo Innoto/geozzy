@@ -38,9 +38,34 @@ class rextFavourite extends Module {
 
   public function __construct() {
     // $this->addUrlPatterns( '#^geozzyFavourite/command$#', 'view:RExtFavouriteView::execCommand' );
-    $this->addUrlPatterns( '#^api/favourites$#', 'view:RExtFavouriteAPIView::apiQuery' );
-    $this->addUrlPatterns( '#^api/doc/favourites.json$#', 'view:RExtFavouriteAPIView::apiInfoJson' );
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+
+    if( $useraccesscontrol->isLogged() ) {
+      $this->addUrlPatterns( '#^api/favourites$#', 'view:RExtFavouriteAPIView::apiQuery' );
+      $this->addUrlPatterns( '#^api/doc/favourites.json$#', 'view:RExtFavouriteAPIView::apiInfoJson' );
+    }
+
+
   }
+
+  static function getGeozzyDocAPI() {
+    $ret = [];
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+
+    if( $useraccesscontrol->isLogged() ) {
+      $ret = array(
+        'path'=> '/doc/favourites.json',
+        'description' => 'Favourites API'
+      );
+    }
+
+    return $ret;
+  }
+
 
 
   public function moduleRc() {
@@ -49,4 +74,6 @@ class rextFavourite extends Module {
     $rtUtilsControl = new RTUtilsController(__CLASS__);
     $rtUtilsControl->rExtModuleRc();
   }
+
+
 }

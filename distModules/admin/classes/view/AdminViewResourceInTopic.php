@@ -76,6 +76,8 @@ class AdminViewResourceInTopic extends AdminViewMaster
       $extendedModels = array_merge($extendedModels, json_decode($type->getter('relatedModels')));
     }
 
+
+
     $filterByRtypeOpts['*'] = __('All');
 
 
@@ -185,7 +187,6 @@ class AdminViewResourceInTopic extends AdminViewMaster
       }
 
     }
-
 
     // Class must exist in configuration file: app/conf/inc/geozzyTopics.php
     require_once('conf/inc/geozzyTopics.php');

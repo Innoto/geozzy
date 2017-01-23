@@ -26,11 +26,32 @@ class rextCommunity extends Module {
 
 
   public function __construct() {
-    // $this->addUrlPatterns( '#^geozzyCommunity/command$#', 'view:RExtCommunityView::execCommand' );
-    $this->addUrlPatterns( '#^api/community$#', 'view:RExtCommunityAPIView::apiQuery' );
-    $this->addUrlPatterns( '#^api/doc/community.json$#', 'view:RExtCommunityAPIView::apiInfoJson' );
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+
+    if( $useraccesscontrol->isLogged() ) {
+      $this->addUrlPatterns( '#^api/community$#', 'view:RExtCommunityAPIView::apiQuery' );
+      $this->addUrlPatterns( '#^api/doc/community.json$#', 'view:RExtCommunityAPIView::apiInfoJson' );
+    }
 
     $this->addUrlPatterns( '#^cgml_cron/rextCommunity/prepareAffinity$#', 'view:RExtCommunityAffinityView::prepareAffinity' );
+  }
+
+  static function getGeozzyDocAPI() {
+    $ret = [];
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+
+    if( $useraccesscontrol->isLogged() ) {
+      $ret = array(
+        'path'=> '/doc/community.json',
+        'description' => 'Community API'
+      );
+    }
+
+    return $ret;
   }
 
 

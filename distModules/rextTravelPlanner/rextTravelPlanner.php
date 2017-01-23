@@ -52,9 +52,32 @@ class rextTravelPlanner extends Module {
 
 
   public function __construct() {
-    // $this->addUrlPatterns( '#^geozzyFavourite/command$#', 'view:RExtFavouriteView::execCommand' );
-    $this->addUrlPatterns( '#^api/travelplanner#', 'view:RExtTravelPlannerAPIView::apiQuery' );
-    $this->addUrlPatterns( '#^api/doc/travelplanner.json$#', 'view:RExtTravelPlannerAPIView::apiInfoJson' );
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+
+    if( $useraccesscontrol->isLogged() ) {
+      $this->addUrlPatterns( '#^api/travelplanner#', 'view:RExtTravelPlannerAPIView::apiQuery' );
+      $this->addUrlPatterns( '#^api/doc/travelplanner.json$#', 'view:RExtTravelPlannerAPIView::apiInfoJson' );
+    }
+  }
+
+
+
+  static function getGeozzyDocAPI() {
+    $ret = [];
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+
+    if( $useraccesscontrol->isLogged() ) {
+      $ret = array(
+        'path'=> '/doc/travelplanner.json',
+        'description' => 'TravelPlanner API'
+      );
+    }
+
+    return $ret;
   }
 
 

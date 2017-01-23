@@ -227,14 +227,74 @@ class admin extends Module {
     $this->addUrlPatterns( '#^admin/filemanagerfrontend#', 'view:AdminViewElfinder::fileManagerFrontend' );
     $this->addUrlPatterns( '#^admin/filemanagerbackend#', 'view:AdminViewElfinder::fileManagerBackend' );
 
-    // data Admin API
-    $this->addUrlPatterns( '#^api/admin/categoryterms(\?.*|\/.*)$#', 'view:AdminDataAPIView::categoryTerms' );
-    $this->addUrlPatterns( '#^api/doc/admin/adminCategoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
-    $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
-    $this->addUrlPatterns( '#^api/doc/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
-    $this->addUrlPatterns( '#^api/admin/resourcesTerm/(.*)$#', 'view:AdminDataAPIView::resourcesTerm' );
-    $this->addUrlPatterns( '#^api/doc/admin/adminResourcesTerm.json$#', 'view:AdminDataAPIView::resourcesTermJson' ); // Swagger
-    $this->addUrlPatterns( '#^api/admin/starred$#', 'view:AdminDataAPIView::starred' );
-    $this->addUrlPatterns( '#^api/doc/admin/adminStarred.json$#', 'view:AdminDataAPIView::starredJson' ); // Swagger
+
+
+
+    //user::autoIncludes();
+    user::load('controller/UserAccessController.php');
+
+    $useraccesscontrol = new UserAccessController();
+    // APIs que requieren un usuario logueado con permisos admin:access o admin:full
+    if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) )  {
+      // data Admin API
+      $this->addUrlPatterns( '#^api/admin/categoryterms(\?.*|\/.*)$#', 'view:AdminDataAPIView::categoryTerms' );
+      $this->addUrlPatterns( '#^api/doc/admin/adminCategoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
+      $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
+      $this->addUrlPatterns( '#^api/doc/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
+      $this->addUrlPatterns( '#^api/admin/resourcesTerm/(.*)$#', 'view:AdminDataAPIView::resourcesTerm' );
+      $this->addUrlPatterns( '#^api/doc/admin/adminResourcesTerm.json$#', 'view:AdminDataAPIView::resourcesTermJson' ); // Swagger
+      $this->addUrlPatterns( '#^api/admin/starred$#', 'view:AdminDataAPIView::starred' );
+      $this->addUrlPatterns( '#^api/doc/admin/adminStarred.json$#', 'view:AdminDataAPIView::starredJson' ); // Swagger
+    }
+
+
   }
+
+  static function getGeozzyDocAPI() {
+    $ret = [];
+
+    //user::autoIncludes();
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+
+
+    if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) ) {
+      $ret = array(
+        array(
+          'path' => '/doc/admin/adminCategories.json',
+          'description' => 'Admin Categories'
+        ),
+        array(
+          'path' => '/doc/admin/adminCategoryterms.json',
+          'description' => 'Admin CategoryTerms'
+        ),
+        array(
+          'path' => '/doc/admin/adminResourcesTerm.json',
+          'description' => 'Admin ResourcesTerm'
+        ),
+        array(
+          'path' => '/doc/admin/adminStarred.json',
+          'description' => 'Admin StarredTerms'
+        ),
+        array(
+          'path' => '/doc/admin/adminCommentSuggestion.json',
+          'description' => 'Admin Comments and Suggestions'
+        ),
+        array(
+          'path' => '/admin/adminStories.json',
+          'description' => 'Admin Stories'
+        ),
+        array(
+          'path' => '/admin/adminStorySteps.json',
+          'description' => 'Admin Story Steps'
+        )
+      );
+    }
+
+
+
+    return $ret;
+  }
+
+
 }
