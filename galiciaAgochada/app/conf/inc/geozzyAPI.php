@@ -13,7 +13,8 @@ geozzyAPI::addModuleAPI( 'admin' );
 geozzyAPI::addModuleAPI( 'rextCommunity' );
 geozzyAPI::addModuleAPI( 'rextFavourite' );
 geozzyAPI::addModuleAPI( 'rextTravelPlanner' );
-//geozzyAPI::addModuleAPI( 'geozzy' );
+geozzyAPI::addModuleAPI( 'geozzy' );
+geozzyAPI::addModuleAPI( 'explorer' );
 
 // APIs que requieren un usuario logueado
 if( $useraccesscontrol->isLogged() ) {
@@ -43,18 +44,7 @@ $GEOZZY_API_DOC_URLS =  array_merge(
   $GEOZZY_API_DOC_URLS,
   array(
 
-    /* array(
-      'path' => '/doc/uiEventList.json',
-      'description' => 'UI Events'
-    ),*/
-    array(
-      'path'=> '/doc/explorer.json',
-      'description' => 'Explorer API'
-    ),
-    array(
-      'path'=> '/doc/explorerList.json',
-      'description' => 'Explorer List API'
-    ),
+
     array(
       'path'=> '/doc/story.json',
       'description' => 'Stories API'

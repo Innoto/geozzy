@@ -96,4 +96,21 @@ class explorer extends Module {
     $this->addUrlPatterns( '#^api/doc/explorerList.json$#', 'view:ExplorerAPIView::explorerListJson' ); // Main swagger JSON
   }
 
+
+  static function getGeozzyDocAPI() {
+
+    $ret = array(
+      array(
+        'path'=> '/doc/explorer.json',
+        'description' => 'Explorer API'
+      ),
+      array(
+        'path'=> '/doc/explorerList.json',
+        'description' => 'Explorer List API'
+      )
+    );
+
+    return $ret;
+  }
+
 }
