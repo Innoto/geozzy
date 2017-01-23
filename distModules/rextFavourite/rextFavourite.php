@@ -58,8 +58,10 @@ class rextFavourite extends Module {
 
     if( $useraccesscontrol->isLogged() ) {
       $ret = array(
-        'path'=> '/doc/favourites.json',
-        'description' => 'Favourites API'
+        array(
+          'path'=> '/doc/favourites.json',
+          'description' => 'Favourites API'
+        )
       );
     }
 

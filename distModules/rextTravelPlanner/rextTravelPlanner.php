@@ -72,8 +72,10 @@ class rextTravelPlanner extends Module {
 
     if( $useraccesscontrol->isLogged() ) {
       $ret = array(
-        'path'=> '/doc/travelplanner.json',
-        'description' => 'TravelPlanner API'
+        array(
+          'path'=> '/doc/travelplanner.json',
+          'description' => 'TravelPlanner API'
+        )
       );
     }
 

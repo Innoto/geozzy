@@ -46,8 +46,10 @@ class rextCommunity extends Module {
 
     if( $useraccesscontrol->isLogged() ) {
       $ret = array(
-        'path'=> '/doc/community.json',
-        'description' => 'Community API'
+        array(
+          'path'=> '/doc/community.json',
+          'description' => 'Community API'
+        )
       );
     }
 
