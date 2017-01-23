@@ -44,14 +44,14 @@ cogumeloSetSetupValue( 'mod:filedata:profile:xhdpi16', array( 'width' => 1280, '
 
 
 // $IMAGE_PROFILES (web)
-cogumeloSetSetupValue( 'mod:filedata:profile:wsdpi4', array( 'width' => 320, 'height' => 240, 'saveFormat' => 'JPEG', 'saveQuality' => 85 ) );
-cogumeloSetSetupValue( 'mod:filedata:profile:wmdpi4', array( 'width' => 640, 'height' => 480, 'saveFormat' => 'JPEG', 'saveQuality' => 85 ) );
-cogumeloSetSetupValue( 'mod:filedata:profile:whdpi4', array( 'width' => 960, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 85 ) );
-cogumeloSetSetupValue( 'mod:filedata:profile:wxhdpi4', array( 'width' => 1280, 'height' => 960, 'saveFormat' => 'JPEG', 'saveQuality' => 85 ) );
-cogumeloSetSetupValue( 'mod:filedata:profile:wsdpi16', array( 'width' => 320, 'height' => 180, 'saveFormat' => 'JPEG', 'saveQuality' => 85 ) );
-cogumeloSetSetupValue( 'mod:filedata:profile:wmdpi16', array( 'width' => 640, 'height' => 360, 'saveFormat' => 'JPEG', 'saveQuality' => 85 ) );
-cogumeloSetSetupValue( 'mod:filedata:profile:whdpi16', array( 'width' => 960, 'height' => 540, 'saveFormat' => 'JPEG', 'saveQuality' => 85 ) );
-cogumeloSetSetupValue( 'mod:filedata:profile:wxhdpi16', array( 'width' => 1280, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 85 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:wsdpi4', array( 'width' => 320, 'height' => 240, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:wmdpi4', array( 'width' => 640, 'height' => 480, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:whdpi4', array( 'width' => 960, 'height' => 720, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:wxhdpi4', array( 'width' => 1280, 'height' => 960, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:wsdpi16', array( 'width' => 320, 'height' => 180, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:wmdpi16', array( 'width' => 640, 'height' => 360, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:whdpi16', array( 'width' => 960, 'height' => 540, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+cogumeloSetSetupValue( 'mod:filedata:profile:wxhdpi16', array( 'width' => 1280, 'height' => 720, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 
 
 cogumeloSetSetupValue( 'mod:filedata:profile:big', array(
