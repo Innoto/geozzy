@@ -49,4 +49,19 @@ class story extends Module {
     $this->addUrlPatterns( '#^api/doc/storyList.json$#', 'view:StoryAPIView::storyListJson' ); // Main swagger JSON
   }
 
+  static function getGeozzyDocAPI() {
+
+    $ret = array(
+      array(
+        'path'=> '/doc/story.json',
+        'description' => 'Stories API'
+      ),
+      array(
+        'path'=> '/doc/storyList.json',
+        'description' => 'Stories List API'
+      )
+    );
+
+    return $ret;
+  }
 }

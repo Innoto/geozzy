@@ -163,9 +163,43 @@ class rextComment extends Module {
     $this->addUrlPatterns( '#^api/comment/list/(.*)$#', 'view:CommentAPIView::commentList' );
     $this->addUrlPatterns( '#^api/doc/commentList.json$#', 'view:CommentAPIView::commentListDescription' );
 
-    // API de administracion de comentarios
-    $this->addUrlPatterns( '#^api/admin/commentsuggestion/(.*)$#', 'view:CommentAdminAPIView::commentsSuggestions' );
-    $this->addUrlPatterns( '#^api/doc/admin/adminCommentSuggestion.json$#', 'view:CommentAdminAPIView::commentsSuggestionsJson' );
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+    // APIs que requieren un usuario logueado con permisos admin:access o admin:full
+    if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) )  {
+      // API de administracion de comentarios
+      $this->addUrlPatterns( '#^api/admin/commentsuggestion/(.*)$#', 'view:CommentAdminAPIView::commentsSuggestions' );
+      $this->addUrlPatterns( '#^api/doc/admin/adminCommentSuggestion.json$#', 'view:CommentAdminAPIView::commentsSuggestionsJson' );
+    }
+  }
+
+
+
+  static function getGeozzyDocAPI() {
+    $ret = array(
+      array(
+        'path'=> '/doc/comments.json',
+        'description' => 'Comments API'
+      ),
+      array(
+        'path'=> '/doc/commentList.json',
+        'description' => 'Comment List API'
+      )
+    );
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+    // APIs que requieren un usuario logueado con permisos admin:access o admin:full
+    if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) )  {
+      $ret[] = array(
+        'path' => '/doc/admin/adminCommentSuggestion.json',
+        'description' => 'Admin comment suggestion'
+      );
+    }
+
+
+    return $ret;
   }
 
 
