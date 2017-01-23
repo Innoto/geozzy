@@ -4,70 +4,11 @@ $GEOZZY_API_DOC_URLS = array();
 
 define( 'GEOZZY_API_ACTIVE', true);
 
-user::autoIncludes();
-$useraccesscontrol = new UserAccessController();
 
+geozzyAPI::addModuleAPI( 'admin' );
+geozzyAPI::addModuleAPI( 'rextFavourite' );
+geozzyAPI::addModuleAPI( 'rextTravelPlanner' );
 
-// APIs que requieren un usuario logueado con permisos admin:access o admin:full
-if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) ){
-  $GEOZZY_API_DOC_URLS_ADMIN = array(
-    array(
-      'path' => '/doc/admin/adminCategories.json',
-      'description' => 'Admin Categories'
-    ),
-    array(
-      'path' => '/doc/admin/adminCategoryterms.json',
-      'description' => 'Admin CategoryTerms'
-    ),
-    array(
-      'path' => '/doc/admin/adminResourcesTerm.json',
-      'description' => 'Admin ResourcesTerm'
-    ),
-    array(
-      'path' => '/doc/admin/adminStarred.json',
-      'description' => 'Admin StarredTerms'
-    ),
-    array(
-      'path' => '/doc/admin/adminCommentSuggestion.json',
-      'description' => 'Admin Comments and Suggestions'
-    ),
-    array(
-      'path' => '/admin/adminStories.json',
-      'description' => 'Admin Stories'
-    ),
-    array(
-      'path' => '/admin/adminStorySteps.json',
-      'description' => 'Admin Story Steps'
-    )
-  );
-}
-else {
-  $GEOZZY_API_DOC_URLS_ADMIN = array();
-}
-$GEOZZY_API_DOC_URLS = array_merge( $GEOZZY_API_DOC_URLS, $GEOZZY_API_DOC_URLS_ADMIN );
-
-
-
-// APIs que requieren un usuario logueado
-if( $useraccesscontrol->isLogged() ) {
-  $GEOZZY_API_DOC_URLS = array_merge(
-    $GEOZZY_API_DOC_URLS,
-    array(
-      array(
-        'path'=> '/doc/favourites.json',
-        'description' => 'Favourites API'
-      ),
-      array(
-        'path'=> '/doc/community.json',
-        'description' => 'Community API'
-      ),
-      array(
-        'path'=> '/doc/travelplanner.json',
-        'description' => 'TravelPlanner API'
-      )
-    )
-  );
-}
 
 
 
