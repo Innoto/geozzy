@@ -47,6 +47,7 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^api/doc/categoryList.json$#', 'view:GeozzyAPIView::categoryListJson' );
     $this->addUrlPatterns( '#^api/doc/categoryTerms.json$#', 'view:GeozzyAPIView::categoryTermsJson' );
     $this->addUrlPatterns( '#^api/doc/topicList.json$#', 'view:GeozzyAPIView::topicListJson' );
+
     $this->addUrlPatterns( '#^api/doc/userLogin.json$#', 'view:GeozzyAPIView::userLoginJson' );
     $this->addUrlPatterns( '#^api/doc/userLogout.json$#', 'view:GeozzyAPIView::userLogoutJson' );
     $this->addUrlPatterns( '#^api/doc/userUnknownPass.json$#', 'view:GeozzyAPIView::userUnknownPassJson' );
@@ -89,6 +90,73 @@ class geozzy extends Module {
 
     // Sitemap
     $this->addUrlPatterns( '#^sitemap.xml$#', 'view:SitemapView::showSitemap' );
+  }
+
+
+  static function getGeozzyDocAPI() {
+
+
+    $ret = array(
+      array(
+        'path' => '/doc/bi.json',
+        'description' => 'BI dashboard utils'
+      ),
+      array(
+        'path' => '/doc/resourceTypes.json',
+        'description' => 'resourceTypes'
+      ),
+      array(
+        'path' => '/doc/resources.json',
+        'description' => 'Core Resource'
+      ),
+      array(
+        'path' => '/doc/resourceIndex.json',
+        'description' => 'Resource index'
+      ),
+      array(
+        'path' => '/doc/collections.json',
+        'description' => 'Get collections'
+      ),
+      array(
+        'path' => '/doc/starred.json',
+        'description' => 'Starred terms with resources'
+      ),
+      array(
+        'path' => '/doc/categoryList.json',
+        'description' => 'Category List'
+      ),
+      array(
+        'path' => '/doc/categoryTerms.json',
+        'description' => 'CategoryTerms by category'
+      ),
+      array(
+        'path' => '/doc/topicList.json',
+        'description' => 'Topics'
+      ),
+      array(
+        'path' => '/doc/userLogin.json',
+        'description' => 'User Login'
+      ),
+      array(
+        'path' => '/doc/userLogout.json',
+        'description' => 'User Logout'
+      ),
+      array(
+        'path' => '/doc/userUnknownPass.json',
+        'description' => 'User new password'
+      ),
+      array(
+        'path' => '/doc/cgml-session.json',
+        'description' => 'Get Cogumelo session info'
+      ),
+      array(
+        'path' => '/doc/userSession.json',
+        'description' => 'User Session'
+      )
+    );
+
+
+    return $ret;
   }
 
 
