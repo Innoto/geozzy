@@ -276,10 +276,7 @@ class admin extends Module {
           'path' => '/doc/admin/adminStarred.json',
           'description' => 'Admin StarredTerms'
         ),
-        array(
-          'path' => '/doc/admin/adminCommentSuggestion.json',
-          'description' => 'Admin Comments and Suggestions'
-        ),
+
         array(
           'path' => '/admin/adminStories.json',
           'description' => 'Admin Stories'
