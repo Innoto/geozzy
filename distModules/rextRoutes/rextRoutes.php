@@ -90,6 +90,17 @@ class rextRoutes extends Module {
 
   }
 
+  static function getGeozzyDocAPI() {
+    $ret = array(
+      array(
+        'path'=> '/doc/routes.json',
+        'description' => 'Routes API'
+      )
+    );
+    return $ret;
+  }
+
+
 
   public function moduleRc() {
     geozzy::load( 'controller/RTUtilsController.php' );
