@@ -758,7 +758,7 @@ class geozzyAPIView extends View {
     if( isset( $extraParams['users'] ) && $extraParams['users'] === 'true' ) {
       $userMod =  new UserModel();
       $userList = $userMod->listItems( array( 'filters' => array('active' => 1) ) );
-      $biData['users'] = array();
+      $biData['users'] = [];
       if( $userList ) {
         while( $userVo = $userList->fetch() ) {
           $biData['users'][] = array(
@@ -774,12 +774,12 @@ class geozzyAPIView extends View {
       $favModel = new FavouritesListViewModel();
       $favList = $favModel->listItems( array( 'filters' => array( 'resourceListNotNull' => true ) ) );
       if( $favList ) {
-        $biData['virtualBags'] = array();
+        $biData['virtualBags'] = [];
         while( $favObj = $favList->fetch() ) {
           $favData = $favObj->getAllData( 'onlydata' );
           $biData['virtualBags'][] = array(
             'userId' => $favData['user'],
-            'virtualBags' => ( isset( $favData['resourceList'] ) ) ? explode( ',', $favData['resourceList'] ) : array()
+            'virtualBags' => ( isset( $favData['resourceList'] ) ) ? explode( ',', $favData['resourceList'] ) : []
           );
         }
       }
@@ -837,7 +837,7 @@ class geozzyAPIView extends View {
 
 
     $resourceModel = new ResourceModel();
-    $queryParameters = array();
+    $queryParameters = [];
 
 
     // Bloqueo recursos no deseados
@@ -874,7 +874,7 @@ class geozzyAPIView extends View {
     $fieldsToFilter = false;
     if( isset( $extraParams['fields'] ) && $extraParams['fields'] !== 'false' ) {
       $fieldsP = explode( ',', $extraParams['fields'] );
-      $fieldsToFilter = array();
+      $fieldsToFilter = [];
       foreach( $fieldsP as $fieldName ) {
         $fieldsToFilter[] = $fieldName;
         $fieldsToFilter[] = $fieldName.'_'.$C_LANG;
@@ -929,7 +929,7 @@ class geozzyAPIView extends View {
     if( isset( $extraParams['urlAlias'] ) && $extraParams['urlAlias'] === 'true' ) {
       $urlAliasModel = new UrlAliasModel();
       $urlAliasList = $urlAliasModel->listItems( );
-      $urls = array();
+      $urls = [];
       while( $urlAlias = $urlAliasList->fetch() ) {
         $urls[ $urlAlias->getter('resource') ] = $urlAlias->getter('urlFrom');
       }
@@ -940,6 +940,7 @@ class geozzyAPIView extends View {
     echo '[';
     $c = '';
     while( $valueobject = $resourceList->fetch() ) {
+      $allData = [];
 
       //$allCols = $valueobject->getCols(false);
       $allCols = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
@@ -975,7 +976,7 @@ class geozzyAPIView extends View {
         $taxTermModel =  new ResourceTaxonomytermModel();
         $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'resource' => $allData['id'] ) ) );
         if( $taxTermList !== false ) {
-          $allData['categoryIds'] = array();
+          $allData['categoryIds'] = [];
           while( $taxTerm = $taxTermList->fetch() ) {
             $allData['categoryIds'][] = $taxTerm->getter( 'taxonomyterm' );
           }
@@ -985,7 +986,7 @@ class geozzyAPIView extends View {
         $topicsModel = new ResourceTopicModel();
         $topicsList = $topicsModel->listItems( array( 'filters' => array( 'resource' => $allData['id'] ) ) );
         if( $topicsList ) {
-          $allData['topicIds'] = array();
+          $allData['topicIds'] = [];
           while( $topicVo = $topicsList->fetch() ) {
             $allData['topicIds'][] = $topicVo->getter( 'topic' );
           }
@@ -1025,9 +1026,9 @@ class geozzyAPIView extends View {
         ) );
 
         if( $collResList !== false ) {
-          $allData[ 'collections' ] = array();
+          $allData[ 'collections' ] = [];
           while( $coll = $collResList->fetch() ) {
-            $collData = array();
+            $collData = [];
             $k = array( 'id', 'title', 'shortDescription', 'description', 'weight',
               'weightMain', 'resourceSonList' );
             foreach( $k as $key ) {
@@ -1038,7 +1039,7 @@ class geozzyAPIView extends View {
           }
         }
 
-        $allData[ 'collectionsGeneral' ] = array();
+        $allData[ 'collectionsGeneral' ] = [];
         if( isset( $allData['collections']['base'] ) && count( $allData['collections']['base'] ) > 0 ) {
           foreach( $allData['collections']['base'] as $collId => $coll ) {
             $coll[ 'resourcesData' ] = $this->extendCollBase( $coll['resourceSonList'] );
@@ -1046,7 +1047,7 @@ class geozzyAPIView extends View {
           }
         }
 
-        $allData[ 'collectionsMultimedia' ] = array();
+        $allData[ 'collectionsMultimedia' ] = [];
         if( isset( $allData['collections']['multimedia'] ) && count( $allData['collections']['multimedia'] ) > 0 ) {
           foreach( $allData['collections']['multimedia'] as $collId => $coll ) {
             $coll[ 'resourcesData' ] = $this->extendCollMultimedia( $coll['resourceSonList'] );
