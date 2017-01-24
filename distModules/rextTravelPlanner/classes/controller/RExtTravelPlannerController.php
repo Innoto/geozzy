@@ -85,11 +85,15 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
   public function newTravelPlannerStructure( $user ) {
     // Hay que crear toda la estructura: resource rtypeTravelPlanner
 
-    // Creamos el recurso de favoritos
-    $tpsResInfo = array( 'rTypeId' => $this->getTravelPlannerRTypeId(), 'user' => $user,
+    // Creamos el recurso de TravelPlanner
+    $tpsResInfo = array(
+      'rTypeId' => $this->getTravelPlannerRTypeId(),
+      'user' => $user,
       'title' => 'Travel Planner. user '.$user,
       'title_'.Cogumelo::getSetupValue( 'lang:default' ) => 'Travel Planner. user '.$user,
-      'published' => true, 'timeCreation' => gmdate( 'Y-m-d H:i:s', time() ) );
+      'published' => true,
+      'timeCreation' => gmdate( 'Y-m-d H:i:s', time() )
+    );
     $resModel = new ResourceModel( $tpsResInfo );
     $resModel->setterDependence( 'id', new TravelPlannerModel() );
     $resModel->save(['affectsDependences'=>true]);
