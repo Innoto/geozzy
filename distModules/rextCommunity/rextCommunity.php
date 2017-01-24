@@ -17,7 +17,7 @@ class rextCommunity extends Module {
 
   public $autoIncludeAlways = true;
   public $includesCommon = array(
-    // 'js/rExtCommunityController.js',
+    'js/rExtCommunityController.js',
     'controller/RExtCommunityController.php',
     'model/RExtCommunityModel.php',
     'model/RExtCommunityFollowModel.php',
@@ -38,7 +38,7 @@ class rextCommunity extends Module {
     $this->addUrlPatterns( '#^cgml_cron/rextCommunity/prepareAffinity$#', 'view:RExtCommunityAffinityView::prepareAffinity' );
   }
 
-  static function getGeozzyDocAPI() {
+  public static function getGeozzyDocAPI() {
     $ret = [];
 
     user::load('controller/UserAccessController.php');
