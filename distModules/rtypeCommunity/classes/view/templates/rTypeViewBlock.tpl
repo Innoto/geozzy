@@ -23,7 +23,7 @@
             <div class="col-sm-5 col-md-4">
               <div class="infoPersonal">
                 <div class="commImage">
-                  <img class="img-responsive" src="/cgmlImg/{$myInfo.avatarFileId}/userPhotoCommunity/{$myInfo.avatarFileId}.jpg">
+                  <img class="img-responsive" src="{if $myInfo.avatarFileId}/cgmlImg/{$myInfo.avatarFileId}/userPhotoCommunity/{$myInfo.avatarFileId}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}">
                 </div>
               </div>
             </div>
@@ -145,7 +145,7 @@
                         <div class="text-center">
                           <div class="socialUser">
                             <div class="commImageUser">
-                              <img class="img-responsive" src="/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg">
+                              <img class="img-responsive" src="{if $userInfo.avatarFileId}/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}">
                             </div>
                             {if $userInfo.comm}
                               <div class="socialLinks">
@@ -236,7 +236,7 @@
                         <div class="text-center">
                           <div class="socialUser">
                             <div class="commImageUser">
-                              <img class="img-responsive" src="/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg">
+                              <img class="img-responsive" src="{if $userInfo.avatarFileId}/cgmlImg/{$userInfo.avatarFileId}/userPhotoCommunity/{$userInfo.avatarFileId}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}">
                             </div>
                             {if $userInfo.comm}
                               <div class="socialLinks">

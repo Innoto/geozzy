@@ -33,7 +33,7 @@
               <div class="col-sm-2">
                 <div class="commImage">
                   <a href="{$fav.url}" title="{$fav.title}">
-                    <img class="img-responsive" src="/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg" alt="{$fav.title}">
+                    <img class="img-responsive" src="{if $fav.image}/cgmlImg/{$fav.image}/userFavsCommunity/{$fav.image}.jpg{else}/mediaCache/module/rextCommunity/img/user.png{/if}" alt="{$fav.title}">
                   </a>
                 </div>
               </div>

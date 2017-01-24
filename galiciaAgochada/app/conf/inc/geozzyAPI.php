@@ -1,5 +1,5 @@
 <?php
-global $GEOZZY_API_DOC_URLS;
+
 define( 'GEOZZY_API_ACTIVE', true);
 
 geozzyAPI::addModuleAPI( 'admin' );
