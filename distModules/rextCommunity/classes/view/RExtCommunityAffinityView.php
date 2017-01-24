@@ -45,6 +45,7 @@ class RExtCommunityAffinityView extends View {
   }
 
   public function updateAffinityModel() {
+    error_log( 'RExtCommunityAffinityView::updateAffinityModel()' );
     $baseInfo = [];
     $affinityAB = [];
     $userPosIndex = [];
@@ -67,21 +68,15 @@ class RExtCommunityAffinityView extends View {
       $usersDone = [];
 
       foreach( $users as $aUserId ) {
-        // echo "Preparando datos para $aUserId\n";
         $aUserTerms = $baseInfo[ $aUserId ];
         if( is_array( $aUserTerms ) && count( $aUserTerms ) > 0 ) {
           foreach( $baseInfo as $bUserId => $bUserTerms ) {
             if( $aUserId === $bUserId || isset( $affinityAB[ $aUserId ][ $bUserId ] ) ) {
               continue;
             }
-            // echo "  Mezclando con $bUserId\n";
             $affinity = 0;
             foreach( $aUserTerms as $aTerm => $aPos ) {
               if( isset( $bUserTerms[ $aTerm ] ) ) {
-                // echo "  $aTerm: $aPos - ".$bUserTerms[ $aTerm ]."\n";
-                // $diffTerms = 10 - $aPos - $bUserTerms[ $aTerm ];
-                // $affinity += ( $diffTerms > 0 ) ? $diffTerms : 1;
-                // $affinity += $diffTerms;
                 $affinity += 20 - $aPos - $bUserTerms[ $aTerm ];
               }
             }
@@ -96,9 +91,6 @@ class RExtCommunityAffinityView extends View {
     foreach( $affinityAB as $aUserId => $affinityUsers ) {
       arsort( $affinityUsers );
       $affinityUsersCSV = implode( ',', array_slice( array_keys( $affinityUsers ), 0, 128 ) );
-
-      //error_log( "Afins($aUserId) => ". $affinityUsersCSV );
-
       $afinModel = new RExtCommunityAffinityUserModel( [ 'id' => $aUserId, 'affinityList' => $affinityUsersCSV ] );
       $afinModel->save();
     }
