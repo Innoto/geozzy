@@ -17,9 +17,7 @@ class RoutesAPIView extends View
   * @return bool : true -> Access allowed
   */
   public function accessCheck() {
-    if( GEOZZY_API_ACTIVE ){
-      return( true );
-    }
+    return( true );
   }
 
 

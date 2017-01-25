@@ -35,10 +35,6 @@ class RExtCommunityAPIView extends View {
    * @return bool : true -> Access allowed
    */
   public function accessCheck() {
-    // $postUserId = isset( $_POST['user'] ) ? intval( $_POST['user'] ) : null;
-    // return( $this->userId !== false && $this->userId === $postUserId );
-
-    // return( GEOZZY_API_ACTIVE === true );
 
     return( $this->userId !== false || strpos( $_SERVER['REQUEST_URI'], 'doc/community.json' ) !== false );
   }

@@ -22,7 +22,7 @@ class StoryStepAdminAPIView extends View {
     $useraccesscontrol = new UserAccessController();
     $access = true;
 
-    if( !GEOZZY_API_ACTIVE || !$useraccesscontrol->isLogged() ){
+    if( !$useraccesscontrol->isLogged() ){
       $access = false;
     }
 

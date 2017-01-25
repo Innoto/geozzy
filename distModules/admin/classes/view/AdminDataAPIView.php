@@ -24,9 +24,6 @@ class AdminDataAPIView extends View
     $useraccesscontrol = new UserAccessController();
     $res = true;
 
-    if( !GEOZZY_API_ACTIVE || !$useraccesscontrol->isLogged() ){
-     $res = false;
-    }
 
     $access = $useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full');
     if(!$access){
