@@ -85,10 +85,10 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
             //  shortDescription:elm.get('shortDescription')
             //}));
 
-            console.log('Recomendado existe: ',elm);
+            console.log('Recomendado ITG existe: ',elm);
 
               that.debuger.log('Recurso recomendado:', elm.cid);
-          
+
           });
 
         });
