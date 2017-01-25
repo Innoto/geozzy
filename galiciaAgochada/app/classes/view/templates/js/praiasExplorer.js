@@ -100,6 +100,9 @@
         explorerSectionName:'Praias de ensono'
       });
 
+
+      // ADD BI METRICS ADAPTER for main explorer
+      that.explorer.addDisplay(new geozzy.explorerComponents.biView());
     }
 
 
