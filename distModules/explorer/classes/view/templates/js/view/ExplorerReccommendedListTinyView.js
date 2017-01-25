@@ -69,7 +69,7 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
         $.each(res, function(i,e){
           res_ids.push(e.resource_id)
           //console.log('recomendado por ITG:', e.resource_id)
-            that.debuger.log('Recurso recomendado:', e.resource_id);
+            that.debuger.log('Recurso recomendado:'+e.resource_id , e.resource_id);
 
         });
 
