@@ -98,6 +98,9 @@
         explorerSectionName:'Sabrosos xantares'
       });
 
+      // ADD BI METRICS ADAPTER for main explorer
+      that.explorer.addDisplay(new geozzy.explorerComponents.biView());
+
       that.setDisplays();
       that.setFilters();
       that.setParticipation();

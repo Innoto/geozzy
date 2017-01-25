@@ -1,6 +1,5 @@
 <?php
 
-require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
 
 /**
@@ -17,9 +16,7 @@ class CommentAPIView extends View {
   * @return bool : true -> Access allowed
   */
   public function accessCheck() {
-    if( GEOZZY_API_ACTIVE ){
-      return( true );
-    }
+    return( true );
   }
 
 

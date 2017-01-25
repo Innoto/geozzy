@@ -1,6 +1,5 @@
 <?php
 
-require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
 Cogumelo::load('coreController/MailController.php');
 
@@ -21,7 +20,7 @@ class CommentAdminAPIView extends View {
     $useraccesscontrol = new UserAccessController();
     $access = true;
 
-    if( !GEOZZY_API_ACTIVE || !$useraccesscontrol->isLogged() ){
+    if( !$useraccesscontrol->isLogged() ){
       $access = false;
     }
 

@@ -37,6 +37,18 @@ class geozzy extends Module {
   public function __construct() {
     $this->addUrlPatterns( '#^'.MOD_GEOZZY_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
 
+    // geozzy Resource
+    //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
+    //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
+
+    // Sitemap
+    $this->addUrlPatterns( '#^sitemap.xml$#', 'view:SitemapView::showSitemap' );
+  }
+
+  function setGeozzyUrlPatternsAPI() {
+    // geozzy api UI events
+    // $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
+
     // geozzy core api doc
     $this->addUrlPatterns( '#^api/doc/bi.json$#', 'view:GeozzyAPIView::biJson' );
     $this->addUrlPatterns( '#^api/doc/resources.json$#', 'view:GeozzyAPIView::resourcesJson' );
@@ -81,19 +93,10 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^api/core/userunknownpass#', 'view:GeozzyAPIView::userUnknownPass' );
     $this->addUrlPatterns( '#^api/core/usersession#', 'view:GeozzyAPIView::userSession' );
 
-    // geozzy api UI events
-    // $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
-
-    // geozzy Resource
-    //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
-    //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
-
-    // Sitemap
-    $this->addUrlPatterns( '#^sitemap.xml$#', 'view:SitemapView::showSitemap' );
   }
 
 
-  static function getGeozzyDocAPI() {
+  function getGeozzyDocAPI() {
 
 
     $ret = array(

@@ -162,7 +162,9 @@ class rextComment extends Module {
     // API de listado de comentarios
     $this->addUrlPatterns( '#^api/comment/list/(.*)$#', 'view:CommentAPIView::commentList' );
     $this->addUrlPatterns( '#^api/doc/commentList.json$#', 'view:CommentAPIView::commentListDescription' );
+  }
 
+  function setGeozzyUrlPatternsAPI() {
 
     user::load('controller/UserAccessController.php');
     $useraccesscontrol = new UserAccessController();
@@ -172,11 +174,10 @@ class rextComment extends Module {
       $this->addUrlPatterns( '#^api/admin/commentsuggestion/(.*)$#', 'view:CommentAdminAPIView::commentsSuggestions' );
       $this->addUrlPatterns( '#^api/doc/admin/adminCommentSuggestion.json$#', 'view:CommentAdminAPIView::commentsSuggestionsJson' );
     }
+
   }
 
-
-
-  static function getGeozzyDocAPI() {
+  function getGeozzyDocAPI() {
     $ret = array(
       array(
         'path'=> '/doc/comments.json',

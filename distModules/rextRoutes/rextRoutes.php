@@ -76,21 +76,19 @@ class rextRoutes extends Module {
 
 
   public function __construct() {
-
-
 // TEST CODE
-
-    $this->addUrlPatterns( '#^testRouteGraph#', 'view:TestRouteView::testRouteGraph' );
-    $this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
+    //$this->addUrlPatterns( '#^testRouteGraph#', 'view:TestRouteView::testRouteGraph' );
+    //$this->addUrlPatterns( '#^testroute$#', 'view:TestRouteView::routeConvert' );
 // END TEST CODE
+  }
 
+  function setGeozzyUrlPatternsAPI() {
     $this->addUrlPatterns( '#^api/doc/routes.json#', 'view:RoutesAPIView::routesJson' );
     $this->addUrlPatterns( '#^api/routes/?(.*)$#', 'view:RoutesAPIView::routes' );
     $this->addUrlPatterns( '#^api/adminRoutes/?(.*)$#', 'view:RoutesAPIView::adminRoutes' );
-
   }
 
-  static function getGeozzyDocAPI() {
+  function getGeozzyDocAPI() {
     $ret = array(
       array(
         'path'=> '/doc/routes.json',

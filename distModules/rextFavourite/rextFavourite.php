@@ -38,6 +38,9 @@ class rextFavourite extends Module {
 
   public function __construct() {
     // $this->addUrlPatterns( '#^geozzyFavourite/command$#', 'view:RExtFavouriteView::execCommand' );
+  }
+
+  function setGeozzyUrlPatternsAPI() {
 
     user::load('controller/UserAccessController.php');
     $useraccesscontrol = new UserAccessController();
@@ -46,11 +49,9 @@ class rextFavourite extends Module {
       $this->addUrlPatterns( '#^api/favourites$#', 'view:RExtFavouriteAPIView::apiQuery' );
       $this->addUrlPatterns( '#^api/doc/favourites.json$#', 'view:RExtFavouriteAPIView::apiInfoJson' );
     }
-
-
   }
 
-  static function getGeozzyDocAPI() {
+  function getGeozzyDocAPI() {
     $ret = [];
 
     user::load('controller/UserAccessController.php');

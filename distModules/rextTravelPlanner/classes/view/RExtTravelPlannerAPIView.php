@@ -2,7 +2,6 @@
 
 Cogumelo::load( 'coreView/View.php' );
 rextTravelPlanner::load( 'controller/RExtTravelPlannerController.php' );
-require_once APP_BASE_PATH.'/conf/inc/geozzyAPI.php';
 
 
 class RExtTravelPlannerAPIView extends View {
@@ -21,7 +20,7 @@ class RExtTravelPlannerAPIView extends View {
       $this->userSession = $userInfo;
     }
 
-    if( GEOZZY_API_ACTIVE === true && $this->userSession && $this->userSession['data']['login'] === 'superAdmin' ) {
+    if( $this->userSession && $this->userSession['data']['login'] === 'superAdmin' ) {
       $this->extendAPIAccess = true;
     }
 
@@ -38,7 +37,6 @@ class RExtTravelPlannerAPIView extends View {
    */
   public function accessCheck() {
     return( $this->userId !== false );
-    // return( GEOZZY_API_ACTIVE === true );
   }
 
 

@@ -86,7 +86,6 @@ $C_ENABLED_MODULES = array(
   'common',
   'devel',
   'user',
-  'geozzyAPI',
   'filedata',
   'geozzy',
   'appResourceBridge',
@@ -102,7 +101,6 @@ $C_ENABLED_MODULES = array(
   'appStories',
   // testing module
   'testData'
-
 );
 
 // resource Extenssions
@@ -169,7 +167,8 @@ $C_RTYPE_MODULES = array(
 global $C_ULTIMATE_MODULES;
 $C_ULTIMATE_MODULES = array(
   'initResources',
-  'geozzyUser'
+  'geozzyUser',
+  'geozzyAPI'
 );
 
 // Merge all modules

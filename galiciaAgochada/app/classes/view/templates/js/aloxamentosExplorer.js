@@ -76,7 +76,9 @@
         explorerId:'aloxamentos',
         explorerSectionName:'Aloxamentos con encanto'
       });
-
+      
+      // ADD BI METRICS ADAPTER for main explorer
+      that.explorer.addDisplay(new geozzy.explorerComponents.biView());
     }
 
     /**

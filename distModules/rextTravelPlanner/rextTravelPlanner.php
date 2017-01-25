@@ -53,6 +53,9 @@ class rextTravelPlanner extends Module {
 
   public function __construct() {
 
+  }
+
+  function setGeozzyUrlPatternsAPI() {
     user::load('controller/UserAccessController.php');
     $useraccesscontrol = new UserAccessController();
 
@@ -63,8 +66,7 @@ class rextTravelPlanner extends Module {
   }
 
 
-
-  static function getGeozzyDocAPI() {
+  function getGeozzyDocAPI() {
     $ret = [];
 
     user::load('controller/UserAccessController.php');

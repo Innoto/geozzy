@@ -64,7 +64,7 @@
             that.layoutDistributeSize();
         });
       });
-      
+
       mapControlUtils = new mapControlsUtils();
       mapControlUtils.changeMapControls(that.resourceMap);
 
@@ -96,6 +96,9 @@
         explorerId:'rincons',
         explorerSectionName:'Rincons espectaculares'
       });
+
+      // ADD BI METRICS ADAPTER for main explorer
+      that.explorer.addDisplay(new geozzy.explorerComponents.biView());
 
       that.explorerRutas = new geozzy.explorer({
         partialLoadSuccess: function(){ that.layoutDistributeSize() },

@@ -2,7 +2,6 @@
 
 Cogumelo::load( 'coreView/View.php' );
 rextFavourite::load( 'controller/RExtFavouriteController.php' );
-require_once APP_BASE_PATH.'/conf/inc/geozzyAPI.php';
 
 
 class RExtFavouriteAPIView extends View {
@@ -21,7 +20,7 @@ class RExtFavouriteAPIView extends View {
       $this->userSession = $userInfo;
     }
 
-    if( GEOZZY_API_ACTIVE === true && $this->userSession && $this->userSession['data']['login'] === 'superAdmin' ) {
+    if( $this->userSession && $this->userSession['data']['login'] === 'superAdmin' ) {
       $this->extendAPIAccess = true;
     }
 
@@ -38,7 +37,6 @@ class RExtFavouriteAPIView extends View {
    */
   public function accessCheck() {
     return( $this->userId !== false );
-    // return( GEOZZY_API_ACTIVE === true );
   }
 
 
@@ -465,4 +463,3 @@ class RExtFavouriteAPIView extends View {
   } // function apiInfoJson()
 
 }
-
