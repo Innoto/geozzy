@@ -1,6 +1,5 @@
 <?php
 
-require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
 Cogumelo::load('coreView/View.php');
 Cogumelo::load('coreController/MailController.php');
 geozzy::load('controller/ResourceController.php');

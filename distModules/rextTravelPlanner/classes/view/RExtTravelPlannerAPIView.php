@@ -2,7 +2,6 @@
 
 Cogumelo::load( 'coreView/View.php' );
 rextTravelPlanner::load( 'controller/RExtTravelPlannerController.php' );
-require_once APP_BASE_PATH.'/conf/inc/geozzyAPI.php';
 
 
 class RExtTravelPlannerAPIView extends View {

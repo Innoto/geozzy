@@ -2,7 +2,6 @@
 
 Cogumelo::load( 'coreView/View.php' );
 rextCommunity::load( 'controller/RExtCommunityController.php' );
-require_once APP_BASE_PATH.'/conf/inc/geozzyAPI.php';
 
 
 class RExtCommunityAPIView extends View {

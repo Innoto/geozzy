@@ -2,7 +2,6 @@
 
 Cogumelo::load( 'coreView/View.php' );
 rextFavourite::load( 'controller/RExtFavouriteController.php' );
-require_once APP_BASE_PATH.'/conf/inc/geozzyAPI.php';
 
 
 class RExtFavouriteAPIView extends View {
