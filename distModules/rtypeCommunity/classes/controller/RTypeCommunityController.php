@@ -96,8 +96,9 @@ class RTypeCommunityController extends RTypeController implements RTypeInterface
       $commFollowsInfo = ( $commFollows ) ? $this->rExtCommCtrl->getUsersInfo( $commFollows, $getFavs = true ) : false;
       $template->assign( 'commFollowsInfo', $commFollowsInfo );
 
-      $commPropose = $this->rExtCommCtrl->getCommPropose( $viewBlockInfo['data']['user'], $commFollows );
-      $commProposeInfo = ( $commPropose ) ? $this->rExtCommCtrl->getUsersInfo( $commPropose, $getFavs = true ) : false;
+      $commProposeList = $this->rExtCommCtrl->getCommPropose( $viewBlockInfo['data']['user'], $commFollows );
+      $commProposeInfo = ( $commProposeList ) ? $this->rExtCommCtrl->getUsersInfo( $commProposeList, $getFavs = true ) : false;
+      $template->assign( 'commProposeList', $commProposeList );
       $template->assign( 'commProposeInfo', $commProposeInfo );
 
       // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );

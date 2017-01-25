@@ -227,7 +227,8 @@
           <div class="communityList">
             <h4>{t}Usuarios similares a tí...{/t}</h4>
             <div class="row row-eq-height">
-              {foreach $commProposeInfo as $userInfo}
+              {foreach $commProposeList as $userId}
+                {$userInfo=$commProposeInfo[$userId]}
                 {* id,login,name,surname,email,description,avatarFileId *}
                 <div class="col-sm-12 col-md-6" data-id="{$userInfo.id}">
                   <div class="communityElement">
