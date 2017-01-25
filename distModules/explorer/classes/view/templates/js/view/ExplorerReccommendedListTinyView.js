@@ -70,7 +70,7 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
           res_ids.push(e.resource_id)
           //console.log('recomendado por ITG:', e.resource_id)
 
-          if( recommenderActiveDebug === true ) {
+          if( typeof that.debuger != 'undefined') {
             that.debuger.log('Recurso recomendado:', e.resource_id);
           }
         });
@@ -86,7 +86,7 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
             //}));
 
             console.log('Recomendado ITG existe: ',elm);
-            if( recommenderActiveDebug === true ) {
+            if( typeof that.debuger != 'undefined') {
               that.debuger.log('Recurso recomendado:', elm.cid);
             }
           });
