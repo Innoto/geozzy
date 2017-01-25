@@ -90,7 +90,7 @@ class rextRoutes extends Module {
 
   }
 
-  static function getGeozzyDocAPI() {
+  function getGeozzyDocAPI() {
     $ret = array(
       array(
         'path'=> '/doc/routes.json',

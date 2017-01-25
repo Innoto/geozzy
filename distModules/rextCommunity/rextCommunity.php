@@ -38,7 +38,7 @@ class rextCommunity extends Module {
     $this->addUrlPatterns( '#^cgml_cron/rextCommunity/prepareAffinity$#', 'view:RExtCommunityAffinityView::prepareAffinity' );
   }
 
-  public static function getGeozzyDocAPI() {
+  public function getGeozzyDocAPI() {
     $ret = [];
 
     user::load('controller/UserAccessController.php');

@@ -97,7 +97,7 @@ class explorer extends Module {
   }
 
 
-  static function getGeozzyDocAPI() {
+  function getGeozzyDocAPI() {
 
     $ret = array(
       array(

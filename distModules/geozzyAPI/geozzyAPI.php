@@ -23,16 +23,47 @@ class geozzyAPI extends Module {
     // API DOC GENERATOR
     $this->addUrlPatterns( '#^api/?$#', 'view:DocAPIView::main' );
     $this->addUrlPatterns( '#^api/doc/index.json$#', 'view:DocAPIView::apidocJson' ); // Main swagger JSON
+
+    require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
+
+    if( GEOZZY_API_ACTIVE === true ) {
+    //  $this->addUrlPatternsAPI();
+    }
+
+
   }
 
+  function addUrlPatternsAPI() {
+    global $C_INDEX_MODULES;
+    global $COGUMELO_INSTANCED_MODULES;
+
+    if( count($C_INDEX_MODULES)>0 ) {
+
+      foreach($C_INDEX_MODULES as $modName) {
+        //echo $modName;
+        var_dump( $COGUMELO_INSTANCED_MODULES);
+        if( isset($COGUMELO_INSTANCED_MODULES[$modName])) {
+
+          if( method_exists($m, 'addModuleAPI')){
+            echo $modName.": YES";
+          }
+        }
+        /*if( method_exists($m, 'addModuleAPI')){
+          echo $modName.": YES";
+        }*/
+      }
+
+    }
+
+  }
 
   static function addModuleAPI( $moduleToAddApi ) {
     global $GEOZZY_API_DOC_URLS;
     if( !is_array($GEOZZY_API_DOC_URLS) ){
       $GEOZZY_API_DOC_URLS = [];
     }
-
-    eval( '$GEOZZY_API_DOC_URLS = array_merge( $GEOZZY_API_DOC_URLS, '.$moduleToAddApi.'::getGeozzyDocAPI() );' );
+    $m = new $moduleToAddApi();
+    $GEOZZY_API_DOC_URLS = array_merge( $GEOZZY_API_DOC_URLS, $m->getGeozzyDocAPI() );
 
   }
 }

@@ -64,7 +64,7 @@ class rextTravelPlanner extends Module {
 
 
 
-  static function getGeozzyDocAPI() {
+  function getGeozzyDocAPI() {
     $ret = [];
 
     user::load('controller/UserAccessController.php');

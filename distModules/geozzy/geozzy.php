@@ -93,7 +93,7 @@ class geozzy extends Module {
   }
 
 
-  static function getGeozzyDocAPI() {
+  function getGeozzyDocAPI() {
 
 
     $ret = array(

@@ -250,7 +250,8 @@ class admin extends Module {
 
   }
 
-  static function getGeozzyDocAPI() {
+
+  function getGeozzyDocAPI() {
     $ret = [];
 
     //user::autoIncludes();
