@@ -90,6 +90,11 @@ class explorer extends Module {
 
 
   public function __construct() {
+
+  }
+
+
+  function setGeozzyUrlPatternsAPI() {
     $this->addUrlPatterns( '#^api/explorer/(.*)#', 'view:ExplorerAPIView::explorer' );
     $this->addUrlPatterns( '#^api/doc/explorer.json#', 'view:ExplorerAPIView::explorerJson' ); // Main swagger JSON
     $this->addUrlPatterns( '#^api/explorerList$#', 'view:ExplorerAPIView::explorerList' );

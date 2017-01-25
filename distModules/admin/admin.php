@@ -228,8 +228,10 @@ class admin extends Module {
     $this->addUrlPatterns( '#^admin/filemanagerbackend#', 'view:AdminViewElfinder::fileManagerBackend' );
 
 
+  }
 
 
+  function setGeozzyUrlPatternsAPI() {
     //user::autoIncludes();
     user::load('controller/UserAccessController.php');
 
@@ -247,9 +249,7 @@ class admin extends Module {
       $this->addUrlPatterns( '#^api/doc/admin/adminStarred.json$#', 'view:AdminDataAPIView::starredJson' ); // Swagger
     }
 
-
   }
-
 
   function getGeozzyDocAPI() {
     $ret = [];

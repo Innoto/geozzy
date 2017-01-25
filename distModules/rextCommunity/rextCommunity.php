@@ -27,6 +27,12 @@ class rextCommunity extends Module {
 
   public function __construct() {
 
+
+
+    $this->addUrlPatterns( '#^cgml_cron/rextCommunity/prepareAffinity$#', 'view:RExtCommunityAffinityView::prepareAffinity' );
+  }
+
+  function setGeozzyUrlPatternsAPI() {
     user::load('controller/UserAccessController.php');
     $useraccesscontrol = new UserAccessController();
 
@@ -34,8 +40,6 @@ class rextCommunity extends Module {
       $this->addUrlPatterns( '#^api/community$#', 'view:RExtCommunityAPIView::apiQuery' );
       $this->addUrlPatterns( '#^api/doc/community.json$#', 'view:RExtCommunityAPIView::apiInfoJson' );
     }
-
-    $this->addUrlPatterns( '#^cgml_cron/rextCommunity/prepareAffinity$#', 'view:RExtCommunityAffinityView::prepareAffinity' );
   }
 
   public function getGeozzyDocAPI() {

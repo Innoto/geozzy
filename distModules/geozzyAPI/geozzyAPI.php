@@ -27,7 +27,7 @@ class geozzyAPI extends Module {
     require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
 
     if( GEOZZY_API_ACTIVE === true ) {
-    //  $this->addUrlPatternsAPI();
+      $this->addUrlPatternsAPI();
     }
 
 
@@ -41,28 +41,30 @@ class geozzyAPI extends Module {
 
       foreach($C_INDEX_MODULES as $modName) {
         //echo $modName;
-        var_dump( $COGUMELO_INSTANCED_MODULES);
+
         if( isset($COGUMELO_INSTANCED_MODULES[$modName])) {
 
-          if( method_exists($m, 'addModuleAPI')){
-            echo $modName.": YES";
+
+          if( method_exists($COGUMELO_INSTANCED_MODULES[$modName], 'setGeozzyUrlPatternsAPI')){
+            $COGUMELO_INSTANCED_MODULES[$modName]->setGeozzyUrlPatternsAPI();
           }
         }
-        /*if( method_exists($m, 'addModuleAPI')){
-          echo $modName.": YES";
-        }*/
+
       }
 
     }
 
+
   }
 
   static function addModuleAPI( $moduleToAddApi ) {
+    global $COGUMELO_INSTANCED_MODULES;
     global $GEOZZY_API_DOC_URLS;
+
     if( !is_array($GEOZZY_API_DOC_URLS) ){
       $GEOZZY_API_DOC_URLS = [];
     }
-    $m = new $moduleToAddApi();
+    $m = $COGUMELO_INSTANCED_MODULES[$moduleToAddApi];
     $GEOZZY_API_DOC_URLS = array_merge( $GEOZZY_API_DOC_URLS, $m->getGeozzyDocAPI() );
 
   }
