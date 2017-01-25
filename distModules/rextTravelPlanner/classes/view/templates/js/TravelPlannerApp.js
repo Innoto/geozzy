@@ -52,10 +52,15 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       success: function setStatusSuccess( $jsonData, $textStatus, $jqXHR ) {
         if ( $jsonData.result === 'ok' ) {
           that.favInfo = $jsonData.favourites;
-
-          if ( $jsonData.favourites.length > 0 ){
-           that.favResources = $jsonData.favourites[Object.keys($jsonData.favourites)[0]].resourceList;
-         }
+          if(typeof $jsonData.favourites == 'object'){
+            $.each( $jsonData.favourites, function( index, e ){
+              that.favResources = e.resourceList;
+            });
+          }else{
+            if ( $jsonData.favourites.length > 0 ){
+             that.favResources = $jsonData.favourites[Object.keys($jsonData.favourites)[0]].resourceList;
+            }
+          }
         }
       }
     });
