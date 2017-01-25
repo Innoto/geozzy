@@ -86,9 +86,9 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
             //}));
 
             console.log('Recomendado ITG existe: ',elm);
-            if( typeof that.debuger != 'undefined') {
+
               that.debuger.log('Recurso recomendado:', elm.cid);
-            }
+
           });
 
         });
