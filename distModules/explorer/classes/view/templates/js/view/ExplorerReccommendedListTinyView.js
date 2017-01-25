@@ -69,10 +69,8 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
         $.each(res, function(i,e){
           res_ids.push(e.resource_id)
           //console.log('recomendado por ITG:', e.resource_id)
-
-          if( typeof that.debuger != 'undefined') {
             that.debuger.log('Recurso recomendado:', e.resource_id);
-          }
+
         });
 
         col.fetchByIds(res_ids, function(){
@@ -87,7 +85,6 @@ geozzy.explorerComponents.reccommendedListView = Backbone.View.extend({
 
             console.log('Recomendado ITG existe: ',elm);
 
-              that.debuger.log('Recurso recomendado:', elm.cid);
 
           });
 
