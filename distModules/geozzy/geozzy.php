@@ -14,15 +14,14 @@ class geozzy extends Module {
   public $name = 'geozzy';
   public $version = 1.8;
 
-  public $dependences = array(
-    array(
-     'id' =>'ckeditor',
-     'params' => array('ckeditor#standard/stable'),
-     'installer' => 'bower',
-     'includes' => array('ckeditor.js'),
-     'autoinclude' => false
-    )
-  );
+  public $dependences = [];
+
+  // pre-170126
+  // 'id' =>'ckeditor',
+  // 'params' => array('ckeditor#standard/stable'),
+  // 'installer' => 'bower',
+  // 'includes' => array('ckeditor.js'),
+  // 'autoinclude' => false
 
 
   public $includesCommon = array(
@@ -45,7 +44,7 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^sitemap.xml$#', 'view:SitemapView::showSitemap' );
   }
 
-  function setGeozzyUrlPatternsAPI() {
+  public function setGeozzyUrlPatternsAPI() {
     // geozzy api UI events
     // $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
 
@@ -94,8 +93,7 @@ class geozzy extends Module {
   }
 
 
-  function getGeozzyDocAPI() {
-
+  public function getGeozzyDocAPI() {
 
     $ret = array(
       array(
@@ -155,7 +153,6 @@ class geozzy extends Module {
         'description' => 'User Session'
       )
     );
-
 
     return $ret;
   }
@@ -261,9 +258,6 @@ class geozzy extends Module {
         }
       }
     }
-
-
-
   }
 
 
