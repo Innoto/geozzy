@@ -166,9 +166,9 @@ $C_RTYPE_MODULES = array(
 // Ultimate modules
 global $C_ULTIMATE_MODULES;
 $C_ULTIMATE_MODULES = array(
+  'geozzyAPI',
   'initResources',
-  'geozzyUser',
-  'geozzyAPI'
+  'geozzyUser'
 );
 
 // Merge all modules
