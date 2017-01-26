@@ -24,12 +24,16 @@ class geozzyAPI extends Module {
     $this->addUrlPatterns( '#^api/?$#', 'view:DocAPIView::main' );
     $this->addUrlPatterns( '#^api/doc/index.json$#', 'view:DocAPIView::apidocJson' ); // Main swagger JSON
 
-    require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
+    global $COGUMELO_IS_EXECUTING_FROM_SCRIPT;
 
-    if( GEOZZY_API_ACTIVE === true ) {
-      $this->addUrlPatternsAPI();
+    if( $COGUMELO_IS_EXECUTING_FROM_SCRIPT !== true) {
+      require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
+
+
+      if( GEOZZY_API_ACTIVE === true ) {
+        $this->addUrlPatternsAPI();
+      }
     }
-
 
   }
 

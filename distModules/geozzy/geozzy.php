@@ -51,10 +51,10 @@ class geozzy extends Module {
 
     // geozzy core api doc
     $this->addUrlPatterns( '#^api/doc/bi.json$#', 'view:GeozzyAPIView::biJson' );
-    $this->addUrlPatterns( '#^api/doc/resources.json$#', 'view:GeozzyAPIView::resourcesJson' );
+    //$this->addUrlPatterns( '#^api/doc/resources.json$#', 'view:GeozzyAPIView::resourcesJson' );
     $this->addUrlPatterns( '#^api/doc/resourceTypes.json$#', 'view:GeozzyAPIView::resourceTypesJson' );
-    $this->addUrlPatterns( '#^api/doc/resourceIndex.json$#', 'view:GeozzyAPIView::resourceIndexJson' );
-    $this->addUrlPatterns( '#^api/doc/collections.json$#', 'view:GeozzyAPIView::collectionsJson' );
+    //$this->addUrlPatterns( '#^api/doc/resourceIndex.json$#', 'view:GeozzyAPIView::resourceIndexJson' );
+    //$this->addUrlPatterns( '#^api/doc/collections.json$#', 'view:GeozzyAPIView::collectionsJson' );
     $this->addUrlPatterns( '#^api/doc/starred.json$#', 'view:GeozzyAPIView::starredJson' );
     $this->addUrlPatterns( '#^api/doc/categoryList.json$#', 'view:GeozzyAPIView::categoryListJson' );
     $this->addUrlPatterns( '#^api/doc/categoryTerms.json$#', 'view:GeozzyAPIView::categoryTermsJson' );
@@ -68,8 +68,6 @@ class geozzy extends Module {
     //$this->addUrlPatterns( '#^api/uiEventList.json$#', 'view:GeozzyAPIView::uiEventListJson' );
 
 
-    // geozzy api environment
-    $this->addUrlPatterns( '#^api/core/bi(|/.*)$#', 'view:GeozzyAPIView::bi' );
 
     // geozzy api resources
     $this->addUrlPatterns( '#^api/core/starred$#', 'view:GeozzyAPIView::starred' );
@@ -188,7 +186,7 @@ class geozzy extends Module {
     }
 
     if( !$passwd ) {
-      fwrite( STDOUT, "Enter the superAdmin password:\n" );
+      fwrite( STDOUT, "Enter password for superadmin@geozzy.com password:\n" );
       $passwd = self::getPassword(true);
     }
 
