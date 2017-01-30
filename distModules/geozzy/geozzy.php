@@ -67,8 +67,6 @@ class geozzy extends Module {
     //$this->addUrlPatterns( '#^api/uiEventList.json$#', 'view:GeozzyAPIView::uiEventListJson' );
 
 
-    // geozzy api environment
-    $this->addUrlPatterns( '#^api/core/bi(|/.*)$#', 'view:GeozzyAPIView::bi' );
 
     // geozzy api resources
     $this->addUrlPatterns( '#^api/core/starred$#', 'view:GeozzyAPIView::starred' );
@@ -185,7 +183,7 @@ class geozzy extends Module {
     }
 
     if( !$passwd ) {
-      fwrite( STDOUT, "Enter the superAdmin password:\n" );
+      fwrite( STDOUT, "Enter password for superadmin@geozzy.com password:\n" );
       $passwd = self::getPassword(true);
     }
 
