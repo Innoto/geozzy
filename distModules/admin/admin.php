@@ -1,7 +1,7 @@
 <?php
 
 Cogumelo::load("coreController/Module.php");
-
+require_once APP_BASE_PATH.'/conf/inc/geozzyAdmin.php';
 
 class admin extends Module {
 
@@ -276,17 +276,10 @@ class admin extends Module {
         array(
           'path' => '/doc/admin/adminStarred.json',
           'description' => 'Admin StarredTerms'
-        ),
-
-        array(
-          'path' => '/admin/adminStories.json',
-          'description' => 'Admin Stories'
-        ),
-        array(
-          'path' => '/admin/adminStorySteps.json',
-          'description' => 'Admin Story Steps'
         )
       );
+
+
     }
 
 

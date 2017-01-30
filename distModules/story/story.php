@@ -46,10 +46,20 @@ class story extends Module {
   }
 
   function setGeozzyUrlPatternsAPI() {
+    global $COGUMELO_INSTANCED_MODULES;
+    
     $this->addUrlPatterns( '#^api/story/(.*)#', 'view:StoryAPIView::story' );
     $this->addUrlPatterns( '#^api/doc/story.json#', 'view:StoryAPIView::storyJson' ); // Main swagger JSON
     $this->addUrlPatterns( '#^api/storyList$#', 'view:StoryAPIView::storyList' );
     $this->addUrlPatterns( '#^api/doc/storyList.json$#', 'view:StoryAPIView::storyListJson' ); // Main swagger JSON
+
+
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+    if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) ) {
+      $COGUMELO_INSTANCED_MODULES['rtypeStory']->addUrlPatterns( '#^api/admin/adminStories$#', 'view:StoryAdminAPIView::stories' );
+      $COGUMELO_INSTANCED_MODULES['rtypeStory']->addUrlPatterns( '#^api/admin/adminStories.json$#', 'view:StoryAdminAPIView::storiesJson' );
+    }
   }
 
   function getGeozzyDocAPI() {
@@ -64,6 +74,23 @@ class story extends Module {
         'description' => 'Stories List API'
       )
     );
+
+
+    //user::autoIncludes();
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+
+
+    if( $useraccesscontrol->isLogged() && ($useraccesscontrol->checkPermissions( array('admin:access'), 'admin:full')) ) {
+      $ret[] = array(
+        'path' => '/admin/adminStories.json',
+        'description' => 'Admin Stories'
+      );
+      $ret[] = array(
+        'path' => '/admin/adminStorySteps.json',
+        'description' => 'Admin Story Steps'
+      );
+    }
 
     return $ret;
   }

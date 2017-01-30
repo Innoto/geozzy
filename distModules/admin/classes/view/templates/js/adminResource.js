@@ -105,9 +105,16 @@ function initializeMap( form ){
       var lonValue = 0;
       var zoom = 1;
       // España con Canarias
-      var latInit = 38;
-      var lonInit = -3.7;
-      var zoomInit = 4;
+
+      if(typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
+        console.log('adminResource.js: cogumelo.publicConf.admin.adminMap is not defined in conf')
+      }
+      else {
+        var latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
+        var lonInit = Number(cogumelo.publicConf.admin.adminMap.defaultLon);
+        var zoomInit = Number(cogumelo.publicConf.admin.adminMap.defaultZoom);
+        var defaultMarker = cogumelo.publicConf.admin.adminMap.defaultZoom;
+      }
 
       if( latInput.val() !== '' && latInput.val() !== '') {
         latValue = parseFloat( latInput.val() );
@@ -129,7 +136,7 @@ function initializeMap( form ){
       // add marker
 
       var my_marker = {
-        url: cogumelo.publicConf.media+'/module/admin/img/geozzy_marker.png',
+        url: defaultMarker,
         // This marker is 20 pixels wide by 36 pixels high.
         size: new google.maps.Size(30, 36),
         // The origin for this image is (0, 0).
