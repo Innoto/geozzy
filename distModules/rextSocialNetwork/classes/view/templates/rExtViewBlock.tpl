@@ -17,7 +17,7 @@
     {/if}
     {if isset($rExt.data.activeGplus) && $rExt.data.activeGplus}
       <li class="share-net gplus">
-        <a class="icon-share" target="_blank" rel="nofollow" href="https://plus.google.com/share?url={$rExt.data.url}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+        <a class="icon-share" target="_blank" rel="nofollow" href="https://plus.google.com/share?url={$rExt.data.url}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=420');return false;">
           <i class="fa fa-google-plus" aria-hidden="true"></i>
         </a>
       </li>
