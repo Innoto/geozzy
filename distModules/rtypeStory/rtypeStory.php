@@ -29,8 +29,7 @@ class rtypeStory extends Module {
 
 
   public function __construct() {
-    $this->addUrlPatterns( '#^api/admin/adminStories$#', 'view:StoryAdminAPIView::stories' );
-    $this->addUrlPatterns( '#^api/admin/adminStories.json$#', 'view:StoryAdminAPIView::storiesJson' );
+
   }
 
 
