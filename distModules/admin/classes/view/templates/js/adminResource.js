@@ -113,7 +113,7 @@ function initializeMap( form ){
         var latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
         var lonInit = Number(cogumelo.publicConf.admin.adminMap.defaultLon);
         var zoomInit = Number(cogumelo.publicConf.admin.adminMap.defaultZoom);
-        var defaultMarker = cogumelo.publicConf.admin.adminMap.defaultZoom;
+        var defaultMarker = cogumelo.publicConf.admin.adminMap.marker;
       }
 
       if( latInput.val() !== '' && latInput.val() !== '') {
