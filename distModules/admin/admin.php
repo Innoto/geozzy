@@ -1,7 +1,7 @@
 <?php
 
 Cogumelo::load("coreController/Module.php");
-
+require_once APP_BASE_PATH.'/conf/inc/geozzyAdmin.php';
 
 class admin extends Module {
 
