@@ -53,42 +53,53 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
   public function manipulateForm( FormController $form ) {
     // error_log( "RExtSocialNetworkController: manipulateForm()" );
 
-    $rExtFieldNames = array();
+    $rExtFieldNames = [];
 
-    $fieldsInfo = array(
-      'activeFb' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activate share on facebook') ))
-      ),
-      'activeTwitter' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activate share on twitter') ))
-      ),
-      'activeGplus' => array(
-        'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Activate share on Google+') ))
-      )
-    );
+    $fieldsInfo = [
+      'activeFb' => [
+        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Activate share on facebook') ] ]
+      ],
+      'textFb' => [
+        'translate' => true,
+        'params' => [ 'type' => 'textarea', 'label' => __( 'Text to share on facebook' ), 'placeholder' => '#TITLE#' ],
+        'rules' => [ 'maxlength' => '1000' ]
+      ],
+      'activeTwitter' => [
+        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Activate share on twitter') ] ]
+      ],
+      'textTwitter' => [
+        'translate' => true,
+        'params' => [ 'type' => 'textarea', 'label' => __( 'Text to share on twitter' ), 'placeholder' => '#TITLE#' ],
+        'rules' => [ 'maxlength' => '1000' ]
+      ],
+      'activeGplus' => [
+        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Activate share on Google+') ] ]
+      ]
+    ];
 
-    $i18nCtrl = new I18nController();
 
-    $fieldsInfo3 = array();
-    // Necesitamos poner los textos con __() para que entren en los PO
-    __('You should visit #TITLE#. Seen in #URL#');
-    __('I liked this place: #TITLE# via #URL#');
-    foreach (Cogumelo::getSetupValue( 'lang:available' ) as $key => $lang){
-      $fieldsInfo3['textFb_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key,
-        'label' => __( 'Text to share on facebook' ), 'type' => 'textarea',
-        'placeholder' => $i18nCtrl->getLangTranslation('You should visit #TITLE#. Seen in #URL#', $lang['i18n']) ),
-        'rules' => array( 'maxlength' => '2000' ));
-      $fieldsInfo3['textTwitter_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key,
-        'label' => __( 'Text to share on twitter' ), 'type' => 'textarea',
-        'placeholder' => $i18nCtrl->getLangTranslation('I liked this place: #TITLE# via #URL#', $lang['i18n']) ),
-        'rules' => array( 'maxlength' => '2000' ));
-      $fieldsInfo3['textGplus_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key,
-        'label' => __( 'Text to share on Google+' ), 'type' => 'textarea',
-        'placeholder' => $i18nCtrl->getLangTranslation('You should visit #TITLE#. Seen in #URL#', $lang['i18n']) ),
-        'rules' => array( 'maxlength' => '2000' ));
+    // $i18nCtrl = new I18nController();
 
-    }
-    $fieldsInfo = array_merge($fieldsInfo, $fieldsInfo3);
+    // $fieldsInfo3 = array();
+    // // Necesitamos poner los textos con __() para que entren en los PO
+    // __('You should visit #TITLE#. Seen in #URL#');
+    // __('I liked this place: #TITLE# via #URL#');
+    // foreach( Cogumelo::getSetupValue( 'lang:available' ) as $key => $lang ) {
+    //   $fieldsInfo3['textFb_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key,
+    //     'label' => __( 'Text to share on facebook' ), 'type' => 'textarea',
+    //     'placeholder' => $i18nCtrl->getLangTranslation('You should visit #TITLE#. Seen in #URL#', $lang['i18n']) ),
+    //     'rules' => array( 'maxlength' => '2000' ));
+    //   $fieldsInfo3['textTwitter_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key,
+    //     'label' => __( 'Text to share on twitter' ), 'type' => 'textarea',
+    //     'placeholder' => $i18nCtrl->getLangTranslation('I liked this place: #TITLE# via #URL#', $lang['i18n']) ),
+    //     'rules' => array( 'maxlength' => '2000' ));
+    //   $fieldsInfo3['textGplus_'.$key] = array( 'params' => array( 'class'=>  'js-tr js-tr-'.$key,
+    //     'label' => __( 'Text to share on Google+' ), 'type' => 'textarea',
+    //     'placeholder' => $i18nCtrl->getLangTranslation('You should visit #TITLE#. Seen in #URL#', $lang['i18n']) ),
+    //     'rules' => array( 'maxlength' => '2000' ));
+    // }
+    // $fieldsInfo = array_merge($fieldsInfo, $fieldsInfo3);
+
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
@@ -137,9 +148,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
   } // function manipulateForm()
 
 
-  /**
-    getFormBlockInfo
-  */
+
   public function getFormBlockInfo( FormController $form ) {
 
     $formBlockInfo = parent::getFormBlockInfo( $form );
@@ -246,13 +255,17 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
 
+      $title = $this->defResCtrl->resObj->getter('title');
+      $urlAlias = $this->defResCtrl->resData['urlAlias'];
+      $url = Cogumelo::getSetupValue('setup:webBaseUrl:host').$urlAlias;
+
       $from = array( '#TITLE#', '#URL#' );
-      $to   = array(
-        $this->defResCtrl->resObj->getter('title'),
-        SITE_HOST.$this->defResCtrl->resData['urlAlias']
-      );
+      $to   = array( $title, $url );
       $rExtViewBlockInfo['data'] = str_replace( $from, $to, $rExtViewBlockInfo['data'] );
-      $rExtViewBlockInfo['data']['urlAlias'] = $this->defResCtrl->resData['urlAlias'];
+
+      $rExtViewBlockInfo['data']['title'] = $title;
+      $rExtViewBlockInfo['data']['urlAlias'] = $urlAlias;
+      $rExtViewBlockInfo['data']['url'] = $url;
 
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $template->setTpl( 'rExtViewBlock.tpl', 'rextSocialNetwork' );
