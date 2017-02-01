@@ -183,8 +183,8 @@ geozzy.storyComponents.StoryBackgroundView = Backbone.View.extend({
 
     if( that.currentStepGeoLatLng != false && that.drawPointerLine == 1 && mapProjection != false ) {
 
-
-      var scale = Math.pow(2, that.options.map.zoom) * window.devicePixelRatio || 1;
+      //var scale = Math.pow(2, that.options.map.zoom) * window.devicePixelRatio || 1; // new style
+      var scale = Math.pow(2, that.options.map.zoom); // new style
       that.layerContext.scale(scale, scale);
       var offset = mapProjection.fromLatLngToPoint(that.canvasLayer.getTopLeft());
       that.layerContext.translate(-offset.x, -offset.y);

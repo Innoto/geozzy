@@ -2,9 +2,9 @@
 
 Cogumelo::setSetupValue( 'mod:mediaserver:publicConf:javascript:vars:admin:adminMap',
   array(
-    'marker' => cogumeloGetSetupValue('publicConf:media') + '/module/admin/img/geozzy_marker.png',
-    'defaultLat' => '38',
-    'defaultLon' => '-3.7',
-    'defaultZoom' => '4'
+    'marker' => cogumeloGetSetupValue('publicConf:vars:media') . '/module/admin/img/geozzy_marker.png',
+    'defaultLat' => '42.8',
+    'defaultLon' => '-7.8',
+    'defaultZoom' => '7'
   )
 );
