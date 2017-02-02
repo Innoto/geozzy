@@ -126,7 +126,13 @@ class RTUtilsController {
 
     // echo "createTaxonomies\n"; print_r( $taxGroups );
     if( $taxGroups && is_array( $taxGroups ) && count( $taxGroups ) > 0 ) {
-      foreach( $taxGroups as $tax ) {
+      foreach( $taxGroups as $taxKey => $tax ) {
+        if( isset( $tax['external'] ) ) {
+          // Las taxonomias externas se crean en otro modulo
+          echo 'TaxGroup '.$taxKey.' no creado por ser de otro modulo ('.$tax['external'].')'."\n";
+          continue;
+        }
+
         foreach( $tax['name'] as $langKey => $name ) {
           $tax['name_'.$langKey] = $name;
         }
