@@ -59,7 +59,5 @@
 
 <pre style="display:none">
 SMARTY:
-
-{$cogumelo|@print_r}
+{*$cogumelo|@print_r*}
 </pre>
-
