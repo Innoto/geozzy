@@ -691,89 +691,209 @@ class ResourceController {
   }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   /**
    * Filedata methods
    */
-  public function setFormFiledata( $form, $fieldName, $colName, $resObj ) {
+  public function getFiledata( $fileIds ) {
+    error_log( 'ResourceController: getFiledata(fileIds): ' . print_r( $fileIds, true ) );
+    $result = false;
+
+    $fileDataModel = new FiledataModel();
+    if( !is_array($fileIds) ) {
+      $fileDataList = $fileDataModel->listItems( [ 'filters' => [ 'id' => $fileIds ] ] );
+    }
+    else {
+      $fileDataList = $fileDataModel->listItems( [ 'filters' => [ 'idIn' => $fileIds ] ] );
+    }
+    if( gettype($fileDataList) === 'object' ) {
+      $result = [];
+      $fileData = false;
+      while( $fileObj = $fileDataList->fetch() ) {
+        $fileData = $fileObj->getAllData( 'onlydata' );
+        $result[ $fileData['id'] ] = $fileData;
+      }
+      if( count( $result ) ) {
+        if( !is_array($fileIds) ) {
+          $result = $fileData;
+        }
+      }
+      else {
+        $result = false;
+      }
+    }
+
+    return $result;
+  }
+  public function setFormFiledata( $form, $fieldName, $colName, $modelObj ) {
+    $result = false;
+
     $fileField = $form->getFieldValue( $fieldName );
-    // error_log( 'setFormFiledata fileInfo: '. print_r( $fileField, true ) );
-    $fileFieldValues = false;
-    $error = false;
+    // error_log( 'setFormFiledata '.$fieldName.' - '.$colName.' fileInfo: '. print_r( $fileField, true ) );
 
     $filedataCtrl = new FiledataController();
     $newFiledataObj = false;
 
     if( isset( $fileField['status'] ) ) {
 
-      // error_log( 'To Model - fileInfo: '. print_r( $fileField[ 'values' ], true ) );
+      // error_log( 'To Model - fileInfo: '. print_r( $fileField['values'], true ) );
       // error_log( 'To Model - status: '.$fileField['status'] );
-      // error_log( '========' );error_log( '========' );error_log( '========' );error_log( '========' );
+      // error_log( '========' );
 
       switch( $fileField['status'] ) {
         case 'LOADED':
-          $fileFieldValues = $fileField['values'];
-          $newFiledataObj = $filedataCtrl->createNewFile( $fileFieldValues );
-          // error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
+          // error_log( 'To Model - LOADED newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
-            $resObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
+            $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
+            $result = $newFiledataObj;
           }
           break;
         case 'REPLACE':
-          // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField[ 'prev' ], true ) );
-          $fileFieldValues = $fileField['values'];
-          $prevFiledataId = $resObj->getter( $colName );
-          $newFiledataObj = $filedataCtrl->createNewFile( $fileFieldValues );
-          // error_log( 'To Model - newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField['prev'], true ) );
+          $prevFiledataId = $modelObj->getter( $colName );
+          $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
+          // error_log( 'To Model - REPLACE newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
-            $resObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
+            $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
             // error_log( 'To Model - deleteFile ID: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
+            $result = $newFiledataObj;
           }
           break;
         case 'DELETE':
-          if( $prevFiledataId = $resObj->getter( $colName ) ) {
-            // error_log( 'To Model - prevFiledataId: '.$prevFiledataId );
+          if( $prevFiledataId = $modelObj->getter( $colName ) ) {
+            // error_log( 'To Model - DELETE prevFiledataId: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
-            $resObj->setter( $colName, null );
+            $modelObj->setter( $colName, null );
+            $result = 'DELETE';
           }
           break;
         case 'EXIST':
-          $fileFieldValues = $fileField[ 'values' ];
-          if( $prevFiledataId = $resObj->getter( $colName ) ) {
-            // error_log( 'To Model - UPDATE prevFiledataId: '.$prevFiledataId );
-            $filedataCtrl->updateInfo( $prevFiledataId, $fileFieldValues );
+          if( $prevFiledataId = $modelObj->getter( $colName ) ) {
+            // error_log( 'To Model - EXIST-UPDATE prevFiledataId: '.$prevFiledataId );
+            $filedataCtrl->updateInfo( $prevFiledataId, $fileField['values'] );
+            $result = 'EXIST-UPDATE';
           }
           break;
         default:
-          // error_log( 'To Model: DEFAULT='.$fileField['status'] );
+          error_log( 'To Model: DEFAULT='.$fileField['status'] );
           break;
       }
-
-      /*
-        if( $fileFieldValues !== false ) {
-          if( $fileFieldValues === null ) {
-            $resObj->setter( $colName, null );
-          }
-          else {
-            $newFiledataModel = new FiledataModel( $fileFieldValues );
-            if( $newFiledataModel->save() ) {
-              $resObj->setter( $colName, $newFiledataModel->getter( 'id' ) );
-            }
-            else {
-              $error = 'File save error';
-            }
-          }
-        }
-        else {
-          $error = 'Not file value';
-        }
-      */
     }
+
+
+    return $result;
+  }
+
+  /**
+   * Filegroup methods
+   */
+  public function getFilegroup( $idGroup ) {
+    $result = false;
+
+    $fileGroupModel = new FilegroupModel();
+    $fileGroupList = $fileGroupModel->listItems( [ 'filters' => [ 'idGroup' => $idGroup ] ] );
+
+    if( gettype($fileGroupList) === 'object' ) {
+      $fileGroupData = [];
+      $fileGroupId = false;
+      while( $fgObj = $fileGroupList->fetch() ) {
+        $fileGroupId = $fgObj->getter('idGroup');
+        $fileGroupData[ $fileGroupId ][] = $fgObj->getter('filedataId');
+      }
+      if( $fileGroupId && count( $fileGroupData[ $fileGroupId ] ) ) {
+        $filesData = $this->getFiledata( $fileGroupData[ $fileGroupId ] );
+        if( $filesData && count( $filesData ) ) {
+          $result = [
+            'idGroup' => $fileGroupId,
+            'multiple' => $filesData
+          ];
+        }
+      }
+    }
+
+    return $result;
+  }
+  public function setFormFilegroup( $form, $fieldName, $colName, $modelObj ) {
+    $result = false;
+
+    $error = false;
+    $fileGroupField = $form->getFieldValue( $fieldName );
+    error_log( '*** setFormFilegroup *** '.$fieldName.' - '.$colName.' fileInfo: '. print_r( $fileGroupField, true ) );
+
+    $filedataCtrl = new FiledataController();
+    $filegroupObj = false;
+
+    if( !empty( $fileGroupField['multiple'] ) && is_array( $fileGroupField['multiple'] ) ) {
+
+      $prevFilegroupId = $modelObj->getter( $colName );
+      $filegroupId = ( $prevFilegroupId ) ? $prevFilegroupId : 0;
+
+      foreach( $fileGroupField['multiple'] as $fileField ) {
+        if( isset( $fileField['status'] ) ) {
+
+          error_log( 'To Model - status: '.$fileField['status'] );
+          error_log( '========' );
+
+          switch( $fileField['status'] ) {
+            case 'LOADED':
+              $fileFieldValues = $fileField['values'];
+
+              $newFilegroupObj = $filedataCtrl->saveToFileGroup( $fileFieldValues, $filegroupId );
+              error_log( 'To Model - newFilegroupObj id, idGroup: '.$newFilegroupObj->getter( 'id' ).', '.$newFilegroupObj->getter( 'idGroup' ) );
+              if( $newFilegroupObj ) {
+                $result = $newFilegroupObj;
+                if( !$filegroupId ) {
+                  $filegroupId = $newFilegroupObj->getter('idGroup');
+                  $modelObj->setter( $colName, $filegroupId );
+                }
+              }
+              break;
+            default:
+              error_log( 'To Model: DEFAULT='.$fileField['status'] );
+              break;
+          }
+        }
+      }
+    }
+
+    // TODO
+    // ...
+    // ...
+    // ...
 
     if( $error ) {
       $form->addFieldRuleError( $fieldName, false, $error );
     }
+
+
+    return $result;
   }
+
+
+
+
+
+
+
+
+
+
 
 
   /**
