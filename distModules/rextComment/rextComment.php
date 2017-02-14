@@ -4,7 +4,7 @@ Cogumelo::load("coreController/Module.php");
 class rextComment extends Module {
 
   public $name = "rextComment";
-  public $version = 1.2;
+  public $version = 1.3;
 
   public $models = array( 'CommentModel' );
 

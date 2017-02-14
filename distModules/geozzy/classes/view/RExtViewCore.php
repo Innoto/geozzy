@@ -16,6 +16,7 @@ interface RExtViewInterface {
 }
 
 
+Cogumelo::load('coreView/View.php');
 
 class RExtViewCore extends View {
 

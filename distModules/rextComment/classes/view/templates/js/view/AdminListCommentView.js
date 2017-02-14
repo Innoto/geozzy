@@ -46,14 +46,19 @@ geozzy.commentComponents.AdminListCommentView = Backbone.View.extend({
     commentsFiltered = that.comments.search({type : parseInt(that.commentType) });
 
     _.each( commentsFiltered.toJSON() , function(item){
+
       data = {
         commentId: item.id,
         commentContent: item.content.replace(/\n/g, '<br>\n'),
-        commentRate: item.rate/20,
         commentUserName: false,
         commentTimeCreation: item.timeCreation,
         commentStatusIdName: item.statusIdName,
         commentPublished: item.published
+      }
+      if( item.rate !== null){
+        data.commentRate = item.rate/20;
+      }else{
+        data.commentRate= null;
       }
       if(item.userName){
         data.commentUserName = item.userName;
