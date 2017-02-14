@@ -50,7 +50,7 @@ class RTypeViewCore extends View {
 
     parent::__construct();
 
-    $rTypeCtrlClassName = $this->rTypeName.'Controller';
+    $rTypeCtrlClassName = strtoupper( substr( $this->rTypeName, 0, 2 ) ).substr( $this->rTypeName, 2 ).'Controller';
     $this->rTypeCtrl = new $rTypeCtrlClassName( $defResCtrl );
   }
 

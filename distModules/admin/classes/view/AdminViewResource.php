@@ -1,12 +1,12 @@
 <?php
 admin::load('view/AdminViewMaster.php');
-geozzy::load( 'view/GeozzyResourceView.php' );
+geozzy::load( 'view/ResourceView.php' );
 
 
 
 class AdminViewResource extends AdminViewMaster {
 
-  public function __construct( $baseDir ) {
+  public function __construct( $baseDir = false ) {
     parent::__construct( $baseDir );
   }
 
@@ -253,9 +253,6 @@ class AdminViewResource extends AdminViewMaster {
 
   public function resourceShowForm( $formName, $urlAction, $valuesArray = false, $resCtrl = false ) {
 
-    if( !$resCtrl ) {
-      $resCtrl = new ResourceController();
-    }
     if( !isset($valuesArray['storyReturn']) ) {
       if( !isset($valuesArray['storyAssignReturn']) ) {
         if( !isset($valuesArray['topicReturn']) ) {
@@ -264,7 +261,8 @@ class AdminViewResource extends AdminViewMaster {
             $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $valuesArray['typeReturn'] ) ) )->fetch();
             if($rTypeItem && $rTypeItem->getter('idName') === "rtypePage"){
               $successArray[ 'redirect' ] = SITE_URL . 'admin#resourcepage/list';
-            }else{
+            }
+            else{
               $successArray[ 'redirect' ] = SITE_URL . 'admin#resource/list';
             }
           }
@@ -283,7 +281,20 @@ class AdminViewResource extends AdminViewMaster {
     else { // tabla de recursos de una temática
       $successArray[ 'redirect' ] = SITE_URL . 'admin#storysteps/'.$valuesArray['storyReturn'];
     }
-    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
+
+
+
+
+
+    $resView = new ResourceView( $resCtrl );
+    $formBlockInfo = $resView->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
+    // $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
+
+
+
+
+
+
 
     $resTplVar = $formBlockInfo['template']['adminFull']->getTemplateVars('res');
     if( !$resTplVar ) {
@@ -296,7 +307,7 @@ class AdminViewResource extends AdminViewMaster {
    * Creacion de Recursos type URL
    */
   public function resourceTypeUrlForm( $urlParams = false ) {
-    $resCtrl = new ResourceController();
+    // $resCtrl = new ResourceController();
     $rtypeModel = new ResourcetypeModel();
 
     $formName = 'resourceUrlCreate';
@@ -305,7 +316,19 @@ class AdminViewResource extends AdminViewMaster {
     $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
     $valuesArray['rTypeId'] = $rtype->getter('id');
 
-    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
+
+
+
+
+
+    $resView = new ResourceView();
+    $formBlockInfo = $resView->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
+    // $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
+
+
+
+
+
 
 
     $form = $formBlockInfo['objForm'];
@@ -313,8 +336,8 @@ class AdminViewResource extends AdminViewMaster {
     $form->setFieldParam('published', 'type', 'reserved');
     $form->setFieldParam('published', 'value', '1');
     $urlAliasLang = $form->multilangFieldNames('urlAlias');
-    foreach ($urlAliasLang as $key => $field) {
-      $form->removeField( $field);
+    foreach( $urlAliasLang as $field ) {
+      $form->removeField( $field );
     }
     $form->removeValidationRules('published');
     $formBlockInfo['dataForm'] = array(
@@ -335,7 +358,7 @@ class AdminViewResource extends AdminViewMaster {
    */
   public function resourceTypeFileForm( $urlParams = false ) {
 
-    $resCtrl = new ResourceController();
+    // $resCtrl = new ResourceController();
     $rtypeModel = new ResourcetypeModel();
 
     $formName = 'resourceFileCreate';
@@ -344,7 +367,26 @@ class AdminViewResource extends AdminViewMaster {
     $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeFile') ) )->fetch();
     $valuesArray['rTypeId'] = $rtype->getter('id');
 
-    $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
+
+
+
+
+
+
+
+    $resView = new ResourceView();
+    $formBlockInfo = $resView->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
+    // $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
+
+
+
+
+
+
+
+
+
+
     $form = $formBlockInfo['objForm'];
 
     $form->setFieldParam('image', 'label', 'Thumbnail image (Optional)');
@@ -373,12 +415,12 @@ class AdminViewResource extends AdminViewMaster {
 
 
   public function sendResourceForm() {
-    $resourceView = new GeozzyResourceView();
+    $resourceView = new ResourceView();
     $resourceView->actionResourceForm();
   }
 
   public function sendModalResourceForm() {
-    $resourceView = new GeozzyResourceView();
+    $resourceView = new ResourceView();
     $resource = null;
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene

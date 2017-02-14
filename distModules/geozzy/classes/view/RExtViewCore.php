@@ -38,7 +38,7 @@ class RExtViewCore extends View {
 
     parent::__construct();
 
-    $rExtCtrlClassName = $this->rExtName.'Controller';
+    $rExtCtrlClassName = strtoupper( substr( $this->rExtName, 0, 2 ) ).substr( $this->rExtName, 2 ).'Controller';
     $this->rExtCtrl = new $rExtCtrlClassName( $defRTypeCtrl );
   }
 

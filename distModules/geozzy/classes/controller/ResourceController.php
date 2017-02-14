@@ -64,14 +64,16 @@ class ResourceController {
    *  Cargando View del RType
    */
   public function getRTypeView( $rTypeId = false ) {
-    error_log( "ResourceController: getRTypeView( $rTypeId )" );
+    error_log( __CLASS__.": getRTypeView( $rTypeId )" );
     $rTypeView = null;
 
     $rTypeIdName = $this->getRTypeIdName( $rTypeId );
     if( class_exists( $rTypeIdName ) ) {
-      error_log( "ResourceController: getRTypeView = $rTypeIdName" );
+      error_log( __CLASS__.": getRTypeView = $rTypeIdName" );
       $rTypeIdName::autoIncludes();
-      $rTypeViewClassName = $rTypeIdName.'View';
+
+      $rTypeViewClassName = strtoupper( substr( $rTypeIdName, 0, 2 ) ).substr( $rTypeIdName, 2 ).'View';
+      $rTypeIdName::load( 'view/'.$rTypeViewClassName.'.php' );
       $rTypeView = new $rTypeViewClassName( $this );
     }
 

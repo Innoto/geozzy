@@ -9,7 +9,7 @@ class ResourceView extends View {
   public $defResCtrl = null;
   public $rTypeCtrl = null;
 
-  public function __construct(){
+  public function __construct( $defResCtrl = false ){
     error_log( 'ResourceView: __construct(): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
     parent::__construct();
 
@@ -18,7 +18,7 @@ class ResourceView extends View {
     user::autoIncludes();
     filedata::autoIncludes();
 
-    $this->defResCtrl = new ResourceController();
+    $this->defResCtrl = ( $defResCtrl ) ? $defResCtrl : new ResourceController();
   }
 
   /**
@@ -34,24 +34,49 @@ class ResourceView extends View {
 
 
 
+  // /**
+  //  * Defino el formulario de edición y creo su Bloque con su TPL
+  //  *
+  //  * @param $formName string Nombre del form
+  //  * @param $urlAction string URL del action
+  //  * @param $valuesArray array Opcional: Valores de los campos del form
+  //  *
+  //  * @return Obj-Template
+  //  **/
+  // public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
+  //   error_log( __CLASS__.': getFormBlock(,,): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+
+  //   $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
+
+  //   $template = $this->defResCtrl->formToTemplate( $form );
+
+  //   return( $template );
+  // } // function getFormBlock()
+
+
+
+
+
+
+
   /**
    * Defino el formulario de edición y creo su Bloque con su TPL
    *
    * @param $formName string Nombre del form
    * @param $urlAction string URL del action
+   * @param $successArray array Opcional: Respuestas del form
    * @param $valuesArray array Opcional: Valores de los campos del form
    *
    * @return Obj-Template
    **/
-  public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "ResourceView: getFormBlock()" );
+  public function getFormBlockInfo( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
+    error_log( __CLASS__.': getFormBlockInfo(,,,): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    $formBlockInfo = $this->defResCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
+    return $formBlockInfo;
+  }
 
-    $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
 
-    $template = $this->defResCtrl->formToTemplate( $form );
 
-    return( $template );
-  } // function getFormBlock()
 
 
 
@@ -59,7 +84,7 @@ class ResourceView extends View {
    * Action del formulario de edición
    */
   public function actionResourceForm() {
-    // error_log( "ResourceView: actionResourceForm()" );
+    error_log( "ResourceView: actionResourceForm()" );
     $resource = null;
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
