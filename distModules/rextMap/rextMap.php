@@ -16,6 +16,7 @@ class rextMap extends Module {
 
   public $includesCommon = array(
     'controller/RExtMapController.php',
+    'view/RExtMapView.php',
     'js/rExtMapController.js',
     'js/rExtMapInstance.js'
   );
