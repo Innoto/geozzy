@@ -69,6 +69,7 @@ class CommentView extends View {
       $suggestTypeTermsArray[ $term['id'] ] = $term['name'];
     }
 
+    $commentRatePerm = $commentCtrl->getCommentRate( $resourceID );
 
     // If exist user session
     $useraccesscontrol = new UserAccessController();
@@ -109,9 +110,9 @@ class CommentView extends View {
       );
     }
 
-    if(in_array('comment', $ctypeParamTerms)){
+    if(in_array('comment', $ctypeParamTerms) && $commentRatePerm){
       $fieldsInfo['rate'] = array(
-        'params' => array( 'label' => __('How do we value?'), 'class' => 'inputRating', 'value' => 0 )
+        'params' => array( 'label' => __('How do we value?'), 'class' => 'inputRating', 'value' => null )
       );
     }
 
@@ -183,7 +184,7 @@ class CommentView extends View {
         $form->addFormError(__('An unexpected error has occurred'));
       }
       else {
-        //Comprobar que el recurso tiene comentarios o sugerencias activadas en Conf y en BBDD
+        //TODO: Comprobar que el recurso tiene comentarios o sugerencias activadas en Conf y en BBDD
       }
     }
 
@@ -198,9 +199,11 @@ class CommentView extends View {
       $valuesArray = $form->getValuesArray();
 
       $valuesArray['timeCreation'] = date("Y-m-d H:i:s", time());
-      //Añadir valor de published si dependiendo de conf de comentarios
-      if(array_key_exists('rate', $valuesArray)){
+
+      if(!empty($valuesArray['rate']) && $valuesArray['rate']!== 0){
         $valuesArray['rate'] = $valuesArray['rate'] * 20;
+      }else{
+        $valuesArray['rate'] = null;
       }
       $comment = new CommentModel( $valuesArray );
       $comment->save();

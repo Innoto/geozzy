@@ -210,7 +210,7 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $resAverageData = $averageVotesModel->listItems( array('filters' => array('id' => $resID) ))->fetch();
     if( $resAverageData ) {
       $resAverageVotes = $resAverageData->getter('averageVotes');
-      $resNumberVotes = $resAverageData->getter('commentsVotes');
+      $resNumberVotes = $resAverageData->getter('comments');
     }
 
     $perms = $this->getCommentPermissions( $resID );
@@ -242,7 +242,7 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $commentModel = new commentModel();
     $commentCount = $commentModel->listCount( array('filters' => array('resource' => $resID, 'type' => $commentTypeTerm->getter('id')) ));
 
-    if( !in_array('comment', $perms) && $commentCount === 0){
+    if( !in_array('comment', $perms) && $commentCount === 0 ){
       $rExtViewBlockInfo['template']['full']->assign( 'commentEmpty', true);
     }
     $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextComment' );
@@ -265,42 +265,6 @@ class RExtCommentController extends RExtController implements RExtInterface {
 
     $permsTmp = $this->getPermissions( $resId );
     $perms = isset( $permsTmp[ $resId ]['ctype'] ) ? $permsTmp[ $resId ]['ctype'] : array();
-
-    /*
-      $resourceModel = new ResourceModel();
-      $res = $resourceModel->listItems(
-        array(
-          'filters'=> array('id' => $resId),
-          'affectsDependences' => array('ResourcetypeModel')
-        )
-      )->fetch();
-
-      if( $res ) {
-        $perms = array();
-        $rtype = $res->getterDependence( 'rTypeId', 'ResourcetypeModel' );
-        $commentRules = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules' );
-
-        if( $commentRules ) {
-          if( array_key_exists($rtype[0]->getter('idName'), $commentRules) ){
-            $perms = $commentRules[ $rtype[0]->getter('idName') ]['ctype'];
-          }
-          else {
-            $perms = $commentRules['default']['ctype'];
-          }
-        }
-
-        if( in_array('comment', $perms) ) {
-          $resExtCommentModel = new ResourceCommentModel();
-          $resExtComment = $resExtCommentModel->listItems(
-            array('filters'=> array('resource' => $resId)) )->fetch();
-
-          if( $resExtComment && !$resExtComment->getter('activeComment') ) {
-            $unsetKey = array_search( 'comment', $perms );
-            unset( $perms[$unsetKey] );
-          }
-        }
-      }
-    */
 
     return $perms;
   }
@@ -499,4 +463,29 @@ class RExtCommentController extends RExtController implements RExtInterface {
     return $suggestTypeTerms;
   }
 
+  public function getCommentRate( $resId ){
+    $commentRate = true;
+
+    $resourceModel = new ResourceModel();
+    $res = $resourceModel->listItems(
+      array(
+        'filters'=> array('id' => $resId),
+        'affectsDependences' => array('ResourcetypeModel')
+      )
+    )->fetch();
+
+    $rtype = $res->getterDependence('rTypeId', 'ResourcetypeModel');
+    $commentRules = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules:'.$rtype[0]->getter('idName').':commentRate');
+    if( $commentRules !== null ){
+      $commentRate = $commentRules;
+    }
+    else{
+      $commentRules = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules:default:commentRate');
+      if( $commentRules !== null ){
+        $commentRate = $commentRules;
+      }
+    }
+
+    return $commentRate;
+  }
 } // class RExtAccommodationController
