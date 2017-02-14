@@ -46,11 +46,10 @@ class RTypeViewCore extends View {
     $this->defResCtrl = $defResCtrl;
     $rTypeName = $this->rTypeName = $rTypeModule->name;
     $this->rTypeModule = $rTypeModule;
-    // $this->rTypeName::autoIncludes();
 
     parent::__construct();
 
-    $rTypeCtrlClassName = strtoupper( substr( $this->rTypeName, 0, 2 ) ).substr( $this->rTypeName, 2 ).'Controller';
+    $rTypeCtrlClassName = 'RT'.mb_strcut( $rTypeName, 2 ).'Controller';
     $rTypeName::load( 'controller/'.$rTypeCtrlClassName.'.php' );
     $this->rTypeCtrl = new $rTypeCtrlClassName( $defResCtrl );
   }

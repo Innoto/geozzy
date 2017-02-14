@@ -140,6 +140,7 @@ class RTypeController {
     if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
       foreach( $this->rExts as $rExtName ) {
         $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+        $rExtName::load( 'controller/'.$rExtCtrlName.'.php' );
         $rExtCtrl = new $rExtCtrlName( $this );
         $rExtCtrl->manipulateForm( $form );
       }
@@ -207,6 +208,7 @@ class RTypeController {
     if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
       foreach( $this->rExts as $rExtName ) {
         $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+        $rExtName::load( 'controller/'.$rExtCtrlName.'.php' );
         $rExtCtrl = new $rExtCtrlName( $this );
         $rExtFormViewInfo = $rExtCtrl->getFormBlockInfo( $form );
         $formBlockInfo['ext'][ $rExtCtrl->rExtName ] = $rExtFormViewInfo;
@@ -373,6 +375,7 @@ class RTypeController {
       if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
         foreach( $this->rExts as $rExtName ) {
           $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+          $rExtName::load( 'controller/'.$rExtCtrlName.'.php' );
           $rExtCtrl = new $rExtCtrlName( $this );
           $rExtFormViewInfo = $rExtCtrl->resFormRevalidate( $form );
         }
@@ -397,6 +400,7 @@ class RTypeController {
       if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
         foreach( $this->rExts as $rExtName ) {
           $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+          $rExtName::load( 'controller/'.$rExtCtrlName.'.php' );
           $rExtCtrl = new $rExtCtrlName( $this );
           $rExtFormViewInfo = $rExtCtrl->resFormProcess( $form, $resource );
         }
@@ -415,6 +419,7 @@ class RTypeController {
     if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
       foreach( $this->rExts as $rExtName ) {
         $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+        $rExtName::load( 'controller/'.$rExtCtrlName.'.php' );
         $rExtCtrl = new $rExtCtrlName( $this );
         $rExtCtrl->resFormSuccess( $form, $resource );
       }
@@ -446,6 +451,7 @@ class RTypeController {
         // $rExtCtrl = new $rExtCtrlName( $this );
         // $viewBlockInfo['ext'][ $rExtName ] = $rExtCtrl->getViewBlockInfo();
         $rExtViewName = 'RE'.mb_strcut( $rExtName, 2 ).'View';
+        $rExtName::load( 'view/'.$rExtViewName.'.php' );
         $rExtView = new $rExtViewName( $this );
         $viewBlockInfo['ext'][ $rExtName ] = $rExtView->getViewBlockInfo( $resId = false );
 
