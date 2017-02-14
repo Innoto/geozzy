@@ -322,7 +322,7 @@ class ResourceController {
       ),
       'mediumDescription' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea' ),
+        'params' => array( 'label' => __( 'Medium description' ), 'type' => 'textarea', 'htmlEditor' => 'true' ),
         'rules' => array( 'maxlength' => '1000' )
       ),
       'content' => array(
