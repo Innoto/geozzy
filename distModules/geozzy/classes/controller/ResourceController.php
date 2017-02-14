@@ -49,9 +49,12 @@ class ResourceController {
     if( !$this->rTypeCtrl ) {
       $rTypeIdName = $this->getRTypeIdName( $rTypeId );
       if( class_exists( $rTypeIdName ) ) {
-        // error_log( "ResourceController: getRTypeCtrl = $rTypeIdName" );
+        error_log( __CLASS__.": getRTypeCtrl = $rTypeIdName" );
+
         $rTypeIdName::autoIncludes();
-        $rTypeCtrlClassName = $rTypeIdName.'Controller';
+
+        $rTypeCtrlClassName = 'RT'.mb_strcut( $rTypeIdName, 2 ).'Controller';
+        $rTypeIdName::load( 'controller/'.$rTypeViewClassName.'.php' );
         $this->rTypeCtrl = new $rTypeCtrlClassName( $this );
       }
     }
@@ -64,15 +67,16 @@ class ResourceController {
    *  Cargando View del RType
    */
   public function getRTypeView( $rTypeId = false ) {
-    error_log( __CLASS__.": getRTypeView( $rTypeId )" );
+    // error_log( __CLASS__.": getRTypeView( $rTypeId )" );
     $rTypeView = null;
 
     $rTypeIdName = $this->getRTypeIdName( $rTypeId );
     if( class_exists( $rTypeIdName ) ) {
       error_log( __CLASS__.": getRTypeView = $rTypeIdName" );
+
       $rTypeIdName::autoIncludes();
 
-      $rTypeViewClassName = strtoupper( substr( $rTypeIdName, 0, 2 ) ).substr( $rTypeIdName, 2 ).'View';
+      $rTypeViewClassName = 'RT'.mb_strcut( $rTypeIdName, 2 ).'View';
       $rTypeIdName::load( 'view/'.$rTypeViewClassName.'.php' );
       $rTypeView = new $rTypeViewClassName( $this );
     }
