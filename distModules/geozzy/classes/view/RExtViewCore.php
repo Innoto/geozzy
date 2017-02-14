@@ -34,12 +34,13 @@ class RExtViewCore extends View {
       $this->defRTypeCtrl = $defRTypeCtrl;
       $this->defResCtrl = $defRTypeCtrl->defResCtrl;
     }
-    $this->rExtName = $rExtModule->name;
-    $this->prefix = ( $prefix ) ? $prefix : $this->rExtName.'_';
+    $rExtName = $this->rExtName = $rExtModule->name;
+    $this->prefix = ( $prefix ) ? $prefix : $rExtName.'_';
 
     parent::__construct();
 
-    $rExtCtrlClassName = strtoupper( substr( $this->rExtName, 0, 2 ) ).substr( $this->rExtName, 2 ).'Controller';
+    $rExtCtrlClassName = strtoupper( substr( $rExtName, 0, 2 ) ).substr( $rExtName, 2 ).'Controller';
+    $rExtName::load( 'controller/'.$rExtCtrlClassName.'.php' );
     $this->rExtCtrl = new $rExtCtrlClassName( $defRTypeCtrl );
   }
 

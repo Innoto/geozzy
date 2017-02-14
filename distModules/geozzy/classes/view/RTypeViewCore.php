@@ -44,13 +44,14 @@ class RTypeViewCore extends View {
     error_log( 'RTypeViewCore: __construct() para '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
     $this->defResCtrl = $defResCtrl;
-    $this->rTypeName = $rTypeModule->name;
+    $rTypeName = $this->rTypeName = $rTypeModule->name;
     $this->rTypeModule = $rTypeModule;
     // $this->rTypeName::autoIncludes();
 
     parent::__construct();
 
     $rTypeCtrlClassName = strtoupper( substr( $this->rTypeName, 0, 2 ) ).substr( $this->rTypeName, 2 ).'Controller';
+    $rTypeName::load( 'controller/'.$rTypeCtrlClassName.'.php' );
     $this->rTypeCtrl = new $rTypeCtrlClassName( $defResCtrl );
   }
 
