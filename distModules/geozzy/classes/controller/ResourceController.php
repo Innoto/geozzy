@@ -61,6 +61,25 @@ class ResourceController {
 
 
   /**
+   *  Cargando View del RType
+   */
+  public function getRTypeView( $rTypeId = false ) {
+    error_log( "ResourceController: getRTypeView( $rTypeId )" );
+    $rTypeView = null;
+
+    $rTypeIdName = $this->getRTypeIdName( $rTypeId );
+    if( class_exists( $rTypeIdName ) ) {
+      error_log( "ResourceController: getRTypeView = $rTypeIdName" );
+      $rTypeIdName::autoIncludes();
+      $rTypeViewClassName = $rTypeIdName.'View';
+      $rTypeView = new $rTypeViewClassName( $this );
+    }
+
+    return $rTypeView;
+  }
+
+
+  /**
    * Load resource object
    *
    * @param $resId integer
@@ -1900,9 +1919,18 @@ class ResourceController {
     if( $resObj=$this->loadResourceObject( $resId ) ) {
       if( $resObj->getter( 'published' ) || $user ) {
         $viewBlockInfo['data'] = $this->getResourceData( $resId );
-        if( $this->getRTypeCtrl() ) {
-          $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
+
+
+
+        // if( $this->getRTypeCtrl() ) {
+        //   $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
+        // }
+
+        if( $rTypeView = $this->getRTypeView( $viewBlockInfo['data']['rTypeId'] ) ) {
+          $viewBlockInfo = $rTypeView->getViewBlockInfo( $resId );
         }
+
+
 
         if( !$resObj->getter( 'published' ) ) {
           // Recurso NO publicado

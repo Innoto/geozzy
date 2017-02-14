@@ -85,7 +85,7 @@ interface RTypeInterface {
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
-  public function getViewBlockInfo();
+  public function getViewBlockInfo( $resId = false );
 
 } // interface RTypeInterface
 
@@ -95,7 +95,7 @@ class RTypeController {
   public $defResCtrl = null;
   public $rTypeModule = null;
   public $rExts = false;
-  public $rTypeName = 'rType';
+  public $rTypeName = 'RTypeNameUnknown';
 
   /**
    * Inicializamos FormController defResCtrl, rTypeName, RTypeController rTypeModule y Array rExts
@@ -103,13 +103,13 @@ class RTypeController {
    * @param $defResCtrl FormController
    * @param $rTypeModule RTypeController
    */
-  public function __construct( $defResCtrl, $rTypeModule ){
+  public function __construct( $defResCtrl, $rTypeModule ) {
+    error_log( 'RTypeController: __construct() para '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+
     $this->defResCtrl = $defResCtrl;
-    // error_log( 'this->defResCtrl '.print_r( $this->defResCtrl, true ) );
-
     $this->rTypeName = $rTypeModule->name;
-
     $this->rTypeModule = $rTypeModule;
+
     if( property_exists( $rTypeModule, 'rext' ) && is_array( $rTypeModule->rext )
       && count( $rTypeModule->rext ) > 0 )
     {
@@ -426,12 +426,12 @@ class RTypeController {
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
-  public function getViewBlockInfo() {
+  public function getViewBlockInfo( $resId = false ) {
     $viewBlockInfo = array(
       'template' => array(
         'full' => new Template() // Definimos un Template 'full' por defecto
       ),
-      'data' => $this->defResCtrl->getResourceData( false ),
+      'data' => $this->defResCtrl->getResourceData( $resId ),
       'ext' => array()
     );
 
@@ -439,9 +439,18 @@ class RTypeController {
     // y preasignamos su template['full'] a un bloque por defecto
     if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
       foreach( $this->rExts as $rExtName ) {
-        $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
-        $rExtCtrl = new $rExtCtrlName( $this );
-        $viewBlockInfo['ext'][ $rExtName ] = $rExtCtrl->getViewBlockInfo();
+
+
+
+        // $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+        // $rExtCtrl = new $rExtCtrlName( $this );
+        // $viewBlockInfo['ext'][ $rExtName ] = $rExtCtrl->getViewBlockInfo();
+        $rExtViewName = 'RE'.mb_strcut( $rExtName, 2 ).'View';
+        $rExtView = new $rExtViewName( $this );
+        $viewBlockInfo['ext'][ $rExtName ] = $rExtView->getViewBlockInfo( $resId = false );
+
+
+
         if( isset( $viewBlockInfo['ext'][ $rExtName ]['template']['full'] ) ) {
           $viewBlockInfo['template']['full']->addToFragment( $rExtName.'Block',
             $viewBlockInfo['ext'][ $rExtName ]['template']['full'] );
