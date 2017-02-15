@@ -200,27 +200,27 @@ class RExtCommentController extends RExtController implements RExtInterface {
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-  public function getViewBlockInfo() {
-    $rExtViewBlockInfo = parent::getViewBlockInfo();
+  public function getViewBlockInfo( $resId = false ) {
+    $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
     $rExtViewBlockInfo['template']['full'] = new Template();
 
-    $resID = $this->defResCtrl->resObj->getter('id');
+    $resId = $this->defResCtrl->resObj->getter('id');
 
     $averageVotesModel = new AverageVotesViewModel();
-    $resAverageData = $averageVotesModel->listItems( array('filters' => array('id' => $resID) ))->fetch();
+    $resAverageData = $averageVotesModel->listItems( array('filters' => array('id' => $resId) ))->fetch();
     if( $resAverageData ) {
       $resAverageVotes = $resAverageData->getter('averageVotes');
       $resNumberVotes = $resAverageData->getter('comments');
     }
 
-    $perms = $this->getCommentPermissions( $resID );
+    $perms = $this->getCommentPermissions( $resId );
     if( $perms && in_array( 'comment', $perms ) ) {
       $rExtViewBlockInfo['template']['full']->assign( 'commentButton', true );
     }
     if( $perms && in_array( 'suggest', $perms ) ) {
       $rExtViewBlockInfo['template']['full']->assign( 'suggestButton', true );
     }
-    $rExtViewBlockInfo['template']['full']->assign( 'resID', $resID);
+    $rExtViewBlockInfo['template']['full']->assign( 'resID', $resId);
     if($resAverageData){
       $rExtViewBlockInfo['template']['full']->assign( 'resAverageVotes', $resAverageVotes);
       $rExtViewBlockInfo['template']['full']->assign( 'resNumberVotes', $resNumberVotes);
@@ -240,7 +240,7 @@ class RExtCommentController extends RExtController implements RExtInterface {
     )->fetch();
 
     $commentModel = new commentModel();
-    $commentCount = $commentModel->listCount( array('filters' => array('resource' => $resID, 'type' => $commentTypeTerm->getter('id')) ));
+    $commentCount = $commentModel->listCount( array('filters' => array('resource' => $resId, 'type' => $commentTypeTerm->getter('id')) ));
 
     if( !in_array('comment', $perms) && $commentCount === 0 ){
       $rExtViewBlockInfo['template']['full']->assign( 'commentEmpty', true);
