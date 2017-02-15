@@ -282,19 +282,9 @@ class AdminViewResource extends AdminViewMaster {
       $successArray[ 'redirect' ] = SITE_URL . 'admin#storysteps/'.$valuesArray['storyReturn'];
     }
 
-
-
-
-
     $resView = new ResourceView( $resCtrl );
     $formBlockInfo = $resView->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
     // $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
-
-
-
-
-
-
 
     $resTplVar = $formBlockInfo['template']['adminFull']->getTemplateVars('res');
     if( !$resTplVar ) {
@@ -316,20 +306,9 @@ class AdminViewResource extends AdminViewMaster {
     $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeUrl') ) )->fetch();
     $valuesArray['rTypeId'] = $rtype->getter('id');
 
-
-
-
-
-
     $resView = new ResourceView();
     $formBlockInfo = $resView->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
     // $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
-
-
-
-
-
-
 
     $form = $formBlockInfo['objForm'];
     $form->setFieldParam('image', 'label', __('Thumbnail image (Optional)'));
@@ -367,25 +346,9 @@ class AdminViewResource extends AdminViewMaster {
     $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeFile') ) )->fetch();
     $valuesArray['rTypeId'] = $rtype->getter('id');
 
-
-
-
-
-
-
-
     $resView = new ResourceView();
     $formBlockInfo = $resView->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
     // $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
-
-
-
-
-
-
-
-
-
 
     $form = $formBlockInfo['objForm'];
 

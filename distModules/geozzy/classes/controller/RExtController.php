@@ -119,7 +119,7 @@ interface RExtInterface {
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-  public function getViewBlockInfo();
+  public function getViewBlockInfo( $resId );
 
 } // interface RExtInterface
 
@@ -277,10 +277,10 @@ class RExtController {
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-  public function getViewBlockInfo() {
+  public function getViewBlockInfo( $resId = false ) {
     $rExtViewBlockInfo = array(
       'template' => false,
-      'data' => $this->getRExtData() // TODO: Esto ten que controlar os idiomas
+      'data' => $this->getRExtData( $resId ) // TODO: Esto ten que controlar os idiomas
     );
 
     return $rExtViewBlockInfo;

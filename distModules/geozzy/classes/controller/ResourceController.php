@@ -44,7 +44,7 @@ class ResourceController {
    *  Cargando controlador del RType
    */
   public function getRTypeCtrl( $rTypeId = false ) {
-    // error_log( "ResourceController: getRTypeCtrl( $rTypeId )" );
+    // error_log( __CLASS__.": getRTypeCtrl( $rTypeId )" );
 
     if( !$this->rTypeCtrl ) {
       $rTypeIdName = $this->getRTypeIdName( $rTypeId );
@@ -54,7 +54,7 @@ class ResourceController {
         $rTypeIdName::autoIncludes();
 
         $rTypeCtrlClassName = 'RT'.mb_strcut( $rTypeIdName, 2 ).'Controller';
-        $rTypeIdName::load( 'controller/'.$rTypeViewClassName.'.php' );
+        $rTypeIdName::load( 'controller/'.$rTypeCtrlClassName.'.php' );
         $this->rTypeCtrl = new $rTypeCtrlClassName( $this );
       }
     }
@@ -508,7 +508,15 @@ class ResourceController {
   public function getFormBlockInfo( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
     $form = $this->getFormObj( $formName, $urlAction, $successArray, $valuesArray );
 
-    $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
+
+
+    if( $rTypeView = $this->getRTypeView( $form->getFieldValue( 'rTypeId' ) ) ) {
+      $formBlockInfo = $rTypeView->getFormBlockInfo( $form );
+    }
+    // $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
+
+
+
     $formBlockInfo['objForm'] = $form;
 
     return( $formBlockInfo );

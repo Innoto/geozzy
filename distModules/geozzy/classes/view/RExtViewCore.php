@@ -8,11 +8,20 @@ interface RExtViewInterface {
   public function accessCheck();
 
   /**
+   * Preparamos los datos para visualizar la parte de la extension del formulario
+   *
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
+  public function getFormBlockInfo( FormController $form );
+
+  /**
    * Visualizamos el Recurso
    *
    * @param $resId int ID del recurso
    */
-  public function getViewBlockInfo( $resId = false );
+  public function getViewBlockInfo( $resId );
 }
 
 
@@ -55,13 +64,30 @@ class RExtViewCore extends View {
     return true;
   }
 
+
   /**
-   * Datos para la visualizacion de la Extension
+   * Preparamos los datos para visualizar la parte de la extension del formulario
    *
-   * @param $resId int ID del recurso
+   * @param $form FormController
+   *
+   * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
+   */
+  public function getFormBlockInfo( FormController $form ) {
+    error_log( __CLASS__.': getFormBlockInfo( $form ) para '.$this->rExtName );
+
+    $formBlockInfo = $this->rExtCtrl->getFormBlockInfo( $form );
+
+    return $formBlockInfo;
+  }
+
+
+  /**
+   * Preparamos los datos para visualizar la parte de la extension
+   *
+   * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo( $resId = false ) {
-    error_log( 'RExtViewCore: getViewBlockInfo('.$resId.') para '.$this->rExtName );
+    error_log( __CLASS__.': getViewBlockInfo('.$resId.') para '.$this->rExtName );
 
     $rExtViewBlockInfo = $this->rExtCtrl->getViewBlockInfo( $resId );
 

@@ -24,11 +24,46 @@ interface RTypeViewInterface {
   // public function actionResourceForm();
 
   /**
+   * Preparamos los datos para visualizar las distintas partes que forman el RType
+   *
+   * Creamos un Array con todos la información del RType y sus RExt:
+   *   - 'template' Array de objetos Template ofrecidos por el RType. Por defecto usamos 'full'
+   *   - 'data' => Array con todos los datos del RType co formato 'fieldName' => 'value'
+   *   - 'dataForm' => Array con contenidos HTML del formulario del RType
+   *   - 'objForm' => FormController
+   *   - 'ext' => Array con el resultado del manipulateForm de cada RExt
+   * Se cargan todos sin crear ningún Template
+   * Ejemplo de respuesta:
+   * $formBlockInfo = array(
+   *   'template' => array(
+   *     'full' => new Template()
+   *   ),
+   *   'data' => $this->defResCtrl->getResourceData( $resId ),
+   *   'dataForm' => array(
+   *     'formId' => $form->getId(),
+   *     'formOpen' => $form->getHtmpOpen(),
+   *     'formFieldsArray' => $form->getHtmlFieldsArray(),
+   *     'formFieldsHiddenArray' => array(),
+   *     'formFields' => $form->getHtmlFieldsAndGroups(),
+   *     'formClose' => $form->getHtmlClose(),
+   *     'formValidations' => $form->getScriptCode()
+   *   )
+   *   'objForm' => $form,
+   *   'ext' => array()
+   * );
+   *
+   * @param $form FormController
+   *
+   * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'objForm' => FormController, 'ext' => array }
+   */
+  public function getFormBlockInfo( FormController $form );
+
+  /**
    * Visualizamos el Recurso
    *
    * @param $resId int ID del recurso
    */
-  public function getViewBlockInfo( $resId = false );
+  public function getViewBlockInfo( $resId );
 }
 
 
@@ -65,68 +100,48 @@ class RTypeViewCore extends View {
     return true;
   }
 
-  // /**
-  //  * Defino el formulario de edición y creo su Bloque con su TPL
-  //  *
-  //  * @param $formName string Nombre del form
-  //  * @param $urlAction string URL del action
-  //  * @param $valuesArray array Opcional: Valores de los campos del form
-  //  *
-  //  * @return Obj-Template
-  //  **/
-  // public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-  //   error_log( 'RTypeViewCore: getFormBlock() para '.$this->rTypeName );
 
-  //   $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
+  /**
+   * Preparamos los datos para visualizar las distintas partes que forman el RType
+   *
+   * Creamos un Array con todos la información del RType y sus RExt:
+   *   - 'template' Array de objetos Template ofrecidos por el RType. Por defecto usamos 'full'
+   *   - 'data' => Array con todos los datos del RType co formato 'fieldName' => 'value'
+   *   - 'dataForm' => Array con contenidos HTML del formulario del RType
+   *   - 'objForm' => FormController
+   *   - 'ext' => Array con el resultado del manipulateForm de cada RExt
+   * Se cargan todos sin crear ningún Template
+   * Ejemplo de respuesta:
+   * $formBlockInfo = array(
+   *   'template' => array(
+   *     'full' => new Template()
+   *   ),
+   *   'data' => $this->defResCtrl->getResourceData( $resId ),
+   *   'dataForm' => array(
+   *     'formId' => $form->getId(),
+   *     'formOpen' => $form->getHtmpOpen(),
+   *     'formFieldsArray' => $form->getHtmlFieldsArray(),
+   *     'formFieldsHiddenArray' => array(),
+   *     'formFields' => $form->getHtmlFieldsAndGroups(),
+   *     'formClose' => $form->getHtmlClose(),
+   *     'formValidations' => $form->getScriptCode()
+   *   )
+   *   'objForm' => $form,
+   *   'ext' => array()
+   * );
+   *
+   * @param $form FormController
+   *
+   * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'objForm' => FormController, 'ext' => array }
+   */
+  public function getFormBlockInfo( FormController $form ) {
+    error_log( __CLASS__.': getFormBlockInfo( $form ) para '.$this->rTypeName );
 
-  //   $this->template->assign( 'formOpen', $form->getHtmpOpen() );
+    $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
 
-  //   $this->template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
+    return $formBlockInfo;
+  }
 
-  //   $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
-
-  //   $this->template->assign( 'formClose', $form->getHtmlClose() );
-  //   $this->template->assign( 'formValidations', $form->getScriptCode() );
-
-  //   $this->template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
-
-  //   return( $this->template );
-  // } // function getFormBlock()
-
-  // /**
-  //  * Action del formulario de edición
-  //  */
-  // public function actionResourceForm() {
-  //   error_log( 'RTypeViewCore: actionResourceForm() para '.$this->rTypeName );
-
-  //   // Se construye el formulario con sus datos y se realizan las validaciones que contiene
-  //   $form = $this->defResCtrl->resFormLoad();
-
-  //   if( !$form->existErrors() ) {
-  //     // Validaciones extra previas a usar los datos del recurso base
-  //     $this->defResCtrl->resFormRevalidate( $form );
-  //   }
-
-  //   // Opcional: Validaciones extra previas de elementos externos al recurso base
-
-  //   if( !$form->existErrors() ) {
-  //     // Creación-Edición-Borrado de los elementos del recurso base
-  //     $resource = $this->defResCtrl->resFormProcess( $form );
-  //   }
-
-  //   // Opcional: Creación-Edición-Borrado de los elementos externos al recurso base
-
-  //   if( !$form->existErrors()) {
-  //     // Volvemos a guardar el recurso por si ha sido alterado por alguno de los procesos previos
-  //     $saveResult = $resource->save();
-  //     if( $saveResult === false ) {
-  //       $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
-  //     }
-  //   }
-
-  //   // Enviamos el OK-ERROR a la BBDD y al formulario
-  //   $this->defResCtrl->resFormSuccess( $form, $resource );
-  // } // function actionResourceForm()
 
   /**
    * Visualizamos el Recurso
@@ -134,7 +149,7 @@ class RTypeViewCore extends View {
    * @param $resId int ID del recurso
    */
   public function getViewBlockInfo( $resId = false ) {
-    error_log( 'RTypeViewCore: getViewBlockInfo('.$resId.') para '.$this->rTypeName );
+    error_log( __CLASS__.': getViewBlockInfo('.$resId.') para '.$this->rTypeName );
 
     $resViewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( $resId );
 
