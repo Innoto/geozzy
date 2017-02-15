@@ -1,27 +1,17 @@
 <?php
 
-Cogumelo::load('coreView/View.php');
+geozzy::load('view/RTypeViewCore.php');
 user::autoIncludes();
 table::autoIncludes();
 rtypeStoryStep::autoincludes();
-rtypeStoryStep::load('controller/RTypeStoryStepController.php');
 
-class RTypeStoryStepView extends View
-{
+class RTypeStoryStepView extends RTypeViewCore implements RTypeViewInterface {
 
-  private $defResCtrl = null;
-  private $rTypeCtrl = null;
-
-  public function __construct( $defResCtrl = null ){
-    parent::__construct( $baseDir = false );
-
-    $this->defResCtrl = $defResCtrl;
-    $this->rTypeCtrl = new RTypeStoryStepController( $defResCtrl );
+  public function __construct( $defResCtrl = null ) {
+    // error_log( 'RTypeStoryStepView: __construct(): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    parent::__construct( $defResCtrl, new rtypeStoryStep() );
   }
 
-  function accessCheck() {
-    return true;
-  }
 
   public function StoryStepList( $urlParams = false ) {
     $useraccesscontrol = new UserAccessController();

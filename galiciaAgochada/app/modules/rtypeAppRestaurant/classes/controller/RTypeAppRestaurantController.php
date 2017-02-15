@@ -262,10 +262,10 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
-  public function getViewBlockInfo() {
+  public function getViewBlockInfo( $resId = false ) {
 
     // Preparamos los datos para visualizar el Recurso con sus extensiones
-    $viewBlockInfo = parent::getViewBlockInfo();
+    $viewBlockInfo = parent::getViewBlockInfo( $resId );
 
     $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeAppRestaurant' );

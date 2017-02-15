@@ -125,10 +125,10 @@ class RTypeBlogController extends RTypeController implements RTypeInterface {
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
-  public function getViewBlockInfo() {
+  public function getViewBlockInfo( $resId = false ) {
 
     // Preparamos los datos para visualizar el Recurso con sus extensiones
-    $viewBlockInfo = parent::getViewBlockInfo();
+    $viewBlockInfo = parent::getViewBlockInfo( $resId );
 
 
     // $template = new Template();

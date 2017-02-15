@@ -170,8 +170,8 @@ class RExtViewController extends RExtController implements RExtInterface {
   /**
    * Preparamos los datos para visualizar el Recurso
    */
-  public function getViewBlockInfo() {
-    // error_log( "RExtViewController: getViewBlockInfo()" );
+  public function getViewBlockInfo( $resId = false ) {
+    // error_log( "RExtViewController: getViewBlockInfo( $resId )" );
 
     $rExtViewBlockInfo = array(
       'template' => false,

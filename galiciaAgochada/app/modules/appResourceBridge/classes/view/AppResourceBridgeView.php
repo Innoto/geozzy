@@ -2,6 +2,7 @@
 
 Cogumelo::load('view/MasterView.php');
 geozzy::load( 'controller/ResourceController.php' );
+geozzy::load('view/ResourceView.php');
 
 
 
@@ -28,8 +29,8 @@ class AppResourceBridgeView extends MasterView {
     $resId = isset( $urlParams['1'] ) ? $urlParams['1'] : false;
 
     if( $resId ) {
-      $resourceCtrl = new ResourceController();
-      $resViewBlockInfo = $resourceCtrl->getViewBlockInfo( $resId );
+      $resourceView = new ResourceView();
+      $resViewBlockInfo = $resourceView->getViewBlockInfo( $resId );
     }
 
 

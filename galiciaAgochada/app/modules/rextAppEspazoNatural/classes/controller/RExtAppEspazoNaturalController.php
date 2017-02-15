@@ -159,7 +159,7 @@ class RExtAppEspazoNaturalController extends RExtController implements RExtInter
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-   //parent::getViewBlockInfo();
+   //parent::getViewBlockInfo( $resId );
 
 
 } // class RExtAppEspazoNaturalController

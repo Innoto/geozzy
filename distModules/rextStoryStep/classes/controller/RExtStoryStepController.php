@@ -300,7 +300,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-   //parent::getViewBlockInfo();
+   //parent::getViewBlockInfo( $resId );
 
 
 } // class RExtStoryStepController

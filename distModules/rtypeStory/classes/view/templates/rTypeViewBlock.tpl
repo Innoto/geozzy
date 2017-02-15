@@ -89,7 +89,7 @@
     </div>
 
     <div class="mediumDescription">
-      {$res.data.mediumDescription|escape:'htmlall'}
+      {$res.data.mediumDescription}
     </div>
 
     <div class="content">

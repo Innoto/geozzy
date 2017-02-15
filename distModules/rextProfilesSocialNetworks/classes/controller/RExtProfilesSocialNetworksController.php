@@ -187,6 +187,6 @@ class RExtProfilesSocialNetworksController extends RExtController implements REx
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-   //parent::getViewBlockInfo();
+   //parent::getViewBlockInfo( $resId );
 
 } // class

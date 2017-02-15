@@ -96,7 +96,7 @@ class RExtUserProfileController extends RExtController implements RExtInterface 
    * @param $form FormController
    */
   // parent::resFormRevalidate( $form );
-  
+
 
   /**
     Creación-Edición-Borrado de los elementos del recurso base
@@ -152,9 +152,9 @@ class RExtUserProfileController extends RExtController implements RExtInterface 
   /**
     Preparamos los datos para visualizar el Recurso
    */
-  public function getViewBlockInfo() {
+  public function getViewBlockInfo( $resId = false ) {
 
-    $rExtViewBlockInfo = parent::getViewBlockInfo();
+    $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
     if( $rExtViewBlockInfo['data'] ) {
       $rExtViewBlockInfo['template']['full'] = new Template();

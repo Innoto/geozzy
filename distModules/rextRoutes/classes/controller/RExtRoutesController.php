@@ -352,9 +352,9 @@ class RExtRoutesController extends RExtController implements RExtInterface {
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-   public function getViewBlockInfo() {
+   public function getViewBlockInfo( $resId = false ) {
 
-     $rExtViewBlockInfo = parent::getViewBlockInfo();
+     $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
      if( $rExtViewBlockInfo['data'] ) {
        // TODO: esto será un campo da BBDD

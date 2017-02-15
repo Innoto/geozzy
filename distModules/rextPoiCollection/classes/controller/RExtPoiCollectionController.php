@@ -364,9 +364,9 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
    */
 
 
-  public function getViewBlockInfo() {
+  public function getViewBlockInfo( $resId = false ) {
 
-    $rExtViewBlockInfo = parent::getViewBlockInfo();
+    $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();
