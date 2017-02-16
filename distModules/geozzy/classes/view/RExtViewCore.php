@@ -25,6 +25,7 @@ interface RExtViewInterface {
 }
 
 
+
 Cogumelo::load('coreView/View.php');
 
 class RExtViewCore extends View {
@@ -37,7 +38,7 @@ class RExtViewCore extends View {
   public $prefix = 'rExt_';
 
   public function __construct( RTypeController $defRTypeCtrl, Module $rExtModule, $prefix = false ) {
-    error_log( 'RExtViewCore: __construct() para '.$rExtModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    // error_log( 'RExtViewCore: __construct() para '.$rExtModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
     if( $defRTypeCtrl ) {
       $this->defRTypeCtrl = $defRTypeCtrl;
@@ -59,7 +60,7 @@ class RExtViewCore extends View {
    * @return bool : true -> Access allowed
    **/
   public function accessCheck() {
-    error_log( 'RExtViewCore: accessCheck() para '.$this->rExtName );
+    // error_log( 'RExtViewCore: accessCheck() para '.$this->rExtName );
 
     return true;
   }
@@ -73,7 +74,7 @@ class RExtViewCore extends View {
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
   public function getFormBlockInfo( FormController $form ) {
-    error_log( __CLASS__.': getFormBlockInfo( $form ) para '.$this->rExtName );
+    // error_log( __CLASS__.': getFormBlockInfo( $form ) para '.$this->rExtName );
 
     $formBlockInfo = $this->rExtCtrl->getFormBlockInfo( $form );
 
@@ -87,7 +88,7 @@ class RExtViewCore extends View {
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
   public function getViewBlockInfo( $resId = false ) {
-    error_log( __CLASS__.': getViewBlockInfo('.$resId.') para '.$this->rExtName );
+    // error_log( __CLASS__.': getViewBlockInfo('.$resId.') para '.$this->rExtName );
 
     $rExtViewBlockInfo = $this->rExtCtrl->getViewBlockInfo( $resId );
 
