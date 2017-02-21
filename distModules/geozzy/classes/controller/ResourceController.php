@@ -888,7 +888,8 @@ class ResourceController {
               $fileFieldValues = $fileField['values'];
 
               $newFilegroupObj = $filedataCtrl->saveToFileGroup( $fileFieldValues, $filegroupId );
-              error_log( 'To Model - newFilegroupObj id, idGroup: '.$newFilegroupObj->getter( 'id' ).', '.$newFilegroupObj->getter( 'idGroup' ) );
+              error_log( 'To Model SAVE: newFilegroupObj idGroup, filedataId: '.
+                $newFilegroupObj->getter( 'idGroup' ).', '.$newFilegroupObj->getter( 'filedataId' ) );
               if( $newFilegroupObj ) {
                 $result = $newFilegroupObj;
                 if( !$filegroupId ) {
@@ -897,6 +898,19 @@ class ResourceController {
                 }
               }
               break;
+
+
+
+            case 'DELETE':
+              $deleteId = $fileField['values']['id'];
+
+              $result = $filedataCtrl->deleteFromFileGroup( $deleteId, $filegroupId );
+              error_log( 'To Model Delete: '.json_encode($result) );
+
+              break;
+
+
+
             default:
               error_log( 'To Model: DEFAULT='.$fileField['status'] );
               break;
