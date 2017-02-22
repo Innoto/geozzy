@@ -42,7 +42,7 @@ geozzy.commentComponents.listCommentItemTemplate = ''+
     '}  %>'+
   '</div>'+
   '<% } %>'+
-  '<div class="commentInfo"><span><%- commentUserName %></span>  <%- commentTimeCreation %> </div>'+
+  '<div class="commentInfo"><a data-user-id="<%- commentUserId %>"><%- commentUserName %></a>  <%- commentTimeCreation %> </div>'+
 '</div>';
 
 geozzy.commentComponents.adminListCommentTemplate = ''+
