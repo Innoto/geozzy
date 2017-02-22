@@ -143,6 +143,7 @@ class RTypeAppRestaurantController extends RTypeController implements RTypeInter
       $partForm->setValidationRule( 'title_'.$C_LANG, 'required', true );
       $partForm->setFieldParam( 'mediumDescription_'.$C_LANG, 'label', __('Descríbeo brevemente') );
       $partForm->setFieldParam( 'mediumDescription_'.$C_LANG, 'class', '' );
+      $partForm->setFieldParam( 'mediumDescription_'.$C_LANG, 'htmlEditor', false );
       $partForm->setValidationRule( 'mediumDescription_'.$C_LANG, 'required', true );
       $partForm->setFieldParam( 'rextEatAndDrink_eatanddrinkType', 'label', __('Cómo clasificarías este lugar?') );
       $partForm->setValidationRule( 'rextEatAndDrink_eatanddrinkType', 'required', true );
