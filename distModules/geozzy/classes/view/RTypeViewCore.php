@@ -68,6 +68,8 @@ interface RTypeViewInterface {
 
 
 
+Cogumelo::load('coreView/View.php');
+
 class RTypeViewCore extends View {
 
   public $defResCtrl = null;
@@ -76,7 +78,7 @@ class RTypeViewCore extends View {
   public $rTypeName = 'RTypeNameUnknown';
 
   public function __construct( ResourceController $defResCtrl, Module $rTypeModule ) {
-    error_log( 'RTypeViewCore: __construct() para '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    // error_log( 'RTypeViewCore: __construct() para '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
     $this->defResCtrl = $defResCtrl;
     $rTypeName = $this->rTypeName = $rTypeModule->name;
@@ -95,7 +97,7 @@ class RTypeViewCore extends View {
    * @return bool : true -> Access allowed
    **/
   public function accessCheck() {
-    error_log( 'RTypeViewCore: accessCheck() para '.$this->rTypeName );
+    // error_log( 'RTypeViewCore: accessCheck() para '.$this->rTypeName );
 
     return true;
   }
@@ -135,7 +137,7 @@ class RTypeViewCore extends View {
    * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'objForm' => FormController, 'ext' => array }
    */
   public function getFormBlockInfo( FormController $form ) {
-    error_log( __CLASS__.': getFormBlockInfo( $form ) para '.$this->rTypeName );
+    // error_log( __CLASS__.': getFormBlockInfo( $form ) para '.$this->rTypeName );
 
     $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
 
@@ -149,7 +151,7 @@ class RTypeViewCore extends View {
    * @param $resId int ID del recurso
    */
   public function getViewBlockInfo( $resId = false ) {
-    error_log( __CLASS__.': getViewBlockInfo('.$resId.') para '.$this->rTypeName );
+    // error_log( __CLASS__.': getViewBlockInfo('.$resId.') para '.$this->rTypeName );
 
     $resViewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( $resId );
 

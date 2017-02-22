@@ -227,7 +227,7 @@ class RTypeController {
     $templates['publication']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
     $templates['publication']->assign( 'title', __( 'Publication' ) );
     $templates['publication']->assign( 'res', $formBlockInfo );
-    $formFieldsNames = array( 'published', 'weight' );
+    $formFieldsNames = array( 'published'/*, 'weight'*/ );
     $templates['publication']->assign( 'formFieldsNames', $formFieldsNames );
 
 
