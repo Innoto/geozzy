@@ -243,10 +243,10 @@ class RExtEventController extends RExtController implements RExtInterface {
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-  public function getViewBlockInfo() {
+  public function getViewBlockInfo( $resId = false ) {
     //TODO: Falta actualizar método a nueva forma de trabajar con abstracción -> pendente decidir visualización de eventos / pois
 
-    $rExtViewBlockInfo = parent::getViewBlockInfo();
+    $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
     if( $rExtViewBlockInfo['data'] ) {
       // TODO: esto será un campo da BBDD

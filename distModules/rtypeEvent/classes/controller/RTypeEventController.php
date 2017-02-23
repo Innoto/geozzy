@@ -128,10 +128,10 @@ class RTypeEventController extends RTypeController implements RTypeInterface {
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
-  public function getViewBlockInfo() {
+  public function getViewBlockInfo( $resId = false ) {
     //TODO: Falta actualizar método a nueva forma de trabajar con abstracción -> pendente decidir visualización de eventos / pois
 
-    $viewBlockInfo = parent::getViewBlockInfo();
+    $viewBlockInfo = parent::getViewBlockInfo( $resId );
 
     $template = new Template();
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeEvent' );

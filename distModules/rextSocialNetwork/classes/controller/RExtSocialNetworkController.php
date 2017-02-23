@@ -248,9 +248,9 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-  public function getViewBlockInfo() {
+  public function getViewBlockInfo( $resId = false ) {
 
-    $rExtViewBlockInfo = parent::getViewBlockInfo();
+    $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
     if( $rExtViewBlockInfo['data'] ) {
       $template = new Template();

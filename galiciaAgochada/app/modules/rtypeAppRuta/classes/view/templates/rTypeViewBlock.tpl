@@ -123,7 +123,7 @@
 
     <div class="mediumDescription">
       {if $res.data.mediumDescription}
-        {$res.data.mediumDescription|escape:'htmlall'|nl2br}
+        {$res.data.mediumDescription}
       {else}
         {$res.data.shortDescription|escape:'htmlall'}
       {/if}

@@ -3,7 +3,7 @@ if(!geozzy.commentComponents) geozzy.commentComponents={};
 
 geozzy.commentComponents.ListCommentView = Backbone.View.extend({
 
-  el : $(".commentSec .rExtCommentList"),
+  el : $(".rExtCommentList"),
   tagName : '',
   comments : false,
   listCommentTemplate : false,
@@ -46,12 +46,17 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
       data = {
         commentId: item.id,
         commentContent: item.content.replace(/\n/g, '<br>\n'),
-        commentRate: item.rate/20,
         commentUserName: false,
         commentTimeCreation: item.timeCreation
       }
+      if( item.rate !== null){
+        data.commentRate= item.rate/20;
+      }else{
+        data.commentRate= null;
+      }
       if(item.userName){
         data.commentUserName = item.userName;
+        data.commentUserId = item.user;
       }else{
         data.commentUserName = item.anonymousName;
       }

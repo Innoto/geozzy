@@ -29,7 +29,7 @@ geozzy.userSessionComponents.userLoginBoxTemplate = ''+
 '<div class="recoveryPasswordForm" style="display:none;">'+
   '<h3>'+__("Recovery password")+'</h3>'+
   '<p>'+__("Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un enlace para restablecer tu contraseña")+'</p>'+
-  '<form><div class="cgmMForm-wrap"><input type="text" class="recoveryPassEmail" placeholder="Email"></div>'+
+  '<form onsubmit="return false;"><div class="cgmMForm-wrap"><input type="text" class="recoveryPassEmail" placeholder="Email"></div>'+
   '<div class="cgmMForm-wrap"><input value="'+__("Send")+'" type="button" class="recoveryPassSubmit btn btn-success pull-right"></div></form>'+
 '</div>'+
 '<div class="recoveryPasswordFinalMsg" style="display:none;">'+

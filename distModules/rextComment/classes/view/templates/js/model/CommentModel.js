@@ -10,7 +10,7 @@ geozzy.commentComponents.CommentModel = Backbone.Model.extend({
     published: 0,
     content: '',
     timeCreation: '',
-    rate: 0,
+    rate: null,
     suggestType: 0,
     suggestTypeName: '',
     status: 0,

@@ -4,16 +4,19 @@ common::autoIncludes();
 geozzy::autoIncludes();
 admin::autoIncludes();
 form::autoIncludes();
-form::loadDependence( 'ckeditor' );
+form::loadDependence('ckeditor');
 user::autoIncludes();
 table::autoIncludes();
+
 if( class_exists( 'rtypeStory' ) ) {
   rtypeStory::autoIncludes();
 }
 
+
+
 class AdminViewMaster extends View {
 
-  public function __construct( $base_dir ) {
+  public function __construct( $base_dir = false ) {
     parent::__construct($base_dir);
 
     $this->langDefault = Cogumelo::getSetupValue( 'lang:default' );

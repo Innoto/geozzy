@@ -157,8 +157,8 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
   /**
     Preparamos los datos para visualizar el Recurso
    **/
-  public function getViewBlockInfo() {
-    $viewBlockInfo = parent::getViewBlockInfo();
+  public function getViewBlockInfo( $resId = false ) {
+    $viewBlockInfo = parent::getViewBlockInfo( $resId );
 
     $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeFile' );

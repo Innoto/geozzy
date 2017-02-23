@@ -31,7 +31,7 @@ geozzy.commentComponents.listCommentTemplate = ''+
 geozzy.commentComponents.listCommentItemTemplate = ''+
 '<div class="commentItem">'+
   '<div class="commentContent"><%= commentContent %></div>'+
-  '<% if(commentRate != 0){ %>'+
+  '<% if(commentRate !== null ){ %>'+
   '<div class="commentRate">'+
     '<% for (var i = 0; i < 5; i++) { '+
       'if(commentRate > i){'+
@@ -42,7 +42,7 @@ geozzy.commentComponents.listCommentItemTemplate = ''+
     '}  %>'+
   '</div>'+
   '<% } %>'+
-  '<div class="commentInfo"><span><%- commentUserName %></span>  <%- commentTimeCreation %> </div>'+
+  '<div class="commentInfo"><a data-user-id="<%- commentUserId %>"><%- commentUserName %></a>  <%- commentTimeCreation %> </div>'+
 '</div>';
 
 geozzy.commentComponents.adminListCommentTemplate = ''+
@@ -72,7 +72,7 @@ geozzy.commentComponents.adminListCommentItemTemplate = ''+
       '</ul>'+
     '</div>'+
     '<div class="col-md-12"><span class="commentTypeLabel">'+__("Comment")+'</span>'+
-      '<% if(commentRate != 0){ %>'+
+      '<% if(commentRate !== null){ %>'+
       '<span class="commentStars">'+
       '<% for (var i = 0; i < 5; i++) { '+
         'if(commentRate > i){'+

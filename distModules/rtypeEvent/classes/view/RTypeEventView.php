@@ -1,87 +1,15 @@
 <?php
-Cogumelo::load('coreView/View.php');
-rtypeEvent::load('controller/RTypeEventController.php');
+geozzy::load('view/RTypeViewCore.php');
 geozzy::load('controller/ResourceController.php');
 geozzy::load( 'view/GeozzyResourceView.php' );
 
 
-class RTypeEventView extends View
-{
+class RTypeEventView extends extends RTypeViewCore implements RTypeViewInterface {
 
-  private $defResCtrl = null;
-  private $rTypeCtrl = null;
-
-  public function __construct( $defResCtrl = null ){
-    parent::__construct( $baseDir = false );
-
-    $this->defResCtrl = $defResCtrl;
-    $this->rTypeCtrl = new RTypeEventController( $defResCtrl );
+  public function __construct( $defResCtrl = null ) {
+    // error_log( 'RTypeAEventView: __construct(): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    parent::__construct( $defResCtrl, new rtypeEvent() );
   }
-
-  function accessCheck() {
-
-    return true;
-
-  }
-
-  /**
-    Defino un formulario con su TPL como Bloque
-   */
-  public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
-    // error_log( "RTypeEventView: getFormBlock()" );
-
-    $form = $this->defResCtrl->getFormObj( $formName, $urlAction, $valuesArray );
-
-    $this->template->assign( 'formOpen', $form->getHtmpOpen() );
-
-    $this->template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
-
-    $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
-
-    $this->template->assign( 'formClose', $form->getHtmlClose() );
-    $this->template->assign( 'formValidations', $form->getScriptCode() );
-
-    $this->template->setTpl( 'resourceFormBlock.tpl', 'geozzy' );
-
-    return( $this->template );
-  } // function getFormBlock()
-
-
-
-  /**
-    Proceso formulario
-   */
-  public function actionResourceForm() {
-    // error_log( "RTypeEventView: actionResourceForm()" );
-
-    // Se construye el formulario con sus datos y se realizan las validaciones que contiene
-    $form = $this->defResCtrl->resFormLoad();
-
-    if( !$form->existErrors() ) {
-      // Validaciones extra previas a usar los datos del recurso base
-      $this->defResCtrl->resFormRevalidate( $form );
-    }
-
-    // Opcional: Validaciones extra previas de elementos externos al recurso base
-
-    if( !$form->existErrors() ) {
-      // Creación-Edición-Borrado de los elementos del recurso base
-      $resource = $this->defResCtrl->resFormProcess( $form );
-    }
-
-    // Opcional: Creación-Edición-Borrado de los elementos externos al recurso base
-
-    if( !$form->existErrors()) {
-      // Volvemos a guardar el recurso por si ha sido alterado por alguno de los procesos previos
-      $saveResult = $resource->save();
-      if( $saveResult === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
-      }
-    }
-
-    // Enviamos el OK-ERROR a la BBDD y al formulario
-    $this->defResCtrl->resFormSuccess( $form, $resource );
-  } // function actionResourceForm()
 
 
   /**

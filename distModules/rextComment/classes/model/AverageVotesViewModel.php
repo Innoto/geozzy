@@ -13,6 +13,9 @@ class AverageVotesViewModel extends Model {
       'type' => 'INT',
       'primarykey' => true
     ),
+    'comments' => array(
+      'type' => 'SMALLINT'
+    ),
     'commentsVotes' => array(
       'type' => 'SMALLINT'
     ),
@@ -29,6 +32,25 @@ class AverageVotesViewModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
+      'version' => 'rextComment#1.3',
+      'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_resource_averagevote_view;
+        CREATE VIEW geozzy_resource_averagevote_view AS
+
+        SELECT COM.resource as id,
+          count(*) as comments,
+          count(COM.rate) as commentsVotes,
+          ROUND(AVG(COM.rate)) as averageVotes
+        FROM geozzy_comment as COM, geozzy_taxonomyterm as TXT
+
+        WHERE COM.type=TXT.id AND TXT.idName="comment" AND published=1
+
+        GROUP BY COM.resource;
+      '
+    )
+    /*
+    array(
       'version' => 'rextComment#1.1',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
@@ -44,7 +66,7 @@ class AverageVotesViewModel extends Model {
 
         GROUP BY COM.resource;
       '
-    )
+    )*/
   );
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {

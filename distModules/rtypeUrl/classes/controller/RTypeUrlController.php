@@ -112,8 +112,8 @@ class RTypeUrlController extends RTypeController implements RTypeInterface {
   /**
     Preparamos los datos para visualizar el Recurso
    **/
-  public function getViewBlockInfo() {
-    $viewBlockInfo = parent::getViewBlockInfo();
+  public function getViewBlockInfo( $resId = false ) {
+    $viewBlockInfo = parent::getViewBlockInfo( $resId );
 
     $viewBlockInfo['template']['full']->setTpl( 'rTypeViewBlock.tpl', 'rtypeUrl' );
 

@@ -349,10 +349,10 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-  public function getViewBlockInfo() {
-    // error_log( "RExtEventCollectionController: getViewBlockInfo()" );
+  public function getViewBlockInfo( $resId = false ) {
+    // error_log( "RExtEventCollectionController: getViewBlockInfo( $resId )" );
 
-    $rExtViewBlockInfo = parent::getViewBlockInfo();
+    $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
     // Obtenemos el rtype de los microeventos
     $rtypeModel = new ResourcetypeModel();

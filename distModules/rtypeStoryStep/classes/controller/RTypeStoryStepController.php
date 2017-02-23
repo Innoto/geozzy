@@ -155,6 +155,6 @@ class RTypeStoryStepController extends RTypeController implements RTypeInterface
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
-   //parent::getViewBlockInfo( );
+   //parent::getViewBlockInfo( $resId );
 
 } // class RTypeEventController

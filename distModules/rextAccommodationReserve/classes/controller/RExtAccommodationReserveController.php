@@ -186,8 +186,8 @@ class RExtAccommodationReserveController extends RExtController implements RExtI
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
    */
-  public function getViewBlockInfo() {
-    $rExtViewBlockInfo = parent::getViewBlockInfo();
+  public function getViewBlockInfo( $resId = false ) {
+    $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
     if( $rExtViewBlockInfo['data'] ) {
       $channel = $rExtViewBlockInfo['data']['channel'];
