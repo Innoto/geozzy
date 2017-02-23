@@ -52,6 +52,7 @@ class InitResourcesController{
     $taxViewModel = new TaxonomyViewModel();
     $urlAlias = new urlAliasModel();
 
+
     // Tipo e recurso base
     $rtypeIdName = $initRes['rType'];
     $rType = $resourceType->listItems( array('filters' => array('idName'=>$rtypeIdName)) )->fetch();
@@ -136,13 +137,34 @@ class InitResourcesController{
       }
     }
 
-
     //urlAlias multiidioma
     foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
       if( isset( $initRes['urlAlias'][$langKey] ) ) {
         $resourcecontrol->setUrl( $resource->getter('id'), $langKey, $initRes['urlAlias'][$langKey] );
       }
     }
+
+    //rExt
+    if (isset( $initRes['rExt'] ) && $rExtList = $initRes['rExt']){
+       foreach ($rExtList as $rExtName => $rExtData){
+          $rExtData['resource'] = $resource->getter('id');
+          foreach ($rExtData as $fieldName => $fieldValue){
+            if(is_array($fieldValue)){//campos multiiidioma
+              foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
+                $resData[$fieldName.'_'.$langKey] = $fieldValue;
+              }
+            }
+            else{
+              $resData[$fieldName] = $fieldValue;
+            }
+          }
+
+         $rExtModel = $rExtName.'Model';
+         $rExt = new $rExtModel($resData);
+         $rExt->save();
+       }
+    }
+
   }
 
 } // class InitResourcesController
