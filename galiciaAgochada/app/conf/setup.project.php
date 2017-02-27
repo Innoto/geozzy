@@ -322,68 +322,43 @@ cogumeloSetSetupValue( 'mod:geozzy:resource:urlAliasPatterns',
 // Tipo de recurso permitido en colecciones de cada tipo de recurso
 //
 cogumeloSetSetupValue( 'mod:geozzy:resource:collectionTypeRules',
-  array(
-    'default' => array(
-      'eventos' => array('rtypeAppFesta'),
-      'poi' => array(
-        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar')
-      ),
-      'pasos' => array(),
-      'base' => array(
-        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar', 'rtypeAppEspazoNatural', 'rtypeAppRuta', 'rtypeAppFesta'),
-        'manual' => array('rtypeUrl')
-      )
-    ),
-    'rtypeAppHotel' => array(
-      'eventos' => array('rtypeEvent'),
-      'poi' => array(),
-      'pasos' => array(),
-      'base' => array()
-    ),
-    'rtypeAppRestaurant' => array(
-      'eventos' => array('rtypeEvent'),
-      'poi' => array(),
-      'pasos' => array(),
-      'base' => array()
-    ),
-    'rtypeAppEspazoNatural' => array(
-      'eventos' => array(),
-      'poi' => array(
-        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar')
-      ),
-      'pasos' => array(),
-      'base' => array()
-    ),
-    'rtypeAppLugar' => array(
-      'eventos' => array(),
-      'poi' => array(),
-      'pasos' => array(),
-      'base' => array()
-    ),
-    'rtypeAppFesta' => array(
-      'eventos' => array('rtypeAppFesta'),
-      'poi' => array(),
-      'pasos' => array(),
-      'base' => array()
-    ),
-    'rtypeAppRuta' => array(
-      'eventos' => array(),
-      'poi' => array(
-        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar', 'rtypeAppEspazoNatural')
-      ),
-      'pasos' => array(),
-      'base' => array()
-    ),
-    'rtypeStoryStep' => array(
-      'eventos' => array(),
-      'poi' => array(
-        'all' =>  array('rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar')
-      ),
-      'pasos' => array('rtypeStoryStep'),
-      'base' => array()
-    )
-  )
-);
+[
+  'default' => [
+    'eventos' => ['rtypeAppFesta'],
+    'poi' => [
+      'listOptions' =>  ['rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar']
+    ],
+    'default' => [
+      'listOptions' =>  ['rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar', 'rtypeAppEspazoNatural', 'rtypeAppRuta', 'rtypeAppFesta'],
+      'manualCreate' => ['rtypeUrl']
+    ]
+  ],
+  'rtypeAppHotel' => [
+    'eventos' => ['rtypeEvent']
+  ],
+  'rtypeAppRestaurant' => [
+    'eventos' => ['rtypeEvent']
+  ],
+  'rtypeAppEspazoNatural' => [
+    'poi' => [
+      'listOptions' =>  ['rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar']
+    ]
+  ],
+  'rtypeAppFesta' => [
+    'eventos' => ['rtypeAppFesta']
+  ],
+  'rtypeAppRuta' => [
+    'poi' => [
+      'listOptions' =>  ['rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar', 'rtypeAppEspazoNatural']
+    ]
+  ],
+  'rtypeStoryStep' => [
+    'poi' => [
+      'listOptions' =>  ['rtypeAppHotel', 'rtypeAppRestaurant', 'rtypeAppLugar']
+    ],
+    'pasos' => ['rtypeStoryStep']
+  ]
+]);
 
 //
 //
