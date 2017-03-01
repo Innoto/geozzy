@@ -104,7 +104,7 @@ class RTypeController {
    * @param $rTypeModule RTypeController
    */
   public function __construct( $defResCtrl, $rTypeModule ) {
-    error_log( 'RTypeController: __construct() para '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    // error_log( 'RTypeController: __construct() para '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
     $this->defResCtrl = $defResCtrl;
     $this->rTypeName = $rTypeModule->name;
