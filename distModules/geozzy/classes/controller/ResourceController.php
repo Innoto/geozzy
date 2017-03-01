@@ -675,8 +675,6 @@ class ResourceController {
       }
       // $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
     }
-
-    $form->sendJsonResponse();
   }
 
 
