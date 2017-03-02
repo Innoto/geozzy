@@ -52,7 +52,6 @@ function successResourceForm( data ){
 function successResourceArrayForm( dataArray ){
   //resource
   $.each(dataArray, function (key, data) {
-    console.log(data);
     $('#collResources').append('<option data-image="'+data.image+'" selected="selected" value="'+data.id+'">'+data.title+'</option>');
   });
   $('#createResLocalMultipleModal').modal('hide');
