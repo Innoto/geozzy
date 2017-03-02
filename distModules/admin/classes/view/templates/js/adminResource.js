@@ -17,12 +17,8 @@ $(document).ready( function() {
   });
 
   bindResourceForm();
+  initializeMaps( );
 
-
-  // Porto 160810
-  if (typeof hasMap!=='undefined'){
-    initializeMaps( formId );
-  }
 });
 
 function bindResourceForm(){
@@ -83,9 +79,9 @@ function successCollectionForm( data ){
 
 
 
-function initializeMaps( form ) {
+function initializeMaps( ) {
   //initializeMap( form );
-  $('.'+form+' .location').each( function(i,e) {
+  $('.location').each( function(i,e) {
     initializeMap( $(e) );
   });
 }
