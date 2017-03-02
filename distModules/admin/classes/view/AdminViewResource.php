@@ -376,6 +376,51 @@ class AdminViewResource extends AdminViewMaster {
     $formBlockInfo['template']['miniFormModal']->exec();
   }
 
+  /**
+   * Creacion de Recursos type FILE
+   */
+  public function resourceTypeMultiFileForm( $urlParams = false ) {
+
+    // $resCtrl = new ResourceController();
+    $rtypeModel = new ResourcetypeModel();
+
+    $formName = 'resourceMultiFileCreate';
+    $urlAction = '/admin/resmultifile/sendresource';
+
+    $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeFile') ) )->fetch();
+    $valuesArray['rTypeId'] = $rtype->getter('id');
+
+    $resView = new ResourceView();
+    $formBlockInfo = $resView->getFormBlockInfo( $formName, $urlAction, false, $valuesArray );
+    $form = $formBlockInfo['objForm'];
+
+    $form->setFieldParam('image', 'label', 'Thumbnail image (Optional)');
+    $form->setFieldParam('published', 'type', 'reserved');
+    $form->setFieldParam('published', 'value', '1');
+    $urlAliasLang = $form->multilangFieldNames('urlAlias');
+    foreach( $urlAliasLang as $key => $field ) {
+      $form->removeField( $field);
+    }
+    $form->removeField('externalUrl');
+    $form->removeValidationRules('published');
+    $form->removeValidationRules('title_'.Cogumelo::getSetupValue('lang:default'));
+
+    $form->setFieldParam('rExtFile_file', 'multiple', 'multiple');
+
+    $formBlockInfo['dataForm'] = array(
+      'formOpen' => $form->getHtmpOpen(),
+      'formFieldsArray' => $form->getHtmlFieldsArray(),
+      'formFieldsHiddenArray' => array(),
+      'formFields' => $form->getHtmlFieldsAndGroups(),
+      'formClose' => $form->getHtmlClose(),
+      'formValidations' => $form->getScriptCode()
+    );
+
+    $formBlockInfo['template']['multiFormModal']->assign( 'res', $formBlockInfo );
+    $formBlockInfo['template']['multiFormModal']->exec();
+  }
+
+
 
   public function sendResourceForm() {
     $resourceView = new ResourceView();
@@ -426,6 +471,68 @@ class AdminViewResource extends AdminViewMaster {
 
     // Enviamos el OK-ERROR a la BBDD y al formulario
     $resourceView->actionResourceFormSuccess( $form, $resource );
+  }
+
+
+  public function sendModalMultiFileForm() {
+    $resCtrl = new ResourceController();
+    $resourceView = new ResourceView();
+    $resourcesFiles = [];
+    $resSuccessData = [];
+    $resource = null;
+
+    // Se construye el formulario con sus datos y se realizan las validaciones que contiene
+    $form = $resourceView->defResCtrl->resFormLoad();
+
+    if( !$form->existErrors() ) {
+      $fileGroupField = $form->getFieldValue( 'rExtFile_file' );
+      if( !empty( $fileGroupField['multiple'] ) && is_array( $fileGroupField['multiple'] ) ) {
+        foreach( $fileGroupField['multiple'] as $keyFileField => $fileField ) {
+        
+          if( isset( $fileField['status'] ) && $fileField['status'] === 'LOADED' ){
+            $title = '';
+            $partForm = clone $form;
+
+            $title = $partForm->getFieldValue('title_'.Cogumelo::getSetupValue( 'lang:default' ));
+            $newTitle = (!empty($title) ? $title.' ('.$keyFileField.')' : $fileField['values']['name'] );
+            $partForm->setFieldValue('title_'.Cogumelo::getSetupValue( 'lang:default' ), $newTitle );
+
+            $partForm->removeFieldParam('rExtFile_file', 'multiple');
+            $partForm->setFieldParam('rExtFile_file', 'value', $fileField );
+            $resource = $resourceView->actionResourceFormProcess( $partForm );
+
+            if( !$partForm->existErrors() ) {
+              $resourceView->actionResourceFormSuccess( $partForm, $resource, true );
+            }
+            if( !$partForm->existErrors() ) {
+              $resourcesFiles[] = $resource;
+            }
+          }
+        }
+      }
+      if( !empty($resourcesFiles) ){
+        foreach( $resourcesFiles as $rf ) {
+          $thumbImg = false;
+          $thumbSettings = array(
+            'profile' => 'squareCut'
+          );
+          if( $rf->getter('image') ){
+            $thumbSettings['imageId'] = $rf->getter('image');
+            $thumbSettings['imageName'] = $rf->getter('image').'.jpg';
+          }
+          $thumbImg = $resCtrl->getResourceThumbnail( $thumbSettings );
+          $resSuccessData[] = [
+            'id' => $rf->getter('id'),
+            'title' => $rf->getter('title_'.$form->langDefault),
+            'image' => $thumbImg,
+          ];
+        }
+      }
+    }
+    $form->removeSuccess( 'redirect' );
+    $form->setSuccess( 'jsEval', ' successResourceArrayForm('.json_encode($resSuccessData).');' );
+
+    $form->sendJsonResponse();
   }
 
 
