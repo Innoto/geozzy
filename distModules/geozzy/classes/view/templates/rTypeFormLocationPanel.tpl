@@ -3,10 +3,7 @@
 
 {block name="content"}
 
-<script>
-  var formId = '{$res.dataForm.formId}';
-  var hasMap = true;
-</script>
+
 
 <div class="row location">
   <div class="col-lg-12 mapContainer">
@@ -30,5 +27,7 @@
     </div>
   {/if}
 </div>
+
+
 
 {/block}{*/content*}
