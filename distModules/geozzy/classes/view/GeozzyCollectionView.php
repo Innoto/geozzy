@@ -100,16 +100,6 @@ class GeozzyCollectionView extends View
         'params' => array('type' => 'reserved' )
       )
     );
-/*
-    if( array_key_exists('collectionType', $valuesArray ) && $valuesArray['collectionType'] === 'multimedia' ){
-      $fieldsInfo['addResourceLocal'] = array(
-        'params' => array( 'id' => 'addResourceLocal', 'type' => 'button', 'value' => __( 'Upload multimedia ' ))
-      );
-      $fieldsInfo['addResourceExterno'] = array(
-        'params' => array( 'id' => 'addResourceExternal', 'type' => 'button', 'value' => __( 'Link or embed multimedia' ))
-      );
-    }
-*/
 
     $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':manualCreate' );
     $widgetConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':widget' );
@@ -390,30 +380,16 @@ class GeozzyCollectionView extends View
 
       //Recursos Manuales
       if( $collectionId ){
-        $filterWeak =  $conf['manualCreate'];
-        //Se traen los rtypes establecidos en Conf
-        if( $filterWeak && count($filterWeak) > 0 ) {
-          $rtypeArray = $rtypeControl->listItems(
-            array( 'filters' => array( 'idNameExists' => $filterWeak ) )
-          );
-          //Creamos un array con los ids de los rtypes
-          $filterRtype = array();
-          while( $res = $rtypeArray->fetch() ){
-            array_push( $filterRtype, $res->getter('id') );
-          }
-          //Traemos todos los recursos de esa coleccion que tengan el rtype manual de conf
-          $colRes = $collectionResourcesModel->listItems(
-            array(
-              'filters' => array( 'collection' => $collectionId, 'ResourceModel.rTypeId' => $filterRtype ),
-              'joinType' => 'RIGHT',
-              'affectsDependences' => array('ResourceModel', 'RExtUrlModel')
-            )
-          )->fetchAll();
+        $colRes = $collectionResourcesModel->listItems(
+          array(
+          'filters' => array( 'collection' => $collectionId ),
+            'affectsDependences' => array('ResourceModel', 'RExtUrlModel')
+          )
+        )->fetchAll();
 
-          foreach( $colRes as $key => $value ) {
-            $elemList = array_merge($elemList, $value->getterDependence('resource'));
-          }
-        }
+        foreach( $colRes as $key => $value ) {
+          $elemList = array_merge($elemList, $value->getterDependence('resource'));
+        }    
       }
 
     }
