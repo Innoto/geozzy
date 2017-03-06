@@ -103,7 +103,7 @@ function initializeMap( segmentDIV ){
 
       var latValue = 0;
       var lonValue = 0;
-      var zoom = 1;
+      var zoom = 3;
 
       if(typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
         console.log('adminResource.js: cogumelo.publicConf.admin.adminMap is not defined in conf')
@@ -118,11 +118,15 @@ function initializeMap( segmentDIV ){
       if( latInput.val() !== '' && latInput.val() !== '') {
         latValue = parseFloat( latInput.val() );
         lonValue = parseFloat( lonInput.val() );
-        zoom = parseInt( defaultZoom.val() );
         latInit = latValue;
         lonInit = lonValue;
-        zoomInit = zoom;
       }
+
+      if( defaultZoom.length > 0 &&  defaultZoom.val() != '') {
+        zoom = parseInt( defaultZoom.val() );
+      }
+
+      zoomInit = zoom;
 
       // gmaps init
       var mapOptions = {
