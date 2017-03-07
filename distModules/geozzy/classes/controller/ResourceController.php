@@ -865,7 +865,7 @@ class ResourceController {
 
     $error = false;
     $fileGroupField = $form->getFieldValue( $fieldName );
-    error_log( '*** setFormFilegroup *** '.$fieldName.' - '.$colName.' fileInfo: '. print_r( $fileGroupField, true ) );
+    error_log( '*** setFormFilegroup *** '.$fieldName.' - '.$colName /*.' fileInfo: '. print_r( $fileGroupField, true )*/ );
 
     $filedataCtrl = new FiledataController();
     $filegroupObj = false;
