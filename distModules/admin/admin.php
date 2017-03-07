@@ -197,14 +197,12 @@ class admin extends Module {
     $this->addUrlPatterns( '#^admin/resourcetypefile/edit/(\d+)$#', 'view:AdminViewResource::resourceEditForm' );
     $this->addUrlPatterns( '#^admin/resourcetypefile/sendresource$#', 'view:AdminViewResource::sendModalResourceForm' );
 
+    $this->addUrlPatterns( '#^admin/resmultifile/create#', 'view:AdminViewResource::resourceTypeMultiFileForm' );
+    $this->addUrlPatterns( '#^admin/resmultifile/sendresource$#', 'view:AdminViewResource::sendModalMultiFileForm' );
+
     $this->addUrlPatterns( '#^admin/collection/create/(.+)$#', 'view:AdminViewCollection::createForm' );
     $this->addUrlPatterns( '#^admin/collection/edit/(\d+)/(.+)$#', 'view:AdminViewCollection::editForm' );
     $this->addUrlPatterns( '#^admin/collection/sendcollection$#', 'view:AdminViewCollection::sendCollectionForm' );
-/*
-    $this->addUrlPatterns( '#^admin/multimedia/create$#', 'view:AdminViewCollection::createMultimediaForm' );
-    $this->addUrlPatterns( '#^admin/multimedia/edit/(\d+)$#', 'view:AdminViewCollection::editMultimediaForm' );
-    $this->addUrlPatterns( '#^admin/multimedia/sendmultimedia$#', 'view:AdminViewCollection::sendCollectionForm' );
-*/
 
     $this->addUrlPatterns( '#^admin/role/edit/(.*)$#', 'view:AdminViewRole::editRole' );
     $this->addUrlPatterns( '#^admin/role/create$#', 'view:AdminViewRole::createRole' );
