@@ -84,6 +84,12 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     $templates['multiFormModal']->assign( 'res', $formBlockInfo );
 
     // TEMPLATE en bruto con todos los elementos del form
+    $templates['adminMultiFormModal'] = new Template();
+    $templates['adminMultiFormModal']->assign( 'title', __( 'Resource' ) );
+    $templates['adminMultiFormModal']->setTpl( 'rTypeMultiFileAdminFormModalBlock.tpl', 'rtypeFile' );
+    $templates['adminMultiFormModal']->assign( 'res', $formBlockInfo );
+
+    // TEMPLATE en bruto con todos los elementos del form
     $templates['full'] = new Template();
     $templates['full']->setTpl( 'rTypeFormBlock.tpl', 'geozzy' );
     $templates['full']->assign( 'res', $formBlockInfo );

@@ -1,4 +1,5 @@
 
+{extends file="admin///adminPanel.tpl"}
 {block name="content"}
   <style>
     label { display: block; }

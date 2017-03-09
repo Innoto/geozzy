@@ -416,8 +416,8 @@ class AdminViewResource extends AdminViewMaster {
       'formValidations' => $form->getScriptCode()
     );
 
-    $formBlockInfo['template']['multiFormModal']->assign( 'res', $formBlockInfo );
-    $formBlockInfo['template']['multiFormModal']->exec();
+    $formBlockInfo['template']['adminMultiFormModal']->assign( 'res', $formBlockInfo );
+    $formBlockInfo['template']['adminMultiFormModal']->exec();
   }
 
 
@@ -488,7 +488,7 @@ class AdminViewResource extends AdminViewMaster {
       $fileGroupField = $form->getFieldValue( 'rExtFile_file' );
       if( !empty( $fileGroupField['multiple'] ) && is_array( $fileGroupField['multiple'] ) ) {
         foreach( $fileGroupField['multiple'] as $keyFileField => $fileField ) {
-        
+
           if( isset( $fileField['status'] ) && $fileField['status'] === 'LOADED' ){
             $title = '';
             $partForm = clone $form;
