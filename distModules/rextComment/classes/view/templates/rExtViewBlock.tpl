@@ -1,5 +1,4 @@
 <!-- rExtViewBlock.tpl en rExtComment module -->
-{$client_includes}
 {if !isset($commentEmpty)}
 <div class="rExtCommentBar clearfix">
   <h4>{t}Comentarios{/t}</h4>
