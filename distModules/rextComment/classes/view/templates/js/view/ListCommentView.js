@@ -9,13 +9,14 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
   listCommentTemplate : false,
   listCommentItemTemplate : false,
   commentsToShow : 3,
+  commentAppParent : false,
 
   events: {
-    "click .commentShowMore": "showAll"
+    "click .commentShowMore": "showAll",
+    "click .userName": "userNameEvent"
   },
 
   initialize: function( idResource ) {
-
     var that = this;
     that.comments = new geozzy.commentComponents.CommentCollection([], { resource: idResource });
     that.comments.fetch({
@@ -69,6 +70,13 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
     var that = this;
     that.commentsToShow = false;
     that.render();
+  },
+  userNameEvent : function (e){
+    var that = this;
+    var idUser = $(e.target).attr('data-user-id');
+    if(idUser){
+      that.commentAppParent.userCallBack(idUser);
+    }
   }
 
 });
