@@ -5,16 +5,23 @@ var geozzy = geozzy || {};
 
 */
 
-geozzy.rExtMapWidgetForm = function( divMapa ) {
+geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   var that = this;
 
-  that.initializeMap = function( segmentDIV ){
+  that.segmentDIV = segmentDIV;
+
+  that.latInput = that.segmentDIV.find(".lat input");
+  that.lonInput = that.segmentDIV.find(".lon input");
+  that.defaultZoom = that.segmentDIV.find(".zoom input");
+  that.mapContainer = that.segmentDIV.find(".mapContainer");
+  that.addressInput = that.segmentDIV.find(".address");
+  that.resourceMap = false;
+
+
+  that.initializeMap = function( ){
     // Location Map
-    if(  segmentDIV.find(".lat input").length &&  segmentDIV.find(".lon input").length  ) {
-      that.latInput = segmentDIV.find(".lat input");
-      that.lonInput = segmentDIV.find(".lon input");
-      that.defaultZoom = segmentDIV.find(".zoom input");
-      that.mapContainer = segmentDIV.find(".mapContainer");
+    if(  that.segmentDIV.find(".lat input").length &&  that.segmentDIV.find(".lon input").length  ) {
+
 
       if( that.mapContainer.length && that.mapContainer.children('.resourceLocationMap').length < 1 ) {
         that.mapContainer.append('<div class="resourceLocationMap"></div>');
@@ -52,7 +59,7 @@ geozzy.rExtMapWidgetForm = function( divMapa ) {
           zoom: zoomInit,
           scrollwheel: false
         };
-        var resourceMap = new google.maps.Map( segmentDIV.find('.resourceLocationMap')[0], mapOptions);
+        that.resourceMap = new google.maps.Map( that.segmentDIV.find('.resourceLocationMap')[0], mapOptions);
 
         // add marker
 
@@ -80,27 +87,93 @@ geozzy.rExtMapWidgetForm = function( divMapa ) {
         });
 
         // Click map event
-        google.maps.event.addListener(resourceMap, 'click', function(e) {
+        google.maps.event.addListener(that.resourceMap, 'click', function(e) {
           resourceMarker.setPosition( e.latLng );
-          resourceMarker.setMap( resourceMap );
+          resourceMarker.setMap( that.resourceMap );
           that.latInput.val( resourceMarker.position.lat() );
           that.lonInput.val( resourceMarker.position.lng() );
 
-          that.defaultZoom.val( resourceMap.getZoom() );
+          that.defaultZoom.val( that.resourceMap.getZoom() );
         });
 
         // map zoom changed
-        google.maps.event.addListener(resourceMap, 'zoom_changed', function(e) {
-          that.defaultZoom.val( resourceMap.getZoom() );
+        google.maps.event.addListener(that.resourceMap, 'zoom_changed', function(e) {
+          that.defaultZoom.val( that.resourceMap.getZoom() );
         });
 
         if( that.latInput.val() !== '') {
-          resourceMarker.setMap( resourceMap);
+          resourceMarker.setMap( that.resourceMap);
         }
       }
     }
   };
 
-  that.initializeMap(divMapa);
 
+  that.placeSearch = false;
+  that.autocomplete = false;
+  that.componentForm = {
+    street_number: 'short_name',
+    route: 'long_name',
+    locality: 'long_name',
+    administrative_area_level_1: 'short_name',
+    country: 'long_name',
+    postal_code: 'short_name'
+  };
+
+
+  that.fillInAddress = function() {
+    // Get the place details from the autocomplete object.
+    var place = that.autocomplete.getPlace();
+    console.log(place.geometry.location.lat(), place.geometry.location.lng() );
+
+    that.resourceMap.setCenter(
+      new google.maps.LatLng(
+        place.geometry.location.lat(),
+        place.geometry.location.lng()
+      )
+    );
+    that.resourceMap.setZoom(11);
+
+  };
+
+  // Bias the autocomplete object to the user's geographical location,
+  // as supplied by the browser's 'navigator.geolocation' object.
+  that.geolocate = function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+        that.autocomplete.setBounds(circle.getBounds());
+      });
+    }
+  };
+
+  that.initAddressAutocompletion = function() {
+    if( that.addressInput.length > 0 ) {
+      // Create the autocomplete object, restricting the search to geographical
+      // location types.
+
+      that.autocomplete = new google.maps.places.Autocomplete(
+          ( that.addressInput[0] ),
+          {types: ['geocode']});
+
+      // When the user selects an address from the dropdown, populate the address
+      // fields in the form.
+      that.autocomplete.addListener('place_changed', that.fillInAddress);
+
+      that.addressInput.focus( function() {
+        that.geolocate();
+      });
+    }
+  };
+
+
+  that.initializeMap();
+  that.initAddressAutocompletion();
 }

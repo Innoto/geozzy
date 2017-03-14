@@ -7,7 +7,8 @@
 
 <div class="row location">
   <div class="col-lg-12 mapContainer">
-    <div class="descMap">Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización</div>
+    <div class="col-md-7" ><label>Address</label><input class="address"></div>
+    <div class="col-md-4 descMap">Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización</div>
   </div>
   <div class="col-lg-12 locationData">
     <div class="row">
