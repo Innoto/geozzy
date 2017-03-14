@@ -5,7 +5,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=no">
-  <title>Geozzy Admin</title>
+  {if !isset($titleCustom)}
+    <title>Geozzy Admin</title>
+  {else}
+    <title>{$titleCustom}</title>
+  {/if}
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
