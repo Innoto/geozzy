@@ -80,10 +80,11 @@ function successCollectionForm( data ){
 
 
 function initializeMaps( ) {
-  //initializeMap( form );
-  $('.location').each( function(i,e) {
-    //initializeMap( $(e) );
-    new geozzy.rExtMapWidgetForm( $(e) );
-
+  basket.require(
+    { url:  cogumelo.publicConf.media + '/module/rextMap/js/rExtMapWidgetForm.js' }
+  ).then(function () {
+    $('.location').each( function(i,e) {
+      new geozzy.rExtMapWidgetForm( $(e) );
+    });
   });
 }

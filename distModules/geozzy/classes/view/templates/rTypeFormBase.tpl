@@ -8,7 +8,6 @@
   label { display: block; }
   .cgmMForm-field { max-width: none !important; }
 </style>
-<script type="text/javascript" src="{$cogumelo.publicConf.mediaJs}/module/rextMap/js/rExtMapWidgetForm.js"></script>
 <script type="text/javascript" src="{$cogumelo.publicConf.mediaJs}/module/admin/js/adminResource.js"></script>
 
 
