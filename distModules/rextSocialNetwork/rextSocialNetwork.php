@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextSocialNetwork extends Module {
 
   public $name = 'rextSocialNetwork';
-  public $version = 1.1;
+  public $version = 1.2;
 
 
   public $models = array(
