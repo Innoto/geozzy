@@ -49,7 +49,7 @@ class ResourceController {
     if( !$this->rTypeCtrl ) {
       $rTypeIdName = $this->getRTypeIdName( $rTypeId );
       if( class_exists( $rTypeIdName ) ) {
-        error_log( __CLASS__.": getRTypeCtrl = $rTypeIdName" );
+        // error_log( __CLASS__.": getRTypeCtrl = $rTypeIdName" );
 
         $rTypeIdName::autoIncludes();
 
@@ -72,7 +72,7 @@ class ResourceController {
 
     $rTypeIdName = $this->getRTypeIdName( $rTypeId );
     if( class_exists( $rTypeIdName ) ) {
-      error_log( __CLASS__.": getRTypeView = $rTypeIdName" );
+      // error_log( __CLASS__.": getRTypeView = $rTypeIdName" );
 
       $rTypeIdName::autoIncludes();
 
@@ -675,8 +675,6 @@ class ResourceController {
       }
       // $form->addFormError( 'NO SE HAN GUARDADO LOS DATOS.','formError' );
     }
-
-    $form->sendJsonResponse();
   }
 
 
@@ -867,7 +865,7 @@ class ResourceController {
 
     $error = false;
     $fileGroupField = $form->getFieldValue( $fieldName );
-    error_log( '*** setFormFilegroup *** '.$fieldName.' - '.$colName.' fileInfo: '. print_r( $fileGroupField, true ) );
+    error_log( '*** setFormFilegroup *** '.$fieldName.' - '.$colName /*.' fileInfo: '. print_r( $fileGroupField, true )*/ );
 
     $filedataCtrl = new FiledataController();
     $filegroupObj = false;

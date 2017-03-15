@@ -159,11 +159,16 @@ class ResourceView extends View {
   /**
    * Success del Action del formulario
    */
-  public function actionResourceFormSuccess( $form, $resource ) {
+  public function actionResourceFormSuccess( $form, $resource, $disableResponse = false ) {
     // error_log( "ResourceView: actionResourceFormSuccess()" );
 
     // Enviamos el OK-ERROR a la BBDD y al formulario
     $this->defResCtrl->resFormSuccess( $form, $resource );
+
+    if( !$disableResponse ) {
+      // Send Header and Json
+      $form->sendJsonResponse();
+    }
   } // function actionResourceFormSuccess()
 
 

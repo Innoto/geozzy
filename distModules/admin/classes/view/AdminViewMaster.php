@@ -107,6 +107,11 @@ class AdminViewMaster extends View {
       $this->template->assign( 'logoCustom' , $logoPath);
     }
 
+    $titleCustom = Cogumelo::getSetupValue( 'mod:admin:titlePath' );
+    if($titleCustom){
+      $this->template->assign( 'titleCustom' , $titleCustom);
+    }
+
     //
     $this->template->exec();
   }
