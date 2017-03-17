@@ -44,7 +44,7 @@
 
 <script type="text/template" id="datesTPTemplate">
   <div class="datesTpContainer">
-    <div class="title">{t}When you want to make your visit?{/t}</div>
+    <div class="title">{t}When do you want to travel? {/t}</div>
     <input type="text" id="checkTpDates" class="form-control" readonly>
   </div>
 </script>
@@ -88,7 +88,7 @@
     <div class="title"><%- resource.title %></div>
 
     <form>
-      <div class="labelText">{t}Which days you want to visit?{/t}</div>
+      <div class="labelText">{t}Select date to visit this place or event{/t}</div>
       <ul class="selectorDays clearfix">
         <% _.each(dates, function(i) { %>
           <li class="day-<%= i.id %> <% if(i.inPlan){ %> inPlan <% } %>" data-day="<%= i.id %>">
@@ -99,7 +99,7 @@
         <% }); %>
       </ul>
 
-      <div class="labelText">{t}How long?{/t}</div>
+      <div class="labelText">{t}How long do you want to visit this place?{/t}</div>
       <div class="hoursContainer row clearfix">
         <div class="col-xs-6">
           <label for="hlong-hour">{t}hours{/t}</label>
