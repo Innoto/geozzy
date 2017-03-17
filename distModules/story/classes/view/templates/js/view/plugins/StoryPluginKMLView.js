@@ -32,7 +32,7 @@ geozzy.storyComponents.StoryPluginKMLView = Backbone.View.extend({
 
   setStep: function( step ) {
     var that = this;
-    http://test2.geozzy.com/cgmlformfilewd/5734/monte-pindo-fervenza-do-ezaro-18-11-km.gpx
+
     that.hideAll();
     var KMLID = that.parentStory.storySteps.get(step.id).get('KML');
 
