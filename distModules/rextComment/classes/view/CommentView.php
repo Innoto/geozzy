@@ -112,7 +112,7 @@ class CommentView extends View {
 
     if(in_array('comment', $ctypeParamTerms) && $commentRatePerm){
       $fieldsInfo['rate'] = array(
-        'params' => array( 'label' => __('How do we value?'), 'class' => 'inputRating', 'value' => null )
+        'params' => array( 'label' => __('Rate this content'), 'class' => 'inputRating', 'value' => null )
       );
     }
 
