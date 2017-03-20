@@ -73,7 +73,8 @@ class RExtStoryStepModel extends Model
     ),
     array(
       'version' => 'rextStoryStep#1.5',
-      'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep ADD INDEX storystepKML (storystepKML);'
+      'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep
+        ADD INDEX storystepKML (storystepKML);'
     )
   );
 
