@@ -10,6 +10,7 @@ class RTypeStoryStepView extends RTypeViewCore implements RTypeViewInterface {
   public function __construct( $defResCtrl = null ) {
     // error_log( 'RTypeStoryStepView: __construct(): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
     if( gettype( $defResCtrl ) !== 'object' ) {
+      geozzy::load('controller/ResourceController.php');
       $defResCtrl = new ResourceController();
     }
     parent::__construct( $defResCtrl, new rtypeStoryStep() );
