@@ -72,9 +72,6 @@ geozzy.explorer = function( opts ) {
 
 
 
-
-
-
   //
   // First Execution
   //
@@ -90,13 +87,6 @@ geozzy.explorer = function( opts ) {
       geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
       geozzy.explorerComponents.routerInstance.parentExplorer = that;
 
-      if( !Backbone.History.started ){
-        Backbone.history.start();
-      }
-      else {
-        Backbone.history.stop();
-        Backbone.history.start();
-      }
     }
 
     that.bindEvent('resourceClick', function(param){
@@ -291,6 +281,13 @@ geozzy.explorer = function( opts ) {
       that.timeDebugerExtended.log('Starting second data fetch at');
     }
 
+    if( that.resourcePartialList == false ) {
+      var isFirstTime = true
+    }
+    else {
+      var isFirstTime = false;
+    }
+
     that.fetchPartialList(
       resourcesToLoad,
       function() {
@@ -313,6 +310,17 @@ geozzy.explorer = function( opts ) {
         }
         if( that.options.debug ) {
           that.timeDebugerExtended.log( '&nbsp;- Render lists' );
+        }
+
+        if( that.options.useUrlRouter &&  isFirstTime ){
+
+          if( !Backbone.History.started ){
+            Backbone.history.start();
+          }
+          else {
+            Backbone.history.stop();
+            Backbone.history.start();
+          }
         }
 
         that.triggerEvent('partialLoadSuccess', {})

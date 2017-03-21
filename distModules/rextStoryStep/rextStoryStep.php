@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextStoryStep extends Module {
 
   public $name = 'rextStoryStep';
-  public $version = 1.4;
+  public $version = 1.5;
 
 
   public $models = array(
