@@ -741,7 +741,7 @@ class ResourceController {
    * Filedata methods
    */
   public function getFiledata( $fileIds ) {
-    error_log( 'ResourceController: getFiledata(fileIds): ' . print_r( $fileIds, true ) );
+    // error_log( 'ResourceController: getFiledata(fileIds): ' . print_r( $fileIds, true ) );
     $result = false;
 
     $fileDataModel = new FiledataModel();
