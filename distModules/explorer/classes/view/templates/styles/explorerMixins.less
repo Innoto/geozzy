@@ -79,6 +79,31 @@
   }
 }
 /*******************************************************************************************/
+.explorerLayoutMobile( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 100%, @explFilter-w: 30%,
+   @explFilter-h: 15%, @explGallery-w: 30%, @explGallery-h: 85% ) {
+  .explorerContainer{
+    &.explorer-container-du{
+      width: @explDu-w;
+      height: @explDu-h;
+    }
+    &.explorer-container-map{
+      width: @explMap-w;
+      height: @explMap-h;
+      float: left;
+    }
+    &.explorer-container-filter{
+      width: @explFilter-w;
+      height: @explFilter-h;
+      float: right;
+    }
+    &.explorer-container-gallery{
+      width: @explGallery-w;
+      height: @explGallery-h;
+      float: right;
+    }
+  }
+}
+/*******************************************************************************************/
 .explorerLayoutIndiana( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 85%, @explFilter-w: 100%,
    @explFilter-h: 15%, @explGallery-w: 30%, @explGallery-h: 85% ) {
   .explorerContainer{
