@@ -22,8 +22,10 @@
                   <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
+                  {if $userPermission}
                     <li><a href="/admin#user/show"><i class="fa fa-user fa-fw"></i> {t}User Profile{/t}</a></li>
                     <li><a href="/admin#user/edit/id/{$user['data']['id']}"><i class="fa fa-edit fa-fw"></i>{t}Edit Profile{/t}</a></li>
+                  {/if}
                     <li class="divider"></li>
                     <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i>{t}Logout{/t}</a></li>
                 </ul>
@@ -51,9 +53,11 @@
               <a  href="/admin#charts"><i class="fa fa-line-chart fa-fw"></i> {t}Charts{/t}</a>
             </li>
           {/if}
+          {if $pagePermission}
           <li class="pages">
             <a href="/admin#resourcepage/list"><i class="fa fa-files-o fa-fw"></i> {t}Pages{/t} </a>
           </li>
+          {/if}
           {if isset($rextStoryInclude)}
             <li class="stories">
               <a href="/admin#storysteps"><i class="fa fa-eye fa-fw" aria-hidden="true"></i> {t}Stories{/t}<span class="fa arrow"></span></a>
@@ -111,12 +115,13 @@
               <!-- /.nav-second-level -->
           </li>
           <!-- Settings -->
+          {if $settingPermission}
           <li>
             <a href="#"><i class="fa fa-cog fa-fw"></i> {t}Settings{/t} <span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
-              <li class="menu">
+              <!--<li class="menu">
                 <a href="/admin#"><i class="fa fa-bars fa-fw"></i> {t}Menu{/t} </a>
-              </li>
+              </li>-->
               {if $userPermission}
               <li>
                 <a href="#"><i class="fa fa-users fa-fw"></i> {t}Users{/t} <span class="fa arrow"></span></a>
@@ -135,6 +140,7 @@
             </ul>
             <!-- /.nav-second-level -->
           </li>
+          {/if}
         </ul> <!-- /side-menu -->
     </div>
   </div>
