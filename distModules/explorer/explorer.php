@@ -84,6 +84,7 @@ class explorer extends Module {
     'js/view/ExplorerClusterRoseView.js',
     'js/view/ExplorerMapInfoBubbleView.js',
     'js/view/ExplorerMapInfoView.js',
+    'js/view/ExplorerMapInfoMobileView.js',    
     'js/Explorer.js',
     //'styles/explorerMapArrows.less'
   );
