@@ -16,9 +16,6 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
   template: false,
 
-  marginX: 25,
-  marginY: 20,
-
   ready: true,
 
   initialize: function( opts ) {
@@ -81,30 +78,13 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
       $('body').append( '<div id="' + that.divId + '" style="" ></div>' )
     }
 
-
-    $('#'+that.divId).css('position', 'absolute');
-
+//    $('#'+that.divId).css('position', 'absolute');
+/*
     $('#'+that.divId).css('top', pos.y+that.marginY+'px');
-    $('#'+that.divId).css('left', pos.x+that.marginX+'px');
+    $('#'+that.divId).css('left', pos.x+that.marginX+'px');*/
     $('#'+that.divId).css('z-index',highest);
   },
 
-  moveInfoMapDivWhenBehindMouse: function() {
-    var that = this;
-
-    var infoDiv = $( '#'+that.divId );
-
-
-
-
-    if(
-       infoDiv.offset().left < that.currentMousePos.x &&  infoDiv.offset().left + infoDiv.width() > that.currentMousePos.x &&
-       infoDiv.offset().top < that.currentMousePos.y &&  infoDiv.offset().top + infoDiv.height() > that.currentMousePos.y
-    ) {
-      var pos = that.getTopLeftPosition();
-      $('#'+that.divId).css('left', ( that.currentMousePos.x + 20 ) +'px');
-    }
-  },
 
   render: function( ) {
     var that = this;
@@ -139,7 +119,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
          if( that.ready == id){
           $( '#'+that.divId ).show();
-          that.moveInfoMapDivWhenBehindMouse();
+
          }
       }
     );
