@@ -49,6 +49,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
     that.parentExplorer.bindEvent('resourceClick', function( params ){
       //that.show(params.id);
+      alert('')
     });
 
 
