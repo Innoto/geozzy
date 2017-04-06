@@ -1,6 +1,8 @@
 var geozzy = geozzy || {};
 if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
+var mapInfoMobileView_is_blocked = false;
+
 geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
   displayType: 'plugin',
@@ -47,6 +49,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
     that.parentExplorer.bindEvent('resourceClick', function( params ){
       //that.show(params.id);
+      alert('')
     });
 
 
@@ -83,9 +86,8 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
   },
 
 
-  render: function( ) {
-    var that = this;
-    that.$el.html('');
+  renderDialog: function( id ) {
+
 
   },
 
@@ -122,7 +124,8 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
          }
 
       }
-    );
+    )
+
   },
 
   hide: function() {
