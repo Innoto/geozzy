@@ -1,6 +1,8 @@
 var geozzy = geozzy || {};
 if(!geozzy.explorerComponents) geozzy.explorerComponents={};
 
+var mapInfoMobileView_is_blocked = false;
+
 geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
   displayType: 'plugin',
@@ -8,15 +10,17 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
   template: _.template(""),
   containerMap: false,
   divId: 'geozzyExplorerMapInfoMobile',
-
   currentMousePos: { x: -1, y: -1 },
-
-
-
-
   template: false,
-
   ready: true,
+
+  events: {
+    // resource events
+    "click .nextButton": "next",
+    "click .previousButton": "previous",
+    "click .closeButton": "hide"
+  },
+
 
   initialize: function( opts ) {
     var that = this;
@@ -28,9 +32,6 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
     that.template = _.template( that.options.tpl );
     that.mousePosEventListener();
-
-
-
   },
 
   setParentExplorer: function( parentExplorer ) {
@@ -48,6 +49,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
     that.parentExplorer.bindEvent('resourceClick', function( params ){
       //that.show(params.id);
+      alert('')
     });
 
 
@@ -78,16 +80,13 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
       $('body').append( '<div id="' + that.divId + '" style="" ></div>' )
     }
 
-//    $('#'+that.divId).css('position', 'absolute');
-/*
-    $('#'+that.divId).css('top', pos.y+that.marginY+'px');
-    $('#'+that.divId).css('left', pos.x+that.marginX+'px');*/
+
+
     $('#'+that.divId).css('z-index',highest);
   },
 
 
-  render: function( ) {
-    var that = this;
+  renderDialog: function( id ) {
 
 
   },
@@ -118,11 +117,15 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
          $( '#'+that.divId ).html( that.template( element ) );
 
          if( that.ready == id){
+           that.$el = $('#'+that.divId);
+           that.delegateEvents();
+           that.updateArrows();
           $( '#'+that.divId ).show();
-
          }
+
       }
-    );
+    )
+
   },
 
   hide: function() {
@@ -139,6 +142,53 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
 
     return {x: $(that.parentExplorer.displays.map.map.getDiv() ).offset().left , y: $(that.parentExplorer.displays.map.map.getDiv() ).offset().top };
+  },
+
+  next: function() {
+    var that = this;
+    var id = that.ready;
+    var collectionList = that.parentExplorer.resourceMinimalList;
+
+    var index =  collectionList.indexOf( collectionList.get( id ) );
+    if ((index + 1) !== collectionList.length) {
+      that.show( collectionList.at(index + 1).get('id') ) ;
+    }
+  },
+
+  previous: function() {
+    var that = this;
+    var id = that.ready;
+    var collectionList = that.parentExplorer.resourceMinimalList;
+
+    var index =  collectionList.indexOf( collectionList.get( id ) );
+    if ((index -1 ) >= 0) {
+      that.show( collectionList.at(index - 1).get('id') ) ;
+    }
+
+  },
+
+  updateArrows: function() {
+    var that = this;
+    var id = that.ready;
+    var collectionList = that.parentExplorer.resourceMinimalList;
+    var index =  collectionList.indexOf( collectionList.get( id ) );
+
+    if ( index == 0) {
+      that.$el.find('.previousButton').hide();
+    }
+    else {
+      that.$el.find('.previousButton').show();
+    }
+
+    if ( index  === collectionList.length-1) {
+      that.$el.find('.nextButton').hide();
+    }
+    else {
+      that.$el.find('.nextButton').show();
+    }
   }
+
+
+
 
 });
