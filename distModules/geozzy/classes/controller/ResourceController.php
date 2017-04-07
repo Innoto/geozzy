@@ -727,16 +727,6 @@ class ResourceController {
 
 
 
-
-
-
-
-
-
-
-
-
-
   /**
    * Filedata methods
    */
@@ -774,6 +764,7 @@ class ResourceController {
     $result = false;
 
     $fileField = $form->getFieldValue( $fieldName );
+    $filePrivateMode = $form->getFieldParam( $fieldName, 'privateMode' );
     // error_log( 'setFormFiledata '.$fieldName.' - '.$colName.' fileInfo: '. print_r( $fileField, true ) );
 
     $filedataCtrl = new FiledataController();
@@ -787,6 +778,9 @@ class ResourceController {
 
       switch( $fileField['status'] ) {
         case 'LOADED':
+          if( $filePrivateMode > 0 ) {
+            $fileField['values']['privateMode'] = $filePrivateMode;
+          }
           $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
           // error_log( 'To Model - LOADED newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
@@ -797,6 +791,9 @@ class ResourceController {
         case 'REPLACE':
           // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField['prev'], true ) );
           $prevFiledataId = $modelObj->getter( $colName );
+          if( $filePrivateMode > 0 ) {
+            $fileField['values']['privateMode'] = $filePrivateMode;
+          }
           $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
           // error_log( 'To Model - REPLACE newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
@@ -865,6 +862,8 @@ class ResourceController {
 
     $error = false;
     $fileGroupField = $form->getFieldValue( $fieldName );
+    $filePrivateMode = $form->getFieldParam( $fieldName, 'privateMode' );
+
     error_log( '*** setFormFilegroup *** '.$fieldName.' - '.$colName /*.' fileInfo: '. print_r( $fileGroupField, true )*/ );
 
     $filedataCtrl = new FiledataController();
@@ -883,9 +882,12 @@ class ResourceController {
 
           switch( $fileField['status'] ) {
             case 'LOADED':
-              $fileFieldValues = $fileField['values'];
+              if( $filePrivateMode > 0 ) {
+                $fileField['values']['privateMode'] = $filePrivateMode;
+              }
+              // $fileFieldValues = $fileField['values'];
 
-              $newFilegroupObj = $filedataCtrl->saveToFileGroup( $fileFieldValues, $filegroupId );
+              $newFilegroupObj = $filedataCtrl->saveToFileGroup( $$fileField['values'], $filegroupId );
               error_log( 'To Model SAVE: newFilegroupObj idGroup, filedataId: '.
                 $newFilegroupObj->getter( 'idGroup' ).', '.$newFilegroupObj->getter( 'filedataId' ) );
               if( $newFilegroupObj ) {
@@ -929,11 +931,6 @@ class ResourceController {
 
     return $result;
   }
-
-
-
-
-
 
 
 
