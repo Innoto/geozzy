@@ -1284,7 +1284,7 @@ class ResourceController {
 
           foreach( $resources as $resVal ) {
             // Saltamos recursos no publicados
-            if( !$resVal->getter( 'published' ) ) {
+            if( $resVal->getter( 'published' ) === '0' ) {
               continue;
             }
 
