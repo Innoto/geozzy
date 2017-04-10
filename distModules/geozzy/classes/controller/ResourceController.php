@@ -1261,14 +1261,10 @@ class ResourceController {
     $resCollectionList = $resourceCollectionsAllModel->listItems( array(
       'filters' => $collFilters,
       'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-      // 'affectsDependences' => array( 'ResourceViewModel', 'RExtUrlModel', 'UrlAlias' )
     ));
     if( gettype( $resCollectionList ) === 'object' ) {
       while( $collection = $resCollectionList->fetch() ) {
         $collId = $collection->getter('id');
-
-error_log( 'getCollectionBlockInfo collId: '.$collId.' resourceSon: '.$collection->getter('resourceSon') );
-
         if( !isset( $collResources[ $collId ] ) ) {
           $collResources[ $collId ]['col'] = array(
             'id' => $collId,
@@ -1281,39 +1277,16 @@ error_log( 'getCollectionBlockInfo collId: '.$collId.' resourceSon: '.$collectio
           $collResources[ $collId ]['res'] = [];
         }
 
-
-        // $resources = $collection->getterDependence( 'resourceSon', 'ResourceViewModel' );
-        // if( $resources && is_array( $resources ) && count( $resources ) > 0 ) {
-        //   foreach( $resources as $resVal ) {
-
-
         $resourceViewList = $resourceViewModel->listItems( [
-          'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => true ],
+          'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ],
           'affectsDependences' => ['RExtUrlModel']
         ] );
-
-error_log( 'getCollectionBlockInfo resourceViewList: '. $resourceViewList );
-
-        // $resourceViewList = $resourceViewModel->listItems( array(
-        //   'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ],
-        //   'affectsDependences' => array( 'RExtUrlModel' )
-        // ));
-
         if( gettype( $resourceViewList ) === 'object' ) {
           $resVal = $resourceViewList->fetch();
           if( gettype( $resVal ) === 'object' ) {
-
-error_log( 'getCollectionBlockInfo resVal: '. $resVal->getter('id') );
-
-            // Saltamos recursos no publicados
-            // if( $resVal->getter( 'published' ) === '0' ) {
-            //   continue;
-            // }
-
             $resValId = $resVal->getter('id');
             $resValImage = $resVal->getter('image');
             $urlAlias = $resVal->getter('urlAlias');
-            // $urlAlias = $this->getUrlAlias( $resValId );
 
             $rtypeControl = new ResourcetypeModel();
             $rtypeObj = $rtypeControl->listItems( array('filters' => array('id' => $resVal->getter('rTypeId')) ) )->fetch();
@@ -1394,15 +1367,8 @@ error_log( 'getCollectionBlockInfo resVal: '. $resVal->getter('id') );
 
               break;
             } // switch
-
-
           } // if(
         } // if(
-
-
-          // } // foreach
-        // } // if( $resources && is_array($resources) && count($resources) > 0 )
-
       }
     }
 
