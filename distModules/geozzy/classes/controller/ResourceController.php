@@ -1292,11 +1292,17 @@ error_log( 'getCollectionBlockInfo resources: '. print_r($resources,true) );
           // foreach( $resources as $resVal ) {
 
         $resourceViewList = $resourceViewModel->listItems( array(
-          'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ],
-          'affectsDependences' => array( 'RExtUrlModel' )
+          'filters' => [ 'id' => $collection->getter('resourceSon') ]
         ));
+error_log( 'getCollectionBlockInfo resourceViewList: '. $resourceViewList );
+        // $resourceViewList = $resourceViewModel->listItems( array(
+        //   'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ],
+        //   'affectsDependences' => array( 'RExtUrlModel' )
+        // ));
+
         if( gettype( $resourceViewList ) === 'object' ) {
           $resVal = $resourceViewList->fetch();
+error_log( 'getCollectionBlockInfo resVal: '. $resVal );
           if( gettype( $resVal ) === 'object' ) {
 
 error_log( 'getCollectionBlockInfo resource: '. $resVal->getter('id') );
