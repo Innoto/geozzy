@@ -1261,7 +1261,6 @@ class ResourceController {
     $resCollectionList = $resourceCollectionsAllModel->listItems( array(
       'filters' => $collFilters,
       'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-      'affectsDependences' => array( 'ResourceViewModel', 'RExtUrlModel' )
       // 'affectsDependences' => array( 'ResourceViewModel', 'RExtUrlModel', 'UrlAlias' )
     ));
     if( gettype( $resCollectionList ) === 'object' ) {
@@ -1284,17 +1283,17 @@ error_log( 'getCollectionBlockInfo collId: '.$collId.' resourceSon: '.$collectio
 
 
         // $resources = $collection->getterDependence( 'resourceSon', 'ResourceViewModel' );
-
-error_log( 'getCollectionBlockInfo resources: '. print_r($resources,true) );
-
         // if( $resources && is_array( $resources ) && count( $resources ) > 0 ) {
+        //   foreach( $resources as $resVal ) {
 
-          // foreach( $resources as $resVal ) {
 
-        $resourceViewList = $resourceViewModel->listItems( array(
-          'filters' => [ 'id' => $collection->getter('resourceSon') ]
-        ));
+        $resourceViewList = $resourceViewModel->listItems( [
+          'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => true ],
+          'affectsDependences' => ['RExtUrlModel']
+        ] );
+
 error_log( 'getCollectionBlockInfo resourceViewList: '. $resourceViewList );
+
         // $resourceViewList = $resourceViewModel->listItems( array(
         //   'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ],
         //   'affectsDependences' => array( 'RExtUrlModel' )
@@ -1302,10 +1301,9 @@ error_log( 'getCollectionBlockInfo resourceViewList: '. $resourceViewList );
 
         if( gettype( $resourceViewList ) === 'object' ) {
           $resVal = $resourceViewList->fetch();
-error_log( 'getCollectionBlockInfo resVal: '. $resVal );
           if( gettype( $resVal ) === 'object' ) {
 
-error_log( 'getCollectionBlockInfo resource: '. $resVal->getter('id') );
+error_log( 'getCollectionBlockInfo resVal: '. $resVal->getter('id') );
 
             // Saltamos recursos no publicados
             // if( $resVal->getter( 'published' ) === '0' ) {
