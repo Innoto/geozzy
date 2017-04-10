@@ -38,19 +38,19 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     var  that = this;
     that.parentExplorer = parentExplorer;
 
-    that.parentExplorer.bindEvent('resourceHover', function( params ){
-      that.show(params.id);
-    });
-
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
       that.hide(params.id);
     });
 
-
-    that.parentExplorer.bindEvent('resourceClick', function( params ){
-      //that.show(params.id);
-      alert('')
+    that.parentExplorer.bindEvent('resourceHover', function( params ){
+      that.show(params.id);
     });
+
+    that.parentExplorer.bindEvent('mobileTouch', function( params ){
+      that.show(params.id);
+    });
+
+
 
 
   },
@@ -151,7 +151,10 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
     var index =  collectionList.indexOf( collectionList.get( id ) );
     if ((index + 1) !== collectionList.length) {
-      that.show( collectionList.at(index + 1).get('id') ) ;
+      var resId = collectionList.at(index + 1).get('id');
+      that.parentExplorer.triggerEvent('mobileTouch', {id:resId})
+
+      that.show( resId );
     }
   },
 
@@ -162,7 +165,9 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
     var index =  collectionList.indexOf( collectionList.get( id ) );
     if ((index -1 ) >= 0) {
-      that.show( collectionList.at(index - 1).get('id') ) ;
+      var resId = collectionList.at(index - 1).get('id');
+      that.parentExplorer.triggerEvent('mobileTouch', {id:resId})
+      that.show( resId );
     }
 
   },

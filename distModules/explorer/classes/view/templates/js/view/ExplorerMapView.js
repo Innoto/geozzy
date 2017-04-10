@@ -65,6 +65,20 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   setParentExplorer: function( parentExplorer ) {
     var  that = this;
     that.parentExplorer = parentExplorer;
+
+    // touch on list (for mobile)
+    that.parentExplorer.bindEvent('mobileTouch', function(ev) {
+      setTimeout( function(){
+        that.centerOnMarker(ev.id);
+        that.parentExplorer.displays.map.markerBounce( ev.id );
+        setTimeout( function(){
+          that.parentExplorer.displays.map.markerBounceEnd( ev.id );
+        }, 1000 );
+      },
+      200);
+
+    });
+
   },
 
   setMap: function( mapObj ) {
@@ -105,6 +119,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       }
 
     });
+
 
   },
 
@@ -588,6 +603,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
   },
 
+
+  centerOnMarker: function( id, forcePan ) {
+    var that = this;
+
+    that.map.panTo( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').getPosition() );
+  },
 
   getMapProjection: function() {
     var that = this;
