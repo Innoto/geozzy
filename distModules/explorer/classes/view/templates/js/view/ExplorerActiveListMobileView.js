@@ -16,10 +16,10 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
   events: {
     // resource events
 
-    "click .explorerActiveListContent .accessButton": "resourceClick",
-    "touchend .explorerActiveListContent .element": "resourceTouch",
-    "mouseenter .explorerActiveListContent .element": "resourceHover",
-    "mouseleave .explorerActiveListContent .element": "resourceOut",
+    "click .explorerActiveListContent .element": "resourceClick",
+    //"touchend .explorerActiveListContent .element": "resourceTouch",
+    //"mouseenter .explorerActiveListContent .element": "resourceHover",
+    //"mouseleave .explorerActiveListContent .element": "resourceOut",
   },
 
   initialize: function( opts ) {
@@ -184,8 +184,8 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
 
   resourceClick: function( element ) {
     var that = this;
-    if(!that.parentExplorer.explorerTouchDevice){
-      that.resourceEvent( element, 'click');
+    if(that.parentExplorer.explorerTouchDevice){
+      that.resourceEvent( element, 'mobileTouch');
     }
   },
 
@@ -193,14 +193,14 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
     var that = this;
 
     if(that.parentExplorer.explorerTouchDevice){
-      that.resourceEvent( element, 'mouseenter');
+      that.resourceEvent( element, 'mobileTouch');
     }
   },
 
   resourceHover: function( element ) {
     var that = this;
     if(!that.parentExplorer.explorerTouchDevice){
-      that.resourceEvent( element, 'mouseenter');
+      that.resourceEvent( element, 'mobileTouch');
     }
   },
 
@@ -211,34 +211,33 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
     }
 
   },
+
+
+
+
+
   resourceEvent: function ( element, eventType ){
     var that = this;
     switch (eventType) {
-      case 'click':
+      /*case 'click':
           that.parentExplorer.triggerEvent('resourceClick',{
             id: $(element.currentTarget).attr('data-resource-id'),
             section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
           });
 
-      break;
-      case 'mouseenter':
+      break;*/
+      case 'mobileTouch':
         if( that.parentExplorer.displays.map ) {
-          that.parentExplorer.displays.map.markerBounce( $(element.currentTarget).attr('data-resource-id') );
           that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );
         }
 
-        that.parentExplorer.triggerEvent('resourceHover', {
+        that.parentExplorer.triggerEvent('mobileTouch', {
           id: $(element.currentTarget).attr('data-resource-id'),
           section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
         });
-
-
       break;
       case 'mouseleave':
-        if( that.parentExplorer.displays.map ) {
-          that.parentExplorer.displays.map.markerOut( );
-          that.parentExplorer.displays.map.markerBounceEnd( $(element.currentTarget).attr('data-resource-id') );
-        }
+
 
         that.parentExplorer.triggerEvent('resourceMouseOut', {id:$(element.currentTarget).attr('data-resource-id')});
 
