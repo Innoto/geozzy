@@ -1281,6 +1281,9 @@ error_log( 'getCollectionBlockInfo collId: '.$collId.' resourceSon: '.$collectio
           $collResources[ $collId ]['res'] = [];
         }
         $resources = $collection->getterDependence( 'resourceSon', 'ResourceViewModel' );
+
+error_log( 'getCollectionBlockInfo resources: '. print_r($resources,true) );
+
         if( $resources && is_array( $resources ) && count( $resources ) > 0 ) {
 
           foreach( $resources as $resVal ) {
