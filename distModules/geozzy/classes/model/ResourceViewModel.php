@@ -137,8 +137,41 @@ class ResourceViewModel extends Model {
 
   var $deploySQL = [
     [
-      'version' => 'geozzy#1.9',
+      'version' => 'geozzy#1.10',
       'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_resource_view;
+
+        CREATE VIEW geozzy_resource_view AS
+          SELECT
+            r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName, user, userUpdate, published,
+            {multilang:title_$lang,}
+            {multilang:shortDescription_$lang,}
+            {multilang:mediumDescription_$lang,}
+            {multilang:content_$lang,}
+            image, fd.name AS imageName,
+            loc, defaultZoom, externalUrl,
+            {multilang:GROUP_CONCAT(if(lang="$lang",ua.urlFrom,null)) AS "urlAlias_$lang",}
+            {multilang:headKeywords_$lang,}
+            {multilang:headDescription_$lang,}
+            {multilang:headTitle_$lang,}
+            timeCreation, timeLastUpdate, timeLastPublish,
+            countVisits, r.weight
+          FROM
+            (((
+            `geozzy_resource` `r`
+            join `geozzy_resourcetype` `rt`)
+            join `geozzy_url_alias` `ua`)
+            LEFT JOIN filedata_filedata AS fd ON r.image = fd.id)
+          WHERE
+            rt.id=r.rTypeId AND ua.resource=r.id AND ua.http=0 AND ua.canonical=TRUE AND r.image = fd.id
+          GROUP BY
+            r.id
+      '
+    ],
+    [
+      'version' => 'geozzy#1.9',
+      'executeOnGenerateModelToo' => false,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_view;
 

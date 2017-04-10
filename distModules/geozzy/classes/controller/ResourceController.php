@@ -1260,7 +1260,7 @@ class ResourceController {
     $resCollectionList = $resourceCollectionsAllModel->listItems( array(
       'filters' => $collFilters,
       'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-      'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias' )
+      'affectsDependences' => array( 'ResourceViewModel', 'RExtUrlModel', 'UrlAlias' )
     ));
     if( gettype( $resCollectionList ) === 'object' ) {
       while( $collection = $resCollectionList->fetch() ) {
@@ -1276,7 +1276,7 @@ class ResourceController {
           );
           $collResources[ $collId ]['res'] = [];
         }
-        $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel' );
+        $resources = $collection->getterDependence( 'resourceSon', 'ResourceViewModel' );
         if( $resources && is_array( $resources ) && count( $resources ) > 0 ) {
 
           foreach( $resources as $resVal ) {
@@ -1287,7 +1287,8 @@ class ResourceController {
 
             $resValId = $resVal->getter('id');
             $resValImage = $resVal->getter('image');
-            $urlAlias = $this->getUrlAlias( $resValId );
+            $urlAlias = $resVal->getter('urlAlias');
+            // $urlAlias = $this->getUrlAlias( $resValId );
 
             $rtypeControl = new ResourcetypeModel();
             $rtypeObj = $rtypeControl->listItems( array('filters' => array('id' => $resVal->getter('rTypeId')) ) )->fetch();
@@ -1301,7 +1302,9 @@ class ResourceController {
               'mediumDescription' => $resVal->getter('mediumDescription'),
               'externalUrl' => $resVal->getter('externalUrl'),
               'urlAlias' => $urlAlias,
-              'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
+              'imageId' => $resValImage, // TODO: Deberia ser image
+              'image' => $resValImage,
+              'imageName' => $resVal->getter('imageName'),
             );
 
             // Ampliamos la carga de datos del recurso Base
@@ -1313,7 +1316,8 @@ class ResourceController {
 
             $thumbSettings = array(
               'imageId' => $resValImage,
-              'imageName' => $resValImage.'.jpg',
+              'imageName' => $resVal->getter('imageName'),
+              // 'imageName' => $resValImage.'.jpg',
               'profile' => 'fast_cut'
             );
             $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
