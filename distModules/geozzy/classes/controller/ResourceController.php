@@ -1260,11 +1260,15 @@ class ResourceController {
     $resCollectionList = $resourceCollectionsAllModel->listItems( array(
       'filters' => $collFilters,
       'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-      'affectsDependences' => array( 'ResourceViewModel', 'RExtUrlModel', 'UrlAlias' )
+      'affectsDependences' => array( 'ResourceViewModel', 'RExtUrlModel' )
+      // 'affectsDependences' => array( 'ResourceViewModel', 'RExtUrlModel', 'UrlAlias' )
     ));
     if( gettype( $resCollectionList ) === 'object' ) {
       while( $collection = $resCollectionList->fetch() ) {
         $collId = $collection->getter('id');
+
+error_log( 'getCollectionBlockInfo collId: '.$collId.' resourceSon: '.$collection->getter('resourceSon') );
+
         if( !isset( $collResources[ $collId ] ) ) {
           $collResources[ $collId ]['col'] = array(
             'id' => $collId,
