@@ -63,6 +63,10 @@ class ResourceViewModel extends Model {
       'key' => 'id',
       'uploadDir' => '/Resource/'
     ),
+    'inameName' => array(
+      'type' => 'VARCHAR',
+      'size' => 250
+    ),
     'loc' => array(
       'type' => 'GEOMETRY'
     ),
@@ -135,8 +139,8 @@ class ResourceViewModel extends Model {
 
   var $notCreateDBTable = true;
 
-  var $deploySQL = [
-    [
+  var $deploySQL = array(
+    array(
       'version' => 'geozzy#1.10',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
@@ -168,8 +172,8 @@ class ResourceViewModel extends Model {
           GROUP BY
             r.id
       '
-    ],
-    [
+    ),
+    array(
       'version' => 'geozzy#1.9',
       'executeOnGenerateModelToo' => false,
       'sql'=> '
@@ -197,8 +201,8 @@ class ResourceViewModel extends Model {
         GROUP BY
           r.id
       '
-    ]
-  ];
+    )
+  );
 
 
 
