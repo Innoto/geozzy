@@ -148,19 +148,19 @@ class ResourceViewModel extends Model {
 
         CREATE VIEW geozzy_resource_view AS
           SELECT
-            r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName, user, userUpdate, published,
-            {multilang:title_$lang,}
-            {multilang:shortDescription_$lang,}
-            {multilang:mediumDescription_$lang,}
-            {multilang:content_$lang,}
-            image, fd.name AS imageName,
-            loc, defaultZoom, externalUrl,
+            r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName, r.user, r.userUpdate, r.published,
+            {multilang:r.title_$lang,}
+            {multilang:r.shortDescription_$lang,}
+            {multilang:r.mediumDescription_$lang,}
+            {multilang:r.content_$lang,}
+            r.image, fd.name AS imageName,
+            r.loc, r.defaultZoom, r.externalUrl,
             {multilang:GROUP_CONCAT(if(lang="$lang",ua.urlFrom,null)) AS "urlAlias_$lang",}
-            {multilang:headKeywords_$lang,}
-            {multilang:headDescription_$lang,}
-            {multilang:headTitle_$lang,}
-            timeCreation, timeLastUpdate, timeLastPublish,
-            countVisits, r.weight
+            {multilang:r.headKeywords_$lang,}
+            {multilang:r.headDescription_$lang,}
+            {multilang:r.headTitle_$lang,}
+            r.timeCreation, r.timeLastUpdate, r.timeLastPublish,
+            r.countVisits, r.weight
           FROM
             (((
             `geozzy_resource` `r`
