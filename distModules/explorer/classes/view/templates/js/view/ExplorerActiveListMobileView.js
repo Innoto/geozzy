@@ -15,8 +15,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
 
   events: {
     // resource events
-
-    "click .explorerActiveListContent .element": "resourceClick",
+    "click .explorerActiveListContent .element": "resourceTouch"
     //"touchend .explorerActiveListContent .element": "resourceTouch",
     //"mouseenter .explorerActiveListContent .element": "resourceHover",
     //"mouseleave .explorerActiveListContent .element": "resourceOut",
@@ -185,7 +184,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
   resourceClick: function( element ) {
     var that = this;
     if(that.parentExplorer.explorerTouchDevice){
-      that.resourceEvent( element, 'mobileTouch');
+      that.resourceEvent( element, 'resourceClick');
     }
   },
 
@@ -219,13 +218,13 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
   resourceEvent: function ( element, eventType ){
     var that = this;
     switch (eventType) {
-      /*case 'click':
+      case 'click':
           that.parentExplorer.triggerEvent('resourceClick',{
             id: $(element.currentTarget).attr('data-resource-id'),
             section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
           });
 
-      break;*/
+      break;
       case 'mobileTouch':
         if( that.parentExplorer.displays.map ) {
           that.parentExplorer.displays.map.panTo( $(element.currentTarget).attr('data-resource-id') );

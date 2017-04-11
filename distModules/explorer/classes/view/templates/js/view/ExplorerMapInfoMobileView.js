@@ -16,6 +16,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
   events: {
     // resource events
+    "click .accessButton": "resourceClick",
     "click .nextButton": "next",
     "click .previousButton": "previous",
     "click .closeButton": "hide"
@@ -112,6 +113,8 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
          var element = $.extend( true, partJSON, minJSON );
 
+
+
          element.touchAccess = that.parentExplorer.explorerTouchDevice;
 
          $( '#'+that.divId ).html( that.template( element ) );
@@ -142,6 +145,15 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
 
     return {x: $(that.parentExplorer.displays.map.map.getDiv() ).offset().left , y: $(that.parentExplorer.displays.map.map.getDiv() ).offset().top };
+  },
+
+  resourceClick: function() {
+    var that = this;
+
+    that.parentExplorer.triggerEvent('resourceClick',{
+      id: that.ready,
+      section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+    });
   },
 
   next: function() {
