@@ -887,7 +887,7 @@ class ResourceController {
               }
               // $fileFieldValues = $fileField['values'];
 
-              $newFilegroupObj = $filedataCtrl->saveToFileGroup( $$fileField['values'], $filegroupId );
+              $newFilegroupObj = $filedataCtrl->saveToFileGroup( $fileField['values'], $filegroupId );
               error_log( 'To Model SAVE: newFilegroupObj idGroup, filedataId: '.
                 $newFilegroupObj->getter( 'idGroup' ).', '.$newFilegroupObj->getter( 'filedataId' ) );
               if( $newFilegroupObj ) {
