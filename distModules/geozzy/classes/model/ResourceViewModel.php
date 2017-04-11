@@ -166,13 +166,13 @@ class ResourceViewModel extends Model {
             `geozzy_resource` `r`
             join `geozzy_resourcetype` `rt`)
             LEFT JOIN `geozzy_url_alias` `ua` ON
-              `ua`.`resource` = `r`.`id`
+              ( `ua`.`resource` = `r`.`id`
               and `ua`.`http` = 0
-              and `ua`.`canonical` = 1 )
+              and `ua`.`canonical` = 1 ) )
             LEFT JOIN filedata_filedata AS fd ON
               r.image = fd.id)
           WHERE
-            rt.id=r.rTypeId AND ua.resource=r.id AND ua.http=0 AND ua.canonical=TRUE AND r.image = fd.id
+            rt.id=r.rTypeId
           GROUP BY
             r.id
       '
