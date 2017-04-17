@@ -1,0 +1,58 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  messages_gl_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_gl_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:44+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:44+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_gl_tmp.po  #-#-#-#-##-#-#-#-#  messages_gl_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_gl_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_gl_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:44+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:44+02:00\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:24
+msgid "Home URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:49
+msgid "Main Resource information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:65
+msgid "Steps collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:73
+msgid "Edit Resource"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeStory_classes_view_templates_rTypeViewBlock.tpl:107
+msgid "Contact"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeStory_classes_view_templates_rTypeViewBlock.tpl:122
+msgid "See indications"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeStory_classes_view_templates_rTypeViewBlock.tpl:131
+msgid "How to arrive from?"
+msgstr ""

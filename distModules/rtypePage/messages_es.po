@@ -1,0 +1,42 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:42+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:42+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:24
+msgid "Home URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:49
+msgid "Main Resource information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:66
+msgid "Edit Resource"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypePage_classes_view_templates_rTypeViewBlock.tpl:107
+msgid "Contact"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypePage_classes_view_templates_rTypeViewBlock.tpl:122
+msgid "See indications"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypePage_classes_view_templates_rTypeViewBlock.tpl:131
+msgid "How to arrive from?"
+msgstr ""

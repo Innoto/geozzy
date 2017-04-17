@@ -1,0 +1,456 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:29+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:29+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:30+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:30+02:00\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:68
+msgid "Access denied"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:32
+msgid "Comments Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:143
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:89
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:63
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:85
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:139
+msgid "Published"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:63
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:70
+msgid "Unpublished"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:49
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:124
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:73
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:95
+msgid "Publish"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:50
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:125
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:74
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:96
+msgid "Unpublish"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:51
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:126
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:75
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:71
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:107
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:101
+msgid "Delete"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:63
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:139
+msgid "Resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:64
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:140
+msgid "Time Creation"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:65
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:141
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:125
+msgid "User"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:66
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:142
+msgid "Comment"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:107
+msgid "Suggestions Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:63
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:81
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:185
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:80
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:92
+msgid "All"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:114
+msgid "Selecciona un icono"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:116
+msgid "Category form"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:117
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:118
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:21
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:59
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:21
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:59
+msgid "Cancel"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:41
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:30
+msgid "Resource Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:51
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:33
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:40
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:47
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:57
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:48
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:58
+msgid "Crear"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:87
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:83
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:136
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:95
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:108
+msgid "Type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:88
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:84
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:138
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:96
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:109
+msgid "Title"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:314
+msgid "Thumbnail image (Optional)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:44
+msgid "Add resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:85
+msgid "Resource type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:100
+msgid "Unasign"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewCollection.php:37
+msgid "Create Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:33
+msgid "Show user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:57
+msgid "User Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:58
+msgid "Add user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:99
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:117
+msgid "Active"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:100
+msgid "Inactive"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:112
+msgid "Id"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:113
+msgid "Login"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:114
+msgid "Name"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:115
+msgid "Surname"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:116
+msgid "Email"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:152
+msgid "Create user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:196
+msgid "Change Password"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:205
+msgid "Edit Roles"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:208
+msgid "Edit user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:44
+msgid "Create and add resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:54
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:45
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:55
+msgid "Return"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:51
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:61
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:52
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:62
+msgid "Assign selected"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
+msgid ""
+"<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working "
+"with resource types)</li><li>Assign to this starred)</li></ul>"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+msgid "Assign resources: howto"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:80
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:92
+msgid "id"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:57
+msgid "Assign"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:30
+msgid "Roles Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:31
+msgid "Add role"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:88
+msgid "Create role"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:121
+msgid "Edit role"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMultiList.php:27
+msgid "Stats Page"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+msgid "Create a new resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+msgid "Working with resource types"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+msgid "Assign to this topic"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listResourceOutTopic.tpl:4
+msgid "Available and unallocated resources"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_modal.tpl:15
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_modal.tpl:35
+msgid "Close"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listAsignStarred.tpl:4
+msgid "Resources not starred yet"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:25
+msgid "User Profile"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:26
+msgid "Edit Profile"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:28
+msgid "Logout"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:51
+msgid "Charts"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:55
+msgid "Pages"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:59
+msgid "Stories"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:68
+msgid "Starred"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:84
+msgid "Comments"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:90
+msgid "Suggestions"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:96
+msgid "Contents"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:101
+msgid "Categories"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:115
+msgid "Settings"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:118
+msgid "Menu"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:122
+msgid "Users"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:128
+msgid "Roles"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:14
+msgid "Category management for"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:57
+msgid "Add"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:22
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:60
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:22
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:60
+msgid "Save"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:38
+msgid "List of terms for"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:14
+msgid "Resources Starred in"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:38
+msgid "List of resources for"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_admin403.tpl:5
+msgid "Forbidden: Access is denied"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_admin403.tpl:6
+msgid "You don't have permission to access on this section"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
+msgid "Select options"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+msgid "Edit Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
+msgid "Add existing resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:18
+msgid "Upload multimedia resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:21
+msgid "Upload multiple files"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:24
+msgid "Link or embed multimedia resource"
+msgstr ""

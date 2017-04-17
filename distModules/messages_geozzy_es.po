@@ -1,0 +1,2536 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:25+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:25+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:25+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:25+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:26+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:26+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:26+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:26+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:26+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:26+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:27+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:27+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:27+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:27+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:27+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:27+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:28+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:28+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:28+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:28+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:29+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:29+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:30+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:30+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:32+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:32+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:32+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:32+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:33+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:33+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:33+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:33+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:33+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:33+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:33+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:33+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:35+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:35+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:35+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:35+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:36+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:36+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:37+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:37+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:38+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:38+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:38+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:38+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:38+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:38+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:38+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:38+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:39+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:39+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:39+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:39+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:39+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:39+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:40+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:40+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:40+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:40+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:40+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:40+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:41+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:41+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:41+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:41+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:41+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:41+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:41+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:41+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:42+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:42+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:42+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:42+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:42+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:42+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:43+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:43+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:43+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:43+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:44+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:44+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:44+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:44+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:44+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:44+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:44+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:44+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:44+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:44+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:45+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:45+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:45+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:45+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:45+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:45+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:45+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:45+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:46+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:46+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:46+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:46+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:46+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:46+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_es_tmp.po  #-#-#-#-##-#-#-#-#  messages_es_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:46+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:46+02:00\n"
+"Language: \n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:46+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:46+02:00\n"
+"Language: #-#-#-#-#  messages_es_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_es_prev.po  #-#-#-#-##-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_es.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:47+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:47+02:00\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/rtypeFavourites/classes/controller/RTypeFavouritesController.php:50
+#: /home/proxectos/geozzy/distModules/rtypeUrl/classes/controller/RTypeUrlController.php:41
+#: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:49
+#: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:50
+#: /home/proxectos/geozzy/distModules/rtypeEvent/classes/controller/RTypeEventController.php:55
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:54
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:49
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:49
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:51
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:38
+msgid "Main Resource information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeFavourites/classes/controller/RTypeFavouritesController.php:69
+msgid "Favoritos"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeFavourites/classes/controller/RTypeFavouritesController.php:79
+#: /home/proxectos/geozzy/distModules/rtypeUrl/classes/controller/RTypeUrlController.php:60
+#: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:74
+#: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:65
+#: /home/proxectos/geozzy/distModules/rtypeEvent/classes/controller/RTypeEventController.php:70
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:77
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:66
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:73
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:95
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:64
+msgid "Edit Resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:59
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextUrl_classes_view_templates_rExtViewBlock.tpl:25
+#: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:68
+msgid "Author"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:63
+msgid "URL content type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:68
+msgid "URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextUrl/classes/controller/RExtUrlController.php:72
+msgid "Embed HTML"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:59
+msgid "Distance"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:64
+msgid "Audioguide file"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:65
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:152
+#: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:73
+msgid "File"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAudioguide_classes_view_templates_rExtViewBlock.tpl:6
+msgid "Audioguide"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAudioguide_classes_view_templates_rExtFormBlock.tpl:3
+msgid "Upload audio file (mp3)"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAudioguide_classes_view_templates_rExtFormBlock.tpl:7
+msgid "Activation distance (m.)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:146
+msgid "Puntos de interés"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:154
+msgid "Add POI"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:10
+#: /home/proxectos/geozzy/distModules/rextStory/classes/view/templates/js/rextStoryAdmin.js:8
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
+#: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/js/rextPoi.js:22
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/js/rextEventCollectionAdmin.js:10
+msgid "Select options"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:13
+msgid "Create POI"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:18
+msgid "Edit POI Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStory/classes/controller/RExtStoryController.php:112
+msgid "Steps"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:63
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:81
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:185
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:80
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:92
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:102
+msgid "All"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
+msgid "Favourites"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:47
+msgid "When you want to make your visit?"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:55
+msgid "Day"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
+msgid "Which days you want to visit?"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:102
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:127
+msgid "How long?"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:105
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:106
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:130
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:131
+msgid "hours"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:109
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:110
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:134
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:135
+msgid "minutes"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:114
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:139
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:117
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:118
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:21
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:59
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:21
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:59
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:468
+msgid "Cancel"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:115
+msgid "Add to plan"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:140
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:22
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:60
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:22
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:60
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:148
+msgid "Save"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
+msgid "Add to Plan"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:101
+msgid "Introduce entre 0 y 23 horas"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:102
+msgid "Introduce entre 0 y 59 minutos"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentAdminAPIView.php:85
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentAdminAPIView.php:89
+msgid "Gracias por su aportación"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:56
+msgid "A public comment and evaluation"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:60
+msgid "A private suggestion about this content"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:90
+msgid "What do you contribute?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:104
+msgid "Your name"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:108
+msgid "Your email"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:115
+msgid "How do we value?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:121
+msgid "What do we suggest?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:128
+msgid "Your comment"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:141
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:466
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:440
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:33
+msgid "Send"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:184
+msgid "An unexpected error has occurred"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/controller/RExtCommentController.php:62
+msgid "Active comment"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextComment_classes_view_templates_rExtViewBlock.tpl:4
+msgid "Comentarios"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextComment_classes_view_templates_rExtViewBlock.tpl:31
+msgid "Post a comment or suggestion"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextComment_classes_view_templates_rExtViewBlock.tpl:37
+msgid "Post a comment"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextComment_classes_view_templates_rExtViewBlock.tpl:40
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextComment_classes_view_templates_rExtViewBlock.tpl:55
+msgid "Post a suggestion"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextComment_classes_view_templates_mailCommentValidated.tpl:2
+msgid "Estimado usuario,"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextComment_classes_view_templates_mailCommentValidated.tpl:3
+msgid "Muchas gracias por su aportación. Nos será de mucha utilidad."
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextComment_classes_view_templates_mailCommentValidated.tpl:4
+msgid "Un saludo."
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/Templates.js:23
+msgid "Your contribution is welcome"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/Templates.js:28
+msgid "See all comments"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/Templates.js:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:143
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:89
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:63
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:85
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:139
+msgid "Published"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/Templates.js:74
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:66
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:142
+msgid "Comment"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:96
+msgid "Are you sure you want to delete this comment?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:125
+msgid "Are you sure you want to try this suggestion?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:141
+msgid "Are you sure you want to mark as irrelevant this suggestion?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:68
+msgid "Access denied"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:32
+msgid "Comments Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:63
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:70
+msgid "Unpublished"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:49
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:124
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:73
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:95
+msgid "Publish"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:50
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:125
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:74
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:96
+msgid "Unpublish"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:51
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:126
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:75
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:71
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:107
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:101
+msgid "Delete"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:63
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:139
+#: /home/proxectos/geozzy/distModules/rtypeUrl/classes/controller/RTypeUrlController.php:71
+#: /home/proxectos/geozzy/distModules/rtypeEvent/classes/controller/RTypeEventController.php:88
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:96
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:76
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:82
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:88
+msgid "Resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:64
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:140
+msgid "Time Creation"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:65
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:141
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:125
+#: /home/proxectos/geozzy/distModules/rextUserProfile/classes/controller/RExtUserProfileController.php:49
+msgid "User"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:107
+msgid "Suggestions Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:114
+msgid "Selecciona un icono"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:116
+msgid "Category form"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:41
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:30
+msgid "Resource Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:51
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:33
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:40
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:47
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:57
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:48
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:58
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:70
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:80
+msgid "Crear"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:87
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:83
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:136
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:95
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:108
+msgid "Type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:88
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:84
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:138
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:96
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:109
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:74
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:321
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:10
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:118
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeViewBlock.tpl:10
+msgid "Title"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:314
+msgid "Thumbnail image (Optional)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:44
+msgid "Add resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:85
+msgid "Resource type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:100
+msgid "Unasign"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewCollection.php:37
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
+msgid "Create Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:33
+msgid "Show user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:57
+msgid "User Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:58
+msgid "Add user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:99
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:117
+msgid "Active"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:100
+msgid "Inactive"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:112
+msgid "Id"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:113
+msgid "Login"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:114
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:74
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:66
+msgid "Name"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:115
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:69
+msgid "Surname"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:116
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:72
+msgid "Email"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:152
+msgid "Create user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:196
+msgid "Change Password"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:205
+msgid "Edit Roles"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:208
+msgid "Edit user"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:44
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:66
+msgid "Create and add resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:54
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:45
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:55
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:67
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:77
+msgid "Return"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:51
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:61
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:52
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:62
+msgid "Assign selected"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:91
+msgid ""
+"<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working "
+"with resource types)</li><li>Assign to this starred)</li></ul>"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:91
+msgid "Assign resources: howto"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:80
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:92
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:102
+msgid "id"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:57
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:156
+msgid "Assign"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:30
+msgid "Roles Management"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:31
+msgid "Add role"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:88
+msgid "Create role"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:121
+msgid "Edit role"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMultiList.php:27
+msgid "Stats Page"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+msgid "Create a new resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+msgid "Working with resource types"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+msgid "Assign to this topic"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listResourceOutTopic.tpl:4
+msgid "Available and unallocated resources"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_modal.tpl:15
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_modal.tpl:35
+msgid "Close"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listAsignStarred.tpl:4
+msgid "Resources not starred yet"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:25
+msgid "User Profile"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:26
+msgid "Edit Profile"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:28
+msgid "Logout"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:51
+msgid "Charts"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:55
+msgid "Pages"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:59
+msgid "Stories"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:68
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:423
+msgid "Starred"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:84
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:320
+msgid "Comments"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:90
+msgid "Suggestions"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:96
+msgid "Contents"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:101
+msgid "Categories"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:115
+msgid "Settings"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:118
+msgid "Menu"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:122
+msgid "Users"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:128
+msgid "Roles"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:14
+msgid "Category management for"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:57
+msgid "Add"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:38
+msgid "List of terms for"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:14
+msgid "Resources Starred in"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:38
+msgid "List of resources for"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_admin403.tpl:5
+msgid "Forbidden: Access is denied"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_admin403.tpl:6
+msgid "You don't have permission to access on this section"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+msgid "Edit Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
+msgid "Add existing resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:18
+msgid "Upload multimedia resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:21
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:120
+msgid "Upload multiple files"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:24
+msgid "Link or embed multimedia resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:60
+msgid "Activate share on facebook"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:64
+msgid "Text to share on facebook"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:68
+msgid "Activate share on twitter"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:72
+msgid "Text to share on twitter"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:76
+msgid "Activate share on Google+"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:10
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
+msgid ""
+"Si no se especifica ningún texto, se utilizará por defecto el texto en el "
+"recuadro."
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:11
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
+msgid ""
+"Para mostrar el nombre del recurso se debe usar #TITLE# y para compartir la "
+"url de la página se debe poner #URL#:"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
+msgid "Google+ compartira automáticamente la URL del recurso"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:19
+msgid "Link or embed"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:21
+msgid "External link"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:22
+msgid "Embedable code"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:33
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:21
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+msgid "If not uploaded, an automatic thumbnail will be created"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:24
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:340
+msgid "External URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:65
+msgid "Categorization"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:103
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:347
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypePoi_classes_view_templates_rTypeViewBlock.tpl:121
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypePage_classes_view_templates_rTypeViewBlock.tpl:107
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeStory_classes_view_templates_rTypeViewBlock.tpl:107
+msgid "Contact"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:118
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypePage_classes_view_templates_rTypeViewBlock.tpl:122
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeStory_classes_view_templates_rTypeViewBlock.tpl:122
+msgid "See indications"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeBlog_classes_view_templates_rTypeViewBlock.tpl:127
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypePage_classes_view_templates_rTypeViewBlock.tpl:131
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeStory_classes_view_templates_rTypeViewBlock.tpl:131
+msgid "How to arrive from?"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
+msgid "Type an address or mark on the map the place of departure"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
+msgid "Get directions"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
+msgid "Route information"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:57
+msgid "Show route description"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:14
+msgid "Page"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
+msgid "Travel Planner"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:13
+#: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:26
+msgid "Discover"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/plugins/StoryPluginPOISView.js:74
+msgid "Points of interest"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:113
+msgid "Draw Pointer line"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:116
+msgid "Show timeline in step"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:119
+msgid "Map type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:121
+msgid "Satellite"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:122
+msgid "Roadmap"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:123
+msgid "Hybrid"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:124
+msgid "Terrain"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:130
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:96
+msgid "Related resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:135
+msgid "Step leggend"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:136
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:142
+msgid "Choose an image"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:141
+msgid "Step KML layer"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:67
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:68
+msgid "Upload an image"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:78
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:331
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:51
+msgid "Medium description"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:79
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:326
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:14
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeViewBlock.tpl:15
+msgid "Short description"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:84
+msgid "Description"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:88
+msgid "Resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:116
+msgid "Upload multimedia "
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:126
+msgid "Add external link"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:131
+msgid "Descriptive image of the gallery (opcional)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:228
+msgid "Publication"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:237
+msgid "SEO"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:251
+msgid "Select a image"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:260
+msgid "Location"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:267
+msgid "Multimedia galleries"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:276
+msgid "Collections of related resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:285
+msgid "Information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:329
+msgid "View"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:338
+msgid "Social Networks"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:356
+msgid "Event"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:317
+msgid "Time creation"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:336
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:56
+msgid "Content"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:344
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:61
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeViewBlock.tpl:20
+msgid "Image"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:350
+msgid "SEO: URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:354
+msgid "Priority"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:355
+msgid "Normal"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:355
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:72
+msgid "High"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:355
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:70
+msgid "Low"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:359
+msgid "SEO: Head Keywords"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:364
+msgid "SEO: Head Description"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:369
+msgid "SEO: Head Title"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:374
+msgid "Extra information 1"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:379
+msgid "Extra information 2"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:385
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:80
+msgid "Collections"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:396
+msgid "Add Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:402
+msgid "Galleries"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:412
+msgid "Create Multimedia Gallery"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:413
+msgid "Add Multimedia Gallery"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:417
+msgid "Publicado"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:420
+msgid "Topics"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:426
+msgid "Latitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:430
+msgid "Longitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:434
+msgid "Zoom"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:534
+msgid "El servidor no considera válidos los datos recibidos."
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:539
+msgid ""
+"Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario "
+"subirlos otra vez."
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:559
+msgid "La fecha de creación no es válida"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:964
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1582
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1643
+msgid "Error setting values"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1700
+msgid "Error setting collection values"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1789
+msgid "Error setting URL alias"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:12
+msgid "Search an address"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:25
+msgid "Automatic Location"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:67
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/controller/RExtAccommodationReserveController.php:52
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextFile_classes_view_templates_rExtViewBlock.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeViewBlock.tpl:26
+msgid "None"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:73
+msgid "External Url"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:12
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextReccommended_classes_view_templates_rExtViewBlock.tpl:17
+msgid "Find out!"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:59
+msgid "See more..."
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:61
+msgid "Less"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:30
+msgid "Accept"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextCommunity_classes_view_templates_otherUserCommunityViewBlock.tpl:30
+msgid "Favoritos:"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoi/classes/controller/RExtPoiController.php:73
+msgid "POI type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextBlog/classes/controller/RExtBlogController.php:51
+msgid "Blog label"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:69
+msgid "Very Low"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:71
+msgid "Medium"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:73
+msgid "Extreme"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:78
+msgid "Circular itinerary"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:81
+msgid "Route duration (minutes)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:85
+msgid "Vertical rise level"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:89
+msgid "Vertical descent level"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:93
+msgid "Travel distance (meters)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:97
+msgid "Natural environment difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:102
+msgid "Itinerary difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:107
+msgid "Displacement difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:112
+msgid "Effort level"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:117
+msgid "Global difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:123
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:89
+msgid "Route start"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:128
+msgid "Route end"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:133
+msgid "Startroute Latitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:137
+msgid "Startroute Longitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:142
+msgid "Endroute Latitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:146
+msgid "Endroute Longitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:151
+msgid "Route file"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
+msgid "Download route"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:46
+msgid "Circular route"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
+msgid "circular"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:57
+msgid "Lineal route"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
+msgid "lineal"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:73
+msgid "Slopes"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:79
+msgid "slope up"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:86
+msgid "slope down"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:100
+msgid "Environment"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:113
+msgid "Itinerary"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:126
+msgid "Displacement"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
+msgid "Effort"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:101
+msgid "Route End"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:197
+msgid "Altitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:51
+msgid "Address"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:55
+msgid "City"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:59
+msgid "Postal code"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:63
+msgid "Province"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:67
+msgid "Phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:71
+msgid "Contact email"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:76
+msgid "How to arrive"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:81
+msgid "Opening times"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:85
+msgid "Contact url"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:124
+msgid "Event collection view"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:129
+msgid "Event collection filter"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:135
+msgid "Eventos"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:143
+msgid "Add Event"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:46
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:51
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:48
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:53
+msgid "More information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/js/rextEventCollectionAdmin.js:13
+msgid "Create Event"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/js/rextEventCollectionAdmin.js:18
+msgid "Edit Event Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:61
+msgid "Hotel reservation URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:65
+msgid "Hotel reservation phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:69
+msgid "Hotel reservation email"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:73
+msgid "Hotel single rooms"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:77
+msgid "Hotel double rooms"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:81
+msgid "Hotel family rooms"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:85
+msgid "Hotel beds"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:89
+msgid "Hotel average price"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:93
+msgid "Accommodation type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:98
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:18
+msgid "Accommodation category"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:103
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:29
+msgid "Accommodation services"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:108
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:40
+msgid "Accommodation facilities"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:113
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:51
+msgid "Accommodation brand"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:118
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:62
+msgid "Accommodation users profile"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:8
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:10
+msgid "Reservation URL"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:13
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:15
+msgid "Reservation phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextProfilesSocialNetworks/classes/controller/RExtProfilesSocialNetworksController.php:52
+msgid "Google +"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextProfilesSocialNetworks/classes/controller/RExtProfilesSocialNetworksController.php:56
+msgid "Facebook"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextProfilesSocialNetworks/classes/controller/RExtProfilesSocialNetworksController.php:60
+msgid "Twitter"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextProfilesSocialNetworks/classes/controller/RExtProfilesSocialNetworksController.php:64
+msgid "LinkedIn"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextProfilesSocialNetworks/classes/controller/RExtProfilesSocialNetworksController.php:68
+msgid "E-Mail"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextProfilesSocialNetworks/classes/controller/RExtProfilesSocialNetworksController.php:72
+msgid "Personal URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/controller/RExtAccommodationReserveController.php:60
+msgid "Reservations channel"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodationReserve/classes/controller/RExtAccommodationReserveController.php:65
+msgid "Hotel Identifier"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_ruralgest-net-public.tpl:4
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:5
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:18
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_thebookingbutton-com-public.tpl:5
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:5
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:42
+msgid "Reserve"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:11
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:11
+msgid "Check in date - Check out date"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:18
+msgid "Rooms"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:30
+msgid "Adults"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:59
+msgid "Restaurant reservation URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:63
+msgid "Restaurant reservation phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:67
+msgid "Restaurant capacity"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:71
+msgid "Restaurant average price"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:75
+msgid "EatAndDrink type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:80
+msgid "EatAndDrink specialities"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:20
+msgid "Capacity"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:25
+msgid "Average Price"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:30
+msgid "Restaurant type"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEatAndDrink_classes_view_templates_rExtViewBlock.tpl:41
+msgid "Specialities"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:68
+msgid "poi"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypePoi_classes_view_templates_rTypeViewBlock.tpl:58
+msgid "volver"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:24
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:24
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:30
+msgid "Home URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:72
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:54
+msgid "Multimedia file"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextFile_classes_view_templates_rExtViewBlock.tpl:9
+msgid "File name"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextFile_classes_view_templates_rExtViewBlock.tpl:15
+msgid "Download"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextParticipation/classes/controller/RExtParticipationController.php:64
+msgid "Observation"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:65
+msgid "Steps collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:91
+msgid "Event type"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEvent_classes_view_templates_rExtFormBlock.tpl:6
+msgid "Event init date"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextEvent_classes_view_templates_rExtFormBlock.tpl:19
+msgid "Event end date"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextView/classes/controller/RExtViewController.php:50
+msgid "viewAlternativeMode"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:11
+msgid "Tu Comunidad"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:20
+msgid "Mi perfil"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:39
+msgid "Editar"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:40
+msgid "Guardar"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:56
+msgid "Compartir mis datos con la comunidad"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:81
+msgid "Perfil enlazado con Facebook"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:82
+msgid "Enlazar mi perfil con Facebook"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:100
+msgid "Perfil enlazado con Twitter"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:101
+msgid "Enlazar mi perfil con Twitter"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:166
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:258
+msgid "Seguir"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:167
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:259
+msgid "Siguiendo"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:184
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:276
+msgid "Le gusta..."
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:200
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:292
+msgid "ver todos"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:215
+msgid "Parece que todavía no has añadido a nadie a tu Comunidad..."
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:228
+msgid "Usuarios similares a tí..."
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:76
+msgid "Repeat email"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:80
+msgid "Password"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:83
+msgid "Repeat password"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:100
+msgid ""
+"Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la "
+"política de privacidad</a>"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:105
+msgid "Create account"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:177
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:178
+msgid "User Registration"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzyUser_classes_view_templates_userProfile.tpl:8
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzyUser_classes_view_templates_userProfile.tpl:15
+msgid "Perfil de Usuario"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_geozzyUser_classes_view_templates_userProfile.tpl:36
+msgid "Write only if you want to change the password"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:21
+msgid "Necesitas tener una cuenta para participar en Galicia Agochada"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:22
+msgid "Crear una cuenta"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:24
+msgid "¿Ya tienes una cuenta?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:25
+msgid "Inicia tu sesión para continuar"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:28
+msgid "He olvidado mi contraseña"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:30
+msgid "Recovery password"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:31
+msgid ""
+"Introduce la dirección de correo electrónico asociada a tu cuenta y te "
+"enviaremos un enlace para restablecer tu contraseña"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:36
+msgid "Correo electrónico enviado correctamente"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:40
+msgid ""
+"Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente "
+"formulario"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:46
+msgid "Muchas gracias"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:47
+msgid "Tu cuenta se ha creado con éxito"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:48
+msgid "En breve recibirás un correo-e para comprobar tu identidad"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:49
+msgid "Si no lo recibes en las proximas horas, comprueba tu bandeja de SPAM"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:50
+msgid "Continuar"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
+msgid "Recursos recomendados:"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:74
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:84
+msgid "Add selected"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:68
+msgid "POI collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:75
+msgid "Fechas"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:87
+msgid "Story step"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeStoryStep_classes_view_templates_listSteps.tpl:5
+msgid "Steps available"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/js/view/StoryStepsListTemplate.js:47
+msgid "Pasos"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/js/view/StoryStepsListTemplate.js:50
+msgid ""
+"Puedes dar orden a los pasos arrastrando sus correspondientes barras a la "
+"posición que les corresponda."
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/js/view/StoryStepsListTemplate.js:51
+msgid "Aquí podrás editar los pasos básicos de la historia"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/js/view/StoryStepsListTemplate.js:53
+msgid "Editar historia"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
+msgid "Files up to 5MB can be upload in JPG and PNG format"
+msgstr ""

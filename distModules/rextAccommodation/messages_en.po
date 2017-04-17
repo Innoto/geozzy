@@ -1,0 +1,87 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  messages_en_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:40+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:40+02:00\n"
+"Language: #-#-#-#-#  messages_en_tpl.po  #-#-#-#-#: #-#-#-#-#  "
+"messages_en_prev.po  #-#-#-#-##-#-#-#-#  messages_en_tpl.po  #-#-#-#-#\n"
+": #-#-#-#-#  messages_en_prev.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_en_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:61
+msgid "Hotel reservation URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:65
+msgid "Hotel reservation phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:69
+msgid "Hotel reservation email"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:73
+msgid "Hotel single rooms"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:77
+msgid "Hotel double rooms"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:81
+msgid "Hotel family rooms"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:85
+msgid "Hotel beds"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:89
+msgid "Hotel average price"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:93
+msgid "Accommodation type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:98
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:18
+msgid "Accommodation category"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:103
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:29
+msgid "Accommodation services"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:108
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:40
+msgid "Accommodation facilities"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:113
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:51
+msgid "Accommodation brand"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAccommodation/classes/controller/RExtAccommodationController.php:118
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:62
+msgid "Accommodation users profile"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:8
+msgid "Reservation URL"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextAccommodation_classes_view_templates_rExtViewBlock.tpl:13
+msgid "Reservation phone"
+msgstr ""
