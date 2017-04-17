@@ -1,0 +1,94 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  messages_en_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_en_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:45+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:45+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_en_tmp.po  #-#-#-#-##-#-#-#-#  messages_en_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_en_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_en_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:45+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:45+02:00\n"
+"Language: \n"
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:11
+msgid "Tu Comunidad"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:20
+msgid "Mi perfil"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:39
+msgid "Editar"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:40
+msgid "Guardar"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:56
+msgid "Compartir mis datos con la comunidad"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:81
+msgid "Perfil enlazado con Facebook"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:82
+msgid "Enlazar mi perfil con Facebook"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:100
+msgid "Perfil enlazado con Twitter"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:101
+msgid "Enlazar mi perfil con Twitter"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:166
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:258
+msgid "Seguir"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:167
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:259
+msgid "Siguiendo"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:184
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:276
+msgid "Le gusta..."
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:200
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:292
+msgid "ver todos"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:215
+msgid "Parece que todavía no has añadido a nadie a tu Comunidad..."
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:228
+msgid "Usuarios similares a tí..."
+msgstr ""

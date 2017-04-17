@@ -1,0 +1,95 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  messages_en_tmp.po  #-#-#-#-#\n"
+"#-#-#-#-#  messages_en_prev.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:27+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:27+02:00\n"
+"Language: \n"
+": #-#-#-#-#  messages_en_tmp.po  #-#-#-#-##-#-#-#-#  messages_en_prev.po  #-"
+"#-#-#-#\n"
+"#-#-#-#-#  messages_en_tpl.po  #-#-#-#-#\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"#-#-#-#-#  messages_en_js.po  #-#-#-#-#\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-04-17T10:46:27+02:00\n"
+"PO-Revision-Date: 2017-04-17T10:46:27+02:00\n"
+"Language: \n"
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+msgid "All"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
+msgid "Favourites"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:47
+msgid "When you want to make your visit?"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:55
+msgid "Day"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
+msgid "Which days you want to visit?"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:102
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:127
+msgid "How long?"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:105
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:106
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:130
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:131
+msgid "hours"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:109
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:110
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:134
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:135
+msgid "minutes"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:114
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:139
+msgid "Cancel"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:115
+msgid "Add to plan"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/geozzy_distModules_rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:140
+msgid "Save"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
+msgid "Add to Plan"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:101
+msgid "Introduce entre 0 y 23 horas"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:102
+msgid "Introduce entre 0 y 59 minutos"
+msgstr ""
