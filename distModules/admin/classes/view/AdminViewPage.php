@@ -16,6 +16,13 @@ class AdminViewPage extends AdminViewMaster {
   **/
   public function listResourcesPage( ) {
 
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions('page:list', 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
     $template = new Template( $this->baseDir );
     $template->assign('resourcepageTable', table::getTableHtml('AdminViewPage', '/admin/resourcepage/table') );
     $template->setTpl('listResourcePage.tpl', 'admin');

@@ -10,7 +10,7 @@ class ResourceView extends View {
   public $rTypeCtrl = null;
 
   public function __construct( $defResCtrl = false ){
-    error_log( 'ResourceView: __construct(): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    // error_log( 'ResourceView: __construct(): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
     parent::__construct();
 
     common::autoIncludes();
@@ -70,7 +70,7 @@ class ResourceView extends View {
    * @return Obj-Template
    **/
   public function getFormBlockInfo( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
-    error_log( __CLASS__.': getFormBlockInfo(,,,): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    // error_log( __CLASS__.': getFormBlockInfo(,,,): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
     $formBlockInfo = $this->defResCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
     return $formBlockInfo;
   }
@@ -84,7 +84,7 @@ class ResourceView extends View {
    * Action del formulario de edición
    */
   public function actionResourceForm() {
-    error_log( "ResourceView: actionResourceForm()" );
+    // error_log( "ResourceView: actionResourceForm()" );
     $resource = null;
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
@@ -94,7 +94,7 @@ class ResourceView extends View {
       // Validar y guardar los datos
       $resource = $this->actionResourceFormProcess( $form );
     }else{
-      error_log( "entro: actionResourceForm()" );
+      // error_log( "entro: actionResourceForm()" );
       $form->addFormError('Error en el formulario', 'formErrors');
     }
     // Enviamos el OK-ERROR a la BBDD y al formulario
@@ -181,7 +181,7 @@ class ResourceView extends View {
    * @param $resId int ID del recurso
    */
   public function getViewBlockInfo( $resId = false ) {
-    error_log( "ResourceView: getViewBlockInfo( $resId )" );
+    // error_log( "ResourceView: getViewBlockInfo( $resId )" );
 
     $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
 

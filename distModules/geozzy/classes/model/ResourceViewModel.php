@@ -63,6 +63,10 @@ class ResourceViewModel extends Model {
       'key' => 'id',
       'uploadDir' => '/Resource/'
     ),
+    'imageName' => array(
+      'type' => 'VARCHAR',
+      'size' => 250
+    ),
     'loc' => array(
       'type' => 'GEOMETRY'
     ),
@@ -135,10 +139,47 @@ class ResourceViewModel extends Model {
 
   var $notCreateDBTable = true;
 
-  var $deploySQL = [
-    [
-      'version' => 'geozzy#1.9',
+  var $deploySQL = array(
+    array(
+      'version' => 'geozzy#1.91',
       'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_resource_view;
+
+        CREATE VIEW geozzy_resource_view AS
+          SELECT
+            r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName, r.user, r.userUpdate, r.published,
+            {multilang:r.title_$lang,}
+            {multilang:r.shortDescription_$lang,}
+            {multilang:r.mediumDescription_$lang,}
+            {multilang:r.content_$lang,}
+            r.image, fd.name AS imageName,
+            r.loc, r.defaultZoom, r.externalUrl,
+            {multilang:GROUP_CONCAT(if(lang="$lang",ua.urlFrom,null)) AS "urlAlias_$lang",}
+            {multilang:r.headKeywords_$lang,}
+            {multilang:r.headDescription_$lang,}
+            {multilang:r.headTitle_$lang,}
+            r.timeCreation, r.timeLastUpdate, r.timeLastPublish,
+            r.countVisits, r.weight
+          FROM
+            (((
+            `geozzy_resource` `r`
+            join `geozzy_resourcetype` `rt`)
+            LEFT JOIN `geozzy_url_alias` `ua` ON
+              ( `ua`.`resource` = `r`.`id`
+              and `ua`.`http` = 0
+              and `ua`.`canonical` = 1 ) )
+            LEFT JOIN filedata_filedata AS fd ON
+              r.image = fd.id)
+          WHERE
+            rt.id=r.rTypeId
+          GROUP BY
+            r.id
+      '
+    ),
+    array(
+      'version' => 'geozzy#1.9',
+      'executeOnGenerateModelToo' => false,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_view;
 
@@ -164,8 +205,8 @@ class ResourceViewModel extends Model {
         GROUP BY
           r.id
       '
-    ]
-  ];
+    )
+  );
 
 
 

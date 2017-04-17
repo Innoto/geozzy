@@ -141,9 +141,14 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
 
 
-    // Contido especial
+    // Publicado/ Despublicado (Pelota verde/roja)
     $tabla->colRule('published', '#1#', '<span class=\"rowMark rowOk\"><i class=\"fa fa-circle\"></i></span>');
     $tabla->colRule('published', '#0#', '<span class=\"rowMark rowNo\"><i class=\"fa fa-circle\"></i></span>');
+    // Publicado/ Despublicado (para os export a csv e excell)
+    $tabla->colExportRule('published', '#1#', __('Published'));
+    $tabla->colExportRule('published', '#0#', __('Unpublished'));
+
+
 
     $typeModel =  new ResourcetypeModel();
     $typeList = $typeModel->listItems()->fetchAll();

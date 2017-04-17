@@ -63,6 +63,7 @@ class RExtTravelPlannerAPIView extends View {
 
       case 'setTravelPlanner':
         //$result = $this->getTravelPlannerUrl();
+        var_dump($_POST['resourceData'] );
         $result = $this->setTravelPlanner( $_POST['resourceData'] );
         break;
       case 'getTravelPlanner':
@@ -116,13 +117,9 @@ class RExtTravelPlannerAPIView extends View {
       $tpModel = $tpCtrl->getTravelPlanner( $this->userId );
       $tpModelRext = $tpModel->getterDependence('id', 'TravelPlannerModel')[0];
       $resutl = [];
-
-
       $result['id'] = $tpModel->getter('id');
       $result['user'] = $tpModel->getter('user');
-
       $result['list'] = ( $tpModelRext->getter('travelPlannerJson') )?  $tpModelRext->getter('travelPlannerJson')  : null;
-
       $result['checkin'] = $tpModelRext->getter('checkIn');
       $result['checkout'] = $tpModelRext->getter('checkOut');
 

@@ -727,21 +727,11 @@ class ResourceController {
 
 
 
-
-
-
-
-
-
-
-
-
-
   /**
    * Filedata methods
    */
   public function getFiledata( $fileIds ) {
-    error_log( 'ResourceController: getFiledata(fileIds): ' . print_r( $fileIds, true ) );
+    // error_log( 'ResourceController: getFiledata(fileIds): ' . print_r( $fileIds, true ) );
     $result = false;
 
     $fileDataModel = new FiledataModel();
@@ -774,6 +764,7 @@ class ResourceController {
     $result = false;
 
     $fileField = $form->getFieldValue( $fieldName );
+    $filePrivateMode = $form->getFieldParam( $fieldName, 'privateMode' );
     // error_log( 'setFormFiledata '.$fieldName.' - '.$colName.' fileInfo: '. print_r( $fileField, true ) );
 
     $filedataCtrl = new FiledataController();
@@ -787,6 +778,9 @@ class ResourceController {
 
       switch( $fileField['status'] ) {
         case 'LOADED':
+          if( $filePrivateMode > 0 ) {
+            $fileField['values']['privateMode'] = $filePrivateMode;
+          }
           $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
           // error_log( 'To Model - LOADED newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
@@ -797,6 +791,9 @@ class ResourceController {
         case 'REPLACE':
           // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField['prev'], true ) );
           $prevFiledataId = $modelObj->getter( $colName );
+          if( $filePrivateMode > 0 ) {
+            $fileField['values']['privateMode'] = $filePrivateMode;
+          }
           $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
           // error_log( 'To Model - REPLACE newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
@@ -865,6 +862,8 @@ class ResourceController {
 
     $error = false;
     $fileGroupField = $form->getFieldValue( $fieldName );
+    $filePrivateMode = $form->getFieldParam( $fieldName, 'privateMode' );
+
     error_log( '*** setFormFilegroup *** '.$fieldName.' - '.$colName /*.' fileInfo: '. print_r( $fileGroupField, true )*/ );
 
     $filedataCtrl = new FiledataController();
@@ -883,9 +882,12 @@ class ResourceController {
 
           switch( $fileField['status'] ) {
             case 'LOADED':
-              $fileFieldValues = $fileField['values'];
+              if( $filePrivateMode > 0 ) {
+                $fileField['values']['privateMode'] = $filePrivateMode;
+              }
+              // $fileFieldValues = $fileField['values'];
 
-              $newFilegroupObj = $filedataCtrl->saveToFileGroup( $fileFieldValues, $filegroupId );
+              $newFilegroupObj = $filedataCtrl->saveToFileGroup( $fileField['values'], $filegroupId );
               error_log( 'To Model SAVE: newFilegroupObj idGroup, filedataId: '.
                 $newFilegroupObj->getter( 'idGroup' ).', '.$newFilegroupObj->getter( 'filedataId' ) );
               if( $newFilegroupObj ) {
@@ -929,11 +931,6 @@ class ResourceController {
 
     return $result;
   }
-
-
-
-
-
 
 
 
@@ -1260,10 +1257,10 @@ class ResourceController {
     }
 
     $resourceCollectionsAllModel = new ResourceCollectionsAllModel();
+    $resourceViewModel = new ResourceViewModel();
     $resCollectionList = $resourceCollectionsAllModel->listItems( array(
       'filters' => $collFilters,
       'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-      'affectsDependences' => array( 'ResourceModel', 'RExtUrlModel', 'UrlAlias' )
     ));
     if( gettype( $resCollectionList ) === 'object' ) {
       while( $collection = $resCollectionList->fetch() ) {
@@ -1279,18 +1276,17 @@ class ResourceController {
           );
           $collResources[ $collId ]['res'] = [];
         }
-        $resources = $collection->getterDependence( 'resourceSon', 'ResourceModel' );
-        if( $resources && is_array( $resources ) && count( $resources ) > 0 ) {
 
-          foreach( $resources as $resVal ) {
-            // Saltamos recursos no publicados
-            if( !$resVal->getter( 'published' ) ) {
-              continue;
-            }
-
+        $resourceViewList = $resourceViewModel->listItems( [
+          'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ],
+          'affectsDependences' => ['RExtUrlModel']
+        ] );
+        if( gettype( $resourceViewList ) === 'object' ) {
+          $resVal = $resourceViewList->fetch();
+          if( gettype( $resVal ) === 'object' ) {
             $resValId = $resVal->getter('id');
             $resValImage = $resVal->getter('image');
-            $urlAlias = $this->getUrlAlias( $resValId );
+            $urlAlias = $resVal->getter('urlAlias');
 
             $rtypeControl = new ResourcetypeModel();
             $rtypeObj = $rtypeControl->listItems( array('filters' => array('id' => $resVal->getter('rTypeId')) ) )->fetch();
@@ -1298,13 +1294,16 @@ class ResourceController {
             $collResources[ $collId ]['res'][ $resValId ] = array(
               'id' => $resValId,
               'rType' => $resVal->getter('rTypeId'),
-              'rTypeIdName' => $rtypeObj->getter('idName'),
+              'rTypeIdName' => $resVal->getter('rTypeIdName'),
+              // 'rTypeIdName' => $rtypeObj->getter('idName'),
               'title' => $resVal->getter('title'),
               'shortDescription' => $resVal->getter('shortDescription'),
               'mediumDescription' => $resVal->getter('mediumDescription'),
               'externalUrl' => $resVal->getter('externalUrl'),
               'urlAlias' => $urlAlias,
-              'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
+              'imageId' => $resValImage, // TODO: Deberia ser image
+              'image' => $resValImage,
+              'imageName' => $resVal->getter('imageName'),
             );
 
             // Ampliamos la carga de datos del recurso Base
@@ -1316,7 +1315,8 @@ class ResourceController {
 
             $thumbSettings = array(
               'imageId' => $resValImage,
-              'imageName' => $resValImage.'.jpg',
+              'imageName' => $resVal->getter('imageName'),
+              // 'imageName' => $resValImage.'.jpg',
               'profile' => 'fast_cut'
             );
             $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
@@ -1367,98 +1367,8 @@ class ResourceController {
 
               break;
             } // switch
-          } // foreach
-
-
-
-          // switch( $collection->getter('collectionType') ) {
-          //   case 'multimedia':
-          //     foreach( $resources as $resVal ) {
-          //       // Saltamos recursos no publicados
-          //       if( !$resVal->getter( 'published' ) ) {
-          //         continue;
-          //       }
-
-          //       $thumbSettings = array(
-          //         'profile' => 'imgMultimediaGallery'
-          //       );
-
-          //       $imgId = $resVal->getter( 'image' );
-
-          //       if( $imgId && $imgId !== 'null' ) {
-          //         $thumbSettings['imageId'] = $imgId;
-          //         $thumbSettings['imageName'] = $imgId.'.jpg';
-          //       }
-
-          //       $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-          //       $multimediaUrl = false;
-          //       if( $resDataExt = $resDataExtArray[0]){
-          //         $thumbSettings['url'] = $resDataExt->getter('url');
-          //         $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resVal->getter('id'));
-          //         $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-          //         if ($urlContentType['idNameTaxgroup'] === "urlContentType"){
-          //           $multimediaUrl = $this->ytVidId($resDataExt->getter('url'));
-          //         }
-          //       }
-          //       $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-          //       $thumbSettings['profile'] = 'hdpi4';
-          //       $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
-
-          //       $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
-          //       $collResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
-          //         'id' => $resVal->getter('id'),
-          //         'rType' => $resVal->getter('rTypeId'),
-          //         'title' => $resVal->getter('title'),
-          //         'shortDescription' => $resVal->getter('shortDescription'),
-          //         'mediumDescription' => $resVal->getter('mediumDescription'),
-          //         'externalUrl' => $resVal->getter('externalUrl'),
-          //         'urlAlias' => $urlAlias,
-          //         'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
-          //         'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
-          //         'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
-          //         'image_big' => $imgUrl2,
-          //         'multimediaUrl' => $multimediaUrl,
-          //       );
-          //     }
-          //     break;
-          //   case 'base':
-          //   default:
-          //     foreach( $resources as $resVal ) {
-          //       // Saltamos recursos no publicados
-          //       if( !$resVal->getter( 'published' ) ) {
-          //         continue;
-          //       }
-
-          //       $thumbSettings = array(
-          //         'imageId' => $resVal->getter( 'image' ),
-          //         'imageName' => $resVal->getter( 'image' ).'.jpg',
-          //         'profile' => 'fast_cut'
-          //       );
-          //       $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-          //       if( $resDataExt = $resDataExtArray[0] ) {
-          //         $thumbSettings['url'] = $resDataExt->getter('url');
-          //       }
-          //       $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-
-          //       $urlAlias = $this->getUrlAlias( $resVal->getter('id') );
-
-          //       $collResources[ $collId ]['res'][ $resVal->getter('id') ] = array(
-          //         'id' => $resVal->getter('id'),
-          //         'rType' => $resVal->getter('rTypeId'),
-          //         'title' => $resVal->getter('title'),
-          //         'shortDescription' => $resVal->getter('shortDescription'),
-          //         'mediumDescription' => $resVal->getter('mediumDescription'),
-          //         'externalUrl' => $resVal->getter('externalUrl'),
-          //         'urlAlias' => $urlAlias,
-          //         'imageId' => $resVal->getter( 'image' ), // TODO: Deberia ser image
-          //         'image' => $imgUrl, // TODO: CAMBIAR!!! Sobreescribe un campo existente y necesario
-          //         'imageUrl' => $imgUrl, // Entrada nueva con una URL para "image"
-          //       );
-          //     }
-          //     break;
-          // } // switch
-
-        } // if( $resources && is_array($resources) && count($resources) > 0 )
+          } // if(
+        } // if(
       }
     }
 

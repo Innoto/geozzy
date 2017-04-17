@@ -13,11 +13,19 @@ geozzy.travelPlannerComponents.TravelPlannerModel = Backbone.Model.extend({
 
   saveData: function(){
     var that = this;
+    var tp = that.toJSON();
+
+    $.each(tp.list, function(i, e){
+      if(e.length === 0){
+        tp.list[i] = false;
+      }
+    });
+
     return that.fetch({
       url: that.urlRoot,
       data: {
         cmd: 'setTravelPlanner',
-        resourceData: that.toJSON()
+        resourceData: tp
       },
       type: 'POST',
       success: function(data) {

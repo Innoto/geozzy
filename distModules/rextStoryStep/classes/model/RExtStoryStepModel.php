@@ -70,6 +70,11 @@ class RExtStoryStepModel extends Model
       'version' => 'rextStoryStep#1.4',
       'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep
         ADD COLUMN showTimeline BIT ;'
+    ),
+    array(
+      'version' => 'rextStoryStep#1.5',
+      'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep
+        ADD INDEX storystepKML (storystepKML);'
     )
   );
 
