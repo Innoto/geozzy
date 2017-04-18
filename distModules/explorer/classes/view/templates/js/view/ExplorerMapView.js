@@ -92,6 +92,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     // drag event on map
     google.maps.event.addListener(this.map, "dragend", function() {
+      that.parentExplorer.triggerEvent('mapChanged', {});
       that.ready = true;
       that.parentExplorer.render(true);
     });

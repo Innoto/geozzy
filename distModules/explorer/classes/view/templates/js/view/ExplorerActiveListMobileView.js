@@ -11,11 +11,14 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
   parentExplorer: false,
   visibleResources: [],
 
+  listOrderAccordingIds: true,
+
   currentPage: 0,
 
   events: {
     // resource events
-    "click .explorerActiveListContent .element": "resourceTouch"
+    "click .explorerActiveListContent .element": "resourceTouch",
+    "click .activeListReset": "setListOrderAccordingIds"
     //"touchend .explorerActiveListContent .element": "resourceTouch",
     //"mouseenter .explorerActiveListContent .element": "resourceHover",
     //"mouseleave .explorerActiveListContent .element": "resourceOut",
@@ -40,14 +43,37 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
 
     that.tpl = _.template(that.options.tpl);
     that.tplElement = _.template(that.options.tplElement);
+
+
   },
 
 
   setParentExplorer: function( parentExplorer ) {
     var  that = this;
     that.parentExplorer = parentExplorer;
+
+    that.parentExplorer.bindEvent('mapChanged', function(){
+      that.setListOrderAccordingMap();
+    });
   },
 
+
+  setListOrderAccordingMap: function() {
+    var that = this;
+
+    that.listOrderAccordingIds = false;
+    //that.$el.find('.activeListReset').show();
+    that.render();
+  },
+
+  setListOrderAccordingIds: function() {
+    var that = this;
+
+    that.listOrderAccordingIds = true;
+    //that.$el.find('.activeListReset').hide();ç
+    that.render();
+
+  },
 
   getVisibleResourceIds: function() {
     var that = this;
@@ -58,8 +84,13 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
 
       var visibleResources = that.parentExplorer.resourceIndex.setPerPage(30);
 
+      if( that.setListOrderAccordingIds == true ) {
+        visibleResources.setSort('id','asc');
+      }
+      else {
+        visibleResources.setSort('mapVisible', 'desc');
+      }
 
-      visibleResources.setSort('mapVisible', 'desc');
 
       // get total packages
       that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
@@ -133,7 +164,18 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
     });
 
 
-    that.$el.html( that.tpl({ content: contentHtml }) )
+    if(that.listOrderAccordingIds) {
+      var showActiveListReset = false;
+    }
+    else {
+      var showActiveListReset = true;
+    }
+
+    that.$el.html( that.tpl({
+      activeListReset: showActiveListReset,
+      activeListResetText:__('Prioritizing map zone'),
+      content: contentHtml
+    }) );
 
     that.onRenderComplete();
   },
