@@ -71,6 +71,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
 
     that.listOrderAccordingIds = true;
     //that.$el.find('.activeListReset').hide();ç
+    that.setPage(0)
     that.render();
 
   },
@@ -82,9 +83,11 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
       that.parentExplorer.resourceIndex.removePagination();
 
 
-      var visibleResources = that.parentExplorer.resourceIndex.setPerPage(30);
+      var visibleResources = that.parentExplorer.resourceIndex.setPerPage(100);
 
-      if( that.setListOrderAccordingIds == true ) {
+
+      if( that.listOrderAccordingIds == true ) {
+
         visibleResources.setSort('id','asc');
       }
       else {
