@@ -19,7 +19,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     "click .accessButton": "resourceClick",
     "click .nextButton": "next",
     "click .previousButton": "previous",
-    "click .closeButton": "hide"
+    "click .closeButton": "close"
   },
 
 
@@ -129,6 +129,12 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
       }
     )
 
+  },
+
+  close: function() {
+    var that = this;
+    that.parentExplorer.triggerEvent('mapInfoWindowMobileClose', false);
+    that.hide();
   },
 
   hide: function() {
