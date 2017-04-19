@@ -256,11 +256,12 @@ class AdminViewUser extends AdminViewMaster
   /**
    Action assign formRoles()
   */
-  function assignaUserRolesForm() {
+  public function assignaUserRolesForm() {
 
     $userView = new UserView();
 
     $form = $userView->actionUserRolesForm();
+
     if( $form->existErrors() ) {
       echo $form->getJsonError();
     }
