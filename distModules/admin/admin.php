@@ -111,18 +111,19 @@ class admin extends Module {
      "installer" => "bower",
      "includes" => array("builds/moment-timezone-with-data.min.js")
     ),
-    array(
-     'id' => 'elfinder',
-     'params' => array('studio-42/elfinder', '2.1.17'),
-     'installer' => 'composer',
-     'includes' => array('php/autoload.php', 'js/elfinder.min.js', 'css/elfinder.min.css', 'css/theme.css' )
-    ),
     array( // required by elFinder
       "id" =>"jquery-ui",
       "params" => array("jquery-ui#1.12.1"),
       "installer" => "bower",
       "includes" => array('jquery-ui.min.js','/themes/smoothness/jquery-ui.css')
     ),
+    array(
+     'id' => 'elfinder',
+     'params' => array('studio-42/elfinder', '2.1.17'),
+     'installer' => 'composer',
+     'includes' => array('php/autoload.php', 'js/elfinder.min.js', 'css/elfinder.min.css', 'css/theme.css' )
+    )
+
 
 
 
