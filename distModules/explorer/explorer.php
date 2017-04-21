@@ -76,7 +76,7 @@ class explorer extends Module {
     'js/view/filters/ExplorerFilterResetView.js',
     'js/view/ExplorerBIView.js',
     'js/view/ExplorerActiveListView.js',
-    'js/view/ExplorerActiveListMobileView.js',    
+    'js/view/ExplorerActiveListMobileView.js',
     'js/view/ExplorerActiveListTinyView.js',
     'js/view/ExplorerReccommendedListTinyView.js',
     'js/view/utils/twoLinesIntersection.js',
