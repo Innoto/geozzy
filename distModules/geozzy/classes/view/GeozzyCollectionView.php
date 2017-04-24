@@ -123,8 +123,7 @@ class GeozzyCollectionView extends View
     $widgetConfTemp = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':widget' );
     $setupConf = ( !empty($setupConfTemp) ) ? $setupConfTemp : $setupConf;
     $widgetConf = ( !empty($widgetConfTemp) ) ? $widgetConfTemp : $widgetConf;
-    var_dump($widgetConf);
-
+    
     if( in_array("rtypeFile", $setupConf) ){
       $fieldsInfo['addResourceLocal'] = array(
         'params' => array( 'id' => 'addResourceLocal', 'class' => 'widgetCollectionBtn', 'type' => 'button', 'value' => __( 'Upload multimedia ' ))
