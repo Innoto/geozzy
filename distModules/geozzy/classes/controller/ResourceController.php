@@ -1889,22 +1889,22 @@ class ResourceController {
 
 
   /**
-   * Devuelve resData con los campos traducibles en el idioma actual
+   * Devuelve modelData con los campos traducibles en el idioma actual
    */
-  public function getTranslatedData( $resData ) {
+  public function getTranslatedData( $modelData ) {
 
-    foreach ( $resData as $key => $data ) {
+    foreach( $modelData as $key => $data ) {
       if( strpos($key,'_'.$this->actLang) ) { // existe en el idioma actual
         $key_parts = explode('_'.$this->actLang, $key);
         if( $data && $data !== "") {
-          $resData[$key_parts[0]] = $data;
+          $modelData[$key_parts[0]] = $data;
         }
-        else{
-          $resData[$key_parts[0]] = $resData[$key_parts[0].'_'.$this->defLang];
+        else {
+          $modelData[$key_parts[0]] = $modelData[$key_parts[0].'_'.$this->defLang];
         }
       }
     }
-    return $resData;
+    return $modelData;
   }
   public function getAllTrData( $objModel ) {
     $allData = [];
