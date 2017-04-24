@@ -1272,6 +1272,8 @@ class ResourceController {
             'shortDescription' => $collection->getter('shortDescription'),
             'description' => $collection->getter('description'),
             'image' => $collection->getter('image'),
+            'imageName' => $collection->getter('imageName'),
+            'imageAKey' => $collection->getter('imageAKey'),
             'collectionType' => $collection->getter('collectionType')
           );
           $collResources[ $collId ]['res'] = [];
@@ -1304,6 +1306,7 @@ class ResourceController {
               'imageId' => $resValImage, // TODO: Deberia ser image
               'image' => $resValImage,
               'imageName' => $resVal->getter('imageName'),
+              'imageAKey' => $resVal->getter('imageAKey'),
             );
 
             // Ampliamos la carga de datos del recurso Base
@@ -1317,6 +1320,7 @@ class ResourceController {
               'imageId' => $resValImage,
               'imageName' => $resVal->getter('imageName'),
               // 'imageName' => $resValImage.'.jpg',
+              'imageAKey' => $resVal->getter('imageAKey'),
               'profile' => 'fast_cut'
             );
             $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
@@ -1928,7 +1932,9 @@ class ResourceController {
         $param['imageName'] = $param['imageId'].'.jpg';
       }
       $prof = array_key_exists( 'profile', $param ) ? $param['profile'].'/' : '';
-      $thumbImg = Cogumelo::getSetupValue('publicConf:vars:mediaHost').'cgmlImg/'.$param['imageId'].
+
+      $urlId = isset( $param['imageAKey'] ) ? $param['imageId'].'-a'.$param['imageAKey'] : $param['imageId'];
+      $thumbImg = Cogumelo::getSetupValue('publicConf:vars:mediaHost').'cgmlImg/'.$urlId.
         '/'.$prof.$param['imageName'];
     }
     else {
