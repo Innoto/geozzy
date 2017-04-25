@@ -35,6 +35,14 @@ class TaxonomyViewModel extends Model {
       'vo' => 'FiledataModel',
       'key' => 'id'
     ),
+    'iconName' => [
+      'type' => 'VARCHAR',
+      'size' => 250
+    ],
+    'iconAKey' => [
+      'type' => 'VARCHAR',
+      'size' => 16
+    ],
     'taxGroupIdName' => array(
       'type' => 'VARCHAR',
       'size' => 100
@@ -53,8 +61,37 @@ class TaxonomyViewModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'geozzy#1.2',
+      'version' => 'geozzy#1.93',
       'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_taxonomy_view;
+        CREATE VIEW geozzy_taxonomy_view AS
+          SELECT
+            geozzy_taxonomyterm.id AS id,
+            geozzy_taxonomyterm.idName AS idName,
+
+            {multilang:geozzy_taxonomyterm.name_$lang AS name_$lang,}
+
+            {multilang:geozzy_taxonomygroup.name_$lang AS taxGroupName_$lang,}
+
+            geozzy_taxonomyterm.weight AS weight,
+            geozzy_taxonomyterm.icon AS icon, fd.name AS iconName, fd.AKey AS iconAKey,
+            geozzy_taxonomyterm.taxgroup AS taxgroup,
+            geozzy_taxonomygroup.idName AS taxGroupIdName
+
+          FROM
+            ((
+            `geozzy_taxonomygroup`
+            join `geozzy_taxonomyterm`)
+            LEFT JOIN filedata_filedata AS fd ON geozzy_taxonomyterm.icon = fd.id)
+          WHERE
+            geozzy_taxonomyterm.taxgroup = geozzy_taxonomygroup.id
+          ORDER BY
+            geozzy_taxonomygroup.id;
+      '
+    ),
+    array(
+      'version' => 'geozzy#1.2',
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_taxonomy_view;
         CREATE VIEW geozzy_taxonomy_view AS

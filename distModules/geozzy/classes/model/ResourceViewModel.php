@@ -63,10 +63,10 @@ class ResourceViewModel extends Model {
       'key' => 'id',
       'uploadDir' => '/Resource/'
     ),
-    'imageName' => array(
+    'imageName' => [
       'type' => 'VARCHAR',
       'size' => 250
-    ),
+    ],
     'imageAKey' => [
       'type' => 'VARCHAR',
       'size' => 16
@@ -145,11 +145,10 @@ class ResourceViewModel extends Model {
 
   var $deploySQL = array(
     array(
-      'version' => 'geozzy#1.92',
+      'version' => 'geozzy#1.93',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_view;
-
         CREATE VIEW geozzy_resource_view AS
           SELECT
             r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName, r.user, r.userUpdate, r.published,
@@ -173,8 +172,7 @@ class ResourceViewModel extends Model {
               ( `ua`.`resource` = `r`.`id`
               and `ua`.`http` = 0
               and `ua`.`canonical` = 1 ) )
-            LEFT JOIN filedata_filedata AS fd ON
-              r.image = fd.id)
+            LEFT JOIN filedata_filedata AS fd ON r.image = fd.id)
           WHERE
             rt.id=r.rTypeId
           GROUP BY

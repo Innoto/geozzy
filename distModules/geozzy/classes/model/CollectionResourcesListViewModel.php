@@ -37,6 +37,14 @@ class CollectionResourcesListViewModel extends Model {
       'key' => 'id',
       'uploadDir' => '/Collection/'
     ),
+    'imageName' => [
+      'type' => 'VARCHAR',
+      'size' => 250
+    ],
+    'imageAKey' => [
+      'type' => 'VARCHAR',
+      'size' => 16
+    ],
     'share' => array(
       'type' => 'TINYINT'
     ),
@@ -72,8 +80,44 @@ class CollectionResourcesListViewModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'geozzy#1.0',
+      'version' => 'geozzy#1.93',
       'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_collection_resourcelist_view;
+        CREATE VIEW geozzy_collection_resourcelist_view AS
+          SELECT
+            geozzy_collection.id AS id,
+            geozzy_collection.idName AS idName,
+
+            {multilang:geozzy_collection.title_$lang AS title_$lang,}
+
+            {multilang:geozzy_collection.shortDescription_$lang AS shortDescription_$lang,}
+
+            {multilang:geozzy_collection.description_$lang AS description_$lang,}
+
+            geozzy_collection.image AS image, fd.name AS imageName, fd.AKey AS imageAKey,
+
+            geozzy_collection.share AS share,
+            geozzy_collection.collectionType AS collectionType,
+            geozzy_collection.weight AS weight,
+            geozzy_resource_collections.resource AS resourceMain,
+            geozzy_resource_collections.weight AS weightMain,
+            GROUP_CONCAT( geozzy_collection_resources.resource ORDER BY geozzy_collection_resources.weight ) AS resourceSonList
+          FROM
+            (((
+            `geozzy_resource_collections`
+            join `geozzy_collection_resources`)
+            join `geozzy_collection`)
+            LEFT JOIN filedata_filedata AS fd ON geozzy_collection.image = fd.id)
+          WHERE
+            geozzy_collection_resources.collection = geozzy_collection.id
+            AND geozzy_resource_collections.collection = geozzy_collection.id
+          GROUP BY geozzy_collection.id
+          ORDER BY geozzy_resource_collections.weight;
+      '
+    ),
+    array(
+      'version' => 'geozzy#1.0',
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_collection_resourcelist_view;
         CREATE VIEW geozzy_collection_resourcelist_view AS
