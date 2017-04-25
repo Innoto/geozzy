@@ -22,13 +22,12 @@ class TaxonomyViewModel extends Model {
       'size' => 100,
       'multilang' => true
     ),
-    'weight' => array(
-      'type' => 'INT',
+    'mediumDescription' => array(
+      'type' => 'TEXT',
+      'multilang' => true
     ),
-    'taxgroup' => array(
-      'type'=>'FOREIGN',
-      'vo' => 'TaxonomygroupModel',
-      'key' => 'id'
+    'parent' => array(
+      'type' => 'INT',
     ),
     'icon' => array(
       'type'=>'FOREIGN',
@@ -43,6 +42,11 @@ class TaxonomyViewModel extends Model {
       'type' => 'VARCHAR',
       'size' => 16
     ],
+    'taxgroup' => array(
+      'type'=>'FOREIGN',
+      'vo' => 'TaxonomygroupModel',
+      'key' => 'id'
+    ),
     'taxGroupIdName' => array(
       'type' => 'VARCHAR',
       'size' => 100
@@ -51,7 +55,10 @@ class TaxonomyViewModel extends Model {
       'type' => 'VARCHAR',
       'size' => 100,
       'multilang' => true
-    )
+    ),
+    'weight' => array(
+      'type' => 'INT',
+    ),
   );
 
   static $extraFilters = array();
@@ -71,14 +78,16 @@ class TaxonomyViewModel extends Model {
             geozzy_taxonomyterm.idName AS idName,
 
             {multilang:geozzy_taxonomyterm.name_$lang AS name_$lang,}
+            {multilang:geozzy_taxonomyterm.mediumDescription_$lang AS mediumDescription_$lang,}
 
+            geozzy_taxonomyterm.parent AS parent,
+            geozzy_taxonomyterm.icon AS icon, fd.name AS iconName, fd.AKey AS iconAKey,
+
+            geozzy_taxonomyterm.taxgroup AS taxgroup,
+            geozzy_taxonomygroup.idName AS taxGroupIdName,
             {multilang:geozzy_taxonomygroup.name_$lang AS taxGroupName_$lang,}
 
-            geozzy_taxonomyterm.weight AS weight,
-            geozzy_taxonomyterm.icon AS icon, fd.name AS iconName, fd.AKey AS iconAKey,
-            geozzy_taxonomyterm.taxgroup AS taxgroup,
-            geozzy_taxonomygroup.idName AS taxGroupIdName
-
+            geozzy_taxonomyterm.weight AS weight
           FROM
             ((
             `geozzy_taxonomygroup`
