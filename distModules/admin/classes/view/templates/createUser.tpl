@@ -29,12 +29,11 @@
   </div>
 </div>
 
-{if $cogumelo.publicConf.langAvailableIds === false || $cogumelo.publicConf.langAvailableIds|@count gt 1}
+
+{if $cogumelo.publicConf.langAvailableIds === false || $cogumelo.publicConf.langAvailableIds|@count gt 0}
   {foreach $cogumelo.publicConf.langAvailableIds as $lang}
     {$userFormFields['description_'|cat:$lang]}
   {/foreach}
-{else}
-  {$userFormFields.description}
 {/if}
 
 {$userFormFields.submit}

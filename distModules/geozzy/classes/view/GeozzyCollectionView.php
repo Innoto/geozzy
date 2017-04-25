@@ -101,16 +101,29 @@ class GeozzyCollectionView extends View
       )
     );
 
-    $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':manualCreate' );
-    $widgetConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':widget' );
-    if( !$setupConf || count($setupConf) === 0 ){
-      $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$valueCollectionType.':manualCreate' );
-      $widgetConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$valueCollectionType.':widget' );
-      if( !$setupConf || count($setupConf) === 0 ) {
-        $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:default:manualCreate' );
-        $widgetConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:default:widget' );
-      }
-    }
+    /*OLD*/
+    // $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':manualCreate' );
+    // $widgetConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':widget' );
+    // if( !$setupConf || count($setupConf) === 0 ){
+    //   $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$valueCollectionType.':manualCreate' );
+    //   $widgetConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$valueCollectionType.':widget' );
+    //   if( !$setupConf || count($setupConf) === 0 ) {
+    //     $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:default:manualCreate' );
+    //     $widgetConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:default:widget' );
+    //   }
+    // }
+
+    $setupConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:default:manualCreate' );
+    $widgetConf = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:default:widget' );
+    $setupConfTemp = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$valueCollectionType.':manualCreate' );
+    $widgetConfTemp = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:default:'.$valueCollectionType.':widget' );
+    $setupConf = ( !empty($setupConfTemp) ) ? $setupConfTemp : $setupConf;
+    $widgetConf = ( !empty($widgetConfTemp) ) ? $widgetConfTemp : $widgetConf;
+    $setupConfTemp = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':manualCreate' );
+    $widgetConfTemp = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':widget' );
+    $setupConf = ( !empty($setupConfTemp) ) ? $setupConfTemp : $setupConf;
+    $widgetConf = ( !empty($widgetConfTemp) ) ? $widgetConfTemp : $widgetConf;
+    
     if( in_array("rtypeFile", $setupConf) ){
       $fieldsInfo['addResourceLocal'] = array(
         'params' => array( 'id' => 'addResourceLocal', 'class' => 'widgetCollectionBtn', 'type' => 'button', 'value' => __( 'Upload multimedia ' ))
@@ -389,7 +402,7 @@ class GeozzyCollectionView extends View
 
         foreach( $colRes as $key => $value ) {
           $elemList = array_merge($elemList, $value->getterDependence('resource'));
-        }    
+        }
       }
 
     }
