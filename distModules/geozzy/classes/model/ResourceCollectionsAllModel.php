@@ -76,7 +76,7 @@ class ResourceCollectionsAllModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'geozzy#1.92',
+      'version' => 'geozzy#1.93',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_collectionsall;
