@@ -7,10 +7,9 @@ user::autoIncludes();
 /**
 * Clase Master to extend other application methods
 */
-class AdminDataAPIView extends View
-{
+class AdminDataAPIView extends View {
 
-  function __construct($baseDir){
+  public function __construct( $baseDir ) {
     parent::__construct($baseDir);
   }
 
@@ -18,7 +17,7 @@ class AdminDataAPIView extends View
   * Evaluate the access conditions and report if can continue
   * @return bool : true -> Access allowed
   */
-  function accessCheck() {
+  public function accessCheck() {
 
     $useraccesscontrol = new UserAccessController();
     $res = true;
@@ -40,7 +39,7 @@ class AdminDataAPIView extends View
   }
 
 
-  function categoryTerms( $urlParams ) {
+  public function categoryTerms( $urlParams ) {
 
     $useraccesscontrol = new UserAccessController();
     $access = $useraccesscontrol->checkPermissions( array('category:list', 'category:edit', 'category:delete' ), 'admin:full');
@@ -68,13 +67,9 @@ class AdminDataAPIView extends View
     }
 
 
-    header('Content-type: application/json');
-
     switch( $_SERVER['REQUEST_METHOD'] ) {
       case 'PUT':
-
-
-
+        header('Content-type: application/json');
         $putData = json_decode(file_get_contents('php://input'), true);
         $taxtermModel = new TaxonomytermModel();
 
@@ -108,37 +103,35 @@ class AdminDataAPIView extends View
 
         break;
       case 'GET':
-
         if( $id != false ){
-
-          $taxtermModel = new TaxonomytermModel();
+          header('Content-type: application/json');
+          $taxtermModel = new TaxonomyViewModel();
           $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$id) ) );
           echo '[';
           $c = '';
-          while ($taxTerm = $taxtermList->fetch() )
-          {
+          while( $taxTerm = $taxtermList->fetch() ) {
             $termData = $taxTerm->getAllData();
             echo $c.json_encode( $termData['data'] );
-            if($c === ''){$c=',';}
+            if( $c === '') {
+              $c=',';
+            }
           }
           echo ']';
-
         }
-        else{
+        else {
           header("HTTP/1.0 404 Not Found");
+          header('Content-type: application/json');
         }
-
         break;
-
       case 'DELETE':
         $taxM = new TaxonomytermModel();
         $taxTerm = $taxM->listItems(
-                                    array(
-                                            'filters' => array('id'=> $id, 'TaxonomygroupModel.editable'=>1),
-                                            'affectsDependences' => array('TaxonomygroupModel'),
-                                            'joinType' => 'INNER'
-                                        )
-                                    );
+          array(
+            'filters' => array('id'=> $id, 'TaxonomygroupModel.editable'=>1),
+            'affectsDependences' => array('TaxonomygroupModel'),
+            'joinType' => 'INNER'
+          )
+        );
         if( $taxTerm && $t = $taxTerm->fetch() ) {
           $t->delete();
           header('Content-type: application/json');
@@ -153,7 +146,8 @@ class AdminDataAPIView extends View
         break;
     }
   }
-  function categoryTermsJson() {
+
+  public function categoryTermsJson() {
     header('Content-type: application/json');
 
 
@@ -272,8 +266,7 @@ class AdminDataAPIView extends View
         <?php
   }
 
-
-  function categories() {
+  public function categories() {
 
     $useraccesscontrol = new UserAccessController();
     $access = $useraccesscontrol->checkPermissions( array('category:list', 'category:edit', 'category:delete' ), 'admin:full');
@@ -298,10 +291,9 @@ class AdminDataAPIView extends View
       if($c === ''){$c=',';}
     }
     echo ']';
-
   }
 
-  function categoriesJson() {
+  public function categoriesJson() {
     header('Content-type: application/json');
 
 
@@ -346,7 +338,7 @@ class AdminDataAPIView extends View
     <?php
   }
 
-  function resourcesTerm( $request ) {
+  public function resourcesTerm( $request ) {
 
     $useraccesscontrol = new UserAccessController();
     $access = $useraccesscontrol->checkPermissions('starred:list', 'admin:full');
@@ -386,7 +378,6 @@ class AdminDataAPIView extends View
       break;
 
       case 'GET':
-
         if( array_key_exists( 'taxonomyterm', $_GET ) && is_numeric( $_GET['taxonomyterm'] ) ){
           $resourceModel = new ResourceModel();
           $fields = array(
@@ -395,8 +386,6 @@ class AdminDataAPIView extends View
             'published',
             'title_'.Cogumelo::getSetupValue( 'lang:default' )
           );
-
-
 
           $resourceStarred = $resourceModel->listItems(
             array(
@@ -410,8 +399,7 @@ class AdminDataAPIView extends View
           );
           echo '[';
           $c = '';
-          while ($rs = $resourceStarred->fetch() )
-          {
+          while( $rs = $resourceStarred->fetch() ) {
             $dataDep = $rs->getterDependence('id', 'ResourceTaxonomytermModel');
 
             $rsData = $rs->getAllData();
@@ -422,7 +410,9 @@ class AdminDataAPIView extends View
             $newRsData['resource'] = $rsData['data']['id'];
 
             echo $c.json_encode( $newRsData );
-            if($c === ''){$c=',';}
+            if($c === '') {
+              $c=',';
+            }
           }
           echo ']';
         }
@@ -452,10 +442,9 @@ class AdminDataAPIView extends View
         }
       break;
     }
-
   }
 
-  function resourcesTermJson(){
+  public function resourcesTermJson(){
     header('Content-type: application/json');
     ?>
     {
@@ -583,8 +572,7 @@ class AdminDataAPIView extends View
     <?php
   }
 
-
-  function starred() {
+  public function starred() {
 
     $useraccesscontrol = new UserAccessController();
     $access = $useraccesscontrol->checkPermissions('starred:list', 'admin:full');
@@ -594,25 +582,28 @@ class AdminDataAPIView extends View
       exit;
     }
 
-    $taxtermModel = new TaxonomytermModel();
-    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+    // $taxtermModel = new TaxonomytermModel();
+    // $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ), 'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+
+    $taxtermModel = new TaxonomyViewModel();
+    $starredList = $taxtermModel->listItems( array(
+      'filters' => array( 'taxGroupIdName' => 'starred' )
+    ) );
 
     header('Content-type: application/json');
-
     echo '[';
-
     $c = '';
-    while ($starred = $starredList->fetch() )
-    {
+    while( $starred = $starredList->fetch() ) {
       $starData = $starred->getAllData();
       echo $c.json_encode( $starData['data'] );
-      if($c === ''){$c=',';}
+      if($c === '') {
+        $c=',';
+      }
     }
     echo ']';
-
   }
 
-  function starredJson() {
+  public function starredJson() {
     header('Content-type: application/json');
     ?>
     {

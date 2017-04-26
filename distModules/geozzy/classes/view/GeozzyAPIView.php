@@ -1298,21 +1298,26 @@ class geozzyAPIView extends View {
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 
     if( isset( $urlParamsList['id'] ) && is_numeric( $urlParamsList['id'] ) ) {
-      geozzy::load('model/TaxonomytermModel.php');
-      $taxtermModel = new TaxonomytermModel();
+      // geozzy::load('model/TaxonomytermModel.php');
+      // $taxtermModel = new TaxonomytermModel();
+      geozzy::load('model/TaxonomyViewModel.php');
+      $taxtermModel = new TaxonomyViewModel();
       $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$urlParamsList['id'] ) ) );
       $this->syncModelList( $taxtermList );
     }
     else
     if( isset( $urlParamsList['idname'] ) && $urlParamsList['idname'] != 'false' ) {
-
-      geozzy::load('model/TaxonomytermModel.php');
-      $taxtermModel = new TaxonomytermModel();
+      // geozzy::load('model/TaxonomytermModel.php');
+      // $taxtermModel = new TaxonomytermModel();
+      // $taxtermList = $taxtermModel->listItems(
+      //   array( 'filters' => array( 'TaxonomygroupModel.idName' => $urlParamsList['idname']  )
+      //   ,'order' => array( 'weight' => 1 )
+      //   ,'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
+      geozzy::load('model/TaxonomyViewModel.php');
+      $taxtermModel = new TaxonomyViewModel();
       $taxtermList = $taxtermModel->listItems(
-        array( 'filters' => array( 'TaxonomygroupModel.idName' => $urlParamsList['idname']  )
-        ,'order' => array( 'weight' => 1 )
-        ,'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
-
+        array( 'filters' => array( 'taxGroupIdName' => $urlParamsList['idname']  )
+        ,'order' => array( 'weight' => 1 ) ) );
       $this->syncModelList( $taxtermList );
     }
     else {
@@ -1424,9 +1429,10 @@ class geozzyAPIView extends View {
     while ($valueobject = $result->fetch() ) {
       $allData = array('id' => $valueobject->getter('id'), 'idName' => $valueobject->getter('idName'),
         'name' => $valueobject->getter('name'), 'taxgroup' => $valueobject->getter('taxgroup'),
-        'icon' => $valueobject->getter('icon'), 'weight' => $valueobject->getter('weight'));
+        'icon' => $valueobject->getter('icon'), 'iconAKey' => $valueobject->getter('iconAKey'),
+        'weight' => $valueobject->getter('weight'));
       //$allData = $valueobject->getAllData('onlydata');
-      echo $c.json_encode( $allData);
+      echo $c.json_encode( $allData );
       $c=',';
     }
     echo ']';

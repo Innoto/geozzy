@@ -2,24 +2,21 @@
 admin::load('view/AdminViewMaster.php');
 
 
-class AdminViewTaxonomy extends AdminViewMaster
-{
+class AdminViewTaxonomy extends AdminViewMaster {
 
-  function __construct($base_dir){
+  public function __construct( $base_dir ) {
     parent::__construct($base_dir);
+
   }
 
 
-  function categoryTermsSync( $request ) {
-
+  public function categoryTermsSync( $request ) {
 
     $id = substr($request[1], 1);
 
     header('Content-type: application/json');
-
     switch( $_SERVER['REQUEST_METHOD'] ) {
       case 'PUT':
-
         $putData = json_decode(file_get_contents('php://input'), true);
 
         if( is_numeric( $id )) {  // update
@@ -31,7 +28,6 @@ class AdminViewTaxonomy extends AdminViewMaster
         else { // create
           $taxTerm = new TaxonomytermModel( array('name'=> $putData['name'], 'parent'=> null, 'taxgroup'=> $putData['taxgroup']) );
           $taxTerm->save();
-
         }
 
         $termData = $taxTerm->getAllData();
@@ -39,52 +35,46 @@ class AdminViewTaxonomy extends AdminViewMaster
 
         break;
       case 'GET':
-        $taxtermModel = new TaxonomytermModel();
+        $taxtermModel = new TaxonomyViewModel();
         $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$_GET['group']) ) );
         echo '[';
         $c = '';
-        while ($taxTerm = $taxtermList->fetch() )
-        {
+        while( $taxTerm = $taxtermList->fetch() ) {
           $termData = $taxTerm->getAllData();
           echo $c.json_encode( $termData['data'] );
-          if($c === ''){$c=',';}
+          if( $c === '' ) {
+            $c=',';
+          }
         }
         echo ']';
 
         break;
-
       case 'DELETE':
         $taxTerm = new TaxonomytermModel( array( 'id'=> $id ) );
         $taxTerm->delete();
 
         break;
     }
-
-
-
   }
 
-  function categoriesSync() {
+  public function categoriesSync() {
     $taxgroupModel = new TaxonomygroupModel();
     $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
 
     header('Content-type: application/json');
-
     echo '[';
-
     $c = '';
-    while ($taxGroup = $taxGroupList->fetch() )
-    {
+    while ($taxGroup = $taxGroupList->fetch() ) {
       $taxData = $taxGroup->getAllData();
       echo $c.json_encode( $taxData['data'] );
-      if($c === ''){$c=',';}
+      if( $c === '' ) {
+        $c=',';
+      }
     }
     echo ']';
-
   }
 
   public function categoryForm( $request ){
-
     $useraccesscontrol = new UserAccessController();
     $access = $useraccesscontrol->checkPermissions( array('category:edit', 'category:create'), 'admin:full');
     if(!$access){
@@ -119,14 +109,10 @@ class AdminViewTaxonomy extends AdminViewMaster
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
     $this->template->exec();
-
   }
 
   public function sendCategoryForm(){
     $geozzyTaxtermView = new GeozzyTaxonomytermView();
     $geozzyTaxtermView->sendTaxtermForm();
   }
-
-
-
 }
