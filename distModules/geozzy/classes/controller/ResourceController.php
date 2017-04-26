@@ -1046,7 +1046,7 @@ class ResourceController {
       $resourceTaxAllModel = new ResourceTaxonomyAllModel();
       $taxAllList = $resourceTaxAllModel->listItems( array(
         'filters' => array( 'resource' => $resId ), 'order' => ['weightResTaxTerm' => 1] ) );
-      if( $taxAllList ) {
+      if( gettype( $taxAllList ) === 'object' ) {
         while( $taxTerm = $taxAllList->fetch() ) {
           $termId = $taxTerm->getter('id');
           $taxTerms[ $termId ] = $taxTerm->getAllData( 'onlydata' );
