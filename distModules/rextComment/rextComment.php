@@ -10,28 +10,40 @@ class rextComment extends Module {
 
   public $dependences = array(
     array(
-     "id" =>"underscore",
-     "params" => array("underscore#1.8.3"),
-     "installer" => "bower",
-     "includes" => array("underscore-min.js")
+      "id" =>"underscore",
+      "params" => array("underscore#1.8.3"),
+      "installer" => "bower",
+      "includes" => array("underscore-min.js")
     ),
     array(
-     "id" =>"backbonejs",
-     "params" => array("backbone#1.1.2"),
-     "installer" => "bower",
-     "includes" => array("backbone.js")
+      "id" =>"backbonejs",
+      "params" => array("backbone#1.1.2"),
+      "installer" => "bower",
+      "includes" => array("backbone.js")
     ),
     array(
-     "id" => "font-awesome",
-     "params" => array("Font-Awesome"),
-     "installer" => "bower",
-     "includes" => array("css/font-awesome.min.css")
+      "id" => "font-awesome",
+      "params" => array("Font-Awesome"),
+      "installer" => "bower",
+      "includes" => array("css/font-awesome.min.css")
     ),
     array(
-     "id" =>"bootstrap-star-rating",
-     "params" => array("bootstrap-star-rating"),
-     "installer" => "bower",
-     "includes" => array("js/star-rating.min.js", 'css/star-rating.min.css')
+      "id" =>"bootstrap-star-rating",
+      "params" => array("bootstrap-star-rating"),
+      "installer" => "bower",
+      "includes" => array("js/star-rating.min.js", 'css/star-rating.min.css')
+    ),
+    array(
+      'id' =>'moment',
+      'params' => array( 'moment' ),
+      'installer' => 'bower',
+      'includes' => array( 'min/moment-with-locales.min.js' )
+    ),
+    array(
+      'id' =>'moment-timezone',
+      'params' => array( 'moment-timezone' ),
+      'installer' => 'bower',
+      'includes' => array( 'builds/moment-timezone-with-data.min.js' )
     )
   );
   public $autoIncludeAlways = true;
