@@ -90,14 +90,13 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     if( this.visibleResources) {
       $.each(  this.visibleResources, function(i,e){
 
-        var element = {
-          contador: contador,
-          title: that.parentExplorer.resourcePartialList.get( e ).get('title'),
-          id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
-          inMap: that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible'),
-          img: that.parentExplorer.resourceMinimalList.get( e ).get('img')
-        };
+        var minJSON = that.parentExplorer.resourceMinimalList.get( e ).toJSON();
+        var partJSON = that.parentExplorer.resourcePartialList.get( e ).toJSON();
 
+        var element = $.extend( true, partJSON, minJSON );
+
+        element.contador = contador;
+        element.inMap = that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible');
 
         that.parentExplorer.triggerEvent('resourcePrint',{
           id: that.parentExplorer.resourcePartialList.get( e ).get('id'),
@@ -107,6 +106,8 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
         contentHtml += that.tplElement(element);
         contador++;
       });
+
+
 
       that.$el.html( that.tpl({ pager:  this.renderPager() , content: contentHtml }) );
     }

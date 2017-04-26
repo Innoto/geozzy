@@ -5,24 +5,6 @@ Cogumelo::load('coreModel/Model.php');
 
 class TaxonomytermModel extends Model {
 
-  // multiple unique constrait
-  var $deploySQL = array(
-    // All Times
-    array(
-      'version' => 'geozzy#1.0',
-      'executeOnGenerateModelToo' => true,
-      'sql'=> '
-        ALTER TABLE geozzy_taxonomyterm ADD CONSTRAINT taxgroup_idName UNIQUE (taxgroup, idName);
-      '
-    ),
-    array(
-      'version' => 'geozzy#1.8',
-      'sql'=> '
-        {multilang:ALTER TABLE geozzy_taxonomyterm ADD COLUMN mediumDescription_$lang TEXT NULL;}
-      '
-    )
-  );
-
   static $tableName = 'geozzy_taxonomyterm';
 
   static $cols = array(
@@ -68,6 +50,24 @@ class TaxonomytermModel extends Model {
     'idInCSV' => ' id IN ( ? ) ',
     'idNameInCSV' => ' idName IN ( ? ) ',
     'idNames' => ' idName IN ( ? ) '
+  );
+
+
+  var $deploySQL = array(
+    array(
+      'version' => 'geozzy#1.8',
+      'sql'=> '
+        {multilang:ALTER TABLE geozzy_taxonomyterm ADD COLUMN mediumDescription_$lang TEXT NULL;}
+      '
+    ),
+    // multiple unique constrait
+    array(
+      'version' => 'geozzy#1.0',
+      'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        ALTER TABLE geozzy_taxonomyterm ADD CONSTRAINT taxgroup_idName UNIQUE (taxgroup, idName);
+      '
+    )
   );
 
 

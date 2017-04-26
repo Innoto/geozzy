@@ -183,7 +183,7 @@ class ResourceController {
       $fileDep = $resObj->getterDependence( 'image' );
       if( $fileDep !== false ) {
         foreach( $fileDep as $fileModel ) {
-          $resourceData[ 'image' ] = $fileModel->getAllData( 'onlydata' );
+          $resourceData[ 'image' ] = $this->getTranslatedData( $fileModel->getAllData( 'onlydata' ) );
         }
       }
 
@@ -745,7 +745,7 @@ class ResourceController {
       $result = [];
       $fileData = false;
       while( $fileObj = $fileDataList->fetch() ) {
-        $fileData = $fileObj->getAllData( 'onlydata' );
+        $fileData = $this->getTranslatedData( $fileObj->getAllData( 'onlydata' ) );
         $result[ $fileData['id'] ] = $fileData;
       }
       if( count( $result ) ) {
@@ -993,10 +993,9 @@ class ResourceController {
   }
   public function getOptionsTaxAdvancedArray( $taxIdName ) {
     $options = [];
-    $taxTermModel =  new TaxonomyTermModel();
+    $taxTermModel =  new TaxonomyViewModel();
     $taxTermList = $taxTermModel->listItems( [
-      'filters' => [ 'TaxonomygroupModel.idName' => $taxIdName ], 'order' => [ 'weight' => 1 ],
-      'affectsDependences' => [ 'TaxonomygroupModel' ], 'joinType' => 'RIGHT'
+      'filters' => [ 'taxGroupIdName' => $taxIdName ], 'order' => [ 'weight' => 1 ]
     ] );
     while( $taxTerm = $taxTermList->fetch() ) {
       $optText = $taxTerm->getter('name');
@@ -1007,8 +1006,10 @@ class ResourceController {
       $options[ $taxTermId ] = [
         'text' => $optText,
         'value' => $taxTerm->getter('id'),
+        'data-term-idname' => $taxTerm->getter('idName'),
         'data-term-icon' => $taxTerm->getter('icon'),
-        'data-term-idname' => $taxTerm->getter('idName')
+        'data-term-iconname' => $taxTerm->getter('iconName'),
+        'data-term-iconakey' => $taxTerm->getter('iconAKey')
       ];
       if( $taxTerm->getter('parent') ) {
         $options[ $taxTermId ]['data-term-parent'] = $taxTerm->getter('parent');
@@ -1150,7 +1151,7 @@ class ResourceController {
           while( $collResObj = $collResList->fetch() ) {
             $colId = $collResObj->getter('id');
             $colType = $collResObj->getter('collectionType');
-            $collsInfo[ $colType ][ $colId ] = $collResObj->getAllData( 'onlydata' );
+            $collsInfo[ $colType ][ $colId ] = $this->getTranslatedData( $collResObj->getAllData( 'onlydata' ) );
           }
         }
 
@@ -1272,6 +1273,8 @@ class ResourceController {
             'shortDescription' => $collection->getter('shortDescription'),
             'description' => $collection->getter('description'),
             'image' => $collection->getter('image'),
+            'imageName' => $collection->getter('imageName'),
+            'imageAKey' => $collection->getter('imageAKey'),
             'collectionType' => $collection->getter('collectionType')
           );
           $collResources[ $collId ]['res'] = [];
@@ -1304,6 +1307,7 @@ class ResourceController {
               'imageId' => $resValImage, // TODO: Deberia ser image
               'image' => $resValImage,
               'imageName' => $resVal->getter('imageName'),
+              'imageAKey' => $resVal->getter('imageAKey'),
             );
 
             // Ampliamos la carga de datos del recurso Base
@@ -1317,6 +1321,7 @@ class ResourceController {
               'imageId' => $resValImage,
               'imageName' => $resVal->getter('imageName'),
               // 'imageName' => $resValImage.'.jpg',
+              'imageAKey' => $resVal->getter('imageAKey'),
               'profile' => 'fast_cut'
             );
             $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
@@ -1885,22 +1890,22 @@ class ResourceController {
 
 
   /**
-   * Devuelve resData con los campos traducibles en el idioma actual
+   * Devuelve modelData con los campos traducibles en el idioma actual
    */
-  public function getTranslatedData( $resData ) {
+  public function getTranslatedData( $modelData ) {
 
-    foreach ( $resData as $key => $data ) {
+    foreach( $modelData as $key => $data ) {
       if( strpos($key,'_'.$this->actLang) ) { // existe en el idioma actual
         $key_parts = explode('_'.$this->actLang, $key);
-        if( $data && $data !== "") {
-          $resData[$key_parts[0]] = $data;
+        if( $data && $data !== '' ) {
+          $modelData[ $key_parts[0] ] = $data;
         }
-        else{
-          $resData[$key_parts[0]] = $resData[$key_parts[0].'_'.$this->defLang];
+        else {
+          $modelData[ $key_parts[0] ] = $modelData[$key_parts[0].'_'.$this->defLang];
         }
       }
     }
-    return $resData;
+    return $modelData;
   }
   public function getAllTrData( $objModel ) {
     $allData = [];
@@ -1928,7 +1933,9 @@ class ResourceController {
         $param['imageName'] = $param['imageId'].'.jpg';
       }
       $prof = array_key_exists( 'profile', $param ) ? $param['profile'].'/' : '';
-      $thumbImg = Cogumelo::getSetupValue('publicConf:vars:mediaHost').'cgmlImg/'.$param['imageId'].
+
+      $urlId = isset( $param['imageAKey'] ) ? $param['imageId'].'-a'.$param['imageAKey'] : $param['imageId'];
+      $thumbImg = Cogumelo::getSetupValue('publicConf:vars:mediaHost').'cgmlImg/'.$urlId.
         '/'.$prof.$param['imageName'];
     }
     else {

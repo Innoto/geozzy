@@ -51,6 +51,14 @@ class ResourceMultimediaViewModel extends Model {
       'key' => 'id',
       'uploadDir' => '/Resource/'
     ),
+    'imageName' => [
+      'type' => 'VARCHAR',
+      'size' => 250
+    ],
+    'imageAKey' => [
+      'type' => 'VARCHAR',
+      'size' => 16
+    ],
     'timeCreation' => array(
       'type' => 'DATETIME'
     ),
@@ -92,8 +100,63 @@ class ResourceMultimediaViewModel extends Model {
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'geozzy#1.6',
+      'version' => 'geozzy#1.93',
       'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_resource_multimedia_view;
+        CREATE VIEW geozzy_resource_multimedia_view AS
+          SELECT
+            r.id, r.idName, r.rTypeId, r.user, r.userUpdate, r.published,
+            {multilang:r.title_$lang,}
+            {multilang:r.shortDescription_$lang,}
+
+            r.image, fdr.name AS imageName, fdr.AKey AS imageAKey,
+
+            r.timeCreation, r.timeLastUpdate, r.weight,
+            rf.author AS author,
+
+            rf.file AS file, fdru.name AS fileName, fdru.AKey AS fileAKey,
+
+            NULL AS embed, NULL AS url
+          FROM
+            ((((
+            geozzy_resource r
+            join geozzy_resource_rext_file rf)
+            join geozzy_resourcetype rtype)
+            LEFT JOIN filedata_filedata AS fdr ON r.image = fdr.id)
+            LEFT JOIN filedata_filedata AS fdru ON rf.file = fdru.id)
+          WHERE
+            rtype.id = r.rTypeId AND rtype.idName = "rtypeFile"
+            AND r.id = rf.resource
+
+          UNION ALL
+
+          SELECT
+            r.id, r.idName, r.rTypeId, r.user, r.userUpdate, r.published,
+            {multilang:r.title_$lang,}
+            {multilang:r.shortDescription_$lang,}
+
+            r.image, fdr.name AS imageName, fdr.AKey AS imageAKey,
+
+            r.timeCreation, r.timeLastUpdate, r.weight,
+            ru.author AS author,
+
+            NULL AS file, NULL AS fileName, NULL AS fileAKey,
+
+            ru.embed AS embed, ru.url AS url
+          FROM
+            (((
+            geozzy_resource r
+            join geozzy_resource_rext_url ru)
+            join geozzy_resourcetype rtype)
+            LEFT JOIN filedata_filedata AS fdr ON r.image = fdr.id)
+          WHERE
+            rtype.id = r.rTypeId AND rtype.idName = "rtypeUrl"
+            AND r.id = ru.resource;
+      '
+    ),
+    array(
+      'version' => 'geozzy#1.6',
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_multimedia_view;
 
@@ -122,7 +185,6 @@ class ResourceMultimediaViewModel extends Model {
     ),
     array(
       'version' => 'geozzy#1.4',
-      // 'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_multimedia_view;
 
