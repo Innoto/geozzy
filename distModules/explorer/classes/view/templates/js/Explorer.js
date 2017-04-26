@@ -89,7 +89,9 @@ geozzy.explorer = function( opts ) {
     }
 
     that.bindEvent('resourceClick', function(param){
-      geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
+      if(typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
+        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
+      }
     });
 
 
