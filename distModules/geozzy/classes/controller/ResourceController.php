@@ -1146,7 +1146,7 @@ class ResourceController {
           'filters' => array( 'resourceMain' => $resId ),
           'order' => array( 'weight' => 1, 'weightMain' => 1 )
         ));
-        if( $collResList ) {
+        if( gettype( $collResList ) === 'object' ) {
           $collsInfo = [];
           while( $collResObj = $collResList->fetch() ) {
             $colId = $collResObj->getter('id');
@@ -1470,7 +1470,7 @@ class ResourceController {
       if( $baseId ) {
         $relModel = new ResourceTopicModel();
         $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
-        if( $relPrevList ) {
+        if( gettype( $relPrevList ) === 'object' ) {
           // estaban asignados antes
           $relPrevInfo = array();
           while( $relPrev = $relPrevList->fetch() ){
@@ -1528,7 +1528,7 @@ class ResourceController {
         'filters' => $relFilter
       ));
 
-      if( $relPrevList ) {
+      if( gettype( $relPrevList ) === 'object' ) {
         // estaban asignados antes
         $relPrevInfo = array();
         while( $relPrev = $relPrevList->fetch() ){
@@ -1583,13 +1583,13 @@ class ResourceController {
     if( $baseId ) {
       $relModel = new ResourceCollectionsModel();
       $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
-      if( $relPrevList ) {
+      if( gettype( $relPrevList ) === 'object' ) {
         // estaban asignados antes
         $relPrevInfo = array();
         $colModel = new CollectionModel();
         while( $relPrev = $relPrevList->fetch() ) {
           $colList = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) );
-          $collection = ( $colList ) ? $colList->fetch() : false;
+          $collection = ( gettype( $colList ) === 'object' ) ? $colList->fetch() : false;
           if( $collection && $collection->getter('collectionType') === $formCollType ) {
             $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
             if( !in_array( $relPrev->getter( 'collection' ), $formCollValues ) ) {
@@ -1828,7 +1828,7 @@ class ResourceController {
     $urlModel = new UrlAliasResourceViewModel();
     $urlList = $urlModel->listItems( array( 'filters' => $filters ));
 
-    $urlObj = ( $urlList ) ? $urlList->fetch() : false;
+    $urlObj = ( gettype( $urlList ) === 'object' ) ? $urlList->fetch() : false;
 
     if( $urlObj ) {
       $urlAlias = '/'.$lang.$urlObj->getter('urlFrom');
