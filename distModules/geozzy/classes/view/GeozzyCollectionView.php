@@ -51,7 +51,8 @@ class GeozzyCollectionView extends View
         $thumbSettings = array(
           'profile' => 'squareCut',
           'imageId' => $res->getter( 'image' ),
-          'imageName' => $res->getter( 'image' ).'.jpg'
+          'imageName' => $res->getter( 'image' ).'.jpg',
+          'imageAKey' => $res->getter( 'imageAKey' )
         );
         $resDataExtArray = $res->getterDependence('id', 'RExtUrlModel');
         if( $resDataExt = $resDataExtArray[0] ){
@@ -123,7 +124,7 @@ class GeozzyCollectionView extends View
     $widgetConfTemp = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$valueRTypeFilterParent.':'.$valueCollectionType.':widget' );
     $setupConf = ( !empty($setupConfTemp) ) ? $setupConfTemp : $setupConf;
     $widgetConf = ( !empty($widgetConfTemp) ) ? $widgetConfTemp : $widgetConf;
-    
+
     if( in_array("rtypeFile", $setupConf) ){
       $fieldsInfo['addResourceLocal'] = array(
         'params' => array( 'id' => 'addResourceLocal', 'class' => 'widgetCollectionBtn', 'type' => 'button', 'value' => __( 'Upload multimedia ' ))
