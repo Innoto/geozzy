@@ -456,6 +456,7 @@ class AdminViewResource extends AdminViewMaster {
       if( $resource->getter('image') ){
         $thumbSettings['imageId'] = $resource->getter('image');
         $thumbSettings['imageName'] = $resource->getter('image').'.jpg';
+        $thumbSettings['imageAKey'] = $resource->getter('imageAKey');
       }
 
       $resCtrl = new ResourceController();
@@ -519,6 +520,7 @@ class AdminViewResource extends AdminViewMaster {
           if( $rf->getter('image') ){
             $thumbSettings['imageId'] = $rf->getter('image');
             $thumbSettings['imageName'] = $rf->getter('image').'.jpg';
+            $thumbSettings['imageAKey'] = $rf->getter('imageAKey');
           }
           $thumbImg = $resCtrl->getResourceThumbnail( $thumbSettings );
           $resSuccessData[] = [
