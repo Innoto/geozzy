@@ -130,6 +130,8 @@ class ResourceViewModel extends Model {
     'notintaxonomyterm' => ' geozzy_resource_view.id NOT IN ( select resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
     'inRtype' => ' geozzy_resource_view.rTypeId IN (?) ',
     'notInRtype' => ' geozzy_resource_view.rTypeId NOT IN (?) ',
+    'inRtypeIdName' => ' geozzy_resource_view.rTypeIdName IN (?) ',
+    'notInRtypeIdName' => ' geozzy_resource_view.rTypeIdName NOT IN (?) ',
     'ids' => ' geozzy_resource_view.id IN (?) ',
     'inId' => ' geozzy_resource_view.id IN (?) ',
     'idIn' => ' geozzy_resource_view.id IN (?) ',

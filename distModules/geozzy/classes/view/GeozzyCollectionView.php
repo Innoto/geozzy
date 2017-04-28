@@ -42,7 +42,6 @@ class GeozzyCollectionView extends View
     $valueRTypeFilterParent = ( array_key_exists('filterRTypeParent', $valuesArray ) ) ? $valuesArray['filterRTypeParent'] : false;
 
     $resOptions = array();
-
     $elemList = $this->getAvailableResources( $valueCollectionId, $valueCollectionType, $valueRTypeFilterParent );
 
     if( $elemList && is_array($elemList) && count($elemList) > 0 ) {
@@ -54,9 +53,8 @@ class GeozzyCollectionView extends View
           'imageName' => $res->getter( 'image' ).'.jpg',
           'imageAKey' => $res->getter( 'imageAKey' )
         );
-        $resDataExtArray = $res->getterDependence('id', 'RExtUrlModel');
-        if( $resDataExt = $resDataExtArray[0] ){
-          $thumbSettings['url'] = $resDataExt->getter('url');
+        if( !empty($res->getter( 'rextUrlUrl' )) ){
+          $thumbSettings['url'] = $res->getter( 'rextUrlUrl' );
         }
         $elOpt = array(
           'value' => $res->getter( 'id' ),
@@ -364,6 +362,45 @@ class GeozzyCollectionView extends View
   public function getAvailableResources( $collectionId, $collectionType, $filterRTypeParent ) {
     $elemList = array();
 
+    $resourceViewModel = new RExtUrlResourceViewModel();
+    $collectionResourcesListViewModel = new CollectionResourcesListViewModel();
+
+    if( $collectionType ){
+      $conf = $this->getConfCollection( $collectionType, $filterRTypeParent );
+      $filter = $conf['listOptions'];
+      //Recursos Posibles
+      if( !empty($filter) && count($filter) > 0 ) {
+        $elemList = $resourceViewModel->listItems(
+          array(
+            'filters' => array( 'inRtypeIdName' => $filter )
+          )
+        )->fetchAll();
+      }
+      //Recursos Manuales
+      if( $collectionId ){
+        $colRes = $collectionResourcesListViewModel->listItems(
+          array(
+            'filters' => array( 'id' => $collectionId )
+          )
+        )->fetch();
+
+        if(!empty($colRes->getter('resourceSonList'))){
+
+          $elemManualList = $resourceViewModel->listItems(
+            array(
+              'filters' => array( 'inId' => explode(',', $colRes->getter('resourceSonList')) )
+            )
+          )->fetchAll();
+          $elemList = array_merge($elemList, $elemManualList);
+        }
+      }
+    }
+    return $elemList;
+  }
+  /*
+  public function getAvailableResources( $collectionId, $collectionType, $filterRTypeParent ) {
+    $elemList = array();
+
     $resourceModel = new ResourceModel();
     $collectionResourcesModel = new CollectionResourcesModel();
     $rtypeControl = new ResourcetypeModel();
@@ -408,6 +445,6 @@ class GeozzyCollectionView extends View
 
     }
     return $elemList;
-  }
+  }*/
 
 } // class CollectionView extends Vie
