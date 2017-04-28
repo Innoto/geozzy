@@ -172,7 +172,7 @@ class RExtUrlResourceViewModel extends Model {
             rv.countVisits, rv.weight
           FROM
             (
-            `geozzy_rext_url_resource_view` `rv`
+            `geozzy_resource_view` `rv`
             LEFT JOIN geozzy_resource_rext_url AS ru ON rv.id = ru.resource)
       '
     )
