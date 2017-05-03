@@ -489,6 +489,7 @@ class GeozzyUserView extends View
       $template->setFragment( "profileBlock", $profileBlock );
     }
     $template->addClientScript('js/userProfile.js', 'geozzyUser');
+    $template->addClientStyles('styles/master.less');
     $template->assign("userBaseFormOpen", $form->getHtmpOpen());
     $template->assign("userBaseFormFields", $form->getHtmlFieldsArray());
     $template->assign("userBaseFormClose", $form->getHtmlClose());

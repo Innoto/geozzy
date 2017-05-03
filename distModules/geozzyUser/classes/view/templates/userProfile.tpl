@@ -1,16 +1,5 @@
 {$client_includes}
 <!--<script rel="false" type="text/javascript" src="{$cogumelo.publicConf.media}/js/resource.js"></script>-->
-<!--<div class="titleBar">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12">
-        <img class="iconTitleBar img-responsive" alt="Páxina xeral" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>
-        <h1>{t}Perfil de Usuario{/t}</h1>
-      </div>
-    </div>
-  </div>
-</div>-->
-
 <div class="container">
   <h1>{t}Perfil de Usuario{/t}</h1>
   {$userBaseFormOpen}
