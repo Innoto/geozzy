@@ -1734,21 +1734,21 @@ class ResourceController {
       if( $resData = $this->getResourceData( $resId ) ) {
         if( $langId ) {
           if( isset( $resData[ 'title_'.$langId ] ) && $resData[ 'title_'.$langId ] !== '' ) {
-            $title = strtolower( $resData[ 'title_'.$langId ] );
+            $title = mb_strtolower( $resData[ 'title_'.$langId ] );
           }
           else {
             if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
-              $title = strtolower( $resData[ 'title_'.$this->defLang ] );
+              $title = mb_strtolower( $resData[ 'title_'.$this->defLang ] );
             }
           }
         }
         else {
           if( isset( $resData['title'] ) && $resData['title'] !== '' ) {
-            $title = strtolower( $resData['title'] );
+            $title = mb_strtolower( $resData['title'] );
           }
           else {
             if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
-              $title = strtolower( $resData[ 'title_'.$this->defLang ] );
+              $title = mb_strtolower( $resData[ 'title_'.$this->defLang ] );
             }
           }
         }
