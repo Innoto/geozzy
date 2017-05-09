@@ -1661,10 +1661,10 @@ class ResourceController {
     // "Aplanamos" caracteres no ASCII7
     $url = str_replace( $this->urlTranslate[ 'from' ], $this->urlTranslate[ 'to' ], $url );
     // Solo admintimos a-z A-Z 0-9 - / El resto pasan a ser -
-    $url = preg_replace( '/[^a-z0-9\-\/]/i', '-', $url );
+    $url = preg_replace( '/[^a-z0-9\-\/]/iu', '-', $url );
     // Eliminamos - sobrantes
-    $url = preg_replace( '/--+/', '-', $url );
-    $url = preg_replace( '/-*\/-*/', '/', $url );
+    $url = preg_replace( '/--+/u', '-', $url );
+    $url = preg_replace( '/-*\/-*/u', '/', $url );
     $url = trim( $url, '-' );
     // Por si ha quedado algo, pasamos el validador de PHP
     $url = filter_var( $url, FILTER_SANITIZE_URL );
