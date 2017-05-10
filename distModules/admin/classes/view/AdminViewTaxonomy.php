@@ -12,7 +12,7 @@ class AdminViewTaxonomy extends AdminViewMaster {
 
   public function categoryTermsSync( $request ) {
 
-    $id = substr($request[1], 1);
+    $id = mb_substr($request[1], 1);
 
     header('Content-type: application/json');
     switch( $_SERVER['REQUEST_METHOD'] ) {

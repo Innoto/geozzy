@@ -187,8 +187,8 @@ class CommentAPIView extends View {
       if( !$userID ) {
         if( isset( $permissions['anonymous'] ) && $permissions['anonymous'] === true
           && isset( $params['anonymousName'], $params['anonymousEmail'] )
-          && strlen( $params['anonymousName'] ) > 3
-          && strlen( $params['anonymousEmail'] ) > 8
+          && mb_strlen( $params['anonymousName'] ) > 3
+          && mb_strlen( $params['anonymousEmail'] ) > 8
           && $valCtrl->val_email( $params['anonymousEmail'] )
           )
         {
@@ -206,7 +206,7 @@ class CommentAPIView extends View {
     }
 
     if( $valid ) { // Contenidos
-      if( isset( $params['content'] ) && strlen( $params['content'] ) > 5 ) {
+      if( isset( $params['content'] ) && mb_strlen( $params['content'] ) > 5 ) {
         $valuesArray['content'] = $params['content'];
       }
 

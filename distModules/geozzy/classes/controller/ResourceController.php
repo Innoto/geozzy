@@ -1661,10 +1661,10 @@ class ResourceController {
     // "Aplanamos" caracteres no ASCII7
     $url = str_replace( $this->urlTranslate[ 'from' ], $this->urlTranslate[ 'to' ], $url );
     // Solo admintimos a-z A-Z 0-9 - / El resto pasan a ser -
-    $url = preg_replace( '/[^a-z0-9\-\/]/i', '-', $url );
+    $url = preg_replace( '/[^a-z0-9\-\/]/iu', '-', $url );
     // Eliminamos - sobrantes
-    $url = preg_replace( '/--+/', '-', $url );
-    $url = preg_replace( '/-*\/-*/', '/', $url );
+    $url = preg_replace( '/--+/u', '-', $url );
+    $url = preg_replace( '/-*\/-*/u', '/', $url );
     $url = trim( $url, '-' );
     // Por si ha quedado algo, pasamos el validador de PHP
     $url = filter_var( $url, FILTER_SANITIZE_URL );
@@ -1734,21 +1734,21 @@ class ResourceController {
       if( $resData = $this->getResourceData( $resId ) ) {
         if( $langId ) {
           if( isset( $resData[ 'title_'.$langId ] ) && $resData[ 'title_'.$langId ] !== '' ) {
-            $title = strtolower( $resData[ 'title_'.$langId ] );
+            $title = mb_strtolower( $resData[ 'title_'.$langId ] );
           }
           else {
             if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
-              $title = strtolower( $resData[ 'title_'.$this->defLang ] );
+              $title = mb_strtolower( $resData[ 'title_'.$this->defLang ] );
             }
           }
         }
         else {
           if( isset( $resData['title'] ) && $resData['title'] !== '' ) {
-            $title = strtolower( $resData['title'] );
+            $title = mb_strtolower( $resData['title'] );
           }
           else {
             if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
-              $title = strtolower( $resData[ 'title_'.$this->defLang ] );
+              $title = mb_strtolower( $resData[ 'title_'.$this->defLang ] );
             }
           }
         }

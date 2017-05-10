@@ -196,7 +196,7 @@ class RExtCommunityController extends RExtController implements RExtInterface {
 
     // error_log("setSocial( $socialNet, $account, $commUser )");
 
-    $socialNet = strtolower( trim( $socialNet ) );
+    $socialNet = mb_strtolower( trim( $socialNet ) );
     $account = ( $socialNet === 'twitter' ) ? trim( $account, ' @' ) : trim( $account );
 
     if( $socialNet === 'facebook' || $socialNet === 'twitter' ) {

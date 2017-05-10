@@ -217,7 +217,7 @@ class RExtViewController extends RExtController implements RExtInterface {
           $altTplFile = $viewAlternativeMode.'.tpl';
         }
         else {
-          $altTplFile = 'rExtViewAlt'.substr( $viewAlternativeMode, 3 ).'.tpl';
+          $altTplFile = 'rExtViewAlt'.mb_substr( $viewAlternativeMode, 3 ).'.tpl';
         }
 
         if( isset($viewAlternativeModeConf['module']) ) {
@@ -245,7 +245,7 @@ class RExtViewController extends RExtController implements RExtInterface {
           $altViewClass = $viewAlternativeModeConf['view'];
         }
         else {
-          $altViewClass = 'RExtViewAlt'.substr( $viewAlternativeMode, 4 );
+          $altViewClass = 'RExtViewAlt'.mb_substr( $viewAlternativeMode, 4 );
         }
         $altViewClassFile = $altViewClass.'.php';
 

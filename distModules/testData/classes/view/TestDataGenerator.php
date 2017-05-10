@@ -86,7 +86,7 @@ class TestDataGenerator extends View
     include 'randomText.php';
     $contentLength = rand(3,5000);
     $contentIni = rand(0,500);
-    $contentRandom = substr($randomText, $contentIni, $contentLength);
+    $contentRandom = mb_substr($randomText, $contentIni, $contentLength);
 
     $fileControl = new FiledataController();
 

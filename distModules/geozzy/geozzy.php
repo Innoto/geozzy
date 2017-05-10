@@ -291,7 +291,7 @@ class geozzy extends Module {
         else if (ord($char) === 127) {
           if( strlen($password) > 0 ) {
             fwrite(STDOUT, "\x08 \x08");
-            $password = substr($password, 0, -1);
+            $password = mb_substr($password, 0, -1);
           }
         }
         else {
