@@ -506,12 +506,19 @@ class AdminViewResource extends AdminViewMaster {
               $resourceView->actionResourceFormSuccess( $partForm, $resource, true );
             }
             if( !$partForm->existErrors() ) {
-              $resourcesFiles[] = $resource;
+              $resourcesFilesIds[] = $resource->getter('id');
             }
           }
         }
       }
-      if( !empty($resourcesFiles) ){
+      if( !empty($resourcesFilesIds) ){
+        $resourceViewModel = new ResourceViewModel();
+        $resourcesFiles = $resourceViewModel->listItems(
+          array(
+            'filters' => array( 'inId' => $resourcesFilesIds )
+          )
+        )->fetchAll();
+
         foreach( $resourcesFiles as $rf ) {
           $thumbImg = false;
           $thumbSettings = array(
