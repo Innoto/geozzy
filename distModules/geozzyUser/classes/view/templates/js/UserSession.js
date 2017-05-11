@@ -15,7 +15,7 @@ geozzy.userSession = function() {
 
   // First Execution
   //
-  that.userControlAccess = function( successCallback, abortCallback) {
+  that.userControlAccess = function( successCallback, abortCallback, mode ) {
     that.finishCallback = successCallback;
     if(abortCallback){
       that.abortCallback = abortCallback;
@@ -23,7 +23,11 @@ geozzy.userSession = function() {
     that.getUserSession(
       function(){
         if( that.user.get('id') === false ){
-          that.initLoginBox();
+          if( mode  && mode === 'register') {
+            that.initRegisterBox();
+          }else{
+            that.initLoginBox();
+          }
         }else{
           that.finishCallback();
         }
