@@ -3,7 +3,7 @@
 
 class RoutesController {
 
-  function __construct() {
+  public function __construct() {
 
 
 
@@ -11,11 +11,11 @@ class RoutesController {
 
 
 
-  function extractPoints( $geom ) {
+  public function extractPoints( $geom ) {
     $points = array();
 
     foreach( $geom->getComponents() as $comp ) {
-      if( $comp->getGeomType() == 'LineString' ){
+      if( $comp->getGeomType() == 'LineString' ) {
         //$points = array_merge( $points , $this->extractPoints( $comp ) );
       }
       else
@@ -51,7 +51,7 @@ class RoutesController {
         $filePath = $formRoute->getFieldValue('rExtRoutes_routeFile')[ 'temp' ]['absLocation'];
       }
       else {
-        $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'].  $formRoute->getFieldValue('rExtRoutes_routeFile')[ 'prev' ]['absLocation'];
+        $filePath = Cogumelo::getSetupValue( 'mod:filedata' )['filePath'].  $formRoute->getFieldValue('rExtRoutes_routeFile')[ 'prev' ]['absLocation'];
       }
 
 
@@ -72,7 +72,7 @@ class RoutesController {
         $route['circular'] = 0;
         $route['centroid'] =  [ $cent->y(), $cent->x() ];
         $route['start'] =  [ $start->y(), $start->x() ];
-        $route['end'] =  [ $end->y(), $end->x() ];        
+        $route['end'] =  [ $end->y(), $end->x() ];
         $route['trackPoints'] = $this->extractPoints( $polygon );
       }
       catch(Exception $e) {
@@ -114,7 +114,7 @@ class RoutesController {
       if(  $routeVO->getter('routeFile') ) {
 
         $fileDataList = (new FiledataModel(['id'=> $routeVO->getter('routeFile') ]) )->save();
-        $filePath = cogumeloGetSetupValue( 'mod:filedata' )['filePath'] . $fileDataList->getter('absLocation');
+        $filePath = Cogumelo::getSetupValue( 'mod:filedata' )['filePath'] . $fileDataList->getter('absLocation');
       }
       else {
         $filePath = false;
@@ -172,10 +172,10 @@ class RoutesController {
 
 
 
-    if(sizeof($points)) {
+    if( count($points) ) {
 
       // get max and min
-      foreach($points as $pk => $point) {
+      foreach( $points as $pk => $point ) {
         if( $point[0] < $minX ) {
           $minX = $point[0];
         }
@@ -225,13 +225,13 @@ class RoutesController {
       }
 
       // allways set final point
-      $pointsFinal[sizeof($pointsFinal)-1] = $point;
+      $pointsFinal[ count($pointsFinal) - 1 ] = $point;
     }
 
     return $pointsFinal;
   }
 
-  private function distanceAB($coorA, $coorB) {
+  private function distanceAB( $coorA, $coorB ) {
     $distance = 0;
 
     $delta_lat = $coorB[0] - $coorA[0];
