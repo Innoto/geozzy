@@ -67,7 +67,7 @@ class rextView extends Module {
 
   public function loadViewAlternativeModeAppTerms() {
     // error_log( 'rextView::loadViewAlternativeModeAppTerms()' );
-    $confFileAppTerms = Cogumelo::GetSetupValue('setup:appBasePath').'/conf/inc/geozzyRExtViewAppTerms.php';
+    $confFileAppTerms = Cogumelo::getSetupValue('setup:appBasePath').'/conf/inc/geozzyRExtViewAppTerms.php';
     if( file_exists( $confFileAppTerms ) ) {
 
       include( $confFileAppTerms );

@@ -33,9 +33,9 @@ class SitemapView extends View {
     // $langDefault = Cogumelo::getSetupValue( 'lang:default' );
     // $langAvailable = is_array( $langsConf ) ? array_keys( $langsConf ) : array( $langDefault );
 
-    $defConf = Cogumelo::GetSetupValue( 'mod:geozzy:sitemap:default' );
-    $ignoreRTypes = Cogumelo::GetSetupValue( 'mod:geozzy:sitemap:ignoreRTypes' );
-    $conf = Cogumelo::GetSetupValue( 'mod:geozzy:sitemap' );
+    $defConf = Cogumelo::getSetupValue( 'mod:geozzy:sitemap:default' );
+    $ignoreRTypes = Cogumelo::getSetupValue( 'mod:geozzy:sitemap:ignoreRTypes' );
+    $conf = Cogumelo::getSetupValue( 'mod:geozzy:sitemap' );
 
     $filters = is_array( $ignoreRTypes ) ? array( 'rTypeIdNameNotIn' => $ignoreRTypes ) : array();
     $urlAliasResModel = new UrlAliasResourceViewModel();

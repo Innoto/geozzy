@@ -34,7 +34,7 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
     $fileData = new FiledataModel();
     // para cada idioma tenemos q traernos los ficheros!!!!!!
 
-    foreach (cogumeloGetSetupValue('publicConf:vars:langAvailableIds') as $lang){
+    foreach( Cogumelo::getSetupValue('publicConf:vars:langAvailableIds') as $lang ) {
       if( isset($rExtData['audioFile_'.$lang]) ){
         $audioguide[$lang] = $fileData->listItems(array('filters' => array('id' => $rExtData['audioFile_'.$lang])))->fetch()->getAllData( 'onlydata' );
         $rExtData['audioFile_'.$lang] = $audioguide[$lang];
@@ -107,24 +107,24 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
    * @param $form FormController
    *
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
-   */
-   public function getFormBlockInfo( FormController $form ) {
+  */
+  public function getFormBlockInfo( FormController $form ) {
 
-     $formBlockInfo = parent::getFormBlockInfo( $form );
-     $templates = $formBlockInfo['template'];
+    $formBlockInfo = parent::getFormBlockInfo( $form );
+    $templates = $formBlockInfo['template'];
 
-     $templates['basic'] = new Template();
-     $templates['basic']->setTpl( 'rExtFormBlock.tpl', 'rextAudioguide' );
-     $templates['basic']->assign( 'rExt', $formBlockInfo );
+    $templates['basic'] = new Template();
+    $templates['basic']->setTpl( 'rExtFormBlock.tpl', 'rextAudioguide' );
+    $templates['basic']->assign( 'rExt', $formBlockInfo );
 
-     // $templates['basic']->addClientStyles('ionrangeslider/css/ion.rangeSlider.css', 'vendor/bower');
-     // $templates['basic']->addClientScript('ionrangeslider/js/ion.rangeSlider.js', 'vendor/bower');
-     $templates['basic']->addClientScript('js/rextAudioguideAdmin.js', 'rextAudioguide');
+    // $templates['basic']->addClientStyles('ionrangeslider/css/ion.rangeSlider.css', 'vendor/bower');
+    // $templates['basic']->addClientScript('ionrangeslider/js/ion.rangeSlider.js', 'vendor/bower');
+    $templates['basic']->addClientScript('js/rextAudioguideAdmin.js', 'rextAudioguide');
 
-     $formBlockInfo['template'] = $templates;
+    $formBlockInfo['template'] = $templates;
 
-     return $formBlockInfo;
-   }
+    return $formBlockInfo;
+  }
 
 
   /**
@@ -154,7 +154,7 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
       else{
-        foreach (cogumeloGetSetupValue('publicConf:vars:langAvailableIds') as $lang){
+        foreach( Cogumelo::getSetupValue('publicConf:vars:langAvailableIds') as $lang ) {
           $fileField[$lang] = $this->addPrefix( 'audioFile_'.$lang );
           if( $form->isFieldDefined( $fileField[$lang] ) ) {
             $this->defResCtrl->setFormFiledata( $form, $fileField[$lang], 'audioFile_'.$lang, $rExtModel );
@@ -187,26 +187,26 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
    * Preparamos los datos para visualizar la parte de la extension
    *
    * @return Array $rExtViewBlockInfo{ 'template' => array, 'data' => array }
-   */
-   public function getViewBlockInfo( $resId = false ) {
+  */
+  public function getViewBlockInfo( $resId = false ) {
 
-     $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
+    $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
-     if( $rExtViewBlockInfo['data'] ) {
-       // TODO: esto será un campo da BBDD
-       $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
+    if( $rExtViewBlockInfo['data'] ) {
+      // TODO: esto será un campo da BBDD
+      $rExtViewBlockInfo['data'] = $this->defResCtrl->getTranslatedData( $rExtViewBlockInfo['data'] );
 
-       if (isset($rExtViewBlockInfo['data']['audioFile'])){
+      if (isset($rExtViewBlockInfo['data']['audioFile'])){
 
-         $rExtViewBlockInfo['template']['full'] = new Template();
-         $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
-         $rExtViewBlockInfo['template']['full']->addClientScript('js/rextAudioguide.js', 'rextAudioguide');
-         $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextAudioguide' );
-       }
-     }
+        $rExtViewBlockInfo['template']['full'] = new Template();
+        $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+        $rExtViewBlockInfo['template']['full']->addClientScript('js/rextAudioguide.js', 'rextAudioguide');
+        $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextAudioguide' );
+      }
+    }
 
 
-     return $rExtViewBlockInfo;
-   }
+    return $rExtViewBlockInfo;
+  }
 
 } // class RExtAudioguideController
