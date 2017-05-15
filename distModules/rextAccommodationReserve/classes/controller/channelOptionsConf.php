@@ -4,7 +4,7 @@
 
 cogumelo::setSetupValue( 'mod:rextAccommodationReserve:channelOptions:booking.com', [
   'type' => 'srcLink',
-  'pattern' => 'http://www.booking.com/hotel/<$langName>/<$idRelate>.html?checkin=<$checkin>;checkout=<$checkout>;group_adults=<$adults>;no_rooms=<$rooms>#availability_target',
+  'pattern' => 'http://www.booking.com/hotel/es/<$idRelate>.<$langName>.html?checkin=<$checkin>;checkout=<$checkout>;group_adults=<$adults>;no_rooms=<$rooms>#availability_target',
   'patternDateFormat' => 'YYYY-MM-DD',
   'params' => [
     // 'admin' => [ 'idRelate' ],
