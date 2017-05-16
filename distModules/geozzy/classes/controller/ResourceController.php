@@ -200,7 +200,10 @@ class ResourceController {
 
         $topicModel = new TopicModel();
         foreach( $topicsArray as $i => $topicId ) {
-          $resourceTopicList[$topicId] = $topicModel->listItems( array( 'filters' => array( 'id' => $topicId ) ) )->fetch()->getter('name');
+          if( $t = $topicModel->listItems( array( 'filters' => array( 'id' => $topicId ) ) )->fetch() ) {
+            $resourceTopicList[$topicId] = $t->getter('name');
+          }
+
         }
         $resourceData[ 'topicsName' ] = $resourceTopicList;
         /**
