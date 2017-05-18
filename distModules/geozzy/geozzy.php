@@ -14,7 +14,18 @@ class geozzy extends Module {
   public $name = 'geozzy';
   public $version = 1.94;
 
-  public $dependences = [];
+  // public $autoIncludeAlways = true;
+  // FALLA: PHP Fatal error:  Class 'Smarty' not found in /home/proxectos/cogumelo/coreClasses/coreView/Template.php on line 10
+
+
+  public $dependences = array(
+    array(
+      'id' =>'lobibox',
+      'params' => [ 'lobibox' ],
+      'installer' => 'bower',
+      'includes' => [ 'dist/css/lobibox.min.css', 'dist/js/lobibox.js' ] // 'dist/js/lobibox.min.js'
+    )
+  );
 
   // pre-170126
   // 'id' =>'ckeditor',
@@ -29,6 +40,7 @@ class geozzy extends Module {
     'model/ResourceModel.php',
     'model/UrlAliasModel.php',
     'view/GeozzyTaxonomytermView.php',
+    'js/clientMsg.js',
     'js/generateModal.js'
   );
 
