@@ -3,44 +3,34 @@
 var app = app || {};
 var geozzy = geozzy || {};
 
-
-
 function manageAjaxFailures() {
   //if( window.location.pathname != '/admin/login') {
+    // Catch all ajax denied
+    $.ajaxSetup({
+      statusCode: {
+        401: function(datos) {
+          geozzy.userSessionInstance.getUserSession( function() {
+            console.log(geozzy.userSessionInstance.user.get('id') )
 
-        // Catch all ajax denied
-        $.ajaxSetup({
-          statusCode: {
-            401: function(datos) {
-              geozzy.userSessionInstance.getUserSession( function() {
-                console.log(geozzy.userSessionInstance.user.get('id') )
-
-                if( geozzy.userSessionInstance.user.get('id') == false ) {
-                  window.location.replace('/admin/login');
-                }
-              });
-
-            },
-            403: function() {
-              geozzy.userSessionInstance.getUserSession( function() {
-                if( geozzy.userSessionInstance.user.get('id') == false ) {
-                  window.location.replace('/admin/login');
-                }
-              });
+            if( geozzy.userSessionInstance.user.get('id') == false ) {
+              window.location.replace('/admin/login');
             }
-          }
-        });
+          });
 
+        },
+        403: function() {
+          geozzy.userSessionInstance.getUserSession( function() {
+            if( geozzy.userSessionInstance.user.get('id') == false ) {
+              window.location.replace('/admin/login');
+            }
+          });
+        }
+      }
+    });
   //}
 }
 
-
 $( document ).ready(function() {
-
-  $(window).bind("load resize", function() {
-    calculateHeightMenu();
-  });
-
   app = {
     // data
     categories: new CategoryCollection(),
@@ -77,16 +67,24 @@ $( document ).ready(function() {
       geozzy.storiesInstance.listStoryView.render();
     }
 
-    calculateHeightMenu();
-    $('#side-menu').metisMenu();
-
+    operatingHeader();
     manageAjaxFailures();
   });
 
 
 });
 
-
+function operatingHeader(){
+  $(window).bind("load resize", function() {
+    calculateHeightMenu();
+  });
+  calculateHeightMenu();
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("closed");
+  });
+  $('#side-menu').metisMenu();
+}
 function calculateHeightMenu(){
   if($(window).width() > 991){
     var menuInfoHeight = $('#menuInfo').height();

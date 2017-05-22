@@ -15,6 +15,7 @@
           {$headTitle}
         {/block}
         </h3>
+
       </div>
     </div>
     <div class="col-lg-6 col-md-12 clearfix">
@@ -31,7 +32,7 @@
 </div><!-- /headSection -->
 
 <div class="contentSection clearfix">
-{block name="contentSection"}{/block}
+  {block name="contentSection"}{/block}  
 </div><!-- /contentSection -->
 
 

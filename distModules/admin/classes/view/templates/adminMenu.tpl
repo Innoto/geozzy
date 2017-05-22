@@ -1,7 +1,6 @@
 <nav id="menu-wrapper" class="navbar clearfix" role="navigation">
   <div class="sidebar" role="navigation">
-    <div class="sidebar-nav collapse navbar-collapse ">
-
+    <div class="sidebar-nav collapse navbar-collapse offcanvas">
         <div id="menuInfo">
           <div class="menuLogo">
             <a href="/">
@@ -145,3 +144,9 @@
     </div>
   </div>
 </nav>
+
+
+<a href="#" class="btn btn-primary pull-left" id="menu-toggle">
+  <i class="fa fa-arrow-left opened" aria-hidden="true"></i>
+  <i class="fa fa-arrow-right closed" aria-hidden="true"></i>
+</a>
