@@ -232,9 +232,14 @@ class GeozzyUserView extends View
     $adresses = $userData['email'];
     $name = $userData['name'].' '.$userData['surname'];
 
+    $userHash = $this->generateHashUser();
     // ^geozzyuser/verify/([0-9a-f]+)$
     $url = Cogumelo::getSetupValue( 'setup:webBaseUrl:urlCurrent' ).
-      'geozzyuser/verify/'.$userData['id'].'/'.$this->hashVerifyUser( $userData, 'VerifyEmailLabel' );
+      'geozzyuser/verify/'.$userData['id'].'/'.$userHash;
+
+    $userVO = $this->getUserVO( $userData['id'] );
+    $userVO->setter( 'hashVerifyUser', $userHash );
+    $userVO->save();
 
     $bodyPlain = new Template();
     $bodyHtml = new Template();
@@ -259,18 +264,16 @@ class GeozzyUserView extends View
 
     $userId = $urlParams['1'];
     $urlCode = $urlParams['2'];
-    $saltString = '$5$rounds=5000$usesomesillystringforsalt$';
 
     $userVO = $this->getUserVO( $userId );
 
     if( $userVO ) {
       $userData = $userVO->getAllData('onlydata');
-      $hash = $this->hashVerifyUser( $userData, 'VerifyEmailLabel' );
 
       $resourceCtrl = new ResourceController();
       $resourceModel = new ResourceModel( );
 
-      if ( $urlCode === $hash ) {
+      if ( !empty($userData['hashVerifyUser']) && $urlCode === $userData['hashVerifyUser'] ) {
         $userVO->setter( 'verified', 1 );
         $userVO->setter( 'timeLastUpdate', date( 'Y-m-d H:i:s', time() ) );
         $userVO->save();
@@ -316,8 +319,13 @@ class GeozzyUserView extends View
     $name = $userData['name'].' '.$userData['surname'];
 
     // ^geozzyuser/verify/([0-9a-f]+)$
+    $userHash = $this->generateHashUser();
     $url = Cogumelo::getSetupValue( 'setup:webBaseUrl:urlCurrent' ).
-      'geozzyuser/unknownpass/'.$userData['id'].'/'.$this->hashVerifyUser( $userData, 'UnknownPassLabel' );
+      'geozzyuser/unknownpass/'.$userData['id'].'/'.$userHash;
+
+    $userVO = $this->getUserVO( $userData['id'] );
+    $userVO->setter( 'hashUnknownPass', $userHash );
+    $userVO->save();
 
     $bodyPlain = new Template();
     $bodyHtml = new Template();
@@ -344,48 +352,64 @@ class GeozzyUserView extends View
 
     $userId = $urlParams['1'];
     $urlCode = $urlParams['2'];
-    $saltString = '$5$rounds=5000$usesomesillystringforsalt$';
-
     $userVO = $this->getUserVO( $userId );
 
     if( $userVO ) {
       $userData = $userVO->getAllData('onlydata');
-      $hash = $this->hashVerifyUser( $userData, 'UnknownPassLabel' );
+      $block['data']['title'] = __('Recovery Password');
+      $block['data']['headDescription'] = __('Recovery Password');
+      $block['data']['urlAlias'] = '/geozzyuser/unknownpass';
+      $block['data']['rTypeIdName'] = 'GeozzyUser';
+      $block['data']['hashValid'] = ( !empty($userData['hashUnknownPass']) && $urlCode === $userData['hashUnknownPass']);
+      $block['ext']= '';
+
+      $template = new Template();
+      $template->setTpl( 'recoveryPassword.tpl', 'geozzyUser' );
+      $template->assign( 'res', $block );
 
 
-      if ( $urlCode === $hash ) {
-        $userVO->setter( 'timeLastUpdate', date( 'Y-m-d H:i:s', time() ) );
+      if ( !empty($userData['hashUnknownPass']) && $urlCode === $userData['hashUnknownPass'] ) {
+        // Desactivamos el hash una vez usado
+        $userVO->setter( 'hashUnknownPass', NULL );
         $userVO->save();
-
-        // AutoLogueamos al usuario
-        $useraccesscontrol = new UserAccessController();
-        $useraccesscontrol->userAutoLogin( $userData['login'] );
-
-        Cogumelo::redirect( '/userprofile#user/profile' );
-
         error_log( '(Notice) OK, URL de recuperacion de contraseña. Login:'.$userData['login'].' Email:'.$userData['email'] );
+
+        $userView = new UserView();
+        $form = $userView->userChangePasswordFormDefine( $userId, $modeRecovery = true );
+        $form->setSuccess( 'redirect', '/' );
+        $template->setFragment( 'blockContent', $userView->userChangePasswordFormGetBlock( $form ));
       }
       else {
-        echo "<pre>\n\nKO. URL no valida.\n\n\n";
-
         error_log( '(Notice) checkUnknownPass: URL no valida. $urlParams '.print_r( $urlParams, true ) );
         error_log( '$userData '.print_r( $userData, true ) );
-        error_log( '$hash '.print_r( $hash, true ) );
+      }
+
+      $block['template']['full'] = $template;
+      appResourceBridge::load('view/AppResourceBridgeView.php');
+      $appResBridge = new AppResourceBridgeView();
+      $pageTemplate = $appResBridge->getResourcePageTemplate( $block );
+
+      if( $pageTemplate ) {
+        $pageTemplate->addClientStyles( 'styles/master.less' );
+        $pageTemplate->exec();
       }
     }
   }
 
-  public function hashVerifyUser( $userData, $label = 'general' ) {
+  public function generateHashUser() {
     $hash = false;
 
-    $saltString = '$5$rounds=5000$usesomesillystringforsalt$';
-    $str = $label.$userData['verified'].$userData['id'].$userData['login'].$userData['email'].$userData['timeCreateUser'];
-    if( isset( $userData['timeLastUpdate'] ) ) {
-      $str .= $userData['timeLastUpdate'];
+    for ($i=0; $i < 20 ; $i++) {
+      $c = rand(0,60);
+      $sum = 0;
+      if( $c > 9 ){
+        $sum  = ( $c < 36 ) ? 55 : 61 ;
+        $hash.= chr($sum+$c);
+      }
+      else{
+        $hash.= $c;
+      }
     }
-    $criptString = strtr( crypt( $str, $saltString ), '/', '_' );
-    $hash = 'A'.strtr( preg_replace( '/^\$\d\$rounds=\d+\$[^\$]+\$/', '', $criptString ), '/', '_' ).'Z'; // Quito saltString
-
     return $hash;
   }
 
@@ -489,7 +513,7 @@ class GeozzyUserView extends View
       $template->setFragment( "profileBlock", $profileBlock );
     }
     $template->addClientScript('js/userProfile.js', 'geozzyUser');
-    $template->addClientStyles('styles/masterGeozzyUserProfile.less');
+    $template->addClientStyles('styles/masterGeozzyUser.less');
     $template->assign("userBaseFormOpen", $form->getHtmpOpen());
     $template->assign("userBaseFormFields", $form->getHtmlFieldsArray());
     $template->assign("userBaseFormClose", $form->getHtmlClose());

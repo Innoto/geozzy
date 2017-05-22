@@ -49,7 +49,8 @@ class geozzyUser extends Module {
     $this->addUrlPatterns( '#^geozzyuser/resource/sendresource#', 'view:GeozzyUserView::sendUserProfileResourceForm' );
     $this->addUrlPatterns( '#^geozzyuser/verify/(\d+)/(.+)$#', 'view:GeozzyUserView::checkVerifyLink' );
     $this->addUrlPatterns( '#^geozzyuser/unknownpass/(\d+)/(.+)$#', 'view:GeozzyUserView::checkUnknownPass' );
-    $this->addUrlPatterns( '#^geozzyuser/newpass/(\d+)/(.+)$#', 'view:GeozzyUserView::newPass' );
+    $this->addUrlPatterns( '#^geozzyuser/recoveryPassword/#', 'view:GeozzyUserView::checkUnknownPass' );
+
   }
 
   public function moduleRc() {
