@@ -147,6 +147,7 @@
 
 
 <a href="#" class="btn btn-primary pull-left" id="menu-toggle">
-  <i class="fa fa-arrow-left opened" aria-hidden="true"></i>
-  <i class="fa fa-arrow-right closed" aria-hidden="true"></i>
+  <i class="fa fa-bars" aria-hidden="true"></i>
+  <!--<i class="fa fa-arrow-left opened" aria-hidden="true"></i>
+  <i class="fa fa-arrow-right closed" aria-hidden="true"></i>-->
 </a>
