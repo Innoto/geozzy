@@ -71,6 +71,13 @@ class AdminViewMaster extends View {
   }
 
   public function homePage(){
+
+    $defaultURL = Cogumelo::getSetupValue( 'mod:admin:defaultURL' );
+    if($defaultURL){
+      Cogumelo::redirect($defaultURL);
+      exit;
+    }
+
     $template = new Template( $this->baseDir );
     $template->setTpl('homePage.tpl', 'admin');
 
@@ -116,6 +123,10 @@ class AdminViewMaster extends View {
       $this->template->assign( 'titleCustom' , $titleCustom);
     }
 
+    $menuClosed = Cogumelo::getSetupValue( 'mod:admin:menuClosed' );
+    if($menuClosed){
+      $this->template->assign( 'menuClosed' , $menuClosed);
+    }
     //
     $this->template->exec();
   }

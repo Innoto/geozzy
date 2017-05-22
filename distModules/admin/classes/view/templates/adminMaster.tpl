@@ -41,7 +41,7 @@
   {include file="admin///modal.tpl"}
 
 
-  <div id="wrapper">
+  <div id="wrapper" {if !empty($menuClosed)} class="closed" {/if}>
     {include file="admin///adminMenu.tpl"} <!--menu-wrapper -->
     <div id="page-wrapper"><!--Content -->
     </div><!-- /#page-wrapper -->

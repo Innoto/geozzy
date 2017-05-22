@@ -38,8 +38,11 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   default: function() {
-    //app.router.navigate("resource/list", {trigger: true});
-    app.mainView.loadAjaxContent( '/admin/home' );
+    if(cogumelo.publicConf.mod_admin_defaultURL){
+      app.router.navigate(cogumelo.publicConf.mod_admin_defaultURL, {trigger: true});
+    }else{
+      app.mainView.loadAjaxContent( '/admin/home' );
+    }
   },
 
   accessDenied: function() {
