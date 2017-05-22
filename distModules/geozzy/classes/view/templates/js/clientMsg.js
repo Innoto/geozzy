@@ -120,14 +120,17 @@ geozzy.clientMsgClass = function( options ) {
   };
 
 
+  // Msg Prompt
   that.prompt = function( msg, fnResult, fnOptions ) {
     var result = false;
 
-    var promptType = 'text'; // Available types (text|number|color)
+    var promptType = 'text';
     var msgOptions = $.extend( true, {}, that.msgDefOptions, fnOptions );
 
     if( typeof msgOptions.promptType === 'string' ) {
       promptType = msgOptions.promptType;
+      // Any HTML5 input type can be used in prompt window.
+      // text, color, date, datetime, email, number, range, ...
     }
 
 
@@ -164,5 +167,5 @@ geozzy.clientMsgClass = function( options ) {
 };
 
 
-// Default Geozzy instance
+// Default Geozzy clientMsgClass instance
 geozzy.clientMsg = new geozzy.clientMsgClass();
