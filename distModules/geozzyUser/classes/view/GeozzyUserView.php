@@ -32,6 +32,17 @@ class GeozzyUserView extends View
     return $res;
   }
 
+  public function registerBlockAccessCheck(){
+    $registerAccess = Cogumelo::getSetupValue( 'mod:geozzyUser:blockAccessRegister' );
+    $res = true;
+    if(!empty($registerAccess)){
+      $res = false;
+      error_log( 'INTENTO DE ACCESO A REGISTRO ESTANDO BLOQUEADO' );
+      die("REGISTRO CERRADO!!");
+    }
+    return $res;
+  }
+
   public function loginForm() {
     $this->loginCheck();
     $userView = new UserView();
@@ -108,8 +119,8 @@ class GeozzyUserView extends View
     //data-toggle="modal" data-target="#link-info-legal"
   }
   public function registerForm() {
-
     $this->loginCheck();
+    $this->registerBlockAccessCheck();
     $form = new FormController('registerModalForm'); //actionform
     $form->setAction('/geozzyuser/senduserregister');
     $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.successRegisterBox();' );
