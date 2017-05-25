@@ -214,8 +214,11 @@ class GeozzyUserView extends View
 
         // Enviamos un mail de verificación
         if( $userData['active'] === 1 && $userData['verified'] === 0 && $userData['email'] !== '' ) {
-
-          $this->sendVerifyEmail( $userData );
+          $blockVerifyMail = Cogumelo::getSetupValue( 'mod:geozzyUser:blockVerifyMail' );
+          //error_log( 'mod:geozzyUser:blockVerifyMail: '.json_encode($blockVerifyMail) );
+          if( empty($blockVerifyMail) ){
+            $this->sendVerifyEmail( $userData );
+          }
         }
       }
     }
