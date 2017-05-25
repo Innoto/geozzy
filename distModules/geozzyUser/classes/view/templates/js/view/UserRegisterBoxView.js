@@ -23,7 +23,7 @@ geozzy.userSessionComponents.userRegisterView = Backbone.View.extend({
       'backdrop' : 'static'
     });
     $("#registerModal").on('hidden.bs.modal', function (e) {
-      e.target.remove();
+      $(e.target).remove();
     });
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');

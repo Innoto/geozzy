@@ -7,11 +7,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
 
   isTaxonomyFilter: true,
-  template: _.template( geozzy.explorerComponents.filterComboViewTemplate ),
 
-  templateOption: _.template( geozzy.explorerComponents.filterComboViewOptionT ),
-
-  templateSummary: _.template( geozzy.explorerComponents.filterComboViewSummaryT ),
 
 
   initialize: function( opts ) {
@@ -24,10 +20,21 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
       titleSummary: false,
       summaryContainerClass: false,
       defaultOption: false,
-      data: false
+      data: false,
+
+      template: geozzy.explorerComponents.filterComboViewTemplate,
+      templateOption: geozzy.explorerComponents.filterComboViewOptionT,
+      templateSummary: geozzy.explorerComponents.filterComboViewSummaryT
+
     };
 
     that.options = $.extend(true, {}, options, opts);
+
+
+    that.template = _.template( that.options.template );
+    that.templateOption = _.template( that.options.templateOption );
+    that.templateSummary = _.template( that.options.templateSummary );
+
   },
 
   filterAction: function( model ) {
