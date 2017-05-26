@@ -19,7 +19,7 @@ geozzy.userSessionComponents.userRegisterOkView = Backbone.View.extend({
       'show' : true
     });
     $("#registerOkModal").on('hidden.bs.modal', function (e) {
-      e.target.remove();
+      $(e.target).remove();
       that.userSessionParent.finishCallback();
     });
     $(document).on('hidden.bs.modal', '.modal', function () {

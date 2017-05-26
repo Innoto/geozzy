@@ -6,8 +6,6 @@
 </head>
 <body data-spy="scroll" data-target=".headContent">
 
-<p>Correo html</p>
-
 <p>{$name}, te has registrado con el email {$email}</p>
 
 <p>Entra en esta página para confirmarlo:<br>
