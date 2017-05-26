@@ -26,7 +26,7 @@ class SitemapView extends View {
    */
   public function showSitemap() {
 
-    $urlsInfo = array();
+    $urlsInfo = [];
 
     $multiLang = ( count( Cogumelo::getSetupValue( 'lang:available' ) ) > 1 );
     // $langsConf = Cogumelo::getSetupValue( 'lang:available' );
@@ -37,10 +37,11 @@ class SitemapView extends View {
     $ignoreRTypes = Cogumelo::getSetupValue( 'mod:geozzy:sitemap:ignoreRTypes' );
     $conf = Cogumelo::getSetupValue( 'mod:geozzy:sitemap' );
 
-    $filters = is_array( $ignoreRTypes ) ? array( 'rTypeIdNameNotIn' => $ignoreRTypes ) : array();
+    $filters = is_array( $ignoreRTypes ) ? [ 'rTypeIdNameNotIn' => $ignoreRTypes ] : [];
+
     $urlAliasResModel = new UrlAliasResourceViewModel();
-    $urlAliasResList = $urlAliasResModel->listItems( array( 'filters' => $filters ) );
-    if( $urlAliasResList ) {
+    $urlAliasResList = ( gettype( $urlAliasResModel ) === 'object' ) ? $urlAliasResModel->listItems( [ 'filters' => $filters ] ) : false;
+    if( gettype( $urlAliasResList ) === 'object' ) {
       while( $urlAliasRes = $urlAliasResList->fetch() ) {
         $info = $urlAliasRes->getAllData( 'onlydata' );
         $modDate = isset( $info['timeLastUpdate'] ) ? $info['timeLastUpdate'] : $info['timeCreation'];
