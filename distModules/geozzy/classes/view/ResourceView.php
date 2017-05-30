@@ -71,7 +71,14 @@ class ResourceView extends View {
    **/
   public function getFormBlockInfo( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
     // error_log( __CLASS__.': getFormBlockInfo(,,,): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+
     $formBlockInfo = $this->defResCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
+    $formBlockInfo[ 'labels' ] = $this->defResCtrl->getLabelsData( $formBlockInfo['data'] );
+
+    if( count( $formBlockInfo[ 'labels' ] ) ) {
+      $formBlockInfo['template']['adminFull']->assign( 'res', array( 'labels' => $formBlockInfo['labels'] ) );
+    }
+
     return $formBlockInfo;
   }
 
@@ -184,6 +191,7 @@ class ResourceView extends View {
     // error_log( "ResourceView: getViewBlockInfo( $resId )" );
 
     $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
+    $resViewBlockInfo[ 'labels' ] = $this->defResCtrl->getLabelsData( $resViewBlockInfo['data'] );
 
     return $resViewBlockInfo;
   }

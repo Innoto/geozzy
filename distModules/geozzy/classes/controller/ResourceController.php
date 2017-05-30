@@ -1977,7 +1977,7 @@ class ResourceController {
     }
 
     if( !empty( $resViewData['rTypeIdName'] ) ) {
-      $labelData[] = 'rtIdN_'.$resViewData['rTypeIdName'];
+      $labelData[] = 'rtypeIdN_'.$resViewData['rTypeIdName'];
     }
 
     if( !empty( $resViewData['taxonomies'] ) ) {
