@@ -1,4 +1,4 @@
-<div class="explorerLayout clearfix">
+<div class="explorerLayout fixVhChromeMobile clearfix">
   <!--duContainer -->
   <div class="explorerContainer explorer-container-du"></div>
   <!--filterContainer -->
@@ -13,12 +13,12 @@
   <!-- mobile explorer buttons -->
 
 
-  <div class="row explorer-manage-filters-mobile" style="display:none;">
+  <div class="explorer-manage-filters-mobile" style="display:none;">
     <div class="col-xs-6 col-sm-6  text-center">
-      <span class="explorerButton return"><i class="fa fa-chevron-circle-left"></i>&nbsp;{t}Apply{/t}</span>
+      <div class="explorerButton return"><i class="fa fa-chevron-circle-left"></i>&nbsp;{t}Apply{/t}</div>
     </div>
     <div class="col-xs-6 col-sm-6  text-center">
-      <span class=" explorerButton clear">{t}Clear filters{/t}</span>
+      <div class=" explorerButton clear">{t}Clear filters{/t}</div>
     </div>
   </div>
 

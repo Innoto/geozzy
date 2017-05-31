@@ -212,9 +212,9 @@ class ResourceController {
       }
 
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
-      $termsGroupedIdName = $this->getTermsInfoByGroupIdName( $resId );
-      if( $termsGroupedIdName !== false ) {
-        foreach( $termsGroupedIdName as $idNameTaxgroup => $taxTermArray ) {
+      $resourceData[ 'taxonomies'] = $this->getTermsInfoByGroupIdName( $resId );
+      if( $resourceData[ 'taxonomies'] !== false ) {
+        foreach( $resourceData[ 'taxonomies'] as $idNameTaxgroup => $taxTermArray ) {
           $resourceData[ $idNameTaxgroup ] = $taxTermArray;
           // error_log( '$resourceData[ '.$idNameTaxgroup.' ] = : '.print_r( $taxTermArray, true ) );
         }
@@ -305,7 +305,9 @@ class ResourceController {
 
 
     if( !isset( $valuesArray[ 'timeCreation' ] ) ) {
-      $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
+      $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
+      $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
+      $valuesArray[ 'timeCreation' ] = $date->format( 'Y-m-d H:i:s' );
     }
 
 
@@ -578,13 +580,20 @@ class ResourceController {
 
       if( $form->isFieldDefined( 'id' ) && is_numeric( $form->getFieldValue( 'id' ) ) ) {
         $valuesArray[ 'userUpdate' ] = $user['data']['id'];
-        $valuesArray[ 'timeLastUpdate' ] = gmdate( "Y-m-d H:i:s", time() );
+
+        $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
+        $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
+        $valuesArray[ 'timeLastUpdate' ] = $date->format( 'Y-m-d H:i:s' );
+
         unset( $valuesArray[ 'image' ] );
       }
       else {
         $valuesArray[ 'user' ] = $user['data']['id'];
         if( !isset( $valuesArray[ 'timeCreation' ] ) || $valuesArray[ 'timeCreation' ] === '' ) {
-          $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
+
+          $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
+          $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
+          $valuesArray[ 'timeCreation' ] = $date->format( 'Y-m-d H:i:s' );
         }
       }
 
@@ -1261,7 +1270,7 @@ class ResourceController {
     }
 
     $resourceCollectionsAllModel = new ResourceCollectionsAllModel();
-    $resourceViewModel = new ResourceViewModel();
+    $resourceViewModel = new RExtUrlResourceViewModel();
     $resCollectionList = $resourceCollectionsAllModel->listItems( array(
       'filters' => $collFilters,
       'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
@@ -1284,8 +1293,7 @@ class ResourceController {
         }
 
         $resourceViewList = $resourceViewModel->listItems( [
-          'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ],
-          'affectsDependences' => ['RExtUrlModel']
+          'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ]
         ] );
         if( gettype( $resourceViewList ) === 'object' ) {
           $resVal = $resourceViewList->fetch();
@@ -1327,8 +1335,7 @@ class ResourceController {
               'imageAKey' => $resVal->getter('imageAKey'),
               'profile' => 'fast_cut'
             );
-            $resDataExtArray = $resVal->getterDependence('id', 'RExtUrlModel');
-            $thumbSettings['url'] = ( $resDataExt = $resDataExtArray[0] ) ? $resDataExt->getter('url') : false;
+            $thumbSettings['url'] = ( $resVal->getter('rextUrlUrl') ) ? $resVal->getter('rextUrlUrl') : false;
 
             switch( $collResources[ $collId ]['col']['collectionType'] ) {
               case 'multimedia':
@@ -1956,6 +1963,43 @@ class ResourceController {
   public function ytVidId( $url ) {
     $p = '#^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$#';
     return (preg_match($p, $url, $coincidencias)) ? $coincidencias[1] : false;
+  }
+
+
+
+  /**
+   *  Etiquetas informativas (labels con datos relevantes)
+   */
+  public function getLabelsData( $resViewData ) {
+    $labelData = [];
+
+    $useraccesscontrol = new UserAccessController();
+    $user = $useraccesscontrol->getSessiondata();
+    $labelData[] = $user ? 'user_LI' : 'user_LO'; /*  Logged In: LI  ---  Logged Out: LO  */
+
+    if( !empty( $resViewData['id'] ) ) {
+      $labelData[] = 'id_'.$resViewData['id'];
+    }
+
+    if( !empty( $resViewData['idName'] ) ) {
+      $labelData[] = 'idN_'.$resViewData['idName'];
+    }
+
+    if( !empty( $resViewData['rTypeIdName'] ) ) {
+      $labelData[] = 'rtypeIdN_'.$resViewData['rTypeIdName'];
+    }
+
+    if( !empty( $resViewData['taxonomies'] ) ) {
+      foreach( $resViewData['taxonomies'] as $idNameTaxgroup => $taxTermArray) {
+        $labelData[] = 'taxN_'.$idNameTaxgroup;
+      }
+    }
+
+    if( !empty( $resViewData['topic'] ) ) {
+      $labelData[] = 'idT_'.$resViewData['topic'];
+    }
+
+    return $labelData;
   }
 
 }

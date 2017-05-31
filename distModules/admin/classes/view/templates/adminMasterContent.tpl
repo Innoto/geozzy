@@ -31,8 +31,8 @@
   <!-- /.navbar-header -->
 </div><!-- /headSection -->
 
-<div class="contentSection clearfix">
-  {block name="contentSection"}{/block}  
+<div class="contentSection clearfix{if !empty($res.labels)} labelsInfo {' '|implode:$res.labels}{/if}">
+  {block name="contentSection"}{/block}
 </div><!-- /contentSection -->
 
 
