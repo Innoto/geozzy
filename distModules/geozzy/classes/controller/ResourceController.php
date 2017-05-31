@@ -305,7 +305,9 @@ class ResourceController {
 
 
     if( !isset( $valuesArray[ 'timeCreation' ] ) ) {
-      $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
+      $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
+      $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
+      $valuesArray[ 'timeCreation' ] = $date->format( 'Y-m-d H:i:s' );
     }
 
 
@@ -578,13 +580,20 @@ class ResourceController {
 
       if( $form->isFieldDefined( 'id' ) && is_numeric( $form->getFieldValue( 'id' ) ) ) {
         $valuesArray[ 'userUpdate' ] = $user['data']['id'];
-        $valuesArray[ 'timeLastUpdate' ] = gmdate( "Y-m-d H:i:s", time() );
+
+        $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
+        $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
+        $valuesArray[ 'timeLastUpdate' ] = $date->format( 'Y-m-d H:i:s' );
+
         unset( $valuesArray[ 'image' ] );
       }
       else {
         $valuesArray[ 'user' ] = $user['data']['id'];
         if( !isset( $valuesArray[ 'timeCreation' ] ) || $valuesArray[ 'timeCreation' ] === '' ) {
-          $valuesArray[ 'timeCreation' ] = gmdate( "Y-m-d H:i:s", time() );
+
+          $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
+          $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
+          $valuesArray[ 'timeCreation' ] = $date->format( 'Y-m-d H:i:s' );
         }
       }
 
