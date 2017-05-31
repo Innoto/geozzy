@@ -28,7 +28,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
         var latValue = 0;
         var lonValue = 0;
-        var zoom = 3;
+        var zoomInit = 3;
 
         if(typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
           console.log('cogumelo.publicConf.admin.adminMap is not defined in conf')
@@ -36,9 +36,11 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         else {
           var latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
           var lonInit = Number(cogumelo.publicConf.admin.adminMap.defaultLon);
-          var zoomInit = Number(cogumelo.publicConf.admin.adminMap.defaultZoom);
+          zoomInit = Number(cogumelo.publicConf.admin.adminMap.defaultZoom);
           var defaultMarker = cogumelo.publicConf.admin.adminMap.marker;
+
         }
+
 
         if( that.latInput.val() !== '' && that.latInput.val() !== '') {
           latValue = parseFloat( that.latInput.val() );
@@ -48,10 +50,9 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         }
 
         if( that.defaultZoom.length > 0 &&  that.defaultZoom.val() != '') {
-          zoom = parseInt( that.defaultZoom.val() );
+          zoomInit = parseInt( that.defaultZoom.val() );
         }
 
-        zoomInit = zoom;
 
         // gmaps init
         var mapOptions = {
