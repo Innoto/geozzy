@@ -99,7 +99,7 @@ class ResourceController {
       $resModel = new ResourceModel();
       $resList = $resModel->listItems( [
         'affectsDependences' => [ 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ],
-        'filters' => [ 'id' => $resId, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 ]
+        'filters' => [ 'id' => $resId ]  /*, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 */
       ] );
       $resourceobj = ( gettype( $resList ) === 'object' ) ? $resList->fetch() : null;
 
@@ -157,17 +157,55 @@ class ResourceController {
         $resourceData['locLon'] = $geoLocation['data'][1];
       }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $resObj->getterDependence( 'id', 'UrlAliasModel' );
       if( $urlAliasDep !== false ) {
         foreach( $urlAliasDep as $urlAlias ) {
           $urlLang = $urlAlias->getter('lang');
-          if( $urlLang ) {
-            $resourceData[ 'urlAlias_'.$urlLang ] = $urlAlias->getter('urlFrom');
+          $urlFrom = $urlAlias->getter('urlFrom');
+
+
+          // 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1
+          if( $urlAlias->getter('http') === '0' && $urlAlias->getter('canonical') === '1' ) {
+            if( $urlLang ) {
+              $resourceData[ 'urlAlias_'.$urlLang ] = $urlFrom;
+              if( $urlLang === $this->actLang ) {
+                $resourceData['urlAlias'] = $resourceData[ 'urlAlias_'.$urlLang ];
+                if( count( $this->allLang ) > 1 ) {
+                  $resourceData['urlAlias'] = '/'.$urlLang.$resourceData['urlAlias'];
+                }
+              }
+            }
+          }
+
+          if( $urlAlias->getter('label') === 'adminAlias' ) {
+            $resourceData[ 'urlAdminAlias_'.$urlLang ] = $urlFrom;
             if( $urlLang === $this->actLang ) {
-              $resourceData['urlAlias'] = $resourceData[ 'urlAlias_'.$urlLang ];
+              $resourceData['urlAdminAlias'] = $resourceData[ 'urlAdminAlias_'.$urlLang ];
               if( count( $this->allLang ) > 1 ) {
-                $resourceData['urlAlias'] = '/'.$urlLang.$resourceData[ 'urlAlias' ];
+                $resourceData['urlAdminAlias'] = '/'.$urlLang.$resourceData['urlAdminAlias'];
               }
             }
           }
@@ -178,6 +216,25 @@ class ResourceController {
           Cogumelo::getSetupValue('mod:geozzy:resource:directUrl').'/'.
           $resourceData[ 'id' ].'#UAF';
       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       // Cargo los datos de image dentro de los del recurso
       $fileDep = $resObj->getterDependence( 'image' );
@@ -212,9 +269,9 @@ class ResourceController {
       }
 
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
-      $resourceData[ 'taxonomies'] = $this->getTermsInfoByGroupIdName( $resId );
-      if( $resourceData[ 'taxonomies'] !== false ) {
-        foreach( $resourceData[ 'taxonomies'] as $idNameTaxgroup => $taxTermArray ) {
+      $resourceData['taxonomies'] = $this->getTermsInfoByGroupIdName( $resId );
+      if( $resourceData['taxonomies'] !== false ) {
+        foreach( $resourceData['taxonomies'] as $idNameTaxgroup => $taxTermArray ) {
           $resourceData[ $idNameTaxgroup ] = $taxTermArray;
           // error_log( '$resourceData[ '.$idNameTaxgroup.' ] = : '.print_r( $taxTermArray, true ) );
         }
@@ -353,6 +410,11 @@ class ResourceController {
       'urlAlias' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'SEO: URL' ) ),
+        'rules' => array( 'maxlength' => '2000' )
+      ),
+      'urlAdminAlias' => array(
+        'translate' => true,
+        'params' => array( 'label' => __( 'SEO: Alias' ) ),
         'rules' => array( 'maxlength' => '2000' )
       ),
       'weight' => array(
@@ -558,6 +620,12 @@ class ResourceController {
       $this->evalFormUrlAlias( $form, 'urlAlias' );
     }
 
+    $urlAdminAliasFieldNames = $form->multilangFieldNames( 'urlAdminAlias' );
+    $fieldName = is_array( $urlAliasFieldNames ) ? $urlAliasFieldNames['0'] : $urlAliasFieldNames;
+    if( $form->isFieldDefined( $fieldName ) ) {
+      $this->evalFormUrlAlias( $form, 'urlAdminAlias' );
+    }
+
     if( $form->isFieldDefined( 'timeCreation' ) ) {
       $dt = $form->getFieldValue( 'timeCreation' );
       if( $dt !== '' && preg_match( '/^(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{2}):(\d{2})$/', $dt ) !== 1 ) {
@@ -579,13 +647,13 @@ class ResourceController {
       $valuesArray = $form->getValuesArray();
 
       if( $form->isFieldDefined( 'id' ) && is_numeric( $form->getFieldValue( 'id' ) ) ) {
-        $valuesArray[ 'userUpdate' ] = $user['data']['id'];
 
         $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
         $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
         $valuesArray[ 'timeLastUpdate' ] = $date->format( 'Y-m-d H:i:s' );
 
         unset( $valuesArray[ 'image' ] );
+        $valuesArray[ 'userUpdate' ] = $user['data']['id'];
       }
       else {
         $valuesArray[ 'user' ] = $user['data']['id'];
@@ -594,6 +662,7 @@ class ResourceController {
           $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
           $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
           $valuesArray[ 'timeCreation' ] = $date->format( 'Y-m-d H:i:s' );
+
         }
       }
 
@@ -638,8 +707,8 @@ class ResourceController {
     }
 
     /*
-      DEPENDENCIAS / RELACIONES
-    */
+     * DEPENDENCIAS / RELACIONES
+     */
     if( !$form->existErrors() && $form->isFieldDefined( 'image' ) ) {
       $this->setFormFiledata( $form, 'image', 'image', $this->resObj );
     }
@@ -659,9 +728,14 @@ class ResourceController {
     if( !$form->existErrors() ) {
       $this->setFormUrlAlias( $form, 'urlAlias', $this->resObj );
     }
+
+    if( !$form->existErrors() ) {
+      $this->setFormAdminUrlAlias( $form, 'urlAdminAlias', $this->resObj );
+    }
     /*
-      DEPENDENCIAS (END)
-    */
+     * DEPENDENCIAS (END)
+     */
+
     if( !$form->existErrors() ) {
       $saveResult = $this->resObj->save();
       if( $saveResult === false ) {
@@ -1718,6 +1792,20 @@ class ResourceController {
     }
   }
 
+  private function setFormAdminUrlAlias( $form, $fieldName, $resObj ) {
+    error_log( "setFormAdminUrlAlias( form, $fieldName, resObj )" );
+    if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
+      $resId = $resObj->getter('id');
+      foreach( $form->langAvailable as $langId ) {
+        $url = $form->getFieldValue( $fieldName.'_'.$langId );
+        if( $this->setUrlAdminAlias( $resId, $langId, $url ) === false ) {
+          $form->addFieldRuleError( $fieldName.'_'.$langId, false, __( 'Error setting URL alias 2' ) );
+          break;
+        }
+      }
+    }
+  }
+
   public function getUrlByPattern( $resId, $langId = false, $title = false ) {
     // error_log( "getUrlByPattern( $resId, $langId )" );
     $urlAlias = '/'. Cogumelo::getSetupValue( 'mod:geozzy:resource:directUrl' ) .'/'.$resId;
@@ -1803,6 +1891,52 @@ class ResourceController {
     else {
       $result = $elemModel->getter( 'id' );
       // error_log( 'setUrl: Creada/Actualizada - '.$result );
+    }
+
+    return $result;
+  }
+
+
+  public function setUrlAdminAlias( $resId, $langId, $urlAlias ) {
+    error_log( "setUrlAdminAlias( $resId, $langId, $urlAlias )" );
+    $result = true;
+
+    $aliasId = false;
+
+    $urlAlias = $this->sanitizeUrl( $urlAlias );
+
+    $aliasArray = array( 'label' => 'adminAlias', 'http' => 301, 'canonical' => 0,
+      'lang' => $langId, 'urlFrom' => $urlAlias, 'urlTo' => null, 'resource' => $resId
+    );
+
+    $elemModel = new UrlAliasModel();
+    $elemsList = $elemModel->listItems( array( 'filters' => array( 'label' => 'adminAlias',
+      'http' => 301, 'canonical' => 0, 'resource' => $resId, 'lang' => $langId ) ) );
+    $aliasObj = ( gettype( $elemsList ) === 'object' ) ? $elemsList->fetch() : false;
+    if( gettype( $aliasObj ) === 'object' ) {
+      $aliasId = $aliasObj->getter( 'id' );
+      error_log( 'setUrlAdminAlias: Xa existe - '.$aliasId );
+    }
+
+    if( empty( $urlAlias ) ) {
+      if( $aliasId ) {
+        error_log( 'setUrlAdminAlias: Borrando '.$aliasId );
+        $aliasObj->delete();
+      }
+    }
+    else {
+      if( $aliasId ) {
+        $aliasArray[ 'id' ] = $aliasId;
+      }
+      $elemModel = new UrlAliasModel( $aliasArray );
+      if( $elemModel->save() === false ) {
+        $result = false;
+        error_log( 'setUrlAdminAlias: ERROR gardando a url' );
+      }
+      else {
+        $result = $elemModel->getter( 'id' );
+        error_log( 'setUrlAdminAlias: Creada/Actualizada - '.$result );
+      }
     }
 
     return $result;
@@ -1969,7 +2103,7 @@ class ResourceController {
 
   /**
    *  Etiquetas informativas (labels con datos relevantes)
-   */
+   **/
   public function getLabelsData( $resViewData ) {
     $labelData = [];
 
@@ -1990,7 +2124,7 @@ class ResourceController {
     }
 
     if( !empty( $resViewData['taxonomies'] ) ) {
-      foreach( $resViewData['taxonomies'] as $idNameTaxgroup => $taxTermArray) {
+      foreach( $resViewData['taxonomies'] as $idNameTaxgroup => $taxTermArray ) {
         $labelData[] = 'taxN_'.$idNameTaxgroup;
       }
     }

@@ -73,10 +73,12 @@ class ResourceView extends View {
     // error_log( __CLASS__.': getFormBlockInfo(,,,): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
     $formBlockInfo = $this->defResCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
-    $formBlockInfo[ 'labels' ] = $this->defResCtrl->getLabelsData( $formBlockInfo['data'] );
+    $formBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $formBlockInfo['data'] );
 
-    if( count( $formBlockInfo[ 'labels' ] ) ) {
-      $formBlockInfo['template']['adminFull']->assign( 'res', array( 'labels' => $formBlockInfo['labels'] ) );
+    if( count( $formBlockInfo['labels'] ) ) {
+      $resArray = $formBlockInfo['template']['adminFull']->getTemplateVars( 'res' );
+      $resArray['labels'] = $formBlockInfo['labels'];
+      $formBlockInfo['template']['adminFull']->assign( 'res', $resArray );
     }
 
     return $formBlockInfo;
@@ -189,9 +191,28 @@ class ResourceView extends View {
    */
   public function getViewBlockInfo( $resId = false ) {
     // error_log( "ResourceView: getViewBlockInfo( $resId )" );
+    user::load('controller/UserAccessController.php');
+    $useraccesscontrol = new UserAccessController();
+    $user = $useraccesscontrol->getSessiondata();
 
-    $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
-    $resViewBlockInfo[ 'labels' ] = $this->defResCtrl->getLabelsData( $resViewBlockInfo['data'] );
+    $resViewBlockInfo = false;
+    $cacheKey = Cogumelo::getSetupValue('db:name').':geozzy:ResourceView:getViewBlockInfo:'.$resId;
+
+    if( empty( $user ) ) {
+      $cacheCtrl = new Cache();
+      $resViewBlockInfo = $cacheCtrl->getCache( $cacheKey );
+    }
+
+    if( empty( $resViewBlockInfo ) ) {
+      // error_log('(Notice) ResourceView:getViewBlockInfo: SIN cache ('.$cacheKey.')');
+      $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
+      $resViewBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $resViewBlockInfo['data'] );
+
+      if( empty( $user ) && !empty( $resViewBlockInfo ) ) {
+        $cacheCtrl->setCache( $cacheKey, $resViewBlockInfo, 60 ); // 1 min
+      }
+    }
+
 
     return $resViewBlockInfo;
   }

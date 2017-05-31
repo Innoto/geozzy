@@ -238,6 +238,7 @@ class RTypeController {
     $templates['seo']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array_merge(
       $form->multilangFieldNames( 'urlAlias' ),
+      $form->multilangFieldNames( 'urlAdminAlias' ),
       $form->multilangFieldNames( 'headKeywords' ),
       $form->multilangFieldNames( 'headDescription' ),
       $form->multilangFieldNames( 'headTitle' )

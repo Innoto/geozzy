@@ -40,11 +40,27 @@ class UrlAliasModel extends Model {
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0
+    ),
+    'label' => array(
+      'type' => 'VARCHAR',
+      'size' => 100
     )
   );
 
   static $extraFilters = array(
     'resourceIn' => ' geozzy_url_alias.resource IN (?) ',
+  );
+
+
+
+  var $deploySQL = array(
+    array(
+      'version' => 'geozzy#1.95',
+      'sql'=> '
+        ALTER TABLE geozzy_url_alias
+        ADD COLUMN label VARCHAR(100) NULL
+      '
+    )
   );
 
 

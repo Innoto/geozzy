@@ -1,5 +1,6 @@
 <?php
-geozzy::load( 'model/UrlAliasModel.php' );
+geozzy::load('model/UrlAliasModel.php');
+cogumelo::load('coreController/Cache.php');
 
 
 class UrlAliasController {
@@ -9,46 +10,83 @@ class UrlAliasController {
 
 
   public function getAlternative( $urlFrom ) {
-    //error_log( 'UrlAliasController::getAlternative urlFrom='. $urlFrom );
+    // error_log( 'UrlAliasController::getAlternative urlFrom='. $urlFrom );
 
     $alternative = false;
     $urlParams = '';
 
-    $urlFromParts = explode( '?', $urlFrom, 2 );
-    if( isset( $urlFromParts['1'] ) ) {
-      $urlFrom = $urlFromParts['0'];
-      $urlParams = '?'.$urlFromParts['1'];
-      //error_log( 'UrlAliasController::getAlternative From tocado: '. $urlFrom );
-    }
+    $cacheKey = Cogumelo::getSetupValue('db:name').':geozzy:UrlAliasController:getAlternative:'.$urlFrom;
 
-    $urlAliasModel = new UrlAliasModel();
-    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'urlFrom' => '/'.$urlFrom ) ) );
+    $cacheCtrl = new Cache();
+    $alternative = $cacheCtrl->getCache( $cacheKey );
 
-    if( $urlAliasList && $urlAlias = $urlAliasList->fetch() ) {
-      $aliasData = $urlAlias->getAllData( 'onlydata' );
-      // error_log( "Alias: " . print_r( $aliasData, true ) );
+    if( empty( $alternative ) ) {
+      // error_log('(Notice) UrlAliasController: SIN cache ('.$cacheKey.')');
 
-      $baseUrl = '/' . Cogumelo::getSetupValue('mod:geozzy:resource:directUrl') . '/' . $aliasData[ 'resource' ];
-      $langUrl = '';
-
-      if( isset( $aliasData[ 'lang' ] ) && $aliasData[ 'lang' ] !== '' ) {
-        $langUrl = '/' . $aliasData[ 'lang' ];
+      $urlFromParts = explode( '?', $urlFrom, 2 );
+      if( isset( $urlFromParts['1'] ) ) {
+        $urlFrom = $urlFromParts['0'];
+        $urlParams = '?'.$urlFromParts['1'];
+        // error_log( 'UrlAliasController::getAlternative From tocado: '. $urlFrom );
       }
 
-      if( !isset( $aliasData[ 'http' ] ) || $aliasData[ 'http' ] <= 200 ) {
-        // Es un alias
-        $alternative = array(
-          'code' => 'alias',
-          'url' => $baseUrl.$urlParams
-        );
+      $urlAliasModel = new UrlAliasModel();
+      $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'urlFrom' => '/'.$urlFrom ) ) );
+
+      if( gettype( $urlAliasList ) === 'object' && $urlAlias = $urlAliasList->fetch() ) {
+        $aliasData = $urlAlias->getAllData( 'onlydata' );
+        // error_log( "Alias: " . print_r( $aliasData, true ) );
+
+        if( !empty( $aliasData['resource'] ) ) {
+          $baseUrl = '/' . Cogumelo::getSetupValue('mod:geozzy:resource:directUrl') . '/' . $aliasData['resource'];
+        }
+        else {
+          $baseUrl = $aliasData[ 'urlTo' ];
+        }
+
+
+
+        $langUrl = '';
+        if( isset( $aliasData['lang'] ) && $aliasData['lang'] !== '' ) {
+          $langUrl = '/' . $aliasData['lang'];
+        }
+
+        if( empty( $aliasData['http'] ) || $aliasData['http'] <= 200 || $aliasData['http'] >= 600 ) {
+          // Es un alias
+          $alternative = array(
+            'code' => 'alias',
+            'url' => $baseUrl.$urlParams
+          );
+        }
+        else {
+
+
+
+
+
+
+          // Es un Redirect
+          if( !empty( $aliasData['resource'] ) ) {
+            $canonicalList = $urlAliasModel->listItems( array( 'filters' => array(
+              'canonical' => 1,
+              'lang' => $aliasData['lang'],
+              'resource' => $aliasData['resource']
+            ) ) );
+
+            if( $canonicalList && $canonicalObj = $canonicalList->fetch() ) {
+              $canonicalData = $canonicalObj->getAllData( 'onlydata' );
+              $baseUrl = $langUrl.$canonicalData['urlFrom'];
+            }
+          }
+
+          $alternative = array(
+            'code' => $aliasData[ 'http' ],
+            'url' => $baseUrl.$urlParams
+          );
+        }
       }
-      else {
-        // Es un Redirect
-        $alternative = array(
-          'code' => $aliasData[ 'http' ],
-          'url' => $baseUrl.$urlParams
-        );
-      }
+
+      $cacheCtrl->setCache( $cacheKey, $alternative, 60 ); // 1 min
     }
 
     // error_log( '(Notice) UrlAliasController::getAlternative urlFrom='.$urlFrom.' Alternative='.json_encode($alternative) );
