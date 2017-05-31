@@ -384,7 +384,7 @@ class GeozzyCollectionView extends View
           )
         )->fetch();
 
-        if(!empty($colRes->getter('resourceSonList'))){
+        if( gettype( $colRes ) === 'object' && !empty($colRes->getter('resourceSonList'))){
 
           $elemManualList = $resourceViewModel->listItems(
             array(

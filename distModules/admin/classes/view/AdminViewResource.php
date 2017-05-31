@@ -462,12 +462,14 @@ class AdminViewResource extends AdminViewMaster {
       $resCtrl = new ResourceController();
       $thumbImg = $resCtrl->getResourceThumbnail( $thumbSettings );
 
+      $successResFormArray = [
+        'id' => $resource->getter('id'),
+        'title' => $resource->getter('title_'.$form->langDefault),
+        'image' => $thumbImg
+      ];
+
       $form->removeSuccess( 'redirect' );
-      $form->setSuccess( 'jsEval', ' successResourceForm( { '.
-        ' id : "'.$resource->getter('id').'",'.
-        ' title: "'.$resource->getter('title_'.$form->langDefault).'",'.
-        ' image: "'.$thumbImg.'" });'
-      );
+      $form->setSuccess( 'jsEval', ' successResourceForm( '.json_encode($successResFormArray) .');' );
     }
 
     // Enviamos el OK-ERROR a la BBDD y al formulario
