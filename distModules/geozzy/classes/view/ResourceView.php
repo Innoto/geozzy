@@ -75,12 +75,16 @@ class ResourceView extends View {
     $formBlockInfo = $this->defResCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
     $formBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $formBlockInfo['data'] );
 
+    /*
+
+    TODO: Falla porque intenta actualizar un "res" que non existe
+
     if( count( $formBlockInfo['labels'] ) ) {
       $resArray = $formBlockInfo['template']['adminFull']->getTemplateVars( 'res' );
       $resArray['labels'] = $formBlockInfo['labels'];
       $formBlockInfo['template']['adminFull']->assign( 'res', $resArray );
     }
-
+    */
     return $formBlockInfo;
   }
 
