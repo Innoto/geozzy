@@ -950,7 +950,7 @@ class ResourceController {
     $fileGroupField = $form->getFieldValue( $fieldName );
     $filePrivateMode = $form->getFieldParam( $fieldName, 'privateMode' );
 
-    error_log( '*** setFormFilegroup *** '.$fieldName.' - '.$colName /*.' fileInfo: '. print_r( $fileGroupField, true )*/ );
+    cogumelo::debug('ResourceController: *** setFormFilegroup *** '.$fieldName.' - '.$colName /*.' fileInfo: '. print_r( $fileGroupField, true )*/ );
 
     $filedataCtrl = new FiledataController();
     $filegroupObj = false;
@@ -963,8 +963,8 @@ class ResourceController {
       foreach( $fileGroupField['multiple'] as $fileField ) {
         if( isset( $fileField['status'] ) ) {
 
-          error_log( 'To Model - status: '.$fileField['status'] );
-          error_log( '========' );
+          cogumelo::debug('ResourceController: To Model - status: '.$fileField['status'] );
+          cogumelo::debug('ResourceController: ========' );
 
           switch( $fileField['status'] ) {
             case 'LOADED':
@@ -974,7 +974,7 @@ class ResourceController {
               // $fileFieldValues = $fileField['values'];
 
               $newFilegroupObj = $filedataCtrl->saveToFileGroup( $fileField['values'], $filegroupId );
-              error_log( 'To Model SAVE: newFilegroupObj idGroup, filedataId: '.
+              cogumelo::debug('ResourceController: To Model SAVE: newFilegroupObj idGroup, filedataId: '.
                 $newFilegroupObj->getter( 'idGroup' ).', '.$newFilegroupObj->getter( 'filedataId' ) );
               if( $newFilegroupObj ) {
                 $result = $newFilegroupObj;
@@ -991,7 +991,7 @@ class ResourceController {
               $deleteId = $fileField['values']['id'];
 
               $result = $filedataCtrl->deleteFromFileGroup( $deleteId, $filegroupId );
-              error_log( 'To Model Delete: '.json_encode($result) );
+              cogumelo::debug('ResourceController: To Model Delete: '.json_encode($result) );
 
               break;
 
@@ -1793,7 +1793,7 @@ class ResourceController {
   }
 
   private function setFormAdminUrlAlias( $form, $fieldName, $resObj ) {
-    error_log( "setFormAdminUrlAlias( form, $fieldName, resObj )" );
+    cogumelo::debug('ResourceController: '."setFormAdminUrlAlias( form, $fieldName, resObj )" );
     if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
       $resId = $resObj->getter('id');
       foreach( $form->langAvailable as $langId ) {
@@ -1898,7 +1898,7 @@ class ResourceController {
 
 
   public function setUrlAdminAlias( $resId, $langId, $urlAlias ) {
-    error_log( "setUrlAdminAlias( $resId, $langId, $urlAlias )" );
+    cogumelo::debug('ResourceController: '."setUrlAdminAlias( $resId, $langId, $urlAlias )" );
     $result = true;
 
     $aliasId = false;
@@ -1915,12 +1915,12 @@ class ResourceController {
     $aliasObj = ( gettype( $elemsList ) === 'object' ) ? $elemsList->fetch() : false;
     if( gettype( $aliasObj ) === 'object' ) {
       $aliasId = $aliasObj->getter( 'id' );
-      error_log( 'setUrlAdminAlias: Xa existe - '.$aliasId );
+      cogumelo::debug('ResourceController: setUrlAdminAlias: Xa existe - '.$aliasId );
     }
 
     if( empty( $urlAlias ) ) {
       if( $aliasId ) {
-        error_log( 'setUrlAdminAlias: Borrando '.$aliasId );
+        cogumelo::debug('ResourceController: setUrlAdminAlias: Borrando '.$aliasId );
         $aliasObj->delete();
       }
     }
@@ -1935,7 +1935,7 @@ class ResourceController {
       }
       else {
         $result = $elemModel->getter( 'id' );
-        error_log( 'setUrlAdminAlias: Creada/Actualizada - '.$result );
+        cogumelo::debug('ResourceController: setUrlAdminAlias: Creada/Actualizada - '.$result );
       }
     }
 
