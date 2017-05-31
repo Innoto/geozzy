@@ -3,11 +3,9 @@
 
 {block name="contentSection"}
 
-{if isset($res.data)}
 <script type="text/javascript">
-  resourceViewData = {$res.data|@json_encode}
+  resourceViewData = {if !empty($res.data)}{$res.data|@json_encode}{else}false{/if};
 </script>
-{/if}
 
 <div class="admin-cols-8-4">
   <div class="row">
