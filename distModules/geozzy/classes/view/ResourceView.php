@@ -73,18 +73,25 @@ class ResourceView extends View {
     // error_log( __CLASS__.': getFormBlockInfo(,,,): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
     $formBlockInfo = $this->defResCtrl->getFormBlockInfo( $formName, $urlAction, $successArray, $valuesArray );
-    $formBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $formBlockInfo['data'] );
 
-    /*
+    $resArray = $formBlockInfo['template']['adminFull']->getTemplateVars( 'res' );
 
-    TODO: Falla porque intenta actualizar un "res" que non existe
+    if( empty( $resArray['data'] ) ) {
+      $resArray = [
+        'data' => !empty( $formBlockInfo['data'] ) ? $formBlockInfo['data'] : false
+      ];
+    }
+
+    $formBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $resArray['data'] );
 
     if( count( $formBlockInfo['labels'] ) ) {
-      $resArray = $formBlockInfo['template']['adminFull']->getTemplateVars( 'res' );
-      $resArray['labels'] = $formBlockInfo['labels'];
-      $formBlockInfo['template']['adminFull']->assign( 'res', $resArray );
+      $resDataArray = [
+        'data' => $resArray['data'],
+        'labels' => $formBlockInfo['labels']
+      ];
+      $formBlockInfo['template']['adminFull']->assign( 'res', $resDataArray );
     }
-    */
+
     return $formBlockInfo;
   }
 
