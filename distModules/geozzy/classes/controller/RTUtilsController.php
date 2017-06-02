@@ -85,38 +85,47 @@ class RTUtilsController {
           //
           // ADD topic taxonomygroup & taxonomyterms
           if( isset($topicInfo['taxonomies']) ) {
+
+
+
+
             $tax = $topicInfo['taxonomies'];
             foreach( $tax['name'] as $langKey => $name ) {
               $tax['name_'.$langKey] = $name;
             }
-            unset($tax['name']);
-            $taxgroup = new TaxonomygroupModel( $tax );
-            $taxgroup->save();
 
-            if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
-              foreach( $tax['initialTerms'] as $term ) {
-                $term['taxgroup'] = $taxgroup->getter('id');
+            if( (new TaxonomygroupModel)->listCount( ['filters'=>['idName'=> $tax['idName'] ]] ) === 0 ) {
+              unset($tax['name']);
+              $taxgroup = new TaxonomygroupModel( $tax );
+              $taxgroup->save();
 
-                foreach( $term['name'] as $langKey => $name ) {
-                   $term['name_'.$langKey] = $name;
+              if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
+                foreach( $tax['initialTerms'] as $term ) {
+                  $term['taxgroup'] = $taxgroup->getter('id');
+
+                  foreach( $term['name'] as $langKey => $name ) {
+                     $term['name_'.$langKey] = $name;
+                  }
+                  unset($term['name']);
+                  $taxterm = new TaxonomytermModel( $term );
+                  $taxterm->save();
                 }
-                unset($term['name']);
-                $taxterm = new TaxonomytermModel( $term );
-                $taxterm->save();
               }
+
+              // second save of topic taxgroup
+              $topicObj->setter( 'taxgroup',  $taxgroup->getter('id') );
+              $topicObj->save();
             }
 
-            // second save of topic taxgroup
-            $topicObj->setter( 'taxgroup',  $taxgroup->getter('id') );
-            $topicObj->save();
           }
-
 
 
         }
       }
     }
   }
+
+
 
 
   public function createTaxonomies( $taxGroups ) {
