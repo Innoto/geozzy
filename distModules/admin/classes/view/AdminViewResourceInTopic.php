@@ -200,7 +200,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
       $geozzyTopicsTableExtrasInstance =  new geozzyTopicsTableExtras();
 
       if( method_exists ( $geozzyTopicsTableExtrasInstance , $topic->getter('idName') ) ) {
-        $tabla = $geozzyTopicsTableExtrasInstance->{ $topic->getter('idName') }( $urlParamsList, $tabla);
+        $tabla = $geozzyTopicsTableExtrasInstance->{ $topic->getter('idName') }( $urlParamsList, $tabla, false);
       }
     }
 
