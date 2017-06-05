@@ -9,6 +9,7 @@ geozzy.generateModal = function( options ) {
     htmlBody: 'Hello world',
     size: 'md',
     btnClass: 'btn-primary',
+    successOpened: function(){ return false; },
     successCallback: function() { return false; }
   });
   that.options = $.extend(true, {}, opts, options );
@@ -40,6 +41,11 @@ geozzy.generateModal = function( options ) {
     $('.gzzGenerateModal').modal({
       'show' : true,
       'keyboard': false,
+    });
+    $('.gzzGenerateModal').on('shown.bs.modal', function (e) {
+      if( typeof that.options.successOpened != 'undefined' ){
+        that.options.successOpened();
+      }
     });
     $('.gzzGenerateModal').on('hidden.bs.modal', function (e) {
       $(this).remove();
