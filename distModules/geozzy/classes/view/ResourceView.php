@@ -1,6 +1,7 @@
 <?php
 Cogumelo::load('coreView/View.php');
 geozzy::load('controller/ResourceController.php');
+cogumelo::load('coreController/Cache.php');
 
 
 

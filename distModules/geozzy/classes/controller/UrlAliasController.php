@@ -3,6 +3,7 @@ geozzy::load('model/UrlAliasModel.php');
 cogumelo::load('coreController/Cache.php');
 
 
+
 class UrlAliasController {
 
   public function __construct() {
