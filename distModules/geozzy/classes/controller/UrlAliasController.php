@@ -16,7 +16,10 @@ class UrlAliasController {
     $alternative = false;
     $urlParams = '';
 
-    $cacheKey = Cogumelo::getSetupValue('db:name').':geozzy:UrlAliasController:getAlternative:'.$urlFrom;
+    global $C_LANG; // Idioma actual, cogido de la url
+    $actLang = $C_LANG;
+
+    $cacheKey = Cogumelo::getSetupValue('db:name').':geozzy:UrlAliasController:getAlternative:'.$actLang.':'.$urlFrom;
 
     $cacheCtrl = new Cache();
     $alternative = $cacheCtrl->getCache( $cacheKey );
