@@ -207,23 +207,27 @@ class ResourceView extends View {
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
 
+    global $C_LANG; // Idioma actual, cogido de la url
+    $actLang = $C_LANG;
+
     $resViewBlockInfo = false;
-    $cacheKey = Cogumelo::getSetupValue('db:name').':geozzy:ResourceView:getViewBlockInfo:'.$resId;
+    $cacheKey = Cogumelo::getSetupValue('db:name').':geozzy:ResourceView:getViewBlockInfo:'.$resId.':'.$actLang;
 
-    if( empty( $user ) ) {
-      $cacheCtrl = new Cache();
-      $resViewBlockInfo = $cacheCtrl->getCache( $cacheKey );
-    }
+    // if( empty( $user ) ) {
+    //   error_log('(Notice) ResourceView:getViewBlockInfo: CON cache ('.$cacheKey.')');
+    //   $cacheCtrl = new Cache();
+    //   $resViewBlockInfo = $cacheCtrl->getCache( $cacheKey );
+    // }
 
-    if( empty( $resViewBlockInfo ) ) {
+    // if( empty( $resViewBlockInfo ) ) {
       // error_log('(Notice) ResourceView:getViewBlockInfo: SIN cache ('.$cacheKey.')');
       $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
       $resViewBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $resViewBlockInfo['data'] );
 
-      if( empty( $user ) && !empty( $resViewBlockInfo ) ) {
-        $cacheCtrl->setCache( $cacheKey, $resViewBlockInfo, 60 ); // 1 min
-      }
-    }
+    //   if( empty( $user ) && !empty( $resViewBlockInfo ) ) {
+    //     $cacheCtrl->setCache( $cacheKey, $resViewBlockInfo, 60 ); // 1 min
+    //   }
+    // }
 
 
     return $resViewBlockInfo;
