@@ -19,12 +19,7 @@ class geozzy extends Module {
 
 
   public $dependences = array(
-    array(
-      'id' =>'lobibox',
-      'params' => [ 'lobibox' ],
-      'installer' => 'bower',
-      'includes' => [ 'dist/css/lobibox.min.css', 'dist/js/lobibox.js' ] // 'dist/js/lobibox.min.js'
-    )
+
   );
 
   // pre-170126
@@ -40,7 +35,6 @@ class geozzy extends Module {
     'model/ResourceModel.php',
     'model/UrlAliasModel.php',
     'view/GeozzyTaxonomytermView.php',
-    'js/clientMsg.js',
     'js/generateModal.js'
   );
 
