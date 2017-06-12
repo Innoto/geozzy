@@ -11,35 +11,54 @@ class UrlAliasController {
 
 
   public function getAlternative( $urlFrom ) {
-    // error_log( 'UrlAliasController::getAlternative urlFrom='. $urlFrom );
+    cogumelo::debug( 'UrlAliasController::getAlternative urlFrom='. $urlFrom );
 
     $alternative = false;
     $urlParams = '';
 
     global $C_LANG; // Idioma actual, cogido de la url
     $actLang = $C_LANG;
-
-    $cacheKey = Cogumelo::getSetupValue('db:name').':geozzy:UrlAliasController:getAlternative:'.$actLang.':'.$urlFrom;
+    $defLang = Cogumelo::getSetupValue( 'lang:default' );
 
     $cacheCtrl = new Cache();
-    $alternative = $cacheCtrl->getCache( $cacheKey );
+    $cacheKey = Cogumelo::getSetupValue('db:name').':geozzy:UrlAliasController:getAlternative:'.$actLang.':'.$urlFrom;
+    // $alternative = $cacheCtrl->getCache( $cacheKey );
 
     if( empty( $alternative ) ) {
-      // error_log('(Notice) UrlAliasController: SIN cache ('.$cacheKey.')');
+      // cogumelo::debug('(Notice) UrlAliasController: SIN cache ('.$cacheKey.')');
 
       $urlFromParts = explode( '?', $urlFrom, 2 );
       if( isset( $urlFromParts['1'] ) ) {
         $urlFrom = $urlFromParts['0'];
         $urlParams = '?'.$urlFromParts['1'];
-        // error_log( 'UrlAliasController::getAlternative From tocado: '. $urlFrom );
+        // cogumelo::debug( 'UrlAliasController::getAlternative From tocado: '. $urlFrom );
       }
 
+      $aliasData = false;
       $urlAliasModel = new UrlAliasModel();
-      $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'urlFrom' => '/'.$urlFrom ) ) );
 
+      $urlAliasList = $urlAliasModel->listItems( array( 'filters' => [ 'urlFrom' => '/'.$urlFrom, 'lang' => $actLang ] ) );
       if( gettype( $urlAliasList ) === 'object' && $urlAlias = $urlAliasList->fetch() ) {
         $aliasData = $urlAlias->getAllData( 'onlydata' );
-        // error_log( "Alias: " . print_r( $aliasData, true ) );
+      }
+      else {
+        $urlAliasList = $urlAliasModel->listItems( array( 'filters' => [ 'urlFrom' => '/'.$urlFrom ] ) );
+        if( gettype( $urlAliasList ) === 'object' && $urlAlias = $urlAliasList->fetch() ) {
+          $aliasData = $urlAlias->getAllData( 'onlydata' );
+          cogumelo::debug( '(Notice) UrlAliasController: aliasData sin idioma: ' . print_r( $aliasData, true ) );
+        }
+      }
+
+      if( !empty( $aliasData ) ) {
+        // cogumelo::debug( '(Notice) UrlAliasController: aliasData: ' . print_r( $aliasData, true ) );
+
+        $langUrl = '';
+        if( isset( $aliasData['lang'] ) && $aliasData['lang'] !== '' && $aliasData['lang'] !== $defLang ) {
+          // El idioma por defecto no se añade
+          $langUrl = '/' . $aliasData['lang'];
+        }
+        cogumelo::debug( '(Notice) UrlAliasController: langUrl: '.$aliasData['lang'].' - '. $langUrl );
+
 
         if( !empty( $aliasData['resource'] ) ) {
           $baseUrl = '/' . Cogumelo::getSetupValue('mod:geozzy:resource:directUrl') . '/' . $aliasData['resource'];
@@ -49,13 +68,9 @@ class UrlAliasController {
         }
 
 
-
-        $langUrl = '';
-        if( isset( $aliasData['lang'] ) && $aliasData['lang'] !== '' ) {
-          $langUrl = '/' . $aliasData['lang'];
-        }
-
         if( empty( $aliasData['http'] ) || $aliasData['http'] <= 200 || $aliasData['http'] >= 600 ) {
+
+          cogumelo::debug( 'UrlAliasController::getAlternative - Es un ALIAS' );
           // Es un alias
           $alternative = array(
             'code' => 'alias',
@@ -64,11 +79,7 @@ class UrlAliasController {
         }
         else {
 
-
-
-
-
-
+          cogumelo::debug( 'UrlAliasController::getAlternative - Es un REDIRECT' );
           // Es un Redirect
           if( !empty( $aliasData['resource'] ) ) {
             $canonicalList = $urlAliasModel->listItems( array( 'filters' => array(
@@ -77,9 +88,16 @@ class UrlAliasController {
               'resource' => $aliasData['resource']
             ) ) );
 
-            if( $canonicalList && $canonicalObj = $canonicalList->fetch() ) {
+            if( gettype( $canonicalList ) === 'object' && $canonicalObj = $canonicalList->fetch() ) {
               $canonicalData = $canonicalObj->getAllData( 'onlydata' );
               $baseUrl = $langUrl.$canonicalData['urlFrom'];
+
+              cogumelo::debug( 'UrlAliasController::getAlternative - Es un REDIRECT baseUrl:'.$baseUrl );
+            }
+          }
+          else {
+            if( strpos( $baseUrl, 'http' ) !== 0 ) {
+              $baseUrl = $langUrl.$baseUrl;
             }
           }
 
@@ -93,7 +111,7 @@ class UrlAliasController {
       $cacheCtrl->setCache( $cacheKey, $alternative, 60 ); // 1 min
     }
 
-    // error_log( '(Notice) UrlAliasController::getAlternative urlFrom='.$urlFrom.' Alternative='.json_encode($alternative) );
+    cogumelo::debug( '(Notice) UrlAliasController::getAlternative urlFrom='.$urlFrom.' Alternative='.json_encode($alternative) );
 
     return $alternative;
   }
