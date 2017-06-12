@@ -213,6 +213,14 @@ class ResourceView extends View {
     $resViewBlockInfo = false;
     $cacheKey = Cogumelo::getSetupValue('db:name').':geozzy:ResourceView:getViewBlockInfo:'.$resId.':'.$actLang;
 
+    $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
+    if( isset( $resViewBlockInfo['data'] ) ) {
+      $resViewBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $resViewBlockInfo['data'] );
+    }
+    elseif( isset( $resViewBlockInfo['unpublished']['data'] ) ) {
+      $resViewBlockInfo['unpublished']['labels'] = $this->defResCtrl->getLabelsData( $resViewBlockInfo['unpublished']['data'] );
+    }
+
     // if( empty( $user ) ) {
     //   error_log('(Notice) ResourceView:getViewBlockInfo: CON cache ('.$cacheKey.')');
     //   $cacheCtrl = new Cache();
@@ -220,9 +228,15 @@ class ResourceView extends View {
     // }
 
     // if( empty( $resViewBlockInfo ) ) {
-      // error_log('(Notice) ResourceView:getViewBlockInfo: SIN cache ('.$cacheKey.')');
-      $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
-      $resViewBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $resViewBlockInfo['data'] );
+    //   // error_log('(Notice) ResourceView:getViewBlockInfo: SIN cache ('.$cacheKey.')');
+    //   $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
+
+    //   if( isset( $resViewBlockInfo['data'] ) ) {
+    //     $resViewBlockInfo['labels'] = $this->defResCtrl->getLabelsData( $resViewBlockInfo['data'] );
+    //   }
+    //   elseif( isset( $resViewBlockInfo['unpublished']['data'] ) ) {
+    //     $resViewBlockInfo['unpublished']['labels'] = $this->defResCtrl->getLabelsData( $resViewBlockInfo['unpublished']['data'] );
+    //   }
 
     //   if( empty( $user ) && !empty( $resViewBlockInfo ) ) {
     //     $cacheCtrl->setCache( $cacheKey, $resViewBlockInfo, 60 ); // 1 min
