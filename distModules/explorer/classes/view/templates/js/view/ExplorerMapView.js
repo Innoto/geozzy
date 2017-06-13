@@ -60,6 +60,9 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     // Preload image
     var arrow_img = new Image();
     arrow_img.src = that.options.mapArrowImage;
+
+    var arrow_img_empy = new Image();
+    arrow_img_empy.src = that.options.mapArrowImageEmpty;
   },
 
   setParentExplorer: function( parentExplorer ) {
@@ -645,6 +648,52 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
     //console.log('ANGULO',resource.get('arrowAngle') );
+
+    var icon = that.arrowIconRotated(resource);
+
+    setTimeout( function(){
+
+
+      //console.log('ANGULO',resource.get('arrowAngle') );
+      icon = that.arrowIconRotated(resource);
+
+
+
+      that.mapArrowMarker.setIcon( icon );
+
+      that.mapArrowMarker.setPosition( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ) );
+
+
+      that.mapArrowMarker.setMap( that.map );
+      that.mapArrowMarker.setMap( null );
+      that.mapArrowMarker.setMap( that.map );
+
+      that.outerPanToIntervalometerValue = 3;
+      that.outerPanToIntervalometer = setInterval( function(){
+
+        //$('.explorerArrowLabel').show();
+        that.mapArrowMarker.setIcon( icon );
+        $('.explorerArrowLabel').html(that.outerPanToIntervalometerValue);
+
+        setTimeout( function(){
+          //$('.explorerArrowLabel').hide();
+          that.mapArrowMarker.setIcon( that.options.mapArrowImageEmpty );
+        }, 400 );
+
+        if( that.outerPanToIntervalometerValue == 0){
+          that.resetOuterPanTo();
+          that.panTo( resource.get('id'), true );
+        }
+        that.outerPanToIntervalometerValue--;
+      }, 900);
+
+    }, 100 );
+
+
+  },
+
+  arrowIconRotated: function( resource ) {
+    var that = this;
     var icon = {
       url: RotateIcon.makeIcon( that.options.mapArrowImage ).setRotation({
         deg: resource.get('arrowAngle'),
@@ -654,35 +703,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       anchor:new google.maps.Point(32, 32)
     };
 
-
-    that.mapArrowMarker.setIcon( icon );
-
-    that.mapArrowMarker.setPosition( that.pixelToCoord( intersectsWithInnerBox.x, intersectsWithInnerBox.y ) );
-
-
-    that.mapArrowMarker.setMap( that.map );
-    that.mapArrowMarker.setMap( null );
-    that.mapArrowMarker.setMap( that.map );
-
-    that.outerPanToIntervalometerValue = 3;
-    that.outerPanToIntervalometer = setInterval( function(){
-
-      //$('.explorerArrowLabel').show();
-      that.mapArrowMarker.setIcon( icon );
-      $('.explorerArrowLabel').html(that.outerPanToIntervalometerValue);
-
-      setTimeout( function(){
-        //$('.explorerArrowLabel').hide();
-        that.mapArrowMarker.setIcon( that.options.mapArrowImageEmpty );
-      }, 400 );
-
-      if( that.outerPanToIntervalometerValue == 0){
-        that.resetOuterPanTo();
-        that.panTo( resource.get('id'), true );
-      }
-      that.outerPanToIntervalometerValue--;
-    }, 900);
-
+    return icon;
 
   },
 
