@@ -19,7 +19,7 @@ class admin extends Module {
      "id" =>"backbonejs",
      "params" => array("backbone#1.1.2"),
      "installer" => "bower",
-     "includes" => ['backbone-min.js']
+     "includes" => ['backbone.js']
     ),
     array(
      "id" => "bootstrap",
