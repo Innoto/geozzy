@@ -19,7 +19,7 @@ class admin extends Module {
      "id" =>"backbonejs",
      "params" => array("backbone#1.1.2"),
      "installer" => "bower",
-     "includes" => array("backbone.js")
+     "includes" => ['backbone.js']
     ),
     array(
      "id" => "bootstrap",
@@ -37,7 +37,7 @@ class admin extends Module {
      "id" =>"html5shiv",
      "params" => array("html5shiv"),
      "installer" => "bower",
-     "includes" => array("dist/html5shiv.js")
+     "includes" => ['dist/html5shiv.min.js']
     ),
     array(
      "id" =>"respond",
@@ -61,7 +61,7 @@ class admin extends Module {
      "id" =>"select2",
      "params" => array("select2#4"),
      "installer" => "bower",
-     "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
+     "includes" => [ 'dist/js/select2.full.min.js', 'dist/css/select2.min.css' ]
     ),
     array(
      "id" =>"placeholders",
@@ -79,7 +79,7 @@ class admin extends Module {
       "id" =>"multiList",
       "params" => array("multiList"),
       "installer" => "bower",
-      "includes" => array("multiList.js", "multiList.css")
+      "includes" => [ 'multiList.min.js', 'multiList.css' ]
     ),
     array(
       "id" =>"switchery",
@@ -115,7 +115,7 @@ class admin extends Module {
       "id" =>"jquery-ui",
       "params" => array("jquery-ui#1.12.1"),
       "installer" => "bower",
-      "includes" => array('jquery-ui.min.js','/themes/smoothness/jquery-ui.css')
+      "includes" => [ 'jquery-ui.min.js', '/themes/smoothness/jquery-ui.min.css' ]
     ),
     array(
      'id' => 'elfinder',
@@ -123,11 +123,9 @@ class admin extends Module {
      'installer' => 'composer',
      'includes' => array('php/autoload.php', 'js/elfinder.min.js', 'css/elfinder.min.css', 'css/theme.css' )
     )
-
-
-
-
   );
+
+
 
   public $includesCommon = array(
     'styles/admin.less',
