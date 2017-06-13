@@ -5,7 +5,7 @@
   }
   .rExtMatterport .matterport-showcase {
     position: relative;
-    padding-bottom: 70vh;
+    padding-bottom: 80vh;
     height: 0;
     overflow: hidden;
   }
