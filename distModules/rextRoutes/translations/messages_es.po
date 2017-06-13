@@ -1,0 +1,162 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-06-12T14:27:06+00:00\n"
+"PO-Revision-Date: 2017-06-12T14:27:06+00:00\n"
+"Language: Español\n"
+
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:69
+msgid "Very Low"
+msgstr "Muy bajo"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:70
+msgid "Low"
+msgstr "Bajo"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:71
+msgid "Medium"
+msgstr "Medio"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:72
+msgid "High"
+msgstr "Alto"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:73
+msgid "Extreme"
+msgstr "Extremo"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:78
+msgid "Circular itinerary"
+msgstr "Itinerario circular"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:81
+msgid "Route duration (minutes)"
+msgstr "Duración de la ruta (minutos)"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:85
+msgid "Vertical rise level"
+msgstr "Desnivel vertical ascendente"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:89
+msgid "Vertical descent level"
+msgstr "Desnivel vertical descendente"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:93
+msgid "Travel distance (meters)"
+msgstr "Distancia (metros)"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:97
+msgid "Natural environment difficulty"
+msgstr "Dificultad natural del entorno"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:102
+msgid "Itinerary difficulty"
+msgstr "Dificultad del itinerario"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:107
+msgid "Displacement difficulty"
+msgstr "Dificultad del desplazamiento"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:112
+msgid "Effort level"
+msgstr "Nivel de esfuerzo"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:117
+msgid "Global difficulty"
+msgstr "Dificultad global"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:123
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:89
+msgid "Route start"
+msgstr "Inicio de la ruta"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:128
+msgid "Route end"
+msgstr "Fin de la ruta"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:133
+msgid "Startroute Latitude"
+msgstr "Latitud de inicio de la ruta"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:137
+msgid "Startroute Longitude"
+msgstr "Longitud de inicio de la ruta"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:142
+msgid "Endroute Latitude"
+msgstr "Latitud de fin de la ruta"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:146
+msgid "Endroute Longitude"
+msgstr "Longitud de fin de la ruta"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:151
+msgid "Route file"
+msgstr "Fichero de la ruta"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:152
+msgid "File"
+msgstr "Fichero"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
+msgid "Download route"
+msgstr "Descargar ruta"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:46
+msgid "Circular route"
+msgstr "Ruta circular"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
+msgid "circular"
+msgstr ""
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:57
+msgid "Lineal route"
+msgstr "Ruta lineal"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
+msgid "lineal"
+msgstr ""
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:73
+msgid "Slopes"
+msgstr "Desniveles"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:79
+msgid "slope up"
+msgstr "Desnivel ascendente"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:86
+msgid "slope down"
+msgstr "Desnivel descendente"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:100
+msgid "Environment"
+msgstr "Entorno"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:113
+msgid "Itinerary"
+msgstr "Itinerario"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:126
+msgid "Displacement"
+msgstr "Desplazamiento"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
+msgid "Effort"
+msgstr "Esfuerzo"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:101
+msgid "Route End"
+msgstr "Fin de la ruta"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:197
+msgid "Altitude"
+msgstr "Altitud"

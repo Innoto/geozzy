@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-06-12T14:27:04+00:00\n"
+"PO-Revision-Date: 2017-06-12T14:27:04+00:00\n"
+"Language: Español\n"
+
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
+msgid "Type an address or mark on the map the place of departure"
+msgstr "Introduce una dirección o marca en el mapa el punto de partida"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
+msgid "Get directions"
+msgstr "Obtener direcciones"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
+msgid "Route information"
+msgstr "Información de la ruta"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:57
+msgid "Show route description"
+msgstr "Mostrar descripción de la ruta"

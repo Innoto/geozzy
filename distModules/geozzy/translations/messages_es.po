@@ -1,0 +1,298 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-06-12T14:27:05+00:00\n"
+"PO-Revision-Date: 2017-06-12T14:27:06+00:00\n"
+"Language: Español\n"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:67
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:68
+msgid "Upload an image"
+msgstr "Sube una imagen"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:74
+msgid "Name"
+msgstr "Nombre"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:78
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:51
+msgid "Medium description"
+msgstr "Descripción media"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:73
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:385
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:10
+msgid "Title"
+msgstr "Título"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:78
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:390
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:14
+msgid "Short description"
+msgstr "Descripción corta"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:83
+msgid "Description"
+msgstr "Descripción"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:87
+msgid "Resources"
+msgstr "Recursos"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:128
+msgid "Upload multimedia "
+msgstr "Cargar multimedia"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:132
+msgid "Upload multiple files"
+msgstr "Cargar múltiples ficheros"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:138
+msgid "Add external link"
+msgstr "Añadir enlace externo"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:143
+msgid "Descriptive image of the gallery (opcional)"
+msgstr "Imagen descriptiva de la galería (opcional)"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:160
+msgid "Save"
+msgstr "Guardar"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:228
+msgid "Publication"
+msgstr "Publicación"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:237
+msgid "SEO"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:252
+msgid "Select a image"
+msgstr "Selecciona una imagen"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:261
+msgid "Location"
+msgstr "Localización"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:268
+msgid "Multimedia galleries"
+msgstr "Galerías multimedia"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:277
+msgid "Collections of related resources"
+msgstr "Colección de recursos relacionados"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:286
+msgid "Information"
+msgstr "Información"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:321
+msgid "Comments"
+msgstr "Comentarios"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:330
+msgid "View"
+msgstr "Vista"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:339
+msgid "Social Networks"
+msgstr "Redes sociales"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:348
+msgid "Contact"
+msgstr "Contacto"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:357
+msgid "Event"
+msgstr "evento"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:381
+msgid "Time creation"
+msgstr "Fecha de creación"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:400
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:56
+msgid "Content"
+msgstr "Contenido"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:404
+msgid "External URL"
+msgstr "URL externa"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:408
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:61
+msgid "Image"
+msgstr "Imagen"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:414
+msgid "SEO: URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:419
+msgid "SEO: Alias"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:423
+msgid "Priority"
+msgstr "Prioridad"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:424
+msgid "Normal"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:424
+msgid "High"
+msgstr "Alta"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:424
+msgid "Low"
+msgstr "Baja"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:428
+msgid "SEO: Head Keywords"
+msgstr "SEO: Palabras clave cabecera"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:433
+msgid "SEO: Head Description"
+msgstr "SEO: Descripción cabecera"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:438
+msgid "SEO: Head Title"
+msgstr "SEO: Título cabecera"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:443
+msgid "Extra information 1"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:448
+msgid "Extra information 2"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:454
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:80
+msgid "Collections"
+msgstr "Colecciones"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:464
+msgid "Create Collection"
+msgstr "Crear colección"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:465
+msgid "Add Collection"
+msgstr "Añadir colección"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:471
+msgid "Galleries"
+msgstr "Galerías"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:481
+msgid "Create Multimedia Gallery"
+msgstr "Crear galería multimedia"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:482
+msgid "Add Multimedia Gallery"
+msgstr "Añadir galería multimedia"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:486
+msgid "Publicado"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:489
+msgid "Topics"
+msgstr "Temáticas"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:492
+msgid "Starred"
+msgstr "Destacados"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:495
+msgid "Latitude"
+msgstr "Latitud"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:499
+msgid "Longitude"
+msgstr "Longitud"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:503
+msgid "Zoom"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:535
+msgid "Send"
+msgstr "Enviar"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:537
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:603
+msgid "El servidor no considera válidos los datos recibidos."
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:608
+msgid ""
+"Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario "
+"subirlos otra vez."
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:634
+msgid "La fecha de creación no es válida"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1049
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1583
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1644
+msgid "Error setting values"
+msgstr "Error estableciendo valores"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1701
+msgid "Error setting collection values"
+msgstr "Error estableciendo los valores de la colección"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1790
+msgid "Error setting URL alias"
+msgstr "Error estableciendo alias de URL"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1804
+msgid "Error setting URL alias 2"
+msgstr "Error estableciendo alias 2 de URL"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:12
+msgid "Search an address"
+msgstr "Buscar unha dirección"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:25
+msgid "Automatic Location"
+msgstr "Localización automática"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:67
+msgid "None"
+msgstr "Ninguna"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:73
+msgid "External Url"
+msgstr "Url externa"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:12
+msgid "Find out!"
+msgstr "Averígualo"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:59
+msgid "See more..."
+msgstr "Ver más..."
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:61
+msgid "Less"
+msgstr "Menos"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:31
+msgid "Accept"
+msgstr "Aceptar"
