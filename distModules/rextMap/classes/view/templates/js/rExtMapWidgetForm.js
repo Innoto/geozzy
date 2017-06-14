@@ -16,7 +16,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   that.mapContainer = that.segmentDIV.find(".mapContainer");
   that.addressInput = that.segmentDIV.find(".address");
   that.resourceMap = false;
-
+  that.resourceMarker = false;
 
   that.initializeMap = function( ){
     // Location Map
@@ -74,7 +74,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
           anchor: new google.maps.Point(13, 36)
         };
 
-        var resourceMarker = new google.maps.Marker({
+        that.resourceMarker = new google.maps.Marker({
           position: new google.maps.LatLng( latValue, lonValue ),
           title: 'Resource location',
           icon: my_marker,
@@ -82,17 +82,16 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         });
 
         // Draggend event
-        google.maps.event.addListener( resourceMarker,'dragend',function(e) {
-          that.latInput.val( resourceMarker.position.lat() );
-          that.lonInput.val( resourceMarker.position.lng() );
+        google.maps.event.addListener( that.resourceMarker,'dragend',function(e) {
+          that.lonInput.val( that.resourceMarker.position.lng() );
         });
 
         // Click map event
         google.maps.event.addListener(that.resourceMap, 'click', function(e) {
           resourceMarker.setPosition( e.latLng );
           resourceMarker.setMap( that.resourceMap );
-          that.latInput.val( resourceMarker.position.lat() );
-          that.lonInput.val( resourceMarker.position.lng() );
+          that.latInput.val( that.resourceMarker.position.lat() );
+          that.lonInput.val( that.resourceMarker.position.lng() );
 
           that.defaultZoom.val( that.resourceMap.getZoom() );
         });
@@ -103,7 +102,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         });
 
         if( that.latInput.val() !== '') {
-          resourceMarker.setMap( that.resourceMap);
+          that.resourceMarker.setMap( that.resourceMap);
         }
       }
     }
