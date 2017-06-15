@@ -88,8 +88,8 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
         // Click map event
         google.maps.event.addListener(that.resourceMap, 'click', function(e) {
-          resourceMarker.setPosition( e.latLng );
-          resourceMarker.setMap( that.resourceMap );
+          that.resourceMarker.setPosition( e.latLng );
+          that.resourceMarker.setMap( that.resourceMap );
           that.latInput.val( that.resourceMarker.position.lat() );
           that.lonInput.val( that.resourceMarker.position.lng() );
 
