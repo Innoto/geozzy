@@ -19,7 +19,7 @@ class rextAudioguide extends Module {
      "id" =>"ionrangeslider",
      "params" => array("ionrangeslider#2"),
      "installer" => "bower",
-     "includes" => array("js/ion.rangeSlider.js", "css/ion.rangeSlider.css")
+     "includes" => array("js/ion.rangeSlider.min.js", "css/ion.rangeSlider.css")
     )
   );
 

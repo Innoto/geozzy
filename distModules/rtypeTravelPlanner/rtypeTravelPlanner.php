@@ -11,29 +11,29 @@ class rtypeTravelPlanner extends Module {
 
   public $dependences = array(
     array(
-     "id" =>"underscore",
-     "params" => array("underscore#1.8.3"),
-     "installer" => "bower",
-     "includes" => array("underscore-min.js")
+      "id" =>"underscore",
+      "params" => array("underscore#1.8.3"),
+      "installer" => "bower",
+      "includes" => array("underscore-min.js")
     ),
     array(
-     "id" =>"backbonejs",
-     "params" => array("backbone#1.1.2"),
-     "installer" => "bower",
-     "includes" => array("backbone.js")
-   ),
-   array(
-     "id" =>"nestable2",
-     "params" => array("nestable2-old"),
-     "installer" => "bower",
-     "includes" => array("jquery.nestable.js")
-   ),
-   array(
-     'id' => 'jquery-validation',
-     'params' => array( 'jquery-validate#1.14' ),
-     'installer' => 'bower',
-     'includes' => array( 'dist/jquery.validate.js', 'dist/additional-methods.js' )
-   )
+      "id" =>"backbonejs",
+      "params" => array("backbone#1.1.2"),
+      "installer" => "bower",
+      "includes" => array("backbone.js")
+    ),
+    array(
+      "id" =>"nestable2",
+      "params" => array("nestable2-old"),
+      "installer" => "bower",
+      "includes" => array("jquery.nestable.js")
+    ),
+    array(
+      'id' => 'jquery-validation',
+      'params' => array( 'jquery-validate#1.14' ),
+      'installer' => 'bower',
+      'includes' => array( 'dist/jquery.validate.min.js', 'dist/additional-methods.min.js' )
+    )
   );
 
   public $includesCommon = array(

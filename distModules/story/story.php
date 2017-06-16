@@ -23,7 +23,7 @@ class story extends Module {
       'id' =>'chap-links-library',
       'params' => array('chap-links-library'),
       'installer' => 'bower',
-      'includes' => array( 'js/src/timeline/timeline-locales.js', 'js/src/timeline/timeline.js', 'js/src/timeline/timeline.css' )
+      'includes' => array( 'js/src/timeline/timeline-locales.js', 'js/src/timeline/timeline-min.js', 'js/src/timeline/timeline.css' )
     )
   );
 
@@ -47,7 +47,7 @@ class story extends Module {
 
   function setGeozzyUrlPatternsAPI() {
     global $COGUMELO_INSTANCED_MODULES;
-    
+
     $this->addUrlPatterns( '#^api/story/(.*)#', 'view:StoryAPIView::story' );
     $this->addUrlPatterns( '#^api/doc/story.json#', 'view:StoryAPIView::storyJson' ); // Main swagger JSON
     $this->addUrlPatterns( '#^api/storyList$#', 'view:StoryAPIView::storyList' );
