@@ -58,7 +58,7 @@ class GeozzyTaxonomytermView extends View
         'params' => array( 'type' => 'reserved', 'value' => null )
       ),
       'idName' => array(
-        'params' => array( 'type' => 'reserved', 'value' => null )
+        'params' => array( 'label' => __('ID Name (WARNING)'), 'value' => null )
       ),
       'taxgroup' => array(
         'params' => array( 'type' => 'reserved', 'value' => $request['1'] )
@@ -86,6 +86,12 @@ class GeozzyTaxonomytermView extends View
 
     /* VALIDATIONS */
     $form->setValidationRule( 'name_'.$langDefault, 'required' );
+
+    $useraccesscontrol = new UserAccessController();
+    $onlySA = $useraccesscontrol->checkPermissions('only:SA');
+    if( !$onlySA ) {
+      $form->setFieldParam( 'idName', 'type', 'reserved' );
+    }
 
     if(isset($request[2])){
       $taxtermModel = new TaxonomytermModel();

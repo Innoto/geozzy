@@ -11,8 +11,11 @@
 </script>
 
 {$taxtermFormOpen}
-  {foreach from=$taxtermFormFieldsArray item=field}
-    {$field}
+  {foreach from=$taxtermFormFieldsArray item=field key=idField}
+    {if $idField !== 'idName'}
+      {$field}
+    {/if}
   {/foreach}
+  {if isset($taxtermFormFieldsArray.idName)}{$taxtermFormFieldsArray.idName}{/if}
 {$taxtermFormClose}
 {$taxtermFormValidations}
