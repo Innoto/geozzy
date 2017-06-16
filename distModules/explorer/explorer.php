@@ -12,7 +12,7 @@ class explorer extends Module {
       "id" =>"google-maps-utility-library-v3-markerwithlabel",
       "params" => array("google-maps-utility-library-v3-markerwithlabel"),
       "installer" => "bower",
-      "includes" => array("dist/markerwithlabel.js")
+      "includes" => array("dist/markerwithlabel.min.js")
     ),
     array(
      "id" =>"underscore",
@@ -48,7 +48,7 @@ class explorer extends Module {
      "id" =>"ionrangeslider",
      "params" => array("ionrangeslider#2"),
      "installer" => "bower",
-     "includes" => array("js/ion.rangeSlider.js", "css/ion.rangeSlider.css")
+     "includes" => array("js/ion.rangeSlider.min.js", "css/ion.rangeSlider.css")
     ),
     array(
      "id" =>"tiny_map_utilities",

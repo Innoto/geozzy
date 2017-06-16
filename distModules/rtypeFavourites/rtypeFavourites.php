@@ -26,7 +26,7 @@ class rtypeFavourites extends Module {
       'id' =>'select2',
       'params' => array('select2#4'),
       'installer' => 'bower',
-      'includes' => array('dist/js/select2.full.js', 'dist/css/select2.css')
+      'includes' => array('dist/js/select2.full.min.js', 'dist/css/select2.min.css')
     )
   );
 

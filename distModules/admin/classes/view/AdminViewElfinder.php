@@ -67,7 +67,7 @@ class AdminViewElfinder extends AdminViewMaster {
 
         <!-- Section CSS -->
         <!-- jQuery UI (REQUIRED) -->
-        <link rel="stylesheet" type="text/css" href="/vendor/bower/jquery-ui/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="/vendor/bower/jquery-ui/themes/smoothness/jquery-ui.min.css">
 
         <!-- elFinder CSS (REQUIRED) -->
         <link rel="stylesheet" type="text/css" href="/vendor/composer/studio-42/elfinder/css/elfinder.min.css">
