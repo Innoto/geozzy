@@ -41,7 +41,7 @@ class RoutesController {
     $route = [];
     $useraccesscontrol = new UserAccessController();
     if( $useraccesscontrol->checkPermissions('resource:create', 'admin:full') || $useraccesscontrol->checkPermissions('resource:edit', 'admin:full') ) {
-
+      form::autoIncludes();
       $formRoute = new FormController( );
       $formRoute->loadFromSession( $idForm );
 

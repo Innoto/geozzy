@@ -77,14 +77,14 @@ function successCollectionForm( data ){
 
 }
 
-
+var resourceFormMaps = [];
 
 function initializeMaps( ) {
   basket.require(
     { url:  cogumelo.publicConf.media + '/module/rextMap/js/rExtMapWidgetForm.js' }
   ).then(function () {
     $('.location').each( function(i,e) {
-      new geozzy.rExtMapWidgetForm( $(e) );
+      resourceFormMaps.push( new geozzy.rExtMapWidgetForm( $(e) ) );
     });
   });
 }

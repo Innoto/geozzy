@@ -21,6 +21,8 @@ function adminRextRoutesFileUpload( idForm, fieldName ) {
     success: function( ) {
       var ruta = routesCollection.get( 1 );
 
+      var resourceMap = resourceFormMaps[0].resourceMap;
+      var resourceMarker = resourceFormMaps[0].resourceMarker;
 
       // If resource is not created, set centroid from route
       if( typeof resourceViewData.id == 'undefined' ) {

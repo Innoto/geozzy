@@ -322,7 +322,7 @@ geozzy.explorer = function( opts ) {
           }
         }
 
-        that.triggerEvent('partialLoadSuccess', {})
+        that.triggerEvent('partialLoadSuccess', {});
       }
 
     );
