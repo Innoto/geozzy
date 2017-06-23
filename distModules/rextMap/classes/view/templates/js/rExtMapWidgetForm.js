@@ -126,12 +126,19 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
     var place = that.autocomplete.getPlace();
     console.log(place.geometry.location.lat(), place.geometry.location.lng() );
 
-    that.resourceMap.setCenter(
-      new google.maps.LatLng(
-        place.geometry.location.lat(),
-        place.geometry.location.lng()
-      )
-    );
+    var pos = new google.maps.LatLng(
+      place.geometry.location.lat(),
+      place.geometry.location.lng()
+    )
+
+    that.resourceMap.setCenter( pos );
+
+
+    that.resourceMarker.setPosition( pos );
+    that.resourceMarker.setMap( that.resourceMap );
+    that.latInput.val( that.resourceMarker.position.lat() );
+    that.lonInput.val( that.resourceMarker.position.lng() );
+
     that.resourceMap.setZoom(11);
 
   };
