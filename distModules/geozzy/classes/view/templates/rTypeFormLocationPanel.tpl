@@ -7,13 +7,19 @@
 
 <div class="row location">
 
-  <div class="col-lg-12">
-    <div class="col-md-6" >
-      <label class="col-md-5">{t}Search an address{/t}</label>
-      <input class="col-md-7 address" >
+
+  <div class="col-md-12">
+    <div class="row row-eq-height-vertical-centered">
+      <div class="col-md-6 col-sm-6 col-xs-12"><input class="address"></div>
+      <div class="col-md-6 col-sm-6 col-xs-12 ">
+        <div class="descMap">
+          {t}Haz click en el lugar donde se ubica tu centro educativo con la mayor precisión que puedas, podrás arrastrar y soltar la localización{/t}
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 descMap">Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización</div>
   </div>
+
+
   <div class="col-lg-12 mapContainer">
 
   </div>
