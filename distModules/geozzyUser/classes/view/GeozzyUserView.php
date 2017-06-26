@@ -390,7 +390,13 @@ class GeozzyUserView extends View
 
         $userView = new UserView();
         $form = $userView->userChangePasswordFormDefine( $userId, $modeRecovery = true );
-        $form->setSuccess( 'redirect', '/' );
+
+        $sccsRedirect = "/";
+        if(!empty(Cogumelo::getSetupValue('mod:geozzyUser:recoveryPasswordRedirect'))){
+          $sccsRedirect = Cogumelo::getSetupValue('mod:geozzyUser:recoveryPasswordRedirect');
+        }
+
+        $form->setSuccess( 'redirect', $sccsRedirect );
         $template->setFragment( 'blockContent', $userView->userChangePasswordFormGetBlock( $form ));
       }
       else {
