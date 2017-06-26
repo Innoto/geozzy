@@ -196,7 +196,7 @@ class ResourceController {
           Cogumelo::getSetupValue('mod:geozzy:resource:directUrl').'/'.
           $resourceData[ 'id' ].'#UAF';
       }
-      
+
       // Cargo los datos de image dentro de los del recurso
       $fileDep = $resObj->getterDependence( 'image' );
       if( $fileDep !== false ) {
