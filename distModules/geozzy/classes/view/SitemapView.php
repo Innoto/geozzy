@@ -31,6 +31,11 @@ class SitemapView extends View {
     if( !Cogumelo::getSetupValue( 'mod:geozzy:sitemap:disable' ) ) {
       $multiLang = ( count( Cogumelo::getSetupValue( 'lang:available' ) ) > 1 );
 
+      $regexUrlAllow = Cogumelo::getSetupValue( 'mod:geozzy:sitemap:regexUrlAllow' );
+      $regexUrlDeny = Cogumelo::getSetupValue( 'mod:geozzy:sitemap:regexUrlDeny' );
+      $regexUrlAllow = ( $regexUrlAllow && !is_array( $regexUrlAllow ) ) ? [ $regexUrlAllow ] : $regexUrlAllow;
+      $regexUrlDeny = ( $regexUrlDeny && !is_array( $regexUrlDeny ) ) ? [ $regexUrlDeny ] : $regexUrlDeny;
+
       $ignoreRTypes = Cogumelo::getSetupValue( 'mod:geozzy:sitemap:ignoreRTypes' );
       $filters = is_array( $ignoreRTypes ) ? [ 'rTypeIdNameNotIn' => $ignoreRTypes ] : [];
 
@@ -51,26 +56,43 @@ class SitemapView extends View {
           if( $multiLang ) {
             $params['loc'] = '/'.$info['lang'].$params['loc'];
           }
-          $tConf = isset( $conf[ $info['rTypeIdName'] ] ) ? $conf[ $info['rTypeIdName'] ] : false;
-          if( isset( $defConf['change'] ) || isset( $tConf['change'] )  ) {
-            $params['changefreq'] = isset( $tConf['change'] ) ? $tConf['change'] : $defConf['change'];
+
+          $urlValid = true;
+
+          if( $regexUrlAllow ) {
+            $urlValid = false;
+            foreach( $regexUrlAllow as $regex ) {
+              $urlValid = $urlValid || ( 1 === preg_match( $regex, $params['loc'] ) );
+            }
           }
-          if( isset( $defConf['priority'] ) || isset( $tConf['priority'] )  ) {
-            $params['priority'] = isset( $tConf['priority'] ) ? $tConf['priority'] : $defConf['priority'];
+          if( $regexUrlDeny ) {
+            foreach( $regexUrlDeny as $regex ) {
+              $urlValid = $urlValid && ( 0 === preg_match( $regex, $params['loc'] ) );
+            }
           }
 
-          $urlsInfo[] = $params;
-          /*
-            <changefreq>always,hourly,daily,weekly,monthly,yearly,never</changefreq>
-            <priority>0.0 to 1.0</priority> (default: 0.5)
-            URLs con multiidioma:
-            <url>
-              <loc>http://www.example.com/</loc>
-              <xhtml:link rel="alternate" hreflang="en" href="http://www.example.com/en/" />
-              <xhtml:link rel="alternate" hreflang="de-ch" href="http://www.example.com/ch/" />
-              <xhtml:link rel="alternate" hreflang="de" href="http://www.example.com/de/" />
-            </url>
-          */
+          if( $urlValid ) {
+            $tConf = isset( $conf[ $info['rTypeIdName'] ] ) ? $conf[ $info['rTypeIdName'] ] : false;
+            if( isset( $defConf['change'] ) || isset( $tConf['change'] )  ) {
+              $params['changefreq'] = isset( $tConf['change'] ) ? $tConf['change'] : $defConf['change'];
+            }
+            if( isset( $defConf['priority'] ) || isset( $tConf['priority'] )  ) {
+              $params['priority'] = isset( $tConf['priority'] ) ? $tConf['priority'] : $defConf['priority'];
+            }
+
+            $urlsInfo[] = $params;
+            /*
+              <changefreq>always,hourly,daily,weekly,monthly,yearly,never</changefreq>
+              <priority>0.0 to 1.0</priority> (default: 0.5)
+              URLs con multiidioma:
+              <url>
+                <loc>http://www.example.com/</loc>
+                <xhtml:link rel="alternate" hreflang="en" href="http://www.example.com/en/" />
+                <xhtml:link rel="alternate" hreflang="de-ch" href="http://www.example.com/ch/" />
+                <xhtml:link rel="alternate" hreflang="de" href="http://www.example.com/de/" />
+              </url>
+            */
+          }
         }
       }
     }
