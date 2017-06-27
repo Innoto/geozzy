@@ -28,7 +28,7 @@ class SitemapView extends View {
 
     $urlsInfo = [];
 
-    if( Cogumelo::getSetupValue( 'mod:geozzy:sitemap:disable' ) ) {
+    if( !Cogumelo::getSetupValue( 'mod:geozzy:sitemap:disable' ) ) {
       $multiLang = ( count( Cogumelo::getSetupValue( 'lang:available' ) ) > 1 );
 
       $ignoreRTypes = Cogumelo::getSetupValue( 'mod:geozzy:sitemap:ignoreRTypes' );
