@@ -1702,7 +1702,7 @@ class ResourceController {
       'a', 'A', 'a', 'O', 'o' ),
   );
 
-  private function sanitizeUrl( $url ) {
+  public function sanitizeUrl( $url ) {
     // "Aplanamos" caracteres no ASCII7
     $url = str_replace( $this->urlTranslate[ 'from' ], $this->urlTranslate[ 'to' ], $url );
     // Solo admintimos a-z A-Z 0-9 - / El resto pasan a ser -
