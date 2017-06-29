@@ -1832,11 +1832,20 @@ class ResourceController {
 
     $urlAlias = $this->sanitizeUrl( $urlAlias );
 
+    $elemModel = new UrlAliasModel();
+
+
+    $colision = $elemModel->listCount( array( 'filters' => [ 'urlFrom' => $urlAlias ] ) );
+    if( !empty($colision) ) {
+      $urlAlias .= '_'.$resId;
+      error_log( 'setUrl() COLISION: '.$urlAlias );
+    }
+
+
     $aliasArray = array( 'http' => 0, 'canonical' => 1, 'lang' => $langId,
       'urlFrom' => $urlAlias, 'urlTo' => null, 'resource' => $resId
     );
 
-    $elemModel = new UrlAliasModel();
     $elemsList = $elemModel->listItems( array( 'filters' => array( 'canonical' => 1, 'resource' => $resId,
       'lang' => $langId ) ) );
     if( $elem = $elemsList->fetch() ) {
