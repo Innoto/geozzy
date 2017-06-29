@@ -1835,11 +1835,11 @@ class ResourceController {
     $elemModel = new UrlAliasModel();
 
 
-    $colision = $elemModel->listCount( array( 'filters' => [ 'urlFrom' => $urlAlias ] ) );
-    if( !empty($colision) ) {
-      $urlAlias .= '_'.$resId;
-      error_log( 'setUrl() COLISION: '.$urlAlias );
-    }
+    // $colision = $elemModel->listCount( array( 'filters' => [ 'urlFrom' => $urlAlias ] ) );
+    // if( !empty($colision) ) {
+    //   $urlAlias .= '_'.$resId;
+    //   error_log( 'setUrl() COLISION: '.$urlAlias );
+    // }
 
 
     $aliasArray = array( 'http' => 0, 'canonical' => 1, 'lang' => $langId,
