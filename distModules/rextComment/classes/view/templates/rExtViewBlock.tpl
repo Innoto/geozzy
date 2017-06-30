@@ -44,7 +44,7 @@
   </div>
 </div>
 <div class="rExtCommentList">
-
+  <div class="loading"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><div>{t}Loading...{/t}</div></div>
 </div>
 
 {else}
