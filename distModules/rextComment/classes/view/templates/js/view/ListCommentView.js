@@ -39,6 +39,9 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
       that.commentsToShow = false;
     }
 
+    if(that.commentsToShow !== false && that.commentsToShow > commentNumber){
+      that.$el.html('<div class="loading"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><div>'+__("Loading...")+'</div></div>');
+    }
     _.each( that.comments.toJSON() , function(item){
       if(that.commentsToShow !== false && that.commentsToShow === commentNumber){
         return false;
@@ -63,6 +66,7 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
       }
       commentsItems += that.listCommentItemTemplate(data);
     });
+    //that.$el.html('');
     that.$el.append( that.listCommentTemplate({ comments:commentsItems, commentsToShow:that.commentsToShow }) );
 
   },
