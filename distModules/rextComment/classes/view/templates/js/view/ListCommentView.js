@@ -3,7 +3,7 @@ if(!geozzy.commentComponents) geozzy.commentComponents={};
 
 geozzy.commentComponents.ListCommentView = Backbone.View.extend({
 
-  el : $(".rExtCommentList"),
+  el : ".rExtCommentList",
   tagName : '',
   comments : false,
   listCommentTemplate : false,
