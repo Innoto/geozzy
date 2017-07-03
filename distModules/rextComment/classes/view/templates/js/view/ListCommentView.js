@@ -32,7 +32,7 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
     var commentsItems = '';
     that.$el.html('');
     console.log(that.$el.html());
-    console.log($(".rExtCommentList"));
+    console.log($(".rExtCommentList").html());
     that.listCommentTemplate = _.template( geozzy.commentComponents.listCommentTemplate );
     that.listCommentItemTemplate = _.template( geozzy.commentComponents.listCommentItemTemplate );
     var commentNumber = 0;
