@@ -4,7 +4,6 @@ if(!geozzy.commentComponents) geozzy.commentComponents={};
 geozzy.commentComponents.ListCommentView = Backbone.View.extend({
 
   el : $(".rExtCommentList"),
-  hola : 1,
   tagName : '',
   comments : false,
   listCommentTemplate : false,
@@ -19,6 +18,9 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
 
   initialize: function( idResource ) {
     var that = this;
+    that.el = $(".rExtCommentList");
+    console.log('-init');
+    console.log(that.$el);
     that.comments = new geozzy.commentComponents.CommentCollection([], { resource: idResource });
     that.comments.fetch({
       success: function() {
@@ -32,9 +34,6 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
     var that = this;
     var commentsItems = '';
     that.$el.html('');
-    console.log(that.hola);
-    that.hola = 2;
-    console.log(that.hola);
     console.log(that.$el);
     console.log($(".rExtCommentList"));
     console.log(that.$el.html());
