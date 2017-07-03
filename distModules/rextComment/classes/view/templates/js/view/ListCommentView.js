@@ -20,7 +20,7 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
     var that = this;
     that.el = $(".rExtCommentList");
     console.log('-init');
-    console.log(that.$el);
+    console.log(that.el);
     that.comments = new geozzy.commentComponents.CommentCollection([], { resource: idResource });
     that.comments.fetch({
       success: function() {
