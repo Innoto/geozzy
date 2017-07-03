@@ -18,9 +18,6 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
 
   initialize: function( idResource ) {
     var that = this;
-    that.el = $(".rExtCommentList");
-    console.log('-init');
-    console.log(that.el);
     that.comments = new geozzy.commentComponents.CommentCollection([], { resource: idResource });
     that.comments.fetch({
       success: function() {
@@ -33,11 +30,8 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
 
     var that = this;
     var commentsItems = '';
-    that.$el.html('');
-    console.log(that.$el);
-    console.log($(".rExtCommentList"));
-    console.log(that.$el.html());
-    console.log($(".rExtCommentList").html());
+    //that.$el.html('');
+    $(".rExtCommentList").html('');
 
     that.listCommentTemplate = _.template( geozzy.commentComponents.listCommentTemplate );
     that.listCommentItemTemplate = _.template( geozzy.commentComponents.listCommentItemTemplate );
@@ -70,8 +64,6 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
       }
       commentsItems += that.listCommentItemTemplate(data);
     });
-    console.log(commentsItems);
-    console.log(that.commentsToShow);
     //that.$el.append( that.listCommentTemplate({ comments:commentsItems, commentsToShow:that.commentsToShow }) );
     $(".rExtCommentList").append( that.listCommentTemplate({ comments:commentsItems, commentsToShow:that.commentsToShow }) );
   },
