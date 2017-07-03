@@ -30,8 +30,7 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
 
     var that = this;
     var commentsItems = '';
-    //that.$el.html('');
-    $(".rExtCommentList").html('');
+    that.$el.html('');
 
     that.listCommentTemplate = _.template( geozzy.commentComponents.listCommentTemplate );
     that.listCommentItemTemplate = _.template( geozzy.commentComponents.listCommentItemTemplate );
@@ -64,8 +63,7 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
       }
       commentsItems += that.listCommentItemTemplate(data);
     });
-    //that.$el.append( that.listCommentTemplate({ comments:commentsItems, commentsToShow:that.commentsToShow }) );
-    $(".rExtCommentList").append( that.listCommentTemplate({ comments:commentsItems, commentsToShow:that.commentsToShow }) );
+    that.$el.append( that.listCommentTemplate({ comments:commentsItems, commentsToShow:that.commentsToShow }) );
   },
   showAll : function (){
     var that = this;
