@@ -82,7 +82,7 @@ class PoisExplorerModel extends Model
       'type'=>'GEOMETRY'
     ),
     'isNormalResource' => array(
-      'type'=>'BOLEAN'
+      'type'=>'BOOLEAN'
     )
   );
 
