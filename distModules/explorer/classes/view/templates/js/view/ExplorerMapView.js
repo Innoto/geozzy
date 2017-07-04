@@ -629,7 +629,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   outerPanTo: function( resource ) {
     var that = this;
 
-
     var scale = Math.pow(2, that.map.zoom) * window.devicePixelRatio || 1;
 
 
@@ -669,13 +668,17 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       that.mapArrowMarker.setMap( that.map );
 
       that.outerPanToIntervalometerValue = 3;
+
+      clearInterval(that.outerPanToNestedIntervalometer);
+      clearInterval(that.outerPanToIntervalometer);
+
       that.outerPanToIntervalometer = setInterval( function(){
 
         //$('.explorerArrowLabel').show();
         that.mapArrowMarker.setIcon( icon );
         $('.explorerArrowLabel').html(that.outerPanToIntervalometerValue);
 
-        setTimeout( function(){
+        that.outerPanToNestedIntervalometer = setTimeout( function(){
           //$('.explorerArrowLabel').hide();
           that.mapArrowMarker.setIcon( that.options.mapArrowImageEmpty );
         }, 400 );
@@ -685,6 +688,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
           that.panTo( resource.get('id'), true );
         }
         that.outerPanToIntervalometerValue--;
+
+
       }, 900);
 
     }, 100 );
