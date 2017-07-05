@@ -81,7 +81,7 @@ var resourceFormMaps = [];
 
 function initializeMaps( ) {
   basket.require(
-    { url:  cogumelo.publicConf.media + '/module/rextMap/js/rExtMapWidgetForm.js' }
+    { url:  cogumelo.publicConf.media + '/module/rextMap/js/rExtMapWidgetForm.js', skipCache:true }
   ).then(function () {
     $('.location').each( function(i,e) {
       resourceFormMaps.push( new geozzy.rExtMapWidgetForm( $(e) ) );

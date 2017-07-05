@@ -159,28 +159,6 @@ class ResourceController {
         $resourceData['locLon'] = $geoLocation['data'][1];
       }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       // Cargo los datos de urlAlias dentro de los del recurso
       $urlAliasDep = $resObj->getterDependence( 'id', 'UrlAliasModel' );
       if( $urlAliasDep !== false ) {
@@ -218,25 +196,6 @@ class ResourceController {
           Cogumelo::getSetupValue('mod:geozzy:resource:directUrl').'/'.
           $resourceData[ 'id' ].'#UAF';
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       // Cargo los datos de image dentro de los del recurso
       $fileDep = $resObj->getterDependence( 'image' );
@@ -1743,7 +1702,7 @@ class ResourceController {
       'a', 'A', 'a', 'O', 'o' ),
   );
 
-  private function sanitizeUrl( $url ) {
+  public function sanitizeUrl( $url ) {
     // "Aplanamos" caracteres no ASCII7
     $url = str_replace( $this->urlTranslate[ 'from' ], $this->urlTranslate[ 'to' ], $url );
     // Solo admintimos a-z A-Z 0-9 - / El resto pasan a ser -
@@ -1873,11 +1832,21 @@ class ResourceController {
 
     $urlAlias = $this->sanitizeUrl( $urlAlias );
 
+    $elemModel = new UrlAliasModel();
+
+
+    $colision = $elemModel->listCount( array( 'filters' => [ 'resourceNot' => $resId,
+      'lang' => $langId, 'urlFrom' => $urlAlias ] ) );
+    if( !empty($colision) ) {
+      $urlAlias .= '_'.$resId;
+      error_log( 'setUrl() COLISION: '.$urlAlias );
+    }
+
+
     $aliasArray = array( 'http' => 0, 'canonical' => 1, 'lang' => $langId,
       'urlFrom' => $urlAlias, 'urlTo' => null, 'resource' => $resId
     );
 
-    $elemModel = new UrlAliasModel();
     $elemsList = $elemModel->listItems( array( 'filters' => array( 'canonical' => 1, 'resource' => $resId,
       'lang' => $langId ) ) );
     if( $elem = $elemsList->fetch() ) {
@@ -2088,7 +2057,7 @@ class ResourceController {
       if( array_key_exists( 'url', $param ) ){
         $isYoutubeID = $this->ytVidId( $param['url'] );
         if( $isYoutubeID ) {
-          $thumbImg = 'http://img.youtube.com/vi/'.$isYoutubeID.'/0.jpg';
+          $thumbImg = 'https://img.youtube.com/vi/'.$isYoutubeID.'/0.jpg';
         }
       }
     }

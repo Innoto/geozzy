@@ -35,7 +35,7 @@ class FavouritesListViewModel extends Model {
       'key' => 'id'
     ),
     'resourceList' => array(
-      'type' => 'string',
+      'type' => 'VARCHAR',
     ),
   );
 

@@ -3,7 +3,7 @@ if(!geozzy.commentComponents) geozzy.commentComponents={};
 
 geozzy.commentComponents.ListCommentView = Backbone.View.extend({
 
-  el : $(".rExtCommentList"),
+  el : ".rExtCommentList",
   tagName : '',
   comments : false,
   listCommentTemplate : false,
@@ -31,6 +31,7 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
     var that = this;
     var commentsItems = '';
     that.$el.html('');
+
     that.listCommentTemplate = _.template( geozzy.commentComponents.listCommentTemplate );
     that.listCommentItemTemplate = _.template( geozzy.commentComponents.listCommentItemTemplate );
     var commentNumber = 0;
@@ -38,7 +39,6 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
     if( that.comments.length <= that.commentsToShow) {
       that.commentsToShow = false;
     }
-
     _.each( that.comments.toJSON() , function(item){
       if(that.commentsToShow !== false && that.commentsToShow === commentNumber){
         return false;
@@ -64,7 +64,6 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
       commentsItems += that.listCommentItemTemplate(data);
     });
     that.$el.append( that.listCommentTemplate({ comments:commentsItems, commentsToShow:that.commentsToShow }) );
-
   },
   showAll : function (){
     var that = this;
