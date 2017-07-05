@@ -2057,7 +2057,7 @@ class ResourceController {
       if( array_key_exists( 'url', $param ) ){
         $isYoutubeID = $this->ytVidId( $param['url'] );
         if( $isYoutubeID ) {
-          $thumbImg = 'http://img.youtube.com/vi/'.$isYoutubeID.'/0.jpg';
+          $thumbImg = 'https://img.youtube.com/vi/'.$isYoutubeID.'/0.jpg';
         }
       }
     }
