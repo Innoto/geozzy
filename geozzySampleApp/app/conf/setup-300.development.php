@@ -52,6 +52,13 @@ $conf->setSetupValue( 'script:cogumeloServerUrl', 'http://geozzySampleApp/cogume
 
 
 //
+//  Logs
+//
+$conf->createSetupValue( 'logs:rawSql', true ); // Log RAW all SQL ¡WARNING! application passwords will dump into log files
+$conf->createSetupValue( 'logs:error', true ); // Display errors on screen. If you use devel module, you might disable it
+
+
+//
 // DB
 //
 $conf->setSetupValue( 'db', array(

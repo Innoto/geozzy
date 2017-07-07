@@ -25,11 +25,12 @@
 
 
 
-
 //
-// Dates
+// DateTimeZone
 //
-$conf->createSetupValue( 'date:timezone', 'Europe/Madrid' );
+$conf->createSetupValue( 'date:timezone:system', 'UTC' );
+$conf->createSetupValue( 'date:timezone:database', 'UTC' );
+$conf->createSetupValue( 'date:timezone:project', 'Europe/Madrid' );
 
 
 //
@@ -53,9 +54,9 @@ $conf->createSetupValue( 'script:backupPath', $conf->getSetupValue( 'setup:appBa
 //  Logs
 //
 $conf->createSetupValue( 'logs:path', $conf->getSetupValue( 'setup:appBasePath' ).'/log' ); // log files directory
-$conf->createSetupValue( 'logs:rawSql', true ); // Log RAW all SQL ¡WARNING! application passwords will dump into log files
+$conf->createSetupValue( 'logs:rawSql', false ); // Log RAW all SQL ¡WARNING! application passwords will dump into log files
 $conf->createSetupValue( 'logs:debug', true ); // Set Debug mode to log debug messages on log
-$conf->createSetupValue( 'logs:error', true ); // Display errors on screen. If you use devel module, you might disable it
+$conf->createSetupValue( 'logs:error', false ); // Display errors on screen. If you use devel module, you might disable it
 
 
 
