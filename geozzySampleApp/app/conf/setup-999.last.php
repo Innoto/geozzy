@@ -33,7 +33,7 @@
 $conf->mergeSetupValue( 'publicConf:globalVars', [ 'C_LANG', 'C_SESSION_ID' ] );
 
 $conf->mergeSetupValue( 'publicConf:setupFields', [ 'socialNetworks', 'google:maps:key', 'google:recaptcha:key:site',
-  'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone' ] );
+  'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone', 'mod:admin:defaultURL' ] );
 
 $conf->setSetupValue( 'publicConf:vars:langDefault', $conf->getSetupValue( 'lang:default' ) );
 $conf->setSetupValue( 'publicConf:vars:langAvailableIds', array_keys( $conf->getSetupValue( 'lang:available' ) ) );
@@ -51,8 +51,6 @@ $conf->setSetupValue( 'publicConf:vars:media',
 
 $conf->setSetupValue( 'publicConf:vars:mediaHost', $conf->getSetupValue( 'mod:mediaserver:host' ) );
 $conf->setSetupValue( 'publicConf:vars:site_host', SITE_HOST );
-
-
 
 $conf->mergeSetupValue( 'mod:mediaserver:publicConf:javascript:globalVars', $conf->getSetupValue( 'publicConf:globalVars' ) );
 $conf->mergeSetupValue( 'mod:mediaserver:publicConf:javascript:setupFields', $conf->getSetupValue( 'publicConf:setupFields' ) );

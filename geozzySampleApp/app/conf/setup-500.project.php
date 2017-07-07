@@ -57,6 +57,10 @@ $conf->setSetupValue( 'lang', [
     'es' => [
       'i18n' => 'es_ES',
       'name' => 'castellano'
+    ],
+    'gl' => [
+      'i18n' => 'gl_ES',
+      'name' => 'galego'
     ]
   ],
   'default' => 'es'
@@ -69,6 +73,8 @@ $conf->setSetupValue( 'lang', [
 $conf->setSetupValue( 'socialNetworks', [
   'facebook' => 'GeozzySampleApp',
   'twitter' => 'GeozzySampleApp'
+  'youtube' => 'GeozzySampleApp',
+  'googleplus' => 'GeozzySampleApp',
 ]);
 
 
@@ -278,34 +284,30 @@ include 'setup-500.filedataImageProfiles.php';
 $conf->setSetupValue( 'publicConf:globalVars', [ 'C_LANG', 'C_SESSION_ID' ] );
 
 $conf->setSetupValue( 'publicConf:setupFields', [ 'socialNetworks', 'google:maps:key', 'google:recaptcha:key:site',
-  'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone' ] );
+  'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone', 'mod:admin:defaultURL' ] );
 
 $conf->setSetupValue( 'publicConf:vars:langDefault', $conf->getSetupValue( 'lang:default' ) );
 $conf->setSetupValue( 'publicConf:vars:langAvailableIds', array_keys( $conf->getSetupValue( 'lang:available' ) ) );
+
 $conf->setSetupValue( 'publicConf:vars:mediaJs',
   ( $conf->getSetupValue( 'mod:mediaserver:productionMode' ) === true &&
     $conf->getSetupValue( 'mod:mediaserver:notCacheJs' ) !== true )
     ? $conf->getSetupValue( 'mod:mediaserver:host' ).$conf->getSetupValue( 'mod:mediaserver:cachePath' )
     : $conf->getSetupValue( 'mod:mediaserver:host' ).$conf->getSetupValue( 'mod:mediaserver:path' ) );
+
 $conf->setSetupValue( 'publicConf:vars:media',
   ( $conf->getSetupValue( 'mod:mediaserver:productionMode' ) === true )
     ? $conf->getSetupValue( 'mod:mediaserver:host' ).$conf->getSetupValue( 'mod:mediaserver:cachePath' )
     : $conf->getSetupValue( 'mod:mediaserver:host' ).$conf->getSetupValue( 'mod:mediaserver:path' ) );
+
 $conf->setSetupValue( 'publicConf:vars:mediaHost', $conf->getSetupValue( 'mod:mediaserver:host' ) );
 $conf->setSetupValue( 'publicConf:vars:site_host', SITE_HOST );
 
-$conf->setSetupValue( 'mod:mediaserver:publicConf:javascript',
-  $conf->getSetupValue( 'publicConf' )
-);
-$conf->setSetupValue( 'mod:mediaserver:publicConf:less',
-  $conf->getSetupValue( 'publicConf' )
-);
-$conf->setSetupValue( 'mod:mediaserver:publicConf:smarty',
-  $conf->getSetupValue( 'publicConf' )
-);
-$conf->setSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields',
-  array_merge( $conf->getSetupValue( 'publicConf:setupFields' ), ['user:session'] )
-);
+$conf->setSetupValue( 'mod:mediaserver:publicConf:javascript', $conf->getSetupValue( 'publicConf' ) );
+$conf->setSetupValue( 'mod:mediaserver:publicConf:less', $conf->getSetupValue( 'publicConf' ) );
+$conf->setSetupValue( 'mod:mediaserver:publicConf:smarty', $conf->getSetupValue( 'publicConf' ) );
+
+$conf->addSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields', 'user:session' );
 //
 //  Media server - SIEMPRE AL FINAL!!!
 //

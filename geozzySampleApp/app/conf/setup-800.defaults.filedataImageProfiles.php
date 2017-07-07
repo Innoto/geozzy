@@ -20,13 +20,14 @@
  *   /cgmlImg/{filedataId}/{profileName}/{fileName}.{fileExt}
  *
  * Para cargar la imagen original sin procesar:
- *   /cgmlImg/{filedataId}/{fileName}.{fileExt}
+ *   /cgmlImg/{filedataId}/none/{fileName}.{fileExt}
  */
 
 
 // SOLO SE CREAN SI NO EXISTEN!!!
 // Si se ha definido previamente no se altera.
 
+$conf->createSetupValue( 'mod:filedata:profile:none', array( 'width' => 2000, 'height' => 2000, 'cut' => false, 'enlarge' => false ) );
 
 // $IMAGE_PROFILES
 $conf->createSetupValue( 'mod:filedata:profile:mdpi4', array( 'width' => 640, 'height' => 480, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
@@ -35,7 +36,6 @@ $conf->createSetupValue( 'mod:filedata:profile:xhdpi4', array( 'width' => 1280, 
 $conf->createSetupValue( 'mod:filedata:profile:mdpi16', array( 'width' => 640, 'height' => 360, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 $conf->createSetupValue( 'mod:filedata:profile:hdpi16', array( 'width' => 960, 'height' => 540, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 $conf->createSetupValue( 'mod:filedata:profile:xhdpi16', array( 'width' => 1280, 'height' => 720, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
-
 
 // $IMAGE_PROFILES (web)
 $conf->createSetupValue( 'mod:filedata:profile:wsdpi4', array( 'width' => 320, 'height' => 240, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
@@ -50,18 +50,29 @@ $conf->createSetupValue( 'mod:filedata:profile:wxhdpi16', array( 'width' => 1280
 $conf->createSetupValue( 'mod:filedata:profile:modFormTn', array( 'width' => 240, 'height' => 180, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 60 ) );
 
 $conf->createSetupValue( 'mod:filedata:profile:big', array( 'width' => 2000, 'height' => 2000, 'cut' => false, 'enlarge' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
-
 $conf->createSetupValue( 'mod:filedata:profile:fast', array( 'width' => 400, 'height' => 300, 'cut' => false, 'rasterColor' => '#000000', 'backgroundColor' => '#FFFFFF', 'saveFormat' => 'JPEG', 'saveQuality' => 50 ) );
-
 $conf->createSetupValue( 'mod:filedata:profile:fast_cut', array( 'width' => 400, 'height' => 300, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 50 ) );
-
 $conf->createSetupValue( 'mod:filedata:profile:squareCut', array( 'width' => 128, 'height' => 128, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
-
 
 $conf->createSetupValue( 'mod:filedata:profile:resourceCut', array( 'width' => 270, 'height' => 153, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 $conf->createSetupValue( 'mod:filedata:profile:resourceBigCut', array( 'width' => 340, 'height' => 193, 'cut' => true, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
 
 $conf->createSetupValue( 'mod:filedata:profile:imgMultimediaGallery', array( 'width' => 250, 'height' => 250, 'cut' => false, 'saveFormat' => 'JPEG', 'saveQuality' => 95 ) );
+
+
+$conf->createSetupValue( 'mod:filedata:profile:exp1', array( 'width' => 200, 'height' => 150 ) );
+$conf->createSetupValue( 'mod:filedata:profile:rec1', array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ) );
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*-----------------------------------------TEMP ----------------------------------------------------------------------*/
@@ -120,7 +131,8 @@ $conf->createSetupValue( 'mod:filedata:profile:chapaTest',
 
 
 
-/* identify -list format
+/*
+identify -list format
    Format  Module    Mode  Description
 -------------------------------------------------------------------------------
       BMP* BMP       rw-   Microsoft Windows bitmap image
