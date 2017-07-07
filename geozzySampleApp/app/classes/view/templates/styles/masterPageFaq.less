@@ -1,0 +1,162 @@
+@import "appVars.less";
+@import "primaryMixins.less";
+@import "appMixins.less";
+
+.bodyContent{
+  .secBckFaq{
+    padding: 0px;
+    width: 100%;
+    height: 70vh;
+    color: @gzzColor-text-light;
+    background-image: url("@{cogumelo_publicConf_media}/img/faq.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+/*
+    background-image: url("@{cogumelo_publicConf_media}/img/faq.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+*/
+    .trama{
+      background: rgba(0, 0, 0, 0.3);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .secPageFaq{
+    background-color: @gzzColor-bck-5;
+    .faqAnchorNav{
+      padding: 10px 0;
+      list-style: none;
+      text-transform: uppercase;
+      &.gzz_sticky.stick {
+        margin-top: 0 !important;
+        position: fixed;
+        top: 90px;
+        z-index: 10;
+        max-width: 145px;
+      }
+      li{
+        margin: 15px 5px;
+        .font-size-big();
+        a{
+          outline: none;
+          color: @gzzColor-text-dark;
+          text-decoration: none;
+          padding: 0px;
+          &:hover{
+            background-color: transparent;
+          }
+          &:focus{
+            background-color: transparent;
+          }
+        }
+        &.active {
+          a{
+            color: @gzzColor-geozzy;
+          }
+        }
+
+      }
+    }
+    #accordionFaq{
+      .panel{
+        background:none;
+        box-shadow:none;
+      }
+      .panel-heading{
+        padding: 20px 20px 18px 20px;
+        font-weight: 600;
+        background-color: @gzzColor-bck-4;
+        border-color: @gzzColor-bck-4;
+        border-radius:4px;
+        .font-size-small();
+        a{
+          outline: none;
+        }
+        .icon-closed,
+        .icon-open{
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          position: absolute;
+          -ms-transform: translateY( -70% );
+          -webkit-transform: translateY( -70% );
+          transform: translateY( -70% );
+          right: 30px;
+          color: @gzzColor-bck-red;
+          width: 30px;
+          height: 30px;
+          line-height: 32px;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 16px;
+          cursor: pointer;
+          i{width: 30px;
+          height: 30px;}
+        }
+        .icon-open{
+          display: block;
+          /*background: @gzzColor-bck-red; */
+        }
+        .icon-closed{
+          display: none;
+        }
+
+        &.collapsed{
+          color: @gzzColor-text-dark;
+          .icon-open{
+            display: none;
+          }
+          .icon-closed{display: block;}
+        }
+      }
+      .panel-title{
+        font-size: @font-size-small;
+        &:hover .icon-open, &:hover .icon-closed{
+          background: @gzzColor-bck-red;
+          color: @gzzColor-text-light;
+        }
+      }
+      .panel-body{
+        ul{
+          padding: 5px 25px;
+          li{
+            margin-bottom: 10px;
+          }
+        }
+      }
+      .notaAclaratoria{
+        font-size: @font-size-small;
+      }
+    }
+  }
+
+}
+/**************************************************************************************/
+/**************************************************************************************/
+/**********************  RESPONSIVE MEDIA QUERIES  ************************************/
+/**************************************************************************************/
+/**************************************************************************************/
+@media screen and (min-width: 1200px) {
+
+} /*1200px*/
+@media screen and (max-width: 1199px) {
+
+}/*1199px*/
+@media screen and (max-width: 991px) {
+  .bodyContent{
+    .secBckFaq{
+      height: 75vh;
+    }
+  }
+}/*991px*/
+@media screen and (max-width: 767px) {
+
+} /*767px*/
