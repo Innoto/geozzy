@@ -86,7 +86,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
     $('#'+that.divId).css('top', pos.y+that.marginY+'px');
     $('#'+that.divId).css('left', pos.x+that.marginX+'px');
-    $('#'+that.divId).css('z-index',highest);
+    $('#'+that.divId).css('z-index', 500);
   },
 
   moveInfoMapDivWhenBehindMouse: function() {
