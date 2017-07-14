@@ -54,6 +54,32 @@
     }
   }
 }
+.explorerBaseInLanding( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 100%, @explMap-h: 55%, @explFilter-w: 100%,
+   @explFilter-h: 10%, @explGallery-w: 100%, @explGallery-h: 35% ){
+
+  .explorerBase( @explDu-w, @explDu-h, @explMap-w, @explMap-h, @explFilter-w, @explFilter-h, @explGallery-w, @explGallery-h );
+
+  .explorerContainer{
+    &.explorer-container-gallery{
+      min-height: @explGallery-h;
+      height: auto;
+    }
+    &.stick{
+      &.explorer-container-map{
+        position: fixed;
+        top: @headerHeight;
+      }
+      &.explorer-container-filter{
+        position: fixed !important;
+      }
+      &.explorer-container-gallery{
+        padding-top: (@explFilter-h + @explMap-h);
+      }
+    }
+  }
+
+
+}
 /*******************************************************************************************/
 .explorerLayoutDora( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 100%, @explFilter-w: 30%,
    @explFilter-h: 15%, @explGallery-w: 30%, @explGallery-h: 85% ) {
