@@ -1,0 +1,95 @@
+@import "appVars.less";
+@import "primaryMixins.less";
+@import "appMixins.less";
+
+@import "themeLibs/owlGalleryGATheme.less";
+
+.bodyContent{
+  .gzzSec{
+    h2{ color: @gzzColor-blue; }
+  }
+  .resInfo{
+    .resumen{
+      .font-size-big;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .calendarInfo{
+      ul,ol{
+        list-style: none;
+        li{
+          margin: 20px 0;
+          .font-size-big;
+        }
+      }
+    }
+  }
+  .secInscriptionInfo{
+    .inscriptionCerrada {
+      .mc_embed_signup_InsCerrada{
+        .btnProyecta{
+          background-color: @gzzColor-blue;
+          &:hover{ background-color: @gzzColor-blue-hover; }
+        }
+        .checkbox{
+          a{
+            color: @gzzColor-blue;
+            &:hover{ color: @gzzColor-blue-hover; }
+          }
+        }//.checkbox
+      }//#mc_embed_signup_InsCerrada
+    }
+
+    background-color: @gzzColor-bck-2;
+    margin-bottom: 40px;
+    a.btnProyectaDestacado{
+      margin: 20px 0 20px 0;
+      background-color:@gzzColor-blue;
+      &:hover{ background-color: @gzzColor-blue-hover; }
+    }
+  }
+  .secSpecialCollection{
+    h2{ color: @gzzColor-text-light; }
+    background-color: @gzzColor-blue;
+    .specialCollection{
+      .item{
+        .itemHover{
+          a.btn{
+            background-color: @gzzColor-blue;
+            &:hover{background-color: @gzzColor-blue-hover;}
+          }
+        }//itemHover
+      } //item
+    }//specialCollection
+  }//secSpecialCollection
+} //bodyContent
+/**************************************************************************************/
+/**************************************************************************************/
+/**********************  RESPONSIVE MEDIA QUERIES  ************************************/
+/**************************************************************************************/
+/**************************************************************************************/
+
+@media @mqGTDesktopLarge{
+
+} /*1200px*/
+@media @mqLTDesktop{
+
+}/*1199px*/
+@media @mqLTTablet{
+
+}/*991px*/
+@media @mqLTPhoneLandscape{
+  .bodyContent{
+    .secInscriptionInfo{
+      .inscriptionCerrada{
+        .mc-goFase2-InsCerrada{
+          margin: 10px 0;
+          .pull-right;
+        }
+      }
+    }
+  }
+} /*767px*/
+@media @mqLTPhonePortrait{
+
+} /*575px*/

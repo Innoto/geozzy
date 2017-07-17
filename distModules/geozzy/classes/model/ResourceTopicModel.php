@@ -34,7 +34,9 @@ class ResourceTopicModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'taxonomytermnIn' => ' taxonomyterm IN ( ? ) '
+  );
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {

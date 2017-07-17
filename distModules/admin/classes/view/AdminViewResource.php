@@ -62,7 +62,7 @@ class AdminViewResource extends AdminViewMaster {
     table::autoIncludes();
     $resource =  new ResourceModel();
 
-    $tabla = new TableController( $resource );
+    $tabla = new TableController( $resource, true );
 
     $tabla->setTabs( 'published', array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 

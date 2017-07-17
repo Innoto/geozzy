@@ -1,0 +1,133 @@
+@import "appVars.less";
+@import "primaryMixins.less";
+@import "appMixins.less";
+
+
+
+// explorador concurso infowindow
+#geozzyExplorerMapInfo {
+  width:200px;
+  background-color: #fff;
+  .gempiImg {
+    img {
+      width:100%;
+    }
+  }
+
+  .gempiTypeEstado {
+    position:absolute;
+    top:100px;
+    background-color:@gzzColor-proyectaInnovacion-hover;
+    color:#fff;
+    padding:4px;
+    padding-left:10px;
+    padding-right:10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .gempiInfo {
+    padding:10px;
+    font-size:12px;
+    .title {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size:14px;
+    }
+    .centro {
+      font-weight: bold;
+    }
+    .description {
+      margin-top:5px;
+    }
+  }
+
+  .gempiTouchAccess  {
+
+    button {
+      background-color:@gzzColor-proyectaInnovacion-hover;
+      color:#fff;
+      padding:4px;
+      border:0;
+      padding-left:10px;
+      padding-right:10px;
+      margin-bottom: 10px;
+      float:right;
+      font-weight: bold;
+    }
+  }
+
+}
+
+
+// modal
+#concursoModal {
+  &.modal{ overflow: auto; }
+  .title {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+
+  }
+
+  .centroNombre {
+    font-weight: bold;
+  }
+
+  .description {
+    margin-top: 10px;
+    font-size:13px;
+  }
+
+  .verenlace{
+    margin-top: 30px;
+    .goToEnlace{
+      color: @gzzColor-proyectaInnovacion;
+      border: 1px solid @gzzColor-proyectaInnovacion;
+      padding: 8px;
+      text-decoration: none;
+    &:hover{ color: @gzzColor-proyectaInnovacion-hover; }
+      i{ margin-right: 10px; }
+    }
+  }
+
+  .premio {
+    margin-top:50px;
+    margin-bottom:30px;
+    background: @gzzColor-proyectaInnovacion;
+    .premioContent {
+      width:190%;
+      padding-left:90%;
+      margin-left:-90%;
+      background: @gzzColor-proyectaInnovacion;
+
+      padding-top:10px;
+      padding-bottom:10px;
+      text-transform: uppercase;
+      font-weight: bold;
+
+      .cantidad {
+        margin-left: 10px;
+      }
+    }
+  }
+  .video {
+    height:500px;
+    *{border:0;}
+  }
+}
+
+
+
+@media @mqLTPhonePortrait{
+    // modal
+    #concursoModal {
+      padding: 100px 50px;
+      .video {
+        height:150px;
+        *{border:0;}
+      }
+    }
+
+} /*575px*/
