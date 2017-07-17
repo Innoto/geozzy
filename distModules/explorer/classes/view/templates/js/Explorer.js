@@ -1,6 +1,6 @@
 var geozzy = geozzy || {};
 
-geozzy.explorerComponents.routerInstance = false;
+//geozzy.explorerComponents.routerInstance = false;
 geozzy.explorer = function( opts ) {
 
   var that = this;
@@ -81,8 +81,8 @@ geozzy.explorer = function( opts ) {
 
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
 
-    if( that.options.useUrlRouter == true ) {
-      // set explorer router
+    if( that.options.useUrlRouter == true && typeof geozzy.explorerComponents.routerInstance == 'undefined' ) {
+
       geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
       geozzy.explorerComponents.routerInstance.parentExplorer = that;
 
