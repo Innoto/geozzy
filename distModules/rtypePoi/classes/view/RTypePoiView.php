@@ -102,8 +102,8 @@ class RTypePoiView extends RTypeViewCore implements RTypeViewInterface {
         }
       }
 
+      $rtypeRes = $rtypeModel->listItems( array( 'filters' => array('id' => $resourceData['rTypeId']) ) )->fetch();
       $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypePoi') ) )->fetch();
-      $resourceData['rTypeId'] = $rtype->getter('id');
 
       $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $resourceData );
 
@@ -116,12 +116,21 @@ class RTypePoiView extends RTypeViewCore implements RTypeViewInterface {
       }
 
       // Cambiamos el template del formulario
-      $formBlockInfo['template']['miniFormModal']->addToFragment('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['adminExt']);
-      $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
+      if($resourceData['rTypeId'] === $rtype->getter('id')){ // rtypePoi
+        $formBlockInfo['template']['miniFormModal']->addToFragment('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['adminExt']);
+        $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
+        $formBlockInfo['template']['miniFormModal']->exec();
+      }
+      else { // otro recurso
+        $formBlockInfo['template']['miniFormModal'] = new Template();
+        $formBlockInfo['template']['miniFormModal']->assign( 'rtype', $rtypeRes->getter('name_'.$form->langDefault));
+        $formBlockInfo['template']['miniFormModal']->setTpl('noEditable.tpl', 'rtypePoi');
+
+      }
       $formBlockInfo['template']['miniFormModal']->exec();
     }
     else {
-      cogumelo::error( 'Imposible acceder al Poio indicado.' );
+      cogumelo::error( 'Imposible acceder al POI indicado.' );
     }
 
 
