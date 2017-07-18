@@ -1,7 +1,5 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"#-#-#-#-#  messages_es_prev.po  #-#-#-#-#\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
@@ -9,11 +7,27 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2017-06-12T14:27:04+00:00\n"
-"PO-Revision-Date: 2017-06-12T14:27:04+00:00\n"
 "Language: \n"
-"#-#-#-#-#  messages_es_tpl.po  #-#-#-#-#\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:19
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:19
+msgid "Link or embed"
+msgstr ""
+
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:21
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:21
+msgid "External link"
+msgstr ""
+
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:22
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:22
+msgid "Embedable code"
+msgstr ""
+
+#: /home/proxectos/becarios/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:33
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:33
+msgid "If not uploaded, an automatic thumbnail will be created"
+msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeUrl/classes/controller/RTypeUrlController.php:41
 msgid "Main Resource information"
@@ -25,20 +39,4 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeUrl/classes/controller/RTypeUrlController.php:71
 msgid "Resource"
-msgstr ""
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:19
-msgid "Link or embed"
-msgstr ""
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:21
-msgid "External link"
-msgstr ""
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:22
-msgid "Embedable code"
-msgstr ""
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:33
-msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""
