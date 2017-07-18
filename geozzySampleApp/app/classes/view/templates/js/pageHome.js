@@ -1,29 +1,10 @@
 $( document ).ready(function(){
   initEffectNavs();
   headerTransparent();
-  secRegistroBinds();
 
-  // new geozzy.generateModal( {
-  //   classCss: "plazoInicioModal",
-  //   htmlBody: __( "La inscripción para la actual edición del programa se abrirá a partir del 29 de mayo de 2017 a las 13:00 horas."),
-  //   successCallback: function(){ return false; }
-  // } );
 });
 
-function secRegistroBinds(){
-  $('.initParticipation').on('click', function(){
-    geozzy.userSessionInstance.userControlAccess(
-      function(){ window.location.href = '/solicitud-inscripcion' ; },
-      function(){ },
-      'register'
-    );
-  });
-  $('.continueParticipation').on('click', function(){
-    geozzy.userSessionInstance.userControlAccess( function(){
-      window.location.href = '/solicitud-inscripcion' ;
-    });
-  });
-}
+
 
 function headerTransparent(){
   $('.navbar').addClass('transparent');
