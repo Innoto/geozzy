@@ -2,7 +2,6 @@
 
 {$client_includes}
 <div class="{$rExtName} formBlock">
-OOOOOOOOOOOOOLA
 {if isset($prevContent)}
   {$prevContent}
 {/if}
@@ -12,7 +11,6 @@ OOOOOOOOOOOOOLA
       {$formField}
     {/if}
 {/foreach}
-OLA
 <input name="submit" value="Send" form="resourceEdit" class="cgmMForm-field cgmMForm-field-submit gzzAdminToMove btn btn-primary" type="submit">
 
 {if isset($postContent)}

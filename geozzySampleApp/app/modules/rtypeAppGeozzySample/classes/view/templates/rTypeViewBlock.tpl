@@ -1,4 +1,4 @@
-{assign scope="global" var="bodySection" value="resourceBlog"}
+{assign scope="global" var="bodySection" value="resourceAppGeozzySample"}
 
 {block name="headCssIncludes" append}
 <style type="text/css">
