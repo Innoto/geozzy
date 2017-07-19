@@ -72,7 +72,7 @@ $conf->setSetupValue( 'lang', [
 //
 $conf->setSetupValue( 'socialNetworks', [
   'facebook' => 'GeozzySampleApp',
-  'twitter' => 'GeozzySampleApp'
+  'twitter' => 'GeozzySampleApp',
   'youtube' => 'GeozzySampleApp',
   'googleplus' => 'GeozzySampleApp',
 ]);
@@ -176,7 +176,6 @@ $C_INDEX_MODULES = [
   'geozzy',
   'form',
   'admin',
-  'appDashboard',
   'geozzyAPI',
   'appResourceBridge',
   'initResources',
@@ -276,7 +275,7 @@ $conf->setSetupValue( 'mod:geozzy:sitemap:regexUrlDeny', [ '#/INTERNO[-_]#', '#/
 //
 //  Filedata Mod: Perfiles de imagen propios del proyecto
 //
-include 'setup-500.filedataImageProfiles.php';
+include 'setup-500.project.filedataImageProfiles.php';
 
 
 
