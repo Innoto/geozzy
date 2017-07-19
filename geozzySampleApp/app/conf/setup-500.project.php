@@ -138,6 +138,7 @@ $C_REXT_MODULES = [
   'rextMap',
   'rextSocialNetwork',
   'rextComment',
+  'rextAudioguide',
   'rextAppGeozzySample',
 ];
 
