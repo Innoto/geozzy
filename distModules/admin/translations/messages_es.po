@@ -7,9 +7,164 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2017-06-12T14:27:03+00:00\n"
-"PO-Revision-Date: 2017-06-12T14:27:03+00:00\n"
-"Language: Español\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
+msgid "Select options"
+msgstr "Seleccionar opciones"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+msgid "Edit Collection"
+msgstr "Editar colección"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
+msgid "Add existing resources"
+msgstr "Añadir recursos existentes"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:18
+msgid "Upload multimedia resource"
+msgstr "Subir recursos multimedia"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:21
+msgid "Upload multiple files"
+msgstr "Subir múltiples ficheros"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:24
+msgid "Link or embed multimedia resource"
+msgstr "enlazar o embeber recurso multimedia"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listResourceOutTopic.tpl:4
+msgid "Available and unallocated resources"
+msgstr "Recursos disponibles"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:14
+msgid "Resources Starred in"
+msgstr "Recursos destacados en"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:19
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:57
+msgid "Assign"
+msgstr "Asignar"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:107
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:108
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:21
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:59
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:21
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:59
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:22
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:60
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:22
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:60
+msgid "Save"
+msgstr "Guardar"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:38
+msgid "List of resources for"
+msgstr "Lista de recursos para"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listAsignStarred.tpl:4
+msgid "Resources not starred yet"
+msgstr "Recursos no destacados"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_modal.tpl:15
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_modal.tpl:35
+msgid "Close"
+msgstr "Cerrar"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_admin403.tpl:5
+msgid "Forbidden: Access is denied"
+msgstr "Prohibido: acceso denegado"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_admin403.tpl:6
+msgid "You don't have permission to access on this section"
+msgstr "No tienes permisos para acceder a esta sección"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:25
+msgid "User Profile"
+msgstr "Perfil de usuario"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:26
+msgid "Edit Profile"
+msgstr "Editar perfil"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:29
+msgid "Logout"
+msgstr "Desconectar"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:52
+msgid "Charts"
+msgstr "Gráficos"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:57
+msgid "Pages"
+msgstr "Páginas"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:62
+msgid "Stories"
+msgstr "Historias"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:71
+msgid "Starred"
+msgstr "Destacados"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:87
+msgid "Comments"
+msgstr "Comentarios"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:93
+msgid "Suggestions"
+msgstr "Sugerencias"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:99
+msgid "Contents"
+msgstr "Contenidos"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:104
+msgid "Categories"
+msgstr "Categorías"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:119
+msgid "Settings"
+msgstr "Ajustes"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:122
+msgid "Menu"
+msgstr "Menú"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:126
+msgid "Users"
+msgstr "Usuarios"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:65
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:141
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:129
+msgid "User"
+msgstr "Usuario"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:132
+msgid "Roles"
+msgstr "Roles"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:14
+msgid "Category management for"
+msgstr "Gestión de categorías para"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:19
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:57
+msgid "Add"
+msgstr "Añadir"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:38
+msgid "List of terms for"
+msgstr "Lista de términos para"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:68
 msgid "Access denied"
@@ -77,12 +232,6 @@ msgstr "Recurso"
 msgid "Time Creation"
 msgstr "Fecha de creación"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:65
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:141
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:129
-msgid "User"
-msgstr "Usuario"
-
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:66
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:142
 msgid "Comment"
@@ -110,15 +259,6 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:106
 msgid "Category form"
 msgstr "Formulario de categorías"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:107
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:108
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:21
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:59
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:21
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:59
-msgid "Cancel"
-msgstr "Cancelar"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:41
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:37
@@ -269,13 +409,6 @@ msgstr "Asignar recursos: cómo"
 msgid "id"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:19
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:57
-msgid "Assign"
-msgstr "Asignar"
-
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:30
 msgid "Roles Management"
 msgstr "Gestor de roles"
@@ -307,138 +440,3 @@ msgstr "Trabajando con tipos de recursos"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
 msgid "Assign to this topic"
 msgstr "Asignar a esta temática"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listResourceOutTopic.tpl:4
-msgid "Available and unallocated resources"
-msgstr "Recursos disponibles"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_modal.tpl:15
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_modal.tpl:35
-msgid "Close"
-msgstr "Cerrar"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listAsignStarred.tpl:4
-msgid "Resources not starred yet"
-msgstr "Recursos no destacados"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:25
-msgid "User Profile"
-msgstr "Perfil de usuario"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:26
-msgid "Edit Profile"
-msgstr "Editar perfil"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:29
-msgid "Logout"
-msgstr "Desconectar"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:52
-msgid "Charts"
-msgstr "Gráficos"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:57
-msgid "Pages"
-msgstr "Páginas"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:62
-msgid "Stories"
-msgstr "Historias"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:71
-msgid "Starred"
-msgstr "Destacados"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:87
-msgid "Comments"
-msgstr "Comentarios"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:93
-msgid "Suggestions"
-msgstr "Sugerencias"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:99
-msgid "Contents"
-msgstr "Contenidos"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:104
-msgid "Categories"
-msgstr "Categorías"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:119
-msgid "Settings"
-msgstr "Ajustes"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:122
-msgid "Menu"
-msgstr "Menú"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:126
-msgid "Users"
-msgstr "Usuarios"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:132
-msgid "Roles"
-msgstr "Roles"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:14
-msgid "Category management for"
-msgstr "Gestión de categorías para"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:19
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:57
-msgid "Add"
-msgstr "Añadir"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:22
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:60
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:22
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:60
-msgid "Save"
-msgstr "Guardar"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:38
-msgid "List of terms for"
-msgstr "Lista de términos para"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:14
-msgid "Resources Starred in"
-msgstr "Recursos destacados en"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:38
-msgid "List of resources for"
-msgstr "Lista de recursos para"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_admin403.tpl:5
-msgid "Forbidden: Access is denied"
-msgstr "Prohibido: acceso denegado"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_admin403.tpl:6
-msgid "You don't have permission to access on this section"
-msgstr "No tienes permisos para acceder a esta sección"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
-msgid "Select options"
-msgstr "Seleccionar opciones"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
-msgid "Edit Collection"
-msgstr "Editar colección"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
-msgid "Add existing resources"
-msgstr "Añadir recursos existentes"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:18
-msgid "Upload multimedia resource"
-msgstr "Subir recursos multimedia"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:21
-msgid "Upload multiple files"
-msgstr "Subir múltiples ficheros"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:24
-msgid "Link or embed multimedia resource"
-msgstr "enlazar o embeber recurso multimedia"

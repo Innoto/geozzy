@@ -7,24 +7,27 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2017-06-12T14:27:05+00:00\n"
-"PO-Revision-Date: 2017-06-12T14:27:06+00:00\n"
-"Language: Español\n"
+"Language: \n"
 
-#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:67
-#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:68
-msgid "Upload an image"
-msgstr "Sube una imagen"
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:31
+msgid "Accept"
+msgstr "Aceptar"
 
-#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:74
-msgid "Name"
-msgstr "Nombre"
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:12
+msgid "Search an address"
+msgstr "Buscar unha dirección"
 
-#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:78
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:51
-msgid "Medium description"
-msgstr "Descripción media"
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:25
+msgid "Automatic Location"
+msgstr "Localización automática"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:59
+msgid "See more..."
+msgstr "Ver más..."
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:61
+msgid "Less"
+msgstr "Menos"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:73
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:385
@@ -37,6 +40,52 @@ msgstr "Título"
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:14
 msgid "Short description"
 msgstr "Descripción corta"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:78
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:51
+msgid "Medium description"
+msgstr "Descripción media"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:400
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:56
+msgid "Content"
+msgstr "Contenido"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:408
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:61
+msgid "Image"
+msgstr "Imagen"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:67
+msgid "None"
+msgstr "Ninguna"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:73
+msgid "External Url"
+msgstr "Url externa"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:454
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:80
+msgid "Collections"
+msgstr "Colecciones"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:12
+msgid "Find out!"
+msgstr "Averígualo"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:61
+msgid "ID Name (WARNING)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:67
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:68
+msgid "Upload an image"
+msgstr "Sube una imagen"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:74
+msgid "Name"
+msgstr "Nombre"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:83
 msgid "Description"
@@ -118,19 +167,9 @@ msgstr "evento"
 msgid "Time creation"
 msgstr "Fecha de creación"
 
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:400
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:56
-msgid "Content"
-msgstr "Contenido"
-
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:404
 msgid "External URL"
 msgstr "URL externa"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:408
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:61
-msgid "Image"
-msgstr "Imagen"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:414
 msgid "SEO: URL"
@@ -175,11 +214,6 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:448
 msgid "Extra information 2"
 msgstr ""
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:454
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:80
-msgid "Collections"
-msgstr "Colecciones"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:464
 msgid "Create Collection"
@@ -264,35 +298,3 @@ msgstr "Error estableciendo alias de URL"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1804
 msgid "Error setting URL alias 2"
 msgstr "Error estableciendo alias 2 de URL"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:12
-msgid "Search an address"
-msgstr "Buscar unha dirección"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:25
-msgid "Automatic Location"
-msgstr "Localización automática"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:67
-msgid "None"
-msgstr "Ninguna"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceViewBlock.tpl:73
-msgid "External Url"
-msgstr "Url externa"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:12
-msgid "Find out!"
-msgstr "Averígualo"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:59
-msgid "See more..."
-msgstr "Ver más..."
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:61
-msgid "Less"
-msgstr "Menos"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:31
-msgid "Accept"
-msgstr "Aceptar"

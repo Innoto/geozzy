@@ -1,5 +1,5 @@
 <?php
-
+geozzy::load( 'controller/RExtController.php' );
 
 class RExtRoutesController extends RExtController implements RExtInterface {
 
