@@ -1,5 +1,5 @@
 <?php
-
+geozzy::load( 'controller/RExtController.php' );
 Cogumelo::load('coreController/I18nController.php');
 
 class RExtSocialNetworkController extends RExtController implements RExtInterface {

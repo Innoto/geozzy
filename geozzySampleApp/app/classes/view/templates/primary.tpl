@@ -9,27 +9,25 @@
 
 
 
-  <title>{block name="headTitle"}Programa de Formación para Profesores Fundación Amancio Ortega | {/block}</title>
+  <title>{block name="headTitle"} | {/block}</title>
 
 
 
-  <meta name="description" content="{block name="headDescription"}50 plazas de formación y prácticas para el curso académico 2017-2018 en Canadá{/block}">
+  <meta name="description" content="{block name="headDescription"}{/block}">
 
 
 
-  <meta name="keywords" content="{block name="headKeywords"}formación,profesores,becas,fundación,canadá,amancio,ortega,zara,inditex,prácticas,máster,universitario,ESO,bachillerato,profesional{/block}">
+  <meta name="keywords" content="{block name="headKeywords"}{/block}">
 
 
 
 
   <link rel="canonical" href="{$cogumelo.publicConf.site_host}{$res.data['urlAlias']}">
-  <link href="https://fonts.googleapis.com/css?family=Anton|Arimo" rel="stylesheet">
-
   {block name="socialMeta"}{/block}
   {block name="headClientIncludes"}
     {$main_client_includes}
     {$client_includes}
-    <script type="text/javascript">$( document ).ready(function(){feature.testAll();});</script>
+    <script type="text/javascript"> $( document ).ready(function(){ feature.testAll(); }); </script>
   {/block}
 </head>
 

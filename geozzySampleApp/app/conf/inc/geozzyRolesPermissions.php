@@ -30,7 +30,7 @@
   'filedata:privateAccess'
 )
 */
-cogumeloSetSetupValue( 'user:roles:administrador',
+Cogumelo::setSetupValue( 'user:roles:administrador',
   array(
     'name' => 'administrador',
     'description' => 'Role Administrador',
@@ -42,7 +42,7 @@ cogumeloSetSetupValue( 'user:roles:administrador',
   )
 );
 
-cogumeloSetSetupValue( 'user:roles:gestor',
+Cogumelo::setSetupValue( 'user:roles:gestor',
   array(
     'name' => 'gestor',
     'description' => 'Role Gestor',

@@ -53,6 +53,16 @@
       overflow: auto;
     }
   }
+  .explorerArrowLabel {
+    font-weight:bold;
+    font-size:13px;
+    width:18px;
+    height:20px;
+    padding-left:5px;
+    padding-top:1px;
+    color:white;
+    background-color:#425451;
+  }
 }
 .explorerBaseInLanding( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 100%, @explMap-h: 55%, @explFilter-w: 100%,
    @explFilter-h: 10%, @explGallery-w: 100%, @explGallery-h: 35% ){
@@ -129,27 +139,6 @@
       height: @explGallery-h;
       float: right;
       overflow: auto;
-    }
-  }
-}
-/*******************************************************************************************/
-.explorerLayoutMobile( @expl-w: 100%, @expl-h: 100% ) {
-  .explorerContainer{
-    &.explorer-container-du{
-      width: @expl-w;
-      height: @expl-h;
-    }
-    &.explorer-container-map{
-      width: @expl-w;
-      height: @expl-h;
-    }
-    &.explorer-container-filter{
-      width: @expl-w;
-      height: @expl-h;
-    }
-    &.explorer-container-gallery{
-      width: @expl-w;
-      height: @expl-h;
     }
   }
 }
@@ -264,17 +253,37 @@
       display: none;
     }
   }
+  .explorerArrowLabel {
+    font-weight:bold;
+    font-size:13px;
+    width:18px;
+    height:20px;
+    padding-left:5px;
+    padding-top:1px;
+    color:white;
+    background-color:#425451;
+  }
 }
 /*******************************************************************************************/
 
-
-.explorerArrowLabel {
-  font-weight:bold;
-  font-size:13px;
-  width:18px;
-  height:20px;
-  padding-left:5px;
-  padding-top:1px;
-  color:white;
-  background-color:#425451;
+/*******************************************************************************************/
+.explorerLayoutMobile( @expl-w: 100%, @expl-h: 100% ) {
+  .explorerContainer{
+    &.explorer-container-du{
+      width: @expl-w;
+      height: @expl-h;
+    }
+    &.explorer-container-map{
+      width: @expl-w;
+      height: @expl-h;
+    }
+    &.explorer-container-filter{
+      width: @expl-w;
+      height: @expl-h;
+    }
+    &.explorer-container-gallery{
+      width: @expl-w;
+      height: @expl-h;
+    }
+  }
 }

@@ -72,7 +72,7 @@ $conf->setSetupValue( 'lang', [
 //
 $conf->setSetupValue( 'socialNetworks', [
   'facebook' => 'GeozzySampleApp',
-  'twitter' => 'GeozzySampleApp'
+  'twitter' => 'GeozzySampleApp',
   'youtube' => 'GeozzySampleApp',
   'googleplus' => 'GeozzySampleApp',
 ]);
@@ -138,6 +138,8 @@ $C_REXT_MODULES = [
   'rextMap',
   'rextSocialNetwork',
   'rextComment',
+  'rextAudioguide',
+  'rextAppGeozzySample',
 ];
 
 // resource Types
@@ -146,6 +148,7 @@ $C_RTYPE_MODULES = [
   'rtypePage',
   'rtypeUrl',
   'rtypeFile',
+  'rtypeAppGeozzySample',
 ];
 
 // resource Types
@@ -174,13 +177,12 @@ $C_INDEX_MODULES = [
   'geozzy',
   'form',
   'admin',
-  'appDashboard',
   'geozzyAPI',
   'appResourceBridge',
   'initResources',
   'rextComment',
-  // 'develWebPanel',
-]; // develWebPanel SIEMPRE DE ULTIMO!!!
+  // 'devel',
+]; // devel SIEMPRE DE ULTIMO!!!
 
 
 //
@@ -274,7 +276,7 @@ $conf->setSetupValue( 'mod:geozzy:sitemap:regexUrlDeny', [ '#/INTERNO[-_]#', '#/
 //
 //  Filedata Mod: Perfiles de imagen propios del proyecto
 //
-include 'setup-500.filedataImageProfiles.php';
+include 'setup-500.project.filedataImageProfiles.php';
 
 
 

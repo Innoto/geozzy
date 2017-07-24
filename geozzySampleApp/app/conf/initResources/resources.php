@@ -21,31 +21,7 @@ $initResources[] = array(
     'es' => '/',
     'gl' => '/'
   ),
-  'viewType' => 'viewAppHome',
-  'img' => 'fototest1.jpg'
-);
-
-
-// About
-$initResources[] = array(
-  'version' =>'Cogumelo#1.0',
-  'executeOnGenerateModelToo' => true,
-  'idName' => 'about',
-  'rType' => 'rtypePage',
-  'title' => array(
-    'es' => '¿Qué es Proyecta?',
-    'gl' => 'Qué é Proyecta?'
-  ),
-  'content' => array(
-    'es' => file_get_contents(dirname(__FILE__).'/html/about_es.html'),
-    'gl' => file_get_contents(dirname(__FILE__).'/html/about_gl.html')
-  ),
-  'urlAlias' => array(
-    'es' => '/conocenos',
-    'gl' => '/conocenos'
-  ),
-  'viewType' => 'viewAppAbout',
-  'img' => 'que_es_proyecta.jpg'
+  'viewType' => 'viewAppHome'
 );
 
 
@@ -113,5 +89,3 @@ $initResources[] = array(
   'viewType' => 'viewAppGeneric',
   'img' => 'privacidad.jpg',
 );
-
-
