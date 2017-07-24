@@ -1,5 +1,5 @@
 <?php
-
+geozzy::load( 'controller/RExtController.php' );
 
 class RExtEventCollectionController extends RExtController implements RExtInterface {
 
@@ -52,7 +52,8 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     if ($elemId){
       $collectionResourcesModel = new CollectionResourcesModel();
       $collectionResourceList = $collectionResourcesModel->listItems(
-        array('filters' => array('collection' => $elemId)) );
+        array('filters' => array('collection' => $elemId), 'order' => array('weight' => 1))
+      );
 
       $resIds = array();
       while($res = $collectionResourceList->fetch()){
@@ -81,40 +82,37 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
     $rtypeControl = new ResourcetypeModel();
 
     $rtypeArray = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => $filter )));
+    $rtypeArraySize = $rtypeControl->listCount(array( 'filters' => array( 'idNameExists' => $filter )));
 
-    $filterRtype = array();
-    while( $res = $rtypeArray->fetch() ){
-      array_push( $filterRtype, $res->getter('id') );
+    if($this->defResCtrl->resObj!=false){
+      $resId = $this->defResCtrl->resObj->getter('id');
+    }
+    else{
+      $resId='null';
     }
 
-    $elemList = $resourceModel->listItems(
-      array(
-        'filters' => array( 'inRtype' => $filterRtype ),
-        'affectsDependences' => array('RExtUrlModel')
-      )
-    );
-
-    $resControl = new ResourceController();
-
-    $resOptions = array();
-    while( $res = $elemList->fetch() ) {
-
-      $thumbSettings = array(
-        'profile' => 'squareCut',
-        'imageId' => $res->getter( 'image' ),
-        'imageName' => $res->getter( 'image' ).'.jpg'
-      );
-      $resDataExtArray = $res->getterDependence('id', 'RExtUrlModel');
-      if( $resDataExt = $resDataExtArray[0] ){
-        $thumbSettings['url'] = $resDataExt->getter('url');
+    $varConditions = '';
+    $i = 1;
+    while( $res = $rtypeArray->fetch() ){
+      if($i === $rtypeArraySize){
+        $varConditions = $varConditions . $res->getter('id').';'.$resId.';'.'event';
       }
-      $elOpt = array(
-        'value' => $res->getter( 'id' ),
-        'text' => $res->getter( 'title', Cogumelo::getSetupValue('lang:default') ),
-        'data-image' => $resControl->getResourceThumbnail( $thumbSettings )
-      );
+      else{
+        $varConditions = $varConditions . $res->getter('id').',';
+      }
+      $i = $i+1;
+    }
 
-      $resOptions[ $res->getter( 'id' ) ] = $elOpt;
+    $collectionRtypeResources = new CollectionTypeResourcesModel();
+    $collectionRtypeResourcesList = $collectionRtypeResources->listItems(
+      array('filters'=>array('conditionsRtypeCollection' => $varConditions))
+    );
+    $resOptions = array();
+    while($res = $collectionRtypeResourcesList->fetch()){
+      $resOptions[] = array(
+        'value' => $res->getter( 'id' ),
+        'text' => $res->getter( 'title', Cogumelo::getSetupValue('lang:default') )
+      );
     }
 
     $rExtFieldNames = array();
@@ -132,15 +130,18 @@ class RExtEventCollectionController extends RExtController implements RExtInterf
       ),
       'events' => array(
         'params' => array(
-          'label' => __( 'Eventos' ),
-          'type' => 'select', 'id' => 'collEvents',
+          'id' => 'collEvents',
           'class' => 'cgmMForm-order',
-          'multiple' => true,
-          'options'=> $resOptions
+          'label' => __( 'Events' ),
+          'type' => 'select',
+          'data-col-type' => 'event',
+          'multiple' => true, 'options'=> $resOptions
         )
       ),
       'addEvents' => array(
-        'params' => array( 'id' => 'addEvents', 'type' => 'button', 'value' => __( 'Add Event' ))
+        'params' => array(
+          'id' => 'addEvents', 'type' => 'button', 'value' => __( 'Add Event' )
+        )
       )
     );
 

@@ -4,10 +4,14 @@ geozzy::load('controller/ResourceController.php');
 geozzy::load( 'view/GeozzyResourceView.php' );
 
 
-class RTypeEventView extends extends RTypeViewCore implements RTypeViewInterface {
+class RTypeEventView extends RTypeViewCore implements RTypeViewInterface {
 
   public function __construct( $defResCtrl = null ) {
     // error_log( 'RTypeAEventView: __construct(): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    if( ! is_object($defResCtrl)) {
+      $defResCtrl = new ResourceController();
+    }
+
     parent::__construct( $defResCtrl, new rtypeEvent() );
   }
 
@@ -98,8 +102,8 @@ class RTypeEventView extends extends RTypeViewCore implements RTypeViewInterface
         }
       }
 
+      $rtypeRes = $rtypeModel->listItems( array( 'filters' => array('id' => $resourceData['rTypeId']) ) )->fetch();
       $rtype = $rtypeModel->listItems( array( 'filters' => array('idName' => 'rtypeEvent') ) )->fetch();
-      $resourceData['rTypeId'] = $rtype->getter('id');
 
       $formBlockInfo = $resCtrl->getFormBlockInfo( $formName, $urlAction, false, $resourceData );
 
@@ -112,8 +116,17 @@ class RTypeEventView extends extends RTypeViewCore implements RTypeViewInterface
       }
 
       // Cambiamos el template del formulario
-      $formBlockInfo['template']['miniFormModal']->addToFragment('rextEventBlock', $formBlockInfo['ext']['rextEvent']['template']['full']);
-      $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
+
+      if($resourceData['rTypeId'] === $rtype->getter('id')){ // rtypeEvent
+        $formBlockInfo['template']['miniFormModal']->addToFragment('rextEventBlock', $formBlockInfo['ext']['rextEvent']['template']['full']);
+        $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
+        $formBlockInfo['template']['miniFormModal']->exec();
+      }
+      else{
+        $formBlockInfo['template']['miniFormModal'] = new Template();
+        $formBlockInfo['template']['miniFormModal']->assign( 'rtype', $rtypeRes->getter('name_'.$form->langDefault));
+        $formBlockInfo['template']['miniFormModal']->setTpl('noEditable.tpl', 'rtypeEvent');
+      }
       $formBlockInfo['template']['miniFormModal']->exec();
     }
     else {
