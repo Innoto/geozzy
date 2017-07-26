@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:1
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:1
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
 msgid "Recursos recomendados:"

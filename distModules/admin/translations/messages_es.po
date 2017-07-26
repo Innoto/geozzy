@@ -107,10 +107,6 @@ msgstr "Gráficos"
 msgid "Pages"
 msgstr "Páginas"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:62
-msgid "Stories"
-msgstr "Historias"
-
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:71
 msgid "Starred"
 msgstr "Destacados"
@@ -440,3 +436,7 @@ msgstr "Trabajando con tipos de recursos"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
 msgid "Assign to this topic"
 msgstr "Asignar a esta temática"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_adminMenu.tpl:62
+msgid "Stories"
+msgstr "Historias"

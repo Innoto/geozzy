@@ -1,0 +1,58 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:10
+msgid "Reservation URL"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:15
+msgid "Reservation phone"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:20
+msgid "Capacity"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:25
+msgid "Average Price"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:30
+msgid "Restaurant type"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:41
+msgid "Specialities"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:59
+msgid "Restaurant reservation URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:63
+msgid "Restaurant reservation phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:67
+msgid "Restaurant capacity"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:71
+msgid "Restaurant average price"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:75
+msgid "EatAndDrink type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEatAndDrink/classes/controller/RExtEatAndDrinkController.php:80
+msgid "EatAndDrink specialities"
+msgstr ""
