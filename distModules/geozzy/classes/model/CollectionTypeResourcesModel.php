@@ -51,7 +51,7 @@ class CollectionTypeResourcesModel extends Model {
 //            {multilang:geozzy_resource.title_$lang AS title_$lang,}
 
   var $deploySQL = array(
-      'version' => 'geozzy#1.0',
+      'version' => 'geozzy#1.96',
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_collectiontype_resources;
         CREATE VIEW geozzy_collectiontype_resources AS
