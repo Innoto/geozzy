@@ -51,7 +51,9 @@ class CollectionTypeResourcesModel extends Model {
 //            {multilang:geozzy_resource.title_$lang AS title_$lang,}
 
   var $deploySQL = array(
+    array(
       'version' => 'geozzy#1.96',
+      'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_collectiontype_resources;
         CREATE VIEW geozzy_collectiontype_resources AS
@@ -75,6 +77,7 @@ class CollectionTypeResourcesModel extends Model {
             GROUP BY id
             ORDER BY geozzy_collection_resources.weight;
       '
+    )
   );
 
 
