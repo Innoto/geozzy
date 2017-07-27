@@ -44,7 +44,7 @@ class CollectionTypeResourcesModel extends Model {
     	and
     	collectionType=SUBSTRING_INDEX(?,';',-1)
     );"
-  );
+);
 
   var $notCreateDBTable = true;
 
@@ -52,7 +52,7 @@ class CollectionTypeResourcesModel extends Model {
 
   var $deploySQL = array(
     array(
-      'version' => 'geozzy#1.96',
+      'version' => 'geozzy#1.97',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_collectiontype_resources;
@@ -60,7 +60,7 @@ class CollectionTypeResourcesModel extends Model {
           SELECT
             geozzy_resource.id AS id,
             geozzy_resource.rTypeId as rTypeId,
-            {multilang:geozzy_collection.title_$lang AS title_$lang,}
+            {multilang:geozzy_resource.title_$lang AS title_$lang,}
             geozzy_collection.collectionType as collectionType,
             geozzy_collection_resources.collection as collection,
             geozzy_collection_resources.weight AS weight,
