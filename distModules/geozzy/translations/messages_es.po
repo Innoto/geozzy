@@ -13,6 +13,7 @@ msgstr ""
 msgid "Accept"
 msgstr "Aceptar"
 
+#: /home/proxectos/profesores/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 msgid ""
 "Haz click en el lugar donde se ubica tu centro educativo con la mayor "

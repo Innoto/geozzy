@@ -27,11 +27,12 @@ msgstr ""
 msgid "Editar historia"
 msgstr ""
 
+#: /home/proxectos/profesores/app/tmp/tpl/listSteps.tpl:5
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/listSteps.tpl:5
 #: /home/proxectos/becarios/app/tmp/tpl/listSteps.tpl:5
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeStoryStep_classes_view_templates_listSteps.tpl:5
 msgid "Steps available"
-msgstr ""
+msgstr "Pasos disponibles"
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:70
 msgid "Create and add resources"
@@ -40,7 +41,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:71
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:81
 msgid "Return"
-msgstr ""
+msgstr "Volver"
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:74
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:84
@@ -50,7 +51,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:78
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:88
 msgid "Add selected"
-msgstr ""
+msgstr "añadir seleccionado"
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
 msgid ""
@@ -68,15 +69,15 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:106
 msgid "All"
-msgstr ""
+msgstr "Todos"
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:122
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:160
 msgid "Assign"
-msgstr ""
+msgstr "Asignar"
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:30
 msgid "Home URL"
@@ -96,7 +97,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:87
 msgid "Story step"
-msgstr ""
+msgstr "Paso"
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:95
 msgid "Edit Resource"
