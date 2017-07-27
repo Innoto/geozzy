@@ -43,7 +43,8 @@ class CollectionTypeResourcesModel extends Model {
     	parentResource=SUBSTRING_INDEX(SUBSTRING_INDEX(?,';',2),';',-1)
     	and
     	collectionType=SUBSTRING_INDEX(?,';',-1)
-    );"
+    );",
+    'conditionsRtypenotInCollection' => " rTypeId IN (?) and parentResource IS NULL;"
 );
 
   var $notCreateDBTable = true;

@@ -76,36 +76,29 @@ class RExtStoryController extends RExtController implements RExtInterface {
     $form_values = $form->getValuesArray();
     $filterRTypeParent = $form_values['rTypeIdName'];
 
-    $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':steps' );
+    $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':pasos' );
 
     $resourceModel = new ResourceModel();
     $rtypeControl = new ResourcetypeModel();
-
-    if($this->defResCtrl->resObj!=false){
-      $resId = $this->defResCtrl->resObj->getter('id');
-    }
-    else{
-      $resId='null';
-    }
 
     $rtypeArray = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => $filter )));
     $rtypeArraySize = $rtypeControl->listCount(array( 'filters' => array( 'idNameExists' => $filter )));
 
     $varConditions = '';
-    $i = 1;
+    $i = 0;
     while( $res = $rtypeArray->fetch() ){
-      if($i === $rtypeArraySize){
-        $varConditions = $varConditions . $res->getter('id').';'.$resId.';'.'steps';
+      if($i+1 !== $rtypeArraySize){
+        $varConditions = $varConditions . $res->getter('id').',';
       }
       else{
-        $varConditions = $varConditions . $res->getter('id').',';
+        $varConditions = $varConditions . $res->getter('id');
       }
       $i = $i+1;
     }
 
     $collectionRtypeResources = new CollectionTypeResourcesModel();
     $collectionRtypeResourcesList = $collectionRtypeResources->listItems(
-      array('filters'=>array('conditionsRtypeCollection' => $varConditions))
+      array('filters'=>array('conditionsRtypenotInCollection' => $varConditions))
     );
     $resOptions = array();
     while($res = $collectionRtypeResourcesList->fetch()){
