@@ -87,6 +87,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
     $varConditions = '';
     $i = 0;
     while( $res = $rtypeArray->fetch() ){
+      var_dump($res->getter('id'));
       if($i+1 !== $rtypeArraySize){
         $varConditions = $varConditions . $res->getter('id').',';
       }
@@ -107,6 +108,10 @@ class RExtStoryController extends RExtController implements RExtInterface {
         'text' => $res->getter( 'title', Cogumelo::getSetupValue('lang:default') )
       );
     }
+
+    echo '<pre>';
+    var_dump($resOptions);
+    echo '</pre>';
 
     $rExtFieldNames = array();
 
