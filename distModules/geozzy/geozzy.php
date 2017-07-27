@@ -12,7 +12,7 @@ define('MOD_GEOZZY_URL_DIR', 'geozzy');
 class geozzy extends Module {
 
   public $name = 'geozzy';
-  public $version = 1.96;
+  public $version = 1.97;
 
   // public $autoIncludeAlways = true;
   // FALLA: PHP Fatal error:  Class 'Smarty' not found in /home/proxectos/cogumelo/coreClasses/coreView/Template.php on line 10
