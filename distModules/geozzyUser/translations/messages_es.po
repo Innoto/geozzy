@@ -39,6 +39,7 @@ msgid ""
 "enviaremos un enlace para restablecer tu contraseña"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:484
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:478
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:33
 msgid "Send"
@@ -84,6 +85,7 @@ msgstr ""
 "Su url ha expirado. Por favor, reinicie el proceso de recuperación de "
 "contraseña"
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/becarios/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzyUser_classes_view_templates_userProfile.tpl:4
 msgid "Perfil de Usuario"

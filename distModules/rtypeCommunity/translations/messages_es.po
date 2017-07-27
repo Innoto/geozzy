@@ -9,51 +9,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:11
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:11
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:11
 msgid "Tu Comunidad"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:20
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:20
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:20
 msgid "Mi perfil"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:39
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:39
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:39
 msgid "Editar"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:40
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:40
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:40
 msgid "Guardar"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:56
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:56
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:56
 msgid "Compartir mis datos con la comunidad"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:81
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:81
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:81
 msgid "Perfil enlazado con Facebook"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:82
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:82
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:82
 msgid "Enlazar mi perfil con Facebook"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:100
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:100
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:100
 msgid "Perfil enlazado con Twitter"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:101
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:101
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:101
 msgid "Enlazar mi perfil con Twitter"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:166
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:258
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:166
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:258
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:166
@@ -61,6 +72,8 @@ msgstr ""
 msgid "Seguir"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:167
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:259
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:167
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:259
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:167
@@ -68,6 +81,8 @@ msgstr ""
 msgid "Siguiendo"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:184
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:276
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:184
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:276
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:184
@@ -75,6 +90,8 @@ msgstr ""
 msgid "Le gusta..."
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:200
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:292
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:200
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:292
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:200
@@ -82,11 +99,13 @@ msgstr ""
 msgid "ver todos"
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:215
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:215
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:215
 msgid "Parece que todavía no has añadido a nadie a tu Comunidad..."
 msgstr ""
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:228
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:228
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:228
 msgid "Usuarios similares a tí..."

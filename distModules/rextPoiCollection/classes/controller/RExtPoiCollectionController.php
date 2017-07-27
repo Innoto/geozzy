@@ -53,7 +53,8 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
       $collectionResourceCount = $collectionResourcesModel->listCount(
         array('filters' => array('collection' => $elemId)) );
       $collectionResourceList = $collectionResourcesModel->listItems(
-        array('filters' => array('collection' => $elemId)) );
+        array('filters' => array('collection' => $elemId), 'order' => array('weight' => 1))
+      );
       if($collectionResourceCount>0) {
         $resIds = array();
         while($res = $collectionResourceList->fetch()){
@@ -85,57 +86,39 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
     $resourceModel = new ResourceModel();
     $rtypeControl = new ResourcetypeModel();
 
-    $rtypeArray = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => $filter )));
-
-    $filterRtype = array();
-    while( $res = $rtypeArray->fetch() ){
-      array_push( $filterRtype, $res->getter('id') );
+    if($this->defResCtrl->resObj!=false){
+      $resId = $this->defResCtrl->resObj->getter('id');
+    }
+    else{
+      $resId='null';
     }
 
-    $elemList = $resourceModel->listItems(
-      array(
-        'filters' => array( 'inRtype' => $filterRtype ),
-        'affectsDependences' => array('RExtUrlModel')
-      )
-    )->fetchAll();
 
-    $rtypePoiId = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => 'rtypePoi' ) ))->fetch()->getter('id');
+    $rtypeArray = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => $filter )));
+    $rtypeArraySize = $rtypeControl->listCount(array( 'filters' => array( 'idNameExists' => $filter )));
 
-    // Si es una edicion, añadimos el ID y cargamos los datos
-     $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
-
-     $elemPoiList = $resourceModel->listItems(
-       array(
-         'filters' => array( 'inId'=> $valuesArray['pois'],'inRtype' => $rtypePoiId ),
-         'affectsDependences' => array('RExtUrlModel')
-       )
-     )->fetchAll();
-
-    $elemListFinal = array_merge($elemList, $elemPoiList);
-    $resControl = new ResourceController();
-
-    $resOptions = array();
-
-    if ($elemListFinal){
-      foreach ($elemListFinal as $key => $res) {
-
-        $thumbSettings = array(
-          'profile' => 'squareCut',
-          'imageId' => $res->getter( 'image' ),
-          'imageName' => $res->getter( 'image' ).'.jpg'
-        );
-        $resDataExtArray = $res->getterDependence('id', 'RExtUrlModel');
-        if( $resDataExt = $resDataExtArray[0] ){
-          $thumbSettings['url'] = $resDataExt->getter('url');
-        }
-        $elOpt = array(
-          'value' => $res->getter( 'id' ),
-          'text' => $res->getter( 'title', Cogumelo::getSetupValue('lang:default') ),
-          'data-image' => $resControl->getResourceThumbnail( $thumbSettings )
-        );
-
-        $resOptions[ $res->getter( 'id' ) ] = $elOpt;
+    $varConditions = '';
+    $i = 1;
+    while( $res = $rtypeArray->fetch() ){
+      if($i === $rtypeArraySize){
+        $varConditions = $varConditions . $res->getter('id').';'.$resId.';'.'poi';
       }
+      else{
+        $varConditions = $varConditions . $res->getter('id').',';
+      }
+      $i = $i+1;
+    }
+
+    $collectionRtypeResources = new CollectionTypeResourcesModel();
+    $collectionRtypeResourcesList = $collectionRtypeResources->listItems(
+      array('filters'=>array('conditionsRtypeCollection' => $varConditions))
+    );
+    $resOptions = array();
+    while($res = $collectionRtypeResourcesList->fetch()){
+      $resOptions[] = array(
+        'value' => $res->getter( 'id' ),
+        'text' => $res->getter( 'title', Cogumelo::getSetupValue('lang:default') )
+      );
     }
 
     $rExtFieldNames = array();
@@ -161,7 +144,8 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
     //$form->removeValidationRule( 'pois', 'inArray' );
     $form->removeValidationRule( 'rExtPoiCollection_pois', 'inArray' );
 
-
+    // Si es una edicion, añadimos el ID y cargamos los datos
+     $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
 
      if( $valuesArray ) {
        $valuesArray = $this->prefixArrayKeys( $valuesArray );

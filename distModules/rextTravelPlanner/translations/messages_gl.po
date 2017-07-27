@@ -1,0 +1,78 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
+msgid "Add to Plan"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:101
+msgid "Introduce entre 0 y 23 horas"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:102
+msgid "Introduce entre 0 y 59 minutos"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:7
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:13
+msgid "All"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:8
+msgid "Favourites"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:47
+msgid "When do you want to travel? "
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:55
+msgid "Day"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:91
+msgid "Select date to visit this place or event"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:102
+msgid "How long do you want to visit this place?"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:105
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:106
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:130
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:131
+msgid "hours"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:109
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:110
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:134
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:135
+msgid "minutes"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:114
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:139
+msgid "Cancel"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:115
+msgid "Add to plan"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:127
+msgid "How long?"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:140
+msgid "Save"
+msgstr ""
