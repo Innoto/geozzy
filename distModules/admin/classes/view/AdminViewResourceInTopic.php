@@ -128,6 +128,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $tabla->setDefaultFilters($filters);
     $tabla->setAffectsDependences( $extendedModels ) ;
+    //var_dump($extendedModels);
     $tabla->setJoinType('LEFT');
 
     // Nome das columnas

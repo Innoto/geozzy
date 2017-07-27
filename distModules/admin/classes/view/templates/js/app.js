@@ -54,7 +54,6 @@ $( document ).ready(function() {
       Backbone.history.start();
     }
 
-
     operatingHeader();
     manageAjaxFailures();
   });
