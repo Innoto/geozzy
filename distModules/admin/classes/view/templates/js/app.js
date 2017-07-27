@@ -41,16 +41,6 @@ $( document ).ready(function() {
     mainView: false
   }
 
-  /* Só se executa se está o modulo Stories */
-  var storiesFetch = true;
-  if( typeof geozzy.story !== 'undefined' ) {
-    if( typeof geozzy.storiesInstance === 'undefined' ) {
-      geozzy.storiesInstance = new geozzy.story();
-      geozzy.storiesInstance.listStories();
-      storiesFetch = geozzy.storiesInstance.listStoryView.stories.fetch();
-    }
-  }
-
 
   // Multiple data fetch
   $.when( app.categories.fetch(), app.topics.fetch(), app.starred.fetch()).done(function() {
@@ -62,11 +52,6 @@ $( document ).ready(function() {
     else {
       Backbone.history.stop();
       Backbone.history.start();
-    }
-
-    // só en caso de módulo Stories activado
-    if( typeof geozzy.story !== 'undefined' ) {
-      //geozzy.storiesInstance.listStoryView.render();
     }
 
     operatingHeader();

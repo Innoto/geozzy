@@ -14,11 +14,9 @@ class rtypeStory extends Module {
   public $includesCommon = array(
     'controller/RTypeStoryController.php',
     'view/RTypeStoryView.php',
-    'js/adminStories.js',
     'js/model/StoryStepModel.js',
-    'js/collection/StoryStepCollection.js',
-    'js/view/adminListStoryView.js',
-    'js/view/adminStoryTemplate.js'
+    'js/collection/StoryStepCollection.js'
+
   );
 
   public $nameLocations = array(
