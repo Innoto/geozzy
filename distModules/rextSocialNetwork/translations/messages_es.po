@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/profesores/app/tmp/tpl/rExtFormBasic.tpl:10
+#: /home/proxectos/profesores/app/tmp/tpl/rExtFormBasic.tpl:21
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:10
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:21
 #: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:10
@@ -20,6 +22,8 @@ msgid ""
 "recuadro."
 msgstr ""
 
+#: /home/proxectos/profesores/app/tmp/tpl/rExtFormBasic.tpl:11
+#: /home/proxectos/profesores/app/tmp/tpl/rExtFormBasic.tpl:22
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:11
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:22
 #: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:11
@@ -31,6 +35,7 @@ msgid ""
 "url de la página se debe poner #URL#:"
 msgstr ""
 
+#: /home/proxectos/profesores/app/tmp/tpl/rExtFormBasic.tpl:28
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:28
 #: /home/proxectos/becarios/app/tmp/tpl/rExtFormBasic.tpl:28
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:28
