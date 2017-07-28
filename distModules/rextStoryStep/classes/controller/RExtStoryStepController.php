@@ -87,6 +87,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
     $resourceModel = new ResourceModel();
     $rtypeModel = new resourceTypeModel();
 
+
     $rtypeArray = $rtypeModel->listItems(
         array( 'filters' => array( 'idNameExists' => $systemRtypes ) )
     );
@@ -99,17 +100,13 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
       array( 'filters' => array( 'notInRtype' => $filterRtype ) )
     );
 
-
     $allRes = array();
     $allRes['0'] = false;
     while( $elem = $elemList->fetch() ){
       $allRes[ $elem->getter( 'id' ) ] = $elem->getter( 'title' );
     }
 
-
-
     $fieldsInfo = array(
-
 
       'drawLine' => array(
         'params' => array( 'type' => 'checkbox', 'value'=>1, 'class' => 'switchery', 'options'=> array( '1' => __('Draw Pointer line') ))
