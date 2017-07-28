@@ -143,7 +143,8 @@ class ResourceModel extends Model {
     'idNameIn' => ' geozzy_resource.idName IN (?) ',
     'notInId' => ' geozzy_resource.id NOT IN (?) ',
     'updatedfrom' => ' ( geozzy_resource.timeCreation >= ? OR geozzy_resource.timeLastUpdate >= ? ) ',
-    'notInCollectionId' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)'
+    'notInCollectionId' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)',
+    'notAsigned' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources)'
   );
 
 
