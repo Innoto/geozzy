@@ -126,14 +126,13 @@ $collectionRtypeResources = new CollectionTypeResourcesModel();
 $collectionRtypeResourcesList = $collectionRtypeResources->listItems(
   array('filters'=>array('conditionsRtypenotInCollection' => $varConditions))
 );
-$resOptions = array();
+$allRes[] = array();
+$allRes['0'] = false;
 while($res = $collectionRtypeResourcesList->fetch()){
-  $allRes[] = array(
-      $allRes[ $elem->getter( 'id' ) ] = $elem->getter( 'title' );
-  );
+  $allRes[ $elem->getter( 'id' ) ] = $elem->getter( 'title' );
 }
 echo '<pre>';
-var_dump($allRes);  
+var_dump($allRes);
 echo '</pre>';
 
     $fieldsInfo = array(
