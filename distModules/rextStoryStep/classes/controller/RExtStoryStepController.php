@@ -45,7 +45,9 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
 
         $rExtData[ 'drawLine' ] = $rExtObj->getter( 'drawLine' );
         $rExtData[ 'showTimeline' ] = $rExtObj->getter( 'showTimeline' );
+        $rExtData[ 'viewMoreButton' ] = $rExtObj->getter( 'viewMoreButton' );        
         $rExtData[ 'mapType' ] = $rExtObj->getter( 'mapType' );
+        $rExtData[ 'dialogPosition' ] = $rExtObj->getter( 'dialogPosition' );
 
 
        $fileDep = $rExtObj->getterDependence( 'storystepLegend' );
@@ -112,6 +114,11 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
       'showTimeline' => array(
         'params' => array( 'type' => 'checkbox', 'value'=>0, 'class' => 'switchery', 'options'=> array( '1' => __('Show timeline in step') ))
       ),
+      'viewMoreButton' => array(
+        'params' => array( 'type' => 'checkbox', 'value'=>0, 'class' => 'switchery', 'options'=> array( '1' => __('View more button') ))
+      ),
+
+
       'mapType' => array(
         'params' => array( 'label' => __( 'Map type' ), 'type' => 'select',
           'options' => array(
@@ -138,7 +145,17 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Step KML layer' ), 'type' => 'file', 'id' => 'storystepKML',
         'placeholder' =>   __('Choose an image'), 'destDir' => RExtStoryStepModel::$cols['storystepKML']['uploadDir'] ),
         'rules' => array( 'maxfilesize' => '5242880', 'accept' => ',application/xml,application\/vnd.google\-earth\.kml\+xml' )
-      )
+      ),
+
+      'dialogPosition' => array(
+        'params' => array( 'label' => __( 'Dialog position' ), 'type' => 'select', 'class' => 'gzzSelect2',
+          'options' => array(
+            -1 => __('Left'),
+            0 => __('Center (100%)'),
+            1 => __('Right')
+          )
+        )
+      ),
     );
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
