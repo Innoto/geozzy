@@ -85,7 +85,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
     $resourceModel = new ResourceModel();
     $rtypeModel = new resourceTypeModel();
 
-/*
+
     $rtypeArray = $rtypeModel->listItems(
         array( 'filters' => array( 'idNameExists' => $systemRtypes ) )
     );
@@ -98,45 +98,13 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
       array( 'filters' => array( 'notInRtype' => $filterRtype ) )
     );
 
-
     $allRes = array();
     $allRes['0'] = false;
     while( $elem = $elemList->fetch() ){
       $allRes[ $elem->getter( 'id' ) ] = $elem->getter( 'title' );
     }
-*/
-$rtypeArray = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => $systemRtypes )));
-$rtypeArraySize = $rtypeControl->listCount(array( 'filters' => array( 'idNameExists' => $systemRtypes )));
-
-$varConditions = '';
-$i = 0;
-while( $res = $rtypeArray->fetch() ){
-  if($i+1 !== $rtypeArraySize){
-    $varConditions = $varConditions . $res->getter('id').',';
-  }
-  else{
-    $varConditions = $varConditions . $res->getter('id');
-  }
-  $i = $i+1;
-}
-
-var_dump($varConditions);
-
-$collectionRtypeResources = new CollectionTypeResourcesModel();
-$collectionRtypeResourcesList = $collectionRtypeResources->listItems(
-  array('filters'=>array('conditionsRtypenotInCollection' => $varConditions))
-);
-$allRes[] = array();
-$allRes['0'] = false;
-while($res = $collectionRtypeResourcesList->fetch()){
-  $allRes[ $elem->getter( 'id' ) ] = $elem->getter( 'title' );
-}
-echo '<pre>';
-var_dump($allRes);
-echo '</pre>';
 
     $fieldsInfo = array(
-
 
       'drawLine' => array(
         'params' => array( 'type' => 'checkbox', 'value'=>1, 'class' => 'switchery', 'options'=> array( '1' => __('Draw Pointer line') ))
