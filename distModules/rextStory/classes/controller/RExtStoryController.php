@@ -1,5 +1,5 @@
 <?php
-
+geozzy::load( 'controller/RExtController.php' );
 
 class RExtStoryController extends RExtController implements RExtInterface {
 
@@ -52,7 +52,8 @@ class RExtStoryController extends RExtController implements RExtInterface {
     if ($elemId){
       $collectionResourcesModel = new CollectionResourcesModel();
       $collectionResourceList = $collectionResourcesModel->listItems(
-        array('filters' => array('collection' => $elemId)) );
+        array('filters' => array('collection' => $elemId), 'order' => array('weight' => 1))
+      );
 
       $resIds = array();
       while($res = $collectionResourceList->fetch()){
@@ -75,37 +76,41 @@ class RExtStoryController extends RExtController implements RExtInterface {
     $form_values = $form->getValuesArray();
     $filterRTypeParent = $form_values['rTypeIdName'];
 
+    $filter = Cogumelo::getSetupValue( 'mod:geozzy:resource:collectionTypeRules:'.$filterRTypeParent.':pasos' );
+
     $resourceModel = new ResourceModel();
     $rtypeControl = new ResourcetypeModel();
 
-    $rtypeArray = $rtypeControl->listItems();
+    $rtypeArray = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => $filter )));
+    $rtypeArraySize = $rtypeControl->listCount(array( 'filters' => array( 'idNameExists' => $filter )));
 
-    $filterRtype = array();
+    $varConditions = '';
+    $i = 0;
     while( $res = $rtypeArray->fetch() ){
-      array_push( $filterRtype, $res->getter('id') );
+      if($i+1 !== $rtypeArraySize){
+        $varConditions = $varConditions . $res->getter('id').',';
+      }
+      else{
+        $varConditions = $varConditions . $res->getter('id');
+      }
+      $i = $i+1;
     }
 
-    $elemList = $resourceModel->listItems(
-      array(
-        'filters' => array( 'inRtype' => $filterRtype )
-      )
+    $collectionRtypeResources = new CollectionTypeResourcesModel();
+    $collectionRtypeResourcesList = $collectionRtypeResources->listItems(
+      array('filters'=>array('conditionsRtypenotInCollection' => $varConditions))
     );
-
-    $resControl = new ResourceController();
-
     $resOptions = array();
-    while( $res = $elemList->fetch() ) {
-
-      $elOpt = array(
+    while($res = $collectionRtypeResourcesList->fetch()){
+      $resOptions[] = array(
         'value' => $res->getter( 'id' ),
-        'text' => $res->getter( 'title' )
+        'text' => $res->getter( 'title', Cogumelo::getSetupValue('lang:default') )
       );
-
-      $resOptions[ $res->getter( 'id' ) ] = $elOpt;
     }
 
     $rExtFieldNames = array();
 
+/* resourceCollection class*/
     $fieldsInfo = array(
       'steps' => array(
         'params' => array(
@@ -122,7 +127,6 @@ class RExtStoryController extends RExtController implements RExtInterface {
 
     // Validaciones extra
     $form->removeValidationRule( 'rExtStory_steps', 'inArray' );
-
 
     // Si es una edicion, añadimos el ID y cargamos los datos
      $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
@@ -156,6 +160,8 @@ class RExtStoryController extends RExtController implements RExtInterface {
         $rExtFieldNames[] = $fieldName;
       }
     }
+
+
 
     /*******************************************************************
      * Importante: Guardar la lista de campos del RExt en 'FieldNames' *

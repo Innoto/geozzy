@@ -4,6 +4,7 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
 
   el : "#storyStepListPage",
   tagName : '',
+  storyList: false,
   story: false,
   listStoryTemplate: false,
   listStoryStepItemTemplate : false,
@@ -22,19 +23,29 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
   initialize: function( story ) {
     var that = this;
     that.story = story;
+
+    //geozzy.storiesInstance.storiesFetch = geozzy.storiesInstance.listStoryView.stories.fetch();
+    that.storyList = new geozzy.storyComponents.StoryStepCollection();
     that.storysteps = new geozzy.storystepsComponents.StorystepCollection();
 
-    that.storysteps.fetchById(that.story, function(){
-      that.updateList();
+
+    $.when( that.storyList.fetch() ).done( function() {
+
+      that.storysteps.fetchById(that.story, function(){
+        that.updateList();
+      });
+      that.render();
     });
-    that.render();
+
+
   },
 
   render: function() {
     var that = this;
     that.listStoryTemplate = _.template( geozzy.storystepsComponents.StorystepslistTemplate );
-    that.$el.html(that.listStoryTemplate(geozzy.storiesInstance.listStoryView.stories.get(that.story).toJSON()));
-    that.saveChangesVisible(false);
+
+    that.$el.html(          that.listStoryTemplate(  that.storyList.get(that.story).toJSON())        );
+    that.saveChangesVisible( false );
   },
 
   updateList: function() {

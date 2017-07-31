@@ -1,5 +1,5 @@
 <?php
-
+geozzy::load( 'controller/RExtController.php' );
 
 class RExtReccommendedController extends RExtController implements RExtInterface {
 

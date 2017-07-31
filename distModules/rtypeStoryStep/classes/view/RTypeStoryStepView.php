@@ -165,7 +165,7 @@ class RTypeStoryStepView extends RTypeViewCore implements RTypeViewInterface {
 
     if (sizeof($collectionId)>0){
       // Filtrar por rtype y además que no esté asignado ya a esa colección de steps de esa story
-      $tabla->setDefaultFilters( array('rTypeId'=> $rtype->getter('id'), 'notInCollectionId' => $collectionId) );
+      $tabla->setDefaultFilters( array('rTypeId'=> $rtype->getter('id'), 'notAsigned' => true) );
     }
     else{
       $tabla->setDefaultFilters( array('rTypeId'=> $rtype->getter('id')) );

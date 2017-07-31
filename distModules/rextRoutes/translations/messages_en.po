@@ -1,0 +1,159 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:89
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:123
+msgid "Route start"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:101
+msgid "Route End"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:197
+msgid "Altitude"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:20
+msgid "Download route"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:46
+msgid "Circular route"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:51
+msgid "circular"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:57
+msgid "Lineal route"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:62
+msgid "lineal"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:73
+msgid "Slopes"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:79
+msgid "slope up"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:86
+msgid "slope down"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:100
+msgid "Environment"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:113
+msgid "Itinerary"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:126
+msgid "Displacement"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:139
+msgid "Effort"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:69
+msgid "Very Low"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:70
+msgid "Low"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:71
+msgid "Medium"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:72
+msgid "High"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:73
+msgid "Extreme"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:78
+msgid "Circular itinerary"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:81
+msgid "Route duration (minutes)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:85
+msgid "Vertical rise level"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:89
+msgid "Vertical descent level"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:93
+msgid "Travel distance (meters)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:97
+msgid "Natural environment difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:102
+msgid "Itinerary difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:107
+msgid "Displacement difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:112
+msgid "Effort level"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:117
+msgid "Global difficulty"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:128
+msgid "Route end"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:133
+msgid "Startroute Latitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:137
+msgid "Startroute Longitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:142
+msgid "Endroute Latitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:146
+msgid "Endroute Longitude"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:151
+msgid "Route file"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:152
+msgid "File"
+msgstr ""

@@ -33,7 +33,7 @@ var AdminRouter = Backbone.Router.extend({
     "collection/create" : "collectionCreate",
     "collection/edit/:id" : "collectionEdit",
     //"stories/:id": "storiesList",
-    "storysteps/:story": "storyStepsList",
+    "storysteps/:story(/topic/:topicId)": "storyStepsList",
     "storysteps/story/:id/assign": "storyStepsAdd",
   },
 
@@ -214,13 +214,11 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   storyStepsList: function( story ){
-
-     if (typeof(geozzy.story)!='undefined'){
-       app.mainView.loadAjaxContent( '/admin/storysteps/story/' + story);
-       app.mainView.menuSelect('story_'+story);
-       app.mainView.setBodyClass('storyStepsList');
-     }
+    app.mainView.loadAjaxContent( '/admin/storysteps/story/' + story);
+    app.mainView.menuSelect('story_'+story);
+    app.mainView.setBodyClass('storyStepsList');
   },
+
   storyStepsAdd: function(id) {
     app.mainView.loadAjaxContent( '/admin/storysteps/story/' + id +'/assign');
     app.mainView.setBodyClass('storyStepsAdd');

@@ -26,6 +26,12 @@ class RExtStoryStepModel extends Model
     'drawLine' => array(
       'type'=>'BOOLEAN'
     ),
+    'dialogPosition' => array(
+      'type' => 'INT'
+    ),
+    'viewMoreButton' => array(
+      'type'=>'BOOLEAN'
+    ),
     'showTimeline' => array(
       'type'=>'BOOLEAN'
     ),
@@ -75,6 +81,12 @@ class RExtStoryStepModel extends Model
       'version' => 'rextStoryStep#1.5',
       'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep
         ADD INDEX storystepKML (storystepKML);'
+    ),
+    array(
+      'version' => 'rextStoryStep#1.6',
+      'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep
+        ADD COLUMN dialogPosition INT,
+        ADD COLUMN viewMoreButton BIT;'
     )
   );
 

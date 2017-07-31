@@ -30,6 +30,8 @@ msgstr "Descargar ruta"
 msgid "Circular route"
 msgstr "Ruta circular"
 
+#: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:51
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 msgid "circular"
@@ -39,6 +41,8 @@ msgstr ""
 msgid "Lineal route"
 msgstr "Ruta lineal"
 
+#: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:62
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
 msgid "lineal"

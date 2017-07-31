@@ -1,4 +1,4 @@
-var geozzy = geozzy || {};
+/*var geozzy = geozzy || {};
 if(!geozzy.adminStoryComponents) geozzy.adminStoryComponents={};
 
 geozzy.adminStoryComponents.ListStoryView = Backbone.View.extend({
@@ -27,3 +27,4 @@ geozzy.adminStoryComponents.ListStoryView = Backbone.View.extend({
   }
 
 });
+*/

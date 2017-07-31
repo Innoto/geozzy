@@ -125,7 +125,6 @@ class RTypePoiView extends RTypeViewCore implements RTypeViewInterface {
         $formBlockInfo['template']['miniFormModal'] = new Template();
         $formBlockInfo['template']['miniFormModal']->assign( 'rtype', $rtypeRes->getter('name_'.$form->langDefault));
         $formBlockInfo['template']['miniFormModal']->setTpl('noEditable.tpl', 'rtypePoi');
-
       }
       $formBlockInfo['template']['miniFormModal']->exec();
     }

@@ -1,4 +1,4 @@
-var geozzy = geozzy || {};
+/*var geozzy = geozzy || {};
 if(!geozzy.adminStoryComponents) geozzy.adminStoryComponents={};
 
 geozzy.adminStoryComponents.StoryTemplate = ''+
@@ -9,3 +9,4 @@ geozzy.adminStoryComponents.StoryTemplate = ''+
     '</li>'+
   '</ul>'+
 '</div>'
+*/

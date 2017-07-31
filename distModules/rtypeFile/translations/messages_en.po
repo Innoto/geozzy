@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
+msgid "Files up to 5MB can be upload in JPG and PNG format"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
+msgid "If not uploaded, an automatic thumbnail will be created"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:10
+msgid "Title"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:15
+msgid "Short description"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:20
+msgid "Image"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:26
+msgid "None"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:38
+msgid "Main Resource information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:54
+msgid "Multimedia file"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:64
+msgid "Edit Resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:76
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:82
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:88
+msgid "Resource"
+msgstr ""

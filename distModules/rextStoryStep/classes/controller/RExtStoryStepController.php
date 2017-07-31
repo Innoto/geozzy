@@ -1,5 +1,5 @@
 <?php
-
+geozzy::load( 'controller/RExtController.php' );
 
 class RExtStoryStepController extends RExtController implements RExtInterface {
 
@@ -45,7 +45,9 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
 
         $rExtData[ 'drawLine' ] = $rExtObj->getter( 'drawLine' );
         $rExtData[ 'showTimeline' ] = $rExtObj->getter( 'showTimeline' );
+        $rExtData[ 'viewMoreButton' ] = $rExtObj->getter( 'viewMoreButton' );
         $rExtData[ 'mapType' ] = $rExtObj->getter( 'mapType' );
+        $rExtData[ 'dialogPosition' ] = $rExtObj->getter( 'dialogPosition' );
 
 
        $fileDep = $rExtObj->getterDependence( 'storystepLegend' );
@@ -85,6 +87,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
     $resourceModel = new ResourceModel();
     $rtypeModel = new resourceTypeModel();
 
+
     $rtypeArray = $rtypeModel->listItems(
         array( 'filters' => array( 'idNameExists' => $systemRtypes ) )
     );
@@ -97,17 +100,32 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
       array( 'filters' => array( 'notInRtype' => $filterRtype ) )
     );
 
-
     $allRes = array();
     $allRes['0'] = false;
     while( $elem = $elemList->fetch() ){
       $allRes[ $elem->getter( 'id' ) ] = $elem->getter( 'title' );
     }
 
+//echo "<pre>";
+    //var_dump($form);exit;
+
+
+    //$otherStepsList = ( new ResourceModel() )->listItems( [ 'filters'=>['c'] ]);
+
+    $resourceModel = new RExtStoryStepModel();
+    $resources = $resourceModel->listItems(  [ 'filters' => array(), 'affectsDependences'=>['ResourceModel'] ]);
+
+    $otherKmlOptions = [ false => ''];
+    if( $resources ) {
+      while( $resource = $resources->fetch() ) {
+        if( $resource->getter('storystepKML') ) {
+          $otherKmlOptions[$resource->getter('storystepKML')] = $resource->getterDependence('resource', 'ResourceModel')[0]->getter('title');
+        }
+      }
+    }
 
 
     $fieldsInfo = array(
-
 
       'drawLine' => array(
         'params' => array( 'type' => 'checkbox', 'value'=>1, 'class' => 'switchery', 'options'=> array( '1' => __('Draw Pointer line') ))
@@ -115,6 +133,11 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
       'showTimeline' => array(
         'params' => array( 'type' => 'checkbox', 'value'=>0, 'class' => 'switchery', 'options'=> array( '1' => __('Show timeline in step') ))
       ),
+      'viewMoreButton' => array(
+        'params' => array( 'type' => 'checkbox', 'value'=>0, 'class' => 'switchery', 'options'=> array( '1' => __('"View more" button') ))
+      ),
+
+
       'mapType' => array(
         'params' => array( 'label' => __( 'Map type' ), 'type' => 'select',
           'options' => array(
@@ -123,6 +146,15 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
             'hybrid' => __('Hybrid'),
             'terrain' => __('Terrain')
           )
+        )
+      ),
+      'dialogPosition' => array(
+        'params' => array( 'label' => __( 'Dialog position' ), 'type' => 'select', 'class' => 'gzzSelect2',
+          'options' => array(
+              -1 => __('Left'),
+              0 => __('Center (100%)'),
+              1 => __('Right')
+            )
         )
       ),
 
@@ -141,7 +173,14 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Step KML layer' ), 'type' => 'file', 'id' => 'storystepKML',
         'placeholder' =>   __('Choose an image'), 'destDir' => RExtStoryStepModel::$cols['storystepKML']['uploadDir'] ),
         'rules' => array( 'maxfilesize' => '5242880', 'accept' => ',application/xml,application\/vnd.google\-earth\.kml\+xml' )
+      ),
+
+      'loadKMLFrom' => array(
+        'params' => array( 'label' => __( 'Use KML layer from other story step' ), 'type' => 'select', 'class' => 'gzzSelect2',
+          'options' => $otherKmlOptions
+        )
       )
+
     );
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
@@ -259,9 +298,17 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
     }
 
     $fileField = $this->addPrefix( 'storystepKML' );
-    if( !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
+    $loadKMLForm = $valuesArray['loadKMLFrom'];
+    if( $loadKMLForm === false && !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
       $this->defResCtrl->setFormFiledata( $form, $fileField, 'storystepKML', $this->rExtModel );
     }
+    else {
+      $this->rExtModel->setter('storystepKML', $loadKMLForm );
+    }
+
+
+
+
 
     $this->rExtModel->save();
 

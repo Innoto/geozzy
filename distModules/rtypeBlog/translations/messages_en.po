@@ -1,0 +1,38 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:103
+msgid "Contact"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:118
+msgid "See indications"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:127
+msgid "How to arrive from?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:24
+msgid "External URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:49
+msgid "Main Resource information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:65
+msgid "Categorization"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeBlog/classes/controller/RTypeBlogController.php:74
+msgid "Edit Resource"
+msgstr ""

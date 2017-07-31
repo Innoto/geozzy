@@ -138,6 +138,8 @@ $C_REXT_MODULES = [
   'rextMap',
   'rextSocialNetwork',
   'rextComment',
+  'rextAudioguide',
+  'rextAppGeozzySample',
 ];
 
 // resource Types
@@ -146,6 +148,7 @@ $C_RTYPE_MODULES = [
   'rtypePage',
   'rtypeUrl',
   'rtypeFile',
+  'rtypeAppGeozzySample',
 ];
 
 // resource Types
@@ -178,8 +181,8 @@ $C_INDEX_MODULES = [
   'appResourceBridge',
   'initResources',
   'rextComment',
-  // 'develWebPanel',
-]; // develWebPanel SIEMPRE DE ULTIMO!!!
+  // 'devel',
+]; // devel SIEMPRE DE ULTIMO!!!
 
 
 //

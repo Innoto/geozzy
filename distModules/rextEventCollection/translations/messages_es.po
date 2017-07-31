@@ -28,18 +28,24 @@ msgstr "Editar una colección de eventos"
 msgid "More information"
 msgstr "Más información"
 
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:122
 #: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:124
 msgid "Event collection view"
 msgstr "Vista de la colección de eventos"
 
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:127
 #: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:129
 msgid "Event collection filter"
 msgstr "Filtro de colección de eventos"
 
 #: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:135
-msgid "Eventos"
+msgid "Events"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:143
 msgid "Add Event"
 msgstr "Añadir evento"
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:135
+msgid "Eventos"
+msgstr ""
