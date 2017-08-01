@@ -119,7 +119,6 @@ class RTypePoiView extends RTypeViewCore implements RTypeViewInterface {
       if($resourceData['rTypeId'] === $rtype->getter('id')){ // rtypePoi
         $formBlockInfo['template']['miniFormModal']->addToFragment('rextPoiBlock', $formBlockInfo['ext']['rextPoi']['template']['adminExt']);
         $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
-        $formBlockInfo['template']['miniFormModal']->exec();
       }
       else { // otro recurso
         $formBlockInfo['template']['miniFormModal'] = new Template();
@@ -127,6 +126,7 @@ class RTypePoiView extends RTypeViewCore implements RTypeViewInterface {
         $formBlockInfo['template']['miniFormModal']->setTpl('noEditable.tpl', 'rtypePoi');
       }
       $formBlockInfo['template']['miniFormModal']->exec();
+
     }
     else {
       cogumelo::error( 'Imposible acceder al POI indicado.' );

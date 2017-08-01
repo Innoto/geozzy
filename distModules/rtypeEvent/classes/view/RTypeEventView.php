@@ -120,7 +120,6 @@ class RTypeEventView extends RTypeViewCore implements RTypeViewInterface {
       if($resourceData['rTypeId'] === $rtype->getter('id')){ // rtypeEvent
         $formBlockInfo['template']['miniFormModal']->addToFragment('rextEventBlock', $formBlockInfo['ext']['rextEvent']['template']['full']);
         $formBlockInfo['template']['miniFormModal']->assign( 'res', $formBlockInfo );
-        $formBlockInfo['template']['miniFormModal']->exec();
       }
       else{
         $formBlockInfo['template']['miniFormModal'] = new Template();
