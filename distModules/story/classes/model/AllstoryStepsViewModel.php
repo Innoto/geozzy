@@ -12,7 +12,7 @@ class AllstoryStepsViewModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'story#1.0',
+      'version' => 'story#1.4',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_allstories_index;
@@ -49,7 +49,8 @@ class AllstoryStepsViewModel extends Model
             geozzy_resource_rext_storystep.drawLine as drawLine,
             geozzy_resource_rext_storystep.showTimeline as showTimeline,
             geozzy_resource_rext_storystep.mapType as mapType,
-
+            geozzy_resource_rext_storystep.storystepLegend as storystepLegend,
+            geozzy_resource_rext_storystep.dialogPosition as dialogPosition,
 
 
             geozzy_resource_rext_event.initDate as initDate,
@@ -112,6 +113,9 @@ class AllstoryStepsViewModel extends Model
     'content' => array(
       'type' => 'VARCHAR',
       'multilang' => true
+    ),
+    'dialogPosition' => array(
+      'type' => 'INT'
     ),
 
     'image' => array(
