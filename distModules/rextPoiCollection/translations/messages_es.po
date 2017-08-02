@@ -7,17 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2017-06-12T14:27:02+00:00\n"
-"PO-Revision-Date: 2017-06-12T14:27:02+00:00\n"
 "Language: \n"
-
-#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:146
-msgid "Puntos de interés"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:154
-msgid "Add POI"
-msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:10
 msgid "Select options"
@@ -29,4 +19,14 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:18
 msgid "Edit POI Collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:129
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:146
+msgid "Puntos de interés"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:137
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:154
+msgid "Add POI"
 msgstr ""

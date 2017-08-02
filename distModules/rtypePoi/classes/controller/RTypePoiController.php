@@ -138,6 +138,8 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'ext' => array }
    */
   public function getViewBlockInfo( $resId = false ) {
+
+/*
     // Preparamos los datos para visualizar el Recurso con sus extensiones
     $viewBlockInfo = parent::getViewBlockInfo( $resId );
 
@@ -147,7 +149,7 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
 
     $taxtermModel = new TaxonomytermModel();
 
-    /* Recuperamos todos los términos de la taxonomía tipo*/
+    // Recuperamos todos los términos de la taxonomía tipo
     $poiTypeList = $this->defResCtrl->getOptionsTax( 'rextPoiType' );
     foreach( $poiTypeList as $poiTypeId => $poiTypeName ) {
       $poiType = $taxtermModel->listItems(array('filters'=> array('id' => $poiTypeId)))->fetch();
@@ -158,6 +160,13 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     $viewBlockInfo['template']['full'] = $template;
 
     return $viewBlockInfo;
+
+    */
+    // Non queremos q se visualicen os POIs por urlAlias
+    $bridge = new AppResourceBridgeView();
+    $bridge->page404();
+
+
   }
 
 } // class RTypePoiController

@@ -1,5 +1,5 @@
 <?php
-
+geozzy::load( 'controller/RExtController.php' );
 
 class RExtProfilesSocialNetworksController extends RExtController implements RExtInterface {
 

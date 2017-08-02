@@ -65,7 +65,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
       $tiposArray[$typeId] = $typeId;
     }
 
-    $tabla = new TableController( $resource );
+    $tabla = new TableController( $resource, true );
 
     $tabla->setTabs('published', array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
@@ -128,6 +128,7 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $tabla->setDefaultFilters($filters);
     $tabla->setAffectsDependences( $extendedModels ) ;
+    //var_dump($extendedModels);
     $tabla->setJoinType('LEFT');
 
     // Nome das columnas

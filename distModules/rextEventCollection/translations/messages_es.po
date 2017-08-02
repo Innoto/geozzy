@@ -7,32 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2017-06-12T14:27:07+00:00\n"
-"PO-Revision-Date: 2017-06-12T14:27:07+00:00\n"
-"Language: Español\n"
-
-#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:124
-msgid "Event collection view"
-msgstr "Vista de la colección de eventos"
-
-#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:129
-msgid "Event collection filter"
-msgstr "Filtro de colección de eventos"
-
-#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:135
-msgid "Eventos"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:143
-msgid "Add Event"
-msgstr "Añadir evento"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:46
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:51
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:48
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:53
-msgid "More information"
-msgstr "Más información"
+"Language: \n"
 
 #: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/js/rextEventCollectionAdmin.js:10
 msgid "Select options"
@@ -45,3 +20,32 @@ msgstr "Crear un evento"
 #: /home/proxectos/geozzy/distModules/rextEventCollection/classes/view/templates/js/rextEventCollectionAdmin.js:18
 msgid "Edit Event Collection"
 msgstr "Editar una colección de eventos"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:46
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtlistViewBlock.tpl:51
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:48
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextEventCollection_classes_view_templates_rExtcalendarViewBlock.tpl:53
+msgid "More information"
+msgstr "Más información"
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:122
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:124
+msgid "Event collection view"
+msgstr "Vista de la colección de eventos"
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:127
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:129
+msgid "Event collection filter"
+msgstr "Filtro de colección de eventos"
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:135
+msgid "Events"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:143
+msgid "Add Event"
+msgstr "Añadir evento"
+
+#: /home/proxectos/geozzy/distModules/rextEventCollection/classes/controller/RExtEventCollectionController.php:135
+msgid "Eventos"
+msgstr ""

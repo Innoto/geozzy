@@ -58,7 +58,7 @@ geozzy.explorerComponents.activeListTinyViewPager = ''+
   '<div class="next"><i class="fa fa-sort-desc"></i></div>';
 
 geozzy.explorerComponents.activeListViewTemplate = ''+
-  '<div class="explorerActiveListContent">'+
+  '<div class="explorerActiveListContent ">'+
       '<% if(typeof activeListReset!="undefined" && activeListReset) { %>'+
         '<div class="activeListReset">' +
           '<i class="fa fa-info info" aria-hidden="true"></i> <%- activeListResetText %> <i class="fa fa-times clear" aria-hidden="true"></i>'+

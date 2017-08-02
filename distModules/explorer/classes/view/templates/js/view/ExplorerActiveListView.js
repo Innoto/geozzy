@@ -92,24 +92,25 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       //console.log( that.parentExplorer.resourceMinimalList.toJSON/ )
 
       var elementCategory = false;
+      if( typeof that.options.categories !== 'undefined') {
+        that.options.categories.each( function(e2){
+          //console.log(e.get('id'))
+          //console.debug(markerData.get('terms'))
 
-      that.options.categories.each( function(e2){
-        //console.log(e.get('id'))
-        //console.debug(markerData.get('terms'))
+          if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
 
-        if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
-
-          elementCategory = e2;
-          if(e2) {
-            elementCategory = e2.toJSON()
-          }
-          return false;
-          /*
-          if( jQuery.isNumeric( e2.get('icon') )  ){
+            elementCategory = e2;
+            if(e2) {
+              elementCategory = e2.toJSON()
+            }
             return false;
-          }*/
-        }
-      });
+            /*
+            if( jQuery.isNumeric( e2.get('icon') )  ){
+              return false;
+            }*/
+          }
+        });
+      }
 
       var minJSON = that.parentExplorer.resourceMinimalList.get( e ).toJSON();
       var partJSON = that.parentExplorer.resourcePartialList.get( e ).toJSON();

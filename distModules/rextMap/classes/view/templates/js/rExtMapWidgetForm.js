@@ -84,6 +84,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         // Draggend event
         google.maps.event.addListener( that.resourceMarker,'dragend',function(e) {
           that.lonInput.val( that.resourceMarker.position.lng() );
+          that.latInput.val( that.resourceMarker.position.lat() );
         });
 
         // Click map event
