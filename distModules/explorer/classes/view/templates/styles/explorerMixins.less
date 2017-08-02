@@ -267,6 +267,191 @@
 /*******************************************************************************************/
 
 /*******************************************************************************************/
+.explorerMobile( @expl-w: 100%, @expl-h: 100%, @buttonColor:#000, @hheight: 0px ) {
+  .explorerLayout{
+    min-height: calc(~"101vh - "@hheight );
+  }
+  .explorerContainer{
+    &.explorer-container-du{
+      width: @expl-w;
+      height: @expl-h;
+      background: yellow;
+      position: fixed;
+    }
+    &.explorer-container-map{
+      width: @expl-w;
+      height: calc(~"100vh - "@hheight );
+      background: red;
+      position: fixed;
+      top: @hheight;
+      z-index: 201;
+    }
+    &.explorer-container-filter{
+      width: @expl-w;
+      height: @expl-h;
+      background: blue;
+      position: fixed;
+    }
+    &.explorer-container-gallery{
+      border: 0;
+      width: @expl-w;
+      height: @expl-h;
+      padding-bottom: 50px;
+    }
+  }
+  .explorer-manage-mobile{
+    &.explorerElSticky{
+      display: none;
+      &.stick{
+        display: block;
+      }
+    }
+    .explorerButton{
+      background-color:@buttonColor;
+      color:#fff;
+      padding:10px;
+      cursor:pointer;
+      &.explorer-button-list {
+        position:fixed;
+        bottom: 15px;
+        left:0px;
+        z-index: 202;
+        -webkit-border-top-right-radius: 5px;
+        -webkit-border-bottom-right-radius: 5px;
+        -moz-border-radius-topright: 5px;
+        -moz-border-radius-bottomright: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+      &.explorer-button-filters {
+        position:fixed;
+        bottom: 15px;
+        left:50%;
+        z-index: 202;
+        text-transform: uppercase;
+        font-weight: bold;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+      }
+      &.explorer-button-map {
+        position:fixed;
+        bottom: 15px;
+        right:0px;
+        z-index: 201;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+    }
+    .explorer-manage-filters-mobile{
+      width: 100%;
+      position:absolute;
+      bottom: 15px;
+    }
+  }
+  .explorerActiveListContent {
+    .activeListReset {
+      position:absolute;
+      top:0;
+      z-index:2;
+      width:100%;
+      background-color:@buttonColor;
+      color:white;
+      padding:4px;
+      font-weight: bold;
+      i.info {
+        margin-right:5px;
+        border:2px solid #fff;
+        border-radius: 50%;
+        width:20px;
+        height:20px;
+        padding-left:5px;
+        margin-left:10px;
+      }
+      i.clear {
+        float:right;
+        color:white;
+        margin-right:10px;
+      }
+    }
+  }
+}
+.explorerMobileMapInfo( @buttonColor: #000 ){
+  background-color: #fff;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:160px;
+  font-size:11px;
+  .gempiContent {
+    padding:10px;
+    padding-left:40px;
+    padding-right:40px;
+    position:relative;
+
+    .closeButton {
+      position: absolute;
+      top:5px;
+      right:10px;
+    }
+    .nextButton {
+      position: absolute;
+      top:20px;
+      height:60px;
+      text-align:right;
+      width:20px;
+      padding-top:54px;
+      right:10px;
+
+    }
+    .previousButton {
+      position: absolute;
+      top:20px;
+      height:60px;
+      text-align:left;
+      width:20px;
+      padding-top:54px;
+      left:10px;
+    }
+    button.accessButton {
+      background-color:  @buttonColor;
+      color:#fff;
+      margin-top:5px;
+      font-weight: bold;
+      cursor:pointer;
+      border:0;
+      padding:5px;
+      border-radius: 3px;
+    }
+    .gempiInfo {
+      margin-left:110px;
+
+
+      .gempiTitle {
+        margin-bottom:3px;
+        font-weight: bold;
+      }
+    }
+    .gempiImg img {
+      float:left;
+      margin-top:20px;
+      width:90px;
+      border-radius: 50%;
+    }
+  }
+}
+
+
+/*
 .explorerLayoutMobile( @expl-w: 100%, @expl-h: 100% ) {
   .explorerContainer{
     &.explorer-container-du{
@@ -287,3 +472,4 @@
     }
   }
 }
+*/
