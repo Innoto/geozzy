@@ -12,6 +12,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
 
     var options = new Object({
       container: false,
+      maxWidth: 600,
       topMargin: 100,
       bottomMargin:300,
       leftMargin:30,
@@ -90,8 +91,23 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
         var topPosition = previousHeight + that.getVisibleHeight() - that.options.steepMarginsDifference ;
       }
 
+
+
       $(e).css('top', topPosition);
-      $(e).css('left', that.options.leftMargin);
+
+
+      var hAlign = that.parentStory.storySteps.get(that.stepsDOMEquivalences[i]).get('dialogPosition');
+      if( hAlign === -1 ) { //left
+        $(e).css('left', that.options.leftMargin);
+      }
+      else
+      if( hAlign === 1 ) { //right
+        $(e).css('right', that.options.rightMargin);
+      }
+      else { //center
+        $(e).css('left', that.options.leftMargin);
+      }
+
     });
 
   },
