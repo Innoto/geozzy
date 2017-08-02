@@ -99,13 +99,16 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
       var hAlign = that.parentStory.storySteps.get(that.stepsDOMEquivalences[i]).get('dialogPosition');
       if( hAlign === -1 ) { //left
         $(e).css('left', that.options.leftMargin);
+        $(e).addClass('leftPosition');
       }
       else
       if( hAlign === 1 ) { //right
         $(e).css('right', that.options.rightMargin);
+        $(e).addClass('rightPosition');
       }
       else { //center
-        $(e).css('left', that.options.leftMargin);
+        //$(e).css('left', $(window).width()-$(e).width() );
+        $(e).addClass('centerPosition');
       }
 
     });
