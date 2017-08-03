@@ -3,7 +3,9 @@ if(!geozzy.storyComponents) geozzy.storyComponents={};
 
 geozzy.storyComponents.listElementTemplate = ''+
     '<div class="storyStep" >' +
-      '<%if(img){%>'+
+      '<%if( img && dialogPosition == 0 ){%>'+
+        '<div><img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/storyCentered/<%-img%>.jpg" /></div>' +
+      '<%}else {%>'+
         '<div><img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" /></div>' +
       '<%}%>'+
       '<div class="content">' +
