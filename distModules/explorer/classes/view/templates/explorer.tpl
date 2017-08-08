@@ -20,8 +20,9 @@
         <div class=" explorerButton clear">{t}Clear filters{/t}</div>
       </div>
     </div>
-    <div class="explorerButton explorer-button-list" style="display:none;"><i class="fa fa-chevron-left"></i>&nbsp;<i class="fa fa-list-ul"></i></div>
-    <div class="explorerButton explorer-button-filters" style="display:none;">{t}Filters{/t}</div>
-    <div class="explorerButton explorer-button-map " style="display:none;"><i class="fa fa-globe"></i>&nbsp;<i class="fa fa-chevron-right"></i></div>
+    <div class="explorerButton explorer-mobile-control-blist" style="display:none;"><i class="fa fa-list-ul"></i>&nbsp;{t}List{/t}</div>
+    <div class="explorerButton explorer-mobile-control-bmap " style="display:none;"><i class="fa fa-globe"></i>&nbsp;{t}Map{/t}</div>
+    <div class="explorerButton explorer-mobile-control-bfilters" style="display:none;">{t}Filters{/t}&nbsp;<i class="fa fa-sliders" aria-hidden="true"></i></div>
+
   </div>
 </div>
