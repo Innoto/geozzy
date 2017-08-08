@@ -166,16 +166,13 @@ class ResourceController {
           $urlLang = $urlAlias->getter('lang');
           $urlFrom = $urlAlias->getter('urlFrom');
 
-
           // 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1
-          if( $urlAlias->getter('http') === '0' && $urlAlias->getter('canonical') === '1' ) {
-            if( $urlLang ) {
-              $resourceData[ 'urlAlias_'.$urlLang ] = $urlFrom;
-              if( $urlLang === $this->actLang ) {
-                $resourceData['urlAlias'] = $resourceData[ 'urlAlias_'.$urlLang ];
-                if( count( $this->allLang ) > 1 ) {
-                  $resourceData['urlAlias'] = '/'.$urlLang.$resourceData['urlAlias'];
-                }
+          if( empty( $urlAlias->getter('http') ) && !empty( $urlAlias->getter('canonical') ) && $urlLang ) {
+            $resourceData[ 'urlAlias_'.$urlLang ] = $urlFrom;
+            if( $urlLang === $this->actLang ) {
+              $resourceData['urlAlias'] = $resourceData[ 'urlAlias_'.$urlLang ];
+              if( count( $this->allLang ) > 1 ) {
+                $resourceData['urlAlias'] = '/'.$urlLang.$resourceData['urlAlias'];
               }
             }
           }
@@ -1702,15 +1699,25 @@ class ResourceController {
       'a', 'A', 'a', 'O', 'o' ),
   );
 
-  public function sanitizeUrl( $url ) {
+  public function sanitizeText( $text ) {
     // "Aplanamos" caracteres no ASCII7
-    $url = str_replace( $this->urlTranslate[ 'from' ], $this->urlTranslate[ 'to' ], $url );
+    $text = str_replace( $this->urlTranslate['from'], $this->urlTranslate['to'], $text );
+
     // Solo admintimos a-z A-Z 0-9 - / El resto pasan a ser -
-    $url = preg_replace( '/[^a-z0-9\-\/]/iu', '-', $url );
-    // Eliminamos - sobrantes
-    $url = preg_replace( '/--+/u', '-', $url );
-    $url = preg_replace( '/-*\/-*/u', '/', $url );
-    $url = trim( $url, '-' );
+    $text = preg_replace( '/[^a-z0-9\-\/]/iu', '-', $text );
+
+    // Limpiamos sobrantes
+    $text = preg_replace( '/--+/u', '-', $text );
+    $text = preg_replace( '/-*\/-*/u', '/', $text );
+    $text = trim( $text, '-' );
+
+    return $text;
+  }
+
+  public function sanitizeUrl( $url ) {
+    // "Aplanamos" caracteres no ASCII7 y limpiamos sobrantes
+    $url = $this->sanitizeText( $url );
+
     // Por si ha quedado algo, pasamos el validador de PHP
     $url = filter_var( $url, FILTER_SANITIZE_URL );
 
@@ -1768,7 +1775,7 @@ class ResourceController {
   }
 
   public function getUrlByPattern( $resId, $langId = false, $title = false ) {
-    // error_log( "getUrlByPattern( $resId, $langId )" );
+    // error_log( "getUrlByPattern( $resId, $langId, $title )" );
     $urlAlias = '/'. Cogumelo::getSetupValue( 'mod:geozzy:resource:directUrl' ) .'/'.$resId;
 
     $pattern = '/';
@@ -1793,25 +1800,29 @@ class ResourceController {
       if( $resData = $this->getResourceData( $resId ) ) {
         if( $langId ) {
           if( isset( $resData[ 'title_'.$langId ] ) && $resData[ 'title_'.$langId ] !== '' ) {
-            $title = mb_strtolower( $resData[ 'title_'.$langId ] );
+            $title = $resData[ 'title_'.$langId ];
           }
           else {
             if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
-              $title = mb_strtolower( $resData[ 'title_'.$this->defLang ] );
+              $title = $resData[ 'title_'.$this->defLang ];
             }
           }
         }
         else {
           if( isset( $resData['title'] ) && $resData['title'] !== '' ) {
-            $title = mb_strtolower( $resData['title'] );
+            $title = $resData['title'];
           }
           else {
             if( isset( $resData[ 'title_'.$this->defLang ] ) && $resData[ 'title_'.$this->defLang ] !== '' ) {
-              $title = mb_strtolower( $resData[ 'title_'.$this->defLang ] );
+              $title = $resData[ 'title_'.$this->defLang ];
             }
           }
         }
       }
+    }
+
+    if( $title ) {
+      $title = mb_strtolower( $this->sanitizeText($title) );
     }
 
     $urlAlias = ( $title ) ? $pattern.$title : $pattern.$resId;

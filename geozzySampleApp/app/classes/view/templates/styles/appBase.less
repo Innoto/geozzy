@@ -147,54 +147,9 @@
   }
 }
 
-.menuClassActive{
-  color: @gzzColor-text-dark;
-  font-weight: bold;
-  background: transparent;
-  border-top: 2px solid  @gzzColor-red;
-  border-bottom: 2px solid  @gzzColor-blue;
-}
-
-.nice2meetyouHome{
-  .headContent{
-    .pagePortada a{ .menuClassActive; }
-  }
-}
-
-.nice2meetyouBecarios,
-.resourceBlog{
-  .headContent{
-    .pageBecarios a{ .menuClassActive; }
-  }
-}
-
-.nice2meetyouAvisos{
-  .headContent{
-    .pageAvisos a{ .menuClassActive; }
-  }
-}
-
-.dashboard{
-  .headContent{
-    .pagePerfil a{ .menuClassActive; }
-  }
-}
-
-.resourceBecario{
-  .headContent{
-    .pageBecarios {
-      &.becario a{ .menuClassActive; }
-    }
-    .pagePerfil {
-      &.miPerfil a{ .menuClassActive; }
-    }
-  }
-}
-
 .bodyContent{
   width: 100%;
   .gzzSec{
-    position: relative;
     padding: 40px 0 40px 0;
     background: @gzzColor-bck-5;
     &.secTransparent{
