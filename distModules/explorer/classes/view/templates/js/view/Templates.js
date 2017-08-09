@@ -60,7 +60,7 @@ geozzy.explorerComponents.activeListTinyViewPager = ''+
 geozzy.explorerComponents.activeListViewTemplate = ''+
   '<div class="explorerActiveListContent ">'+
       '<% if(typeof activeListReset!="undefined" && activeListReset) { %>'+
-        '<div class="activeListReset">' +
+        '<div class="activeListReset explorerElSticky">' +
           '<i class="fa fa-info info" aria-hidden="true"></i> <%- activeListResetText %> <i class="fa fa-times clear" aria-hidden="true"></i>'+
         '</div>'+
       '<%}%>'+
