@@ -267,7 +267,7 @@
 /*******************************************************************************************/
 
 /*******************************************************************************************/
-.explorerMobile( @expl-w: 100%, @expl-h: 100%, @buttonColor:#000, @hheight: 0px ) {
+.explorerMobile( @expl-w: 100%, @expl-h: 100%, @buttonColor:#000, @buttonColorSelected:#000, @hheight: 0px ) {
   .explorerLayout{
     min-height: calc(~"101vh - "@hheight );
     position: relative;
@@ -276,7 +276,6 @@
     &.explorer-container-du{
       width: @expl-w;
       height: @expl-h;
-      background: yellow;
       position: fixed;
     }
     &.explorer-container-map{
@@ -389,6 +388,10 @@
         -moz-border-radius-bottomright: 10px;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
+
+        &.selected{
+          background-color: @buttonColorSelected;
+        }
       }
     }
     .explorer-manage-filters-mobile{
@@ -402,65 +405,67 @@
 }
 .explorerMobileMapInfo( @buttonColor: #000 ){
   background-color: #fff;
-  position:absolute;
+  position:fixed;
   bottom:0;
   width:100%;
   height:160px;
   font-size:11px;
   .gempiContent {
-    padding:10px;
-    padding-left:40px;
-    padding-right:40px;
     position:relative;
-
-    .closeButton {
+    .gempiItem{
+      padding: 10px 40px;
       position: absolute;
-      top:5px;
-      right:10px;
-    }
-    .nextButton {
-      position: absolute;
-      top:20px;
-      height:60px;
-      text-align:right;
-      width:20px;
-      padding-top:54px;
-      right:10px;
-
-    }
-    .previousButton {
-      position: absolute;
-      top:20px;
-      height:60px;
-      text-align:left;
-      width:20px;
-      padding-top:54px;
-      left:10px;
-    }
-    button.accessButton {
-      background-color:  @buttonColor;
-      color:#fff;
-      margin-top:5px;
-      font-weight: bold;
-      cursor:pointer;
-      border:0;
-      padding:5px;
-      border-radius: 3px;
-    }
-    .gempiInfo {
-      margin-left:110px;
-
-
-      .gempiTitle {
-        margin-bottom:3px;
-        font-weight: bold;
+      width: 100%;
+      .closeButton {
+        position: absolute;
+        top:5px;
+        right:10px;
+        font-size:16px;
       }
-    }
-    .gempiImg img {
-      float:left;
-      margin-top:20px;
-      width:90px;
-      border-radius: 50%;
+      .nextButton {
+        position: absolute;
+        top:20px;
+        height:60px;
+        text-align:right;
+        width:20px;
+        padding-top:54px;
+        right:10px;
+
+      }
+      .previousButton {
+        position: absolute;
+        top:20px;
+        height:60px;
+        text-align:left;
+        width:20px;
+        padding-top:54px;
+        left:10px;
+      }
+      button.accessButton {
+        background-color:  @buttonColor;
+        color:#fff;
+        margin-top:5px;
+        font-weight: bold;
+        cursor:pointer;
+        border:0;
+        padding:5px;
+        border-radius: 3px;
+      }
+      .gempiInfo {
+        margin-left:110px;
+
+
+        .gempiTitle {
+          margin-bottom:3px;
+          font-weight: bold;
+        }
+      }
+      .gempiImg img {
+        float:left;
+        margin-top:20px;
+        width:90px;
+        border-radius: 50%;
+      }
     }
   }
 }

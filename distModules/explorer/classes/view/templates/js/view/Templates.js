@@ -16,6 +16,28 @@ geozzy.explorerComponents.mapInfoViewTemplate = ''+
     '<div class="extraBottomContent"></div>'+
   '</div>';
 
+geozzy.explorerComponents.mapInfoViewMobileTemplate = ''+
+'<div class="gempiContent">'+
+  '<div class="gempiItem">'+
+    '<div class="nextButton"><i class="fa fa-chevron-right " aria-hidden="true"></i></div>' +
+    '<div class="previousButton"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>' +
+    '<div class="closeButton"><i class="fa fa-times" aria-hidden="true"></i></div>' +
+
+    '<div class="gempiImg accessButton">'+
+      '<img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/squareCut/<%-img%>.jpg" />'+
+    '</div>'+
+    '<div class="gempiInfo">'+
+      '<div class="gempiTitle"><%-title%></div>'+
+      '<div class="gempiDescription"><%-shortDescription%></div>'+
+      '<button class="accessButton">ACCEDER</button>'+
+    /*  '<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+
+      '<div class="gempiDescription"><%-description%></div>'+
+      '<a href="#resource/<%-id%>"><div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div></a>'+*/
+    '</div>'+
+    '<div class="extraBottomContent"></div>'+
+  '</div>'+
+'</div>';
+
 
 geozzy.explorerComponents.activeListTinyViewTemplate = ''+
   '<div class="explorerListPager">'+
