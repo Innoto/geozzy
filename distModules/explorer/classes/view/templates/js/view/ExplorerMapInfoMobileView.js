@@ -19,14 +19,16 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     "click .accessButton": "resourceClick",
     "click .nextButton": "next",
     "click .previousButton": "previous",
-    "click .closeButton": "close"
+    "click .closeButton": "close",
+    "swipeleft": "next",
+    "swiperight": "previous"
   },
 
 
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
-      tpl: geozzy.explorerComponents.mapInfoViewTemplate,
+      tpl: geozzy.explorerComponents.mapInfoViewMobileTemplate,
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -101,7 +103,6 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
     resourceInfo.set(that.parentExplorer.resourceMinimalList.get(id).toJSON());
 
-
     that.ready = id;
 
     that.parentExplorer.fetchPartialList(
@@ -112,8 +113,6 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
          var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
 
          var element = $.extend( true, partJSON, minJSON );
-
-
 
          element.touchAccess = that.parentExplorer.explorerTouchDevice;
 
@@ -161,7 +160,6 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
       section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
     });
   },
-
   next: function() {
     var that = this;
     var id = that.ready;
@@ -172,7 +170,12 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
       var resId = collectionList.at(index + 1).get('id');
       that.parentExplorer.triggerEvent('mobileTouch', {id:resId})
 
-      that.show( resId );
+      $( '#'+that.divId+' .gempiItem').animate({
+          right: '800px'
+      }, 250);
+      setTimeout(function(){
+        that.show( resId )
+      }, 250);
     }
   },
 
@@ -185,7 +188,13 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     if ((index -1 ) >= 0) {
       var resId = collectionList.at(index - 1).get('id');
       that.parentExplorer.triggerEvent('mobileTouch', {id:resId})
-      that.show( resId );
+
+      $( '#'+that.divId+' .gempiItem').animate({
+          left: '800px'
+      }, 250);
+      setTimeout(function(){
+        that.show( resId );
+      }, 250);
     }
 
   },

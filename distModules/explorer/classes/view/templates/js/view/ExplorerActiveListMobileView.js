@@ -180,16 +180,21 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
       content: contentHtml
     }) );
 
-    that.onRenderComplete();
-  },
+    that.parentExplorer.triggerEvent('onRenderListComplete',{});
 
+    if( typeof geozzy.rExtFavouriteController !='undefined'  && typeof geozzy.rExtFavouriteController.setBinds === 'function' ) {
+      $( '.rExtFavouriteHidden' ).css( 'display', 'inline-block' ).removeClass( 'rExtFavouriteHidden' );
+      geozzy.rExtFavouriteController.setBindsAndGetStatus();
+    }
+  },
+/*
   onRenderComplete: function onRenderComplete() {
     //console.log( 'geozzy.explorerComponents.activeListView.onRenderComplete()' );
     if( typeof geozzy.rExtFavouriteController !='undefined'  && typeof geozzy.rExtFavouriteController.setBinds === 'function' ) {
       $( '.rExtFavouriteHidden' ).css( 'display', 'inline-block' ).removeClass( 'rExtFavouriteHidden' );
       geozzy.rExtFavouriteController.setBindsAndGetStatus();
     }
-  },
+  },*/
 
   setPage: function( pageNum ) {
     var that = this;
