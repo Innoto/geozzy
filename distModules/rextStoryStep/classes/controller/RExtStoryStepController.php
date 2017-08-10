@@ -299,7 +299,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
 
     $fileField = $this->addPrefix( 'storystepKML' );
     $loadKMLForm = $valuesArray['loadKMLFrom'];
-    if( $loadKMLForm === false && !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
+    if( $loadKMLForm === "0" && !$form->existErrors() && $form->isFieldDefined( $fileField ) ) {
       $this->defResCtrl->setFormFiledata( $form, $fileField, 'storystepKML', $this->rExtModel );
     }
     else {
