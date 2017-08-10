@@ -14,7 +14,7 @@
   <div class="explorer-manage-mobile">
     <div class="explorer-manage-filters-mobile" style="display:none;">
       <div class="col-xs-6 col-sm-6  text-center">
-        <div class="explorerButton return"><i class="fa fa-chevron-circle-left"></i>&nbsp;{t}Apply{/t}</div>
+        <div class="explorerButton return">{t}Apply{/t}</div>
       </div>
       <div class="col-xs-6 col-sm-6  text-center">
         <div class=" explorerButton clear">{t}Clear filters{/t}</div>
