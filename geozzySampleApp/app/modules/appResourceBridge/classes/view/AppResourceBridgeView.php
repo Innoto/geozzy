@@ -111,10 +111,10 @@ class AppResourceBridgeView extends View {
     }
     elseif( !empty( $resViewBlockInfo['geozzyError']['httpCode'] ) ) {
       if( $resViewBlockInfo['geozzyError']['httpCode'] !== 403 ) {
-        $this->page404();
+        RequestController::httpError404();
       }
       else {
-        $this->page403();
+        RequestController::httpError403();
       }
     }
     else {
@@ -136,7 +136,7 @@ class AppResourceBridgeView extends View {
         }
       }
       else {
-        $this->page404();
+        RequestController::httpError404();
       }
     }
   }
