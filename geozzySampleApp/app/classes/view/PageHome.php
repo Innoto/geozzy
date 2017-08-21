@@ -4,7 +4,6 @@ Cogumelo::load('coreView/View.php');
 common::autoIncludes();
 Cogumelo::autoIncludes();
 geozzy::autoIncludes();
-Cogumelo::load('coreController/MailController.php');
 
 class PageHome {
 
