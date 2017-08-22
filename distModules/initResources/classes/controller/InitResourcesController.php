@@ -71,7 +71,9 @@ class InitResourcesController{
       'idName' => isset( $initRes['idName'] ) ? $initRes['idName'] : null,
       'rTypeId' => $rtypeID,
       'published' => 1,
-      'timeCreation' => $timeCreation
+      'timeCreation' => $timeCreation,
+      'loc' => isset( $initRes['loc'] ) ? $initRes['loc'] : null,
+      'defaultZoom' => isset( $initRes['defaultZoom'] ) ? $initRes['defaultZoom'] : null
     );
 
     // Campos multiidioma: título, descripción corta y media, y contenido
@@ -151,7 +153,7 @@ class InitResourcesController{
           foreach ($rExtData as $fieldName => $fieldValue){
             if(is_array($fieldValue)){//campos multiiidioma
               foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
-                $resData[$fieldName.'_'.$langKey] = $fieldValue;
+                $resData[$fieldName.'_'.$langKey] = $fieldValue[$langKey];
               }
             }
             else{
