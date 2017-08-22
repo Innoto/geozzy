@@ -93,7 +93,7 @@
                             '<div class="poiDescription"><%-description%></div>'+
                             //'<% if( isNormalResource == 1 ) { %> <a target="_blank" href="/resource/<%-id%>" ><button class="btn btn-primary accessButton">' + __('Discover') + '</button> </a><% }%>'
 
-                          '</div>'
+                          '</div>'+
                         '</div>';
 
 

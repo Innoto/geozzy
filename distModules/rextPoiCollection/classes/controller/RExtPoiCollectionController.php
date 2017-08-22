@@ -358,7 +358,30 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
       $rExtViewBlockInfo['data']['id'] = $resData['id'];
       $template->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       //biMetrics::autoIncludes();
-      explorer::autoIncludes();
+//      explorer::autoIncludes();
+
+
+
+      $template->addClientScript('bower/backbone.obscura/backbone.obscura.js', 'vendor');
+      $template->addClientScript('bower/tiny_map_utilities/smart_infowindow/smart_infowindow.js', 'vendor');
+      $template->addClientScript('bower/tiny_map_utilities/smart_infowindow/vendor/jQueryRotate.js', 'vendor');
+
+
+      $template->addClientScript('js/router/ExplorerRouter.js', 'explorer');
+      $template->addClientScript('js/model/ExplorerResourceMinimalModel.js', 'explorer');
+      $template->addClientScript('js/model/ExplorerResourcePartialModel.js', 'explorer');
+      $template->addClientScript('js/collection/ExplorerResourceMinimalCollection.js', 'explorer');
+      $template->addClientScript('js/collection/ExplorerResourcePartialCollection.js', 'explorer');
+      $template->addClientScript('js/view/Templates.js', 'explorer');
+      $template->addClientScript('js/view/ExplorerMapView.js', 'explorer');
+      $template->addClientScript('js/view/ExplorerMapInfoBubbleView.js', 'explorer');
+
+      $template->addClientScript('js/view/utils/twoLinesIntersection.js', 'explorer');
+      $template->addClientScript('js/view/utils/RotateMapArrow.js', 'explorer');
+
+      $template->addClientScript('js/Explorer.js', 'explorer');
+
+
 
 
       $template->addClientScript('js/TimeDebuger.js', 'common');

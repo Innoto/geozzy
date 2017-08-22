@@ -44,7 +44,7 @@ class RExtVisitDataController extends RExtController implements RExtInterface {
 
     $fieldsInfo = array(
       'duration' => array(
-        'params' => array( 'label' => __( 'Average visit duration' ) ),
+        'params' => array( 'label' => __( 'Average visit duration (minutes)' ) ),
         'rules' => array( 'digits' => true )
       ),
       'timetable' => array(
