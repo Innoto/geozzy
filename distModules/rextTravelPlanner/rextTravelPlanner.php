@@ -35,7 +35,8 @@ class rextTravelPlanner extends Module {
   );
   public $taxonomies = array();
 
-  public $autoIncludeAlways = true;
+  public $autoIncludeAlways = false;
+
   public $includesCommon = array(
     'js/view/Templates.js',
     'js/view/TravelPlannerInterfaceView.js',
