@@ -5,12 +5,12 @@
         <div class="filter">
           <select class="filterByFavourites">
             <option value="*">{t}All{/t}</option>
-            <option value="fav">{t}Favourites{/t}</option>
+            <option selected="selected" value="fav">{t}Favourites{/t}</option>
           </select>
         </div>
         <div class="filter">
           <select class="filterByRtype">
-            <option value="*">{t}All{/t}</option>
+            <option value="*">{t}All Contents{/t}</option>
             <% _.each( rtypesFilters, function( elem ) { %>
               <option value="<%= elem.idName %>"><%= elem.name %></option>
             <% }); %>
@@ -54,7 +54,10 @@
     <div class="plannerDayHeader clearfix">
       <div class="dayTitle">{t}Day{/t}<span> <%- day.id+1 %><span> </div>
       <div class="infoDay"><div class="day"><%- day.dayName %></div><div class="date"><%- day.date %></div></div>
-      <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
+      <div class="infoRight">
+        <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
+        <div class="showMap">{t}Show on map{/t}&nbsp;<i class="fa fa-map-marker" aria-hidden="true"></i></div>
+      </div>      
     </div>
     <div class="plannerDayPlanner gzznestable dd">
       <div class="dd-empty"></div>
