@@ -11,7 +11,7 @@ class ResourceView extends View {
   public $rTypeCtrl = null;
 
   public function __construct( $defResCtrl = false ){
-    // error_log( 'ResourceView: __construct(): '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    // error_log( __METHOD__.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
     parent::__construct();
 
     common::autoIncludes();
@@ -211,7 +211,8 @@ class ResourceView extends View {
     $actLang = $C_LANG;
 
     $resViewBlockInfo = false;
-    $cacheKey = Cogumelo::getSetupValue('db:name').':geozzy:ResourceView:getViewBlockInfo:'.$resId.':'.$actLang;
+    // $cacheKey = Cogumelo::getSetupValue('db:name').':'.__METHOD__.':'.$resId.':'.$actLang;
+
 
     $resViewBlockInfo = $this->defResCtrl->getViewBlockInfo( $resId );
     if( isset( $resViewBlockInfo['data'] ) ) {

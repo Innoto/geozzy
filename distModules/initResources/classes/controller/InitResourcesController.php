@@ -33,6 +33,11 @@ class InitResourcesController{
           elseif( $deployModuleVersion > $registeredModuleVersion
             &&  $deployModuleVersion <= $currentModuleVersion )
           {
+            var_dump($deployModuleName);
+            var_dump($deployModuleVersion);
+            var_dump($registeredModuleVersion);
+            var_dump($currentModuleVersion);
+
             $this->generateResource( $initRes );
           }
         }

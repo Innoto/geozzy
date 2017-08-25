@@ -23,6 +23,8 @@ class ResourceController {
   public $defLang = null;
   public $allLang = null;
 
+  public $cacheQuery = false; // false, true or time in seconds (0: never expire)
+
   public function __construct( $resId = false ) {
     // error_log( 'ResourceController::__construct' );
 
@@ -36,6 +38,11 @@ class ResourceController {
     $this->actLang = $C_LANG;
     $this->defLang = Cogumelo::getSetupValue( 'lang:default' );
     $this->allLang = Cogumelo::getSetupValue( 'lang:available' );
+
+    $cache = Cogumelo::GetSetupValue('cache:ResourceController:default');
+    if( $cache && !is_array( $cache ) ) {
+      $this->cacheQuery = $cache;
+    }
 
     if( $resId ) {
       $this->loadResourceObject( $resId );
@@ -99,10 +106,11 @@ class ResourceController {
 
     if( !$this->resObj || ( $resId && $resId !== $this->resObj->getter('id') ) ) {
       $resModel = new ResourceModel();
-      $resList = $resModel->listItems( [
+      $resList = $resModel->listItems([
         'affectsDependences' => [ 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ],
-        'filters' => [ 'id' => $resId ]  /*, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 */
-      ] );
+        'filters' => [ 'id' => $resId ],  /*, 'UrlAliasModel.http' => 0, 'UrlAliasModel.canonical' => 1 */
+        'cache' => $this->cacheQuery,
+      ]);
       $resourceobj = ( gettype( $resList ) === 'object' ) ? $resList->fetch() : null;
 
       if( $resourceobj && !$this->resObj ) {
@@ -215,10 +223,9 @@ class ResourceController {
 
         $topicModel = new TopicModel();
         foreach( $topicsArray as $i => $topicId ) {
-          if( $t = $topicModel->listItems( array( 'filters' => array( 'id' => $topicId ) ) )->fetch() ) {
+          if( $t = $topicModel->listItems( [ 'filters' => [ 'id' => $topicId ], 'cache' => $this->cacheQuery ] )->fetch() ) {
             $resourceTopicList[$topicId] = $t->getter('name');
           }
-
         }
         $resourceData[ 'topicsName' ] = $resourceTopicList;
         /**
@@ -248,7 +255,7 @@ class ResourceController {
       // Amplio la informacion de rType
       // $resourceData['rTypeIdName'] = $this->getRTypeIdName( $resourceData['rTypeId'] );
       $rTypeModel = new ResourcetypeModel();
-      $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'id' => $resourceData['rTypeId'] ) ) );
+      $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'id' => $resourceData['rTypeId'] ], 'cache' => $this->cacheQuery ] );
       if( $rTypeInfo = $rTypeList->fetch() ) {
         $resourceData['rTypeName'] = $rTypeInfo->getter( 'name' );
         $resourceData['rTypeIdName'] = $rTypeInfo->getter( 'idName' );
@@ -711,6 +718,8 @@ class ResourceController {
     if( !$form->existErrors() ) {
       // TRANSACTION COMMIT
       $resource->transactionCommit();
+      $cacheCtrl = new Cache();
+      $cacheCtrl->flush();
     }
     else {
       // TRANSACTION ROLLBACK
@@ -740,7 +749,7 @@ class ResourceController {
     }
     if( $rTypeId !== false ) {
       $rTypeModel = new ResourcetypeModel();
-      $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'id' => $rTypeId ) ) );
+      $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'id' => $rTypeId ], 'cache' => $this->cacheQuery ] );
       if( $rTypeInfo = $rTypeList->fetch() ) {
         $rTypeIdName = $rTypeInfo->getter( 'idName' );
       }
@@ -757,7 +766,7 @@ class ResourceController {
     $rTypeId = false;
 
     $rTypeModel = new ResourcetypeModel();
-    $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'idName' => $rTypeIdName ) ) );
+    $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'idName' => $rTypeIdName ], 'cache' => $this->cacheQuery ] );
     if( gettype( $rTypeList ) === 'object' && ( $rTypeInfo = $rTypeList->fetch() ) ) {
       $rTypeId = $rTypeInfo->getter( 'id' );
     }
@@ -780,10 +789,10 @@ class ResourceController {
 
     $fileDataModel = new FiledataModel();
     if( !is_array($fileIds) ) {
-      $fileDataList = $fileDataModel->listItems( [ 'filters' => [ 'id' => $fileIds ] ] );
+      $fileDataList = $fileDataModel->listItems( [ 'filters' => [ 'id' => $fileIds ], 'cache' => $this->cacheQuery ] );
     }
     else {
-      $fileDataList = $fileDataModel->listItems( [ 'filters' => [ 'idIn' => $fileIds ] ] );
+      $fileDataList = $fileDataModel->listItems( [ 'filters' => [ 'idIn' => $fileIds ], 'cache' => $this->cacheQuery ] );
     }
     if( gettype($fileDataList) === 'object' ) {
       $result = [];
@@ -879,7 +888,7 @@ class ResourceController {
     $result = false;
 
     $fileGroupModel = new FilegroupModel();
-    $fileGroupList = $fileGroupModel->listItems( [ 'filters' => [ 'idGroup' => $idGroup ] ] );
+    $fileGroupList = $fileGroupModel->listItems( [ 'filters' => [ 'idGroup' => $idGroup ], 'cache' => $this->cacheQuery ] );
 
     if( gettype($fileGroupList) === 'object' ) {
       $fileGroupData = [];
@@ -1014,7 +1023,7 @@ class ResourceController {
   public function getOptionsTopic() {
     $topics = array();
     $topicModel =  new TopicModel();
-    $topicList = $topicModel->listItems();
+    $topicList = $topicModel->listItems( [ 'cache' => $this->cacheQuery ] );
     while( $topic = $topicList->fetch() ){
       $topics[ $topic->getter( 'id' ) ] = $topic->getter( 'name', Cogumelo::getSetupValue( 'lang:default' ) );
     }
@@ -1039,7 +1048,8 @@ class ResourceController {
     $options = [];
     $taxTermModel =  new TaxonomyViewModel();
     $taxTermList = $taxTermModel->listItems( [
-      'filters' => [ 'taxGroupIdName' => $taxIdName ], 'order' => [ 'weight' => 1 ]
+      'filters' => [ 'taxGroupIdName' => $taxIdName ], 'order' => [ 'weight' => 1 ],
+      'cache' => $this->cacheQuery
     ] );
     while( $taxTerm = $taxTermList->fetch() ) {
       $optText = $taxTerm->getter('name');
@@ -1069,7 +1079,10 @@ class ResourceController {
     $taxTerms = array();
 
     $taxTermModel =  new ResourceTaxonomytermModel();
-    $taxTermList = $taxTermModel->listItems( array( 'filters' => ['resource' => $resId], 'order' => ['weight' => 1] ) );
+    $taxTermList = $taxTermModel->listItems([
+      'filters' => ['resource' => $resId], 'order' => ['weight' => 1],
+      'cache' => $this->cacheQuery
+    ]);
 
     while( $taxTerm = $taxTermList->fetch() ) {
       $taxTerms[ $taxTerm->getter( 'id' ) ] = $taxTerm->getter( 'taxonomyterm' );
@@ -1088,8 +1101,11 @@ class ResourceController {
     if( !$this->taxonomyAll || ( $this->resObj && $this->resObj->getter('id') !== $resId ) ) {
 
       $resourceTaxAllModel = new ResourceTaxonomyAllModel();
-      $taxAllList = $resourceTaxAllModel->listItems( array(
-        'filters' => array( 'resource' => $resId ), 'order' => ['weightResTaxTerm' => 1] ) );
+      $taxAllList = $resourceTaxAllModel->listItems([
+        'filters' => [ 'resource' => $resId ], 'order' => ['weightResTaxTerm' => 1],
+        'cache' => $this->cacheQuery
+      ]);
+
       if( gettype( $taxAllList ) === 'object' ) {
         while( $taxTerm = $taxAllList->fetch() ) {
           $termId = $taxTerm->getter('id');
@@ -1186,10 +1202,11 @@ class ResourceController {
       }
       else {
         $collResModel = new CollectionResourcesListViewModel();
-        $collResList = $collResModel->listItems( array(
-          'filters' => array( 'resourceMain' => $resId ),
-          'order' => array( 'weight' => 1, 'weightMain' => 1 )
-        ));
+        $collResList = $collResModel->listItems([
+          'filters' => [ 'resourceMain' => $resId ],
+          'order' => [ 'weight' => 1, 'weightMain' => 1 ],
+          'cache' => $this->cacheQuery
+        ]);
         if( gettype( $collResList ) === 'object' ) {
           $collsInfo = [];
           while( $collResObj = $collResList->fetch() ) {
@@ -1232,16 +1249,14 @@ class ResourceController {
       'values' => array()
     );
 
-    $resourceCollectionsModel =  new ResourceCollectionsModel();
-
-    if( isset( $resId ) ) {
-      $resCollectionList = $resourceCollectionsModel->listItems(
-        array(
-          'filters' => array( 'resource' => $resId, 'CollectionModel.collectionType' => 'base' ),
-          'order' => array( 'weight' => 1 ),
-          'affectsDependences' => array( 'CollectionModel' )
-        )
-      );
+    if( !empty( $resId ) ) {
+      $resourceCollectionsModel =  new ResourceCollectionsModel();
+      $resCollectionList = $resourceCollectionsModel->listItems([
+        'filters' => [ 'resource' => $resId, 'CollectionModel.collectionType' => 'base' ],
+        'order' => [ 'weight' => 1 ],
+        'affectsDependences' => [ 'CollectionModel' ],
+        'cache' => $this->cacheQuery
+      ]);
 
       while( $res = $resCollectionList->fetch() ){
         $collections = $res->getterDependence( 'collection', 'CollectionModel' );
@@ -1267,13 +1282,12 @@ class ResourceController {
     $resourceCollectionsModel =  new ResourceCollectionsModel();
 
     if( isset( $resId ) ) {
-      $resMultimediaList = $resourceCollectionsModel->listItems(
-        array(
-          'filters' => array( 'resource' => $resId, 'CollectionModel.collectionType' => 'multimedia' ),
-          'order' => array( 'weight' => 1 ),
-          'affectsDependences' => array( 'CollectionModel' )
-        )
-      );
+      $resMultimediaList = $resourceCollectionsModel->listItems([
+        'filters' => [ 'resource' => $resId, 'CollectionModel.collectionType' => 'multimedia' ],
+        'order' => [ 'weight' => 1 ],
+        'affectsDependences' => [ 'CollectionModel' ],
+        'cache' => $this->cacheQuery
+      ]);
 
       while( $res = $resMultimediaList->fetch() ){
         $multimediaGalleries = $res->getterDependence( 'collection', 'CollectionModel' );
@@ -1303,10 +1317,11 @@ class ResourceController {
 
     $resourceCollectionsAllModel = new ResourceCollectionsAllModel();
     $resourceViewModel = new RExtUrlResourceViewModel();
-    $resCollectionList = $resourceCollectionsAllModel->listItems( array(
+    $resCollectionList = $resourceCollectionsAllModel->listItems([
       'filters' => $collFilters,
-      'order' => array( 'weightMain' => 1, 'weightSon' => 1 ),
-    ));
+      'order' => [ 'weightMain' => 1, 'weightSon' => 1 ],
+      'cache' => $this->cacheQuery,
+    ]);
     if( gettype( $resCollectionList ) === 'object' ) {
       while( $collection = $resCollectionList->fetch() ) {
         $collId = $collection->getter('id');
@@ -1325,7 +1340,8 @@ class ResourceController {
         }
 
         $resourceViewList = $resourceViewModel->listItems( [
-          'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ]
+          'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ],
+          'cache' => $this->cacheQuery
         ] );
         if( gettype( $resourceViewList ) === 'object' ) {
           $resVal = $resourceViewList->fetch();
@@ -1335,7 +1351,10 @@ class ResourceController {
             $urlAlias = $resVal->getter('urlAlias');
 
             $rtypeControl = new ResourcetypeModel();
-            $rtypeObj = $rtypeControl->listItems( array('filters' => array('id' => $resVal->getter('rTypeId')) ) )->fetch();
+            $rtypeObj = $rtypeControl->listItems([
+              'filters' => [ 'id' => $resVal->getter('rTypeId') ],
+              'cache' => $this->cacheQuery
+            ])->fetch();
 
             $collResources[ $collId ]['res'][ $resValId ] = array(
               'id' => $resValId,
@@ -1511,7 +1530,7 @@ class ResourceController {
       // Si estamos editando, repasamos y borramos relaciones sobrantes
       if( $baseId ) {
         $relModel = new ResourceTopicModel();
-        $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
+        $relPrevList = $relModel->listItems( [ 'filters' => [ 'resource' => $baseId ], 'cache' => $this->cacheQuery ] );
         if( gettype( $relPrevList ) === 'object' ) {
           // estaban asignados antes
           $relPrevInfo = array();
@@ -1566,10 +1585,7 @@ class ResourceController {
       }
 
       $relModel = new ResourceTaxonomyAllModel();
-      $relPrevList = $relModel->listItems( array(
-        'filters' => $relFilter
-      ));
-
+      $relPrevList = $relModel->listItems([ 'filters' => $relFilter, 'cache' => $this->cacheQuery ]);
       if( gettype( $relPrevList ) === 'object' ) {
         // estaban asignados antes
         $relPrevInfo = array();
@@ -1624,13 +1640,13 @@ class ResourceController {
     // Si estamos editando, repasamos y borramos relaciones sobrantes
     if( $baseId ) {
       $relModel = new ResourceCollectionsModel();
-      $relPrevList = $relModel->listItems( array( 'filters' => array( 'resource' => $baseId ) ) );
+      $relPrevList = $relModel->listItems( [ 'filters' => [ 'resource' => $baseId ], 'cache' => $this->cacheQuery ] );
       if( gettype( $relPrevList ) === 'object' ) {
         // estaban asignados antes
         $relPrevInfo = array();
         $colModel = new CollectionModel();
         while( $relPrev = $relPrevList->fetch() ) {
-          $colList = $colModel->listItems( array( 'filters' => array( 'id' => $relPrev->getter('collection') ) ) );
+          $colList = $colModel->listItems( [ 'filters' => [ 'id' => $relPrev->getter('collection') ], 'cache' => $this->cacheQuery ] );
           $collection = ( gettype( $colList ) === 'object' ) ? $colList->fetch() : false;
           if( $collection && $collection->getter('collectionType') === $formCollType ) {
             $relPrevInfo[ $relPrev->getter( 'collection' ) ] = $relPrev->getter( 'id' );
@@ -1858,8 +1874,10 @@ class ResourceController {
       'urlFrom' => $urlAlias, 'urlTo' => null, 'resource' => $resId
     );
 
-    $elemsList = $elemModel->listItems( array( 'filters' => array( 'canonical' => 1, 'resource' => $resId,
-      'lang' => $langId ) ) );
+    $elemsList = $elemModel->listItems([
+      'filters' => [ 'canonical' => 1, 'resource' => $resId, 'lang' => $langId ],
+      'cache' => $this->cacheQuery
+    ]);
     if( $elem = $elemsList->fetch() ) {
       // error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
       $aliasArray[ 'id' ] = $elem->getter( 'id' );
@@ -1892,8 +1910,10 @@ class ResourceController {
     );
 
     $elemModel = new UrlAliasModel();
-    $elemsList = $elemModel->listItems( array( 'filters' => array( 'label' => 'adminAlias',
-      'http' => 301, 'canonical' => 0, 'resource' => $resId, 'lang' => $langId ) ) );
+    $elemsList = $elemModel->listItems([
+      'filters' => [ 'label' => 'adminAlias', 'http' => 301, 'canonical' => 0, 'resource' => $resId, 'lang' => $langId ],
+      'cache' => $this->cacheQuery
+    ]);
     $aliasObj = ( gettype( $elemsList ) === 'object' ) ? $elemsList->fetch() : false;
     if( gettype( $aliasObj ) === 'object' ) {
       $aliasId = $aliasObj->getter( 'id' );
@@ -1952,7 +1972,7 @@ class ResourceController {
     }
 
     $urlModel = new UrlAliasResourceViewModel();
-    $urlList = $urlModel->listItems( array( 'filters' => $filters ));
+    $urlList = $urlModel->listItems( [ 'filters' => $filters, 'cache' => $this->cacheQuery ] );
 
     $urlObj = ( gettype( $urlList ) === 'object' ) ? $urlList->fetch() : false;
 
@@ -1979,6 +1999,13 @@ class ResourceController {
       'data' => false,
       'ext' => array()
     );
+
+
+    if( $cache = Cogumelo::GetSetupValue('cache:ResourceController:getViewBlockInfo') ) {
+      error_log( __METHOD__.' ---- POÑO CACHE A '.$cache.' ----' );
+      $this->cacheQuery = $cache;
+    }
+
 
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();

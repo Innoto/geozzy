@@ -71,10 +71,13 @@ geozzy.explorer = function( opts ) {
 
 
 
-  if( that.options.useUrlRouter == true && typeof that.routerInstance == 'undefined' ) {
-    that.routerInstance = new geozzy.explorerComponents.mainRouter();
-    that.routerInstance.parentExplorer = that;
+
+  if( that.options.useUrlRouter == true && typeof geozzy.explorerComponents.routerInstance == 'undefined' ) {
+   geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
+   geozzy.explorerComponents.routerInstance.parentExplorer = that;
+
   }
+
 
   //
   // First Execution
@@ -87,8 +90,8 @@ geozzy.explorer = function( opts ) {
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
 
     that.bindEvent('resourceClick', function(param){
-      if(typeof that.routerInstance.navigate != 'undefined' ){
-        that.routerInstance.navigate('resource/'+param.id, true);
+      if(typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
+        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
       }
     });
 
