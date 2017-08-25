@@ -5,7 +5,7 @@ Cogumelo::load( 'coreModel/Model.php' );
 
 class RExtKMLModel extends Model {
 
-  static $tableName = 'geozzy_resource_rext_file';
+  static $tableName = 'geozzy_resource_rext_kml';
   static $cols = array(
     'id' => array(
       'type' => 'INT',
