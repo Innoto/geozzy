@@ -24,6 +24,10 @@
       <div class="travelPlannerPlanHeader"></div>
       <div class="travelPlannerPlanDaysContainer"></div>
     </div>
+    <div class="travelPlannerMap">
+      <div class="map" style="width:100%; height:100%;"></div>
+    
+    </div>
   </div>
 </script>
 
@@ -57,7 +61,7 @@
       <div class="infoRight">
         <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
         <div class="showMap">{t}Show on map{/t}&nbsp;<i class="fa fa-map-marker" aria-hidden="true"></i></div>
-      </div>      
+      </div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
       <div class="dd-empty"></div>

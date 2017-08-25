@@ -10,6 +10,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
   parentTp : false,
 
   events: {
+    'click .travelPlannerPlan .plannerDay .showMap': 'showMapDay',
     'click .travelPlannerPlan .plannerDay .dd-item .btnDelete': 'removeResourceToDay',
     'click .travelPlannerPlan .plannerDay .dd-item .btnEdit': 'bindEditResourceToDay'
   },
@@ -63,6 +64,12 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     that.fromModeltoHtml();
     that.updateTotalTimes();
+  },
+  showMapDay: function(e){
+    var that = this;
+    var day = $(e.target).closest('.plannerDay').attr('data-day');
+    console.log("Mostrar Mapa" + day)
+    that.parentTp.showMap( day );
   },
   addResourcesPlan: function (idResource, days, t){
     var that = this;
@@ -206,8 +213,4 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     var that = this;
     return JSON.stringify( rowObj );
   }
-
-
-
-
 });

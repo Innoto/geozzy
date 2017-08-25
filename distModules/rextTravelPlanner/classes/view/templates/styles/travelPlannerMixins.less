@@ -1,18 +1,17 @@
 //mixin with all css that depends on your style
 /*******************************************************************************************/
-.initTravelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpList-h: 100%, @tpFilters-h: 140px, @colorDaysActive:#333, @colorDaysInPlan:#ccc, @nestableTPItem-h: 50px ){
-  .travelPlanner(  @tp-h,  @tpList-w, @tpList-h, @tpFilters-h, @colorDaysActive, @colorDaysInPlan );
+.initTravelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpList-h: 100%, @tpFilters-h: 140px, @tpMap-w: 500px, @tpMap-h: 100%, @colorDaysActive:#333, @colorDaysInPlan:#ccc, @nestableTPItem-h: 50px ){
+  .travelPlanner(  @tp-h,  @tpList-w, @tpList-h, @tpFilters-h, @tpMap-w, @tpMap-h, @colorDaysActive, @colorDaysInPlan );
   .nestableTravelPlannerTheme( @nestableTPItem-h );
 }
 /*******************************************************************************************/
-.travelPlanner( @tp-h, @tpList-w, @tpList-h, @tpFilters-h, @colorDaysActive, @colorDaysInPlan ) {
+.travelPlanner( @tp-h, @tpList-w, @tpList-h, @tpFilters-h, @tpMap-w, @tpMap-h, @colorDaysActive, @colorDaysInPlan ) {
   #travelPlannerSec{
     padding: 0;
     margin: 0;
     .travelPlanner{
       position: relative;
       min-height: @tp-h;
-
       .travelPlannerList{
         width: @tpList-w;
         height: @tpList-h;
@@ -35,9 +34,24 @@
         margin-left: @tpList-w;
         min-height: 500px;
         padding: 20px;
-
       }//travelPlannerPlan
+      .travelPlannerMap{
+        display:none;
+      }//travelPlannerMap
 
+      &.mapOn{
+        .travelPlannerPlan{
+          margin-right: @tpMap-w;
+        }//travelPlannerPlan
+        .travelPlannerMap{
+          display:block;
+          width: @tpMap-w;
+          height: @tpMap-h;
+          position: fixed;
+          top: 0;
+          right: 0;
+        }//travelPlannerMap
+      }
     }
   } //#travelPlannerSec
   #resourceTpModal{

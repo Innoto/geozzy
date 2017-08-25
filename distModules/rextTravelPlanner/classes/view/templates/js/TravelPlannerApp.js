@@ -9,6 +9,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.travelPlannerInterfaceView = false;
   that.travelPlannerDatesView = false;
   that.travelPlannerPlanView = false;
+  that.travelPlannerMapView = false;
   that.travelPlannerResourceView = false;
   that.travelPlannerDefaultVisitTime = 116; // in minutes
 
@@ -78,8 +79,6 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       Backbone.history.start();
     }
 
-
-
     $.when(
       that.resources.fetch(),
       that.rtypes.fetch(),
@@ -88,6 +87,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     ).done( function() {
 
       that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
+      that.travelPlannerMapView = new geozzy.travelPlannerComponents.TravelPlannerMapView( that );
 
       that.initDates();
 
@@ -109,6 +109,11 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, idRes );
     }else{
       alert("Select dates first");
+    }
+  },
+  that.showMap = function(day){
+    if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
+      that.travelPlannerMapView.showDay(day);
     }
   },
   that.editResourceToPlan = function(data){
