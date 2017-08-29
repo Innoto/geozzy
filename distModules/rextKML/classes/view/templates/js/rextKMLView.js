@@ -3,7 +3,7 @@ $(document).ready( function(){
   if( typeof geozzy.rExtMapInstance.resourceMap != 'undefined') {
 
     new google.maps.KmlLayer(rextKMLFile, {
-      preserveViewport: false,
+      preserveViewport: true,
       map: geozzy.rExtMapInstance.resourceMap
     });
 
