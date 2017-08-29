@@ -4,7 +4,7 @@ $(document).ready( function(){
 
     new google.maps.KmlLayer({
       url: rextKMLFile,
-      suppressInfoWindows: true,
+      preserveViewport: false,
       map: geozzy.rExtMapInstance.resourceMap
     });
 
