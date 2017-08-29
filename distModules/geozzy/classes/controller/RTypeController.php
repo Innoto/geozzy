@@ -97,6 +97,9 @@ class RTypeController {
   public $rExts = false;
   public $rTypeName = 'RTypeNameUnknown';
 
+  public $cacheQuery = false; // false, true or time in seconds (0: never expire)
+
+
   /**
    * Inicializamos FormController defResCtrl, rTypeName, RTypeController rTypeModule y Array rExts
    *
@@ -107,8 +110,10 @@ class RTypeController {
     // error_log( 'RTypeController: __construct() para '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
     $this->defResCtrl = $defResCtrl;
-    $this->rTypeName = $rTypeModule->name;
+    $this->cacheQuery = $defResCtrl->cacheQuery;
+
     $this->rTypeModule = $rTypeModule;
+    $this->rTypeName = $rTypeModule->name;
 
     if( property_exists( $rTypeModule, 'rext' ) && is_array( $rTypeModule->rext )
       && count( $rTypeModule->rext ) > 0 )
@@ -289,7 +294,11 @@ class RTypeController {
 
     if( isset($formBlockInfo['data']['user']) ) {
       $userModel = new UserModel();
-      $userCreate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['user']) ) )->fetch();
+      $userCreate = $userModel->listItems([
+        'filters' => [ 'id' => $formBlockInfo['data']['user'] ],
+        'cache' => $this->cacheQuery
+      ])->fetch();
+
       if($userCreate){
         $userCreateLogin = $userCreate->getter('login');
         $templates['info']->assign( 'create', [ 'time' =>$timeCreation, 'user' => $userCreateLogin ] );
@@ -299,7 +308,11 @@ class RTypeController {
 
     if( isset($formBlockInfo['data']['userUpdate']) ) {
       $userModel = new UserModel();
-      $userUpdate = $userModel->listItems( array( 'filters' => array('id' => $formBlockInfo['data']['userUpdate']) ) )->fetch();
+      $userUpdate = $userModel->listItems([
+        'filters' => [ 'id' => $formBlockInfo['data']['userUpdate'] ],
+        'cache' => $this->cacheQuery
+      ])->fetch();
+
       $userUpdateName = $userUpdate->getter('login');
       $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
       $templates['info']->assign( 'update', [ 'time' =>$timeLastUpdate, 'user' => $userUpdateName ] );
