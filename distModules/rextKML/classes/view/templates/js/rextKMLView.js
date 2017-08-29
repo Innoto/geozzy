@@ -1,13 +1,16 @@
 $(document).ready( function(){
 
   if( typeof geozzy.rExtMapInstance.resourceMap != 'undefined') {
-alert(rextKMLFile);
-    var kmlLayer = new google.maps.KmlLayer(rextKMLFile, {
+
+    new google.maps.KmlLayer({
+      url: rextKMLFile,
       suppressInfoWindows: true,
-      preserveViewport: false,
       map: geozzy.rExtMapInstance.resourceMap
     });
 
+    //console.log(geozzy.rExtMapInstance.resourceMap)
+
+    //alert(rextKMLFile)
   }
 
 
