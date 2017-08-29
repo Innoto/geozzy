@@ -7,24 +7,25 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
   //modalTemplate : false,
   parentTp : false,
   map : false,
+  currentDay : 0,
   markers : [],
 
   events: {
-
+    'click .travelPlannerMap .closeMap': 'closeMap',
+    'click .travelPlannerMap .filterDay-previous': 'previousDay',
+    'click .travelPlannerMap .filterDay-next': 'nextDay'
   },
 
   initialize: function( parentTp ) {
     var that = this;
     that.delegateEvents();
     that.parentTp = parentTp;
-
   },
   render: function() {
     var that = this;
   },
   setInitMap: function(){
     var that = this;
-
     that.mapOptions = {
       center: { lat: 43.1, lng: -7.36 },
       mapTypeControl: false,
@@ -32,18 +33,45 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
       zoom: 7//,
       /*styles : mapTheme*/
     };
-    that.map = new google.maps.Map( that.$('.travelPlannerMap .map').get( 0 ), that.mapOptions);
+    if(that.map === false){
+      that.map = new google.maps.Map( that.$('.travelPlannerMap .map').get( 0 ), that.mapOptions);
+    }
+  },
+  closeMap: function(e){
+    var that = this;
+    that.$('.travelPlanner').removeClass('mapOn');
   },
   showDay: function(daySelected){
     var that = this;
 
-    console.log('View MAP', daySelected);
+    that.currentDay = daySelected;
+    console.log('View MAP', that.currentDay);
 
-    that.$('.travelPlanner').addClass('mapOn');
     that.setInitMap();
-    that.printDataOnMap(daySelected);
+    that.printDataOnMap();
+    that.changeDay();
+    that.$('.travelPlanner').addClass('mapOn');
+
   },
-  printDataOnMap: function(daySelected){
+  previousDay: function(e){
+    var that = this;
+    if(that.currentDay !== 0){
+
+      that.showDay(parseInt(that.currentDay)-1);
+      that.changeDay();
+    }
+  },
+  nextDay: function(e){
+    var that = this;
+
+    that.showDay(parseInt(that.currentDay)+1);
+    that.changeDay();
+  },
+  changeDay: function(){
+    var that = this;
+    that.$('.travelPlannerMap .filterDay-current span.number').html(parseInt(that.currentDay)+1);
+  },
+  printDataOnMap: function(){
     var that = this;
 
     var resSelected = [];
@@ -51,7 +79,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
 
     $(that.parentTp.tpData.get('list')).each( function(iday,day) {
       $(day).each( function(i,item){
-        if( daySelected  == iday ){
+        if( that.currentDay  == iday ){
           resSelectedInDay.push(item.id);
         }
         resSelected.push(item.id);
@@ -64,7 +92,8 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     resourcesToList = that.parentTp.resources;
     resourcesToList = new geozzy.collection.ResourceCollection( resourcesToList.filterById(resSelected) );
 
-    that.marker = [];
+    that.removeMarkers();
+    that.markers = [];
 
     $.each( resourcesToList.toJSON(), function(i ,item){
       var pos = $.inArray(String(item.id), resSelectedInDay);
@@ -75,8 +104,9 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
         that.addMarkerOnMap(item,'selected', pos);
       }
     });
-
+    that.centerMap();
   },
+
   addMarkerOnMap: function(item, type, label){
     var that = this;
 
@@ -113,6 +143,22 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
         icon: Icono,
       });
     }
-    that.marker.push(gMarker);
+    that.markers.push(gMarker);
+  },
+
+  removeMarkers: function(){
+    var that = this;
+    $.each( that.markers, function(i ,marker){
+      marker.setMap( null );
+    });
+  },
+
+  centerMap: function(){
+    var that = this;
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < that.markers.length; i++) {
+     bounds.extend(that.markers[i].getPosition());
+    }
+    that.map.fitBounds(bounds);
   }
 });
