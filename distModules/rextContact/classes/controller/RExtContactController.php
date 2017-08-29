@@ -24,7 +24,7 @@ class RExtContactController extends RExtController implements RExtInterface {
     }
 
     $rExtModel = new ContactModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( [ 'filters' => [ 'resource' => $resId ], 'cache' => $this->cacheQuery ] );
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {

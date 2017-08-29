@@ -1,4 +1,5 @@
 <?php
+
 geozzy::load( 'controller/RExtController.php' );
 
 class RExtPoiCollectionController extends RExtController implements RExtInterface {
@@ -36,25 +37,33 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
     $collection = new CollectionModel( );
     $resourceCollectionsModel = new ResourceCollectionsModel();
-    $resourceCollectionsList = $resourceCollectionsModel->listItems(
-      array('filters' => array('resource' => $resId)) );
+    $resourceCollectionsList = $resourceCollectionsModel->listItems([
+      'filters' => [ 'resource' => $resId ],
+      'cache' => $this->cacheQuery
+    ]);
 
     $elemId = false;
     $poiCol = false;
-    while($resCol = $resourceCollectionsList->fetch()){
-      $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
+    while( $resCol = $resourceCollectionsList->fetch() ) {
+      $typecol = $collection->listItems([
+        'filters' => [ 'id' => $resCol->getter('collection') ],
+        'cache' => $this->cacheQuery
+      ])->fetch();
+
       if($typecol->getter('collectionType')==='poi'){
         $elemId = $typecol->getter('id');
       }
     }
 
-    if ($elemId){
+    if( $elemId ) {
       $collectionResourcesModel = new CollectionResourcesModel();
       $collectionResourceCount = $collectionResourcesModel->listCount(
         array('filters' => array('collection' => $elemId)) );
-      $collectionResourceList = $collectionResourcesModel->listItems(
-        array('filters' => array('collection' => $elemId), 'order' => array('weight' => 1))
-      );
+      $collectionResourceList = $collectionResourcesModel->listItems([
+        'filters' => [ 'collection' => $elemId ],
+        'order' => [ 'weight' => 1 ],
+        'cache' => $this->cacheQuery
+      ]);
       if($collectionResourceCount>0) {
         $resIds = array();
         while($res = $collectionResourceList->fetch()){
@@ -94,7 +103,7 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
     }
 
 
-    $rtypeArray = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => $filter )));
+    $rtypeArray = $rtypeControl->listItems( [ 'filters' => [ 'idNameExists' => $filter ], 'cache' => $this->cacheQuery ] );
     $rtypeArraySize = $rtypeControl->listCount(array( 'filters' => array( 'idNameExists' => $filter )));
 
     $varConditions = '';
@@ -110,9 +119,10 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
     }
 
     $collectionRtypeResources = new CollectionTypeResourcesModel();
-    $collectionRtypeResourcesList = $collectionRtypeResources->listItems(
-      array('filters'=>array('conditionsRtypeCollection' => $varConditions))
-    );
+    $collectionRtypeResourcesList = $collectionRtypeResources->listItems([
+      'filters' => [ 'conditionsRtypeCollection' => $varConditions ],
+      'cache' => $this->cacheQuery
+    ]);
     $resOptions = array();
     while($res = $collectionRtypeResourcesList->fetch()){
       $resOptions[] = array(
@@ -145,27 +155,27 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
     $form->removeValidationRule( 'rExtPoiCollection_pois', 'inArray' );
 
     // Si es una edicion, añadimos el ID y cargamos los datos
-     $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
+    $valuesArray = $this->getRExtData( $form->getFieldValue( 'id' ) );
 
-     if( $valuesArray ) {
-       $valuesArray = $this->prefixArrayKeys( $valuesArray );
-       $form->setField( $this->addPrefix( 'id' ), array( 'type' => 'reserved', 'value' => null ) );
+    if( $valuesArray ) {
+      $valuesArray = $this->prefixArrayKeys( $valuesArray );
+      $form->setField( $this->addPrefix( 'id' ), array( 'type' => 'reserved', 'value' => null ) );
 
-       // Limpiando la informacion de terms para el form
-       if( $this->taxonomies ) {
-         foreach( $this->taxonomies as $tax ) {
-           $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-           if( isset( $valuesArray[ $taxFieldName ] ) && is_array( $valuesArray[ $taxFieldName ] ) ) {
-             $taxFieldValues = array();
-             foreach( $valuesArray[ $taxFieldName ] as $value ) {
-               $taxFieldValues[] = ( is_array( $value ) ) ? $value[ 'id' ] : $value;
-             }
-             $valuesArray[ $taxFieldName ] = $taxFieldValues;
-           }
-         }
-       }
-       $form->loadArrayValues( $valuesArray );
-     }
+      // Limpiando la informacion de terms para el form
+      if( $this->taxonomies ) {
+        foreach( $this->taxonomies as $tax ) {
+          $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+          if( isset( $valuesArray[ $taxFieldName ] ) && is_array( $valuesArray[ $taxFieldName ] ) ) {
+            $taxFieldValues = array();
+            foreach( $valuesArray[ $taxFieldName ] as $value ) {
+              $taxFieldValues[] = ( is_array( $value ) ) ? $value[ 'id' ] : $value;
+            }
+            $valuesArray[ $taxFieldName ] = $taxFieldValues;
+          }
+        }
+      }
+      $form->loadArrayValues( $valuesArray );
+    }
 
     // Add RExt info to form
     foreach( $fieldsInfo as $fieldName => $info ) {
@@ -228,43 +238,47 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
    * @param $form FormController
    * @param $resource ResourceModel
    */
-   public function resFormProcess( FormController $form, ResourceModel $resource ) {
-     // error_log( "RExtPoiCollectionController: resFormProcess()" );
+  public function resFormProcess( FormController $form, ResourceModel $resource ) {
+    // error_log( "RExtPoiCollectionController: resFormProcess()" );
+    $valuesArray = $form->getValuesArray();
 
-     $valuesArray = $form->getValuesArray();
+    if( !$form->existErrors() ) {
+      if($this->taxonomies){
+        foreach( $this->taxonomies as $tax ) {
+          $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
+          if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
+            $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
+          }
+        }
+      }
 
-     if( !$form->existErrors() ) {
-       if($this->taxonomies){
-         foreach( $this->taxonomies as $tax ) {
-           $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
-           if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
-             $this->defResCtrl->setFormTax( $form, $taxFieldName, $tax[ 'idName' ], $form->getFieldValue( $taxFieldName ), $resource );
-           }
-         }
-       }
-
-       $newResources = $form->getFieldValue( 'rExtPoiCollection_pois' );
+      $newResources = $form->getFieldValue( 'rExtPoiCollection_pois' );
 
 
-       $collection = new CollectionModel( );
-       $resourceCollectionsModel = new ResourceCollectionsModel();
+      $collection = new CollectionModel( );
+      $resourceCollectionsModel = new ResourceCollectionsModel();
 
-       // buscamos las colecciones de ese recurso
-       $resourceCollectionsCount = $resourceCollectionsModel->listCount(
-         array('filters' => array( 'resource' => $resource->getter('id')) ) );
-       $resourceCollections = $resourceCollectionsModel->listItems(
-         array('filters' => array( 'resource' => $resource->getter('id')) ) );
+      // buscamos las colecciones de ese recurso
+      $resourceCollectionsCount = $resourceCollectionsModel->listCount(
+        array('filters' => array( 'resource' => $resource->getter('id')) ) );
+      $resourceCollections = $resourceCollectionsModel->listItems([
+        'filters' => [ 'resource' => $resource->getter('id') ],
+        'cache' => $this->cacheQuery
+      ]);
 
       $elemId = false;
       if ($resourceCollectionsCount>0){// existe coleccion
-         while($resCol = $resourceCollections->fetch()){
-           $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
+        while($resCol = $resourceCollections->fetch()){
+          $typecol = $collection->listItems([
+            'filters' => [ 'id' => $resCol->getter('collection') ],
+            'cache' => $this->cacheQuery
+          ])->fetch();
 
-           if($typecol->getter('collectionType')==='poi'){
-             $elemId = $typecol->getter('id');
-             break;
-           }
-         }
+          if($typecol->getter('collectionType')==='poi'){
+            $elemId = $typecol->getter('id');
+            break;
+          }
+        }
       }
 
       if (!$elemId && $newResources){ // creamos a coleccion
@@ -274,62 +288,63 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
         $resourceCollection = new ResourceCollectionsModel(array('resource'=>$resource->getter('id'), 'collection' => $collection->getter('id')));
         $resourceCollection->save();
       }
-     }
+    }
 
-     // Procesamos o listado de recursos asociados
-     if( !$form->existErrors()) {
-       $oldResources = false;
+    // Procesamos o listado de recursos asociados
+    if( !$form->existErrors()) {
+      $oldResources = false;
 
-       if( $newResources !== false && !is_array($newResources) ) {
-         $newResources = array($newResources);
-       }
+      if( $newResources !== false && !is_array($newResources) ) {
+        $newResources = array($newResources);
+      }
 
-       // Si estamos editando, repasamos y borramos recursos sobrantes
-       if( isset($elemId) ) {
+      // Si estamos editando, repasamos y borramos recursos sobrantes
+      if( isset($elemId) ) {
 
-         $CollectionResourcesModel = new CollectionResourcesModel();
+        $CollectionResourcesModel = new CollectionResourcesModel();
 
-         $collectionResourceList = $CollectionResourcesModel->listItems(
-           array('filters' => array('collection' => $elemId)) );
+        $collectionResourceList = $CollectionResourcesModel->listItems([
+          'filters' => [ 'collection' => $elemId ], 'cache' => $this->cacheQuery
+        ]);
 
-         if( $collectionResourceList ) {
+        if( $collectionResourceList ) {
 
-           // estaban asignados antes
-           $oldResources = array();
-           while( $oldResource = $collectionResourceList->fetch() ){
+          // estaban asignados antes
+          $oldResources = array();
+          while( $oldResource = $collectionResourceList->fetch() ){
 
-             $oldResources[ $oldResource->getter('resource') ] = $oldResource->getter('id');
-             if( $newResources === false || !in_array( $oldResource->getter('resource'), $newResources ) ) {
-               $oldResource->delete(); // desasignar
-             }
-           }
-         }
-       }
+            $oldResources[ $oldResource->getter('resource') ] = $oldResource->getter('id');
+            if( $newResources === false || !in_array( $oldResource->getter('resource'), $newResources ) ) {
+              $oldResource->delete(); // desasignar
+            }
+          }
+        }
+      }
 
-       $affectsDependences = false;
-       // Creamos-Editamos todas las relaciones con los recursos
+      $affectsDependences = false;
+      // Creamos-Editamos todas las relaciones con los recursos
 
-       if( $newResources !== false ) {
-         $affectsDependences = true;
-         $weight = 0;
-         foreach( $newResources as $resource ) {
-           $weight++;
-           if( $oldResources === false || !isset( $oldResources[ $resource ] ) ) {
-             $collection->setterDependence( 'id',
-               new CollectionResourcesModel( array( 'weight' => $weight,
-                 'collection' => $elemId, 'resource' => $resource)) );
-           }
-           else {
-             $collection->setterDependence( 'id',
-               new CollectionResourcesModel( array( 'id' => $oldResources[ $resource ],
-                 'weight' => $weight, 'collection' => $elemId, 'resource' => $resource))
-             );
-           }
-         }
-       }
-       $collection->save( array( 'affectsDependences' => $affectsDependences ));
-     }
-   }
+      if( $newResources !== false ) {
+        $affectsDependences = true;
+        $weight = 0;
+        foreach( $newResources as $resource ) {
+          $weight++;
+          if( $oldResources === false || !isset( $oldResources[ $resource ] ) ) {
+            $collection->setterDependence( 'id',
+              new CollectionResourcesModel( array( 'weight' => $weight,
+                'collection' => $elemId, 'resource' => $resource)) );
+          }
+          else {
+            $collection->setterDependence( 'id',
+              new CollectionResourcesModel( array( 'id' => $oldResources[ $resource ],
+                'weight' => $weight, 'collection' => $elemId, 'resource' => $resource))
+            );
+          }
+        }
+      }
+      $collection->save( array( 'affectsDependences' => $affectsDependences ));
+    }
+  }
 
 
   /**
