@@ -31,15 +31,6 @@ class RExtKMLController extends RExtController implements RExtInterface {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
       // error_log( "RExtKMLController: getRExtData - getAllData:" . print_r( $rExtData, true ) );
 
-      // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
-      $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
-      if( $termsGroupedIdName !== false ) {
-        foreach( $this->taxonomies as $tax ) {
-          if( isset( $termsGroupedIdName[ $tax[ 'idName' ] ] ) ) {
-            $rExtData[ $tax['idName'] ] = $termsGroupedIdName[ $tax[ 'idName' ] ];
-          }
-        }
-      }
 
       // Cargo los datos de fichero dentro de los del recurso
       $fileDep = $rExtObj->getterDependence( 'file' );
@@ -64,16 +55,15 @@ class RExtKMLController extends RExtController implements RExtInterface {
     $rExtFieldNames = array();
 
     $fieldsInfo = array(
-      'author' => array(
-        'params' => array( 'label' => __( 'Author' ) ),
-        'rules' => array( 'maxlength' => '500' )
-      ),
+
       'file' => array(
-        'params' => array( 'label' => __( 'Multimedia file' ), 'type' => 'file', 'id' => 'rextKMLField',
+        'params' => array( 'label' => __( 'KML file' ), 'type' => 'file', 'id' => 'rextKMLField',
         'placeholder' => __( 'File' ), 'destDir' => RExtKMLModel::$cols['file']['uploadDir'] ),
-        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true' )
+        'rules' => array( 'maxfilesize' => '5242880', 'accept' => ',application/xml,application\/vnd.google\-earth\.kml\+xml' )
       )
     );
+
+
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
@@ -208,6 +198,8 @@ class RExtKMLController extends RExtController implements RExtInterface {
       $rExtViewBlockInfo['template']['full'] = new Template();
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextKML' );
+
+      $rExtViewBlockInfo['template']['full']->addClientScript('js/rextKMLView.js', 'rextKML');
     }
 
     return $rExtViewBlockInfo;
