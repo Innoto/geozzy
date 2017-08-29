@@ -22,12 +22,10 @@ class RExtKMLModel extends Model {
       'vo' => 'FiledataModel',
       'key' => 'id',
       'uploadDir'=> '/rextKML/'
-    ),
-    'author' => array(
-      'type' => 'VARCHAR',
-      'size' => 500
     )
   );
+
+  
 
   static $extraFilters = array();
 

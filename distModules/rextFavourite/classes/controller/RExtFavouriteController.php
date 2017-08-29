@@ -8,6 +8,11 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     if( $defRTypeCtrl !== false ) {
       parent::__construct( $defRTypeCtrl, new rextFavourite(), 'rExtFavourite_' );
     }
+
+    if( $cache = Cogumelo::GetSetupValue('cache:RExtFavouriteController') ) {
+      Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
+      $this->cacheQuery = $cache;
+    }
   }
 
 
@@ -95,7 +100,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $favData = false;
 
     $favModel = new FavouritesListViewModel();
-    $favList = $favModel->listItems( array( 'filters' => array( 'user' => $favUser ) ) );
+    $favList = $favModel->listItems( [ 'filters' => [ 'user' => $favUser ], 'cache' => $this->cacheQuery ] );
     $favObj = ( $favList ) ? $favList->fetch() : false;
     if( $favObj ) {
       $favData = ( $favObj->getter('resourceList') ) ? explode( ',', $favObj->getter('resourceList') ) : array();
@@ -115,7 +120,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $colId = false;
 
     $favModel = new FavouritesViewModel();
-    $favList = $favModel->listItems( array( 'filters' => array( 'user' => $favUser ) ) );
+    $favList = $favModel->listItems( [ 'filters' => [ 'user' => $favUser ], 'cache' => $this->cacheQuery ] );
     $favObj = ( $favList ) ? $favList->fetch() : false;
     $colId = ( $favObj ) ? $favObj->getter( 'colId' ) : false;
 
@@ -135,7 +140,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $favData = false;
 
     $favModel = new FavouritesViewModel();
-    $favList = $favModel->listItems( array( 'filters' => array( 'resource' => $resId, 'user' => $favUser ) ) );
+    $favList = $favModel->listItems( [ 'filters' => [ 'resource' => $resId, 'user' => $favUser ], 'cache' => $this->cacheQuery ] );
     $favObj = ( $favList ) ? $favList->fetch() : false;
     $favData = ( $favObj ) ? $favObj->getAllData( 'onlydata' ) : false;
 
@@ -264,7 +269,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
 
   public function getFavRTypeId() {
     $rTypeModel = new ResourcetypeModel();
-    $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'idName' => 'rtypeFavourites' ) ) );
+    $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'idName' => 'rtypeFavourites' ], 'cache' => $this->cacheQuery ] );
     $rTypeObj = ( $rTypeList ) ? $rTypeList->fetch() : false;
     $rTypeId = ( $rTypeObj ) ? $rTypeObj->getter( 'id' ) : false;
 
@@ -276,7 +281,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $favsUrl = false;
 
     $favModel = new FavouritesListViewModel();
-    $favList = $favModel->listItems( array( 'filters' => array( 'user' => $favUser ) ) );
+    $favList = $favModel->listItems( [ 'filters' => [ 'user' => $favUser ], 'cache' => $this->cacheQuery ] );
     $favObj = ( $favList ) ? $favList->fetch() : false;
     if( $favObj ) {
       $favsId = $favObj->getter('id');

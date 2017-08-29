@@ -144,6 +144,9 @@ class RExtController {
   /** Campos del RExt que son de tipo numérico y que se inicializan a null si no tienen valor */
   public $numericFields = false;
 
+  public $cacheQuery = false; // false, true or time in seconds (0: never expire)
+
+
   /**
    * Constructor de RExtController que inicializa sus atributos
    *
@@ -161,6 +164,7 @@ class RExtController {
     if( $defRTypeCtrl ) {
       $this->defRTypeCtrl = $defRTypeCtrl;
       $this->defResCtrl = $defRTypeCtrl->defResCtrl;
+      $this->cacheQuery = $defRTypeCtrl->cacheQuery;
     }
     $this->rExtName = $rExtModule->name;
     $this->prefix = ( $prefix ) ? $prefix : $this->rExtName.'_';

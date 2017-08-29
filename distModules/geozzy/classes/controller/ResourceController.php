@@ -2002,7 +2002,7 @@ class ResourceController {
 
 
     if( $cache = Cogumelo::GetSetupValue('cache:ResourceController:getViewBlockInfo') ) {
-      error_log( __METHOD__.' ---- POÑO CACHE A '.$cache.' ----' );
+      Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
       $this->cacheQuery = $cache;
     }
 
