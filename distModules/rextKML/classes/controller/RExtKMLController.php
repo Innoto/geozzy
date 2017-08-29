@@ -198,6 +198,8 @@ class RExtKMLController extends RExtController implements RExtInterface {
       $rExtViewBlockInfo['template']['full'] = new Template();
       $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
       $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextKML' );
+
+      $rExtViewBlockInfo['template']['full']->addClientScript('js/rextKMLView.js', 'rextKML');
     }
 
     return $rExtViewBlockInfo;
