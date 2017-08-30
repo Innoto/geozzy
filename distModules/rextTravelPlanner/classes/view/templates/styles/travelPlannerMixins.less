@@ -63,14 +63,12 @@
             top: 10px;
             left: 10px;
             z-index: 101;
-            .filterDay-previous{
-              cursor:pointer;
-            }
-            .filterDay-current{
-
-            }
+            .filterDay-previous,
             .filterDay-next{
               cursor:pointer;
+              &.notVisible{
+                visibility: hidden;
+              }
             }
           }
         }//travelPlannerMap

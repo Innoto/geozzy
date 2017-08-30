@@ -26,7 +26,7 @@
     </div>
     <div class="travelPlannerMap">
       <div class="map" style="width:100%; height:100%;"></div>
-      <div class="closeMap"><i class="fa fa-window-close" aria-hidden="true"></i></div>
+      <div class="closeMap"><i class="fa fa-times" aria-hidden="true"></i></div>
       <div class="mapFilterDay clearfix">
         <div class="filterDay-previous"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
         <div class="filterDay-current">{t}Day{/t}&nbsp;<span class="number">1</span></div>
