@@ -1,5 +1,4 @@
 <!-- rExtViewBlock.tpl en rextKML module -->
-{$rExt.data.file|@print_r}
 <script>
 
   {if isset( $rExt.data.file )}
