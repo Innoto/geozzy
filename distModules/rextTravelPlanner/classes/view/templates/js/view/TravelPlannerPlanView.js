@@ -26,8 +26,6 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
     var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
 
-
-
     that.planDays = 1 + checkout.diff( checkin, 'days');
 
     that.render();
