@@ -18,9 +18,9 @@ class UrlAliasController {
 
     global $C_LANG; // Idioma actual, cogido de la url
     $actLang = $C_LANG;
-    $defLang = Cogumelo::getSetupValue( 'lang:default' );
+    $defLang = Cogumelo::getSetupValue('lang:default');
 
-    $cache = Cogumelo::GetSetupValue('cache:UrlAliasController');
+    $cache = Cogumelo::getSetupValue('cache:UrlAliasController');
 
     if( $cache ) {
       $cacheCtrl = new Cache();

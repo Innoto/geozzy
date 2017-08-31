@@ -39,8 +39,8 @@ class ResourceController {
     $this->defLang = Cogumelo::getSetupValue( 'lang:default' );
     $this->allLang = Cogumelo::getSetupValue( 'lang:available' );
 
-    $cache = Cogumelo::GetSetupValue('cache:ResourceController:default');
-    if( $cache && !is_array( $cache ) ) {
+    $cache = Cogumelo::getSetupValue('cache:ResourceController:default');
+    if( $cache !== null && !is_array( $cache ) ) {
       $this->cacheQuery = $cache;
     }
 

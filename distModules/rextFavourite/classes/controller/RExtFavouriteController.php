@@ -9,7 +9,8 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
       parent::__construct( $defRTypeCtrl, new rextFavourite(), 'rExtFavourite_' );
     }
 
-    if( $cache = Cogumelo::GetSetupValue('cache:RExtFavouriteController') ) {
+    $cache = Cogumelo::getSetupValue('cache:RExtFavouriteController');
+    if( $cache !== null ) {
       Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
       $this->cacheQuery = $cache;
     }

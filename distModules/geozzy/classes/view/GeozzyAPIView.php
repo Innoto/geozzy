@@ -13,7 +13,8 @@ class geozzyAPIView extends View {
   public function __construct( $baseDir ) {
     parent::__construct($baseDir);
 
-    if( $cache = Cogumelo::GetSetupValue('cache:geozzyAPIView') ) {
+    $cache = Cogumelo::getSetupValue('cache:geozzyAPIView');
+    if( $cache !== null ) {
       Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
       $this->cacheQuery = $cache;
     }
