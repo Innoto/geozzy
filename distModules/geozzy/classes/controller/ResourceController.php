@@ -23,7 +23,7 @@ class ResourceController {
   public $defLang = null;
   public $allLang = null;
 
-  public $cacheQuery = false; // false, true or time in seconds
+  public $cacheQuery = true; // false, true or time in seconds
 
   public function __construct( $resId = false ) {
     // error_log( 'ResourceController::__construct' );
