@@ -57,8 +57,10 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
     if( $elemId ) {
       $collectionResourcesModel = new CollectionResourcesModel();
-      $collectionResourceCount = $collectionResourcesModel->listCount(
-        array('filters' => array('collection' => $elemId)) );
+      $collectionResourceCount = $collectionResourcesModel->listCount([
+        'filters' => [ 'collection' => $elemId ],
+        'cache' => $this->cacheQuery
+      ]);
       $collectionResourceList = $collectionResourcesModel->listItems([
         'filters' => [ 'collection' => $elemId ],
         'order' => [ 'weight' => 1 ],
@@ -104,7 +106,7 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
 
     $rtypeArray = $rtypeControl->listItems( [ 'filters' => [ 'idNameExists' => $filter ], 'cache' => $this->cacheQuery ] );
-    $rtypeArraySize = $rtypeControl->listCount(array( 'filters' => array( 'idNameExists' => $filter )));
+    $rtypeArraySize = $rtypeControl->listCount( [ 'filters' => [ 'idNameExists' => $filter ], 'cache' => $this->cacheQuery ] );
 
     $varConditions = '';
     $i = 1;
@@ -259,8 +261,10 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
       $resourceCollectionsModel = new ResourceCollectionsModel();
 
       // buscamos las colecciones de ese recurso
-      $resourceCollectionsCount = $resourceCollectionsModel->listCount(
-        array('filters' => array( 'resource' => $resource->getter('id')) ) );
+      $resourceCollectionsCount = $resourceCollectionsModel->listCount([
+        'filters' => [ 'resource' => $resource->getter('id') ],
+        'cache' => $this->cacheQuery
+      ]);
       $resourceCollections = $resourceCollectionsModel->listItems([
         'filters' => [ 'resource' => $resource->getter('id') ],
         'cache' => $this->cacheQuery

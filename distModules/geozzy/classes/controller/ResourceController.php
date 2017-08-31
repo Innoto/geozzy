@@ -1862,8 +1862,10 @@ class ResourceController {
     $elemModel = new UrlAliasModel();
 
 
-    $colision = $elemModel->listCount( array( 'filters' => [ 'resourceNot' => $resId,
-      'lang' => $langId, 'urlFrom' => $urlAlias ] ) );
+    $colision = $elemModel->listCount([
+      'filters' => [ 'resourceNot' => $resId, 'lang' => $langId, 'urlFrom' => $urlAlias ],
+      'cache' => $this->cacheQuery
+    ]);
     if( !empty($colision) ) {
       $urlAlias .= '_'.$resId;
       error_log( 'setUrl() COLISION: '.$urlAlias );

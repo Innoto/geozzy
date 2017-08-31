@@ -24,12 +24,13 @@ class UrlAliasController {
 
     if( $cache ) {
       $cacheCtrl = new Cache();
-      $cacheKey = Cogumelo::getSetupValue('db:name').':'.__METHOD__.':'.$actLang.':'.$urlFrom;
+      $cacheKey = __METHOD__.':'.$actLang.':'.$urlFrom;
       $alternative = $cacheCtrl->getCache( $cacheKey );
     }
 
     if( empty( $alternative ) ) {
       // cogumelo::debug('(Notice) UrlAliasController: SIN cache ('.$cacheKey.')');
+      cogumelo::log( __METHOD__.': SIN cache ('.$urlFrom.')', 'cache' );
 
       $urlFromParts = explode( '?', $urlFrom, 2 );
       if( isset( $urlFromParts['1'] ) ) {

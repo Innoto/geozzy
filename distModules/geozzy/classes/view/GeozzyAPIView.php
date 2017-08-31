@@ -8,8 +8,15 @@ Cogumelo::load('coreView/View.php');
  */
 class geozzyAPIView extends View {
 
+  public $cacheQuery = false; // false, true or time in seconds
+
   public function __construct( $baseDir ) {
     parent::__construct($baseDir);
+
+    if( $cache = Cogumelo::GetSetupValue('cache:geozzyAPIView') ) {
+      Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
+      $this->cacheQuery = $cache;
+    }
   }
 
   /**
@@ -755,7 +762,7 @@ class geozzyAPIView extends View {
 
     if( isset( $extraParams['users'] ) && $extraParams['users'] === 'true' ) {
       $userMod =  new UserModel();
-      $userList = $userMod->listItems( array( 'filters' => array('active' => 1) ) );
+      $userList = $userMod->listItems([ 'filters' => [ 'active' => 1 ], 'cache' => $this->cacheQuery ]);
       $biData['users'] = [];
       if( $userList ) {
         while( $userVo = $userList->fetch() ) {
@@ -770,7 +777,7 @@ class geozzyAPIView extends View {
     if( isset( $extraParams['virtualBags'] ) && $extraParams['virtualBags'] === 'true' && class_exists( 'FavouritesViewModel' ) ) {
 
       $favModel = new FavouritesListViewModel();
-      $favList = $favModel->listItems( array( 'filters' => array( 'resourceListNotNull' => true ) ) );
+      $favList = $favModel->listItems( [ 'filters' => [ 'resourceListNotNull' => true ], 'cache' => $this->cacheQuery ] );
       if( $favList ) {
         $biData['virtualBags'] = [];
         while( $favObj = $favList->fetch() ) {
@@ -835,7 +842,7 @@ class geozzyAPIView extends View {
 
 
     $resourceModel = new ResourceModel();
-    $queryParameters = [];
+    $queryParameters = [ 'cache' => $this->cacheQuery ];
 
 
     // Bloqueo recursos no deseados
@@ -926,7 +933,7 @@ class geozzyAPIView extends View {
 
     if( isset( $extraParams['urlAlias'] ) && $extraParams['urlAlias'] === 'true' ) {
       $urlAliasModel = new UrlAliasModel();
-      $urlAliasList = $urlAliasModel->listItems( );
+      $urlAliasList = $urlAliasModel->listItems([ 'cache' => $this->cacheQuery ]);
       $urls = [];
       while( $urlAlias = $urlAliasList->fetch() ) {
         $urls[ $urlAlias->getter('resource') ] = $urlAlias->getter('urlFrom');
@@ -972,7 +979,7 @@ class geozzyAPIView extends View {
       if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
         // Cargo los datos de Term del recurso
         $taxTermModel =  new ResourceTaxonomytermModel();
-        $taxTermList = $taxTermModel->listItems( array( 'filters' => array( 'resource' => $allData['id'] ) ) );
+        $taxTermList = $taxTermModel->listItems( [ 'filters' => [ 'resource' => $allData['id'] ], 'cache' => $this->cacheQuery ] );
         if( $taxTermList !== false ) {
           $allData['categoryIds'] = [];
           while( $taxTerm = $taxTermList->fetch() ) {
@@ -982,7 +989,7 @@ class geozzyAPIView extends View {
 
         // Cargo los datos de Topic del recurso
         $topicsModel = new ResourceTopicModel();
-        $topicsList = $topicsModel->listItems( array( 'filters' => array( 'resource' => $allData['id'] ) ) );
+        $topicsList = $topicsModel->listItems( [ 'filters' => [ 'resource' => $allData['id'] ], 'cache' => $this->cacheQuery ] );
         if( $topicsList ) {
           $allData['topicIds'] = [];
           while( $topicVo = $topicsList->fetch() ) {
@@ -1019,9 +1026,10 @@ class geozzyAPIView extends View {
       if( isset( $extraParams['collection'] ) && $extraParams['collection'] === 'true' ) {
         // Cargo los datos de Collections del recurso
         $resCollModel =  new CollectionResourcesListViewModel();
-        $collResList = $resCollModel->listItems( array(
-          'filters' => array( 'resourceMain' => $allData['id'] )
-        ) );
+        $collResList = $resCollModel->listItems([
+          'filters' => [ 'resourceMain' => $allData['id'] ],
+          'cache' => $this->cacheQuery
+        ]);
 
         if( $collResList !== false ) {
           $allData[ 'collections' ] = [];
@@ -1122,7 +1130,7 @@ class geozzyAPIView extends View {
 
     $queryFiltersFinal['published'] = 1;
 
-    $resourceList = $resourceIndexModel->listItems( array('filters' => $queryFiltersFinal, 'groupBy'=>'id') );
+    $resourceList = $resourceIndexModel->listItems([ 'filters' => $queryFiltersFinal, 'groupBy' => 'id', 'cache' => $this->cacheQuery ]);
     header('Content-Type: application/json; charset=utf-8');
     echo '[';
     $c = '';
@@ -1136,7 +1144,7 @@ class geozzyAPIView extends View {
   public function resourceTypes() {
     geozzy::load('model/ResourcetypeModel.php');
     $resourcetypeModel = new ResourcetypeModel( );
-    $resourcetypeList = $resourcetypeModel->listItems( ) ;
+    $resourcetypeList = $resourcetypeModel->listItems([ 'cache' => $this->cacheQuery ]) ;
     $this->syncModelList( $resourcetypeList );
   }
 
@@ -1201,7 +1209,7 @@ class geozzyAPIView extends View {
 
       // Cargo los datos de Collections del recurso
       $resCollModel =  new CollectionResourcesListViewModel();
-      $collResList = $resCollModel->listItems( array( 'filters' => $filters ) );
+      $collResList = $resCollModel->listItems( [ 'filters' => $filters, 'cache' => $this->cacheQuery ] );
       if( $collResList !== false ) {
         while( $coll = $collResList->fetch() ) {
           $collFields = array();
@@ -1252,8 +1260,12 @@ class geozzyAPIView extends View {
 
   public function starred() {
     $taxtermModel = new TaxonomytermModel();
-    $starredList = $taxtermModel->listItems(array( 'filters' => array( 'TaxonomygroupModel.idName' => 'starred' ),
-      'affectsDependences' => array('TaxonomygroupModel'), 'joinType' => 'RIGHT' ));
+    $starredList = $taxtermModel->listItems([
+      'filters' => [ 'TaxonomygroupModel.idName' => 'starred' ],
+      'affectsDependences' => [ 'TaxonomygroupModel' ],
+      'joinType' => 'RIGHT',
+      'cache' => $this->cacheQuery
+    ]);
 
     geozzy::load('model/StarredResourcesModel.php');
     header('Content-Type: application/json; charset=utf-8');
@@ -1269,8 +1281,11 @@ class geozzyAPIView extends View {
       }
 
       $starredResourceModel = new StarredResourcesModel();
-      $starredResources = $starredResourceModel->listItems( array('filters'=>array('taxonomyterm'=>$starData['id']),
-        'order'=>array('weight'=>1)) );
+      $starredResources = $starredResourceModel->listItems([
+        'filters'=> [ 'taxonomyterm'=>$starData['id'] ],
+        'order'=> [ 'weight'=>1 ],
+        'cache' => $this->cacheQuery
+      ]);
 
       while( $starredResource = $starredResources->fetch() ){
         $starData['resources'][] = $starredResource->getAllData('onlydata');
@@ -1288,7 +1303,7 @@ class geozzyAPIView extends View {
   public function categoryList() {
     geozzy::load('model/TaxonomygroupModel.php');
     $taxgroupModel = new TaxonomygroupModel();
-    $taxGroupList = $taxgroupModel->listItems(array( 'filters' => array( 'editable'=>1 ) ));
+    $taxGroupList = $taxgroupModel->listItems([ 'filters' => [ 'editable'=>1 ], 'cache' => $this->cacheQuery ]);
     $this->syncModelList( $taxGroupList );
   }
 
@@ -1302,7 +1317,7 @@ class geozzyAPIView extends View {
       // $taxtermModel = new TaxonomytermModel();
       geozzy::load('model/TaxonomyViewModel.php');
       $taxtermModel = new TaxonomyViewModel();
-      $taxtermList = $taxtermModel->listItems(  array( 'filters' => array( 'taxgroup'=>$urlParamsList['id'] ) ) );
+      $taxtermList = $taxtermModel->listItems([ 'filters' => [ 'taxgroup'=>$urlParamsList['id'] ], 'cache' => $this->cacheQuery ]);
       $this->syncModelList( $taxtermList );
     }
     else
@@ -1315,9 +1330,11 @@ class geozzyAPIView extends View {
       //   ,'affectsDependences' => array( 'TaxonomygroupModel' ), 'joinType' => 'RIGHT' ) );
       geozzy::load('model/TaxonomyViewModel.php');
       $taxtermModel = new TaxonomyViewModel();
-      $taxtermList = $taxtermModel->listItems(
-        array( 'filters' => array( 'taxGroupIdName' => $urlParamsList['idname']  )
-        ,'order' => array( 'weight' => 1 ) ) );
+      $taxtermList = $taxtermModel->listItems([
+        'filters' => [ 'taxGroupIdName' => $urlParamsList['idname'] ],
+        'order' => [ 'weight' => 1 ],
+        'cache' => $this->cacheQuery
+      ]);
       $this->syncModelList( $taxtermList );
     }
     else {
@@ -1331,7 +1348,7 @@ class geozzyAPIView extends View {
   public function topicList() {
     geozzy::load('model/TopicModel.php');
     $topicModel = new TopicModel();
-    $topicList = $topicModel->listItems( [ 'order' => [ 'weight' => 1, 'idName' => 1 ] ] );
+    $topicList = $topicModel->listItems( [ 'order' => [ 'weight' => 1, 'idName' => 1 ], 'cache' => $this->cacheQuery ] );
     $this->syncModelList( $topicList );
   }
 
@@ -1448,7 +1465,7 @@ class geozzyAPIView extends View {
     $infoRTypes = array();
 
     $rTypeModel = new ResourcetypeModel();
-    $rTypeList = $rTypeModel->listItems();
+    $rTypeList = $rTypeModel->listItems( [ 'cache' => $this->cacheQuery ] );
     while( $rTypeObj = $rTypeList->fetch() ) {
       $allData = $rTypeObj->getAllData('onlydata');
       $infoRTypes[ $allData['id'] ] = $allData;
@@ -1466,7 +1483,7 @@ class geozzyAPIView extends View {
 
     if( count( $resIds ) > 0 ) {
       $resModel =  new ResourceModel();
-      $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ) ) );
+      $resList = $resModel->listItems( [ 'filters' => [ 'inId' => $resIds, 'published' => 1 ], 'cache' => $this->cacheQuery ] );
 
       if( $resList !== false ) {
         $resCollData_tmp = array();
@@ -1503,7 +1520,7 @@ class geozzyAPIView extends View {
     if( count( $resIds ) > 0 ) {
 
       $resModel =  new ResourceMultimediaViewModel();
-      $resList = $resModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 )) );
+      $resList = $resModel->listItems( [ 'filters' => [ 'inId' => $resIds, 'published' => 1 ], 'cache' => $this->cacheQuery ] );
 
       if( $resList !== false ) {
         $resCollData_tmp = array();
