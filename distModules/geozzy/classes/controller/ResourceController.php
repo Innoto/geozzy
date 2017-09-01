@@ -23,7 +23,7 @@ class ResourceController {
   public $defLang = null;
   public $allLang = null;
 
-  public $cacheQuery = false; // false, true or time in seconds (0: never expire)
+  public $cacheQuery = true; // false, true or time in seconds
 
   public function __construct( $resId = false ) {
     // error_log( 'ResourceController::__construct' );
@@ -39,8 +39,8 @@ class ResourceController {
     $this->defLang = Cogumelo::getSetupValue( 'lang:default' );
     $this->allLang = Cogumelo::getSetupValue( 'lang:available' );
 
-    $cache = Cogumelo::GetSetupValue('cache:ResourceController:default');
-    if( $cache && !is_array( $cache ) ) {
+    $cache = Cogumelo::getSetupValue('cache:ResourceController:default');
+    if( $cache !== null && !is_array( $cache ) ) {
       $this->cacheQuery = $cache;
     }
 
@@ -1862,8 +1862,10 @@ class ResourceController {
     $elemModel = new UrlAliasModel();
 
 
-    $colision = $elemModel->listCount( array( 'filters' => [ 'resourceNot' => $resId,
-      'lang' => $langId, 'urlFrom' => $urlAlias ] ) );
+    $colision = $elemModel->listCount([
+      'filters' => [ 'resourceNot' => $resId, 'lang' => $langId, 'urlFrom' => $urlAlias ],
+      'cache' => $this->cacheQuery
+    ]);
     if( !empty($colision) ) {
       $urlAlias .= '_'.$resId;
       error_log( 'setUrl() COLISION: '.$urlAlias );
