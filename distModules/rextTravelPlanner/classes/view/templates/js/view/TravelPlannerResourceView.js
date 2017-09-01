@@ -94,8 +94,34 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
     that.$('.resourceTp form').validate({
       lang: cogumelo.publicConf.C_LANG,
       rules: {
-        'hlong-hour':{ 'min': 0 , 'max':23, 'digits': true, required: true },
-        'hlong-minutes':{ 'min':0, 'max':59, 'digits': true, required: true }
+        'hlong-hour':{
+          'min': 0 ,
+          'max':23,
+          'digits': true,
+          //required: true
+          required: function(){
+            if($('.hlong-minutes').val()==""){
+              return true;
+            }
+            else{
+              return false;
+            }
+          }
+        },
+        'hlong-minutes':{
+          'min':0,
+          'max':59,
+          'digits': true,
+          //required: true
+          required: function(){
+            if($('.hlong-hour').val()==""){
+              return true;
+            }
+            else{
+              return false;
+            }
+          }
+        }
       },
       messages: {
         'hlong-hour': __('Introduce entre 0 y 23 horas'),
@@ -129,8 +155,12 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
         daysActive.push($( this ).attr('data-day'));
       });
 
+      var hours = that.$('.resourceTp .hlong-hour').val();
+      hours = (hours) ? hours : 0;
+      var minutes = that.$('.resourceTp .hlong-minutes').val();
+      minutes = (minutes) ? minutes : 0;
       var visitTime = 0;
-      visitTime = (parseInt(that.$('.resourceTp .hlong-hour').val()) * 60) + parseInt(that.$('.resourceTp .hlong-minutes').val());
+      visitTime = (parseInt(hours) * 60) + parseInt(minutes);
 
       that.parentTp.travelPlannerPlanView.addResourcesPlan(that.idResource, daysActive, visitTime);
       that.closeModalResource();
