@@ -11,6 +11,14 @@ class RTUtilsController {
     $this->moduleClass = $moduleClass;
   }
 
+  public function rTypeModuleDeploy() {
+    $this->rTypeModuleRc();
+  }
+
+  public function rExtModuleDeploy() {
+    $this->rExtModuleRc();
+  }
+
   public function rTypeModuleRc() {
     $rTypeObj = new $this->moduleClass();
     $rTypeModel = $this->addRType( $rTypeObj->name, $rTypeObj->nameLocations );
@@ -39,7 +47,13 @@ class RTUtilsController {
       $rTypeData[ 'name_'.$langKey ] = $name;
     }
 
+    $existRTypeModel = ( new ResourcetypeModel() )->listItems(['filters'=>['idName'=>$rTypeIdName]])->fetch();
+    if( $existRTypeModel ) {
+      $rTypeData['id'] = $existRTypeModel->getter('id');
+    }
+
     $rTypeModel = new ResourcetypeModel( $rTypeData );
+
     if( !$rTypeModel->save() ) {
       $rTypeModel = false;
     }
@@ -69,8 +83,17 @@ class RTUtilsController {
               $topic[ 'name_'.$langKey ] = $name;
             }
             $topic['weight'] = $topicInfo['weight'];
+
+
+            $existTopicModel = ( new TopicModel() )->listItems(['filters'=>['idName'=> $topic['idName'] ]])->fetch();
+            if( $existTopicModel ) {
+              $topic['id'] = $existTopicModel->getter('id');
+            }
+
             $topicObj = new TopicModel( $topic );
             $topicObj->save();
+
+
           }
 
           // Link Topic to RType
@@ -79,6 +102,14 @@ class RTUtilsController {
             'resourceType' => $rTypeId,
             'weight' => $topicInfo['resourceTypes'][ $rTypeIdName ]['weight']
           );
+
+
+          $existResourcetypeTopicModel = ( new ResourcetypeTopicModel() )->listItems(['filters'=>['topic'=> $rTypeTopicParams['topic'] ]])->fetch();
+          if( $existResourcetypeTopicModel ) {
+            $rTypeTopicParams['id'] = $existResourcetypeTopicModel->getter('id');
+          }
+
+
           $resourcetypeTopicModel = new ResourcetypeTopicModel( $rTypeTopicParams );
           $resourcetypeTopicModel->save();
 
@@ -96,8 +127,16 @@ class RTUtilsController {
 
             if( (new TaxonomygroupModel)->listCount( ['filters'=>['idName'=> $tax['idName'] ]] ) === 0 ) {
               unset($tax['name']);
+
+              $existTaxonomygroupModel = ( new TaxonomygroupModel() )->listItems(['filters'=>['idName'=> $tax['idName'] ]])->fetch();
+              if( $existTaxonomygroupModel ) {
+                $tax['id'] = $existTaxonomygroupModel->getter('id');
+              }
+
+
               $taxgroup = new TaxonomygroupModel( $tax );
               $taxgroup->save();
+
 
               if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
                 foreach( $tax['initialTerms'] as $term ) {
@@ -107,12 +146,22 @@ class RTUtilsController {
                      $term['name_'.$langKey] = $name;
                   }
                   unset($term['name']);
+
+
+                  $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'] ]])->fetch();
+                  if( $existTaxonomytermModel ) {
+                    $term['id'] = $existTaxonomytermModel->getter('id');
+                  }
+
                   $taxterm = new TaxonomytermModel( $term );
                   $taxterm->save();
                 }
               }
 
               // second save of topic taxgroup
+
+
+
               $topicObj->setter( 'taxgroup',  $taxgroup->getter('id') );
               $topicObj->save();
             }
