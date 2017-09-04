@@ -27,9 +27,16 @@ class rextMap extends Module {
 
 
   public function moduleRc() {
-    geozzy::load( 'controller/RTUtilsController.php' );
+    geozzy::load('controller/RTUtilsController.php');
 
     $rtUtilsControl = new RTUtilsController(__CLASS__);
     $rtUtilsControl->rExtModuleRc();
+  }
+
+  public function moduleDeploy() {
+    geozzy::load('controller/RTUtilsController.php');
+
+    $rtUtilsControl = new RTUtilsController(__CLASS__);
+    $rtUtilsControl->rExtModuleDeploy();
   }
 }
