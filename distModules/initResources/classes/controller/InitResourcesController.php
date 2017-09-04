@@ -15,33 +15,7 @@ class InitResourcesController{
     include( APP_BASE_PATH.'/conf/initResources/resources.php' );
 
     foreach( $initResources as $initRes ) {
-      if( preg_match( '#^(.*)\#(\d{1,10}(.\d{1,10})?)#', $initRes['version'], $matches ) ) {
-        $deployModuleName = $matches[1];
-
-        eval( '$currentModuleVersion = (float) '.$deployModuleName.'::checkCurrentVersion();' );
-        eval( '$registeredModuleVersion = (float) '.$deployModuleName.'::checkRegisteredVersion();' );
-
-        $deployModuleVersion = (float) $matches[2];
-
-        if( class_exists( $deployModuleName ) ) {
-          if( $isFirstGenerateModel === true
-            && isset( $initRes['executeOnGenerateModelToo'])
-            && $initRes['executeOnGenerateModelToo'] === true )
-          {
-            $this->generateResource( $initRes );
-          }
-          elseif( $deployModuleVersion > $registeredModuleVersion
-            &&  $deployModuleVersion <= $currentModuleVersion )
-          {
-            var_dump($deployModuleName);
-            var_dump($deployModuleVersion);
-            var_dump($registeredModuleVersion);
-            var_dump($currentModuleVersion);
-
-            $this->generateResource( $initRes );
-          }
-        }
-      }
+      $this->generateResource( $initRes );
     }
 
     echo 'Base resources created';
@@ -98,8 +72,16 @@ class InitResourcesController{
     }
 
     // creamos o recurso
+    $existResourceModel = ( new ResourceModel() )->listItems(['filters'=>['idName'=> $resData['idName'] ]])->fetch();
+    if( $existResourceModel ) {
+      $resData['id'] = $existResourceModel->getter('id');
+    }
+
     $resource = new ResourceModel( $resData );
     $resource->save();
+
+
+
 
     // Unha vez creado o recurso, creamos as súas relacións
 
@@ -135,8 +117,25 @@ class InitResourcesController{
         if( $termObj ) {
           $termId = $termObj->getter('id');
           // echo '  Engado o termino '.$termId.' a '.$resId."\n";
-          $resTaxterm = new ResourceTaxonomytermModel( array('resource' => $resId, 'taxonomyterm' => $termId) );
+
+
+
+
+          $rtaxtermData = [
+            'idName' => $idName,
+            'resource' => $resId,
+            'taxonomyterm' => $termId
+          ];
+
+
+          $existTaxTermModel = ( new ResourceTaxonomytermModel() )->listItems(['filters'=>['idName'=> $rtaxtermData['idName'] ]])->fetch();
+          if( $existTaxTermModel ) {
+            $topic['id'] = $existTaxTermModel->getter('id');
+          }
+
+          $resTaxterm = new ResourceTaxonomytermModel( $rtaxtermData );
           $resTaxterm->save();
+
         }
         else {
           echo "\n".'  ERROR: No existe un termino con idName '.$idName.' en taxGroupIdName '.$taxGroupIdName."\n";
@@ -166,9 +165,20 @@ class InitResourcesController{
             }
           }
 
+
+
          $rExtModel = $rExtName.'Model';
+
+         $existRextModel = ( new $rExtModel() )->listItems(['filters'=>['idName'=> $resData['idName'] ]])->fetch();
+         if( $existRextModel ) {
+           $resData['id'] = $existRextModel->getter('id');
+         }
+
          $rExt = new $rExtModel($resData);
          $rExt->save();
+
+
+
        }
     }
 
