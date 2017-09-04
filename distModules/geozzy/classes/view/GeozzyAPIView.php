@@ -1017,7 +1017,7 @@ class geozzyAPIView extends View {
               $rexData[ $colName ] = $relModel->getter( $colName );
             }
 
-            $allData['rextmodels'][] = $rexData;
+            $allData['rextmodels'][$rexData['MODELNAME']] = $rexData;
           }
         }
       }
