@@ -196,8 +196,26 @@ class RTUtilsController {
         }
         unset($tax['name']);
 
+
+
+
+
+
+        $existTaxonomygroupModel = ( new TaxonomygroupModel() )->listItems(['filters'=>['idName'=> $tax['idName'] ]])->fetch();
+        if( $existTaxonomygroupModel ) {
+          $tax['id'] = $existTaxonomygroupModel->getter('id');
+        }
+
+
         $taxgroup = new TaxonomygroupModel( $tax );
         $taxgroup->save();
+
+
+
+
+
+
+
 
         $idByIdName = [];
         $weight = 10;
@@ -239,8 +257,23 @@ class RTUtilsController {
             $term['weight'] = $weight;
             $weight += 10;
 
+
+
+
+            /*$taxterm = new TaxonomytermModel( $term );
+            $taxterm->save();*/
+
+
+            $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'] ]])->fetch();
+            if( $existTaxonomytermModel ) {
+              $term['id'] = $existTaxonomytermModel->getter('id');
+            }
+
+
             $taxterm = new TaxonomytermModel( $term );
             $taxterm->save();
+
+
 
             $idByIdName[ $term['idName'] ] = $taxterm->getter('id');
           }
