@@ -45,7 +45,7 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
     that.el = '#resourceTpModal'
     that.$el = $(that.el);
 
-    item = that.parentTp.resources.get(that.idResource);
+    item = that.parentTp.resources.get(that.idResource).toJSON();
 
     if(that.mode === 'edit'){
       //Edit
@@ -75,8 +75,14 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
         checkin.add(1, 'days');
       }
 
+
+      if (typeof(item.rextmodels.RExtVisitDataModel) != "undefined") {
+        item.defaultDurationH = Math.floor( item.rextmodels.RExtVisitDataModel.duration / 60 );
+        item.defaultDurationM = item.rextmodels.RExtVisitDataModel.duration % 60;
+      }
+
       that.resourceTemplate = _.template( $('#resourceTpModalTemplate').html() );
-      that.$('.modal-body').html( that.resourceTemplate({ resource: item.toJSON(), dates: dates }) );
+      that.$('.modal-body').html( that.resourceTemplate({ resource: item, dates: dates }) );
     }
 
     that.$el.modal({
