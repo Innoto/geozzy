@@ -44,6 +44,9 @@
       <a href="#resource/<%- resource.id %>">
         <button class="openResource btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></i></button>
       </a>
+      <% if (typeof(resource.defaultDuration) != "undefined") { %>
+        <div class="duration"><%= resource.defaultDuration %></div>
+      <% } %>
     </div>
     <div class="title"><%- resource.title %></div>
     <div class="description"><%- resource.shortDescription %></div>
@@ -115,11 +118,11 @@
       <div class="hoursContainer row clearfix">
         <div class="col-xs-6">
           <label for="hlong-hour">{t}hours{/t}</label>
-          <input type="number" name="hlong-hour" class="hlong-hour" placeholder="{t}hours{/t}" min="0" max="23">
+          <input type="number" name="hlong-hour" class="hlong-hour" placeholder="{t}hours{/t}" min="0" max="23" value="<%- resource.defaultDurationH %>">
         </div>
         <div class="col-xs-6">
           <label for="hlong-minutes">{t}minutes{/t}</label>
-          <input type="number" name="hlong-minutes" class="hlong-minutes" placeholder="{t}minutes{/t}" min="0" max="59">
+          <input type="number" name="hlong-minutes" class="hlong-minutes" placeholder="{t}minutes{/t}" min="0" max="59" value="<%- resource.defaultDurationM %>">
         </div>
       </div>
       <div class="buttonActions">
