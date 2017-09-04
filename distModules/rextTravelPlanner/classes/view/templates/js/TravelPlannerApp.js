@@ -21,6 +21,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     fields: false,
     filters: false,
     rtype: false,
+    rextmodels: true,
     urlAlias: true
   }
   if(cogumelo.publicConf.mod_geozzy_travelPlanner.toString() !== ''){

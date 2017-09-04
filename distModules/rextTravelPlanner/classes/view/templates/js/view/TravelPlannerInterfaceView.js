@@ -56,6 +56,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     }
     that.$el.find('.travelPlannerResources').html('');
     $.each( resourcesToList.toJSON(), function(i ,item){
+      console.log(item);
       that.resourceTemplate = _.template( $('#resourceItemTPTemplate').html() );
       that.$('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
     });
