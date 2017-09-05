@@ -25,7 +25,7 @@ geozzy.collection.ResourceCollection = Backbone.Collection.extend({
 
     that.options = $.extend(true, {}, that.options, opts);
 
-    that.url = that.baseUrl;
+    that.url = '/'+cogumelo.publicConf.C_LANG+that.baseUrl;
 
     that.url += '/fields/'+that.options.fields
     that.url += '/filters/'+that.options.filters

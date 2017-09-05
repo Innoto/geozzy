@@ -76,7 +76,7 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
       }
 
 
-      if (typeof(item.rextmodels.RExtVisitDataModel) != "undefined") {
+      if (typeof(item.rextmodels.RExtVisitDataModel) != "undefined" && item.rextmodels.RExtVisitDataModel.duration > 0 ){
         item.defaultDurationH = Math.floor( item.rextmodels.RExtVisitDataModel.duration / 60 );
         item.defaultDurationM = item.rextmodels.RExtVisitDataModel.duration % 60;
       }
