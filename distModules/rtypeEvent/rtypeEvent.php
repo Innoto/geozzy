@@ -32,8 +32,16 @@ class rtypeEvent extends Module {
   public function moduleRc() {
     geozzy::load('controller/RTUtilsController.php');
 
-
     $rtUtilsControl = new RTUtilsController(__CLASS__);
     $rtUtilsControl->rTypeModuleRc();
   }
+
+
+  public function moduleDeploy() {
+    geozzy::load('controller/RTUtilsController.php');
+
+    $rtUtilsControl = new RTUtilsController(__CLASS__);
+    $rtUtilsControl->rTypeModuleDeploy();
+  }
+  
 }

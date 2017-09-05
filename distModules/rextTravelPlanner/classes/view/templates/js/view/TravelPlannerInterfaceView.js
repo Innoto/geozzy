@@ -56,6 +56,12 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     }
     that.$el.find('.travelPlannerResources').html('');
     $.each( resourcesToList.toJSON(), function(i ,item){
+      if (typeof(item.rextmodels.RExtVisitDataModel) != "undefined") {
+        var duration = item.rextmodels.RExtVisitDataModel.duration;
+        var duration_h = Math.floor( duration / 60 );
+        var duration_m = duration % 60;
+        item.defaultDuration = duration_h+'h '+duration_m+'min';
+      }
       that.resourceTemplate = _.template( $('#resourceItemTPTemplate').html() );
       that.$('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
     });

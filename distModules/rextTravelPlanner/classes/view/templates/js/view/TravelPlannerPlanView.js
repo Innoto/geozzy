@@ -33,10 +33,8 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
   render: function() {
     var that = this;
-    console.log('Difference is ', that.planDays , 'days');
 
     that.$('.travelPlannerPlanDaysContainer').html('');
-
     var checkin = that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
 
     for (i = 0; i < that.planDays; i++) {
@@ -57,16 +55,17 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       callback: function(l, e) {
         that.fromHtmlToModel();
         that.updateTotalTimes();
+        that.parentTp.travelPlannerMapView.render();
       }
     });
 
     that.fromModeltoHtml();
     that.updateTotalTimes();
+    that.parentTp.travelPlannerMapView.render();
   },
   showMapDay: function(e){
     var that = this;
     var day = $(e.target).closest('.plannerDay').attr('data-day');
-    console.log("Mostrar Mapa" + day)
     that.parentTp.showMap( day );
   },
   addResourcesPlan: function (idResource, days, t){
@@ -74,8 +73,10 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     $.each( days, function(i,d){
       that.addResourceToDay( idResource, d, t);
     });
+
     that.fromHtmlToModel();
     that.updateTotalTimes();
+    that.parentTp.travelPlannerMapView.render();
   },
   addResourceToDay: function( idResource, day, t){
     var that = this;

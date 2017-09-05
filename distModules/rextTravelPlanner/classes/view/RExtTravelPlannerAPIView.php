@@ -63,7 +63,6 @@ class RExtTravelPlannerAPIView extends View {
 
       case 'setTravelPlanner':
         //$result = $this->getTravelPlannerUrl();
-        var_dump($_POST['resourceData'] );
         $result = $this->setTravelPlanner( $_POST['resourceData'] );
         break;
       case 'getTravelPlanner':

@@ -29,8 +29,8 @@ class rextEvent extends Module {
           'icon' => 'view/categoryIcons/concerto.svg',
           'name' => array(
             'en' => 'Live music',
-            'es' => 'Concierto',
-            'gl' => 'Concerto'
+            'es' => 'Conciertos',
+            'gl' => 'Concertos'
           )
         ),
         array(
@@ -81,5 +81,12 @@ class rextEvent extends Module {
 
     $rtUtilsControl = new RTUtilsController(__CLASS__);
     $rtUtilsControl->rExtModuleRc();
+  }
+
+  public function moduleDeploy() {
+    geozzy::load('controller/RTUtilsController.php');
+
+    $rtUtilsControl = new RTUtilsController(__CLASS__);
+    $rtUtilsControl->rExtModuleDeploy();
   }
 }

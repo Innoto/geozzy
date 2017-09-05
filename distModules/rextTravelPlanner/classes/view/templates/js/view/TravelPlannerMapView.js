@@ -32,6 +32,11 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
     var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
     that.planDays = 1 + checkout.diff( checkin, 'days');
+
+    if( parseInt(that.currentDay + 1 ) >= that.planDays ){
+      that.currentDay = 0;
+    }
+    
     that.showDay(that.currentDay);
   },
   setInitMap: function(){
