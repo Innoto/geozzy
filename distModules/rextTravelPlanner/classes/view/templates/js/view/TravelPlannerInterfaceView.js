@@ -60,7 +60,18 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
         var duration = item.rextmodels.RExtVisitDataModel.duration;
         var duration_h = Math.floor( duration / 60 );
         var duration_m = duration % 60;
-        item.defaultDuration = duration_h+'h '+duration_m+'min';
+        if( duration_m > 0 ){
+          item.defaultDuration = duration_m+'min';
+        }
+        if( duration_h > 0){
+          if( typeof(item.defaultDuration) == 'undefined'){
+            item.defaultDuration = duration_h+'h';
+          }else{
+            item.defaultDuration = duration_h+'h '+item.defaultDuration;
+          }
+
+        }
+
       }
       that.resourceTemplate = _.template( $('#resourceItemTPTemplate').html() );
       that.$('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
