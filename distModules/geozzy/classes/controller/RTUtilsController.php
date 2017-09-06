@@ -148,7 +148,7 @@ class RTUtilsController {
                   unset($term['name']);
 
 
-                  $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'] ]])->fetch();
+                  $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>[ 'idName'=> $term['idName'], 'taxgroup'=> $term['taxgroup'] ]])->fetch();
                   if( $existTaxonomytermModel ) {
                     $term['id'] = $existTaxonomytermModel->getter('id');
                   }
@@ -264,7 +264,7 @@ class RTUtilsController {
             $taxterm->save();*/
 
 
-            $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'] ]])->fetch();
+            $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'], 'taxgroup'=> $term['taxgroup']  ]])->fetch();
             if( $existTaxonomytermModel ) {
               $term['id'] = $existTaxonomytermModel->getter('id');
             }
