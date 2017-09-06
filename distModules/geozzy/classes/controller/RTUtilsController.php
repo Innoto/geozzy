@@ -104,7 +104,7 @@ class RTUtilsController {
           );
 
 
-          $existResourcetypeTopicModel = ( new ResourcetypeTopicModel() )->listItems(['filters'=>['topic'=> $rTypeTopicParams['topic'] ]])->fetch();
+          $existResourcetypeTopicModel = ( new ResourcetypeTopicModel() )->listItems(['filters'=>['topic'=> $rTypeTopicParams['topic'], 'resourceType'=> $rTypeTopicParams['resourceType'] ]])->fetch();
           if( $existResourcetypeTopicModel ) {
             $rTypeTopicParams['id'] = $existResourcetypeTopicModel->getter('id');
           }
