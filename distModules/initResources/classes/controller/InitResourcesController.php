@@ -74,113 +74,127 @@ class InitResourcesController{
     // creamos o recurso
     $existResourceModel = ( new ResourceModel() )->listItems(['filters'=>['idName'=> $resData['idName'] ]])->fetch();
     if( $existResourceModel ) {
-      $resData['id'] = $existResourceModel->getter('id');
+
+      if( !$existResourceModel->getter('timeLastUpdate') ) {
+        $resData['id'] = $existResourceModel->getter('id');
+        $resource = new ResourceModel( $resData );
+        $resource->save();
+        $resEdited=true;
+      }
+      else {
+        $resEdited=false;
+      }
     }
-
-    $resource = new ResourceModel( $resData );
-    $resource->save();
-
-
-
-
-    // Unha vez creado o recurso, creamos as súas relacións
-
-    // image
-    if( isset( $initRes['img'] ) && $initRes['img'] ) {
-      $filedata = array(
-        'name' => $initRes['img'],
-        'destDir' => ResourceModel::$cols['image']['uploadDir'],
-        'absLocation' => APP_BASE_PATH.'/conf/initResources/files/'.$initRes['img']
-      );
-      $file = $fileControl->createNewFile( $filedata );
-      $resource->setterDependence( 'image', $file );
-      $resource->save(array('affectsDependences' => true));
+    else {
+      $resource = new ResourceModel( $resData );
+      $resource->save();
+      $resEdited=true;
     }
 
 
-    // taxanomies
-    $confTerms = isset( $initRes['terms'] ) ? $initRes['terms'] : [];
-
-    if( isset( $initRes['viewType'] ) ) {
-      $confTerms['viewAlternativeMode'] = $initRes['viewType'];
-    }
-
-    if( count( $confTerms ) > 0 ) {
-      $resId = $resource->getter('id');
-      foreach( $confTerms as $taxGroupIdName => $idName ) {
-        // echo "\n".'  Buscando un termino con idName '.$idName.' en taxGroupIdName '.$taxGroupIdName."\n";
-        $termList = $taxViewModel->listItems( array( 'filters'=>array(
-          'idName' => $idName,
-          'taxGroupIdName' => $taxGroupIdName
-        ) ) );
-        $termObj = ( $termList ) ? $termList->fetch() : false;
-        if( $termObj ) {
-          $termId = $termObj->getter('id');
-          // echo '  Engado o termino '.$termId.' a '.$resId."\n";
 
 
+    if( $resEdited == true ) { // is edited
+
+      // Unha vez creado o recurso, creamos as súas relacións
+
+      // image
+      if( isset( $initRes['img'] ) && $initRes['img'] ) {
+        $filedata = array(
+          'name' => $initRes['img'],
+          'destDir' => ResourceModel::$cols['image']['uploadDir'],
+          'absLocation' => APP_BASE_PATH.'/conf/initResources/files/'.$initRes['img']
+        );
+        $file = $fileControl->createNewFile( $filedata );
+        $resource->setterDependence( 'image', $file );
+        $resource->save(array('affectsDependences' => true));
+      }
 
 
-          $rtaxtermData = [
+      // taxanomies
+      $confTerms = isset( $initRes['terms'] ) ? $initRes['terms'] : [];
+
+      if( isset( $initRes['viewType'] ) ) {
+        $confTerms['viewAlternativeMode'] = $initRes['viewType'];
+      }
+
+      if( count( $confTerms ) > 0 ) {
+        $resId = $resource->getter('id');
+        foreach( $confTerms as $taxGroupIdName => $idName ) {
+          // echo "\n".'  Buscando un termino con idName '.$idName.' en taxGroupIdName '.$taxGroupIdName."\n";
+          $termList = $taxViewModel->listItems( array( 'filters'=>array(
             'idName' => $idName,
-            'resource' => $resId,
-            'taxonomyterm' => $termId
-          ];
+            'taxGroupIdName' => $taxGroupIdName
+          ) ) );
+          $termObj = ( $termList ) ? $termList->fetch() : false;
+          if( $termObj ) {
+            $termId = $termObj->getter('id');
+            // echo '  Engado o termino '.$termId.' a '.$resId."\n";
 
 
-          $existTaxTermModel = ( new ResourceTaxonomytermModel() )->listItems(['filters'=>['idName'=> $rtaxtermData['idName'] ]])->fetch();
-          if( $existTaxTermModel ) {
-            $topic['id'] = $existTaxTermModel->getter('id');
+
+
+            $rtaxtermData = [
+              'idName' => $idName,
+              'resource' => $resId,
+              'taxonomyterm' => $termId
+            ];
+
+
+            $existTaxTermModel = ( new ResourceTaxonomytermModel() )->listItems(['filters'=>['idName'=> $rtaxtermData['idName'] ]])->fetch();
+            if( $existTaxTermModel ) {
+              $topic['id'] = $existTaxTermModel->getter('id');
+            }
+
+            $resTaxterm = new ResourceTaxonomytermModel( $rtaxtermData );
+            $resTaxterm->save();
+
           }
-
-          $resTaxterm = new ResourceTaxonomytermModel( $rtaxtermData );
-          $resTaxterm->save();
-
-        }
-        else {
-          echo "\n".'  ERROR: No existe un termino con idName '.$idName.' en taxGroupIdName '.$taxGroupIdName."\n";
+          else {
+            echo "\n".'  ERROR: No existe un termino con idName '.$idName.' en taxGroupIdName '.$taxGroupIdName."\n";
+          }
         }
       }
-    }
 
-    //urlAlias multiidioma
-    foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
-      if( isset( $initRes['urlAlias'][$langKey] ) ) {
-        $resourcecontrol->setUrl( $resource->getter('id'), $langKey, $initRes['urlAlias'][$langKey] );
+      //urlAlias multiidioma
+      foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
+        if( isset( $initRes['urlAlias'][$langKey] ) ) {
+          $resourcecontrol->setUrl( $resource->getter('id'), $langKey, $initRes['urlAlias'][$langKey] );
+        }
       }
-    }
 
-    //rExt
-    if (isset( $initRes['rExt'] ) && $rExtList = $initRes['rExt']){
-       foreach ($rExtList as $rExtName => $rExtData){
-          $rExtData['resource'] = $resource->getter('id');
-          foreach ($rExtData as $fieldName => $fieldValue){
-            if(is_array($fieldValue)){//campos multiiidioma
-              foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
-                $resData[$fieldName.'_'.$langKey] = $fieldValue[$langKey];
+      //rExt
+      if (isset( $initRes['rExt'] ) && $rExtList = $initRes['rExt']){
+         foreach ($rExtList as $rExtName => $rExtData){
+            $rExtData['resource'] = $resource->getter('id');
+            foreach ($rExtData as $fieldName => $fieldValue){
+              if(is_array($fieldValue)){//campos multiiidioma
+                foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
+                  $resData[$fieldName.'_'.$langKey] = $fieldValue[$langKey];
+                }
+              }
+              else{
+                $resData[$fieldName] = $fieldValue;
               }
             }
-            else{
-              $resData[$fieldName] = $fieldValue;
-            }
-          }
 
 
 
-         $rExtModel = $rExtName.'Model';
+           $rExtModel = $rExtName.'Model';
 
-         $existRextModel = ( new $rExtModel() )->listItems(['filters'=>['idName'=> $resData['idName'] ]])->fetch();
-         if( $existRextModel ) {
-           $resData['id'] = $existRextModel->getter('id');
+           $existRextModel = ( new $rExtModel() )->listItems(['filters'=>['idName'=> $resData['idName'] ]])->fetch();
+           if( $existRextModel ) {
+             $resData['id'] = $existRextModel->getter('id');
+           }
+
+           $rExt = new $rExtModel($resData);
+           $rExt->save();
+
+
+
          }
-
-         $rExt = new $rExtModel($resData);
-         $rExt->save();
-
-
-
-       }
-    }
+      }
+    } // is edited
 
   }
 
