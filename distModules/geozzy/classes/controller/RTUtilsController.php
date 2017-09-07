@@ -147,14 +147,19 @@ class RTUtilsController {
                   }
                   unset($term['name']);
 
-
-                  $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>[ 'idName'=> $term['idName'], 'taxgroup'=> $term['taxgroup'] ]])->fetch();
+                  $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'], 'taxgroup'=> $term['taxgroup']  ]])->fetch();
                   if( $existTaxonomytermModel ) {
-                    $term['id'] = $existTaxonomytermModel->getter('id');
+                    if( !$taxgroup->getter('editable') ) {
+                      $term['id'] = $existTaxonomytermModel->getter('id');
+                      $taxterm = new TaxonomytermModel( $term );
+                      $taxterm->save();
+                    }
+                  }
+                  else {
+                    $taxterm = new TaxonomytermModel( $term );
+                    $taxterm->save();
                   }
 
-                  $taxterm = new TaxonomytermModel( $term );
-                  $taxterm->save();
                 }
               }
 
@@ -213,10 +218,6 @@ class RTUtilsController {
 
 
 
-
-
-
-
         $idByIdName = [];
         $weight = 10;
 
@@ -266,16 +267,25 @@ class RTUtilsController {
 
             $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'], 'taxgroup'=> $term['taxgroup']  ]])->fetch();
             if( $existTaxonomytermModel ) {
-              $term['id'] = $existTaxonomytermModel->getter('id');
+              if( !$taxgroup->getter('editable') ) {
+                $term['id'] = $existTaxonomytermModel->getter('id');
+                $taxterm = new TaxonomytermModel( $term );
+                $taxterm->save();
+                $idByIdName[ $term['idName'] ] = $taxterm->getter('id');
+              }
+            }
+            else {
+              $taxterm = new TaxonomytermModel( $term );
+              $taxterm->save();
+              $idByIdName[ $term['idName'] ] = $taxterm->getter('id');
             }
 
 
-            $taxterm = new TaxonomytermModel( $term );
-            $taxterm->save();
 
 
 
-            $idByIdName[ $term['idName'] ] = $taxterm->getter('id');
+
+
           }
         }
       }
