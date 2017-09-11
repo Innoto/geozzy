@@ -66,6 +66,7 @@ class ResourceTaxonomyAllModel extends Model {
   static $extraFilters = array(
     'idIn' => ' geozzy_resource_taxonomyall.id IN (?) ',
     'resourceIn' => ' geozzy_resource_taxonomyall.resource IN (?) ',
+    'idNameTaxgroupIn' => ' geozzy_resource_taxonomyall.idNameTaxgroup IN (?) ',
   );
 
   var $notCreateDBTable = true;

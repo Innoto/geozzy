@@ -94,8 +94,8 @@ class RTypeController {
 
   public $defResCtrl = null;
   public $rTypeModule = null;
-  public $rExts = false;
   public $rTypeName = 'RTypeNameUnknown';
+  public $rExts = false;
 
   public $cacheQuery = false; // false, true or time in seconds (0: never expire)
 
@@ -115,10 +115,8 @@ class RTypeController {
     $this->rTypeModule = $rTypeModule;
     $this->rTypeName = $rTypeModule->name;
 
-    if( property_exists( $rTypeModule, 'rext' ) && is_array( $rTypeModule->rext )
-      && count( $rTypeModule->rext ) > 0 )
-    {
-      $this->rExts = array();
+    if( property_exists( $rTypeModule, 'rext' ) && is_array( $rTypeModule->rext ) && count( $rTypeModule->rext ) > 0 ) {
+      $this->rExts = [];
       // Cargamos los autoIncludes de los RExt de este RType si se han activado en el setup.project
       foreach( $rTypeModule->rext as $rExtName ) {
         if( class_exists( $rExtName ) ) {
@@ -487,5 +485,41 @@ class RTypeController {
 
     return $viewBlockInfo;
   }
+
+
+
+
+
+  public function cloneTo( $resFromObj, $resToObj ) {
+    error_log( __METHOD__.': '.$this->rTypeName );
+    $result = true;
+
+    // De momento los RType no tienen Modelos ni Taxonomias
+
+
+    // Lanzamos los cloneTo de los RExt de este RType
+    if( !empty($this->rExts) ) {
+
+      $rTypeToRExts = $this->rExts;
+
+      $rTypeFromCtrl = $this->defResCtrl->getRTypeCtrl( $resFromObj->getter('rTypeId') );
+      $rTypeFromRExts = !empty($rTypeFromCtrl->rExts) ? $rTypeFromCtrl->rExts : false;
+
+      $rTypeCommonRExts = ($rTypeFromRExts) ? array_intersect( $rTypeFromRExts, $rTypeToRExts ) : false;
+
+      if( !empty($rTypeCommonRExts) ) {
+        foreach( $rTypeCommonRExts as $rExtName ) {
+          $rExtCtrlName = 'RE'.mb_strcut( $rExtName, 2 ).'Controller';
+          $rExtName::load( 'controller/'.$rExtCtrlName.'.php' );
+          $rExtCtrl = new $rExtCtrlName( $this );
+          $result &= $rExtCtrl->cloneTo( $resFromObj, $resToObj );
+        }
+      }
+    }
+
+
+    return $result;
+  }
+
 
 } // class RTypeController
