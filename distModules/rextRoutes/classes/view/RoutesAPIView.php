@@ -101,27 +101,38 @@ class RoutesAPIView extends View
 
 
 
-    $cacheRouteQueryKey .= ( isset($urlParamsList['id']) )? '_'.$urlParamsList['id'] : '' ;
-    $cacheRouteQueryKey .= ( isset($urlParamsList['resolution']) )? '_'.$urlParamsList['resolution'] : '' ;
 
+    $retRoute = '[]';
 
+    if( isset($urlParamsList['id']) ) {
 
-    if( $cachedRoute = $routeCacheControl->getCache( $cacheRouteQueryKey ) ) {
+      $resourceCtrl = new ResourceModel();
+      $resourceRsl = $resourceCtrl->listItems([ 'filters'=>[ 'id'=>$urlParamsList['id'] ] ]);
+      $resBaseRoute = $resourceRsl->fetch();
 
-      $retRoute = $cachedRoute;
-    }
-    else {
-      if( isset($urlParamsList['id']) ) {
+      if( $resBaseRoute && $resBaseRoute->getter('published') == true ) {
 
-        if( isset($urlParamsList['resolution']) ) {
-          $retRoute = json_encode(  $routesControl->getRoute( $urlParamsList['id'], $urlParamsList['resolution'] ) );
+        $cacheRouteQueryKey .= ( isset($urlParamsList['id']) )? '_'.$urlParamsList['id'] : '' ;
+        $cacheRouteQueryKey .= ( isset($urlParamsList['resolution']) )? '_'.$urlParamsList['resolution'] : '' ;
+
+        if( $cachedRoute = $routeCacheControl->getCache( $cacheRouteQueryKey ) ) {
+
+          $retRoute = $cachedRoute;
         }
         else {
-          $retRoute = json_encode(  $routesControl->getRoute( $urlParamsList['id'] ) );
+
+          if( isset($urlParamsList['resolution']) ) {
+            $retRoute = json_encode(  $routesControl->getRoute( $urlParamsList['id'], $urlParamsList['resolution'] ) );
+          }
+          else {
+            $retRoute = json_encode(  $routesControl->getRoute( $urlParamsList['id'] ) );
+          }
+
+          $routeCacheControl->setCache( $cacheRouteQueryKey, $retRoute, Cogumelo::getSetupValue( 'mod:mediaserver:publicConf:javascript:vars:rextRoutesConf:cacheTime' ));
         }
+
       }
 
-      $routeCacheControl->setCache( $cacheRouteQueryKey, $retRoute, Cogumelo::getSetupValue( 'mod:mediaserver:publicConf:javascript:vars:rextRoutesConf:cacheTime' ));
     }
 
     echo $retRoute;
@@ -138,12 +149,18 @@ class RoutesAPIView extends View
 
     rextRoutes::autoIncludes();
     rextRoutes::load('controller/RoutesController.php');
+    $useraccesscontrol = new UserAccessController();
     $routesControl = new RoutesController();
 
 
     header('Content-type: application/json');
 
-    if( isset($urlParamsList['idForm']) ) {
+
+
+    if(
+      isset($urlParamsList['idForm'])  &&
+      $useraccesscontrol->checkPermissions( 'admin:access' )
+    ) {
       echo json_encode(  $routesControl->getRouteInForm( $urlParamsList['idForm'] ) );
     }
     else {
