@@ -13,9 +13,9 @@ class initResources extends Module {
 
 
   public function moduleRc() {
-    initResources::load('controller/InitResourcesController.php');
-    $initResources = new InitResourcesController();
-    $initResources->generateResources(  );
+    // initResources::load('controller/InitResourcesController.php');
+    // $initResources = new InitResourcesController();
+    // $initResources->generateResources(  );
   }
 
   public function moduleDeploy( ) {
