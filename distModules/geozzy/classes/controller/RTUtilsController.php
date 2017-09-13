@@ -104,7 +104,7 @@ class RTUtilsController {
           );
 
 
-          $existResourcetypeTopicModel = ( new ResourcetypeTopicModel() )->listItems(['filters'=>['topic'=> $rTypeTopicParams['topic'] ]])->fetch();
+          $existResourcetypeTopicModel = ( new ResourcetypeTopicModel() )->listItems(['filters'=>['topic'=> $rTypeTopicParams['topic'], 'resourceType'=> $rTypeTopicParams['resourceType'] ]])->fetch();
           if( $existResourcetypeTopicModel ) {
             $rTypeTopicParams['id'] = $existResourcetypeTopicModel->getter('id');
           }
@@ -147,14 +147,19 @@ class RTUtilsController {
                   }
                   unset($term['name']);
 
-
-                  $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'] ]])->fetch();
+                  $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'], 'taxgroup'=> $term['taxgroup']  ]])->fetch();
                   if( $existTaxonomytermModel ) {
-                    $term['id'] = $existTaxonomytermModel->getter('id');
+                    if( !$taxgroup->getter('editable') ) {
+                      $term['id'] = $existTaxonomytermModel->getter('id');
+                      $taxterm = new TaxonomytermModel( $term );
+                      $taxterm->save();
+                    }
+                  }
+                  else {
+                    $taxterm = new TaxonomytermModel( $term );
+                    $taxterm->save();
                   }
 
-                  $taxterm = new TaxonomytermModel( $term );
-                  $taxterm->save();
                 }
               }
 
@@ -213,10 +218,6 @@ class RTUtilsController {
 
 
 
-
-
-
-
         $idByIdName = [];
         $weight = 10;
 
@@ -264,18 +265,27 @@ class RTUtilsController {
             $taxterm->save();*/
 
 
-            $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'] ]])->fetch();
+            $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'], 'taxgroup'=> $term['taxgroup']  ]])->fetch();
             if( $existTaxonomytermModel ) {
-              $term['id'] = $existTaxonomytermModel->getter('id');
+              if( !$taxgroup->getter('editable') ) {
+                $term['id'] = $existTaxonomytermModel->getter('id');
+                $taxterm = new TaxonomytermModel( $term );
+                $taxterm->save();
+                $idByIdName[ $term['idName'] ] = $taxterm->getter('id');
+              }
+            }
+            else {
+              $taxterm = new TaxonomytermModel( $term );
+              $taxterm->save();
+              $idByIdName[ $term['idName'] ] = $taxterm->getter('id');
             }
 
 
-            $taxterm = new TaxonomytermModel( $term );
-            $taxterm->save();
 
 
 
-            $idByIdName[ $term['idName'] ] = $taxterm->getter('id');
+
+
           }
         }
       }

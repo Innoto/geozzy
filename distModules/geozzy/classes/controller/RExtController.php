@@ -126,22 +126,27 @@ interface RExtInterface {
 
 class RExtController {
 
-  /** Nombre del RExt */
+  // Nombre del RExt
   public $rExtName = 'rExt';
-  /** Prefijo para los campos del RExt */
+  // Prefijo para los campos del RExt
   public $prefix = 'rExt_';
 
-  /** Acceso al controller del RType 'padre' */
+  // Acceso al controller del RType 'padre'
   public $defRTypeCtrl = null;
-  /** Acceso al controller del Resource 'padre' */
+  // Acceso al controller del Resource 'padre'
   public $defResCtrl = null;
-  /** Acceso a 'la configuración' del RExt */
+  // Acceso a 'la configuración' del RExt
   public $rExtModule = null;
   public $rExtModel = null;
-  /** Datos de taxonomias en 'la configuración' del RExt */
-  public $taxonomies = false;
 
-  /** Campos del RExt que son de tipo numérico y que se inicializan a null si no tienen valor */
+  // Datos de taxonomias en 'la configuración' del RExt
+  public $taxonomies = false;
+  // Datos de los modelos en 'la configuración' del RExt
+  public $models = false;
+  // Datos de las colecciones en 'la configuración' del RExt
+  public $collections = false;
+
+  // Campos del RExt que son de tipo numérico y que se inicializan a null si no tienen valor
   public $numericFields = false;
 
   public $cacheQuery = false; // false, true or time in seconds (0: never expire)
@@ -170,10 +175,17 @@ class RExtController {
     $this->prefix = ( $prefix ) ? $prefix : $this->rExtName.'_';
 
     $this->rExtModule = $rExtModule;
-    if( property_exists( $rExtModule, 'taxonomies' ) && is_array( $rExtModule->taxonomies )
-      && count( $rExtModule->taxonomies ) > 0 )
-    {
+
+    if( property_exists( $rExtModule, 'taxonomies' ) && is_array( $rExtModule->taxonomies ) && count( $rExtModule->taxonomies ) > 0 ) {
       $this->taxonomies = $rExtModule->taxonomies;
+    }
+
+    if( property_exists( $rExtModule, 'models' ) && is_array( $rExtModule->models ) && count( $rExtModule->models ) > 0 ) {
+      $this->models = $rExtModule->models;
+    }
+
+    if( property_exists( $rExtModule, 'collections' ) && is_array( $rExtModule->collections ) && count( $rExtModule->collections ) > 0 ) {
+      $this->collections = $rExtModule->collections;
     }
   }
 
@@ -394,5 +406,35 @@ class RExtController {
 
     return $prefixArray;
   }
+
+
+
+
+
+  public function cloneTo( $resFromObj, $resToObj ) {
+    error_log( __METHOD__.': '.$this->rExtName );
+    $result = true;
+
+    if( $result && !empty( $this->collections ) ) {
+      if( !$this->defResCtrl->cloneCollections( $resFromObj->getter('id'), $resToObj->getter('id'), $this->collections ) ) {
+        $result = false;
+      }
+    }
+
+    if( $result && !empty( $this->taxonomies ) ) {
+      if( !$this->defResCtrl->cloneTaxonomies( $resFromObj->getter('id'), $resToObj->getter('id'), array_keys( $this->taxonomies ) ) ) {
+        $result = false;
+      }
+    }
+
+    if( $result && !empty( $this->models ) ) {
+      if( !$this->defResCtrl->cloneRExtModels( $resFromObj->getter('id'), $resToObj->getter('id'), $this->models ) ) {
+        $result = false;
+      }
+    }
+
+    return $result;
+  }
+
 
 } // class RExtController

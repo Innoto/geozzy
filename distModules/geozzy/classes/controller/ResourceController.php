@@ -52,23 +52,35 @@ class ResourceController {
   /**
    *  Cargando controlador del RType
    */
-  public function getRTypeCtrl( $rTypeId = false ) {
-    // error_log( __CLASS__.": getRTypeCtrl( $rTypeId )" );
+  public function getRTypeCtrl( $rType ) {
+    // error_log( __METHOD__.' '.json_encode($rType) );
 
-    if( !$this->rTypeCtrl ) {
-      $rTypeIdName = $this->getRTypeIdName( $rTypeId );
+    $rTypeCtrl = null;
+
+
+    $rTypeIdName = is_numeric( $rType ) ? $this->getRTypeIdName( $rType ) : $rType;
+
+    if( !empty($this->rTypeCtrl) && $this->rTypeCtrl->rTypeName === $rTypeIdName ) {
+      $rTypeCtrl = $this->rTypeCtrl;
+    }
+
+    if( empty($rTypeCtrl) ) {
       if( class_exists( $rTypeIdName ) ) {
-        // error_log( __CLASS__.": getRTypeCtrl = $rTypeIdName" );
+        // error_log( __METHOD__.' rTypeIdName: '.$rTypeIdName );
 
         $rTypeIdName::autoIncludes();
 
         $rTypeCtrlClassName = 'RT'.mb_strcut( $rTypeIdName, 2 ).'Controller';
         $rTypeIdName::load( 'controller/'.$rTypeCtrlClassName.'.php' );
-        $this->rTypeCtrl = new $rTypeCtrlClassName( $this );
+        $rTypeCtrl = new $rTypeCtrlClassName( $this );
       }
     }
 
-    return $this->rTypeCtrl;
+    if( empty($this->rTypeCtrl) && !empty($rTypeCtrl) ) {
+      $this->rTypeCtrl = $rTypeCtrl;
+    }
+
+    return $rTypeCtrl;
   }
 
 
@@ -136,7 +148,8 @@ class ResourceController {
     // error_log( "ResourceController: getResourceData()" );
     $resourceData = false;
 
-    if( (!$this->resData || ( $resId && $resId !== $this->resData['id'] ) ) && $resObj=$this->loadResourceObject( $resId ) ) {
+    // if( (!$this->resData || ( $resId && $resId !== $this->resData['id'] ) ) && $resObj=$this->loadResourceObject( $resId ) ) {
+    if( $resObj=$this->loadResourceObject( $resId ) ) {
       $langDefault = Cogumelo::getSetupValue( 'lang:default' );
 
       $langsConf = Cogumelo::getSetupValue( 'lang:available' );
@@ -261,13 +274,13 @@ class ResourceController {
         $resourceData['rTypeIdName'] = $rTypeInfo->getter( 'idName' );
       }
 
-      if( $resourceData && !$this->resData ) {
-        $this->resData = $resourceData;
-      }
+      // if( $resourceData && !$this->resData ) {
+      //   $this->resData = $resourceData;
+      // }
     }
-    else {
-      $resourceData = $this->resData;
-    }
+    // else {
+    //   $resourceData = $this->resData;
+    // }
 
     return $resourceData;
   }
@@ -519,7 +532,7 @@ class ResourceController {
 
     $form = $this->getBaseFormObj( $formName, $urlAction, $successArray, $valuesArray );
 
-    if( $this->getRTypeCtrl( $form->getFieldValue( 'rTypeId' ) ) ) {
+    if( $this->getRTypeCtrl( $form->getFieldValue( 'rTypeIdName' ) ) ) {
       $this->rTypeCtrl->manipulateForm( $form );
     }
 
@@ -747,6 +760,7 @@ class ResourceController {
       $resData = $this->getResourceData( $resId );
       $rTypeId = ( $resData ) ? $resData['rTypeId'] : false;
     }
+
     if( $rTypeId !== false ) {
       $rTypeModel = new ResourcetypeModel();
       $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'id' => $rTypeId ], 'cache' => $this->cacheQuery ] );
@@ -813,6 +827,7 @@ class ResourceController {
 
     return $result;
   }
+
   public function setFormFiledata( $form, $fieldName, $colName, $modelObj ) {
     $result = false;
 
@@ -910,6 +925,7 @@ class ResourceController {
 
     return $result;
   }
+
   public function setFormFilegroup( $form, $fieldName, $colName, $modelObj ) {
     $result = false;
 
@@ -1044,6 +1060,7 @@ class ResourceController {
 
     return $options;
   }
+
   public function getOptionsTaxAdvancedArray( $taxIdName ) {
     $options = [];
     $taxTermModel =  new TaxonomyViewModel();
@@ -1519,7 +1536,7 @@ class ResourceController {
       $formValues = array( $formValues );
     }
 
-    if (count($formValues)===1){
+    if( count($formValues) === 1 ) {
       $elm = current($formValues);
       if (!$elm || $elm === 0){
          $formValues = false;
@@ -1719,12 +1736,12 @@ class ResourceController {
     // "Aplanamos" caracteres no ASCII7
     $text = str_replace( $this->urlTranslate['from'], $this->urlTranslate['to'], $text );
 
-    // Solo admintimos a-z A-Z 0-9 - / El resto pasan a ser -
-    $text = preg_replace( '/[^a-z0-9\-\/]/iu', '-', $text );
+    // Solo admintimos a-z A-Z 0-9 _ - / El resto pasan a ser -
+    $text = preg_replace( '/[^a-z0-9_\-\/]/iu', '-', $text );
 
     // Limpiamos sobrantes
-    $text = preg_replace( '/--+/u', '-', $text );
-    $text = preg_replace( '/-*\/-*/u', '/', $text );
+    // $text = preg_replace( '/--+/u', '-', $text );
+    $text = preg_replace( '/-*([_\-\/])-*/u', '${1}', $text );
     $text = trim( $text, '-' );
 
     return $text;
@@ -2016,17 +2033,9 @@ class ResourceController {
       if( $resObj->getter( 'published' ) || $user ) {
         $viewBlockInfo['data'] = $this->getResourceData( $resId );
 
-
-
-        // if( $this->getRTypeCtrl() ) {
-        //   $viewBlockInfo = $this->rTypeCtrl->getViewBlockInfo( );
-        // }
-
         if( $rTypeView = $this->getRTypeView( $viewBlockInfo['data']['rTypeId'] ) ) {
           $viewBlockInfo = $rTypeView->getViewBlockInfo( $resId );
         }
-
-
 
         if( !$resObj->getter( 'published' ) ) {
           // Recurso NO publicado
@@ -2048,31 +2057,36 @@ class ResourceController {
    * Devuelve modelData con los campos traducibles en el idioma actual
    */
   public function getTranslatedData( $modelData ) {
-
-    foreach( $modelData as $key => $data ) {
-      if( strpos($key,'_'.$this->actLang) ) { // existe en el idioma actual
-        $key_parts = explode('_'.$this->actLang, $key);
-        if( $data && $data !== '' ) {
-          $modelData[ $key_parts[0] ] = $data;
-        }
-        else {
-          $modelData[ $key_parts[0] ] = $modelData[$key_parts[0].'_'.$this->defLang];
+    if( is_array( $modelData ) && count( $modelData ) > 0 ) {
+      foreach( $modelData as $key => $data ) {
+        if( strpos($key,'_'.$this->actLang) ) { // existe en el idioma actual
+          $key_parts = explode('_'.$this->actLang, $key);
+          if( $data && $data !== '' ) {
+            $modelData[ $key_parts[0] ] = $data;
+          }
+          else {
+            $modelData[ $key_parts[0] ] = $modelData[$key_parts[0].'_'.$this->defLang];
+          }
         }
       }
     }
+
     return $modelData;
   }
+
   public function getAllTrData( $objModel ) {
     $allData = [];
 
-    $defLang = Cogumelo::getSetupValue( 'lang:default' );
-    $rawData = $objModel->getAllData( 'onlydata' ); // Cargamos todos los campos "en bruto"
+    if( is_object( $objModel ) ) {
+      $defLang = Cogumelo::getSetupValue( 'lang:default' );
+      $rawData = $objModel->getAllData( 'onlydata' ); // Cargamos todos los campos "en bruto"
 
-    foreach( $objModel->getCols() as $fieldName => $fieldInfo ) {
-      $allData[ $fieldName ] = $objModel->getter( $fieldName );
-      // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
-      if( $allData[ $fieldName ] === '' && isset( $rawData[ $fieldName.'_'.$defLang ] ) ) {
-        $allData[ $fieldName ] = $rawData[ $fieldName.'_'.$defLang ];
+      foreach( $objModel->getCols() as $fieldName => $fieldInfo ) {
+        $allData[ $fieldName ] = $objModel->getter( $fieldName );
+        // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
+        if( $allData[ $fieldName ] === '' && isset( $rawData[ $fieldName.'_'.$defLang ] ) ) {
+          $allData[ $fieldName ] = $rawData[ $fieldName.'_'.$defLang ];
+        }
       }
     }
 
@@ -2111,7 +2125,6 @@ class ResourceController {
   }
 
 
-
   /**
    *  Etiquetas informativas (labels con datos relevantes)
    **/
@@ -2146,5 +2159,392 @@ class ResourceController {
 
     return $labelData;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // $this->cloneToRType( $form->getFieldValue('id'), 'rtypeAppBlogPub' );
+
+
+  public function cloneToRType( $resFromId, $rTypeIdName, $topicIdName = false ) {
+    error_log( __METHOD__.': $resFromId: '.$resFromId.' $rTypeIdName: '.$rTypeIdName.' $topicIdName: '.$topicIdName );
+    $resToObj = null;
+
+    $error = false;
+
+    $resModel = new ResourceModel();
+    $resList = $resModel->listItems([
+      // 'affectsDependences' => [ 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ],
+      'filters' => [ 'id' => $resFromId ],
+      'cache' => $this->cacheQuery,
+    ]);
+    $resFromObj = ( is_object( $resList ) ) ? $resList->fetch() : null;
+
+    if( !is_object( $resFromObj ) ) {
+      $error = __LINE__;
+    }
+    else {
+      // Cargamos todos los campos del recurso Base
+      $resData = $resFromObj->getAllData('onlydata');
+      // error_log( '$resData: '.json_encode( $resData ) );
+
+      // $formBlockInfo = $this->getFormBlockInfo( 'clone', 'clone', [], $resData );
+      // error_log( '$formBlockInfo[data]: '.json_encode( $formBlockInfo['data'] ) );
+
+      $resData['published'] = 0;
+      $resData['rTypeId'] = $this->getRTypeIdByIdName( $rTypeIdName );
+
+      unset( $resData['id'] );
+    }
+
+
+    if( !$error ) {
+      $resToObj = new ResourceModel( $resData );
+
+      if( !is_object($resToObj) ) {
+        $error = __LINE__;
+      }
+      else {
+        $resToObj->transactionStart();
+        if( !$resToObj->save() ) {
+          $error = __LINE__;
+        }
+      }
+      // error_log( 'saveResult: '.json_encode( $saveResult ) );
+    }
+
+    if( !$error ) {
+      if( !$this->cloneCollections( $resFromId, $resToObj->getter('id'), ['base', 'multimedia'] ) ) {
+        $error = __LINE__;
+      }
+    }
+
+    if( !$error ) {
+      if( empty( $topicIdName ) ) {
+        // Copiamos los topics del origen
+        if( !$this->cloneTopics( $resFromId, $resToObj->getter('id') ) ) {
+          $error = __LINE__;
+        }
+      }
+      else {
+        // Establecemos el topic indicado
+
+        $topicModel = new TopicModel();
+        $topicList = $topicModel->listItems([
+          'filters' => [ 'idName' => $topicIdName ],
+          'cache' => $this->cacheQuery
+        ]);
+        if( !is_object( $topicList ) ) {
+          $error = __LINE__;
+          error_log(__METHOD__.': ERROR topicList' );
+        }
+        else {
+          if( $topicFromObj = $topicList->fetch() ) {
+            $resTopicObj = new ResourceTopicModel([
+              'resource' => $resToObj->getter('id'),
+              'topic' => $topicFromObj->getter('id')
+            ]);
+            $resTopicObj->save();
+            if( !is_object( $resTopicObj ) ) {
+              $error = __LINE__;
+              error_log(__METHOD__.': ERROR enlazando Topic: '.$topicIdName );
+            }
+          }
+          else {
+            $error = __LINE__;
+            error_log(__METHOD__.': ERROR Topic "'.$topicIdName.'" no encontrado' );
+          }
+        }
+      }
+    }
+
+    if( !$error ) {
+      // error_log( __METHOD__.': Solicito getRTypeCtrl '.$rTypeIdName );
+      $rTypeCtrl = $this->getRTypeCtrl( $rTypeIdName );
+      if( !$rTypeCtrl ) {
+        $error = __LINE__;
+      }
+      else {
+        $rTypeCtrl->cloneTo( $resFromObj, $resToObj );
+      }
+    }
+
+    if( is_object($resToObj) ) {
+      if( !$error ) {
+        $resToObj->transactionCommit();
+      }
+      else {
+        $resToObj->transactionRollback();
+        error_log( __METHOD__.': ERROR '.$error );
+      }
+    }
+
+
+    return( ( !$error ) ? $resToObj : false );
+  }
+
+
+  public function cloneCollections( $resFromId, $resToId, $collectionTypes = true ) {
+    Cogumelo::debug( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($collectionTypes) );
+    $result = true;
+
+    if( $collectionTypes !== true && !is_array( $collectionTypes ) ) {
+      $collectionTypes = [ $collectionTypes ];
+    }
+
+    $resCollections = $this->getCollectionsAll( $resFromId );
+
+    if( is_array( $resCollections ) && count( $resCollections ) > 0 ) {
+      $collModel = new CollectionModel();
+      $collResModel = new CollectionResourcesModel();
+      $resCollModel = new ResourceCollectionsModel();
+
+      foreach( $resCollections as $collType => $collsArray ) {
+        if( $collectionTypes === true || in_array( $collType, $collectionTypes ) ) {
+          foreach( $collsArray as $collInfo ) {
+
+            // $result = $this->cloneCollectionTo( $resToId, $collInfo['id'] );
+
+            $collFromId = $collInfo['id'];
+
+            $collList = $collModel->listItems( [ 'filters' => [ 'id' => $collFromId ], 'cache' => $this->cacheQuery ] );
+            $collFromObj = ( is_object( $collList ) ) ? $collList->fetch() : false;
+            if( !is_object( $collFromObj ) ) {
+              $result = false;
+            }
+            else {
+
+              // 1- Cargar y clonar el modelo de la coleccion: geozzy_collection
+              // error_log(__METHOD__.': Paso 1');
+
+              $collFromData = $collFromObj->getAllData('onlydata');
+              unset( $collFromData['id'] );
+              $collToObj = new CollectionModel( $collFromData );
+              if( !$collToObj->save() ) {
+                $result = false;
+              }
+              else {
+                $collToId = $collToObj->getter('id');
+
+                // 2- Enlazar en la coleccion creada los recursos que tiene que conter: geozzy_collection_resources
+                // error_log(__METHOD__.': Paso 2');
+
+                $collResList = $collResModel->listItems( [ 'filters' => [ 'collection' => $collFromId ], 'cache' => $this->cacheQuery ] );
+                if( !is_object( $collResList ) ) {
+                  $result = false;
+                }
+                else {
+                  while( $collResObj = $collResList->fetch() ) {
+                    $collResData = $collResObj->getAllData('onlydata');
+
+                    unset( $collResData['id'] );
+                    $collResData['collection'] = $collToId;
+                    // error_log(__METHOD__.': Paso 2 - Res: '. $collResData['resource'] );
+
+                    $newCollResObj = new CollectionResourcesModel( $collResData );
+                    if( !$newCollResObj->save() ) {
+                      $result = false;
+                      break;
+                    }
+                  }
+                }
+
+                // 3- Enlazar la coleccion creada desde el recurso indicado: geozzy_resource_collections
+                // error_log(__METHOD__.': Paso 3');
+
+                $resCollList = $resCollModel->listItems([
+                  'filters' => [ 'resource' => $resFromId, 'collection' => $collFromId ],
+                  'cache' => $this->cacheQuery
+                ]);
+                $resCollFromObj = ( is_object( $resCollList ) ) ? $resCollList->fetch() : false;
+                if( !is_object( $resCollFromObj ) ) {
+                  $result = false;
+                }
+                else {
+                  $resCollData = $resCollFromObj->getAllData('onlydata');
+
+                  unset( $resCollData['id'] );
+                  $resCollData['collection'] = $collToId;
+                  $resCollData['resource'] = $resToId;
+
+                  $resCollToObj = new ResourceCollectionsModel( $resCollData );
+                  if( !$resCollToObj->save() ) {
+                    $result = false;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    return $result;
+  }
+
+
+  public function cloneTaxonomies( $resFromId, $resToId, $taxIdNames = true ) {
+    Cogumelo::debug( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($taxIdNames) );
+    $result = true;
+
+    $cloneTermIds = [];
+
+    if( $taxIdNames !== true && !is_array( $taxIdNames ) ) {
+      $taxIdNames = [ $taxIdNames ];
+    }
+
+    $filters = [ 'resource' => $resFromId ];
+    if( $taxIdNames !== true ) {
+      $filters['idNameTaxgroupIn'] = $taxIdNames;
+    }
+    $resourceTaxAllModel = new ResourceTaxonomyAllModel();
+    $resourceTaxAllList = $resourceTaxAllModel->listItems([ 'filters' => $filters, 'cache' => $this->cacheQuery ]);
+    if( !is_object( $resourceTaxAllList ) ) {
+      $result = false;
+
+      error_log(__METHOD__.': NON listItems 1' );
+    }
+    else {
+      while( $resourceTaxAllObj = $resourceTaxAllList->fetch() ) {
+        $cloneTermIds[] = $resourceTaxAllObj->getter('id');
+      }
+    }
+
+    Cogumelo::debug(__METHOD__.': Clonando cloneTermIds: '. json_encode($cloneTermIds) );
+
+    if( $result && count( $cloneTermIds ) > 0 ) {
+
+      Cogumelo::debug(__METHOD__.': Clonando Terminos' );
+
+      $resourceTaxModel = new ResourceTaxonomytermModel();
+      $resourceTaxList = $resourceTaxModel->listItems([
+        'filters' => [ 'resource' => $resFromId, 'taxonomytermIn' => $cloneTermIds ],
+        'cache' => $this->cacheQuery
+      ]);
+      if( !is_object( $resourceTaxList ) ) {
+        $result = false;
+
+        error_log(__METHOD__.': NON listItems 2' );
+      }
+      else {
+        while( $resourceTaxObj = $resourceTaxList->fetch() ) {
+          $resourceTaxData = $resourceTaxObj->getAllData('onlydata');
+
+          Cogumelo::debug(__METHOD__.': Clonando Term: '. $resourceTaxData['taxonomyterm'] );
+
+          unset( $resourceTaxData['id'] );
+          $resourceTaxData['resource'] = $resToId;
+
+          $resourceTaxToObj = new ResourceTaxonomytermModel( $resourceTaxData );
+          if( !$resourceTaxToObj->save() ) {
+            $result = false;
+          }
+        }
+      }
+    }
+
+    return $result;
+  }
+
+
+  public function cloneTopics( $resFromId, $resToId ) {
+    Cogumelo::debug( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId );
+    $result = true;
+
+
+    $topicModel = new ResourceTopicModel();
+    $topicList = $topicModel->listItems([
+      'filters' => [ 'resource' => $resFromId ],
+      'cache' => $this->cacheQuery
+    ]);
+    if( !is_object( $topicList ) ) {
+      $result = false;
+      error_log(__METHOD__.': ERROR topicList 2' );
+
+      break;
+    }
+    else {
+      while( $topicFromObj = $topicList->fetch() ) {
+        $topicData = $topicFromObj->getAllData('onlydata');
+
+        unset( $topicData['id'] );
+        $topicData['resource'] = $resToId;
+
+        $topicToObj = new ResourceTopicModel( $topicData );
+        if( !$topicToObj->save() ) {
+          $result = false;
+          error_log(__METHOD__.': NON save' );
+
+          break;
+        }
+      }
+    }
+
+
+    return $result;
+  }
+
+
+  public function cloneRExtModels( $resFromId, $resToId, $models ) {
+    Cogumelo::debug( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($models) );
+    $result = true;
+
+
+    foreach( $models as $modelName ) {
+
+      Cogumelo::debug(__METHOD__.': Clonando modelName: '.$modelName );
+
+      $rExtModel = new $modelName();
+      $rExtList = $rExtModel->listItems([
+        'filters' => [ 'resource' => $resFromId ],
+        'cache' => $this->cacheQuery
+      ]);
+      if( !is_object( $rExtList ) ) {
+        $result = false;
+        error_log(__METHOD__.': NON listItems 2' );
+
+        break;
+      }
+      else {
+        while( $rExtFromObj = $rExtList->fetch() ) {
+          $resModelData = $rExtFromObj->getAllData('onlydata');
+
+          // error_log(__METHOD__.': Clonando Model Obj' );
+
+          unset( $resModelData['id'] );
+          $resModelData['resource'] = $resToId;
+
+          $resModelToObj = new $modelName( $resModelData );
+          if( !$resModelToObj->save() ) {
+            $result = false;
+            error_log(__METHOD__.': NON save' );
+
+            break;
+          }
+        }
+      }
+    }
+
+    return $result;
+  }
+
 
 }
