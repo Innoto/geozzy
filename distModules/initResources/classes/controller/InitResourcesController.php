@@ -163,31 +163,32 @@ class InitResourcesController{
         }
       }
 
-    //rExt
-    if (isset( $initRes['rExt'] ) && $rExtList = $initRes['rExt']){
-      foreach ($rExtList as $rExtName => $rExtData){
-        $rExtData['resource'] = $resource->getter('id');
-        foreach ($rExtData as $fieldName => $fieldValue){
-          if(is_array($fieldValue)){//campos multiiidioma
-            foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
-              if(!empty($fieldValue[$langKey])){
-                $resData[$fieldName.'_'.$langKey] = $fieldValue[$langKey];
+      //rExt
+      if (isset( $initRes['rExt'] ) && $rExtList = $initRes['rExt']){
+        foreach ($rExtList as $rExtName => $rExtData){
+          $rExtData['resource'] = $resource->getter('id');
+          foreach ($rExtData as $fieldName => $fieldValue){
+            if(is_array($fieldValue)){//campos multiiidioma
+              foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
+                if(!empty($fieldValue[$langKey])){
+                  $resData[$fieldName.'_'.$langKey] = $fieldValue[$langKey];
+                }
               }
             }
+            else{
+              $resData[$fieldName] = $fieldValue;
+            }
           }
-          else{
-            $resData[$fieldName] = $fieldValue;
+          $rExtModel = $rExtName.'Model';
+          $existRextModel = ( new $rExtModel() )->listItems(['filters'=>['idName'=> $resData['idName'] ]])->fetch();
+          if( $existRextModel ) {
+            $resData['id'] = $existRextModel->getter('id');
           }
+          $rExt = new $rExtModel($resData);
+          $rExt->save();
         }
-        $rExtModel = $rExtName.'Model';
-        $existRextModel = ( new $rExtModel() )->listItems(['filters'=>['idName'=> $resData['idName'] ]])->fetch();
-        if( $existRextModel ) {
-          $resData['id'] = $existRextModel->getter('id');
-        }
-        $rExt = new $rExtModel($resData);
-        $rExt->save();
       }
-    }
 
+    }
   }
 } // class InitResourcesController
