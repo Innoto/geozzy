@@ -43,12 +43,12 @@ class ContactModel extends Model
       'size' => 255
     ),
     'directions' => array(
-      'type' => 'VARCHAR',
+      'type' => 'TEXT',
       'size' => 2000,
       'multilang' => true
     ),
     'timetable' => array(
-      'type' => 'VARCHAR',
+      'type' => 'TEXT',
       'size' => 2000,
       'multilang' => true
     ),

@@ -642,4 +642,206 @@ class AdminDataAPIView extends View {
     <?php
   }
 
+  public function menuTerms( $urlParams ) {
+
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions( array('menu:all'), 'admin:full');
+    if(!$access){
+      header("HTTP/1.0 401");
+      header('Content-type: application/json');
+      echo '[]';
+      exit;
+    }
+
+
+    $validation = array('id'=> '#\d+$#');
+    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
+
+
+    if( isset( $urlParamsList['id'] ) ){
+      $id = $urlParamsList['id'];
+    }
+    else {
+      $id = false;
+    }
+
+
+    switch( $_SERVER['REQUEST_METHOD'] ) {
+      case 'PUT':
+        header('Content-type: application/json');
+        $putData = json_decode(file_get_contents('php://input'), true);
+        $taxtermModel = new TaxonomytermModel();
+
+        if( is_numeric( $id ) ) {  // UPDATE
+          $taxTerm = $taxtermModel->listItems(  array( 'filters' => array( 'id'=>$id ) ))->fetch();
+        }
+        else { // CREATE
+          $taxTerm = $taxtermModel;
+        }
+
+        if( isset( $putData['name'] ) ) {
+          $taxTerm->setter('name', $putData['name'] );
+        }
+
+        if( isset( $putData['parent'] ) ) {
+          $taxTerm->setter('parent', $putData['parent'] );
+        }
+
+        if( isset( $putData['weight'] ) ) {
+          $taxTerm->setter('weight', $putData['weight'] );
+        }
+
+        if( isset( $putData['taxgroup'] ) ) {
+          $taxTerm->setter('taxgroup', $putData['taxgroup'] );
+        }
+
+        $taxTerm->save();
+
+        $termData = $taxTerm->getAllData();
+        echo json_encode( $termData['data'] );
+
+        break;
+      case 'GET':
+        header('Content-type: application/json');
+        $taxtermModel = new TaxonomyViewModel();
+        $taxtermList = $taxtermModel->listItems(  array( 'filters' => array('taxGroupIdName'=> 'menu') ) );
+
+        echo '[';
+        $c = '';
+        while( $taxTerm = $taxtermList->fetch() ) {
+          $termData = $taxTerm->getAllData();
+          echo $c.json_encode( $termData['data'] );
+          if( $c === '') {
+            $c=',';
+          }
+        }
+        echo ']';
+        break;
+      case 'DELETE':
+        $taxM = new TaxonomytermModel();
+        $taxTerm = $taxM->listItems(
+          array( 'filters' => array( 'id'=> $id, 'taxGroupIdName'=> 'menu'),
+            'affectsDependences' => array('TaxonomygroupModel'),
+            'joinType' => 'INNER'
+          )
+        );
+        if( $taxTerm && $t = $taxTerm->fetch() ) {
+          $t->delete();
+          header('Content-type: application/json');
+          echo '[]';
+        }
+        else {
+          header("HTTP/1.0 404 Not Found");
+          header('Content-type: application/json');
+          echo '[]';
+        }
+
+        break;
+    }
+  }
+
+  public function menuTermsJson() {
+    header('Content-type: application/json');
+    ?>
+          {
+              "resourcePath": "/admin/adminMenuterms.json",
+              "basePath": "/api",
+              "apis": [
+                  {
+                      "operations": [
+                          {
+                              "errorResponses": [
+                                  {
+                                      "reason": "Permission denied",
+                                      "code": 401
+                                  },
+                                  {
+                                      "reason": "menu term list",
+                                      "code": 200
+                                  },
+                                  {
+                                      "reason": "menu not found",
+                                      "code": 404
+                                  }
+                              ],
+
+                              "httpMethod": "GET",
+                              "nickname": "group",
+                              "summary": "Get Menu terms"
+                          },
+                          {
+                            "errorResponses": [
+                                  {
+                                      "reason": "Permission denied",
+                                      "code": 401
+                                  },
+                                  {
+                                      "reason": "Menu term Deleted",
+                                      "code": 200
+                                  },
+                                  {
+                                      "reason": "Menu not found",
+                                      "code": 404
+                                  }
+                              ],
+
+                              "httpMethod": "PUT",
+                              "nickname": "id",
+                              "parameters": [
+
+                                  {
+                                      "required": true,
+                                      "dataType": "int",
+                                      "name": "id",
+                                      "defaultValue": "",
+                                      "paramType": "path",
+                                      "allowMultiple": false,
+                                      "description": "term id"
+                                  }
+
+                              ],
+                              "summary": "Insert or Update menu terms"
+                          },
+                          {
+                            "errorResponses": [
+                                  {
+                                      "reason": "Permission denied",
+                                      "code": 401
+                                  },
+                                  {
+                                      "reason": "Menu term Deleted",
+                                      "code": 200
+                                  },
+                                  {
+                                      "reason": "Menu not found",
+                                      "code": 404
+                                  }
+                              ],
+
+                              "httpMethod": "DELETE",
+                              "nickname": "id",
+                              "parameters": [
+
+                                  {
+                                      "required": true,
+                                      "dataType": "int",
+                                      "name": "id",
+                                      "defaultValue": "",
+                                      "paramType": "path",
+                                      "allowMultiple": false,
+                                      "description": "term id"
+                                  }
+
+                              ],
+                              "summary": "Delete menu terms"
+                          }
+                      ],
+                      "path": "/admin/menuterms/id/{id}",
+                      "description": ""
+                  }
+              ]
+          }
+        <?php
+  }
+
 }

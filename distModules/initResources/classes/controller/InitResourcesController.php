@@ -157,7 +157,9 @@ class InitResourcesController{
           foreach ($rExtData as $fieldName => $fieldValue){
             if(is_array($fieldValue)){//campos multiiidioma
               foreach( Cogumelo::getSetupValue('lang:available') as $langKey => $lang ) {
-                $resData[$fieldName.'_'.$langKey] = $fieldValue[$langKey];
+                if(!empty($fieldValue[$langKey])){
+                  $resData[$fieldName.'_'.$langKey] = $fieldValue[$langKey];
+                }
               }
             }
             else{
@@ -165,19 +167,16 @@ class InitResourcesController{
             }
           }
 
-
-
          $rExtModel = $rExtName.'Model';
 
          $existRextModel = ( new $rExtModel() )->listItems(['filters'=>['idName'=> $resData['idName'] ]])->fetch();
+
          if( $existRextModel ) {
            $resData['id'] = $existRextModel->getter('id');
          }
 
          $rExt = new $rExtModel($resData);
          $rExt->save();
-
-
 
        }
     }
