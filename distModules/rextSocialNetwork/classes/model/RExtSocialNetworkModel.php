@@ -21,7 +21,7 @@ class RExtSocialNetworkModel extends Model {
       'type' => 'INT'
     ),
     'textFb' => array(
-      'type' => 'TEXT',
+      'type' => 'VARCHAR',
       'size' => 2000,
       'multilang' => true
     ),
@@ -29,7 +29,7 @@ class RExtSocialNetworkModel extends Model {
       'type' => 'INT'
     ),
     'textGplus' => array(
-      'type' => 'TEXT',
+      'type' => 'VARCHAR',
       'size' => 2000,
       'multilang' => true
     ),
@@ -37,7 +37,7 @@ class RExtSocialNetworkModel extends Model {
       'type' => 'INT'
     ),
     'textTwitter' => array(
-      'type' => 'TEXT',
+      'type' => 'VARCHAR',
       'size' => 2000,
       'multilang' => true
     )
