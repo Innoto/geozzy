@@ -2478,8 +2478,6 @@ class ResourceController {
     if( !is_object( $topicList ) ) {
       $result = false;
       error_log(__METHOD__.': ERROR topicList 2' );
-
-      break;
     }
     else {
       while( $topicFromObj = $topicList->fetch() ) {
