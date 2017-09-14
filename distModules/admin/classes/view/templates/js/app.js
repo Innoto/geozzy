@@ -36,7 +36,6 @@ $( document ).ready(function() {
     categories: new CategoryCollection(),
     topics: new TopicCollection(),
     starred: new StarredCollection(),
-    menu: new MenuCollection(),
 
     router: false,
     mainView: false
@@ -44,7 +43,7 @@ $( document ).ready(function() {
 
 
   // Multiple data fetch
-  $.when( app.categories.fetch(), app.topics.fetch(), app.starred.fetch(), app.menu.fetch()).done(function() {
+  $.when( app.categories.fetch(), app.topics.fetch(), app.starred.fetch()).done(function() {
     app.router = new AdminRouter();
     app.mainView = new AdminView();
     if( !Backbone.History.started ){

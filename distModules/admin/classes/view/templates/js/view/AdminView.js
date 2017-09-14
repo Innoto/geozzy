@@ -43,6 +43,11 @@ var AdminView = Backbone.View.extend({
     this.render(  );
   },
 
+  menuEdit: function(){
+    this.childView = new MenuEditorView();
+    this.render();
+  },
+
   starredList: function( id ){
     this.childView = new ResourcesStarredListView( app.starred.get(id) );
     this.render(  );

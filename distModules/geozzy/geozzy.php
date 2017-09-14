@@ -247,7 +247,7 @@ class geozzy extends Module {
         'gl' => 'Menu'
       ),
       'editable' => 0,
-      'nestable' => 1,
+      'nestable' => 4,
       'sortable' => 1,
       'initialTerms' => $GEOZZY_MENU
     );

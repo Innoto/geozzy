@@ -15,6 +15,7 @@ var CategoryEditorView = Backbone.View.extend({
 
   category: false,
   categoryTerms : false,
+  listTemplate: false,
 
 
 
@@ -50,29 +51,15 @@ var CategoryEditorView = Backbone.View.extend({
   updateList: function() {
     var that = this;
 
-    this.listTemplate = _.template( $('#taxTermEditorItem').html() );
-    this.$el.find('.listTerms').html('');
+    that.listTemplate = _.template( $('#taxTermEditorItem').html() );
+    that.$el.find('.listTerms').html('');
 
     var notDeletedCategoryTerms = that.categoryTerms.search( { deleted:0 } );
-
-
     var categoriesParents = notDeletedCategoryTerms.search({parent:0 }).toJSON();
 
     _.each( categoriesParents , function(item){
       that.$el.find('.listTerms').append( that.listTemplate({ term: item }) );
-
-      var categoriesChildren = notDeletedCategoryTerms.search({parent:item.id}).toJSON();
-
-
-
-      if( categoriesChildren.length > 0 ){
-        that.$el.find('.listTerms li[data-id="'+item.id+'"]').append('<ol class="dd-list"></ol>');
-        _.each( categoriesChildren , function(itemchildren){
-          that.$el.find('.listTerms li[data-id="'+itemchildren.parent+'"] .dd-list').append(
-            that.listTemplate({ term: itemchildren })
-          );
-        });
-      }
+      that.drawChildrenList( item.id, notDeletedCategoryTerms );
     });
 
     var nestableParams = {
@@ -88,6 +75,20 @@ var CategoryEditorView = Backbone.View.extend({
     }
     this.$el.find('.dd').nestable(nestableParams);
 
+  },
+
+  drawChildrenList: function( idParent, notDeletedCategoryTerms ) {
+    var that = this;
+    var menuChildren = notDeletedCategoryTerms.search({parent:idParent}).toJSON();
+    if( menuChildren.length > 0 ){
+      that.$el.find('.listTerms li[data-id="'+idParent+'"]').append('<ol class="dd-list"></ol>');
+      _.each( menuChildren , function(itemchildren){
+        that.$el.find('.listTerms li[data-id="'+idParent+'"] .dd-list').first().append(
+          that.listTemplate({ term: itemchildren })
+        );
+        that.drawChildrenList( itemchildren.id , notDeletedCategoryTerms );
+      });
+    }
   },
 
   saveList: function(){

@@ -642,7 +642,7 @@ class AdminDataAPIView extends View {
     <?php
   }
 
-  public function menuTerms( $urlParams ) {
+  public function menuTerms( $urlParams=false) {
 
     $useraccesscontrol = new UserAccessController();
     $access = $useraccesscontrol->checkPermissions( array('menu:all'), 'admin:full');
@@ -653,10 +653,10 @@ class AdminDataAPIView extends View {
       exit;
     }
 
-
-    $validation = array('id'=> '#\d+$#');
-    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
-
+    if(!empty($urlParams)){
+      $validation = array('id'=> '#\d+$#');
+      $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
+    }
 
     if( isset( $urlParamsList['id'] ) ){
       $id = $urlParamsList['id'];
@@ -710,6 +710,7 @@ class AdminDataAPIView extends View {
         $c = '';
         while( $taxTerm = $taxtermList->fetch() ) {
           $termData = $taxTerm->getAllData();
+          //error_log( json_encode($termData, true) );
           echo $c.json_encode( $termData['data'] );
           if( $c === '') {
             $c=',';

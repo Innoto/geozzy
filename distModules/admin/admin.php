@@ -144,6 +144,7 @@ class admin extends Module {
     'js/adminFileUploader.js',
     'js/view/AdminView.js',
     'js/view/CategoryEditorView.js',
+    'js/view/MenuEditorView.js',
     'js/view/ResourcesStarredListView.js'
   );
 
@@ -239,7 +240,7 @@ class admin extends Module {
       $this->addUrlPatterns( '#^api/doc/admin/adminCategoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
       $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
       $this->addUrlPatterns( '#^api/doc/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
-      $this->addUrlPatterns( '#^api/admin/menuterms(\?.*|\/.*)?$#', 'view:AdminDataAPIView::menuTerms' );
+      $this->addUrlPatterns( '#^api/admin/menuterms(\?.*|/.*)?$#', 'view:AdminDataAPIView::menuTerms' );
       $this->addUrlPatterns( '#^api/doc/admin/adminMenuterms.json$#', 'view:AdminDataAPIView::menuTermsJson' ); // Swagger
       $this->addUrlPatterns( '#^api/admin/resourcesTerm/(.*)$#', 'view:AdminDataAPIView::resourcesTerm' );
       $this->addUrlPatterns( '#^api/doc/admin/adminResourcesTerm.json$#', 'view:AdminDataAPIView::resourcesTermJson' ); // Swagger

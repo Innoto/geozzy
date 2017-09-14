@@ -77,10 +77,9 @@ var AdminRouter = Backbone.Router.extend({
   },
 
   menuEdit: function(){
-    //alert("entro");
-    //app.mainView.categoryEdit( id );
-    //app.mainView.menuSelect('category_'+id);
-    //app.mainView.setBodyClass('categoryEdit');
+    app.mainView.menuEdit();
+    app.mainView.menuSelect('menu');
+    app.mainView.setBodyClass('menuEdit');
   },
   // User
   userList: function(){
