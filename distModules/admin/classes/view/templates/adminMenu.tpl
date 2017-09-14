@@ -57,7 +57,7 @@
             <a href="/admin#resourcepage/list"><i class="fa fa-files-o fa-fw"></i> {t}Pages{/t} </a>
           </li>
           {/if}
-      
+
 
           <li class="starred">
             <a href="/admin#starred"><i class="fa fa-star fa-fw"></i> {t}Starred{/t} <span class="fa arrow"></span></a>
@@ -72,6 +72,10 @@
                 </script>
                 <!-- END TOPICS -->
               </ul>
+          </li>
+
+          <li class="menu">
+            <a href="/admin#menu"><i class="fa fa-bars fa-fw" aria-hidden="true"></i> {t}Menu{/t} </a>
           </li>
 
           {if isset($rextCommentInclude)}
