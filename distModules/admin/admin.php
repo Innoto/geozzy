@@ -213,6 +213,10 @@ class admin extends Module {
     $this->addUrlPatterns( '#^admin/category/(\d+)/term/edit/(\d+)$#', 'view:AdminViewTaxonomy::categoryForm' );
     $this->addUrlPatterns( '#^admin/category/term/sendcategoryterm$#', 'view:AdminViewTaxonomy::sendCategoryForm' );
 
+    $this->addUrlPatterns( '#^admin/menu/term/create$#', 'view:AdminViewTaxonomy::menuForm' );
+    $this->addUrlPatterns( '#^admin/menu/term/edit/(\d+)$#', 'view:AdminViewTaxonomy::menuForm' );
+    $this->addUrlPatterns( '#^admin/menu/term/sendmenuterm$#', 'view:AdminViewTaxonomy::sendCategoryForm' );
+
     $this->addUrlPatterns( '#^admin/comment/list$#', 'view:AdminViewComment::listComments' );
     $this->addUrlPatterns( '#^admin/comment/table$#', 'view:AdminViewComment::listCommentsTable' );
     $this->addUrlPatterns( '#^admin/suggestion/list$#', 'view:AdminViewComment::listSuggestions' );
@@ -223,7 +227,6 @@ class admin extends Module {
     // elFinder (file manager)
     $this->addUrlPatterns( '#^admin/filemanagerfrontend#', 'view:AdminViewElfinder::fileManagerFrontend' );
     $this->addUrlPatterns( '#^admin/filemanagerbackend#', 'view:AdminViewElfinder::fileManagerBackend' );
-
 
   }
 

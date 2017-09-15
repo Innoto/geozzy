@@ -32,9 +32,6 @@ class GeozzyTaxonomytermView extends View
    * @return object
    **/
   public function taxtermFormDefine( $request ) {
-
-
-
     $langAvailable = false;
     $this->template->assign( 'JsLangAvailable', 'false' );
     $this->template->assign( 'JsLangDefault', 'false' );

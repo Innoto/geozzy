@@ -111,6 +111,45 @@ class AdminViewTaxonomy extends AdminViewMaster {
     $this->template->exec();
   }
 
+  public function menuForm( $request = false ){
+    $useraccesscontrol = new UserAccessController();
+    $access = $useraccesscontrol->checkPermissions( array('category:edit', 'category:create'), 'admin:full');
+    if(!$access){
+      cogumelo::redirect("/admin/403");
+      exit;
+    }
+
+    $geozzyTaxtermView = new GeozzyTaxonomytermView();
+
+    $taxgroupModel = new TaxonomygroupModel();
+    $taxgroupElement = $taxgroupModel->listItems(array( 'filters' => array( 'idName' => 'menu' ) ))->fetch();
+
+    if( !empty($request) ){
+      $request[2] = $request[1];
+    }
+    $request[1] = "".$taxgroupElement->getter('id');
+
+    $form = $geozzyTaxtermView->taxtermFormDefine( $request );
+    $form->setAction('/admin/menu/term/sendmenuterm');
+    $form->setSuccess( 'redirect', '/admin#menu');
+
+    $formBlock = $geozzyTaxtermView->taxtermGetFormBlock( $form );
+    $taxtermFormFieldsArray = $formBlock->getTemplateVars( 'taxtermFormFieldsArray' );
+    $formSeparate[ 'icon' ] = $taxtermFormFieldsArray[ 'icon' ];
+    unset( $taxtermFormFieldsArray[ 'icon' ] );
+    $formBlock->assign( 'taxtermFormFieldsArray', $taxtermFormFieldsArray );
+    $panel = $this->getPanelBlock( $formBlock, 'Menu form', 'fa-tag' );
+    $this->template->addToFragment( 'col8', $panel );
+    $this->template->addToFragment( 'col4', $this->getPanelBlock( $formSeparate[ 'icon' ], __( 'Selecciona un icono' ) ) );
+
+    $this->template->assign( 'headTitle', __('Menu form') );
+    $this->template->assign( 'headActions', '<a href="/admin#menu/" class="btn btn-danger"> '.__('Cancel').'</a>' );
+    $this->template->assign( 'footerActions', '<a href="/admin#menu/" class="btn btn-danger"> '.__('Cancel').'</a>' );
+    $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
+
+    $this->template->exec();
+  }
+
   public function sendCategoryForm(){
     $geozzyTaxtermView = new GeozzyTaxonomytermView();
     $geozzyTaxtermView->sendTaxtermForm();

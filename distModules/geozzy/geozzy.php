@@ -265,45 +265,32 @@ class geozzy extends Module {
         unset($tax['name']);
         $taxgroup = new TaxonomygroupModel( $tax );
         $taxgroup->save();
+
         if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
-          foreach( $tax['initialTerms'] as $term ) {
-            $term['taxgroup'] = $taxgroup->getter('id');
-            foreach( $term['name'] as $langKey => $name ) {
-              $term['name_'.$langKey] = $name;
-            }
-            unset($term['name']);
-            $taxterm = new TaxonomytermModel( $term );
-            $taxterm->save();
-
-            $termParent = $taxterm->getter('id');
-            if(!empty ($term['children']) ){
-              foreach( $term['children'] as $termS1 ) {
-                $termS1['taxgroup'] = $taxgroup->getter('id');
-                $termS1['parent'] = $termParent;
-                foreach( $termS1['name'] as $lngKC1 => $nameC1 ) {
-                  $termS1['name_'.$lngKC1] = $nameC1;
-                }
-                unset($termS1['name']);
-                $taxtermS1 = new TaxonomytermModel( $termS1 );
-                $taxtermS1->save();
-
-                $termParentS1 = $taxtermS1->getter('id');
-                if(!empty ($termS1['children']) ){
-                  foreach( $termS1['children'] as $termS2 ) {
-                    $termS2['taxgroup'] = $taxgroup->getter('id');
-                    $termS2['parent'] = $termParentS1;
-                    foreach( $termS2['name'] as $lngKC2 => $nameC2 ) {
-                      $termS2['name_'.$lngKC2] = $nameC2;
-                    }
-                    unset($termS2['name']);
-                    $taxtermS2 = new TaxonomytermModel( $termS2 );
-                    $taxtermS2->save();
-                  }
-                }
-              }
-            }
-          }
+          $this->createTermsArray( $taxgroup->getter('id'), false, $tax['initialTerms']);
         }
+      }
+    }
+  }
+
+  /**
+  * This function is to create terms
+  */
+  public function createTermsArray( $taxId, $parentId, $terms ){
+    foreach( $terms as $term ) {
+      $term['taxgroup'] = $taxId;
+      if(!empty($parentId)){
+        $term['parent'] = $parentId;
+      }
+      foreach( $term['name'] as $langKey => $name ) {
+        $term['name_'.$langKey] = $name;
+      }
+      unset($term['name']);
+      $taxterm = new TaxonomytermModel( $term );
+      $taxterm->save();
+
+      if(!empty ($term['children']) ){
+        $this->createTermsArray( $taxId, $taxterm->getter('id'), $term['children']);
       }
     }
   }

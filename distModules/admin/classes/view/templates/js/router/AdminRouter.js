@@ -12,6 +12,8 @@ var AdminRouter = Backbone.Router.extend({
     "category/:category/term/create" : "categoryNewTerm",
     "category/:category/term/edit/:term" : "categoryEditTerm",
     'menu': "menuEdit",
+    "menu/term/create" : "menuNewTerm",
+    "menu/term/edit/:term" : "menuEditTerm",
     "user/list" : "userList",
     "user/create" : "userCreate",
     "user/edit/id/:id" : "userEdit",
@@ -81,6 +83,17 @@ var AdminRouter = Backbone.Router.extend({
     app.mainView.menuSelect('menu');
     app.mainView.setBodyClass('menuEdit');
   },
+
+  menuNewTerm: function(){
+    app.mainView.loadAjaxContent( '/admin/menu/term/create');
+    app.mainView.setBodyClass('menuNewTerm');
+  },
+
+  menuEditTerm: function( term ){
+    app.mainView.loadAjaxContent( '/admin/menu/term/edit/'+term);
+    app.mainView.setBodyClass('menuEditTerm');
+  },
+
   // User
   userList: function(){
     app.mainView.loadAjaxContent( '/admin/user/list' );

@@ -120,16 +120,12 @@ var MenuEditorView = Backbone.View.extend({
 
   addMenuterm: function() {
     var that = this;
-    alert('crear');
-    //Backbone.history.navigate('category/'+that.category.id+'/term/create', {trigger:true});
+    Backbone.history.navigate('menu/term/create', {trigger:true});
   },
 
   editMenuterm: function( el ) {
     var that = this;
-    alert('editar');
-
-    //Backbone.history.navigate('category/'+that.category.id+'/term/edit/'+$(el.currentTarget).attr('data-id'), {trigger:true});
-
+    Backbone.history.navigate('menu/term/edit/'+$(el.currentTarget).attr('data-id'), {trigger:true});
   },
 
   saveEditMenuterm: function( el ) {
