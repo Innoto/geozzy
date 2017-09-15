@@ -138,11 +138,13 @@ class admin extends Module {
     'js/collection/CategorytermCollection.js',
     'js/collection/TopicCollection.js',
     'js/collection/StarredCollection.js',
+    'js/collection/MenuCollection.js',
     'js/collection/ResourcesStarredCollection.js',
     'js/app.js',
     'js/adminFileUploader.js',
     'js/view/AdminView.js',
     'js/view/CategoryEditorView.js',
+    'js/view/MenuEditorView.js',
     'js/view/ResourcesStarredListView.js'
   );
 
@@ -211,6 +213,10 @@ class admin extends Module {
     $this->addUrlPatterns( '#^admin/category/(\d+)/term/edit/(\d+)$#', 'view:AdminViewTaxonomy::categoryForm' );
     $this->addUrlPatterns( '#^admin/category/term/sendcategoryterm$#', 'view:AdminViewTaxonomy::sendCategoryForm' );
 
+    $this->addUrlPatterns( '#^admin/menu/term/create$#', 'view:AdminViewTaxonomy::menuForm' );
+    $this->addUrlPatterns( '#^admin/menu/term/edit/(\d+)$#', 'view:AdminViewTaxonomy::menuForm' );
+    $this->addUrlPatterns( '#^admin/menu/term/sendmenuterm$#', 'view:AdminViewTaxonomy::sendCategoryForm' );
+
     $this->addUrlPatterns( '#^admin/comment/list$#', 'view:AdminViewComment::listComments' );
     $this->addUrlPatterns( '#^admin/comment/table$#', 'view:AdminViewComment::listCommentsTable' );
     $this->addUrlPatterns( '#^admin/suggestion/list$#', 'view:AdminViewComment::listSuggestions' );
@@ -221,7 +227,6 @@ class admin extends Module {
     // elFinder (file manager)
     $this->addUrlPatterns( '#^admin/filemanagerfrontend#', 'view:AdminViewElfinder::fileManagerFrontend' );
     $this->addUrlPatterns( '#^admin/filemanagerbackend#', 'view:AdminViewElfinder::fileManagerBackend' );
-
 
   }
 
@@ -238,6 +243,8 @@ class admin extends Module {
       $this->addUrlPatterns( '#^api/doc/admin/adminCategoryterms.json$#', 'view:AdminDataAPIView::categoryTermsJson' ); // Swagger
       $this->addUrlPatterns( '#^api/admin/categories$#', 'view:AdminDataAPIView::categories' );
       $this->addUrlPatterns( '#^api/doc/admin/adminCategories.json$#', 'view:AdminDataAPIView::categoriesJson' ); // Swagger
+      $this->addUrlPatterns( '#^api/admin/menuterms(\?.*|/.*)?$#', 'view:AdminDataAPIView::menuTerms' );
+      $this->addUrlPatterns( '#^api/doc/admin/adminMenuterms.json$#', 'view:AdminDataAPIView::menuTermsJson' ); // Swagger
       $this->addUrlPatterns( '#^api/admin/resourcesTerm/(.*)$#', 'view:AdminDataAPIView::resourcesTerm' );
       $this->addUrlPatterns( '#^api/doc/admin/adminResourcesTerm.json$#', 'view:AdminDataAPIView::resourcesTermJson' ); // Swagger
       $this->addUrlPatterns( '#^api/admin/starred$#', 'view:AdminDataAPIView::starred' );
@@ -263,6 +270,10 @@ class admin extends Module {
         array(
           'path' => '/doc/admin/adminCategoryterms.json',
           'description' => 'Admin CategoryTerms'
+        ),
+        array(
+          'path' => '/doc/admin/adminMenuterms.json',
+          'description' => 'Admin MenuTerms'
         ),
         array(
           'path' => '/doc/admin/adminResourcesTerm.json',

@@ -2184,8 +2184,8 @@ class ResourceController {
   // $this->cloneToRType( $form->getFieldValue('id'), 'rtypeAppBlogPub' );
 
 
-  public function cloneToRType( $resFromId, $rTypeIdName ) {
-    error_log( __METHOD__.': $resFromId: '.$resFromId.' $rTypeIdName: '.$rTypeIdName );
+  public function cloneToRType( $resFromId, $rTypeIdName, $topicIdName = false ) {
+    error_log( __METHOD__.': $resFromId: '.$resFromId.' $rTypeIdName: '.$rTypeIdName.' $topicIdName: '.$topicIdName );
     $resToObj = null;
 
     $error = false;
@@ -2238,8 +2238,41 @@ class ResourceController {
     }
 
     if( !$error ) {
-      if( !$this->cloneTopics( $resFromId, $resToObj->getter('id') ) ) {
-        $error = __LINE__;
+      if( empty( $topicIdName ) ) {
+        // Copiamos los topics del origen
+        if( !$this->cloneTopics( $resFromId, $resToObj->getter('id') ) ) {
+          $error = __LINE__;
+        }
+      }
+      else {
+        // Establecemos el topic indicado
+
+        $topicModel = new TopicModel();
+        $topicList = $topicModel->listItems([
+          'filters' => [ 'idName' => $topicIdName ],
+          'cache' => $this->cacheQuery
+        ]);
+        if( !is_object( $topicList ) ) {
+          $error = __LINE__;
+          error_log(__METHOD__.': ERROR topicList' );
+        }
+        else {
+          if( $topicFromObj = $topicList->fetch() ) {
+            $resTopicObj = new ResourceTopicModel([
+              'resource' => $resToObj->getter('id'),
+              'topic' => $topicFromObj->getter('id')
+            ]);
+            $resTopicObj->save();
+            if( !is_object( $resTopicObj ) ) {
+              $error = __LINE__;
+              error_log(__METHOD__.': ERROR enlazando Topic: '.$topicIdName );
+            }
+          }
+          else {
+            $error = __LINE__;
+            error_log(__METHOD__.': ERROR Topic "'.$topicIdName.'" no encontrado' );
+          }
+        }
       }
     }
 
@@ -2264,12 +2297,13 @@ class ResourceController {
       }
     }
 
+
     return( ( !$error ) ? $resToObj : false );
   }
 
 
   public function cloneCollections( $resFromId, $resToId, $collectionTypes = true ) {
-    error_log( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($collectionTypes) );
+    Cogumelo::debug( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($collectionTypes) );
     $result = true;
 
     if( $collectionTypes !== true && !is_array( $collectionTypes ) ) {
@@ -2368,7 +2402,7 @@ class ResourceController {
 
 
   public function cloneTaxonomies( $resFromId, $resToId, $taxIdNames = true ) {
-    error_log( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($taxIdNames) );
+    Cogumelo::debug( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($taxIdNames) );
     $result = true;
 
     $cloneTermIds = [];
@@ -2394,11 +2428,11 @@ class ResourceController {
       }
     }
 
-    error_log(__METHOD__.': Clonando cloneTermIds: '. json_encode($cloneTermIds) );
+    Cogumelo::debug(__METHOD__.': Clonando cloneTermIds: '. json_encode($cloneTermIds) );
 
     if( $result && count( $cloneTermIds ) > 0 ) {
 
-      error_log(__METHOD__.': Clonando Terminos' );
+      Cogumelo::debug(__METHOD__.': Clonando Terminos' );
 
       $resourceTaxModel = new ResourceTaxonomytermModel();
       $resourceTaxList = $resourceTaxModel->listItems([
@@ -2414,7 +2448,7 @@ class ResourceController {
         while( $resourceTaxObj = $resourceTaxList->fetch() ) {
           $resourceTaxData = $resourceTaxObj->getAllData('onlydata');
 
-          error_log(__METHOD__.': Clonando Term: '. $resourceTaxData['taxonomyterm'] );
+          Cogumelo::debug(__METHOD__.': Clonando Term: '. $resourceTaxData['taxonomyterm'] );
 
           unset( $resourceTaxData['id'] );
           $resourceTaxData['resource'] = $resToId;
@@ -2432,7 +2466,7 @@ class ResourceController {
 
 
   public function cloneTopics( $resFromId, $resToId ) {
-    error_log( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId );
+    Cogumelo::debug( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId );
     $result = true;
 
 
@@ -2444,8 +2478,6 @@ class ResourceController {
     if( !is_object( $topicList ) ) {
       $result = false;
       error_log(__METHOD__.': ERROR topicList 2' );
-
-      break;
     }
     else {
       while( $topicFromObj = $topicList->fetch() ) {
@@ -2470,13 +2502,13 @@ class ResourceController {
 
 
   public function cloneRExtModels( $resFromId, $resToId, $models ) {
-    error_log( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($models) );
+    Cogumelo::debug( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($models) );
     $result = true;
 
 
     foreach( $models as $modelName ) {
 
-      error_log(__METHOD__.': Clonando modelName: '.$modelName );
+      Cogumelo::debug(__METHOD__.': Clonando modelName: '.$modelName );
 
       $rExtModel = new $modelName();
       $rExtList = $rExtModel->listItems([

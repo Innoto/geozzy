@@ -5,6 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 // require_once APP_BASE_PATH.'/conf/inc/geozzyTopics.php';
 require_once APP_BASE_PATH.'/conf/inc/geozzyTaxonomyGroups.php';
 require_once APP_BASE_PATH.'/conf/inc/geozzyStarred.php';
+require_once APP_BASE_PATH.'/conf/inc/geozzyMenu.php';
 
 define('MOD_GEOZZY_URL_DIR', 'geozzy');
 
@@ -219,10 +220,11 @@ class geozzy extends Module {
 
 
     /**
-    Añade taxonomías destacadas
+    Añade taxonomías destacadas y menu
     */
     global $GEOZZY_TAXONOMYGROUPS;
     global $GEOZZY_STARRED;
+    global $GEOZZY_MENU;
 
     $GEOZZY_TAXONOMYGROUPS['starred'] = array(
       'idName' => 'starred',
@@ -235,6 +237,19 @@ class geozzy extends Module {
       'nestable' => 0,
       'sortable' => 1,
       'initialTerms' => $GEOZZY_STARRED
+    );
+
+    $GEOZZY_TAXONOMYGROUPS['menu'] = array(
+      'idName' => 'menu',
+      'name' => array(
+        'es' => 'Menu',
+        'en' => 'Menu',
+        'gl' => 'Menu'
+      ),
+      'editable' => 0,
+      'nestable' => 4,
+      'sortable' => 1,
+      'initialTerms' => $GEOZZY_MENU
     );
 
 
@@ -250,18 +265,32 @@ class geozzy extends Module {
         unset($tax['name']);
         $taxgroup = new TaxonomygroupModel( $tax );
         $taxgroup->save();
-        if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
-          foreach( $tax['initialTerms'] as $term ) {
-            $term['taxgroup'] = $taxgroup->getter('id');
 
-            foreach( $term['name'] as $langKey => $name ) {
-               $term['name_'.$langKey] = $name;
-            }
-            unset($term['name']);
-            $taxterm = new TaxonomytermModel( $term );
-            $taxterm->save();
-          }
+        if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
+          $this->createTermsArray( $taxgroup->getter('id'), false, $tax['initialTerms']);
         }
+      }
+    }
+  }
+
+  /**
+  * This function is to create terms
+  */
+  public function createTermsArray( $taxId, $parentId, $terms ){
+    foreach( $terms as $term ) {
+      $term['taxgroup'] = $taxId;
+      if(!empty($parentId)){
+        $term['parent'] = $parentId;
+      }
+      foreach( $term['name'] as $langKey => $name ) {
+        $term['name_'.$langKey] = $name;
+      }
+      unset($term['name']);
+      $taxterm = new TaxonomytermModel( $term );
+      $taxterm->save();
+
+      if(!empty ($term['children']) ){
+        $this->createTermsArray( $taxId, $taxterm->getter('id'), $term['children']);
       }
     }
   }
