@@ -7,7 +7,7 @@ class RExtFileController extends RExtController implements RExtInterface {
 
 
   public function __construct( $defRTypeCtrl ){
-    // error_log( 'RExtFileController::__construct' );
+    // error_log( __METHOD__ );
 
     // $this->numericFields = array( 'averagePrice' );
 
@@ -16,7 +16,8 @@ class RExtFileController extends RExtController implements RExtInterface {
 
 
   public function getRExtData( $resId = false ) {
-    // error_log( "RExtFileController: getRExtData( $resId )" );
+    // error_log( __METHOD__ );
+
     $rExtData = false;
 
     if( $resId === false ) {
@@ -59,7 +60,7 @@ class RExtFileController extends RExtController implements RExtInterface {
     Defino el formulario
    */
   public function manipulateForm( FormController $form ) {
-    // error_log( "RExtFileController: manipulateForm()" );
+    // error_log( __METHOD__ );
 
     $rExtFieldNames = array();
 
