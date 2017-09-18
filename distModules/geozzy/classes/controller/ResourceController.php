@@ -529,10 +529,12 @@ class ResourceController {
    * @return Obj-Form
    */
   public function getFormObj( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
+    // error_log( __METHOD__.': '. $formName );
 
     $form = $this->getBaseFormObj( $formName, $urlAction, $successArray, $valuesArray );
 
-    if( $this->getRTypeCtrl( $form->getFieldValue( 'rTypeIdName' ) ) ) {
+    $rType = $form->getFieldValue( 'rTypeIdName' ) | $form->getFieldValue( 'rTypeId' );
+    if( $this->getRTypeCtrl( $rType ) ) {
       $this->rTypeCtrl->manipulateForm( $form );
     }
 
@@ -551,6 +553,8 @@ class ResourceController {
    * @return Array $formBlockInfo{ 'template' => Array, 'data' => Array, 'ext' => Array, 'dataForm' => Array, objForm => Form }
    */
   public function getFormBlockInfo( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
+    // error_log( __METHOD__.': '. $formName );
+
     $form = $this->getFormObj( $formName, $urlAction, $successArray, $valuesArray );
 
 
