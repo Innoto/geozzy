@@ -142,9 +142,11 @@ class AdminViewTaxonomy extends AdminViewMaster {
     $this->template->addToFragment( 'col8', $panel );
     $this->template->addToFragment( 'col4', $this->getPanelBlock( $formSeparate[ 'icon' ], __( 'Selecciona un icono' ) ) );
 
+    
+
     $this->template->assign( 'headTitle', __('Menu form') );
-    $this->template->assign( 'headActions', '<a href="/admin#menu/" class="btn btn-danger"> '.__('Cancel').'</a>' );
-    $this->template->assign( 'footerActions', '<a href="/admin#menu/" class="btn btn-danger"> '.__('Cancel').'</a>' );
+    $this->template->assign( 'headActions', '<a href="/admin#menu" class="btn btn-danger"> '.__('Cancel').'</a>' );
+    $this->template->assign( 'footerActions', '<a href="/admin#menu" class="btn btn-danger"> '.__('Cancel').'</a>' );
     $this->template->setTpl( 'adminContent-8-4.tpl', 'admin' );
 
     $this->template->exec();
