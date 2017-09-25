@@ -73,6 +73,9 @@
         <div class="dd-handle">
           <i class="fa fa-arrows icon-handle"></i>
           <%- term.name_{$cogumelo.publicConf.langDefault} %>
+          <% if (term.resourceRelated){  %>
+          <i class="fa fa-link" aria-hidden="true"></i>
+          <% } %>
           <% if (term.icon){  %>
             <img class="term-icon img-responsive" src="{$cogumelo.publicConf.mediaHost}cgmlImg/<%- term.icon %>-a<%- term.iconAKey %>/fast/">
           <% } %>

@@ -8,6 +8,7 @@
 <script>
 /*  var langAvailable = {$JsLangAvailable};
   var langDefault = {$JsLangDefault};*/
+  $('select.gzzSelect2').select2();
 </script>
 
 {$taxtermFormOpen}

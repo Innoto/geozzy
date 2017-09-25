@@ -67,6 +67,7 @@ var ResourcesStarredListView = Backbone.View.extend({
     var that = this;
     var jsonNestableResult = $('#resourcesStarredListContainer').nestable('serialize');
     var itemWeight = 0;
+
     _.each( jsonNestableResult , function( e , i ){
       var element = that.resourcesStarred.get(e.id);
       element.set({ weight: itemWeight });

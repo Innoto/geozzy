@@ -80,25 +80,22 @@ var MenuEditorView = Backbone.View.extend({
 
     var that = this;
     var jsonCategories = $('#taxTermListContainer').nestable('serialize');
-    var itemWeight = 0;
-    _.each( jsonCategories , function( e , i ){
-
-      var element = that.menuTerms.get(e.id);
-      element.set({parent:0});
-      element.set({ weight: itemWeight });
-      if(e.children){
-        _.each( e.children , function( eCh , iCh ){
-          itemWeight++;
-          var elementSon = that.menuTerms.get(eCh.id);
-          elementSon.set({ weight: itemWeight, parent:e.id });
-        });
-      }
-      itemWeight++;
-    });
-
+    that.saveItem( 0, jsonCategories );
     that.saveChangesVisible(true);
   },
 
+  saveItem: function ( parent, data ){
+    var that = this;
+    var itemWeight = 0;
+    _.each( data , function( e , i ){
+      var element = that.menuTerms.get(e.id);
+      element.set({ weight: itemWeight, parent: parent });
+      if(e.children){
+        that.saveItem( e.id, e.children );
+      }
+      itemWeight++;
+    });
+  },
 
 /*Edición de un categoria*/
 

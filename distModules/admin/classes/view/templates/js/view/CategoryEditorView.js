@@ -95,23 +95,21 @@ var CategoryEditorView = Backbone.View.extend({
 
     var that = this;
     var jsonCategories = $('#taxTermListContainer').nestable('serialize');
-    var itemWeight = 0;
-    _.each( jsonCategories , function( e , i ){
+    that.saveItem( 0, jsonCategories );
+    that.saveChangesVisible(true);
+  },
 
-      var element = that.categoryTerms.get(e.id);
-      element.set({parent:0});
-      element.set({ weight: itemWeight });
+  saveItem: function ( parent, data ){
+    var that = this;
+    var itemWeight = 0;
+    _.each( data , function( e , i ){
+      var element = that.menuTerms.get(e.id);
+      element.set({ weight: itemWeight, parent: parent });
       if(e.children){
-        _.each( e.children , function( eCh , iCh ){
-          itemWeight++;
-          var elementSon = that.categoryTerms.get(eCh.id);
-          elementSon.set({ weight: itemWeight, parent:e.id });
-        });
+        that.saveItem( e.id, e.children );
       }
       itemWeight++;
     });
-
-    that.saveChangesVisible(true);
   },
 
 

@@ -293,6 +293,31 @@ class GeozzyTaxonomytermView extends View
 
       // $taxterm->save( array( 'affectsDependences' => $affectsDependences ) );
 
+      if( array_key_exists('relTermMenuRes', $valuesArray) ){
+        $resTaxTermModel = new ResourceTaxonomytermModel();
+        $resTaxTermObj = $resTaxTermModel->listItems( ['filters' => [ 'taxonomyterm' => $taxterm->getter('id') ] ]);
+        if(is_object($resTaxTermObj)){
+          $resTermItem = $resTaxTermObj->fetch();
+        }
+        if( empty($valuesArray['relTermMenuRes'])){
+          if(!empty($resTermItem)){
+            //Delete
+            $resTermItem->delete();
+          }
+        }
+        else{
+          if(!empty($resTermItem)){
+            //Update
+            $resTermItem->setter( 'resource', $valuesArray['relTermMenuRes'] );
+            $resTermItem->save();
+          }
+          else{
+            //Create
+            $newResTaxTermModel = new ResourceTaxonomytermModel([ 'taxonomyterm' => $taxterm->getter('id'), 'resource' => $valuesArray['relTermMenuRes'] ]);
+            $newResTaxTermModel->save();
+          }
+        }
+      }
       if( empty($taxterm->getter('idName')) ){
         $taxterm->setter( 'idName', 'term-'.$taxterm->getter('id') );
       }

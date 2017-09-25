@@ -129,20 +129,57 @@ class AdminViewTaxonomy extends AdminViewMaster {
     }
     $request[1] = "".$taxgroupElement->getter('id');
 
+
+    $rsViewModel = new ResourceViewModel();
+
+    $filter['inRtypeIdName'] = !empty(Cogumelo::getSetupValue( 'mod:admin:menuRTypes' )) ? Cogumelo::getSetupValue( 'mod:admin:menuRTypes' ) : [];
+    $rsMenuObj = $rsViewModel->listItems([
+      'filters' => $filter,
+      'cache' => true
+    ]);
+    $optionsResMenu[""] = __('None');
+    while( $res = $rsMenuObj->fetch() ){
+      if( $res ){
+        $optionsResMenu[ $res->getter('id') ] = $res->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ));
+      }
+    }
+
+    $resTaxTermModel = new ResourceTaxonomytermModel();
+    $resTaxTermObj = $resTaxTermModel->listItems( ['filters' => [ 'taxonomyterm' => $request[2] ] ]);
+    $valueResMenu = false;
+    if(is_object($resTaxTermObj)){
+      $resTermItem = $resTaxTermObj->fetch();
+      if( $resTermItem ) {
+        $valueResMenu = $resTermItem->getter('resource');
+      }
+    }
+
     $form = $geozzyTaxtermView->taxtermFormDefine( $request );
+    $form->setField( 'relTermMenuRes',
+      array(
+        'type' => 'select',
+        'label' => __( 'Related resource' ),
+        'class' => 'gzzSelect2',
+        'options'=> $optionsResMenu,
+        'value' => $valueResMenu
+      )
+    );
+
     $form->setAction('/admin/menu/term/sendmenuterm');
     $form->setSuccess( 'redirect', '/admin#menu');
 
     $formBlock = $geozzyTaxtermView->taxtermGetFormBlock( $form );
     $taxtermFormFieldsArray = $formBlock->getTemplateVars( 'taxtermFormFieldsArray' );
     $formSeparate[ 'icon' ] = $taxtermFormFieldsArray[ 'icon' ];
+    $formSeparate[ 'relTermMenuRes' ] = $taxtermFormFieldsArray[ 'relTermMenuRes' ];
     unset( $taxtermFormFieldsArray[ 'icon' ] );
+    unset( $taxtermFormFieldsArray[ 'relTermMenuRes' ] );
     $formBlock->assign( 'taxtermFormFieldsArray', $taxtermFormFieldsArray );
     $panel = $this->getPanelBlock( $formBlock, 'Menu form', 'fa-tag' );
     $this->template->addToFragment( 'col8', $panel );
-    $this->template->addToFragment( 'col4', $this->getPanelBlock( $formSeparate[ 'icon' ], __( 'Selecciona un icono' ) ) );
 
-    
+    $this->template->addToFragment( 'col4', $this->getPanelBlock( $formSeparate[ 'icon' ], __( 'Selecciona un icono' ) ) );
+    $this->template->addToFragment( 'col4', $this->getPanelBlock( $formSeparate[ 'relTermMenuRes' ], __( 'Related resource' ) ) );
 
     $this->template->assign( 'headTitle', __('Menu form') );
     $this->template->assign( 'headActions', '<a href="/admin#menu" class="btn btn-danger"> '.__('Cancel').'</a>' );

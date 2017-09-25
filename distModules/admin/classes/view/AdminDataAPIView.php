@@ -705,11 +705,21 @@ class AdminDataAPIView extends View {
         header('Content-type: application/json');
         $taxtermModel = new TaxonomyViewModel();
         $taxtermList = $taxtermModel->listItems(  array( 'filters' => array('taxGroupIdName'=> 'menu') ) );
+        $resTaxTermModel = new ResourceTaxonomytermModel();
 
         echo '[';
         $c = '';
         while( $taxTerm = $taxtermList->fetch() ) {
           $termData = $taxTerm->getAllData();
+
+          $resTaxTermObj = $resTaxTermModel->listItems( ['filters' => [ 'taxonomyterm' => $termData['data']['id'] ] ]);
+          if(is_object($resTaxTermObj)){
+            $resTermItem = $resTaxTermObj->fetch();
+            if( $resTermItem ) {
+              $termData['data']['resourceRelated'] = $resTermItem->getter('resource');
+            }
+          }
+
           //error_log( json_encode($termData, true) );
           echo $c.json_encode( $termData['data'] );
           if( $c === '') {
