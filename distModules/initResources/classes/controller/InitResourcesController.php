@@ -180,7 +180,7 @@ class InitResourcesController{
             }
           }
           $rExtModel = $rExtName.'Model';
-          $existRextModel = ( new $rExtModel() )->listItems(['filters'=>['idName'=> $resData['idName'] ]])->fetch();
+          $existRextModel = ( new $rExtModel() )->listItems(['filters'=>['resource'=> $resource->getter('id') ]])->fetch();
           if( $existRextModel ) {
             $resData['id'] = $existRextModel->getter('id');
           }

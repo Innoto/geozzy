@@ -25,6 +25,7 @@ class rextCommunity extends Module {
   );
 
 
+
   public function __construct() {
     $this->addUrlPatterns( '#^cgml_cron/rextCommunity/prepareAffinity$#', 'view:RExtCommunityAffinityView::prepareAffinity' );
   }

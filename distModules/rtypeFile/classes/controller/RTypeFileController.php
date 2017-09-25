@@ -3,7 +3,7 @@
 class RTypeFileController extends RTypeController implements RTypeInterface {
 
   public function __construct( $defResCtrl ){
-    // error_log( 'RTypeFileController::__construct' );
+    // error_log( __METHOD__ );
 
     parent::__construct( $defResCtrl, new rtypeFile() );
   }
@@ -12,7 +12,7 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     Defino el formulario
    **/
   public function manipulateForm( FormController $form ) {
-    // error_log( "RTypeFileController: manipulateForm()" );
+    // error_log( __METHOD__ );
 
     parent::manipulateForm( $form );
 
@@ -25,7 +25,8 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
   } // function manipulateForm()
 
   public function getFormBlockInfo( FormController $form ) {
-    // error_log( "RTypeHotelController: getFormBlockInfo()" );
+    // error_log( __METHOD__ );
+
     $formBlockInfo = parent::getFormBlockInfo( $form );
 
     $this->fileCtrl = new RExtFileController( $this );

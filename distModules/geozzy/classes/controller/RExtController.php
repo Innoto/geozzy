@@ -164,7 +164,7 @@ class RExtController {
    * @param String $prefix Prefijo para los campos del RExt
    */
   public function __construct( $defRTypeCtrl, $rExtModule, $prefix = false ){
-    // error_log( 'RExtController::__construct' );
+    // error_log( __METHOD__.': '.$rExtModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
     if( $defRTypeCtrl ) {
       $this->defRTypeCtrl = $defRTypeCtrl;
@@ -218,6 +218,8 @@ class RExtController {
    * @return Array $viewBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array }
    */
   public function getFormBlockInfo( FormController $form ) {
+    // error_log( __METHOD__.': '. $this->rExtName );
+
     $formBlockInfo = array(
       'template' => array(
         'full' => new Template()

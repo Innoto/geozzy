@@ -107,7 +107,7 @@ class RTypeController {
    * @param $rTypeModule RTypeController
    */
   public function __construct( $defResCtrl, $rTypeModule ) {
-    // error_log( 'RTypeController: __construct() para '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
+    // error_log( __METHOD__.': '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
     $this->defResCtrl = $defResCtrl;
     $this->cacheQuery = $defResCtrl->cacheQuery;
@@ -139,6 +139,8 @@ class RTypeController {
    * @param $form FormController Objeto form. del recursoBase
    */
   public function manipulateForm( FormController $form ) {
+    // error_log( __METHOD__.': '. $this->rTypeName );
+
     // Lanzamos los manipulateForm de los RExt de este RType
     if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
       foreach( $this->rExts as $rExtName ) {
@@ -184,6 +186,8 @@ class RTypeController {
    * @return Array $formBlockInfo{ 'template' => array, 'data' => array, 'dataForm' => array, 'objForm' => FormController, 'ext' => array }
    */
   public function getFormBlockInfo( FormController $form ) {
+    // error_log( __METHOD__.': '. $this->rTypeName );
+
     $formBlockInfo = array(
       'template' => false,
       'data' => false,
