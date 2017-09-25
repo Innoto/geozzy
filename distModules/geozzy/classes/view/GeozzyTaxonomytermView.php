@@ -77,7 +77,8 @@ class GeozzyTaxonomytermView extends View
       )
     );
 
-    $this->arrayToForm( $form, $fieldsInfo, $langAvailable );
+    // $this->arrayToForm( $form, $fieldsInfo, $langAvailable );
+    $form->definitionsToForm( $fieldsInfo );
 
     $form->setField( 'submit', array( 'type' => 'submit', 'value' => 'Save', 'class' => 'gzzAdminToMove' ) );
 
@@ -329,43 +330,43 @@ class GeozzyTaxonomytermView extends View
   }
 
 
-  /**
-   * Crea los campos y les asigna las reglas en form
-   *
-   * @param $form
-   * @param $form
-   * @param $form
-  **/
-  public function arrayToForm( $form, $fieldsInfo, $langAvailable ) {
-    foreach( $fieldsInfo as $fieldName => $definition ) {
-      if( !isset( $definition['params'] ) ) {
-        $definition['params'] = false;
-      }
-      if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
-        $baseClass = '';
-        if( isset( $definition['params']['class'] ) &&  $definition['params']['class'] !== '' ) {
-          $baseClass = $definition['params']['class'];
-        }
-        foreach( $langAvailable as $lang ) {
-          $definition['params']['class'] = $baseClass . ' js-tr js-tr-'.$lang;
-          $form->setField( $fieldName.'_'.$lang, $definition['params'] );
-          if( isset( $definition['rules'] ) ) {
-            foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-              $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
-            }
-          }
-        }
-      }
-      else {
-        $form->setField( $fieldName, $definition['params'] );
-        if( isset( $definition['rules'] ) ) {
-          foreach( $definition['rules'] as $ruleName => $ruleParams ) {
-            $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
-          }
-        }
-      }
-    }
-  }
+  // /**
+  //  * Crea los campos y les asigna las reglas en form
+  //  *
+  //  * @param $form
+  //  * @param $form
+  //  * @param $form
+  // **/
+  // public function arrayToForm( $form, $fieldsInfo, $langAvailable ) {
+  //   foreach( $fieldsInfo as $fieldName => $definition ) {
+  //     if( !isset( $definition['params'] ) ) {
+  //       $definition['params'] = false;
+  //     }
+  //     if( isset( $definition['translate'] ) && $definition['translate'] === true ) {
+  //       $baseClass = '';
+  //       if( isset( $definition['params']['class'] ) &&  $definition['params']['class'] !== '' ) {
+  //         $baseClass = $definition['params']['class'];
+  //       }
+  //       foreach( $langAvailable as $lang ) {
+  //         $definition['params']['class'] = $baseClass . ' js-tr js-tr-'.$lang;
+  //         $form->setField( $fieldName.'_'.$lang, $definition['params'] );
+  //         if( isset( $definition['rules'] ) ) {
+  //           foreach( $definition['rules'] as $ruleName => $ruleParams ) {
+  //             $form->setValidationRule( $fieldName.'_'.$lang, $ruleName, $ruleParams );
+  //           }
+  //         }
+  //       }
+  //     }
+  //     else {
+  //       $form->setField( $fieldName, $definition['params'] );
+  //       if( isset( $definition['rules'] ) ) {
+  //         foreach( $definition['rules'] as $ruleName => $ruleParams ) {
+  //           $form->setValidationRule( $fieldName, $ruleName, $ruleParams );
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
 
 }
