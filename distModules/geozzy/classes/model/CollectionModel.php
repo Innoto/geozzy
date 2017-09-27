@@ -42,7 +42,7 @@ class CollectionModel extends Model {
     ),
     'collectionType' => array(
       'type' => 'VARCHAR',
-      'size' => 20
+      'size' => 100
     ),
     'timeCreation' => array(
       'type' => 'DATETIME'
@@ -57,6 +57,11 @@ class CollectionModel extends Model {
 
 
   var $deploySQL = array(
+    array(
+      'version' => 'geozzy#1.99',
+      'sql'=> 'ALTER TABLE `geozzy_collection`
+        CHANGE COLUMN `collectionType` `collectionType` VARCHAR(100) NULL DEFAULT NULL ;'
+    ),
     array(
       'version' => 'geozzy#1.1',
       'sql'=> 'ALTER TABLE `geozzy_collection`
