@@ -3,10 +3,10 @@ Cogumelo::load( 'coreModel/VO.php' );
 Cogumelo::load( 'coreModel/Model.php' );
 
 
+class ContactModel extends Model {
 
-class ContactModel extends Model
-{
   static $tableName = 'geozzy_resource_rext_contact';
+
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -49,20 +49,27 @@ class ContactModel extends Model
     ),
     'timetable' => array(
       'type' => 'VARCHAR',
-      'size' => 2000,
+      'size' => 800,
       'multilang' => true
     ),
     'url' => array(
       'type' => 'VARCHAR',
-      'size' => 2000
+      'size' => 1000
     ),
   );
 
-  static $extraFilters = array();
+
+  static $extraFilters = [];
 
 
-  public function __construct( $datarray = array(), $otherRelObj = false ) {
-    parent::__construct( $datarray, $otherRelObj );
-  }
+  var $deploySQL = [
+    [
+      'version' => 'rextContact#1.1',
+      'sql'=> '
+        {multilang:ALTER TABLE geozzy_resource_rext_contact MODIFY COLUMN timetable_$lang VARCHAR(800) default NULL;}
+        ALTER TABLE geozzy_resource_rext_contact MODIFY COLUMN url VARCHAR(1000) default NULL;
+      '
+    ]
+  ];
 
 }
