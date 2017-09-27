@@ -6,6 +6,7 @@ Cogumelo::load( 'coreModel/Model.php' );
 class RExtSocialNetworkModel extends Model {
 
   static $tableName = 'geozzy_resource_rext_socialnetwork';
+
   static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -22,7 +23,7 @@ class RExtSocialNetworkModel extends Model {
     ),
     'textFb' => array(
       'type' => 'VARCHAR',
-      'size' => 2000,
+      'size' => 500,
       'multilang' => true
     ),
     'activeGplus' => array(
@@ -30,7 +31,7 @@ class RExtSocialNetworkModel extends Model {
     ),
     'textGplus' => array(
       'type' => 'VARCHAR',
-      'size' => 2000,
+      'size' => 500,
       'multilang' => true
     ),
     'activeTwitter' => array(
@@ -38,32 +39,39 @@ class RExtSocialNetworkModel extends Model {
     ),
     'textTwitter' => array(
       'type' => 'VARCHAR',
-      'size' => 2000,
+      'size' => 500,
       'multilang' => true
     )
   );
 
-  static $extraFilters = array();
+
+  static $extraFilters = [];
 
 
-
-  var $deploySQL = array(
-    array(
+  var $deploySQL = [
+    [
       'version' => 'rextSocialNetwork#1.1',
       'sql'=> '
         {multilang:ALTER TABLE geozzy_resource_rext_socialnetwork ADD COLUMN textGplus_$lang VARCHAR(2000) default NULL;}
         ALTER TABLE geozzy_resource_rext_socialnetwork ADD COLUMN activeGplus INT default 0;
       '
-    ),
-    array(
+    ],
+    [
       'version' => 'rextSocialNetwork#1.2',
       'sql'=> 'ALTER TABLE geozzy_resource_rext_socialnetwork MODIFY COLUMN activeGplus INT default NULL;'
-    )
-  );
+    ],
+    [
+      'version' => 'rextSocialNetwork#1.3',
+      'sql'=> '
+        {multilang:ALTER TABLE geozzy_resource_rext_socialnetwork MODIFY COLUMN textFb_$lang VARCHAR(500) default NULL;}
+        {multilang:ALTER TABLE geozzy_resource_rext_socialnetwork MODIFY COLUMN textGplus_$lang VARCHAR(500) default NULL;}
+        {multilang:ALTER TABLE geozzy_resource_rext_socialnetwork MODIFY COLUMN textTwitter_$lang VARCHAR(500) default NULL;}
+      '
+    ],
+  ];
 
 
-
-  public function __construct( $datarray = array(), $otherRelObj = false ) {
+  public function __construct( $datarray = [], $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
 
