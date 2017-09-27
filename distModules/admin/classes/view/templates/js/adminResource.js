@@ -49,6 +49,14 @@ function bindResourceForm(){
     icon: '<i class="fa fa-arrows"></i>',
     placeholder: __('Select options')
   });
+
+  $('select.gzzMultiListImg').multiMultiList({
+    orientation: 'Horizontal',
+    itemImage: true,
+    icon: '<i class="fa fa-arrows"></i>',
+    placeholder: __('Add existing resources')
+  });
+
   $('select.gzzSelect2').select2();
 }
 
