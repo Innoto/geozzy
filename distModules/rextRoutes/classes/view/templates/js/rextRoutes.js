@@ -7,7 +7,10 @@ $( document ).ready(function() {
     $($(geozzy.rExtMapInstance.options.wrapper)[0]).height( cogumelo.publicConf.rextRoutesConf.newMapHeight );
 
     // Desactivar como chegar en caso de existir
-    if(typeof geozzy.rExtMapDirectionsController.mapClickEvent != 'undefined' ){
+    if(
+      typeof geozzy.rExtMapDirectionsController != 'undefined' &&
+      typeof geozzy.rExtMapDirectionsController.mapClickEvent != 'undefined'
+    ){
       geozzy.rExtMapDirectionsController.mapClickEvent.remove();
     }
 
