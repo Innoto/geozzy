@@ -240,7 +240,7 @@ class RExtCommentController extends RExtController implements RExtInterface {
       'filters' => [ 'idName' => 'commentType' ],
       'cache' => $this->cacheQuery
     ])->fetch();
-    
+
     $commentTypeTerm = $termModelControl->listItems([
       'filters' => [
         'taxgroup' => $commentTypeTax->getter('id'),
@@ -501,8 +501,7 @@ class RExtCommentController extends RExtController implements RExtInterface {
       'filters'=> [ 'id' => $resId ],
       'affectsDependences' => [ 'ResourcetypeModel' ],
       'cache' => $this->cacheQuery
-      )
-    )->fetch();
+    ])->fetch();
 
     $rtype = $res->getterDependence('rTypeId', 'ResourcetypeModel');
     $commentRules = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules:'.$rtype[0]->getter('idName').':commentRate');
