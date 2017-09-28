@@ -287,49 +287,10 @@ class GeozzyCollectionView extends View
     if( !$form->existErrors()) {
       $elemId = $collection->getter( 'id' );
       $newResources = $form->getFieldValue( 'resources' );
-      $oldResources = false;
 
-      if( $newResources !== false && !is_array($newResources) ) {
-        $newResources = array($newResources);
-      }
-
-      // Si estamos editando, repasamos y borramos recursos sobrantes
-      if( $elemId ) {
-        $CollectionResourcesModel = new CollectionResourcesModel();
-        $collectionResourceList = $CollectionResourcesModel->listItems(
-          array('filters' => array('collection' => $elemId)) );
-
-        if( $collectionResourceList ) {
-          // estaban asignados antes
-          $oldResources = array();
-          while( $oldResource = $collectionResourceList->fetch() ){
-            $oldResources[ $oldResource->getter('resource') ] = $oldResource->getter('id');
-            if( $newResources === false || !in_array( $oldResource->getter('resource'), $newResources ) ) {
-              $oldResource->delete(); // desasignar
-            }
-          }
-        }
-      }
-
-      // Creamos-Editamos todas las relaciones con los recursos
-      if( $newResources !== false ) {
-        $affectsDependences = true;
-        $weight = 0;
-        foreach( $newResources as $resource ) {
-          $weight++;
-          if( $oldResources === false || !isset( $oldResources[ $resource ] ) ) {
-            $collection->setterDependence( 'id',
-              new CollectionResourcesModel( array( 'weight' => $weight,
-                'collection' => $elemId, 'resource' => $resource)) );
-          }
-          else {
-            $collection->setterDependence( 'id',
-              new CollectionResourcesModel( array( 'id' => $oldResources[ $resource ],
-                'weight' => $weight, 'collection' => $elemId, 'resource' => $resource))
-            );
-          }
-        }
-      }
+      $resControl = new ResourceController();
+      $affectsDependences = true;      
+      $collection = $resControl->setResourcesToCollection( $elemId , $newResources );
     }
 
     if( !$form->existErrors()) {

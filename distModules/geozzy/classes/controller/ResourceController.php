@@ -2166,8 +2166,54 @@ class ResourceController {
 
 
 
+  public function setResourcesToCollection( $colId = false, $newResources ){
+    $oldResources = false;
 
+    if( $newResources !== false && !is_array($newResources) ) {
+      $newResources = array($newResources);
+    }
 
+    $collectionControl = new CollectionModel();
+    $collection = $collectionControl->listItems(['filters' => ['id' => $colId] ])->fetch();
+    // Si estamos editando, repasamos y borramos recursos sobrantes
+    if( $colId ) {
+      $CollectionResourcesModel = new CollectionResourcesModel();
+      $collectionResourceList = $CollectionResourcesModel->listItems(
+        array('filters' => array('collection' => $colId)) );
+
+      if( $collectionResourceList ) {
+        // estaban asignados antes
+        $oldResources = array();
+        while( $oldResource = $collectionResourceList->fetch() ){
+          $oldResources[ $oldResource->getter('resource') ] = $oldResource->getter('id');
+          if( $newResources === false || !in_array( $oldResource->getter('resource'), $newResources ) ) {
+            $oldResource->delete(); // desasignar
+          }
+        }
+      }
+    }
+
+    // Creamos-Editamos todas las relaciones con los recursos
+    if( $newResources !== false ) {
+      $weight = 0;
+      foreach( $newResources as $resource ) {
+        $weight++;
+        if( $oldResources === false || !isset( $oldResources[ $resource ] ) ) {
+          $collection->setterDependence( 'id',
+            new CollectionResourcesModel( array( 'weight' => $weight,
+              'collection' => $colId, 'resource' => $resource)) );
+        }
+        else {
+          $collection->setterDependence( 'id',
+            new CollectionResourcesModel( array( 'id' => $oldResources[ $resource ],
+              'weight' => $weight, 'collection' => $colId, 'resource' => $resource))
+          );
+        }
+      }
+    }
+
+    return $collection;
+  }
 
 
 
