@@ -265,7 +265,74 @@
   }
 }
 /*******************************************************************************************/
-
+.explorerLayoutList( @explDu-w: 100%, @explDu-h: 100%, @explFilter-w: 400px,
+   @explFilter-h: 150px, @explGallery-w: 80%, @explGallery-h: 100% ) {
+   position: relative;
+   height: 100vh;
+  .explorerContainer{
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+    &.explorer-container-du{
+      position: absolute;
+      z-index: 103;
+      width: @explDu-w;
+      height: @explDu-h;
+      display:none;
+      overflow: auto;
+    }
+    &.explorer-landing-flash,
+    &.explorer-loading{
+      position: absolute;
+      top:0px;
+      left: 0px;
+      z-index: 501;
+      width: 100%;
+      height: 100%;
+      display:none;
+    }
+    &.explorer-container-filter{
+      width: 100%;
+      max-width: @explFilter-w;
+      height: @explFilter-h;
+      position: absolute;
+      z-index: 100;
+      top: 0px;
+      left: 0px;
+    }
+    &.explorer-container-gallery{
+      width: @explGallery-w;
+      height: @explGallery-h;
+      float: right;
+      overflow: auto;
+    }
+    &.stick{
+      &.explorer-container-filter{
+        position: fixed !important;
+        top: @headerHeight + 0px !important;
+      }
+    }
+  }
+  &.mapFull{
+    .explorer-container-map{
+      width: 100%;
+    }
+    .explorer-container-gallery{
+      display: none;
+    }
+  }
+  .explorerArrowLabel {
+    font-weight:bold;
+    font-size:13px;
+    width:18px;
+    height:20px;
+    padding-left:5px;
+    padding-top:1px;
+    color:white;
+    background-color:#425451;
+  }
+}
+/*******************************************************************************************/
 /*******************************************************************************************/
 .explorerMobile( @expl-w: 100%, @expl-h: 100%, @buttonColor:#000, @buttonColorSelected:#000, @hheight: 0px ) {
   position: inherit;
