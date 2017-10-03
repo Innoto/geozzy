@@ -27,7 +27,10 @@ class RExtCommentController extends RExtController implements RExtInterface {
     }
 
     $rExtModel = new ResourceCommentModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems([
+      'filters' => [ 'resource' => $resId ],
+      'cache' => $this->cacheQuery
+    ]);
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {
@@ -207,7 +210,11 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $resId = $this->defResCtrl->resObj->getter('id');
 
     $averageVotesModel = new AverageVotesViewModel();
-    $resAverageData = $averageVotesModel->listItems( array('filters' => array('id' => $resId) ))->fetch();
+    $resAverageData = $averageVotesModel->listItems([
+      'filters' => [ 'id' => $resId ],
+      'cache' => $this->cacheQuery
+    ])->fetch();
+
     if( $resAverageData ) {
       $resAverageVotes = $resAverageData->getter('averageVotes');
       $resNumberVotes = $resAverageData->getter('comments');
@@ -229,18 +236,24 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $taxModelControl = new TaxonomygroupModel();
     $termModelControl = new TaxonomytermModel();
     // Data Options Comment Type
-    $commentTypeTax = $taxModelControl->listItems( array('filters' => array('idName' => 'commentType')) )->fetch();
-    $commentTypeTerm = $termModelControl->listItems(
-      array('filters' =>
-        array(
-          'taxgroup' => $commentTypeTax->getter('id'),
-          'idNames' => 'comment'
-        )
-      )
-    )->fetch();
+    $commentTypeTax = $taxModelControl->listItems([
+      'filters' => [ 'idName' => 'commentType' ],
+      'cache' => $this->cacheQuery
+    ])->fetch();
+
+    $commentTypeTerm = $termModelControl->listItems([
+      'filters' => [
+        'taxgroup' => $commentTypeTax->getter('id'),
+        'idNames' => 'comment'
+      ],
+      'cache' => $this->cacheQuery
+    ])->fetch();
 
     $commentModel = new commentModel();
-    $commentCount = $commentModel->listCount( array('filters' => array('resource' => $resId, 'type' => $commentTypeTerm->getter('id')) ));
+    $commentCount = $commentModel->listCount([
+      'filters' => [ 'resource' => $resId, 'type' => $commentTypeTerm->getter('id') ],
+      'cache' => $this->cacheQuery
+    ]);
 
     if( !in_array('comment', $perms) && $commentCount === 0 ){
       $rExtViewBlockInfo['template']['full']->assign( 'commentEmpty', true);
@@ -306,7 +319,10 @@ class RExtCommentController extends RExtController implements RExtInterface {
     }
 
     $resCommModel = new ResourceCommentViewModel();
-    $resPermsList = $resCommModel->listItems( array( 'filters'=> $filters ) );
+    $resPermsList = $resCommModel->listItems([
+      'filters'=> $filters,
+      'cache' => $this->cacheQuery
+    ]);
 
 
     while( $resPerms = $resPermsList->fetch() ) {
@@ -354,7 +370,10 @@ class RExtCommentController extends RExtController implements RExtInterface {
     }
 
     $votesModel = new AverageVotesViewModel();
-    $votesList = $votesModel->listItems( array( 'filters'=> $filters ) );
+    $votesList = $votesModel->listItems([
+      'filters' => $filters,
+      'cache' => $this->cacheQuery
+    ]);
 
 
     while( $votesObj = $votesList->fetch() ) {
@@ -378,12 +397,11 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $publish = false;
 
     $resourceModel = new ResourceModel();
-    $res = $resourceModel->listItems(
-      array(
-        'filters'=> array('id' => $resId),
-        'affectsDependences' => array('ResourcetypeModel')
-      )
-    )->fetch();
+    $res = $resourceModel->listItems([
+      'filters'=> [ 'id' => $resId ],
+      'affectsDependences' => [ 'ResourcetypeModel' ],
+      'cache' => $this->cacheQuery
+    ])->fetch();
 
     $rtype = $res->getterDependence('rTypeId', 'ResourcetypeModel');
     $commentRules = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules');
@@ -416,12 +434,18 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $taxModelControl = new TaxonomygroupModel();
     $termModelControl = new TaxonomytermModel();
     // Data Options Comment Type
-    $commentTypeTax = $taxModelControl->listItems( array('filters' => array('idName' => 'commentType')) )->fetch();
-    $commentTypeTermsList = $termModelControl->listItems(
-      array('filters' =>
-        array( 'taxgroup' => $commentTypeTax->getter('id'), 'idNames' => $typeIdNames )
-      )
-    );
+    $commentTypeTax = $taxModelControl->listItems([
+      'filters' => [ 'idName' => 'commentType' ],
+      'cache' => $this->cacheQuery
+    ])->fetch();
+
+    $commentTypeTermsList = $termModelControl->listItems([
+      'filters' => [
+        'taxgroup' => $commentTypeTax->getter('id'),
+        'idNames' => $typeIdNames
+      ],
+      'cache' => $this->cacheQuery
+    ]);
 
     while( $commentTypeTermObj = $commentTypeTermsList->fetch() ) {
       $commentTypeTerms[ $commentTypeTermObj->getter('id') ] = $commentTypeTermObj->getter('idName');
@@ -448,9 +472,15 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $taxModelControl = new TaxonomygroupModel();
     $termModelControl = new TaxonomytermModel();
 
-    $suggestTypeTax = $taxModelControl->listItems( array('filters' => array('idName' => 'suggestType')) )->fetch();
-    $suggestTypeTermsList = $termModelControl->listItems( array('filters' =>
-      array('taxgroup' => $suggestTypeTax->getter('id'))) );
+    $suggestTypeTax = $taxModelControl->listItems([
+      'filters' => [ 'idName' => 'suggestType' ],
+      'cache' => $this->cacheQuery
+    ])->fetch();
+
+    $suggestTypeTermsList = $termModelControl->listItems([
+      'filters' => [ 'taxgroup' => $suggestTypeTax->getter('id') ],
+      'cache' => $this->cacheQuery
+    ]);
 
     while( $suggestTypeTermObj = $suggestTypeTermsList->fetch() ) {
       $suggestTypeTerms[ $suggestTypeTermObj->getter('id') ] = array (
@@ -467,12 +497,11 @@ class RExtCommentController extends RExtController implements RExtInterface {
     $commentRate = true;
 
     $resourceModel = new ResourceModel();
-    $res = $resourceModel->listItems(
-      array(
-        'filters'=> array('id' => $resId),
-        'affectsDependences' => array('ResourcetypeModel')
-      )
-    )->fetch();
+    $res = $resourceModel->listItems([
+      'filters'=> [ 'id' => $resId ],
+      'affectsDependences' => [ 'ResourcetypeModel' ],
+      'cache' => $this->cacheQuery
+    ])->fetch();
 
     $rtype = $res->getterDependence('rTypeId', 'ResourcetypeModel');
     $commentRules = Cogumelo::getSetupValue( 'mod:geozzy:resource:commentRules:'.$rtype[0]->getter('idName').':commentRate');
