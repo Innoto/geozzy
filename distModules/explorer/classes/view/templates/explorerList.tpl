@@ -2,13 +2,16 @@
   <!--duContainer -->
   <div class="explorerContainer explorer-container-du"></div>
   <!--filterContainer -->
-  <div class="explorerContainer explorerElSticky explorer-container-filter"></div>
+  <div class="explorerContainer explorer-container-filter explorerElSticky"></div>
   <!--galleryContainer -->
-  <div class="explorerContainer explorer-container-gallery"></div>
+  <div class="explorerContainer explorer-container-gallery clearfix"></div>
+  
   <!--galleryContainer -->
   <div class="explorerContainer explorer-loading" style="display:none;"><i class="fa  fa-compass fa-spin"></i></div>
+  <div class="explorerButton gzz-exit-sticky"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+
   <!-- mobile explorer buttons -->
-  <div class="explorer-manage-mobile">
+  <div class="explorer-manage-mobile explorerElSticky">
     <div class="explorer-manage-filters-mobile" style="display:none;">
       <div class="col-xs-6 col-sm-6  text-center">
         <div class="explorerButton return">{t}Apply{/t}</div>
