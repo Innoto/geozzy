@@ -844,6 +844,7 @@ class geozzyAPIView extends View {
 
     $resourceModel = new ResourceModel();
     $queryParameters = [ 'cache' => $this->cacheQuery ];
+    $queryParameters['affectsDependences'] = [ 'FiledataModel' ];
 
 
     // Bloqueo recursos no deseados
@@ -956,6 +957,16 @@ class geozzyAPIView extends View {
           $allData[ $col ] = $valueobject->getter( $col );
           if( $col === 'rTypeId' ) {
             $allData[ 'rTypeIdName' ] = isset($infoRTypeNameIds[ $allData[ 'rTypeId' ] ]) ? $infoRTypeNameIds[ $allData[ 'rTypeId' ] ] : null;
+          }
+          if( $col === 'image' && !empty( $allData[ $col ] ) ) {
+            // Cargo los datos de image (imageAKey, imageName)
+            $fileDep = $valueobject->getterDependence( $col );
+            if( $fileDep !== false ) {
+              foreach( $fileDep as $fileModel ) {
+                $allData[ 'imageAKey' ] = $fileModel->getter( 'aKey' );
+                $allData[ 'imageName' ] = $fileModel->getter( 'name' );
+              }
+            }
           }
         }
       }
@@ -1526,7 +1537,7 @@ class geozzyAPIView extends View {
       if( $resList !== false ) {
         $resCollData_tmp = array();
         while( $resColl = $resList->fetch() ) {
-          $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'timeCreation',
+          $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'imageAKey', 'imageName', 'timeCreation',
             'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' );
           foreach( $k as $key ) {
             $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
