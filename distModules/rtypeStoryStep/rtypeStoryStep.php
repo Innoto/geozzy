@@ -36,6 +36,7 @@ class rtypeStoryStep extends Module {
     $this->addUrlPatterns( '#^api/admin/adminStorySteps/(.*)$#', 'view:StoryStepAdminAPIView::storySteps' );
     $this->addUrlPatterns( '#^api/admin/adminStorySteps.json$#', 'view:StoryStepAdminAPIView::storyStepsJson' );
 
+
   }
 
 

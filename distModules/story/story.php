@@ -4,7 +4,7 @@ Cogumelo::load("coreController/Module.php");
 
 class story extends Module {
   public $name = "story";
-  public $version = 1.4;
+  public $version = 1.5;
 
   public $dependences = array(
     array(
@@ -53,6 +53,9 @@ class story extends Module {
     $this->addUrlPatterns( '#^api/storyList$#', 'view:StoryAPIView::storyList' );
     $this->addUrlPatterns( '#^api/doc/storyList.json$#', 'view:StoryAPIView::storyListJson' ); // Main swagger JSON
 
+    $COGUMELO_INSTANCED_MODULES['rtypeStoryStep']->addUrlPatterns( '#^api/storySteps/(.*)$#', 'view:StoryStepAPIView::storySteps' );
+    $COGUMELO_INSTANCED_MODULES['rtypeStoryStep']->addUrlPatterns( '#^api/doc/storySteps.json$#', 'view:StoryStepAPIView::storyStepsJson' );
+
 
     user::load('controller/UserAccessController.php');
     $useraccesscontrol = new UserAccessController();
@@ -72,6 +75,10 @@ class story extends Module {
       array(
         'path'=> '/doc/storyList.json',
         'description' => 'Stories List API'
+      ),
+      array(
+        'path'=> '/doc/storySteps.json',
+        'description' => 'Stories Steps API'
       )
     );
 

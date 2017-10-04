@@ -12,7 +12,7 @@ class AllstoryStepsViewModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'story#1.4',
+      'version' => 'story#1.5',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_allstories_index;
@@ -57,7 +57,8 @@ class AllstoryStepsViewModel extends Model
             geozzy_resource_rext_event.endDate as endDate,
 
 						geozzy_collection_resources.weight as weight,
-						story.idName as storyName,
+            story.id as storyId,
+            story.idName as storyName,
 	          group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
 					FROM geozzy_resource as storyStep
 
@@ -179,6 +180,9 @@ class AllstoryStepsViewModel extends Model
       'type'=>'DATETIME'
     ),
     'weight' => array(
+      'type'=>'INT'
+    ),
+    'storyId' => array(
       'type'=>'INT'
     ),
     'storyName' => array(
