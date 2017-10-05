@@ -32,8 +32,8 @@ class AdminViewResource extends AdminViewMaster {
 
     $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
     foreach( $resourcetypelist as $i => $res ) {
-      $typeList[ $i ] = $res->getter('name_es');
-      $resCreateByType .= '<li><a class="create-'.$res->getter('idName').'" href="/admin#resource/create/resourcetype/'.$res->getter('id').'">'.$res->getter('name_es').'</a></li>';
+      $typeList[ $i ] = $res->getter('name');
+      $resCreateByType .= '<li><a class="create-'.$res->getter('idName').'" href="/admin#resource/create/resourcetype/'.$res->getter('id').'">'.$res->getter('name').'</a></li>';
     }
     $resCreateByType .= '</ul>';
 

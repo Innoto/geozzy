@@ -31,7 +31,7 @@ class AdminViewPage extends AdminViewMaster {
     $resourcetype = $resourcetype->listItems(array( 'filters' => array( 'idName' => 'rtypePage' ) ))->fetch();
 
     $resCreateByType = '<ul class="dropdown-menu dropdown-menu-right" role="menu">';
-      $resCreateByType .= '<li><a class="create-'.$resourcetype->getter('idName').'" href="/admin#resource/create/resourcetype/'.$resourcetype->getter('id').'">'.$resourcetype->getter('name_es').'</a></li>';
+      $resCreateByType .= '<li><a class="create-'.$resourcetype->getter('idName').'" href="/admin#resource/create/resourcetype/'.$resourcetype->getter('id').'">'.$resourcetype->getter('name').'</a></li>';
     $resCreateByType .= '</ul>';
 
     $this->template->assign( 'headTitle', __('Resource Management') );
