@@ -5,9 +5,8 @@ Cogumelo::load( 'coreController/Module.php' );
 // require_once APP_BASE_PATH.'/conf/inc/geozzyTopics.php';
 require_once APP_BASE_PATH.'/conf/inc/geozzyTaxonomyGroups.php';
 require_once APP_BASE_PATH.'/conf/inc/geozzyStarred.php';
-require_once APP_BASE_PATH.'/conf/inc/geozzyMenu.php';
 
-define('MOD_GEOZZY_URL_DIR', 'geozzy');
+// define('MOD_GEOZZY_URL_DIR', 'geozzy');
 
 
 class geozzy extends Module {
@@ -18,10 +17,7 @@ class geozzy extends Module {
   // public $autoIncludeAlways = true;
   // FALLA: PHP Fatal error:  Class 'Smarty' not found in /home/proxectos/cogumelo/coreClasses/coreView/Template.php on line 10
 
-
-  public $dependences = array(
-
-  );
+  // public $dependences = array();
 
   // pre-170126
   // 'id' =>'ckeditor',
@@ -41,7 +37,7 @@ class geozzy extends Module {
 
 
   public function __construct() {
-    $this->addUrlPatterns( '#^'.MOD_GEOZZY_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
+    // $this->addUrlPatterns( '#^'.MOD_GEOZZY_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
 
     // geozzy Resource
     //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
@@ -248,9 +244,13 @@ class geozzy extends Module {
       ),
       'editable' => 0,
       'nestable' => 4,
-      'sortable' => 1,
-      'initialTerms' => $GEOZZY_MENU
+      'sortable' => 1
     );
+
+    if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyMenu.php') ) {
+      require_once APP_BASE_PATH.'/conf/inc/geozzyMenu.php';
+      $GEOZZY_TAXONOMYGROUPS['menu']['initialTerms'] = $GEOZZY_MENU;
+    }
 
 
 
