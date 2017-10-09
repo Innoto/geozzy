@@ -12,7 +12,7 @@ class AllstoryStepsViewModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'story#1.4',
+      'version' => 'story#1.6',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_allstories_index;
@@ -30,6 +30,9 @@ class AllstoryStepsViewModel extends Model
 						{multilang: storyStep.content_$lang, }
 
 						storyStep.image,
+            fd.name AS imageName,
+            fd.AKey AS imageAKey,
+
 						storyStep.loc,
 						storyStep.defaultZoom,
 						storyStep.externalUrl,
@@ -57,12 +60,15 @@ class AllstoryStepsViewModel extends Model
             geozzy_resource_rext_event.endDate as endDate,
 
 						geozzy_collection_resources.weight as weight,
-						story.idName as storyName,
+            story.id as storyId,
+            story.idName as storyName,
 	          group_concat(geozzy_resource_taxonomyterm.taxonomyterm) as terms
 					FROM geozzy_resource as storyStep
 
           LEFT JOIN geozzy_resource_taxonomyterm
           ON storyStep.id = geozzy_resource_taxonomyterm.resource
+
+          LEFT JOIN filedata_filedata AS fd ON storyStep.image = fd.id
 
 					RIGHT JOIN geozzy_resource_rext_storystep
 					ON geozzy_resource_rext_storystep.resource = storyStep.id
@@ -121,6 +127,14 @@ class AllstoryStepsViewModel extends Model
     'image' => array(
       'type' => 'INT'
     ),
+    'imageName' => [
+      'type' => 'VARCHAR',
+      'size' => 250
+    ],
+    'imageAKey' => [
+      'type' => 'VARCHAR',
+      'size' => 16
+    ],
     'loc' => array(
       'type'=>'GEOMETRY'
     ),
@@ -179,6 +193,9 @@ class AllstoryStepsViewModel extends Model
       'type'=>'DATETIME'
     ),
     'weight' => array(
+      'type'=>'INT'
+    ),
+    'storyId' => array(
       'type'=>'INT'
     ),
     'storyName' => array(
