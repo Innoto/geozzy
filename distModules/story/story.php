@@ -48,10 +48,10 @@ class story extends Module {
   function setGeozzyUrlPatternsAPI() {
     global $COGUMELO_INSTANCED_MODULES;
 
-    $this->addUrlPatterns( '#^api/story/(.*)#', 'view:StoryAPIView::story' );
-    $this->addUrlPatterns( '#^api/doc/story.json#', 'view:StoryAPIView::storyJson' ); // Main swagger JSON
-    $this->addUrlPatterns( '#^api/storyList$#', 'view:StoryAPIView::storyList' );
-    $this->addUrlPatterns( '#^api/doc/storyList.json$#', 'view:StoryAPIView::storyListJson' ); // Main swagger JSON
+    //$this->addUrlPatterns( '#^api/story/(.*)#', 'view:StoryAPIView::story' );
+    //$this->addUrlPatterns( '#^api/doc/story.json#', 'view:StoryAPIView::storyJson' ); // Main swagger JSON
+    //$this->addUrlPatterns( '#^api/storyList$#', 'view:StoryAPIView::storyList' );
+    //$this->addUrlPatterns( '#^api/doc/storyList.json$#', 'view:StoryAPIView::storyListJson' ); // Main swagger JSON
 
     $COGUMELO_INSTANCED_MODULES['rtypeStoryStep']->addUrlPatterns( '#^api/storySteps/(.*)$#', 'view:StoryStepAPIView::storySteps' );
     $COGUMELO_INSTANCED_MODULES['rtypeStoryStep']->addUrlPatterns( '#^api/doc/storySteps.json$#', 'view:StoryStepAPIView::storyStepsJson' );
@@ -68,14 +68,14 @@ class story extends Module {
   function getGeozzyDocAPI() {
 
     $ret = array(
-      array(
+      /*array(
         'path'=> '/doc/story.json',
         'description' => 'Stories API'
-      ),
-      array(
+      ),*/
+      /*array(
         'path'=> '/doc/storyList.json',
         'description' => 'Stories List API'
-      ),
+      ),*/
       array(
         'path'=> '/doc/storySteps.json',
         'description' => 'Stories Steps API'
