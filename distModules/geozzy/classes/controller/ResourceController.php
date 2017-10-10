@@ -2083,13 +2083,13 @@ class ResourceController {
 
     if( is_object( $objModel ) ) {
       $defLang = Cogumelo::getSetupValue( 'lang:default' );
-      $rawData = $objModel->getAllData( 'onlydata' ); // Cargamos todos los campos "en bruto"
+      $allData = $objModel->getAllData( 'onlydata' ); // Cargamos todos los campos "en bruto"
 
       foreach( $objModel->getCols() as $fieldName => $fieldInfo ) {
         $allData[ $fieldName ] = $objModel->getter( $fieldName );
         // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
-        if( $allData[ $fieldName ] === '' && isset( $rawData[ $fieldName.'_'.$defLang ] ) ) {
-          $allData[ $fieldName ] = $rawData[ $fieldName.'_'.$defLang ];
+        if( $allData[ $fieldName ] === '' && isset( $allData[ $fieldName.'_'.$defLang ] ) ) {
+          $allData[ $fieldName ] = $allData[ $fieldName.'_'.$defLang ];
         }
       }
     }
