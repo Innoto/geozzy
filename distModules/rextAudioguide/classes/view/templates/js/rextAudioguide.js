@@ -1,6 +1,9 @@
   $(document).ready(function(){
-    var url = window.location.href.split('#');
-    if (url[1]=='app'){
-      $('.audioguide audio').attr('autoplay', true);
+    alert('what?')
+    var all_url = window.location.href.split('?');
+    alert(all_url[1])
+    var url = all_url[1].split('=');
+    if (url[0]=="autoplay" && url[1]=="true"){
+      $('.audioguia audio').attr('autoplay', true);
     }
   });
