@@ -1,10 +1,6 @@
 <?php
 
 Cogumelo::load( 'coreController/Module.php' );
-// require_once APP_BASE_PATH.'/conf/inc/geozzyResourceType.php';
-// require_once APP_BASE_PATH.'/conf/inc/geozzyTopics.php';
-require_once APP_BASE_PATH.'/conf/inc/geozzyTaxonomyGroups.php';
-require_once APP_BASE_PATH.'/conf/inc/geozzyStarred.php';
 
 // define('MOD_GEOZZY_URL_DIR', 'geozzy');
 
@@ -172,9 +168,9 @@ class geozzy extends Module {
     geozzy::load('model/ResourcetypeTopicModel.php');
 
 
-    /**
-    Crea un usuario superAdmin para Geozzy
-    */
+    //
+    // Creamos un usuario superAdmin para Geozzy
+    //
     $passwd = false;
 
     $fileConnectionsInfo = APP_BASE_PATH.'/conf/inc/default-connections-info.php';
@@ -219,8 +215,13 @@ class geozzy extends Module {
     Añade taxonomías destacadas y menu
     */
     global $GEOZZY_TAXONOMYGROUPS;
-    global $GEOZZY_STARRED;
-    global $GEOZZY_MENU;
+    if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyTaxonomyGroups.php') ) {
+      require_once APP_BASE_PATH.'/conf/inc/geozzyTaxonomyGroups.php';
+    }
+    else {
+      $GEOZZY_TAXONOMYGROUPS = [];
+    }
+
 
     $GEOZZY_TAXONOMYGROUPS['starred'] = array(
       'idName' => 'starred',
@@ -231,9 +232,14 @@ class geozzy extends Module {
       ),
       'editable' => 0,
       'nestable' => 0,
-      'sortable' => 1,
-      'initialTerms' => $GEOZZY_STARRED
+      'sortable' => 1
     );
+
+    if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyStarred.php') ) {
+      require_once APP_BASE_PATH.'/conf/inc/geozzyStarred.php';
+      $GEOZZY_TAXONOMYGROUPS['starred']['initialTerms'] = $GEOZZY_STARRED;
+    }
+
 
     $GEOZZY_TAXONOMYGROUPS['menu'] = array(
       'idName' => 'menu',
@@ -253,9 +259,8 @@ class geozzy extends Module {
     }
 
 
-
     /**
-    Crea las taxonomías
+    Creamos las taxonomías definidas
     */
     if( count( $GEOZZY_TAXONOMYGROUPS ) > 0 ) {
       foreach( $GEOZZY_TAXONOMYGROUPS as $tax ) {
@@ -274,8 +279,8 @@ class geozzy extends Module {
   }
 
   /**
-  * This function is to create terms
-  */
+   * This function is to create terms
+   */
   public function createTermsArray( $taxId, $parentId, $terms ){
     foreach( $terms as $term ) {
       $term['taxgroup'] = $taxId;
