@@ -61,6 +61,8 @@ class StoryStepAPIView extends View {
 
             if( isset($resourceDataArray['image']) ) {
               $row['img'] = $resourceDataArray['image'];
+              $row['imageName'] = $resourceDataArray['imageName'];
+              $row['imageAKey'] = $resourceDataArray['imageAKey'];
             }
 
             $row['defaultZoom'] = $resource->getter('defaultZoom');

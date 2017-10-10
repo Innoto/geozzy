@@ -36,12 +36,12 @@ function bindEventForm(modal){
 
   // recogemos los valores, los ponemos en UTC y los pasamos a timestamp antes de pasarlos al servidor
   $(modal+'.initDate').on('dp.change', function(e){
-    e.date.tz(cogumelo.publicConf.date_timezone);
+    e.date.tz(cogumelo.publicConf.date_timezone.project);
     initDateTs = e.date.unix();
     $(modal+'input.cgmMForm-field-rextEvent_initDate').val(initDateTs);
   });
   $(modal+'.endDate').on('dp.change', function(e){
-    e.date.tz(cogumelo.publicConf.date_timezone);
+    e.date.tz(cogumelo.publicConf.date_timezone.project);
     endDateTs = e.date.unix();
     $(modal+'input.cgmMForm-field-rextEvent_endDate').val(endDateTs);
   });

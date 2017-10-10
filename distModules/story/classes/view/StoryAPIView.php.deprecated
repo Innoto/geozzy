@@ -102,7 +102,7 @@ class StoryAPIView extends View
   // story
   public function story( $urlParams ) {
 
-    require_once APP_BASE_PATH."/conf/inc/geozzyStories.php"; // Load $GEOZZY_STORIES
+    //require_once APP_BASE_PATH."/conf/inc/geozzyStories.php"; // Load $GEOZZY_STORIES
     global $GEOZZY_STORIES;
 
     $validation = array(
@@ -130,7 +130,7 @@ class StoryAPIView extends View
   // story list
   public function storyList() {
 
-    require_once APP_BASE_PATH."/conf/inc/geozzyStories.php"; // Load $GEOZZY_STORIES
+    //require_once APP_BASE_PATH."/conf/inc/geozzyStories.php"; // Load $GEOZZY_STORIES
     global $GEOZZY_STORIES;
 
     if( count( $GEOZZY_STORIES ) > 0 ) {
