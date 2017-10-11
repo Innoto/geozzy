@@ -9,6 +9,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:96
+msgid "Are you sure you want to delete this comment?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:125
+msgid "Are you sure you want to try this suggestion?"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:141
+msgid "Are you sure you want to mark as irrelevant this suggestion?"
+msgstr ""
+
 #: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/Templates.js:23
 msgid "Your contribution is welcome"
 msgstr ""
@@ -25,54 +37,46 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:96
-msgid "Are you sure you want to delete this comment?"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:125
-msgid "Are you sure you want to try this suggestion?"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/templates/js/view/AdminListCommentView.js:141
-msgid "Are you sure you want to mark as irrelevant this suggestion?"
-msgstr ""
-
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:4
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:4
 msgid "Comentarios"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:31
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:31
 msgid "Post a comment or suggestion"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:37
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:37
 msgid "Post a comment"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:40
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:55
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:40
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:55
 msgid "Post a suggestion"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:47
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:47
 msgid "Loading..."
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/mailCommentValidated.tpl:2
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/mailCommentValidated.tpl:2
 msgid "Estimado usuario,"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/mailCommentValidated.tpl:3
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/mailCommentValidated.tpl:3
 msgid "Muchas gracias por su aportación. Nos será de mucha utilidad."
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/mailCommentValidated.tpl:4
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/mailCommentValidated.tpl:4
 msgid "Un saludo."
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentAdminAPIView.php:85
-#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentAdminAPIView.php:89
-msgid "Gracias por su aportación"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentView.php:56
@@ -115,6 +119,12 @@ msgstr ""
 msgid "An unexpected error has occurred"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentAdminAPIView.php:85
+#: /home/proxectos/geozzy/distModules/rextComment/classes/view/CommentAdminAPIView.php:89
+msgid "Gracias por su aportación"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextComment/classes/controller/RExtCommentController.php:65
 #: /home/proxectos/geozzy/distModules/rextComment/classes/controller/RExtCommentController.php:62
 msgid "Active comment"
 msgstr ""

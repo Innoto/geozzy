@@ -30,6 +30,7 @@ msgstr "Descargar ruta"
 msgid "Circular route"
 msgstr "Ruta circular"
 
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:51
@@ -41,6 +42,7 @@ msgstr ""
 msgid "Lineal route"
 msgstr "Ruta lineal"
 
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/becarios/app/tmp/tpl/rExtViewBlock.tpl:62

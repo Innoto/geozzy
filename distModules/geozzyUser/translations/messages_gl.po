@@ -74,18 +74,22 @@ msgstr ""
 msgid "Continuar"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/recoveryPassword.tpl:5
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/recoveryPassword.tpl:5
 msgid "Enter a new password:"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/recoveryPassword.tpl:8
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/recoveryPassword.tpl:8
 msgid "Your url has expired. Please restart the password recovery process"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:4
 msgid "Perfil de Usuario"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/userProfile.tpl:25
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:25
 msgid "Write only if you want to change the password"
 msgstr ""

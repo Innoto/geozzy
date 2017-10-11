@@ -27,6 +27,7 @@ msgstr ""
 msgid "Editar historia"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/listSteps.tpl:5
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/listSteps.tpl:5
 msgid "Steps available"
 msgstr ""

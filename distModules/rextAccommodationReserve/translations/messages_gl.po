@@ -9,6 +9,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/canlers/app/tmp/tpl/ruralgest-net-public.tpl:4
+#: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:5
+#: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:42
+#: /home/proxectos/canlers/app/tmp/tpl/netubi-com-public.tpl:5
+#: /home/proxectos/canlers/app/tmp/tpl/netubi-com-public.tpl:18
+#: /home/proxectos/canlers/app/tmp/tpl/thebookingbutton-com-public.tpl:5
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/booking-com-public.tpl:5
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/booking-com-public.tpl:42
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/ruralgest-net-public.tpl:4
@@ -18,15 +24,19 @@ msgstr ""
 msgid "Reserve"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:11
+#: /home/proxectos/canlers/app/tmp/tpl/netubi-com-public.tpl:11
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/booking-com-public.tpl:11
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/netubi-com-public.tpl:11
 msgid "Check in date - Check out date"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:18
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/booking-com-public.tpl:18
 msgid "Rooms"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:30
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/booking-com-public.tpl:30
 msgid "Adults"
 msgstr ""

@@ -21,14 +21,17 @@ msgstr "Descargar"
 msgid "None"
 msgstr "Ninguno"
 
+#: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:69
 #: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:68
 msgid "Author"
 msgstr "Autor"
 
+#: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:73
 #: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:72
 msgid "Multimedia file"
 msgstr "Fichero multimedia"
 
+#: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:74
 #: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:73
 msgid "File"
 msgstr "Fichero"

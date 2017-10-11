@@ -9,16 +9,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
-msgid "Select options"
-msgstr "Seleccionar opcións"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
-msgid "Edit Collection"
-msgstr "Editar colección"
-
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
 msgid "Add existing resources"
 msgstr "Añadir recursos existentes"
@@ -35,49 +25,19 @@ msgstr "Subir múltiples arquivos"
 msgid "Link or embed multimedia resource"
 msgstr "Enlazar ou embeber recurso multimedia"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/listResourceOutTopic.tpl:4
-msgid "Available and unallocated resources"
-msgstr "Recursos dispoñibles e non asignados aínda"
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
+msgid "Select options"
+msgstr "Seleccionar opcións"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:14
-msgid "Resources Starred in"
-msgstr "Recursos destacados"
-
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:19
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:57
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
-msgid "Assign"
-msgstr "Asignar"
-
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:21
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:59
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:21
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:59
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:107
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:108
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:22
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:60
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:22
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:60
-msgid "Save"
-msgstr "Gardar"
-
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:38
-msgid "List of resources for"
-msgstr "Lista de recursos para"
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+msgid "Edit Collection"
+msgstr "Editar colección"
 
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/listAsignStarred.tpl:4
 msgid "Resources not starred yet"
 msgstr "Recursos non destacados aínda"
-
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/modal.tpl:15
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/modal.tpl:35
-msgid "Close"
-msgstr "Pechar"
 
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/admin403.tpl:5
 msgid "Forbidden: Access is denied"
@@ -111,6 +71,10 @@ msgstr "Páxinas"
 msgid "Starred"
 msgstr "Destacados"
 
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:113
+msgid "Menu"
+msgstr "Menú"
+
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:78
 msgid "Comments"
 msgstr "Comentarios"
@@ -131,17 +95,13 @@ msgstr "Categorías"
 msgid "Settings"
 msgstr "Axustes"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:113
-msgid "Menu"
-msgstr "Menú"
-
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:117
 msgid "Users"
 msgstr "Usuarios"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:120
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:65
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:141
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:120
 msgid "User"
 msgstr "Usuario"
 
@@ -158,13 +118,83 @@ msgstr "Xestión de categorías para"
 msgid "Add"
 msgstr "Añadir"
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:107
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:108
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:185
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:186
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:21
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:59
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:21
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:59
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:22
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:60
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:22
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:60
+msgid "Save"
+msgstr "Gardar"
+
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:38
 msgid "List of terms for"
 msgstr "Lista de termos para"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:68
-msgid "Access denied"
-msgstr "Acceso denegado"
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/listResourceOutTopic.tpl:4
+msgid "Available and unallocated resources"
+msgstr "Recursos dispoñibles e non asignados aínda"
+
+#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:11
+msgid "Menu management"
+msgstr ""
+
+#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:16
+msgid "Add menu term"
+msgstr ""
+
+#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:34
+msgid "List of menu terms"
+msgstr ""
+
+#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:52
+msgid "Add term menu"
+msgstr ""
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/modal.tpl:15
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/modal.tpl:35
+msgid "Close"
+msgstr "Pechar"
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:14
+msgid "Resources Starred in"
+msgstr "Recursos destacados"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:57
+msgid "Assign"
+msgstr "Asignar"
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:38
+msgid "List of resources for"
+msgstr "Lista de recursos para"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:30
+msgid "Roles Management"
+msgstr "Xestor de roles"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:31
+msgid "Add role"
+msgstr "Añadir rol"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:88
+msgid "Create role"
+msgstr "Crear rol"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:121
+msgid "Edit role"
+msgstr "Editar rol"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:32
 msgid "Comments Management"
@@ -174,11 +204,13 @@ msgstr "Xestor de comentarios"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:67
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:143
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:89
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:70
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:92
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:89
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:140
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:149
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:139
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:148
 msgid "Published"
@@ -186,35 +218,36 @@ msgstr "Publicado"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:43
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:150
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:149
 msgid "Unpublished"
 msgstr "Non publicado"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:49
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:124
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:73
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:76
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:73
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:95
 msgid "Publish"
 msgstr "Publicar"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:50
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:125
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:74
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:77
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:74
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:96
 msgid "Unpublish"
 msgstr "Despublicar"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:51
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:126
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:75
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:78
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:107
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:101
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:75
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:107
 msgid "Delete"
 msgstr "Borrar"
 
@@ -238,76 +271,58 @@ msgid "Suggestions Management"
 msgstr "Xestor de suxerencias"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:92
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:80
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:70
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:81
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:191
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:190
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:80
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:92
 msgid "All"
 msgstr "Todo"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:104
-msgid "Selecciona un icono"
-msgstr "Selecciona un icono"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:106
-msgid "Category form"
-msgstr "Formulario de categorías"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:41
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:37
-msgid "Resource Management"
-msgstr "Xestor de recursos"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:44
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:51
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:40
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:47
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:47
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:57
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:48
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:58
-msgid "Crear"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:87
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:90
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:136
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:95
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:108
-msgid "Type"
-msgstr "Tipo"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:88
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:91
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:138
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:96
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:109
-msgid "Title"
-msgstr "Título"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:314
-msgid "Thumbnail image (Optional)"
-msgstr "Miniatura da imaxe (Opcional)"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:43
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:44
-msgid "Add resource"
-msgstr "Añadir recurso"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:85
-msgid "Resource type"
-msgstr "Tipo de recurso"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:100
-msgid "Unasign"
-msgstr "Desasignar"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewCollection.php:37
 msgid "Create Collection"
 msgstr "Crear colección"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:37
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:41
+msgid "Resource Management"
+msgstr "Xestor de recursos"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:40
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:47
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:51
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:48
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:58
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:47
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:57
+msgid "Crear"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:90
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:87
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:108
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:95
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:137
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:136
+msgid "Type"
+msgstr "Tipo"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:91
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:88
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:109
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:96
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:139
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:138
+msgid "Title"
+msgstr "Título"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMultiList.php:27
+msgid "Stats Page"
+msgstr "Páxina de estadísticas"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:33
 msgid "Show user"
@@ -370,60 +385,32 @@ msgstr "Editar roles"
 msgid "Edit user"
 msgstr "Editar usuario"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:314
+msgid "Thumbnail image (Optional)"
+msgstr "Miniatura da imaxe (Opcional)"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:68
+msgid "Access denied"
+msgstr "Acceso denegado"
+
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:43
 msgid "Create and add resources"
 msgstr "Crear e añadir recursos"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:44
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:54
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:45
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:55
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:54
 msgid "Return"
 msgstr "Volver"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:51
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:61
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:52
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:62
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:51
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:61
 msgid "Assign selected"
 msgstr "Asignar seleccionados"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
-msgid ""
-"<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working "
-"with resource types)</li><li>Assign to this starred)</li></ul>"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
-msgid "Assign resources: howto"
-msgstr "Asignar roles: cómo"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:80
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:92
-msgid "id"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:30
-msgid "Roles Management"
-msgstr "Xestor de roles"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:31
-msgid "Add role"
-msgstr "Añadir rol"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:88
-msgid "Create role"
-msgstr "Crear rol"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:121
-msgid "Edit role"
-msgstr "Editar rol"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMultiList.php:27
-msgid "Stats Page"
-msgstr "Páxina de estadísticas"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
 msgid "Create a new resource"
@@ -436,3 +423,54 @@ msgstr "Traballando con tipos de recurso"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
 msgid "Assign to this topic"
 msgstr "Asignar a esta temática"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
+msgid "Assign resources: howto"
+msgstr "Asignar roles: cómo"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:92
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:80
+msgid "id"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:104
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:181
+msgid "Selecciona un icono"
+msgstr "Selecciona un icono"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:106
+msgid "Category form"
+msgstr "Formulario de categorías"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:140
+msgid "None"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:161
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:182
+msgid "Related resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:184
+msgid "Menu form"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
+msgid ""
+"<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working "
+"with resource types)</li><li>Assign to this starred)</li></ul>"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:43
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:44
+msgid "Add resource"
+msgstr "Añadir recurso"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:85
+msgid "Resource type"
+msgstr "Tipo de recurso"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:100
+msgid "Unasign"
+msgstr "Desasignar"
