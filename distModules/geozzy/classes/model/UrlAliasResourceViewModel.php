@@ -57,6 +57,7 @@ class UrlAliasResourceViewModel extends Model {
     'rTypeIdNotIn' => ' geozzy_url_alias_resource_view.rTypeId NOT IN (?) ',
     'rTypeIdNameIn' => ' geozzy_url_alias_resource_view.rTypeIdName IN (?) ',
     'rTypeIdNameNotIn' => ' geozzy_url_alias_resource_view.rTypeIdName NOT IN (?) ',
+    'resourceIdNameIn' => ' geozzy_url_alias_resource_view.resourceIdName IN (?) ',
   );
 
 
