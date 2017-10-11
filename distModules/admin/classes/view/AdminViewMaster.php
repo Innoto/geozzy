@@ -90,7 +90,15 @@ class AdminViewMaster extends View {
     $this->template->setTpl('adminMaster.tpl', 'admin');
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
-    $this->template->assign( 'user' , $user);
+
+    if (array_key_exists('avatar', $user['data'])){
+      $fileCntrl = new FiledataModel();
+      $avatar = $fileCntrl->listItems( [ 'filters' => ['id' => $user['data']['avatar'] ]] )->fetch();
+      $user['data']['avatarAKey'] = $avatar->getter('aKey');
+      $user['data']['avatarName'] = $avatar->getter('name');
+    }
+    $this->template->assign( 'user' , $user );
+  
     //Control menu
     $superAdminPermission = $useraccesscontrol->checkPermissions();
     $this->template->assign( 'superAdminPermission' , $superAdminPermission);
