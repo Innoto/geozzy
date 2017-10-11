@@ -289,7 +289,7 @@ class GeozzyCollectionView extends View
       $newResources = $form->getFieldValue( 'resources' );
 
       $resControl = new ResourceController();
-      $affectsDependences = true;      
+      $affectsDependences = true;
       $collection = $resControl->setResourcesToCollection( $elemId , $newResources );
     }
 
@@ -323,14 +323,15 @@ class GeozzyCollectionView extends View
   public function getAvailableResources( $collectionId, $collectionType, $filterRTypeParent ) {
     $elemList = array();
 
-    $resourceViewModel = new RExtUrlResourceViewModel();
-    $collectionResourcesListViewModel = new CollectionResourcesListViewModel();
-
     if( $collectionType ){
+      $resourceViewModel = new ResourceViewModel();
+      $collectionResourcesListViewModel = new CollectionResourcesListViewModel();
+
       $conf = $this->getConfCollection( $collectionType, $filterRTypeParent );
       $filter = $conf['listOptions'];
       //Recursos Posibles
       if( !empty($filter) && count($filter) > 0 ) {
+        // error_log(__METHOD__.': $filter '.json_encode($filter) );
         $elemList = $resourceViewModel->listItems(
           array(
             'filters' => array( 'inRtypeIdName' => $filter )
