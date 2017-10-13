@@ -11,8 +11,8 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/js/rextPoi.js:22
 msgid "Select options"
-msgstr ""
+msgstr "Seleccione opcións"
 
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/controller/RExtPoiController.php:73
 msgid "POI type"
-msgstr ""
+msgstr "Tipo de POI"
