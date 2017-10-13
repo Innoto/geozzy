@@ -61,7 +61,12 @@ class TaxonomyViewModel extends Model {
     ),
   );
 
-  static $extraFilters = array();
+  static $extraFilters = [
+    'idIn' => ' geozzy_taxonomy_view.id IN (?) ',
+    'idNameIn' => ' geozzy_taxonomy_view.idName IN (?) ',
+    'taxgroupIn' => ' geozzy_taxonomy_view.taxgroup IN (?) ',
+    'taxGroupIdNameIn' => ' geozzy_taxonomy_view.taxGroupIdName IN (?) ',
+  ];
 
   var $notCreateDBTable = true;
 
