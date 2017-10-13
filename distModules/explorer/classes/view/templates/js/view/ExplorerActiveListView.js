@@ -28,7 +28,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     var options = new Object({
       showInBuffer: true,
       showOutMapAndBuffer: false,
-      cateogories: false,
+      categories: false,
 
       endPage: 3,
       totalPages: false,
