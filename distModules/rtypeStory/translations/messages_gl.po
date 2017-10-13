@@ -12,30 +12,30 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:107
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:107
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:122
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:122
 msgid "See indications"
-msgstr ""
+msgstr "Ver indicacións"
 
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:131
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:131
 msgid "How to arrive from?"
-msgstr ""
+msgstr "Cómo chegar dende...?"
 
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:24
 msgid "Home URL"
-msgstr ""
+msgstr "URL inicial"
 
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:49
 msgid "Main Resource information"
-msgstr ""
+msgstr "Datos básicos"
 
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:65
 msgid "Steps collection"
-msgstr ""
+msgstr "Listaxe de pasos"
 
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:73
 msgid "Edit Resource"
-msgstr ""
+msgstr "Editar contido"
