@@ -11,7 +11,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
 msgid "Add existing resources"
-msgstr "Añadir recursos existentes"
+msgstr "Engadir recursos existentes"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:18
 msgid "Upload multimedia resource"
