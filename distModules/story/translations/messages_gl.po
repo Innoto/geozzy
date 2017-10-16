@@ -14,8 +14,8 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:13
 #: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:26
 msgid "Discover"
-msgstr ""
+msgstr "Máis información"
 
 #: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/plugins/StoryPluginPOISView.js:74
 msgid "Points of interest"
-msgstr ""
+msgstr "Puntos de interese"

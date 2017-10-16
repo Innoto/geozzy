@@ -11,22 +11,22 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:10
 msgid "Select options"
-msgstr ""
+msgstr "Seleccione opcións"
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:13
 msgid "Create POI"
-msgstr ""
+msgstr "Crear POI"
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:18
 msgid "Edit POI Collection"
-msgstr ""
+msgstr "Editar colección de POIs"
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:141
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:129
 msgid "Puntos de interés"
-msgstr ""
+msgstr "Puntos de interese"
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:149
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:137
 msgid "Add POI"
-msgstr ""
+msgstr "Engadir POI"
