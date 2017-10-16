@@ -20,6 +20,8 @@ class RExtFavouriteAPIView extends View {
       $this->userSession = $userInfo;
     }
 
+    error_log( __METHOD__.': $this->userId '.$this->userId );
+
     if( $this->userSession && $this->userSession['data']['login'] === 'superAdmin' ) {
       $this->extendAPIAccess = true;
     }
