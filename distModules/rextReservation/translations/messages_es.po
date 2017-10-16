@@ -1,0 +1,60 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/canlers/app/tmp/tpl/ruralgest-net-public.tpl:4
+#: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:5
+#: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:42
+#: /home/proxectos/canlers/app/tmp/tpl/netubi-com-public.tpl:5
+#: /home/proxectos/canlers/app/tmp/tpl/netubi-com-public.tpl:18
+#: /home/proxectos/canlers/app/tmp/tpl/thebookingbutton-com-public.tpl:5
+msgid "Reserve"
+msgstr ""
+
+#: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:11
+#: /home/proxectos/canlers/app/tmp/tpl/netubi-com-public.tpl:11
+msgid "Check in date - Check out date"
+msgstr ""
+
+#: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:18
+msgid "Rooms"
+msgstr ""
+
+#: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:30
+msgid "Adults"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:50
+msgid "None"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:58
+msgid "Reservation URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:62
+msgid "Reservation phone"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:66
+msgid "Reservation email"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:70
+msgid "Reservations channel"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:75
+msgid "Identifier"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:79
+msgid "Other information"
+msgstr ""

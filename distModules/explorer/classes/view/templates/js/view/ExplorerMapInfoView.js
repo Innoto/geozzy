@@ -25,6 +25,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     var that = this;
     var options = new Object({
       tpl: geozzy.explorerComponents.mapInfoViewTemplate,
+      categories: false,
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -127,19 +128,46 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
       [id],
       function() {
 
-         var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
-         var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
 
-         var element = $.extend( true, partJSON, minJSON );
+        var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
+        var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
 
-         element.touchAccess = that.parentExplorer.explorerTouchDevice;
+        var element = $.extend( true, partJSON, minJSON );
+        element.touchAccess = that.parentExplorer.explorerTouchDevice;
 
-         $( '#'+that.divId ).html( that.template( element ) );
+        var elementCategory = false;
 
-         if( that.ready == id){
-          $( '#'+that.divId ).show();
-          that.moveInfoMapDivWhenBehindMouse();
-         }
+        if(  that.options.categories != false) {
+
+
+          that.options.categories.each( function(e2){
+           //console.log(e.get('id'))
+           //console.debug(markerData.get('terms'))
+           if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( id ).get('terms')  ) > -1 ) {
+
+             elementCategory = e2;
+             if(e2) {
+               elementCategory = e2.toJSON()
+
+             }
+             return false;
+             /*
+             if( jQuery.isNumeric( e2.get('icon') )  ){
+               return false;
+             }*/
+           }
+          });
+
+
+        }
+        element.category = elementCategory;
+
+        $( '#'+that.divId ).html( that.template( element ) );
+
+        if( that.ready == id){
+        $( '#'+that.divId ).show();
+        that.moveInfoMapDivWhenBehindMouse();
+        }
       }
     );
   },

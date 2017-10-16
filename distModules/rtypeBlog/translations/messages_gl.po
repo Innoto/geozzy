@@ -9,14 +9,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:103
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:103
 msgid "Contact"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:118
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:118
 msgid "See indications"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:127
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:127
 msgid "How to arrive from?"
 msgstr ""

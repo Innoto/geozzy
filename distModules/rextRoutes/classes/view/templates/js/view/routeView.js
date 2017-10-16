@@ -231,7 +231,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         axisLabelColor: 'white',
         axisLineColor: 'white',
         //labels:["step", "Altitude"],
-        colors: ["#EF7C1F"],
+        colors: [ that.options.strokeColor  ],
         axisLabelFontSize: 12,
         hideOverlayOnMouseOut: true,
         legend: 'follow',

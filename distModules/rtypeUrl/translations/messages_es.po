@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:19
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:19
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:19
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:19
@@ -16,6 +17,7 @@ msgstr ""
 msgid "Link or embed"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:21
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:21
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:21
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:21
@@ -23,6 +25,7 @@ msgstr ""
 msgid "External link"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:22
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:22
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:22
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:22
@@ -30,6 +33,7 @@ msgstr ""
 msgid "Embedable code"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:33
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:33
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:33
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:33

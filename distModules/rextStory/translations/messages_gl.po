@@ -13,6 +13,7 @@ msgstr ""
 msgid "Select options"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rextStory/classes/controller/RExtStoryController.php:117
 #: /home/proxectos/geozzy/distModules/rextStory/classes/controller/RExtStoryController.php:124
 msgid "Steps"
 msgstr ""

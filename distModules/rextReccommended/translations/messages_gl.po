@@ -9,10 +9,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:1
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:1
 msgid "Recursos recomendados:"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:17
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:17
 msgid "Find out!"
 msgstr ""

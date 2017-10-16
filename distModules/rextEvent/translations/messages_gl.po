@@ -9,10 +9,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/canlers/app/tmp/tpl/rExtFormBlock.tpl:6
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:6
 msgid "Event init date"
 msgstr ""
 
+#: /home/proxectos/canlers/app/tmp/tpl/rExtFormBlock.tpl:19
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:19
 msgid "Event end date"
 msgstr ""

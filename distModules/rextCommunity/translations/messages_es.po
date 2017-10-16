@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/canlers/app/tmp/tpl/otherUserCommunityViewBlock.tpl:30
 #: /home/proxectos/profesores/app/tmp/tpl/otherUserCommunityViewBlock.tpl:30
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/otherUserCommunityViewBlock.tpl:30
 #: /home/proxectos/becarios/app/tmp/tpl/otherUserCommunityViewBlock.tpl:30

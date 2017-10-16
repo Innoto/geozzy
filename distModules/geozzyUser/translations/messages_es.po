@@ -85,6 +85,7 @@ msgstr ""
 "Su url ha expirado. Por favor, reinicie el proceso de recuperación de "
 "contraseña"
 
+#: /home/proxectos/canlers/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/profesores/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/becarios/app/tmp/tpl/userProfile.tpl:4

@@ -9,7 +9,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/canlers/app/tmp/tpl/otherUserCommunityViewBlock.tpl:30
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/otherUserCommunityViewBlock.tpl:30
-msgid "Favoritos:"
+#: /home/proxectos/geozzy/distModules/rextKML/classes/controller/RExtKMLController.php:64
+msgid "KML file"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextKML/classes/controller/RExtKMLController.php:65
+msgid "File"
 msgstr ""
