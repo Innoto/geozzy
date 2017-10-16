@@ -94,34 +94,33 @@ class RExtFavouriteAPIView extends View {
 
 
   public function apiSetStatus( $status, $resourceId, $userId ) {
-    $result = null;
     error_log( __METHOD__.': '.$status.' - '.$resourceId.' - '.$userId );
+    $result = [ 'result' => 'error', 'msg' => 'Parameters error' ];
 
     // Si no hay usuario, el de session
     if( $userId === null && $this->userId !== false ) {
       $userId = strval( $this->userId );
+      error_log( __METHOD__.': 1' );
     }
 
     // Solo pueden acceder a otros usuarios si $this->extendAPIAccess
     if( !$this->extendAPIAccess && $userId !== strval( $this->userId ) ) {
       $userId = null;
+      error_log( __METHOD__.': 2' );
     }
 
     if( $status !== null && $resourceId !== null && $userId !== null ) {
+      error_log( __METHOD__.': 3' );
       $favCtrl = new RExtFavouriteController();
       if( $favCtrl->setStatus( $resourceId, $status, $userId ) ) {
+        error_log( __METHOD__.': 4' );
         $result = array(
           'result' => 'ok',
           'status' => $status
         );
       }
     }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Parameters error'
-      );
-    }
+
 
     error_log( __METHOD__.': '.json_encode($result) );
 
