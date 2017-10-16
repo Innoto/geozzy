@@ -189,7 +189,7 @@
 }
 /*******************************************************************************************/
 .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 100%, @explFilter-w: 400px,
-   @explFilter-h: 150px, @explGallery-w: 30%, @explGallery-h: 100% ) {
+   @explFilter-h: 150px, @explGallery-w: 30%, @explGallery-h: 100%, @explGallery-minh: @explGallery-h) {
    position: relative;
    height: 100vh;
   .explorerContainer{
@@ -231,6 +231,7 @@
     &.explorer-container-gallery{
       width: @explGallery-w;
       height: @explGallery-h;
+      min-height: @explGallery-minh;
       float: right;
       overflow: auto;
     }
