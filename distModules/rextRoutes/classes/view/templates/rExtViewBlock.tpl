@@ -189,6 +189,8 @@
   var geozzy = geozzy || {};
 
   geozzy.rExtRoutesOptions = {
-    resourceId: {$rExt.data.resourceId}
+    resourceId: {$rExt.data.resourceId},
+    showGraph: true,
+    graphContainer:false
   };
 </script>
