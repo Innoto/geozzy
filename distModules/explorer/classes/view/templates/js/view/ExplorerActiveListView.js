@@ -92,7 +92,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       //console.log( that.parentExplorer.resourceMinimalList.toJSON/ )
 
       var elementCategory = false;
-      if( typeof that.options.categories !== 'undefined') {
+      if( that.options.categories ) {
         that.options.categories.each( function(e2){
           //console.log(e.get('id'))
           //console.debug(markerData.get('terms'))
