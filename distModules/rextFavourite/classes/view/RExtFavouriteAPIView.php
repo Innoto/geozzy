@@ -59,6 +59,8 @@ class RExtFavouriteAPIView extends View {
       $filters[ $key ] = ( isset( $_POST[ $key ] ) ) ? $_POST[ $key ] : null;
     }
 
+    error_log( __METHOD__.' CMD '.$command );
+
     switch( $command ) {
       case 'setStatus':
         $result = $this->apiSetStatus( $status, $filters['resourceId'], $filters['userId'] );
@@ -93,6 +95,7 @@ class RExtFavouriteAPIView extends View {
 
   public function apiSetStatus( $status, $resourceId, $userId ) {
     $result = null;
+    error_log( __METHOD__.': '.$status.' - '.$resourceId.' - '.$userId );
 
     // Si no hay usuario, el de session
     if( $userId === null && $this->userId !== false ) {
@@ -119,6 +122,8 @@ class RExtFavouriteAPIView extends View {
         'msg' => 'Parameters error'
       );
     }
+
+    error_log( __METHOD__.': '.json_encode($result) );
 
     return $result;
   }
