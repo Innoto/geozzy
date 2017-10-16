@@ -103,7 +103,7 @@ var CategoryEditorView = Backbone.View.extend({
     var that = this;
     var itemWeight = 0;
     _.each( data , function( e , i ){
-      var element = that.menuTerms.get(e.id);
+      var element = that.categoryTerms.get(e.id);
       element.set({ weight: itemWeight, parent: parent });
       if(e.children){
         that.saveItem( e.id, e.children );
