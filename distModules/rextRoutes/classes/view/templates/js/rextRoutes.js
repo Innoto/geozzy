@@ -22,13 +22,15 @@ $( document ).ready(function() {
 
     google.maps.event.addListenerOnce( geozzy.rExtMapInstance.resourceMap, 'idle', function() {
 
+
       console.log( geozzy.rExtMapInstance.resourceMap);
       routesCollection.fetch({
         success: function( res ) {
           var route = new geozzy.rextRoutes.routeView({
             map: geozzy.rExtMapInstance.resourceMap,
             routeModel: routesCollection.get( geozzy.rExtRoutesOptions.resourceId ),
-            showGraph: true
+            showGraph: geozzy.rExtRoutesOptions.showGraph,
+            graphContainer: geozzy.rExtRoutesOptions.graphContainer
           });
         }
       });
