@@ -9,11 +9,14 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
       parent::__construct( $defRTypeCtrl, new rextFavourite(), 'rExtFavourite_' );
     }
 
-    $cache = Cogumelo::getSetupValue('cache:RExtFavouriteController');
-    if( $cache !== null ) {
-      Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
-      $this->cacheQuery = $cache;
-    }
+    // $cache = Cogumelo::getSetupValue('cache:RExtFavouriteController');
+    // if( $cache !== null ) {
+    //   Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
+    //   $this->cacheQuery = $cache;
+    // }
+    /**
+     *  TODO - IMPORTANTE: Los modelos de Favoritos hay que manejarlos SIN CACHEO
+     */
   }
 
 
@@ -101,7 +104,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $favData = false;
 
     $favModel = new FavouritesListViewModel();
-    $favList = $favModel->listItems( [ 'filters' => [ 'user' => $favUser ], 'cache' => $this->cacheQuery ] );
+    $favList = $favModel->listItems( [ 'filters' => [ 'user' => $favUser ], 'cache' => false ] );
     $favObj = ( $favList ) ? $favList->fetch() : false;
     if( $favObj ) {
       $favData = ( $favObj->getter('resourceList') ) ? explode( ',', $favObj->getter('resourceList') ) : array();
@@ -121,7 +124,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $colId = false;
 
     $favModel = new FavouritesViewModel();
-    $favList = $favModel->listItems( [ 'filters' => [ 'user' => $favUser ], 'cache' => $this->cacheQuery ] );
+    $favList = $favModel->listItems( [ 'filters' => [ 'user' => $favUser ], 'cache' => false ] );
     $favObj = ( $favList ) ? $favList->fetch() : false;
     $colId = ( $favObj ) ? $favObj->getter( 'colId' ) : false;
 
@@ -141,7 +144,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $favData = false;
 
     $favModel = new FavouritesViewModel();
-    $favList = $favModel->listItems( [ 'filters' => [ 'resource' => $resId, 'user' => $favUser ], 'cache' => $this->cacheQuery ] );
+    $favList = $favModel->listItems( [ 'filters' => [ 'resource' => $resId, 'user' => $favUser ], 'cache' => false ] );
     $favObj = ( $favList ) ? $favList->fetch() : false;
     $favData = ( $favObj ) ? $favObj->getAllData( 'onlydata' ) : false;
 
