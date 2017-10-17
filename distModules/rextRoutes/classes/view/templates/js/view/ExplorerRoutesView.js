@@ -70,6 +70,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
                   drawXGrid: false,
                   drawYGrid: false,
                   pixelsPerLabel:100,
+                  axisLineColor: 'transparent'
                 };
 
             if( that.options.showMarkerStart == false ) {

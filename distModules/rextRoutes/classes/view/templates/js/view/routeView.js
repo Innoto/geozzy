@@ -24,6 +24,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       strokeWeight: cogumelo.publicConf.rextRoutesConf.strokeWeight,
       strokeBorderWeight: cogumelo.publicConf.rextRoutesConf.strokeBorderWeight,
 
+      axisLineWidth:2,
+
       axisLabelColor: cogumelo.publicConf.rextRoutesConf.axisLabelColor,
       axisLineColor: cogumelo.publicConf.rextRoutesConf.axisLineColor,
 
@@ -220,7 +222,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
       var graphOptions = {
         // options go here. See http://dygraphs.com/options.html
-        axisLineWidth: 2,
+        axisLineWidth: that.options.axisLineWidth,
 
         fillGraph: true,
         strokeWidth: 2,
