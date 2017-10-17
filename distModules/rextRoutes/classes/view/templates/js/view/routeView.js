@@ -23,6 +23,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       strokeOpacity: cogumelo.publicConf.rextRoutesConf.strokeOpacity,
       strokeWeight: cogumelo.publicConf.rextRoutesConf.strokeWeight,
       strokeBorderWeight: cogumelo.publicConf.rextRoutesConf.strokeBorderWeight,
+
+      axisLabelColor: cogumelo.publicConf.rextRoutesConf.axisLabelColor,
+      axisLineColor: cogumelo.publicConf.rextRoutesConf.axisLineColor,
+
       routeModel: false,
       markerStart: cogumelo.publicConf.rextRoutesConf.markerStart,
       markerEnd: cogumelo.publicConf.rextRoutesConf.markerEnd,
@@ -228,8 +232,9 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         highlightCircleSize: 5,
         drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
 
-        axisLabelColor: 'white',
-        axisLineColor: 'white',
+        axisLabelColor: that.options.axisLabelColor,
+        axisLineColor: that.options.axisLineColor,
+
         //labels:["step", "Altitude"],
         colors: [ that.options.strokeColor  ],
         axisLabelFontSize: 12,
