@@ -64,14 +64,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     $rExtFieldNames = array();
 
-    $difficultyOptions = array(
-      '0' => '--',
-      '1' => '1 - '.__('Very Low'),
-      '2' => '2 - '.__('Low'),
-      '3' => '3 - '.__('Medium'),
-      '4' => '4 - '.__('High'),
-      '5' => '5 - '.__('Extreme')
-    );
+    global $rextRoutes_difficulty;
 
     $fieldsInfo = array(
       'circular' => array(
@@ -95,27 +88,27 @@ class RExtRoutesController extends RExtController implements RExtInterface {
       ),
       'difficultyEnvironment' => array(
         'params' => array( 'label' => __( 'Natural environment difficulty' ), 'type' => 'select',
-          'options' => $difficultyOptions
+          'options' => $rextRoutes_difficulty
         )
       ),
       'difficultyItinerary' => array(
         'params' => array( 'label' => __( 'Itinerary difficulty' ), 'type' => 'select',
-          'options' => $difficultyOptions
+          'options' => $rextRoutes_difficulty
         )
       ),
       'difficultyDisplacement' => array(
         'params' => array( 'label' => __( 'Displacement difficulty' ) , 'type' => 'select',
-          'options' => $difficultyOptions
+          'options' => $rextRoutes_difficulty
         )
       ),
       'difficultyEffort' => array(
         'params' => array( 'label' => __( 'Effort level' ), 'type' => 'select',
-          'options' => $difficultyOptions
+          'options' => $rextRoutes_difficulty
         )
       ),
       'difficultyGlobal' => array(
         'params' => array( 'label' => __( 'Global difficulty' ), 'type' => 'select',
-          'options' => $difficultyOptions
+          'options' => $rextRoutes_difficulty
         )
       ),
       'routeStart' => array(
@@ -370,16 +363,9 @@ class RExtRoutesController extends RExtController implements RExtInterface {
        $rExtViewBlockInfo['data']['durationMinutes'] = date('i', mktime(0,$rExtViewBlockInfo['data']['durationMinutes']));
        $rExtViewBlockInfo['data']['travelDistanceKm'] = $rExtViewBlockInfo['data']['travelDistance']/1000;
 
+       global $rextRoutes_difficulty;
 
-       $difficultyOptions = array(
-         '0' => '--',
-         '1' => '1 - '.__('Very Low'),
-         '2' => '2 - '.__('Low'),
-         '3' => '3 - '.__('Medium'),
-         '4' => '4 - '.__('High'),
-         '5' => '5 - '.__('Extreme')
-       );
-       $rExtViewBlockInfo['data']['difficultyGlobalText'] = $difficultyOptions[$rExtViewBlockInfo['data']['difficultyGlobal']];
+       $rExtViewBlockInfo['data']['difficultyGlobalText'] = $rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyGlobal']];
 
        $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
 
