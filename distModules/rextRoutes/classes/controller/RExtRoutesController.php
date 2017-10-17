@@ -66,6 +66,16 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     global $rextRoutes_difficulty;
 
+    $rextRoutes_difficultyWithNumbers = [];
+    foreach( $rextRoutes_difficulty as $dfKey => $df ) {
+      if( $dfKey == 0 ) {
+        $rextRoutes_difficultyWithNumbers[$dfKey] = $df;
+      }
+      else {
+        $rextRoutes_difficultyWithNumbers[$dfKey] = $dfKey.'-'.$df;
+      }
+    }
+
     $fieldsInfo = array(
       'circular' => array(
         'params' => array( 'type' => 'checkbox', 'class' => 'switchery', 'options'=> array( '1' => __('Circular itinerary') ))
@@ -88,27 +98,27 @@ class RExtRoutesController extends RExtController implements RExtInterface {
       ),
       'difficultyEnvironment' => array(
         'params' => array( 'label' => __( 'Natural environment difficulty' ), 'type' => 'select',
-          'options' => $rextRoutes_difficulty
+          'options' => $rextRoutes_difficultyWithNumbers
         )
       ),
       'difficultyItinerary' => array(
         'params' => array( 'label' => __( 'Itinerary difficulty' ), 'type' => 'select',
-          'options' => $rextRoutes_difficulty
+          'options' => $rextRoutes_difficultyWithNumbers
         )
       ),
       'difficultyDisplacement' => array(
         'params' => array( 'label' => __( 'Displacement difficulty' ) , 'type' => 'select',
-          'options' => $rextRoutes_difficulty
+          'options' => $rextRoutes_difficultyWithNumbers
         )
       ),
       'difficultyEffort' => array(
         'params' => array( 'label' => __( 'Effort level' ), 'type' => 'select',
-          'options' => $rextRoutes_difficulty
+          'options' => $rextRoutes_difficultyWithNumbers
         )
       ),
       'difficultyGlobal' => array(
         'params' => array( 'label' => __( 'Global difficulty' ), 'type' => 'select',
-          'options' => $rextRoutes_difficulty
+          'options' => $rextRoutes_difficultyWithNumbers
         )
       ),
       'routeStart' => array(

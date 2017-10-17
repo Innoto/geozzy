@@ -5,11 +5,11 @@ Cogumelo::load( 'coreController/Module.php' );
 global $rextRoutes_difficulty;
 $rextRoutes_difficulty = array(
   '0' => '--',
-  '1' => '1 - '.__('Very Low'),
-  '2' => '2 - '.__('Low'),
-  '3' => '3 - '.__('Medium'),
-  '4' => '4 - '.__('High'),
-  '5' => '5 - '.__('Extreme')
+  '1' => __('Very Low'),
+  '2' => __('Low'),
+  '3' => __('Medium'),
+  '4' => __('High'),
+  '5' => __('Extreme')
 );
 
 class rextRoutes extends Module {
