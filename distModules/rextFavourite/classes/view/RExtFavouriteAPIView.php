@@ -20,8 +20,6 @@ class RExtFavouriteAPIView extends View {
       $this->userSession = $userInfo;
     }
 
-    error_log( __METHOD__.': $this->userId '.$this->userId );
-
     if( $this->userSession && $this->userSession['data']['login'] === 'superAdmin' ) {
       $this->extendAPIAccess = true;
     }
@@ -46,8 +44,7 @@ class RExtFavouriteAPIView extends View {
    * API router
    */
   public function apiQuery() {
-    $result = null;
-    $error = false;
+    $result = [ 'result' => 'error', 'msg' => __('Command error') ];
 
     $command = ( isset( $_POST['cmd'] ) && in_array( $_POST['cmd'], $this->apiCommands ) ) ? $_POST['cmd'] : null;
 
@@ -57,12 +54,9 @@ class RExtFavouriteAPIView extends View {
     }
 
     $filters = [];
-    $filters['userId'] = $this->userId;
     foreach( $this->apiFilters as $key ) {
       $filters[ $key ] = ( isset( $_POST[ $key ] ) ) ? $_POST[ $key ] : null;
     }
-
-    error_log( __METHOD__.' CMD '.$command );
 
     switch( $command ) {
       case 'setStatus':
@@ -83,12 +77,6 @@ class RExtFavouriteAPIView extends View {
       case 'getFavouritesUrl':
         $result = $this->getFavouritesUrl();
         break;
-      default:
-        $result = array(
-          'result' => 'error',
-          'msg' => 'Command error'
-        );
-        break;
     }
 
     header('Content-Type: application/json; charset=utf-8');
@@ -97,42 +85,41 @@ class RExtFavouriteAPIView extends View {
 
 
   public function apiSetStatus( $status, $resourceId, $userId ) {
-    error_log( __METHOD__.': '.$status.' - '.$resourceId.' - '.$userId );
-    $result = [ 'result' => 'error', 'msg' => 'Parameters error' ];
+    // error_log( __METHOD__.': '.$status.' - '.$resourceId.' - '.$userId );
+    $result = [ 'result' => 'error', 'msg' => __('Parameter error') ];
 
     // Si no hay usuario, el de session
     if( $userId === null && $this->userId !== false ) {
       $userId = strval( $this->userId );
-      error_log( __METHOD__.': P1' );
     }
 
     // Solo pueden acceder a otros usuarios si $this->extendAPIAccess
     if( !$this->extendAPIAccess && $userId !== strval( $this->userId ) ) {
       $userId = null;
-      error_log( __METHOD__.': P2' );
     }
 
     if( $status !== null && $resourceId !== null && $userId !== null ) {
-      error_log( __METHOD__.': P3' );
       $favCtrl = new RExtFavouriteController();
       if( $favCtrl->setStatus( $resourceId, $status, $userId ) ) {
-        error_log( __METHOD__.': P4' );
-        $result = array(
+        $result = [
           'result' => 'ok',
           'status' => $status
-        );
+        ];
+      }
+      else {
+        $result = [
+          'result' => 'error',
+          'status' => __('Error updating')
+        ];
       }
     }
-
-
-    error_log( __METHOD__.': '.json_encode($result) );
 
     return $result;
   }
 
 
   public function apiGetStatus( $resourceId, $userId ) {
-    $result = null;
+    $result = [ 'result' => 'error', 'msg' => __('Parameter error') ];
 
     // Si no hay usuario, el de session
     if( $userId === null && $this->userId !== false ) {
@@ -156,19 +143,13 @@ class RExtFavouriteAPIView extends View {
         'status' => $favCtrl->getStatus( $resourceId, $userId )
       );
     }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Parameters error'
-      );
-    }
 
     return $result;
   }
 
 
   public function apiListFavs( $filters ) {
-    $result = null;
+    $result = [ 'result' => 'error', 'msg' => __('Access denied') ];
 
     $access = $this->extendAPIAccess;
 
@@ -224,19 +205,13 @@ class RExtFavouriteAPIView extends View {
         }
       }
     }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Access denied'
-      );
-    }
 
     return $result;
   }
 
 
   public function apiListResources( $filters ) {
-    $result = null;
+    $result = [ 'result' => 'error', 'msg' => __('Access denied') ];
 
     $access = $this->extendAPIAccess;
 
@@ -300,19 +275,13 @@ class RExtFavouriteAPIView extends View {
         }
       }
     }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Access denied'
-      );
-    }
 
     return $result;
   }
 
 
   public function apiListUsers( $filters ) {
-    $result = null;
+    $result = [ 'result' => 'error', 'msg' => __('Access denied') ];
 
     // Solo pueden acceder si $this->extendAPIAccess
     if( $this->extendAPIAccess ) {
@@ -360,19 +329,13 @@ class RExtFavouriteAPIView extends View {
         }
       }
     }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Access denied'
-      );
-    }
 
     return $result;
   }
 
 
   public function getFavouritesUrl() {
-    $result = null;
+    $result = [ 'result' => 'error', 'msg' => __('Access denied') ];
 
     // Solo pueden acceder si $this->extendAPIAccess
     if( $this->userId !== false ) {
@@ -380,12 +343,6 @@ class RExtFavouriteAPIView extends View {
       $result = array(
         'result' => 'ok',
         'status' => $favCtrl->getFavouritesUrl( $this->userId )
-      );
-    }
-    else {
-      $result = array(
-        'result' => 'error',
-        'msg' => 'Access denied'
       );
     }
 
