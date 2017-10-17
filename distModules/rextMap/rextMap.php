@@ -1,4 +1,9 @@
 <?php
+
+$RextMapConfRoute = APP_BASE_PATH.'/conf/inc/geozzyRextMap.php';
+if(file_exists($RextMapConfRoute)){
+  require_once($RextMapConfRoute);
+}
 Cogumelo::load( 'coreController/Module.php' );
 
 
