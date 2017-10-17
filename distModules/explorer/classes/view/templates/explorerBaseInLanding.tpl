@@ -1,4 +1,4 @@
-<div class="explorerLayout explorerLayoutSticky fixVhChromeMobile clearfix">
+<div class="explorerLayout explorerLayoutSticky fixVhChromeMobile clearfix explorerElSticky">
   <!--duContainer -->
   <div class="explorerContainer explorer-container-du"></div>
   <!--filterContainer -->
