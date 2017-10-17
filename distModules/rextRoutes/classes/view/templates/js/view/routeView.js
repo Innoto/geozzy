@@ -208,10 +208,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
           that.options.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlUI);
 
         }
-        var containerGraph = '.resourceRouteGraph';
+        that.containerGraph = '.resourceRouteGraph';
       }
       else {
-        var containerGraph = that.options.graphContainer;
+        that.containerGraph = that.options.graphContainer;
       }
 
       var graphOptions = {
@@ -276,15 +276,15 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
       // wait until graph container exist
       var checkExist = setInterval(function() {
-         if ($(containerGraph).length) {
+         if ($(that.containerGraph).length) {
 
-           that.grafico = new Dygraph( $(containerGraph)[0] , chartString, graphOptions );
+           that.grafico = new Dygraph( $(that.containerGraph)[0] , chartString, graphOptions );
 
            that.grafico.updateOptions( {
              annotationMouseOverHandler: function(annotation, point, dygraph, event) {
              }
            });
-           $($(".resourceRouteGraph")[0]).mousemove(function(e) {
+           $($(that.containerGraph)[0]).mousemove(function(e) {
                var seleccionado = that.grafico.getSelection();
                that.hoverRoute( seleccionado )
            }).mouseleave(function(e) {
