@@ -104,7 +104,10 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $favData = false;
 
     $favModel = new FavouritesListViewModel();
-    $favList = $favModel->listItems( [ 'filters' => [ 'user' => $favUser ], 'cache' => false ] );
+    $favList = $favModel->listItems([
+      'filters' => [ 'user' => $favUser ],
+      'cache' => false // Sin cache para actualizacion continua
+    ]);
     $favObj = ( $favList ) ? $favList->fetch() : false;
     if( $favObj ) {
       $favData = ( $favObj->getter('resourceList') ) ? explode( ',', $favObj->getter('resourceList') ) : array();
@@ -124,7 +127,10 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $colId = false;
 
     $favModel = new FavouritesViewModel();
-    $favList = $favModel->listItems( [ 'filters' => [ 'user' => $favUser ], 'cache' => false ] );
+    $favList = $favModel->listItems([
+      'filters' => [ 'user' => $favUser ],
+      'cache' => false // Sin cache para actualizacion continua
+    ]);
     $favObj = ( $favList ) ? $favList->fetch() : false;
     $colId = ( $favObj ) ? $favObj->getter( 'colId' ) : false;
 
@@ -144,7 +150,10 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $favData = false;
 
     $favModel = new FavouritesViewModel();
-    $favList = $favModel->listItems( [ 'filters' => [ 'resource' => $resId, 'user' => $favUser ], 'cache' => false ] );
+    $favList = $favModel->listItems([
+      'filters' => [ 'resource' => $resId, 'user' => $favUser ],
+      'cache' => false // Sin cache para actualizacion continua
+    ]);
     $favObj = ( $favList ) ? $favList->fetch() : false;
     $favData = ( $favObj ) ? $favObj->getAllData( 'onlydata' ) : false;
 
