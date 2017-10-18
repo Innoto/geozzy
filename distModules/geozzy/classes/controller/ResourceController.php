@@ -383,7 +383,7 @@ class ResourceController {
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
         'placeholder' => 'Escolle unha imaxe', 'destDir' => ResourceModel::$cols['image']['uploadDir'] ),
-        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '2097152', 'accept' => 'image/jpeg' )
+        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '4200000', 'accept' => 'image/jpeg,image/png' )
       ),
       'urlAlias' => array(
         'translate' => true,
