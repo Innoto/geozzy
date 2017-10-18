@@ -57,7 +57,7 @@ geozzy.collection.ResourceCollection = Backbone.Collection.extend({
   fetchByIds: function( idsArray, fetchCallback ) {
     var that = this;
 
-    that.fetch({
+    return that.fetch({
       type: 'POST',
       data:{ids: idsArray},
       success: function( list ) {
