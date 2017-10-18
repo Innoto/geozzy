@@ -229,7 +229,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
         }
       }
 
-      $newResources = $form->getFieldValue( 'rExtStory_steps' );
+    //  $newResources = $form->getFieldValue( 'rExtStory_steps' );
 
       $collection = new CollectionModel( );
       $resourceCollectionsModel = new ResourceCollectionsModel();
@@ -265,8 +265,10 @@ class RExtStoryController extends RExtController implements RExtInterface {
     if( !$form->existErrors()) {
       $oldResources = false;
 
-      if( $newResources !== false && !is_array($newResources) ) {
-        $newResources = array($newResources);
+      $collectionResources = new CollectionResourcesModel();
+      $collectionResourcesList = $collectionResources->listItems(array('filters' => array('collection'=>$elemId)));
+      while($colResource = $collectionResourcesList->fetch()){
+        $newResources[] = $colResource->getter('resource');
       }
 
       // Si estamos editando, repasamos y borramos recursos sobrantes
@@ -278,12 +280,11 @@ class RExtStoryController extends RExtController implements RExtInterface {
           array('filters' => array('collection' => $elemId)) );
 
         if( $collectionResourceList ) {
-
           // estaban asignados antes
           $oldResources = array();
           while( $oldResource = $collectionResourceList->fetch() ){
-
             $oldResources[ $oldResource->getter('resource') ] = $oldResource->getter('id');
+
             if( $newResources === false || !in_array( $oldResource->getter('resource'), $newResources ) ) {
               $oldResource->delete(); // desasignar
             }
