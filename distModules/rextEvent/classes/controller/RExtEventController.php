@@ -200,8 +200,14 @@ class RExtEventController extends RExtController implements RExtInterface {
       if( $form->isFieldDefined( 'rextEvent_initDate' ) && is_numeric( $form->getFieldValue( 'rextEvent_initDate' ) ) ) {
         $valuesArray[ 'initDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_initDate' ) );
       }
+      else{
+        $valuesArray[ 'initDate' ] = false;
+      }
       if( $form->isFieldDefined( 'rextEvent_endDate' ) && is_numeric( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
         $valuesArray[ 'endDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_endDate' ) );
+      }
+      else{
+        $valuesArray[ 'endDate' ] = false;
       }
 
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
