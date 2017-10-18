@@ -50,7 +50,8 @@ class StoryStepAPIView extends View {
 
             if( isset($resourceDataArray['loc']) ) {
               Cogumelo::load('coreModel/mysql/MysqlDBUtils.php');
-              $loc = MysqlDBUtils::decodeGeometry( $resourceDataArray['loc'] );
+              $loc = MysqlDBUtils::decodeGeometry( [$resourceDataArray['loc']] );
+
               $row['lat'] = floatval( $loc['data'][0] );
               $row['lng'] = floatval( $loc['data'][1] );
             }
