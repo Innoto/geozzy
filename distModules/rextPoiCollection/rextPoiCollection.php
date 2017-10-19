@@ -5,14 +5,22 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextPoiCollection extends Module {
 
   public $name = 'rextPoiCollection';
-  public $version = '1.9';
-
+  public $version = '2';
 
   public $models = array();
 
   public $taxonomies = array();
 
-  public $dependences = array();
+
+  public $dependences = array(
+    array(
+      "id" => "pannellum",
+      "params" => array("pannellum"),
+      "installer" => "bower",
+      "includes" => array("js/libpannellum.js","/js/pannellum.js","css/pannellum.css")
+    )
+  );
+
 
   public $includesCommon = array(
     'controller/RExtPoiCollectionController.php'

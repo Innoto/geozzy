@@ -49,6 +49,15 @@ class rextPoi extends Module {
             'es' => 'Foto',
             'gl' => 'Foto'
           )
+        ),
+        array(
+          'idName' => 'puntoPanorama',
+          'icon' => 'view/categoryIcons/panorama.svg',
+          'name' => array(
+            'en' => 'Panaroma point',
+            'es' => 'Punto panorama',
+            'gl' => 'Punto panorama'
+          )
         )
       )
     )

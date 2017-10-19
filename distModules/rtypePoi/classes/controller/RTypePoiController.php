@@ -31,6 +31,12 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     // cambiamos el id de la imagen para evitar la colisión con la modal
     $form->setFieldParam('image', 'id', 'imgResourcePoi');
 
+    if(!empty($form->getFieldValue('content_'.$this->defResCtrl->defLang))){
+      $rextPoiControl = new RExtPoiController($this);
+      $pitchYaw = explode("/", $form->getFieldValue('content_'.$this->defResCtrl->defLang));
+      $form->setFieldValue($rextPoiControl->addPrefix('rextPoiPitch'), $pitchYaw[0]);
+      $form->setFieldValue($rextPoiControl->addPrefix('rextPoiYaw'), $pitchYaw[1]);
+    }
   } // function manipulateForm()
 
 
@@ -113,15 +119,24 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
    */
   // parent::resFormRevalidate( $form );
 
+   /**
+    * Creación-Edición-Borrado de los elementos de la extension
+    *
+    * @param $form FormController
+    * @param $resource ResourceModel
+    */
+    public function resFormProcess( FormController $form, ResourceModel $resource ) {
+      parent::resFormProcess( $form, $resource );
 
-  /**
-   * Creación-Edicion-Borrado de los elementos del recurso segun el RType
-   *
-   * @param $form FormController Objeto form. del recurso
-   * @param $resource ResourceModel Objeto form. del recurso
-   */
-  // parent::resFormProcess( $form, $resource );
-
+      if( !$form->existErrors() ) {
+        $rextPoiControl = new RExtPoiController($this);
+        $pitch = $form->getFieldValue($rextPoiControl->addPrefix('rextPoiPitch'));
+        $yaw = $form->getFieldValue($rextPoiControl->addPrefix('rextPoiYaw'));
+        if( $pitch !== "" && $yaw !== "" ){
+          $resource->setter('content_'.$this->defResCtrl->defLang, $pitch."/".$yaw);
+        }
+      }
+    }
 
   /**
    * Retoques finales antes de enviar el OK-ERROR a la BBDD y al formulario
