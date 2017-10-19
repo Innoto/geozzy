@@ -197,18 +197,41 @@ class RExtEventController extends RExtController implements RExtInterface {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      if( $form->isFieldDefined( 'rextEvent_initDate' ) && is_numeric( $form->getFieldValue( 'rextEvent_initDate' ) ) ) {
+      if( is_numeric( $form->getFieldValue( 'rextEvent_initDate' ) ) ) {
         $valuesArray[ 'initDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_initDate' ) );
       }
-      else{
-        $valuesArray[ 'initDate' ] = false;
+      else {
+        if( strpos($valuesArray[ 'initDate' ],'-') ) {
+          unset($valuesArray[ 'initDate' ]);
+        }
+        // else {
+        //   $valuesArray[ 'initDate' ] = null;
+        // }
       }
-      if( $form->isFieldDefined( 'rextEvent_endDate' ) && is_numeric( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
+      if( is_numeric( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
         $valuesArray[ 'endDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_endDate' ) );
       }
       else{
-        $valuesArray[ 'endDate' ] = false;
+        if( strpos($valuesArray[ 'endDate' ],'-') ) {
+          unset($valuesArray[ 'endDate' ]);
+        }
+        // else {
+        //   $valuesArray[ 'endDate' ] = null;
+        // }
       }
+
+      // if( is_numeric( $form->getFieldValue( 'rextEvent_initDate' ) ) ) {
+      //   $valuesArray[ 'initDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_initDate' ) );
+      // }
+      // else{
+      //   $valuesArray[ 'initDate' ] = '0000-00-00 00:00:00';
+      // }
+      // if( is_numeric( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
+      //   $valuesArray[ 'endDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_endDate' ) );
+      // }
+      // else{
+      //   $valuesArray[ 'endDate' ] = '0000-00-00 00:00:00';
+      // }
 
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
       $rExtModel = new EventModel( $valuesArray );

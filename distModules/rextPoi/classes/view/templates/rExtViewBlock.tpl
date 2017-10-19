@@ -7,11 +7,13 @@
     {$rExt.dataForm.formFieldsArray.rextPoi_rextPoiType}
   </div>
 
-
-
-
-
-
+  <div class="poiPanorama">
+    <h4>{t}Datos Panorama{/t}</h4>
+    <div class="row">
+      <div class="col-sm-6">{$rExt.dataForm.formFieldsArray.rextPoi_rextPoiPitch}</div>
+      <div class="col-sm-6">{$rExt.dataForm.formFieldsArray.rextPoi_rextPoiYaw}</div>
+    </div>
+  </div>
 
 
 

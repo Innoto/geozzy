@@ -23,6 +23,7 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
     }
 
     $rExtModel = new AudioguideModel();
+    $rExtModel->save();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
 
     $rExtObj = $rExtList->fetch();
