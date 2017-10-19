@@ -22,18 +22,17 @@ function bindEventForm(modal){
   var initDay = false;
   var endDay = false;
 
-
-  if ($(modal+'input.cgmMForm-field-rextEvent_initDate').val() && $(modal+'input.cgmMForm-field-rextEvent_initDate').val() != '0000-00-00 00:00:00'){
+  if ($(modal+'input.cgmMForm-field-rextEvent_initDate').val() && $(modal+'input.cgmMForm-field-rextEvent_initDate').val() != '0000-00-00 00:00:00' && $(modal+'input.cgmMForm-field-rextEvent_initDate').val() != 'undefined'){
     initDay = $(modal+'input.cgmMForm-field-rextEvent_initDate').val();
     //initDay = moment.unix(initDateTs_saved).utc();
   }
-  if ($(modal+'input.cgmMForm-field-rextEvent_endDate').val() && $(modal+'input.cgmMForm-field-rextEvent_endDate').val() != '0000-00-00 00:00:00'){
+  if ($(modal+'input.cgmMForm-field-rextEvent_endDate').val() && $(modal+'input.cgmMForm-field-rextEvent_endDate').val() != '0000-00-00 00:00:00' && $(modal+'input.cgmMForm-field-rextEvent_endDate').val() != 'undefined'){
     endDay = $(modal+'input.cgmMForm-field-rextEvent_endDate').val();
     //endDay = moment.unix(endDateTs_saved).utc();
   }
 
-  if(initDay && initDay!=''){
-    // lanzamos los calendarios
+  // lanzamos los calendarios
+  if(typeof(initDay)!='undefined' && initDay!=false){
     $(modal+'.initDate').datetimepicker({
       defaultDate:initDay
     });
@@ -42,9 +41,7 @@ function bindEventForm(modal){
     $(modal+'.initDate').datetimepicker();
   }
 
-// lanzamos los calendarios
-  if(endDay && endDay!=''){
-
+  if(typeof(initDay)!='undefined' && initDay!=false){
     $(modal+'.endDate').datetimepicker({
       defaultDate:endDay
     });

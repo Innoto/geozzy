@@ -204,9 +204,9 @@ class RExtEventController extends RExtController implements RExtInterface {
         if( strpos($valuesArray[ 'initDate' ],'-') ) {
           unset($valuesArray[ 'initDate' ]);
         }
-        else {
-          $valuesArray[ 'initDate' ] = '0000-00-00 00:00:00';
-        }
+        // else {
+        //   $valuesArray[ 'initDate' ] = null;
+        // }
       }
       if( is_numeric( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
         $valuesArray[ 'endDate' ] = gmdate( "Y-m-d H:i:s", $form->getFieldValue( 'rextEvent_endDate' ) );
@@ -215,9 +215,9 @@ class RExtEventController extends RExtController implements RExtInterface {
         if( strpos($valuesArray[ 'endDate' ],'-') ) {
           unset($valuesArray[ 'endDate' ]);
         }
-        else {
-          $valuesArray[ 'endDate' ] = '0000-00-00 00:00:00';
-        }
+        // else {
+        //   $valuesArray[ 'endDate' ] = null;
+        // }
       }
 
       // if( is_numeric( $form->getFieldValue( 'rextEvent_initDate' ) ) ) {
