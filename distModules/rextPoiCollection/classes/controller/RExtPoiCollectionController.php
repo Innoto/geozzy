@@ -410,6 +410,7 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
       $template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
 
       rextPoiCollection::autoIncludes();
+      $template->addClientScript('js/view/ExplorerPoisPanoramaView.js', 'rextPoiCollection');
       $template->addClientScript('js/poiCollectionExplorer.js', 'rextPoiCollection');
 
 

@@ -79,9 +79,16 @@
         }
     });
 
+    if( geozzy.rExtPOIOptions.showPanorama != false) {
+      var panoramaView = new geozzy.explorerComponents.panoramaView({
+        panoramaImage: '/cgmlImg/155-aojsiqb/fast/LO14C12F2_215215.jpg'
+      });
+      ex.addDisplay( panoramaView );
+    }
 
 
     /* ADD DISPLAY TO EXPLORER */
+
     ex.addDisplay( explorerMapa );
 
     var miniInfoWindow ='<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')"<%}%> >'+
