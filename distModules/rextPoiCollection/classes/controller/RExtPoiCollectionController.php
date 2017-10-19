@@ -381,6 +381,7 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
 
 
+
       $template->addClientScript('bower/backbone.obscura/backbone.obscura.js', 'vendor');
       $template->addClientScript('bower/tiny_map_utilities/smart_infowindow/smart_infowindow.js', 'vendor');
       $template->addClientScript('bower/tiny_map_utilities/smart_infowindow/vendor/jQueryRotate.js', 'vendor');
@@ -407,7 +408,11 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
       $template->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');
       $template->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
+
+      rextPoiCollection::autoIncludes();
       $template->addClientScript('js/poiCollectionExplorer.js', 'rextPoiCollection');
+
+
       $template->setTpl( 'rExtViewBlock.tpl', 'rextPoiCollection' );
       $rExtViewBlockInfo['template'] = array( 'full' => $template );
     }

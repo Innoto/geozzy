@@ -39,6 +39,11 @@ class PoisExplorerController extends ExplorerController {
         }
         unset($resourceDataArray['loc']);
 
+        // Datos de panorama
+        $row['panoramaYaw'] = 200;
+        $row['panoramaPitch'] = 0;
+
+
         echo json_encode( $row );
 
       $coma=',';
