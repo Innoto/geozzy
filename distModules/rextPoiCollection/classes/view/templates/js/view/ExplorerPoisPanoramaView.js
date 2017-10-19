@@ -45,14 +45,25 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
       var hotSpots = [];
 
+      that.parentExplorer.partial
 
-      hotSpots.push({
-        "pitch": 0,
-        "yaw": 0,
-        "cssClass": "panorama-custom-hotspot",
-        "createTooltipFunc": that.renderSpot,
-        "createTooltipArgs": {lol:'asdf'}
+
+      that.parentExplorer.resourceMinimalList.each(function(e,i){
+
+        if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
+          hotSpots.push({
+            "pitch": e.get('panoramaPitch'),
+            "yaw": e.get('panoramaYaw'),
+            "cssClass": "panorama-custom-hotspot",
+            "createTooltipFunc": function(a,e) {that.renderSpot(a,e)},
+            "createTooltipArgs": { id: e.get('id') }
+          });
+        }
+
+
       });
+
+
 
       that.panorama = pannellum.viewer( that.options.containerDivId , {
           "autoLoad": true,
@@ -78,18 +89,29 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
   },
 
   renderSpot: function(hotSpotDiv, args) {
-      hotSpotDiv.classList.add('custom-tooltip');
-      var span = document.createElement('span');
+    var that=this;
+    hotSpotDiv.classList.add('custom-tooltip');
+    var span = document.createElement('span');
 
-      $(hotSpotDiv).on('mouseover', function(){
-        $(hotSpotDiv).addClass('panorama-custom-hotspot-selected');
-        console.log( args );
-      });
-      $(hotSpotDiv).on('mouseout', function(){
-        $(hotSpotDiv).removeClass('panorama-custom-hotspot-selected');
-        console.log( args );
-      });
-  }
+    $(hotSpotDiv).on('mouseover', function(){
+
+      that.parentExplorer.displays.map.markerBounce( args.id );
+      that.parentExplorer.displays.map.panTo( args.id );
+
+      that.parentExplorer.triggerEvent('resourceHover', args );
+      $(hotSpotDiv).addClass('panorama-custom-hotspot-selected');
+
+    });
+    $(hotSpotDiv).on('mouseout', function(){
+
+      that.parentExplorer.displays.map.markerOut( );
+      that.parentExplorer.displays.map.markerBounceEnd( args.id );
+
+      that.parentExplorer.triggerEvent('resourceMouseOut', args );
+      $(hotSpotDiv).removeClass('panorama-custom-hotspot-selected');
+    });
+  },
+
 
 
 
