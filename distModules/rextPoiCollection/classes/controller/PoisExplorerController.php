@@ -11,7 +11,9 @@ class PoisExplorerController extends ExplorerController {
     $filters= [];
     $filters['resourceMain'] = (int) $_POST['resourceID'];
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc','isNormalResource','terms'), 'filters'=> $filters ) );
+    global $C_LANG;
+
+    $resources = $resourceModel->listItems( array('fields'=>array('id','content_'.$C_LANG,'loc','isNormalResource','terms'), 'filters'=> $filters ) );
 
     $coma = '';
 
@@ -20,11 +22,7 @@ class PoisExplorerController extends ExplorerController {
     while( $resource = $resources->fetch() ){
         echo $coma;
         $row = array();
-
         $resourceDataArray = $resource->getAllData('onlydata');
-
-
-
         $row['isNormalResource'] = $resourceDataArray['isNormalResource'];
 
         if( isset($resourceDataArray['terms']) ) {
@@ -39,10 +37,11 @@ class PoisExplorerController extends ExplorerController {
         }
         unset($resourceDataArray['loc']);
 
-        // Datos de panorama
-        $row['panoramaYaw'] = 200;
-        $row['panoramaPitch'] = 0;
-
+        if( empty($resourceDataArray['isNormalResource']) && !empty($resourceDataArray['content_'.$C_LANG]) ){
+          $pitchYaw = explode( "/", $resourceDataArray['content_'.$C_LANG]);
+          $row['panoramaYaw'] = $pitchYaw[1];
+          $row['panoramaPitch'] = $pitchYaw[0];
+        }
 
         echo json_encode( $row );
 
@@ -78,7 +77,7 @@ class PoisExplorerController extends ExplorerController {
         $row = array();
 
         $resourceDataArray = array('id' => $resource->getter('id'), 'title' => $resource->getter('title'),
-                                   'mediumDescription' => $resource->getter('mediumDescription'), 'image' => $resource->getter('image'));
+        'mediumDescription' => $resource->getter('mediumDescription'), 'image' => $resource->getter('image'));
 
 
         $row['id'] = $resourceDataArray['id'];
