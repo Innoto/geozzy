@@ -2,7 +2,8 @@
   var geozzy = geozzy || {};
 
   geozzy.rExtPOIOptions = {
-    showPanorama:false,
+    showPanorama: false,
+    panoramaImg: false,
     resourceID: {$rExt.data.id}
   };
 
@@ -16,7 +17,7 @@
         height: 20px;
         width: 20px;
         border-radius: 50%;
-        background: #f00;
+        background: #D35E5E;
         border:2px solid white;
     }
 

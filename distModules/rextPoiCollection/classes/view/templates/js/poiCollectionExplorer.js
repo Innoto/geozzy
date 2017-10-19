@@ -81,7 +81,7 @@
 
     if( geozzy.rExtPOIOptions.showPanorama != false) {
       var panoramaView = new geozzy.explorerComponents.panoramaView({
-        panoramaImage: '/cgmlImg/155-aojsiqb/fast/LO14C12F2_215215.jpg'
+        panoramaImage: geozzy.rExtPOIOptions.panoramaImg
       });
       ex.addDisplay( panoramaView );
     }
