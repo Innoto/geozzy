@@ -41,7 +41,7 @@ function bindEventForm(modal){
     $(modal+'.initDate').datetimepicker();
   }
 
-  if(typeof(initDay)!='undefined' && initDay!=false){
+  if(typeof(endDay)!='undefined' && endDay!=false){
     $(modal+'.endDate').datetimepicker({
       defaultDate:endDay
     });
