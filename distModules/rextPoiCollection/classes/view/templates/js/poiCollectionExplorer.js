@@ -79,9 +79,16 @@
         }
     });
 
+    if( geozzy.rExtPOIOptions.showPanorama != false) {
+      var panoramaView = new geozzy.explorerComponents.panoramaView({
+        panoramaImage: geozzy.rExtPOIOptions.panoramaImg
+      });
+      ex.addDisplay( panoramaView );
+    }
 
 
     /* ADD DISPLAY TO EXPLORER */
+
     ex.addDisplay( explorerMapa );
 
     var miniInfoWindow ='<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')"<%}%> >'+

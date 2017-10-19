@@ -9,7 +9,8 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
   displayType: 'plugin',
   parentExplorer: false,
-  visibleResources: [],
+
+  panorama: false,
 
   events: {
   },
@@ -18,8 +19,10 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
     var that = this;
 
     var options = new Object({
-      containerDiv: $('.panoramaView'),
-      panoramaImage: '/pannellum/panorama.jpg'
+      containerDivId: 'panoramaView',
+      panoramaImage: false,
+      haov: 360,
+      vaov: 50
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -28,17 +31,144 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
   setParentExplorer: function( parentExplorer ) {
     var  that = this;
+
     that.parentExplorer = parentExplorer;
+
+
+
+    that.parentExplorer.bindEvent('mapResourceHover', function(ev){
+       that.centerInPanorama(ev.id);
+    });
+    that.parentExplorer.bindEvent('resourceMouseOut', function(ev){
+       //that.unShakeHotsPot(ev.id);
+    });
+
   },
 
   render: function() {
-    var that = this;
+    var that =this;
 
-    $.each(  this.visibleResources, function(i,e){
 
-    });
+
+
+    if( that.panorama == false ) {
+
+      var hotSpots = [];
+
+      that.parentExplorer.partial
+
+
+      that.parentExplorer.resourceMinimalList.each(function(e,i){
+
+        if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
+          hotSpots.push({
+            "pitch": parseInt(e.get('panoramaPitch')),
+            "yaw": parseInt(e.get('panoramaYaw')),
+            "cssClass": "panorama-custom-hotspot",
+            "createTooltipFunc": function(a,e) {that.renderSpot(a,e)},
+            "createTooltipArgs": { id: e.get('id') }
+          });
+        }
+
+
+      });
+
+
+
+      that.panorama = pannellum.viewer( that.options.containerDivId , {
+          "autoLoad": true,
+          "mouseZoom":false,
+          "showFullscreenCtrl": false,
+          "type": "equirectangular",
+          "panorama": that.options.panoramaImage,
+
+          "haov": that.options.haov,
+          "vaov": that.options.vaov,
+          "vOffset": 10,
+
+          "hotSpots": hotSpots
+        }
+
+      );
+      $('#'+that.options.containerDivId).show();
+
+    }
+
     that.parentExplorer.triggerEvent('onRenderListComplete',{});
   },
+
+
+
+  renderSpot: function(hotSpotDiv, args) {
+    var that=this;
+    var e = that.parentExplorer.resourceMinimalList.get(args.id);
+    e.set('hotSpotDiv',hotSpotDiv);
+
+
+    $(hotSpotDiv).on('mouseover', function(){
+
+      that.parentExplorer.displays.map.markerBounce( args.id );
+      that.parentExplorer.displays.map.panTo( args.id );
+
+      that.parentExplorer.triggerEvent('resourceHover', args );
+      $(hotSpotDiv).addClass('panorama-custom-hotspot-selected');
+
+    });
+    $(hotSpotDiv).on('mouseout', function(){
+
+      that.parentExplorer.displays.map.markerOut( );
+      that.parentExplorer.displays.map.markerBounceEnd( args.id );
+
+      that.parentExplorer.triggerEvent('resourceMouseOut', args );
+      $(hotSpotDiv).removeClass('panorama-custom-hotspot-selected');
+    });
+  },
+
+
+
+
+  centerInPanorama: function(id) {
+    var that=this;
+
+    var e = that.parentExplorer.resourceMinimalList.get(id);
+    if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
+      that.panorama.lookAt(  parseInt(e.get('panoramaPitch')), parseInt(e.get('panoramaYaw'))  )
+      that.shakeHotspot(id);
+
+      //console.log(e.get('panoramaPitch'), e.get('panoramaYaw') )
+
+    }
+  },
+
+
+  shakeHotspot: function(id) {
+    var that = this;
+    var e = that.parentExplorer.resourceMinimalList.get(id);
+
+
+    if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
+      console.log(e.get('hotSpotDiv'));
+      $(e.get('hotSpotDiv')).addClass('panorama-custom-hotspot-selected')
+    }
+  },
+
+
+  unShakeHotsPot: function( id ) {
+    var that = this;
+    var e = that.parentExplorer.resourceMinimalList.get(id);
+
+
+    if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
+      console.log(e.get('hotSpotDiv'));
+      $(e.get('hotSpotDiv')).removeClass('panorama-custom-hotspot-selected')
+    }
+  }
+
+
+
+
+/*
+  ,
 
 
   resourceClick: function( element ) {
@@ -62,5 +192,5 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
     }
 
   }
-
+*/
 });

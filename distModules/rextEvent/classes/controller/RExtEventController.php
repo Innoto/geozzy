@@ -28,7 +28,9 @@ class RExtEventController extends RExtController implements RExtInterface {
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {
-      $rExtData = $rExtObj->getAllData( 'onlydata' );
+      // $rExtData = $rExtObj->getAllData( 'onlydata' );
+      $rExtData = $this->defResCtrl->getAllTrData( $rExtObj );
+
 
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
       $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
@@ -122,7 +124,6 @@ class RExtEventController extends RExtController implements RExtInterface {
         }
       }
 
-
       $form->loadArrayValues( $valuesArray );
     }
 
@@ -205,7 +206,7 @@ class RExtEventController extends RExtController implements RExtInterface {
           unset($valuesArray[ 'initDate' ]);
         }
         else {
-          $valuesArray[ 'initDate' ] = '0000-00-00 00:00:00';
+          $valuesArray[ 'initDate' ] = null;
         }
       }
       if( is_numeric( $form->getFieldValue( 'rextEvent_endDate' ) ) ) {
@@ -216,7 +217,7 @@ class RExtEventController extends RExtController implements RExtInterface {
           unset($valuesArray[ 'endDate' ]);
         }
         else {
-          $valuesArray[ 'endDate' ] = '0000-00-00 00:00:00';
+          $valuesArray[ 'endDate' ] = null;
         }
       }
 

@@ -755,6 +755,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   markerHover: function( id ){
     var that = this;
 
+    that.parentExplorer.triggerEvent('mapResourceHover', {
+      id: id
+    });
+
     that.parentExplorer.triggerEvent('resourceHover', { id: id, section: 'Explorer: '+that.parentExplorer.options.explorerSectionName});
 
   },

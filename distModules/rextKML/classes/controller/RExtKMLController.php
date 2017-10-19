@@ -58,14 +58,17 @@ class RExtKMLController extends RExtController implements RExtInterface {
 
     $rExtFieldNames = array();
 
-    $fieldsInfo = array(
-
-      'file' => array(
-        'params' => array( 'label' => __( 'KML file' ), 'type' => 'file', 'id' => 'rextKMLField',
-        'placeholder' => __( 'File' ), 'destDir' => RExtKMLModel::$cols['file']['uploadDir'] ),
-        'rules' => array( 'maxfilesize' => '5242880', 'accept' => ',application/xml,application\/vnd.google\-earth\.kml\+xml' )
-      )
-    );
+    $fieldsInfo = [
+      'file' => [
+        'params' => [ 'label' => __( 'KML file' ), 'type' => 'file', 'id' => 'rextKMLField',
+          'placeholder' => __( 'File' ), 'destDir' => RExtKMLModel::$cols['file']['uploadDir']
+        ],
+        'rules' => [
+          'maxfilesize' => '5242880',
+          'accept' => ',application/xml,application/vnd.google\-earth.kml\+xml,application/vnd.google\-earth.kmz,application/zip'
+        ]
+      ]
+    ];
 
 
 
