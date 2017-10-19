@@ -1,3 +1,7 @@
+$porto = false;
+
+
+
 $(document).ready(function(){
 
   if($('.eventModal').size()>0){
@@ -12,10 +16,12 @@ $(document).ready(function(){
 });
 
 
+
 function bindEventForm(modal){
   // mostramos los valores guardados en bbdd
   var initDay = false;
   var endDay = false;
+
 
   if ($(modal+'input.cgmMForm-field-rextEvent_initDate').val() && $(modal+'input.cgmMForm-field-rextEvent_initDate').val() != '0000-00-00 00:00:00'){
     initDay = $(modal+'input.cgmMForm-field-rextEvent_initDate').val();
@@ -26,23 +32,47 @@ function bindEventForm(modal){
     //endDay = moment.unix(endDateTs_saved).utc();
   }
 
-  // lanzamos los calendarios
-  $(modal+'.initDate').datetimepicker({
-    defaultDate:initDay
-  });
-  $(modal+'.endDate').datetimepicker({
-    defaultDate:endDay
-  });
+  if(initDay && initDay!=''){
+    // lanzamos los calendarios
+    $(modal+'.initDate').datetimepicker({
+      defaultDate:initDay
+    });
+  }
+  else{
+    $(modal+'.initDate').datetimepicker();
+  }
+
+// lanzamos los calendarios
+  if(endDay && endDay!=''){
+
+    $(modal+'.endDate').datetimepicker({
+      defaultDate:endDay
+    });
+  }
+  else{
+    $(modal+'.endDate').datetimepicker();
+  }
+
 
   // recogemos los valores, los ponemos en UTC y los pasamos a timestamp antes de pasarlos al servidor
   $(modal+'.initDate').on('dp.change', function(e){
-    e.date.tz(cogumelo.publicConf.date_timezone.project);
-    initDateTs = e.date.unix();
+    if( e.date){
+      e.date.tz(cogumelo.publicConf.date_timezone.project);
+      initDateTs = e.date.unix();
+    }
+    else{
+      initDateTs = false;
+    }
     $(modal+'input.cgmMForm-field-rextEvent_initDate').val(initDateTs);
   });
   $(modal+'.endDate').on('dp.change', function(e){
-    e.date.tz(cogumelo.publicConf.date_timezone.project);
-    endDateTs = e.date.unix();
+    if( e.date){
+      e.date.tz(cogumelo.publicConf.date_timezone.project);
+      endDateTs = e.date.unix();
+    }
+    else{
+      endDateTs = false;
+    }
     $(modal+'input.cgmMForm-field-rextEvent_endDate').val(endDateTs);
   });
 

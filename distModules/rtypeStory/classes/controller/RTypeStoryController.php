@@ -38,6 +38,25 @@ class RTypeStoryController extends RTypeController implements RTypeInterface {
    */
   public function getFormBlockInfo( FormController $form ) {
 
+    if( $form->getFieldValue('rExtView_viewAlternativeMode') == '' ) {
+      $taxtermResult = ( new TaxonomyViewModel() )->listItems([
+        'filters' => ['taxGroupIdName' => 'viewAlternativeMode', 'idName'=>'viewAppStory' ]
+      ]);
+
+      if( $taxterm = $taxtermResult->fetch() ) {
+        //var_dump($taxterm->getter('id'). ' ' . $taxterm->getter('idName').' ' .$taxterm->getter('name') );
+        $form->setFieldValue('rExtView_viewAlternativeMode', $taxterm->getter('id'));
+      }
+      else {
+        cogumelo::error('DEBE EXISTIR taxonomia viewAppStory para $rExtViewAppInitialTerms');
+      }
+
+
+    }
+
+
+    // if( isset( $formBlockInfo['ext']['rextView']['template']['basic'] ) ) {
+
     // Cargamos la informacion del form, los datos y lanzamos los getFormBlockInfo de las extensiones
     $formBlockInfo = parent::getFormBlockInfo( $form );
 
