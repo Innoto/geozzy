@@ -1,70 +1,67 @@
 /**
- *  RExtAccommodationReserve Controller
+ *  RExtReservation Controller
  */
 var geozzy = geozzy || {};
 
-geozzy.rExtAccommodationReserveController = geozzy.rExtAccommodationReserveController || {
+geozzy.rExtReservationController = geozzy.rExtReservationController || {
   init: function init() {
-    console.log('init rExtAccommodationReserveController');
+    //console.log('init rExtReservationController');
 
-    geozzy.rExtAccommodationReserveInfo.values = {
+    geozzy.rExtReservationInfo.values = {
       checkin : moment().add( 1, 'days' ),
       checkout : moment().add( 3, 'days' ),
       adults : '2',
       rooms : '1'
     };
-
-    $field = $( geozzy.rExtAccommodationReserveInfo.idAdults );
-    $field.val( geozzy.rExtAccommodationReserveInfo.values.adults );
-
-    $field = $( geozzy.rExtAccommodationReserveInfo.idRooms );
-    $field.val( geozzy.rExtAccommodationReserveInfo.values.rooms );
-
+    $field = $( geozzy.rExtReservationInfo.idAdults );
+    $field.val( geozzy.rExtReservationInfo.values.adults );
+    $field = $( geozzy.rExtReservationInfo.idRooms );
+    $field.val( geozzy.rExtReservationInfo.values.rooms );
     this.initCalendar();
 
-    $( geozzy.rExtAccommodationReserveInfo.idLink ).on( 'mouseenter', function() {
-      geozzy.rExtAccommodationReserveController.updateLink();
+    $( geozzy.rExtReservationInfo.idLink ).on( 'mouseenter', function() {
+      geozzy.rExtReservationController.updateLink();
     });
 
-    $( geozzy.rExtAccommodationReserveInfo.idRooms ).on( 'change', function() {
-      geozzy.rExtAccommodationReserveInfo.values.rooms = this.value;
-      geozzy.rExtAccommodationReserveController.updateLink();
+    $( geozzy.rExtReservationInfo.idRooms ).on( 'change', function() {
+      geozzy.rExtReservationInfo.values.rooms = this.value;
+      geozzy.rExtReservationController.updateLink();
     });
 
-    $( geozzy.rExtAccommodationReserveInfo.idAdults ).on( 'change', function() {
-      geozzy.rExtAccommodationReserveInfo.values.adults = this.value;
-      geozzy.rExtAccommodationReserveController.updateLink();
+    $( geozzy.rExtReservationInfo.idAdults ).on( 'change', function() {
+      geozzy.rExtReservationInfo.values.adults = this.value;
+      geozzy.rExtReservationController.updateLink();
     });
 
     this.updateLink();
   },
   updateLink: function updateLink() {
-    urlDateFormat = geozzy.rExtAccommodationReserveInfo.urlDateFormat;
-    calDateFormat = geozzy.rExtAccommodationReserveInfo.calDateFormat;
+    urlDateFormat = geozzy.rExtReservationInfo.urlDateFormat;
+    calDateFormat = geozzy.rExtReservationInfo.calDateFormat;
 
-    $field = $( geozzy.rExtAccommodationReserveInfo.idAdults );
-    geozzy.rExtAccommodationReserveInfo.values.adults = $field.val();
+    $field = $( geozzy.rExtReservationInfo.idAdults );
+    geozzy.rExtReservationInfo.values.adults = $field.val();
 
-    $field = $( geozzy.rExtAccommodationReserveInfo.idRooms );
-    geozzy.rExtAccommodationReserveInfo.values.rooms = $field.val();
+    $field = $( geozzy.rExtReservationInfo.idRooms );
+    geozzy.rExtReservationInfo.values.rooms = $field.val();
 
-    values = geozzy.rExtAccommodationReserveInfo.values;
+    values = geozzy.rExtReservationInfo.values;
 
-    link = geozzy.rExtAccommodationReserveInfo.srcUrl;
+    link = geozzy.rExtReservationInfo.srcUrl;
     link = link.replace( '<$checkin>', values.checkin.format( urlDateFormat ) );
     link = link.replace( '<$checkout>', values.checkout.format( urlDateFormat ) );
     link = link.replace( '<$adults>', values.adults );
     link = link.replace( '<$rooms>', values.rooms );
-    $( geozzy.rExtAccommodationReserveInfo.idLink ).attr( 'href', link );
+    $( geozzy.rExtReservationInfo.idLink ).attr( 'href', link );
   },
   initCalendar: function initCalendar() {
-    calDateFormat = geozzy.rExtAccommodationReserveInfo.calDateFormat;
-    $( geozzy.rExtAccommodationReserveInfo.idCal ).daterangepicker(
+    calDateFormat = geozzy.rExtReservationInfo.calDateFormat;
+    $( geozzy.rExtReservationInfo.idCal ).daterangepicker(
       {
         'showCustomRangeLabel': false,
-        'startDate': geozzy.rExtAccommodationReserveInfo.values.checkin.format( calDateFormat ),
-        'minDate': geozzy.rExtAccommodationReserveInfo.values.checkin.format( calDateFormat ), /* Evitar poner fecha anterior al día actual */
-        'endDate': geozzy.rExtAccommodationReserveInfo.values.checkout.format( calDateFormat ),
+        'startDate': geozzy.rExtReservationInfo.values.checkin.format( calDateFormat ),
+        'minDate': geozzy.rExtReservationInfo.values.checkin.format( calDateFormat ), /* Evitar poner fecha anterior al día actual */
+        'endDate': geozzy.rExtReservationInfo.values.checkout.format( calDateFormat ),
         'autoApply': true,
         'locale': {
           'format': calDateFormat,
@@ -87,9 +84,9 @@ geozzy.rExtAccommodationReserveController = geozzy.rExtAccommodationReserveContr
       */
       },
       function( start, end, label ) {
-        geozzy.rExtAccommodationReserveInfo.values.checkin = start;
-        geozzy.rExtAccommodationReserveInfo.values.checkout = end;
-        geozzy.rExtAccommodationReserveController.updateLink();
+        geozzy.rExtReservationInfo.values.checkin = start;
+        geozzy.rExtReservationInfo.values.checkout = end;
+        geozzy.rExtReservationController.updateLink();
         console.log( 'From: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
       }
     );
@@ -97,5 +94,5 @@ geozzy.rExtAccommodationReserveController = geozzy.rExtAccommodationReserveContr
 };
 
 $(document).ready(function(){
-  geozzy.rExtAccommodationReserveController.init();
+  geozzy.rExtReservationController.init();
 });

@@ -1,6 +1,6 @@
 
 <!-- Reserve TPL -->
-<div class="rextAccommodationReserve">
+<div class="rextReservation">
   <span class="anchorResource" id="reserveAnchor"></span>
   <h4>{t}Reserve{/t}</h4>
   <form action="">
@@ -26,10 +26,10 @@
 
 <script type="text/javascript">
 /**
- *  RExtAccommodationReserve Info
+ *  rextReservation Info
  */
 var geozzy = geozzy || {};
-geozzy.rExtAccommodationReserveInfo = geozzy.rExtAccommodationReserveInfo || {
+geozzy.rextReservationInfo = geozzy.rextReservationInfo || {
   srcUrl : '{$srcUrl}',
   idLink : '#reserve_link_{$rExt.data.idRelate}',
   idCal : '#reserve_cal_{$rExt.data.idRelate}',

@@ -14,7 +14,26 @@ class rextReservation extends Module {
 
   public $taxonomies = array();
 
-  public $dependences = array();
+  public $dependences = array(
+    array(
+     'id' =>'moment',
+     'params' => array( 'moment' ),
+     'installer' => 'bower',
+     'includes' => array( 'min/moment-with-locales.min.js' )
+    ),
+    array(
+     'id' =>'moment-timezone',
+     'params' => array( 'moment-timezone' ),
+     'installer' => 'bower',
+     'includes' => array( 'builds/moment-timezone-with-data.min.js' )
+    ),
+    array(
+     'id' =>'bootstrap-daterangepicker',
+     'params' => array( 'bootstrap-daterangepicker' ),
+     'installer' => 'bower',
+     'includes' => array( 'daterangepicker.js', 'daterangepicker.css' )
+    ),
+  );
 
   public $includesCommon = array(
     'controller/RExtReservationController.php',

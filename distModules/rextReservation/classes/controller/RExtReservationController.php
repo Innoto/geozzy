@@ -6,8 +6,8 @@ class RExtReservationController extends RExtController implements RExtInterface 
   public function __construct( $defRTypeCtrl ) {
     parent::__construct( $defRTypeCtrl, new rextReservation(), 'rExtReservation_' );
 
-    rextAccommodationReserve::load( 'controller/channelOptionsConf.php' );
-    $this->channelOptions = cogumelo::getSetupValue( 'mod:rextAccommodationReserve:channelOptions' );
+    rextReservation::load( 'controller/channelOptionsConf.php' );
+    $this->channelOptions = cogumelo::getSetupValue( 'mod:rextReservation:channelOptions' );
   }
 
   /**
@@ -214,6 +214,50 @@ class RExtReservationController extends RExtController implements RExtInterface 
    */
   public function getViewBlockInfo( $resId = false ) {
     $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
+
+    if( $rExtViewBlockInfo['data'] ) {
+      $channel = $rExtViewBlockInfo['data']['channel'];
+      $channelInfo = cogumelo::getSetupValue( 'mod:rextReservation:channelOptions:'.$channel );
+
+      if( $channelInfo ) {
+        $rExtViewBlockInfo['template']['full'] = new Template();
+
+        $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+        $rExtViewBlockInfo['template']['full']->assign( 'channelInfo', $channelInfo );
+        $rExtViewBlockInfo['template']['full']->assign( 'calDateFormat', 'DD/MM/YYYY' );
+
+        $rExtViewBlockInfo['template']['full']->setTpl( $channelInfo['template']['public'], 'rextReservation' );
+
+        if( isset( $channelInfo['template']['scripts'] ) ) {
+          foreach( $channelInfo['template']['scripts'] as $script ) {
+            $rExtViewBlockInfo['template']['full']->addClientScript( $script, 'rextReservation' );
+          }
+        }
+        if( isset( $channelInfo['template']['styles'] ) ) {
+          foreach( $channelInfo['template']['styles'] as $style ) {
+            $rExtViewBlockInfo['template']['full']->addClientStyles( $style, 'rextReservation' );
+          }
+        }
+
+        $from = [
+          '<$idRelate>',
+          '<$langName>'
+        ];
+        $to = [
+          $rExtViewBlockInfo['data']['idRelate'],
+          $GLOBALS['C_LANG']
+        ];
+        $srcUrl = str_replace( $from, $to, $channelInfo['pattern'] );
+        $rExtViewBlockInfo['template']['full']->assign( 'srcUrl', $srcUrl );
+      }
+    }
+
+    // Template por defecto
+    if( !isset( $rExtViewBlockInfo['template']['full'] ) ) {
+      $rExtViewBlockInfo['template']['full'] = new Template();
+      $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
+      $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextReservation' );
+    }
 
     return $rExtViewBlockInfo;
   }
