@@ -500,15 +500,28 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       retObj = iconOptions;
     }
     else {
-      retObj = {
-        url: cogumelo.publicConf.media+'/module/admin/img/geozzy_marker.png',
-        // This marker is 20 pixels wide by 36 pixels high.
-        size: new google.maps.Size(30, 36),
-        // The origin for this image is (0, 0).
-        origin: new google.maps.Point(0, 0),
-        // The anchor for this image is the base of the flagpole at (0, 36).
-        anchor: new google.maps.Point(13, 36)
-      };
+      if(typeof(cogumelo.publicConf.rextMapConf.defaultMarker) !== 'undefined'){
+        retObj = {
+          url: cogumelo.publicConf.rextMapConf.defaultMarker,
+          // This marker is 20 pixels wide by 36 pixels high.
+          size: new google.maps.Size(30, 36),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 36).
+          anchor: new google.maps.Point(13, 36)
+        };
+      }
+      else{
+        retObj = {
+          url: cogumelo.publicConf.media+'/module/admin/img/geozzy_marker.png',
+          // This marker is 20 pixels wide by 36 pixels high.
+          size: new google.maps.Size(30, 36),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 36).
+          anchor: new google.maps.Point(13, 36)
+        };
+      }
     }
 
     return retObj;
@@ -754,6 +767,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
   markerHover: function( id ){
     var that = this;
+
+    that.parentExplorer.triggerEvent('mapResourceHover', {
+      id: id
+    });
 
     that.parentExplorer.triggerEvent('resourceHover', { id: id, section: 'Explorer: '+that.parentExplorer.options.explorerSectionName});
 

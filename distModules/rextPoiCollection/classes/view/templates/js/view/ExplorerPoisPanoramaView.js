@@ -22,7 +22,7 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
       containerDivId: 'panoramaView',
       panoramaImage: false,
       haov: 360,
-      vaov: 70.15
+      vaov: 50
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -33,6 +33,16 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
     var  that = this;
 
     that.parentExplorer = parentExplorer;
+
+
+
+    that.parentExplorer.bindEvent('mapResourceHover', function(ev){
+       that.centerInPanorama(ev.id);
+    });
+    that.parentExplorer.bindEvent('resourceMouseOut', function(ev){
+       //that.unShakeHotsPot(ev.id);
+    });
+
   },
 
   render: function() {
@@ -52,8 +62,8 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
         if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
           hotSpots.push({
-            "pitch": e.get('panoramaPitch'),
-            "yaw": e.get('panoramaYaw'),
+            "pitch": parseInt(e.get('panoramaPitch')),
+            "yaw": parseInt(e.get('panoramaYaw')),
             "cssClass": "panorama-custom-hotspot",
             "createTooltipFunc": function(a,e) {that.renderSpot(a,e)},
             "createTooltipArgs": { id: e.get('id') }
@@ -84,14 +94,16 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
 
     }
 
-
     that.parentExplorer.triggerEvent('onRenderListComplete',{});
   },
 
+
+
   renderSpot: function(hotSpotDiv, args) {
     var that=this;
-    hotSpotDiv.classList.add('custom-tooltip');
-    var span = document.createElement('span');
+    var e = that.parentExplorer.resourceMinimalList.get(args.id);
+    e.set('hotSpotDiv',hotSpotDiv);
+
 
     $(hotSpotDiv).on('mouseover', function(){
 
@@ -111,6 +123,46 @@ geozzy.explorerComponents.panoramaView = Backbone.View.extend({
       $(hotSpotDiv).removeClass('panorama-custom-hotspot-selected');
     });
   },
+
+
+
+
+  centerInPanorama: function(id) {
+    var that=this;
+
+    var e = that.parentExplorer.resourceMinimalList.get(id);
+    if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
+      that.panorama.lookAt(  parseInt(e.get('panoramaPitch')), parseInt(e.get('panoramaYaw'))  )
+      that.shakeHotspot(id);
+
+      //console.log(e.get('panoramaPitch'), e.get('panoramaYaw') )
+
+    }
+  },
+
+
+  shakeHotspot: function(id) {
+    var that = this;
+    var e = that.parentExplorer.resourceMinimalList.get(id);
+
+
+    if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
+      console.log(e.get('hotSpotDiv'));
+      $(e.get('hotSpotDiv')).addClass('panorama-custom-hotspot-selected')
+    }
+  },
+
+
+  unShakeHotsPot: function( id ) {
+    var that = this;
+    var e = that.parentExplorer.resourceMinimalList.get(id);
+
+
+    if( e.get('panoramaPitch') &&  e.get('panoramaYaw') ) {
+      console.log(e.get('hotSpotDiv'));
+      $(e.get('hotSpotDiv')).removeClass('panorama-custom-hotspot-selected')
+    }
+  }
 
 
 

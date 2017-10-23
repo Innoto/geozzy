@@ -75,11 +75,11 @@ class RExtPoiController extends RExtController implements RExtInterface {
         )
       ),
       'rextPoiPitch' => array(
-        'params' => array( 'label' => __( 'Pitch (Horizontal)' ) ),
+        'params' => array( 'label' => __( 'Pitch (Vertical)' ) ),
         'rules' => array( 'numberEUDec' => 4 )
       ),
       'rextPoiYaw' => array(
-        'params' => array( 'label' => __( 'Yaw (Vertical)' ) ),
+        'params' => array( 'label' => __( 'Yaw (Horizontal)' ) ),
         'rules' => array( 'numberEUDec' => 4 )
       )
     );
