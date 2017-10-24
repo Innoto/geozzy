@@ -1,0 +1,26 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
+msgid "If not uploaded, an automatic thumbnail will be created"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeEvent/classes/controller/RTypeEventController.php:55
+msgid "Main Resource information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeEvent/classes/controller/RTypeEventController.php:70
+msgid "Edit Resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeEvent/classes/controller/RTypeEventController.php:88
+msgid "Resource"
+msgstr ""

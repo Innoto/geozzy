@@ -1,0 +1,101 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/js/view/StoryStepsListTemplate.js:47
+msgid "Pasos"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/js/view/StoryStepsListTemplate.js:50
+msgid ""
+"Puedes dar orden a los pasos arrastrando sus correspondientes barras a la "
+"posición que les corresponda."
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/js/view/StoryStepsListTemplate.js:51
+msgid "Aquí podrás editar los pasos básicos de la historia"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/js/view/StoryStepsListTemplate.js:53
+msgid "Editar historia"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeStoryStep_classes_view_templates_listSteps.tpl:5
+msgid "Steps available"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:70
+msgid "Create and add resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:71
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:81
+msgid "Return"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:74
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:84
+msgid "Crear"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:78
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:88
+msgid "Add selected"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid ""
+"<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working "
+"with resource types)</li><li>Assign to this starred)</li></ul>"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
+msgid "Assign resources: howto"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:106
+msgid "id"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:106
+msgid "All"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:122
+msgid "Title"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:160
+msgid "Assign"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:30
+msgid "Home URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:51
+msgid "Main Resource information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:68
+msgid "POI collection"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:75
+msgid "Fechas"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:87
+msgid "Story step"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/controller/RTypeStoryStepController.php:95
+msgid "Edit Resource"
+msgstr ""

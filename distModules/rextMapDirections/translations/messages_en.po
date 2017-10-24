@@ -9,18 +9,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:40
 msgid "Type an address or mark on the map the place of departure"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:47
 msgid "Get directions"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:55
 msgid "Route information"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:57
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:57
 msgid "Show route description"
 msgstr ""

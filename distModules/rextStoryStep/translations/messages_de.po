@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:131
+msgid "Draw Pointer line"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:134
+msgid "Show timeline in step"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:137
+msgid "\"View more\" button"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:142
+msgid "Map type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:144
+msgid "Satellite"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:145
+msgid "Roadmap"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:146
+msgid "Hybrid"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:147
+msgid "Terrain"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:152
+msgid "Dialog position"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:154
+msgid "Left"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:155
+msgid "Center (100%)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:156
+msgid "Right"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:162
+msgid "Related resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:167
+msgid "Step leggend"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:168
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:174
+msgid "Choose an image"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:173
+msgid "Step KML layer"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:179
+msgid "Use KML layer from other story step"
+msgstr ""
