@@ -1,6 +1,6 @@
 
 <!-- Reserve TPL -->
-<div class="rextAccommodationReserve">
+<div class="rextReservation">
   <h4>{t}Reserve{/t}</h4>
   <div id="{$rExt['data']['idRelate']}_contenido_ruralgest_2"></div>
 </div>
