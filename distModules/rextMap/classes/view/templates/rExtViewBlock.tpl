@@ -1,11 +1,5 @@
-<!-- rExtViewBlock.tpl en rExtMapDirections module -->
-
+<!-- rExtViewBlock.tpl en rExtMap module -->
 <style type="text/css">
-
-  .rExtMapDirections .resDirContainer .routeModeButton.active {
-    color: #44F;
-    border-color: #44F;
-  }
   .rExtMapResource .resMapWrapper {
     height:400px;
   }
@@ -23,21 +17,14 @@
   </div>
 </div>
 
-
-<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>-->
 <script type="text/javascript">
-var geozzy = geozzy || {};
+  var geozzy = geozzy || {};
 
-
-geozzy.rExtMapOptions = {
+  geozzy.rExtMapOptions = {
     lat: {$rExt.data.locLat},
     lng: {$rExt.data.locLon},
     zoom: {$rExt.data.defaultZoom},
     wrapper: '.rExtMapResource .resMapContainer'
   };
-
-
-
 </script>
-
-<!-- /rExtViewBlock.tpl en rExtMapDirections module -->
+<!-- /rExtViewBlock.tpl en rExtMap module -->
