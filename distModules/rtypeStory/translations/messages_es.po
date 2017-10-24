@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:107
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:107
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:107
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:107
@@ -17,6 +18,7 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:122
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:122
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:122
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:122
@@ -25,6 +27,7 @@ msgstr ""
 msgid "See indications"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:131
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:131
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:131
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:131
@@ -37,14 +40,17 @@ msgstr ""
 msgid "Home URL"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:68
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:49
 msgid "Main Resource information"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:84
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:65
 msgid "Steps collection"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:92
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:73
 msgid "Edit Resource"
 msgstr ""

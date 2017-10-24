@@ -9,10 +9,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextKML/classes/controller/RExtKMLController.php:63
 #: /home/proxectos/geozzy/distModules/rextKML/classes/controller/RExtKMLController.php:64
 msgid "KML file"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rextKML/classes/controller/RExtKMLController.php:64
 #: /home/proxectos/geozzy/distModules/rextKML/classes/controller/RExtKMLController.php:65
 msgid "File"
 msgstr ""

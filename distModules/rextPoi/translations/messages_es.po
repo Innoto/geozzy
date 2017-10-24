@@ -13,6 +13,18 @@ msgstr ""
 msgid "Select options"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
+msgid "Datos Panorama"
+msgstr ""
+
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/controller/RExtPoiController.php:73
 msgid "POI type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoi/classes/controller/RExtPoiController.php:78
+msgid "Pitch (Vertical)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoi/classes/controller/RExtPoiController.php:82
+msgid "Yaw (Horizontal)"
 msgstr ""

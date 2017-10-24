@@ -28,14 +28,17 @@ msgstr "Cómo chegar dende...?"
 msgid "Home URL"
 msgstr "URL inicial"
 
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:68
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:49
 msgid "Main Resource information"
 msgstr "Datos básicos"
 
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:84
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:65
 msgid "Steps collection"
 msgstr "Listaxe de pasos"
 
+#: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:92
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:73
 msgid "Edit Resource"
 msgstr "Editar contido"

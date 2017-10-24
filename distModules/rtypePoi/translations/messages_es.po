@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21
 #: /home/proxectos/profesores/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21
@@ -17,6 +18,7 @@ msgstr ""
 msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:58
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:58
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:58
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:58
@@ -25,6 +27,7 @@ msgstr ""
 msgid "volver"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:121
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:121
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:121
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:121
@@ -33,18 +36,22 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:60
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:54
 msgid "Main Resource information"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:74
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:68
 msgid "poi"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:83
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:77
 msgid "Edit Resource"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:102
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:96
 msgid "Resource"
 msgstr ""

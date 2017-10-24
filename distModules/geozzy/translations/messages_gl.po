@@ -13,6 +13,7 @@ msgstr ""
 msgid "Accept"
 msgstr "Aceptar"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 msgid ""
@@ -23,6 +24,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:31
 msgid "Automatic Location"
 msgstr "Localización automática"
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourceCollectionViewBlock.tpl:12
+msgid "Find out!"
+msgstr "Descuúbreo!"
 
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/resourceMultimediaViewBlock.tpl:59
 msgid "See more..."
@@ -80,10 +85,6 @@ msgstr "Url externa"
 msgid "Collections"
 msgstr "coleccións"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourceCollectionViewBlock.tpl:12
-msgid "Find out!"
-msgstr "Descuúbreo!"
-
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:58
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:61
 msgid "ID Name (WARNING)"
@@ -128,6 +129,66 @@ msgstr "Imaxe descriptiva da galería (opcional)"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:160
 msgid "Save"
 msgstr "Gardar"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:235
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:228
+msgid "Publication"
+msgstr "Publicación"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:244
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:237
+msgid "SEO"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:259
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:252
+msgid "Select a image"
+msgstr "Seleccionar unha imaxe"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:268
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:261
+msgid "Location"
+msgstr "Localización"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:275
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:268
+msgid "Multimedia galleries"
+msgstr "Galerías multimedia"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:284
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:277
+msgid "Collections of related resources"
+msgstr "Colección de recursos relacionados"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:293
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:286
+msgid "Information"
+msgstr "Información"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:336
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:321
+msgid "Comments"
+msgstr "Comentarios"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:345
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:330
+msgid "View"
+msgstr "Vista"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:354
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:339
+msgid "Social Networks"
+msgstr "Redes Sociais"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:363
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:348
+msgid "Contact"
+msgstr "Contacto"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:372
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:357
+msgid "Event"
+msgstr "Evento"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:357
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:340
@@ -299,63 +360,3 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1763
 msgid "Error setting URL alias 2"
 msgstr ""
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:235
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:228
-msgid "Publication"
-msgstr "Publicación"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:244
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:237
-msgid "SEO"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:259
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:252
-msgid "Select a image"
-msgstr "Seleccionar unha imaxe"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:268
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:261
-msgid "Location"
-msgstr "Localización"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:275
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:268
-msgid "Multimedia galleries"
-msgstr "Galerías multimedia"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:284
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:277
-msgid "Collections of related resources"
-msgstr "Colección de recursos relacionados"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:293
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:286
-msgid "Information"
-msgstr "Información"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:336
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:321
-msgid "Comments"
-msgstr "Comentarios"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:345
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:330
-msgid "View"
-msgstr "Vista"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:354
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:339
-msgid "Social Networks"
-msgstr "Redes Sociais"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:363
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:348
-msgid "Contact"
-msgstr "Contacto"
-
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:372
-#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:357
-msgid "Event"
-msgstr "Evento"

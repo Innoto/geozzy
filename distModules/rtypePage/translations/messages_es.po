@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePage_classes_view_templates_rTypeViewBlock.tpl:107
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:107
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:107
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:107
@@ -17,6 +18,7 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePage_classes_view_templates_rTypeViewBlock.tpl:122
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:122
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:122
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:122
@@ -25,6 +27,7 @@ msgstr ""
 msgid "See indications"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePage_classes_view_templates_rTypeViewBlock.tpl:131
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:131
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:131
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:131
