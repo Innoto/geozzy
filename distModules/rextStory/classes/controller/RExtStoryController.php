@@ -264,11 +264,14 @@ class RExtStoryController extends RExtController implements RExtInterface {
     // Procesamos o listado de recursos asociados
     if( !$form->existErrors()) {
       $oldResources = false;
+      $newResources = false;
 
       $collectionResources = new CollectionResourcesModel();
       $collectionResourcesList = $collectionResources->listItems(array('filters' => array('collection'=>$elemId)));
-      while($colResource = $collectionResourcesList->fetch()){
-        $newResources[] = $colResource->getter('resource');
+      if($collectionResourcesList){
+        while($colResource = $collectionResourcesList->fetch()){
+          $newResources[] = $colResource->getter('resource');
+        }
       }
 
       // Si estamos editando, repasamos y borramos recursos sobrantes

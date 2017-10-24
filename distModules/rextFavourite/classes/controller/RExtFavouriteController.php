@@ -82,6 +82,7 @@ class RExtFavouriteController extends RExtController implements RExtInterface {
     $rExtViewBlockInfo['template']['full'] = new Template();
     $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
     $rExtViewBlockInfo['template']['full']->assign( 'resId', $resId );
+    $rExtViewBlockInfo['template']['full']->addClientStyles( 'styles/rExtFavourite.less', 'rextFavourite' );
     $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextFavourite' );
 
     return $rExtViewBlockInfo;

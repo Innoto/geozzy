@@ -9,26 +9,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:3
-msgid "Upload audio file (mp3)"
-msgstr ""
-
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:7
-msgid "Activation distance (m.)"
-msgstr ""
-
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtViewBlock.tpl:6
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:6
 msgid "Audioguide"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtFormBlock.tpl:3
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:3
+msgid "Upload audio file (mp3)"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtFormBlock.tpl:7
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:7
+msgid "Activation distance (m.)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:60
 #: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:59
 msgid "Distance"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:65
 #: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:64
 msgid "Audioguide file"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:66
 #: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:65
 msgid "File"
 msgstr ""

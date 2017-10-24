@@ -21,10 +21,12 @@ msgstr ""
 msgid "Edit POI Collection"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:141
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:129
 msgid "Puntos de interés"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:149
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:137
 msgid "Add POI"
 msgstr ""

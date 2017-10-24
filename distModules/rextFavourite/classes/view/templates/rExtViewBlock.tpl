@@ -20,10 +20,10 @@
 {/if}
 
 <div class="rExtFavourite{if $favStatus==1} selected{/if}" data-favourite-resource="{$resId}" data-favourite-status="{$favStatus}">
-  <i class="fa fa-heart-o fav-off"></i>
-  <i class="fa fa-heart fav-on"></i>
+  <spam class="fa fa-heart-o fav-off"></spam>
+  <spam class="fa fa-heart fav-on"></spam>
   <!--
-  {var_dump($rExt.data)}
+  {* var_dump($rExt.data) *}
   -->
 </div>
 
