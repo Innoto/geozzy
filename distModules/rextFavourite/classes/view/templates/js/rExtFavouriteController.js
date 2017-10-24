@@ -3,11 +3,19 @@
  */
 var geozzy = geozzy || {};
 
+/*
+
+.rExtFavourite : Wrapper
+  data-favourite-resource : Resource Id
+  &.selected & data-favourite-status=1 : Favourite active
+  data-favourite-bind=1 : Bind active
+*/
+
 geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
   getUrlApi: function getUrlApi() {
     var url = '/api/favourites';
 
-    if( typeof cogumelo.publicConf.C_LANG === 'string' ) {
+    if( typeof(cogumelo.publicConf.C_LANG) === 'string' ) {
       url = '/'+cogumelo.publicConf.C_LANG+url;
     }
 
@@ -16,11 +24,13 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
   setStatus: function setStatus( resource, status ) {
     var that = this;
 
+    status = ( status === 1 || status === '1' || status === true ) ? 1 : 0;
+
     that.resource = resource;
     that.status = status;
 
     // BI register
-    if( status === 1 || status === '1' || status === true ) {
+    if( typeof(geozzy.biMetricsInstances) !== 'undefined' && status === 1 ) {
       geozzy.biMetricsInstances.resource.eventFavourited( resource, 'favourites' );
     }
 
@@ -30,6 +40,8 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
   },
   sendSetStatus: function sendSetStatus( resource, status ) {
     var that = this;
+
+    status = ( status === 1 || status === '1' || status === true ) ? 1 : 0;
 
     that.resource = resource;
     that.status = status;
@@ -63,15 +75,15 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     if( geozzy.userSessionInstance.user && geozzy.userSessionInstance.user.get('id') ) {
       var resources='';
 
-      if( typeof limitTo === 'undefined' ) {
+      if( typeof(limitTo) === 'undefined' ) {
         var res=[];
         $('.rExtFavourite[data-favourite-resource]').each(function( index ) {
-          res.push( $( this ).attr( 'data-favourite-resource' ) );
+          res.push( $( this ).attr('data-favourite-resource') );
         });
         resources = res.toString();
       }
       else {
-        resources = ( typeof limitTo === 'string' ) ? limitTo : limitTo.toString();
+        resources = ( typeof(limitTo) === 'string' ) ? limitTo : limitTo.toString();
       }
 
       that.resource = resources;
@@ -115,8 +127,10 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
     this.setStatus( resource, newStatus );
   },
   setStatusClient: function setStatusClient( resource, status ) {
+    status = ( status === 1 || status === '1' || status === true ) ? 1 : 0;
+
     $favField = $('.rExtFavourite[data-favourite-resource="'+resource+'"]');
-    if( status === 1 || status === '1' || status === true ) {
+    if( status === 1 ) {
       $favField.addClass( 'selected' ).attr( 'data-favourite-status', 1 );
     }
     else {
@@ -126,6 +140,8 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
   getStatusClient: function getStatusClient( resource ) {
     $favField = $('.rExtFavourite[data-favourite-resource="'+resource+'"]');
     status = $favField.attr( 'data-favourite-status' );
+    status = ( status === 1 || status === '1' || status === true ) ? 1 : 0;
+
     return( status );
   },
   gotoFavouritesPage: function gotoFavouritesPage() {
@@ -137,7 +153,7 @@ geozzy.rExtFavouriteController = geozzy.rExtFavouriteController || {
       url: this.getUrlApi(), type: 'POST',
       data: formData, cache: false, contentType: false, processData: false,
       success: function getFavouritesUrlSuccess( $jsonData, $textStatus, $jqXHR ) {
-        if ( $jsonData.result === 'ok' ) {
+        if( $jsonData.result === 'ok' ) {
           // console.log( $jsonData.status );
           window.location = window.location.protocol+'//'+window.location.host+$jsonData.status;
         }
