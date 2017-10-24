@@ -7,7 +7,7 @@
 
   {if isset($htmlMsg)}<div class="htmlMsg">{$htmlMsg}</div>{/if}
 
-  <div class="titleBar">
+  <!--<div class="titleBar">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
   <div class="tpDuResource" style=""></div>
   <section id="travelPlannerSec" class="gzSection">
   </section>

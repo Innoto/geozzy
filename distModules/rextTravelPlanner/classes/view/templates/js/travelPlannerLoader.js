@@ -1,4 +1,4 @@
-var geozzy = geozzy || {};
+/*var geozzy = geozzy || {};
 
 geozzy.travelPlannerLoader = geozzy.travelPlannerLoader || {
   getUrlApi: function getUrlApi() {
@@ -41,3 +41,4 @@ geozzy.travelPlannerLoader = geozzy.travelPlannerLoader || {
 $(document).ready(function(){
   geozzy.travelPlannerLoader.setBinds();
 });
+*/
