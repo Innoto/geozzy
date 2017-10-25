@@ -19,7 +19,9 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
     var options = {
       template: geozzy.explorerComponents.filterButtonsViewTemplate,
-      templateOption: geozzy.explorerComponents.filterButtonsViewOption
+      templateOption: geozzy.explorerComponents.filterButtonsViewOption,
+      multiple:false,
+      onChange: function(){}
     };
 
     that.options = $.extend(true, {}, options, opts);
@@ -101,13 +103,38 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
       }
       else {
         //that.selectedTerms = false;
-        that.reset();
-        that.selectedTerms = [ parseInt( termid ) ];
-        termLi.addClass('selected');
+        if( that.options.multiple === true ) {
+
+          if( $.inArray( parseInt( termid ) , that.selectedTerms ) !== -1  ) {
+
+            // remove element from array
+            //_.without(that.selectedTerms, parseInt( termid ));
+
+            delete  that.selectedTerms[$.inArray( parseInt( termid ) , that.selectedTerms )];
+
+            termLi.removeClass('selected');
+          }
+          else {
+            if(that.selectedTerms == false) {
+              that.selectedTerms = [];
+            }
+            that.selectedTerms.push( parseInt( termid ) );
+            termLi.addClass('selected');
+          }
+
+        }
+        else {
+          that.reset();
+          that.selectedTerms = [ parseInt( termid ) ];
+          termLi.addClass('selected');
+        }
+
       }
 
       that.parentExplorer.applyFilters();
 
+
+      that.options.onChange();
     });
 
 
