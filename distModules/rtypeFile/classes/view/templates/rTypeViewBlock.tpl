@@ -1,5 +1,7 @@
 <!-- rTypeViewBlock.tpl en rtypeFile module -->
+
 {*
+<!--
 
 <p> --- rTypeViewBlock.tpl en rtypeFile module --- </p>
 
@@ -36,5 +38,7 @@
   </div>
 </div>
 
+-->
 *}
+
 <!-- /rTypeViewBlock.tpl en rtypeFile module -->
