@@ -9,7 +9,8 @@ $( document ).ready(function() {
     // Desactivar como chegar en caso de existir
     if(
       typeof geozzy.rExtMapDirectionsController != 'undefined' &&
-      typeof geozzy.rExtMapDirectionsController.mapClickEvent != 'undefined'
+      typeof geozzy.rExtMapDirectionsController.mapClickEvent != 'undefined' &&
+      typeof geozzy.rExtMapDirectionsController.mapClickEvent.remove != 'undefined'
     ){
       geozzy.rExtMapDirectionsController.mapClickEvent.remove();
     }
