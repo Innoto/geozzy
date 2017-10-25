@@ -13,7 +13,15 @@ geozzy.explorerComponents.filters.filterResetView = geozzy.filterView.extend({
 
     initialize: function( opts ) {
       var that = this;
-      that.options = $.extend(true, {}, that.options, opts);
+
+      var options = {
+        title: 'Reset filters',
+        onChange: function(){}
+      };
+
+      that.options = $.extend(true, {}, options, opts);
+
+
     },
 
     filterAction: function( model ) {
@@ -48,6 +56,7 @@ geozzy.explorerComponents.filters.filterResetView = geozzy.filterView.extend({
         e.reset();
       });
       that.parentExplorer.applyFilters();
+      that.options.onChange();
     }
 
 });

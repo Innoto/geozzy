@@ -92,14 +92,13 @@ geozzy.rExtMapDirectionsController = {
       } );
 
       // Click en mapa
-      // this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
-      //   inputComollegar = '';
-      //   that.clearRoute();
-      //   that.resetForm();
-      //   that.setMarkerFrom( ev.latLng );
-      //
-      //   that.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), false, false );
-      // });
+      this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
+        inputComollegar = '';
+        that.clearRoute();
+        that.resetForm();
+        that.setMarkerFrom( ev.latLng );
+         that.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), false, false );
+      });
 
 
 
