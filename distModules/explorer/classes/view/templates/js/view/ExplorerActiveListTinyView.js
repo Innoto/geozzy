@@ -36,6 +36,8 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
       itemsEachPage: 6,
       totalPages: false,
 
+      categories: false,
+
       tpl: geozzy.explorerComponents.activeListTinyViewTemplate ,
       tplElement: geozzy.explorerComponents.activeListTinyViewElement,
       tplPager: geozzy.explorerComponents.activeListTinyViewPager
@@ -90,12 +92,36 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     if( this.visibleResources) {
       $.each(  this.visibleResources, function(i,e){
 
+
+        var elementCategory = false;
+        if( that.options.categories ) {
+          that.options.categories.each( function(e2){
+            //console.log(e.get('id'))
+            //console.debug(markerData.get('terms'))
+
+            if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
+
+              elementCategory = e2;
+              if(e2) {
+                elementCategory = e2.toJSON()
+              }
+              return false;
+              /*
+              if( jQuery.isNumeric( e2.get('icon') )  ){
+                return false;
+              }*/
+            }
+          });
+        }
+
         var minJSON = that.parentExplorer.resourceMinimalList.get( e ).toJSON();
         var partJSON = that.parentExplorer.resourcePartialList.get( e ).toJSON();
 
         var element = $.extend( true, partJSON, minJSON );
 
         element.contador = contador;
+        element.category = elementCategory;
+
         element.inMap = that.parentExplorer.resourceMinimalList.get( e ).get('mapVisible');
 
         that.parentExplorer.triggerEvent('resourcePrint',{
