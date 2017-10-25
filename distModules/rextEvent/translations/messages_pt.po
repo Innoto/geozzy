@@ -1,0 +1,26 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
+msgid "Event init date"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
+msgid "Event end date"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:93
+msgid "Event type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:98
+msgid "Related resource"
+msgstr ""

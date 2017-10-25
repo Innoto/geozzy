@@ -1,23 +1,12 @@
 var geozzy = geozzy || {};
 
-/*
-Movido a TPL
-$(document).ready( function() {
-  if( typeof geozzy.rExtMapDirectionsData !== 'undefined' ) {
-    geozzy.rExtMapDirectionsController.prepareMap( geozzy.rExtMapDirectionsData );
-  }
-
-  if( typeof geozzy.rExtMapDirectionsData.wrapperRoute !== 'undefined' ) {
-    geozzy.rExtMapDirectionsController.prepareRoutes( geozzy.rExtMapDirectionsData );
-  }
-});
-*/
 
 geozzy.rExtMapDirectionsController = {
   directionsDisplay: false,
   directionsService: false,
 
   resourceMap: false,
+
   resourceMarker: false,
   resourceMapInfo: false,
   resourceMapOptions: false,
@@ -51,74 +40,6 @@ geozzy.rExtMapDirectionsController = {
   tramoExtraIni: false,
   tramoExtraFin: false,
 
-  resourceMap: false,
-
-/*
-  prepareMap: function prepareMap( directionsData ) {
-
-    // console.log( 'prepareMap:', directionsData );
-    var that = this;
-
-    this.resourceMapInfo = {
-      title: directionsData.title,
-      lat: directionsData.lat,
-      lng: directionsData.lon,
-      zoom: directionsData.zoom,
-      wrapper: directionsData.wrapper
-    };
-
-    var $mapContainer = $( this.resourceMapInfo.wrapper );
-    if( $mapContainer.length === 1 ) {
-      // console.log( 'prepareMap - OK: ATOPADO O WRAPPER DO MAPA!!!' );
-      // gmaps init
-      this.resourceMapOptions = {
-        center: { lat: this.resourceMapInfo.lat, lng: this.resourceMapInfo.lng },
-        zoom: this.resourceMapInfo.zoom,
-        scrollwheel: false
-      };
-
-      this.resourceMap = new google.maps.Map( $mapContainer.get(0), this.resourceMapOptions );
-
-
-
-      // add marker
-      this.resourceMarker = new google.maps.Marker({
-        map: this.resourceMap,
-        position: new google.maps.LatLng( this.resourceMapInfo.lat, this.resourceMapInfo.lng ),
-        title: 'Resource location',
-        icon: {
-          url: cogumelo.publicConf.media+'/module/admin/img/geozzy_marker.png', // This marker is 20 pixels wide by 36 pixels high.
-          size: new google.maps.Size(30, 36), // The origin for this image is (0, 0).
-          origin: new google.maps.Point(0, 0), // The anchor for this image is the base of the flagpole at (0, 36).
-          anchor: new google.maps.Point(13, 36)
-        },
-        draggable: false
-      });
-
-
-
-
-
-
-    } // if( $mapContainer.length )
-    else {
-      console.log( 'prepareMap - ERROR: NON ENCONTRO O WRAPPER DO MAPA!!!' );
-    }
-
-
-  },
-*/
-
-
-
-
-  resetMap: function resetMap() {
-    this.resourceMap.setZoom( this.resourceMapOptions.zoom );
-    this.resourceMap.setCenter( this.resourceMapOptions.center );
-  },
-
-
-
 
 
   prepareRoutes: function prepareRoutes( directionsData ) {
@@ -145,6 +66,7 @@ geozzy.rExtMapDirectionsController = {
         that.loadRoute( destination, false, false );
         return false;
       });
+
       this.autocomplete = new google.maps.places.Autocomplete( that.routePanelContainer.find( 'input[name=mapRouteOrigin]' ).get(0) );
       this.autocomplete.bindTo( 'bounds', this.resourceMap );
       this.autocomplete.addListener( 'place_changed', function() {
@@ -170,14 +92,14 @@ geozzy.rExtMapDirectionsController = {
       } );
 
       // Click en mapa
-      this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
-        inputComollegar = '';
-        that.clearRoute();
-        that.resetForm();
-        that.setMarkerFrom( ev.latLng );
-
-        that.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), false, false );
-      });
+      // this.mapClickEvent = new google.maps.event.addListener( this.resourceMap, 'click', function(ev){
+      //   inputComollegar = '';
+      //   that.clearRoute();
+      //   that.resetForm();
+      //   that.setMarkerFrom( ev.latLng );
+      //
+      //   that.loadRoute( ev.latLng.lat()+', '+ev.latLng.lng(), false, false );
+      // });
 
 
 
@@ -212,6 +134,11 @@ geozzy.rExtMapDirectionsController = {
       //});
 
     }
+  },
+
+  resetMap: function resetMap() {
+    this.resourceMap.setZoom( this.resourceMapOptions.zoom );
+    this.resourceMap.setCenter( this.resourceMapOptions.center );
   },
 
   resetForm: function resetForm() {
@@ -470,8 +397,6 @@ geozzy.rExtMapDirectionsController = {
 
     return tramo;
   },
-
-
 
 
 

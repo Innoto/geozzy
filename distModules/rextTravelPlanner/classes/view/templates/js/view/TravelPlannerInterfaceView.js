@@ -15,7 +15,6 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
 
   initialize: function( parentTp ) {
     var that = this;
-
     that.delegateEvents();
     that.parentTp = parentTp;
 

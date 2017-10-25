@@ -26,9 +26,12 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   }
   if(cogumelo.publicConf.mod_geozzy_travelPlanner.toString() !== ''){
     resParam.rtype = cogumelo.publicConf.mod_geozzy_travelPlanner.toString();
+  }else{
+    console.log('FALTA CONF');
   }
 
   that.resources = new geozzy.collection.ResourceCollection( resParam );
+
   that.rtypes = new geozzy.collection.ResourcetypeCollection( );
   that.favInfo = false;
   that.favResources = false;
@@ -69,24 +72,21 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   },
   // First Execution
   that.init = function( ) {
-
     geozzy.travelPlannerComponents.routerInstance = new geozzy.travelPlannerComponents.mainRouter();
     geozzy.travelPlannerComponents.routerInstance.parentTp = that;
     if( !Backbone.History.started ){
-      Backbone.history.start();
+      Backbone.history.start();      
     }
     else {
       Backbone.history.stop();
       Backbone.history.start();
     }
-
     $.when(
       that.resources.fetch(),
       that.rtypes.fetch(),
       that.getResourcesFav(),
       that.tpData.fetchData()
     ).done( function() {
-
       that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
       that.travelPlannerMapView = new geozzy.travelPlannerComponents.TravelPlannerMapView( that );
 

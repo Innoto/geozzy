@@ -24,14 +24,17 @@ msgstr "Subir arquivo de audio (mp3)"
 msgid "Activation distance (m.)"
 msgstr "distancia de activación (m.)"
 
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:60
 #: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:59
 msgid "Distance"
 msgstr "Distancia"
 
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:65
 #: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:64
 msgid "Audioguide file"
 msgstr "Arquivo de audio"
 
+#: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:66
 #: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:65
 msgid "File"
 msgstr "Ficheiro"

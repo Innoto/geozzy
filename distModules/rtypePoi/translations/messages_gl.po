@@ -24,18 +24,22 @@ msgstr "voltar"
 msgid "Contact"
 msgstr "Contacto"
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:60
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:54
 msgid "Main Resource information"
 msgstr "Datos básicos"
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:74
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:68
 msgid "poi"
 msgstr "POI"
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:83
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:77
 msgid "Edit Resource"
 msgstr "Editar recurso"
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:102
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:96
 msgid "Resource"
 msgstr "Recurso"
