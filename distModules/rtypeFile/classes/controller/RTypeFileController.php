@@ -171,29 +171,32 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     Preparamos los datos para visualizar el Recurso
    **/
   public function getViewBlockInfo( $resId = false ) {
+
+    // Preparamos los datos para visualizar el Recurso con sus extensiones
     $viewBlockInfo = parent::getViewBlockInfo( $resId );
 
     $template = $viewBlockInfo['template']['full'];
     $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeFile' );
-
-    $this->rExtCtrl = $this->newRExtContr();
-    $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
-    $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
-
-    $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
-
-    if( $rExtViewInfo ) {
-      if( $rExtViewInfo['template'] ) {
-        foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
-          $template->addToFragment( 'rextFileBlock', $templateBlock );
-        }
-      }
-    }
-    else {
-      $template->assign( 'rextFileBlock', false );
-    }
-
+    //
+    // $this->rExtCtrl = $this->newRExtContr();
+    // $rExtViewInfo = $this->rExtCtrl->getViewBlockInfo();
+    // $viewBlockInfo['ext'][ $this->rExtCtrl->rExtName ] = $rExtViewInfo;
+    //
+    // $template->assign( 'res', array( 'data' => $viewBlockInfo['data'], 'ext' => $viewBlockInfo['ext'] ) );
+    //
+    // if( $rExtViewInfo ) {
+    //   if( $rExtViewInfo['template'] ) {
+    //     foreach( $rExtViewInfo['template'] as $nameBlock => $templateBlock ) {
+    //       $template->addToFragment( 'rextFileBlock', $templateBlock );
+    //     }
+    //   }
+    // }
+    // else {
+    //   $template->assign( 'rextFileBlock', false );
+    // }
+    //
     $viewBlockInfo['template']['full'] = $template;
+    // $viewBlockInfo['template']['full'] = null;
 
     return $viewBlockInfo;
   }
