@@ -82,6 +82,7 @@ class explorer extends Module {
     'js/view/Templates.js',
     'js/view/ExplorerFilterView.js',
     'js/view/filters/ExplorerFilterButtonsView.js',
+    'js/view/filters/ExplorerFilterComboView.js', 
     'js/view/filters/ExplorerFilterMinimapView.js',
     'js/view/filters/ExplorerFilterGeoView.js',
     'js/view/filters/ExplorerFilterSwitchView.js',

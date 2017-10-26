@@ -163,7 +163,7 @@ geozzy.rExtMapDirectionsController = {
     }
 
     // Boton cerrar
-    $('.jsMapDirInMapClose').off().on( 'click', function botonClose() {
+    $('.jsMapDirInMapClose .button').off().on( 'click', function botonClose() {
       that.destroyContainers();
     });
 
@@ -380,7 +380,8 @@ geozzy.rExtMapDirectionsController = {
         var timeStr = h+':'+m;
 
         var km = Math.round( travelInfo.meters / 100 ) / 10;
-        htmlMsg = __('Distance')+': '+km+' Km '+__('Time')+': '+ timeStr;
+        // htmlMsg = __('Distance')+': '+km+' Km '+__('Time')+': '+ timeStr;
+        htmlMsg = '<i class="fa fa-map-marker" aria-hidden="true"></i> '+km+' Km &nbsp; &nbsp; <i class="fa fa-clock-o" aria-hidden="true"></i> '+ timeStr+'h';
       }
     }
 
