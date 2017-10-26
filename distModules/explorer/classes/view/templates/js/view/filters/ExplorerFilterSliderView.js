@@ -152,17 +152,20 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     renderSummary: function(  ) {
       var that = this;
-      var containerClassDots = '.'+that.options.summaryContainerClass.split(' ').join('.');
+
+      if(that.options.summaryContainerClass) {
+        var containerClassDots = '.'+that.options.summaryContainerClass.split(' ').join('.');
 
 
-      if(  that.options.filteredValue  ) {
+        if(  that.options.filteredValue  ) {
 
-        var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary, value:  that.options.filteredValue   } );
-        $( containerClassDots ).html( summaryHtml );
+          var summaryHtml = that.templateSummary( { filterClass: that.options.containerClass, title: that.options.titleSummary, value:  that.options.filteredValue   } );
+          $( containerClassDots ).html( summaryHtml );
 
-      }
-      else {
-        $( containerClassDots ).html( "" );
+        }
+        else {
+          $( containerClassDots ).html( "" );
+        }
       }
 
 

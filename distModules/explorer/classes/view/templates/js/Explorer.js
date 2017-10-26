@@ -196,6 +196,7 @@ geozzy.explorer = function( opts ) {
 
 
       that.render();
+      that.triggerEvent('applyFilters', {});      
     }
 
   }
