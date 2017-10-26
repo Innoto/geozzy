@@ -146,3 +146,9 @@ geozzy.explorerComponents.filterComboViewOptionT =  "<option value='<%- id %>' i
 geozzy.explorerComponents.filterComboViewSummaryT = "" +
   " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
   "<span class='<%= filterClass %>-Summary'><img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- option.icon %>/typeIcon/icon.png'> <%- option.name %> </span>";
+
+geozzy.explorerComponents.filterMinimapViewTemplate = "" +
+  "<div class='minimap'>"+
+    "<div class='map'></div>"+
+    "<div class='selectedText text-center'></div>"+
+  "</div>";
