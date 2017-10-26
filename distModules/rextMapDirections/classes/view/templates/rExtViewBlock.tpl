@@ -1,41 +1,65 @@
 <!-- rExtViewBlock.tpl en rExtMapDirections module -->
 <style type="text/css">
-
+  {* Basura V.1 *}
   .rExtMapDirections.tabList {
     display: none;
   }
 
   .rExtMapDirections.wrapperInMap {
-    padding: 10px;
+    padding: 0;
     background-color: white;
+  }
+
+  .rExtMapDirections.wrapperInMap .barInMap {
+    border: 1px solid #CCC;
+    border-left-style: none;
+    border-right-style: none;
+    /*padding: 5px 0;*/
   }
 
   .rExtMapDirections .mapDirInMapClose,
   .rExtMapDirections .mapDirInMapPrint {
-    cursor: pointer;
+    padding: 5px 20px;
     text-align: right;
+  }
+  .rExtMapDirections .mapDirInMapClose .fa,
+  .rExtMapDirections .mapDirInMapPrint .fa {
+    font-size: 2em;
+    cursor: pointer;
   }
 
   .rExtMapDirections.routeMode {
-    padding: 10px;
+    position: relative;
+    padding: 5px 20px;
   }
   .rExtMapDirections.routeMode .routeModeButton {
     display: inline-block;
     padding: 1px 2px;
     border: 2px solid #444;
     border-radius: 0.2em;
-    font-size: 18px;
     color: #444;
     cursor: pointer;
+  }
+  .rExtMapDirections.routeMode .routeModeButton .fa {
+    font-size: 28px;
   }
   .rExtMapDirections.routeMode .routeModeButton.active {
     color: #44F;
     border-color: #44F;
   }
 
+  .rExtMapDirections .routeInfo {
+    position: absolute;
+    display: inline-block;
+    bottom: 3px;
+    right: 20px;
+    font-size: 1.1em;
+  }
+
   .rExtMapDirections.routeList {
     overflow: auto;
     padding: 10px;
+    margin: 0 10px;
     height: 250px;
   }
   .rExtMapDirections.routeList .adp-directions {
@@ -79,13 +103,13 @@
 
 {capture rExtMapDirections assign="jsMapDirectionsInMap"}
 <div class="rExtMapDirections wrapperInMap jsMapDirectionsInMap">
-  <div class="prevBar jsMapDirInMapBar">
-    <div class="mapDirInMapClose jsMapDirInMapClose">{t}Close{/t} <span class="fa fa-window-close" aria-hidden="true"></span></div>
+  <div class="prevBar barInMap jsMapDirInMapBar">
+    <div class="mapDirInMapClose jsMapDirInMapClose"><span class="button fa fa-window-close" aria-hidden="true"></span></div>
     {$jsMapDirectionsMode}
   </div>
   {$jsMapDirectionsList}
-  <div class="postBar jsMapDirInMapBar">
-    <div class="mapDirInMapPrint jsMapDirInMapPrint">{t}Print{/t} <span class="fa fa-print" aria-hidden="true"></span></div>
+  <div class="postBar barInMap jsMapDirInMapBar">
+    <div class="mapDirInMapPrint jsMapDirInMapPrint"><span class="button fa fa-print" aria-hidden="true"></span></div>
   </div>
 </div>
 {/capture}
