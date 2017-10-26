@@ -144,7 +144,9 @@ class ResourceModel extends Model {
     'notInId' => ' geozzy_resource.id NOT IN (?) ',
     'updatedfrom' => ' ( geozzy_resource.timeCreation >= ? OR geozzy_resource.timeLastUpdate >= ? ) ',
     'notInCollectionId' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)',
-    'notAsigned' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources)'
+    'notAsigned' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources)',
+
+    'distance2K' => ' geozzy_resource.loc IS NOT NULL AND ST_Distance_Sphere( geozzy_resource.loc, ST_GeomFromText( ? ) ) < 2000 ',
   );
 
 
