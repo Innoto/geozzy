@@ -12,7 +12,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:179
 msgid "Prioritizing map zone"
-msgstr ""
+msgstr "Priorizando a zoa do mapa"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:17
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:17
@@ -30,7 +30,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerBaseInLanding.tpl:17
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerSaganInLanding.tpl:17
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:20
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:20
@@ -48,7 +48,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerBaseInLanding.tpl:20
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerSaganInLanding.tpl:20
 msgid "Clear filters"
-msgstr ""
+msgstr "Limpar Filtros"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:23
@@ -63,7 +63,7 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/explorerSaganInLanding.tpl:25
 #: /home/proxectos/canlers/app/tmp/tpl/explorerList.tpl:23
 msgid "List"
-msgstr ""
+msgstr "Lista"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:25
@@ -81,7 +81,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerBaseInLanding.tpl:24
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerSaganInLanding.tpl:24
 msgid "Filters"
-msgstr ""
+msgstr "Filtros"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:24
@@ -93,4 +93,4 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/explorer.tpl:24
 #: /home/proxectos/canlers/app/tmp/tpl/explorerSaganInLanding.tpl:26
 msgid "Map"
-msgstr ""
+msgstr "Mapa"
