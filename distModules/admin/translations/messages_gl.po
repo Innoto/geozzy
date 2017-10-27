@@ -35,13 +35,20 @@ msgstr "Subir múltiples arquivos"
 msgid "Link or embed multimedia resource"
 msgstr "Enlazar ou embeber recurso multimedia"
 
-#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:11
-msgid "Menu management"
-msgstr "Xestión de Menús"
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/listResourceOutTopic.tpl:4
+msgid "Available and unallocated resources"
+msgstr "Recursos dispoñibles e non asignados aínda"
 
-#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:16
-msgid "Add menu term"
-msgstr "Engadir elemento de menú"
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:14
+msgid "Resources Starred in"
+msgstr "Recursos destacados"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:19
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:57
+msgid "Assign"
+msgstr "Asignar"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:107
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:108
@@ -60,6 +67,18 @@ msgstr "Cancelar"
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:60
 msgid "Save"
 msgstr "Gardar"
+
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:38
+msgid "List of resources for"
+msgstr "Listaxe de recursos para"
+
+#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:11
+msgid "Menu management"
+msgstr "Xestión de Menús"
+
+#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:16
+msgid "Add menu term"
+msgstr "Engadir elemento de menú"
 
 #: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:34
 msgid "List of menu terms"
@@ -139,33 +158,14 @@ msgstr "Proibido: Acceso denegado"
 msgid "You don't have permission to access on this section"
 msgstr "Non tes permisos para acceder a esta sección"
 
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/listResourceOutTopic.tpl:4
-msgid "Available and unallocated resources"
-msgstr "Recursos dispoñibles e non asignados aínda"
-
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:14
-msgid "Resources Starred in"
-msgstr "Recursos destacados"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:19
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:57
-msgid "Assign"
-msgstr "Asignar"
-
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:38
-msgid "List of resources for"
-msgstr "Listaxe de recursos para"
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/listAsignStarred.tpl:4
+msgid "Resources not starred yet"
+msgstr "Recursos aínda non destacados"
 
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/modal.tpl:15
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/modal.tpl:35
 msgid "Close"
 msgstr "Pechar"
-
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/listAsignStarred.tpl:4
-msgid "Resources not starred yet"
-msgstr "Recursos aínda non destacados"
 
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:14
 msgid "Category management for"

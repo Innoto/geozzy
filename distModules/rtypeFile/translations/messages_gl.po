@@ -9,30 +9,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:13
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:10
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:10
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:10
 msgid "Title"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:18
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:15
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:15
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:15
 msgid "Short description"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:23
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:20
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:20
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:20
 msgid "Image"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:29
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:29
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:26
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:26
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:26
 msgid "None"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
@@ -45,6 +56,7 @@ msgstr ""
 msgid "Files up to 5MB can be upload in JPG and PNG format"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22

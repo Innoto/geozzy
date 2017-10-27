@@ -27,8 +27,8 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-10">
-          <img class="iconTitleBar img-responsive" alt="Páxina xeral" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>
-          <h1>Tus favoritos</h1>
+          {*<img class="iconTitleBar img-responsive" alt="Páxina xeral" src="{$cogumelo.publicConf.media}/img/paxinaIcon.png"></img>*}
+          <h1>{t}Favourites page{/t}</h1>
         </div>
       </div>
     </div>
@@ -71,7 +71,7 @@
         {else}
         <div class="row">
           <div class="favouritesEmpty">
-            <p>Parece que todavía no has añadido ningún elemento a tu lista de favoritos...</p>
+            <p>{t}It seems you haven't added any items to your favorites list yet...{/t}</p>
           </div>
         </div>
         {/if}

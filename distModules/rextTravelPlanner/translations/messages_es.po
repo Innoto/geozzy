@@ -33,6 +33,7 @@ msgid "Favourites"
 msgstr "Favoritos"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:13
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:13
 msgid "All Contents"
 msgstr ""
@@ -46,6 +47,7 @@ msgid "When do you want to travel? "
 msgstr "¿Cuándo te gustaría viajar?"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:71
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:71
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:71
 msgid "Show on map"
 msgstr ""

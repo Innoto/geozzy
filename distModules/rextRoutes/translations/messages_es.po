@@ -32,6 +32,7 @@ msgid "Circular route"
 msgstr "Ruta circular"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:51
@@ -45,6 +46,7 @@ msgid "Lineal route"
 msgstr "Ruta lineal"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:62

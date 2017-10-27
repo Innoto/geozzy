@@ -21,10 +21,14 @@ msgstr "Aplicar"
 msgid "Clear filters"
 msgstr "Limpiar filtros"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:23
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:25
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:25
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:25
 #: /home/proxectos/canlers/app/tmp/tpl/explorerBaseInLanding.tpl:25
 #: /home/proxectos/canlers/app/tmp/tpl/explorer.tpl:23
 #: /home/proxectos/canlers/app/tmp/tpl/explorerSaganInLanding.tpl:25
@@ -36,9 +40,12 @@ msgstr ""
 msgid "Filters"
 msgstr "Filtros"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:26
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:26
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:26
 #: /home/proxectos/canlers/app/tmp/tpl/explorerBaseInLanding.tpl:26
 #: /home/proxectos/canlers/app/tmp/tpl/explorer.tpl:24
 #: /home/proxectos/canlers/app/tmp/tpl/explorerSaganInLanding.tpl:26

@@ -24,41 +24,50 @@ msgid "Introduce entre 0 y 59 minutos"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:13
 msgid "All"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:8
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:8
 msgid "Favourites"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:13
 msgid "All Contents"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:32
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:67
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:32
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:67
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:55
 msgid "Day"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:59
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:59
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:47
 msgid "When do you want to travel? "
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:71
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:71
 msgid "Show on map"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:106
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:106
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:91
 msgid "Select date to visit this place or event"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:117
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:117
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:102
 msgid "How long do you want to visit this place?"
 msgstr ""
@@ -67,6 +76,10 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:121
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:145
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:146
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:120
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:121
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:145
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:146
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:105
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:106
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:130
@@ -78,6 +91,10 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:125
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:149
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:150
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:124
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:125
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:149
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:150
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:109
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:110
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:134
@@ -87,22 +104,27 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:129
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:154
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:129
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:154
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:114
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:139
 msgid "Cancel"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:130
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:130
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:115
 msgid "Add to plan"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:142
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:142
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:127
 msgid "How long?"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:155
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:155
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:140
 msgid "Save"
 msgstr ""

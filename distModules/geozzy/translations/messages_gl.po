@@ -13,6 +13,7 @@ msgstr ""
 msgid "Accept"
 msgstr "Aceptar"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:16

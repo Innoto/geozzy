@@ -35,15 +35,20 @@ msgstr "Subir múltiples ficheros"
 msgid "Link or embed multimedia resource"
 msgstr "enlazar o embeber recurso multimedia"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:11
-#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:11
-msgid "Menu management"
-msgstr ""
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listResourceOutTopic.tpl:4
+msgid "Available and unallocated resources"
+msgstr "Recursos disponibles"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:16
-#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:16
-msgid "Add menu term"
-msgstr ""
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:14
+msgid "Resources Starred in"
+msgstr "Recursos destacados en"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:19
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:57
+msgid "Assign"
+msgstr "Asignar"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:107
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:108
@@ -63,12 +68,30 @@ msgstr "Cancelar"
 msgid "Save"
 msgstr "Guardar"
 
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:38
+msgid "List of resources for"
+msgstr "Lista de recursos para"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:11
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/menuTermEditor.tpl:11
+#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:11
+msgid "Menu management"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:16
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/menuTermEditor.tpl:16
+#: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:16
+msgid "Add menu term"
+msgstr ""
+
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:34
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/menuTermEditor.tpl:34
 #: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:34
 msgid "List of menu terms"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:52
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/menuTermEditor.tpl:52
 #: /home/proxectos/canlers/app/tmp/tpl/menuTermEditor.tpl:52
 msgid "Add term menu"
 msgstr ""
@@ -143,33 +166,14 @@ msgstr "Prohibido: acceso denegado"
 msgid "You don't have permission to access on this section"
 msgstr "No tienes permisos para acceder a esta sección"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listResourceOutTopic.tpl:4
-msgid "Available and unallocated resources"
-msgstr "Recursos disponibles"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:14
-msgid "Resources Starred in"
-msgstr "Recursos destacados en"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:98
-#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:19
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:57
-msgid "Assign"
-msgstr "Asignar"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_resourcesStarredList.tpl:38
-msgid "List of resources for"
-msgstr "Lista de recursos para"
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listAsignStarred.tpl:4
+msgid "Resources not starred yet"
+msgstr "Recursos no destacados"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_modal.tpl:15
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_modal.tpl:35
 msgid "Close"
 msgstr "Cerrar"
-
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_listAsignStarred.tpl:4
-msgid "Resources not starred yet"
-msgstr "Recursos no destacados"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_admin_classes_view_templates_categoryEditor.tpl:14
 msgid "Category management for"
