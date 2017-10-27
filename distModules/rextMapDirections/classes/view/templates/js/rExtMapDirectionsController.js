@@ -316,7 +316,7 @@ geozzy.rExtMapDirectionsController = {
           };
         }
         else {
-          travelInfo = __('No se ha podido localizar una ruta.');
+          travelInfo = __('A route could not be found.');
         }
 
         // that.jqDirRouteModes.show();
