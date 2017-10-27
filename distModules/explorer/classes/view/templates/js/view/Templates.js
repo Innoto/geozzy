@@ -148,7 +148,14 @@ geozzy.explorerComponents.filterComboViewSummaryT = "" +
   "<span class='<%= filterClass %>-Summary'><img class='icon' src='"+cogumelo.publicConf.mediaHost+"cgmlImg/<%- option.icon %>/typeIcon/icon.png'> <%- option.name %> </span>";
 
 geozzy.explorerComponents.filterMinimapViewTemplate = "" +
-  "<div class='minimap'>"+
-    "<div class='map'></div>"+
-    "<div class='selectedText text-center'></div>"+
+  "<div class='filtersButton'>"+
+    "<div class='filtersButtonContent'><img class='img-responsive' src='"+cogumelo.publicConf.media+"/img/minimap_rs.png' alt='Ribeira Sacra'></div>"+
+    "<div class='icon'><i class='fa fa-angle-down' aria-hidden='true'></i></div>"+
+  "</div>"+
+  "<div class='boxMinimap'>"+
+    "<div class='minimap'>"+
+      "<div class='map'></div>"+
+      "<div class='selectedText text-center'></div>"+
+    "</div>"+
+    "<div class='filterResetMinimap'><button>Ribeira Sacra</button></div>"+
   "</div>";
