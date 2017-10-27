@@ -9,18 +9,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
+msgid "No se ha podido localizar una ruta."
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:37
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
 msgid "Type an address or mark on the map the place of departure"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:44
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:80
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:44
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:80
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
 msgid "Get directions"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:52
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:96
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:52
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:96
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
 msgid "Route information"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:54
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:88
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:54
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:88
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:57
 msgid "Show route description"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
+msgid "Type a departure address"
 msgstr ""

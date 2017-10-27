@@ -10,6 +10,7 @@ msgstr ""
 "Language: \n"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeEvent_classes_view_templates_rTypeEventFormModalBlock.tpl:21
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeEventFormModalBlock.tpl:21

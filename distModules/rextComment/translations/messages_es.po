@@ -39,6 +39,7 @@ msgstr ""
 "¿Estás seguro/a de que quieres marcar esta sugerencia como irrelevante?"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:4
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:4
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:4
 #: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:4
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:4
@@ -61,6 +62,7 @@ msgid "Post a suggestion"
 msgstr "Hacer una sugerencia"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:47
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:47
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:47
 #: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:47
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:47
@@ -68,6 +70,7 @@ msgid "Loading..."
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/mailCommentValidated.tpl:2
 #: /home/proxectos/canlers/app/tmp/tpl/mailCommentValidated.tpl:2
 #: /home/proxectos/profesores/app/tmp/tpl/mailCommentValidated.tpl:2
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/mailCommentValidated.tpl:2
@@ -77,6 +80,7 @@ msgid "Estimado usuario,"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:3
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/mailCommentValidated.tpl:3
 #: /home/proxectos/canlers/app/tmp/tpl/mailCommentValidated.tpl:3
 #: /home/proxectos/profesores/app/tmp/tpl/mailCommentValidated.tpl:3
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/mailCommentValidated.tpl:3
@@ -86,6 +90,7 @@ msgid "Muchas gracias por su aportación. Nos será de mucha utilidad."
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:4
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/mailCommentValidated.tpl:4
 #: /home/proxectos/canlers/app/tmp/tpl/mailCommentValidated.tpl:4
 #: /home/proxectos/profesores/app/tmp/tpl/mailCommentValidated.tpl:4
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/mailCommentValidated.tpl:4
