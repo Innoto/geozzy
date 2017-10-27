@@ -12,7 +12,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:31
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFavourites_classes_view_templates_rTypeViewBlock.tpl:31
 msgid "Favourites page"
-msgstr ""
+msgstr "Favourites"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:74
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFavourites_classes_view_templates_rTypeViewBlock.tpl:74
