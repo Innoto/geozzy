@@ -10,7 +10,7 @@ msgstr ""
 "Language: \n"
 
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
-msgid "No se ha podido localizar una ruta."
+msgid "A route could not be found."
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:37
@@ -50,4 +50,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
 msgid "Type a departure address"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
+msgid "No se ha podido localizar una ruta."
 msgstr ""
