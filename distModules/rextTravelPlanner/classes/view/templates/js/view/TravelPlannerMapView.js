@@ -36,7 +36,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     if( parseInt(that.currentDay + 1 ) >= that.planDays ){
       that.currentDay = 0;
     }
-    
+
     that.showDay(that.currentDay);
   },
   setInitMap: function(){
@@ -177,10 +177,12 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
 
   centerMap: function(){
     var that = this;
-    var bounds = new google.maps.LatLngBounds();
+    //var bounds = new google.maps.LatLngBounds();
+    /*
     for (var i = 0; i < that.selectedMarkers.length; i++) {
      bounds.extend(that.selectedMarkers[i].getPosition());
     }
     that.map.fitBounds(bounds);
+    */
   }
 });
