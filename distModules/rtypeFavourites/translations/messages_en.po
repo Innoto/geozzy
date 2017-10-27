@@ -24,7 +24,7 @@ msgid "Main Resource information"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeFavourites/classes/controller/RTypeFavouritesController.php:69
-msgid "Favoritos"
+msgid "Favourites"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeFavourites/classes/controller/RTypeFavouritesController.php:79

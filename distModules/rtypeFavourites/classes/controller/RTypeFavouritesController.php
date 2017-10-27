@@ -66,7 +66,7 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
         // TEMPLATE panel estado de publicacion
         $favsTemplate = new Template();
         $favsTemplate->setTpl( 'favAdminFormPanel.tpl', 'rtypeFavourites' );
-        $favsTemplate->assign( 'title', __( 'Favoritos' ) );
+        $favsTemplate->assign( 'title', __( 'Favourites' ) );
         $favsTemplate->assign( 'res', $formBlockInfo );
         $favsTemplate->assign( 'favsData', $favsData );
       }
