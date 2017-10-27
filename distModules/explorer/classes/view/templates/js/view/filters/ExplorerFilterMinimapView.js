@@ -123,7 +123,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
               $( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
               $( '.selectedText' ).html( that.names[that.idName] );
 
-              alert(id)
+              that.parentExplorer.applyFilters();
             },
             mouseover: function( e, id, mapElem, textElem, elemOptions ) {
               $( '.selectedText' ).html( that.names[id] );
