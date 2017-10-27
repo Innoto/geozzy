@@ -6,14 +6,6 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
   isTaxonomyFilter: true,
 
-  gzzColor_bck_1: '#bac0af', // appVars.less -> @gzzColor-bck-1
-  gzzColor_bck_2: '#cbd0c1', // appVars.less -> @gzzColor-bck-2
-  gzzColor_bck_3: '#eaede4', // appVars.less -> @gzzColor-bck-3
-  gzzColor_bck_5: '#ffffff', // appVars.less -> @gzzColor-bck-5
-  gzzColor_bck_dark: '#333333', // appVars.less -> @gzzColor-bck-5
-  gzzColor_green: '#63944e', // appVars.less -> @gzzColor-green
-  gzzColor_orange: '#ff9933', // appVars.less -> @gzzColor-orange
-  gzzColor_violet: '#9393d1', // appVars.less -> @gzzColor-violet
   // Relación de idNames con el Nombre real de la región (me lo pasa Pablo)
   names: {
     'pobra': 'A Pobra do Brollón',
@@ -50,7 +42,11 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       containerClass: false,
       template: geozzy.explorerComponents.filterMinimapViewTemplate,
       data: false,
-      onChange: function(selectedId) {}
+      styles: {
+        stroke: '#bac0af', // appVars.less -> @gzzColor-bck-1
+        background_fill: '#eaede4', // appVars.less -> @gzzColor-bck-3
+        selected_fill: '#63944e' // appVars.less -> @gzzColor-green
+      }
     };
 
     that.options = $.extend(true, {}, options, opts);
@@ -94,6 +90,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
     }
 
+
     that.miniMapCreate();
     $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).mapael( {
       map: {
@@ -103,11 +100,11 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
         },
         defaultArea : {
           attrs: {
-            fill: that.gzzColor_bck_3,
-            stroke: that.gzzColor_bck_1
+            fill: that.options.styles.background_fill,
+            stroke: that.options.styles.stroke
           },
           attrsHover: {
-            fill: that.gzzColor_orange,
+            fill: that.options.styles.selected_fill,
             animDuration: 0
           },
           eventHandlers: {
@@ -115,16 +112,18 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
               var newData = { 'areas': {} };
               // Reseteamos la área al color por defecto
               newData.areas[that.idName] = {
-                attrs: { fill: that.gzzColor_bck_3 }
+                attrs: { fill: that.options.styles.background_fill }
               };
               // Coloreamos la nueva zona tras el click
               newData.areas[id] = {
-                attrs: { fill: that.gzzColor_orange }
+                attrs: { fill: that.options.styles.selected_fill }
               };
 
               that.idName = id;
               $( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
               $( '.selectedText' ).html( that.names[that.idName] );
+
+              alert(id)
             },
             mouseover: function( e, id, mapElem, textElem, elemOptions ) {
               $( '.selectedText' ).html( that.names[id] );
