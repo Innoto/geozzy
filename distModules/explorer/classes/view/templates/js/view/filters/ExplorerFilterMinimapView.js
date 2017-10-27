@@ -5,6 +5,7 @@ if(!geozzy.explorerComponents.filters) geozzy.explorerComponents.filters={};
 geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
   isTaxonomyFilter: true,
+
   gzzColor_bck_1: '#bac0af', // appVars.less -> @gzzColor-bck-1
   gzzColor_bck_2: '#cbd0c1', // appVars.less -> @gzzColor-bck-2
   gzzColor_bck_3: '#eaede4', // appVars.less -> @gzzColor-bck-3
@@ -13,7 +14,6 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   gzzColor_green: '#63944e', // appVars.less -> @gzzColor-green
   gzzColor_orange: '#ff9933', // appVars.less -> @gzzColor-orange
   gzzColor_violet: '#9393d1', // appVars.less -> @gzzColor-violet
-
   // Relación de idNames con el Nombre real de la región (me lo pasa Pablo)
   names: {
     'pobra': 'A Pobra do Brollón',
@@ -38,7 +38,6 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     'taboada': 'Taboada',
     'carballedo': 'Carballedo'
   },
-
   // Guardo el idName path
   idName: false,
 
@@ -83,8 +82,6 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   render: function() {
     var that = this;
 
-
-
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
 
     var filterHtml = that.template({ });
@@ -97,7 +94,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
     }
 
-    that.miniMap();
+    that.miniMapCreate();
     $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).mapael( {
       map: {
         name: 'miniMapPaths',
@@ -145,12 +142,14 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       }
     } );
 
+    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).hide();
+
     // TRIGER CAMBIO DE ESTADO
     //that.selectedTerms = [ parseInt( valor ) ];
 
   },
 
-  miniMap: function() {
+  miniMapCreate: function() {
     ( function( factory ) {
       factory(jQuery, jQuery.mapael);
     }( function( $, Mapael ) {
