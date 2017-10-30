@@ -8,6 +8,12 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   minimapExist: false,
   currentIdName: false,
 
+  events: {
+    'mouseenter' : 'showBoxMinimap',
+    'mouseleave' : 'hideBoxMinimap',
+    'click .filterResetMinimap' : 'reset'
+  },
+
   initialize: function( opts ) {
     var that = this;
 
@@ -58,7 +64,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
 
-    var filterHtml = that.template({ });
+    var filterHtml = that.template( { resetButtonText : that.options.resetButtonText } );
 
     // Print filter html into div
     if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
@@ -107,21 +113,23 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
               that.selectedTerms = [ that.getIdByIdName(idName) ];
 
-              $( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
-              $( '.selectedText' ).html( that.getNameByIdName( idName ));
+              $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
+              $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( idName ));
 
               that.parentExplorer.applyFilters();
+
+              //  Ocultamos el mapa tras el click
+              that.hideBoxMinimap();
             },
             mouseover: function( e, idName, mapElem, textElem, elemOptions ) {
-
-              $( '.selectedText' ).html( that.getNameByIdName( idName ) );
+              $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( idName ) );
             },
             mouseout: function( e, idName, mapElem, textElem, elemOptions ) {
               if( that.currentIdName !== false ) {
-                $( '.selectedText' ).html( that.getNameByIdName( that.currentIdName ) );
+                $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( that.currentIdName ) );
               }
               else {
-                $( '.selectedText' ).html('');
+                $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html('');
               }
             }
           }
@@ -129,7 +137,11 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       }
     } );
 
-    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).hide();
+    //  Ocultamos el mapa tras el render
+    that.hideBoxMinimap();
+
+    that.$el = $( that.options.mainContainerClass+' .' +that.options.containerClass );
+    that.delegateEvents();
 
     // TRIGER CAMBIO DE ESTADO
     //that.selectedTerms = [ parseInt( valor ) ];
@@ -145,8 +157,8 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       $.extend( true, Mapael, {
         maps :  {
           miniMapPaths : {
-            width : that.options.width,
-            height : that.options.height,
+            width : that.options.styles.width,
+            height : that.options.styles.height,
             getCoords : function(lat, lon) {
               return {"x" : lon, "y" : lat};
             },
@@ -158,11 +170,31 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     } ) );
   },
 
+  showBoxMinimap: function() {
+    var that = this;
+    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).removeClass( 'filterMinimapNone' ).addClass( 'filterMinimapBlock' );
+  },
+
+  hideBoxMinimap: function() {
+    var that = this;
+    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).removeClass( 'filterMinimapBlock' ).addClass( 'filterMinimapNone' );
+  },
+
   reset: function() {
     var that = this;
 
+    var newData = { 'areas': {} };
+    // Reseteamos la área al color por defecto
+    newData.areas[that.currentIdName] = {
+      attrs: { fill: that.options.styles.background_fill }
+    };
+    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
+    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html('');
 
+    //  Ocultamos el mapa tras el reset
+    that.hideBoxMinimap();
 
+    that.currentIdName = false;
     that.selectedTerms = false;
   },
 
