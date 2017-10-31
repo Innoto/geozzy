@@ -952,7 +952,7 @@ class geozzyAPIView extends View {
 
 
       // URLAlias precargados. TODOS!!!
-      if( isset( $extraParams['urlAlias'] ) && $extraParams['urlAlias'] === 'true' ) {
+      if( $extraParams['urlAlias'] ) {
         $allData['urlAlias'] = $valueobject->getter('urlAlias');
       }
 
