@@ -144,6 +144,14 @@ class geozzyAPIView extends View {
                   "required": false
                 },
                 {
+                  "name": "urlAlias",
+                  "description": "urlAlias URI",
+                  "dataType": "boolean",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
                   "name": "rextmodels",
                   "description": "extension Models",
                   "dataType": "boolean",
@@ -187,14 +195,6 @@ class geozzyAPIView extends View {
                   "name": "updatedfrom",
                   "description": "updated from (UTC timestamp)",
                   "dataType": "int",
-                  "paramType": "path",
-                  "defaultValue": "false",
-                  "required": false
-                },
-                {
-                  "name": "urlAlias",
-                  "description": "urlAlias relation",
-                  "dataType": "string",
                   "paramType": "path",
                   "defaultValue": "false",
                   "required": false
@@ -806,18 +806,18 @@ class geozzyAPIView extends View {
       'filters' => '#(.*)#',
       'filtervalues' => '#(.*)#',
       'rtype' => '#(.*)#',
+      'urlAlias' => '#(true|false)#',
       'rextmodels' => '#^(true|false)$#',
       'category' => '#^(true|false)$#',
       'collection' => '#^(true|false)$#',
       'commentsCount' => '#^(true|false)$#',
       'votes' => '#^(true|false)$#',
       'updatedfrom' => '#^(\d+)$#',
-      'urlAlias' => '#(.*)#'
     ];
 
     $extraParams = RequestController::processUrlParams( $param, $validation );
 
-    $binaryFields = ['rextmodels', 'category', 'collection', 'commentsCount', 'votes'];
+    $binaryFields = ['urlAlias', 'rextmodels', 'category', 'collection', 'commentsCount', 'votes'];
     foreach( $binaryFields as $name ) {
       $extraParams[ $name ] = ( !empty($extraParams[ $name ]) && $extraParams[ $name ] === 'true' ) ? true : false;
     }
