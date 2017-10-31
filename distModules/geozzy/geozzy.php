@@ -43,6 +43,8 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^sitemap.xml$#', 'view:SitemapView::showSitemap' );
   }
 
+
+
   public function setGeozzyUrlPatternsAPI() {
     // geozzy api UI events
     // $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );

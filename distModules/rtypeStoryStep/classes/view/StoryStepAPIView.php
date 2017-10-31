@@ -23,6 +23,8 @@ class StoryStepAPIView extends View {
 
   public function storySteps( $urlParams ) {
 
+$tempo = microtime(true);
+
     $validation = array( 'resource' => '#\d+$#', 'step' => '#\d+$#' );
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
     $resourceId = isset( $urlParamsList['resource'] ) ? $urlParamsList['resource'] : false;
@@ -35,6 +37,8 @@ class StoryStepAPIView extends View {
           $resourceModel = new AllstoryStepsViewModel();
           $resources = $resourceModel->listItems([ 'filters'=>[ 'storyId' => $resourceId ]] );
 
+$tempo2 = microtime(true);
+error_log(sprintf( "%.3f", $tempo2-$tempo));
 
           header('Content-Type: application/json; charset=utf-8');
           echo '[';

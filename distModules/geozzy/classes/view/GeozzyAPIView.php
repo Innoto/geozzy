@@ -76,7 +76,6 @@ class geozzyAPIView extends View {
     <?php
   }
 
-
   public function resourcesJson() {
     header('Content-Type: application/json; charset=utf-8');
     ?>
@@ -85,7 +84,7 @@ class geozzyAPIView extends View {
       "basePath": "/api",
       "apis": [
         {
-          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/filtervalues/{filtervalues}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/votes/{votes}/updatedfrom/{updatedfrom}/urlAlias/{urlAlias}",
+          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/filtervalues/{filtervalues}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/commentsCount/{commentsCount}/votes/{votes}/updatedfrom/{updatedfrom}/urlAlias/{urlAlias}",
           "operations": [
             {
               "errorResponses": [
@@ -169,6 +168,14 @@ class geozzyAPIView extends View {
                   "required": false
                 },
                 {
+                  "name": "commentsCount",
+                  "description": "Comments count",
+                  "dataType": "boolean",
+                  "paramType": "path",
+                  "defaultValue": "false",
+                  "required": false
+                },
+                {
                   "name": "votes",
                   "description": "Votes data",
                   "dataType": "boolean",
@@ -202,7 +209,6 @@ class geozzyAPIView extends View {
     }
     <?php
   }
-
 
   public function resourceIndexJson() {
     header('Content-Type: application/json; charset=utf-8');
@@ -266,7 +272,6 @@ class geozzyAPIView extends View {
       }
     <?php
   }
-
 
   public function resourceTypesJson() {
     header('Content-Type: application/json; charset=utf-8');
@@ -408,7 +413,6 @@ class geozzyAPIView extends View {
     <?php
   }
 
-
   public function categoryListJson() {
     header('Content-Type: application/json; charset=utf-8');
     ?>
@@ -438,7 +442,6 @@ class geozzyAPIView extends View {
       }
     <?php
   }
-
 
   public function categoryTermsJson() {
     header('Content-Type: application/json; charset=utf-8');
@@ -488,7 +491,6 @@ class geozzyAPIView extends View {
       }
     <?php
   }
-
 
   public function topicListJson() {
     header('Content-Type: application/json; charset=utf-8');
@@ -663,8 +665,6 @@ class geozzyAPIView extends View {
     <?php
   }
 
-
-
   public function userSessionJson() {
     header('Content-Type: application/json; charset=utf-8');
     ?>
@@ -794,7 +794,6 @@ class geozzyAPIView extends View {
     echo json_encode( $biData );
   }
 
-
   // /resourcelist (Declarado en resources.json)
   public function resourceList( $param ) {
     Cogumelo::load('coreModel/DBUtils.php');
@@ -802,20 +801,26 @@ class geozzyAPIView extends View {
     geozzy::load('controller/apiFiltersController.php');
 
     // Params: /fields/{fields}/filters/{filters}/rtype/{rtype}/rextmodels/{rextmodels}
-    $validation = array(
+    $validation = [
       'fields' => '#(.*)#',
-      'filters'=> '#(.*)#',
-      'filtervalues'=> '#(.*)#',
+      'filters' => '#(.*)#',
+      'filtervalues' => '#(.*)#',
       'rtype' => '#(.*)#',
-      'rextmodels'=> '#^(true|false)$#',
-      'category'=> '#^(true|false)$#',
-      'collection'=> '#^(true|false)$#',
-      'votes'=> '#^(true|false)$#',
+      'rextmodels' => '#^(true|false)$#',
+      'category' => '#^(true|false)$#',
+      'collection' => '#^(true|false)$#',
+      'commentsCount' => '#^(true|false)$#',
+      'votes' => '#^(true|false)$#',
       'updatedfrom' => '#^(\d+)$#',
       'urlAlias' => '#(.*)#'
-    );
+    ];
 
     $extraParams = RequestController::processUrlParams( $param, $validation );
+
+    $binaryFields = ['rextmodels', 'category', 'collection', 'commentsCount', 'votes'];
+    foreach( $binaryFields as $name ) {
+      $extraParams[ $name ] = ( !empty($extraParams[ $name ]) && $extraParams[ $name ] === 'true' ) ? true : false;
+    }
 
     // Validamos el parametro "ids" y, si es correcto, lo añadimos en $extraParams['ids']
     $extraParams['ids'] = false;
@@ -834,17 +839,19 @@ class geozzyAPIView extends View {
     $infoRTypeNameIds = array_column( $infoRTypes, 'idName', 'id' );
 
 
-    // Cargo la tabla de votos en recursos (comentarios)
-    $votesInfo = false;
-    if( isset( $extraParams['votes'] ) && $extraParams['votes'] === 'true' ) {
+    // Cargo cifras de comentarios y votos en recursos (comentarios)
+    // $votesInfo = false;
+    $commentsCounts = false;
+    if( $extraParams['commentsCount'] || $extraParams['votes'] ) {
       $commCtrl = new RExtCommentController();
-      $votesInfo = $commCtrl->getVotes( $extraParams['ids'] );
+      $commentsCounts = $commCtrl->getCounts( $extraParams['ids'] );
     }
 
 
-    $resourceModel = new ResourceModel();
+    // $resourceModel = new ResourceModel();
+    $resourceModel = new ResourceViewModel();
     $queryParameters = [ 'cache' => $this->cacheQuery ];
-    $queryParameters['affectsDependences'] = [ 'FiledataModel' ];
+    // $queryParameters['affectsDependences'] = [ 'FiledataModel' ];
 
 
     // Bloqueo recursos no deseados
@@ -861,19 +868,8 @@ class geozzyAPIView extends View {
       foreach( $paramRtypeIds as $paramRtypeId ) {
         $idsToFilter[] = $infoRTypeIdNames[ $paramRtypeId ];
       }
-
       $queryParameters['filters']['inRtype'] =  $idsToFilter ;
     }
-
-    // Category
-    //if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
-    //  $queryParameters['affectsDependences'][] = 'ResourceTaxonomytermModel';
-    //  $queryParameters['affectsDependences'][] = 'ResourceTopicModel';
-    //}
-
-
-
-    // $queryParameters['affectsDependences'][] = 'ResourceTopicModel';
 
 
     global $C_LANG;
@@ -888,7 +884,6 @@ class geozzyAPIView extends View {
       }
       $queryParameters['fields'] = apiFiltersController::clearFields( $fieldsToFilter );
     }
-
 
 
     $queryParameters['filters']['published'] = 1;
@@ -907,17 +902,11 @@ class geozzyAPIView extends View {
       $autoFilters = explode( ',', $extraParams['filters'] );
 
       if( count($autoFiltervalues) === count($autoFilters) && count($autoFilters)>0 ) {
-
-
         foreach( $autoFilters as $autoFilterK => $autoFilter ) {
-
           $queryParameters['filters'][$autoFilter] = $autoFiltervalues[ $autoFilterK ];
         }
       }
-
-
     }
-
 
 
     if( $extraParams['ids'] ) {
@@ -933,15 +922,6 @@ class geozzyAPIView extends View {
     // error_log( '$queryParameters = '.print_r( $queryParameters, true ) );
     $resourceList = $resourceModel->listItems( $queryParameters );
 
-    if( isset( $extraParams['urlAlias'] ) && $extraParams['urlAlias'] === 'true' ) {
-      $urlAliasModel = new UrlAliasModel();
-      $urlAliasList = $urlAliasModel->listItems([ 'cache' => $this->cacheQuery ]);
-      $urls = [];
-      while( $urlAlias = $urlAliasList->fetch() ) {
-        $urls[ $urlAlias->getter('resource') ] = $urlAlias->getter('urlFrom');
-      }
-    }
-
 
     header('Content-Type: application/json; charset=utf-8');
     echo '[';
@@ -951,7 +931,7 @@ class geozzyAPIView extends View {
 
       //$allCols = $valueobject->getCols(false);
       $allCols = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription', 'content',
-        'image', 'loc', 'defaultZoom', 'externalUrl' );
+        'image', 'loc', 'defaultZoom', 'externalUrl', 'user', 'timeCreation', 'weight' );
       foreach( $allCols as $col ) {
         if( !$fieldsToFilter || in_array( $col, $fieldsToFilter ) ) {
           $allData[ $col ] = $valueobject->getter( $col );
@@ -960,13 +940,8 @@ class geozzyAPIView extends View {
           }
           if( $col === 'image' && !empty( $allData[ $col ] ) ) {
             // Cargo los datos de image (imageAKey, imageName)
-            $fileDep = $valueobject->getterDependence( $col );
-            if( $fileDep !== false ) {
-              foreach( $fileDep as $fileModel ) {
-                $allData[ 'imageAKey' ] = $fileModel->getter( 'aKey' );
-                $allData[ 'imageName' ] = $fileModel->getter( 'name' );
-              }
-            }
+            $allData['imageAKey'] = $valueobject->getter('imageAKey');
+            $allData['imageName'] = $valueobject->getter('imageName');
           }
         }
       }
@@ -978,17 +953,12 @@ class geozzyAPIView extends View {
 
       // URLAlias precargados. TODOS!!!
       if( isset( $extraParams['urlAlias'] ) && $extraParams['urlAlias'] === 'true' ) {
-        if( array_key_exists( $valueobject->getter('id'), $urls ) ) {
-          $allData['urlAlias'] = $urls[ $valueobject->getter('id') ];
-        }
-        else{
-          $allData['urlAlias'] = '/resource/'.$valueobject->getter('id');
-        }
+        $allData['urlAlias'] = $valueobject->getter('urlAlias');
       }
 
 
       // Category
-      if( isset( $extraParams['category'] ) && $extraParams['category'] === 'true' ) {
+      if( $extraParams['category'] ) {
         // Cargo los datos de Term del recurso
         $taxTermModel =  new ResourceTaxonomytermModel();
         $taxTermList = $taxTermModel->listItems( [ 'filters' => [ 'resource' => $allData['id'] ], 'cache' => $this->cacheQuery ] );
@@ -1012,7 +982,7 @@ class geozzyAPIView extends View {
 
 
       // Load all REXT related models
-      if( isset($extraParams['rextmodels']) && $extraParams['rextmodels'] === 'true') {
+      if( $extraParams['rextmodels'] ) {
         $relatedModels = $valueobject->getRextModels();
 
         foreach( $relatedModels as $relModelIdName => $relModel ) {
@@ -1035,7 +1005,7 @@ class geozzyAPIView extends View {
 
 
       // Collections
-      if( isset( $extraParams['collection'] ) && $extraParams['collection'] === 'true' ) {
+      if( $extraParams['collection'] ) {
         // Cargo los datos de Collections del recurso
         $resCollModel =  new CollectionResourcesListViewModel();
         $collResList = $resCollModel->listItems([
@@ -1075,12 +1045,17 @@ class geozzyAPIView extends View {
       }
 
 
+      // commentsCount
+      if( $extraParams['commentsCount'] && !empty( $commentsCounts[ $allData['id'] ] ) ) {
+        $allData['commentsCount'] = intval( $commentsCounts[ $allData['id'] ]['commentsCount'] );
+      }
+
       // Votes
-      if( $votesInfo && isset( $votesInfo[ $allData['id'] ] ) ) {
-        $allData['votes'] = array(
-          'count' => intval( $votesInfo[ $allData['id'] ]['count'] ),
-          'average' => intval( $votesInfo[ $allData['id'] ]['average'] )
-        );
+      if( $extraParams['votes'] && !empty( $commentsCounts[ $allData['id'] ] ) ) {
+        $allData['votes'] = [
+          'count' => intval( $commentsCounts[ $allData['id'] ]['votesCount'] ),
+          'average' => intval( $commentsCounts[ $allData['id'] ]['votesAverage'] )
+        ];
       }
 
       echo $c.json_encode( $allData );
@@ -1142,7 +1117,10 @@ class geozzyAPIView extends View {
 
     $queryFiltersFinal['published'] = 1;
 
-    $resourceList = $resourceIndexModel->listItems([ 'filters' => $queryFiltersFinal, 'groupBy' => 'id', 'cache' => $this->cacheQuery ]);
+    $resourceList = $resourceIndexModel->listItems([
+      'filters' => $queryFiltersFinal, 'groupBy' => 'id', 'cache' => $this->cacheQuery
+    ]);
+
     header('Content-Type: application/json; charset=utf-8');
     echo '[';
     $c = '';
@@ -1269,7 +1247,6 @@ class geozzyAPIView extends View {
 
 
   // Starred
-
   public function starred() {
     $taxtermModel = new TaxonomytermModel();
     $starredList = $taxtermModel->listItems([
@@ -1311,7 +1288,6 @@ class geozzyAPIView extends View {
 
 
   // Categories
-
   public function categoryList() {
     geozzy::load('model/TaxonomygroupModel.php');
     $taxgroupModel = new TaxonomygroupModel();
@@ -1320,7 +1296,6 @@ class geozzyAPIView extends View {
   }
 
   public function categoryTerms( $urlParams ) {
-
     $validation = array('id'=> '#\d+$#', 'idname'=>'#(.*)#');
     $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
 

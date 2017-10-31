@@ -154,8 +154,8 @@ geozzy.explorerComponents.filterMinimapViewTemplate = "" +
   "</div>"+
   "<div class='boxMinimap'>"+
     "<div class='minimap'>"+
-      "<div class='map'></div>"+
       "<div class='selectedText text-center'></div>"+
+      "<div class='map'></div>"+
     "</div>"+
-    "<div class='filterResetMinimap'><button>Ribeira Sacra</button></div>"+
+    "<div class='filterResetMinimap'><button><%- resetButtonText %></button></div>"+
   "</div>";

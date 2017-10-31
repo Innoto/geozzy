@@ -5,41 +5,14 @@ if(!geozzy.explorerComponents.filters) geozzy.explorerComponents.filters={};
 geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
   isTaxonomyFilter: true,
+  minimapExist: false,
+  currentIdName: false,
 
-  gzzColor_bck_1: '#bac0af', // appVars.less -> @gzzColor-bck-1
-  gzzColor_bck_2: '#cbd0c1', // appVars.less -> @gzzColor-bck-2
-  gzzColor_bck_3: '#eaede4', // appVars.less -> @gzzColor-bck-3
-  gzzColor_bck_5: '#ffffff', // appVars.less -> @gzzColor-bck-5
-  gzzColor_bck_dark: '#333333', // appVars.less -> @gzzColor-bck-5
-  gzzColor_green: '#63944e', // appVars.less -> @gzzColor-green
-  gzzColor_orange: '#ff9933', // appVars.less -> @gzzColor-orange
-  gzzColor_violet: '#9393d1', // appVars.less -> @gzzColor-violet
-  // Relación de idNames con el Nombre real de la región (me lo pasa Pablo)
-  names: {
-    'pobra': 'A Pobra do Brollón',
-    'boveda': 'Bóveda',
-    'castrocaldelas': 'Castro Caldelas',
-    'chantada': 'Chantada',
-    'esgos': 'Esgos',
-    'monforte': 'Monforte de Lemos',
-    'montederramo': 'Montederramo',
-    'ramuin': 'Nogueira de Ramuín',
-    'peroxa': 'A Peroxa',
-    'teixeira': 'A Teixeira',
-    'panton': 'Pantón',
-    'paradadesil': 'Parada de Sil',
-    'paradela': 'Paradela',
-    'xunqueira': 'Xunqueira de Espadanedo',
-    'portomarin': 'Portomarín',
-    'quiroga': 'Quiroga',
-    'ribasdesil': 'Ribas de Sil',
-    'savinao': 'Saviñao',
-    'sober': 'Sober',
-    'taboada': 'Taboada',
-    'carballedo': 'Carballedo'
+  events: {
+    'mouseenter' : 'showBoxMinimap',
+    'mouseleave' : 'hideBoxMinimap',
+    'click .filterResetMinimap' : 'reset'
   },
-  // Guardo el idName path
-  idName: false,
 
   initialize: function( opts ) {
     var that = this;
@@ -48,9 +21,16 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       title: false,
       mainContainerClass: false,
       containerClass: false,
+      resetButtonText: 'All',
       template: geozzy.explorerComponents.filterMinimapViewTemplate,
       data: false,
-      onChange: function(selectedId) {}
+      styles: {
+        width : 336,
+        height : 355,
+        stroke: '#bac0af', // appVars.less -> @gzzColor-bck-1
+        background_fill: '#eaede4', // appVars.less -> @gzzColor-bck-3
+        selected_fill: '#63944e' // appVars.less -> @gzzColor-green
+      }
     };
 
     that.options = $.extend(true, {}, options, opts);
@@ -84,7 +64,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
 
-    var filterHtml = that.template({ });
+    var filterHtml = that.template( { resetButtonText : that.options.resetButtonText } );
 
     // Print filter html into div
     if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {
@@ -94,7 +74,13 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       $( that.options.mainContainerClass+' ' + containerClassDots ).html( filterHtml );
     }
 
-    that.miniMapCreate();
+
+    if( that.minimapExist == false ) {
+      that.miniMapCreate();
+      that.minimapExist = true;
+    }
+
+
     $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).mapael( {
       map: {
         name: 'miniMapPaths',
@@ -103,38 +89,47 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
         },
         defaultArea : {
           attrs: {
-            fill: that.gzzColor_bck_3,
-            stroke: that.gzzColor_bck_1
+            fill: that.options.styles.background_fill,
+            stroke: that.options.styles.stroke
           },
           attrsHover: {
-            fill: that.gzzColor_orange,
+            fill: that.options.styles.selected_fill,
             animDuration: 0
           },
           eventHandlers: {
-            click: function( e, id, mapElem, textElem, elemOptions ) {
+            click: function( e, idName, mapElem, textElem, elemOptions ) {
+
               var newData = { 'areas': {} };
               // Reseteamos la área al color por defecto
-              newData.areas[that.idName] = {
-                attrs: { fill: that.gzzColor_bck_3 }
+              newData.areas[that.currentIdName] = {
+                attrs: { fill: that.options.styles.background_fill }
               };
               // Coloreamos la nueva zona tras el click
-              newData.areas[id] = {
-                attrs: { fill: that.gzzColor_orange }
+              newData.areas[idName] = {
+                attrs: { fill: that.options.styles.selected_fill }
               };
 
-              that.idName = id;
-              $( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
-              $( '.selectedText' ).html( that.names[that.idName] );
+              that.currentIdName = idName;
+
+              that.selectedTerms = [ that.getIdByIdName(idName) ];
+
+              $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
+              $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( idName ));
+
+              that.parentExplorer.applyFilters();
+
+              //  Ocultamos el mapa tras el click
+              that.hideBoxMinimap();
             },
-            mouseover: function( e, id, mapElem, textElem, elemOptions ) {
-              $( '.selectedText' ).html( that.names[id] );
+            mouseover: function( e, idName, mapElem, textElem, elemOptions ) {
+              $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( idName ) );
             },
-            mouseout: function( e, id, mapElem, textElem, elemOptions ) {
-              if( that.idName !== false ) {
-                $( '.selectedText' ).html( that.names[that.idName] );
+            mouseout: function( e, idName, mapElem, textElem, elemOptions ) {
+              if( that.currentIdName !== false ) {
+                $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html( that.getNameByIdName( that.currentIdName ) );
               }
               else {
-                $( '.selectedText' ).html('');
+                $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html('');
               }
             }
           }
@@ -142,7 +137,11 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       }
     } );
 
-    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).hide();
+    //  Ocultamos el mapa tras el render
+    that.hideBoxMinimap();
+
+    that.$el = $( that.options.mainContainerClass+' .' +that.options.containerClass );
+    that.delegateEvents();
 
     // TRIGER CAMBIO DE ESTADO
     //that.selectedTerms = [ parseInt( valor ) ];
@@ -150,40 +149,20 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
   },
 
   miniMapCreate: function() {
+    var that = this;
+
     ( function( factory ) {
       factory(jQuery, jQuery.mapael);
     }( function( $, Mapael ) {
       $.extend( true, Mapael, {
         maps :  {
           miniMapPaths : {
-            width : 336,
-            height : 355,
+            width : that.options.styles.width,
+            height : that.options.styles.height,
             getCoords : function(lat, lon) {
               return {"x" : lon, "y" : lat};
             },
-            'elems': {
-              "xunqueira" : "m 106,285 v -1 -1 l 1,-3 1,-2 1,-1 v -1 l 1,-1 h 1 v -1 l 2,-4 v -1 l 2,-3 v -1 -1 l 1,-2 -1,-2 4,4 2,1 h 1 l 1,1 h 2 2 v 1 4 l -1,2 h 1 v 1 l 1,1 v 1 1 1 1 1 1 1 h 1 1 v 5 l -2,2 -3,4 -5,2 h -1 -2 -2 l -3,1 -3,-4 -2,-6 -1,-1",
-              "chantada" : "m 19,141 v -1 -1 l 1,-1 v -1 -1 h 1 v -1 l 1,-2 1,-2 v -2 -2 -1 -1 h 1 v -1 -1 -3 h 1 l -1,-2 1,-1 v -1 -1 -1 l -1,-1 v -1 l -1,-1 v -1 -2 -1 l 1,-1 v -1 l 1,-1 v -1 h 1 l 2,-1 h 1 2 l 1,1 h 1 l 1,1 v 1 1 h 1 1 v 1 1 1 l 1,1 1,1 v -1 h 1 1 l 1,1 h 1 v 1 l 1,1 v 1 l 1,1 v 1 h 1 1 1 l 1,-1 h 1 1 l 1,-1 1,-1 h 1 1 v 1 l 1,-1 v 1 l 1,-2 h 1 v -1 h 1 v 1 h 1 1 v 1 l 1,1 h -1 v 1 1 h 1 l 1,1 h 1 v 1 -1 h 1 v -1 -1 h 3 l 1,-1 h 1 1 1 1 1 1 2 1 2 1 v 1 l 1,2 v 1 h 1 l 1,1 h 1 1 1 v 1 h 1 v 1 h -1 l -1,1 -1,2 v 1 1 1 1 l 1,1 1,1 h 1 1 l 1,1 1,1 v 1 l -1,3 v 1 l -1,1 -1,1 -1,2 v 1 l -1,1 v 1 1 1 l -1,1 v 1 1 l 1,2 v 1 1 1 1 l -1,1 v 2 1 1 h 1 l 1,1 h 1 1 v 1 h 2 1 1 l 1,-1 h 1 1 1 1 1 l 1,1 1,1 h -1 v 1 1 h -1 l -1,1 -1,1 h -1 -1 l -1,1 -1,1 h -1 v 1 1 1 l -1,1 -1,1 v 1 1 l 1,1 v 1 h -1 -1 -1 l -1,-1 -1,-2 h -1 v -1 h -1 l -2,-2 h -2 v -1 h -1 v -1 -1 h -1 v -1 h -1 -1 -1 v 1 h -1 v -1 l -1,1 v 1 l -1,-1 h -1 l -2,-1 h -1 v -1 h -1 l -1,-1 h -1 -1 l -2,-1 h -1 -1 v -1 h -1 v -1 l -1,-1 v -1 l -2,-1 h -1 l -1,1 h -1 l -1,1 -1,1 h -1 -1 -1 -1 -1 l -2,-1 h -1 v -1 h -1 1 v -1 l -1,-1 v -1 h -1 v -1 l -1,-1 h -1 v 1 h -1 l -1,1 h -1 l -1,1 -1,1 h -1 v -1 h -1 l -1,-1 h -1 l -1,-1 h -1 -1 -1 -1 l -1,1 h -1 -1 l -1,-1 h -1 -1 l -1,-1 h -1 l -1,-1 h 1 1 l 1,-1 h 1 1 v -1 h 1 v -1 -1 -1 h 1 l -1,-1 v -1 l -1,-2 v -1 l -1,-1 v -3",
-              "paradadesil" : "m 119,264 1,-1 h 1 v -1 -1 -1 l 1,-1 v -1 -1 h 1 v -1 l 1,-1 v -1 -1 l 1,-1 v -1 -1 h 1 v -1 h 1 l 2,-1 1,-1 h 1 v -1 h 1 v -1 l 1,-1 v -1 h 1 l 1,-1 h 1 l 1,-1 2,-1 v -1 h 1 l 1,1 2,1 1,1 1,1 1,1 v 1 h 1 l 1,1 v 1 h 1 v 1 l 2,1 h 1 1 l 1,1 1,-1 h 1 1 1 1 1 l 1,-1 h 1 1 1 1 l 1,-1 h 1 v 1 l 1,1 v 1 h 1 v 1 1 1 1 l -1,1 v 1 1 h -1 v 1 1 1 1 h -1 v 1 1 1 l -1,1 v -1 h -1 v 1 h 1 v 1 1 h -1 v 1 1 1 1 h -1 v 1 h -1 v 1 h -1 -1 -1 -1 v 1 h -1 l -2,1 v 1 h -1 v 1 h -1 v -1 h -1 v 1 1 h -1 -1 -1 l -1,1 -1,1 v 1 h -1 l -1,1 h -2 -1 v -5 l -2,-1 v -1 h -1 v -1 l -2,-1 -4,-1 -1,-1 -1,-1 -1,-1 -2,-2 -1,-1 h -2 -2 l -1,-1 h -1 l -2,-1",
-              "pobra" : "m 181,148 v -1 -1 h 1 v -1 l 1,-1 v -1 -1 -1 h 1 v -1 h -1 l 1,-1 h 1 1 1 v -1 h 1 l 1,1 h 1 1 1 1 1 l 1,-1 h 1 v -1 -1 h -1 v -1 l -1,-1 v -1 -1 -1 -1 -1 h 1 1 l 1,-1 2,-2 1,-1 1,-1 v -1 -1 l 2,-2 v -1 h 1 1 l 1,-1 2,-1 h 2 v 1 h -1 l 1,1 1,2 v 1 l 1,2 -1,1 1,1 1,1 v 1 1 h -1 l 1,1 h 1 l 1,1 h 1 l 1,1 h 1 v 1 l 1,1 h 1 1 1 1 1 l 1,-1 1,-1 1,1 v -1 h 1 l 2,-1 h 1 1 v -1 h 1 1 1 v 1 l 2,1 1,1 h 1 l 1,1 v 1 1 1 h 1 l 1,1 h 1 l 1,1 1,1 v 3 1 l 2,1 h 1 l 1,2 1,1 v 1 l 1,1 v 1 2 2 l -1,1 v 1 l -2,1 v 1 h -1 v 1 l 1,2 -3,2 -1,1 v 1 l -1,1 h -1 -1 v 1 h -1 l 1,1 v 1 h 1 v 1 1 l -1,1 -2,1 v 1 h -1 v -1 l -1,-1 h -1 v -1 h -1 l -1,1 -1,1 -1,1 v 1 h -1 v 1 h -1 v 1 h -1 -1 l -1,1 -1,1 -1,1 v 1 1 l -1,1 v 1 1 h -1 v 1 l 1,1 v 1 h -1 v 1 h -1 v -1 h -1 -1 -1 -1 v -1 l -1,1 v 1 1 2 h -1 l -2,1 h -1 l -2,-1 v 3 l 3,5 v 9 1 l -1,1 1,2 h -1 -1 -1 -2 -1 v 1 h -1 l -1,1 h -1 -1 l -1,1 -3,2 -1,-1 h -1 l 1,-2 v -1 l -1,-1 h 1 v -1 h 1 l 1,-1 v -1 -1 -1 h 1 v -1 -1 l 1,-1 v -1 l 2,-3 1,-1 v -1 h -1 -1 l -1,-1 v -1 h -1 -1 v -1 h -1 v -1 h -1 v -1 h -1 l -1,-1 v -2 l 2,-2 1,-2 v -3 -1 h -1 l -1,-1 h -1 v -1 -1 l -1,-1 -1,-1 v -1 -2 -1 l 1,-1 -1,-2 -3,-4 v -2 h -2 -1 -1 -1 -1 -1 v -1 h -1 -1 -1 v -1 l -1,-1 -1,-1 1,-4 1,-2 1,-1 v -4 -1 l -2,-2",
-              "castrocaldelas" : "m 182,266 v -1 -1 -1 l 1,-1 v -1 -1 -1 -1 h 1 -1 v -1 -1 h 1 v -1 h -1 v -1 h -1 v -1 h 1 -1 v -1 -1 l 1,-1 h -2 v -1 -1 h 1 v -1 h 1 v -1 -1 h 1 1 1 l 1,1 1,1 1,-1 1,1 h 1 v -1 l 1,-1 v -2 -1 l -1,-1 -1,1 h -1 -1 -1 v -1 -1 -1 h -1 v -1 -1 1 -1 h 1 l 1,-1 1,-1 v -1 h 1 l 1,-1 2,-1 h 1 v -1 h 1 l 1,-1 1,-1 2,-1 1,-1 h 1 1 v -1 h 1 l -1,-1 1,-2 2,1 h 1 1 l 2,1 h 1 l 1,1 1,1 1,2 h 1 v 1 1 l 1,1 1,1 2,2 h 1 l 1,1 v 1 h 1 1 v 1 l -1,1 v 1 1 1 h 1 1 v 1 h 1 l 1,1 h 1 v 1 1 h -1 v 1 1 h 1 l -1,1 h -1 l -1,1 v 1 l 1,1 h 1 v 1 1 h -1 v 1 1 h -1 l -1,1 h -1 -1 -1 l -1,1 -1,1 2,2 1,1 -1,1 2,3 v 2 l -5,3 h -1 l -4,1 -5,1 -3,1 -4,3 -2,2 -2,3 -1,1 v 2 l -3,1 -1,-2 h -1 v -1 l -1,-2 -3,-3 -1,-4 -1,-1 2,-2 1,-1 1,-1 -1,-1 v -1 h -1 -1 l -1,-1 h -1",
-              "portomarin" : "m 69,55 v -9 l -1,-3 h 2 l -1,-5 v -2 l 1,-1 1,-1 -1,-2 v -1 -3 l 1,-2 v -1 h 3 l 2,-3 1,-1 h 4 l 4,-2 v -4 l 1,1 v -1 h 1 l 4,-2 2,-1 h 1 1 V 10 h 1 1 1 v 1 h 1 v 1 h 1 v 1 1 h 1 1 l 1,-1 1,1 v 1 h 1 l 1,1 3,-1 2,1 h 1 l 1,1 v 1 1 h 1 1 1 v 1 h 1 1 1 1 l 1,1 v 2 h 2 l 1,1 -1,3 v 2 1 h 1 l -1,1 1,2 h 1 1 v -1 h -1 1 1 v 1 l 1,1 v 1 l -1,1 v 1 1 1 2 1 1 h -1 v 1 h -1 -1 v 1 h 1 l -1,1 -1,1 h -1 -1 -1 l -1,1 v 1 l -1,1 -1,1 h -1 -1 -1 -1 l -1,1 h -1 v 1 1 1 h 1 1 l 1,-1 h 1 1 v 1 h 1 v 1 1 l -1,1 v 1 h -1 v 1 2 1 1 1 1 1 h -1 -1 -1 v -1 -1 h -1 v -1 l -1,1 h -1 v 1 l -1,1 v 1 h -1 v -1 -1 h -1 -1 v -1 h -1 v 1 h -1 -1 -1 -1 -1 v 1 -1 h -1 v -1 l -1,-1 v -1 h -1 l 2,-3 -1,-2 h -1 l -1,-1 -1,-3 h -1 -1 l -3,1 -1,2 -1,1 -3,1 -1,1 -4,-2 -3,-3 h -1 l -2,-1 h -1 -2 l -1,1",
-              "peroxa" : "m 37,222 v -1 h -1 v -1 -1 -2 -1 -1 -1 -2 l 1,-1 v -1 l -1,-1 h 1 v -1 -1 l 1,-1 1,-1 1,-1 1,-1 1,-1 v -1 -1 l 1,-1 2,-1 2,-1 1,1 1,1 1,-1 h 1 l 1,1 1,1 h 1 l 1,3 h 1 l 1,1 h 1 l 1,-1 1,-1 3,-1 v -1 h 1 l 1,-2 2,-1 h 1 1 1 1 v 1 1 h 1 v 1 h 1 1 1 v 1 1 l 1,1 1,1 h -1 l -1,1 v 1 l -1,-1 v 1 -1 h -1 -1 v -1 h -1 -1 l -1,1 h -1 -1 l -1,1 v 1 l -1,1 -2,-1 h -1 l -1,1 v 1 h 1 v 1 1 -1 h 1 l 1,-1 1,1 v 1 l 1,1 1,1 1,1 h 1 l 1,1 1,-1 1,1 v 1 1 h 1 1 l 1,1 h 1 v -1 h 1 1 v -1 l 1,-1 h 1 1 v 1 h 1 1 v 1 l -1,1 -1,1 -1,1 -1,2 -2,1 v 1 h -1 v 1 l -1,1 v 1 l -1,1 h -1 l -1,1 -1,1 -1,1 v 1 l -1,1 h -1 l -1,1 h -1 v 1 l -2,2 -1,1 h -1 -1 -1 l -1,1 v -1 -1 h -1 v -1 -1 l -1,-2 h -1 v -1 l -2,-1 -1,-1 v -1 -1 -1 h -1 v -1 l -1,-2 -1,-1 -1,1 h -1 -1 -1 -1 -1 -1 -1 v -1 -1 l -1,-1 h -1 -1 l -1,1 h -1",
-              "quiroga" : "m 214,214 -1,-2 1,-1 v -1 -9 l -3,-5 v -3 l 2,1 h 1 l 2,-1 h 1 v -2 -1 -1 l 1,-1 v 1 h 1 1 1 1 v 1 h 1 v -1 h 1 v -1 l -1,-1 v -1 h 1 v -1 -1 l 1,-1 v -1 -1 l 1,-1 1,-1 1,-1 h 1 1 v -1 h 1 v -1 h 1 v -1 l 1,-1 1,-1 1,-1 h 1 v 1 h 1 l 1,1 v 1 h 1 v -1 h 1 v 1 h 2 l 1,1 2,1 h 1 v 1 h 1 1 v 1 h 1 1 l 1,-1 h 1 1 l 2,-2 h 1 2 1 2 v -1 h 1 v -1 -1 h 1 v -1 -1 h 1 1 1 l 1,-1 1,-1 2,-1 v -1 h 1 v -1 l 1,-1 h 1 v -1 l 1,-1 v -1 l 1,-1 h 1 1 1 l 1,-1 h 1 1 v -1 l 1,-1 v -2 -1 h 1 v -1 -1 h 1 1 l 2,-1 h 1 l 1,-1 h 1 1 1 1 1 l 1,-1 v -1 l 1,-1 h 1 v -2 h 1 v -1 l 2,-2 h 2 1 v -1 l 1,-1 1,-1 h 2 l 1,-1 h 1 l 1,-1 h 1 1 1 v 1 1 h 1 v 1 1 l 1,1 v 1 h 2 l 1,1 h 1 1 l 1,2 h -1 v 1 1 l 1,1 v 1 h 1 v 1 h 1 v 2 l -1,3 -1,3 3,3 h -1 -1 1 v 1 1 h 1 v 1 h -1 v 1 l -1,1 v 1 1 h -1 v 1 h 1 1 1 1 v 1 1 1 l 1,1 -1,1 h -1 v 1 1 l -1,2 h -1 v 1 1 1 1 h -1 l -1,1 v 1 l -1,1 1,1 v 1 1 1 l -1,1 h -1 v 1 l -1,1 v 1 l -1,2 v 1 1 h -1 v 1 1 l -1,1 v 1 l -2,2 v 2 1 1 1 h -1 -1 -1 -1 -1 v 1 l -3,2 -1,2 -1,1 h -1 v 1 1 1 h -1 l -1,-1 h -1 l -1,1 -2,2 h -1 l -1,2 v 1 1 1 l 1,1 v 1 h 1 v 1 h -1 v 1 l -1,1 h -1 v 1 h -1 v 1 l -1,1 -1,2 -1,1 1,1 v 1 1 1 1 h -1 v 1 1 l -1,2 v 3 l -2,2 -1,-1 h -1 v 1 l -1,1 v 1 l 1,3 h -2 l -1,1 -2,5 v 1 l 1,3 v 1 l -1,1 v 1 3 h -1 v 1 l -1,1 v 1 1 l -2,-2 -2,-2 -1,-1 -1,-1 v -1 l -1,-2 v -1 l -1,-1 v -1 h -1 v -1 -1 l -1,-1 v -1 l -1,-1 v -1 l 1,-1 v -1 -1 l 1,-1 v -1 l -1,-1 v -1 -1 l 1,-1 v -1 h 1 v -1 h 2 1 v -1 l -1,-2 h -1 v -1 -1 h 1 l 1,-1 v -1 h -1 l -1,-1 v -1 -1 -1 -1 h -1 v -1 h -1 v -1 -1 -1 h 1 v -1 h 1 v -1 h -1 v -1 -1 -1 -1 -1 -1 -1 l 1,-1 h 1 v -1 -1 h -1 l -1,-1 h -1 -1 l -1,-1 h -1 l -1,-1 h -1 -1 l -1,1 h -1 -1 -1 v -1 -1 -1 -1 l 1,-1 v -1 h -1 l -1,1 h -1 -1 -1 -1 l -1,-1 v -1 -1 l -1,-1 v -1 l -1,-1 v -1 h -1 -1 v -1 h -1 -1 l -1,1 -1,1 -1,1 h -2 -1 v -1 -1 -1 h -1 -1 v 1 l 1,1 -1,1 v 1 h -1 v 1 h -1 v 1 h -1 v -1 h -1 v -1 h -1 -1 v 1 1 1 h -1 -1 -1 v 1 h -2 v 1 h -2 -1 -1 -1 -1 -1 -1 -1 l -1,1 h -1 -1",
-              "ribasdesil" : "m 200,219 3,-2 1,-1 h 1 1 l 1,-1 h 1 v -1 h 1 2 1 1 1 1 1 l 1,-1 h 1 1 1 1 1 1 1 2 v -1 h 2 v -1 h 1 1 1 v -1 -1 -1 h 1 1 v 1 h 1 v 1 h 1 v -1 h 1 v -1 h 1 v -1 l 1,-1 -1,-1 v -1 h 1 1 v 1 1 1 h 1 2 l 1,-1 1,-1 1,-1 h 1 1 v 1 h 1 1 v 1 l 1,1 v 1 l 1,1 v 1 1 l 1,1 h 1 1 1 1 l 1,-1 h 1 v 1 l -1,1 v 1 1 1 1 h 1 1 1 l 1,-1 h 1 1 l 1,1 h 1 l 1,1 h 1 1 l 1,1 h 1 v 1 1 h -1 l -1,1 v 1 1 1 1 1 1 1 h 1 v 1 h -1 v 1 h -1 v 1 1 1 h 1 v 1 h 1 v 1 1 1 1 l 1,1 h 1 v 1 l -1,1 h -1 v 1 1 h 1 l 1,2 v 1 h -1 l -1,-1 -1,-1 h -1 l -1,-1 h -2 v -1 l -1,1 h -1 -2 -1 l -2,-2 -1,-2 -1,-1 -1,-1 v -1 l -2,-1 v -2 l -1,-2 -2,2 -3,-1 h -2 -1 l -1,-1 v -1 -1 l -1,-1 v -1 h -1 l -1,-2 h -1 -1 -1 -1 -1 l -1,1 -2,-1 -2,1 h -1 l -1,-1 h -4 -1 l 1,1 h -1 -2 -2 l -2,2 -2,1 v -1 h -1 l -1,-2 -1,-1 -1,-1 h -1 l -2,-1 h -1 -1 l -2,-1 -1,2 h -1 l 1,-2 v -1 h 1 v -1 -1 1 h -1 v 1 h -1 -1 v -1 l -1,-1 v -1 h 1",
-              "esgos" : "m 77,289 -1,-1 v -1 -1 -1 -1 l 1,-1 1,-1 v -1 l 1,-1 h 1 1 l 1,-1 2,-1 1,-1 v -1 -1 l 1,-1 v -1 l 1,-2 v -1 -2 l -1,-2 -1,-2 v -1 -1 -1 h 2 l 1,-1 h 1 v -1 h 1 l 2,2 1,1 1,1 h 1 l 4,2 4,1 3,-4 h 1 v -1 -1 h 1 l 1,-1 h 1 l 2,-1 3,2 1,2 -1,2 v 1 1 l -2,3 v 1 l -2,4 v 1 h -1 l -1,1 v 1 l -1,1 -1,2 -1,3 v 1 1 h -1 -1 l -3,3 h -1 -2 l -3,2 -2,1 v -1 l -2,-1 h -3 -1 l -4,-1 h -2 l -1,-1 v 1 h -1 v 1 h -1 -1",
-              "savinao" : "m 80,115 v -1 h 1 v -1 l 1,-1 v -1 -1 l 1,-1 v -1 -1 -1 -1 -1 l 1,-1 v -1 h 1 l 1,-1 h 1 l 1,-1 h 1 l 1,-1 h 1 1 l 1,1 h 1 1 1 1 l 1,-1 h 1 v -1 -1 -1 -1 h 1 1 l 1,-1 v -1 h -1 v -1 l -1,-1 v -1 l -1,-1 h -1 -1 v -1 -1 l -1,-1 v -1 h 1 l 1,-1 v -1 l -1,-1 v -1 -1 -1 -1 h 1 1 1 l 1,-1 h 1 v -1 l 1,-1 h 1 v 1 h 1 l 1,1 h 1 1 v 1 1 1 1 h 1 1 1 1 1 l 1,1 v -1 h 1 v 1 l 1,5 h 1 v 1 h 1 l 1,1 h 1 v 1 l 1,-1 v 1 1 h 1 v 1 1 h 1 v 1 h 1 l 1,1 3,4 1,1 L 131,101 h 1 l 2,1 1,1 4,3 1,1 1,3 h 2 l 1,1 1,1 v 1 l 1,1 v 2 l 1,2 -1,1 -1,1 v 1 1 l -1,1 v 1 l -1,1 v 1 1 h -1 v 1 h -1 v 1 l 2,2 v 1 l 1,1 2,1 v 2 1 l -1,1 -1,2 -1,1 -1,2 v 1 2 2 h -1 v -1 h -1 l 1,1 h -1 v -1 h -1 -1 -1 v -1 h -2 -2 -1 -1 l -1,1 v 1 h -1 l -1,1 v 1 l -1,1 -1,1 h -1 v 1 h -1 l -1,1 v 1 h -1 v -1 h -1 l -1,1 -1,1 -1,1 v 1 1 1 l -1,1 h -1 l -3,1 h -1 v 2 1 l 1,1 1,1 v 1 1 h -1 -1 -1 -1 -3 -1 l -1,1 v -1 h -1 v -1 h -1 -1 v 1 h -2 l -1,-1 v -1 -1 -1 -1 -1 h 1 l -1,-1 -1,-1 h -1 -1 -1 -1 -1 l -1,1 h -1 -1 -2 v -1 h -1 -1 l -1,-1 h -1 v -1 -1 -2 l 1,-1 v -1 -1 -1 -1 l -1,-2 v -1 -1 l 1,-1 v -1 -1 -1 l 1,-1 v -1 l 1,-2 1,-1 1,-1 v -1 l 1,-3 v -1 l -1,-1 -1,-1 h -1 -1 l -1,-1 -1,-1 v -1 -1 -1 -1 l 1,-2 1,-1 h 1 v -1 h -1 v -1 h -1 -1 -1 l -1,-1 h -1 v -1 l -1,-2",
-              "sober" : "m 149,194 -1,1 -1,1 -1,1 -1,0 0,1 -1,0 0,-1 -1,0 0,-1 -1,0 0,1 -1,0 -1,0 0,-1 -1,0 0,1 0,1 -1,1 -2,0 0,-1 -1,0 0,1 -1,1 -1,0 0,1 -1,0 -1,0 -1,0 -1,1 0,1 -1,1 0,1 -1,0 -1,0 0,1 -1,0 -1,0 -1,0 0,1 -1,1 -1,1 0,1 -1,1 0,1 0,1 0,1 0,2 0,1 -1,1 0,1 0,1 0,1 -1,0 -1,0 -1,0 -1,0 -1,0 0,1 0,1 -1,0 -1,0 0,1 -1,0 -1,-1 -1,0 -1,0 0,1 0,1 0,2 0,1 0,1 0,1 0,1 1,1 0,1 1,1 0,1 1,0 1,0 1,0 1,0 1,1 1,0 0,1 1,1 1,0 1,0 1,1 0,1 1,1 -1,1 0,1 1,1 0,1 1,0 0,1 1,0 0,2 1,1 1,1 1,0 0,-1 1,0 2,-1 1,-1 1,0 0,-1 1,0 0,-1 1,-1 0,-1 1,0 1,-1 1,0 1,-1 2,-1 0,-1 1,0 1,1 2,1 1,1 1,1 1,1 0,1 1,0 1,1 0,1 1,0 0,1 2,1 1,0 1,0 1,1 1,-1 1,0 1,0 1,0 1,0 1,0 1,-1 1,0 1,0 1,0 1,0 1,-1 1,0 0,-1 1,0 1,-1 0,-1 1,0 1,-1 2,-1 1,0 0,-1 1,0 0,-1 1,0 1,0 1,-1 2,-1 0,-1 1,0 1,0 1,0 1,0 1,0 1,0 0,-1 0,-1 -2,-2 -2,-2 0,-5 1,-2 1,-2 -4,-1 -5,1 -2,0 -1,1 -1,0 -1,1 -1,0 -1,0 1,-1 -1,0 0,-1 -1,0 -1,0 -1,0 0,-1 0,-2 -1,0 0,-1 -1,0 -1,-1 0,-1 -1,-1 0,-1 0,-1 0,-1 -2,-3 -1,0 -1,-1 1,0 1,0 0,-1 -1,-1 0,-1 -1,0 0,-1 -1,0 0,-1 0,-1 0,-1 0,-1 0,-1 0,-1 -1,0 -1,0 0,-1 -1,0 -2,-1 -1,0 0,-1 -1,-1 z m 44,22 -1,1 0,1 0,2 -1,1 -1,0 -1,0 -1,0 -1,0 0,1 0,1 -1,0 -1,0 1,1 1,1 1,0 0,1 2,2 0,1 0,1 0,1 0,2 1,0 2,-1 1,0 0,-1 1,0 1,-1 1,-1 2,-1 -1,-1 0,-1 -1,0 -1,-2 -1,-2 1,-5 -3,-1 z",
-              "taboada" : "m 29,102 1,-1 -1,-1 v -1 -1 l 1,-1 h 1 1 1 v -2 l 1,-2 -1,-1 v -1 l -1,-1 v -1 -1 -1 -1 l 1,-1 h 1 v 1 h 1 l 2,1 1,1 6,-1 2,-1 1,-1 h 1 l 3,2 3,-1 1,-2 1,-1 v -3 -5 l 3,-3 v -1 l -4,-3 3,-3 v -2 h 2 l 3,1 4,-1 2,-7 v -1 l 1,-1 h 2 1 l 2,1 h 1 l 3,3 4,2 1,-1 3,-1 1,-1 1,-2 3,-1 h 1 1 l 1,3 1,1 h 1 l 1,2 -2,3 h 1 v 1 l 1,1 v 1 h 1 v 1 -1 h 1 1 1 1 1 v -1 h 1 v 1 h 1 1 v 1 1 h 1 v 1 1 1 l 1,1 v 1 1 1 l -1,1 -1,1 h -1 l -1,-1 h -1 v -1 h -1 l -1,1 v 1 h -1 l -1,1 h -1 -1 -1 v 1 1 1 1 l 1,1 v 1 l -1,1 h -1 v 1 l 1,1 v 1 1 h 1 1 l 1,1 v 1 l 1,1 v 1 h 1 v 1 l -1,1 h -1 -1 v 1 1 1 1 h -1 l -1,1 h -1 -1 -1 -1 l -1,-1 h -1 -1 l -1,1 H 88 L 87,101 h -1 l -1,1 h -1 v 1 l -1,1 v 1 1 1 1 1 l -1,1 v 1 1 l -1,1 v 1 h -1 v 1 -1 h -1 -2 -1 -2 -1 -1 -1 -1 -1 -1 l -1,1 h -3 v 1 1 h -1 v 1 -1 h -1 l -1,-1 h -1 v -1 -1 h 1 l -1,-1 v -1 h -1 -1 v -1 h -1 v 1 h -1 l -1,2 v -1 l -1,1 v -1 h -1 -1 l -1,1 -1,1 h -1 -1 l -1,1 h -1 -1 -1 v -1 l -1,-1 v -1 l -1,-1 v -1 h -1 l -1,-1 h -1 -1 v 1 l -1,-1 -1,-1 v -1 -1 -1 h -1 -1 v -1 -1 l -1,-1 h -1 l -1,-1 h -2",
-              "monforte" : "m 138,147 h 1 1 v 1 h 1 l -1,-1 h 1 v 1 h 1 v -2 -2 -1 l 1,-2 1,-1 1,-2 1,-1 1,1 h 1 2 l 1,1 1,1 h 1 1 1 l 3,1 h 1 l 1,1 1,2 v 1 l 1,2 v 1 l 2,3 h 2 l 1,1 3,1 h 1 2 3 l 2,-1 h -1 v -1 l -1,-1 1,-1 h 1 v -1 h 3 l 2,2 v 1 4 l -1,1 -1,2 -1,4 1,1 1,1 v 1 h 1 1 1 v 1 h 1 1 1 1 1 2 v 2 l 3,4 1,2 -1,1 v 1 2 1 l 1,1 1,1 v 1 1 h 1 l 1,1 h 1 v 1 3 l -1,2 -2,2 v 2 l 1,1 h 1 v 1 h 1 v 1 h 1 v 1 h 1 1 v 1 l 1,1 h 1 1 v 1 l -1,1 -2,3 v 1 l -1,1 v 1 1 h -1 v 1 1 1 l -1,1 h -1 v 1 h -1 l 1,1 v 1 l -1,2 h 1 l 1,1 h -1 v 1 l 1,1 v 1 h 1 1 v -1 h 1 v -1 1 1 h -1 v 1 l -1,2 h 1 l 1,1 h -1 v 1 h -1 -1 l -1,1 -1,-1 v -1 h -1 l -1,-2 -1,-2 1,-5 -3,-1 -1,1 v 1 2 l -1,1 h -1 -1 -1 -1 v 1 1 h -1 -1 l 1,1 1,1 h 1 v 1 l 2,2 v 1 1 1 2 h 1 l -1,1 h -1 v 1 l -1,1 -1,1 h -1 v 1 -1 -1 -1 l -2,-2 -2,-2 v -5 l 1,-2 1,-2 -4,-1 -5,1 h -2 l -1,1 h -1 l -1,1 h -1 -1 l 1,-1 h -1 v -1 h -1 -1 -1 v -1 -2 h -1 v -1 h -1 l -1,-1 v -1 l -1,-1 v -1 -1 -1 l -2,-3 h -1 l -1,-1 h 1 1 v -1 l -1,-1 v -1 h -1 v -1 h -1 v -1 -1 -1 -1 -1 -1 h -1 -1 v -1 h -1 l -2,-1 h -1 v -1 l -1,-1 -1,1 -1,1 -1,-1 -1,-2 h -1 l -1,-2 -1,-3 h -1 v -1 -1 l -1,-1 v -1 -1 -1 l 1,-2 h -1 -1 l -1,-1 h -1 -1 -1 l -2,-1 h -1 -1 v -1 -1 h -2 v -1 h -1 v -1 -1 -1 -1 h 1 l 1,-1 2,-2 1,-1 h 1 l 1,-1 h 1 v -2 l 1,-1 v -1 l 1,-1 v -1 -1 -2 -2 h -1 v -2 -1 -1 -1 -1 -1 -1 h 1",
-              "teixeira" : "m 164,267 h 1 v -1 -1 h -1 v -1 h 1 v 1 l 1,-1 v -1 -1 -1 h 1 v -1 -1 -1 -1 h 1 v -1 -1 l 1,-1 v -1 -1 -1 -1 h -1 v -1 l -1,-1 v -1 -1 h 1 l 1,-1 v -1 h 1 l 1,-1 2,-1 h 1 v -1 h 1 v -1 h 1 1 l 1,-1 2,-1 v -1 h 1 1 1 1 1 1 v 1 1 h 1 v 1 1 1 h 1 1 1 l 1,-1 1,1 v 1 2 l -1,1 v 1 h -1 l -1,-1 -1,1 -1,-1 -1,-1 h -1 -1 -1 v 1 1 h -1 v 1 h -1 v 1 1 h 2 l -1,1 v 1 1 h 1 -1 v 1 h 1 v 1 h 1 v 1 h -1 v 1 1 h 1 -1 v 1 1 1 1 l -1,1 v 1 1 1 h -1 -1 l -2,2 v 1 h -1 v 1 1 1 1 1 h -1 v 1 1 h -1 -2 -2 -1 -2 v -1 -1 -1 -1 -1 -1 h -1 -1 v -1 -1 l -2,-1",
-              "montederramo" : "m 127,266 1,1 2,2 1,1 1,1 1,1 4,1 2,1 v 1 h 1 v 1 l 2,1 v 5 h 1 2 l 1,-1 h 1 v -1 l 1,-1 1,-1 h 1 1 1 v -1 -1 h 1 v 1 h 1 v -1 h 1 v -1 l 2,-1 h 1 v -1 h 1 1 1 1 v -1 h 1 v -1 h 1 v -1 -1 -1 -1 l 2,1 v 1 1 h 1 1 v 1 1 1 1 1 1 h 2 1 2 2 1 v -1 -1 h 1 v -1 -1 -1 -1 -1 h 1 v -1 l 2,-2 h 1 1 1 l 1,1 h 1 1 v 1 l 1,1 -1,1 -1,1 -2,2 1,1 1,4 3,3 1,2 v 1 h 1 l 1,2 3,-1 h -1 l -1,1 v 1 h 1 v 1 l 1,2 v 1 h -1 -1 v 1 l -1,1 v 2 8 h 1 l -1,1 v 1 1 h -1 1 v 1 2 l -1,5 -1,4 h -1 -2 -1 l -1,1 h -1 l -1,-1 v 1 h -1 -1 v 1 h -1 l 1,1 1,2 v 1 h 1 l 1,1 v 1 h 1 l 1,1 1,1 1,1 v 1 1 l 1,1 1,2 v 1 l 1,1 h -1 v 1 h 1 v 1 1 h 1 v 1 1 1 1 h 1 v 1 1 h -1 v -1 l -1,-1 h -1 l -1,-1 v -1 l -1,-1 v -1 l -1,-1 h -1 v -1 l -1,1 v 2 l -1,1 v 1 l -1,1 v 1 h -1 -1 l -1,-1 h -2 v -1 h -1 l -1,-1 v -3 l -1,-1 -1,-1 h -1 l -1,-1 -1,-1 h -1 l -3,-6 v -2 -1 -1 l -1,-2 v -1 h -1 -2 l -1,-1 h -3 v -3 l -2,-1 -2,-1 -2,-2 -4,-2 v -2 -3 l -1,-2 h -2 -3 l -1,-4 -2,-8 2,-5 v -1 -1 -1 h -1 l -2,1 h -2 -1 v -1 -1 h -1 l -3,3 -1,1 v -5 h -1 -1 v -1 -1 -1 -1 -1 -1 -1 l -1,-1 v -1 h -1 l 1,-2 v -4 -1",
-              "ramuin" : "m 61,238 h 1 1 l 1,-1 2,-2 v -1 h 1 l 1,-1 h 1 l 1,-1 v -1 l 1,-1 1,-1 1,-1 h 1 l 1,-1 v -1 l 1,-1 v -1 h 1 v -1 l 2,-1 1,-2 1,-1 1,-1 1,-1 v -1 h 1 1 l 1,1 h 1 1 1 1 v 1 l 1,1 1,1 1,1 v 1 2 1 l 1,2 1,1 2,1 1,1 h 1 l 2,1 h 1 l 1,1 h 2 l 1,-1 h 1 1 l 1,1 v 1 l 1,1 v 1 h 1 1 1 1 l 1,1 h 1 v 1 l 1,1 h 1 1 l 1,1 v 1 l 1,1 -1,1 v 1 l 1,1 v 1 h 1 v 1 h 1 v 2 l 1,1 1,1 v 1 1 l -1,1 v 1 1 l -1,1 v 1 h -1 v 1 1 l -1,1 v 1 1 1 h -1 l -1,1 -4,-4 -3,-2 -2,1 h -1 l -1,1 h -1 v 1 1 h -1 l -3,4 -4,-1 -4,-2 h -1 l -1,-1 -1,-1 -2,-2 h -1 v 1 h -1 l -1,1 h -2 l -2,-1 h -1 -2 -1 -2 -1 -1 l -2,1 h -2 l -1,1 h -1 -1 -1 l -1,1 v -1 -1 l -1,-1 v -1 l -1,-2 -2,-1 v -1 l -1,-1 v -1 l 1,-1 h 1 l 3,-5 h 2 1 1 l 1,1 h 1 -1 1 v -1 -1 l -1,-1 v -1 l -1,-1 -1,1 h -1 -1 -1 l -1,-1 v -2 l -1,-1 h -1 l -1,-1 h -1 v -1",
-              "boveda" : "m 143,110 1,-2 2,-1 2,-1 2,-1 1,-1 h 2 l 4,-3 h 1 l 1,-1 h 1 l 1,-1 2,1 L 164,101 h 1 l 1,1 2,1 1,1 1,1 v 1 h 1 1 l 1,1 1,1 h 2 1 l 1,1 2,1 h 1 l 1,1 h 1 l 1,1 1,1 1,1 1,1 v 1 h 1 v 1 1 l 1,2 h -1 l -1,1 v 1 l -1,1 v 1 1 l 1,2 1,1 1,1 h 1 1 3 v 1 1 1 1 1 l 1,1 v 1 h 1 v 1 1 h -1 l -1,1 h -1 -1 -1 -1 -1 l -1,-1 h -1 v 1 h -1 -1 -1 l -1,1 h 1 v 1 h -1 v 1 1 1 l -1,1 v 1 h -1 v 1 1 h -3 v 1 h -1 l -1,1 1,1 v 1 h 1 l -2,1 h -3 -2 -1 l -3,-1 -1,-1 h -2 l -2,-3 v -1 l -1,-2 v -1 l -1,-2 -1,-1 h -1 l -3,-1 h -1 -1 -1 l -1,-1 -1,-1 h -2 -1 l -1,-1 v -1 -2 l -2,-1 -1,-1 v -1 l -2,-2 v -1 h 1 v -1 h 1 v -1 -1 l 1,-1 v -1 l 1,-1 v -1 -1 l 1,-1 1,-1 -1,-2 v -2 l -1,-1 v -1 l -1,-1 -1,-1",
-              "carballedo" : "m 10,156 2,-1 1,-1 1,-1 2,-3 v -3 -1 -1 h 1 v -1 h 1 v -1 l 1,-1 v -1 3 l 1,1 v 1 l 1,2 v 1 l 1,1 h -1 v 1 1 1 h -1 v 1 h -1 -1 l -1,1 h -1 -1 l 1,1 h 1 l 1,1 h 1 1 l 1,1 h 1 1 l 1,-1 h 1 1 1 1 l 1,1 h 1 l 1,1 h 1 v 1 h 1 l 1,-1 1,-1 h 1 l 1,-1 h 1 v -1 h 1 l 1,1 v 1 h 1 v 1 l 1,1 v 1 h -1 1 v 1 h 1 l 2,1 h 1 1 1 1 1 l 1,-1 1,-1 h 1 l 1,-1 h 1 l 2,1 v 1 l 1,1 v 1 h 1 v 1 h 1 1 l 2,1 h 1 1 l 1,1 h 1 v 1 h 1 l 2,1 h 1 l 1,1 v -1 l 1,-1 v 1 h 1 v -1 h 1 1 1 v 1 h 1 v 1 1 h 1 v 1 h 2 l 2,2 h 1 v 1 h 1 l 1,2 1,1 h 1 1 1 v 1 l -1,1 v 1 l -1,1 -1,2 v 1 h -1 v 1 h 1 v 1 l 1,1 v 2 1 1 h 1 v 1 l 1,1 1,1 v 1 l 1,3 v 1 1 h 1 v 1 l -1,1 v 1 l -1,1 h -1 -1 l -1,1 -1,1 -1,1 v 1 1 1 1 l -1,1 -1,1 h -1 v 1 1 h -1 -1 v -1 h -1 -1 l -1,1 v 1 h -1 -1 v 1 h -1 l -1,-1 h -1 -1 v -1 -1 l -1,-1 -1,1 -1,-1 h -1 l -1,-1 -1,-1 -1,-1 v -1 l -1,-1 -1,1 h -1 v 1 -1 -1 h -1 v -1 l 1,-1 h 1 l 2,1 1,-1 v -1 l 1,-1 h 1 1 l 1,-1 h 1 1 v 1 h 1 1 v 1 -1 l 1,1 v -1 l 1,-1 h 1 l -1,-1 -1,-1 v -1 -1 h -1 -1 -1 v -1 h -1 v -1 -1 h -1 -1 -1 -1 l -2,1 -1,2 h -1 v 1 l -3,1 -1,1 -1,1 h -1 l -1,-1 h -1 l -1,-3 h -1 l -1,-1 -1,-1 h -1 l -1,1 -1,-1 -1,-1 -2,1 -2,1 -1,-1 v -2 l -1,-1 h -1 -1 v -1 h -1 l -1,-1 -2,-1 h -1 -1 v 1 h -1 l -1,1 -2,-1 v -1 -1 l 1,-1 v -1 h -1 -1 -1 -1 -1 v 1 h -1 l -1,1 v 1 l -1,-1 h -1 -1 -1 -1 -1 v -1 l 1,-1 1,-1 1,-1 1,-3 h -3 v -1 h -1 l -4,-1 h 2 l 1,-1 h 1 l 2,-2 1,1 1,-1 -1,-2 h 1 l 1,-1 h 1 v -1 h 1 l 1,1 v -1 1 -2 -4 l -1,-1 h -1 l -2,-1 h -2 l -2,-1 -1,-1 -1,-2 h -1 v -2 l -1,-1 -1,-2 v -2 l -1,-1 h -1",
-              "panton" : "m 83,216 v -1 -1 h 1 l 1,-1 1,-1 v -1 -1 -1 -1 l 1,-1 1,-1 1,-1 h 1 1 l 1,-1 v -1 l 1,-1 v -1 h -1 v -1 -1 l -1,-3 v -1 l -1,-1 -1,-1 v -1 h -1 v -1 -1 -2 l -1,-1 v -1 h -1 v -1 h 1 v -1 l 1,-2 1,-1 v -1 l 1,-1 v -1 -1 l -1,-1 v -1 -1 l 1,-1 1,-1 v -1 -1 -1 h 1 l 1,-1 1,-1 h 1 1 l 1,-1 1,-1 h 1 v 1 1 1 l 1,1 h 2 v -1 h 1 1 v 1 h 1 v 1 l 1,-1 h 1 3 1 1 1 1 v -1 -1 l -1,-1 -1,-1 v -1 -2 h 1 l 3,-1 h 1 l 1,-1 v -1 -1 -1 l 1,-1 1,-1 1,-1 h 1 v 1 h 1 v -1 l 1,-1 h 1 v -1 h 1 l 1,-1 1,-1 v -1 l 1,-1 h 1 v -1 l 1,-1 h 1 1 2 2 v 1 h 1 -1 v 1 1 1 1 1 1 2 h 1 v 2 2 1 1 l -1,1 v 1 l -1,1 v 2 h -1 l -1,1 h -1 l -1,1 -2,2 -1,1 h -1 v 1 1 1 1 h 1 v 1 h 2 v 1 1 h 1 1 l 2,1 h 1 1 1 l 1,1 h 1 1 l -1,2 v 1 1 1 l 1,1 v 1 1 h 1 l 1,3 1,2 h 1 l 1,2 1,1 -1,1 v 1 -1 h -1 v 1 -1 1 h -1 v -1 h -1 v -1 h -1 v 1 h -1 -1 v -1 h -1 v 1 1 l -1,1 h -2 v -1 h -1 v 1 l -1,1 h -1 v 1 h -1 -1 -1 l -1,1 v 1 l -1,1 v 1 h -1 -1 v 1 h -1 -1 -1 v 1 l -1,1 -1,1 v 1 l -1,1 v 1 1 1 2 1 l -1,1 v 1 1 1 h -1 -1 -1 -1 -1 v 1 1 h -1 -1 v 1 h -1 l -1,-1 h -1 -1 v 1 1 2 1 1 1 1 h -1 -1 l -1,1 h -2 l -1,-1 h -1 l -2,-1 h -1 l -1,-1 -2,-1 -1,-1 -1,-2 v -1 -2 -1 l -1,-1 -1,-1 -1,-1 v -1 h -1 -1 -1 -1 l -1,-1 h -1 -1",
-              "paradela" : "m 107,77 1,-1 1,-1 v -1 -1 -1 l -1,-1 v -1 -1 -1 -1 l 1,-1 v -1 h 1 l 1,-1 v 1 h 1 v 1 1 h 1 1 1 v -1 -1 -1 -1 -1 -2 -1 h 1 v -1 l 1,-1 v -1 -1 h -1 v -1 h -1 -1 l -1,1 h -1 -1 v -1 -1 -1 h 1 l 1,-1 h 1 1 1 1 l 1,-1 1,-1 v -1 l 1,-1 h 1 1 1 l 1,-1 1,-1 h 1 l 1,-1 1,1 3,1 1,-1 3,1 1,2 1,1 2,-1 3,-1 2,-1 1,1 h 1 l 2,1 h 4 l 4,-1 h 1 l 1,-1 h 1 1 l 1,-1 -1,4 v 1 1 h -1 v 1 l -2,-1 h -1 v 2 1 l -1,2 -1,1 v 1 l -1,1 h -1 v 1 l 1,1 h 1 l 1,1 h 1 1 1 3 v 1 1 1 h -1 v 1 l -1,1 1,1 h -1 v 1 h 1 v 1 h -1 v 1 l -1,1 v 1 h -1 v 1 l -8,8 1,1 1,1 4,1 2,3 v 1 l 2,1 1,1 1,2 v 1 3 1 1 l -1,1 h -1 L 158,101 h -1 l -4,3 h -2 l -1,1 -2,1 -2,1 -2,1 -1,2 h -2 l -1,-3 -1,-1 -4,-3 -1,-1 -2,-1 h -1 l -2,-1 -1,-1 -3,-4 -1,-1 h -1 v -1 h -1 v -1 -1 h -1 v -1 -1 l -1,1 v -1 h -1 l -1,-1 h -1 v -1 h -1 l -1,-5 v -1 h -1 v 1 l -1,-1 h -1 -1 -1 -1 -1 v -1 -1 -1 -1 h -1"
-            }
+            'elems': that.collectionToMapaelObject()
           }
         }
       } );
@@ -191,15 +170,79 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     } ) );
   },
 
-  reset: function() {
-    console.log('COMBO')
+  showBoxMinimap: function() {
     var that = this;
-    var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
-    $select = $( that.options.mainContainerClass + ' ' + containerClassDots + ' select' );
+    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).removeClass( 'filterMinimapNone' ).addClass( 'filterMinimapBlock' );
+  },
 
-    $select.val( "*" );
+  hideBoxMinimap: function() {
+    var that = this;
+    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.boxMinimap' ).removeClass( 'filterMinimapBlock' ).addClass( 'filterMinimapNone' );
+  },
 
+  reset: function() {
+    var that = this;
+
+    var newData = { 'areas': {} };
+    // Reseteamos la área al color por defecto
+    newData.areas[that.currentIdName] = {
+      attrs: { fill: that.options.styles.background_fill }
+    };
+    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
+    $( that.options.mainContainerClass+' .' +that.options.containerClass ).find( '.selectedText' ).html('');
+
+    //  Ocultamos el mapa tras el reset
+    that.hideBoxMinimap();
+
+    that.currentIdName = false;
     that.selectedTerms = false;
-  }
+  },
+
+
+
+  getNameByIdName: function( idName ) {
+    var that = this;
+    var ret = false;
+
+    if( typeof that.options.data.where({idName: idName })[0] != 'undefined') {
+      ret = that.options.data.where({idName: idName })[0].get('name') ;
+
+    }
+
+    return ret;
+  },
+
+  getIdByIdName: function( idName ) {
+    var that = this;
+    var ret = false;
+
+    if( typeof that.options.data.where({idName: idName })[0] != 'undefined') {
+      ret = that.options.data.where({idName: idName })[0].get('id') ;
+
+    }
+
+    return ret;
+  },
+
+  collectionToMapaelObject: function() {
+    var that = this;
+    var mapaelDataObject = {};
+
+    if( that.options.data != false ) {
+      that.options.data.each( function(e,i){
+        try {
+          eval( 'mapaelDataObject.'+ e.get('idName') + ' = "' + e.get('geom') + '";' );
+        } catch(err) {
+          console.log( 'Problema con idName de concello:', e.get('idName') );
+        }
+      });
+    }
+
+    //console.log('MAPAEL en filtro', mapaelDataObject );
+
+    return mapaelDataObject;
+  },
+
+
 
 });
