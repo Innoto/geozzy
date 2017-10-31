@@ -351,6 +351,46 @@ class RExtCommentController extends RExtController implements RExtInterface {
   }
 
   /**
+   * Metodo que recupera las cifras sobre comentarios (incluido votos)
+   *
+   * @return Array $counts{ 'id', 'commentsCount', 'votesCount', 'votesAverage' }
+   */
+  public function getCounts( $resId ) {
+    $counts = false;
+
+    $filters = [];
+    if( $resId ) {
+      $inArray = explode( ',', $resId );
+      if( count( $inArray ) > 1 ) {
+        $filters['idIn'] = $inArray;
+      }
+      else {
+        $filters['id'] = intval( $resId );
+      }
+    }
+
+    $countsModel = new AverageVotesViewModel();
+    $countsList = $countsModel->listItems([
+      'filters' => $filters,
+      'cache' => $this->cacheQuery
+    ]);
+
+
+    while( $countsObj = $countsList->fetch() ) {
+      $resId = $countsObj->getter( 'id' );
+      $counts[ $resId ] = [
+        'id' => $resId,
+        'commentsCount' => $countsObj->getter( 'comments' ),
+        'votesCount' => $countsObj->getter( 'commentsVotes' ),
+        'votesAverage' => $countsObj->getter( 'averageVotes' )
+      ];
+    }
+
+    return $counts;
+  }
+
+
+  /**
    * Metodo que recupera la informacion sobre los votos
    *
    * @return Array $votes{ 'id', 'count', 'average' }

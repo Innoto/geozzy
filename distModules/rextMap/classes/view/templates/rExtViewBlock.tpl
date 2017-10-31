@@ -1,8 +1,9 @@
 <!-- rExtViewBlock.tpl en rExtMap module -->
 <style type="text/css">
-  .rExtMapResource .resMapWrapper {
+  .rExtMapResource {
     height:400px;
   }
+  .rExtMapResource .resMapWrapper,
   .rExtMapResource .resMapContainer {
     width:100%;
     height:100%;
