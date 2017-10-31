@@ -818,7 +818,7 @@ class geozzyAPIView extends View {
     $extraParams = RequestController::processUrlParams( $param, $validation );
 
     $binaryFields = ['rextmodels', 'category', 'collection', 'commentsCount', 'votes'];
-    foreach( $variable as $name ) {
+    foreach( $binaryFields as $name ) {
       $extraParams[ $name ] = ( !empty($extraParams[ $name ]) && $extraParams[ $name ] === 'true' ) ? true : false;
     }
 
