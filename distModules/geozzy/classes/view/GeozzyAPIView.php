@@ -84,7 +84,7 @@ class geozzyAPIView extends View {
       "basePath": "/api",
       "apis": [
         {
-          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/filtervalues/{filtervalues}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/votes/{votes}/updatedfrom/{updatedfrom}/urlAlias/{urlAlias}",
+          "path": "/core/resourcelist/fields/{fields}/filters/{filters}/filtervalues/{filtervalues}/rtype/{rtype}/rextmodels/{rextmodels}/category/{category}/collection/{collection}/commentsCount/{commentsCount}/votes/{votes}/updatedfrom/{updatedfrom}/urlAlias/{urlAlias}",
           "operations": [
             {
               "errorResponses": [
@@ -168,16 +168,16 @@ class geozzyAPIView extends View {
                   "required": false
                 },
                 {
-                  "name": "votes",
-                  "description": "Votes data",
+                  "name": "commentsCount",
+                  "description": "Comments count",
                   "dataType": "boolean",
                   "paramType": "path",
                   "defaultValue": "false",
                   "required": false
                 },
                 {
-                  "name": "commentsCount",
-                  "description": "Comments count",
+                  "name": "votes",
+                  "description": "Votes data",
                   "dataType": "boolean",
                   "paramType": "path",
                   "defaultValue": "false",
