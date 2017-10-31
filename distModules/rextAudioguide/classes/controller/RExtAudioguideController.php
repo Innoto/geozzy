@@ -150,7 +150,7 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
       $rExtModel = new AudioguideModel( $valuesArray );
-
+      $rExtModel->save();
       if( $rExtModel === false ) {
         $form->addFormError( 'No se ha podido guardar el recurso. (rExtModel)','formError' );
       }
