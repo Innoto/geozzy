@@ -100,7 +100,10 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
           selectedOption = that.options.data.get( that.selectedTerms[0] ).toJSON();
         }
 
-        that.renderSummary( selectedOption );
+        if(that.options.summaryContainerClass) {
+          that.renderSummary( selectedOption );
+        }
+
       }
     });
 
@@ -135,7 +138,10 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     $select.val( "*" );
 
     that.selectedTerms = false;
-    that.renderSummary( false );
+    if(that.options.summaryContainerClass) {
+      that.renderSummary( false );
+    }
+
   }
 
 });
