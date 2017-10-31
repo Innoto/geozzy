@@ -809,6 +809,7 @@ class geozzyAPIView extends View {
       'rextmodels'=> '#^(true|false)$#',
       'category'=> '#^(true|false)$#',
       'collection'=> '#^(true|false)$#',
+      'commentsCount'=> '#^(true|false)$#',
       'votes'=> '#^(true|false)$#',
       'updatedfrom' => '#^(\d+)$#',
       'urlAlias' => '#(.*)#'
