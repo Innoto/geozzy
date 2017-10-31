@@ -1361,30 +1361,6 @@ class geozzyAPIView extends View {
     echo json_encode( $status );
   }
 
-  // User new password
-  public function userUnknownPass() {
-    $status = false;
-
-    if( isset( $_POST['user'] ) ) {
-      geozzyUser::load( 'view/GeozzyUserView.php' );
-      $userView = new GeozzyUserView();
-      $userVO = $userView->getUserVO( false, $_POST['user'] );
-      $userData = ( $userVO ) ? $userVO->getAllData('onlydata') : false;
-      if( $userData ) {
-        $status = $userView->sendUnknownPassEmail( $userData );
-      }
-      else {
-        error_log( '(Notice) Intento de recuperacion de contraseña con usuario desconocido: '.$_POST['user'] );
-      }
-
-      // Ocultamos el estado interno
-      $status = true;
-    }
-
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode( $status );
-  }
-
   // userSession
   public function userSession() {
     $userInfo = false;
@@ -1411,6 +1387,43 @@ class geozzyAPIView extends View {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode( $userInfo );
   }
+
+  // User new password
+  public function userUnknownPass() {
+    $status = false;
+
+    if( isset( $_POST['user'] ) ) {
+      geozzyUser::load( 'view/GeozzyUserView.php' );
+      $userView = new GeozzyUserView();
+      $userVO = $userView->getUserVO( false, $_POST['user'] );
+      $userData = ( $userVO ) ? $userVO->getAllData('onlydata') : false;
+      if( $userData ) {
+        $status = $userView->sendUnknownPassEmail( $userData );
+      }
+      else {
+        error_log( '(Notice) Intento de recuperacion de contraseña con usuario desconocido: '.$_POST['user'] );
+      }
+
+      // Ocultamos el estado interno
+      $status = true;
+    }
+
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode( $status );
+  }
+
+
+
+    // "Public" information of users
+    public function usersInfo() {
+      $info = false;
+
+
+
+      header('Content-Type: application/json; charset=utf-8');
+      echo json_encode( $info );
+    }
+
 
 
   /*
