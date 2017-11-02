@@ -1462,7 +1462,7 @@ class geozzyAPIView extends View {
       geozzyUser::load( 'view/GeozzyUserView.php' );
       $userView = new GeozzyUserView();
 
-      error_log( __METHOD__ .': '. json_encode($ids) );
+      // error_log( __METHOD__ .': '. json_encode($ids) );
       $infoUsers = $userView->getUsersInfo( $ids );
     }
 
