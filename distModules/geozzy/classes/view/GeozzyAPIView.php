@@ -695,6 +695,44 @@ class geozzyAPIView extends View {
     <?php
   }
 
+  public function usersInfoJson() {
+    header('Content-Type: application/json; charset=utf-8');
+    ?>
+      {
+        "resourcePath": "/usersInfo.json",
+        "basePath": "/api",
+        "apis": [
+          {
+            "operations": [
+              {
+                "errorResponses": [
+                  {
+                    "reason": "Not found",
+                    "code": 404
+                  }
+                ],
+                "httpMethod": "POST",
+                "nickname": "usersInfo",
+                "parameters": [
+                  {
+                    "name": "users",
+                    "description": "Users Ids",
+                    "type": "string",
+                    "paramType": "form",
+                    "required": true
+                  }
+                ],
+                "summary": "Users info"
+              }
+            ],
+            "path": "/core/usersinfo",
+            "description": ""
+          }
+        ]
+      }
+    <?php
+  }
+
   /*
     public function uiEventListJson() {
       header('Content-Type: application/json; charset=utf-8');
@@ -1414,15 +1452,45 @@ class geozzyAPIView extends View {
 
 
 
-    // "Public" information of users
-    public function usersInfo() {
-      $info = false;
+  // "Public" information of users
+  public function usersInfo() {
+    $infoUsers = false;
 
+    if( Cogumelo::getSetupValue('geozzy:api:usersInfo:access') === true && !empty( $_POST['users'] ) ) {
+      $ids = explode( ',', $_POST['users'] );
 
+      geozzyUser::load( 'view/GeozzyUserView.php' );
+      $userView = new GeozzyUserView();
 
-      header('Content-Type: application/json; charset=utf-8');
-      echo json_encode( $info );
+      error_log( __METHOD__ .': '. json_encode($ids) );
+      $infoUsers = $userView->getUsersInfo( $ids );
     }
+
+    header('Content-Type: application/json; charset=utf-8');
+    if( empty($infoUsers) ) {
+      echo 'false';
+    }
+    else {
+      // echo json_encode( $infoUsers );
+      $fields = Cogumelo::getSetupValue('geozzy:api:usersInfo:fields');
+      if( empty($fields) || !is_array($fields) ) {
+        $fields = ['id', 'login', 'name', 'surname'];
+      }
+      echo '{';
+      $c = '';
+      foreach( $infoUsers as $userId => $userData ) {
+        $data = [];
+
+        foreach( $fields as $fieldName ) {
+          $data[ $fieldName ] = ( isset( $userData[ $fieldName ] ) ) ? $userData[ $fieldName ] : null;
+        }
+
+        echo $c.'"'.$userId.'":'.json_encode( $data );
+        $c=',';
+      }
+      echo '}';
+    }
+  }
 
 
 

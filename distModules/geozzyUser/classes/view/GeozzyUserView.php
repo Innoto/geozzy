@@ -8,8 +8,7 @@ form::autoIncludes();
 form::loadDependence( 'ckeditor' );
 user::autoIncludes();
 
-class GeozzyUserView extends View
-{
+class GeozzyUserView extends View {
 
   public function __construct( $base_dir = false ) {
     parent::__construct($base_dir);
@@ -22,6 +21,7 @@ class GeozzyUserView extends View
   public function accessCheck(){
     return true;
   }
+
   public function loginCheck(){
     $useraccesscontrol = new UserAccessController();
     $res = true;
@@ -61,6 +61,7 @@ class GeozzyUserView extends View
     $form = $userView->actionLoginForm();
     $form->sendJsonResponse();
   }
+
   public function commonFields() {
     return array(
       'id' => array(
@@ -118,6 +119,7 @@ class GeozzyUserView extends View
     );
     //data-toggle="modal" data-target="#link-info-legal"
   }
+
   public function registerForm() {
     $this->loginCheck();
     $this->registerBlockAccessCheck();
@@ -453,6 +455,27 @@ class GeozzyUserView extends View
     return $userVO;
   }
 
+  public function getUsersInfo( $id ) {
+    $info = false;
+
+    user::load( 'model/UserViewModel.php' );
+    $userViewModel = new UserViewModel();
+    $resCtrl = new ResourceController();
+
+    $filter = ( is_array($id) ) ? [ 'idIn' => $id ] : [ 'id' => $id ];
+
+    $usersList = $userViewModel->listItems([ 'filters' => $filter ]);
+    if( is_object($usersList) ) {
+      while( $userObj = $usersList->fetch() ) {
+        $userData = $resCtrl->getAllTrData( $userObj );
+        unset( $userData['password'] );
+        $info[ $userData['id'] ] = $userData;
+      }
+    }
+
+    return $info;
+  }
+
   public function myProfileForm() {
     $useraccesscontrol = new UserAccessController();
     $userSess = $useraccesscontrol->getSessiondata();
@@ -560,6 +583,7 @@ class GeozzyUserView extends View
     $resourceView = new GeozzyResourceView();
     $resourceView->actionResourceForm();
   }
+
   public function sendLogout( $urlParams ){
     $redirect = $urlParams['1'];
 
@@ -573,4 +597,5 @@ class GeozzyUserView extends View
     }
     //
   }
+
 }

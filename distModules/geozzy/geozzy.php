@@ -91,12 +91,17 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^api/core/userunknownpass#', 'view:GeozzyAPIView::userUnknownPass' );
     $this->addUrlPatterns( '#^api/core/usersession#', 'view:GeozzyAPIView::userSession' );
 
+
+    if( Cogumelo::getSetupValue('geozzy:api:usersInfo:access') ) {
+      $this->addUrlPatterns( '#^api/doc/usersInfo.json$#', 'view:GeozzyAPIView::usersInfoJson' );
+      $this->addUrlPatterns( '#^api/core/usersinfo#', 'view:GeozzyAPIView::usersInfo' );
+    }
   }
 
 
   public function getGeozzyDocAPI() {
 
-    $ret = array(
+    $docApi = array(
       array(
         'path' => '/doc/bi.json',
         'description' => 'BI dashboard utils'
@@ -152,10 +157,14 @@ class geozzy extends Module {
       array(
         'path' => '/doc/userSession.json',
         'description' => 'User Session'
-      )
+      ),
     );
 
-    return $ret;
+    if( Cogumelo::getSetupValue('geozzy:api:usersInfo:access') ) {
+      $docApi[] = [ 'path' => '/doc/usersInfo.json', 'description' => 'Users Info' ];
+    }
+
+    return $docApi;
   }
 
 
