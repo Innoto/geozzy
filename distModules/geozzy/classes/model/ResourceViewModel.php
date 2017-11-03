@@ -185,8 +185,64 @@ class ResourceViewModel extends Model {
 
 
 
-  public function __construct( $datarray = array(), $otherRelObj = false ) {
-    parent::__construct( $datarray, $otherRelObj );
+  public function getRextModels() {
+
+    $rextModelArray = array();
+
+    geozzy::load('model/ResourcetypeModel.php');
+
+    $relatedModels =  $this->dependencesByResourcetypeId( $this->getter('rTypeId') );
+
+    if( $relatedModels ) {
+      foreach( $relatedModels as $relModel ) {
+        $rextModelArray[$relModel] = $this->getRextModel( $relModel );
+      }
+
+    }
+
+    return $rextModelArray;
+  }
+
+  public function getRextModel( $rextModelName ) {
+    eval( '$rextControl = new '.$rextModelName.'();');
+
+    $rextList = $rextControl->listItems( array( 'filters'=> array( 'resource' => $this->getter('id') ) ) );
+
+    $rextModel = $rextList->fetch(); // false if doesn't exist
+
+    return $rextModel;
+  }
+
+  public function dependencesByResourcetype( $rtypeName ) {
+    $dependences = false;
+
+    geozzy::load( 'model/ResourcetypeModel.php' );
+    $rtypeModel = new ResourcetypeModel();
+    $rtypeList = $rtypeModel->listItems( array( 'filters' => array( 'idName' => $rtypeName ) ) );
+    if( $rtype = $rtypeList->fetch() ) {
+      $dep = json_decode( $rtype->getter('relatedModels') );
+      if( count( $dep ) > 0 ) {
+        $dependences = $dep;
+      }
+    }
+
+    return $dependences;
+  }
+
+  public function dependencesByResourcetypeId( $rtypeId ) {
+    $dependences = false;
+
+    geozzy::load( 'model/ResourcetypeModel.php' );
+    $rtypeModel = new ResourcetypeModel();
+    $rtypeList = $rtypeModel->listItems( array( 'filters' => array( 'id' => $rtypeId ) ) );
+    if( $rtype = $rtypeList->fetch() ) {
+      $dep = json_decode( $rtype->getter('relatedModels') );
+      if( count( $dep ) > 0 ) {
+        $dependences = $dep;
+      }
+    }
+
+    return $dependences;
   }
 
 }

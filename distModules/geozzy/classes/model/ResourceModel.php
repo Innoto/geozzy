@@ -363,33 +363,33 @@ class ResourceModel extends Model {
 
 
 
-    public function updateTopicTaxonomy( $idResource, $idTopic , $taxonomyTermId) {
+  public function updateTopicTaxonomy( $idResource, $idTopic , $taxonomyTermId) {
 
-      $topic = (new ResourceTopicModel())->listItems(
-        array("filters" => array("resource" =>  $idResource, "topic" => $idTopic ))
-      )->fetch();
+    $topic = (new ResourceTopicModel())->listItems(
+      array("filters" => array("resource" =>  $idResource, "topic" => $idTopic ))
+    )->fetch();
 
-      $topic->setter('taxonomyterm', $taxonomyTermId );
-      $topic->save();
-    }
+    $topic->setter('taxonomyterm', $taxonomyTermId );
+    $topic->save();
+  }
 
-    public function setPublishedStatus( $idResource, $published) {
+  public function setPublishedStatus( $idResource, $published) {
 
-      $resource = (new ResourceModel())->listItems(
-        array("filters" => array("id" =>  $idResource ))
-      )->fetch();
+    $resource = (new ResourceModel())->listItems(
+      array("filters" => array("id" =>  $idResource ))
+    )->fetch();
 
-      $resource->setter('published', $published );
+    $resource->setter('published', $published );
 
-      $resource->save();
-    }
+    $resource->save();
+  }
 
 
-    public function deleteResource( $resourceId ) {
+  public function deleteResource( $resourceId ) {
 
-      $resource = (new ResourceModel())->listItems( array('filters' => array('id' => $resourceId)))->fetch();
-      $resource->delete();
-    }
+    $resource = (new ResourceModel())->listItems( array('filters' => array('id' => $resourceId)))->fetch();
+    $resource->delete();
+  }
 
 
 }
