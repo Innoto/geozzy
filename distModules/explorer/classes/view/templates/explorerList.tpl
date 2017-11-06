@@ -5,10 +5,10 @@
   <div class="explorerContainer explorer-container-filter explorerElSticky"></div>
   <!--galleryContainer -->
   <div class="explorerContainer explorer-container-gallery clearfix"></div>
-  
+
   <!--galleryContainer -->
   <div class="explorerContainer explorer-loading" style="display:none;"><i class="fa  fa-compass fa-spin"></i></div>
-  <div class="explorerButton gzz-exit-sticky"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+  <div class="explorerButton gzz-exit-sticky" data-toggle="tooltip" data-placement="left" title="{t}Return to content{/t}"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 
   <!-- mobile explorer buttons -->
   <div class="explorer-manage-mobile explorerElSticky">
