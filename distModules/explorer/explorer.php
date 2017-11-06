@@ -45,6 +45,12 @@ class explorer extends Module {
      "includes" => array("src/markerclusterer.js")
     ),
     array(
+      "id" =>"switchery",
+      "params" => array("switchery"),
+      "installer" => "bower",
+      "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
+    ),
+    array(
      "id" =>"ionrangeslider",
      "params" => array("ionrangeslider#2"),
      "installer" => "bower",
@@ -55,19 +61,19 @@ class explorer extends Module {
      "params" => array("tiny_map_utilities"),
      "installer" => "bower",
      "includes" => array("smart_infowindow/smart_infowindow.js", "smart_infowindow/vendor/jQueryRotate.js")
-   ),
-  array(
-    "id" =>"raphael",
-    "params" => array("raphael"),
-    "installer" => "bower",
-    "includes" => array("raphael.min.js")
-  ),
-  array(
-    'id' =>'jquery-mapael-2.1.0',
-    'params' => array( 'jquery-mapael-2.1.0' ),
-    'installer' => 'manual',
-    'includes' => array( "js/jquery.mapael.min.js", "js/maps/spain.js" )
-  )
+    ),
+    array(
+      "id" =>"raphael",
+      "params" => array("raphael"),
+      "installer" => "bower",
+      "includes" => array("raphael.min.js")
+    ),
+    array(
+      'id' =>'jquery-mapael-2.1.0',
+      'params' => array( 'jquery-mapael-2.1.0' ),
+      'installer' => 'manual',
+      'includes' => array( "js/jquery.mapael.min.js", "js/maps/spain.js" )
+    )
 
 
 
@@ -82,7 +88,7 @@ class explorer extends Module {
     'js/view/Templates.js',
     'js/view/ExplorerFilterView.js',
     'js/view/filters/ExplorerFilterButtonsView.js',
-    'js/view/filters/ExplorerFilterComboView.js', 
+    'js/view/filters/ExplorerFilterComboView.js',
     'js/view/filters/ExplorerFilterMinimapView.js',
     'js/view/filters/ExplorerFilterGeoView.js',
     'js/view/filters/ExplorerFilterSwitchView.js',
