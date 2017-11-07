@@ -209,8 +209,7 @@ class ResourceViewModel extends Model {
     $rextList = false;
     if(is_object($rextControl)){
       if($rextModelName === 'RExtVisitDataModel'){
-        error_log( print_r( $this->getter('id'),true ) );
-        error_log( print_r( $rextControl ,true ) );
+        error_log( json_encode( $rextControl ) );
       }else{
         $rextList = $rextControl->listItems( array( 'filters'=> array( 'resource' => $this->getter('id') ) ) );
       }
