@@ -14,8 +14,9 @@ class RExtVisitDataController extends RExtController implements RExtInterface {
    *
    * @return array OR false
    */
+
   public function getRExtData( $resId = false ) {
-    $rExtData = false;
+    $rExtData = [];
 
     if( $resId === false ) {
       $resId = $this->defResCtrl->resObj->getter('id');
@@ -23,14 +24,37 @@ class RExtVisitDataController extends RExtController implements RExtInterface {
 
     $rExtModel = new RExtVisitDataModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtObj = ($rExtList) ? $rExtList->fetch() : false;
 
-    if( is_object($rExtList) ) {
-      $rExtObj = $rExtList->fetch();    
+    if( $rExtObj ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
-    }
 
-    return $rExtData;
+      // Añadimos los campos en el idioma actual o el idioma principal
+      $resourceExtFields = $rExtObj->getCols();
+      $langDefault = Cogumelo::getSetupValue('publicConf:vars:langDefault');
+      foreach( $resourceExtFields as $key => $value ) {
+        if( !isset( $rExtData[ $key ] ) ) {
+          $rExtData[ $key ] = $rExtObj->getter( $key );
+          // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
+          if( $rExtData[ $key ] === '' && isset( $rExtData[ $key.'_'.$langDefault ] ) ) {
+            $rExtData[ $key ] = $rExtData[ $key.'_'.$langDefault ];
+          }
+        }
+      }
+
+      // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
+      $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
+      if( $termsGroupedIdName !== false ) {
+        foreach( $this->taxonomies as $tax ) {
+          if( isset( $termsGroupedIdName[ $tax[ 'idName' ] ] ) ) {
+            $rExtData[ $tax['idName'] ] = $termsGroupedIdName[ $tax[ 'idName' ] ];
+          }
+        }
+      }
+
+    return ( count($rExtData) > 0 ) ? $rExtData : false;
   }
+
 
 
   /**
