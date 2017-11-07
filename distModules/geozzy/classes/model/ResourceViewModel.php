@@ -205,10 +205,13 @@ class ResourceViewModel extends Model {
 
   public function getRextModel( $rextModelName ) {
     eval( '$rextControl = new '.$rextModelName.'();');
-
-    $rextList = $rextControl->listItems( array( 'filters'=> array( 'resource' => $this->getter('id') ) ) );
-
-    $rextModel = $rextList->fetch(); // false if doesn't exist
+    $rextModel = false;
+    if(is_object($rextControl)){
+      $rextList = $rextControl->listItems( array( 'filters'=> array( 'resource' => $this->getter('id') ) ) );
+      if(is_object($rextList)){
+        $rextModel = $rextList->fetch(); // false if doesn't exist
+      }
+    }
 
     return $rextModel;
   }
