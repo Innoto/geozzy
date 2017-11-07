@@ -1027,9 +1027,6 @@ class geozzyAPIView extends View {
           if( $relModelIdName === 'FavouritesViewModel' ) {
             continue;
           }
-          if( $relModelIdName === 'CommentModel' ) {
-            continue;
-          }
 
           $rexData = array( 'MODELNAME' => $relModelIdName );
 
