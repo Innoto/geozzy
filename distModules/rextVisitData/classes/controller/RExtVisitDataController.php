@@ -26,7 +26,7 @@ class RExtVisitDataController extends RExtController implements RExtInterface {
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
     $rExtObj = is_object($rExtList) ? $rExtList->fetch() : false;
 
-    if( $rExtObj ) {
+    if( is_object($rExtObj) ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
 
       // Añadimos los campos en el idioma actual o el idioma principal
