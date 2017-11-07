@@ -1030,7 +1030,7 @@ class geozzyAPIView extends View {
 
           $rexData = array( 'MODELNAME' => $relModelIdName );
 
-          if( method_exists( $relModel, 'getAllData' ) ) {
+          if( is_object($relModel) && method_exists( $relModel, 'getAllData' ) ) {
             $allCols = $relModel->getCols( false );
             foreach( $allCols as $colName => $colInfo ) {
               $rexData[ $colName ] = $relModel->getter( $colName );
