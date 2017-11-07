@@ -25,7 +25,7 @@ class RExtVisitDataController extends RExtController implements RExtInterface {
     $rExtModel = new RExtVisitDataModel();
     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
     $rExtObj = is_object($rExtList) ? $rExtList->fetch() : false;
-var_dump($rExtObj);
+
     if( is_object($rExtObj) ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );
 
