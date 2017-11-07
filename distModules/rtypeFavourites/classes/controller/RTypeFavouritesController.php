@@ -199,14 +199,9 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
     geozzy::load('model/ResourceModel.php');
     $resInfo = array();
 
-    $urlAliasModel = new UrlAliasModel();
-    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'resourceIn' => $resIds ) ) );
-    $urls = array();
-    while( $urlAlias = $urlAliasList->fetch() ) {
-      $urls[$urlAlias->getter('resource')] = $urlAlias->getter('urlFrom');
-    }
+    $perfilFavouriteImg = empty( Cogumelo::getSetupValue( 'mod:filedata:profile:favouritePageImg' ) ) ?  'wmdpi4' : 'favouritePageImg';
 
-    $resourceModel = new ResourceModel();
+    $resourceModel = new ResourceViewModel();
     $resourceList = $resourceModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ) ) );
     while( $resObj = $resourceList->fetch() ) {
       $resId = $resObj->getter('id');
@@ -215,7 +210,10 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
         'title' => $resObj->getter('title'),
         'shortDescription' => $resObj->getter('shortDescription'),
         'image' => $resObj->getter('image'),
-        'url' => $urls[ $resId ],
+        'imageAKey' => $resObj->getter('imageAKey'),
+        'imageName' => $resObj->getter('imageName'),
+        'perfilFavouriteImg' => $perfilFavouriteImg,
+        'url' => $resObj->getter('urlAlias'),
         'rTypeId' => $resObj->getter('rTypeId')
       );
     }

@@ -57,7 +57,7 @@
           {* title shortDescription image url rTypeId *}
           <div class="col-sm-6 col-md-3 favouritesElement rtid{$favsResInfo.rTypeId}" data-id="{$favsResInfo.id}" data-rTypeId="{$favsResInfo.rTypeId}">
             <div class="favsImage">
-              <a href="{$favsResInfo.url}"><img src="/cgmlImg/{$favsResInfo.image}/fast_cut/{$favsResInfo.image}.jpg"></a>
+              <a href="{$favsResInfo.url}"><img src="/cgmlImg/{$favsResInfo.image}-a{$favsResInfo.imageAKey}/{$favsResInfo.perfilFavouriteImg}/{$favsResInfo.imageName}"></a>
             </div>
             <div class="favsText">
             <a href="{$favsResInfo.url}">

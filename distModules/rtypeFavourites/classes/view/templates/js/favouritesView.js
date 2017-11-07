@@ -10,6 +10,11 @@ geozzy.favouritesView = geozzy.favouritesView || {
 
     // Element to send delete order
     $('.favouritesElement .favsImage').append( $( '<i>' ).addClass( 'favsDelete fa fa-trash' )
+      .attr( {
+        'data-toggle': 'tooltip',
+        'data-placement': 'left',
+        'title': __( 'Remove from favorites' )
+      } )
       .on( 'click', geozzy.favouritesView.eventRemove )
     );
   }, // setRemoveIcon
@@ -36,4 +41,3 @@ $( document ).ready(function() {
 
   geozzy.favouritesView.setRemoveIcon();
 });
-
