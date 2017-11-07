@@ -11,7 +11,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
 msgid "Prioritizing map zone"
-msgstr ""
+msgstr "Priorisierung der Kartenzone"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:17
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:17
@@ -22,7 +22,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:19
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:19
 msgid "Apply"
-msgstr ""
+msgstr "Anwenden"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:20
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:20
@@ -33,7 +33,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:22
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:22
 msgid "Clear filters"
-msgstr ""
+msgstr "Filter löschen"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:23
@@ -44,7 +44,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:25
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:25
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:25
@@ -55,7 +55,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:27
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:27
 msgid "Filters"
-msgstr ""
+msgstr "Filter"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:24
@@ -64,4 +64,4 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:26
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:26
 msgid "Map"
-msgstr ""
+msgstr "Karte"
