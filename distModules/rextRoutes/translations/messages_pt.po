@@ -12,11 +12,11 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:95
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:126
 msgid "Route start"
-msgstr ""
+msgstr "Começo"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:107
 msgid "Route End"
-msgstr ""
+msgstr "Finalização"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:203
 msgid "Altitude"
@@ -25,12 +25,12 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:20
 msgid "Download route"
-msgstr ""
+msgstr "Descarregar track"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:46
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:46
 msgid "Circular route"
-msgstr ""
+msgstr "Rota circular"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:51
@@ -40,111 +40,111 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:57
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:57
 msgid "Lineal route"
-msgstr ""
+msgstr "Rota linear"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:62
 msgid "lineal"
-msgstr ""
+msgstr "Linear"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:73
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
 msgid "Slopes"
-msgstr ""
+msgstr "Pendentes"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:79
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:79
 msgid "slope up"
-msgstr ""
+msgstr "pendente subida"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:86
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:86
 msgid "slope down"
-msgstr ""
+msgstr "pendente baixada"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:100
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:100
 msgid "Environment"
-msgstr ""
+msgstr "Meio"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:113
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:113
 msgid "Itinerary"
-msgstr ""
+msgstr "Itinerário"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:126
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:126
 msgid "Displacement"
-msgstr ""
+msgstr "Deslocação"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:139
 msgid "Effort"
-msgstr ""
+msgstr "Esforço"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:8
 msgid "Very Low"
-msgstr ""
+msgstr "Muito baixo"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:9
 msgid "Low"
-msgstr ""
+msgstr "Baixo"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:10
 msgid "Medium"
-msgstr ""
+msgstr "Médio"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:11
 msgid "High"
-msgstr ""
+msgstr "Alto"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:12
 msgid "Extreme"
-msgstr ""
+msgstr "Muito alto"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:81
 msgid "Circular itinerary"
-msgstr ""
+msgstr "Itinerário circular"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:84
 msgid "Route duration (minutes)"
-msgstr ""
+msgstr "Duração de rota (minutes)"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:88
 msgid "Vertical rise level"
-msgstr ""
+msgstr "Pendente de subida"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:92
 msgid "Vertical descent level"
-msgstr ""
+msgstr "Pendente de baixada"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:96
 msgid "Travel distance (meters)"
-msgstr ""
+msgstr "Distância (metros)"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:100
 msgid "Natural environment difficulty"
-msgstr ""
+msgstr "Dificuldade do meio natural"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:105
 msgid "Itinerary difficulty"
-msgstr ""
+msgstr "Dificuldade do itinerário"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:110
 msgid "Displacement difficulty"
-msgstr ""
+msgstr "Dificuldade para deslocar-se"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:115
 msgid "Effort level"
-msgstr ""
+msgstr "Nível de esforço"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:120
 msgid "Global difficulty"
-msgstr ""
+msgstr "Dificuldade global"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:131
 msgid "Route end"
-msgstr ""
+msgstr "Final da rota"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:136
 msgid "Startroute Latitude"
@@ -164,8 +164,8 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:154
 msgid "Route file"
-msgstr ""
+msgstr "Arquivo de track"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:155
 msgid "File"
-msgstr ""
+msgstr "Arquivo"
