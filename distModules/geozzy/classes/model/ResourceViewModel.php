@@ -206,7 +206,7 @@ class ResourceViewModel extends Model {
   public function getRextModel( $rextModelName ) {
     eval( '$rextControl = new '.$rextModelName.'();');
     $rextModel = false;
-    var_dump($rextControl);
+    //var_dump($rextControl);
     if(is_object($rextControl)){
       $rextList = $rextControl->listItems( array( 'filters'=> array( 'resource' => $this->getter('id') ) ) );
       var_dump($rextList);
