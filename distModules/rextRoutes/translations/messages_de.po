@@ -12,139 +12,139 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:95
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:126
 msgid "Route start"
-msgstr ""
+msgstr "Routenanfang"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:107
 msgid "Route End"
-msgstr ""
+msgstr "Routenende"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:203
 msgid "Altitude"
-msgstr ""
+msgstr "Höhenlage"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:20
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:20
 msgid "Download route"
-msgstr ""
+msgstr "Download Anfahrtsskizze"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:46
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:46
 msgid "Circular route"
-msgstr ""
+msgstr "Rundweg"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:51
 msgid "circular"
-msgstr ""
+msgstr "Rundweg"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:57
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:57
 msgid "Lineal route"
-msgstr ""
+msgstr "Linienwanderweg"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:62
 msgid "lineal"
-msgstr ""
+msgstr "Linienwanderweg"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:73
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
 msgid "Slopes"
-msgstr ""
+msgstr "Pisten"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:79
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:79
 msgid "slope up"
-msgstr ""
+msgstr "Steigung nach oben"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:86
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:86
 msgid "slope down"
-msgstr ""
+msgstr "Hang abwärts"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:100
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:100
 msgid "Environment"
-msgstr ""
+msgstr "Umwelt"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:113
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:113
 msgid "Itinerary"
-msgstr ""
+msgstr "Reiseroute"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:126
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:126
 msgid "Displacement"
-msgstr ""
+msgstr "Verdrängung"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:139
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:139
 msgid "Effort"
-msgstr ""
+msgstr "Anstrengung"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:8
 msgid "Very Low"
-msgstr ""
+msgstr "Sehr gering"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:9
 msgid "Low"
-msgstr ""
+msgstr "Geringe"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:10
 msgid "Medium"
-msgstr ""
+msgstr "Mittlere"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:11
 msgid "High"
-msgstr ""
+msgstr "Hohe"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:12
 msgid "Extreme"
-msgstr ""
+msgstr "Sehr hohe"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:81
 msgid "Circular itinerary"
-msgstr ""
+msgstr "Rundweg"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:84
 msgid "Route duration (minutes)"
-msgstr ""
+msgstr "Dauer der Route (Minuten)"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:88
 msgid "Vertical rise level"
-msgstr ""
+msgstr "Steigung nach oben"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:92
 msgid "Vertical descent level"
-msgstr ""
+msgstr "Hang abwärts"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:96
 msgid "Travel distance (meters)"
-msgstr ""
+msgstr "Verfahrweg (Meter)"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:100
 msgid "Natural environment difficulty"
-msgstr ""
+msgstr "Schwierigkeit der natürlichen Umgebung"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:105
 msgid "Itinerary difficulty"
-msgstr ""
+msgstr "Schwierigkeit der Route"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:110
 msgid "Displacement difficulty"
-msgstr ""
+msgstr "Verdrängungsschwierigkeiten"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:115
 msgid "Effort level"
-msgstr ""
+msgstr "Aufwandsniveau"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:120
 msgid "Global difficulty"
-msgstr ""
+msgstr "Globale Schwierigkeiten"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:131
 msgid "Route end"
-msgstr ""
+msgstr "Routenende"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:136
 msgid "Startroute Latitude"
@@ -164,8 +164,8 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:154
 msgid "Route file"
-msgstr ""
+msgstr "Route Track Datei"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:155
 msgid "File"
-msgstr ""
+msgstr "Datei"

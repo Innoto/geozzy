@@ -63,7 +63,7 @@ msgstr "Limpar filtros"
 #: /home/proxectos/canlers/app/tmp/tpl/explorerSaganInLanding.tpl:25
 #: /home/proxectos/canlers/app/tmp/tpl/explorerList.tpl:23
 msgid "List"
-msgstr "Lista"
+msgstr "Listaxe"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:25
