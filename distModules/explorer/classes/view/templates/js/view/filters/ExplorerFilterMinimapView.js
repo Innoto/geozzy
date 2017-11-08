@@ -196,6 +196,8 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
     that.currentIdName = false;
     that.selectedTerms = false;
+
+    that.parentExplorer.applyFilters();
   },
 
 
