@@ -111,7 +111,7 @@ geozzy.explorerComponents.activeListViewElement = '' +
 
 geozzy.explorerComponents.filterButtonsViewTemplate = "" +
   " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
-  "<ul class='<%= filterClass %> clearfix'>"+
+  "<ul class='clearfix'>"+
     "<% if(defaultOption){ %> "+
       "<li data-term-id='<%- defaultOption.value %>' > "+
         "<div class='title'><%- defaultOption.title %></div> "+
