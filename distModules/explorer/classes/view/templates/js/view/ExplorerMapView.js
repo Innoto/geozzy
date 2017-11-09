@@ -470,8 +470,14 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
   getMapBounds: function() {
     var that = this;
+    if( that.map.getBounds != 'undefined'){
+      var ret = [ that.map.getBounds().getSouthWest(), that.map.getBounds().getNorthEast() ];
+    }
+    else {
+      var ret = [ new google.maps.LatLng(), new google.maps.LatLng() ];
+    }
 
-    return [ that.map.getBounds().getSouthWest(), that.map.getBounds().getNorthEast() ];
+    return ret;
   },
 
   coordToPixel: function( latLng) {
