@@ -19,8 +19,8 @@ msgstr ""
 msgid "Activation distance (m.)"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtViewBlock.tpl:6
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:6
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAudioguide_classes_view_templates_rExtViewBlock.tpl:6
 msgid "Audioguide"
 msgstr ""
 

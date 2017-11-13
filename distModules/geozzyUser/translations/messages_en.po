@@ -40,6 +40,7 @@ msgid ""
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:33
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:507
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:484
 msgid "Send"
 msgstr ""
@@ -74,18 +75,6 @@ msgstr ""
 msgid "Continuar"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/userProfile.tpl:4
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:4
-msgid "Perfil de Usuario"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:25
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/userProfile.tpl:25
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:25
-msgid "Write only if you want to change the password"
-msgstr ""
-
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/recoveryPassword.tpl:5
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_recoveryPassword.tpl:5
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/recoveryPassword.tpl:5
@@ -98,45 +87,69 @@ msgstr ""
 msgid "Your url has expired. Please restart the password recovery process"
 msgstr ""
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/userProfile.tpl:4
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:4
+msgid "Perfil de Usuario"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:25
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/userProfile.tpl:25
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:25
+msgid "Write only if you want to change the password"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:78
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:77
 msgid "Name"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:81
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:80
 msgid "Surname"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:84
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:83
 msgid "Email"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:88
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:87
 msgid "Repeat email"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:92
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:91
 msgid "Password"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:95
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:94
 msgid "Repeat password"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:112
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:111
 msgid ""
 "Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la "
 "política de privacidad</a>"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:117
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:116
 msgid "Create account"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:190
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:191
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:188
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:189
 msgid "User Registration"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:375
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:376
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:373
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:374
 msgid "Recovery Password"

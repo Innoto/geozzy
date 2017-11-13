@@ -9,8 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:19
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:19
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:19
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:19
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:19
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:19
@@ -19,8 +19,8 @@ msgstr ""
 msgid "Link or embed"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:21
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:21
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:21
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:21
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:21
@@ -29,8 +29,8 @@ msgstr ""
 msgid "External link"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:22
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:22
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:22
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:22
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:22
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:22
@@ -39,8 +39,8 @@ msgstr ""
 msgid "Embedable code"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:33
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeUrl_classes_view_templates_rTypeUrlFormModalBlock.tpl:33
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:33
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:33
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:33
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeUrlFormModalBlock.tpl:33

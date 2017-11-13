@@ -9,8 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:11
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:11
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:11
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:11
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:11
@@ -19,8 +19,8 @@ msgstr ""
 msgid "Tu Comunidad"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:20
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:20
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:20
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:20
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:20
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:20
@@ -29,8 +29,8 @@ msgstr ""
 msgid "Mi perfil"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:39
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:39
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:39
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:39
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:39
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:39
@@ -39,8 +39,8 @@ msgstr ""
 msgid "Editar"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:40
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:40
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:40
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:40
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:40
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:40
@@ -49,8 +49,8 @@ msgstr ""
 msgid "Guardar"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:56
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:56
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:56
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:56
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:56
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:56
@@ -59,8 +59,8 @@ msgstr ""
 msgid "Compartir mis datos con la comunidad"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:81
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:81
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:81
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:81
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:81
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:81
@@ -69,8 +69,8 @@ msgstr ""
 msgid "Perfil enlazado con Facebook"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:82
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:82
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:82
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:82
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:82
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:82
@@ -79,8 +79,8 @@ msgstr ""
 msgid "Enlazar mi perfil con Facebook"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:100
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:100
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:100
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:100
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:100
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:100
@@ -89,8 +89,8 @@ msgstr ""
 msgid "Perfil enlazado con Twitter"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:101
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:101
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:101
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:101
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:101
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:101
@@ -99,10 +99,10 @@ msgstr ""
 msgid "Enlazar mi perfil con Twitter"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:166
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:258
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:166
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:258
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:166
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:258
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:166
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:258
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:166
@@ -116,10 +116,10 @@ msgstr ""
 msgid "Seguir"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:167
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:259
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:167
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:259
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:167
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:259
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:167
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:259
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:167
@@ -133,10 +133,10 @@ msgstr ""
 msgid "Siguiendo"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:184
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:276
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:184
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:276
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:184
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:276
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:184
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:276
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:184
@@ -150,10 +150,10 @@ msgstr ""
 msgid "Le gusta..."
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:200
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:292
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:200
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:292
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:200
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:292
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:200
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:292
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:200
@@ -167,8 +167,8 @@ msgstr ""
 msgid "ver todos"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:215
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:215
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:215
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:215
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:215
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:215
@@ -177,8 +177,8 @@ msgstr ""
 msgid "Parece que todavía no has añadido a nadie a tu Comunidad..."
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:228
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:228
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:228
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:228
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:228
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:228

@@ -9,8 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:95
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:126
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:95
 msgid "Route start"
 msgstr "Começo"
 

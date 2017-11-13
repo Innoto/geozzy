@@ -13,26 +13,26 @@ msgstr ""
 msgid "A route could not be found."
 msgstr "No se ha podido encontrar una ruta."
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
-msgid "Type an address or mark on the map the place of departure"
-msgstr "Introduce una dirección o marca en el mapa el punto de partida"
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
+msgid "Type a departure address"
+msgstr "Escriba una dirección de salida"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
 msgid "Get directions"
 msgstr "Obtener direcciones"
 
-#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
-msgid "Route information"
-msgstr "Información de la ruta"
-
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:57
 msgid "Show route description"
 msgstr "Mostrar descripción de la ruta"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
-msgid "Type a departure address"
-msgstr "Escriba una dirección de salida"
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
+msgid "Route information"
+msgstr "Información de la ruta"
+
+#: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
+msgid "Type an address or mark on the map the place of departure"
+msgstr "Introduce una dirección o marca en el mapa el punto de partida"
 
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
 msgid "No se ha podido localizar una ruta."

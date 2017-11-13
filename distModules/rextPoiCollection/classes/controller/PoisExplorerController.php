@@ -9,7 +9,9 @@ class PoisExplorerController extends ExplorerController {
     $resourceModel = new PoisExplorerModel();
 
     $filters= [];
-    $filters['resourceMain'] = (int) $_POST['resourceID'];
+    if( isset( $_POST['resourceID'] ) ) {
+      $filters['resourceMain'] = (int) $_POST['resourceID'];
+    }
 
     global $C_LANG;
 
@@ -77,12 +79,18 @@ class PoisExplorerController extends ExplorerController {
         $row = array();
 
         $resourceDataArray = array('id' => $resource->getter('id'), 'title' => $resource->getter('title'),
-        'mediumDescription' => $resource->getter('mediumDescription'), 'image' => $resource->getter('image'));
-
+        'shortDescription' => $resource->getter('shortDescription'), 'mediumDescription' => $resource->getter('mediumDescription'),
+        'image' => $resource->getter('image'));
 
         $row['id'] = $resourceDataArray['id'];
         $row['title'] = ( isset($resourceDataArray['title']) )?$resourceDataArray['title']:false;
-        $row['description'] = ( isset($resourceDataArray['mediumDescription']) )?$resourceDataArray['mediumDescription']:'';
+        $row['description'] = '';
+        if( !empty( $resourceDataArray['shortDescription'] ) ) {
+          $row['description'] =$resourceDataArray['shortDescription'];
+        }
+        elseif( !empty( $resourceDataArray['mediumDescription'] ) ) {
+          $row['description'] = $resourceDataArray['mediumDescription'];
+        }
         $row['image'] =  ( isset($resourceDataArray['image']) )?$resourceDataArray['image']:false;
 
         echo json_encode( $row );

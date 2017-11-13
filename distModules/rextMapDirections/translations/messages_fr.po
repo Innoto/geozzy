@@ -13,27 +13,18 @@ msgstr ""
 msgid "A route could not be found."
 msgstr "Aucun itinéraire n' a pu être trouvé."
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:37
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
-msgid "Type an address or mark on the map the place of departure"
-msgstr "Obtenir des instructions"
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
+msgid "Type a departure address"
+msgstr "Entrez l'adresse de départ"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:44
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:80
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:44
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:80
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:80
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:44
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:44
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
 msgid "Get directions"
 msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:52
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:96
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:52
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:96
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
-msgid "Route information"
-msgstr "Informations sur l'itinéraire"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:54
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:88
@@ -43,10 +34,19 @@ msgstr "Informations sur l'itinéraire"
 msgid "Show route description"
 msgstr "Afficher la description de l'itinéraire"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
-msgid "Type a departure address"
-msgstr "Entrez l'adresse de départ"
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:52
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:96
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:52
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:96
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
+msgid "Route information"
+msgstr "Informations sur l'itinéraire"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:37
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
+msgid "Type an address or mark on the map the place of departure"
+msgstr "Obtenir des instructions"
 
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
 msgid "No se ha podido localizar una ruta."

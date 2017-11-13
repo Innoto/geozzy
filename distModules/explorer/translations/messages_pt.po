@@ -13,6 +13,15 @@ msgstr ""
 msgid "Prioritizing map zone"
 msgstr "Priorizando a zona do mapa"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:13
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:11
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:11
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:12
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
+msgid "Return to content"
+msgstr ""
+
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:17
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:17
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:17
@@ -46,6 +55,15 @@ msgstr "Eliminar filtros"
 msgid "List"
 msgstr "Lista"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:24
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:24
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:26
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:26
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:26
+msgid "Map"
+msgstr "Mapa"
+
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:25
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:24
@@ -56,12 +74,3 @@ msgstr "Lista"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:27
 msgid "Filters"
 msgstr "Filtros"
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:24
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:24
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:26
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:26
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:26
-msgid "Map"
-msgstr "Mapa"
