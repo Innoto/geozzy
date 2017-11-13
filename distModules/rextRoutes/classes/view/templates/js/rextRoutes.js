@@ -4,7 +4,6 @@ $( document ).ready(function() {
   if( typeof geozzy.rExtRoutesOptions != 'undefined' && typeof geozzy.rExtMapInstance != 'undefined') {
 
     google.maps.event.addListenerOnce(geozzy.rExtMapInstance.resourceMap, 'idle', function(){
-
       setRouteOnResourceMapInstance();
     });
 
@@ -36,7 +35,7 @@ function setRouteOnResourceMapInstance() {
 
   routesCollection.url = '/api/routes/id/' + geozzy.rExtRoutesOptions.resourceId
 
-  google.maps.event.addListenerOnce( geozzy.rExtMapInstance.resourceMap, 'idle', function() {
+
 
 
     console.log( geozzy.rExtMapInstance.resourceMap);
@@ -51,5 +50,5 @@ function setRouteOnResourceMapInstance() {
       }
     });
 
-  });
+
 }
