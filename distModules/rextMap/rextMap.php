@@ -23,7 +23,8 @@ class rextMap extends Module {
     'controller/RExtMapController.php',
     'view/RExtMapView.php',
     'js/rExtMapController.js',
-    'js/rExtMapInstance.js'
+    'js/rExtMapInstance.js',
+    'js/rExtMapInstanceManager.js'
   );
 
 

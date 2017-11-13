@@ -2,6 +2,8 @@
 
 
 $(document).ready( function() {
-  geozzy.rExtMapInstance = new geozzy.rExtMapController( geozzy.rExtMapOptions );
-  geozzy.rExtMapInstance.initialize();
+  if( geozzy.rExtMapInstance == false || typeof( geozzy.rExtMapInstance ) == 'undefined' ) {
+    geozzy.rExtMapInstance = new geozzy.rExtMapController( geozzy.rExtMapOptions );
+    geozzy.rExtMapInstance.initialize();
+  }
 });
