@@ -9,10 +9,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextVisitData/classes/controller/RExtVisitDataController.php:74
 #: /home/proxectos/geozzy/distModules/rextVisitData/classes/controller/RExtVisitDataController.php:47
 msgid "Average visit duration (minutes)"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rextVisitData/classes/controller/RExtVisitDataController.php:78
 #: /home/proxectos/geozzy/distModules/rextVisitData/classes/controller/RExtVisitDataController.php:51
 msgid "Visit timetable"
 msgstr ""
