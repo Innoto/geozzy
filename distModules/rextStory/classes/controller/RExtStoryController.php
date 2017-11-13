@@ -267,7 +267,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
       $newResources = false;
 
       $collectionResources = new CollectionResourcesModel();
-      $collectionResourcesList = $collectionResources->listItems(array('filters' => array('collection'=>$elemId)));
+      $collectionResourcesList = $collectionResources->listItems(array('filters' => array('collection'=>$elemId), 'order' => array('weight' => 1)));
       if($collectionResourcesList){
         while($colResource = $collectionResourcesList->fetch()){
           $newResources[] = $colResource->getter('resource');
