@@ -12,7 +12,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
   allResourcesLoaded: false,
 
 
-  initialize( opts ) {
+  initialize: function( opts ) {
     var that = this;
 
     that.getLocalStorage();
