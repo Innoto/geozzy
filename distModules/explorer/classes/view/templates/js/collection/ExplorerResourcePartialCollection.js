@@ -84,7 +84,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
 
 
 
-  getLocalStorage( ) {
+  getLocalStorage: function( ) {
     var that = this;
 
     if( that.useLocalStorage === true && typeof Storage !== "undefined" && that.url != false) {
@@ -112,7 +112,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
 
   },
 
-  saveLocalStorage( ) {
+  saveLocalStorage: function( ) {
     var that = this;
 
     if( that.useLocalStorage === true && typeof Storage !== "undefined" && that.url != false) {
