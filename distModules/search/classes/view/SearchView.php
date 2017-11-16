@@ -19,6 +19,11 @@ class SearchView {
     ];
 
     $this->searchCtrl = Elasticsearch\ClientBuilder::create()->setHosts( $hosts )->build();
+
+    global $C_LANG; // Idioma actual, cogido de la url
+    $this->actLang = $C_LANG;
+    $this->defLang = Cogumelo::getSetupValue( 'lang:default' );
+    $this->allLang = Cogumelo::getSetupValue( 'lang:available' );
   }
 
 
@@ -42,6 +47,7 @@ class SearchView {
           'base' => [
             'properties' => [
               'id' => [ 'type' => 'integer' ],
+              'lang' => [ 'type' => 'keyword' ], //only searchable by their exact value.
               'rTypeId' => [ 'type' => 'integer' ],
               'rTypeIdName' => [ 'type' => 'keyword' ], //only searchable by their exact value.
               'user' => [ 'type' => 'integer' ],
@@ -73,8 +79,13 @@ class SearchView {
     if( is_object( $taxList ) ) {
       while( $taxObj = $taxList->fetch() ) {
         $resId = $taxObj->getter('resource');
-        $name = $taxObj->getter('name');
-        $taxText[ $resId ] = empty($taxText[ $resId ]) ? $name : $taxText[ $resId ].', '.$name;
+
+        foreach( array_keys($this->allLang) as $langKey ) {
+          $termName = $this->getValueTr( $taxObj, 'name', $langKey);
+          if( !empty( $termName ) ) {
+            $taxText[$resId][$langKey] = empty($taxText[$resId][$langKey]) ? $termName : $taxText[$resId][$langKey].', '.$termName;
+          }
+        }
       }
     }
 
@@ -86,47 +97,55 @@ class SearchView {
       while( $resObj = $resList->fetch() ) {
         $resId = $resObj->getter('id');
         echo "\n Resource: ".$resId;
-        // $timeCreation = strtr( $resObj->getter('timeCreation'), ' ', 'T').'Z';
-        // $timeCreation = strtr($timeCreation,' ','T').'Z';
-        // echo "\n timeCreation: ".$timeCreation."\n";
-        $params = [
-          'index' => 'resource',
-          'type' => 'base',
+        $base = [
           'id' => $resId,
-          'body' => [
-            'id' => $resId,
-            'rTypeId' => $resObj->getter('rTypeId'),
-            'rTypeIdName' => $resObj->getter('rTypeIdName'),
-            'user' => $resObj->getter('user'),
-            'title' => $resObj->getter('title'),
-            'shortDescription' => $resObj->getter('shortDescription'),
-            'mediumDescription' => html_entity_decode( strip_tags( $resObj->getter('mediumDescription') ) ),
-            'content' => html_entity_decode( strip_tags( $resObj->getter('content') ) ),
-            'headKeywords' => $resObj->getter('headKeywords'),
-            'headDescription' => $resObj->getter('headDescription'),
-            'headTitle' => $resObj->getter('headTitle'),
-            'urlAlias' => $resObj->getter('urlAlias'),
-          ]
+          'rTypeId' => $resObj->getter('rTypeId'),
+          'rTypeIdName' => $resObj->getter('rTypeIdName'),
+          'user' => $resObj->getter('user'),
         ];
         if( $timeCreation = $resObj->getter('timeCreation') ) {
-          $params['body']['timeCreation'] = strtr( $timeCreation, ' ', 'T').'Z';
+          $base['timeCreation'] = strtr( $timeCreation, ' ', 'T').'Z';
         }
         if( $timeLastUpdate = $resObj->getter('timeLastUpdate') ) {
-          $params['body']['timeLastUpdate'] = strtr( $timeLastUpdate, ' ', 'T').'Z';
+          $base['timeLastUpdate'] = strtr( $timeLastUpdate, ' ', 'T').'Z';
         }
         if( $loc = $resObj->getter('loc') ) {
           $geoLocation = DBUtils::decodeGeometry( $loc );
-          // $params['body']['location'] = ''.$geoLocation['data'][0].','.$geoLocation['data'][1];
-          $params['body']['location'] = [
+          // $base['location'] = ''.$geoLocation['data'][0].','.$geoLocation['data'][1];
+          $base['location'] = [
             'lon' => $geoLocation['data'][1],
             'lat' => $geoLocation['data'][0],
           ];
         }
-        if( !empty( $taxText[ $resId ] ) ) {
-          $params['body']['termsNames'] = $taxText[ $resId ];
+
+        foreach( array_keys($this->allLang) as $langKey ) {
+
+          $base['lang'] = $langKey;
+          $base['title'] = $this->getValueTr( $resObj, 'title', $langKey);
+          $base['shortDescription'] = $this->getValueTr( $resObj, 'shortDescription', $langKey);
+          $base['mediumDescription'] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'mediumDescription', $langKey) ) );
+          $base['content'] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'content', $langKey) ) );
+          $base['headKeywords'] = $this->getValueTr( $resObj, 'headKeywords', $langKey);
+          $base['headDescription'] = $this->getValueTr( $resObj, 'headDescription', $langKey);
+          $base['headTitle'] = $this->getValueTr( $resObj, 'headTitle', $langKey);
+          $base['urlAlias'] = $this->getValueTr( $resObj, 'urlAlias', $langKey);
+          if( !empty( $taxText[$resId][$langKey] ) ) {
+            $base['termsNames'] = $taxText[$resId][$langKey];
+          }
+          else {
+            unset($base['termsNames']);
+          }
+
+          $params = [
+            'index' => 'resource',
+            'type' => 'base',
+            'id' => $resId.'_'.$langKey,
+            'body' => $base
+          ];
+
+          $response = $this->searchCtrl->index($params);
         }
 
-        $response = $this->searchCtrl->index($params);
       }
     }
 
@@ -134,7 +153,52 @@ class SearchView {
     echo $searchInfo;
   }
 
+  public function getValueTr( $obj, $fieldName, $lang ) {
+    $value = $obj->getter($fieldName.'_'.$lang);
+    if( $lang !== $this->defLang && empty( $value ) ) {
+      $value = $obj->getter($fieldName.'_'.$this->defLang);
+    }
+
+    return $value;
+  }
+
+
   public function buscamos() {
+    header('Content-Type: text/plain');
+
+    $params = [
+      'index' => 'resource',
+      'type' => 'base',
+      'body' => [
+        'query' => []
+      ]
+    ];
+
+    $matchs = [
+      [ 'match' => [ 'lang' => $this->actLang ] ]
+    ];
+
+    if( !empty($_GET['s']) ) {
+      $matchs[] = [ 'match' => [ 'searchAllText' => $_GET['s'] ] ];
+    }
+    if( !empty($_GET['r']) ) {
+      $matchs[] = [ 'match' => [ 'rTypeIdName' => $_GET['r'] ] ];
+    }
+
+    $params['body']['query'] = [
+      'bool' => [
+        'must' => $matchs
+      ]
+    ];
+    $this->mostrar($params);
+
+
+    $response = $this->searchCtrl->search($params);
+    echo "\n\n --- RESULTADOS: ".$response['hits']['total']." --- \n\n";
+    $this->mostrar($response);
+  }
+
+  public function buscamos_1() {
     header('Content-Type: text/plain');
 
     $params = [
@@ -185,12 +249,13 @@ class SearchView {
     $this->mostrar($response);
   }
 
+
   public function showInfo() {
     $searchInfo = "\n\nshowInfo FIN\n\n";
 
     header('Content-Type: text/plain');
 
-    $params = [ 'index' => 'resource', 'type' => 'base', 'id' => '22' ];
+    $params = [ 'index' => 'resource', 'type' => 'base', 'id' => '22_gl' ];
     $response = $this->searchCtrl->get($params);
     echo "\n\n --- GET 22 \n"; $this->mostrar($response);
 
