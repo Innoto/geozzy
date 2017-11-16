@@ -149,7 +149,7 @@ geozzy.explorerComponents.filterComboViewSummaryT = "" +
 
 geozzy.explorerComponents.filterMinimapViewTemplate = "" +
   "<div class='filtersButton'>"+
-    "<div class='filtersButtonContent'><img class='img-responsive' src='"+cogumelo.publicConf.media+"/img/minimap_rs.png' alt='Ribeira Sacra'></div>"+
+    "<div class='filtersButtonContent'><%= iconHtml %></div>"+
     "<div class='icon'><i class='fa fa-angle-down' aria-hidden='true'></i></div>"+
   "</div>"+
   "<div class='boxMinimap'>"+
