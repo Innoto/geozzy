@@ -35,6 +35,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       clustererZoomOnClick: true,
       mapArrowImage: cogumelo.publicConf.media+'/module/explorer/img/mapArrow.png',
       mapArrowImageEmpty: cogumelo.publicConf.media+'/module/explorer/img/mapArrowEmpty.png',
+      markerzIndex: 100,
       chooseMarkerIcon: function() {return false},
       mapZones: {
         outerMargin: {
@@ -198,7 +199,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
                   map: that.map,
                   flat: true,
                   optimized: false,
-                  visible:true
+                  visible:true,
+                  zIndex:that.options.markerzIndex
                 });
 
         marker.setVisible(false);
