@@ -21,6 +21,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       title: false,
       mainContainerClass: false,
       containerClass: false,
+      iconHtml: '<i class="fa fa-2x fa-globe" aria-hidden="true"></i>',
       resetButtonText: 'All',
       template: geozzy.explorerComponents.filterMinimapViewTemplate,
       data: false,
@@ -64,7 +65,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
 
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
 
-    var filterHtml = that.template( { resetButtonText : that.options.resetButtonText } );
+    var filterHtml = that.template( { iconHtml : that.options.iconHtml, resetButtonText : that.options.resetButtonText } );
 
     // Print filter html into div
     if( !$(  that.options.mainContainerClass+' .' +that.options.containerClass ).length ) {

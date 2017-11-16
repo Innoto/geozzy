@@ -90,9 +90,9 @@
 
 {capture rExtMapDirections assign="jsMapDirectionsMode"}
 <div class="rExtMapDirections routeMode jsMapDirectionsMode">
-  <div data-route-mode="0" class="routeModeButton active"><i data-route-mode="0" class="fa fa-car fa-fw"></i></div>
-  <div data-route-mode="1" class="routeModeButton"><i data-route-mode="1" class="fa fa-male fa-fw"></i></div>
-  <div data-route-mode="2" class="routeModeButton"><i data-route-mode="2" class="fa fa-bus fa-fw"></i></div>
+  <div data-route-mode="0" class="routeModeButton active" data-toggle="tooltip" data-placement="top" title="{t}Route by car{/t}"><i data-route-mode="0" class="fa fa-car fa-fw"></i></div>
+  <div data-route-mode="1" class="routeModeButton" data-toggle="tooltip" data-placement="top" title="{t}Walking route{/t}"><i data-route-mode="1" class="fa fa-male fa-fw"></i></div>
+  <div data-route-mode="2" class="routeModeButton" data-toggle="tooltip" data-placement="top" title="{t}Route by public transport{/t}"><i data-route-mode="2" class="fa fa-bus fa-fw"></i></div>
   <span class="routeInfo jsMapDirectionsInfo">{t}Route information{/t}</span>
 </div>
 {/capture}
@@ -109,7 +109,7 @@
   </div>
   {$jsMapDirectionsList}
   <div class="postBar barInMap jsMapDirInMapBar">
-    <div class="mapDirInMapPrint jsMapDirInMapPrint"><span class="button fa fa-print" aria-hidden="true"></span></div>
+    <div class="mapDirInMapPrint jsMapDirInMapPrint"><span class="button fa fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="{t}Print route{/t}"></span></div>
   </div>
 </div>
 {/capture}
