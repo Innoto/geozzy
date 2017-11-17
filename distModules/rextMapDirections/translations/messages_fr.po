@@ -34,6 +34,21 @@ msgstr ""
 msgid "Show route description"
 msgstr "Afficher la description de l'itinéraire"
 
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:93
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:93
+msgid "Route by car"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:94
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:94
+msgid "Walking route"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:95
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:95
+msgid "Route by public transport"
+msgstr ""
+
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:52
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:96
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:52
@@ -41,6 +56,11 @@ msgstr "Afficher la description de l'itinéraire"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
 msgid "Route information"
 msgstr "Informations sur l'itinéraire"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:112
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:112
+msgid "Print route"
+msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:37
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
