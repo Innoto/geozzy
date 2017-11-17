@@ -281,7 +281,9 @@ class search extends Module {
     ],
   ];
 
-  public $includesCommon = [];
+  public $includesCommon = [
+    'controller/SearchController.php'
+  ];
 
 
   public function __construct() {
