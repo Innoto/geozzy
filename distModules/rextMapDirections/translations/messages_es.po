@@ -29,17 +29,17 @@ msgstr "Mostrar descripción de la ruta"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:93
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:93
 msgid "Route by car"
-msgstr ""
+msgstr "Ruta en coche"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:94
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:94
 msgid "Walking route"
-msgstr ""
+msgstr "Ruta caminando"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:95
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:95
 msgid "Route by public transport"
-msgstr ""
+msgstr "Ruta en transporte público"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
 msgid "Route information"
@@ -48,7 +48,7 @@ msgstr "Información de la ruta"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:112
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:112
 msgid "Print route"
-msgstr ""
+msgstr "Imprimir ruta"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
 msgid "Type an address or mark on the map the place of departure"
