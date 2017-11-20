@@ -108,7 +108,13 @@ class SearchController {
 
 
       $resModel = new ResourceViewModel();
-      $resList = $resModel->listItems([ 'filters' => [ 'published' => 1 ] ]);
+      $filters = [ 'published' => 1 ];
+
+      $indexFilters = Cogumelo::getSetupValue('mod:search:indexFilters');
+      if( !empty($indexFilters['rTypeIdName']) ) {
+        $filters['inRtypeIdName'] = is_array($indexFilters['rTypeIdName']) ? $indexFilters['rTypeIdName'] : [ $indexFilters['rTypeIdName'] ];
+      }
+      $resList = $resModel->listItems([ 'filters' => $filters ]);
       if( is_object( $resList ) ) {
         Cogumelo::load('coreModel/DBUtils.php');
         while( $resObj = $resList->fetch() ) {
@@ -196,7 +202,52 @@ class SearchController {
 
       $matchs = [
         [ 'match' => [ 'lang' => $this->actLang ] ],
-        [ 'match' => [ 'searchAllText' => $text ] ]
+        [ 'multi_match' => [
+        'type' => 'most_fields',
+          'query' => $text,
+          'fields' => [
+            'title^4',
+            'termsNames^2',
+            'shortDescription^3',
+            'mediumDescription^3',
+            'content',
+            'headKeywords',
+            'headDescription',
+            'headTitle',
+          ]
+        ]]
+
+        // [ 'multi_match' => [
+        //   'type' => 'best_fields',
+        //   'query' => $text,
+        //   'fields' => [
+        //     'title^4',
+        //     'termsNames^2',
+        //     'shortDescription^3',
+        //     'mediumDescription^3',
+        //     'content',
+        //     'headKeywords',
+        //     'headDescription',
+        //     'headTitle',
+        //   ]
+        // ]]
+
+
+        // [ 'multi_match' => [
+        //   'query' => $text,
+        //   'fields' => [
+        //     'title',
+        //     'termsNames',
+        //     'shortDescription',
+        //     'mediumDescription',
+        //     'content',
+        //     'headKeywords',
+        //     'headDescription',
+        //     'headTitle',
+        //   ]
+        // ]]
+
+        // [ 'match' => [ 'searchAllText' => $text ] ]
       ];
 
       $params['body']['query'] = [
