@@ -15,20 +15,10 @@ class SearchView {
   public function createIndex() {
     header('Content-Type: text/plain');
 
-    $searchInfo = $this->searchCtrl->createIndexBase();
+    $searchInfo = $this->searchCtrl->createIndex();
 
     echo $searchInfo;
   }
-
-  public function getValueTr( $obj, $fieldName, $lang ) {
-    $value = $obj->getter($fieldName.'_'.$lang);
-    if( $lang !== $this->defLang && empty( $value ) ) {
-      $value = $obj->getter($fieldName.'_'.$this->defLang);
-    }
-
-    return $value;
-  }
-
 
   public function buscamos() {
     $response = 'NADA';

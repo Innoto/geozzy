@@ -9,183 +9,211 @@ class SearchController {
 
 
   public function __construct() {
-    $hosts = [
-      [
-        'host' => 'localhost',
-        'port' => '9200',
-        'scheme' => 'http',
-        'user' => 'elastic',
-        'pass' => 'changeme'
-      ]
-    ];
+    $setupConf = Cogumelo::getSetupValue('mod:search');
 
-    $this->searchService = Elasticsearch\ClientBuilder::create()->setHosts( $hosts )->build();
+    if( !empty( $setupConf['elasticsearch'] ) ) {
+      $hosts = [
+        $setupConf['elasticsearch']
+      ];
 
-    $this->indexName = Cogumelo::getSetupValue('db:name').'_resources_index';
+      $this->searchService = Elasticsearch\ClientBuilder::create()->setHosts( $hosts )->build();
 
-    global $C_LANG; // Idioma actual, cogido de la url
-    $this->actLang = $C_LANG;
-    $this->defLang = Cogumelo::getSetupValue('lang:default');
-    $this->allLang = Cogumelo::getSetupValue('lang:available');
+      if( empty( $setupConf['indexName'] ) ) {
+        $this->indexName = Cogumelo::getSetupValue('db:name').'_resources_index';
+      }
+      else {
+        $this->indexName = $setupConf['indexName'];
+      }
+
+      if( !empty( $setupConf['indexType'] ) ) {
+        $this->indexType = $setupConf['indexType'];
+      }
+
+      if( !empty( $setupConf['limit'] ) ) {
+        $this->limit = $setupConf['limit'];
+      }
+
+      global $C_LANG; // Idioma actual, cogido de la url
+      $this->actLang = $C_LANG;
+      $this->defLang = Cogumelo::getSetupValue('lang:default');
+      $this->allLang = Cogumelo::getSetupValue('lang:available');
+    }
   }
 
-  public function createIndexBase() {
-    $searchInfo = "\n\n createIndexBase $this->indexName \n\n";
+  public function createIndex( $indexType = false ) {
+    $searchInfo = false;
 
-    $params = ['index' => $this->indexName];
-    if( $this->searchService->indices()->exists($params) ) {
-      $response = $this->searchService->indices()->delete($params);
-    }
+    if( $this->searchService ) {
+      if( !$indexType ) {
+        $indexType = $this->indexType;
+      }
+
+      $searchInfo = "\n\n createIndexBase $this->indexName \n\n";
+
+      $params = ['index' => $this->indexName];
+      if( $this->searchService->indices()->exists($params) ) {
+        $response = $this->searchService->indices()->delete($params);
+      }
 
 
-    $typeTextIndex = [ 'type' => 'text', 'copy_to' => 'searchAllText' ];
-    $params = [
-      'index' => $this->indexName,
-      'body' => [
-        'mappings' => [
-          $this->indexType => [
-            'properties' => [
-              'id' => [ 'type' => 'integer' ],
-              'lang' => [ 'type' => 'keyword' ], //only searchable by their exact value.
-              'rTypeId' => [ 'type' => 'integer' ],
-              'rTypeIdName' => [ 'type' => 'keyword' ], //only searchable by their exact value.
-              'user' => [ 'type' => 'integer' ],
-              'timeCreation' => [ 'type' => 'date' ],
-              'timeLastUpdate' => [ 'type' => 'date' ],
-              'title' => $typeTextIndex,
-              'shortDescription' => $typeTextIndex,
-              'mediumDescription' => $typeTextIndex,
-              'content' => $typeTextIndex,
-              'termsNames' => $typeTextIndex,
-              'headKeywords' => $typeTextIndex,
-              'headDescription' => $typeTextIndex,
-              'headTitle' => $typeTextIndex,
-              'urlAlias' => [ 'type' => 'text' ],
-              'location' => [ 'type' => 'geo_point' ],
-              'searchAllText' => [ 'type' => 'text' ], // Combined text fields
+      $typeTextIndex = [ 'type' => 'text', 'copy_to' => 'searchAllText' ];
+      $params = [
+        'index' => $this->indexName,
+        'body' => [
+          'mappings' => [
+            $indexType => [
+              'properties' => [
+                'id' => [ 'type' => 'integer' ],
+                'lang' => [ 'type' => 'keyword' ], //only searchable by their exact value.
+                'rTypeId' => [ 'type' => 'integer' ],
+                'rTypeIdName' => [ 'type' => 'keyword' ], //only searchable by their exact value.
+                'user' => [ 'type' => 'integer' ],
+                'timeCreation' => [ 'type' => 'date' ],
+                'timeLastUpdate' => [ 'type' => 'date' ],
+                'title' => $typeTextIndex,
+                'shortDescription' => $typeTextIndex,
+                'mediumDescription' => $typeTextIndex,
+                'content' => $typeTextIndex,
+                'termsNames' => $typeTextIndex,
+                'headKeywords' => $typeTextIndex,
+                'headDescription' => $typeTextIndex,
+                'headTitle' => $typeTextIndex,
+                'urlAlias' => [ 'type' => 'text' ],
+                'location' => [ 'type' => 'geo_point' ],
+                'searchAllText' => [ 'type' => 'text' ], // Combined text fields
+              ]
             ]
           ]
         ]
-      ]
-    ];
-    // Create the index with mappings and settings now
-    $response = $this->searchService->indices()->create($params);
+      ];
+      // Create the index with mappings and settings now
+      $response = $this->searchService->indices()->create($params);
 
 
-    $taxText = [];
-    $taxModel = new ResourceTaxonomyAllModel();
-    $taxList = $taxModel->listItems();
-    if( is_object( $taxList ) ) {
-      while( $taxObj = $taxList->fetch() ) {
-        $resId = $taxObj->getter('resource');
+      $taxText = [];
+      $taxModel = new ResourceTaxonomyAllModel();
+      $taxList = $taxModel->listItems();
+      if( is_object( $taxList ) ) {
+        while( $taxObj = $taxList->fetch() ) {
+          $resId = $taxObj->getter('resource');
 
-        foreach( array_keys($this->allLang) as $langKey ) {
-          $termName = $this->getValueTr( $taxObj, 'name', $langKey);
-          if( !empty( $termName ) ) {
-            $taxText[$resId][$langKey] = empty($taxText[$resId][$langKey]) ? $termName : $taxText[$resId][$langKey].', '.$termName;
+          foreach( array_keys($this->allLang) as $langKey ) {
+            $termName = $this->getValueTr( $taxObj, 'name', $langKey);
+            if( !empty( $termName ) ) {
+              $taxText[$resId][$langKey] = empty($taxText[$resId][$langKey]) ? $termName : $taxText[$resId][$langKey].', '.$termName;
+            }
           }
         }
       }
-    }
 
 
-    $resModel = new ResourceViewModel();
-    $resList = $resModel->listItems([ 'filters' => [ 'published' => 1 ] ]);
-    if( is_object( $resList ) ) {
-      Cogumelo::load('coreModel/DBUtils.php');
-      while( $resObj = $resList->fetch() ) {
-        $resId = $resObj->getter('id');
-        $searchInfo .= "\n Resource: ".$resId;
-        $base = [
-          'id' => $resId,
-          'rTypeId' => $resObj->getter('rTypeId'),
-          'rTypeIdName' => $resObj->getter('rTypeIdName'),
-          'user' => $resObj->getter('user'),
-        ];
-        if( $timeCreation = $resObj->getter('timeCreation') ) {
-          $base['timeCreation'] = strtr( $timeCreation, ' ', 'T').'Z';
-        }
-        if( $timeLastUpdate = $resObj->getter('timeLastUpdate') ) {
-          $base['timeLastUpdate'] = strtr( $timeLastUpdate, ' ', 'T').'Z';
-        }
-        if( $loc = $resObj->getter('loc') ) {
-          $geoLocation = DBUtils::decodeGeometry( $loc );
-          // $base['location'] = ''.$geoLocation['data'][0].','.$geoLocation['data'][1];
-          $base['location'] = [
-            'lon' => $geoLocation['data'][1],
-            'lat' => $geoLocation['data'][0],
+      $resModel = new ResourceViewModel();
+      $resList = $resModel->listItems([ 'filters' => [ 'published' => 1 ] ]);
+      if( is_object( $resList ) ) {
+        Cogumelo::load('coreModel/DBUtils.php');
+        while( $resObj = $resList->fetch() ) {
+          $resId = $resObj->getter('id');
+          $searchInfo .= "\n Resource: ".$resId;
+          $base = [
+            'id' => $resId,
+            'rTypeId' => $resObj->getter('rTypeId'),
+            'rTypeIdName' => $resObj->getter('rTypeIdName'),
+            'user' => $resObj->getter('user'),
           ];
-        }
-
-        foreach( array_keys($this->allLang) as $langKey ) {
-
-          $base['lang'] = $langKey;
-          $base['title'] = $this->getValueTr( $resObj, 'title', $langKey);
-          $base['shortDescription'] = $this->getValueTr( $resObj, 'shortDescription', $langKey);
-          $base['mediumDescription'] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'mediumDescription', $langKey) ) );
-          $base['content'] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'content', $langKey) ) );
-          $base['headKeywords'] = $this->getValueTr( $resObj, 'headKeywords', $langKey);
-          $base['headDescription'] = $this->getValueTr( $resObj, 'headDescription', $langKey);
-          $base['headTitle'] = $this->getValueTr( $resObj, 'headTitle', $langKey);
-          $base['urlAlias'] = $this->getValueTr( $resObj, 'urlAlias', $langKey);
-          if( !empty( $taxText[$resId][$langKey] ) ) {
-            $base['termsNames'] = $taxText[$resId][$langKey];
+          if( $timeCreation = $resObj->getter('timeCreation') ) {
+            $base['timeCreation'] = strtr( $timeCreation, ' ', 'T').'Z';
           }
-          else {
-            unset($base['termsNames']);
+          if( $timeLastUpdate = $resObj->getter('timeLastUpdate') ) {
+            $base['timeLastUpdate'] = strtr( $timeLastUpdate, ' ', 'T').'Z';
+          }
+          if( $loc = $resObj->getter('loc') ) {
+            $geoLocation = DBUtils::decodeGeometry( $loc );
+            // $base['location'] = ''.$geoLocation['data'][0].','.$geoLocation['data'][1];
+            $base['location'] = [
+              'lon' => $geoLocation['data'][1],
+              'lat' => $geoLocation['data'][0],
+            ];
           }
 
-          $params = [
-            'index' => $this->indexName,
-            'type' => $this->indexType,
-            'id' => $resId.'_'.$langKey,
-            'body' => $base
-          ];
+          foreach( array_keys($this->allLang) as $langKey ) {
 
-          $response = $this->searchService->index($params);
+            $base['lang'] = $langKey;
+            $base['title'] = $this->getValueTr( $resObj, 'title', $langKey);
+            $base['shortDescription'] = $this->getValueTr( $resObj, 'shortDescription', $langKey);
+            $base['mediumDescription'] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'mediumDescription', $langKey) ) );
+            $base['content'] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'content', $langKey) ) );
+            $base['headKeywords'] = $this->getValueTr( $resObj, 'headKeywords', $langKey);
+            $base['headDescription'] = $this->getValueTr( $resObj, 'headDescription', $langKey);
+            $base['headTitle'] = $this->getValueTr( $resObj, 'headTitle', $langKey);
+            $base['urlAlias'] = $this->getValueTr( $resObj, 'urlAlias', $langKey);
+            if( !empty( $taxText[$resId][$langKey] ) ) {
+              $base['termsNames'] = $taxText[$resId][$langKey];
+            }
+            else {
+              unset($base['termsNames']);
+            }
+
+            $params = [
+              'index' => $this->indexName,
+              'type' => $indexType,
+              'id' => $resId.'_'.$langKey,
+              'body' => $base
+            ];
+
+            $response = $this->searchService->index($params);
+          }
+
         }
-
       }
+
+
+      $searchInfo .= "\n\n createIndexBase $this->indexName FIN \n\n";
     }
 
-
-    $searchInfo .= "\n\n createIndexBase $this->indexName FIN \n\n";
     return $searchInfo;
   }
 
   public function search( $text, $lang = false ) {
+
+    return $this->searchInType( $this->indexType, $text, $lang );
+  }
+
+  public function searchInType( $indexType, $text, $lang = false ) {
     $response = false;
 
-    if( empty($lang) ) {
-      $lang = $this->actLang;
+    if( $this->searchService ) {
+
+      if( empty($lang) ) {
+        $lang = $this->actLang;
+      }
+
+      $params = [
+        'index' => $this->indexName,
+        'type' => $indexType,
+        'size' => $this->limit,
+        'body' => []
+      ];
+
+      $matchs = [
+        [ 'match' => [ 'lang' => $this->actLang ] ],
+        [ 'match' => [ 'searchAllText' => $text ] ]
+      ];
+
+      $params['body']['query'] = [
+        'bool' => [
+          'must' => $matchs
+        ]
+      ];
+      // $this->mostrar($params);
+
+
+      $searchInfo = $this->searchService->search($params);
+      // echo "\n\n --- RESULTADOS: ".$searchInfo['hits']['total']." --- \n\n";
+      if( !empty($searchInfo['hits']) ) {
+        $response = $searchInfo['hits'];
+      }
+      // $this->mostrar($response);
     }
-
-    $params = [
-      'index' => $this->indexName,
-      'type' => $this->indexType,
-      'size' => $this->limit,
-      'body' => []
-    ];
-
-    $matchs = [
-      [ 'match' => [ 'lang' => $this->actLang ] ],
-      [ 'match' => [ 'searchAllText' => $text ] ]
-    ];
-
-    $params['body']['query'] = [
-      'bool' => [
-        'must' => $matchs
-      ]
-    ];
-    // $this->mostrar($params);
-
-
-    $searchInfo = $this->searchService->search($params);
-    // echo "\n\n --- RESULTADOS: ".$searchInfo['hits']['total']." --- \n\n";
-    if( !empty($searchInfo['hits']) ) {
-      $response = $searchInfo['hits'];
-    }
-    // $this->mostrar($response);
 
     return $response;
   }
