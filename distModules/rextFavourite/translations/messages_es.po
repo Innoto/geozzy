@@ -19,7 +19,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: :: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-"
-"msgcat.sh.tmp.from  #-#-#-#-#\n"
+"msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-"
+"#\n"
 ": #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#\n"
 
 #: /home/proxectos/geozzy/distModules/rextFavourite/classes/view/RExtFavouriteAPIView.php:47
