@@ -20,13 +20,13 @@ class rextAudioguide extends Module {
      "params" => array("ionrangeslider#2"),
      "installer" => "bower",
      "includes" => array("js/ion.rangeSlider.min.js", "css/ion.rangeSlider.css")
-    ),
+   )/*,
     array(//widget audio
      "id" =>"mediaelement",
      "params" => array("mediaelement#4.2.6"),
      "installer" => "bower",
      "includes" => array("build/mediaelement-and-player.min.js", "build/mediaelementplayer.min.css")
-    )
+   )*/
   );
 
   public $includesCommon = array(
