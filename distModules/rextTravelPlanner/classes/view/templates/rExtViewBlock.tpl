@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="travelPlannerFilterBar clearfix">
-          <span>{t}Filtro :{/t}</span>
+          <span>{t}Filtros :{/t}</span>
           <select class="filterByFavourites">
             <option value="*">{t}All{/t}</option>
             <option selected="selected" value="fav">{t}Favourites{/t}</option>

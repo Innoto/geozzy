@@ -8,8 +8,8 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   parentTp : false,
 
   events: {
-    "change .travelPlannerFilters .filterByFavourites": "changeFilters",
-    "change .travelPlannerFilters .filterByRtype": "changeFilters",
+    "change .travelPlannerFilterBar .filterByFavourites": "changeFilters",
+    "change .travelPlannerFilterBar .filterByRtype": "changeFilters",
     "click .addToPlan": "addToPlan",
     "click .tp-gotoPlan": "goToPlan",
     "click .tp-goAddtoPlan": "goAddToPlan"
