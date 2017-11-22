@@ -1,7 +1,7 @@
 //mixin with all css that depends on your style
 /*******************************************************************************************/
-.initTravelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpList-h: 100%, @tpPlan-w: 45%, @tpBar-h: 90px, @tpMap-h: 100%, @colorDaysActive:#333, @colorDaysInPlan:#ccc, @nestableTPItem-h: 50px, @header-h: 0px  ){
-  .travelPlanner(  @tp-h,  @tpList-w, @tpList-h, @tpPlan-w, @tpBar-h, @tpMap-h, @colorDaysActive, @colorDaysInPlan, @header-h );
+.initTravelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpPlan-w: 45%, @tpBar-h: 90px, @colorDaysActive:#333, @colorDaysInPlan:#ccc, @nestableTPItem-h: 50px, @header-h: 0px  ){
+  .travelPlanner(  @tp-h,  @tpList-w, @tpPlan-w, @tpBar-h, @colorDaysActive, @colorDaysInPlan, @header-h, (@header-h + @tpBar-h) );
   .nestableTravelPlannerTheme( @nestableTPItem-h );
 }
 /*******************************************************************************************/
@@ -10,18 +10,17 @@
   @tp-h,
   //TPLIST-OPTIONS
   @tpList-w,
-  @tpList-h,
   //TPPLAN-OPTIONS
   @tpPlan-w,
   //TPBAR-OPTIONS
   @tpBar-h,
-  //TPPLAN-OPTIONS
-  @tpMap-h,
   //COLORS
   @colorDaysActive,
   @colorDaysInPlan,
   //HEADER
-  @header-h ){
+  @header-h,
+  @headerBar-h
+  ){
   #travelPlannerSec{
     padding: 0;
     margin: 0;
@@ -46,7 +45,7 @@
       }
       .travelPlannerList{
         width: @tpList-w;
-        height: @tpList-h;
+        height: calc(~"100vh - "@header-h);
         position: fixed;
         top: (@tpBar-h + @header-h);
         padding: 20px;
@@ -65,7 +64,7 @@
       .travelPlannerMap{
         display:block;
         width: calc(~"100% - "@tpList-w );
-        height: @tpMap-h;
+        height: calc(~"100vh - "@headerBar-h);
         position: fixed;
         top:(@header-h + @tpBar-h);
         right: 0;
@@ -73,7 +72,7 @@
       .travelPlannerMapPlan{
         display:block;
         width: calc(~"100% - "@tpPlan-w );
-        height: @tpMap-h;
+        height: calc(~"100vh - "@headerBar-h);
         position: fixed;
         top:(@header-h + @tpBar-h);
         right: 0;
