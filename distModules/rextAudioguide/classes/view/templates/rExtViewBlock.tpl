@@ -6,7 +6,7 @@
       <div class="texto">{t}Audioguide{/t}</div>
     </div>
     <div class="audioPlayer">
-      <audio controls>
+      <audio onloadeddata="loadedFun()" controls>
        <source src="{$cogumelo.publicConf.mediaHost}cgmlformfilews/{$rExt.data.audioFile.id}/{$rExt.data.audioFile.originalName}" type="{$rExt.data.audioFile.type}">
          Your browser does not support the audio element.
       </audio>
