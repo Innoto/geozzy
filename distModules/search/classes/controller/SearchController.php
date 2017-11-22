@@ -6,6 +6,20 @@ class SearchController {
   private $indexName = 'resource';
   private $indexType = 'base';
   private $limit = 20;
+  private $langAnalyzer = [
+    'es' => 'Spanish',
+    'gl' => 'Galician',
+    'eu' => 'Basque',
+    'ca' => 'Catalan',
+    'pt' => 'Portuguese',
+    'en' => 'English',
+    'fr' => 'French',
+    'de' => 'German',
+    'it' => 'Italian',
+    'da' => 'Danish',
+    'fi' => 'Finnish',
+    'el' => 'Greek',
+  ];
 
 
   public function __construct() {
@@ -85,7 +99,7 @@ class SearchController {
                 'headTitle' => $typeTextIndex,
                 'urlAlias' => [ 'type' => 'text' ],
                 'location' => [ 'type' => 'geo_point' ],
-                'searchAllText' => [ 'type' => 'text' ], // Combined text fields
+                // 'searchAllText' => [ 'type' => 'text' ], // Combined text fields
               ]
             ]
           ]
@@ -273,8 +287,6 @@ class SearchController {
 
     return $response;
   }
-
-
 
   //
   //
