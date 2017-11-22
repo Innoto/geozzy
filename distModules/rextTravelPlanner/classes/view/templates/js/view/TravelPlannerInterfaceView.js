@@ -10,7 +10,9 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   events: {
     "change .travelPlannerFilters .filterByFavourites": "changeFilters",
     "change .travelPlannerFilters .filterByRtype": "changeFilters",
-    "click .addToPlan": "addToPlan"
+    "click .addToPlan": "addToPlan",
+    "click .tp-gotoPlan": "goToPlan",
+    "click .tp-goAddtoPlan": "goAddToPlan"
   },
 
   initialize: function( parentTp ) {
@@ -19,6 +21,13 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     that.parentTp = parentTp;
 
     that.loadInterfaceTravelPlanner();
+
+    if( that.parentTp.tpData.get('list') === null ){
+      that.parentTp.travelPlannerMode = 1;
+    }else{
+      that.parentTp.travelPlannerMode = 2;
+    }
+    that.changeTravelPlannerInterface(that.parentTp.travelPlannerMode);
   },
 
   render: function() {
@@ -76,13 +85,49 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.$('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
     });
   },
+  //Bind para cuando cambia un filtro
   changeFilters: function(e){
     var that = this;
     that.render();
   },
+  //Bind para añadir un recurso
   addToPlan: function(e){
     var that = this;
     that.parentTp.addToPlan($(e.target).closest('.tpResourceItem').attr('data-resource-id'));
+  },
+  //Bind para cambiar a modo 1
+  goAddToPlan: function(e){
+    var that = this;
+    that.parentTp.travelPlannerMode = 1;
+    that.changeTravelPlannerInterface(that.parentTp.travelPlannerMode);
+  },
+  //Bind para cambiar a modo 2
+  goToPlan: function(e){
+    var that = this;
+    that.parentTp.travelPlannerMode = 2;
+    that.changeTravelPlannerInterface(that.parentTp.travelPlannerMode);
+  },
+  changeTravelPlannerInterface: function(mode){
+    var that = this;
+    if(mode === 1){
+      that.$el.find('.tp-gotoPlan').show();
+      that.$el.find('.tp-goAddtoPlan').hide();
+      that.$el.find('.travelPlannerList').show();
+      that.$el.find('.travelPlannerPlan').hide();
+      that.$el.find('.travelPlannerMap').show();
+      that.$el.find('.travelPlannerMapPlan').hide();
+      that.$el.find('.travelPlannerFilterBar *').show();
+      that.parentTp.travelPlannerMapView.setInitMap();
+    }
+    else{
+      that.$el.find('.tp-gotoPlan').hide();
+      that.$el.find('.tp-goAddtoPlan').show();
+      that.$el.find('.travelPlannerList').hide();
+      that.$el.find('.travelPlannerPlan').show();
+      that.$el.find('.travelPlannerMap').hide();
+      that.$el.find('.travelPlannerMapPlan').show();
+      that.$el.find('.travelPlannerFilterBar *').hide();
+      that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
+    }
   }
-
 });

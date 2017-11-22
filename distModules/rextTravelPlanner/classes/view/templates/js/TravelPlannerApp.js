@@ -10,8 +10,10 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.travelPlannerDatesView = false;
   that.travelPlannerPlanView = false;
   that.travelPlannerMapView = false;
+  that.travelPlannerMapPlanView = false;
   that.travelPlannerResourceView = false;
   that.travelPlannerDefaultVisitTime = 116; // in minutes
+  that.travelPlannerMode = 1;
 
   if( typeof cogumelo.publicConf.C_LANG === 'string' ) {
     moment.locale(cogumelo.publicConf.C_LANG);
@@ -75,7 +77,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     geozzy.travelPlannerComponents.routerInstance = new geozzy.travelPlannerComponents.mainRouter();
     geozzy.travelPlannerComponents.routerInstance.parentTp = that;
     if( !Backbone.History.started ){
-      Backbone.history.start();      
+      Backbone.history.start();
     }
     else {
       Backbone.history.stop();
@@ -87,13 +89,16 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       that.getResourcesFav(),
       that.tpData.fetchData()
     ).done( function() {
-      that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
+      //Instancia de ambos maps pero controlados en el InterfaceView
       that.travelPlannerMapView = new geozzy.travelPlannerComponents.TravelPlannerMapView( that );
+      that.travelPlannerMapPlanView = new geozzy.travelPlannerComponents.TravelPlannerMapPlanView( that );
 
+      that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
       that.initDates();
-
       if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
         that.initPlan();
+      }else{
+        alert('Modal para seleccionar Fechas');
       }
     });
   },
@@ -114,7 +119,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   },
   that.showMap = function(day){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
-      that.travelPlannerMapView.showDay(day);
+      that.travelPlannerMapPlanView.showDay(day);
     }
   },
   that.editResourceToPlan = function(data){
