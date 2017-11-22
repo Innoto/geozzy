@@ -75,8 +75,6 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
     $rExtViewBlockInfo['template']['full']->addClientScript( 'js/model/ResourcetypeModel.js' , 'geozzy');
     $rExtViewBlockInfo['template']['full']->addClientScript( 'js/collection/ResourcetypeCollection.js' , 'geozzy');
     $rExtViewBlockInfo['template']['full']->setTpl( 'rExtViewBlock.tpl', 'rextTravelPlanner' );
-    explorer::autoIncludes();
-
 
     return $rExtViewBlockInfo;
   }
