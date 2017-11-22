@@ -169,7 +169,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
       that.autocomplete = new google.maps.places.Autocomplete(
           ( that.addressInput[0] ),
-          {types: ['geocode']});
+          {types: ['geocode','establishment']});
 
       // When the user selects an address from the dropdown, populate the address
       // fields in the form.
