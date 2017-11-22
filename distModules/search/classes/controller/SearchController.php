@@ -56,7 +56,8 @@ class SearchController {
       }
 
 
-      $typeTextIndex = [ 'type' => 'text', 'copy_to' => 'searchAllText' ];
+      // $typeTextIndex = [ 'type' => 'text', 'copy_to' => 'searchAllText' ];
+      $typeTextIndex = [ 'type' => 'text', 'analyzer' => 'spanish' ];
       $params = [
         'index' => $this->indexName,
         'body' => [
@@ -71,6 +72,10 @@ class SearchController {
                 'timeCreation' => [ 'type' => 'date' ],
                 'timeLastUpdate' => [ 'type' => 'date' ],
                 'title' => $typeTextIndex,
+                'title_suggest' => [
+                  'type' => 'completion',
+                  'analyzer' => 'spanish'
+                ],
                 'shortDescription' => $typeTextIndex,
                 'mediumDescription' => $typeTextIndex,
                 'content' => $typeTextIndex,
@@ -145,6 +150,7 @@ class SearchController {
 
             $base['lang'] = $langKey;
             $base['title'] = $this->getValueTr( $resObj, 'title', $langKey);
+            $base['title_suggest'] = $base['title'];
             $base['shortDescription'] = $this->getValueTr( $resObj, 'shortDescription', $langKey);
             $base['mediumDescription'] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'mediumDescription', $langKey) ) );
             $base['content'] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'content', $langKey) ) );
@@ -201,7 +207,7 @@ class SearchController {
       ];
 
       $matchs = [
-        [ 'match' => [ 'lang' => $this->actLang ] ],
+        [ 'match' => [ 'lang' => $lang ] ],
         [ 'multi_match' => [
         'type' => 'most_fields',
           'query' => $text,
@@ -216,38 +222,6 @@ class SearchController {
             'headTitle',
           ]
         ]]
-
-        // [ 'multi_match' => [
-        //   'type' => 'best_fields',
-        //   'query' => $text,
-        //   'fields' => [
-        //     'title^4',
-        //     'termsNames^2',
-        //     'shortDescription^3',
-        //     'mediumDescription^3',
-        //     'content',
-        //     'headKeywords',
-        //     'headDescription',
-        //     'headTitle',
-        //   ]
-        // ]]
-
-
-        // [ 'multi_match' => [
-        //   'query' => $text,
-        //   'fields' => [
-        //     'title',
-        //     'termsNames',
-        //     'shortDescription',
-        //     'mediumDescription',
-        //     'content',
-        //     'headKeywords',
-        //     'headDescription',
-        //     'headTitle',
-        //   ]
-        // ]]
-
-        // [ 'match' => [ 'searchAllText' => $text ] ]
       ];
 
       $params['body']['query'] = [
@@ -255,15 +229,12 @@ class SearchController {
           'must' => $matchs
         ]
       ];
-      // $this->mostrar($params);
-
 
       $searchInfo = $this->searchService->search($params);
       // echo "\n\n --- RESULTADOS: ".$searchInfo['hits']['total']." --- \n\n";
       if( !empty($searchInfo['hits']) ) {
         $response = $searchInfo['hits'];
       }
-      // $this->mostrar($response);
     }
 
     return $response;
@@ -280,6 +251,28 @@ class SearchController {
   }
 
 
+
+
+
+  public function showInfoSuggest() {
+    $response = false;
+
+    $params = [
+      'index' => $this->indexName,
+      'body' => [
+        'search_suggest' => [
+          'text' => $_GET['s'],
+          'completion' => [
+            'field' => 'title_suggest'
+          ]
+        ]
+      ]
+    ];
+
+    $response = $this->searchService->suggest($params);
+
+    return $response;
+  }
 
 
 
