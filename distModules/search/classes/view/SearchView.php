@@ -47,6 +47,21 @@ class SearchView {
 
 
 
+  public function showInfoSuggest() {
+    $searchInfo = "\n\showInfoSuggest FIN\n\n";
+
+    header('Content-Type: text/plain');
+    $response = $this->searchCtrl->showInfoSuggest();
+    echo "\n\n --- showInfoSuggest \n"; $this->mostrar($response);
+
+    echo $searchInfo;
+  }
+
+
+
+
+
+
   //
   //
   //

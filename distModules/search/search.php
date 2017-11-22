@@ -291,12 +291,13 @@ class search extends Module {
     // $ctrl = new SearchController();
     // $ctrl->evalAccessibilityMode();
 
+    $this->addUrlPatterns( '#^cgml-search-index$#', 'view:SearchView::createIndex' );
     $this->addUrlPatterns( '#^cgml-busca\?.*$#', 'view:SearchView::buscamos' );
 
     $this->addUrlPatterns( '#^cgml-search$#', 'view:SearchView::showInfo' );
     $this->addUrlPatterns( '#^cgml-search-demo$#', 'view:SearchView::showInfoDemo' );
+    $this->addUrlPatterns( '#^cgml-search-su#', 'view:SearchView::showInfoSuggest' );
 
-    $this->addUrlPatterns( '#^cgml-search-index$#', 'view:SearchView::createIndex' );
 
     // $this->addUrlPatterns( '#^cgml-search.json#', 'view:CogumeloAccessibilityView::jsonInfo' );
   }
