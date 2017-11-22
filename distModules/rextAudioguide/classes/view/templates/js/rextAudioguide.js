@@ -6,7 +6,9 @@
         defaultAudioWidth: '250',
         shimScriptAccess: 'always'
       });*/
-    if(typeof($('audio'))!='undefined'){
+      document.getElementById("audioguiaId").load();
+
+    if(typeof($('#audioguiaId'))!='undefined'){
       $('audio').mediaelementplayer({
         // Do not forget to put a final slash (/)
         //pluginPath: 'https://cdnjs.com/libraries/mediaelement/',
