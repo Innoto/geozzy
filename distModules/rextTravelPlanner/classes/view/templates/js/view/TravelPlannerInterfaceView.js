@@ -85,7 +85,10 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.$('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
     });
 
-    that.parentTp.travelPlannerMapView.setMarkers();
+
+
+
+    that.parentTp.travelPlannerMapView.showMarkers( resourcesToList.pluck('id')  );
   },
   //Bind para cuando cambia un filtro
   changeFilters: function(e){

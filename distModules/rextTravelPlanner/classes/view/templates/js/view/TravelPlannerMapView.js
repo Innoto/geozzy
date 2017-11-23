@@ -11,6 +11,26 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
   selectedMarkers : [],
   planDays: 0,
 
+  markerIcon: {
+    path: google.maps.SymbolPath.CIRCLE,
+    fillOpacity: 1,
+    fillColor: '#5DAAE1',
+    strokeOpacity: 1,
+    strokeWeight: 1,
+    strokeColor: '#fff',
+    scale: 6
+  },
+
+  markerIconSelected:{
+    path: google.maps.SymbolPath.CIRCLE,
+    fillOpacity: 1,
+    fillColor: '#E16A4E',
+    strokeOpacity: 1,
+    strokeWeight: 1,
+    strokeColor: '#fff',
+    scale: 6
+  },
+
   events: {
     'click .travelPlannerMap .filterDay-previous': 'previousDay',
     'click .travelPlannerMap .filterDay-next': 'nextDay'
@@ -24,22 +44,87 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
   render: function() {
     var that = this;
   },
-  setInitMap: function(){
+  setInitMap: function( allResources ){
     var that = this;
-    that.mapOptions = {
-      center: { lat: 43.1, lng: -7.36 },
-      mapTypeControl: false,
-      fullscreenControl: false,
-      zoom: 7//,
-      /*styles : mapTheme*/
-    };
+
+    that.allResourcesCollection = allResources;
+
     if(that.map === false){
+      that.mapOptions = {
+        center: { lat: 43.1, lng: -7.36 },
+        mapTypeControl: false,
+        fullscreenControl: false,
+        zoom: 7//,
+        /*styles : mapTheme*/
+      };
+
       that.map = new google.maps.Map( that.$('.travelPlannerMap .map').get( 0 ), that.mapOptions);
+      that.setMarkers();
     }
   },
   setMarkers: function() {
-    
+    var that = this;
+
+    that.parentTp.resources.each( function(e,i) {
+
+      var markerLoc = e.get('loc');
+      //console.log( e.get('loc') );
+      if( markerLoc!= null && typeof markerLoc.lat != 'undefined' && typeof markerLoc.lng != 'undefined' ) {
+
+        e.set('marker',
+          new google.maps.Marker({
+            position: new google.maps.LatLng( markerLoc.lat, markerLoc.lng ),
+            icon: that.markerIcon
+          })
+        );
+
+      }
+
+
+    });
+  },
+
+  showMarkers: function( visibleList ) {
+    var that = this;
+
+    // lista de seleccionados
+    var selectedList = [];
+
+    $.each( that.parentTp.tpData.get('list'), function(i,e) {
+
+      $.each(e, function(i2,e2) {
+
+        if( jQuery.inArray( parseInt(e2.id), selectedList )  == -1 ){
+          selectedList.push(parseInt(e2.id));
+        }
+      });
+
+    });
+
+
+    that.parentTp.resources.each( function(e,i) {
+
+
+      var currentMarker = e.get('marker');
+      if( currentMarker ) {
+
+        if( jQuery.inArray( e.get('id'), selectedList )  != -1 ) {
+          currentMarker.setIcon( that.markerIconSelected);
+          currentMarker.setMap(that.map);
+        }
+        else
+        if( jQuery.inArray( e.get('id'), visibleList )  != -1 ) {  // in list
+          currentMarker.setIcon( that.markerIcon);
+          currentMarker.setMap(that.map);
+        }
+        else{ // not in list
+          currentMarker.setMap(null);
+        }
+      }
+    });
+
   }
+
 
 
 });
