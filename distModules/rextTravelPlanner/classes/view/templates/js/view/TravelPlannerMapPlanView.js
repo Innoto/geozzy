@@ -40,13 +40,20 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   },
   setInitMap: function(){
     var that = this;
+
+
+    eval("var estilosMapa = "+cogumelo.publicConf.rextMapConf.styles+";");
+
+
     that.mapOptions = {
-      center: { lat: 43.1, lng: -7.36 },
+      center: {lat:parseFloat(cogumelo.publicConf.rextMapConf.defaultLat),lng:parseFloat(cogumelo.publicConf.rextMapConf.defaultLng) }, //{ lat: 43.1, lng: -7.36 },
       mapTypeControl: false,
       fullscreenControl: false,
-      zoom: 7//,
-      /*styles : mapTheme*/
+      mapTypeId: cogumelo.publicConf.rextMapConf.mapTypeId,
+      zoom: cogumelo.publicConf.rextMapConf.defaultZoom,
+      styles : estilosMapa
     };
+    
     if(that.map === false){
       that.map = new google.maps.Map( that.$('.travelPlannerMapPlan .map').get( 0 ), that.mapOptions);
       google.maps.event.addListener( that.map, 'idle' ,function(e) {

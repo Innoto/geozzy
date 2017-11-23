@@ -50,12 +50,15 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     that.allResourcesCollection = allResources;
 
     if(that.map === false){
+
+      eval("var estilosMapa = "+cogumelo.publicConf.rextMapConf.styles+";");
       that.mapOptions = {
-        center: { lat: 43.1, lng: -7.36 },
+        center: {lat:parseFloat(cogumelo.publicConf.rextMapConf.defaultLat),lng:parseFloat(cogumelo.publicConf.rextMapConf.defaultLng) }, //{ lat: 43.1, lng: -7.36 },
         mapTypeControl: false,
         fullscreenControl: false,
-        zoom: 7//,
-        /*styles : mapTheme*/
+        mapTypeId: cogumelo.publicConf.rextMapConf.mapTypeId,
+        zoom: cogumelo.publicConf.rextMapConf.defaultZoom,
+        styles : estilosMapa
       };
 
       that.map = new google.maps.Map( that.$('.travelPlannerMap .map').get( 0 ), that.mapOptions);
@@ -94,15 +97,17 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     var selectedList = [];
 
     $.each( that.parentTp.tpData.get('list'), function(i,e) {
-
-      $.each(e, function(i2,e2) {
-
-        if( jQuery.inArray( parseInt(e2.id), selectedList )  == -1 ){
-          selectedList.push(parseInt(e2.id));
-        }
-      });
-
+      if(e!= 'false') {
+        $.each(e, function(i2,e2) {
+          if(e2!= 'false') {
+            if( jQuery.inArray( parseInt(e2.id), selectedList )  == -1 ){
+              selectedList.push(parseInt(e2.id));
+            }
+          }
+        });
+      }
     });
+
 
 
     that.parentTp.resources.each( function(e,i) {
