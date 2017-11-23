@@ -9,6 +9,7 @@
         </div>
       </div>
       <div class="travelPlannerFilterBar clearfix">
+        <div class="mode mode1">
           <span>{t}Filtros :{/t}</span>
           <select class="filterByFavourites">
             <option value="*">{t}All{/t}</option>
@@ -20,7 +21,10 @@
               <option value="<%= elem.idName %>"><%= elem.name %></option>
             <% }); %>
           </select>
-
+        </div>
+        <div class="mode mode2">
+          <div class="days">hola</div>
+        </div>
       </div>
     </div>
     <div class="travelPlannerList">

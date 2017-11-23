@@ -121,7 +121,8 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.$el.find('.travelPlannerPlan').hide();
       that.$el.find('.travelPlannerMap').show();
       that.$el.find('.travelPlannerMapPlan').hide();
-      that.$el.find('.travelPlannerFilterBar *').show();
+      that.$el.find('.travelPlannerFilterBar .mode').hide();
+      that.$el.find('.travelPlannerFilterBar .mode'+mode).show();
 
       that.parentTp.travelPlannerMapView.setInitMap();
       that.listResources();
@@ -134,7 +135,8 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.$el.find('.travelPlannerPlan').show();
       that.$el.find('.travelPlannerMap').hide();
       that.$el.find('.travelPlannerMapPlan').show();
-      that.$el.find('.travelPlannerFilterBar *').hide();
+      that.$el.find('.travelPlannerFilterBar .mode').hide();
+      that.$el.find('.travelPlannerFilterBar .mode'+mode).show();
       that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
     }
   }

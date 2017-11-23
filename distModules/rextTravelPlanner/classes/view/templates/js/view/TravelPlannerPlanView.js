@@ -205,7 +205,13 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       $(day).each( function(i,item){
         hoursInDay += parseInt(item.time);
       });
-      $('.plannerDay-' + iday +' .infoTime span').html( that.getFormatedTime(hoursInDay));
+      if(hoursInDay > 0){
+        $('.plannerDay-' + iday +' .infoTime').show();
+        $('.plannerDay-' + iday +' .infoTime span').html( that.getFormatedTime(hoursInDay));
+      }
+      else{
+        $('.plannerDay-' + iday +' .infoTime').hide();
+      }
     });
 
   },

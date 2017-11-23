@@ -76,11 +76,13 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   previousDay: function(e){
     var that = this;
     if(that.currentDay !== 0){
+      $('html,body').animate({scrollTop: $('#plannerDay-'+(parseInt(that.currentDay)-1)).offset().top},'slow');
       that.showDay(parseInt(that.currentDay)-1);
     }
   },
   nextDay: function(e){
     var that = this;
+    $('html,body').animate({scrollTop: $('#plannerDay-'+(parseInt(that.currentDay)+1)).offset().top},'slow');
     that.showDay(parseInt(that.currentDay)+1);
   },
   changeDay: function(){
