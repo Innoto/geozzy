@@ -10,6 +10,7 @@
   });
 
   function audioLoaded(){
+    alert('ready!')
     $('audio').mediaelementplayer({
       pluginPath: '/vendor/bower/mediaelement/',
       defaultAudioWidth: '250',
