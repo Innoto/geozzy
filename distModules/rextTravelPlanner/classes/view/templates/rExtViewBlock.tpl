@@ -4,8 +4,8 @@
       <div class="travelPlannerDateButtons clearfix">
         <div class="travelPlannerDateBar"></div>
         <div class="travelPlannerButtonsBar clearfix">
-          <div class="tp-gotoPlan"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> {t}Go to my plan{/t}</div>
-          <div class="tp-goAddtoPlan"><i class="fa fa-plus" aria-hidden="true"></i> {t}Add Places{/t}</div>
+          <div class="tp-gotoPlan">{t}Go to my plan{/t} <i class="fa fa-angle-right" aria-hidden="true"></i></div>
+          <div class="tp-goAddtoPlan"><i class="fa fa-angle-left" aria-hidden="true"></i> {t}Add Places{/t}</div>
         </div>
       </div>
       <div class="travelPlannerFilterBar clearfix">
@@ -71,13 +71,14 @@
 </script>
 <!-- *************************** NESTABLE DAY LIST ************************************** -->
 <script type="text/template" id="dayTPTemplate">
+  <span class="anchor" id="plannerDay-<%- day.id %>"></span>
   <div class="plannerDay plannerDay-<%- day.id %>" data-day="<%- day.id %>">
     <div class="plannerDayHeader clearfix">
       <div class="dayTitle">{t}Day{/t}<span> <%- day.id+1 %><span> </div>
       <div class="infoDay"><div class="day"><%- day.dayName %></div><div class="date"><%- day.date %></div></div>
-      <div class="infoRight">
+      <div class="infoRight clearfix">
         <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
-        <div class="showMap">{t}Show on map{/t}&nbsp;<i class="fa fa-map-marker" aria-hidden="true"></i></div>
+        <div class="showMap"><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
       </div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
