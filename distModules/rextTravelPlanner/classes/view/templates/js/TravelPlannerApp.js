@@ -24,7 +24,8 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     filters: false,
     rtype: false,
     rextmodels: true,
-    urlAlias: true
+    urlAlias: true,
+    category:true
   }
 
 /*
@@ -102,6 +103,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       that.getResourcesFav(),
       that.tpData.fetchData()
     ).done( function() {
+      
       //Instancia de ambos maps pero controlados en el InterfaceView
       that.travelPlannerMapView = new geozzy.travelPlannerComponents.TravelPlannerMapView( that );
       that.travelPlannerMapPlanView = new geozzy.travelPlannerComponents.TravelPlannerMapPlanView( that );
