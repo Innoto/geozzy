@@ -9,10 +9,11 @@
     }
   });
 
-  function loadedFun(){
+/*  function loadedFun(){
     $('audio').mediaelementplayer({
       pluginPath: '/vendor/bower/mediaelement/',
       defaultAudioWidth: '250',
       shimScriptAccess: 'always'
     });
+    */
   }
