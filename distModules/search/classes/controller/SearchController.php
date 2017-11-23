@@ -7,18 +7,18 @@ class SearchController {
   private $indexType = 'base';
   private $limit = 20;
   private $langAnalyzer = [
-    'es' => 'Spanish',
-    'gl' => 'Galician',
-    'eu' => 'Basque',
-    'ca' => 'Catalan',
-    'pt' => 'Portuguese',
-    'en' => 'English',
-    'fr' => 'French',
-    'de' => 'German',
-    'it' => 'Italian',
-    'da' => 'Danish',
-    'fi' => 'Finnish',
-    'el' => 'Greek',
+    'es' => 'spanish',
+    'gl' => 'galician',
+    'eu' => 'basque',
+    'ca' => 'catalan',
+    'pt' => 'portuguese',
+    'en' => 'english',
+    'fr' => 'french',
+    'de' => 'german',
+    'it' => 'italian',
+    'da' => 'danish',
+    'fi' => 'finnish',
+    'el' => 'greek',
   ];
 
 
@@ -51,6 +51,7 @@ class SearchController {
       $this->actLang = $C_LANG;
       $this->defLang = Cogumelo::getSetupValue('lang:default');
       $this->allLang = Cogumelo::getSetupValue('lang:available');
+      $this->keysLang = array_keys($this->allLang);
     }
   }
 
@@ -70,42 +71,51 @@ class SearchController {
       }
 
 
+
       // $typeTextIndex = [ 'type' => 'text', 'copy_to' => 'searchAllText' ];
-      $typeTextIndex = [ 'type' => 'text', 'analyzer' => 'spanish' ];
+      $properties = [
+        'id' => [ 'type' => 'integer' ],
+        'rTypeId' => [ 'type' => 'integer' ],
+        'rTypeIdName' => [ 'type' => 'keyword' ], //only searchable by their exact value.
+        'user' => [ 'type' => 'integer' ],
+        'timeCreation' => [ 'type' => 'date' ],
+        'timeLastUpdate' => [ 'type' => 'date' ],
+        'location' => [ 'type' => 'geo_point' ],
+      ];
+
+      foreach( $this->keysLang as $langKey ) {
+        $properties[ 'title_suggest_'.$langKey ] = [
+          'type' => 'completion',
+          'analyzer' => $this->langAnalyzer[ $langKey ]
+        ];
+      }
+
+      $textFields = [ 'title', 'shortDescription', 'mediumDescription', 'content',
+        'headKeywords', 'headDescription', 'headTitle', 'termsNames', 'urlAlias' ];
+      foreach( $textFields as $name ) {
+        foreach( $this->keysLang as $langKey ) {
+          $properties[ $name.'_'.$langKey ] = [
+            'type' => 'text',
+            'analyzer' => $this->langAnalyzer[ $langKey ]
+          ];
+        }
+      }
+
+
+      // Create the index with mappings and settings now
       $params = [
         'index' => $this->indexName,
         'body' => [
           'mappings' => [
             $indexType => [
-              'properties' => [
-                'id' => [ 'type' => 'integer' ],
-                'lang' => [ 'type' => 'keyword' ], //only searchable by their exact value.
-                'rTypeId' => [ 'type' => 'integer' ],
-                'rTypeIdName' => [ 'type' => 'keyword' ], //only searchable by their exact value.
-                'user' => [ 'type' => 'integer' ],
-                'timeCreation' => [ 'type' => 'date' ],
-                'timeLastUpdate' => [ 'type' => 'date' ],
-                'title' => $typeTextIndex,
-                'title_suggest' => [
-                  'type' => 'completion',
-                  'analyzer' => 'spanish'
-                ],
-                'shortDescription' => $typeTextIndex,
-                'mediumDescription' => $typeTextIndex,
-                'content' => $typeTextIndex,
-                'termsNames' => $typeTextIndex,
-                'headKeywords' => $typeTextIndex,
-                'headDescription' => $typeTextIndex,
-                'headTitle' => $typeTextIndex,
-                'urlAlias' => [ 'type' => 'text' ],
-                'location' => [ 'type' => 'geo_point' ],
-                // 'searchAllText' => [ 'type' => 'text' ], // Combined text fields
-              ]
+              'properties' => $properties
             ]
           ]
         ]
       ];
-      // Create the index with mappings and settings now
+
+      // $this->mostrar($params);
+      // die();
       $response = $this->searchService->indices()->create($params);
 
 
@@ -116,7 +126,7 @@ class SearchController {
         while( $taxObj = $taxList->fetch() ) {
           $resId = $taxObj->getter('resource');
 
-          foreach( array_keys($this->allLang) as $langKey ) {
+          foreach( $this->keysLang as $langKey ) {
             $termName = $this->getValueTr( $taxObj, 'name', $langKey);
             if( !empty( $termName ) ) {
               $taxText[$resId][$langKey] = empty($taxText[$resId][$langKey]) ? $termName : $taxText[$resId][$langKey].', '.$termName;
@@ -136,6 +146,7 @@ class SearchController {
       $resList = $resModel->listItems([ 'filters' => $filters ]);
       if( is_object( $resList ) ) {
         Cogumelo::load('coreModel/DBUtils.php');
+
         while( $resObj = $resList->fetch() ) {
           $resId = $resObj->getter('id');
           $searchInfo .= "\n Resource: ".$resId;
@@ -145,12 +156,15 @@ class SearchController {
             'rTypeIdName' => $resObj->getter('rTypeIdName'),
             'user' => $resObj->getter('user'),
           ];
+
           if( $timeCreation = $resObj->getter('timeCreation') ) {
             $base['timeCreation'] = strtr( $timeCreation, ' ', 'T').'Z';
           }
+
           if( $timeLastUpdate = $resObj->getter('timeLastUpdate') ) {
             $base['timeLastUpdate'] = strtr( $timeLastUpdate, ' ', 'T').'Z';
           }
+
           if( $loc = $resObj->getter('loc') ) {
             $geoLocation = DBUtils::decodeGeometry( $loc );
             // $base['location'] = ''.$geoLocation['data'][0].','.$geoLocation['data'][1];
@@ -160,38 +174,38 @@ class SearchController {
             ];
           }
 
-          foreach( array_keys($this->allLang) as $langKey ) {
+          foreach( $this->keysLang as $langKey ) {
+            $title = $this->getValueTr( $resObj, 'title', $langKey);
 
-            $base['lang'] = $langKey;
-            $base['title'] = $this->getValueTr( $resObj, 'title', $langKey);
-            $base['title_suggest'] = $base['title'];
-            $base['shortDescription'] = $this->getValueTr( $resObj, 'shortDescription', $langKey);
-            $base['mediumDescription'] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'mediumDescription', $langKey) ) );
-            $base['content'] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'content', $langKey) ) );
-            $base['headKeywords'] = $this->getValueTr( $resObj, 'headKeywords', $langKey);
-            $base['headDescription'] = $this->getValueTr( $resObj, 'headDescription', $langKey);
-            $base['headTitle'] = $this->getValueTr( $resObj, 'headTitle', $langKey);
-            $base['urlAlias'] = $this->getValueTr( $resObj, 'urlAlias', $langKey);
+            $base['title_suggest_'.$langKey] = $title;
+
+            $base['title_'.$langKey] = $title;
+            $base['shortDescription_'.$langKey] = $this->getValueTr( $resObj, 'shortDescription', $langKey);
+            $base['mediumDescription_'.$langKey] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'mediumDescription', $langKey) ) );
+            $base['content_'.$langKey] = html_entity_decode( strip_tags( $this->getValueTr( $resObj, 'content', $langKey) ) );
+            $base['headKeywords_'.$langKey] = $this->getValueTr( $resObj, 'headKeywords', $langKey);
+            $base['headDescription_'.$langKey] = $this->getValueTr( $resObj, 'headDescription', $langKey);
+            $base['headTitle_'.$langKey] = $this->getValueTr( $resObj, 'headTitle', $langKey);
+
             if( !empty( $taxText[$resId][$langKey] ) ) {
-              $base['termsNames'] = $taxText[$resId][$langKey];
-            }
-            else {
-              unset($base['termsNames']);
+              $base['termsNames_'.$langKey] = $taxText[$resId][$langKey];
             }
 
-            $params = [
-              'index' => $this->indexName,
-              'type' => $indexType,
-              'id' => $resId.'_'.$langKey,
-              'body' => $base
-            ];
-
-            $response = $this->searchService->index($params);
+            $base['urlAlias_'.$langKey] = $this->getValueTr( $resObj, 'urlAlias', $langKey);
           }
 
-        }
+          $params = [
+            'index' => $this->indexName,
+            'type' => $indexType,
+            'id' => $resId,
+            'body' => $base
+          ];
+
+          $response = $this->searchService->index($params);
+        } // while( $resObj = $resList->fetch() )
       }
 
+      $this->mostrar( $base );
 
       $searchInfo .= "\n\n createIndexBase $this->indexName FIN \n\n";
     }
@@ -221,19 +235,19 @@ class SearchController {
       ];
 
       $matchs = [
-        [ 'match' => [ 'lang' => $lang ] ],
+        // [ 'match' => [ 'lang' => $lang ] ],
         [ 'multi_match' => [
         'type' => 'most_fields',
           'query' => $text,
           'fields' => [
-            'title^4',
-            'termsNames^2',
-            'shortDescription^3',
-            'mediumDescription^3',
-            'content',
-            'headKeywords',
-            'headDescription',
-            'headTitle',
+            'title_'.$this->actLang.'^4',
+            'shortDescription_'.$this->actLang.'^3',
+            'mediumDescription_'.$this->actLang.'^3',
+            'termsNames_'.$this->actLang.'^2',
+            'content_'.$this->actLang,
+            'headKeywords_'.$this->actLang,
+            'headDescription_'.$this->actLang,
+            'headTitle_'.$this->actLang,
           ]
         ]]
       ];
@@ -266,8 +280,6 @@ class SearchController {
 
 
 
-
-
   public function showInfoSuggest() {
     $response = false;
 
@@ -277,16 +289,20 @@ class SearchController {
         'search_suggest' => [
           'text' => $_GET['s'],
           'completion' => [
-            'field' => 'title_suggest'
+            'field' => 'title_suggest_'.$this->actLang
           ]
         ]
       ]
     ];
 
+    $this->mostrar($params);
+
     $response = $this->searchService->suggest($params);
 
     return $response;
   }
+
+
 
   //
   //
@@ -573,4 +589,14 @@ class SearchController {
   //
   //
   //
+
+
+
+  public function mostrar( $datos ) {
+    $pr = print_r( $datos, true );
+
+    $pat = ['/^\s*[\(\)]?\s*\n/m', '/    /', '/ => Array/'];
+    $sus = ['', '  ', ''];
+    echo preg_replace( $pat, $sus, $pr );
+  }
 } // END SearchController class
