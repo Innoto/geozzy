@@ -28,6 +28,10 @@
     cursor: pointer;
   }
 
+  .rExtMapDirections .mapDirInMapPrint a{
+    color: #444;
+  }
+
   .rExtMapDirections.routeMode {
     position: relative;
     padding: 5px 20px;
@@ -109,7 +113,11 @@
   </div>
   {$jsMapDirectionsList}
   <div class="postBar barInMap jsMapDirInMapBar">
-    <div class="mapDirInMapPrint jsMapDirInMapPrint"><span class="button fa fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="{t}Print route{/t}"></span></div>
+    <div class="mapDirInMapPrint jsMapDirInMapPrint">
+      <a href="#" title="{t}Print directions{/t}" target="_blank" rel="noopener noreferrer">
+        <span class="button fa fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="{t}Print directions{/t}"></span>
+      </a>
+    </div>
   </div>
 </div>
 {/capture}
