@@ -138,12 +138,19 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     //console.log(that.parentTp.resources.get(resourceId).get('categoryIds') );
     //currentCategory
 
+    if(selected) {
+      var iconProfile = 'servicesExplorer';
+    }
+    else {
+      var iconProfile = 'landmarkExplorer';
+    }
+
     $.each(that.parentTp.categories, function(i,e) {
       e.each( function(e2,i2) {
         //console.log( e2.id );
 
         if( jQuery.inArray( e2.id , that.parentTp.resources.get(resourceId).get('categoryIds')  )  != -1 ) {
-          iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/landmarkExplorer/marker.png';
+          iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/'+iconProfile+'/marker.png';
           return;
         }
 
