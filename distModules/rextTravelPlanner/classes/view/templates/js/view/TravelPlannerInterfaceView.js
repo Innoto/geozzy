@@ -32,8 +32,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
 
   render: function() {
     var that = this;
-    that.listResources();
-    that.parentTp.travelPlannerMapView.setMarkers();
+
   },
 
   loadInterfaceTravelPlanner: function(){
@@ -85,11 +84,13 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.resourceTemplate = _.template( $('#resourceItemTPTemplate').html() );
       that.$('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
     });
+
+    that.parentTp.travelPlannerMapView.setMarkers();
   },
   //Bind para cuando cambia un filtro
   changeFilters: function(e){
     var that = this;
-    that.render();
+    that.listResources();
   },
   //Bind para añadir un recurso
   addToPlan: function(e){
@@ -118,8 +119,10 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.$el.find('.travelPlannerMap').show();
       that.$el.find('.travelPlannerMapPlan').hide();
       that.$el.find('.travelPlannerFilterBar *').show();
+
       that.parentTp.travelPlannerMapView.setInitMap();
-      that.parentTp.travelPlannerMapView.setMarkers();
+      that.listResources();
+
     }
     else{
       that.$el.find('.tp-gotoPlan').hide();
