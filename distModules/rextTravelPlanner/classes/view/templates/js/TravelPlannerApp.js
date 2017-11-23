@@ -26,8 +26,21 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     rextmodels: true,
     urlAlias: true
   }
+
+/*
   if(cogumelo.publicConf.mod_geozzy_travelPlanner.toString() !== ''){
     resParam.rtype = cogumelo.publicConf.mod_geozzy_travelPlanner.toString();
+  }else{
+    console.log('FALTA CONF');
+  }
+*/
+  if(cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes.toString() !== ''){
+    var arrayRtypeKeys = [];
+    $.each(cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes, function(i,e){
+      arrayRtypeKeys.push(i);
+    });
+
+    resParam.rtype = arrayRtypeKeys.toString();
   }else{
     console.log('FALTA CONF');
   }

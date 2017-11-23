@@ -40,7 +40,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     that.interfaceTemplate = _.template( $('#travelPlannerInterfaceTemplate').html() );
 
     var rtypesFilters = [];
-    _.each( cogumelo.publicConf.mod_geozzy_travelPlanner, function(item){
+    _.each( cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes, function(i, item){
       rtypesFilters.push(that.parentTp.rtypes.where({ idName: item })[0].toJSON());
     });
     that.$el.html( that.interfaceTemplate({ rtypesFilters: rtypesFilters }) );
