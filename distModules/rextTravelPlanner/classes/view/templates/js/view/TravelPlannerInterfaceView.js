@@ -33,6 +33,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   render: function() {
     var that = this;
     that.listResources();
+    that.parentTp.travelPlannerMapView.setMarkers();
   },
 
   loadInterfaceTravelPlanner: function(){
@@ -118,6 +119,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.$el.find('.travelPlannerMapPlan').hide();
       that.$el.find('.travelPlannerFilterBar *').show();
       that.parentTp.travelPlannerMapView.setInitMap();
+      that.parentTp.travelPlannerMapView.setMarkers();
     }
     else{
       that.$el.find('.tp-gotoPlan').hide();
