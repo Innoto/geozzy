@@ -111,11 +111,9 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       }
     });
 
-//alert(categoriesStringFetch);
-
-
     eval(''+
       '$.when('+
+      categoriesStringFetch +
       '  that.resources.fetch(),' +
       '  that.rtypes.fetch(),' +
       '  that.getResourcesFav(),'+

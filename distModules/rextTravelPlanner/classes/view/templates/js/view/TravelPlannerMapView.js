@@ -134,29 +134,27 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
   getICon: function( resourceId, selected ) {
     var that = this;
     var retObj = false;
-
-    console.log(that.parentTp.resources.get(resourceId).get('categoryIds') );
+    var iconUrl = false;
+    //console.log(that.parentTp.resources.get(resourceId).get('categoryIds') );
     //currentCategory
-/*
-    if( explorador.categoriaServicios ) {
 
-      explorador.categoriaServicios.each( function(ecat){
+    $.each(that.parentTp.categories, function(i,e) {
+      e.each( function(e2,i2) {
+        //console.log( e2.id );
 
-        if( $.inArray(ecat.get('id'), markerData.get('terms')) > -1 ) {
-
-          if( jQuery.isNumeric( ecat.get('icon') ) ){
-            console.log(ecat.get('id'),  markerData.get('terms') )
-            iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+ecat.get('icon')+'-a'+ecat.get('iconAKey')+'/servicesMiniExplorer/marker.png';
-            console.log(iconUrl)
-            return false;
-          }
+        if( jQuery.inArray( e2.id , that.parentTp.resources.get(resourceId).get('categoryIds')  )  != -1 ) {
+          iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/landmarkExplorer/marker.png';
+          return;
         }
-      });
-    }*/
 
-    //if(iconUrl) {
+
+      });
+    });
+
+
+    if(iconUrl) {
       retObj = {
-        url: '/asdf',
+        url: iconUrl,
         // This marker is 20 pixels wide by 36 pixels high.
         size: new google.maps.Size(24, 24),
         // The origin for this image is (0, 0).
@@ -164,7 +162,10 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
         // The anchor for this image is the base of the flagpole at (0, 36).
         anchor: new google.maps.Point(12, 12)
       };
-    //}
+    }
+    {
+
+    }
 
     return retObj;
 
