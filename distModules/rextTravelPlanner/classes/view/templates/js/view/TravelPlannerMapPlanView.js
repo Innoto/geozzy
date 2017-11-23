@@ -53,7 +53,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       zoom: cogumelo.publicConf.rextMapConf.defaultZoom,
       styles : estilosMapa
     };
-    
+
     if(that.map === false){
       that.map = new google.maps.Map( that.$('.travelPlannerMapPlan .map').get( 0 ), that.mapOptions);
       google.maps.event.addListener( that.map, 'idle' ,function(e) {

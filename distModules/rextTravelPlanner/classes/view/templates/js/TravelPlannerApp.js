@@ -14,6 +14,8 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.travelPlannerResourceView = false;
   that.travelPlannerDefaultVisitTime = 116; // in minutes
   that.travelPlannerMode = 1;
+  that.categories = {};
+
 
   if( typeof cogumelo.publicConf.C_LANG === 'string' ) {
     moment.locale(cogumelo.publicConf.C_LANG);
@@ -97,52 +99,76 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       Backbone.history.stop();
       Backbone.history.start();
     }
-    $.when(
-      that.resources.fetch(),
-      that.rtypes.fetch(),
-      that.getResourcesFav(),
-      that.tpData.fetchData()
-    ).done( function() {
-      
-      //Instancia de ambos maps pero controlados en el InterfaceView
-      that.travelPlannerMapView = new geozzy.travelPlannerComponents.TravelPlannerMapView( that );
-      that.travelPlannerMapPlanView = new geozzy.travelPlannerComponents.TravelPlannerMapPlanView( that );
 
-      that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
-      that.initDates();
-      if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
-        that.initPlan();
-      }else{
-        alert('Modal para seleccionar Fechas');
+
+    var categoriesStringFetch = '';
+    $.each(cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes, function(i,e){
+      if( typeof e.taxGroup != 'undefined' ) {
+        var categoria = new geozzy.collection.CategorytermCollection();
+        categoria.setUrlByIdName( e.taxGroup );
+        eval('that.categories.' + i + ' = categoria;');
+        categoriesStringFetch += ( 'that.categories.' + i + '.fetch(),' );
       }
     });
-  },
+
+//alert(categoriesStringFetch);
+
+
+    eval(''+
+      '$.when('+
+      '  that.resources.fetch(),' +
+      '  that.rtypes.fetch(),' +
+      '  that.getResourcesFav(),'+
+      '  that.tpData.fetchData()'+
+      ').done( function() {'+
+      '  that.ajaxLoadDone();'+
+      '});'
+    );
+  };
+
+
+  that.ajaxLoadDone = function(){
+    //Instancia de ambos maps pero controlados en el InterfaceView
+    that.travelPlannerMapView = new geozzy.travelPlannerComponents.TravelPlannerMapView( that );
+    that.travelPlannerMapPlanView = new geozzy.travelPlannerComponents.TravelPlannerMapPlanView( that );
+
+    that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
+    that.initDates();
+    if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
+      that.initPlan();
+    }else{
+      alert('Modal para seleccionar Fechas');
+    }
+  };
+
   that.initDates = function(){
     that.travelPlannerDatesView = new geozzy.travelPlannerComponents.TravelPlannerDatesView(that);
-  },
+  };
+
   that.initPlan = function(){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerPlanView = new geozzy.travelPlannerComponents.TravelPlannerPlanView(that);
     }
-  },
+  };
+
   that.addToPlan = function(idRes){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, idRes );
     }else{
       alert("Select dates first");
     }
-  },
+  };
   that.showMap = function(day){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerMapPlanView.showDay(day);
     }
-  },
+  };
   that.editResourceToPlan = function(data){
     that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, data.id, data, 'edit' );
-  },
+  };
   that.momentDate = function( date ) {
     return moment( date, that.timeServerFormat );
-  },
+  };
   that.openResource = function( resourceId ) {
     $(".tpDuResource").show();
     $(".tpDuResource").load(
@@ -154,10 +180,10 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
         //$(".storyContainer.story-container-du").show();
       }
     );
-  },
+  };
 
   that.closeResource = function() {
     $('.tpDuResource').hide();
     $('.tpDuResource').html('')
-  }
+  };
 }

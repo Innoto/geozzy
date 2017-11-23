@@ -10,7 +10,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
   markers : [],
   selectedMarkers : [],
   planDays: 0,
-
+/*
   markerIcon: {
     path: google.maps.SymbolPath.CIRCLE,
     fillOpacity: 1,
@@ -30,7 +30,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     strokeColor: '#fff',
     scale: 6
   },
-
+*/
   events: {
     'click .travelPlannerMap .filterDay-previous': 'previousDay',
     'click .travelPlannerMap .filterDay-next': 'nextDay'
@@ -108,21 +108,19 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
       }
     });
 
-
-
     that.parentTp.resources.each( function(e,i) {
-
-
       var currentMarker = e.get('marker');
       if( currentMarker ) {
 
+
+
         if( jQuery.inArray( e.get('id'), selectedList )  != -1 ) {
-          currentMarker.setIcon( that.markerIconSelected);
+          currentMarker.setIcon( that.getICon(e.get('id'), true) );
           currentMarker.setMap(that.map);
         }
         else
         if( jQuery.inArray( e.get('id'), visibleList )  != -1 ) {  // in list
-          currentMarker.setIcon( that.markerIcon);
+          currentMarker.setIcon( that.getICon(e.get('id'), false) );
           currentMarker.setMap(that.map);
         }
         else{ // not in list
@@ -130,6 +128,45 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
         }
       }
     });
+
+  },
+
+  getICon: function( resourceId, selected ) {
+    var that = this;
+    var retObj = false;
+
+    console.log(that.parentTp.resources.get(resourceId).get('categoryIds') );
+    //currentCategory
+/*
+    if( explorador.categoriaServicios ) {
+
+      explorador.categoriaServicios.each( function(ecat){
+
+        if( $.inArray(ecat.get('id'), markerData.get('terms')) > -1 ) {
+
+          if( jQuery.isNumeric( ecat.get('icon') ) ){
+            console.log(ecat.get('id'),  markerData.get('terms') )
+            iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+ecat.get('icon')+'-a'+ecat.get('iconAKey')+'/servicesMiniExplorer/marker.png';
+            console.log(iconUrl)
+            return false;
+          }
+        }
+      });
+    }*/
+
+    //if(iconUrl) {
+      retObj = {
+        url: '/asdf',
+        // This marker is 20 pixels wide by 36 pixels high.
+        size: new google.maps.Size(24, 24),
+        // The origin for this image is (0, 0).
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at (0, 36).
+        anchor: new google.maps.Point(12, 12)
+      };
+    //}
+
+    return retObj;
 
   }
 
