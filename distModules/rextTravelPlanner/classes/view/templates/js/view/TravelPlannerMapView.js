@@ -139,10 +139,11 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     //currentCategory
 
     if(selected) {
-      var iconProfile = 'servicesExplorer';
+      console.log('seleccionado');
+      var iconProfile = cogumelo.publicConf.mod_geozzy_travelPlanner.markerImgProfileSelected;
     }
     else {
-      var iconProfile = 'landmarkExplorer';
+      var iconProfile = cogumelo.publicConf.mod_geozzy_travelPlanner.markerImgProfile;
     }
 
     $.each(that.parentTp.categories, function(i,e) {
@@ -170,8 +171,11 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
         anchor: new google.maps.Point(12, 12)
       };
     }
+    else
     {
-
+      retObj = {
+        url: cogumelo.publicConf.rextMapConf.defaultMarker,
+      };
     }
 
     return retObj;
