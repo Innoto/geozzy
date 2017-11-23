@@ -33,6 +33,7 @@ class story extends Module {
     'js/collection/StoryStepCollection.js',
     'js/view/StoryTemplates.js',
     'js/view/StoryList.js',
+    'js/view/StoryListAcc.js',
     'js/view/StoryBackground.js',
     'js/view/plugins/StoryPluginLegendView.js',
     'js/view/plugins/StoryPluginPOISView.js',

@@ -7,12 +7,13 @@
         $('.audioguideBlock audio').attr('autoplay', true)
       }
     }
+
   });
 
   function loadedFun(){
-    $('audio').mediaelementplayer({
+/*    $('audio').mediaelementplayer({
       pluginPath: '/vendor/bower/mediaelement/',
       defaultAudioWidth: '250',
       shimScriptAccess: 'always'
-    });
+    });*/
   }

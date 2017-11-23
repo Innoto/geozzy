@@ -17,11 +17,13 @@ class rextMapDirections extends Module {
   public $includesCommon = array(
     'controller/RExtMapDirectionsController.php',
     'js/rExtMapDirectionsController.js',
-    'js/rExtMapDirectionsInstance.js'
+    'js/rExtMapDirectionsInstance.js',
+    'view/printMapDirectionsView'
   );
 
 
   public function __construct() {
+    $this->addUrlPatterns( '#^directions/print/(.*)$#', 'view:printMapDirectionsView::printMapDirections' );
   }
 
 
