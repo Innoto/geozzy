@@ -61,6 +61,9 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
       that.map = new google.maps.Map( that.$('.travelPlannerMap .map').get( 0 ), that.mapOptions);
       that.setMarkers();
     }
+    else {
+      google.maps.event.trigger(that.map, 'resize');
+    }
   },
   setMarkers: function() {
     var that = this;

@@ -53,6 +53,9 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         that.centerMap();
       });
     }
+    else {
+      google.maps.event.trigger(that.map, 'resize');
+    }
   },
   showDay: function(daySelected){
     var that = this;
