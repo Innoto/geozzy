@@ -1,5 +1,7 @@
   $(document).ready(function(){
 
+    alert('ola!')
+
     var all_url = window.location.href.split('?');
     if(all_url[1]){
       var url = all_url[1].split('=');
@@ -7,13 +9,13 @@
         $('.audioguideBlock audio').attr('autoplay', true)
       }
     }
+
   });
 
-  function audioLoaded(){
-    alert('ready!')
-    $('audio').mediaelementplayer({
+  function loadedFun(){
+/*    $('audio').mediaelementplayer({
       pluginPath: '/vendor/bower/mediaelement/',
       defaultAudioWidth: '250',
       shimScriptAccess: 'always'
-    });
+    });*/
   }
