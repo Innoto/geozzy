@@ -55,6 +55,7 @@ class SearchController {
     }
   }
 
+
   public function createIndex( $indexType = false ) {
     $searchInfo = false;
 
@@ -213,6 +214,16 @@ class SearchController {
     return $searchInfo;
   }
 
+  public function getValueTr( $obj, $fieldName, $lang ) {
+    $value = $obj->getter($fieldName.'_'.$lang);
+    if( $lang !== $this->defLang && empty( $value ) ) {
+      $value = $obj->getter($fieldName.'_'.$this->defLang);
+    }
+
+    return $value;
+  }
+
+
   public function search( $text, $lang = false ) {
 
     return $this->searchInType( $this->indexType, $text, $lang );
@@ -269,33 +280,47 @@ class SearchController {
   }
 
 
-  public function getValueTr( $obj, $fieldName, $lang ) {
-    $value = $obj->getter($fieldName.'_'.$lang);
-    if( $lang !== $this->defLang && empty( $value ) ) {
-      $value = $obj->getter($fieldName.'_'.$this->defLang);
+  public function getJsonSuggest( $busca ) {
+    $result = [
+      'query' => $busca,
+      'suggestions' => []
+    ];
+
+    $response = $this->getInfoSuggest( $busca );
+
+    if( !empty($response['search_suggest'][0]['options']) && count($response['search_suggest'][0]['options']) > 0 ) {
+      foreach( $response['search_suggest'][0]['options'] as $res ) {
+        $result['suggestions'][] = [
+          'value' => $res['_source']['title_'.$this->actLang],
+          'data' => [
+            'id' => $res['_source']['id'],
+            'url' => '/'.$this->actLang.$res['_source']['urlAlias_'.$this->actLang]
+          ]
+        ];
+      }
     }
 
-    return $value;
+    return json_encode( $result );
   }
 
-
-
-  public function showInfoSuggest() {
+  public function getInfoSuggest( $busca ) {
     $response = false;
 
     $params = [
       'index' => $this->indexName,
       'body' => [
         'search_suggest' => [
-          'text' => $_GET['s'],
+          'text' => $busca,
           'completion' => [
+            'size' => 10,
+            'fuzzy' => [ 'fuzziness' => 'AUTO' ],
             'field' => 'title_suggest_'.$this->actLang
           ]
         ]
       ]
     ];
 
-    $this->mostrar($params);
+    // $this->mostrar($params);
 
     $response = $this->searchService->suggest($params);
 

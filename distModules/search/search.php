@@ -298,6 +298,8 @@ class search extends Module {
     $this->addUrlPatterns( '#^cgml-search-demo$#', 'view:SearchView::showInfoDemo' );
     $this->addUrlPatterns( '#^cgml-search-su#', 'view:SearchView::showInfoSuggest' );
 
+    $this->addUrlPatterns( '#^cgml-search-auto#', 'view:SearchView::autocompletar' );
+
 
     // $this->addUrlPatterns( '#^cgml-search.json#', 'view:CogumeloAccessibilityView::jsonInfo' );
   }

@@ -51,6 +51,16 @@ class SearchView {
     // $this->mostrar($response);
   }
 
+  public function autocompletar() {
+    $busca = $_GET['query'];
+
+    $resultJson = $this->searchCtrl->getJsonSuggest( $busca );
+
+    header('Content-Type: text/plain');
+    echo $resultJson;
+  }
+
+
 
 
 
@@ -61,7 +71,7 @@ class SearchView {
     $searchInfo = "\n  showInfoSuggest FIN  \n\n";
 
     header('Content-Type: text/plain');
-    $response = $this->searchCtrl->showInfoSuggest();
+    $response = $this->searchCtrl->getInfoSuggest( $_GET['s'] );
 
     // var_dump($response);
     // echo "\n\n --- showInfoSuggest \n"; $this->mostrar($response);
