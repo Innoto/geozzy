@@ -187,7 +187,16 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     var that = this;
 
 
+    var selectedMarker = that.parentTp.resources.get(id).get('marker');
+    if( selectedMarker ) {
 
+      /*selectedMarker.setOptions({
+        title: 'selected'
+      });*/
+      selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+
+/*
     // set as selected
     var selectedMarker = that.parentTp.resources.get(id).get('marker');
     if( selectedMarker ) {
@@ -195,11 +204,21 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
       selectedMarker.setOptions({
         title: 'selected'
       });
-    }
+      console.log(selectedMarker)
+    }*/
   },
   markerBounceEnd: function(id) {
     var that = this;
+    var selectedMarker = that.parentTp.resources.get(id).get('marker');
+    if( selectedMarker ) {
 
+      /*selectedMarker.setOptions({
+        title: 'selected'
+      });*/
+      selectedMarker.setAnimation(null);
+
+    }
+/*
     // set as selected
     var selectedMarker = that.parentTp.resources.get(id).get('marker');
     if( selectedMarker ) {
@@ -207,7 +226,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
       selectedMarker.setOptions({
         title: 'selected'
       });
-    }
+    }*/
   }
 
 
