@@ -180,8 +180,35 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
 
     return retObj;
 
-  }
+  },
 
+
+  markerBounce: function(id) {
+    var that = this;
+
+
+
+    // set as selected
+    var selectedMarker = that.parentTp.resources.get(id).get('marker');
+    if( selectedMarker ) {
+      //selectedMarker.setMap(that.map)
+      selectedMarker.setOptions({
+        title: 'selected'
+      });
+    }
+  },
+  markerBounceEnd: function(id) {
+    var that = this;
+
+    // set as selected
+    var selectedMarker = that.parentTp.resources.get(id).get('marker');
+    if( selectedMarker ) {
+      //selectedMarker.setMap(null)
+      selectedMarker.setOptions({
+        title: 'selected'
+      });
+    }
+  }
 
 
 });

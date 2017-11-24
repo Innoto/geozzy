@@ -10,6 +10,8 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   events: {
     "change .travelPlannerFilterBar .filterByFavourites": "changeFilters",
     "change .travelPlannerFilterBar .filterByRtype": "changeFilters",
+    "mouseover .tpResourceItem": "resourceHover",
+    "mouseleave .tpResourceItem": "resourceLeave",
     "click .addToPlan": "addToPlan",
     "click .tp-gotoPlan": "goToPlan",
     "click .tp-goAddtoPlan": "goAddToPlan"
@@ -89,6 +91,15 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
 
 
     that.parentTp.travelPlannerMapView.showMarkers( resourcesToList.pluck('id')  );
+  },
+  resourceHover: function(e) {
+    var that = this;
+    that.parentTp.travelPlannerMapView.markerBounce($(e.currentTarget).attr('data-resource-id'));
+
+  },
+  resourceLeave: function(e) {
+    var that = this;
+    that.parentTp.travelPlannerMapView.markerBounceEnd($(e.currentTarget).attr('data-resource-id'));
   },
   //Bind para cuando cambia un filtro
   changeFilters: function(e){
