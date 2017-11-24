@@ -113,17 +113,19 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
       if( currentMarker ) {
 
 
-
         if( jQuery.inArray( e.get('id'), selectedList )  != -1 ) {
+          //console.log('seleccionado'+e.get('id'), selectedList)
           currentMarker.setIcon( that.getICon(e.get('id'), true) );
           currentMarker.setMap(that.map);
         }
         else
         if( jQuery.inArray( e.get('id'), visibleList )  != -1 ) {  // in list
+          //console.log('visible'+e.get('id'), visibleList)
           currentMarker.setIcon( that.getICon(e.get('id'), false) );
           currentMarker.setMap(that.map);
         }
         else{ // not in list
+          //console.log('oculto'+e.get('id'))
           currentMarker.setMap(null);
         }
       }
@@ -139,7 +141,6 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     //currentCategory
 
     if(selected) {
-      console.log('seleccionado');
       var iconProfile = cogumelo.publicConf.mod_geozzy_travelPlanner.markerImgProfileSelected;
     }
     else {
@@ -150,8 +151,14 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
       e.each( function(e2,i2) {
         //console.log( e2.id );
 
-        if( jQuery.inArray( e2.id , that.parentTp.resources.get(resourceId).get('categoryIds')  )  != -1 ) {
+        if(
+          jQuery.inArray( e2.id , that.parentTp.resources.get(resourceId).get('categoryIds')  )  != -1 &&
+          e2.get('iconAKey') &&
+          e2.get('icon')
+        ) {
+          console.log(resourceId,iconProfile, cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/'+iconProfile+'/marker.png')
           iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/'+iconProfile+'/marker.png';
+
           return;
         }
 
@@ -185,7 +192,6 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
 
   markerBounce: function(id) {
     var that = this;
-
 
     var selectedMarker = that.parentTp.resources.get(id).get('marker');
     if( selectedMarker ) {
