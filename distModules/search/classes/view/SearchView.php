@@ -26,7 +26,7 @@ class SearchView {
     echo $searchInfo;
   }
 
-  public function buscamos() {
+  public function search() {
     $response = 'NADA';
 
     header('Content-Type: text/plain');
@@ -43,15 +43,12 @@ class SearchView {
       echo "id:            ".$res['_source']['id']." \n";
       echo "rTypeIdName:   ".$res['_source']['rTypeIdName']." \n";
       echo "termsNames_".$this->actLang.": ".$res['_source']['termsNames_'.$this->actLang]." \n";
-      // echo "_".$this->actLang.": ".$res['_source']['_'.$this->actLang]." \n";
-      // echo "_".$this->actLang.": ".$res['_source']['_'.$this->actLang]." \n";
-      // echo "_".$this->actLang.": ".$res['_source']['_'.$this->actLang]." \n";
     }
 
     // $this->mostrar($response);
   }
 
-  public function autocompletar() {
+  public function completion() {
     $busca = $_GET['query'];
 
     $resultJson = $this->searchCtrl->getJsonSuggest( $busca );
@@ -71,23 +68,10 @@ class SearchView {
     $searchInfo = "\n  showInfoSuggest FIN  \n\n";
 
     header('Content-Type: text/plain');
-    $response = $this->searchCtrl->getInfoSuggest( $_GET['s'] );
+    $response = $this->searchCtrl->getInfoSuggestSearch( $_GET['s'] );
 
-    // var_dump($response);
-    // echo "\n\n --- showInfoSuggest \n"; $this->mostrar($response);
-
-    $sug = $response['search_suggest'][0];
-    echo "\nTotal: ".count($sug['options'])." (".$sug['text'].") \n";
-    foreach( $sug['options'] as $res ) {
-      echo "\nTitle_".$this->actLang.":      ".$res['_source']['title_'.$this->actLang]." \n";
-      echo "Score:         ".$res['_score']." \n";
-      echo "id:            ".$res['_source']['id']." \n";
-      echo "rTypeIdName:   ".$res['_source']['rTypeIdName']." \n";
-      echo "termsNames_".$this->actLang.": ".$res['_source']['termsNames_'.$this->actLang]." \n";
-      // echo "_".$this->actLang.": ".$res['_source']['_'.$this->actLang]." \n";
-      // echo "_".$this->actLang.": ".$res['_source']['_'.$this->actLang]." \n";
-      // echo "_".$this->actLang.": ".$res['_source']['_'.$this->actLang]." \n";
-    }
+    var_dump($response);
+    echo "\n\n --- showInfoSuggest \n"; $this->mostrar($response);
 
     echo $searchInfo;
   }

@@ -269,6 +269,8 @@ class SearchController {
         ]
       ];
 
+      $this->mostrar($params);
+
       $searchInfo = $this->searchService->search($params);
       // echo "\n\n --- RESULTADOS: ".$searchInfo['hits']['total']." --- \n\n";
       if( !empty($searchInfo['hits']) ) {
@@ -326,6 +328,59 @@ class SearchController {
 
     return $response;
   }
+
+
+  public function getInfoSuggestSearch( $busca ) {
+    $response = false;
+
+    // {
+    //   "query" : {
+    //     "match": {
+    //       "message": "tring out Elasticsearch"
+    //     }
+    //   },
+    //   "suggest" : {
+    //     "my-suggestion" : {
+    //       "text" : "trying out Elasticsearch",
+    //       "term" : {
+    //         "field" : "message"
+    //       }
+    //     }
+    //   }
+    // }
+
+    $params = [
+      'index' => $this->indexName,
+      'type' => $this->indexType,
+      'body' => [
+        'query' => [
+          'match' => [
+            'title_gl' => $busca
+          ]
+        ]
+        // ,
+        // 'suggest' => [
+        //   'text' => $busca,
+        //   'search_suggest_1' => [
+        //     'term' => [
+        //       'field' => 'title_gl'
+        //     ]
+        //   ]
+        // ]
+      ]
+    ];
+
+    $this->mostrar($params);
+
+    $response = $this->searchService->search($params);
+
+    $this->mostrar($response);
+    die();
+
+    return $response;
+  }
+
+
 
 
 

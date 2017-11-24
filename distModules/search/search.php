@@ -287,20 +287,16 @@ class search extends Module {
 
 
   public function __construct() {
-    // search::load('controller/SearchController.php');
-    // $ctrl = new SearchController();
-    // $ctrl->evalAccessibilityMode();
+    $this->addUrlPatterns( '#^gzz-search\?s=.*$#', 'view:SearchView::search' );
+    $this->addUrlPatterns( '#^gzz-search/cmpl\?query=.*$#', 'view:SearchView::completion' );
 
-    $this->addUrlPatterns( '#^cgml-search-index$#', 'view:SearchView::createIndex' );
-    $this->addUrlPatterns( '#^cgml-busca\?.*$#', 'view:SearchView::buscamos' );
-
-    $this->addUrlPatterns( '#^cgml-search$#', 'view:SearchView::showInfo' );
-    $this->addUrlPatterns( '#^cgml-search-demo$#', 'view:SearchView::showInfoDemo' );
-    $this->addUrlPatterns( '#^cgml-search-su#', 'view:SearchView::showInfoSuggest' );
-
-    $this->addUrlPatterns( '#^cgml-search-auto#', 'view:SearchView::autocompletar' );
+    $this->addUrlPatterns( '#^gzz-search/__createIndex$#', 'view:SearchView::createIndex' );
 
 
-    // $this->addUrlPatterns( '#^cgml-search.json#', 'view:CogumeloAccessibilityView::jsonInfo' );
+    // PROBAS
+    // $this->addUrlPatterns( '#^gzz-search/info$#', 'view:SearchView::showInfo' );
+    // $this->addUrlPatterns( '#^gzz-search/demo$#', 'view:SearchView::showInfoDemo' );
+    // $this->addUrlPatterns( '#^gzz-search/busca?(\?.*)?$#', 'view:SearchView::buscamos' );
+    $this->addUrlPatterns( '#^gzz-search/su?(\?.*)?$#', 'view:SearchView::showInfoSuggest' );
   }
 }
