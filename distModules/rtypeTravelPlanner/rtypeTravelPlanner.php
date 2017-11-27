@@ -33,7 +33,13 @@ class rtypeTravelPlanner extends Module {
       'params' => array( 'jquery-validate#1.14' ),
       'installer' => 'bower',
       'includes' => array( 'dist/jquery.validate.min.js', 'dist/additional-methods.min.js' )
-    )
+    ),
+    array(
+     "id" =>"tiny_map_utilities",
+     "params" => array("tiny_map_utilities"),
+     "installer" => "bower",
+     "includes" => array("smart_infowindow/smart_infowindow.js", "smart_infowindow/vendor/jQueryRotate.js")
+    )    
   );
 
   public $includesCommon = array(

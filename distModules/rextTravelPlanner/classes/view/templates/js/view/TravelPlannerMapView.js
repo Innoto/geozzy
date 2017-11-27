@@ -71,18 +71,59 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
   setMarkers: function() {
     var that = this;
 
+    that.infoWindow = new smart_infowindow({
+      map:that.map,
+      width: 150,
+      max_height:200,
+      marker_distance: [12,12], // [top, bottom]
+    });
+
     that.parentTp.resources.each( function(e,i) {
 
       var markerLoc = e.get('loc');
       //console.log( e.get('loc') );
       if( markerLoc!= null && typeof markerLoc.lat != 'undefined' && typeof markerLoc.lng != 'undefined' ) {
 
-        e.set('marker',
-          new google.maps.Marker({
-            position: new google.maps.LatLng( markerLoc.lat, markerLoc.lng ),
-            icon: that.markerIcon
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng( markerLoc.lat, markerLoc.lng ),
+          icon: that.markerIcon
+        });
+
+        marker.addListener('mouseover', function() {
+
+          var infowindowHtml = "<div class='iWindow'>" +
+            "<div class='title'>" + e.get('title') + "</div>" +
+            "<div class='addToPlan'> ADD TO PLAN </div>" +
+            "<div> <a href='#resource/"+e.get('id')+"'>VIEW</a></div>" +
+            "</div>";
+          //console.log()
+          that.infoWindow.open(marker, 'mouseover' , infowindowHtml);
+
+          $('.iWindow .addToPlan').on('click', function(ev){
+            that.addToPlan( e.get('id') );
           })
-        );
+
+        });
+
+        marker.addListener('mouseout', function() {
+          //that.infoWindow.close(marker);
+
+
+          setTimeout(
+            function() {
+              //smart_infowindow_click_event_opened = false;
+              if(smart_infowindow_is_on_infowindow == false) {
+                that.infoWindow.close();
+              }
+            }
+          , 10 );
+
+        });
+
+        e.set('marker', marker );
+
+
+
 
       }
 
@@ -188,6 +229,12 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     return retObj;
 
   },
+
+  addToPlan: function(id) {
+    var that= this;
+    that.parentTp.addToPlan(id);
+  },
+
 
 
   markerBounce: function(id) {
