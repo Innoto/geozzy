@@ -73,7 +73,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
 
     that.infoWindow = new smart_infowindow({
       map:that.map,
-      width: 150,
+      width: 300,
       max_height:200,
       marker_distance: [12,12], // [top, bottom]
     });
@@ -95,6 +95,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
             "<div class='title'>" + e.get('title') + "</div>" +
             "<div class='addToPlan'> ADD TO PLAN </div>" +
             "<div> <a href='#resource/"+e.get('id')+"'>VIEW</a></div>" +
+            "<img class='img-responsive' src='/cgmlImg/"+e.get('image')+"/travelPlannerList/"+e.get('image')+".jpg'>"+
             "</div>";
           //console.log()
           that.infoWindow.open(marker, 'mouseover' , infowindowHtml);
