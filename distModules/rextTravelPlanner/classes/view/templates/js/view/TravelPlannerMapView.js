@@ -58,7 +58,8 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
         fullscreenControl: false,
         mapTypeId: cogumelo.publicConf.rextMapConf.mapTypeId,
         zoom: cogumelo.publicConf.rextMapConf.defaultZoom,
-        styles : estilosMapa
+        styles : estilosMapa,
+        gestureHandling: 'greedy'
       };
 
       that.map = new google.maps.Map( that.$('.travelPlannerMap .map').get( 0 ), that.mapOptions);
@@ -90,26 +91,28 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
         });
 
         marker.addListener('mouseover', function() {
-
-          var infowindowHtml = "<div class='iWindow'>" +
-            "<div class='title'>" + e.get('title') + "</div>" +
-            "<div class='addToPlan'> ADD TO PLAN </div>" +
-            "<div> <a href='#resource/"+e.get('id')+"'>VIEW</a></div>" +
-            "<img class='img-responsive' src='/cgmlImg/"+e.get('image')+"/travelPlannerList/"+e.get('image')+".jpg'>"+
-            "</div>";
-          //console.log()
+          var infowindowHtml = '<div class="iWindow">'+
+            '<div class="image">'+
+              '<img class="img-responsive" src="/cgmlImg/'+e.get('image')+'/travelPlannerList/'+e.get('image')+'.jpg">'+
+              '<button class="addToPlan btn btn-primary"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></button>'+
+              '<a href="#resource/'+e.get('id')+'">'+
+                '<button class="openResource btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></i></button>'+
+              '</a>'+
+            '</div>'+
+            '<div class="info">'+
+              '<div class="title">'+e.get('title')+'</div>'+
+              '<div class="description">'+e.get('shortDescription')+'</div>'+
+            '</div>'+
+          '</div>';
           that.infoWindow.open(marker, 'mouseover' , infowindowHtml);
 
           $('.iWindow .addToPlan').on('click', function(ev){
             that.addToPlan( e.get('id') );
           })
-
         });
 
         marker.addListener('mouseout', function() {
           //that.infoWindow.close(marker);
-
-
           setTimeout(
             function() {
               //smart_infowindow_click_event_opened = false;
@@ -118,17 +121,10 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
               }
             }
           , 10 );
-
         });
 
         e.set('marker', marker );
-
-
-
-
       }
-
-
     });
   },
 

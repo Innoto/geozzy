@@ -157,7 +157,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
         var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
         var planDays = 1 + checkout.diff( checkin, 'days');
         for (var i = 0; i < planDays; i++) {
-          that.$el.find('.travelPlannerFilterBar .mode'+mode+' .days').append('<li class="filterDay filterDay-'+i+'" data-day="'+i+'">'+__("Day ")+'<span>'+parseInt(i+1)+'</span></li>');
+          that.$el.find('.travelPlannerFilterBar .mode'+mode+' .days').append('<li class="filterDay filterDay-'+i+'" data-day="'+i+'">'+__("Day")+'<span> '+parseInt(i+1)+'</span></li>');
         }
       }
     }

@@ -51,7 +51,8 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       fullscreenControl: false,
       mapTypeId: cogumelo.publicConf.rextMapConf.mapTypeId,
       zoom: cogumelo.publicConf.rextMapConf.defaultZoom,
-      styles : estilosMapa
+      styles : estilosMapa,
+      gestureHandling: 'greedy'
     };
 
     if(that.map === false){
