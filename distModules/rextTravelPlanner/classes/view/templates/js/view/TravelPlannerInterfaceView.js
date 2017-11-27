@@ -149,6 +149,18 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.$el.find('.travelPlannerFilterBar .mode').hide();
       that.$el.find('.travelPlannerFilterBar .mode'+mode).show();
       that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
+
+      that.$el.find('.travelPlannerFilterBar .mode'+mode).append('');
+      if( that.parentTp.tpData.get('checkin') !== null || that.parentTp.tpData.get('checkout') !== null ){ 
+        var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
+        var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
+        var planDays = 1 + checkout.diff( checkin, 'days');
+
+        for (var i = 0; i < planDays; i++) {
+          console.log(i);
+          that.$el.find('.travelPlannerFilterBar .mode'+mode).append('<li class="filterDay filterDay-'+i+'">'+__("Day ")+'<span>'+parseInt(i+1)+'</span></li>');
+        }
+      }
     }
   }
 });

@@ -23,7 +23,7 @@
           </select>
         </div>
         <div class="mode mode2">
-          <div class="days">hola</div>
+          <ul class="days clearfix"></ul> 
         </div>
       </div>
     </div>
