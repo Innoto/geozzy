@@ -8,12 +8,17 @@
       }
     }
 
+    //myAudio.addEventListener("loadeddata", proba);
+    var myAudio = document.getElementById("myAudio");
+    myAudio.addEventListener("canplaythrough", changeAudioguide);
   });
 
-  function loadedFun(){
-/*    $('audio').mediaelementplayer({
+
+
+  function changeAudioguide(){
+    $('audio').mediaelementplayer({
       pluginPath: '/vendor/bower/mediaelement/',
       defaultAudioWidth: '250',
       shimScriptAccess: 'always'
-    });*/
+    });
   }
