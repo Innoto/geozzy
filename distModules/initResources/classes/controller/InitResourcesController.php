@@ -143,7 +143,7 @@ class InitResourcesController{
 
             $existTaxTermModel = ( new ResourceTaxonomytermModel() )->listItems(['filters'=>['idName'=> $rtaxtermData['idName'] ]])->fetch();
             if( $existTaxTermModel ) {
-              $rtaxtermData['id'] = $existTaxTermModel->getter('id');
+              $topic['id'] = $existTaxTermModel->getter('id');
             }
 
             $resTaxterm = new ResourceTaxonomytermModel( $rtaxtermData );
