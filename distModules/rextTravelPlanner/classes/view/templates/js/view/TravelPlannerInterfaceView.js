@@ -14,7 +14,8 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     "mouseleave .tpResourceItem": "resourceLeave",
     "click .addToPlan": "addToPlan",
     "click .tp-gotoPlan": "goToPlan",
-    "click .tp-goAddtoPlan": "goAddToPlan"
+    "click .tp-goAddtoPlan": "goAddToPlan",
+    "click .travelPlannerFilterBar .days .filterDay": "filterDay"
   },
 
   initialize: function( parentTp ) {
@@ -150,17 +151,22 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.$el.find('.travelPlannerFilterBar .mode'+mode).show();
       that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
 
-      that.$el.find('.travelPlannerFilterBar .mode'+mode).append('');
-      if( that.parentTp.tpData.get('checkin') !== null || that.parentTp.tpData.get('checkout') !== null ){ 
+      that.$el.find('.travelPlannerFilterBar .mode'+mode+' .days').html('');
+      if( that.parentTp.tpData.get('checkin') !== null || that.parentTp.tpData.get('checkout') !== null ){
         var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
         var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
         var planDays = 1 + checkout.diff( checkin, 'days');
-
         for (var i = 0; i < planDays; i++) {
-          console.log(i);
-          that.$el.find('.travelPlannerFilterBar .mode'+mode).append('<li class="filterDay filterDay-'+i+'">'+__("Day ")+'<span>'+parseInt(i+1)+'</span></li>');
+          that.$el.find('.travelPlannerFilterBar .mode'+mode+' .days').append('<li class="filterDay filterDay-'+i+'" data-day="'+i+'">'+__("Day ")+'<span>'+parseInt(i+1)+'</span></li>');
         }
       }
     }
+  },
+  filterDay: function(e){
+    var that = this;
+    var day = $(e.currentTarget).attr('data-day');
+    that.parentTp.travelPlannerMapPlanView.currentDay = day;
+    that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
+    $('html,body').animate({scrollTop: $('#plannerDay-'+day).offset().top},'slow');
   }
 });
