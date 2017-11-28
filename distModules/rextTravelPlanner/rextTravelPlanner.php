@@ -45,6 +45,7 @@ class rextTravelPlanner extends Module {
     'js/view/TravelPlannerMapView.js',
     'js/view/TravelPlannerMapPlanView.js',
     'js/view/TravelPlannerResourceView.js',
+    'js/view/TravelPlannerGetDatesView.js',
     'js/router/TravelPlannerRouter.js',
     'js/model/TravelPlannerModel.js',
     'js/TravelPlannerApp.js',

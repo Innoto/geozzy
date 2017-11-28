@@ -23,7 +23,7 @@
           </select>
         </div>
         <div class="mode mode2">
-          <div class="days">hola</div>
+          <ul class="days clearfix"></ul>
         </div>
       </div>
     </div>
@@ -169,5 +169,13 @@
         <button type="button" class="acceptEdit btn btn-success">{t}Save{/t}</button>
       <div>
     </form>
+  </div>
+</script>
+
+<script type="text/template" id="getDatesTpModalTemplate">
+  <div class="title">{t}When do you want to travel? {/t}</div>
+  <div class="getdatesTpContainer clearfix">    
+    <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+    <input type="text" id="getDatesTpInput" class="form-control" readonly>
   </div>
 </script>

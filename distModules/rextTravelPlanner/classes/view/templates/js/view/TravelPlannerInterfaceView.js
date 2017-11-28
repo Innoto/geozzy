@@ -14,7 +14,8 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     "mouseleave .tpResourceItem": "resourceLeave",
     "click .addToPlan": "addToPlan",
     "click .tp-gotoPlan": "goToPlan",
-    "click .tp-goAddtoPlan": "goAddToPlan"
+    "click .tp-goAddtoPlan": "goAddToPlan",
+    "click .travelPlannerFilterBar .days .filterDay": "filterDay"
   },
 
   initialize: function( parentTp ) {
@@ -140,15 +141,35 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
 
     }
     else{
-      that.$el.find('.tp-gotoPlan').hide();
-      that.$el.find('.tp-goAddtoPlan').show();
-      that.$el.find('.travelPlannerList').hide();
-      that.$el.find('.travelPlannerPlan').show();
-      that.$el.find('.travelPlannerMap').hide();
-      that.$el.find('.travelPlannerMapPlan').show();
-      that.$el.find('.travelPlannerFilterBar .mode').hide();
-      that.$el.find('.travelPlannerFilterBar .mode'+mode).show();
-      that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
+      if( that.parentTp.tpData.get('checkin') !== null || that.parentTp.tpData.get('checkout') !== null ){
+        that.$el.find('.tp-gotoPlan').hide();
+        that.$el.find('.tp-goAddtoPlan').show();
+        that.$el.find('.travelPlannerList').hide();
+        that.$el.find('.travelPlannerPlan').show();
+        that.$el.find('.travelPlannerMap').hide();
+        that.$el.find('.travelPlannerMapPlan').show();
+        that.$el.find('.travelPlannerFilterBar .mode').hide();
+        that.$el.find('.travelPlannerFilterBar .mode'+mode).show();
+        that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
+
+        that.$el.find('.travelPlannerFilterBar .mode'+mode+' .days').html('');
+        var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
+        var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
+        var planDays = 1 + checkout.diff( checkin, 'days');
+        for (var i = 0; i < planDays; i++) {
+          that.$el.find('.travelPlannerFilterBar .mode'+mode+' .days').append('<li class="filterDay filterDay-'+i+'" data-day="'+i+'">'+__("Day")+'<span> '+parseInt(i+1)+'</span></li>');
+        }
+      }
+      else{
+        that.parentTp.getDates();
+      }
     }
+  },
+  filterDay: function(e){
+    var that = this;
+    var day = $(e.currentTarget).attr('data-day');
+    that.parentTp.travelPlannerMapPlanView.currentDay = day;
+    that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
+    $('html,body').animate({scrollTop: $('#plannerDay-'+day).offset().top},'slow');
   }
 });

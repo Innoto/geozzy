@@ -135,7 +135,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.initPlan();
     }else{
-      alert('Modal para seleccionar Fechas');
+      that.getDates();
     }
   };
 
@@ -148,12 +148,16 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       that.travelPlannerPlanView = new geozzy.travelPlannerComponents.TravelPlannerPlanView(that);
     }
   };
+  that.getDates = function(){
+    that.travelPlannerGetDatesView = new geozzy.travelPlannerComponents.TravelPlannerGetDatesView(that);    
+  };
 
   that.addToPlan = function(idRes){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, idRes );
     }else{
       alert("Select dates first");
+      that.getDates();
     }
   };
   that.showMap = function(day){
