@@ -10,6 +10,12 @@ class SearchView {
   public function __construct() {
 
     $this->searchCtrl = new SearchController();
+
+    global $C_LANG; // Idioma actual, cogido de la url
+    $this->actLang = $C_LANG;
+    $this->defLang = Cogumelo::getSetupValue('lang:default');
+    $this->allLang = Cogumelo::getSetupValue('lang:available');
+    $this->keysLang = array_keys($this->allLang);
   }
 
   public function createIndex() {
@@ -20,7 +26,7 @@ class SearchView {
     echo $searchInfo;
   }
 
-  public function buscamos() {
+  public function search() {
     $response = 'NADA';
 
     header('Content-Type: text/plain');
@@ -30,18 +36,46 @@ class SearchView {
       echo "\n\n --- RESULTADOS: ".count($response['hits'])."/".$response['total']." --- \n\n";
     }
 
+    echo "\nTotal: ".$response['total']." \n";
+    foreach( $response['hits'] as $res ) {
+      echo "\nTitle_".$this->actLang.":      ".$res['_source']['title_'.$this->actLang]." \n";
+      echo "Score:         ".$res['_score']." \n";
+      echo "id:            ".$res['_source']['id']." \n";
+      echo "rTypeIdName:   ".$res['_source']['rTypeIdName']." \n";
+      echo "termsNames_".$this->actLang.": ".$res['_source']['termsNames_'.$this->actLang]." \n";
+    }
 
-    $this->mostrar($response);
+    // $this->mostrar($response);
+  }
+
+  public function completion() {
+    $busca = $_GET['query'];
+
+    $resultJson = $this->searchCtrl->getJsonSuggest( $busca );
+
+    header('Content-Type: text/plain');
+    echo $resultJson;
   }
 
 
-  public function mostrar( $datos ) {
-    $pr = print_r( $datos, true );
 
-    $pat = ['/^\s*[\(\)]?\s*\n/m', '/    /'];
-    $sus = ['', '  '];
-    echo preg_replace( $pat, $sus, $pr );
+
+
+
+
+
+  public function showInfoSuggest() {
+    $searchInfo = "\n  showInfoSuggest FIN  \n\n";
+
+    header('Content-Type: text/plain');
+    $response = $this->searchCtrl->getInfoSuggestSearch( $_GET['s'] );
+
+    var_dump($response);
+    echo "\n\n --- showInfoSuggest \n"; $this->mostrar($response);
+
+    echo $searchInfo;
   }
+
 
 
 
@@ -299,4 +333,13 @@ class SearchView {
   //
   //
   //
+
+
+  public function mostrar( $datos ) {
+    $pr = print_r( $datos, true );
+
+    $pat = ['/^\s*[\(\)]?\s*\n/m', '/    /', '/ => Array/'];
+    $sus = ['', '  ', ''];
+    echo preg_replace( $pat, $sus, $pr );
+  }
 } // END SearchView class

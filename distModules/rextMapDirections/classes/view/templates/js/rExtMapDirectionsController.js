@@ -314,6 +314,16 @@ geozzy.rExtMapDirectionsController = {
             meters: that.resourceLastroute.routes[0].legs[0].distance.value,
             seconds: that.resourceLastroute.routes[0].legs[0].duration.value
           };
+
+          var $printLink = $( '.jsMapDirInMapPrint a' );
+
+          var hrefDirection = '/directions/print';
+          hrefDirection += '/title/' + encodeURI( geozzy.rExtMapDirectionsData.title );
+          hrefDirection += '/origin/' + encodeURI( that.routeFrom.latlng );
+          hrefDirection += '/destination/' + encodeURI( that.routeTo.latlng );
+          hrefDirection += '/travelMode/' + encodeURI( that.resourceLastroute.request.travelMode );
+
+          $printLink.attr( 'href', hrefDirection );
         }
         else {
           travelInfo = __('A route could not be found.');

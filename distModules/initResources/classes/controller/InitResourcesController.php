@@ -135,19 +135,21 @@ class InitResourcesController{
 
 
             $rtaxtermData = [
-              'idName' => $idName,
+//              'idName' => $idName,
               'resource' => $resId,
               'taxonomyterm' => $termId
             ];
 
 
-            $existTaxTermModel = ( new ResourceTaxonomytermModel() )->listItems(['filters'=>['idName'=> $rtaxtermData['idName'] ]])->fetch();
+            $existTaxTermModel = ( new ResourceTaxonomytermModel() )->listItems(['filters'=>$rtaxtermData])->fetch();
             if( $existTaxTermModel ) {
-              $topic['id'] = $existTaxTermModel->getter('id');
+              //$topic['id'] = $existTaxTermModel->getter('id');
+            }
+            else {
+              $resTaxterm = new ResourceTaxonomytermModel( $rtaxtermData );
+              $resTaxterm->save();
             }
 
-            $resTaxterm = new ResourceTaxonomytermModel( $rtaxtermData );
-            $resTaxterm->save();
 
           }
           else {

@@ -1,10 +1,5 @@
   $(document).ready(function(){
-    /*$('video, audio').mediaelementplayer({
-      // Do not forget to put a final slash (/)
-      pluginPath: 'https://cdnjs.com/libraries/mediaelement/',
-      defaultAudioWidth: '250',
-      shimScriptAccess: 'always'
-    });*/
+
     var all_url = window.location.href.split('?');
     if(all_url[1]){
       var url = all_url[1].split('=');
@@ -12,4 +7,20 @@
         $('.audioguideBlock audio').attr('autoplay', true)
       }
     }
+/*
+    var myAudio = document.getElementById("myAudio");
+    //myAudio.addEventListener("canplaythrough", changeAudioguide);
+    myAudio.oncanplay = function() {
+    alert("Can start playing video");
+};*/
   });
+
+
+
+  function myScript(){
+    $('audio').mediaelementplayer({
+      pluginPath: '/vendor/bower/mediaelement/',
+      defaultAudioWidth: '250',
+      shimScriptAccess: 'always'
+    });
+  }
