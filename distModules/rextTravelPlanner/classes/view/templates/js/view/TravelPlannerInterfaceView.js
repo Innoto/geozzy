@@ -151,18 +151,21 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
         that.$el.find('.travelPlannerFilterBar .mode').hide();
         that.$el.find('.travelPlannerFilterBar .mode'+mode).show();
         that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
-
-        that.$el.find('.travelPlannerFilterBar .mode'+mode+' .days').html('');
-        var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
-        var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
-        var planDays = 1 + checkout.diff( checkin, 'days');
-        for (var i = 0; i < planDays; i++) {
-          that.$el.find('.travelPlannerFilterBar .mode'+mode+' .days').append('<li class="filterDay filterDay-'+i+'" data-day="'+i+'">'+__("Day")+'<span> '+parseInt(i+1)+'</span></li>');
-        }
+        that.drawFilterDay();
       }
       else{
         that.parentTp.getDates();
       }
+    }
+  },
+  drawFilterDay: function(){
+    var that = this;
+    that.$el.find('.travelPlannerFilterBar .mode2 .days').html('');
+    var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
+    var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
+    var planDays = 1 + checkout.diff( checkin, 'days');
+    for (var i = 0; i < planDays; i++) {
+      that.$el.find('.travelPlannerFilterBar .mode2 .days').append('<li class="filterDay filterDay-'+i+'" data-day="'+i+'">'+__("Day")+'<span> '+parseInt(i+1)+'</span></li>');
     }
   },
   filterDay: function(e){

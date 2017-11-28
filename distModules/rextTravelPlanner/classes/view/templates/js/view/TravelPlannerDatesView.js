@@ -62,6 +62,7 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
 
         that.parentTp.initPlan();
         that.parentTp.travelPlannerPlanView.fromHtmlToModel();
+        that.parentTp.travelPlannerInterfaceView.drawFilterDay();
       }
     );
   }
