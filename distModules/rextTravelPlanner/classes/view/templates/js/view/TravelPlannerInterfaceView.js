@@ -8,11 +8,14 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   parentTp : false,
 
   events: {
-    "change .travelPlannerFilters .filterByFavourites": "changeFilters",
-    "change .travelPlannerFilters .filterByRtype": "changeFilters",
+    "change .travelPlannerFilterBar .filterByFavourites": "changeFilters",
+    "change .travelPlannerFilterBar .filterByRtype": "changeFilters",
+    "mouseover .tpResourceItem": "resourceHover",
+    "mouseleave .tpResourceItem": "resourceLeave",
     "click .addToPlan": "addToPlan",
     "click .tp-gotoPlan": "goToPlan",
-    "click .tp-goAddtoPlan": "goAddToPlan"
+    "click .tp-goAddtoPlan": "goAddToPlan",
+    "click .travelPlannerFilterBar .days .filterDay": "filterDay"
   },
 
   initialize: function( parentTp ) {
@@ -32,7 +35,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
 
   render: function() {
     var that = this;
-    that.listResources();
+
   },
 
   loadInterfaceTravelPlanner: function(){
@@ -40,7 +43,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     that.interfaceTemplate = _.template( $('#travelPlannerInterfaceTemplate').html() );
 
     var rtypesFilters = [];
-    _.each( cogumelo.publicConf.mod_geozzy_travelPlanner, function(item){
+    _.each( cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes, function(i, item){
       rtypesFilters.push(that.parentTp.rtypes.where({ idName: item })[0].toJSON());
     });
     that.$el.html( that.interfaceTemplate({ rtypesFilters: rtypesFilters }) );
@@ -84,11 +87,25 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.resourceTemplate = _.template( $('#resourceItemTPTemplate').html() );
       that.$('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
     });
+
+
+
+
+    that.parentTp.travelPlannerMapView.showMarkers( resourcesToList.pluck('id')  );
+  },
+  resourceHover: function(e) {
+    var that = this;
+    that.parentTp.travelPlannerMapView.markerBounce($(e.currentTarget).attr('data-resource-id'));
+
+  },
+  resourceLeave: function(e) {
+    var that = this;
+    that.parentTp.travelPlannerMapView.markerBounceEnd($(e.currentTarget).attr('data-resource-id'));
   },
   //Bind para cuando cambia un filtro
   changeFilters: function(e){
     var that = this;
-    that.render();
+    that.listResources();
   },
   //Bind para añadir un recurso
   addToPlan: function(e){
@@ -116,18 +133,46 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.$el.find('.travelPlannerPlan').hide();
       that.$el.find('.travelPlannerMap').show();
       that.$el.find('.travelPlannerMapPlan').hide();
-      that.$el.find('.travelPlannerFilterBar *').show();
+      that.$el.find('.travelPlannerFilterBar .mode').hide();
+      that.$el.find('.travelPlannerFilterBar .mode'+mode).show();
+
       that.parentTp.travelPlannerMapView.setInitMap();
+      that.listResources();
+
     }
     else{
-      that.$el.find('.tp-gotoPlan').hide();
-      that.$el.find('.tp-goAddtoPlan').show();
-      that.$el.find('.travelPlannerList').hide();
-      that.$el.find('.travelPlannerPlan').show();
-      that.$el.find('.travelPlannerMap').hide();
-      that.$el.find('.travelPlannerMapPlan').show();
-      that.$el.find('.travelPlannerFilterBar *').hide();
-      that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
+      if( that.parentTp.tpData.get('checkin') !== null || that.parentTp.tpData.get('checkout') !== null ){
+        that.$el.find('.tp-gotoPlan').hide();
+        that.$el.find('.tp-goAddtoPlan').show();
+        that.$el.find('.travelPlannerList').hide();
+        that.$el.find('.travelPlannerPlan').show();
+        that.$el.find('.travelPlannerMap').hide();
+        that.$el.find('.travelPlannerMapPlan').show();
+        that.$el.find('.travelPlannerFilterBar .mode').hide();
+        that.$el.find('.travelPlannerFilterBar .mode'+mode).show();
+        that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
+        that.drawFilterDay();
+      }
+      else{
+        that.parentTp.getDates();
+      }
     }
+  },
+  drawFilterDay: function(){
+    var that = this;
+    that.$el.find('.travelPlannerFilterBar .mode2 .days').html('');
+    var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
+    var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
+    var planDays = 1 + checkout.diff( checkin, 'days');
+    for (var i = 0; i < planDays; i++) {
+      that.$el.find('.travelPlannerFilterBar .mode2 .days').append('<li class="filterDay filterDay-'+i+'" data-day="'+i+'">'+__("Day")+'<span> '+parseInt(i+1)+'</span></li>');
+    }
+  },
+  filterDay: function(e){
+    var that = this;
+    var day = $(e.currentTarget).attr('data-day');
+    that.parentTp.travelPlannerMapPlanView.currentDay = day;
+    that.parentTp.travelPlannerMapPlanView.showDay(that.parentTp.travelPlannerMapPlanView.currentDay);
+    $('html,body').animate({scrollTop: $('#plannerDay-'+day).offset().top},'slow');
   }
 });

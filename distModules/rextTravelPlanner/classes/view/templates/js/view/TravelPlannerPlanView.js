@@ -55,13 +55,13 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       callback: function(l, e) {
         that.fromHtmlToModel();
         that.updateTotalTimes();
-        that.parentTp.travelPlannerMapView.render();
+        that.parentTp.travelPlannerMapPlanView.render();
       }
     });
 
     that.fromModeltoHtml();
     that.updateTotalTimes();
-    that.parentTp.travelPlannerMapView.render();
+    that.parentTp.travelPlannerMapPlanView.render();
   },
   showMapDay: function(e){
     var that = this;
@@ -76,7 +76,9 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     that.fromHtmlToModel();
     that.updateTotalTimes();
-    that.parentTp.travelPlannerMapView.render();
+    that.parentTp.travelPlannerMapPlanView.render();
+
+    that.parentTp.travelPlannerInterfaceView.listResources();
   },
   addResourceToDay: function( idResource, day, t){
     var that = this;
@@ -203,7 +205,13 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       $(day).each( function(i,item){
         hoursInDay += parseInt(item.time);
       });
-      $('.plannerDay-' + iday +' .infoTime span').html( that.getFormatedTime(hoursInDay));
+      if(hoursInDay > 0){
+        $('.plannerDay-' + iday +' .infoTime').show();
+        $('.plannerDay-' + iday +' .infoTime span').html( that.getFormatedTime(hoursInDay));
+      }
+      else{
+        $('.plannerDay-' + iday +' .infoTime').hide();
+      }
     });
 
   },

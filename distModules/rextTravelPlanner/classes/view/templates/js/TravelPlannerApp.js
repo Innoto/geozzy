@@ -14,6 +14,8 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.travelPlannerResourceView = false;
   that.travelPlannerDefaultVisitTime = 116; // in minutes
   that.travelPlannerMode = 1;
+  that.categories = {};
+
 
   if( typeof cogumelo.publicConf.C_LANG === 'string' ) {
     moment.locale(cogumelo.publicConf.C_LANG);
@@ -24,10 +26,24 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     filters: false,
     rtype: false,
     rextmodels: true,
-    urlAlias: true
+    urlAlias: true,
+    category:true
   }
+
+/*
   if(cogumelo.publicConf.mod_geozzy_travelPlanner.toString() !== ''){
     resParam.rtype = cogumelo.publicConf.mod_geozzy_travelPlanner.toString();
+  }else{
+    console.log('FALTA CONF');
+  }
+*/
+  if(cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes.toString() !== ''){
+    var arrayRtypeKeys = [];
+    $.each(cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes, function(i,e){
+      arrayRtypeKeys.push(i);
+    });
+
+    resParam.rtype = arrayRtypeKeys.toString();
   }else{
     console.log('FALTA CONF');
   }
@@ -83,51 +99,78 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       Backbone.history.stop();
       Backbone.history.start();
     }
-    $.when(
-      that.resources.fetch(),
-      that.rtypes.fetch(),
-      that.getResourcesFav(),
-      that.tpData.fetchData()
-    ).done( function() {
-      //Instancia de ambos maps pero controlados en el InterfaceView
-      that.travelPlannerMapView = new geozzy.travelPlannerComponents.TravelPlannerMapView( that );
-      that.travelPlannerMapPlanView = new geozzy.travelPlannerComponents.TravelPlannerMapPlanView( that );
 
-      that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
-      that.initDates();
-      if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
-        that.initPlan();
-      }else{
-        alert('Modal para seleccionar Fechas');
+
+    var categoriesStringFetch = '';
+    $.each(cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes, function(i,e){
+      if( typeof e.taxGroup != 'undefined' ) {
+        var categoria = new geozzy.collection.CategorytermCollection();
+        categoria.setUrlByIdName( e.taxGroup );
+        eval('that.categories.' + i + ' = categoria;');
+        categoriesStringFetch += ( 'that.categories.' + i + '.fetch(),' );
       }
     });
-  },
+
+    eval(''+
+      '$.when('+
+      categoriesStringFetch +
+      '  that.resources.fetch(),' +
+      '  that.rtypes.fetch(),' +
+      '  that.getResourcesFav(),'+
+      '  that.tpData.fetchData()'+
+      ').done( function() {'+
+      '  that.ajaxLoadDone();'+
+      '});'
+    );
+  };
+
+
+  that.ajaxLoadDone = function(){
+    //Instancia de ambos maps pero controlados en el InterfaceView
+    that.travelPlannerMapView = new geozzy.travelPlannerComponents.TravelPlannerMapView( that );
+    that.travelPlannerMapPlanView = new geozzy.travelPlannerComponents.TravelPlannerMapPlanView( that );
+
+    that.travelPlannerInterfaceView = new geozzy.travelPlannerComponents.TravelPlannerInterfaceView(that);
+    that.initDates();
+    if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
+      that.initPlan();
+    }else{
+      that.getDates();
+    }
+  };
+
   that.initDates = function(){
     that.travelPlannerDatesView = new geozzy.travelPlannerComponents.TravelPlannerDatesView(that);
-  },
+  };
+
   that.initPlan = function(){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerPlanView = new geozzy.travelPlannerComponents.TravelPlannerPlanView(that);
     }
-  },
+  };
+  that.getDates = function(){
+    that.travelPlannerGetDatesView = new geozzy.travelPlannerComponents.TravelPlannerGetDatesView(that);    
+  };
+
   that.addToPlan = function(idRes){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, idRes );
     }else{
       alert("Select dates first");
+      that.getDates();
     }
-  },
+  };
   that.showMap = function(day){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerMapPlanView.showDay(day);
     }
-  },
+  };
   that.editResourceToPlan = function(data){
     that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, data.id, data, 'edit' );
-  },
+  };
   that.momentDate = function( date ) {
     return moment( date, that.timeServerFormat );
-  },
+  };
   that.openResource = function( resourceId ) {
     $(".tpDuResource").show();
     $(".tpDuResource").load(
@@ -139,10 +182,10 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
         //$(".storyContainer.story-container-du").show();
       }
     );
-  },
+  };
 
   that.closeResource = function() {
     $('.tpDuResource').hide();
     $('.tpDuResource').html('')
-  }
+  };
 }
