@@ -20,7 +20,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: :: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-"
 "msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-"
-"#\n"
+"#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh."
+"tmp.from  #-#-#-#-#\n"
 ": #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#\n"
 
 #: /home/proxectos/geozzy/distModules/rextFavourite/classes/view/RExtFavouriteAPIView.php:47

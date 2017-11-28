@@ -63,10 +63,17 @@ msgstr "Ruta en transporte público"
 msgid "Route information"
 msgstr "Información da ruta"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:112
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:112
-msgid "Print route"
-msgstr "Imprimir ruta"
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:117
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:118
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:117
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:118
+msgid "Print directions"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
+msgid "Print Map Directions"
+msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:37
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
@@ -75,6 +82,11 @@ msgstr "Imprimir ruta"
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:40
 msgid "Type an address or mark on the map the place of departure"
 msgstr "Introduce unha dirección ou marca no mapa o punto de partida"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:112
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:112
+msgid "Print route"
+msgstr "Imprimir ruta"
 
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
 msgid "No se ha podido localizar una ruta."
