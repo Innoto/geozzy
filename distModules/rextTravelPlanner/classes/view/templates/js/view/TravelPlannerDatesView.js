@@ -57,7 +57,6 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
         }
       },
       function( start, end, label ) {
-        alert('fuck');
         that.parentTp.tpData.set('checkin', start.format( that.parentTp.timeServerFormat ) );
         that.parentTp.tpData.set('checkout', end. format( that.parentTp.timeServerFormat ) );
 
