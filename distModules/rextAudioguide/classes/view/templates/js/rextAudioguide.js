@@ -7,15 +7,17 @@
         $('.audioguideBlock audio').attr('autoplay', true)
       }
     }
-
-    //myAudio.addEventListener("loadeddata", proba);
+/*
     var myAudio = document.getElementById("myAudio");
-    myAudio.addEventListener("canplaythrough", changeAudioguide);
+    //myAudio.addEventListener("canplaythrough", changeAudioguide);
+    myAudio.oncanplay = function() {
+    alert("Can start playing video");
+};*/
   });
 
 
 
-  function changeAudioguide(){
+  function myScript(){
     $('audio').mediaelementplayer({
       pluginPath: '/vendor/bower/mediaelement/',
       defaultAudioWidth: '250',
