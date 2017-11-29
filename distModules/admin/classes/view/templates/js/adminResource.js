@@ -58,6 +58,7 @@ function bindResourceForm(){
   });
 
   $('select.gzzSelect2').select2();
+  $('select.gzzSelect2tags').select2({tags:true});
 }
 
 
