@@ -70,6 +70,8 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
     $rExtViewBlockInfo['template']['full'] = new Template();
     $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
     $rExtViewBlockInfo['template']['full']->assign( 'resId', $resId );
+    $rExtViewBlockInfo['template']['full']->addClientScript('js/model/TaxonomytermModel.js', 'geozzy');
+    $rExtViewBlockInfo['template']['full']->addClientScript('js/collection/CategorytermCollection.js', 'geozzy');
     $rExtViewBlockInfo['template']['full']->addClientScript( 'js/model/ResourceModel.js' , 'geozzy');
     $rExtViewBlockInfo['template']['full']->addClientScript( 'js/collection/ResourceCollection.js' , 'geozzy');
     $rExtViewBlockInfo['template']['full']->addClientScript( 'js/model/ResourcetypeModel.js' , 'geozzy');

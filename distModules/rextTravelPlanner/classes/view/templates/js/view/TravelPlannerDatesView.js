@@ -29,7 +29,7 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
     var that = this;
 
     that.datesTemplate = _.template( $('#datesTPTemplate').html() );
-    that.$('.travelPlannerPlanHeader').html( that.datesTemplate() );
+    that.$('.travelPlannerDateBar').html( that.datesTemplate() );
 
     var calDateFormat = that.parentTp.dateFormat;
     var calCheckIn = false;
@@ -62,6 +62,7 @@ geozzy.travelPlannerComponents.TravelPlannerDatesView = Backbone.View.extend({
 
         that.parentTp.initPlan();
         that.parentTp.travelPlannerPlanView.fromHtmlToModel();
+        that.parentTp.travelPlannerInterfaceView.drawFilterDay();
       }
     );
   }

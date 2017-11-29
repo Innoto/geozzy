@@ -1,23 +1,33 @@
 <script type="text/template" id="travelPlannerInterfaceTemplate">
   <div class="travelPlanner">
-    <div class="travelPlannerList">
-      <div class="travelPlannerFilters">
-        <div class="filter">
+    <div class="travelPlannerBar clearfix">
+      <div class="travelPlannerDateButtons clearfix">
+        <div class="travelPlannerDateBar"></div>
+        <div class="travelPlannerButtonsBar clearfix">
+          <div class="tp-gotoPlan">{t}Go to my plan{/t} <i class="fa fa-angle-right" aria-hidden="true"></i></div>
+          <div class="tp-goAddtoPlan"><i class="fa fa-angle-left" aria-hidden="true"></i> {t}Add Places{/t}</div>
+        </div>
+      </div>
+      <div class="travelPlannerFilterBar clearfix">
+        <div class="mode mode1">
+          <span>{t}Filtros :{/t}</span>
           <select class="filterByFavourites">
             <option value="*">{t}All{/t}</option>
             <option selected="selected" value="fav">{t}Favourites{/t}</option>
           </select>
-        </div>
-        <div class="filter">
           <select class="filterByRtype">
             <option value="*">{t}All Contents{/t}</option>
             <% _.each( rtypesFilters, function( elem ) { %>
               <option value="<%= elem.idName %>"><%= elem.name %></option>
             <% }); %>
-
           </select>
         </div>
+        <div class="mode mode2">
+          <ul class="days clearfix"></ul>
+        </div>
       </div>
+    </div>
+    <div class="travelPlannerList">
       <div class="travelPlannerResources"></div>
     </div>
     <div class="travelPlannerPlan">
@@ -26,7 +36,9 @@
     </div>
     <div class="travelPlannerMap">
       <div class="map" style="width:100%; height:100%;"></div>
-      <div class="closeMap"><i class="fa fa-times" aria-hidden="true"></i></div>
+    </div>
+    <div class="travelPlannerMapPlan">
+      <div class="map" style="width:100%; height:100%;"></div>
       <div class="mapFilterDay clearfix">
         <div class="filterDay-previous"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
         <div class="filterDay-current">{t}Day{/t}&nbsp;<span class="number">1</span></div>
@@ -55,20 +67,22 @@
 </script>
 
 <script type="text/template" id="datesTPTemplate">
-  <div class="datesTpContainer">
-    <div class="title">{t}When do you want to travel? {/t}</div>
+  <div class="datesTpContainer clearfix">
+    <!--<div class="title">{t}When do you want to travel? {/t}</div>-->
+    <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
     <input type="text" id="checkTpDates" class="form-control" readonly>
   </div>
 </script>
 <!-- *************************** NESTABLE DAY LIST ************************************** -->
 <script type="text/template" id="dayTPTemplate">
+  <span class="anchor" id="plannerDay-<%- day.id %>"></span>
   <div class="plannerDay plannerDay-<%- day.id %>" data-day="<%- day.id %>">
     <div class="plannerDayHeader clearfix">
       <div class="dayTitle">{t}Day{/t}<span> <%- day.id+1 %><span> </div>
       <div class="infoDay"><div class="day"><%- day.dayName %></div><div class="date"><%- day.date %></div></div>
-      <div class="infoRight">
+      <div class="infoRight clearfix">
         <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
-        <div class="showMap">{t}Show on map{/t}&nbsp;<i class="fa fa-map-marker" aria-hidden="true"></i></div>
+        <div class="showMap"><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
       </div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
@@ -155,5 +169,13 @@
         <button type="button" class="acceptEdit btn btn-success">{t}Save{/t}</button>
       <div>
     </form>
+  </div>
+</script>
+
+<script type="text/template" id="getDatesTpModalTemplate">
+  <div class="title">{t}When do you want to travel? {/t}</div>
+  <div class="getdatesTpContainer clearfix">    
+    <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+    <input type="text" id="getDatesTpInput" class="form-control" readonly>
   </div>
 </script>
