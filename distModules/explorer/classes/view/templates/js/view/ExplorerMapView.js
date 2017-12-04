@@ -39,10 +39,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       chooseMarkerIcon: function() {return false},
       mapZones: {
         outerMargin: {
-          left:200,
-          top:100,
-          right:200,
-          bottom:100
+          left:400,
+          top:400,
+          right:400,
+          bottom:400
         },
         innerMargin:{
           left:345,
