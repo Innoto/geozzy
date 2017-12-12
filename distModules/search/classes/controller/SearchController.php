@@ -206,7 +206,7 @@ class SearchController {
         } // while( $resObj = $resList->fetch() )
       }
 
-      $this->mostrar( $base );
+      // $this->mostrar( $base );
 
       $searchInfo .= "\n\n createIndexBase $this->indexName FIN \n\n";
     }
@@ -269,7 +269,7 @@ class SearchController {
         ]
       ];
 
-      $this->mostrar($params);
+      // $this->mostrar($params);
 
       $searchInfo = $this->searchService->search($params);
       // echo "\n\n --- RESULTADOS: ".$searchInfo['hits']['total']." --- \n\n";

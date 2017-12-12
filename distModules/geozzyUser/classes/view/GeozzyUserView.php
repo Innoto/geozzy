@@ -63,7 +63,7 @@ class GeozzyUserView extends View {
   }
 
   public function commonFields() {
-    return array(
+    $res = array(
       'id' => array(
         'params' => array( 'type' => 'reserved', 'value' => null )
       ),
@@ -117,10 +117,19 @@ class GeozzyUserView extends View {
         'params' => array( 'type' => 'submit', 'value' => __('Create account') )
       )
     );
+
+    if(!empty(Cogumelo::getSetupValue('mod:user:nickname'))){
+      $res['login'] = array(
+        'params' => array( 'placeholder' => __('Nickname'), 'label' => __('Nickname') ),
+      );
+    }
+
+    return $res;
     //data-toggle="modal" data-target="#link-info-legal"
   }
 
   public function registerForm() {
+
     $this->loginCheck();
     $this->registerBlockAccessCheck();
     $form = new FormController('registerModalForm'); //actionform

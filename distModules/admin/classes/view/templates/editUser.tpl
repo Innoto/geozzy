@@ -15,7 +15,9 @@
 {$userFormFields.cgIntFrmId}
 <div class="row">
   <div class="col-md-6">
-
+    {if !empty($userFormFields.login)}
+      {$userFormFields.login}
+    {/if}
     {$userFormFields.email}
     {$userFormFields.repeatEmail}
     {$userFormFields.name}
