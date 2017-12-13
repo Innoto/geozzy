@@ -15,8 +15,8 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
   visibleResources: [],
 
   events: {
-    "click .next" : "nextPage",
-    "click .previous" : "previousPage",
+    "click  .next" : "nextPage",
+    "click  .previous" : "previousPage",
     "click .explorerListPager .pageNum" : "setPageClick",
     // resource events
     "click .explorerListContent .accessButton": "resourceClick",
@@ -219,17 +219,25 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
   nextPage: function() {
     var that =  this;
-
+    var endPage = that.options.endPage;
     var pages = Math.ceil(that.getMapVisibleResourceIds().length/that.options.itemsEachPage );
+
+    if(endPage == false) {
+      endPage = pages;
+    }
+
     var nextPage = that.currentPage+1;
 
-    if( nextPage > that.options.endPage-1 ) {
-      nextPage = that.options.endPage-1;
+    if( nextPage > endPage-1 ) {
+      nextPage = endPage-1;
     }
     else
     if( nextPage > pages-1  ) {
       nextPage = pages-1;
     }
+
+
+    //console.log(that.getMapVisibleResourceIds().length,that.options.itemsEachPage, Math.ceil(that.getMapVisibleResourceIds().length/that.options.itemsEachPage ))
 
     that.setPage(nextPage);
   },
