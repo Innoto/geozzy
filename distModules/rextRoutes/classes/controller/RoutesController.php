@@ -22,7 +22,7 @@ class RoutesController {
       if( $comp->getGeomType() == 'Point' ) {
 
         if( $comp->z() ) {
-          $points[] = [ $comp->y(), $comp->x(), $comp->z() ];
+          $points[] = [ $comp->y(), $comp->x(), round($comp->z(), 1) ];
         }
         else {
           $points[] = [ $comp->y(), $comp->x(), false ];
