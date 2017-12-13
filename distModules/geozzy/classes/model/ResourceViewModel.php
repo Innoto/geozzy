@@ -31,6 +31,11 @@ class ResourceViewModel extends Model {
       'vo' => 'UserModel',
       'key'=> 'id'
     ),
+    'userEmail' => array(
+      'type' => 'VARCHAR',
+      'size' => 255,
+      'unique' => true
+    ),
     'userUpdate' => array(
       'type'=>'FOREIGN',
       'vo' => 'UserModel',
@@ -147,13 +152,13 @@ class ResourceViewModel extends Model {
 
   var $deploySQL = array(
     array(
-      'version' => 'geozzy#1.94',
+      'version' => 'geozzy#2',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_view;
         CREATE VIEW geozzy_resource_view AS
           SELECT
-            r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName, r.user, r.userUpdate, r.published,
+            r.id, r.idName, r.rTypeId, rt.idName AS rTypeIdName, r.user, u.email AS userEmail, r.userUpdate, r.published,
             {multilang:r.title_$lang,}
             {multilang:r.shortDescription_$lang,}
             {multilang:r.mediumDescription_$lang,}
@@ -167,9 +172,10 @@ class ResourceViewModel extends Model {
             r.timeCreation, r.timeLastUpdate, r.timeLastPublish,
             r.countVisits, r.weight
           FROM
-            (((
+            ((((
             `geozzy_resource` `r`
             join `geozzy_resourcetype` `rt`)
+            LEFT JOIN `user_user` `u` ON `u`.`id` = `r`.`user`)
             LEFT JOIN `geozzy_url_alias` `ua` ON
               ( `ua`.`resource` = `r`.`id`
               and `ua`.`http` = 0
