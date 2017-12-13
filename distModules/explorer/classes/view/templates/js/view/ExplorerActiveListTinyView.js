@@ -15,8 +15,8 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
   visibleResources: [],
 
   events: {
-    "click .explorerListPager .next" : "nextPage",
-    "click .explorerListPager .previous" : "previousPage",
+    "click .next" : "nextPage",
+    "click .previous" : "previousPage",
     "click .explorerListPager .pageNum" : "setPageClick",
     // resource events
     "click .explorerListContent .accessButton": "resourceClick",
