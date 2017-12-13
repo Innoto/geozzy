@@ -50,9 +50,10 @@ class InitResourcesController{
       'idName' => isset( $initRes['idName'] ) ? $initRes['idName'] : null,
       'rTypeId' => $rtypeID,
       'published' => 1,
-      'timeCreation' => $timeCreation,
+      'timeCreation' => isset( $initRes['timeCreation'] ) ? $initRes['timeCreation'] : $timeCreation,
       'loc' => isset( $initRes['loc'] ) ? $initRes['loc'] : null,
-      'defaultZoom' => isset( $initRes['defaultZoom'] ) ? $initRes['defaultZoom'] : null
+      'defaultZoom' => isset( $initRes['defaultZoom'] ) ? $initRes['defaultZoom'] : null,
+      'weight' => isset( $initRes['weight'] ) ? $initRes['weight'] : null
     );
 
     // Campos multiidioma: título, descripción corta y media, y contenido
