@@ -32,7 +32,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
       showOutMapAndBuffer: false,
 
       currentPage: 0,
-      endPage: 3,
+      endPage: false,
       itemsEachPage: 6,
       totalPages: false,
 
@@ -78,6 +78,22 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
     return ret;
   },
+
+  getMapVisibleResourceIds: function() {
+    var that = this;
+    var ret = false;
+
+    if(typeof that.parentExplorer.resourceIndex.removePagination != 'undefined'){
+      that.parentExplorer.resourceIndex.removePagination();
+
+      var visibleResources = that.parentExplorer.resourceIndex.setSort('mapVisible', 'desc');
+      that.visibleResources = visibleResources.pluck( 'id' );
+      ret = visibleResources.pluck( 'id' );
+    }
+
+    return ret;
+  },
+
 
   render: function() {
     var that = this;
@@ -149,13 +165,15 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
   renderPager: function renderPager() {
     var that = this;
 
-    var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.options.itemsEachPage );
+    that.getVisibleResourceIds().length
 
-    if( that.options.endPage < pages ) {
+    var pages = Math.ceil(that.getMapVisibleResourceIds().length/that.options.itemsEachPage );
+
+    if( that.options.endPage < pages  &&  that.options.endPage != false) {
       pages = that.options.endPage;
     }
 
-    return this.tplPager({ v:that, pages:pages-1 } );
+    return that.tplPager({ v:that, pages:pages-1 } );
   },
 
   setPage: function( pageNum ) {
@@ -202,7 +220,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
   nextPage: function() {
     var that =  this;
 
-    var pages = Math.ceil(that.parentExplorer.resourceMinimalList.length/that.options.itemsEachPage );
+    var pages = Math.ceil(that.getMapVisibleResourceIds().length/that.options.itemsEachPage );
     var nextPage = that.currentPage+1;
 
     if( nextPage > that.options.endPage-1 ) {
