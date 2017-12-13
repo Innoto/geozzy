@@ -94,11 +94,13 @@ class RExtMapController extends RExtController implements RExtInterface {
       $rExtViewBlockInfo['data']['locLat'] = $resData['locLat'];
       $rExtViewBlockInfo['data']['locLon'] = $resData['locLon'];
       $rExtViewBlockInfo['data']['defaultZoom'] = $resData['defaultZoom'];
+      $rExtViewBlockInfo['data']['visible'] = true;
     }
     else{
       $rExtViewBlockInfo['data']['locLat'] = 0;
       $rExtViewBlockInfo['data']['locLon'] = 0;
       $rExtViewBlockInfo['data']['defaultZoom'] = 0;
+      $rExtViewBlockInfo['data']['visible'] = false;
     }
     $rExtViewBlockInfo['template']['full'] = new Template();
     $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );

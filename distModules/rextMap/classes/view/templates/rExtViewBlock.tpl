@@ -10,13 +10,15 @@
   }
 </style>
 
-<div class="rExtMapResource">
-  <div class="resMapWrapper">
-    <div class="resMapContainer" style="">
-      <!-- google.map -->
+  {if $rExt.data.visible}
+  <div class="rExtMapResource">
+    <div class="resMapWrapper">
+      <div class="resMapContainer" style="">
+        <!-- google.map -->
+      </div>
     </div>
   </div>
-</div>
+  {/if}
 
 <script type="text/javascript">
   var geozzy = geozzy || {};
@@ -25,7 +27,7 @@
     lat: {$rExt.data.locLat},
     lng: {$rExt.data.locLon},
     zoom: {$rExt.data.defaultZoom},
-    wrapper: '.rExtMapResource .resMapContainer'
+    wrapper: {if $rExt.data.visible}'.rExtMapResource .resMapContainer'{else}false{/if}
   };
 </script>
 <!-- /rExtViewBlock.tpl en rExtMap module -->
