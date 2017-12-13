@@ -65,7 +65,7 @@
   }
 }
 .explorerBaseInLanding( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 100%, @explMap-h: 55%, @explFilter-w: 100%,
-   @explFilter-h: 10%, @explGallery-w: 100%, @explGallery-h: 35% ){
+   @explFilter-h: 10%, @explGallery-w: 100%, @explGallery-h: 35%, @hheight: @headerHeight ){
 
   .explorerBase( @explDu-w, @explDu-h, @explMap-w, @explMap-h, @explFilter-w, @explFilter-h, @explGallery-w, @explGallery-h );
 
@@ -77,18 +77,17 @@
     &.stick{
       &.explorer-container-map{
         position: fixed;
-        top: @headerHeight + @explFilter-h;
+        top: @hheight + @explFilter-h;
         z-index: 100;
       }
       &.explorer-container-filter{
         position: fixed !important;
-        top: @headerHeight;
+        top: @hheight;
         z-index: 101;
       }
       &.explorer-container-gallery{
         margin-top: @explFilter-h;
         padding-top: @explMap-h;
-        //padding-top: ( @headerHeight + @explFilter-h + @explMap-h);
       }
     }
   }
@@ -96,100 +95,8 @@
 
 }
 /*******************************************************************************************/
-.explorerLayoutDora( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 100%, @explFilter-w: 30%,
-   @explFilter-h: 15%, @explGallery-w: 30%, @explGallery-h: 85% ) {
-   position: relative;
-   height: 100vh;
-  .explorerContainer{
-    -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-
-    &.explorer-landing-flash,
-    &.explorer-loading{
-      position: absolute;
-      top:0px;
-      left: 0px;
-      z-index: 501;
-      width: 100%;
-      height: 100%;
-      display:none;
-    }
-    &.explorer-container-du{
-      position: absolute;
-      z-index: 103;
-      width: @explDu-w;
-      height: @explDu-h;
-      display:none;
-      overflow: auto;
-    }
-    &.explorer-container-map{
-      width: @explMap-w;
-      height: @explMap-h;
-      float: left;
-    }
-    &.explorer-container-filter{
-      width: @explFilter-w;
-      height: @explFilter-h;
-      float: right;
-      overflow: auto;
-    }
-    &.explorer-container-gallery{
-      width: @explGallery-w;
-      height: @explGallery-h;
-      float: right;
-      overflow: auto;
-    }
-  }
-}
-/*******************************************************************************************/
-.explorerLayoutIndiana( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 85%, @explFilter-w: 100%,
-   @explFilter-h: 15%, @explGallery-w: 30%, @explGallery-h: 85% ) {
-   position: relative;
-   height: 100vh;
-  .explorerContainer{
-    -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-    &.explorer-container-du{
-      position: absolute;
-      z-index: 103;
-      width: @explDu-w;
-      height: @explDu-h;
-      display:none;
-      overflow: auto;
-    }
-    &.explorer-landing-flash,
-    &.explorer-loading{
-      position: absolute;
-      top:0px;
-      left: 0px;
-      z-index: 501;
-      width: 100%;
-      height: 100%;
-      display:none;
-    }
-    &.explorer-container-map{
-      width: @explMap-w;
-      height: @explMap-h;
-      float: right;
-    }
-    &.explorer-container-filter{
-      width: @explFilter-w;
-      height: @explFilter-h;
-      overflow: auto;
-    }
-    &.explorer-container-gallery{
-      width: @explGallery-w;
-      height: @explGallery-h;
-      float: left;
-      overflow: auto;
-    }
-  }
-}
-/*******************************************************************************************/
 .explorerLayoutSagan( @explDu-w: 100%, @explDu-h: 100%, @explMap-w: 70%, @explMap-h: 100%, @explFilter-w: 400px,
-   @explFilter-h: 150px, @explGallery-w: 30%, @explGallery-h: 100%, @explGallery-minh: @explGallery-h) {
+   @explFilter-h: 150px, @explGallery-w: 30%, @explGallery-h: 100%, @explGallery-minh: @explGallery-h, @hheight: @headerHeight) {
    position: relative;
    height: 100vh;
   .explorerContainer{
@@ -238,11 +145,11 @@
     &.stick{
       &.explorer-container-map{
         position: fixed;
-        top: @headerHeight;
+        top: @hheight;
       }
       &.explorer-container-filter{
         position: fixed !important;
-        top: @headerHeight + 30px !important;
+        top: @hheight + 30px !important;
       }
     }
   }
@@ -267,7 +174,7 @@
 }
 /*******************************************************************************************/
 .explorerLayoutList( @explDu-w: 100%, @explDu-h: 100%, @explFilter-w: 400px,
-   @explFilter-h: 150px, @explGallery-w: 80%, @explGallery-h: 100% ) {
+   @explFilter-h: 150px, @explGallery-w: 80%, @explGallery-h: 100%, @hheight: @headerHeight ) {
    position: relative;
    height: 100vh;
   .explorerContainer{
@@ -310,7 +217,7 @@
     &.stick{
       &.explorer-container-filter{
         position: fixed !important;
-        top: @headerHeight + 0px !important;
+        top: @hheight + 0px !important;
       }
     }
   }
