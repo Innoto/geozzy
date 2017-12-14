@@ -481,6 +481,16 @@ class ResourceController {
       )
     );
 
+    $htmlEditorBig = Cogumelo::getSetupValue('mod:geozzy:resource:htmlEditorBig');
+    if( $htmlEditorBig && is_array($htmlEditorBig) ) {
+      foreach( $htmlEditorBig as $bigEditorField ) {
+        if( isset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] ) ) {
+          unset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] );
+          $fieldsInfo[ $bigEditorField ]['params']['htmlEditorBig'] = true;
+        }
+      }
+    }
+
     $form->definitionsToForm( $fieldsInfo );
 
     // Valadaciones extra
