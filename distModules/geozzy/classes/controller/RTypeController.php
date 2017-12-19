@@ -110,7 +110,9 @@ class RTypeController {
     // error_log( __METHOD__.': '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
     $this->defResCtrl = $defResCtrl;
-    $this->cacheQuery = $defResCtrl->cacheQuery;
+    if( isset( $defResCtrl->cacheQuery ) ) {
+      $this->cacheQuery = $defResCtrl->cacheQuery;
+    }
 
     $this->rTypeModule = $rTypeModule;
     $this->rTypeName = $rTypeModule->name;

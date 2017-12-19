@@ -247,7 +247,7 @@ class ResourceController {
       }
 
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
-      $resourceData['taxonomies'] = $this->getTermsInfoByGroupIdName( $resId );
+      $resourceData['taxonomies'] = $this->getTermsInfoByGroupIdName( $resourceData['id'] );
       if( $resourceData['taxonomies'] !== false ) {
         foreach( $resourceData['taxonomies'] as $idNameTaxgroup => $taxTermArray ) {
           $resourceData[ $idNameTaxgroup ] = $taxTermArray;
