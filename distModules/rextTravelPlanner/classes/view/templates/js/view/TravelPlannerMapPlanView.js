@@ -7,6 +7,10 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   //modalTemplate : false,
   parentTp : false,
   map : false,
+  directionsDisplay: false,
+  snappedCoordinates : [],
+  tramoExtraArray: [],
+  placeIdArray : [],
   currentDay : 0,
   markers : [],
   selectedMarkers : [],
@@ -40,10 +44,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   },
   setInitMap: function(){
     var that = this;
-
-
     eval("var estilosMapa = "+cogumelo.publicConf.rextMapConf.styles+";");
-
 
     that.mapOptions = {
       center: {lat:parseFloat(cogumelo.publicConf.rextMapConf.defaultLat),lng:parseFloat(cogumelo.publicConf.rextMapConf.defaultLng) }, //{ lat: 43.1, lng: -7.36 },
@@ -58,16 +59,19 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     if(that.map === false){
       that.map = new google.maps.Map( that.$('.travelPlannerMapPlan .map').get( 0 ), that.mapOptions);
       google.maps.event.addListener( that.map, 'idle' ,function(e) {
-        that.centerMap();
+
       });
     }
     else {
       google.maps.event.trigger(that.map, 'resize');
     }
+
+    that.directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+    that.directionsDisplay.setMap(that.map);
+
   },
   showDay: function(daySelected){
     var that = this;
-
     that.currentDay = daySelected;
     that.setInitMap();
     that.printDataOnMap();
@@ -103,6 +107,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
 
     var resSelected = [];
     var resSelectedInDay = [];
+    var resSelectedInDayData = [];
 
     $(that.parentTp.tpData.get('list')).each( function(iday,day) {
       $(day).each( function(i,item){
@@ -122,7 +127,6 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     that.removeMarkers();
     that.markers = [];
     that.selectedMarkers = [];
-
     $.each( resourcesToList.toJSON(), function(i ,item){
       var pos = $.inArray(String(item.id), resSelectedInDay);
       if(pos === -1){
@@ -132,7 +136,10 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         that.addMarkerOnMap(item,'selected', pos);
       }
     });
-    that.centerMap();
+    $.each( resSelectedInDay, function(i ,item){
+      resSelectedInDayData.push(resourcesToList.get(item).toJSON());
+    });
+    that.calcRoute(resSelectedInDayData);
   },
 
   addMarkerOnMap: function(item, type, label){
@@ -182,14 +189,134 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     });
   },
 
-  centerMap: function(){
+  calcRoute: function( dataPoints ){
     var that = this;
-    //var bounds = new google.maps.LatLngBounds();
-    /*
-    for (var i = 0; i < that.selectedMarkers.length; i++) {
-     bounds.extend(that.selectedMarkers[i].getPosition());
+    var firstLoc = false;
+    var lastLoc = false
+    var waypointsLoc = [];
+    var startLocation = null;
+    var endLocation = null;
+    var waypts = null;
+    var directionsService = new google.maps.DirectionsService();
+
+    //that.clearRoute();
+
+    if(dataPoints.length > 1){
+      //that.runSnapToRoad(dataPoints, function(){
+        //Generamos array con las coords
+        $.each(dataPoints, function( i, el ) {
+          waypointsLoc.push({ location: el.loc/*, stopover: false*/ });
+        });
+        //Recorremos los puntos recomendados por routes
+        /*if(that.snappedCoordinates.length > 2){
+          $.each(that.snappedCoordinates, function( i, el ) {
+            console.log(parseInt(el.originalIndex));
+            waypointsLoc[parseInt(el.originalIndex)].location = el.loc;
+          });
+        }*/
+        //Extraemos el inicio y fin de ruta
+        firstLoc = waypointsLoc.shift();
+        lastLoc = waypointsLoc.pop();
+
+        var request = {
+          region: 'es',
+          origin: firstLoc.location,
+          destination: lastLoc.location,
+          waypoints: waypointsLoc,
+          optimizeWaypoints: true,
+          travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            that.directionsDisplay.setDirections(response);
+            that.tramoExtraArray = [];
+            that.tramoExtraArray.push(that.tramoExtra( response.request.origin.location, response.routes[0].legs[0].start_location ));
+            $.each(response.routes[0].legs, function( i, leg ) {
+              if( (i+1) !== response.routes[0].legs.length ){
+                that.tramoExtraArray.push(that.tramoExtra( response.request.waypoints[i].location.location, leg.end_location ));
+              }else{
+                //Ultimo
+                that.tramoExtraArray.push(that.tramoExtra( response.request.destination.location, leg.end_location ));
+              }
+
+            });
+          }
+          else {
+            console.log("directions status "+status);
+          }
+        });
+      //}); //that.runSnapToRoad
     }
-    that.map.fitBounds(bounds);
-    */
+  },
+
+  tramoExtra: function tramoExtra( init, end ) {
+    //console.log( 'tramoExtra:', init, end, reves );
+    var that = this;
+    var tramo = false;
+    var diferencia = Math.abs( init.lat() - end.lat()) + Math.abs( init.lng() - end.lng());
+    var fromTo = false;
+
+    if ( !isNaN(diferencia) && diferencia>0.0001 ) {
+      fromTo = [ init, end ];
+
+      tramo = new google.maps.Polyline({
+        path: fromTo,
+        strokeOpacity: 0,
+        icons: [{
+          icon: { path:'M 0,0 L 1,0 L 1,1 L 0,1 z',  fillColor:'#589CF5', strokeColor:'#589CF5', strokeOpacity:0.7, scale:3 },
+          //icon:{ path:'M 1,0 0,2 -1,0 z', fillColor:'#66F', strokeColor:'#66F', strokeOpacity:0.7, scale:2 },
+          offset: '0',
+          repeat: '10px'
+        }],
+        map: that.map
+      });
+    }
+
+    return tramo;
+  },
+
+  clearRoute: function clearRoute() {
+    var that = this;
+    // console.log( 'clearRoute:' );
+    // borra ruta del mapa
+    if( that.directionsDisplay ) {
+      that.directionsDisplay.setDirections( {routes: []} );
+    }
+    if( that.tramoExtraArray ) {
+      $.each(response,routes[0].legs, function( i, tramo ) {
+        tramo.setMap( null );
+        tramo.tramoExtraArray = false;
+      });
+    }
+  },
+
+  runSnapToRoad : function( dataPoints, done ) {
+    var that = this;
+    var pathValues = [];
+    var response = false;
+    $.each(dataPoints, function( i, el ) {
+      pathValues.push(el.loc.lat+','+el.loc.lng);
+    });
+    $.get('https://roads.googleapis.com/v1/snapToRoads', {
+      //interpolate: true,
+      key: cogumelo.publicConf.google_road_key,
+      path: pathValues.join('|')
+    }, function(data) {
+      that.processSnapToRoadResponse(data);
+      done();
+    });
+  },
+
+  processSnapToRoadResponse : function (data) {
+    var that = this;
+    console.log(data);
+    that.snappedCoordinates = [];
+    for (var i = 0; i < data.snappedPoints.length; i++) {
+      that.snappedCoordinates.push({loc:{lat: data.snappedPoints[i].location.latitude, lng: data.snappedPoints[i].location.longitude}, originalIndex: data.snappedPoints[i].originalIndex });
+      that.placeIdArray.push({ placeId: data.snappedPoints[i].placeId, originalIndex: data.snappedPoints[i].originalIndex });
+    }
   }
+
+
 });

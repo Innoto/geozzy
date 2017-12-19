@@ -61,7 +61,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     that.fromModeltoHtml();
     that.updateTotalTimes();
-    that.parentTp.travelPlannerMapPlanView.render();
+    //that.parentTp.travelPlannerMapPlanView.render();
   },
   showMapDay: function(e){
     var that = this;
