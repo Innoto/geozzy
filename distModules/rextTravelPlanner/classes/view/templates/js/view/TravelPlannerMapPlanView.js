@@ -65,10 +65,6 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     else {
       google.maps.event.trigger(that.map, 'resize');
     }
-
-    that.directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
-    that.directionsDisplay.setMap(that.map);
-
   },
   showDay: function(daySelected){
     var that = this;
@@ -76,7 +72,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     that.setInitMap();
     that.printDataOnMap();
     that.changeDay();
-
+    that.renderDirectionsDisplay();
   },
   previousDay: function(e){
     var that = this;
@@ -189,6 +185,14 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     });
   },
 
+  renderDirectionsDisplay: function(){
+    var that = this;
+    if(that.directionsDisplay !== false){
+      that.clearRoute();
+    }
+    that.directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+    that.directionsDisplay.setMap(that.map);
+  },
   calcRoute: function( dataPoints ){
     var that = this;
     var firstLoc = false;
@@ -199,54 +203,42 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     var waypts = null;
     var directionsService = new google.maps.DirectionsService();
 
-    //that.clearRoute();
-
     if(dataPoints.length > 1){
-      //that.runSnapToRoad(dataPoints, function(){
-        //Generamos array con las coords
-        $.each(dataPoints, function( i, el ) {
-          waypointsLoc.push({ location: el.loc/*, stopover: false*/ });
-        });
-        //Recorremos los puntos recomendados por routes
-        /*if(that.snappedCoordinates.length > 2){
-          $.each(that.snappedCoordinates, function( i, el ) {
-            console.log(parseInt(el.originalIndex));
-            waypointsLoc[parseInt(el.originalIndex)].location = el.loc;
+      //Generamos array con las coords
+      $.each(dataPoints, function( i, el ) {
+        waypointsLoc.push({ location: el.loc });
+      });
+      //Extraemos el inicio y fin de ruta
+      firstLoc = waypointsLoc.shift();
+      lastLoc = waypointsLoc.pop();
+
+      var request = {
+        region: 'es',
+        origin: firstLoc.location,
+        destination: lastLoc.location,
+        waypoints: waypointsLoc,
+        /*optimizeWaypoints: true,*/
+        travelMode: google.maps.DirectionsTravelMode.DRIVING
+      };
+
+      directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          that.directionsDisplay.setDirections(response);
+          that.tramoExtraArray = [];
+          that.tramoExtraArray.push(that.tramoExtra( response.request.origin.location, response.routes[0].legs[0].start_location ));
+          $.each(response.routes[0].legs, function( i, leg ) {
+            if( (i+1) !== response.routes[0].legs.length ){
+              that.tramoExtraArray.push(that.tramoExtra( response.request.waypoints[i].location.location, leg.end_location ));
+            }else{
+              //Ultimo
+              that.tramoExtraArray.push(that.tramoExtra( response.request.destination.location, leg.end_location ));
+            }
           });
-        }*/
-        //Extraemos el inicio y fin de ruta
-        firstLoc = waypointsLoc.shift();
-        lastLoc = waypointsLoc.pop();
-
-        var request = {
-          region: 'es',
-          origin: firstLoc.location,
-          destination: lastLoc.location,
-          waypoints: waypointsLoc,
-          optimizeWaypoints: true,
-          travelMode: google.maps.DirectionsTravelMode.DRIVING
-        };
-
-        directionsService.route(request, function(response, status) {
-          if (status == google.maps.DirectionsStatus.OK) {
-            that.directionsDisplay.setDirections(response);
-            that.tramoExtraArray = [];
-            that.tramoExtraArray.push(that.tramoExtra( response.request.origin.location, response.routes[0].legs[0].start_location ));
-            $.each(response.routes[0].legs, function( i, leg ) {
-              if( (i+1) !== response.routes[0].legs.length ){
-                that.tramoExtraArray.push(that.tramoExtra( response.request.waypoints[i].location.location, leg.end_location ));
-              }else{
-                //Ultimo
-                that.tramoExtraArray.push(that.tramoExtra( response.request.destination.location, leg.end_location ));
-              }
-
-            });
-          }
-          else {
-            console.log("directions status "+status);
-          }
-        });
-      //}); //that.runSnapToRoad
+        }
+        else {
+          console.log("directions status "+status);
+        }
+      });
     }
   },
 
@@ -283,40 +275,13 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     if( that.directionsDisplay ) {
       that.directionsDisplay.setDirections( {routes: []} );
     }
-    if( that.tramoExtraArray ) {
-      $.each(response,routes[0].legs, function( i, tramo ) {
-        tramo.setMap( null );
-        tramo.tramoExtraArray = false;
+    if( that.tramoExtraArray && that.tramoExtraArray.length > 0 ) {
+      $.each( that.tramoExtraArray, function( i, tramo ) {
+        if(tramo){
+          tramo.setMap( null );
+        }
       });
-    }
-  },
-
-  runSnapToRoad : function( dataPoints, done ) {
-    var that = this;
-    var pathValues = [];
-    var response = false;
-    $.each(dataPoints, function( i, el ) {
-      pathValues.push(el.loc.lat+','+el.loc.lng);
-    });
-    $.get('https://roads.googleapis.com/v1/snapToRoads', {
-      //interpolate: true,
-      key: cogumelo.publicConf.google_road_key,
-      path: pathValues.join('|')
-    }, function(data) {
-      that.processSnapToRoadResponse(data);
-      done();
-    });
-  },
-
-  processSnapToRoadResponse : function (data) {
-    var that = this;
-    console.log(data);
-    that.snappedCoordinates = [];
-    for (var i = 0; i < data.snappedPoints.length; i++) {
-      that.snappedCoordinates.push({loc:{lat: data.snappedPoints[i].location.latitude, lng: data.snappedPoints[i].location.longitude}, originalIndex: data.snappedPoints[i].originalIndex });
-      that.placeIdArray.push({ placeId: data.snappedPoints[i].placeId, originalIndex: data.snappedPoints[i].originalIndex });
+      that.tramoExtraArray = [];
     }
   }
-
-
 });
