@@ -4,9 +4,13 @@ common::autoIncludes();
 geozzy::autoIncludes();
 admin::autoIncludes();
 form::autoIncludes();
-form::loadDependence('ckeditor');
 user::autoIncludes();
 table::autoIncludes();
+
+form::loadDependence('ckeditor');
+if( Cogumelo::getSetupValue('mod:geozzy:resource:htmlEditorBig') ) {
+  form::loadDependence('grapesjs');
+}
 
 if( class_exists( 'rtypeStory' ) ) {
   rtypeStory::autoIncludes();
@@ -98,7 +102,7 @@ class AdminViewMaster extends View {
       $user['data']['avatarName'] = $avatar->getter('name');
     }
     $this->template->assign( 'user' , $user );
-  
+
     //Control menu
     $superAdminPermission = $useraccesscontrol->checkPermissions();
     $this->template->assign( 'superAdminPermission' , $superAdminPermission);

@@ -247,7 +247,7 @@ class ResourceController {
       }
 
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
-      $resourceData['taxonomies'] = $this->getTermsInfoByGroupIdName( $resId );
+      $resourceData['taxonomies'] = $this->getTermsInfoByGroupIdName( $resourceData['id'] );
       if( $resourceData['taxonomies'] !== false ) {
         foreach( $resourceData['taxonomies'] as $idNameTaxgroup => $taxTermArray ) {
           $resourceData[ $idNameTaxgroup ] = $taxTermArray;
@@ -480,6 +480,16 @@ class ResourceController {
         'rules' => array( 'number' => true )
       )
     );
+
+    $htmlEditorBig = Cogumelo::getSetupValue('mod:geozzy:resource:htmlEditorBig');
+    if( $htmlEditorBig && is_array($htmlEditorBig) ) {
+      foreach( $htmlEditorBig as $bigEditorField ) {
+        if( isset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] ) ) {
+          unset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] );
+          $fieldsInfo[ $bigEditorField ]['params']['htmlEditorBig'] = true;
+        }
+      }
+    }
 
     $form->definitionsToForm( $fieldsInfo );
 

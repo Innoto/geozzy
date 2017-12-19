@@ -152,7 +152,7 @@ class ResourceViewModel extends Model {
 
   var $deploySQL = array(
     array(
-      'version' => 'geozzy#2',
+      'version' => 'geozzy#3',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_view;
