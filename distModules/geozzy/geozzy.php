@@ -221,10 +221,29 @@ class geozzy extends Module {
     $userRole->setterDependence( 'user', $user );
     $userRole->save(array( 'affectsDependences' => true ));
 
+    // first initialize terms
+    $this->initializeOrUpdateTerms();
+  }
 
-    /**
-    Añade taxonomías destacadas y menu
-    */
+
+
+  public function moduleDeploy() {
+    geozzy::load('model/TaxonomygroupModel.php');
+    geozzy::load('model/TaxonomytermModel.php');
+    geozzy::load('model/TopicModel.php');
+    geozzy::load('model/ResourcetypeModel.php');
+    geozzy::load('model/ResourcetypeTopicModel.php');
+
+    // update terms
+    $this->initializeOrUpdateTerms( true );
+  }
+
+  /*
+  *  Add taxonomías base de app, STARRED and MENU
+  */
+  public function initializeOrUpdateTerms( $isDeploy =false ) {
+
+
     global $GEOZZY_TAXONOMYGROUPS;
     if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyTaxonomyGroups.php') ) {
       require_once APP_BASE_PATH.'/conf/inc/geozzyTaxonomyGroups.php';
@@ -252,25 +271,27 @@ class geozzy extends Module {
     }
 
 
-    $GEOZZY_TAXONOMYGROUPS['menu'] = array(
-      'idName' => 'menu',
-      'name' => array(
-        'es' => 'Menu',
-        'en' => 'Menu',
-        'gl' => 'Menu'
-      ),
-      'editable' => 0,
-      'nestable' => 4,
-      'sortable' => 1
-    );
+    // only add menu items when not deploy
+    if( $isDeploy == false ) {
+      $GEOZZY_TAXONOMYGROUPS['menu'] = array(
+        'idName' => 'menu',
+        'name' => array(
+          'es' => 'Menu',
+          'en' => 'Menu',
+          'gl' => 'Menu'
+        ),
+        'editable' => 0,
+        'nestable' => 4,
+        'sortable' => 1
+      );
 
-    if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyMenu.php') ) {
-      require_once APP_BASE_PATH.'/conf/inc/geozzyMenu.php';
-      $GEOZZY_TAXONOMYGROUPS['menu']['initialTerms'] = $GEOZZY_MENU;
+      if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyMenu.php') ) {
+        require_once APP_BASE_PATH.'/conf/inc/geozzyMenu.php';
+        $GEOZZY_TAXONOMYGROUPS['menu']['initialTerms'] = $GEOZZY_MENU;
+      }
     }
 
-
-    /**
+    /*
     Creamos las taxonomías definidas
     */
     if( count( $GEOZZY_TAXONOMYGROUPS ) > 0 ) {
@@ -279,8 +300,14 @@ class geozzy extends Module {
           $tax['name_'.$langKey] = $name;
         }
         unset($tax['name']);
+        $existTaxonomygroupModel = ( new TaxonomygroupModel() )->listItems(['filters'=>['idName'=> $tax['idName'] ]])->fetch();
+        if( $existTaxonomygroupModel ) {
+          $tax['id'] = $existTaxonomygroupModel->getter('id');
+        }
         $taxgroup = new TaxonomygroupModel( $tax );
         $taxgroup->save();
+
+
 
         if( isset($tax['initialTerms']) && count( $tax['initialTerms']) > 0 ) {
           $this->createTermsArray( $taxgroup->getter('id'), false, $tax['initialTerms']);
@@ -288,6 +315,9 @@ class geozzy extends Module {
       }
     }
   }
+
+
+
 
   /**
    * This function is to create terms
@@ -301,9 +331,24 @@ class geozzy extends Module {
       foreach( $term['name'] as $langKey => $name ) {
         $term['name_'.$langKey] = $name;
       }
+
+      /*
       unset($term['name']);
       $taxterm = new TaxonomytermModel( $term );
       $taxterm->save();
+      */
+
+
+
+      unset($term['name']);
+      $existTaxonomytermModel = ( new TaxonomytermModel() )->listItems(['filters'=>['idName'=> $term['idName'], 'taxgroup'=> $term['taxgroup']  ]])->fetch();
+      if( $existTaxonomytermModel ) {
+        $term['id'] = $existTaxonomytermModel->getter('id');
+      }
+
+      $taxterm = new TaxonomytermModel( $term );
+      $taxterm->save();
+
 
       if(!empty ($term['children']) ){
         $this->createTermsArray( $taxId, $taxterm->getter('id'), $term['children']);
