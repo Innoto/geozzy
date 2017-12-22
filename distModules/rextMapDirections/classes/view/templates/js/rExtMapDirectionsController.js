@@ -344,6 +344,17 @@ geozzy.rExtMapDirectionsController = {
     }
   },
 
+  redirectGMaps: function redirectGMaps( directionsData ) {
+    var that = this;
+
+    if( directionsData ) {
+      that.resourceMapInfo = directionsData;
+    }
+    // console.log( 'redirectGMaps:', that.resourceMapInfo );
+
+    window.location.href = 'https://www.google.es/maps/dir//'+that.resourceMapInfo.lat+','+that.resourceMapInfo.lng;
+  },
+
   scrollTopWrapper: function scrollTopWrapper( $elem ) {
     var scrollTo = $elem.position().top;
     // console.log( 'scrollTopWrapper: ', $elem, scrollTo );
