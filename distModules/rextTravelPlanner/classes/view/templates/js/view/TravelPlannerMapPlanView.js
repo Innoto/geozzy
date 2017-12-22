@@ -8,9 +8,9 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   parentTp : false,
   map : false,
   directionsDisplay: false,
-  snappedCoordinates : [],
+  directionsService: false,
   tramoExtraArray: [],
-  placeIdArray : [],
+  directionsServiceRequest: [],
   currentDay : 0,
   markers : [],
   selectedMarkers : [],
@@ -39,7 +39,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     if( parseInt(that.currentDay + 1 ) >= that.planDays ){
       that.currentDay = 0;
     }
-
+    that.directionsServiceRequest = [];
     that.showDay(that.currentDay);
   },
   setInitMap: function(){
@@ -65,14 +65,22 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     else {
       google.maps.event.trigger(that.map, 'resize');
     }
+
   },
   showDay: function(daySelected){
     var that = this;
     that.currentDay = daySelected;
     that.setInitMap();
-    that.printDataOnMap();
+    that.printMarkersOnMap();
+    that.printRouteOnMap();
     that.changeDay();
-    that.renderDirectionsDisplay();
+  },
+  showOptimizeDay: function(daySelected){
+    var that = this;
+    that.currentDay = daySelected;
+    that.setInitMap();
+    that.printRouteOnMap();
+    that.changeDay();
   },
   previousDay: function(e){
     var that = this;
@@ -98,12 +106,11 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       that.$('.travelPlannerMapPlan .filterDay-next').addClass('notVisible');
     }
   },
-  printDataOnMap: function(){
-    var that = this;
 
+  printMarkersOnMap: function(){
+    var that = this;
     var resSelected = [];
     var resSelectedInDay = [];
-    var resSelectedInDayData = [];
 
     $(that.parentTp.tpData.get('list')).each( function(iday,day) {
       $(day).each( function(i,item){
@@ -132,11 +139,24 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         that.addMarkerOnMap(item,'selected', pos);
       }
     });
-    $.each( resSelectedInDay, function(i ,item){
-      resSelectedInDayData.push(resourcesToList.get(item).toJSON());
-    });
-    that.calcRoute(resSelectedInDayData);
   },
+
+  printRouteOnMap: function(){
+    var that = this;
+    var resSelectedInDay = [];
+    $(that.parentTp.tpData.get('list')).each( function(iday,day) {
+      $(day).each( function(i,item){
+        if( that.currentDay  == iday ){
+          resSelectedInDay.push(item.id);
+        }
+      });
+    });
+    var resourcesToList = [];
+    resourcesToList = that.parentTp.resources;
+    resourcesToList = new geozzy.collection.ResourceCollection( resourcesToList.filterById(resSelectedInDay) );
+    that.calcRoute(resourcesToList.toJSON());
+  },
+
 
   addMarkerOnMap: function(item, type, label){
     var that = this;
@@ -185,14 +205,6 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     });
   },
 
-  renderDirectionsDisplay: function(){
-    var that = this;
-    if(that.directionsDisplay !== false){
-      that.clearRoute();
-    }
-    that.directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
-    that.directionsDisplay.setMap(that.map);
-  },
   calcRoute: function( dataPoints ){
     var that = this;
     var firstLoc = false;
@@ -201,7 +213,17 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     var startLocation = null;
     var endLocation = null;
     var waypts = null;
-    var directionsService = new google.maps.DirectionsService();
+
+    if(that.directionsService === false){
+      that.directionsService = new google.maps.DirectionsService();
+    }
+    if(that.directionsDisplay === false){
+      that.directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+    }else{
+      that.clearRoute();
+    }
+
+    that.directionsDisplay.setMap(that.map);
 
     if(dataPoints.length > 1){
       //Generamos array con las coords
@@ -212,36 +234,51 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       firstLoc = waypointsLoc.shift();
       lastLoc = waypointsLoc.pop();
 
+      if(cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode && cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode === 'WALKING'){
+        confTravelMode = google.maps.DirectionsTravelMode.WALKING;
+      }else{
+        confTravelMode = google.maps.DirectionsTravelMode.DRIVING;
+      }
+
       var request = {
-        region: 'es',
         origin: firstLoc.location,
         destination: lastLoc.location,
         waypoints: waypointsLoc,
         /*optimizeWaypoints: true,*/
-        travelMode: google.maps.DirectionsTravelMode.DRIVING
+        travelMode: confTravelMode
       };
+      if( !that.directionsServiceRequest[that.currentDay] ){
+        //console.log("petición dia: "+that.currentDay);
+        that.directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            that.directionsServiceRequest[that.currentDay] = response;
+            that.printRouteOnMaps(response);
+          }
+          else {
+            console.log("directions status "+status);
+          }
+        });
+      }else{
+        //console.log("petición en cache dia : "+that.currentDay);
+        that.printRouteOnMaps(that.directionsServiceRequest[that.currentDay]);
 
-      directionsService.route(request, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          that.directionsDisplay.setDirections(response);
-          that.tramoExtraArray = [];
-          that.tramoExtraArray.push(that.tramoExtra( response.request.origin.location, response.routes[0].legs[0].start_location ));
-          $.each(response.routes[0].legs, function( i, leg ) {
-            if( (i+1) !== response.routes[0].legs.length ){
-              that.tramoExtraArray.push(that.tramoExtra( response.request.waypoints[i].location.location, leg.end_location ));
-            }else{
-              //Ultimo
-              that.tramoExtraArray.push(that.tramoExtra( response.request.destination.location, leg.end_location ));
-            }
-          });
-        }
-        else {
-          console.log("directions status "+status);
-        }
-      });
+      }
     }
   },
-
+  printRouteOnMaps: function printRouteOnMaps( response ){
+    var that = this;
+    that.directionsDisplay.setDirections( response );
+    that.tramoExtraArray = [];
+    that.tramoExtraArray.push(that.tramoExtra( response.request.origin.location, response.routes[0].legs[0].start_location ));
+    $.each(response.routes[0].legs, function( i, leg ) {
+      if( (i+1) !== response.routes[0].legs.length ){
+        that.tramoExtraArray.push(that.tramoExtra( response.request.waypoints[i].location.location, leg.end_location ));
+      }else{
+        //Ultimo
+        that.tramoExtraArray.push(that.tramoExtra( response.request.destination.location, leg.end_location ));
+      }
+    });
+  },
   tramoExtra: function tramoExtra( init, end ) {
     //console.log( 'tramoExtra:', init, end, reves );
     var that = this;
@@ -273,7 +310,8 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     // console.log( 'clearRoute:' );
     // borra ruta del mapa
     if( that.directionsDisplay ) {
-      that.directionsDisplay.setDirections( {routes: []} );
+      //that.directionsDisplay.setDirections( {routes: []} );
+      that.directionsDisplay.setMap(null);
     }
     if( that.tramoExtraArray && that.tramoExtraArray.length > 0 ) {
       $.each( that.tramoExtraArray, function( i, tramo ) {

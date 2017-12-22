@@ -83,6 +83,7 @@
       <div class="infoRight clearfix">
         <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
         <div class="showMap"><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
+        <div class="optimizeDay"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
       </div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
@@ -174,8 +175,38 @@
 
 <script type="text/template" id="getDatesTpModalTemplate">
   <div class="title">{t}When do you want to travel? {/t}</div>
-  <div class="getdatesTpContainer clearfix">    
+  <div class="getdatesTpContainer clearfix">
     <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
     <input type="text" id="getDatesTpInput" class="form-control" readonly>
   </div>
+</script>
+
+<script type="text/template" id="optimizeDayTpModalTemplate">
+
+    <div class="title">{t}Optimize route of day {/t}<%- data.day %></div>
+    <p>{t}The route between the first and the last place of the day will be optimized.{/t}<p>
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="routeInit">
+          <div class="image"><img class="img-responsive" src="/cgmlImg/<%- data.init.image %>/travelPlannerListBig/<%- data.init.image %>.jpg"></div>
+          <div class="title"><%- data.init.title %></div>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <div class="icons">
+          <i class="fa fa-caret-right"></i>&nbsp;<i class="fa fa-caret-right"></i>&nbsp;<i class="fa fa-caret-right"></i>&nbsp;<i class="fa fa-caret-right"></i>&nbsp;<i class="fa fa-caret-right"></i>
+        </div>
+      </div>
+      <div class="col-xs-5">
+        <div class="routeEnd">
+          <div class="image"><img class="img-responsive" src="/cgmlImg/<%- data.end.image %>/travelPlannerListBig/<%- data.end.image %>.jpg"></div>
+          <div class="title"><%- data.end.title %></div>
+        </div>
+      </div>
+    </div>
+    <div class="buttonActions">
+      <button type="button" class="btn btn-warning" data-dismiss="modal" aria-label="Close">{t}Cancel{/t}</button>
+      <button type="button" class="optimizeRoute btn btn-success">{t}Optimize{/t}</button>
+    <div>
+
 </script>

@@ -251,6 +251,7 @@ body{
               .infoRight{
                 float: right;
                 .infoTime{
+                  text-align: right;
                   .font-size-small();
                   font-weight: 600;
                   vertical-align: bottom;
@@ -268,6 +269,16 @@ body{
                   cursor: pointer;
                   color: @gzzColor-text-light;
                   .font-size-bigger();
+                }
+                .optimizeDay{
+                  text-align: right;
+                  .font-size-small();
+                  font-weight: 600;
+                  color: @gzzColor-RS;
+                  &:hover{
+                    text-decoration: underline;
+                    cursor: pointer;
+                  }
                 }
               }
 
@@ -424,6 +435,36 @@ body{
       input{
         border: 1px solid @gzzColor-RS;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+#optimizeDayTpModal{
+  .modal-body{
+    padding: 40px;
+    text-align: center;
+    .title{
+      .font-size-bigger();
+      padding-bottom: 10px;
+    }
+    .routeInit,
+    .routeEnd{
+      .title{
+        .font-size-big();
+      }
+    }
+    .icons{
+      .font-size-bigger();
+      color: @gzzColor-RS;
+      white-space: nowrap;
+      overflow: hidden;
+      margin-top: 30px;
+    }
+    .buttonActions{
+      margin-top: 20px;
+      button{
+        margin: 0 10px;
       }
     }
   }
