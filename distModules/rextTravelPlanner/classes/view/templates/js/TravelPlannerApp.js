@@ -12,6 +12,8 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.travelPlannerMapView = false;
   that.travelPlannerMapPlanView = false;
   that.travelPlannerResourceView = false;
+  that.travelPlannerGetDatesView = false;
+  that.travelPlannerOptimizeDayView = false;
   that.travelPlannerDefaultVisitTime = 116; // in minutes
   that.travelPlannerMode = 1;
   that.categories = {};
@@ -149,9 +151,11 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     }
   };
   that.getDates = function(){
-    that.travelPlannerGetDatesView = new geozzy.travelPlannerComponents.TravelPlannerGetDatesView(that);    
+    that.travelPlannerGetDatesView = new geozzy.travelPlannerComponents.TravelPlannerGetDatesView(that);
   };
-
+  that.initOptimizeDayModal = function( day ){
+    that.travelPlannerOptimizeDayView = new geozzy.travelPlannerComponents.TravelPlannerOptimizeDayView(that, day);
+  };
   that.addToPlan = function(idRes){
     if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
       that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, idRes );
