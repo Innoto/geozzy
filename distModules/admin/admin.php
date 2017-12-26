@@ -21,12 +21,12 @@ class admin extends Module {
      "installer" => "bower",
      "includes" => ['backbone.js']
     ),
-    array(
+    /*array(
      "id" => "bootstrap",
      "params" => array("bootstrap#v3.3"),
      "installer" => "bower",
      "includes" => array("dist/js/bootstrap.min.js")
-    ),
+   ),*/
     array(
      "id" => "font-awesome",
      "params" => array("Font-Awesome"),
