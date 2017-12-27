@@ -245,6 +245,7 @@ class geozzy extends Module {
 
 
     global $GEOZZY_TAXONOMYGROUPS;
+
     if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyTaxonomyGroups.php') ) {
       require_once APP_BASE_PATH.'/conf/inc/geozzyTaxonomyGroups.php';
     }
@@ -267,6 +268,7 @@ class geozzy extends Module {
 
     if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyStarred.php') ) {
       require_once APP_BASE_PATH.'/conf/inc/geozzyStarred.php';
+      global $GEOZZY_STARRED;      
       $GEOZZY_TAXONOMYGROUPS['starred']['initialTerms'] = $GEOZZY_STARRED;
     }
 
