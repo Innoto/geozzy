@@ -1,6 +1,6 @@
 $(document).ready( function(){
 
-  if( typeof geozzy.rExtMapInstance.resourceMap != 'undefined') {
+  if( typeof geozzy.rExtMapInstance.resourceMap != 'undefined' || geozzy.rExtMapInstance.resourceMap) {
 
     new google.maps.KmlLayer(rextKMLFile, {
       preserveViewport: true,
