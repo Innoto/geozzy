@@ -9,7 +9,7 @@ geozzy.explorerComponents.mapInfoViewTemplate = ''+
     '</div>'+
     '<div class="gempiInfo">'+
       '<div class="gempiTitle"><%-title%></div>'+
-      '<div class="gempiLocation"><% if(city){ %><%- city %> <% } %></div>'+
+      '<div class="gempiLocation"><% if( typeof city !="undefined" && city ){ %><%- city %> <% } %></div>'+
       '<div class="gempiDescription"><%=description%></div>'+
       '<a href="#resource/<%-id%>"><div class="gempiTouchAccess"><% if(touchAccess){ %><button class="btn btn-primary accessButton">Descúbreo</button> <% } %></div></a>'+
     '</div>'+

@@ -508,7 +508,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       retObj = iconOptions;
     }
     else {
-      if(typeof(cogumelo.publicConf.rextMapConf.defaultMarker) !== 'undefined'){
+      if(
+        typeof cogumelo.publicConf.rextMapConf != 'undefined' &&
+        typeof(cogumelo.publicConf.rextMapConf.defaultMarker) !== 'undefined'
+      ){
         retObj = {
           url: cogumelo.publicConf.rextMapConf.defaultMarker,
           // This marker is 20 pixels wide by 36 pixels high.
