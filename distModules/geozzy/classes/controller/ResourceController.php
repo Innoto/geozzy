@@ -1402,6 +1402,10 @@ class ResourceController {
               'imageName' => $resVal->getter('imageName'),
               'imageAKey' => $resVal->getter('imageAKey'),
             );
+            //Añadimos rextUrlUrl a los recursos tipo link
+            if(!empty( $resVal->getter('rextUrlUrl') )){
+                $collResources[ $collId ]['res'][ $resValId ]['rextUrlUrl'] = $resVal->getter('rextUrlUrl');
+            }
 
             // Ampliamos la carga de datos del recurso Base
             if( $extraFields !== false ) {
