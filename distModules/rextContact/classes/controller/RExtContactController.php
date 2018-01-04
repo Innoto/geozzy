@@ -83,7 +83,7 @@ class RExtContactController extends RExtController implements RExtInterface {
       ),
       'url' => array(
         'params' => array( 'label' => __( 'Contact url' ) ),
-        'rules' => array( 'maxlength' => 2000 )
+        'rules' => array( 'maxlength' => 2000, 'url' => true )
       )
     );
 
