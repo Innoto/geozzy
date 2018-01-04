@@ -312,12 +312,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     if( that.markerClusterer == false ) {
 
-
       that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
         maxZoom: that.options.clustererMaxZoom, // 15,
         gridSize: that.options.clustererGridSize, //90,
         zoomOnClick: that.options.clustererZoomOnClick, //true,
-        styles: that.options.clustererStyles
+        styles: that.options.clustererStyles,
+        isTouchDevice: that.parentExplorer.explorerTouchDevice
       });
 
       var roseta = new geozzy.explorerComponents.clusterRoseView({mapView: that});

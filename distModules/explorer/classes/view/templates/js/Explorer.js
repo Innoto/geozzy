@@ -90,7 +90,8 @@ geozzy.explorer = function( opts ) {
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
 
     that.bindEvent('resourceClick', function(param){
-      if(typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
+
+      if(typeof geozzy.explorerComponents.routerInstance != 'undefined' && typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
         geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
       }
     });
@@ -196,7 +197,7 @@ geozzy.explorer = function( opts ) {
 
 
       that.render();
-      that.triggerEvent('applyFilters', {});      
+      that.triggerEvent('applyFilters', {});
     }
 
   }
