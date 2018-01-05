@@ -74,7 +74,11 @@
 
 {capture rExtMapDirections assign="jsMapDirectionsForm"}
 <div class="rExtMapDirections dirForm jsMapDirectionsForm">
-  <p class="mapRouteFormTitle">{t}Type a departure address{/t}:</p>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="mapRouteFormTitle">{t}Type a departure address{/t}:</p>
+    </div>
+  </div>
   <form class="mapRouteForm">
     <div class="row">
       <div class="col-md-4">
