@@ -27,8 +27,8 @@ class explorer extends Module {
      "includes" => array("backbone.js")
     ),
     array(
-     "id" =>"backbone-fetch-cache",
-     "params" => array("backbone-fetch-cache#1.3.0"),
+     "id" =>"backbone-fetch-cache.innoto",
+     "params" => array("backbone-fetch-cache.innoto"),
      "installer" => "bower",
      "includes" => array("backbone.fetch-cache.min.js")
     ),
