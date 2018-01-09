@@ -72,14 +72,14 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     that.currentDay = daySelected;
     that.setInitMap();
     that.printMarkersOnMap();
-    that.printRouteOnMap();
+    that.startRouteOnMap();
     that.changeDay();
   },
   showOptimizeDay: function(daySelected){
     var that = this;
     that.currentDay = daySelected;
     that.setInitMap();
-    that.printRouteOnMap();
+    that.startRouteOnMap(true);
     that.changeDay();
   },
   previousDay: function(e){
@@ -111,7 +111,6 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     var that = this;
     var resSelected = [];
     var resSelectedInDay = [];
-
     $(that.parentTp.tpData.get('list')).each( function(iday,day) {
       $(day).each( function(i,item){
         if( that.currentDay  == iday ){
@@ -141,7 +140,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     });
   },
 
-  printRouteOnMap: function(){
+  startRouteOnMap: function(optimize){
     var that = this;
     var resSelectedInDay = [];
     $(that.parentTp.tpData.get('list')).each( function(iday,day) {
@@ -154,7 +153,13 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     var resourcesToList = [];
     resourcesToList = that.parentTp.resources;
     resourcesToList = new geozzy.collection.ResourceCollection( resourcesToList.filterById(resSelectedInDay) );
-    that.calcRoute(resourcesToList.toJSON());
+
+    var resSelectedInDayData = [];
+    $.each( resSelectedInDay, function(i ,item){
+      resSelectedInDayData.push(resourcesToList.get(item).toJSON());
+    });
+
+    that.calcRoute(resSelectedInDayData, optimize);
   },
 
 
@@ -179,7 +184,8 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
           text: String(label + 1 ) }
       });
       that.selectedMarkers.push(gMarker);
-    }else{
+    }
+    else{
       var Icono = {
         path: google.maps.SymbolPath.CIRCLE,
         fillOpacity: 1,
@@ -205,14 +211,13 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     });
   },
 
-  calcRoute: function( dataPoints ){
+  calcRoute: function( dataPoints, optimize ){
     var that = this;
     var firstLoc = false;
     var lastLoc = false
     var waypointsLoc = [];
-    var startLocation = null;
-    var endLocation = null;
-    var waypts = null;
+
+    var optimizeRes = (optimize) ? true : false;
 
     if(that.directionsService === false){
       that.directionsService = new google.maps.DirectionsService();
@@ -230,6 +235,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       $.each(dataPoints, function( i, el ) {
         waypointsLoc.push({ location: el.loc });
       });
+
       //Extraemos el inicio y fin de ruta
       firstLoc = waypointsLoc.shift();
       lastLoc = waypointsLoc.pop();
@@ -244,15 +250,35 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         origin: firstLoc.location,
         destination: lastLoc.location,
         waypoints: waypointsLoc,
-        /*optimizeWaypoints: true,*/
+        optimizeWaypoints: optimizeRes,
         travelMode: confTravelMode
       };
-      if( !that.directionsServiceRequest[that.currentDay] ){
+      if( !that.directionsServiceRequest[that.currentDay] || optimizeRes){
         //console.log("petición dia: "+that.currentDay);
         that.directionsService.route(request, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             that.directionsServiceRequest[that.currentDay] = response;
-            that.printRouteOnMaps(response);
+            if(optimizeRes){
+              console.log( 'optimizeRes', optimizeRes);
+              var list = that.parentTp.tpData.get('list');
+              var resourcesDay = list[that.currentDay];
+              var new_day = [];
+              var waypointsOptmz = [];
+              //Reordenamos los recursos del dia actual según la optimización
+              new_day[0] = resourcesDay[0];
+              $.each( response['routes'][0]['waypoint_order'], function( i, w ){
+                waypointsOptmz[i] = waypointsLoc[w];
+                new_day[(i+1)] = resourcesDay[(w+1)];
+              });
+              new_day[(response['routes'][0]['waypoint_order'].length+1)] = resourcesDay[(response['routes'][0]['waypoint_order'].length+1)];
+              list[that.currentDay] = new_day;
+              //Pasamos el listado de dias al tpPlan para que lo guarde
+              that.parentTp.travelPlannerPlanView.reorderDay( list );
+
+              that.printRouteOnMaps(response, waypointsOptmz);
+            }else{
+              that.printRouteOnMaps(response, waypointsLoc);
+            }
           }
           else {
             console.log("directions status "+status);
@@ -260,19 +286,21 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         });
       }else{
         //console.log("petición en cache dia : "+that.currentDay);
-        that.printRouteOnMaps(that.directionsServiceRequest[that.currentDay]);
+        that.printRouteOnMaps(that.directionsServiceRequest[that.currentDay], waypointsLoc);
 
       }
     }
   },
-  printRouteOnMaps: function printRouteOnMaps( response ){
+  printRouteOnMaps: function printRouteOnMaps( response , waypoints ){
     var that = this;
     that.directionsDisplay.setDirections( response );
     that.tramoExtraArray = [];
     that.tramoExtraArray.push(that.tramoExtra( response.request.origin.location, response.routes[0].legs[0].start_location ));
     $.each(response.routes[0].legs, function( i, leg ) {
       if( (i+1) !== response.routes[0].legs.length ){
-        that.tramoExtraArray.push(that.tramoExtra( response.request.waypoints[i].location.location, leg.end_location ));
+        that.tramoExtraArray.push(
+          that.tramoExtra( new google.maps.LatLng( waypoints[i].location.lat, waypoints[i].location.lng ), leg.end_location )
+        );
       }else{
         //Ultimo
         that.tramoExtraArray.push(that.tramoExtra( response.request.destination.location, leg.end_location ));
@@ -304,10 +332,8 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
 
     return tramo;
   },
-
   clearRoute: function clearRoute() {
     var that = this;
-    // console.log( 'clearRoute:' );
     // borra ruta del mapa
     if( that.directionsDisplay ) {
       //that.directionsDisplay.setDirections( {routes: []} );

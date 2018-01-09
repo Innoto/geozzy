@@ -74,7 +74,7 @@ geozzy.travelPlannerComponents.TravelPlannerOptimizeDayView = Backbone.View.exte
 
   optimizeRoute: function(){
     var that = this;
-    alert('OptimizeRoute');
+    that.parentTp.showMapOptimize(that.paramDay);
     that.closeModalResource();
   },
 
