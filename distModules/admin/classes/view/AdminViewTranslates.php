@@ -272,7 +272,7 @@ class AdminViewTranslates extends AdminViewMaster {
                   foreach( (array) $resData as $idField => $valueField ) {
                     if( !is_object( $valueField ) ) {
                       // Recurso base
-                      if( $idField!=='timeCreation' ) {
+                      if( $idField!=='timeCreation' && $idField!=='timeLastUpdate' ) {
                         $updateDataRes[$resData->id][$idField] = $valueField;
                       }
                     }
@@ -295,7 +295,7 @@ class AdminViewTranslates extends AdminViewMaster {
                 foreach( (array) $typeData as $colData ) {
                   $updateDataCol[$colData->id] = [];
                   foreach( (array) $colData as $idField => $valueField ) {
-                    if( $idField!=='id' && $idField!=='timeCreation' ) {
+                    if( $idField!=='timeCreation' && $idField!=='timeLastUpdate' ) {
                       $updateDataCol[$colData->id][$idField] = $valueField;
                     }
                   }
