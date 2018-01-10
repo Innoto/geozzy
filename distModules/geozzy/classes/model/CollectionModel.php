@@ -57,7 +57,10 @@ class CollectionModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'createdfrom' => ' ( geozzy_collection.timeCreation >= ? ) ',
+    'lastUpdatefrom' => ' ( geozzy_collection.timeLastUpdate >= ? ) '
+  );
 
 
   var $deploySQL = array(

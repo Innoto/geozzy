@@ -94,6 +94,27 @@
             <li class="contents">
               <a href="/admin#resource/list"><i class="fa fa-indent fa-fw"></i> {t}Contents{/t} </a>
             </li>
+
+            <li class="translates">
+              <a href="#"><i class="fa fa-exchange fa-fw"></i> {t}Translates{/t} <span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level">
+                <li>
+                  <li class="transExport">
+                    <a href="#"><i class="fa fa-long-arrow-left fa-fw"></i> {t}Export{/t} <span class="fa arrow"></span></a>
+                    <ul class="nav nav-third-level">
+                      <li><a href="/admin#translates/export/resources"> {t}Resources{/t}</a></li>
+                      <li><a href="/admin#translates/export/collections"> {t}Collections{/t}</a></li>
+                    </ul>
+                  </li>
+                  <li class="transImport">
+                    <a href="#"><i class="fa fa-long-arrow-right fa-fw"></i> {t}Import{/t} <span class="fa arrow"></span></a>
+                    <ul class="nav nav-third-level">
+                      <li><a href="/admin#translates/import/files"> {t}Files{/t}</a></li>
+                    </ul>
+                  </li>
+                </li>
+              </ul>
+            </li>
           {/if}
           <!-- Categories -->
           <li class="categories">
