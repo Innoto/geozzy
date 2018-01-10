@@ -48,8 +48,8 @@ class CollectionModel extends Model {
       'type' => 'DATETIME'
     ),
     'timeLastUpdate' => array(
-      'type' => 'DATETIME',
-      'autoUpdateTime' => true
+      'type' => 'TIMESTAMP',
+      'customDefault' => 'DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL'
     ),
     'weight' => array(
       'type' => 'SMALLINT',

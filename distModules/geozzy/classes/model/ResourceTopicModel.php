@@ -33,8 +33,8 @@ class ResourceTopicModel extends Model {
       'default' => 0
     ),
     'timeLastUpdate' => array(
-      'type' => 'DATETIME',
-      'autoUpdateTime' => true
+      'type' => 'TIMESTAMP',
+      'customDefault' => 'DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL'
     )
   );
 
