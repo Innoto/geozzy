@@ -272,7 +272,7 @@ class AdminViewTranslates extends AdminViewMaster {
                   foreach( (array) $resData as $idField => $valueField ) {
                     if( !is_object( $valueField ) ) {
                       // Recurso base
-                      if( $idField!=='timeCreation' ) {
+                      if( $idField!=='timeCreation' && $idField!=='timeLastUpdate' ) {
                         $updateDataRes[$resData->id][$idField] = $valueField;
                       }
                     }
@@ -295,7 +295,7 @@ class AdminViewTranslates extends AdminViewMaster {
                 foreach( (array) $typeData as $colData ) {
                   $updateDataCol[$colData->id] = [];
                   foreach( (array) $colData as $idField => $valueField ) {
-                    if( $idField!=='id' && $idField!=='timeCreation' ) {
+                    if( $idField!=='timeCreation' && $idField!=='timeLastUpdate' ) {
                       $updateDataCol[$colData->id][$idField] = $valueField;
                     }
                   }
@@ -317,6 +317,17 @@ class AdminViewTranslates extends AdminViewMaster {
                 }
                 else {
                   // echo '<p>'.$idField.' Resource: '.$valueField.'</p>';
+                  if( !empty( $resModel::$cols[$idField]['size'] ) ) {
+                    $maxSizeField = (int) $resModel::$cols[$idField]['size'];
+                    $currentSizeField = strlen( $valueField );
+                    if( $maxSizeField < $currentSizeField ) {
+                      $valueField = substr( $valueField, 0, $maxSizeField );
+                      echo '<div class="alert alert-danger">';
+                      echo '<p><strong>Id extensión '.$resData['id'].'</strong> do modelo ResourceModel:<p>';
+                      echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                      echo '</div>';
+                    }
+                  }
                   $resModel->setter( $idField, $valueField, $langToImport );
                 }
               }
@@ -329,7 +340,7 @@ class AdminViewTranslates extends AdminViewMaster {
           if( !empty( $updateDataModelRelatedRes ) ) {
             echo '<div class="well"><p><ins>"modelRelated Resources"</ins></p><p>INICIO: Actualizando... "modelRelated Resources"</p>';
             foreach( $updateDataModelRelatedRes as $modelRelatedName => $modelRelatedData ) {
-              echo '<p>Modelo: <strong>'.$modelRelatedName.'</strong></p>';
+              echo '<p>- Modelo: <strong>'.$modelRelatedName.'</strong></p>';
               foreach( $modelRelatedData as $modelData ) {
                 $resRelatedModel = new $modelRelatedName();
                 foreach( $modelData as $idFieldModel => $valueFieldModel ) {
@@ -339,6 +350,17 @@ class AdminViewTranslates extends AdminViewMaster {
                   }
                   else {
                     // echo '<p>'.$idFieldModel.' Ext: '.$valueFieldModel.'</p>';
+                    if( !empty( $resRelatedModel::$cols[$idFieldModel]['size'] ) ) {
+                      $maxSizeField = (int) $resRelatedModel::$cols[$idFieldModel]['size'];
+                      $currentSizeField = strlen( $valueFieldModel );
+                      if( $maxSizeField < $currentSizeField ) {
+                        $valueFieldModel = substr( $valueFieldModel, 0, $maxSizeField );
+                        echo '<div class="alert alert-danger">';
+                        echo '<p><strong>Id extensión '.$modelData['id'].'</strong> do modelo '.$modelRelatedName.':<p>';
+                        echo '<p>O campo <strong>'.$idFieldModel.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                        echo '</div>';
+                      }
+                    }
                     $resRelatedModel->setter( $idFieldModel, $valueFieldModel, $langToImport );
                   }
                 }
@@ -360,6 +382,17 @@ class AdminViewTranslates extends AdminViewMaster {
                 }
                 else {
                   // echo '<p>'.$idField.' Collection: '.$valueField.'</p>';
+                  if( !empty( $colModel::$cols[$idField]['size'] ) ) {
+                    $maxSizeField = (int) $colModel::$cols[$idField]['size'];
+                    $currentSizeField = strlen( $valueField );
+                    if( $maxSizeField < $currentSizeField ) {
+                      $valueField = substr( $valueField, 0, $maxSizeField );
+                      echo '<div class="alert alert-danger">';
+                      echo '<p><strong>Id extensión '.$colData['id'].'</strong> do modelo CollectionModel:<p>';
+                      echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                      echo '</div>';
+                    }
+                  }
                   $colModel->setter( $idField, $valueField, $langToImport );
                 }
               }
@@ -372,20 +405,20 @@ class AdminViewTranslates extends AdminViewMaster {
           echo '<p>Error de lectura. <em>Arquivo: '.$fileName.'</em></p>';
         }
       }// foreach($filesFolder)
-      echo '<hr><p><strong>IMPORT FINALIZADO</strong></p>';
+      echo '<hr><p class="alert alert-success"><strong>IMPORT FINALIZADO</strong></p>';
 
     }
     else {
       if( empty( $nameImportFolder ) || !is_dir( $directory ) ) {
-        echo '<p>Non existe a carpeta ou non está definido o nome no arquivo de configuración</p>';
+        echo '<p class="alert alert-warning">Non existe a carpeta ou non está definido o nome no arquivo de configuración</p>';
       }
 
       if( !count($filesFolder) && is_dir( $directory ) ) {
-        echo '<p>A carpeta non contén ningún arquivo</p>';
+        echo '<p class="alert alert-warning">A carpeta non contén ningún arquivo</p>';
       }
 
       if( !$langTrue ) {
-        echo '<p>Non se seleccionou un idioma ou produciuse un erro no envío</p>';
+        echo '<p class="alert alert-warning">Non se seleccionou un idioma ou produciuse un erro no envío</p>';
       }
     }
 
