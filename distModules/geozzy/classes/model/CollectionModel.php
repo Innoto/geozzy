@@ -50,7 +50,7 @@ class CollectionModel extends Model {
     'timeLastUpdate' => array(
       'type' => 'DATETIME',
       'autoUpdateTime' => true
-    ),    
+    ),
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0
@@ -64,7 +64,7 @@ class CollectionModel extends Model {
     array(
       'version' => 'geozzy#4',
       'sql'=> 'ALTER TABLE `geozzy_collection`
-        ADD `timeLastUpdate` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL AFTER `timeCreation`;'
+        ADD `timeLastUpdate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL AFTER `timeCreation`;'
     ),
     array(
       'version' => 'geozzy#1.99',

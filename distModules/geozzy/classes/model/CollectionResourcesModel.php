@@ -47,7 +47,7 @@ class CollectionResourcesModel extends Model {
     array(
       'version' => 'geozzy#4',
       'sql'=> 'ALTER TABLE `geozzy_collection_resources`
-        ADD `timeLastUpdate` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL AFTER `timeCreation`;'
+        ADD `timeLastUpdate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL AFTER `timeCreation`;'
     ),
     array(
       'version' => 'geozzy#1.1',

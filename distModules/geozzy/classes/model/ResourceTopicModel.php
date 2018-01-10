@@ -52,7 +52,7 @@ class ResourceTopicModel extends Model {
     array(
       'version' => 'geozzy#4',
       'sql'=> 'ALTER TABLE `geozzy_resource_topic`
-        ADD `timeLastUpdate` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL;'
+        ADD `timeLastUpdate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL;'
     )
 
   );
