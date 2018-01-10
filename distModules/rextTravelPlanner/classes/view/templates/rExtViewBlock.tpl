@@ -83,7 +83,7 @@
       <div class="infoRight clearfix">
         <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
         <div class="showMap"><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
-        <div class="optimizeDay"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
+        <div class="optimizeDay"><i class="fa fa-magic " aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
       </div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
