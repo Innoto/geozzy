@@ -166,7 +166,7 @@ class ResourceViewModel extends Model {
 
   var $deploySQL = array(
     array(
-      'version' => 'geozzy#5',
+      'version' => 'geozzy#6',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_view;
@@ -179,7 +179,7 @@ class ResourceViewModel extends Model {
             {multilang:r.content_$lang,}
             r.image, fd.name AS imageName, fd.AKey AS imageAKey,
             r.loc, r.defaultZoom, r.externalUrl,
-            {multilang:GROUP_CONCAT(if(lang="$lang",ua.urlFrom,null)) AS "urlAlias_$lang",}
+            {multilang:GROUP_CONCAT( DISTINCT if(lang="$lang",ua.urlFrom,null)) AS "urlAlias_$lang",}
             {multilang:r.headKeywords_$lang,}
             {multilang:r.headDescription_$lang,}
             {multilang:r.headTitle_$lang,}
