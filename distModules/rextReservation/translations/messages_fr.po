@@ -22,24 +22,24 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:42
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/ruralgest-net-public.tpl:4
 msgid "Reserve"
-msgstr ""
+msgstr "Réserver"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReservation_classes_view_templates_netubi-com-public.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/netubi-com-public.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReservation_classes_view_templates_booking-com-public.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:11
 msgid "Check in date - Check out date"
-msgstr ""
+msgstr "Date d'arrivée - Date de départ"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReservation_classes_view_templates_booking-com-public.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:18
 msgid "Rooms"
-msgstr ""
+msgstr "Hébergements"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReservation_classes_view_templates_booking-com-public.tpl:30
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:30
 msgid "Adults"
-msgstr ""
+msgstr "Adults"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:50
 msgid "None"

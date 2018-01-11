@@ -28,7 +28,7 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/netubi-com-public.tpl:18
 #: /home/proxectos/canlers/app/tmp/tpl/thebookingbutton-com-public.tpl:5
 msgid "Reserve"
-msgstr ""
+msgstr "Reservar"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReservation_classes_view_templates_netubi-com-public.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/netubi-com-public.tpl:11
@@ -37,23 +37,23 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:11
 #: /home/proxectos/canlers/app/tmp/tpl/netubi-com-public.tpl:11
 msgid "Check in date - Check out date"
-msgstr ""
+msgstr "Fecha de entrada - Fecha de salida"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReservation_classes_view_templates_booking-com-public.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:18
 #: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:18
 msgid "Rooms"
-msgstr ""
+msgstr "Habitaciones"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReservation_classes_view_templates_booking-com-public.tpl:30
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:30
 #: /home/proxectos/canlers/app/tmp/tpl/booking-com-public.tpl:30
 msgid "Adults"
-msgstr ""
+msgstr "Adultos"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:50
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:58
 msgid "Reservation URL"
