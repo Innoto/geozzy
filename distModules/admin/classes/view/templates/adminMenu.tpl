@@ -102,14 +102,14 @@
                   <li class="transExport">
                     <a href="#"><i class="fa fa-long-arrow-left fa-fw"></i> {t}Export{/t} <span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
-                      <li><a href="/admin#translates/export/resources"> {t}Resources{/t}</a></li>
-                      <li><a href="/admin#translates/export/collections"> {t}Collections{/t}</a></li>
+                      <li class="transExpRes"><a href="/admin#translates/export/resources"> {t}Resources{/t}</a></li>
+                      <li class="transExpColl"><a href="/admin#translates/export/collections"> {t}Collections{/t}</a></li>
                     </ul>
                   </li>
                   <li class="transImport">
                     <a href="#"><i class="fa fa-long-arrow-right fa-fw"></i> {t}Import{/t} <span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
-                      <li><a href="/admin#translates/import/files"> {t}Files{/t}</a></li>
+                      <li class="transImpFiles"><a href="/admin#translates/import/files"> {t}Files{/t}</a></li>
                     </ul>
                   </li>
                 </li>
