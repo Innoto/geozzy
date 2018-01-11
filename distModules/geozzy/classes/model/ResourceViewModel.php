@@ -121,7 +121,19 @@ class ResourceViewModel extends Model {
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0
-    )
+    ),
+    'termIdList' => array(
+      'type' => 'VARCHAR',
+      'size' => 250
+    ),
+    'topicIdList' => array(
+      'type' => 'VARCHAR',
+      'size' => 250
+    ),
+    'collIdList' => array(
+      'type' => 'VARCHAR',
+      'size' => 250
+    ),
   );
 
 
@@ -154,7 +166,7 @@ class ResourceViewModel extends Model {
 
   var $deploySQL = array(
     array(
-      'version' => 'geozzy#3',
+      'version' => 'geozzy#5',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_view;
@@ -172,21 +184,25 @@ class ResourceViewModel extends Model {
             {multilang:r.headDescription_$lang,}
             {multilang:r.headTitle_$lang,}
             r.timeCreation, r.timeLastUpdate, r.timeLastPublish,
-            r.countVisits, r.weight
+            r.countVisits, r.weight,
+            GROUP_CONCAT( DISTINCT rTax.taxonomyterm ORDER BY rTax.weight, rTax.id ) AS termIdList,
+            GROUP_CONCAT( DISTINCT rTopic.topic ORDER BY rTopic.weight, rTopic.id ) AS topicIdList,
+            GROUP_CONCAT( DISTINCT rColl.collection ORDER BY rColl.weight, rColl.id ) AS collIdList
           FROM
-            ((((
+            (((((((
             `geozzy_resource` `r`
-            join `geozzy_resourcetype` `rt`)
-            LEFT JOIN `user_user` `u` ON `u`.`id` = `r`.`user`)
-            LEFT JOIN `geozzy_url_alias` `ua` ON
-              ( `ua`.`resource` = `r`.`id`
-              and `ua`.`http` = 0
-              and `ua`.`canonical` = 1 ) )
-            LEFT JOIN filedata_filedata AS fd ON r.image = fd.id)
+            JOIN `geozzy_resourcetype` `rt` )
+            LEFT JOIN `user_user` `u` ON (`u`.`id` = `r`.`user`) )
+            LEFT JOIN `geozzy_url_alias` `ua` ON (
+              `ua`.`resource` = `r`.`id` AND `ua`.`http` = 0 AND `ua`.`canonical` = 1 ) )
+            LEFT JOIN `filedata_filedata` AS `fd` ON (`r`.`image` = `fd`.`id`) )
+            LEFT JOIN `geozzy_resource_taxonomyterm` `rTax` ON (`r`.`id` = `rTax`.`resource`) )
+            LEFT JOIN `geozzy_resource_topic` `rTopic` ON (`r`.`id` = `rTopic`.`resource`) )
+            LEFT JOIN `geozzy_resource_collections` `rColl` ON (`r`.`id` = `rColl`.`resource`) )
           WHERE
-            rt.id=r.rTypeId
+            `rt`.`id` = `r`.`rTypeId`
           GROUP BY
-            r.id
+            `r`.`id`
       '
     )
   );

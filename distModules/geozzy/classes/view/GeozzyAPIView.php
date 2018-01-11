@@ -10,8 +10,8 @@ class geozzyAPIView extends View {
 
   public $cacheQuery = false; // false, true or time in seconds
 
-  public function __construct( $baseDir ) {
-    parent::__construct($baseDir);
+  public function __construct( $baseDir = false ) {
+    parent::__construct( $baseDir );
 
     $cache = Cogumelo::getSetupValue('cache:geozzyAPIView');
     if( $cache !== null ) {
@@ -998,24 +998,35 @@ class geozzyAPIView extends View {
       // Category
       if( $extraParams['category'] ) {
         // Cargo los datos de Term del recurso
-        $taxTermModel =  new ResourceTaxonomytermModel();
-        $taxTermList = $taxTermModel->listItems( [ 'filters' => [ 'resource' => $allData['id'] ], 'cache' => $this->cacheQuery ] );
-        if( $taxTermList !== false ) {
-          $allData['categoryIds'] = [];
-          while( $taxTerm = $taxTermList->fetch() ) {
-            $allData['categoryIds'][] = $taxTerm->getter( 'taxonomyterm' );
-          }
+        $taxTermList = $valueobject->getter('termIdList');
+        if( !empty( $taxTermList ) ) {
+          $allData['categoryIds'] = explode( ',', $taxTermList );
+          $allData['categoryIds'] = array_map( 'intval', $allData['categoryIds'] );
         }
+        // $taxTermModel =  new ResourceTaxonomytermModel();
+        // $taxTermList = $taxTermModel->listItems( [ 'filters' => [ 'resource' => $allData['id'] ], 'cache' => $this->cacheQuery ] );
+        // if( $taxTermList !== false ) {
+        //   $allData['categoryIds'] = [];
+        //   while( $taxTerm = $taxTermList->fetch() ) {
+        //     $allData['categoryIds'][] = $taxTerm->getter( 'taxonomyterm' );
+        //   }
+        // }
+        //
 
         // Cargo los datos de Topic del recurso
-        $topicsModel = new ResourceTopicModel();
-        $topicsList = $topicsModel->listItems( [ 'filters' => [ 'resource' => $allData['id'] ], 'cache' => $this->cacheQuery ] );
-        if( $topicsList ) {
-          $allData['topicIds'] = [];
-          while( $topicVo = $topicsList->fetch() ) {
-            $allData['topicIds'][] = $topicVo->getter( 'topic' );
-          }
+        $topicsList = $valueobject->getter('topicIdList');
+        if( !empty( $topicsList ) ) {
+          $allData['topicIds'] = explode( ',', $topicsList );
+          $allData['topicIds'] = array_map( 'intval', $allData['topicIds'] );
         }
+        // $topicsModel = new ResourceTopicModel();
+        // $topicsList = $topicsModel->listItems( [ 'filters' => [ 'resource' => $allData['id'] ], 'cache' => $this->cacheQuery ] );
+        // if( $topicsList ) {
+        //   $allData['topicIds'] = [];
+        //   while( $topicVo = $topicsList->fetch() ) {
+        //     $allData['topicIds'][] = $topicVo->getter( 'topic' );
+        //   }
+        // }
       }
 
 
@@ -1036,7 +1047,7 @@ class geozzyAPIView extends View {
               $rexData[ $colName ] = $relModel->getter( $colName );
             }
 
-            $allData['rextmodels'][$rexData['MODELNAME']] = $rexData;
+            $allData['rextmodels'][ $rexData['MODELNAME'] ] = $rexData;
           }
         }
       }
