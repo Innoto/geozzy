@@ -47,16 +47,28 @@ class CollectionModel extends Model {
     'timeCreation' => array(
       'type' => 'DATETIME'
     ),
+    'timeLastUpdate' => array(
+      'type' => 'TIMESTAMP',
+      'customDefault' => 'DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL'
+    ),
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'createdfrom' => ' ( geozzy_collection.timeCreation >= ? ) ',
+    'lastUpdatefrom' => ' ( geozzy_collection.timeLastUpdate >= ? ) '
+  );
 
 
   var $deploySQL = array(
+    array(
+      'version' => 'geozzy#4',
+      'sql'=> 'ALTER TABLE `geozzy_collection`
+        ADD `timeLastUpdate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL AFTER `timeCreation`;'
+    ),
     array(
       'version' => 'geozzy#1.99',
       'sql'=> 'ALTER TABLE `geozzy_collection`

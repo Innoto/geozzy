@@ -8,7 +8,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class geozzy extends Module {
 
   public $name = 'geozzy';
-  public $version = 3;
+  public $version = 4;
 
   // public $autoIncludeAlways = true;
   // FALLA: PHP Fatal error:  Class 'Smarty' not found in /home/proxectos/cogumelo/coreClasses/coreView/Template.php on line 10
@@ -268,7 +268,7 @@ class geozzy extends Module {
 
     if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyStarred.php') ) {
       require_once APP_BASE_PATH.'/conf/inc/geozzyStarred.php';
-      global $GEOZZY_STARRED;      
+      global $GEOZZY_STARRED;
       $GEOZZY_TAXONOMYGROUPS['starred']['initialTerms'] = $GEOZZY_STARRED;
     }
 

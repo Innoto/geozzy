@@ -30,6 +30,10 @@ class CollectionResourcesModel extends Model {
     'timeCreation' => array(
       'type' => 'DATETIME'
     ),
+    'timeLastUpdate' => array(
+      'type' => 'TIMESTAMP',
+      'customDefault' => 'DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL'
+    ),
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0
@@ -40,6 +44,11 @@ class CollectionResourcesModel extends Model {
 
 
   var $deploySQL = array(
+    array(
+      'version' => 'geozzy#4',
+      'sql'=> 'ALTER TABLE `geozzy_collection_resources`
+        ADD `timeLastUpdate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL AFTER `timeCreation`;'
+    ),
     array(
       'version' => 'geozzy#1.1',
       'sql'=> 'ALTER TABLE `geozzy_collection_resources`

@@ -228,6 +228,14 @@ class admin extends Module {
     $this->addUrlPatterns( '#^admin/filemanagerfrontend#', 'view:AdminViewElfinder::fileManagerFrontend' );
     $this->addUrlPatterns( '#^admin/filemanagerbackend#', 'view:AdminViewElfinder::fileManagerBackend' );
 
+    // translates (export)
+    $this->addUrlPatterns( '#^admin/translates/export/resources$#', 'view:AdminViewTranslates::resourcesExportView' );
+    $this->addUrlPatterns( '#^admin/translates/export/collections$#', 'view:AdminViewTranslates::collectionsExportView' );
+    $this->addUrlPatterns( '#^admin/translates/export/resourcesexport(.*)$#', 'view:AdminViewTranslates::resourcesExport' );
+    $this->addUrlPatterns( '#^admin/translates/export/collectionsexport(.*)$#', 'view:AdminViewTranslates::collectionsExport' );
+    // translates (import)
+    $this->addUrlPatterns( '#^admin/translates/import/files$#', 'view:AdminViewTranslates::filesImportView' );
+    $this->addUrlPatterns( '#^admin/translates/import/filesimport(.*)$#', 'view:AdminViewTranslates::filesImport' );
   }
 
 

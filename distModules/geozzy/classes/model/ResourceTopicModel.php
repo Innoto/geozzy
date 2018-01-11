@@ -31,6 +31,10 @@ class ResourceTopicModel extends Model {
     'weight' => array(
       'type' => 'SMALLINT',
       'default' => 0
+    ),
+    'timeLastUpdate' => array(
+      'type' => 'TIMESTAMP',
+      'customDefault' => 'DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL'
     )
   );
 
@@ -42,4 +46,14 @@ class ResourceTopicModel extends Model {
   public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
+
+
+  var $deploySQL = array(
+    array(
+      'version' => 'geozzy#4',
+      'sql'=> 'ALTER TABLE `geozzy_resource_topic`
+        ADD `timeLastUpdate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL;'
+    )
+
+  );
 }

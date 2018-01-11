@@ -47,24 +47,34 @@ geozzy.travelPlannerComponents.TravelPlannerOptimizeDayView = Backbone.View.exte
     var resSelectedInDay = [];
     $(that.parentTp.tpData.get('list')).each( function(iday,day) {
       $(day).each( function(i,item){
-        if( that.paramDay == iday ){
+        if( that.paramDay == iday && (i == 0 || i+1 == day.length) ){
           resSelectedInDay.push(item.id);
         }
       });
     });
 
-    resSelectedInDayUnique = $.unique(resSelectedInDay);
-
     var resourcesToList = [];
     resourcesToList = that.parentTp.resources;
-    resourcesToList = new geozzy.collection.ResourceCollection( resourcesToList.filterById(resSelectedInDayUnique) );
-    resourcesToListJSON = resourcesToList.toJSON();
-    firstLoc = resourcesToListJSON.shift();
-    lastLoc = resourcesToListJSON.pop();
+    resourcesToList = new geozzy.collection.ResourceCollection( resourcesToList.filterById(resSelectedInDay) );
+
+    if(resourcesToList.length === 1 ){
+      firstLoc = resourcesToList.get(resSelectedInDay[0]);
+      lastLoc = resourcesToList.get(resSelectedInDay[0]);
+    }
+    else{
+      $.each(resSelectedInDay, function( i, res ){
+        if(i === 0){
+          firstLoc = resourcesToList.get(res);
+        }
+        else{
+          lastLoc = resourcesToList.get(res);
+        }
+      });
+    }
 
     var data = {
-      init : firstLoc,
-      end : lastLoc,
+      init : firstLoc.toJSON(),
+      end : lastLoc.toJSON(),
       day : parseInt(that.paramDay)+1
     }
 
@@ -74,7 +84,7 @@ geozzy.travelPlannerComponents.TravelPlannerOptimizeDayView = Backbone.View.exte
 
   optimizeRoute: function(){
     var that = this;
-    alert('OptimizeRoute');
+    that.parentTp.showMapOptimize(that.paramDay);
     that.closeModalResource();
   },
 

@@ -144,6 +144,8 @@ class ResourceViewModel extends Model {
     'idNameIn' => ' geozzy_resource_view.idName IN (?) ',
     'notInId' => ' geozzy_resource_view.id NOT IN (?) ',
     'updatedfrom' => ' ( geozzy_resource_view.timeCreation >= ? OR geozzy_resource_view.timeLastUpdate >= ? ) ',
+    'createdfrom' => ' ( geozzy_resource_view.timeCreation >= ? ) ',
+    'lastUpdatefrom' => ' ( geozzy_resource_view.timeLastUpdate >= ? ) ',
     'notInCollectionId' => 'geozzy_resource_view.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)'
   );
 

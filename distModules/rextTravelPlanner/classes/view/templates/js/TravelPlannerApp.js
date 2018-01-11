@@ -169,6 +169,11 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       that.travelPlannerMapPlanView.showDay(day);
     }
   };
+  that.showMapOptimize = function(day){
+    if( that.tpData.get('checkin') !== null || that.tpData.get('checkout') !== null ){
+      that.travelPlannerMapPlanView.showOptimizeDay(day);
+    }
+  };
   that.editResourceToPlan = function(data){
     that.travelPlannerResourceView = new geozzy.travelPlannerComponents.TravelPlannerResourceView( that, data.id, data, 'edit' );
   };

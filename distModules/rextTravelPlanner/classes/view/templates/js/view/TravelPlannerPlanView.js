@@ -11,7 +11,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
   events: {
     'click .travelPlannerPlan .plannerDay .showMap': 'showMapDay',
-    'click .travelPlannerPlan .plannerDay .optimizeDay': 'optimizeDay',
+    'click .travelPlannerPlan .plannerDay .optimizeDay': 'initOptimizeDay',
     'click .travelPlannerPlan .plannerDay .dd-item .btnDelete': 'removeResourceToDay',
     'click .travelPlannerPlan .plannerDay .dd-item .btnEdit': 'bindEditResourceToDay'
   },
@@ -69,11 +69,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     var day = $(e.target).closest('.plannerDay').attr('data-day');
     that.parentTp.showMap( day );
   },
-  optimizeDay: function(e){
-    var that = this;
-    var day = $(e.target).closest('.plannerDay').attr('data-day');
-    that.parentTp.initOptimizeDayModal( day );
-  },
+
   addResourcesPlan: function (idResource, days, t){
     var that = this;
     $.each( days, function(i,d){
@@ -149,6 +145,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     that.fromHtmlToModel();
     that.updateTotalTimes();
+    that.parentTp.travelPlannerMapPlanView.render();
   },
   resourceInPlan: function( idResource ){
     var that = this;
@@ -174,6 +171,18 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     return h + ' hours ' + m + ' min';
   },
+  initOptimizeDay: function(e){
+    var that = this;
+    var day = $(e.target).closest('.plannerDay').attr('data-day');
+    that.parentTp.initOptimizeDayModal( day );
+  },
+  reorderDay: function( list ){
+    var that = this;
+    that.parentTp.tpData.set('list', list );
+    that.parentTp.tpData.saveData();
+    that.parentTp.travelPlannerMapPlanView.printMarkersOnMap();
+    that.render();
+  },
 
   fromHtmlToModel: function() {
     var that = this;
@@ -196,6 +205,9 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     var that = this;
 
     $(that.parentTp.tpData.get('list')).each( function(iday,day) {
+      if( day === 'false'  || day.length < 3){
+        $('.plannerDay-'+iday+' .optimizeDay').hide();
+      }
       $(day).each( function(i,item){
         that.addResourceToDay( item.id, iday, item.time );
       });

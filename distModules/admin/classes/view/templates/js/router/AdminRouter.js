@@ -38,6 +38,10 @@ var AdminRouter = Backbone.Router.extend({
     //"stories/:id": "storiesList",
     "storysteps/:story(/topic/:topicId)": "storyStepsList",
     "storysteps/story/:id/assign": "storyStepsAdd",
+
+    "translates/export/resources": "resourceExportView",
+    "translates/export/collections": "collectionsExportView",
+    "translates/import/files": "filesImportView",
   },
 
   default: function() {
@@ -241,6 +245,21 @@ var AdminRouter = Backbone.Router.extend({
   storyStepsAdd: function(id) {
     app.mainView.loadAjaxContent( '/admin/storysteps/story/' + id +'/assign');
     app.mainView.setBodyClass('storyStepsAdd');
+  },
+
+  resourceExportView: function() {
+    app.mainView.loadAjaxContent( '/admin/translates/export/resources');
+    app.mainView.setBodyClass('translatesExport');
+  },
+
+  collectionsExportView: function() {
+    app.mainView.loadAjaxContent( '/admin/translates/export/collections');
+    app.mainView.setBodyClass('translatesExport');
+  },
+
+  filesImportView: function() {
+    app.mainView.loadAjaxContent( '/admin/translates/import/files');
+    app.mainView.setBodyClass('translatesImport');
   },
 
 });
