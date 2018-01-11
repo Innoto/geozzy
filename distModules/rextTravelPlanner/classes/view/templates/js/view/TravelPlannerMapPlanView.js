@@ -159,7 +159,11 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       resSelectedInDayData.push(resourcesToList.get(item).toJSON());
     });
 
-    that.calcRoute(resSelectedInDayData, optimize);
+    if(resSelectedInDayData.length > 1){
+      that.calcRoute(resSelectedInDayData, optimize);
+    }else{
+      that.clearRoute();
+    }
   },
 
 
@@ -259,7 +263,6 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
           if (status == google.maps.DirectionsStatus.OK) {
             that.directionsServiceRequest[that.currentDay] = response;
             if(optimizeRes){
-              console.log( 'optimizeRes', optimizeRes);
               var list = that.parentTp.tpData.get('list');
               var resourcesDay = list[that.currentDay];
               var new_day = [];
