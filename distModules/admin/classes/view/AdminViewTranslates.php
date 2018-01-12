@@ -172,14 +172,14 @@ class AdminViewTranslates extends AdminViewMaster {
     if( $langTrue ) {
       $filters = [];
       // Fecha creación mayor/igual a...
-      if( $timeCreation ) {
+      /*if( $timeCreation ) {
         $filters['createdfrom'] = $timeCreation; // poner esta condicion en el modelo de CollectionModel
-      }
+      }*/
 
       // Fecha actualización mayor/igual a...
-      if( $timeLastUpdate ) {
+      /*if( $timeLastUpdate ) {
         $filters['lastUpdatefrom'] = $timeLastUpdate;
-      }
+      }*/
 
       $resCollModel =  new CollectionModel();
       $collResList = $resCollModel->listItems( array( 'filters' => $filters, 'cache' => $this->cacheQuery ) );
