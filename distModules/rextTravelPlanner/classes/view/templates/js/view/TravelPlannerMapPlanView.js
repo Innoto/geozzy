@@ -310,7 +310,6 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         that.tramoExtraArray.push( that.tramoExtra( response.request.destination.location, leg.end_location ) );
       }
     });
-    console.log(totalTimeTransport/60);
     that.parentTp.travelPlannerPlanView.addRouteTotalTime( that.currentDay , totalTimeTransport/60 );
   },
   tramoExtra: function tramoExtra( init, end ) {

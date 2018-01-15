@@ -63,13 +63,32 @@ body{
               .font-size-big();
               background: @gzzColor-RS;
               color: @gzzColor-text-light;
-              padding: 10px 15px;
+              height: 58px;
+              line-height: 60px;
+              vertical-align: middle;
               text-transform: uppercase;
               cursor: pointer;
               text-align: center;
+              position: relative;
               i{
-                padding: 0 10px;
                 font-size: 38px;
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%); /* IE 9 */
+               	-webkit-transform: translateY(-50%); /* Safari */
+                transform: translateY(-50%);
+              }
+            }
+            .tp-gotoPlan{
+              padding: 0px 35px 0 15px;
+              i{
+                right: 10px;
+              }
+            }
+            .tp-goAddtoPlan{
+              padding: 0px 15px 0 35px;
+              i{
+                left: 10px;
               }
             }
           }
@@ -251,6 +270,15 @@ body{
               .infoRight{
                 float: right;
                 .infoTime{
+                  float: left;
+                  text-align: right;
+                  .font-size-small();
+                  font-weight: 600;
+                  vertical-align: bottom;
+                }
+                .infoTimeTransport{
+                  margin-left: 10px;
+                  float: left;
                   text-align: right;
                   .font-size-small();
                   font-weight: 600;
@@ -548,12 +576,10 @@ body{
         .info{
           float:left;
           margin-left: 10px;
-
           .title{
             font-weight: 600;
             height: 32px;
           }
-
           .infoTimeRoute{
             float: left;
             margin-left: 10px;
@@ -561,7 +587,6 @@ body{
           .time{
             float: left;
           }
-
         }
       }
       .dd-content{
