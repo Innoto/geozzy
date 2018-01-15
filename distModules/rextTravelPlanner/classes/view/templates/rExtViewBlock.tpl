@@ -104,9 +104,10 @@
       <div class="dd-handle clearfix">
         <div class="iconHandle"><i class="fa fa-bars icon-handle"></i></div>
         <div class="image"><img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIcon/<%- resource.image %>.jpg"></div>
-        <div class="info">
+        <div class="info clearfix">
           <div class="title"><%- resource.title %></div>
           <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
+          <div class="infoTimeRoute"></div>
       </div>
     </div>
   </li>
