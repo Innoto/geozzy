@@ -291,11 +291,15 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   },
   printRouteOnMaps: function printRouteOnMaps( response , waypoints ){
     var that = this;
+    var totalTimeTransport = 0;
+
     that.directionsDisplay.setDirections( response );
     that.tramoExtraArray = [];
     that.tramoExtraArray.push(that.tramoExtra( response.request.origin.location, response.routes[0].legs[0].start_location ));
+    that.parentTp.travelPlannerPlanView.clearTransportTimes();
     that.parentTp.travelPlannerPlanView.addRouteTimeRes( that.currentDay , '' , 0 );
     $.each(response.routes[0].legs, function( i, leg ) {
+      totalTimeTransport += leg.duration.value;
       that.parentTp.travelPlannerPlanView.addRouteTimeRes( that.currentDay , leg.duration.text , (i+1) );
       if( (i+1) !== response.routes[0].legs.length ){
         that.tramoExtraArray.push(
@@ -306,6 +310,8 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         that.tramoExtraArray.push( that.tramoExtra( response.request.destination.location, leg.end_location ) );
       }
     });
+    console.log(totalTimeTransport/60);
+    that.parentTp.travelPlannerPlanView.addRouteTotalTime( that.currentDay , totalTimeTransport/60 );
   },
   tramoExtra: function tramoExtra( init, end ) {
     //console.log( 'tramoExtra:', init, end, reves );

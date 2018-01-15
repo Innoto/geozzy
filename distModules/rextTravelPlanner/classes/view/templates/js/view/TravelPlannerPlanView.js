@@ -207,7 +207,23 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     }
     var resOnDay = $('.travelPlannerPlan .plannerDay-'+day+' .dd-list .dd-item');
     $(resOnDay[positionOnDay]).find('.infoTimeRoute').html(stringTime);
+  },
+  addRouteTotalTime: function( day, time ){
+    var that = this
+    var stringTime = '';
 
+    if( time !== ''){
+      if(cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode && cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode === 'WALKING'){
+        stringTime = '+<i class="fa fa-male"></i> '+ that.getFormatedTime(time);
+      }else{
+        stringTime = '+ <i class="fa fa-car"></i> '+ that.getFormatedTime(time);
+      }
+    }
+    $('.travelPlannerPlan .plannerDay-'+day).find('.infoTimeTransport').html(stringTime);
+  },
+  clearTransportTimes: function(){
+    $('.infoTimeRoute').html('');
+    $('.infoTimeTransport').html('');
   },
   fromHtmlToModel: function() {
     var that = this;
