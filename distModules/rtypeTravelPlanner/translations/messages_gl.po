@@ -9,24 +9,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:14
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:14
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:14
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:14
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:14
 msgid "Page"
-msgstr ""
+msgstr "Páxina"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:15
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:15
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:15
 msgid "Travel Planner"
-msgstr ""
+msgstr "Planificador de viaxes"
 
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:50
 msgid "Main Resource information"
-msgstr ""
+msgstr "Información do Recurso Principal"
 
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:65
 msgid "Edit Resource"
-msgstr ""
+msgstr "Editar Recurso"
