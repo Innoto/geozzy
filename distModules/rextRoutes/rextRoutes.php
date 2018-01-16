@@ -2,8 +2,6 @@
 require_once('conf/inc/geozzyRextRoutes.php');
 Cogumelo::load( 'coreController/Module.php' );
 
-
-
 class rextRoutes extends Module {
 
   public $name = 'rextRoutes';
