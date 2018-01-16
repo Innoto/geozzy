@@ -9,59 +9,65 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
-msgid "Add to Plan"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:133
-msgid "Introduce entre 0 y 23 horas"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:134
-msgid "Introduce entre 0 y 59 minutos"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
-msgid "All"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:8
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
-msgid "Favourites"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:13
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
-msgid "All Contents"
-msgstr ""
-
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:168
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:32
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:67
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:32
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:67
 msgid "Day"
-msgstr ""
+msgstr "Jour"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
+msgid "Select Dates"
+msgstr "Sélectionne dates"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
+msgid "Add to Plan"
+msgstr "Ajouter au plan"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:133
+msgid "Introduce entre 0 y 23 horas"
+msgstr "Entrez entre 0 et 23 heures"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:134
+msgid "Introduce entre 0 y 59 minutos"
+msgstr "Entrez entre 0 et 23 minutes"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
+msgid "All"
+msgstr "Tout"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:8
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
+msgid "Favourites"
+msgstr "Favoris"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:13
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+msgid "All Contents"
+msgstr "Tous les contenus"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:59
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:59
 msgid "When do you want to travel? "
-msgstr ""
+msgstr "Quand vous aimeriez voyager?"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:71
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:71
 msgid "Show on map"
-msgstr ""
+msgstr "Montrer dans la carte"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:106
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:106
 msgid "Select date to visit this place or event"
-msgstr ""
+msgstr "Sélectionne la date pour visiter cet endroit ou événement"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:117
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:117
 msgid "How long do you want to visit this place?"
-msgstr ""
+msgstr "Combien de temps il te plairait visiter cet endroit?"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:120
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:121
@@ -72,7 +78,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:145
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:146
 msgid "hours"
-msgstr ""
+msgstr "heures"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:124
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:125
@@ -83,26 +89,62 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:149
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:150
 msgid "minutes"
-msgstr ""
+msgstr "minutos"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:129
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:154
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:129
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:154
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:130
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:130
 msgid "Add to plan"
-msgstr ""
+msgstr "Ajouter au plan"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:142
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:142
 msgid "How long?"
-msgstr ""
+msgstr "Combien de temps?"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:155
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:155
 msgid "Save"
-msgstr ""
+msgstr "Garder"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
+msgid "Go to my plan"
+msgstr "Aller à mon plan"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:8
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
+msgid "Add Places"
+msgstr "Ajouter des places"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:13
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+msgid "Filtros :"
+msgstr "Filtres"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:86
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:86
+msgid "Optimize day"
+msgstr "Optimiser la journée"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:186
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:186
+msgid "Optimize route of day "
+msgstr "Optimiser l'itinéraire du jour"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:187
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:187
+msgid ""
+"The route between the first and the last place of the day will be optimized."
+msgstr "L'itinéraire entre le premier et le dernier lieu de la journée sera optimisé."
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:209
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:209
+msgid "Optimize"
+msgstr "Optimiser"

@@ -249,16 +249,19 @@ var AdminRouter = Backbone.Router.extend({
 
   resourceExportView: function() {
     app.mainView.loadAjaxContent( '/admin/translates/export/resources');
+    app.mainView.menuSelect('transExpRes');
     app.mainView.setBodyClass('translatesExport');
   },
 
   collectionsExportView: function() {
     app.mainView.loadAjaxContent( '/admin/translates/export/collections');
+    app.mainView.menuSelect('transExpColl');
     app.mainView.setBodyClass('translatesExport');
   },
 
   filesImportView: function() {
     app.mainView.loadAjaxContent( '/admin/translates/import/files');
+    app.mainView.menuSelect('transImpFiles');
     app.mainView.setBodyClass('translatesImport');
   },
 

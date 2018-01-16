@@ -25,8 +25,8 @@ msgstr "Planificador de viajes"
 
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:50
 msgid "Main Resource information"
-msgstr ""
+msgstr "Información del Recurso Principal"
 
 #: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:65
 msgid "Edit Resource"
-msgstr ""
+msgstr "Editar Recurso"

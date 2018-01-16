@@ -81,7 +81,10 @@
       <div class="dayTitle">{t}Day{/t}<span> <%- day.id+1 %><span> </div>
       <div class="infoDay"><div class="day"><%- day.dayName %></div><div class="date"><%- day.date %></div></div>
       <div class="infoRight clearfix">
-        <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
+        <div class="clearfix">
+          <div class="infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>-h --min</span></div>
+          <div class="infoTimeTransport"></div>
+        </div>
         <div class="showMap"><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
         <div class="optimizeDay"><i class="fa fa-magic " aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
       </div>
@@ -104,9 +107,10 @@
       <div class="dd-handle clearfix">
         <div class="iconHandle"><i class="fa fa-bars icon-handle"></i></div>
         <div class="image"><img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIcon/<%- resource.image %>.jpg"></div>
-        <div class="info">
+        <div class="info clearfix">
           <div class="title"><%- resource.title %></div>
           <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
+          <div class="infoTimeRoute"></div>
       </div>
     </div>
   </li>
@@ -183,7 +187,7 @@
 
 <script type="text/template" id="optimizeDayTpModalTemplate">
 
-    <div class="title">{t}Optimize route of day {/t}<%- data.day %></div>
+    <div class="title">{t}Optimize route of day {/t}&nbsp;<%- data.day %></div>
     <p>{t}The route between the first and the last place of the day will be optimized.{/t}<p>
     <div class="row">
       <div class="col-xs-5">

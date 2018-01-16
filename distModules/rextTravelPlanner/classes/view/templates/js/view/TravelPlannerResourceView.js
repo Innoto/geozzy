@@ -52,7 +52,7 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
       that.dataRes.minutes = (that.dataRes.time % 60);
       that.dataRes.hours = ((that.dataRes.time - that.dataRes.minutes )/ 60);
       that.resourceTemplate = _.template( $('#resourceTpEditModalTemplate').html() );
-      that.$('.modal-body').html( that.resourceTemplate({ resource: item.toJSON(), data: that.dataRes }) );
+      that.$('.modal-body').html( that.resourceTemplate({ resource: item, data: that.dataRes }) );
     }else{
       //Add
       var checkin = that.parentTp.momentDate(that.parentTp.tpData.get('checkin'));

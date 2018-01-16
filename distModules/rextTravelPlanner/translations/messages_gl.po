@@ -9,19 +9,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:168
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:32
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:67
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:32
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:67
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:32
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:67
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:55
+msgid "Day"
+msgstr "Día"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
+msgid "Select Dates"
+msgstr "Selecciona as datas"
+
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
 msgid "Add to Plan"
-msgstr ""
+msgstr "Añadir ó plan"
 
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:133
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:101
 msgid "Introduce entre 0 y 23 horas"
-msgstr ""
+msgstr "Introduce entre 0 e 23 horas"
 
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:134
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:102
 msgid "Introduce entre 0 y 59 minutos"
-msgstr ""
+msgstr "Introduce entre 0 e 59 minutos"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
@@ -36,50 +52,40 @@ msgstr "Todo"
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:8
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:8
 msgid "Favourites"
-msgstr ""
+msgstr "Favoritos"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:13
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:13
 msgid "All Contents"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:32
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:67
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:32
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:67
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:32
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:67
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:55
-msgid "Day"
-msgstr ""
+msgstr "Todos os contidos"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:59
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:59
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:59
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:47
 msgid "When do you want to travel? "
-msgstr ""
+msgstr "¿Cándo che gustaría viaxar? "
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:71
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:71
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:71
 msgid "Show on map"
-msgstr ""
+msgstr "Mostrar no mapa"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:106
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:106
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:106
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:91
 msgid "Select date to visit this place or event"
-msgstr ""
+msgstr "Selecciona a data para visitar este sitio ou evento"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:117
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:117
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:117
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:102
 msgid "How long do you want to visit this place?"
-msgstr ""
+msgstr "¿Cánto tempo che gustaría visitar este sitio?"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:120
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:121
@@ -98,7 +104,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:130
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:131
 msgid "hours"
-msgstr ""
+msgstr "horas"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:124
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:125
@@ -117,7 +123,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:134
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:135
 msgid "minutes"
-msgstr ""
+msgstr "minutos"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:129
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:154
@@ -128,25 +134,61 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:114
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:139
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:130
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:130
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:130
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:115
 msgid "Add to plan"
-msgstr ""
+msgstr "Añadir ó plan"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:142
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:142
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:142
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:127
 msgid "How long?"
-msgstr ""
+msgstr "¿Cánto tempo?"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:155
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:155
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:155
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:140
 msgid "Save"
+msgstr "Gardar"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
+msgid "Go to my plan"
+msgstr "Ir á meu plan"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:8
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
+msgid "Add Places"
+msgstr "Engadir sitios"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:13
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+msgid "Filtros :"
 msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:86
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:86
+msgid "Optimize day"
+msgstr "Optimizar día"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:186
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:186
+msgid "Optimize route of day "
+msgstr "Optimizar ruta do día"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:187
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:187
+msgid ""
+"The route between the first and the last place of the day will be optimized."
+msgstr "A ruta entre o primeiro e o último sitio será optimizada"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:209
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:209
+msgid "Optimize"
+msgstr "Optimizar"
