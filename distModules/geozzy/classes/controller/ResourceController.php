@@ -1358,6 +1358,9 @@ class ResourceController {
     ]);
     if( gettype( $resCollectionList ) === 'object' ) {
       while( $collection = $resCollectionList->fetch() ) {
+
+        error_log( 'TEMPO 2: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
+
         $collId = $collection->getter('id');
         if( !isset( $collResources[ $collId ] ) ) {
           $collResources[ $collId ]['col'] = array(
@@ -1468,7 +1471,6 @@ class ResourceController {
                 if($rtypeObj->getter('idName') === 'rtypeUrl'){
                   $collResources[ $collId ]['res'][ $resValId ]['multimediaUrl'] = $multimediaUrl;
                 }
-
               break;
             } // switch
           } // if(
@@ -1476,8 +1478,8 @@ class ResourceController {
       }
     }
 
-    error_log( __METHOD__.' FIN' );
     error_log( 'TEMPO F: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
+    error_log( __METHOD__.' FIN' );
     return($collResources);
   }
 
