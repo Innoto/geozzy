@@ -1335,6 +1335,8 @@ class ResourceController {
 
   // Carga los datos de todas las colecciones de recursos asociadas al recurso dado
   public function getCollectionBlockInfo( $resId, $collectionTypes = false, $extraFields = false ) {
+    error_log( __METHOD__.' '.$resId.' -- '.json_encode($collectionTypes).' -- '.json_encode($extraFields) );
+
     $collResources = false;
 
     $collFilters['resourceMain'] = $resId;
@@ -1473,6 +1475,7 @@ class ResourceController {
       }
     }
 
+    error_log( __METHOD__.' FIN' );
     return($collResources);
   }
 
