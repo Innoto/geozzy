@@ -8,7 +8,7 @@ Cogumelo::load('coreView/View.php');
  */
 class geozzyAPIView extends View {
 
-  public $cacheQuery = false; // false, true or time in seconds
+  public $cacheQuery = true; // false, true or time in seconds
 
   public function __construct( $baseDir = false ) {
     parent::__construct( $baseDir );
