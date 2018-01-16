@@ -7,15 +7,6 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
     parent::__construct( $defRTypeCtrl, new rextRoutes(), 'rExtRoutes_' );
 
-    global $rextRoutes_difficulty;
-    $rextRoutes_difficulty = array(
-      '0' => '--',
-      '1' => __('Very Low'),
-      '2' => __(' Low'),
-      '3' => __('Medium'),
-      '4' => __(' High'),
-      '5' => __('Extreme')
-    );
   }
 
   /**
@@ -384,8 +375,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
        $rExtViewBlockInfo['data']['travelDistanceKm'] = $rExtViewBlockInfo['data']['travelDistance']/1000;
 
        global $rextRoutes_difficulty;
-
-       $rExtViewBlockInfo['data']['difficultyGlobalText'] = $rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyGlobal']];
+       $rExtViewBlockInfo['data']['difficultyGlobalText'] = __($rextRoutes_difficulty[$rExtViewBlockInfo['data']['difficultyGlobal']]);
 
        $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
 
