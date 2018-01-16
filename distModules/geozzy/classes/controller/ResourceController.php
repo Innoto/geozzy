@@ -1336,6 +1336,7 @@ class ResourceController {
   // Carga los datos de todas las colecciones de recursos asociadas al recurso dado
   public function getCollectionBlockInfo( $resId, $collectionTypes = false, $extraFields = false ) {
     error_log( __METHOD__.' '.$resId.' -- '.json_encode($collectionTypes).' -- '.json_encode($extraFields) );
+    error_log( 'TEMPO 1: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
 
     $collResources = false;
 
@@ -1476,6 +1477,7 @@ class ResourceController {
     }
 
     error_log( __METHOD__.' FIN' );
+    error_log( 'TEMPO F: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
     return($collResources);
   }
 
