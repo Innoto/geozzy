@@ -34,7 +34,6 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
   render: function() {
     var that = this;
-
     that.$('.travelPlannerPlanDaysContainer').html('');
     var checkin = that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
 
@@ -56,13 +55,14 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
       callback: function(l, e) {
         that.fromHtmlToModel();
         that.updateTotalTimes();
+        that.parentTp.travelPlannerMapPlanView.clearDirectionsServiceRequest();
         that.parentTp.travelPlannerMapPlanView.render();
       }
     });
 
     that.fromModeltoHtml();
     that.updateTotalTimes();
-    //that.parentTp.travelPlannerMapPlanView.render();
+    that.parentTp.travelPlannerMapPlanView.render();
   },
   showMapDay: function(e){
     var that = this;
@@ -78,6 +78,8 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     that.fromHtmlToModel();
     that.updateTotalTimes();
+
+    that.parentTp.travelPlannerMapPlanView.clearDirectionsServiceRequest(days);
     that.parentTp.travelPlannerMapPlanView.render();
 
     that.parentTp.travelPlannerInterfaceView.listResources();
@@ -138,6 +140,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
   removeResourceToDay: function(e){
     var that = this;
     var list = $(e.target).closest('.dd-list');
+    var day = $(e.target).closest('.plannerDay').attr('data-day');
     $(e.target).closest('.dd-item').remove();
     if(list.children().length === 0){
       list.parent().html('<div class="dd-empty"></div>');
@@ -145,6 +148,8 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     that.fromHtmlToModel();
     that.updateTotalTimes();
+
+    that.parentTp.travelPlannerMapPlanView.clearDirectionsServiceRequest([day]);
     that.parentTp.travelPlannerMapPlanView.render();
   },
   resourceInPlan: function( idResource ){
@@ -164,12 +169,18 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     return days;
   },
-
   getFormatedTime: function(mins) {
     var h = mins / 60 | 0,
         m = mins % 60 | 0;
 
-    return h + ' hours ' + m + ' min';
+    var timeresponse = '';
+    if(h > 0){
+      timeresponse = h + ' h ';
+    }
+    if( m > 0){
+      timeresponse = timeresponse + m + ' min ';
+    }
+    return timeresponse;
   },
   initOptimizeDay: function(e){
     var that = this;
@@ -183,7 +194,37 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.parentTp.travelPlannerMapPlanView.printMarkersOnMap();
     that.render();
   },
+  addRouteTimeRes: function( day, time, positionOnDay){
+    var that = this
+    var stringTime = '';
 
+    if( time !== ''){
+      if(cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode && cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode === 'WALKING'){
+        stringTime = '+<i class="fa fa-male"></i> '+time;
+      }else{
+        stringTime = '+ <i class="fa fa-car"></i> '+time;
+      }
+    }
+    var resOnDay = $('.travelPlannerPlan .plannerDay-'+day+' .dd-list .dd-item');
+    $(resOnDay[positionOnDay]).find('.infoTimeRoute').html(stringTime);
+  },
+  addRouteTotalTime: function( day, time ){
+    var that = this
+    var stringTime = '';
+
+    if( time !== ''){
+      if(cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode && cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode === 'WALKING'){
+        stringTime = '+<i class="fa fa-male"></i> '+ that.getFormatedTime(time);
+      }else{
+        stringTime = '+ <i class="fa fa-car"></i> '+ that.getFormatedTime(time);
+      }
+    }
+    $('.travelPlannerPlan .plannerDay-'+day).find('.infoTimeTransport').html(stringTime);
+  },
+  clearTransportTimes: function(){
+    $('.infoTimeRoute').html('');
+    $('.infoTimeTransport').html('');
+  },
   fromHtmlToModel: function() {
     var that = this;
 
@@ -200,7 +241,6 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.parentTp.tpData.set('list', days);
     that.parentTp.tpData.saveData();
   },
-
   fromModeltoHtml: function() {
     var that = this;
 
@@ -212,9 +252,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
         that.addResourceToDay( item.id, iday, item.time );
       });
     });
-
   },
-
   updateTotalTimes: function() {
     var that = this;
 
@@ -233,7 +271,6 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     });
 
   },
-
   serializeRow: function( rowObj ) {
     var that = this;
     return JSON.stringify( rowObj );
