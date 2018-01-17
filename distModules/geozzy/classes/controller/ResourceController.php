@@ -1396,61 +1396,61 @@ class ResourceController {
           foreach( array_keys( $collInfo['res'] ) as $resId ) {
             $resInfo = $resSonInfo[ $resId ];
 
-            $thumbSettings = array(
-              'imageId' => $resInfo['imageId'],
-              'imageName' => $resInfo['imageName'],
-              // 'imageName' => $resInfo['imageId'].'.jpg',
-              'imageAKey' => $resInfo['imageAKey'],
-              'profile' => 'fast_cut'
-            );
-            $thumbSettings['url'] = !empty( $resInfo['rextUrlUrl'] ) ? $resInfo['rextUrlUrl'] : false;
+            if( !empty( $resInfo ) ) {
+              $thumbSettings = array(
+                'imageId' => $resInfo['imageId'],
+                'imageName' => $resInfo['imageName'],
+                // 'imageName' => $resInfo['imageId'].'.jpg',
+                'imageAKey' => $resInfo['imageAKey'],
+                'profile' => 'fast_cut'
+              );
+              $thumbSettings['url'] = !empty( $resInfo['rextUrlUrl'] ) ? $resInfo['rextUrlUrl'] : false;
 
-            switch( $collInfo['col']['collectionType'] ) {
-              case 'multimedia':
-                $thumbSettings['profile'] = 'imgMultimediaGallery';
-                $multimediaUrl = false;
+              switch( $collInfo['col']['collectionType'] ) {
+                case 'multimedia':
+                  $thumbSettings['profile'] = 'imgMultimediaGallery';
+                  $multimediaUrl = false;
 
-                if( $thumbSettings['url'] ){
-                  $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
-                  $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-                  if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
-                    $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
+                  if( $thumbSettings['url'] ){
+                    $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
+                    $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+                    if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
+                      $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
+                    }
                   }
-                }
-                $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+                  $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
-                $thumbSettings['profile'] = 'hdpi4';
-                $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
+                  $thumbSettings['profile'] = 'hdpi4';
+                  $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
-                // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
-                $resInfo['image'] = $imgUrl;
-                $resInfo['imageUrl'] = $imgUrl;
-                $resInfo['image_big'] = $imgUrl2;
-                $resInfo['multimediaUrl'] = $multimediaUrl;
-              break;
-
-              default: // base y resto
-                $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-                $multimediaUrl = false;
-
-                if( $thumbSettings['url'] ){
-                  $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
-                  $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-                  if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
-                    $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
-                  }
-                }
-
-                // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
-                $resInfo['image'] = $imgUrl;
-                $resInfo['imageUrl'] = $imgUrl;
-                if( $resInfo['rTypeIdName'] === 'rtypeUrl' ) {
+                  // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
+                  $resInfo['image'] = $imgUrl;
+                  $resInfo['imageUrl'] = $imgUrl;
+                  $resInfo['image_big'] = $imgUrl2;
                   $resInfo['multimediaUrl'] = $multimediaUrl;
-                }
-              break;
-            } // switch
+                break;
 
+                default: // base y resto
+                  $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+                  $multimediaUrl = false;
 
+                  if( $thumbSettings['url'] ){
+                    $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
+                    $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+                    if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
+                      $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
+                    }
+                  }
+
+                  // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
+                  $resInfo['image'] = $imgUrl;
+                  $resInfo['imageUrl'] = $imgUrl;
+                  if( $resInfo['rTypeIdName'] === 'rtypeUrl' ) {
+                    $resInfo['multimediaUrl'] = $multimediaUrl;
+                  }
+                break;
+              } // switch
+            }
 
             $collResInfo[ $resId ] = $resInfo;
           } // foreach( $collResources as $collId => $collInfo )
