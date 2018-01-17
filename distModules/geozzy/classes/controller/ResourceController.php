@@ -1333,6 +1333,12 @@ class ResourceController {
     return ( count( $multimediaInfo['values'] ) > 0 ) ? $multimediaInfo : false;
   }
 
+
+
+
+
+
+
   // Carga los datos de todas las colecciones de recursos asociadas al recurso dado
   public function getCollectionBlockInfo( $resId, $collectionTypes = false, $extraFields = false ) {
     error_log( __METHOD__.' '.$resId.' -- '.json_encode($collectionTypes).' -- '.json_encode($extraFields) );
@@ -1356,11 +1362,9 @@ class ResourceController {
       'order' => [ 'weightMain' => 1, 'weightSon' => 1 ],
       'cache' => $this->cacheQuery,
     ]);
-    if( gettype( $resCollectionList ) === 'object' ) {
+    if( is_object( $resCollectionList ) ) {
+      $resourcesSon = [];
       while( $collection = $resCollectionList->fetch() ) {
-
-        error_log( 'TEMPO 2: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
-
         $collId = $collection->getter('id');
         if( !isset( $collResources[ $collId ] ) ) {
           $collResources[ $collId ]['col'] = array(
@@ -1376,112 +1380,141 @@ class ResourceController {
           $collResources[ $collId ]['res'] = [];
         }
 
-        $resourceViewList = $resourceViewModel->listItems( [
-          'filters' => [ 'id' => $collection->getter('resourceSon'), 'published' => 1 ],
-          'cache' => $this->cacheQuery
-        ] );
-        if( gettype( $resourceViewList ) === 'object' ) {
-          $resVal = $resourceViewList->fetch();
-          if( gettype( $resVal ) === 'object' ) {
-            $resValId = $resVal->getter('id');
-            $resValImage = $resVal->getter('image');
-            $urlAlias = $resVal->getter('urlAlias');
+        $resSonId = $collection->getter('resourceSon');
+        $resourcesSon[ $resSonId ] = true;
+        $collResources[ $collId ]['res'][ $resSonId ] = true;
+      } // while( $collection = $resCollectionList->fetch() )
 
-            $rtypeControl = new ResourcetypeModel();
-            $rtypeObj = $rtypeControl->listItems([
-              'filters' => [ 'id' => $resVal->getter('rTypeId') ],
-              'cache' => $this->cacheQuery
-            ])->fetch();
+      error_log( 'TEMPO 2: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
 
-            $collResources[ $collId ]['res'][ $resValId ] = array(
-              'id' => $resValId,
-              'rType' => $resVal->getter('rTypeId'),
-              'rTypeIdName' => $resVal->getter('rTypeIdName'),
-              // 'rTypeIdName' => $rtypeObj->getter('idName'),
-              'title' => $resVal->getter('title'),
-              'shortDescription' => $resVal->getter('shortDescription'),
-              'mediumDescription' => $resVal->getter('mediumDescription'),
-              'externalUrl' => $resVal->getter('externalUrl'),
-              'urlAlias' => $urlAlias,
-              'imageId' => $resValImage, // TODO: Deberia ser image
-              'image' => $resValImage,
-              'imageName' => $resVal->getter('imageName'),
-              'imageAKey' => $resVal->getter('imageAKey'),
-            );
-            //Añadimos rextUrlUrl a los recursos tipo link
-            if(!empty( $resVal->getter('rextUrlUrl') )){
-                $collResources[ $collId ]['res'][ $resValId ]['rextUrlUrl'] = $resVal->getter('rextUrlUrl');
-            }
+      $resSonInfo = $this->getCollectionSonInfo( array_keys( $resourcesSon ), $extraFields );
 
-            // Ampliamos la carga de datos del recurso Base
-            if( $extraFields !== false ) {
-              foreach( $extraFields as $extraF ) {
-                $collResources[ $collId ]['res'][ $resValId ][ $extraF ] = $resVal->getter( $extraF );
+      error_log( 'TEMPO 3: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
+
+      foreach( $collResources as $collId => $collInfo ) {
+        $collResInfo = [];
+        foreach( array_keys( $collInfo['res'] ) as $resId ) {
+          $resInfo = $resSonInfo[ $resId ];
+
+          $thumbSettings = array(
+            'imageId' => $resInfo['imageId'],
+            'imageName' => $resInfo['imageName'],
+            // 'imageName' => $resInfo['imageId'].'.jpg',
+            'imageAKey' => $resInfo['imageAKey'],
+            'profile' => 'fast_cut'
+          );
+          $thumbSettings['url'] = !empty( $resInfo['rextUrlUrl'] ) ? $resInfo['rextUrlUrl'] : false;
+
+          switch( $collInfo['col']['collectionType'] ) {
+            case 'multimedia':
+              $thumbSettings['profile'] = 'imgMultimediaGallery';
+              $multimediaUrl = false;
+
+              if( $thumbSettings['url'] ){
+                $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
+                $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+                if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
+                  $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
+                }
               }
-            }
+              $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
-            $thumbSettings = array(
-              'imageId' => $resValImage,
-              'imageName' => $resVal->getter('imageName'),
-              // 'imageName' => $resValImage.'.jpg',
-              'imageAKey' => $resVal->getter('imageAKey'),
-              'profile' => 'fast_cut'
-            );
-            $thumbSettings['url'] = ( $resVal->getter('rextUrlUrl') ) ? $resVal->getter('rextUrlUrl') : false;
+              $thumbSettings['profile'] = 'hdpi4';
+              $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
-            switch( $collResources[ $collId ]['col']['collectionType'] ) {
-              case 'multimedia':
-                $thumbSettings['profile'] = 'imgMultimediaGallery';
-                $multimediaUrl = false;
+              // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
+              $resInfo['image'] = $imgUrl;
+              $resInfo['imageUrl'] = $imgUrl;
+              $resInfo['image_big'] = $imgUrl2;
+              $resInfo['multimediaUrl'] = $multimediaUrl;
+            break;
 
-                if( $thumbSettings['url'] ){
-                  $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
-                  $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-                  if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
-                    $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
-                  }
+            default: // base y resto
+              $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+              $multimediaUrl = false;
+
+              if( $thumbSettings['url'] ){
+                $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
+                $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
+                if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
+                  $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
                 }
-                $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+              }
 
-                $thumbSettings['profile'] = 'hdpi4';
-                $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
+              // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
+              $resInfo['image'] = $imgUrl;
+              $resInfo['imageUrl'] = $imgUrl;
+              if( $resInfo['rTypeIdName'] === 'rtypeUrl' ) {
+                $resInfo['multimediaUrl'] = $multimediaUrl;
+              }
+            break;
+          } // switch
 
-                // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
-                $collResources[ $collId ]['res'][ $resValId ]['image'] = $imgUrl;
-                $collResources[ $collId ]['res'][ $resValId ]['imageUrl'] = $imgUrl;
-                $collResources[ $collId ]['res'][ $resValId ]['image_big'] = $imgUrl2;
-                $collResources[ $collId ]['res'][ $resValId ]['multimediaUrl'] = $multimediaUrl;
-              break;
 
-              default: // base y resto
-                $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-                $multimediaUrl = false;
 
-                if( $thumbSettings['url'] ){
-                  $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
-                  $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-                  if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
-                    $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
-                  }
-                }
-
-                // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
-                $collResources[ $collId ]['res'][ $resValId ]['image'] = $imgUrl;
-                $collResources[ $collId ]['res'][ $resValId ]['imageUrl'] = $imgUrl;
-                if($rtypeObj->getter('idName') === 'rtypeUrl'){
-                  $collResources[ $collId ]['res'][ $resValId ]['multimediaUrl'] = $multimediaUrl;
-                }
-              break;
-            } // switch
-          } // if(
-        } // if(
-      }
+          $collResInfo[ $resId ] = $resInfo;
+        } // foreach( $collResources as $collId => $collInfo )
+        $collResources[ $collId ]['res'] = $collResInfo;
+      } // foreach( $collResources as $collId => $collInfo )
     }
 
     error_log( 'TEMPO F: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
     error_log( __METHOD__.' FIN' );
     return($collResources);
   }
+
+  public function getCollectionSonInfo( $resIds, $extraFields = false ) {
+    error_log( __METHOD__.' '.json_encode($resIds) );
+    $resSonInfo = [];
+
+    $resourceViewModel = new RExtUrlResourceViewModel();
+    $resourceViewList = $resourceViewModel->listItems( [
+      'filters' => [ 'idIn' => $resIds, 'published' => 1 ],
+      'cache' => $this->cacheQuery
+    ] );
+    if( is_object( $resourceViewList ) ) {
+      while( $resVal = $resourceViewList->fetch() ) {
+        $resValId = $resVal->getter('id');
+        $resValImage = $resVal->getter('image');
+
+        $resSonInfo[ $resValId ] = array(
+          'id' => $resValId,
+          'rType' => $resVal->getter('rTypeId'),
+          'rTypeIdName' => $resVal->getter('rTypeIdName'),
+          'title' => $resVal->getter('title'),
+          'shortDescription' => $resVal->getter('shortDescription'),
+          'mediumDescription' => $resVal->getter('mediumDescription'),
+          'externalUrl' => $resVal->getter('externalUrl'),
+          'urlAlias' => $resVal->getter('urlAlias'),
+          'imageId' => $resValImage, // TODO: Deberia ser image
+          'image' => $resValImage,
+          'imageName' => $resVal->getter('imageName'),
+          'imageAKey' => $resVal->getter('imageAKey'),
+        );
+
+        //Añadimos rextUrlUrl a los recursos tipo link
+        $rextUrlUrl = $resVal->getter('rextUrlUrl');
+        if( !empty( $rextUrlUrl ) ){
+          $resSonInfo[ $resValId ]['rextUrlUrl'] = $rextUrlUrl;
+        }
+
+        // Ampliamos la carga de datos del recurso Base
+        if( !empty( $extraFields ) ) {
+          foreach( $extraFields as $extraF ) {
+            $resSonInfo[ $resValId ][ $extraF ] = $resVal->getter( $extraF );
+          }
+        }
+      } // if(
+    } // if(
+
+    return $resSonInfo;
+  }
+
+
+
+
+
+
 
   public function collectionsByType( $collectionArrayInfo, $collectionTypes = false ) {
     $collectionsByType = [];
