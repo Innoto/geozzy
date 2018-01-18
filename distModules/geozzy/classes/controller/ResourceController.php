@@ -2075,9 +2075,10 @@ class ResourceController {
     $viewBlockInfo = array(
       'template' => false,
       'data' => false,
-      'ext' => array()
+      'ext' => []
     );
 
+    $tempo = microtime(true);
 
     if( $cache = Cogumelo::GetSetupValue('cache:ResourceController:getViewBlockInfo') ) {
       Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
@@ -2105,6 +2106,8 @@ class ResourceController {
       }
     }
 
+    $tempo2 = microtime(true);
+    error_log( 'TEMPO F: '. sprintf( "%.3f", $tempo2-$tempo) .' getViewBlockInfo('.$resId.') - '. $_SERVER["REQUEST_URI"] );
     return( $viewBlockInfo );
   } // function getViewBlockInfo()
 
