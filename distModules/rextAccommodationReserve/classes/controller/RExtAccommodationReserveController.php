@@ -29,7 +29,7 @@ class RExtAccommodationReserveController extends RExtController implements RExtI
     }
 
     $rExtModel = new RExtAccommodationReserveModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'cache' => $this->cacheQuery ) );
 
     if( $rExtObj = $rExtList->fetch() ) {
       $rExtData = $rExtObj->getAllData( 'onlydata' );

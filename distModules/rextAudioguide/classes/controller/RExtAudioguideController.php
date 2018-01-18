@@ -24,7 +24,7 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
 
     $rExtModel = new AudioguideModel();
     $rExtModel->save();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'cache' => $this->cacheQuery ) );
 
     $rExtObj = $rExtList->fetch();
 
@@ -37,7 +37,7 @@ class RExtAudioguideController extends RExtController implements RExtInterface {
 
     foreach( Cogumelo::getSetupValue('publicConf:vars:langAvailableIds') as $lang ) {
       if( isset($rExtData['audioFile_'.$lang]) ){
-        $audioguide[$lang] = $fileData->listItems(array('filters' => array('id' => $rExtData['audioFile_'.$lang])))->fetch()->getAllData( 'onlydata' );
+        $audioguide[$lang] = $fileData->listItems(array('filters' => array('id' => $rExtData['audioFile_'.$lang]), 'cache' => $this->cacheQuery))->fetch()->getAllData( 'onlydata' );
         $rExtData['audioFile_'.$lang] = $audioguide[$lang];
       }
     }

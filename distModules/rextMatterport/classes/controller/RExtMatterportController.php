@@ -22,7 +22,7 @@ class RExtMatterportController extends RExtController implements RExtInterface {
     }
 
     $rExtModel = new RExtMatterportModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'cache' => $this->cacheQuery ) );
     $rExtObj = ( gettype( $rExtList ) === 'object' ) ? $rExtList->fetch() : false;
 
     if( $rExtObj ) {

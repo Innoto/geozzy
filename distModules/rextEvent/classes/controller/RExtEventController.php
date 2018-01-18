@@ -24,7 +24,7 @@ class RExtEventController extends RExtController implements RExtInterface {
     }
 
     $rExtModel = new EventModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'cache' => $this->cacheQuery ) );
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {
@@ -64,7 +64,7 @@ class RExtEventController extends RExtController implements RExtInterface {
     $rtypeModel = new resourceTypeModel();
 
     $rtypeArray = $rtypeModel->listItems(
-        array( 'filters' => array( 'idNameExists' => $systemRtypes ) )
+        array( 'filters' => array( 'idNameExists' => $systemRtypes ), 'cache' => $this->cacheQuery )
     );
     $filterRtype = array();
     while( $rtype = $rtypeArray->fetch() ){
@@ -72,7 +72,7 @@ class RExtEventController extends RExtController implements RExtInterface {
     }
 
     $elemList = $resourceModel->listItems(
-      array( 'filters' => array( 'notInRtype' => $filterRtype ) )
+      array( 'filters' => array( 'notInRtype' => $filterRtype ), 'cache' => $this->cacheQuery )
     );
     $allRes = array();
     $allRes['0'] = false;

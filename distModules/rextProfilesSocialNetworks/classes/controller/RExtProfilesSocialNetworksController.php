@@ -24,7 +24,7 @@ class RExtProfilesSocialNetworksController extends RExtController implements REx
     }
 
     $rExtModel = new ProfilesSNModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'cache' => $this->cacheQuery ) );
     $rExtObj = $rExtList->fetch();
 
 
