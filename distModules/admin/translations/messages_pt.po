@@ -20,6 +20,7 @@ msgstr ""
 msgid "Add existing resources"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:70
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:69
 msgid "Edit Collection"
 msgstr ""
@@ -82,6 +83,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:118
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:78
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:118
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:139
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:139
 msgid "Menu"
 msgstr ""
 
@@ -102,16 +105,22 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:100
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:100
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:121
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:121
 msgid "Categories"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:115
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:115
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:136
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:136
 msgid "Settings"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:122
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:122
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:143
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:143
 msgid "Users"
 msgstr ""
 
@@ -119,11 +128,15 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:125
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:65
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:141
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:146
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:146
 msgid "User"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:128
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:128
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:149
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:149
 msgid "Roles"
 msgstr ""
 
@@ -363,6 +376,7 @@ msgid "id"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:68
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:72
 msgid "Access denied"
 msgstr ""
 
@@ -519,4 +533,43 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:121
 msgid "Edit role"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:99
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:99
+msgid "Translates"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:103
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:103
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:66
+msgid "Export"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:105
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:105
+msgid "Resources"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:106
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:106
+msgid "Collections"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:110
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:110
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:222
+msgid "Import"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:112
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:112
+msgid "Files"
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/translatesPage.tpl:53
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/translatesPage.tpl:90
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:53
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:90
+msgid "Send"
 msgstr ""

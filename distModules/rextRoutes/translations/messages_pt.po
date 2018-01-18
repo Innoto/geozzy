@@ -9,8 +9,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:126
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:95
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:126
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:127
 msgid "Route start"
 msgstr "Começo"
 
@@ -84,88 +85,117 @@ msgstr "Esforço"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:8
 msgid "Very Low"
-msgstr "Muito baixo"
+msgstr "Muito baixa"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:9
 msgid "Low"
-msgstr "Baixo"
+msgstr "Baixa"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:10
 msgid "Medium"
-msgstr "Médio"
+msgstr "Média"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:11
 msgid "High"
-msgstr "Alto"
+msgstr "Alta"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:12
 msgid "Extreme"
-msgstr "Muito alto"
+msgstr "Muito alta"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:81
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:82
 msgid "Circular itinerary"
 msgstr "Itinerário circular"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:84
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:85
 msgid "Route duration (minutes)"
 msgstr "Duração de rota (minutes)"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:88
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:89
 msgid "Vertical rise level"
 msgstr "Pendente de subida"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:92
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:93
 msgid "Vertical descent level"
 msgstr "Pendente de baixada"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:96
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:97
 msgid "Travel distance (meters)"
 msgstr "Distância (metros)"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:100
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:101
 msgid "Natural environment difficulty"
 msgstr "Dificuldade do meio natural"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:105
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:106
 msgid "Itinerary difficulty"
 msgstr "Dificuldade do itinerário"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:110
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:111
 msgid "Displacement difficulty"
 msgstr "Dificuldade para deslocar-se"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:115
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:116
 msgid "Effort level"
 msgstr "Nível de esforço"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:120
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:121
 msgid "Global difficulty"
 msgstr "Dificuldade global"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:131
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:132
 msgid "Route end"
 msgstr "Final da rota"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:136
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:137
 msgid "Startroute Latitude"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:140
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:141
 msgid "Startroute Longitude"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:145
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:146
 msgid "Endroute Latitude"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:149
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:150
 msgid "Endroute Longitude"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:154
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:155
 msgid "Route file"
 msgstr "Arquivo de track"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:155
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:156
 msgid "File"
 msgstr "Arquivo"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:9
+msgid " Low"
+msgstr "Baixa"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:11
+msgid " High"
+msgstr "Alta"
+
+#: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:378
+msgid "data"
+msgstr ""
