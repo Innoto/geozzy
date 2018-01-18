@@ -86,27 +86,27 @@ msgstr "Esforzo"
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:8
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:69
 msgid "Very Low"
-msgstr "Moi baixo"
+msgstr "Moi baixa"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:9
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:70
 msgid "Low"
-msgstr "Baixo"
+msgstr "Baixa"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:10
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:71
 msgid "Medium"
-msgstr "Medio"
+msgstr "Media"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:11
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:72
 msgid "High"
-msgstr "Alto"
+msgstr "Alta"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:12
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:73
 msgid "Extreme"
-msgstr "Extremo"
+msgstr "Extrema"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:81
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:78
