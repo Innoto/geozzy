@@ -190,11 +190,11 @@ msgstr "Fichier"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:9
 msgid " Low"
-msgstr ""
+msgstr "Faible"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:11
 msgid " High"
-msgstr ""
+msgstr "Élevé"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:378
 msgid "data"

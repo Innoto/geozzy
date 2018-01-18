@@ -228,11 +228,11 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:9
 msgid " Low"
-msgstr ""
+msgstr "Low"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:11
 msgid " High"
-msgstr ""
+msgstr "High"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:378
 msgid "data"
