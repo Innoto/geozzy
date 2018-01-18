@@ -18,6 +18,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:77
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:79
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:79
 msgid "Type a departure address"
 msgstr ""
 
@@ -29,6 +31,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:80
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:47
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:88
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:88
 msgid "Get directions"
 msgstr ""
 
@@ -40,6 +44,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:88
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:57
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:57
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:96
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:96
 msgid "Show route description"
 msgstr ""
 
@@ -47,6 +53,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:97
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:93
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:93
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:101
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:101
 msgid "Route by car"
 msgstr ""
 
@@ -54,6 +62,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:98
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:94
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:94
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:102
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:102
 msgid "Walking route"
 msgstr ""
 
@@ -61,6 +71,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:99
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:95
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:95
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:103
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:103
 msgid "Route by public transport"
 msgstr ""
 
@@ -72,6 +84,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:96
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:55
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:104
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:104
 msgid "Route information"
 msgstr ""
 
@@ -79,6 +93,10 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:118
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:117
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:118
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:121
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:122
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
 msgid "Print directions"
 msgstr ""
 
