@@ -37,4 +37,4 @@ msgstr "Arquivo de audio"
 #: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:66
 #: /home/proxectos/geozzy/distModules/rextAudioguide/classes/controller/RExtAudioguideController.php:65
 msgid "File"
-msgstr "Ficheiro"
+msgstr "Arquivo"

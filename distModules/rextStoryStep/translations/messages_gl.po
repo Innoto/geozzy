@@ -67,7 +67,7 @@ msgstr "Dereita"
 #: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:162
 #: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:130
 msgid "Related resource"
-msgstr "Contidos relacionados"
+msgstr "Contido relacionado"
 
 #: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:167
 #: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:135

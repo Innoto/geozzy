@@ -31,4 +31,4 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:98
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:96
 msgid "Related resource"
-msgstr ""
+msgstr "Contido relacionado"

@@ -339,7 +339,7 @@ msgstr "Ningún"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:161
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:182
 msgid "Related resource"
-msgstr "Recurso relacionado"
+msgstr "Contido relacionado"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTaxonomy.php:184
 msgid "Menu form"
