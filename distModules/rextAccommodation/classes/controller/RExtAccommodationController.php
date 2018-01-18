@@ -26,7 +26,7 @@ class RExtAccommodationController extends RExtController implements RExtInterfac
     }
 
     $rExtModel = new AccommodationModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'cache' => $this->cacheQuery ) );
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {

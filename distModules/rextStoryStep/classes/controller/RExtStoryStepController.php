@@ -26,7 +26,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
      }
 
      $rExtModel = new RExtStoryStepModel();
-     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'affectsDependences' => array( 'FiledataModel' ) ) );
+     $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'affectsDependences' => array( 'FiledataModel' ), 'cache' => $this->cacheQuery ) );
      $rExtObj = $rExtList->fetch();
 
      if( $rExtObj ) {
@@ -89,7 +89,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
 
 
     $rtypeArray = $rtypeModel->listItems(
-        array( 'filters' => array( 'idNameExists' => $systemRtypes ) )
+        array( 'filters' => array( 'idNameExists' => $systemRtypes ), 'cache' => $this->cacheQuery )
     );
     $filterRtype = array();
     while( $rtype = $rtypeArray->fetch() ){
@@ -97,7 +97,7 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
     }
 
     $elemList = $resourceModel->listItems(
-      array( 'filters' => array( 'notInRtype' => $filterRtype ) )
+      array( 'filters' => array( 'notInRtype' => $filterRtype ), 'cache' => $this->cacheQuery )
     );
 
     $allRes = array();
@@ -110,10 +110,10 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
     //var_dump($form);exit;
 
 
-    //$otherStepsList = ( new ResourceModel() )->listItems( [ 'filters'=>['c'] ]);
+    //$otherStepsList = ( new ResourceModel() )->listItems( [ 'filters'=>['c'], 'cache' => $this->cacheQuery ]);
 
     $resourceModel = new RExtStoryStepModel();
-    $resources = $resourceModel->listItems(  [ 'filters' => array(), 'affectsDependences'=>['ResourceModel'] ]);
+    $resources = $resourceModel->listItems(  [ 'filters' => array(), 'affectsDependences'=>['ResourceModel'], 'cache' => $this->cacheQuery ]);
 
     $otherKmlOptions = [ false => ''];
     if( $resources ) {

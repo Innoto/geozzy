@@ -117,7 +117,7 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
 
   public function getTravelPlannerRTypeId() {
     $rTypeModel = new ResourcetypeModel();
-    $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'idName' => 'rtypeTravelPlanner' ) ) );
+    $rTypeList = $rTypeModel->listItems( array( 'filters' => array( 'idName' => 'rtypeTravelPlanner' ), 'cache' => $this->cacheQuery ) );
     $rTypeObj = ( $rTypeList ) ? $rTypeList->fetch() : false;
     $rTypeId = ( $rTypeObj ) ? $rTypeObj->getter( 'id' ) : false;
 
@@ -132,7 +132,7 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
 
 
     $tpModel = new ResourceModel();
-    $tpList = $tpModel->listItems( array( 'filters' => array( 'user' => $user, 'rTypeId' => $this->getTravelPlannerRTypeId() ) ) );
+    $tpList = $tpModel->listItems( array( 'filters' => array( 'user' => $user, 'rTypeId' => $this->getTravelPlannerRTypeId() ), 'cache' => $this->cacheQuery ) );
     $tpObj = ( $tpList ) ? $tpList->fetch() : false;
     if( $tpObj ) {
       $tpsId = $tpObj->getter('id');
@@ -159,13 +159,14 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
     $tpList = $tpModel->listItems(
       array(
         'filters' => array( 'user' => $user, 'rTypeId' => $this->getTravelPlannerRTypeId() ),
-        'affectsDependences' => ['TravelPlannerModel']
+        'affectsDependences' => ['TravelPlannerModel'],
+        'cache' => $this->cacheQuery
       )
     );
 
     $tpObj = ( $tpList ) ? $tpList->fetch() : false;
     if( $tpObj ) {
-      //$tpObj->setterDependence('id', (new TravelPlannerModel())->listItems(['filter'=>['resource'=>$tpObj->getter('id')]])->fetch() );
+      //$tpObj->setterDependence('id', (new TravelPlannerModel())->listItems(['filter'=>['resource'=>$tpObj->getter('id')], 'cache' => $this->cacheQuery])->fetch() );
       $res = $tpObj;
     }
 
@@ -180,14 +181,15 @@ class RExtTravelPlannerController extends RExtController implements RExtInterfac
     $tpList = $tpModel->listItems(
       array(
         'filters' => array( 'id'=> $data['id']),
-        'affectsDependences' => ['TravelPlannerModel']
+        'affectsDependences' => ['TravelPlannerModel'],
+        'cache' => $this->cacheQuery
       )
     );
 
     $tpObj = ( $tpList ) ? $tpList->fetch() : false;
     if( $tpObj ) {
 
-      //$dep = (new TravelPlannerModel())->listItems(['filter'=>['resource'=> $tpObj->getter('id')]])->fetch();
+      //$dep = (new TravelPlannerModel())->listItems(['filter'=>['resource'=> $tpObj->getter('id')], 'cache' => $this->cacheQuery])->fetch();
 
       $cleanlist = [];
       if( isset($data['list']) && sizeof($data['list'])>0  )

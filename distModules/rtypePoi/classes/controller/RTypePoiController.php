@@ -167,7 +167,7 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     // Recuperamos todos los términos de la taxonomía tipo
     $poiTypeList = $this->defResCtrl->getOptionsTax( 'rextPoiType' );
     foreach( $poiTypeList as $poiTypeId => $poiTypeName ) {
-      $poiType = $taxtermModel->listItems(array('filters'=> array('id' => $poiTypeId)))->fetch();
+      $poiType = $taxtermModel->listItems(array('filters'=> array('id' => $poiTypeId), 'cache' => $this->cacheQuery))->fetch();
     }
     $template->assign('poiType', $poiType);
 

@@ -38,12 +38,12 @@ class RExtStoryController extends RExtController implements RExtInterface {
     $collection = new CollectionModel( );
     $resourceCollectionsModel = new ResourceCollectionsModel();
     $resourceCollectionsList = $resourceCollectionsModel->listItems(
-      array('filters' => array('resource' => $resId)) );
+      array('filters' => array('resource' => $resId), 'cache' => $this->cacheQuery) );
 
     $elemId = false;
     $eventCol = false;
     while($resCol = $resourceCollectionsList->fetch()){
-      $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
+      $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection')), 'cache' => $this->cacheQuery))->fetch();
       if($typecol->getter('collectionType')==='steps'){
         $elemId = $typecol->getter('id');
       }
@@ -52,7 +52,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
     if ($elemId){
       $collectionResourcesModel = new CollectionResourcesModel();
       $collectionResourceList = $collectionResourcesModel->listItems(
-        array('filters' => array('collection' => $elemId), 'order' => array('weight' => 1))
+        array('filters' => array('collection' => $elemId), 'order' => array('weight' => 1), 'cache' => $this->cacheQuery)
       );
 
       $resIds = array();
@@ -81,8 +81,8 @@ class RExtStoryController extends RExtController implements RExtInterface {
     $resourceModel = new ResourceModel();
     $rtypeControl = new ResourcetypeModel();
 
-    $rtypeArray = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => $filter )));
-    $rtypeArraySize = $rtypeControl->listCount(array( 'filters' => array( 'idNameExists' => $filter )));
+    $rtypeArray = $rtypeControl->listItems(array( 'filters' => array( 'idNameExists' => $filter ), 'cache' => $this->cacheQuery));
+    $rtypeArraySize = $rtypeControl->listCount(array( 'filters' => array( 'idNameExists' => $filter ), 'cache' => $this->cacheQuery));
 
     $varConditions = '';
     $i = 0;
@@ -98,7 +98,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
 
     $collectionRtypeResources = new CollectionTypeResourcesModel();
     $collectionRtypeResourcesList = $collectionRtypeResources->listItems(
-      array('filters'=>array('conditionsRtypenotInCollection' => $varConditions))
+      array('filters'=>array('conditionsRtypenotInCollection' => $varConditions), 'cache' => $this->cacheQuery)
     );
     $resOptions = array();
     while($res = $collectionRtypeResourcesList->fetch()){
@@ -236,14 +236,14 @@ class RExtStoryController extends RExtController implements RExtInterface {
 
       // buscamos las colecciones de ese recurso
       $resourceCollectionsCount = $resourceCollectionsModel->listCount(
-        array('filters' => array( 'resource' => $resource->getter('id')) ) );
+        array('filters' => array( 'resource' => $resource->getter('id')), 'cache' => $this->cacheQuery ) );
       $resourceCollections = $resourceCollectionsModel->listItems(
-        array('filters' => array( 'resource' => $resource->getter('id')) ) );
+        array('filters' => array( 'resource' => $resource->getter('id')), 'cache' => $this->cacheQuery ) );
 
       $elemId = false;
       if ($resourceCollectionsCount>0){// existe coleccion
         while($resCol = $resourceCollections->fetch()){
-          $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection'))))->fetch();
+          $typecol = $collection->listItems(array('filters' => array('id' => $resCol->getter('collection')), 'cache' => $this->cacheQuery))->fetch();
 
           if($typecol->getter('collectionType')==='steps'){
             $elemId = $typecol->getter('id');
@@ -267,7 +267,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
       $newResources = false;
 
       $collectionResources = new CollectionResourcesModel();
-      $collectionResourcesList = $collectionResources->listItems(array('filters' => array('collection'=>$elemId), 'order' => array('weight' => 1)));
+      $collectionResourcesList = $collectionResources->listItems(array('filters' => array('collection'=>$elemId), 'order' => array('weight' => 1), 'cache' => $this->cacheQuery));
       if($collectionResourcesList){
         while($colResource = $collectionResourcesList->fetch()){
           $newResources[] = $colResource->getter('resource');
@@ -280,7 +280,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
         $CollectionResourcesModel = new CollectionResourcesModel();
 
         $collectionResourceList = $CollectionResourcesModel->listItems(
-          array('filters' => array('collection' => $elemId)) );
+          array('filters' => array('collection' => $elemId), 'cache' => $this->cacheQuery) );
 
         if( $collectionResourceList ) {
           // estaban asignados antes
@@ -341,7 +341,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
 
     // Obtenemos el rtype de los microeventos
     $rtypeModel = new ResourcetypeModel();
-    $rtypeEventId = $rtypeModel->listItems(array('filters' => array('idNameExists' => 'rtypeStoryStep')))->fetch()->getter('id');
+    $rtypeEventId = $rtypeModel->listItems(array('filters' => array('idNameExists' => 'rtypeStoryStep'), 'cache' => $this->cacheQuery))->fetch()->getter('id');
 
     if( $rExtViewBlockInfo['data'] ) {
 
@@ -357,7 +357,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
         }
 
         $eventModel =  new EventModel();
-        $eventList = $eventModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArray), 'order' => array( 'initDate' => 1 ) ));
+        $eventList = $eventModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArray), 'order' => array( 'initDate' => 1 ), 'cache' => $this->cacheQuery ));
 
         // Establecemos locale para obtener las fechas en el idioma actual
         global $C_LANG;
@@ -393,7 +393,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
 
         // Cargamos los datos básicos de recurso que necesitamos
         $resourceModel =  new ResourceModel();
-        $resourceList = $resourceModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArrayFinal) ));
+        $resourceList = $resourceModel->listItems( array( 'filters' => array( 'inId' => $eventIdsArrayFinal), 'cache' => $this->cacheQuery ));
         while( $resource = $resourceList->fetch() ){
           if ($resource->getter('rTypeId') != $rtypeEventId){ // No es un microevento
             $eventCollection[$resource->getter('id')]['resource']['urlAlias'] = $this->defResCtrl->getUrlAlias($resource->getter('id'));
@@ -408,7 +408,7 @@ class RExtStoryController extends RExtController implements RExtInterface {
         $taxViewModel =  new TaxonomyViewModel();
         // Cargamos todos los términos de la taxonomía de visualización de eventCollection
         $options = array();
-        $taxViewList = $taxViewModel->listItems( array( 'filters' => array( 'taxGroupIdName' => 'rextStoryView' )));
+        $taxViewList = $taxViewModel->listItems( array( 'filters' => array( 'taxGroupIdName' => 'rextStoryView' ), 'cache' => $this->cacheQuery));
         while( $taxView = $taxViewList->fetch() ){
           $options[ $taxView->getter( 'id' ) ]['idName'] = $taxView->getter( 'idName' );
         }

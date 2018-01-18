@@ -103,7 +103,7 @@ class RoutesController {
 
 
     $routesModel = new RoutesModel();
-    $routesList = $routesModel->listItems( array('joinType'=>'RIGHT','affectsDependences'=> array('ResourceModel') , 'filters' => $f ));
+    $routesList = $routesModel->listItems( array('joinType'=>'RIGHT','affectsDependences'=> array('ResourceModel') , 'filters' => $f, 'cache' => $this->cacheQuery ));
 
     $routes = [];
 

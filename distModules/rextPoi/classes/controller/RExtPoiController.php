@@ -52,7 +52,7 @@ class RExtPoiController extends RExtController implements RExtInterface {
     $rtypeModel = new resourceTypeModel();
 
     $rtypeArray = $rtypeModel->listItems(
-        array( 'filters' => array( 'idNameExists' => $systemRtypes ) )
+        array( 'filters' => array( 'idNameExists' => $systemRtypes ), 'cache' => $this->cacheQuery )
     );
     $filterRtype = array();
     while( $rtype = $rtypeArray->fetch() ){
@@ -60,7 +60,7 @@ class RExtPoiController extends RExtController implements RExtInterface {
     }
 
     $elemList = $resourceModel->listItems(
-      array( 'filters' => array( 'notInRtype' => $filterRtype ) )
+      array( 'filters' => array( 'notInRtype' => $filterRtype ), 'cache' => $this->cacheQuery )
     );
     $allRes = array();
     $allRes['0'] = false;
