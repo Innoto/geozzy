@@ -11,7 +11,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:25
 msgid "All"
-msgstr "Todos"
+msgstr "Todo"
 
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
 msgid "Prioritizing map zone"

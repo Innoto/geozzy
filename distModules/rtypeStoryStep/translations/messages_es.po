@@ -69,7 +69,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:106
 msgid "All"
-msgstr "Todos"
+msgstr "Todo"
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:122
 msgid "Title"

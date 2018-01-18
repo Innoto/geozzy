@@ -45,7 +45,7 @@ msgstr "Día"
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:13
 msgid "All"
-msgstr "Todo"
+msgstr "Tout"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:8
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8

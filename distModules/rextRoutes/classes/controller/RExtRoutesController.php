@@ -6,7 +6,15 @@ class RExtRoutesController extends RExtController implements RExtInterface {
   public function __construct( $defRTypeCtrl ){
 
     parent::__construct( $defRTypeCtrl, new rextRoutes(), 'rExtRoutes_' );
-
+    global $rextRoutes_difficulty;
+    $rextRoutes_difficulty = array(
+      '0' => '--',
+      '1' => __('Very Low'),
+      '2' => __(' Low'),
+      '3' => __('Medium'),
+      '4' => __(' High'),
+      '5' => __('Extreme')
+    );
   }
 
   /**
