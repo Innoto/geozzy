@@ -24,7 +24,7 @@ class RExtUrlController extends RExtController implements RExtInterface {
     }
 
     $rExtModel = new RExtUrlModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'cache' => $this->cacheQuery ) );
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {

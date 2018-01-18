@@ -27,7 +27,7 @@ class RExtParticipationController extends RExtController implements RExtInterfac
     }
 
     $rExtModel = new ParticipationModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'cache' => $this->cacheQuery ) );
     $rExtObj = ( gettype( $rExtList ) === 'object' ) ? $rExtList->fetch() : false;
 
     if( $rExtObj ) {

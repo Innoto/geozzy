@@ -15,7 +15,7 @@ class PoisExplorerController extends ExplorerController {
 
     global $C_LANG;
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id','content_'.$C_LANG,'loc','isNormalResource','terms'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id','content_'.$C_LANG,'loc','isNormalResource','terms'), 'filters'=> $filters, 'cache' => $this->cacheQuery ) );
 
     $coma = '';
 
@@ -69,7 +69,7 @@ class PoisExplorerController extends ExplorerController {
       $filters['ids'] = array_map( 'intval',$_POST['ids']);
     }
 
-    $resources = $resourceModel->listItems( array('filters' => $filters ) );
+    $resources = $resourceModel->listItems( array('filters' => $filters, 'cache' => $this->cacheQuery ) );
     $coma = '';
 
     echo '[';

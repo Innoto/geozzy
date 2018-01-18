@@ -40,7 +40,7 @@ class RTypeStoryController extends RTypeController implements RTypeInterface {
 
     if( $form->getFieldValue('rExtView_viewAlternativeMode') == '' ) {
       $taxtermResult = ( new TaxonomyViewModel() )->listItems([
-        'filters' => ['taxGroupIdName' => 'viewAlternativeMode', 'idName'=>'viewAppStory' ]
+        'filters' => ['taxGroupIdName' => 'viewAlternativeMode', 'idName'=>'viewAppStory' ], 'cache' => $this->cacheQuery
       ]);
 
       if( $taxterm = $taxtermResult->fetch() ) {

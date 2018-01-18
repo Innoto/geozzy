@@ -25,7 +25,7 @@ class RExtFileController extends RExtController implements RExtInterface {
     }
 
     $rExtModel = new RExtFileModel();
-    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'affectsDependences' => array( 'FiledataModel' ) ) );
+    $rExtList = $rExtModel->listItems( array( 'filters' => array( 'resource' => $resId ), 'affectsDependences' => array( 'FiledataModel' ), 'cache' => $this->cacheQuery ) );
     $rExtObj = $rExtList->fetch();
 
     if( $rExtObj ) {

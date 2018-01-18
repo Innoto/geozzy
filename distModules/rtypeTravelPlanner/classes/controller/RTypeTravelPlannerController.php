@@ -140,14 +140,14 @@ class RTypeTravelPlannerController extends RTypeController implements RTypeInter
     $resInfo = array();
 
     $urlAliasModel = new UrlAliasModel();
-    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'resourceIn' => $resIds ) ) );
+    $urlAliasList = $urlAliasModel->listItems( array( 'filters' => array( 'resourceIn' => $resIds ), 'cache' => $this->cacheQuery ) );
     $urls = array();
     while( $urlAlias = $urlAliasList->fetch() ) {
       $urls[$urlAlias->getter('resource')] = $urlAlias->getter('urlFrom');
     }
 
     $resourceModel = new ResourceModel();
-    $resourceList = $resourceModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ) ) );
+    $resourceList = $resourceModel->listItems( array( 'filters' => array( 'inId' => $resIds, 'published' => 1 ), 'cache' => $this->cacheQuery ) );
     while( $resObj = $resourceList->fetch() ) {
       $resId = $resObj->getter('id');
       $resInfo[ $resId ] = array(
