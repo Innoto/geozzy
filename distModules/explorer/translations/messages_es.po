@@ -13,6 +13,7 @@ msgstr ""
 msgid "All"
 msgstr "Todos"
 
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:179
 msgid "Prioritizing map zone"
 msgstr "Priorizando zona del mapa"

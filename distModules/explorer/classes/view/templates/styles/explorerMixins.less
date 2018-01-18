@@ -89,6 +89,12 @@
         margin-top: @explFilter-h;
         padding-top: @explMap-h;
       }
+
+      &.explorer-loading-flash,
+      &.explorer-loading{
+        position: fixed;
+        top: @hheight;
+      }
     }
   }
 
@@ -150,6 +156,12 @@
       &.explorer-container-filter{
         position: fixed !important;
         top: @hheight + 30px !important;
+      }
+
+      &.explorer-loading-flash,
+      &.explorer-loading{
+        position: fixed;
+        top: @hheight;
       }
     }
   }

@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:329
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
 msgid "A route could not be found."
 msgstr "Aucun itinéraire n' a pu être trouvé."
@@ -61,6 +62,10 @@ msgstr "Informations sur l'itinéraire"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:118
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:117
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:118
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:121
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:122
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
 msgid "Print directions"
 msgstr ""
 
