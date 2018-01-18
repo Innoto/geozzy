@@ -1341,8 +1341,8 @@ class ResourceController {
 
   // Carga los datos de todas las colecciones de recursos asociadas al recurso dado
   public function getCollectionBlockInfo( $resId, $collectionTypes = false, $extraFields = false ) {
-    error_log( __METHOD__.' '.$resId.' -- '.json_encode($collectionTypes).' -- '.json_encode($extraFields) );
-    error_log( 'TEMPO 1: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
+    // error_log( __METHOD__.' '.$resId.' -- '.json_encode($collectionTypes).' -- '.json_encode($extraFields) );
+    // error_log( 'TEMPO 1: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
 
     $collResources = false;
 
@@ -1384,12 +1384,12 @@ class ResourceController {
         $collResources[ $collId ]['res'][ $resSonId ] = true;
       } // while( $collection = $resCollectionList->fetch() )
 
-      error_log( 'TEMPO 2: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
+      // error_log( 'TEMPO 2: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
 
       if( !empty( $resourcesSon ) ) {
         $resSonInfo = $this->getCollectionSonInfo( array_keys( $resourcesSon ), $extraFields );
 
-        error_log( 'TEMPO 3: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
+        // error_log( 'TEMPO 3: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
 
         foreach( $collResources as $collId => $collInfo ) {
           $collResInfo = [];
@@ -1459,13 +1459,13 @@ class ResourceController {
       }
     }
 
-    error_log( 'TEMPO F: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
-    error_log( __METHOD__.' FIN' );
+    // error_log( 'TEMPO F: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
+    // error_log( __METHOD__.' FIN' );
     return($collResources);
   }
 
   public function getCollectionSonInfo( $resIds, $extraFields = false ) {
-    error_log( __METHOD__.' '.json_encode($resIds) );
+    // error_log( __METHOD__.' '.json_encode($resIds) );
     $resSonInfo = [];
 
     $resourceViewModel = new RExtUrlResourceViewModel();
