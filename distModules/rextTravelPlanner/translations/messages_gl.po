@@ -16,7 +16,7 @@ msgstr "Selecciona as datas"
 
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
 msgid "Add to Plan"
-msgstr "Añadir ó plan"
+msgstr "Añadir ao plan"
 
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:133
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:101
@@ -45,7 +45,7 @@ msgstr "Día"
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:13
 msgid "All"
-msgstr "Tout"
+msgstr "Todo"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:8
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
@@ -65,7 +65,7 @@ msgstr "Todos os contidos"
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:59
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:47
 msgid "When do you want to travel? "
-msgstr "¿Cándo che gustaría viaxar? "
+msgstr "Cando che gustaría viaxar? "
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:71
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:71
@@ -85,7 +85,7 @@ msgstr "Selecciona a data para visitar este sitio ou evento"
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:117
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:102
 msgid "How long do you want to visit this place?"
-msgstr "¿Cánto tempo che gustaría visitar este sitio?"
+msgstr "Canto tempo che gustaría visitar este sitio?"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:120
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:121
@@ -141,14 +141,14 @@ msgstr "Cancelar"
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:130
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:115
 msgid "Add to plan"
-msgstr "Añadir ó plan"
+msgstr "Añadir ao plan"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:142
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:142
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:142
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:127
 msgid "How long?"
-msgstr "¿Cánto tempo?"
+msgstr "Canto tempo?"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:155
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:155
@@ -160,7 +160,7 @@ msgstr "Gardar"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
 msgid "Go to my plan"
-msgstr "Ir á meu plan"
+msgstr "Ir ao meu plan"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:8
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
