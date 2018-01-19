@@ -11,66 +11,69 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:21
 msgid "Necesitas tener una cuenta para participar en Galicia Agochada"
-msgstr ""
+msgstr "Necesitas ter unha conta para participar en Ribeira Sacra"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:22
 msgid "Crear una cuenta"
-msgstr ""
+msgstr "Crear unha conta"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:24
 msgid "¿Ya tienes una cuenta?"
-msgstr ""
+msgstr "Xa tes unha conta?"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:25
 msgid "Inicia tu sesión para continuar"
-msgstr ""
+msgstr "Inicia a túa sesión para continuar"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:28
 msgid "He olvidado mi contraseña"
-msgstr ""
+msgstr "Esquecín o meu contrasinal"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:30
 msgid "Recovery password"
-msgstr ""
+msgstr "Recuperar contrasinal"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:31
 msgid ""
 "Introduce la dirección de correo electrónico asociada a tu cuenta y te "
 "enviaremos un enlace para restablecer tu contraseña"
 msgstr ""
+"Introduce o teu enderezo de correo electrónico e enviaremosche unha ligazón "
+"para restablecer o teu contrasinal"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:33
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:507
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:484
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:516
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:36
 msgid "Correo electrónico enviado correctamente"
-msgstr ""
+msgstr "Correo electrónico enviado correctamente"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:40
 msgid ""
 "Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente "
 "formulario"
-msgstr ""
+"Crear unha conta en Ribeira Sacra é moi sinxelo. Cumprimenta o seguinte "
+"formulario"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:46
 msgid "Muchas gracias"
-msgstr ""
+msgstr "Moitas grazas"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:47
 msgid "Tu cuenta se ha creado con éxito"
-msgstr ""
+msgstr "A túa conta creouse con éxito"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:48
 msgid "En breve recibirás un correo-e para comprobar tu identidad"
-msgstr ""
+msgstr "En breve recibirás un correo-e para comprobar a túa identidade"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:49
 msgid "Si no lo recibes en las proximas horas, comprueba tu bandeja de SPAM"
-msgstr ""
+msgstr "Se non o recibes nas próximas horas, comproba a túa bandexa de SPAM"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:50
 msgid "Continuar"
