@@ -4,8 +4,7 @@
 class RoutesController {
 
   public function __construct() {
-
-
+    $this->cacheQuery = true;
 
   }
 
@@ -103,7 +102,12 @@ class RoutesController {
 
 
     $routesModel = new RoutesModel();
-    $routesList = $routesModel->listItems( array('joinType'=>'RIGHT','affectsDependences'=> array('ResourceModel') , 'filters' => $f, 'cache' => $this->cacheQuery ));
+    $routesList = $routesModel->listItems( array(
+      'joinType'=>'RIGHT',
+      'affectsDependences'=> array('ResourceModel'),
+      'filters' => $f,
+      'cache' => $this->cacheQuery
+    ));
 
     $routes = [];
 
