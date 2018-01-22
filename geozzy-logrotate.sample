@@ -3,10 +3,10 @@
 /HOST_PROYECT_DIRECTORY/logs/*.log {
   # su innoto
   create 640 innoto root
-  weekly
+  daily
   missingok
-  rotate 120
-  maxage 850
+  rotate 800
+  maxage 750
   dateext
   compress
   notifempty
@@ -26,10 +26,10 @@
 /HOST_PROYECT_DIRECTORY/project/app/log/*.log {
   su innoto www-data
   create 660 innoto www-data
-  weekly
+  daily
   missingok
-  rotate 120
-  maxage 850
+  rotate 800
+  maxage 750
   dateext
   compress
   notifempty
@@ -38,4 +38,3 @@
     chmod 400 /HOST_PROYECT_DIRECTORY/project/app/log/*gz
   endscript
 }
-
