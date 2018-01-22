@@ -18,6 +18,10 @@ msgstr "Todo"
 msgid "Prioritizing map zone"
 msgstr "Priorizando a zoa do mapa"
 
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:25
+msgid "All"
+msgstr "Todos"
+
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:13
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:11

@@ -31,7 +31,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:30
 msgid "Recovery password"
-msgstr "Recuperación de contraseña"
+msgstr "Recuperar contraseña"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:31
 msgid ""

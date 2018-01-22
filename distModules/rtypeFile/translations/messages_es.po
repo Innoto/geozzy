@@ -11,6 +11,7 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:13
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:10
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:10
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:10
@@ -20,8 +21,8 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:18
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:15
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:15
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:15
@@ -31,8 +32,8 @@ msgstr ""
 msgid "Short description"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:23
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:20
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:20
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:20
@@ -42,8 +43,8 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:29
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:29
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:29
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:26
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:26
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeViewBlock.tpl:26
