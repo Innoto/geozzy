@@ -19,7 +19,7 @@ class DefaultExplorerController extends ExplorerController {
 
 
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc', 'terms', 'image'), 'filters'=> $filters ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id', 'loc', 'terms', 'image'), 'filters'=> $filters, 'cache' => $this->cacheQuery ) );
 
     $coma = '';
 
@@ -70,7 +70,7 @@ class DefaultExplorerController extends ExplorerController {
       $filters['ids'] = array_map( 'intval',$_POST['ids']);
     }
 
-    $resources = $resourceModel->listItems( array('filters' => $filters ) );
+    $resources = $resourceModel->listItems( array('filters' => $filters, 'cache' => $this->cacheQuery ) );
     $coma = '';
 
     echo '[';
