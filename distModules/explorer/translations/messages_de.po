@@ -9,13 +9,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:25
-msgid "All"
-msgstr "Alle"
-
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
 msgid "Prioritizing map zone"
 msgstr "Priorisierung der Kartenzone"
+
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:25
+msgid "All"
+msgstr "Alle"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:13
