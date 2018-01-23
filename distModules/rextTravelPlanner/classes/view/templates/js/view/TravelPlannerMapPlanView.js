@@ -136,6 +136,81 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       }
     });
   },
+  addMarkerOnMap: function(item, type, label){
+    var that = this;
+
+    var markSelectedColor = (cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlanSelected) ? cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlanSelected : '#E26553';
+    var markColor = (cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlan) ? cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlan : '#E26553';
+
+    if(type === "selected"){
+      var Icono = {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillOpacity: 1,
+        fillColor: markSelectedColor,
+        strokeOpacity: 1,
+        strokeWeight: 2,
+        strokeColor: '#fff',
+        scale: 13
+      };
+      var gMarker = new google.maps.Marker({
+        map: that.map,
+        position: new google.maps.LatLng( item.loc.lat, item.loc.lng ),
+        icon: Icono,
+        label: { color: '#fff', fontSize: '14px', fontWeight: '600',
+          text: String(label + 1 ) }
+      });
+
+      that.selectedMarkers.push({ id: item.id , marker: gMarker });
+    }
+    else{
+      var Icono = {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillOpacity: 1,
+        fillColor: markColor,
+        strokeOpacity: 1,
+        strokeWeight: 2,
+        strokeColor: '#fff',
+        scale: 6
+      };
+      var gMarker = new google.maps.Marker({
+        map: that.map,
+        position: new google.maps.LatLng( item.loc.lat, item.loc.lng ),
+        icon: Icono,
+      });
+    }
+
+    that.infoWindow = new smart_infowindow({
+      map: that.map,
+      width: 300,
+      max_height: 200,
+      marker_distance: [12,12], // [top, bottom]
+    });
+
+    gMarker.addListener('mouseover', function() {
+      var infowindowHtml = '<div class="iWindow">'+
+        '<div class="image">'+
+          '<img class="img-responsive" src="/cgmlImg/'+item.image+'/travelPlannerList/'+item.image+'.jpg">'+
+        '</div>'+
+        '<div class="info">'+
+          '<div class="title">'+item.title+'</div>'+
+          '<div class="description">'+item.shortDescription+'</div>'+
+        '</div>'+
+      '</div>';
+      that.infoWindow.open(gMarker, 'mouseover' , infowindowHtml);
+    });
+
+    gMarker.addListener('mouseout', function() {
+      setTimeout(
+        function() {
+          if(smart_infowindow_is_on_infowindow == false) {
+            that.infoWindow.close();
+          }
+        }
+      , 10 );
+    });
+
+    that.markers.push({ id: item.id , marker: gMarker });
+  },
   startRouteOnMap: function(optimize){
     var that = this;
     var resSelectedInDay = [];
@@ -161,53 +236,39 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       that.clearRoute();
     }
   },
-  addMarkerOnMap: function(item, type, label){
-    var that = this;
 
-    var markSelectedColor = (cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlanSelected) ? cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlanSelected : '#E26553';
-    var markColor = (cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlan) ? cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlan : '#E26553';
-
-    if(type === "selected"){
-      var Icono = {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillOpacity: 1,
-        fillColor: markSelectedColor,
-        strokeOpacity: 1,
-        strokeWeight: 2,
-        strokeColor: '#fff',
-        scale: 13
-      };
-      var gMarker = new google.maps.Marker({
-        map: that.map,
-        position: new google.maps.LatLng( item.loc.lat, item.loc.lng ),
-        icon: Icono,
-        label: { color: '#fff', fontSize: '14px', fontWeight: '600',
-          text: String(label + 1 ) }
-      });
-      that.selectedMarkers.push(gMarker);
-    }
-    else{
-      var Icono = {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillOpacity: 1,
-        fillColor: markColor,
-        strokeOpacity: 1,
-        strokeWeight: 2,
-        strokeColor: '#fff',
-        scale: 6
-      };
-      var gMarker = new google.maps.Marker({
-        map: that.map,
-        position: new google.maps.LatLng( item.loc.lat, item.loc.lng ),
-        icon: Icono,
-      });
-    }
-    that.markers.push(gMarker);
-  },
   removeMarkers: function(){
     var that = this;
-    $.each( that.markers, function(i ,marker){
-      marker.setMap( null );
+    $.each( that.markers, function(i ,el){
+      el.marker.setMap( null );
+    });
+  },
+  highlightMarker: function(resId){
+    var that = this;
+    $.each(that.markers, function( i, el ) {
+      if(el.id === parseInt(resId)) {
+        //el.marker.setAnimation(google.maps.Animation.BOUNCE);
+        el.marker.setOptions({
+          title: 'selectedMarker'
+        });
+        el.marker.setMap( null );
+        el.marker.setMap( that.map );
+        return false;
+      }
+    });
+  },
+  stopHighlightMarker: function(resId){
+    var that = this;
+    $.each(that.markers, function( i, el ) {
+      if(el.id === parseInt(resId)) {
+        //el.marker.setAnimation(null);
+        el.marker.setOptions({
+          title: ''
+        });
+        el.marker.setMap( null );
+        el.marker.setMap( that.map );
+        return false;
+      }
     });
   },
   calcRoute: function( dataPoints, optimize ){

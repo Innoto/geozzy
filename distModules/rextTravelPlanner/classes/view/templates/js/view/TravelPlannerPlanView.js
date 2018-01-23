@@ -13,7 +13,9 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     'click .travelPlannerPlan .plannerDay .showMap': 'showMapDay',
     'click .travelPlannerPlan .plannerDay .optimizeDay': 'initOptimizeDay',
     'click .travelPlannerPlan .plannerDay .dd-item .btnDelete': 'removeResourceToDay',
-    'click .travelPlannerPlan .plannerDay .dd-item .btnEdit': 'bindEditResourceToDay'
+    'click .travelPlannerPlan .plannerDay .dd-item .btnEdit': 'bindEditResourceToDay',
+    'mouseenter .travelPlannerPlan .plannerDay .dd-item': 'mouseenterResourceItem',
+    'mouseleave .travelPlannerPlan .plannerDay .dd-item': 'mouseleaveResourceItem'
   },
 
   initialize: function( parentTp ) {
@@ -151,6 +153,16 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     that.parentTp.travelPlannerMapPlanView.clearDirectionsServiceRequest([day]);
     that.parentTp.travelPlannerMapPlanView.render();
+  },
+  mouseenterResourceItem: function(e){
+    var that = this;
+    var hoverItemId = JSON.parse($(e.currentTarget).attr('data-id')).id;
+    that.parentTp.travelPlannerMapPlanView.highlightMarker(hoverItemId);
+  },
+  mouseleaveResourceItem: function(e){
+    var that = this;
+    var hoverItemId = JSON.parse($(e.currentTarget).attr('data-id')).id;
+    that.parentTp.travelPlannerMapPlanView.stopHighlightMarker(hoverItemId);
   },
   resourceInPlan: function( idResource ){
     var that = this;
