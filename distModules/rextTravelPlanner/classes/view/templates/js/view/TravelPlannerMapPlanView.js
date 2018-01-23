@@ -187,14 +187,13 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     });
 
     gMarker.addListener('mouseover', function() {
-      console.log("hover marker");
       var infowindowHtml = '<div class="iWindow">'+
         '<div class="image">'+
-          '<img class="img-responsive" src="/cgmlImg/'+e.get('image')+'/travelPlannerList/'+e.get('image')+'.jpg">'+
+          '<img class="img-responsive" src="/cgmlImg/'+item.image+'/travelPlannerList/'+item.image+'.jpg">'+
         '</div>'+
         '<div class="info">'+
-          '<div class="title">'+e.get('title')+'</div>'+
-          '<div class="description">'+e.get('shortDescription')+'</div>'+
+          '<div class="title">'+item.title+'</div>'+
+          '<div class="description">'+item.shortDescription+'</div>'+
         '</div>'+
       '</div>';
       that.infoWindow.open(gMarker, 'mouseover' , infowindowHtml);
