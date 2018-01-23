@@ -140,10 +140,8 @@ msgstr "Optimiser l'itinéraire du jour"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:187
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:187
-msgid ""
-"The route between the first and the last place of the day will be optimized."
-msgstr ""
-"L'itinéraire entre le premier et le dernier lieu de la journée sera optimisé."
+msgid "The route between the first and the last place of the day will be optimized."
+msgstr "L'itinéraire entre le premier et le dernier lieu de la journée sera optimisé."
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:209
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:209

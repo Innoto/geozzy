@@ -72,9 +72,7 @@ msgstr "Colecciones"
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
-msgid ""
-"Haz click en el lugar donde se ubica tu centro educativo con la mayor "
-"precisión que puedas, podrás arrastrar y soltar la localización"
+msgid "Haz click en el lugar donde se ubica tu centro educativo con la mayor precisión que puedas, podrás arrastrar y soltar la localización"
 msgstr ""
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:25
@@ -307,9 +305,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:567
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:608
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:598
-msgid ""
-"Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario "
-"subirlos otra vez."
+msgid "Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario subirlos otra vez."
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:614
