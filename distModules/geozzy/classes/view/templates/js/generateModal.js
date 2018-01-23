@@ -9,6 +9,7 @@ geozzy.generateModal = function( options ) {
     htmlBody: 'Hello world',
     size: 'md',
     btnClass: 'btn-primary',
+    footerHidden: false,
     successOpened: function(){ return false; },
     successCallback: function() { return false; }
   });
@@ -28,7 +29,9 @@ geozzy.generateModal = function( options ) {
             }
           html += '</div>';
           html += '<div class="modal-body">'+that.options.htmlBody+'</div>';
-          html += '<div class="modal-footer"><button type="button" class="btn '+that.options.btnClass+'" data-dismiss="modal" aria-label="Close">'+__("Accept")+'</button></div>';
+          if( !that.options.footerHidden ) {
+            html += '<div class="modal-footer"><button type="button" class="btn '+that.options.btnClass+'" data-dismiss="modal" aria-label="Close">'+__("Accept")+'</button></div>';
+          }
         html += '</div>';
       html += '</div>';
     html += '</div>';
