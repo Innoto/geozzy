@@ -1409,15 +1409,9 @@ class ResourceController {
               switch( $collInfo['col']['collectionType'] ) {
                 case 'multimedia':
                   $thumbSettings['profile'] = 'imgMultimediaGallery';
-                  $multimediaUrl = false;
 
-                  if( $thumbSettings['url'] ){
-                    $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
-                    $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-                    if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
-                      $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
-                    }
-                  }
+                  $multimediaUrl = ( $thumbSettings['url'] ) ? $this->ytVidId( $thumbSettings['url'] ) : false;
+
                   $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
                   $thumbSettings['profile'] = 'hdpi4';
@@ -1432,15 +1426,8 @@ class ResourceController {
 
                 default: // base y resto
                   $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-                  $multimediaUrl = false;
 
-                  if( $thumbSettings['url'] ){
-                    $termsGroupedIdName = $this->getTermsInfoByGroupIdName($resValId);
-                    $urlContentType = array_shift($termsGroupedIdName['urlContentType']);
-                    if( $urlContentType['idNameTaxgroup'] === 'urlContentType' ){
-                      $multimediaUrl = $this->ytVidId( $thumbSettings['url'] );
-                    }
-                  }
+                  $multimediaUrl = ( $thumbSettings['url'] ) ? $this->ytVidId( $thumbSettings['url'] ) : false;
 
                   // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
                   $resInfo['image'] = $imgUrl;
