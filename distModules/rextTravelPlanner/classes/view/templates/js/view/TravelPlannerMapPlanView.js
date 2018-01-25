@@ -39,6 +39,22 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       that.currentDay = 0;
     }
     that.showDay(that.currentDay);
+
+    if(cogumelo.publicConf.mod_detectMobile_isMobile){
+      var userAgent = navigator.userAgent.toLowerCase();
+      var isAndroidChrome = /chrome/.test(userAgent) && /android/.test(userAgent);
+      var isIOSChrome = /crios/.test(userAgent);
+
+      if (isAndroidChrome || isIOSChrome) {
+
+        var elemFix = $('.fixVhChromeMobile');
+        if($('.fixVhChromeMobile').length > 0){
+          $.each( elemFix, function(i, e){
+            $(e).innerHeight( $(this).innerHeight() );
+          });
+        }
+      }
+    }
   },
   setInitMap: function(){
     var that = this;

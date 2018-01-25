@@ -24,8 +24,11 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.delegateEvents();
     that.parentTp = parentTp;
     that.dayTemplate = _.template( $('#dayTPTemplate').html() );
-    that.resourcePlanItemTemplate = _.template( $('#resourcePlanItemTemplate').html() );
-
+    if(cogumelo.publicConf.mod_detectMobile_isMobile){
+      that.resourcePlanItemTemplate = _.template( $('#resourcePlanItemMobileTemplate').html() );
+    }else{
+      that.resourcePlanItemTemplate = _.template( $('#resourcePlanItemTemplate').html() );
+    }
     var checkin =  that.parentTp.momentDate( that.parentTp.tpData.get('checkin') );
     var checkout = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
 
@@ -66,12 +69,16 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     that.updateTotalTimes();
     that.parentTp.travelPlannerMapPlanView.render();
   },
+
   showMapDay: function(e){
     var that = this;
     var day = $(e.target).closest('.plannerDay').attr('data-day');
     that.parentTp.showMap( day );
+    if(cogumelo.publicConf.mod_detectMobile_isMobile){
+      that.parentTp.travelPlannerInterfaceView.travelPlannerMode = 3;
+      that.parentTp.travelPlannerInterfaceView.changeTravelPlannerInterfaceMobile(that.parentTp.travelPlannerInterfaceView.travelPlannerMode);
+    }
   },
-
   addResourcesPlan: function (idResource, days, t){
     var that = this;
     $.each( days, function(i,d){
