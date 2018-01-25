@@ -248,11 +248,41 @@
 </script>
 
 <script type="text/template" id="getDatesTpModalTemplate">
-  <div class="title">{t}When do you want to travel? {/t}</div>
-  <div class="getdatesTpContainer clearfix">
-    <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-    <input type="text" id="getDatesTpInput" class="form-control" readonly>
+  <div class="dates">
+    <div class="title">{t}When do you want to travel? {/t}</div>
+    <div class="getdatesTpContainer clearfix">
+      <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+      <input type="text" id="getDatesTpInput" class="form-control" readonly>
+    </div>
   </div>
+  <!--<div class="howTo">
+    <div class="moreInfo">
+      <div class="title">{t}Organizing your trip is very easy{/t}</div>
+      <p>{t}Is this your first time using our travel planner?{/t}</p>
+      <p>{t}Follow these simple steps{/t}</p>
+    </div>
+    <div class="stepOne steps">
+      <p>{t}Step 1: Select your dates{/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step1.png" class="img-responsive center-block" alt="{t}Step 1 - Travel Planner{/t}">
+    </div>
+    <div class="stepTwo steps">
+      <p>{t}Step 2: Add your favourite places so they appear in the plan{/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step2favoritos.png" class="img-responsive center-block" alt="{t}Step 2 - Travel Planner{/t}">
+    </div>
+    <div class="stepThree steps">
+      <p>{t}Step 3: Add a place to the plan{/t}</p>
+      <p>{t}Then select the date and time you would like to visit the place and add it to the plan{/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step3.png" class="img-responsive center-block" alt="{t}Step 3 - Travel Planner{/t}">
+    </div>
+    <div class="stepFour steps">
+      <p>{t}Step 4: You will be able to change the order of the places as you wish {/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step6.png" class="img-responsive center-block" alt="{t}Step 4 - Travel Planner{/t}">
+    </div>
+    <div class="stepFive steps">
+      <p>{t}Step 5: You can optimize your trip too by clicking on "Optimize day"{/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step5optimize.png" class="img-responsive center-block" alt="{t}Step 5 - Travel Planner{/t}">
+    </div>
+  </div>-->
 </script>
 
 <script type="text/template" id="optimizeDayTpModalTemplate">
