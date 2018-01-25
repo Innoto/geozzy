@@ -593,11 +593,14 @@ class AdminDataAPIView extends View {
     header('Content-type: application/json');
     echo '[';
     $c = '';
-    while( $starred = $starredList->fetch() ) {
-      $starData = $starred->getAllData();
-      echo $c.json_encode( $starData['data'] );
-      if($c === '') {
-        $c=',';
+
+    if(is_object($starredList)){
+      while( $starred = $starredList->fetch() ) {
+        $starData = $starred->getAllData();
+        echo $c.json_encode( $starData['data'] );
+        if($c === '') {
+          $c=',';
+        }
       }
     }
     echo ']';
