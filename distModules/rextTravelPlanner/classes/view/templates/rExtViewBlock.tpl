@@ -48,6 +48,51 @@
   </div>
 </script>
 
+<script type="text/template" id="travelPlannerInterfaceMobileTemplate">
+  <div class="travelPlannerMobile">
+    <div class="travelPlannerBar clearfix">
+      <div class="travelPlannerFilterBar clearfix">
+        <div class="mode mode1">
+          <select class="filterByFavourites">
+            <option value="*">{t}All{/t}</option>
+            <option selected="selected" value="fav">{t}Favourites{/t}</option>
+          </select>
+          <select class="filterByRtype">
+            <option value="*">{t}All Contents{/t}</option>
+            <% _.each( rtypesFilters, function( elem ) { %>
+              <option value="<%= elem.idName %>"><%= elem.name %></option>
+            <% }); %>
+          </select>
+        </div>
+        <div class="mode mode2">
+          <ul class="days clearfix"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="travelPlannerList">
+      <div class="travelPlannerResources"></div>
+    </div>
+    <div class="travelPlannerPlan">
+      <div class="travelPlannerPlanHeader"></div>
+      <div class="travelPlannerPlanDaysContainer"></div>
+    </div>
+    <div class="travelPlannerMapPlan fixVhChromeMobile">
+      <div class="map" style="width:100%; height:100%;"></div>
+      <div class="mapFilterDay clearfix">
+        <div class="filterDay-previous"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+        <div class="filterDay-current">{t}Day{/t}&nbsp;<span class="number">1</span></div>
+        <div class="filterDay-next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+      </div>
+    </div>
+
+      <div class="tp-gotoMobilePlan"><i class="fa fa-list" aria-hidden="true"></i> {t}Plan{/t}</div>
+      <div class="tp-gotoMobileList"><i class="fa fa-plus" aria-hidden="true"></i> {t}Add{/t}</div>
+      <div class="tp-gotoMobileChangeDates"><i class="fa fa-calendar" aria-hidden="true"></i> {t}Dates{/t}</div>
+      <!--<div class="tp-gotoMobileMap"><i class="fa fa-map-o" aria-hidden="true"></i> {t}Map{/t}</div>-->
+
+  </div>
+</script>
+
 <script type="text/template" id="resourceItemTPTemplate">
   <div class="tpResourceItem" data-resource-id="<%- resource.id %>">
     <div class="image">
@@ -98,20 +143,45 @@
 <script type="text/template" id="resourcePlanItemTemplate">
   <li class="dd-item" data-id="<%- resource.serializedData %>">
     <div class="dd-item-container clearfix">
+      <div class="dd-handle">
+        <div class="iconHandle"><i class="fa fa-bars icon-handle"></i></div>
+        <div class="image"><img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIcon/<%- resource.image %>.jpg"></div>
+      </div>
       <div class="dd-content">
+        <div class="info clearfix">
+          <div class="title"><%- resource.title %></div>
+          <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
+          <div class="infoTimeRoute"></div>
+        </div>
         <div class="nestableActions">
           <button class="btnEdit btn-icon btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
           <button class="btnDelete btn-icon btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
         </div>
       </div>
-      <div class="dd-handle clearfix">
+
+    </div>
+  </li>
+</script>
+<!-- *************************** NESTABLE ITEM MOBILE************************************** -->
+<script type="text/template" id="resourcePlanItemMobileTemplate">
+  <li class="dd-item" data-id="<%- resource.serializedData %>">
+    <div class="dd-item-container clearfix">
+      <div class="dd-handle">
         <div class="iconHandle"><i class="fa fa-bars icon-handle"></i></div>
-        <div class="image"><img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIcon/<%- resource.image %>.jpg"></div>
+        <div class="image"><img class="resImageIcon" src="/cgmlImg/<%- resource.image %>/travelPlannerListIconMobile/<%- resource.image %>.jpg"></div>
+      </div>
+      <div class="dd-content">
         <div class="info clearfix">
           <div class="title"><%- resource.title %></div>
           <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
           <div class="infoTimeRoute"></div>
+        </div>
+        <div class="nestableActions">
+          <button class="btnEdit btn-icon btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+          <button class="btnDelete btn-icon btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
       </div>
+
     </div>
   </li>
 </script>
@@ -178,11 +248,41 @@
 </script>
 
 <script type="text/template" id="getDatesTpModalTemplate">
-  <div class="title">{t}When do you want to travel? {/t}</div>
-  <div class="getdatesTpContainer clearfix">
-    <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-    <input type="text" id="getDatesTpInput" class="form-control" readonly>
+  <div class="dates">
+    <div class="title">{t}When do you want to travel? {/t}</div>
+    <div class="getdatesTpContainer clearfix">
+      <div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+      <input type="text" id="getDatesTpInput" class="form-control" readonly>
+    </div>
   </div>
+  <!--<div class="howTo">
+    <div class="moreInfo">
+      <div class="title">{t}Organizing your trip is very easy{/t}</div>
+      <p>{t}Is this your first time using our travel planner?{/t}</p>
+      <p>{t}Follow these simple steps{/t}</p>
+    </div>
+    <div class="stepOne steps">
+      <p>{t}Step 1: Select your dates{/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step1.png" class="img-responsive center-block" alt="{t}Step 1 - Travel Planner{/t}">
+    </div>
+    <div class="stepTwo steps">
+      <p>{t}Step 2: Add your favourite places so they appear in the plan{/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step2favoritos.png" class="img-responsive center-block" alt="{t}Step 2 - Travel Planner{/t}">
+    </div>
+    <div class="stepThree steps">
+      <p>{t}Step 3: Add a place to the plan{/t}</p>
+      <p>{t}Then select the date and time you would like to visit the place and add it to the plan{/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step3.png" class="img-responsive center-block" alt="{t}Step 3 - Travel Planner{/t}">
+    </div>
+    <div class="stepFour steps">
+      <p>{t}Step 4: You will be able to change the order of the places as you wish {/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step6.png" class="img-responsive center-block" alt="{t}Step 4 - Travel Planner{/t}">
+    </div>
+    <div class="stepFive steps">
+      <p>{t}Step 5: You can optimize your trip too by clicking on "Optimize day"{/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step5optimize.png" class="img-responsive center-block" alt="{t}Step 5 - Travel Planner{/t}">
+    </div>
+  </div>-->
 </script>
 
 <script type="text/template" id="optimizeDayTpModalTemplate">

@@ -1,7 +1,7 @@
 //mixin with all css that depends on your style
 /*******************************************************************************************/
-.initTravelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpPlan-w: 45%, @tpBar-h: 90px, @colorDaysActive:#333, @colorDaysInPlan:#ccc, @nestableTPItem-h: 50px, @header-h: 0px  ){
-  .travelPlanner(  @tp-h,  @tpList-w, @tpPlan-w, @tpBar-h, @colorDaysActive, @colorDaysInPlan, @header-h, (@header-h + @tpBar-h) );
+.initTravelPlanner( @tp-h: 100vh, @tpList-w: 320px, @tpPlan-w: 45%, @tpBar-h: 90px, @colorDaysActive:#333, @colorDaysInPlan:#ccc, @nestableTPItem-h: 50px, @header-h: 0px, @miniheader-h: 0px  ){
+  .travelPlanner(  @tp-h,  @tpList-w, @tpPlan-w, @tpBar-h, @colorDaysActive, @colorDaysInPlan, @header-h, (@header-h + @tpBar-h), @miniheader-h );
   .nestableTravelPlannerTheme( @nestableTPItem-h );
 }
 /*******************************************************************************************/
@@ -19,14 +19,15 @@
   @colorDaysInPlan,
   //HEADER
   @header-h,
-  @headerBar-h
+  @headerBar-h,
+  @miniheader-h
   ){
   #travelPlannerSec{
     padding: 0;
     margin: 0;
     .travelPlanner{
       position: relative;
-      min-height: @tp-h;
+      min-height: calc(~"100vh - "@headerBar-h )  ;
       .travelPlannerBar{
         width: 100%;
         height: @tpBar-h;
@@ -98,6 +99,76 @@
           }
         }
       }//travelPlannerMapPlan
+    }
+    .travelPlannerMobile{
+      position: relative;
+      min-height: calc(~"100vh - "@miniheader-h );
+      .travelPlannerBar{
+        width: 100%;
+        max-height: @tpBar-h;
+        position: fixed;
+        top: @miniheader-h;
+        overflow: hidden;
+        z-index: 3;
+
+        .travelPlannerFilterBar{
+          .mode2{
+            .days{
+              li{
+                float: left;
+              }
+            }
+          }
+        }
+      }
+      .travelPlannerList{
+        width: 100%;
+        /*height: calc(~"100vh - "@miniheader-h);*/
+        padding: 10px;
+        .travelPlannerResources{
+          padding-bottom: 20px;
+        }
+      }//travelPlannerList
+      .travelPlannerPlan{
+        width: 100%;
+        min-height: 500px;
+        padding: 10px;
+      }//travelPlannerPlan
+      .travelPlannerMapPlan{
+        display:block;
+        width: 100%;
+        height: calc(~"100vh - "@miniheader-h );
+
+        .mapFilterDay{
+          position: absolute;
+          top: 20px;
+          left: 10px;
+          z-index: 101;
+          .filterDay-previous,
+          .filterDay-next{
+            cursor:pointer;
+            &.notVisible{
+              visibility: hidden;
+            }
+          }
+        }
+      }//travelPlannerMapPlan
+
+      .tp-gotoMobilePlan,
+      .tp-gotoMobileChangeDates,
+      .tp-gotoMobileList,
+      .tp-gotoMobileMap{
+        position: fixed;
+        bottom: 10px;
+        background: @colorDaysActive;
+        padding: 7px 15px;
+        color: #fff;
+        font-weight: bold;
+        z-index: 101;
+      }
+      .tp-gotoMobileChangeDates{
+        right: 0;
+      }
     }
   } //#travelPlannerSec
   #resourceTpModal{
@@ -196,7 +267,8 @@
 
       .dd-handle {
         display: block;
-        height: @nestableTPItem-h + 10px;
+        height: @nestableTPItem-h + 10px;      
+        float: left;
         margin: 2px;
         padding: 5px 0;
         color: #333;
@@ -235,19 +307,20 @@
       }
 
       .dd-content {
-        float:right;
+        float:left;
+        width: calc(~"100% - 160px");
         display: block;
         margin: 5px;
         vertical-align:middle;
         color: #333;
         text-decoration: none;
-        font-weight: bold;
         border-radius: 3px;
         box-sizing: border-box;
 
         .nestableActions{
           float: right;
           width: 30px;
+          font-weight: bold;
           button{
             height: 25px;
             line-height:25px;
