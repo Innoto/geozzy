@@ -14,9 +14,7 @@ msgid "Pasos"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/js/view/StoryStepsListTemplate.js:50
-msgid ""
-"Puedes dar orden a los pasos arrastrando sus correspondientes barras a la "
-"posición que les corresponda."
+msgid "Puedes dar orden a los pasos arrastrando sus correspondientes barras a la posición que les corresponda."
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/templates/js/view/StoryStepsListTemplate.js:51
@@ -52,9 +50,7 @@ msgid "Add selected"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95
-msgid ""
-"<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working "
-"with resource types)</li><li>Assign to this starred)</li></ul>"
+msgid "<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working with resource types)</li><li>Assign to this starred)</li></ul>"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypeStoryStep/classes/view/RTypeStoryStepView.php:95

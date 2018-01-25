@@ -15,9 +15,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:21
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:10
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:21
-msgid ""
-"Si no se especifica ningún texto, se utilizará por defecto el texto en el "
-"recuadro."
+msgid "Si no se especifica ningún texto, se utilizará por defecto el texto en el recuadro."
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBasic.tpl:11
@@ -26,9 +24,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextSocialNetwork_classes_view_templates_rExtFormBasic.tpl:22
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:11
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:22
-msgid ""
-"Para mostrar el nombre del recurso se debe usar #TITLE# y para compartir la "
-"url de la página se debe poner #URL#:"
+msgid "Para mostrar el nombre del recurso se debe usar #TITLE# y para compartir la url de la página se debe poner #URL#:"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtFormBasic.tpl:28

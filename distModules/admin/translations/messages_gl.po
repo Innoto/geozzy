@@ -303,9 +303,7 @@ msgid "Assign selected"
 msgstr "Asignar seleccionados"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
-msgid ""
-"<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working "
-"with resource types)</li><li>Assign to this starred)</li></ul>"
+msgid "<ul style=\"list-style:none;\"><li>Create a new resource</li><li>Working with resource types)</li><li>Assign to this starred)</li></ul>"
 msgstr "Aquí poderás destacar contidos"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
