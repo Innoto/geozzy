@@ -1397,24 +1397,27 @@ class ResourceController {
             $resInfo = $resSonInfo[ $resId ];
 
             if( !empty( $resInfo ) ) {
+              // Value in setup project
+              $collectionsProfiles = Cogumelo::getSetupValue('collections:imageProfile');
+
               $thumbSettings = array(
                 'imageId' => $resInfo['imageId'],
                 'imageName' => $resInfo['imageName'],
                 // 'imageName' => $resInfo['imageId'].'.jpg',
                 'imageAKey' => $resInfo['imageAKey'],
-                'profile' => 'fast_cut'
+                'profile' => empty($collectionsProfiles['default']) ? 'fast_cut' : $collectionsProfiles['default']
               );
               $thumbSettings['url'] = !empty( $resInfo['rextUrlUrl'] ) ? $resInfo['rextUrlUrl'] : false;
 
               switch( $collInfo['col']['collectionType'] ) {
                 case 'multimedia':
-                  $thumbSettings['profile'] = 'imgMultimediaGallery';
+                  $thumbSettings['profile'] = empty($collectionsProfiles['multimediaThumbnail']) ? 'imgMultimediaGallery' : $collectionsProfiles['multimediaThumbnail'];
 
                   $multimediaUrl = ( $thumbSettings['url'] ) ? $this->ytVidId( $thumbSettings['url'] ) : false;
 
                   $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
-                  $thumbSettings['profile'] = 'hdpi4';
+                  $thumbSettings['profile'] = empty($collectionsProfiles['multimediaLong']) ? 'hdpi4' : $collectionsProfiles['multimediaLong'];
                   $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
                   // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
