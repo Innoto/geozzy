@@ -72,11 +72,8 @@ class explorer extends Module {
       'id' =>'jquery-mapael-2.1.0',
       'params' => array( 'jquery-mapael-2.1.0' ),
       'installer' => 'manual',
-      'includes' => array( "js/jquery.mapael.min.js", "js/maps/spain.js" )
+      'includes' => array( "js/jquery.mapael.min.js")
     )
-
-
-
   );
 
   public $includesCommon = array(
