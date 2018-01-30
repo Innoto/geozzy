@@ -19,7 +19,6 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
 
     "click .travelPlannerMobile .tp-gotoMobilePlan": "goMobilePlan",
     "click .travelPlannerMobile .tp-gotoMobileList": "goMobileList",
-    "click .travelPlannerMobile .tp-gotoMobileMap": "goMobileMap",
     "click .travelPlannerMobile .tp-gotoMobileChangeDates": "goMobileDates"
   },
 
@@ -248,20 +247,18 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   },
   goMobilePlan: function(e){
     var that = this;
-    that.parentTp.travelPlannerMode = 2;
-    that.changeTravelPlannerInterfaceMobile(that.parentTp.travelPlannerMode);
+    geozzy.travelPlannerComponents.routerInstance.navigate("plan", {trigger: true});
+
   },
   goMobileList: function(e){
     var that = this;
-    that.parentTp.travelPlannerMode = 1;
-    that.changeTravelPlannerInterfaceMobile(that.parentTp.travelPlannerMode);
+    geozzy.travelPlannerComponents.routerInstance.navigate("list", {trigger: true});
+
   },
   goMobileMap: function(e){
-    /*
     var that = this;
-    that.parentTp.travelPlannerMode = 3;
-    that.changeTravelPlannerInterfaceMobile(that.parentTp.travelPlannerMode);
-    */
+    geozzy.travelPlannerComponents.routerInstance.navigate("map", {trigger: true});
+
   },
   goMobileDates: function(e){
     var that = this;

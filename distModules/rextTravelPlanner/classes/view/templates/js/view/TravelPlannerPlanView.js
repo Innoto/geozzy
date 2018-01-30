@@ -75,8 +75,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     var day = $(e.target).closest('.plannerDay').attr('data-day');
     that.parentTp.showMap( day );
     if(cogumelo.publicConf.mod_detectMobile_isMobile){
-      that.parentTp.travelPlannerInterfaceView.travelPlannerMode = 3;
-      that.parentTp.travelPlannerInterfaceView.changeTravelPlannerInterfaceMobile(that.parentTp.travelPlannerInterfaceView.travelPlannerMode);
+      geozzy.travelPlannerComponents.routerInstance.navigate("map", {trigger: true});
     }
   },
   addResourcesPlan: function (idResource, days, t){

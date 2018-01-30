@@ -85,15 +85,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
 
   // First Execution
   that.init = function( ) {
-    geozzy.travelPlannerComponents.routerInstance = new geozzy.travelPlannerComponents.mainRouter();
-    geozzy.travelPlannerComponents.routerInstance.parentTp = that;
-    if( !Backbone.History.started ){
-      Backbone.history.start();
-    }
-    else {
-      Backbone.history.stop();
-      Backbone.history.start();
-    }
+
     var categoriesStringFetch = '';
     $.each(cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes, function(i,e){
       if( typeof e.taxGroup != 'undefined' ) {
@@ -130,6 +122,17 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     }else{
       that.getDates();
     }
+
+    geozzy.travelPlannerComponents.routerInstance = new geozzy.travelPlannerComponents.mainRouter();
+    geozzy.travelPlannerComponents.routerInstance.parentTp = that;
+    if( !Backbone.History.started ){
+      Backbone.history.start();
+    }
+    else {
+      Backbone.history.stop();
+      Backbone.history.start();
+    }
+    
   };
 
   that.initDates = function(){
