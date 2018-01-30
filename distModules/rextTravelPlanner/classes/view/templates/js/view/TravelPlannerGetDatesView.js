@@ -63,8 +63,14 @@ geozzy.travelPlannerComponents.TravelPlannerGetDatesView = Backbone.View.extend(
       calCheckOut = that.parentTp.momentDate( that.parentTp.tpData.get('checkout') );
     }
 
+    var singleDatePicker = false;
+    if(cogumelo.publicConf.mod_detectMobile_isMobile){
+      singleDatePicker = true;
+    }
+
     $( '#getDatesTpInput' ).daterangepicker(
       {
+        'parentEl': '#getDatesTpModal',
         'showCustomRangeLabel': true,
         'startDate':  calCheckIn,
         'minDate':  calCheckIn,
@@ -81,9 +87,10 @@ geozzy.travelPlannerComponents.TravelPlannerGetDatesView = Backbone.View.extend(
 
         that.parentTp.initPlan();
         that.parentTp.travelPlannerPlanView.fromHtmlToModel();
-
-        $('#checkTpDates').data('daterangepicker').setStartDate( start );
-        $('#checkTpDates').data('daterangepicker').setEndDate( end );
+        if(!cogumelo.publicConf.mod_detectMobile_isMobile){
+          $('#checkTpDates').data('daterangepicker').setStartDate( start );
+          $('#checkTpDates').data('daterangepicker').setEndDate( end );
+        }
       }
     );
   },
