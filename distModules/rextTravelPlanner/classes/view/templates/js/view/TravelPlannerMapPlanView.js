@@ -40,7 +40,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
     }
     that.showDay(that.currentDay);
 
-    if(cogumelo.publicConf.mod_detectMobile_isMobile){
+    /*if(cogumelo.publicConf.mod_detectMobile_isMobile){
       var userAgent = navigator.userAgent.toLowerCase();
       var isAndroidChrome = /chrome/.test(userAgent) && /android/.test(userAgent);
       var isIOSChrome = /crios/.test(userAgent);
@@ -54,7 +54,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
           });
         }
       }
-    }
+    }*/
   },
   setInitMap: function(){
     var that = this;
@@ -195,35 +195,59 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       });
     }
 
-    that.infoWindow = new smart_infowindow({
-      map: that.map,
-      width: 300,
-      max_height: 200,
-      marker_distance: [12,12], // [top, bottom]
-    });
+    //InfoWindow para version movil y version web
+    if( !cogumelo.publicConf.mod_detectMobile_isMobile ){
+      that.infoWindow = new smart_infowindow({
+        map: that.map,
+        width: 300,
+        max_height: 200,
+        marker_distance: [12,12], // [top, bottom]
+      });
 
-    gMarker.addListener('mouseover', function() {
-      var infowindowHtml = '<div class="iWindow">'+
-        '<div class="image">'+
-          '<img class="img-responsive" src="/cgmlImg/'+item.image+'/travelPlannerList/'+item.image+'.jpg">'+
-        '</div>'+
-        '<div class="info">'+
-          '<div class="title">'+item.title+'</div>'+
-          '<div class="description">'+item.shortDescription+'</div>'+
-        '</div>'+
-      '</div>';
-      that.infoWindow.open(gMarker, 'mouseover' , infowindowHtml);
-    });
+      gMarker.addListener('mouseover', function() {
+        var infowindowHtml = '<div class="iWindow">'+
+          '<div class="image">'+
+            '<img class="img-responsive" src="/cgmlImg/'+item.image+'/travelPlannerList/'+item.image+'.jpg">'+
+          '</div>'+
+          '<div class="info">'+
+            '<div class="title">'+item.title+'</div>'+
+            '<div class="description">'+item.shortDescription+'</div>'+
+          '</div>'+
+        '</div>';
+        that.infoWindow.open(gMarker, 'mouseover' , infowindowHtml);
+      });
 
-    gMarker.addListener('mouseout', function() {
-      setTimeout(
-        function() {
-          if(smart_infowindow_is_on_infowindow == false) {
-            that.infoWindow.close();
+      gMarker.addListener('mouseout', function() {
+        setTimeout(
+          function() {
+            if(smart_infowindow_is_on_infowindow == false) {
+              that.infoWindow.close();
+            }
           }
-        }
-      , 10 );
-    });
+        , 10 );
+      });
+    }
+    else{
+      //infoWindow
+      gMarker.addListener('click', function() {
+        $('.iWindowMobile').remove();
+        var infowindowHtml = '<div class="iWindowMobile">'+
+          '<div class="image">'+
+            '<img class="img-responsive" src="/cgmlImg/'+item.image+'/travelPlannerList/'+item.image+'.jpg">'+
+          '</div>'+
+          '<div class="info">'+
+            '<div class="title">'+item.title+'</div>'+
+            '<div class="description">'+item.shortDescription+'</div>'+
+          '</div>'+
+          '<div class="close"><i class="fa fa-times"></i></div>'+
+        '</div>';
+        $('body').append(infowindowHtml);
+        $('.iWindowMobile .close').on('click', function(e){
+
+          $('.iWindowMobile').remove();
+        });
+      });
+    }
 
     that.markers.push({ id: item.id , marker: gMarker });
   },

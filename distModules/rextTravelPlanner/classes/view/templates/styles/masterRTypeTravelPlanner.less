@@ -898,6 +898,47 @@ body{
   }//.iWindow
 }//.smart_infowindow
 
+.iWindowMobile{
+  //height: 113px;
+  position: fixed;
+  bottom: 0;
+  z-index: 102;
+  width: 100%;
+  background-color: @gzzColor-bck-5;
+  .image {
+    position: relative;
+    float: left;
+    width: 33%;
+    padding: 10px;
+    img{
+      width: 100%;
+    }
+  }//.poiImg
+  .info{
+    float: left;
+    width: 66%;
+    padding: 10px 20px 10px 0px;
+    .font-size-base();
+    .title{
+      font-weight: bold;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }//.title
+    .description{
+      .font-size-small();
+    }
+
+  }//.info
+  .close{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+}//.iWindow
+
+
 /*Se coloca aqui porque el elemento dd-item cuando esta siendo arrastrado esta directamente sobre body*/
 .gzznestable{
   .dd-item{

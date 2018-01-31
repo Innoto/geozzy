@@ -91,6 +91,7 @@ geozzy.travelPlannerComponents.TravelPlannerGetDatesView = Backbone.View.extend(
           $('#checkTpDates').data('daterangepicker').setStartDate( start );
           $('#checkTpDates').data('daterangepicker').setEndDate( end );
         }
+        that.closeModalResource();
       }
     );
   },
