@@ -282,6 +282,82 @@ class SearchController {
   }
 
 
+
+  public function search_around( $text, $lang = false ) {
+    return $this->search_around_inType( $this->indexType, $text, $lang );
+  }
+
+  public function search_around_inType( $indexType, $text, $lang = false ) {
+    $response = false;
+
+    if( $this->searchService ) {
+
+      if( empty( $lang ) ) {
+        $lang = $this->actLang;
+      }
+
+      if( !empty( $text['limit'] ) ) {
+        $this->limit = $text['limit'];
+      }
+
+      $params = [
+        'index' => $this->indexName,
+        'type' => $indexType,
+        'size' => $this->limit,
+        'body' => [
+          'query' => [
+            'bool' => [
+              'must' => []
+            ]
+          ],
+          'sort' => [
+            '_geo_distance' => [
+              'location' => $text['geolocation']['location'],
+              'order' => 'asc'
+            ]
+          ]
+        ]
+      ];
+
+      if( !empty( $text['geolocation']['distance'] ) ) {
+        $params['body']['query']['bool']['must'][] = [
+          'geo_distance' => [
+            'distance' => $text['geolocation']['distance'],
+            'location' => $text['geolocation']['location']
+          ]
+        ];
+      }
+      else{
+        $params['body']['query']['bool']['must'][] = [
+          'geo_distance' => [
+            'location' => $text['geolocation']['location']
+          ]
+        ];
+      }
+
+      if( !empty( $text['rTypeIdName'] ) ) {
+        $params['body']['query']['bool']['must'][] = [
+          'terms' => [ 'rTypeIdName' => $text['rTypeIdName'] ]
+        ];
+      }
+
+      if( !empty( $text['fields'] ) ) {
+        $params['body']['_source'] = $text['fields'];
+      }
+
+      // $this->mostrar($params);
+      $searchInfo = $this->searchService->search($params);
+      // echo "\n\n --- RESULTADOS: ".$searchInfo['hits']['total']." --- \n\n";
+      if( !empty($searchInfo['hits']) ) {
+        $responseAll = $searchInfo['hits'];
+        $response = array_column( $responseAll['hits'], '_source' );  //  Only fields resource base
+      }
+    }
+
+    return $response;
+  }
+
+
   public function getJsonSuggest( $busca ) {
     $result = [
       'query' => $busca,
