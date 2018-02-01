@@ -26,6 +26,7 @@ geozzy.travelPlannerLoader = geozzy.travelPlannerLoader || {
     });
   },
   setBinds: function setBinds() {
+    geozzy.travelPlannerLoader.destroyBinds();
     $('.rExtTravelPlannerLink').css( 'cursor', 'pointer' ).on(
       'click', function() {
         geozzy.userSessionInstance.userControlAccess( function() {
@@ -33,10 +34,11 @@ geozzy.travelPlannerLoader = geozzy.travelPlannerLoader || {
         });
       }
     );
+  },
+  destroyBinds: function destroyBinds(){
+    $('.rExtTravelPlannerLink').off('click');
   }
 };
-
-
 
 $(document).ready(function(){
   geozzy.travelPlannerLoader.setBinds();
