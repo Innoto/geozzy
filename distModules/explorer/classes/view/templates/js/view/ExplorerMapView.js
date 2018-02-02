@@ -147,9 +147,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         distanceToInnerMargin: false
       };*/
 
+console.log( 'distanceToCenterKm', that.getDistanceFromCenter( m.get('lat'), m.get('lng') ) );
       //that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapOuterZone', markerPosition.outerZone );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', markerPosition.inMap  );
-
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'distanceToCenterKm', that.getDistanceFromCenter( m.get('lat'), m.get('lng') ) );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'arrowAngle', markerPosition.arrowAngle  );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'intersectsWithInnerBox', markerPosition.intersectsWithInnerBox  );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapDistanceToInnerMargin', markerPosition.distanceToInnerMargin  );
@@ -164,13 +165,29 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
 
+  getDistanceFromCenter: function( lat2, lon2 ) {
+    var that = this;
+
+    var currentCenter = that.map.getCenter();
+
+    var lat1 = currentCenter.lat();
+    var lon1 = currentCenter.lng();
+
+
+    var p = 0.017453292519943295;    // Math.PI / 180
+    var c = Math.cos;
+    var a = 0.5 - c((lat2 - lat1) * p)/2 +
+            c(lat1 * p) * c(lat2 * p) *
+            (1 - c((lon2 - lon1) * p))/2;
+
+    return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+
+  },
+
+
   render: function() {
 
     var that = this;
-
-
-
-
 
     if( that.options.clusterize !== false ) {
       that.renderWithCluster();
@@ -178,9 +195,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
     else {
       that.renderWithoutCluster();
-
     }
-
 
     if( that.parentExplorer.options.debug ) {
       that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceIndex.length+ 'recursos' );

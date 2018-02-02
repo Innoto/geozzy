@@ -91,7 +91,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
         visibleResources.setSort('id','asc');
       }
       else {
-        visibleResources.setSort('mapVisible', 'desc');
+        visibleResources.setSort('distanceToCenterKm', 'asc');
       }
 
 
