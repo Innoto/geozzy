@@ -205,6 +205,7 @@ $conf->setSetupValue( 'mod:geozzy:resource:systemRTypes', [
 //
 $conf->setSetupValue( 'dependences', [
   'composerPath' => $conf->getSetupValue( 'setup:webBasePath' ).'/vendor/composer',
+  'yarnPath' => $conf->getSetupValue( 'setup:webBasePath' ).'/vendor/yarn',
   'bowerPath' => $conf->getSetupValue( 'setup:webBasePath' ).'/vendor/bower',
   'manualPath' => $conf->getSetupValue( 'setup:webBasePath' ).'/vendor/manual',
   'manualRepositoryPath' => COGUMELO_LOCATION.'/packages/vendorPackages'

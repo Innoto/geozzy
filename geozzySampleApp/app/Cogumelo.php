@@ -15,8 +15,7 @@ class Cogumelo extends CogumeloClass {
     array(
      "id" => "bootstrap",
      "params" => array("bootstrap#v3.3"),
-     "installer" => "bower",
-     "includes" => array("dist/js/bootstrap.min.js")
+     "installer" => "bower"
     ),
     array(
      "id" => "font-awesome",

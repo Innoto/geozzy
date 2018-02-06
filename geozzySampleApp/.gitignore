@@ -9,11 +9,9 @@
 /httpdocs/vendor/
 /bower.*
 /.bowerrc
-/composer.json
 /composer.lock
 
 # temp form files (Default)
 /formFiles/
 
 /test/
-
