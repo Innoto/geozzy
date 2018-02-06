@@ -115,11 +115,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     });
 
 
-
+    // map first load
     google.maps.event.addListenerOnce(this.map, "idle", function() {
       that.currentCenterToUse = that.map.getCenter();
     });
-    // map first load
     google.maps.event.addListener(this.map, "idle", function() {
       if( that.ready !== true) {
         that.ready = true;
@@ -135,16 +134,14 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   updateMapCenter: function() {
     var that = this;
 
-
     var distancia = that.getDistanceFromCenterPixels( that.currentCenterToUse.lat(), that.currentCenterToUse.lng());
 
-    if( distancia > 0.15 ){
+    if( distancia  > 100 ){
       that.parentExplorer.triggerEvent('mapChanged', {});
       that.ready = true;
       that.parentExplorer.render(true);
       that.currentCenterToUse = that.map.getCenter();
     }
-
   },
 
 
@@ -206,14 +203,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
   getDistanceFromCenterPixels: function( lat2, lon2 ) {
     var that = this;
-    var distPixels = 0;
-    var center = that.coordToPixel( that.map.getCenter() );
-    var posCalc = that.coordToPixel(new google.maps.LatLng(lat2,lon2) );
 
-    var dx   = center.x - posCalc.x;
-    var dy   =  center.x - posCalc.x;
-
-    return Math.sqrt( dx*dx + dy*dy );
+    var p1 = that.map.getProjection().fromLatLngToPoint( that.map.getCenter() );
+    var p2 = that.map.getProjection().fromLatLngToPoint(new google.maps.LatLng(lat2,lon2) );
+    var pixelSize = Math.pow(2, -that.map.getZoom());
+    var d = Math.sqrt((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y))/pixelSize;
+    return d;
   },
 
 

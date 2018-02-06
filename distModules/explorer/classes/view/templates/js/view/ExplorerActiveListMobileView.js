@@ -87,7 +87,7 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
 
 
       if( that.listOrderAccordingIds == true ) {
-
+        visibleResources.setSort('weight','asc');
         visibleResources.setSort('id','asc');
       }
       else {
