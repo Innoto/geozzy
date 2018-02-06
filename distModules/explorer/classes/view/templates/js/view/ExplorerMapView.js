@@ -21,6 +21,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   mapArrowMarker: false,
 //  markerClustererHover: false,
 
+  currentCenterToUse: false,
   lastCenter: false,
 
 
@@ -96,9 +97,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     // drag event on map
     google.maps.event.addListener(this.map, "dragend", function() {
-      that.parentExplorer.triggerEvent('mapChanged', {});
-      that.ready = true;
-      that.parentExplorer.render(true);
+      that.updateMapCenter();
     });
 
     google.maps.event.addListener(this.map, "click", function() {
@@ -115,9 +114,13 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       that.parentExplorer.triggerEvent('zoomChanged', {});
     });
 
+
+
+    google.maps.event.addListenerOnce(this.map, "idle", function() {
+      that.currentCenterToUse = that.map.getCenter();
+    });
     // map first load
     google.maps.event.addListener(this.map, "idle", function() {
-
       if( that.ready !== true) {
         that.ready = true;
         that.parentExplorer.render(true);
@@ -127,6 +130,23 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
   },
+
+
+  updateMapCenter: function() {
+    var that = this;
+
+
+    var distancia = that.getDistanceFromCenterPixels( that.currentCenterToUse.lat(), that.currentCenterToUse.lng());
+
+    if( distancia > 0.15 ){
+      that.parentExplorer.triggerEvent('mapChanged', {});
+      that.ready = true;
+      that.parentExplorer.render(true);
+      that.currentCenterToUse = that.map.getCenter();
+    }
+
+  },
+
 
   getVisibleResourceIds: function() {
 
@@ -147,9 +167,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         distanceToInnerMargin: false
       };*/
 
+      //console.log( 'distanceToCenterKm', that.getDistanceFromCenter( m.get('lat'), m.get('lng') ) );
       //that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapOuterZone', markerPosition.outerZone );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', markerPosition.inMap  );
-
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'distanceToCenterKm', that.getDistanceFromCenter( m.get('lat'), m.get('lng') ) );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'arrowAngle', markerPosition.arrowAngle  );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'intersectsWithInnerBox', markerPosition.intersectsWithInnerBox  );
       that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapDistanceToInnerMargin', markerPosition.distanceToInnerMargin  );
@@ -164,13 +185,41 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
 
+  getDistanceFromCenter: function( lat2, lon2 ) {
+    var that = this;
+
+    var center = that.map.getCenter();
+
+    var lat1 = center.lat();
+    var lon1 = center.lng();
+
+
+    var p = 0.017453292519943295;    // Math.PI / 180
+    var c = Math.cos;
+    var a = 0.5 - c((lat2 - lat1) * p)/2 +
+            c(lat1 * p) * c(lat2 * p) *
+            (1 - c((lon2 - lon1) * p))/2;
+
+    return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+
+  },
+
+  getDistanceFromCenterPixels: function( lat2, lon2 ) {
+    var that = this;
+    var distPixels = 0;
+    var center = that.coordToPixel( that.map.getCenter() );
+    var posCalc = that.coordToPixel(new google.maps.LatLng(lat2,lon2) );
+
+    var dx   = center.x - posCalc.x;
+    var dy   =  center.x - posCalc.x;
+
+    return Math.sqrt( dx*dx + dy*dy );
+  },
+
+
   render: function() {
 
     var that = this;
-
-
-
-
 
     if( that.options.clusterize !== false ) {
       that.renderWithCluster();
@@ -178,9 +227,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
     else {
       that.renderWithoutCluster();
-
     }
-
 
     if( that.parentExplorer.options.debug ) {
       that.parentExplorer.timeDebugerMain.log( '&nbsp;- Pintado Mapa '+that.parentExplorer.resourceIndex.length+ 'recursos' );
@@ -593,7 +640,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var mapDistanceToInnerMargin = that.parentExplorer.resourceMinimalList.get( id ).get('mapDistanceToInnerMargin');
     var scale = Math.pow(2, that.map.getZoom());
 
-    console.log(that.options.mapArrowImage);
+    //console.log(that.options.mapArrowImage);
 
     //console.log(mapVisible)
     if( mapVisible == 1 || mapVisible == 2  || forcePan == true ) {

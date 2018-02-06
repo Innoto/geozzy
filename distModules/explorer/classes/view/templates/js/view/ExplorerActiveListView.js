@@ -59,8 +59,8 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
       var visibleResources = that.parentExplorer.resourceIndex.setPerPage(30);
 
-
-      visibleResources.setSort('mapVisible', 'desc');
+      visibleResources.setSort('distanceToCenterKm', 'asc');
+      //visibleResources.setSort('mapVisible', 'desc');
 
       // get total packages
       that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
