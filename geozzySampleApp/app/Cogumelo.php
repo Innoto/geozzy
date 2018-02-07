@@ -19,7 +19,7 @@ class Cogumelo extends CogumeloClass {
     ),
     array(
      "id" => "font-awesome",
-     "params" => array("Font-Awesome"),
+     "params" => array("Font-Awesome#v4.7.0"),
      "installer" => "bower",
      "includes" => array("css/font-awesome.min.css")
     ),
