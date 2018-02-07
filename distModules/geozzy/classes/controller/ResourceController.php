@@ -1393,57 +1393,61 @@ class ResourceController {
 
         foreach( $collResources as $collId => $collInfo ) {
           $collResInfo = [];
-          foreach( array_keys( $collInfo['res'] ) as $resId ) {
-            $resInfo = $resSonInfo[ $resId ];
 
-            if( !empty( $resInfo ) ) {
-              // Value in setup project
-              $collectionsProfiles = Cogumelo::getSetupValue('collections:imageProfile');
+          if( !empty( $collInfo['res'] ) ) {
+            foreach( array_keys( $collInfo['res'] ) as $resId ) {
+              $resInfo = $resSonInfo[ $resId ];
 
-              $thumbSettings = array(
-                'imageId' => $resInfo['imageId'],
-                'imageName' => $resInfo['imageName'],
-                // 'imageName' => $resInfo['imageId'].'.jpg',
-                'imageAKey' => $resInfo['imageAKey'],
-                'profile' => empty($collectionsProfiles['default']) ? 'fast_cut' : $collectionsProfiles['default']
-              );
-              $thumbSettings['url'] = !empty( $resInfo['rextUrlUrl'] ) ? $resInfo['rextUrlUrl'] : false;
+              if( !empty( $resInfo ) ) {
+                // Value in setup project
+                $collectionsProfiles = Cogumelo::getSetupValue('collections:imageProfile');
 
-              switch( $collInfo['col']['collectionType'] ) {
-                case 'multimedia':
-                  $thumbSettings['profile'] = empty($collectionsProfiles['multimediaThumbnail']) ? 'imgMultimediaGallery' : $collectionsProfiles['multimediaThumbnail'];
+                $thumbSettings = array(
+                  'imageId' => $resInfo['imageId'],
+                  'imageName' => $resInfo['imageName'],
+                  // 'imageName' => $resInfo['imageId'].'.jpg',
+                  'imageAKey' => $resInfo['imageAKey'],
+                  'profile' => empty($collectionsProfiles['default']) ? 'fast_cut' : $collectionsProfiles['default']
+                );
+                $thumbSettings['url'] = !empty( $resInfo['rextUrlUrl'] ) ? $resInfo['rextUrlUrl'] : false;
 
-                  $multimediaUrl = ( $thumbSettings['url'] ) ? $this->ytVidId( $thumbSettings['url'] ) : false;
+                switch( $collInfo['col']['collectionType'] ) {
+                  case 'multimedia':
+                    $thumbSettings['profile'] = empty($collectionsProfiles['multimediaThumbnail']) ? 'imgMultimediaGallery' : $collectionsProfiles['multimediaThumbnail'];
 
-                  $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+                    $multimediaUrl = ( $thumbSettings['url'] ) ? $this->ytVidId( $thumbSettings['url'] ) : false;
 
-                  $thumbSettings['profile'] = empty($collectionsProfiles['multimediaLong']) ? 'hdpi4' : $collectionsProfiles['multimediaLong'];
-                  $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
+                    $imgUrl = $this->getResourceThumbnail( $thumbSettings );
 
-                  // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
-                  $resInfo['image'] = $imgUrl;
-                  $resInfo['imageUrl'] = $imgUrl;
-                  $resInfo['image_big'] = $imgUrl2;
-                  $resInfo['multimediaUrl'] = $multimediaUrl;
-                break;
+                    $thumbSettings['profile'] = empty($collectionsProfiles['multimediaLong']) ? 'hdpi4' : $collectionsProfiles['multimediaLong'];
+                    $imgUrl2 = $this->getResourceThumbnail( $thumbSettings );
 
-                default: // base y resto
-                  $imgUrl = $this->getResourceThumbnail( $thumbSettings );
-
-                  $multimediaUrl = ( $thumbSettings['url'] ) ? $this->ytVidId( $thumbSettings['url'] ) : false;
-
-                  // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
-                  $resInfo['image'] = $imgUrl;
-                  $resInfo['imageUrl'] = $imgUrl;
-                  if( $resInfo['rTypeIdName'] === 'rtypeUrl' ) {
+                    // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
+                    $resInfo['image'] = $imgUrl;
+                    $resInfo['imageUrl'] = $imgUrl;
+                    $resInfo['image_big'] = $imgUrl2;
                     $resInfo['multimediaUrl'] = $multimediaUrl;
-                  }
-                break;
-              } // switch
-            }
+                  break;
 
-            $collResInfo[ $resId ] = $resInfo;
-          } // foreach( $collResources as $collId => $collInfo )
+                  default: // base y resto
+                    $imgUrl = $this->getResourceThumbnail( $thumbSettings );
+
+                    $multimediaUrl = ( $thumbSettings['url'] ) ? $this->ytVidId( $thumbSettings['url'] ) : false;
+
+                    // TODO: CAMBIAR!!! Sobreescribe un campo (image) existente y necesario. Usar imageUrl
+                    $resInfo['image'] = $imgUrl;
+                    $resInfo['imageUrl'] = $imgUrl;
+                    if( $resInfo['rTypeIdName'] === 'rtypeUrl' ) {
+                      $resInfo['multimediaUrl'] = $multimediaUrl;
+                    }
+                  break;
+                } // switch
+              }
+
+              $collResInfo[ $resId ] = $resInfo;
+            } // foreach( $collResources as $collId => $collInfo )
+          } // if( !empty( $collInfo['res'] ) )
+
           $collResources[ $collId ]['res'] = $collResInfo;
         } // foreach( $collResources as $collId => $collInfo )
       }
