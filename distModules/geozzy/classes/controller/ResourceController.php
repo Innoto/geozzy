@@ -1396,9 +1396,9 @@ class ResourceController {
 
           if( !empty( $collInfo['res'] ) ) {
             foreach( array_keys( $collInfo['res'] ) as $resId ) {
-              $resInfo = $resSonInfo[ $resId ];
 
-              if( !empty( $resInfo ) ) {
+              if( !empty( $resSonInfo[ $resId ] ) ) {
+                $resInfo = $resSonInfo[ $resId ];
                 // Value in setup project
                 $collectionsProfiles = Cogumelo::getSetupValue('collections:imageProfile');
 
