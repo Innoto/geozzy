@@ -3,8 +3,8 @@
 /HOST_PROYECT_DIRECTORY/logs/*.log {
   # su innoto
   create 640 innoto root
-  daily
   missingok
+  daily
   rotate 800
   maxage 750
   dateext
@@ -26,8 +26,8 @@
 /HOST_PROYECT_DIRECTORY/project/app/log/*.log {
   su innoto www-data
   create 660 innoto www-data
-  daily
   missingok
+  daily
   rotate 800
   maxage 750
   dateext
