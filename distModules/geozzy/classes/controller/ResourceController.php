@@ -1397,6 +1397,7 @@ class ResourceController {
           if( !empty( $collInfo['res'] ) ) {
             foreach( array_keys( $collInfo['res'] ) as $resId ) {
 
+              $resInfo = false;
               if( !empty( $resSonInfo[ $resId ] ) ) {
                 $resInfo = $resSonInfo[ $resId ];
                 // Value in setup project
