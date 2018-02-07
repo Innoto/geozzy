@@ -4,6 +4,8 @@ if(!geozzy.model) geozzy.model={};
 geozzy.model.ResourceModel = Backbone.Model.extend({
   defaults: {
     id: false,
-    title: ''
+    weight: 0,
+    title: '',
+    mapVisible: 0
   }
 });

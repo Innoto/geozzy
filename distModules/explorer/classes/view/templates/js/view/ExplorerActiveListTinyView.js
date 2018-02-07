@@ -37,6 +37,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
       totalPages: false,
 
       categories: false,
+      sortByResourceWeight:false,
 
       tpl: geozzy.explorerComponents.activeListTinyViewTemplate ,
       tplElement: geozzy.explorerComponents.activeListTinyViewElement,
@@ -64,7 +65,13 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
       var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.options.itemsEachPage);
 
-      visibleResources.setSort('distanceToCenterKm', 'asc');
+      if( that.options.sortByResourceWeight == true ) {
+        visibleResources.setSort('mapVisible', 'desc');
+        visibleResources.setSort('weight', 'asc');
+      }
+      else {
+        visibleResources.setSort('distanceToCenterKm', 'asc');
+      }
 
 
 
