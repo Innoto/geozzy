@@ -34,7 +34,9 @@ msgid "Recovery password"
 msgstr "Recuperar contraseña"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:31
-msgid "Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un enlace para restablecer tu contraseña"
+msgid ""
+"Introduce la dirección de correo electrónico asociada a tu cuenta y te "
+"enviaremos un enlace para restablecer tu contraseña"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:33
@@ -50,7 +52,9 @@ msgid "Correo electrónico enviado correctamente"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:40
-msgid "Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente formulario"
+msgid ""
+"Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente "
+"formulario"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:46
@@ -129,7 +133,9 @@ msgstr "Repetir contraseña"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:112
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:111
-msgid "Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la política de privacidad</a>"
+msgid ""
+"Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la "
+"política de privacidad</a>"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:117

@@ -24,7 +24,7 @@ msgstr "Alle"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:12
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
 msgid "Return to content"
-msgstr ""
+msgstr "Return to content"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:17
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:17

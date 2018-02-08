@@ -19,8 +19,8 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:21
 msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr ""

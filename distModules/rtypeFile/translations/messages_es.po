@@ -9,7 +9,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:13
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:10
@@ -54,12 +53,12 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeFileFormModalBlock.tpl:19
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeMultiFileFormModalBlock.tpl:18
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeMultiFileAdminFormModalBlock.tpl:19
@@ -78,8 +77,8 @@ msgstr ""
 msgid "Files up to 5MB can be upload in JPG and PNG format"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/profesores/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFileFormModalBlock.tpl:22
