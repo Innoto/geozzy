@@ -9,10 +9,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:25
-msgid "All"
-msgstr "Todo"
-
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:179
 msgid "Prioritizing map zone"
@@ -20,7 +16,7 @@ msgstr "Priorizando a zoa do mapa"
 
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/filters/ExplorerFilterMinimapView.js:25
 msgid "All"
-msgstr "Todos"
+msgstr "Todo"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:13
@@ -29,7 +25,7 @@ msgstr "Todos"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:12
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
 msgid "Return to content"
-msgstr ""
+msgstr "Volver ó contido"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:17
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:17

@@ -29,8 +29,8 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypePoiFormModalBlock.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:21
 #: /home/proxectos/canlers/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21
 #: /home/proxectos/profesores/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21

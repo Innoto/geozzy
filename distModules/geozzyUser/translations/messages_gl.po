@@ -34,7 +34,9 @@ msgid "Recovery password"
 msgstr "Recuperar contrasinal"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:31
-msgid "Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un enlace para restablecer tu contraseña"
+msgid ""
+"Introduce la dirección de correo electrónico asociada a tu cuenta y te "
+"enviaremos un enlace para restablecer tu contraseña"
 msgstr ""
 "Introduce o teu enderezo de correo electrónico e enviaremosche unha ligazón "
 "para restablecer o teu contrasinal"
@@ -51,8 +53,10 @@ msgid "Correo electrónico enviado correctamente"
 msgstr "Correo electrónico enviado correctamente"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:40
-msgid "Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente formulario"
-"Crear unha conta en Ribeira Sacra é moi sinxelo. Cumprimenta o seguinte formulario"
+msgid ""
+"Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente "
+"formulario"
+msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:46
 msgid "Muchas gracias"
@@ -72,6 +76,13 @@ msgstr "Se non o recibes nas próximas horas, comproba a túa bandexa de SPAM"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:50
 msgid "Continuar"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:40
+msgid ""
+"Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente "
+"formularioCrear unha conta en Ribeira Sacra é moi sinxelo. Cumprimenta o "
+"seguinte formulario"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/recoveryPassword.tpl:5
@@ -134,7 +145,9 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:112
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:111
-msgid "Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la política de privacidad</a>"
+msgid ""
+"Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la "
+"política de privacidad</a>"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:117

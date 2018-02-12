@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:33
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:31
 msgid "Accept"
 msgstr "Aceptar"
@@ -65,7 +66,9 @@ msgstr "coleccións"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
-msgid "Haz click en el lugar donde se ubica tu centro educativo con la mayor precisión que puedas, podrás arrastrar y soltar la localización"
+msgid ""
+"Haz click en el lugar donde se ubica tu centro educativo con la mayor "
+"precisión que puedas, podrás arrastrar y soltar la localización"
 msgstr ""
 
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:31
@@ -270,7 +273,9 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:588
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:567
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:598
-msgid "Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario subirlos otra vez."
+msgid ""
+"Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario "
+"subirlos otra vez."
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:614
@@ -288,24 +293,29 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1044
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1634
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1692
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1629
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1687
 msgid "Error setting values"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1694
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1660
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1749
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1744
 msgid "Error setting collection values"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1793
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1749
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1848
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1843
 msgid "Error setting URL alias"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1807
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1763
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1862
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1857
 msgid "Error setting URL alias 2"
 msgstr ""
 

@@ -18,11 +18,6 @@ msgstr "Priorizando zona del mapa"
 msgid "All"
 msgstr "Todo"
 
-#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
-#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:179
-msgid "Prioritizing map zone"
-msgstr "Priorizando zona del mapa"
-
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:13
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:11
@@ -30,7 +25,7 @@ msgstr "Priorizando zona del mapa"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:12
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
 msgid "Return to content"
-msgstr ""
+msgstr "Volver al contenido"
 
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_explorer_classes_view_templates_explorer.tpl:18
 msgid "Apply"

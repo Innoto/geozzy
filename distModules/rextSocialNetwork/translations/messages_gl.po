@@ -13,15 +13,23 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/rExtFormBasic.tpl:21
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:10
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:21
-msgid "Si no se especifica ningún texto, se utilizará por defecto el texto en el recuadro."
-msgstr "Se non se especifica ningún texto, utilizarase por defecto o texto do recadro."
+msgid ""
+"Si no se especifica ningún texto, se utilizará por defecto el texto en el "
+"recuadro."
+msgstr ""
+"Se non se especifica ningún texto, utilizarase por defecto o texto do "
+"recadro."
 
 #: /home/proxectos/canlers/app/tmp/tpl/rExtFormBasic.tpl:11
 #: /home/proxectos/canlers/app/tmp/tpl/rExtFormBasic.tpl:22
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:11
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:22
-msgid "Para mostrar el nombre del recurso se debe usar #TITLE# y para compartir la url de la página se debe poner #URL#:"
-msgstr "Para mostrar o nome do recurso débese usar #TITLE# e para compartir a URL da páxina porase #URL#: "
+msgid ""
+"Para mostrar el nombre del recurso se debe usar #TITLE# y para compartir la "
+"url de la página se debe poner #URL#:"
+msgstr ""
+"Para mostrar o nome do recurso débese usar #TITLE# e para compartir a URL da "
+"páxina porase #URL#: "
 
 #: /home/proxectos/canlers/app/tmp/tpl/rExtFormBasic.tpl:28
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBasic.tpl:28
