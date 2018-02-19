@@ -82,10 +82,10 @@
   <form class="mapRouteForm">
     <div class="row">
       <div class="col-md-4">
-        <input name="mapRouteOrigin">
+        <input name="mapRouteOrigin" aria-label="{t}Type a departure address{/t}">
       </div>
       <div class="col-md-4">
-        <button type="submit">{t}Get directions{/t}</button>
+        <button aria-label="{t}Get directions{/t}" type="submit">{t}Get directions{/t}</button>
       </div>
     </div>
   </form>

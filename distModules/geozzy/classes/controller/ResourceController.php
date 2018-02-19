@@ -1368,9 +1368,9 @@ class ResourceController {
         if( !isset( $collResources[ $collId ] ) ) {
           $collResources[ $collId ]['col'] = array(
             'id' => $collId,
-            'title' => $collection->getter('title'),
-            'shortDescription' => $collection->getter('shortDescription'),
-            'description' => $collection->getter('description'),
+            'title' => $collection->getter( 'title', false ),
+            'shortDescription' => $collection->getter( 'shortDescription', false ),
+            'description' => $collection->getter( 'description', false ),
             'image' => $collection->getter('image'),
             'imageName' => $collection->getter('imageName'),
             'imageAKey' => $collection->getter('imageAKey'),
@@ -1477,9 +1477,9 @@ class ResourceController {
           'id' => $resValId,
           'rType' => $resVal->getter('rTypeId'),
           'rTypeIdName' => $resVal->getter('rTypeIdName'),
-          'title' => $resVal->getter('title'),
-          'shortDescription' => $resVal->getter('shortDescription'),
-          'mediumDescription' => $resVal->getter('mediumDescription'),
+          'title' => $resVal->getter( 'title', false ),
+          'shortDescription' => $resVal->getter( 'shortDescription', false ),
+          'mediumDescription' => $resVal->getter( 'mediumDescription', false ),
           'externalUrl' => $resVal->getter('externalUrl'),
           'urlAlias' => $resVal->getter('urlAlias'),
           'imageId' => $resValImage, // TODO: Deberia ser image

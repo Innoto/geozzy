@@ -134,6 +134,10 @@ class ResourceViewModel extends Model {
       'type' => 'VARCHAR',
       'size' => 250
     ),
+    'relatedModels' => array(
+      'type' => 'VARCHAR',
+      'size' => 250
+    ),
   );
 
 
@@ -166,7 +170,7 @@ class ResourceViewModel extends Model {
 
   var $deploySQL = array(
     array(
-      'version' => 'geozzy#6',
+      'version' => 'geozzy#7',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_view;
@@ -187,7 +191,8 @@ class ResourceViewModel extends Model {
             r.countVisits, r.weight,
             GROUP_CONCAT( DISTINCT rTax.taxonomyterm ORDER BY rTax.weight, rTax.id ) AS termIdList,
             GROUP_CONCAT( DISTINCT rTopic.topic ORDER BY rTopic.weight, rTopic.id ) AS topicIdList,
-            GROUP_CONCAT( DISTINCT rColl.collection ORDER BY rColl.weight, rColl.id ) AS collIdList
+            GROUP_CONCAT( DISTINCT rColl.collection ORDER BY rColl.weight, rColl.id ) AS collIdList,
+            rt.relatedModels AS relatedModels
           FROM
             (((((((
             `geozzy_resource` `r`
@@ -216,21 +221,20 @@ class ResourceViewModel extends Model {
     geozzy::load('model/ResourcetypeModel.php');
 
     $relatedModels =  $this->dependencesByResourcetypeId( $this->getter('rTypeId') );
-
     if( $relatedModels ) {
       foreach( $relatedModels as $relModel ) {
         $rextModelArray[$relModel] = $this->getRextModel( $relModel );
       }
-
     }
 
     return $rextModelArray;
   }
 
   public function getRextModel( $rextModelName ) {
-    eval( '$rextControl = new '.$rextModelName.'();');
     $rextModel = false;
-    $rextList = false;
+    $cacheQuery = true;
+
+    eval( '$rextControl = new '.$rextModelName.'();');
     if(is_object($rextControl)){
       $rextList = $rextControl->listItems( array( 'filters'=> array( 'resource' => $this->getter('id') ) ) );
       if(is_object($rextList)){
@@ -243,6 +247,7 @@ class ResourceViewModel extends Model {
 
   public function dependencesByResourcetype( $rtypeName ) {
     $dependences = false;
+    $cacheQuery = true;
 
     geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
@@ -259,6 +264,7 @@ class ResourceViewModel extends Model {
 
   public function dependencesByResourcetypeId( $rtypeId ) {
     $dependences = false;
+    $cacheQuery = true;
 
     geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
