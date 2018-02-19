@@ -168,8 +168,8 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     var index =  collectionList.indexOf( collectionList.get( id ) );
     if ((index + 1) !== collectionList.length) {
       var resId = collectionList.at(index + 1).get('id');
-      that.parentExplorer.triggerEvent('mobileTouch', {id:resId})
-
+      that.parentExplorer.triggerEvent('mobileTouch', {id:resId});
+      that.parentExplorer.triggerEvent('resourceHover', {id:resId});
       $( '#'+that.divId+' .gempiItem').animate({
           right: '800px'
       }, 250);
@@ -188,7 +188,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     if ((index -1 ) >= 0) {
       var resId = collectionList.at(index - 1).get('id');
       that.parentExplorer.triggerEvent('mobileTouch', {id:resId})
-
+      that.parentExplorer.triggerEvent('resourceHover', {id:resId});
       $( '#'+that.divId+' .gempiItem').animate({
           left: '800px'
       }, 250);

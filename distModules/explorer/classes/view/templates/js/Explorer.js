@@ -376,6 +376,7 @@ geozzy.explorer = function( opts ) {
 
 
   that.triggerEvent = function( eventName, parameters) {
+
     var that = this;
 
     $.each( that.explorerEvents, function( i, event ){
