@@ -38,14 +38,14 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
       //that.hideRoute();
       //alert(params.id)
+
       if( geozzy.explorerComponents.routesCollectionInstance === false ) {
         geozzy.explorerComponents.routesCollectionInstance = new geozzy.rextRoutes.routeCollection();
       }
 
 
-
       if( typeof( geozzy.explorerComponents.routesCollectionInstance.get( params.id ) ) != 'undefined' ){
-
+        console.log('PINTA')
         geozzy.explorerComponents.routesCollectionInstance.get( params.id ).get('routeViewInstance').showRoute();
 
       }

@@ -286,6 +286,10 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
           id: $(element.currentTarget).attr('data-resource-id'),
           section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
         });
+        that.parentExplorer.triggerEvent('resourceHover',{
+          id: $(element.currentTarget).attr('data-resource-id'),
+          section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
+        });
       break;
       case 'mouseleave':
 
