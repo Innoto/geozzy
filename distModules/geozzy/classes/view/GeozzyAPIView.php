@@ -840,7 +840,7 @@ class geozzyAPIView extends View {
 
   // /resourcelist (Declarado en resources.json)
   public function resourceList( $param ) {
-    $this->resourceListV1( $param );
+    $this->resourceListV2( $param );
   }
 
   // /resourcelist (Declarado en resources.json)
@@ -1127,7 +1127,7 @@ class geozzyAPIView extends View {
     echo ']';
 
     $tempo2 = microtime(true);
-    error_log( 'API resourcelist: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
+    error_log( 'API resourcelist: V1 TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
   }
 
 
@@ -1372,7 +1372,8 @@ class geozzyAPIView extends View {
 
 
 
-    if( !empty( $extraParams['rextmodels'] ) ) {
+    // Load RExtModel data
+    if( !empty( $extraParams['rextmodels'] ) && count( $allResultsData ) > 0 ) {
       $rExtModelNames = array_keys( $allRExtModels );
       if( is_array( $extraParams['rextmodels'] ) && count( $rExtModelNames ) > 0 ) {
         $rExtModelNames = array_intersect( $extraParams['rextmodels'], $rExtModelNames );
@@ -1394,74 +1395,93 @@ class geozzyAPIView extends View {
 
 
 
-    // Collections
-    $collectionsInfo = [];
-    $collTypeInfo = [];
-    $collectionsGeneral = [];
-    $collectionsMultimedia = [];
+    // Load Collections data
+    if( !empty( $extraParams['collection'] ) && count( $allResultsData ) > 0 ) {
 
-    if( $extraParams['collection'] ) {
-      // Cargo los datos de Collections del recurso
+      $collectionsInfo = [];
+      $collTypeInfo = [];
+      $collectionsGeneral = [];
+      $collectionsMultimedia = [];
+
+      $allResultsIds = array_keys( $allResultsData );
+
+      // Cargo los datos de Collections de cada recurso
       $resCollModel =  new CollectionResourcesListViewModel();
       $collResList = $resCollModel->listItems([
-        'filters' => [ 'resourceMainIn' => array_keys( $allResIds ) ],
+        'filters' => [ 'resourceMainIn' => $allResultsIds ],
         'cache' => $this->cacheQuery
       ]);
 
       if( is_object( $collResList ) ) {
-        $collectionsInfo = [];
-        $collTypeInfo = [];
-
         while( $coll = $collResList->fetch() ) {
           $collData = [];
-          $k = array( 'id', 'title', 'shortDescription', 'description', 'weight',
-            'weightMain', 'resourceSonList' );
-          foreach( $k as $key ) {
-            $collData[ $key ] = $coll->getter( $key );
+
+          $fields = [ 'id', 'title', 'shortDescription', 'description', 'weight', 'weightMain', 'resourceSonList' ];
+          foreach( $fields as $field ) {
+            $collData[ $field ] = $coll->getter( $field );
           }
-          $collType = $coll->getter( 'collectionType' );
+          $collType = $coll->getter('collectionType');
           $collectionsInfo[ $coll->getter('resourceMain') ][ $collType ][ $collData['id'] ] = $collData;
 
           $resourceSon = explode( ',', $collData['resourceSonList'] );
           if( !empty( $resourceSon ) ) {
-            $collTypeInfo[ $collType ] = empty( $collTypeInfo[ $collType ] ) ? $resourceSon : $collTypeInfo[ $collType ] + $resourceSon;
+            $collTypeInfo[ $collType ] = empty( $collTypeInfo[ $collType ] ) ? $resourceSon : array_merge( $collTypeInfo[ $collType ], $resourceSon );
           }
         }
       }
 
-      $collectionsGeneral = [];
       if( !empty( $collTypeInfo['base'] ) ) {
         $collectionsGeneral = $this->extendCollBaseV2( $collTypeInfo['base'] );
       }
-      $collectionsMultimedia = [];
+
       if( !empty( $collTypeInfo['multimedia'] ) ) {
         $collectionsMultimedia = $this->extendCollMultimediaV2( $collTypeInfo['multimedia'] );
       }
 
-      // $allData[ 'collectionsGeneral' ] = [];
-      // if( isset( $allData['collections']['base'] ) && count( $allData['collections']['base'] ) > 0 ) {
-      //   foreach( $allData['collections']['base'] as $collId => $coll ) {
-      //     $coll[ 'resourcesData' ] = $this->extendCollBase( $coll['resourceSonList'] );
-      //     $allData[ 'collectionsGeneral' ][] = $coll;
-      //   }
-      // }
 
-      // $allData[ 'collectionsMultimedia' ] = [];
-      // if( isset( $allData['collections']['multimedia'] ) && count( $allData['collections']['multimedia'] ) > 0 ) {
-      //   foreach( $allData['collections']['multimedia'] as $collId => $coll ) {
-      //     $coll[ 'resourcesData' ] = $this->extendCollMultimedia( $coll['resourceSonList'] );
-      //     $allData[ 'collectionsMultimedia' ][] = $coll;
-      //   }
-      // }
 
-      /* Reordenamos los recursos de la colección por el orden que traian */
-      /*
-        foreach( $resIds as $id ) {
-          if( isset($resCollData_tmp[$id]) ) {
-            array_push($resCollData, $resCollData_tmp[$id]);
+      // Cargo los datos de Collections de cada recurso
+      foreach( $allResultsIds as $resultsId ) {
+        $myCollections = !empty( $collectionsInfo[ $resultsId ] ) ? $collectionsInfo[ $resultsId ] : [];
+        $myCollectionsGeneral = [];
+        $myCollectionsMultimedia = [];
+
+        if( !empty( $myCollections['base'] ) ) {
+          foreach( $myCollections['base'] as $collId => $collData ) {
+            $collData['resourcesData'] = [];
+
+            $rDIds = explode( ',', $collData['resourceSonList'] );
+            foreach( $rDIds as $rDId ) {
+              if( isset( $collectionsGeneral[ $rDId ] ) ) {
+                $collData['resourcesData'][] = $collectionsGeneral[ $rDId ];
+                // array_push($resCollData, $resCollData_tmp[$id]);
+              }
+            }
+
+            $myCollectionsGeneral[] = $collData;
           }
         }
-      */
+
+        if( !empty( $myCollections['multimedia'] ) ) {
+          foreach( $myCollections['multimedia'] as $collId => $collData ) {
+            $collData['resourcesData'] = [];
+
+            $rDIds = explode( ',', $collData['resourceSonList'] );
+            foreach( $rDIds as $rDId ) {
+              if( isset( $collectionsMultimedia[ $rDId ] ) ) {
+                $collData['resourcesData'][] = $collectionsMultimedia[ $rDId ];
+                // array_push($resCollData, $resCollData_tmp[$id]);
+              }
+            }
+
+            $myCollectionsMultimedia[] = $collData;
+          }
+        }
+
+        $allResultsData[ $resultsId ]['collections'] = $myCollections;
+        $allResultsData[ $resultsId ]['collectionsGeneral'] = $myCollectionsGeneral;
+        $allResultsData[ $resultsId ]['collectionsMultimedia'] = $myCollectionsMultimedia;
+      }
     }
 
 
@@ -1470,8 +1490,8 @@ class geozzyAPIView extends View {
 
 
     header('Content-Type: application/json; charset=utf-8');
-    // echo json_encode( $allResultsData );
-    echo json_encode( [ $collectionsInfo, $collTypeInfo, $collectionsGeneral, $collectionsMultimedia ] );
+    echo json_encode( $allResultsData );
+    // echo json_encode( [ $collectionsInfo, $collTypeInfo, $collectionsGeneral, $collectionsMultimedia ] );
     // if( !empty( $allRExtModelsInfo ) ) {
     //   echo json_encode( $allRExtModelsInfo );
     // }
@@ -1526,6 +1546,65 @@ class geozzyAPIView extends View {
     return $rExtModelsInfo;
   }
 
+  private function extendCollBaseV2( $resources ) {
+    Cogumelo::load('coreModel/DBUtils.php');
+    $resCollData = array();
+
+    $resIds = is_array( $resources ) ? $resources : explode( ',', $resources );
+    $resIds = array_unique( $resIds );
+
+    if( count( $resIds ) > 0 ) {
+      $resModel =  new ResourceModel();
+      $resList = $resModel->listItems( [ 'filters' => [ 'inId' => $resIds, 'published' => 1 ], 'cache' => $this->cacheQuery ] );
+
+      if( is_object( $resList ) ) {
+        while( $resObj = $resList->fetch() ) {
+          $resId = $resObj->getter('id');
+
+          $fields = [ 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription',
+            'image', 'loc', 'timeCreation', 'timeLastUpdate', 'weight' ];
+          foreach( $fields as $field ) {
+            $resCollData[ $resId ][ $field ] = $resObj->getter( $field );
+          }
+          if( !empty( $resCollData[ $resId ]['loc'] ) ) {
+            $loc = DBUtils::decodeGeometry( $resCollData[ $resId ]['loc'] );
+            $resCollData[ $resId ]['loc'] = [
+              'lat' => floatval( $loc['data'][0] ),
+              'lng' => floatval( $loc['data'][1] )
+            ];
+          }
+        }
+      }
+    }
+
+    return $resCollData;
+  }
+
+  private function extendCollMultimediaV2( $resources ) {
+    $resCollData = [];
+
+    $resIds = is_array( $resources ) ? $resources : explode( ',', $resources );
+    $resIds = array_unique( $resIds );
+
+    if( count( $resIds ) > 0 ) {
+      $resModel =  new ResourceMultimediaViewModel();
+      $resList = $resModel->listItems( [ 'filters' => [ 'inId' => $resIds, 'published' => 1 ], 'cache' => $this->cacheQuery ] );
+
+      if( is_object( $resList ) ) {
+        while( $resObj = $resList->fetch() ) {
+          $resId = $resObj->getter('id');
+
+          $fields = [ 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'imageAKey', 'imageName', 'timeCreation',
+            'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' ];
+          foreach( $fields as $field ) {
+            $resCollData[ $resId ][ $field ] = $resObj->getter( $field );
+          }
+        }
+      }
+    }
+
+    return $resCollData;
+  }
 
 
 
@@ -2049,65 +2128,5 @@ class geozzyAPIView extends View {
     return $resCollData;
   }
 
-  private function extendCollBaseV2( $resources ) {
-    Cogumelo::load('coreModel/DBUtils.php');
-    $resCollData = array();
-
-    $resIds = is_array( $resources ) ? $resources : explode( ',', $resources );
-    $resIds = array_unique( $resIds );
-
-    if( count( $resIds ) > 0 ) {
-      $resModel =  new ResourceModel();
-      $resList = $resModel->listItems( [ 'filters' => [ 'inId' => $resIds, 'published' => 1 ], 'cache' => $this->cacheQuery ] );
-
-      if( is_object( $resList ) ) {
-        while( $resObj = $resList->fetch() ) {
-          $resId = $resObj->getter('id');
-
-          $fields = [ 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription',
-            'image', 'loc', 'timeCreation', 'timeLastUpdate', 'weight' ];
-          foreach( $fields as $field ) {
-            $resCollData[ $resId ][ $field ] = $resObj->getter( $field );
-          }
-          if( !empty( $resCollData[ $resId ]['loc'] ) ) {
-            $loc = DBUtils::decodeGeometry( $resCollData[ $resId ]['loc'] );
-            $resCollData[ $resId ]['loc'] = [
-              'lat' => floatval( $loc['data'][0] ),
-              'lng' => floatval( $loc['data'][1] )
-            ];
-          }
-        }
-      }
-    }
-
-    return $resCollData;
-  }
-
-
-  private function extendCollMultimediaV2( $resources ) {
-    $resCollData = [];
-
-    $resIds = is_array( $resources ) ? $resources : explode( ',', $resources );
-    $resIds = array_unique( $resIds );
-
-    if( count( $resIds ) > 0 ) {
-      $resModel =  new ResourceMultimediaViewModel();
-      $resList = $resModel->listItems( [ 'filters' => [ 'inId' => $resIds, 'published' => 1 ], 'cache' => $this->cacheQuery ] );
-
-      if( is_object( $resList ) ) {
-        while( $resObj = $resList->fetch() ) {
-          $resId = $resObj->getter('id');
-
-          $fields = [ 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'imageAKey', 'imageName', 'timeCreation',
-            'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' ];
-          foreach( $fields as $field ) {
-            $resCollData[ $resId ][ $field ] = $resObj->getter( $field );
-          }
-        }
-      }
-    }
-
-    return $resCollData;
-  }
 
 }
