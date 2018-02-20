@@ -1487,10 +1487,14 @@ class geozzyAPIView extends View {
 
 
 
+    $retData = array();
 
+    foreach( $allResultsData as $rsKey => &$rs ) {
+      $retData[] = $rs;
+    }
 
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode( $allResultsData );
+    echo json_encode( $retData );
     // echo json_encode( [ $collectionsInfo, $collTypeInfo, $collectionsGeneral, $collectionsMultimedia ] );
     // if( !empty( $allRExtModelsInfo ) ) {
     //   echo json_encode( $allRExtModelsInfo );
@@ -1702,13 +1706,13 @@ class geozzyAPIView extends View {
       ];
 
       $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
-      
+
       $collectionsId = isset( $urlParamsList['collections'] ) ? $urlParamsList['collections'] : false;
-      
+
       $typeNames = isset( $urlParamsList['typeNames'] ) ? $urlParamsList['typeNames'] : false;
-      
+
       $resourcesId = isset( $urlParamsList['resources'] ) ? $urlParamsList['resources'] : false;
-      
+
       if( isset( $urlParamsList['options'] ) && $urlParamsList['options'] !== false ) {
         $options = explode( ',', $urlParamsList['options'] );
       }
