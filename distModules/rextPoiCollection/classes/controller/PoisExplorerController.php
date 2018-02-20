@@ -15,39 +15,50 @@ class PoisExplorerController extends ExplorerController {
 
     global $C_LANG;
 
-    $resources = $resourceModel->listItems( array('fields'=>array('id','content_'.$C_LANG,'loc','isNormalResource','terms'), 'filters'=> $filters, 'cache' => $this->cacheQuery ) );
+    $resources = $resourceModel->listItems( array('fields'=>array('id','rType','content_'.$C_LANG,'loc','isNormalResource','terms'), 'filters'=> $filters, 'cache' => $this->cacheQuery ) );
 
     $coma = '';
 
     echo '[';
 
     while( $resource = $resources->fetch() ){
-        echo $coma;
+
         $row = array();
         $resourceDataArray = $resource->getAllData('onlydata');
-        $row['isNormalResource'] = $resourceDataArray['isNormalResource'];
 
-        if( isset($resourceDataArray['terms']) ) {
-          $row['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
+
+        if( isset($resourceDataArray['id']) ) {
+          echo $coma;
+          $row['isNormalResource'] = $resourceDataArray['isNormalResource'];
+
+          if( isset($resourceDataArray['terms']) ) {
+            $row['terms'] = array_map( 'intval', explode(',',$resourceDataArray['terms']) );
+          }
+
+          $row['id'] = $resourceDataArray['id'];
+          $row['rType'] = $resourceDataArray['rType'];
+
+          if( isset($resourceDataArray['loc']) ) {
+            $loc = DBUtils::decodeGeometry( $resourceDataArray['loc'] );
+            $row['lat'] = floatval( $loc['data'][0] );
+            $row['lng'] = floatval( $loc['data'][1] );
+          }
+          unset($resourceDataArray['loc']);
+
+          if( empty($resourceDataArray['isNormalResource']) && !empty($resourceDataArray['content_'.$C_LANG]) ){
+            $pitchYaw = explode( "/", $resourceDataArray['content_'.$C_LANG]);
+            $row['panoramaYaw'] = $pitchYaw[1];
+            $row['panoramaPitch'] = $pitchYaw[0];
+          }
+
+          echo json_encode( $row );
+          $coma=',';
         }
 
-        $row['id'] = $resourceDataArray['id'];
-        if( isset($resourceDataArray['loc']) ) {
-          $loc = DBUtils::decodeGeometry( $resourceDataArray['loc'] );
-          $row['lat'] = floatval( $loc['data'][0] );
-          $row['lng'] = floatval( $loc['data'][1] );
-        }
-        unset($resourceDataArray['loc']);
 
-        if( empty($resourceDataArray['isNormalResource']) && !empty($resourceDataArray['content_'.$C_LANG]) ){
-          $pitchYaw = explode( "/", $resourceDataArray['content_'.$C_LANG]);
-          $row['panoramaYaw'] = $pitchYaw[1];
-          $row['panoramaPitch'] = $pitchYaw[0];
-        }
 
-        echo json_encode( $row );
 
-      $coma=',';
+
     }
 
     echo ']';
