@@ -12,7 +12,7 @@ class PoisExplorerModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'rextPoiCollection#3',
+      'version' => 'rextPoiCollection#4',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_pois_explorer_index;
@@ -21,6 +21,7 @@ class PoisExplorerModel extends Model
           geozzy_resource_collections.resource as resourceMain,
           geozzy_resource_collections.collection as collection,
           geozzy_collection_resources.resource as id,
+          geozzy_resourcetype.idName as rType,
           {multilang:geozzy_resource.title_$lang as title_$lang,}
           geozzy_resource.image as image,
           {multilang:geozzy_resource.shortDescription_$lang as shortDescription_$lang,}
@@ -65,6 +66,9 @@ class PoisExplorerModel extends Model
       'type'=>'FOREIGN',
       'vo' => 'ResourceModel',
       'key' => 'id'
+    ),
+    'rType' => array(
+      'type'=>'VARCHAR'
     ),
     'title' => array(
       'type' => 'VARCHAR',
