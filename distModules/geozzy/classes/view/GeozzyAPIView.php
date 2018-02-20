@@ -1408,7 +1408,7 @@ class geozzyAPIView extends View {
       // Cargo los datos de Collections de cada recurso
       $resCollModel =  new CollectionResourcesListViewModel();
       $collResList = $resCollModel->listItems([
-        'filters' => [ 'resourceMainIn' => $allResultsIds ],
+        'filters' => [ 'resourceMainIn' => $allResultsIds, 'collectionTypeNotIn' => ['favourites'] ],
         'cache' => $this->cacheQuery
       ]);
 
@@ -1689,6 +1689,15 @@ class geozzyAPIView extends View {
 
   // URL: /api/collections
   public function collections( $urlParams = false ) {
+    $tempo = microtime(true);
+
+    $this->collectionsV1( $urlParams );
+
+    $tempo2 = microtime(true);
+    error_log( 'API collections: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
+  }
+
+  public function collectionsV1( $urlParams = false ) {
     // error_log( 'collections( '.json_encode($urlParams).' )' );
 
     $collsData = array();
@@ -1696,7 +1705,7 @@ class geozzyAPIView extends View {
     if( $_SERVER['REQUEST_METHOD'] === 'GET' ) {
       $validation = [
         'collections' => '#^\d+(,\d+)*$#',
-        'typeNames' => '#^[a-z]+(,[a-z]+)*$#',
+        'typeNames' => '#^[a-zA-Z]+(,[a-zA-Z]+)*$#',
         'resources' => '#^\d+(,\d+)*$#',
         'options' => '#^[a-z]+(,[a-z]+)*$#'
       ];
@@ -1727,6 +1736,7 @@ class geozzyAPIView extends View {
           $filters['id'] = intval( $collectionsId );
         }
       }
+
       if( $typeNames && $typeNames !== 'false' ) {
         $inArray = explode( ',', $typeNames );
         if( count( $inArray ) > 1 ) {
@@ -1736,6 +1746,7 @@ class geozzyAPIView extends View {
           $filters['collectionType'] = $typeNames;
         }
       }
+
       if( $resourcesId && $resourcesId !== 'false' ) {
         $inArray = explode( ',', $resourcesId );
         if( count( $inArray ) > 1 ) {
@@ -1799,6 +1810,134 @@ class geozzyAPIView extends View {
       header("HTTP/1.0 400 Bad Request");
     }
   }
+
+  public function collectionsV2( $urlParams = false ) {
+    $collsData = [];
+
+    if( $_SERVER['REQUEST_METHOD'] === 'GET' ) {
+      $validation = [
+        'collections' => '#^\d+(,\d+)*$#',
+        'typeNames' => '#^[a-zA-Z]+(,[a-zA-Z]+)*$#',
+        'resources' => '#^\d+(,\d+)*$#',
+        'options' => '#^[a-z]+(,[a-z]+)*$#'
+      ];
+
+      $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
+      
+      $collectionsId = isset( $urlParamsList['collections'] ) ? $urlParamsList['collections'] : false;
+      
+      $typeNames = isset( $urlParamsList['typeNames'] ) ? $urlParamsList['typeNames'] : false;
+      
+      $resourcesId = isset( $urlParamsList['resources'] ) ? $urlParamsList['resources'] : false;
+      
+      if( isset( $urlParamsList['options'] ) && $urlParamsList['options'] !== false ) {
+        $options = explode( ',', $urlParamsList['options'] );
+      }
+      else {
+        $options = false;
+      }
+
+      $filters = [ 'collectionTypeNotIn' => ['favourites'] ];
+
+      if( $collectionsId && $collectionsId !== 'false' ) {
+        $inArray = explode( ',', $collectionsId );
+        if( count( $inArray ) > 1 ) {
+          $filters['idIn'] = $inArray;
+        }
+        else {
+          $filters['id'] = intval( $collectionsId );
+        }
+      }
+
+      if( $typeNames && $typeNames !== 'false' ) {
+        $inArray = explode( ',', $typeNames );
+        if( count( $inArray ) > 1 ) {
+          $filters['collectionTypeIn'] = $inArray;
+        }
+        else {
+          $filters['collectionType'] = $typeNames;
+        }
+      }
+
+      if( $resourcesId && $resourcesId !== 'false' ) {
+        $inArray = explode( ',', $resourcesId );
+        if( count( $inArray ) > 1 ) {
+          $filters['resourceMainIn'] = $inArray;
+        }
+        else {
+          $filters['resourceMain'] = intval( $resourcesId );
+        }
+      }
+
+      $format = 'byType';
+      if( $options ) {
+        if( in_array( 'plain', $options ) ) {
+          $format = 'plain';
+        }
+      }
+
+      // Cargo los datos de Collections del recurso
+      $resCollModel =  new CollectionResourcesListViewModel();
+      $collResList = $resCollModel->listItems( [ 'filters' => $filters, 'cache' => $this->cacheQuery ] );
+      if( $collResList !== false ) {
+
+        $plainCollsData = [];
+        $collTypeInfo = [];
+
+        while( $coll = $collResList->fetch() ) {
+          $collId = $coll->getter('id');
+
+          $plainCollsData[ $collId ] = [];
+          $fields = [ 'id', 'collectionType', 'title', 'shortDescription', 'description', 'weight',
+            'weightMain', 'resourceMain', 'resourceSonList' ];
+          foreach( $fields as $fieldName ) {
+            $plainCollsData[ $collId ][ $fieldName ] = $coll->getter( $fieldName );
+          }
+        
+          $resourceSon = explode( ',', $plainCollsData[ $collId ]['resourceSonList'] );
+          if( !empty( $resourceSon ) ) {
+            $collTypeInfo[ $collType ] = empty( $collTypeInfo[ $collType ] ) ? $resourceSon : array_merge( $collTypeInfo[ $collType ], $resourceSon );
+          }
+        } // while
+
+
+
+
+        if( $options && in_array( 'extend', $options ) ) {
+          switch( $collFields[ 'collectionType' ] ) {
+            case 'base':
+              $collFields[ 'resourcesData' ] = $this->extendCollBase( $collFields[ 'resourceSonList' ] );
+              break;
+            case 'multimedia':
+              $collFields[ 'resourcesData' ] = $this->extendCollMultimedia( $collFields[ 'resourceSonList' ] );
+              break;
+          }
+        }
+
+        switch( $format ) {
+          case 'plain':
+            $collsData = $plainCollsData;
+            break;
+
+          default:
+            $collsData[ $collFields['collectionType'] ][ $collFields['id'] ] = $collFields;
+            break;
+        }
+
+      }
+
+      header('Content-Type: application/json; charset=utf-8');
+      echo json_encode( $collsData );
+    }
+    else {
+      header("HTTP/1.0 400 Bad Request");
+    }
+  }
+
+
+
+
+
 
 
 
