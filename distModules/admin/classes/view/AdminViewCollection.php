@@ -89,7 +89,6 @@ class AdminViewCollection extends AdminViewMaster
       $collectionData['collectionSelect'] = $_POST['colSelect'];
 
       $collectionView = new GeozzyCollectionView();
-      error_log( 'collectionData para FORM: ' . print_r( $collectionData, true ) );
       $formBlock = $collectionView->getFormBlock( $formName,  $formUrl, $collectionData );
 
       // Cambiamos el template del formulario
