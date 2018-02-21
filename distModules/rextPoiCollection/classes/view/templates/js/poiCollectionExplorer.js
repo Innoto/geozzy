@@ -2,13 +2,28 @@
   $(document).ready(function(){
 
     //console.log('LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO' , geozzy.collection.CategorytermCollection );
-    var poisTypes = new geozzy.collection.CategorytermCollection();
-    poisTypes.setUrlByIdName('rextPoiType');
 
 
-    $.when( poisTypes.fetch() ).done(function() {
-      poisResourceExplorer( poisTypes );
-    });
+    var categorias = {};
+    var multifetchStr = 'categorias.rtypePoi.fetch()';
+
+    categorias.rtypePoi = new geozzy.collection.CategorytermCollection();
+    categorias.rtypePoi.setUrlByIdName('rextPoiType');
+
+
+    if( typeof cogumelo.publicConf.rtypeTaxonomygroup != 'undefined') {
+
+      $( Object.keys(cogumelo.publicConf.rtypeTaxonomygroup) ).each( function(i, key){
+        eval( 'var e = cogumelo.publicConf.rtypeTaxonomygroup.'+ key);
+
+        eval( 'categorias.' + key + ' = new geozzy.collection.CategorytermCollection();'  );
+        eval( 'categorias.' + key + '.setUrlByIdName("'+e+'");'  );
+        multifetchStr += ', '+ 'categorias.' + key + '.fetch()';
+      });
+    }
+
+
+    eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorer( categorias ); });');
 
   });
 
@@ -17,7 +32,7 @@
   /*
   * Create the POIS resource explorer
   */
-  function poisResourceExplorer( poisTypes ) {
+  function poisResourceExplorer( categorias ) {
 
     /* EXPLORER MAIN CLASS DECLARATION */
     var ex = new geozzy.explorer({
@@ -63,17 +78,25 @@
           };
 
 
+          var resTerms = markerData.get('terms');
+          var resRtype = markerData.get('rType');
 
-          poisTypes.each( function(e){
-            console.log(cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png')
-            if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
-              if( jQuery.isNumeric( e.get('icon') )  ){
-                retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png';
-                retMarker.size =  new google.maps.Size(20, 20);
-                return false;
+          if(  categorias.hasOwnProperty(resRtype) ) {
+
+            eval('var taxgroup = categorias.' + resRtype );
+            taxgroup.each( function(e){
+              if( $.inArray(e.get('id'), resTerms ) > -1 ) {
+                if( jQuery.isNumeric( e.get('icon') )  ){
+                  retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png';
+                  retMarker.size =  new google.maps.Size(20, 20);
+                  return false;
+                }
               }
-            }
-          });
+            });
+
+          }
+
+
 
           return retMarker;
         }

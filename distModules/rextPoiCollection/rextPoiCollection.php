@@ -1,11 +1,16 @@
 <?php
+$geozzyRTypeTaxonomyGroup = APP_BASE_PATH.'/conf/inc/geozzyRTypeTaxonomyGroup.php';
+if( file_exists($geozzyRTypeTaxonomyGroup) ){
+  require_once($geozzyRTypeTaxonomyGroup);
+}
+
 Cogumelo::load( 'coreController/Module.php' );
 
 
 class rextPoiCollection extends Module {
 
   public $name = 'rextPoiCollection';
-  public $version = '4';
+  public $version = '5';
 
   public $models = array();
 
