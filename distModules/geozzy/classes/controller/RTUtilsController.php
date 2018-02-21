@@ -9,6 +9,12 @@ class RTUtilsController {
 
   public function __construct( $moduleClass ) {
     $this->moduleClass = $moduleClass;
+
+    $this->langDefault = Cogumelo::getSetupValue( 'lang:default' );
+    $langsConf = Cogumelo::getSetupValue( 'lang:available' );
+    if( is_array( $langsConf ) ) {
+      $this->langAvailable = array_keys( $langsConf );
+    }
   }
 
   public function rTypeModuleDeploy() {
@@ -190,7 +196,7 @@ class RTUtilsController {
     // echo "createTaxonomies\n"; print_r( $taxGroups );
     if( $taxGroups && is_array( $taxGroups ) && count( $taxGroups ) > 0 ) {
       foreach( $taxGroups as $taxKey => $tax ) {
-        if( isset( $tax['external'] ) ) {
+        if( !empty( $tax['external'] ) ) {
           // Las taxonomias externas se crean en otro modulo
           echo 'TaxGroup '.$taxKey.' no creado por ser de otro modulo ('.$tax['external'].')'."\n";
           continue;
@@ -200,10 +206,6 @@ class RTUtilsController {
           $tax['name_'.$langKey] = $name;
         }
         unset($tax['name']);
-
-
-
-
 
 
         $existTaxonomygroupModel = ( new TaxonomygroupModel() )->listItems(['filters'=>['idName'=> $tax['idName'] ]])->fetch();
@@ -216,8 +218,6 @@ class RTUtilsController {
         $taxgroup->save();
 
 
-
-
         $idByIdName = [];
         $weight = 10;
 
@@ -225,15 +225,22 @@ class RTUtilsController {
           foreach( $tax['initialTerms'] as $term ) {
             $term['taxgroup'] = $taxgroup->getter('id');
 
-            if( isset( $term['icon'] ) ) {
-              $iconPath = ModuleController::getRealFilePath( 'classes/'.$term['icon'] , $this->moduleClass );
+            if( !empty( $term['icon'] ) ) {
+              $iconAbs = ModuleController::getRealFilePath( 'classes/'.$term['icon'] , $this->moduleClass );
+              if( !empty( $iconAbs ) && file_exists( $iconAbs ) ) {            
+                // Cogumelo::debug( __METHOD__.' - iconAbs: ' . $iconAbs );
+                $iconAbsNameExt = pathinfo( $iconAbs, PATHINFO_BASENAME );
 
-              $iconPathSplit = explode('/',$iconPath);
-
-              if( $icon = $fileDataControl->saveFile( $iconPath, '/initialIcons', array_pop($iconPathSplit) ,false ) ) {
-                $term['icon'] = $icon->getter('id');
+                if( $icon = $fileDataControl->saveFile( $iconAbs, '/initialIcons', $iconAbsNameExt, false ) ) {
+                  $term['icon'] = $icon->getter('id');
+                }
+                else{
+                  Cogumelo::error( __METHOD__.' - ERROR: NO se ha asignado '.$iconAbs.' para '.$tax['idName'].'.'.$term['idName']);
+                  unset( $term['icon'] );
+                }
               }
               else{
+                Cogumelo::error( __METHOD__.' - ERROR: NO existe '.$this->moduleClass.'/classes/'.$term['icon'].' para '.$tax['idName'].'.'.$term['idName']);
                 unset( $term['icon'] );
               }
             }

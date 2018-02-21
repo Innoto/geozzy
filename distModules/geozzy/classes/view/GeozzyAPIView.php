@@ -1486,19 +1486,13 @@ class geozzyAPIView extends View {
 
 
 
-
     $retData = array();
-
     foreach( $allResultsData as $rsKey => &$rs ) {
       $retData[] = $rs;
     }
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode( $retData );
-    // echo json_encode( [ $collectionsInfo, $collTypeInfo, $collectionsGeneral, $collectionsMultimedia ] );
-    // if( !empty( $allRExtModelsInfo ) ) {
-    //   echo json_encode( $allRExtModelsInfo );
-    // }
 
     $tempo2 = microtime(true);
     error_log( 'API resourcelist: V2 TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
