@@ -179,10 +179,10 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
     //currentCategory
 
     if(selected) {
-      var iconProfile = cogumelo.publicConf.mod_geozzy_travelPlanner.markerImgProfileSelected;
+      var iconProfile = cogumelo.publicConf.geozzyTravelPlanner.markerImgProfileSelected;
     }
     else {
-      var iconProfile = cogumelo.publicConf.mod_geozzy_travelPlanner.markerImgProfile;
+      var iconProfile = cogumelo.publicConf.geozzyTravelPlanner.markerImgProfile;
     }
 
     $.each(that.parentTp.categories, function(i,e) {

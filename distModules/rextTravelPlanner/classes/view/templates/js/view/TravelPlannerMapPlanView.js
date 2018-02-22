@@ -155,8 +155,8 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
   addMarkerOnMap: function(item, type, label){
     var that = this;
 
-    var markSelectedColor = (cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlanSelected) ? cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlanSelected : '#E26553';
-    var markColor = (cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlan) ? cogumelo.publicConf.mod_geozzy_travelPlanner.colorMarkerPlan : '#E26553';
+    var markSelectedColor = (cogumelo.publicConf.geozzyTravelPlanner.colorMarkerPlanSelected) ? cogumelo.publicConf.geozzyTravelPlanner.colorMarkerPlanSelected : '#E26553';
+    var markColor = (cogumelo.publicConf.geozzyTravelPlanner.colorMarkerPlan) ? cogumelo.publicConf.geozzyTravelPlanner.colorMarkerPlan : '#E26553';
 
     if(type === "selected"){
       var Icono = {
@@ -340,7 +340,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       firstLoc = waypointsLoc.shift();
       lastLoc = waypointsLoc.pop();
 
-      if(cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode && cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode === 'WALKING'){
+      if(cogumelo.publicConf.geozzyTravelPlanner.routeMode && cogumelo.publicConf.geozzyTravelPlanner.routeMode === 'WALKING'){
         confTravelMode = google.maps.DirectionsTravelMode.WALKING;
       }else{
         confTravelMode = google.maps.DirectionsTravelMode.DRIVING;
