@@ -986,7 +986,7 @@ class geozzyAPIView extends View {
         'image', 'loc', 'defaultZoom', 'externalUrl', 'user', 'timeCreation', 'weight' );
       foreach( $allCols as $col ) {
         if( !$fieldsToFilter || in_array( $col, $fieldsToFilter ) ) {
-          $allData[ $col ] = $valueobject->getter( $col );
+          $allData[ $col ] = $valueobject->getter( $col, false );
           if( $col === 'rTypeId' ) {
             $allData[ 'rTypeIdName' ] = isset($infoRTypeNameIds[ $allData[ 'rTypeId' ] ]) ? $infoRTypeNameIds[ $allData[ 'rTypeId' ] ] : null;
           }
@@ -1058,7 +1058,7 @@ class geozzyAPIView extends View {
           if( is_object($relModel) && method_exists( $relModel, 'getAllData' ) ) {
             $allCols = $relModel->getCols( false );
             foreach( $allCols as $colName => $colInfo ) {
-              $rexData[ $colName ] = $relModel->getter( $colName );
+              $rexData[ $colName ] = $relModel->getter( $colName, false );
             }
 
             $allData['rextmodels'][ $rexData['MODELNAME'] ] = $rexData;
@@ -1083,7 +1083,7 @@ class geozzyAPIView extends View {
             $k = array( 'id', 'title', 'shortDescription', 'description', 'weight',
               'weightMain', 'resourceSonList' );
             foreach( $k as $key ) {
-              $collData[ $key ] = $coll->getter( $key );
+              $collData[ $key ] = $coll->getter( $key, false );
             }
             $collType = $coll->getter( 'collectionType' );
             $allData[ 'collections' ][ $collType ][ $collData['id'] ] = $collData;
@@ -1292,7 +1292,7 @@ class geozzyAPIView extends View {
           'image', 'loc', 'defaultZoom', 'externalUrl', 'user', 'timeCreation', 'weight' );
         foreach( $allCols as $col ) {
           if( !$fieldsToFilter || in_array( $col, $fieldsToFilter ) ) {
-            $allData[ $col ] = $valueobject->getter( $col );
+            $allData[ $col ] = $valueobject->getter( $col, false );
             if( $col === 'rTypeId' ) {
               $allData[ 'rTypeIdName' ] = isset($infoRTypeNameIds[ $allData[ 'rTypeId' ] ]) ? $infoRTypeNameIds[ $allData[ 'rTypeId' ] ] : null;
             }
@@ -1418,7 +1418,7 @@ class geozzyAPIView extends View {
 
           $fields = [ 'id', 'title', 'shortDescription', 'description', 'weight', 'weightMain', 'resourceSonList' ];
           foreach( $fields as $field ) {
-            $collData[ $field ] = $coll->getter( $field );
+            $collData[ $field ] = $coll->getter( $field, false );
           }
           $collType = $coll->getter('collectionType');
           $collectionsInfo[ $coll->getter('resourceMain') ][ $collType ][ $collData['id'] ] = $collData;
@@ -1708,7 +1708,7 @@ class geozzyAPIView extends View {
           $fields = array( 'id', 'collectionType', 'title', 'shortDescription', 'description', 'weight',
             'weightMain', 'resourceMain', 'resourceSonList' );
           foreach( $fields as $fieldName ) {
-            $collFields[ $fieldName ] = $coll->getter( $fieldName );
+            $collFields[ $fieldName ] = $coll->getter( $fieldName, false );
           }
 
           if( $options && in_array( 'extend', $options ) ) {
@@ -2184,7 +2184,7 @@ class geozzyAPIView extends View {
           $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'mediumDescription',
             'image', 'loc', 'timeCreation', 'timeLastUpdate', 'weight' );
           foreach( $k as $key ) {
-            $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
+            $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key, false );
           }
           if( isset( $resCollData_tmp[ $resColl->getter('id') ]['loc'] ) ) {
             $loc = DBUtils::decodeGeometry( $resCollData_tmp[ $resColl->getter('id') ]['loc'] );
@@ -2220,7 +2220,7 @@ class geozzyAPIView extends View {
           $k = array( 'id', 'rTypeId', 'title', 'shortDescription', 'image', 'imageAKey', 'imageName', 'timeCreation',
             'timeLastUpdate', 'weight', 'author', 'file', 'embed', 'url' );
           foreach( $k as $key ) {
-            $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key );
+            $resCollData_tmp[ $resColl->getter('id') ][ $key ] = $resColl->getter( $key, false );
           }
         }
 
