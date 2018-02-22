@@ -836,18 +836,18 @@ class geozzyAPIView extends View {
 
 
 
-
-
   // /resourcelist (Declarado en resources.json)
   public function resourceList( $param ) {
+    $tempo = microtime(true);
+
     $this->resourceListV2( $param );
+
+    $tempo2 = microtime(true);
+    error_log( 'API resourcelist: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
   }
 
   // /resourcelist (Declarado en resources.json)
   public function resourceListV1( $param ) {
-
-    $tempo = microtime(true);
-
     Cogumelo::load('coreModel/DBUtils.php');
     geozzy::load('model/ResourceModel.php');
     geozzy::load('controller/apiFiltersController.php');
@@ -1017,15 +1017,6 @@ class geozzyAPIView extends View {
           $allData['categoryIds'] = explode( ',', $taxTermList );
           $allData['categoryIds'] = array_map( 'intval', $allData['categoryIds'] );
         }
-        // $taxTermModel =  new ResourceTaxonomytermModel();
-        // $taxTermList = $taxTermModel->listItems( [ 'filters' => [ 'resource' => $allData['id'] ], 'cache' => $this->cacheQuery ] );
-        // if( $taxTermList !== false ) {
-        //   $allData['categoryIds'] = [];
-        //   while( $taxTerm = $taxTermList->fetch() ) {
-        //     $allData['categoryIds'][] = $taxTerm->getter( 'taxonomyterm' );
-        //   }
-        // }
-        //
 
         // Cargo los datos de Topic del recurso
         $topicsList = $valueobject->getter('topicIdList');
@@ -1033,14 +1024,6 @@ class geozzyAPIView extends View {
           $allData['topicIds'] = explode( ',', $topicsList );
           $allData['topicIds'] = array_map( 'intval', $allData['topicIds'] );
         }
-        // $topicsModel = new ResourceTopicModel();
-        // $topicsList = $topicsModel->listItems( [ 'filters' => [ 'resource' => $allData['id'] ], 'cache' => $this->cacheQuery ] );
-        // if( $topicsList ) {
-        //   $allData['topicIds'] = [];
-        //   while( $topicVo = $topicsList->fetch() ) {
-        //     $allData['topicIds'][] = $topicVo->getter( 'topic' );
-        //   }
-        // }
       }
 
 
@@ -1125,17 +1108,9 @@ class geozzyAPIView extends View {
       $c=',';
     } // while
     echo ']';
-
-    $tempo2 = microtime(true);
-    error_log( 'API resourcelist: V1 TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
   }
 
-
-
   public function resourceListV2( $param ) {
-
-    $tempo = microtime(true);
-
     Cogumelo::load('coreModel/DBUtils.php');
     geozzy::load('model/ResourceModel.php');
     geozzy::load('controller/apiFiltersController.php');
@@ -1334,11 +1309,6 @@ class geozzyAPIView extends View {
         }
 
 
-
-
-
-
-
         // Load all REXT related models
         if( !empty( $extraParams['rextmodels'] ) ) {
           $relatedModels = json_decode( $valueobject->getter('relatedModels') );
@@ -1368,7 +1338,6 @@ class geozzyAPIView extends View {
         $allResultsData[ $allData['id'] ] = $allData;
       } // while( $valueobject = $resourceList->fetch() ) {
     }
-    // echo ']';
 
 
 
@@ -1388,10 +1357,6 @@ class geozzyAPIView extends View {
         }
       }
     }
-
-
-
-
 
 
 
@@ -1493,9 +1458,6 @@ class geozzyAPIView extends View {
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode( $retData );
-
-    $tempo2 = microtime(true);
-    error_log( 'API resourcelist: V2 TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
   }
 
   private function prepareRExtModelsInfo( $allRExtModels, $rExtModelNames ) {
@@ -1619,6 +1581,8 @@ class geozzyAPIView extends View {
     $resourcetypeList = $resourcetypeModel->listItems([ 'cache' => $this->cacheQuery ]) ;
     $this->syncModelList( $resourcetypeList );
   }
+
+
 
 
 
@@ -1900,9 +1864,6 @@ class geozzyAPIView extends View {
       header("HTTP/1.0 400 Bad Request");
     }
   }
-
-
-
 
 
 
