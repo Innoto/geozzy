@@ -85,7 +85,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
 
 
-    $('#'+that.divId).css('z-index',highest);
+    //$('#'+that.divId).css('z-index',highest);
   },
 
 
