@@ -42,8 +42,7 @@ class AdminViewMaster extends View {
   public function accessCheck() {
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
-    var_dump($user);
-    exit;
+
     $res = true;
     if( !$useraccesscontrol->isLogged() ) {
       if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] ){
