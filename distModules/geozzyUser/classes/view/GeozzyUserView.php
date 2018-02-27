@@ -144,10 +144,11 @@ class GeozzyUserView extends View {
 
     $form->setValidationRule( 'password', 'required', true );
     $form->setValidationRule( 'password2', 'required', true );
-    $form->setValidationRule( 'password', 'equalTo', '#password2' );
     if(empty(Cogumelo::getSetupValue('mod:user:password:notStrength'))){
       $form->setValidationRule( 'password', 'passwordStrength', true);
     }
+    $form->setValidationRule( 'password', 'equalTo', '#password2' );
+
     $form->setValidationRule( 'email', 'email' );
     $form->setValidationRule( 'email', 'equalTo', '#repeatEmail' );
 
@@ -181,10 +182,11 @@ class GeozzyUserView extends View {
 
     $form->setValidationRule( 'password', 'required', true );
     $form->setValidationRule( 'password2', 'required', true );
-    $form->setValidationRule( 'password', 'equalTo', '#password2' );
     if(empty(Cogumelo::getSetupValue('mod:user:password:notStrength'))){
       $form->setValidationRule( 'password', 'passwordStrength', true);
     }
+    $form->setValidationRule( 'password', 'equalTo', '#password2' );
+
     $form->setValidationRule( 'email', 'email' );
     $form->setValidationRule( 'email', 'equalTo', '#repeatEmail' );
 
@@ -521,11 +523,11 @@ class GeozzyUserView extends View {
     unset($fields['legal']);
     $fields['submit']['params']['value'] = __('Send');
     $form->definitionsToForm( $fields );
-
-    $form->setValidationRule( 'password', 'equalTo', '#password2' );
     if(empty(Cogumelo::getSetupValue('mod:user:password:notStrength'))){
       $form->setValidationRule( 'password', 'passwordStrength', true);
     }
+    $form->setValidationRule( 'password', 'equalTo', '#password2' );
+
     $form->setValidationRule( 'email', 'email' );
     $form->setValidationRule( 'email', 'equalTo', '#repeatEmail' );
     $form->setValidationRule( 'avatar', 'minfilesize', 1024 );
