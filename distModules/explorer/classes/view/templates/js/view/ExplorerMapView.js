@@ -730,8 +730,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
 
       that.mapArrowMarker.setMap( that.map );
-      that.mapArrowMarker.setMap( null );
-      that.mapArrowMarker.setMap( that.map );
+      //that.mapArrowMarker.setMap( null );
+      //that.mapArrowMarker.setMap( that.map );
 
       that.outerPanToIntervalometerValue = 3;
 
