@@ -32,9 +32,9 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     category:true
   }
 
-  if(cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes.toString() !== ''){
+  if(cogumelo.publicConf.rtypeTaxonomygroup.toString() !== ''){
     var arrayRtypeKeys = [];
-    $.each(cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes, function(i,e){
+    $.each(cogumelo.publicConf.rtypeTaxonomygroup, function(i,e){
       arrayRtypeKeys.push(i);
     });
     resParam.rtype = arrayRtypeKeys.toString();
@@ -87,13 +87,13 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.init = function( ) {
 
     var categoriesStringFetch = '';
-    $.each(cogumelo.publicConf.mod_geozzy_travelPlanner.rTypes, function(i,e){
-      if( typeof e.taxGroup != 'undefined' ) {
-        var categoria = new geozzy.collection.CategorytermCollection();
-        categoria.setUrlByIdName( e.taxGroup );
-        eval('that.categories.' + i + ' = categoria;');
-        categoriesStringFetch += ( 'that.categories.' + i + '.fetch(),' );
-      }
+    $.each(cogumelo.publicConf.rtypeTaxonomygroup, function(i,taxGroup){
+
+      var categoria = new geozzy.collection.CategorytermCollection();
+      categoria.setUrlByIdName( taxGroup );
+      eval('that.categories.' + i + ' = categoria;');
+      categoriesStringFetch += ( 'that.categories.' + i + '.fetch(),' );
+
     });
 
     eval(''+
@@ -132,7 +132,7 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
       Backbone.history.stop();
       Backbone.history.start();
     }
-    
+
   };
 
   that.initDates = function(){

@@ -1,4 +1,15 @@
 <?php
+
+$geozzyTravelPlanner = APP_BASE_PATH.'/conf/inc/geozzyTravelPlanner.php';
+if( file_exists($geozzyTravelPlanner) ){
+  require_once($geozzyTravelPlanner);
+}
+$geozzyRTypeTaxonomyGroup = APP_BASE_PATH.'/conf/inc/geozzyRTypeTaxonomyGroup.php';
+if( file_exists($geozzyRTypeTaxonomyGroup) ){
+  require_once($geozzyRTypeTaxonomyGroup);
+}
+
+
 Cogumelo::load("coreController/Module.php");
 
 class rextTravelPlanner extends Module {

@@ -217,7 +217,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     var stringTime = '';
 
     if( time !== ''){
-      if(cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode && cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode === 'WALKING'){
+      if(cogumelo.publicConf.geozzyTravelPlanner.routeMode && cogumelo.publicConf.geozzyTravelPlanner.routeMode === 'WALKING'){
         stringTime = '+<i class="fa fa-male"></i> '+time;
       }else{
         stringTime = '+ <i class="fa fa-car"></i> '+time;
@@ -231,7 +231,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     var stringTime = '';
 
     if( time !== ''){
-      if(cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode && cogumelo.publicConf.mod_geozzy_travelPlanner.routeMode === 'WALKING'){
+      if(cogumelo.publicConf.geozzyTravelPlanner.routeMode && cogumelo.publicConf.geozzyTravelPlanner.routeMode === 'WALKING'){
         stringTime = '+<i class="fa fa-male"></i> '+ that.getFormatedTime(time);
       }else{
         stringTime = '+ <i class="fa fa-car"></i> '+ that.getFormatedTime(time);
