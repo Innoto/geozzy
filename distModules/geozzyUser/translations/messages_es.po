@@ -44,6 +44,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:484
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:478
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:516
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:524
 msgid "Send"
 msgstr "Enviar"
 
@@ -149,6 +150,8 @@ msgstr "Crear una cuenta"
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:189
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:199
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:200
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:207
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:208
 msgid "User Registration"
 msgstr "Registro de usuarios"
 
@@ -158,6 +161,8 @@ msgstr "Registro de usuarios"
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:374
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:384
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:385
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:392
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:393
 msgid "Recovery Password"
 msgstr "Recuperar contraseña"
 

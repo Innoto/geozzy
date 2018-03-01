@@ -59,7 +59,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       that.parentExplorer.resourceIndex.removePagination();
 
 
-      var visibleResources = that.parentExplorer.resourceIndex.setPerPage(30);
+      var visibleResources = that.parentExplorer.resourceIndex.setPerPage(50);
 
 
       if( that.options.sortByResourceWeight == true ) {
