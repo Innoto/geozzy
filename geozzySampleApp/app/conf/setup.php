@@ -23,6 +23,9 @@ require_once( 'setup-100.init.php' );
 
 if( IS_DEVEL_ENV ) {
   require_once( 'setup-300.development.php' );
+  if( file_exists('setup-400.development-personal.php') ) {
+    require_once('setup-400.development-personal.php');
+  }
 }
 else {
   require_once( 'setup-300.production.php' );

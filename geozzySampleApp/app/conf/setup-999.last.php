@@ -32,8 +32,11 @@
 //
 $conf->mergeSetupValue( 'publicConf:globalVars', [ 'C_LANG', 'C_SESSION_ID' ] );
 
-$conf->mergeSetupValue( 'publicConf:setupFields', [ 'socialNetworks', 'google:maps:key', 'google:recaptcha:key:site',
-  'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone', 'mod:admin:defaultURL' ] );
+$conf->mergeSetupValue( 'publicConf:setupFields', [
+  'google:maps:key', 'google:analytics:key', 'google:recaptcha:key:site',
+  'session:lifetime', 'lang:available', 'lang:default', 'date:timezone',
+  'socialNetworks', 'mod:geozzy:resource:directUrl', 'mod:admin:defaultURL',
+]);
 
 $conf->setSetupValue( 'publicConf:vars:langDefault', $conf->getSetupValue( 'lang:default' ) );
 $conf->setSetupValue( 'publicConf:vars:langAvailableIds', array_keys( $conf->getSetupValue( 'lang:available' ) ) );
