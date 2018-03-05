@@ -9,19 +9,17 @@ if( true ) {
   $pass = 'accessPassword';
 
   // $privateUrlPatterns = array(
-  //   '#^sitemap.xml$#'
+  //   '#^sitemap.xml$#',
   // );
 
   $publicUrlPatterns = array(
-    '#^/?cgml-session.json$#',
-    '#^/?api/#',
     '#^/?cgmlImg/#',
-    '#^/?cgmlformfilewd/\d+/.+\.kml$#'
+    '#^/?cgmlformfilewd/\d+/.+\.kml$#',
   );
 
   $validIp = array(
     '213.60.18.106', // Innoto
-    '127.0.0.1'
+    '127.0.0.1',
   );
 
 
