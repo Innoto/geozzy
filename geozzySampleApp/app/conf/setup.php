@@ -23,7 +23,7 @@ require_once( 'setup-100.init.php' );
 
 if( IS_DEVEL_ENV ) {
   require_once( 'setup-300.development.php' );
-  if( file_exists('setup-400.development-personal.php') ) {
+  if( file_exists(APP_BASE_PATH.'/conf/setup-400.development-personal.php') ) {
     require_once('setup-400.development-personal.php');
   }
 }
@@ -47,6 +47,12 @@ require_once( 'setup-999.last.php' );
 
 
 
+if( IS_DEVEL_ENV ) {
+  $allSetup = $conf->getSetupValue();
+  $jsonSetupFile = !empty( $allSetup['setup']['appTmpPath'] ) ? $allSetup['setup']['appTmpPath'].'/setup-ALL.json' : false;
+  file_put_contents( $jsonSetupFile, json_encode( $allSetup, JSON_PRETTY_PRINT ) );
+  unset( $allSetup, $jsonSetupFile );
+}
 
 
 // Destruimos $conf como acceso a los metodos durante el setup.
