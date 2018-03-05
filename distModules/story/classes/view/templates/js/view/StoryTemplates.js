@@ -12,7 +12,7 @@ geozzy.storyComponents.listElementTemplate = ''+
         '<h3 class="title"><%= title %></h3>'+
         '<div class="mediumDescription"><%= mediumDescription %></div>'+
         '<div class="resourceButton">' +
-          '<% if( relatedResource ) { %> <a href="#resource/<%-relatedResource%>" ><button class="btn btn-primary accessButton">' + __('Discover') + '</button> </a><% }%>' +
+          '<% if( relatedResource ) { %> <a class="resourceAccessButton" dataResourceAccessButton=<%-relatedResource%> ><button class="btn btn-primary accessButton">' + __('Discover') + '</button> </a><% }%>' +
         '</div>' +
       '</div>' +
     '</div>';

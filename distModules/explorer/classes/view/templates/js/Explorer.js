@@ -73,10 +73,15 @@ geozzy.explorer = function( opts ) {
 
 
   if( that.options.useUrlRouter == true && typeof geozzy.explorerComponents.routerInstance == 'undefined' ) {
-   geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
-   geozzy.explorerComponents.routerInstance.parentExplorer = that;
+    //'mapas-interactivos': 'main',
 
+    geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
+
+    geozzy.explorerComponents.routerInstance.parentExplorer = that;
+    geozzy.explorerComponents.routerInstance.route( window.location.pathname.substring(1), 'explorerMain' );
   }
+
+
 
 
   //
@@ -92,7 +97,14 @@ geozzy.explorer = function( opts ) {
     that.bindEvent('resourceClick', function(param){
 
       if(typeof geozzy.explorerComponents.routerInstance != 'undefined' && typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
-        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
+        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, false);
+/////
+        that.triggerEvent('resourceAccess', {id: param.id});
+        //that.parentExplorer.options.resourceAccess(id);
+        if(that.explorerTouchDevice) {
+          that.triggerEvent('resourceMouseOut', {id:0});
+        }
+///
       }
     });
 
@@ -100,7 +112,7 @@ geozzy.explorer = function( opts ) {
 
     $(document).ready( function(){
       if( !Backbone.History.started ){
-        Backbone.history.start();
+        Backbone.history.start({ pushState: true });
       }
     });
 
@@ -317,11 +329,11 @@ geozzy.explorer = function( opts ) {
         if( that.options.useUrlRouter &&  isFirstTime ){
 
           if( !Backbone.History.started ){
-            Backbone.history.start();
+            Backbone.history.start({ pushState: true });
           }
           else {
             Backbone.history.stop();
-            Backbone.history.start();
+            Backbone.history.start({ pushState: true });
           }
         }
 
