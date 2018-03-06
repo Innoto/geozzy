@@ -392,7 +392,7 @@ class ResourceController {
       ),
       'urlAdminAlias' => array(
         'translate' => true,
-        'params' => array( 'label' => __( 'SEO: Alias' ) ),
+        'params' => array( 'label' => __( 'SEO: URL Secundaria (Alias)' ) ),
         'rules' => array( 'maxlength' => '2000' )
       ),
       'weight' => array(
