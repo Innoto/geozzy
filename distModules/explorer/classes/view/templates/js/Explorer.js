@@ -97,7 +97,8 @@ geozzy.explorer = function( opts ) {
     that.bindEvent('resourceClick', function(param){
 
       if(typeof geozzy.explorerComponents.routerInstance != 'undefined' && typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
-        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, false);
+        that.navigateUrl( param.id );
+
 /////
         that.triggerEvent('resourceAccess', {id: param.id});
         //that.parentExplorer.options.resourceAccess(id);
@@ -150,6 +151,14 @@ geozzy.explorer = function( opts ) {
 
     );
 
+  }
+
+
+  that.navigateUrl = function( rid ) {
+
+    if(typeof geozzy.explorerComponents.routerInstance != 'undefined' && typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
+      geozzy.explorerComponents.routerInstance.navigate( that.resourcePartialList.get(rid).getUrl() , false);
+    }
   }
 
 
