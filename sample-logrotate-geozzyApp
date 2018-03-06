@@ -1,8 +1,8 @@
 # Change HOST_PROYECT_DIRECTORY
 
 /HOST_PROYECT_DIRECTORY/logs/*.log {
-  # su innoto
-  create 640 innoto root
+  # su myUSER
+  create 640 myUSER root
   missingok
   daily
   rotate 800
@@ -24,8 +24,8 @@
 
 
 /HOST_PROYECT_DIRECTORY/project/app/log/*.log {
-  su innoto www-data
-  create 660 innoto www-data
+  su myUSER www-data
+  create 660 myUSER www-data
   missingok
   daily
   rotate 800

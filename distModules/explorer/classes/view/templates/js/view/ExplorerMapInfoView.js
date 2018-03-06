@@ -128,7 +128,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
         that.parentExplorer.triggerEvent('resourceClick', {
           id: id,
           section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
-        });      
+        });
       }
 
     }
@@ -174,12 +174,18 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
           $( '#'+that.divId ).html( that.template( element ) );
 
           if( that.ready == id){
-          $( '#'+that.divId ).show();
-          that.moveInfoMapDivWhenBehindMouse();
+            $( '#'+that.divId ).show();
+            that.moveInfoMapDivWhenBehindMouse();
+            $('#' + that.divId + ' button.accessButton').on('click', function(ev){
+              geozzy.explorerComponents.routerInstance.navigate( 'resource/' + $(ev.target).attr('dataResourceAccessButton') , false);
+              that.parentExplorer.triggerEvent( 'resourceAccess' , {id:$(ev.target).attr('dataResourceAccessButton')} );
+            })
+
           }
         }
       );
     }
+
 
   },
 
