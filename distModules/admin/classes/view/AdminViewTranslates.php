@@ -117,13 +117,15 @@ class AdminViewTranslates extends AdminViewMaster {
       while( $valueobject = $resourceList->fetch() ) {
         $allData = [];
 
-        $allCols = array( 'id', 'timeCreation', 'timeLastUpdate', 'title', 'shortDescription', 'mediumDescription', 'content' );
+        $allCols = array( 'id',/*'timeCreation', 'timeLastUpdate',*/ 'title', 'shortDescription', 'mediumDescription', 'content', 'urlAlias' );
         foreach( $allCols as $col ) {
-          if( $col === 'id' || $col === 'timeCreation' || $col === 'timeLastUpdate' ) {
+          if( $col === 'id' ) {
             $allData[ $col ] = $valueobject->getter( $col );
           }
           elseif( !empty( $valueobject::$cols[$col]['multilang'] ) ) {
-            $allData[ $col ] = $valueobject->getter( $col, $langFromExport );
+            if( !( $col === 'urlAlias' && $valueobject->getter( 'rTypeIdName' ) === 'rtypePoi' ) ) {
+              $allData[ $col ] = $valueobject->getter( $col, $langFromExport );
+            }
           }
         }
 
@@ -139,7 +141,8 @@ class AdminViewTranslates extends AdminViewMaster {
                 $rexData[ $colName ] = $relModel->getter( $colName );
               }
               elseif( !empty( $relModel::$cols[$colName]['multilang'] ) && $relModel::$cols[$colName]['type'] !== 'INT' && $colName !== 'textGplus' ) {
-                $rexData[ $colName ] = $relModel->getter( $colName, $langFromExport );
+                $valueField = $relModel->getter( $colName, $langFromExport );
+                $rexData[ $colName ] = !empty( $valueField ) ? $valueField : '';
               }
             }
 
@@ -191,9 +194,9 @@ class AdminViewTranslates extends AdminViewMaster {
       // Collections
       while( $valueobject = $collResList->fetch() ) {
         $allData = [];
-        $allCols = array( 'id', 'timeCreation', 'timeLastUpdate', 'title', 'shortDescription', 'description' );
+        $allCols = array( 'id', /*'timeCreation', 'timeLastUpdate',*/ 'title', 'shortDescription', 'description' );
         foreach( $allCols as $col ) {
-          if( $col === 'id' || $col === 'timeCreation' || $col === 'timeLastUpdate'  ) {
+          if( $col === 'id' ) {
             $allData[ $col ] = $valueobject->getter( $col );
           }
           else {
@@ -253,7 +256,7 @@ class AdminViewTranslates extends AdminViewMaster {
 
       foreach( $filesFolder as $fileName ) {
 
-        $fileJson = file_get_contents( $directory.'/'.$fileName);
+        $fileJson = file_get_contents( $directory.'/'.$fileName );
         if( $fileJson !== false ) {
           $fileDataArray = json_decode( $fileJson );
 
@@ -263,39 +266,37 @@ class AdminViewTranslates extends AdminViewMaster {
           // Array para actualizar/guardar datos de las colecciones
           $updateDataCol = [];
 
-          foreach( $fileDataArray as $file ) {
-            foreach( (array) $file as $typeFile => $typeData ) {
-              if( $typeFile === 'resources' ) {
-                // JSON recursos
-                foreach( (array) $typeData as $resData ) {
-                  $updateDataRes[$resData->id] = [];
-                  foreach( (array) $resData as $idField => $valueField ) {
-                    if( !is_object( $valueField ) ) {
-                      // Recurso base
-                      if( $idField!=='timeCreation' && $idField!=='timeLastUpdate' ) {
+          if( !empty( $fileDataArray ) ) {
+            foreach( $fileDataArray as $file ) {
+              foreach( (array) $file as $typeFile => $typeData ) {
+                if( $typeFile === 'resources' ) {
+                  // JSON recursos
+                  foreach( (array) $typeData as $resData ) {
+                    $updateDataRes[$resData->id] = [];
+                    foreach( (array) $resData as $idField => $valueField ) {
+                      if( !is_object( $valueField ) ) {
+                        // Recurso base
                         $updateDataRes[$resData->id][$idField] = $valueField;
                       }
-                    }
-                    else{
-                      // Modelos relacionados con el recurso base
-                      foreach( (array) $valueField as $nameModel => $modelRelated ) {
-                        if( !empty($nameModel) ) {
-                          $updateDataModelRelatedRes[$nameModel][$modelRelated->id] = [];
-                          foreach( (array) $modelRelated as $idFieldModelRelated => $valueFieldModelRelated ) {
-                            $updateDataModelRelatedRes[$nameModel][$modelRelated->id][$idFieldModelRelated] = $valueFieldModelRelated;
+                      else{
+                        // Modelos relacionados con el recurso base
+                        foreach( (array) $valueField as $nameModel => $modelRelated ) {
+                          if( !empty($nameModel) ) {
+                            $updateDataModelRelatedRes[$nameModel][$modelRelated->id] = [];
+                            foreach( (array) $modelRelated as $idFieldModelRelated => $valueFieldModelRelated ) {
+                              $updateDataModelRelatedRes[$nameModel][$modelRelated->id][$idFieldModelRelated] = $valueFieldModelRelated;
+                            }
                           }
                         }
                       }
                     }
                   }
                 }
-              }
-              elseif( $typeFile === 'collections' ) {
-                // JSON collections
-                foreach( (array) $typeData as $colData ) {
-                  $updateDataCol[$colData->id] = [];
-                  foreach( (array) $colData as $idField => $valueField ) {
-                    if( $idField!=='timeCreation' && $idField!=='timeLastUpdate' ) {
+                elseif( $typeFile === 'collections' ) {
+                  // JSON collections
+                  foreach( (array) $typeData as $colData ) {
+                    $updateDataCol[$colData->id] = [];
+                    foreach( (array) $colData as $idField => $valueField ) {
                       $updateDataCol[$colData->id][$idField] = $valueField;
                     }
                   }
