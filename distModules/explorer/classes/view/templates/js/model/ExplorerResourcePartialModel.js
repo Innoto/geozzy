@@ -6,18 +6,18 @@ geozzy.explorerComponents.resourcePartialModel = Backbone.Model.extend({
     id: false,
     title: false,
     description: false,
-    url: false
+    urlAlias: false
   },
 
   getUrl: function() {
     var that = this;
     var r;
 
-    if( that.get('url') === false) {
+    if( that.get('urlAlias') === false) {
       r = 'resource/' + that.get('id');
     }
     else  {
-      r = that.get('url');
+      r = that.get('urlAlias');
     }
 
     return r;
