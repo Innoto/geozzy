@@ -451,17 +451,24 @@ class AdminViewTranslates extends AdminViewMaster {
                 else {
                   // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
                   // echo '<p>'.$idField.' Collection: '.$valueField.'</p>';
+                  $maxSizeField = 0;
+                  $currentSizeField = 0;
                   if( !empty( $colModel::$cols[$idField]['size'] ) ) {
                     $maxSizeField = (int) $colModel::$cols[$idField]['size'];
                     $currentSizeField = strlen( $valueField );
-                    if( $maxSizeField < $currentSizeField ) {
-                      cogumelo::log( 'WARNING - Field: '.$idField.' ( CollectionModel '.$colData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
-                      $valueField = substr( $valueField, 0, $maxSizeField );
-                      echo '<div class="alert alert-danger">';
-                      echo '<p><strong>Id '.$colData['id'].'</strong> do modelo CollectionModel:<p>';
-                      echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
-                      echo '</div>';
-                    }
+                  }
+                  if( $colModel::$cols[$idField]['type'] === 'TEXT' ) {
+                    $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
+                    $currentSizeField = strlen( $valueField );
+                  }
+
+                  if( $maxSizeField < $currentSizeField ) {
+                    cogumelo::log( 'WARNING - Field: '.$idField.' ( CollectionModel - id: '.$colData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
+                    $valueField = substr( $valueField, 0, $maxSizeField );
+                    echo '<div class="alert alert-danger">';
+                    echo '<p><strong>Id '.$colData['id'].'</strong> do modelo CollectionModel:<p>';
+                    echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                    echo '</div>';
                   }
                   $colModel->setter( $idField, $valueField, $langToImport );
                 }
