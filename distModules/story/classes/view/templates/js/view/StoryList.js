@@ -66,8 +66,13 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
       that.parentStory.triggerEvent('stepChange', {id: that.stepsDOMEquivalences[0] , domElement: that.stepsDOM[0] });
 
       $('button.accessButton').click( function(ev){
-        geozzy.storyComponents.routerInstance.navigate( 'resource/' + $(ev.target).attr('dataResourceAccessButton') , false);
+        if( Backbone.History.started ){
+          Backbone.history.stop();
+        }
+        Backbone.history.start({ pushState: true }); // usar pushstate de forma temporal so aquí
         that.parentStory.triggerEvent( 'loadResource' , $(ev.target).attr('dataResourceAccessButton') );
+        geozzy.storyComponents.routerInstance.navigate( 'resource/' + $(ev.target).attr('dataResourceAccessButton') , false);
+        Backbone.history.start();
       });
 
     });
