@@ -177,8 +177,10 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
             $( '#'+that.divId ).show();
             that.moveInfoMapDivWhenBehindMouse();
             $('#' + that.divId + ' button.accessButton').on('click', function(ev){
-              geozzy.explorerComponents.routerInstance.navigate( 'resource/' + $(ev.target).attr('dataResourceAccessButton') , false);
+              that.hide();
+              that.parentExplorer.navigateUrl( $(ev.target).attr('dataResourceAccessButton') );
               that.parentExplorer.triggerEvent( 'resourceAccess' , {id:$(ev.target).attr('dataResourceAccessButton')} );
+
             })
 
           }
