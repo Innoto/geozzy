@@ -95,9 +95,15 @@ class AdminViewTranslates extends AdminViewMaster {
         $filters['lastUpdatefrom'] = $timeLastUpdate;
       }
 
+      $filaNameJson = 'resources';
       // rtype específico o todos
       if( is_numeric( $rTypeId ) ) {
         $filters['rTypeId'] = $rTypeId;
+
+        $resTypeModel = new ResourcetypeModel();
+        $resTypeList = $resTypeModel->listItems( array( 'filters' => array( 'id' => $rTypeId ), 'cache' => $this->cacheQuery ) );
+        $resTypeObj = is_object( $resTypeList ) ? $resTypeList->fetch() : false;
+        $filaNameJson = !empty( $resTypeObj ) ? ( 'resources_'.$resTypeObj->getter( 'idName' ) ) : 'resources_rtype';
       }
       else{
         // rTypes no permitidos (pilla todos los demás)
@@ -110,7 +116,7 @@ class AdminViewTranslates extends AdminViewMaster {
         'cache' => $this->cacheQuery
       ) );
 
-      header( 'Content-disposition: attachment; filename=resources_'.$langFromExport.'.json' );
+      header( 'Content-disposition: attachment; filename='.$filaNameJson.'_'.$langFromExport.'.json' );
       header( 'Content-Type: application/json; charset=utf-8' );
       echo '[{"resources":[';
       $c = '';
