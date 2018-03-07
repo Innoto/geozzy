@@ -95,9 +95,15 @@ class AdminViewTranslates extends AdminViewMaster {
         $filters['lastUpdatefrom'] = $timeLastUpdate;
       }
 
+      $filaNameJson = 'resources_all';
       // rtype específico o todos
       if( is_numeric( $rTypeId ) ) {
         $filters['rTypeId'] = $rTypeId;
+
+        $resTypeModel = new ResourcetypeModel();
+        $resTypeList = $resTypeModel->listItems( array( 'filters' => array( 'id' => $rTypeId ), 'cache' => $this->cacheQuery ) );
+        $resTypeObj = is_object( $resTypeList ) ? $resTypeList->fetch() : false;
+        $filaNameJson = !empty( $resTypeObj ) ? ( 'resources_'.$resTypeObj->getter( 'idName' ) ) : 'resources_rtype';
       }
       else{
         // rTypes no permitidos (pilla todos los demás)
@@ -110,20 +116,24 @@ class AdminViewTranslates extends AdminViewMaster {
         'cache' => $this->cacheQuery
       ) );
 
-      header( 'Content-disposition: attachment; filename=resources_'.$langFromExport.'.json' );
+      cogumelo::log( 'EXPORT - ResourceViewModel - '.$filaNameJson.' - Idioma: '.$langFromExport, 'AdminTranslates' );
+
+      header( 'Content-disposition: attachment; filename='.$filaNameJson.'_'.$langFromExport.'.json' );
       header( 'Content-Type: application/json; charset=utf-8' );
       echo '[{"resources":[';
       $c = '';
       while( $valueobject = $resourceList->fetch() ) {
         $allData = [];
 
-        $allCols = array( 'id', 'timeCreation', 'timeLastUpdate', 'title', 'shortDescription', 'mediumDescription', 'content' );
+        $allCols = array( 'id',/*'timeCreation', 'timeLastUpdate',*/ 'title', 'shortDescription', 'mediumDescription', 'content', 'urlAlias' );
         foreach( $allCols as $col ) {
-          if( $col === 'id' || $col === 'timeCreation' || $col === 'timeLastUpdate' ) {
+          if( $col === 'id' ) {
             $allData[ $col ] = $valueobject->getter( $col );
           }
           elseif( !empty( $valueobject::$cols[$col]['multilang'] ) ) {
-            $allData[ $col ] = $valueobject->getter( $col, $langFromExport );
+            if( !( $col === 'urlAlias' && $valueobject->getter( 'rTypeIdName' ) === 'rtypePoi' ) ) {
+              $allData[ $col ] = $valueobject->getter( $col, $langFromExport );
+            }
           }
         }
 
@@ -139,7 +149,8 @@ class AdminViewTranslates extends AdminViewMaster {
                 $rexData[ $colName ] = $relModel->getter( $colName );
               }
               elseif( !empty( $relModel::$cols[$colName]['multilang'] ) && $relModel::$cols[$colName]['type'] !== 'INT' && $colName !== 'textGplus' ) {
-                $rexData[ $colName ] = $relModel->getter( $colName, $langFromExport );
+                $valueField = $relModel->getter( $colName, $langFromExport );
+                $rexData[ $colName ] = !empty( $valueField ) ? $valueField : '';
               }
             }
 
@@ -184,6 +195,8 @@ class AdminViewTranslates extends AdminViewMaster {
       $resCollModel =  new CollectionModel();
       $collResList = $resCollModel->listItems( array( 'filters' => $filters, 'cache' => $this->cacheQuery ) );
 
+      cogumelo::log( 'EXPORT - CollectionModel - Idioma: '.$langFromExport, 'AdminTranslates' );
+
       header( 'Content-disposition: attachment; filename=collections_'.$langFromExport.'.json' );
       header( 'Content-Type: application/json; charset=utf-8' );
       echo '[{"collections":[';
@@ -191,9 +204,9 @@ class AdminViewTranslates extends AdminViewMaster {
       // Collections
       while( $valueobject = $collResList->fetch() ) {
         $allData = [];
-        $allCols = array( 'id', 'timeCreation', 'timeLastUpdate', 'title', 'shortDescription', 'description' );
+        $allCols = array( 'id', /*'timeCreation', 'timeLastUpdate',*/ 'title', 'shortDescription', 'description' );
         foreach( $allCols as $col ) {
-          if( $col === 'id' || $col === 'timeCreation' || $col === 'timeLastUpdate'  ) {
+          if( $col === 'id' ) {
             $allData[ $col ] = $valueobject->getter( $col );
           }
           else {
@@ -242,7 +255,7 @@ class AdminViewTranslates extends AdminViewMaster {
     if( $langTrue && is_dir( $directory ) ) {
       echo '<p>Idioma seleccionado para importar <strong>Código ISO: '.$langToImport.'</strong><p>';
 
-      // Directorio donde queremos importar
+      // Directorio desde donde queremos importar
       $filesDirectory = scandir( $directory );
 
       // Quitamos '.', '..'
@@ -253,7 +266,7 @@ class AdminViewTranslates extends AdminViewMaster {
 
       foreach( $filesFolder as $fileName ) {
 
-        $fileJson = file_get_contents( $directory.'/'.$fileName);
+        $fileJson = file_get_contents( $directory.'/'.$fileName );
         if( $fileJson !== false ) {
           $fileDataArray = json_decode( $fileJson );
 
@@ -263,39 +276,37 @@ class AdminViewTranslates extends AdminViewMaster {
           // Array para actualizar/guardar datos de las colecciones
           $updateDataCol = [];
 
-          foreach( $fileDataArray as $file ) {
-            foreach( (array) $file as $typeFile => $typeData ) {
-              if( $typeFile === 'resources' ) {
-                // JSON recursos
-                foreach( (array) $typeData as $resData ) {
-                  $updateDataRes[$resData->id] = [];
-                  foreach( (array) $resData as $idField => $valueField ) {
-                    if( !is_object( $valueField ) ) {
-                      // Recurso base
-                      if( $idField!=='timeCreation' && $idField!=='timeLastUpdate' ) {
+          if( !empty( $fileDataArray ) ) {
+            foreach( $fileDataArray as $file ) {
+              foreach( (array) $file as $typeFile => $typeData ) {
+                if( $typeFile === 'resources' ) {
+                  // JSON recursos
+                  foreach( (array) $typeData as $resData ) {
+                    $updateDataRes[$resData->id] = [];
+                    foreach( (array) $resData as $idField => $valueField ) {
+                      if( !is_object( $valueField ) ) {
+                        // Recurso base
                         $updateDataRes[$resData->id][$idField] = $valueField;
                       }
-                    }
-                    else{
-                      // Modelos relacionados con el recurso base
-                      foreach( (array) $valueField as $nameModel => $modelRelated ) {
-                        if( !empty($nameModel) ) {
-                          $updateDataModelRelatedRes[$nameModel][$modelRelated->id] = [];
-                          foreach( (array) $modelRelated as $idFieldModelRelated => $valueFieldModelRelated ) {
-                            $updateDataModelRelatedRes[$nameModel][$modelRelated->id][$idFieldModelRelated] = $valueFieldModelRelated;
+                      else{
+                        // Modelos relacionados con el recurso base
+                        foreach( (array) $valueField as $nameModel => $modelRelated ) {
+                          if( !empty($nameModel) ) {
+                            $updateDataModelRelatedRes[$nameModel][$modelRelated->id] = [];
+                            foreach( (array) $modelRelated as $idFieldModelRelated => $valueFieldModelRelated ) {
+                              $updateDataModelRelatedRes[$nameModel][$modelRelated->id][$idFieldModelRelated] = $valueFieldModelRelated;
+                            }
                           }
                         }
                       }
                     }
                   }
                 }
-              }
-              elseif( $typeFile === 'collections' ) {
-                // JSON collections
-                foreach( (array) $typeData as $colData ) {
-                  $updateDataCol[$colData->id] = [];
-                  foreach( (array) $colData as $idField => $valueField ) {
-                    if( $idField!=='timeCreation' && $idField!=='timeLastUpdate' ) {
+                elseif( $typeFile === 'collections' ) {
+                  // JSON collections
+                  foreach( (array) $typeData as $colData ) {
+                    $updateDataCol[$colData->id] = [];
+                    foreach( (array) $colData as $idField => $valueField ) {
                       $updateDataCol[$colData->id][$idField] = $valueField;
                     }
                   }
@@ -307,37 +318,75 @@ class AdminViewTranslates extends AdminViewMaster {
           echo '<hr><p>- <em>Arquivo: '.$fileName.'</em></p>';
           // Actualizamos/guardamos las traducciones según idioma del recurso base
           if( !empty( $updateDataRes ) ) {
+            cogumelo::log( 'Recursos - Idioma (Codigo ISO): '.$langToImport, 'AdminTranslates' );
             echo '<div class="well"><p><ins>"Resources"</ins></p><p>INICIO: Actualizando... "Resources"</p>';
             foreach( $updateDataRes as $resData ) {
               $resModel = new ResourceModel();
               foreach( $resData as $idField => $valueField ) {
                 if( $idField === 'id' ) {
+                  // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
                   // echo '<p>'.$idField.' Resource: '.$valueField.'</p>';
                   $resModel->setter( $idField, $valueField );
                 }
                 else {
-                  // echo '<p>'.$idField.' Resource: '.$valueField.'</p>';
-                  if( !empty( $resModel::$cols[$idField]['size'] ) ) {
-                    $maxSizeField = (int) $resModel::$cols[$idField]['size'];
-                    $currentSizeField = strlen( $valueField );
+                  if( $idField !== 'urlAlias' ) {
+                    // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
+                    // echo '<p>'.$idField.' Resource: '.$valueField.'</p>';
+                    $maxSizeField = 0;
+                    $currentSizeField = 0;
+                    if( !empty( $resModel::$cols[$idField]['size'] ) ) {
+                      $maxSizeField = (int) $resModel::$cols[$idField]['size'];
+                      $currentSizeField = strlen( $valueField );
+                    }
+                    if( $resModel::$cols[$idField]['type'] === 'TEXT' ) {
+                      $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
+                      $currentSizeField = strlen( $valueField );
+                    }
+
                     if( $maxSizeField < $currentSizeField ) {
+                      cogumelo::log( 'WARNING - Field: '.$idField.' ( ResourceModel - id: '.$resData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
                       $valueField = substr( $valueField, 0, $maxSizeField );
                       echo '<div class="alert alert-danger">';
-                      echo '<p><strong>Id extensión '.$resData['id'].'</strong> do modelo ResourceModel:<p>';
+                      echo '<p><strong>Id '.$resData['id'].'</strong> do modelo ResourceModel:<p>';
                       echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
                       echo '</div>';
                     }
+                    $resModel->setter( $idField, $valueField, $langToImport );
                   }
-                  $resModel->setter( $idField, $valueField, $langToImport );
                 }
               }
-              $resModel->save();
+
+              if( $resModel->save() === false ) {
+                cogumelo::log( 'ERROR SAVE - ResourceModel - id: '.$resData['id'], 'AdminTranslates' );
+              }
+              else {
+                cogumelo::log( 'SUCCESS SAVE - ResourceModel - id: '.$resData['id'], 'AdminTranslates' );
+              }
+
+              // Una vez guardado el recurso, guardamos la urlAlias (empleamos método de colision de url de ResourceController)
+              $resCtrl = new ResourceController();
+              $url = $resCtrl->setUrl( $resData['id'], $langToImport, $resData['urlAlias'] );
+
+              if( !empty( $url ) ) {
+                cogumelo::log( 'SUCCESS SAVE - UrlAliasModel - id: '.$url. ' ( resource '.$resData['id'].' )', 'AdminTranslates' );
+                // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
+                // echo '<p>UrlAliasModel gardado correctamente - <strong>Id url: '.$url.'</strong> (Resource: '.$resData['id'].')</p>';
+              }
+              else {
+                cogumelo::log( 'ERROR SAVE - UrlAliasModel - id: '.$url. ' ( resource '.$resData['id'].' )', 'AdminTranslates' );
+                echo '<div class="alert alert-danger">';
+                echo '<p>( Resource: '.$resData['id'].' )</p>';
+                echo '<p><strong>UrlAliasModel - ERROR gardando a url</strong></p>';
+                echo '</div>';
+              }
+
             }
             echo '<p>FIN: Actualizando... "Resources"</p></div>';
           }
 
           // Actualizamos/guardamos las traducciones según idioma los modelos relacionados del recurso base
           if( !empty( $updateDataModelRelatedRes ) ) {
+            cogumelo::log( 'Extensiones - Idioma (Codigo ISO): '.$langToImport, 'AdminTranslates' );
             echo '<div class="well"><p><ins>"modelRelated Resources"</ins></p><p>INICIO: Actualizando... "modelRelated Resources"</p>';
             foreach( $updateDataModelRelatedRes as $modelRelatedName => $modelRelatedData ) {
               echo '<p>- Modelo: <strong>'.$modelRelatedName.'</strong></p>';
@@ -345,26 +394,43 @@ class AdminViewTranslates extends AdminViewMaster {
                 $resRelatedModel = new $modelRelatedName();
                 foreach( $modelData as $idFieldModel => $valueFieldModel ) {
                   if( $idFieldModel === 'id' ) {
+                    // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
                     // echo '<p>'.$idFieldModel.' Ext: '.$valueFieldModel.'</p>';
                     $resRelatedModel->setter( $idFieldModel, $valueFieldModel );
                   }
                   else {
+                    // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
                     // echo '<p>'.$idFieldModel.' Ext: '.$valueFieldModel.'</p>';
+                    $maxSizeField = 0;
+                    $currentSizeField = 0;
                     if( !empty( $resRelatedModel::$cols[$idFieldModel]['size'] ) ) {
                       $maxSizeField = (int) $resRelatedModel::$cols[$idFieldModel]['size'];
                       $currentSizeField = strlen( $valueFieldModel );
-                      if( $maxSizeField < $currentSizeField ) {
-                        $valueFieldModel = substr( $valueFieldModel, 0, $maxSizeField );
-                        echo '<div class="alert alert-danger">';
-                        echo '<p><strong>Id extensión '.$modelData['id'].'</strong> do modelo '.$modelRelatedName.':<p>';
-                        echo '<p>O campo <strong>'.$idFieldModel.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
-                        echo '</div>';
-                      }
+                    }
+                    if( $resRelatedModel::$cols[$idFieldModel]['type'] === 'TEXT' ) {
+                      $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
+                      $currentSizeField = strlen( $valueFieldModel );
+                    }
+
+                    if( $maxSizeField < $currentSizeField ) {
+                      cogumelo::log( 'WARNING - Field: '.$idFieldModel.' ( '.$modelRelatedName.' - id: '.$modelData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
+                      $valueFieldModel = substr( $valueFieldModel, 0, $maxSizeField );
+                      echo '<div class="alert alert-danger">';
+                      echo '<p><strong>Id '.$modelData['id'].'</strong> do modelo '.$modelRelatedName.':<p>';
+                      echo '<p>O campo <strong>'.$idFieldModel.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                      echo '</div>';
                     }
                     $resRelatedModel->setter( $idFieldModel, $valueFieldModel, $langToImport );
                   }
                 }
-                $resRelatedModel->save();
+
+                if( $resRelatedModel->save() === false ) {
+                  cogumelo::log( 'ERROR SAVE - '.$modelRelatedName.' - id: '.$modelData['id'], 'AdminTranslates' );
+                }
+                else {
+                  cogumelo::log( 'SUCCESS SAVE - '.$modelRelatedName.' - id: '.$modelData['id'], 'AdminTranslates' );
+                }
+
               }
             }
             echo '<p>FIN: Actualizando... "modelRelated Resources"</p></div>';
@@ -372,31 +438,49 @@ class AdminViewTranslates extends AdminViewMaster {
 
           // Actualizamos/guardamos las traducciones según idioma de las colecciones
           if( !empty( $updateDataCol ) ) {
+            cogumelo::log( 'Colecciones - Idioma (Codigo ISO): '.$langToImport, 'AdminTranslates' );
             echo '<div class="well"><p><ins>"Collections"</ins></p><p>INICIO: Actualizando... "Collections"</p>';
             foreach( $updateDataCol as $colData ) {
               $colModel = new CollectionModel();
               foreach( $colData as $idField => $valueField ) {
                 if( $idField === 'id' ) {
+                  // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
                   // echo '<p>'.$idField.' Collection: '.$valueField.'</p>';
                   $colModel->setter( $idField, $valueField );
                 }
                 else {
+                  // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
                   // echo '<p>'.$idField.' Collection: '.$valueField.'</p>';
+                  $maxSizeField = 0;
+                  $currentSizeField = 0;
                   if( !empty( $colModel::$cols[$idField]['size'] ) ) {
                     $maxSizeField = (int) $colModel::$cols[$idField]['size'];
                     $currentSizeField = strlen( $valueField );
-                    if( $maxSizeField < $currentSizeField ) {
-                      $valueField = substr( $valueField, 0, $maxSizeField );
-                      echo '<div class="alert alert-danger">';
-                      echo '<p><strong>Id extensión '.$colData['id'].'</strong> do modelo CollectionModel:<p>';
-                      echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
-                      echo '</div>';
-                    }
+                  }
+                  if( $colModel::$cols[$idField]['type'] === 'TEXT' ) {
+                    $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
+                    $currentSizeField = strlen( $valueField );
+                  }
+
+                  if( $maxSizeField < $currentSizeField ) {
+                    cogumelo::log( 'WARNING - Field: '.$idField.' ( CollectionModel - id: '.$colData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
+                    $valueField = substr( $valueField, 0, $maxSizeField );
+                    echo '<div class="alert alert-danger">';
+                    echo '<p><strong>Id '.$colData['id'].'</strong> do modelo CollectionModel:<p>';
+                    echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                    echo '</div>';
                   }
                   $colModel->setter( $idField, $valueField, $langToImport );
                 }
               }
-              $colModel->save();
+
+              if( $colModel->save() === false ) {
+                cogumelo::log( 'ERROR SAVE - CollectionModel - id: '.$colData['id'], 'AdminTranslates' );
+              }
+              else {
+                cogumelo::log( 'SUCCESS SAVE - CollectionModel - id: '.$colData['id'], 'AdminTranslates' );
+              }
+
             }
             echo '<p>FIN: Actualizando... "Collections"</p></div>';
           }

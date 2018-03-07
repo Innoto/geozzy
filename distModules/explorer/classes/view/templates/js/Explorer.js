@@ -73,10 +73,15 @@ geozzy.explorer = function( opts ) {
 
 
   if( that.options.useUrlRouter == true && typeof geozzy.explorerComponents.routerInstance == 'undefined' ) {
-   geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
-   geozzy.explorerComponents.routerInstance.parentExplorer = that;
+    //'mapas-interactivos': 'main',
 
+    geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
+
+    geozzy.explorerComponents.routerInstance.parentExplorer = that;
+    geozzy.explorerComponents.routerInstance.route( window.location.pathname.substring(1), 'explorerMain' );
   }
+
+
 
 
   //
@@ -92,16 +97,25 @@ geozzy.explorer = function( opts ) {
     that.bindEvent('resourceClick', function(param){
 
       if(typeof geozzy.explorerComponents.routerInstance != 'undefined' && typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
-        geozzy.explorerComponents.routerInstance.navigate('resource/'+param.id, true);
+        that.navigateUrl( param.id );
+
+/////
+        that.triggerEvent('resourceAccess', {id: param.id});
+        //that.parentExplorer.options.resourceAccess(id);
+        if(that.explorerTouchDevice) {
+          that.triggerEvent('resourceMouseOut', {id:0});
+        }
+///
       }
     });
 
 
 
     $(document).ready( function(){
+      /*
       if( !Backbone.History.started ){
-        Backbone.history.start();
-      }
+        Backbone.history.start({ pushState: true });
+      }*/
     });
 
     // render filters
@@ -138,6 +152,23 @@ geozzy.explorer = function( opts ) {
 
     );
 
+  }
+
+
+  that.navigateUrl = function( rid ) {
+
+    if(typeof geozzy.explorerComponents.routerInstance != 'undefined' && typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
+
+      if( Backbone.History.started ){
+        Backbone.history.stop();
+      }
+      Backbone.history.start({ pushState: true }); // usar pushstate de forma temporal
+
+      geozzy.explorerComponents.routerInstance.navigate( that.resourcePartialList.get(rid).getUrl() , false);
+
+      Backbone.history.stop();
+      Backbone.history.start()
+    }
   }
 
 
@@ -316,13 +347,14 @@ geozzy.explorer = function( opts ) {
 
         if( that.options.useUrlRouter &&  isFirstTime ){
 
+          /*
           if( !Backbone.History.started ){
-            Backbone.history.start();
+            Backbone.history.start({ pushState: true });
           }
           else {
             Backbone.history.stop();
-            Backbone.history.start();
-          }
+            Backbone.history.start({ pushState: true });
+          }*/
         }
 
         that.triggerEvent('partialLoadSuccess', {});

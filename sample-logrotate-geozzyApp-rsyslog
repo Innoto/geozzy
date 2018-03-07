@@ -1,0 +1,21 @@
+
+/var/log/cogumelo/*log {
+  create 660 myUSER syslog
+  missingok
+  daily
+  rotate 800
+  maxage 750
+  dateext
+  compress
+  notifempty
+
+  sharedscripts
+  postrotate
+    invoke-rc.d rsyslog rotate > /dev/null
+  endscript
+  lastaction
+    chmod 400 /var/log/cogumelo/*gz
+    chown myUSER /var/log/cogumelo/*gz
+  endscript
+}
+

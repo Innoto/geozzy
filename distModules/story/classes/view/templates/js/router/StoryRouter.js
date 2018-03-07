@@ -4,8 +4,8 @@ if (! geozzy.storyComponents) { geozzy.storyComponents= {}; }
 geozzy.storyComponents.mainRouter = Backbone.Router.extend({
   parentStory: false,
   routes: {
-    '': 'main',
-    'resource/:id': 'resource'
+    '': 'main'//,
+    //'resource/:id': 'resource'
   },
 
 

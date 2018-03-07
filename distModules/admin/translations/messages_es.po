@@ -328,6 +328,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:68
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:72
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:74
 msgid "Access denied"
 msgstr "Acceso denegado"
 
@@ -514,6 +515,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:110
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:110
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:222
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:235
 msgid "Import"
 msgstr ""
 

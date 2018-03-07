@@ -60,6 +60,10 @@ geozzy.storyComponents.StoryListAccView = Backbone.View.extend({
 
     that.parentStory.bindEvent('storyReady', function() {
       that.parentStory.triggerEvent('stepChange', {id: that.stepsDOMEquivalences[0] , domElement: that.stepsDOM[0] });
+      $('button.accessButton').click( function(ev){
+        geozzy.storyComponents.routerInstance.navigate( 'resource/' +$(ev.target).attr('dataResourceAccessButton') , false);
+        that.parentStory.triggerEvent( 'loadResource' , $(ev.target).attr('dataResourceAccessButton') );        
+      });
     });
 
   }

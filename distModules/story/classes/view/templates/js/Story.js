@@ -37,13 +37,15 @@ geozzy.story = function( opts ) {
     // set explorer router
     geozzy.storyComponents.routerInstance = new geozzy.storyComponents.mainRouter();
     geozzy.storyComponents.routerInstance.parentStory = that;
+    geozzy.storyComponents.routerInstance.route( window.location.pathname.substring(1), 'main' );
+/*
     if( !Backbone.History.started ){
-      Backbone.history.start();
+      Backbone.history.start({ pushState: true });
     }
     else {
       Backbone.history.stop();
-      Backbone.history.start();
-    }
+      Backbone.history.start({ pushState: true });
+    }*/
 
     lang = that.getLang();
     that.storySteps.url = lang + that.options.storyAPIHost + 'resource/' + that.options.storyReference  ;
