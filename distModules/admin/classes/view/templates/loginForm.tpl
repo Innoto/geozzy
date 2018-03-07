@@ -22,7 +22,7 @@
 
 </head>
 
-<body>
+<body class="adminLogin">
 
   <div class="container">
     <div class="row">
@@ -33,6 +33,17 @@
           </div>
           <div class="panel-body">
             {$loginHtml}
+
+            <a class="initRecoveryPass">{t}He olvidado mi contraseña{/t}</a>
+            <div class="recoveryPasswordForm" style="display:none;">
+              <h3>{t}Recuperar contraseña{/t}</h3>
+              <p>{t}Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un enlace para restablecer tu contraseña{/t}</p>
+              <form onsubmit="return false;"><div class="cgmMForm-wrap"><input type="text" class="recoveryPassEmail" placeholder="Email"></div>
+              <div class="cgmMForm-wrap"><input value="{t}Recuperar{/t}" type="button" class="recoveryPassSubmit btn btnBecarios pull-right"></div></form>
+            </div>
+            <div class="recoveryPasswordFinalMsg" style="display:none;">
+              {t}Se ha enviado un correo electrónico para recuperar tu cuenta de usuario.{/t}
+            </div>
           </div>
         </div>
       </div>
