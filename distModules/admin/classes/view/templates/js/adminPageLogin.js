@@ -19,7 +19,7 @@ function initRecoveryPass(){
 function sendRecoveryPass(){
   var that = this;
   var userEmail = $('.adminLogin .recoveryPassEmail').val();
-console.log(userEmail);
+
   if(userEmail !== ''){
     $.ajax({
       url: "/api/core/userunknownpass",
