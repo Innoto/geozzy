@@ -560,6 +560,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:110
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:110
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:222
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:235
 msgid "Import"
 msgstr ""
 

@@ -436,3 +436,7 @@ msgstr "evento"
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:12
 msgid "Search an address"
 msgstr "Buscar unha dirección"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
+msgid "SEO: URL Secundaria (Alias)"
+msgstr ""

@@ -342,3 +342,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:374
 msgid "Event"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
+msgid "SEO: URL Secundaria (Alias)"
+msgstr ""
