@@ -222,8 +222,11 @@ class AdminViewTranslates extends AdminViewMaster {
           }
         }
 
-        echo $c.json_encode( $allData );
-        $c=',';
+        if( count( $allData ) > 1 ) {
+          echo $c.json_encode( $allData );
+          $c=',';
+        }
+
       } // while
       echo ']}]';
     }
