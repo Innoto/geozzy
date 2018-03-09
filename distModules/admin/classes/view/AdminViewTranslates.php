@@ -132,7 +132,10 @@ class AdminViewTranslates extends AdminViewMaster {
           }
           elseif( !empty( $valueobject::$cols[$col]['multilang'] ) ) {
             if( !( $col === 'urlAlias' && $valueobject->getter( 'rTypeIdName' ) === 'rtypePoi' ) ) {
-              $allData[ $col ] = $valueobject->getter( $col, $langFromExport );
+              $valueField = $valueobject->getter( $col, $langFromExport );
+              if( !empty( $valueField ) ) {
+                $allData[ $col ] = $valueField;
+              }
             }
           }
         }
@@ -149,8 +152,10 @@ class AdminViewTranslates extends AdminViewMaster {
                 $rexData[ $colName ] = $relModel->getter( $colName );
               }
               elseif( !empty( $relModel::$cols[$colName]['multilang'] ) && $relModel::$cols[$colName]['type'] !== 'INT' && $colName !== 'textGplus' ) {
-                $valueField = $relModel->getter( $colName, $langFromExport );
-                $rexData[ $colName ] = !empty( $valueField ) ? $valueField : '';
+                $valueFieldExt = $relModel->getter( $colName, $langFromExport );
+                if( !empty( $valueFieldExt ) ) {
+                  $rexData[ $colName ] =  $valueFieldExt;
+                }
               }
             }
 
@@ -210,7 +215,10 @@ class AdminViewTranslates extends AdminViewMaster {
             $allData[ $col ] = $valueobject->getter( $col );
           }
           else {
-            $allData[ $col ] = $valueobject->getter( $col, $langFromExport );
+            $valueFieldCol = $valueobject->getter( $col, $langFromExport );
+            if( !empty( $valueFieldCol ) ) {
+              $allData[ $col ] = $valueFieldCol;
+            }
           }
         }
 
