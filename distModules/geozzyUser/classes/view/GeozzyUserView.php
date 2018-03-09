@@ -236,7 +236,7 @@ class GeozzyUserView extends View {
 
       if( $user ) {
         $userData = $user->getAllData('onlydata');
-        error_log( 'USER: '.json_encode( $userData ) );
+        //error_log( 'USER: '.json_encode( $userData ) );
 
         // AutoLogueamos al usuario
         $useraccesscontrol = new UserAccessController();
@@ -332,7 +332,7 @@ class GeozzyUserView extends View {
         )->fetch();
 
         error_log( '(Notice) checkVerifyLink: URL no valida. $urlParams '.print_r( $urlParams, true ) );
-        error_log( '$userData '.print_r( $userData, true ) );
+        //error_log( '$userData '.print_r( $userData, true ) );
         error_log( '$hash '.print_r( $hash, true ) );
       }
 
@@ -342,7 +342,7 @@ class GeozzyUserView extends View {
   }
 
   public function sendUnknownPassEmail( $userData ) {
-    error_log( 'sendUnknownPassEmail: '.json_encode( $userData ) );
+    //error_log( 'sendUnknownPassEmail: '.json_encode( $userData ) );
     $status = false;
 
     Cogumelo::load( 'coreController/MailController.php' );

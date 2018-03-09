@@ -38,6 +38,7 @@ class AdminViewLogin extends View
     $form->setSuccess( 'redirect', '/admin' );
 
     $loginHtml = $userView->loginFormGet( $form );
+    $this->template->addClientScript( 'js/adminPageLogin.js', 'admin');
     $this->template->assign('loginHtml', $loginHtml);
 
     $this->template->setTpl('loginForm.tpl', 'admin');
