@@ -38,7 +38,7 @@ msgstr "Google+ compartira automáticamente a URL do recurso"
 
 #: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:60
 msgid "Activate share on facebook"
-msgstr "Acrtivar compartir en Facebook"
+msgstr "Activar compartir en Facebook"
 
 #: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:64
 msgid "Text to share on facebook"
