@@ -202,11 +202,13 @@ class RTUtilsController {
           continue;
         }
 
-        foreach( $tax['name'] as $langKey => $name ) {
-          $tax['name_'.$langKey] = $name;
-        }
-        unset($tax['name']);
 
+        if( isset($tax['name']) ) {
+          foreach( $tax['name'] as $langKey => $name ) {
+            $tax['name_'.$langKey] = $name;
+          }
+          unset($tax['name']);
+        }
 
         $existTaxonomygroupModel = ( new TaxonomygroupModel() )->listItems(['filters'=>['idName'=> $tax['idName'] ]])->fetch();
         if( $existTaxonomygroupModel ) {
@@ -227,7 +229,7 @@ class RTUtilsController {
 
             if( !empty( $term['icon'] ) ) {
               $iconAbs = ModuleController::getRealFilePath( 'classes/'.$term['icon'] , $this->moduleClass );
-              if( !empty( $iconAbs ) && file_exists( $iconAbs ) ) {            
+              if( !empty( $iconAbs ) && file_exists( $iconAbs ) ) {
                 // Cogumelo::debug( __METHOD__.' - iconAbs: ' . $iconAbs );
                 $iconAbsNameExt = pathinfo( $iconAbs, PATHINFO_BASENAME );
 
