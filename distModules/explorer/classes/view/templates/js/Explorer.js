@@ -96,16 +96,14 @@ geozzy.explorer = function( opts ) {
 
     that.bindEvent('resourceClick', function(param){
 
-      if(typeof geozzy.explorerComponents.routerInstance != 'undefined' && typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
+      if( that.options.useUrlRouter == true ){
         that.navigateUrl( param.id );
-
-/////
         that.triggerEvent('resourceAccess', {id: param.id});
         //that.parentExplorer.options.resourceAccess(id);
         if(that.explorerTouchDevice) {
           that.triggerEvent('resourceMouseOut', {id:0});
         }
-///
+
       }
     });
 
@@ -157,15 +155,12 @@ geozzy.explorer = function( opts ) {
 
   that.navigateUrl = function( rid ) {
 
-    if(typeof geozzy.explorerComponents.routerInstance != 'undefined' && typeof geozzy.explorerComponents.routerInstance.navigate != 'undefined' ){
-
+    if( that.options.useUrlRouter == true ) {
       if( Backbone.History.started ){
         Backbone.history.stop();
       }
       Backbone.history.start({ pushState: true }); // usar pushstate de forma temporal
-
       geozzy.explorerComponents.routerInstance.navigate( that.resourcePartialList.get(rid).getUrl() , false);
-
       Backbone.history.stop();
       Backbone.history.start()
     }
