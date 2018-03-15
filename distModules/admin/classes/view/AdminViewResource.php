@@ -427,7 +427,7 @@ class AdminViewResource extends AdminViewMaster {
     $resp = $resourceView->actionResourceForm();
     if( $resp['status'] ) {
       $resp['form']->reset();
-      $resp['form']->removeAllFormsInSession();
+      // $resp['form']->removeAllFormsInSession();
     }
   }
 
