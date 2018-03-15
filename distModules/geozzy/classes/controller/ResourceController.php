@@ -1633,8 +1633,97 @@ class ResourceController {
     }
   }
 
+
+
+
+
+
+
+
+
+
+  public function setTaxTerms( $taxGroup, $taxTermIds, $resource ) {
+    // error_log(__METHOD__);
+    $result = true;
+
+
+    $relPrevInfo = false;
+
+    $baseResId = is_numeric( $resource ) ? $resource : $resource->getter( 'id' );
+
+    if( $taxTermIds !== false && !is_array( $taxTermIds ) ) {
+      $taxTermIds = ( $taxTermIds !== '' &&  is_numeric( $taxTermIds ) ) ? [ $taxTermIds ] : false;
+    }
+
+    // Si estamos editando, repasamos y borramos relaciones sobrantes
+    if( !empty( $baseResId ) ) {
+
+      $relFilter = [ 'resource' => $baseResId ];
+
+      if( is_numeric( $taxGroup ) ) {
+        $relFilter[ 'taxgroup' ] = $taxGroup;
+      }
+      else {
+        $relFilter[ 'idNameTaxgroup' ] = $taxGroup;
+      }
+
+      $relModel = new ResourceTaxonomyAllModel();
+      $relPrevList = $relModel->listItems([
+        'filters' => $relFilter, 'cache' => $this->cacheQuery
+      ]);
+      if( is_object( $relPrevList ) ) {
+        // estaban asignados antes
+        $relPrevInfo = [];
+        $resTermModel = new ResourceTaxonomytermModel();
+        while( $relPrev = $relPrevList->fetch() ){
+          $relPrevInfo[ $relPrev->getter( 'id' ) ] = $relPrev->getter( 'idResTaxTerm' );
+          if( $taxTermIds === false || !in_array( $relPrev->getter( 'id' ), $taxTermIds ) ) { // desasignar
+            // buscamos el término descartado y lo borramos
+            $resTerm = $resTermModel->listItems([
+              'filters' => [ 'resource' => $baseResId, 'taxonomyterm' =>$relPrev->getter( 'id' ) ],
+              'cache' => $this->cacheQuery
+            ])->fetch();
+            $resTerm->delete();
+          }
+        }
+      }
+    }
+
+    // Creamos-Editamos todas las relaciones
+    if( $taxTermIds !== false ) {
+      $weight = 0;
+      foreach( $taxTermIds as $value ) {
+        $weight++;
+        $info = [ 'resource' => $baseResId, 'taxonomyterm' => $value, 'weight' => $weight ];
+        if( $relPrevInfo !== false && isset( $relPrevInfo[ $value ] ) ) { // Update
+          $info[ 'id' ] = $relPrevInfo[ $value ];
+        }
+
+        $relObj = new ResourceTaxonomytermModel( $info );
+        if( !$relObj->save() ) {
+          $result = false;
+          break;
+        }
+      }
+    }
+
+    return $result;
+  } // setTaxTerms( $taxGroup, $taxTermIds, $resource )
+
+
+
+  // public function setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj ) {
+  //   // error_log(__METHOD__);
+  //   if( !$this->setTaxTerms( $taxGroup, $taxTermIds, $baseObj ) ) {
+  //     $form->addFieldRuleError( $fieldName, false, __( 'Error setting values' ) );
+  //   }
+  // } // setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj )
+
+
+
   public function setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj ) {
-    // error_log( "ResourceController: setFormTax $fieldName, $taxGroup, ".$baseObj->getter( 'id' ) );
+    // error_log(__METHOD__);
+
     $relPrevInfo = false;
     $baseId = $baseObj->getter( 'id' );
     // $taxTermIds = $form->getFieldValue( $fieldName );
@@ -1690,6 +1779,10 @@ class ResourceController {
       }
     }
   } // setFormTax( $form, $fieldName, $taxGroup, $taxTermIds, $baseObj )
+
+
+
+
 
 
 
