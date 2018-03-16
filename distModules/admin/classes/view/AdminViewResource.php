@@ -424,7 +424,11 @@ class AdminViewResource extends AdminViewMaster {
 
   public function sendResourceForm() {
     $resourceView = new ResourceView();
-    $resourceView->actionResourceForm();
+    $resp = $resourceView->actionResourceForm();
+    if( $resp['status'] ) {
+      $resp['form']->reset();
+      // $resp['form']->removeAllFormsInSession();
+    }
   }
 
   public function sendModalResourceForm() {

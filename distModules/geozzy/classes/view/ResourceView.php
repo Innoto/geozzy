@@ -114,12 +114,14 @@ class ResourceView extends View {
     if( !$form->existErrors() ) {
       // Validar y guardar los datos
       $resource = $this->actionResourceFormProcess( $form );
-    }else{
-      // error_log( "entro: actionResourceForm()" );
+    }
+    else{
       $form->addFormError('Error en el formulario', 'formErrors');
     }
     // Enviamos el OK-ERROR a la BBDD y al formulario
     $this->actionResourceFormSuccess( $form, $resource );
+
+    return( [ 'status' => !$form->existErrors(), 'form' => $form, 'resource' => $resource ] );
   } // function actionResourceForm()
 
 
