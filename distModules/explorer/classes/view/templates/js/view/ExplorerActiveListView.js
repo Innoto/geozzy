@@ -30,7 +30,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       showOutMapAndBuffer: false,
       categories: false,
 
-      sortByResourceWeight: false,
+      //sortByResourceWeight: false,
 
       endPage: 3,
       totalPages: false,
@@ -62,14 +62,13 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       var visibleResources = that.parentExplorer.resourceIndex.setPerPage(50);
 
 
-      if( that.options.sortByResourceWeight == true ) {
-
+      //if( that.options.sortByResourceWeight == true ) {
         visibleResources.setSort('mapVisible', 'desc');
         visibleResources.setSort('weight', 'asc');
-      }
-      else {
+      //}
+      //else {
         visibleResources.setSort('distanceToCenterKm', 'asc');
-      }
+      //}
 
       // get total packages
       that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
