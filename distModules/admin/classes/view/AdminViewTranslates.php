@@ -355,7 +355,7 @@ class AdminViewTranslates extends AdminViewMaster {
                       $currentSizeField = mb_strlen( $valueField, $this->codificacion );
                     }
 
-                    if( $maxSizeField <= $currentSizeField ) {
+                    if( $maxSizeField < $currentSizeField ) {
                       cogumelo::log( 'WARNING - Field: '.$idField.' ( ResourceModel - id: '.$resData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
                       $valueField = mb_substr( $valueField, 0, $maxSizeField, $this->codificacion );
                       echo '<div class="alert alert-danger">';
@@ -424,7 +424,7 @@ class AdminViewTranslates extends AdminViewMaster {
                       $currentSizeField = mb_strlen( $valueFieldModel, $this->codificacion );
                     }
 
-                    if( $maxSizeField <= $currentSizeField ) {
+                    if( $maxSizeField < $currentSizeField ) {
                       cogumelo::log( 'WARNING - Field: '.$idFieldModel.' ( '.$modelRelatedName.' - id: '.$modelData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
                       $valueFieldModel = mb_substr( $valueFieldModel, 0, $maxSizeField, $this->codificacion );
                       echo '<div class="alert alert-danger">';
@@ -474,7 +474,7 @@ class AdminViewTranslates extends AdminViewMaster {
                     $currentSizeField = mb_strlen( $valueField, $this->codificacion );
                   }
 
-                  if( $maxSizeField <= $currentSizeField ) {
+                  if( $maxSizeField < $currentSizeField ) {
                     cogumelo::log( 'WARNING - Field: '.$idField.' ( CollectionModel - id: '.$colData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
                     $valueField = mb_substr( $valueField, 0, $maxSizeField, $this->codificacion );
                     echo '<div class="alert alert-danger">';
