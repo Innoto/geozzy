@@ -1722,13 +1722,13 @@ class geozzyAPIView extends View {
       ];
 
       $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
-      
+
       $collectionsId = isset( $urlParamsList['collections'] ) ? $urlParamsList['collections'] : false;
-      
+
       $typeNames = isset( $urlParamsList['typeNames'] ) ? $urlParamsList['typeNames'] : false;
-      
+
       $resourcesId = isset( $urlParamsList['resources'] ) ? $urlParamsList['resources'] : false;
-      
+
       if( isset( $urlParamsList['options'] ) && $urlParamsList['options'] !== false ) {
         $options = explode( ',', $urlParamsList['options'] );
       }
@@ -1964,15 +1964,14 @@ class geozzyAPIView extends View {
 
   // User login
   public function userLogin() {
-    $status = false;
 
     if( isset( $_POST['user'] ) && isset( $_POST['pass'] ) ) {
       $useraccesscontrol = new UserAccessController();
-      $status = $useraccesscontrol->userLogin( $_POST['user'], $_POST['pass'] );
+      $data = $useraccesscontrol->userLogin( $_POST['user'], $_POST['pass'] );
     }
 
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode( $status );
+    echo json_encode( $data['status'] );
   }
 
   // User logout
@@ -2020,15 +2019,12 @@ class geozzyAPIView extends View {
       $userView = new GeozzyUserView();
       $userVO = $userView->getUserVO( false, $_POST['user'] );
       $userData = ( $userVO ) ? $userVO->getAllData('onlydata') : false;
-      if( $userData ) {
-        $status = $userView->sendUnknownPassEmail( $userData );
-      }
-      else {
+
+      if( !$userData ) {
         error_log( '(Notice) Intento de recuperacion de contraseña con usuario desconocido: '.$_POST['user'] );
       }
 
-      // Ocultamos el estado interno
-      $status = true;
+      $status = $userView->sendUnknownPassEmail( $userData, $_POST['captcha']);
     }
 
     header('Content-Type: application/json; charset=utf-8');

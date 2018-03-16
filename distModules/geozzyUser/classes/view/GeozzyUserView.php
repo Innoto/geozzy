@@ -341,41 +341,62 @@ class GeozzyUserView extends View {
     }
   }
 
-  public function sendUnknownPassEmail( $userData ) {
+  public function sendUnknownPassEmail( $userData, $captcha = false) {
     //error_log( 'sendUnknownPassEmail: '.json_encode( $userData ) );
     $status = false;
+    $validate = false;
 
-    Cogumelo::load( 'coreController/MailController.php' );
-    $mailCtrl = new MailController();
+    if($captcha){
+      $validate = false;
+      $secret = Cogumelo::getSetupValue('google:recaptcha:key:secret');
+      $response = $captcha;
+      if( $response && $secret ) {
+        $verifyUrl = 'https://www.google.com/recaptcha/api/siteverify?'.
+          'secret='.$secret.'&response='.$response;
+        $jsonResponse = file_get_contents( $verifyUrl );
+        $response = ( $jsonResponse ) ? json_decode( $jsonResponse ) : false;
+        $validate = ( $response && $response->success ) ? true : false;
+      }
+    }
 
-    $adresses = $userData['email'];
-    $name = $userData['name'].' '.$userData['surname'];
+    if($validate){
 
-    // ^geozzyuser/verify/([0-9a-f]+)$
-    $userHash = $this->generateHashUser();
-    $url = Cogumelo::getSetupValue( 'setup:webBaseUrl:urlCurrent' ).
-      'geozzyuser/unknownpass/'.$userData['id'].'/'.$userHash;
+      if($userData){
+        Cogumelo::load( 'coreController/MailController.php' );
+        $mailCtrl = new MailController();
 
-    $userVO = $this->getUserVO( $userData['id'] );
-    $userVO->setter( 'hashUnknownPass', $userHash );
-    $userVO->save();
+        $adresses = $userData['email'];
+        $name = $userData['name'].' '.$userData['surname'];
 
-    $bodyPlain = new Template();
-    $bodyHtml = new Template();
+        // ^geozzyuser/verify/([0-9a-f]+)$
+        $userHash = $this->generateHashUser();
+        $url = Cogumelo::getSetupValue( 'setup:webBaseUrl:urlCurrent' ).
+          'geozzyuser/unknownpass/'.$userData['id'].'/'.$userHash;
 
-    $bodyPlain->setTpl( 'unknownpassPlain.tpl', 'geozzyUser' );
-    $bodyHtml->setTpl( 'unknownpassHtml.tpl', 'geozzyUser' );
+        $userVO = $this->getUserVO( $userData['id'] );
+        $userVO->setter( 'hashUnknownPass', $userHash );
+        $userVO->save();
 
-    $vars = array(
-      'name' => $name,
-      'email' => $adresses,
-      'url' => $url
-    );
+        $bodyPlain = new Template();
+        $bodyHtml = new Template();
 
-    $mailCtrl->setBody( $bodyPlain, $bodyHtml, $vars );
-    $status = $mailCtrl->send( $adresses, 'Recuperar contraseña' );
+        $bodyPlain->setTpl( 'unknownpassPlain.tpl', 'geozzyUser' );
+        $bodyHtml->setTpl( 'unknownpassHtml.tpl', 'geozzyUser' );
 
-    error_log( 'sendUnknownPassEmail vars: '.print_r( $vars, true ) );
+        $vars = array(
+          'name' => $name,
+          'email' => $adresses,
+          'url' => $url
+        );
+
+        $mailCtrl->setBody( $bodyPlain, $bodyHtml, $vars );
+        $mailCtrl->send( $adresses, 'Recuperar contraseña' );
+
+        error_log( 'sendUnknownPassEmail vars: '.print_r( $vars, true ) );
+      }
+
+      $status = true;
+    }
 
     return $status;
   }

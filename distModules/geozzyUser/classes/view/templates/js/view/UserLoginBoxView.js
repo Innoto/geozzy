@@ -71,16 +71,24 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
   sendRecoveryPass:function(){
     var that = this;
     var userEmail = $('.recoveryPassEmail').val();
+    var captchaValue = grecaptcha.getResponse();
+
     $.ajax({
       url: "/api/core/userunknownpass",
-      data: {'user': userEmail },
+      data: {'user': userEmail, 'captcha': captchaValue },
       method: "POST",
     }).done(function( data ) {
       console.log(data);
-      that.$('.loginInfoContainer').hide();
-      $('#loginModal .recoveryPasswordForm').hide();
-      $('#loginModal .recoveryPasswordFinalMsg').show();
+      if(data){
+        that.$('.loginInfoContainer').hide();
+        $('#loginModal .recoveryPasswordForm').hide();
+        $('#loginModal .recoveryCaptchaError').hide();
+        $('#loginModal .recoveryPasswordFinalMsg').show();
+      }else{
+        $('#loginModal .recoveryCaptchaError').show();
+      }
     });
+    
   }
 
 });

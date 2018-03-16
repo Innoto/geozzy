@@ -29,18 +29,24 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="login-panel panel panel-default">
           <div class="panel-heading">
-              <h3 class="panel-title">Log In</h3>
+              <h2 class="panel-title">Log In</h2>
           </div>
           <div class="panel-body">
             {$loginHtml}
 
             <a class="initRecoveryPass">{t}He olvidado mi contraseña{/t}</a>
             <div class="recoveryPasswordForm" style="display:none;">
-              <h3>{t}Recuperar contraseña{/t}</h3>
+              <h4>{t}Recuperar contraseña{/t}</h4>
               <p>{t}Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un enlace para restablecer tu contraseña{/t}</p>
               <form onsubmit="return false;"><div class="cgmMForm-wrap"><input type="text" class="recoveryPassEmail" placeholder="Email"></div>
-              <div class="cgmMForm-wrap"><input value="{t}Recuperar{/t}" type="button" class="recoveryPassSubmit btn btnBecarios pull-right"></div></form>
+
+              <div class="-captchaField g-recaptcha" form="recoveryPasswordForm" data-sitekey="{$cogumelo.publicConf.google_recaptcha_key_site}"></div>
+              <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+              <label class="recoveryCaptchaError formError" style="display:none;">{t}Hay errores en el formulario{/t}</label>
+              <div class="cgmMForm-wrap"><input value="{t}Recuperar{/t}" type="button" class="recoveryPassSubmit btn btn-primary"></div></form>
+
             </div>
+
             <div class="recoveryPasswordFinalMsg" style="display:none;">
               {t}Se ha enviado un correo electrónico para recuperar tu cuenta de usuario.{/t}
             </div>

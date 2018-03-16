@@ -29,8 +29,12 @@ geozzy.userSessionComponents.userLoginBoxTemplate = ''+
 '<div class="recoveryPasswordForm" style="display:none;">'+
   '<h3>'+__("Recovery password")+'</h3>'+
   '<p>'+__("Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un enlace para restablecer tu contraseña")+'</p>'+
-  '<form onsubmit="return false;"><div class="cgmMForm-wrap"><input type="text" class="recoveryPassEmail" placeholder="Email"></div>'+
+  '<form id="recoveryPasswordForm" onsubmit="return false;"><div class="cgmMForm-wrap"><input type="text" class="recoveryPassEmail" placeholder="Email"></div>'+
+  '<div class="-captchaField g-recaptcha" form="recoveryPasswordForm" data-sitekey="'+cogumelo.publicConf.google_recaptcha_key_site+'"></div>'+
+  '<script src="https://www.google.com/recaptcha/api.js" async defer></script>'+
+  '<label class="recoveryCaptchaError formError" style="display:none;">'+__("Hay errores en el formulario")+'</label>'+
   '<div class="cgmMForm-wrap"><input value="'+__("Send")+'" type="button" class="recoveryPassSubmit btn btn-success pull-right"></div></form>'+
+
 '</div>'+
 '<div class="recoveryPasswordFinalMsg" style="display:none;">'+
   '<div class="alert alert-success" role="alert"><i class="fa fa-check-circle-o" aria-hidden="true"></i>    '+__("Correo electrónico enviado correctamente")+'</div>'+

@@ -19,17 +19,23 @@ function initRecoveryPass(){
 function sendRecoveryPass(){
   var that = this;
   var userEmail = $('.adminLogin .recoveryPassEmail').val();
+  var captchaValue = grecaptcha.getResponse();
 
-  if(userEmail !== ''){
-    $.ajax({
-      url: "/api/core/userunknownpass",
-      data: {'user': userEmail },
-      method: "POST",
-    }).done(function( data ) {
-      if(data){
-        $('.adminLogin .recoveryPasswordForm').hide();
-        $('.adminLogin .recoveryPasswordFinalMsg').show();
-      }
-    });
-  }
+  $.ajax({
+    url: "/api/core/userunknownpass",
+    data: {'user': userEmail, 'captcha': captchaValue },
+    method: "POST",
+  }).done(function( data ) {
+    console.log(data);
+    if(data){
+      that.$('.loginInfoContainer').hide();
+      $('.adminLogin .recoveryPasswordForm').hide();
+      $('.adminLogin .recoveryCaptchaError').hide();
+      $('.adminLogin .recoveryPasswordFinalMsg').show();
+    }else{
+      $('.adminLogin .recoveryCaptchaError').show();
+    }
+  });
+
+
 }
