@@ -66,13 +66,22 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
       var visibleResources = that.parentExplorer.resourceIndex.setPerPage(that.options.itemsEachPage);
 
       //if( that.options.sortByResourceWeight == true ) {
-        visibleResources.setSort('mapVisible', 'desc');
-        visibleResources.setSort('weight', 'asc');
+        //visibleResources.setSort('mapVisible', 'desc');
+        //visibleResources.setSort('weight', 'asc');
       //}
       //else {
-        visibleResources.setSort('distanceToCenterKm', 'asc');
+        //visibleResources.setSort('distanceToCenterKm', 'asc');
       //}
 
+
+      // ordenado múltiple
+      visibleResources.setSort( function(model) {
+        var mapVisible = model.get('mapVisible'); // DESC
+        var peso = 10000 - model.get('weight'); //ASC
+        var dist = parseInt( Math.round( (1000000 * 100) - (model.get('distanceToCenterKm') * 100) ) ); // DESC
+        var ret = mapVisible.toString() + peso.toString() + dist.toString()
+        return parseInt(ret);
+      }, 'desc');
 
 
       // get total packages
