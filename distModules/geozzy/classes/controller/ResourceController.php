@@ -339,7 +339,7 @@ class ResourceController {
     }
 
 
-    if( !isset( $valuesArray[ 'timeCreation' ] ) ) {
+    if( empty( $valuesArray[ 'timeCreation' ] ) ) {
       $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
       $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
       $valuesArray[ 'timeCreation' ] = $date->format( 'Y-m-d H:i:s' );
@@ -649,12 +649,10 @@ class ResourceController {
       }
       else {
         $valuesArray[ 'user' ] = $user['data']['id'];
-        if( !isset( $valuesArray[ 'timeCreation' ] ) || $valuesArray[ 'timeCreation' ] === '' ) {
-
+        if( empty( $valuesArray[ 'timeCreation' ] ) ) {
           $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
           $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
           $valuesArray[ 'timeCreation' ] = $date->format( 'Y-m-d H:i:s' );
-
         }
       }
 
