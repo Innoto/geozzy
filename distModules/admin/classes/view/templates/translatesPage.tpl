@@ -67,6 +67,7 @@
               <li>O nome da carpeta tense que definir no arquivo de configuración: <em>( 'mod:admin:importFolder', 'nomeCarpeta' )</em></li>
               <li>Subir os arquivos a carpeta que corresponda co seu idioma (realizarase por SSH)</li>
               <li>Os arquivos non estará anidados en carpetas (non conterán espazos ou caracteres especiais no nome do arquivo). Formato arquivo JSON</li>
+              <li>Valida que o arquivo JSON é correcto. (Por exemplo este <a href="https://jsonlint.com/" title="Validador JSON" target="_blank" rel="noopener noreferrer">validador JSON</a>)</li>
               <li>Seleccionar o idioma ao que se quere importar</li>
             </ol>
           </li>

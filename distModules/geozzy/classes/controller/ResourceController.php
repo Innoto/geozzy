@@ -339,7 +339,7 @@ class ResourceController {
     }
 
 
-    if( !isset( $valuesArray[ 'timeCreation' ] ) ) {
+    if( empty( $valuesArray[ 'timeCreation' ] ) ) {
       $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
       $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
       $valuesArray[ 'timeCreation' ] = $date->format( 'Y-m-d H:i:s' );
@@ -620,7 +620,7 @@ class ResourceController {
 
     if( $form->isFieldDefined( 'timeCreation' ) ) {
       $dt = $form->getFieldValue( 'timeCreation' );
-      if( $dt !== '' && preg_match( '/^(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{2}):(\d{2})$/', $dt ) !== 1 ) {
+      if( !empty( $dt ) && preg_match( '/^(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2}):(\d{2}):(\d{2})$/', $dt ) !== 1 ) {
         $form->addFieldError( 'timeCreation', __('La fecha de creación no es válida') );
       }
     }
@@ -649,12 +649,10 @@ class ResourceController {
       }
       else {
         $valuesArray[ 'user' ] = $user['data']['id'];
-        if( !isset( $valuesArray[ 'timeCreation' ] ) || $valuesArray[ 'timeCreation' ] === '' ) {
-
+        if( empty( $valuesArray[ 'timeCreation' ] ) ) {
           $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
           $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
           $valuesArray[ 'timeCreation' ] = $date->format( 'Y-m-d H:i:s' );
-
         }
       }
 

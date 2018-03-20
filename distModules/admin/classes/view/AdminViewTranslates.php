@@ -4,6 +4,7 @@ admin::load('view/AdminViewMaster.php');
 class AdminViewTranslates extends AdminViewMaster {
 
   public $cacheQuery = false; // false, true or time in seconds
+  private $codificacion = 'UTF-8';
 
   public function __construct( $baseDir ) {
     parent::__construct($baseDir);
@@ -347,16 +348,16 @@ class AdminViewTranslates extends AdminViewMaster {
                     $currentSizeField = 0;
                     if( !empty( $resModel::$cols[$idField]['size'] ) ) {
                       $maxSizeField = (int) $resModel::$cols[$idField]['size'];
-                      $currentSizeField = strlen( $valueField );
+                      $currentSizeField = mb_strlen( $valueField, $this->codificacion );
                     }
                     if( $resModel::$cols[$idField]['type'] === 'TEXT' ) {
                       $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
-                      $currentSizeField = strlen( $valueField );
+                      $currentSizeField = mb_strlen( $valueField, $this->codificacion );
                     }
 
                     if( $maxSizeField < $currentSizeField ) {
                       cogumelo::log( 'WARNING - Field: '.$idField.' ( ResourceModel - id: '.$resData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
-                      $valueField = substr( $valueField, 0, $maxSizeField );
+                      $valueField = mb_substr( $valueField, 0, $maxSizeField, $this->codificacion );
                       echo '<div class="alert alert-danger">';
                       echo '<p><strong>Id '.$resData['id'].'</strong> do modelo ResourceModel:<p>';
                       echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
@@ -416,16 +417,16 @@ class AdminViewTranslates extends AdminViewMaster {
                     $currentSizeField = 0;
                     if( !empty( $resRelatedModel::$cols[$idFieldModel]['size'] ) ) {
                       $maxSizeField = (int) $resRelatedModel::$cols[$idFieldModel]['size'];
-                      $currentSizeField = strlen( $valueFieldModel );
+                      $currentSizeField = mb_strlen( $valueFieldModel, $this->codificacion );
                     }
                     if( $resRelatedModel::$cols[$idFieldModel]['type'] === 'TEXT' ) {
                       $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
-                      $currentSizeField = strlen( $valueFieldModel );
+                      $currentSizeField = mb_strlen( $valueFieldModel, $this->codificacion );
                     }
 
                     if( $maxSizeField < $currentSizeField ) {
                       cogumelo::log( 'WARNING - Field: '.$idFieldModel.' ( '.$modelRelatedName.' - id: '.$modelData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
-                      $valueFieldModel = substr( $valueFieldModel, 0, $maxSizeField );
+                      $valueFieldModel = mb_substr( $valueFieldModel, 0, $maxSizeField, $this->codificacion );
                       echo '<div class="alert alert-danger">';
                       echo '<p><strong>Id '.$modelData['id'].'</strong> do modelo '.$modelRelatedName.':<p>';
                       echo '<p>O campo <strong>'.$idFieldModel.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
@@ -466,16 +467,16 @@ class AdminViewTranslates extends AdminViewMaster {
                   $currentSizeField = 0;
                   if( !empty( $colModel::$cols[$idField]['size'] ) ) {
                     $maxSizeField = (int) $colModel::$cols[$idField]['size'];
-                    $currentSizeField = strlen( $valueField );
+                    $currentSizeField = mb_strlen( $valueField, $this->codificacion );
                   }
                   if( $colModel::$cols[$idField]['type'] === 'TEXT' ) {
                     $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
-                    $currentSizeField = strlen( $valueField );
+                    $currentSizeField = mb_strlen( $valueField, $this->codificacion );
                   }
 
                   if( $maxSizeField < $currentSizeField ) {
                     cogumelo::log( 'WARNING - Field: '.$idField.' ( CollectionModel - id: '.$colData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
-                    $valueField = substr( $valueField, 0, $maxSizeField );
+                    $valueField = mb_substr( $valueField, 0, $maxSizeField, $this->codificacion );
                     echo '<div class="alert alert-danger">';
                     echo '<p><strong>Id '.$colData['id'].'</strong> do modelo CollectionModel:<p>';
                     echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
