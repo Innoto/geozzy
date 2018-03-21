@@ -255,7 +255,10 @@
       <input type="text" id="getDatesTpInput" class="form-control" readonly>
     </div>
   </div>
-  <!--<div class="howTo">
+</script>
+
+<script type="text/template" id="helpTpModalTemplate">
+  <div class="howTo">
     <div class="moreInfo">
       <div class="title">{t}Organizing your trip is very easy{/t}</div>
       <p>{t}Is this your first time using our travel planner?{/t}</p>
@@ -267,7 +270,7 @@
     </div>
     <div class="stepTwo steps">
       <p>{t}Step 2: Add your favourite places so they appear in the plan{/t}</p>
-      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step2favoritos.png" class="img-responsive center-block" alt="{t}Step 2 - Travel Planner{/t}">
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step2.png" class="img-responsive center-block" alt="{t}Step 2 - Travel Planner{/t}">
     </div>
     <div class="stepThree steps">
       <p>{t}Step 3: Add a place to the plan{/t}</p>
@@ -276,13 +279,14 @@
     </div>
     <div class="stepFour steps">
       <p>{t}Step 4: You will be able to change the order of the places as you wish {/t}</p>
-      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step6.png" class="img-responsive center-block" alt="{t}Step 4 - Travel Planner{/t}">
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step4.png" class="img-responsive center-block" alt="{t}Step 4 - Travel Planner{/t}">
     </div>
     <div class="stepFive steps">
       <p>{t}Step 5: You can optimize your trip too by clicking on "Optimize day"{/t}</p>
-      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step5optimize.png" class="img-responsive center-block" alt="{t}Step 5 - Travel Planner{/t}">
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step5.png" class="img-responsive center-block" alt="{t}Step 5 - Travel Planner{/t}">
     </div>
-  </div>-->
+  </div>
+  <button class="selectYourDates btn btn-success">{t}Select your dates{/t}</button>
 </script>
 
 <script type="text/template" id="optimizeDayTpModalTemplate">

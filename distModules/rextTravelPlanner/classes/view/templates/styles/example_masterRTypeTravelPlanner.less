@@ -750,6 +750,46 @@ body{
       padding-top:10px;
       padding-bottom: 10px;
     }
+    .dates{
+      border-bottom: 2px solid @gzzColor-RS;
+      padding-bottom:40px;
+      background: @gzzColor-bck-4;
+      .getdatesTpContainer{
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        text-align: center;
+        .icon,
+        input{
+          float: left;
+          width: auto;
+          text-align: center;
+        }
+        .icon{
+          background: @gzzColor-RS;
+          color: @gzzColor-text-light;
+          padding: 2px 10px;
+          height: 36px;
+          .font-size-bigger();
+        }
+        input{
+          border: 1px solid @gzzColor-RS;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+#helpTpModal{
+  .modal-body{
+    padding: 40px;
+    text-align: center;
+    .title{
+      .font-size-bigger();
+      padding-top:10px;
+      padding-bottom: 10px;
+    }
     .howTo{
       padding-top:40px;
       .title{
@@ -778,34 +818,6 @@ body{
         //padding-bottom:30px;
 
 
-      }
-    }
-    .dates{
-      border-bottom: 2px solid @gzzColor-RS;
-      padding-bottom:40px;
-      background: @gzzColor-bck-4;
-      .getdatesTpContainer{
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto;
-        text-align: center;
-        .icon,
-        input{
-          float: left;
-          width: auto;
-          text-align: center;
-        }
-        .icon{
-          background: @gzzColor-RS;
-          color: @gzzColor-text-light;
-          padding: 2px 10px;
-          height: 36px;
-          .font-size-bigger();
-        }
-        input{
-          border: 1px solid @gzzColor-RS;
-          cursor: pointer;
-        }
       }
     }
   }
