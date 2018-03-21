@@ -77,6 +77,12 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       ]
     ];
 
+    $shareSocialNetwork = Cogumelo::getSetupValue('shareSocialNetwork:default');
+    if( !empty( $shareSocialNetwork ) ){
+      $fieldsInfo['activeFb']['params']['value'] = 1;
+      $fieldsInfo['activeTwitter']['params']['value'] = 1;
+      $fieldsInfo['activeGplus']['params']['value'] = 1;
+    }
 
     // $i18nCtrl = new I18nController();
 
@@ -256,7 +262,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       $template = new Template();
 
       $title = $this->defResCtrl->resObj->getter('title');
-      $urlAlias = $this->defResCtrl->resData['urlAlias'];
+      $urlAlias = $this->defResCtrl->getResourceData($rExtViewBlockInfo['data']['resource'])['urlAlias'];
       $url = Cogumelo::getSetupValue('setup:webBaseUrl:host').$urlAlias;
 
       $from = array( '#TITLE#', '#URL#' );
