@@ -295,6 +295,9 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1692
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1629
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1687
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1042
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1627
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1774
 msgid "Error setting values"
 msgstr ""
 
@@ -302,6 +305,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1660
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1749
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1744
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1835
 msgid "Error setting collection values"
 msgstr ""
 
@@ -309,6 +313,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1749
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1848
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1843
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1934
 msgid "Error setting URL alias"
 msgstr ""
 
@@ -316,6 +321,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1763
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1862
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1857
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1948
 msgid "Error setting URL alias 2"
 msgstr ""
 

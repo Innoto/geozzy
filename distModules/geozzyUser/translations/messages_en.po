@@ -39,40 +39,53 @@ msgid ""
 "enviaremos un enlace para restablecer tu contraseña"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:35
+msgid "Hay errores en el formulario"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:36
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:33
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:507
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:484
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:516
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:524
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:545
 msgid "Send"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:40
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:36
 msgid "Correo electrónico enviado correctamente"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:44
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:40
 msgid ""
 "Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente "
 "formulario"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:50
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:46
 msgid "Muchas gracias"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:51
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:47
 msgid "Tu cuenta se ha creado con éxito"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:52
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:48
 msgid "En breve recibirás un correo-e para comprobar tu identidad"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:53
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:49
 msgid "Si no lo recibes en las proximas horas, comprueba tu bandeja de SPAM"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:54
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:50
 msgid "Continuar"
 msgstr ""
@@ -162,6 +175,8 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:385
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:392
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:393
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:413
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:414
 msgid "Recovery Password"
 msgstr ""
 
