@@ -37,7 +37,9 @@ class RTUtilsController {
 
   public function rExtModuleRc() {
     $rExtObj = new $this->moduleClass();
-    $this->createTaxonomies( $rExtObj->taxonomies );
+    if( !empty( $rExtObj->taxonomies ) ) {
+      $this->createTaxonomies( $rExtObj->taxonomies );
+    }
   }
 
 
