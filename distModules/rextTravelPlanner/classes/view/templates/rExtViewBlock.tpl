@@ -266,25 +266,32 @@
       <p>{t}Follow these simple steps{/t}</p>
     </div>
     <div class="stepOne steps">
-      <p>{t}Step 1: Select your dates{/t}</p>
+      <p>{t}STEP 1: While exploring the contents of the website,{/t} {t}you can select any content that might interest you and append it to your ‘favourites collection’.{/t} {t}Just click on the star icon.{/t}</p>
       <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step1.png" class="img-responsive center-block" alt="{t}Step 1 - Travel Planner{/t}">
     </div>
     <div class="stepTwo steps">
-      <p>{t}Step 2: Add your favourite places so they appear in the plan{/t}</p>
+      <p>{t}STEP 2: Access the travel planner, and select your traveling dates{/t}</p>
       <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step2.png" class="img-responsive center-block" alt="{t}Step 2 - Travel Planner{/t}">
     </div>
     <div class="stepThree steps">
-      <p>{t}Step 3: Add a place to the plan{/t}</p>
-      <p>{t}Then select the date and time you would like to visit the place and add it to the plan{/t}</p>
+      <p>{t}STEP 3: From your favorite collection, select those places that you would like to add to your journey plan.{/t} {t}You can specify the day that most interests you to visit it and / or the time you want to spend there{/t}</p>
       <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step3.png" class="img-responsive center-block" alt="{t}Step 3 - Travel Planner{/t}">
     </div>
     <div class="stepFour steps">
-      <p>{t}Step 4: You will be able to change the order of the places as you wish {/t}</p>
+      <p>{t}STEP 4: Press ‘Go to my plan’.{/t} {t}You can schedule visits as you wish by dragging and dropping the items. {/t}</p>
       <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step4.png" class="img-responsive center-block" alt="{t}Step 4 - Travel Planner{/t}">
     </div>
     <div class="stepFive steps">
-      <p>{t}Step 5: You can optimize your trip too by clicking on "Optimize day"{/t}</p>
+      <p>{t}STEP 5: You can also optimize your day of visits. Simply click on 'Optimize day'{/t}</p>
       <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step5.png" class="img-responsive center-block" alt="{t}Step 5 - Travel Planner{/t}">
+    </div>
+    <div class="stepSix steps">
+      <p>{t}STEP 6: Follow your travel plan on your smartphone{/t}</p>
+      <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step6.png" class="img-responsive center-block" alt="{t}Step 6 - Travel Planner{/t}">
+    </div>
+    <div class="end steps">
+      <p>{t}Got it?{/t}</p>
+      <p>{t}Choose your dates and start your travel plan{/t}</p>
     </div>
   </div>
   <button class="selectYourDates btn btn-success">{t}Select your dates{/t}</button>
