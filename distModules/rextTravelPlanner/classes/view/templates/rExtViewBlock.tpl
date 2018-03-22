@@ -290,7 +290,7 @@
       <img src="{$cogumelo.publicConf.media}/img/travelPlanner/step6.png" class="img-responsive center-block" alt="{t}Step 6 - Travel Planner{/t}">
     </div>
     <div class="end steps">
-      <p>{t}Got it?{/t}</p>
+      <p>{t}Shall we begin?{/t}</p>
       <p>{t}Choose your dates and start your travel plan{/t}</p>
     </div>
   </div>

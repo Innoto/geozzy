@@ -176,93 +176,61 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:263
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:263
 msgid "Organizing your trip is very easy"
-msgstr ""
+msgstr "L'organisation du voyage est très facile"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:261
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:261
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:264
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:264
 msgid "Is this your first time using our travel planner?"
-msgstr ""
+msgstr "Est-ce votre première fois à l'aide de notre planificateur de voyage?"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:262
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:262
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:265
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:265
 msgid "Follow these simple steps"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:265
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:265
-msgid "Step 1: Select your dates"
-msgstr ""
+msgstr "Suivez ces étapes simples"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:266
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:266
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:269
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:269
 msgid "Step 1 - Travel Planner"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:269
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:269
-msgid "Step 2: Add your favourite places so they appear in the plan"
-msgstr ""
+msgstr "Étape 1 - Planificateur de voyage"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:270
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:270
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:273
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:273
 msgid "Step 2 - Travel Planner"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:273
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:273
-msgid "Step 3: Add a place to the plan"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:274
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:274
-msgid ""
-"Then select the date and time you would like to visit the place and add it "
-"to the plan"
-msgstr ""
+msgstr "Étape 2 - Planificateur de voyage"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:275
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:275
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:277
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:277
 msgid "Step 3 - Travel Planner"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:278
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:278
-msgid "Step 4: You will be able to change the order of the places as you wish "
-msgstr ""
+msgstr "Étape 3 - Planificateur de voyage"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:279
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:279
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:281
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:281
 msgid "Step 4 - Travel Planner"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:282
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:282
-msgid "Step 5: You can optimize your trip too by clicking on \"Optimize day\""
-msgstr ""
+msgstr "Étape 4 - Planificateur de voyage"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:283
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:283
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:285
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:285
 msgid "Step 5 - Travel Planner"
-msgstr ""
+msgstr "Étape 5 - Planificateur de voyage"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:268
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:268
 msgid "STEP 1: While exploring the contents of the website,"
-msgstr ""
+msgstr "ÉTAPE 1 : Tout en explorant le contenu du site web,"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:268
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:268
@@ -270,16 +238,19 @@ msgid ""
 "you can select any content that might interest you and append it to your "
 "‘favourites collection’."
 msgstr ""
+"vous pouvez sélectionner n'importe quel contenu qui pourrait vous intéresser "
+"et l'ajouter à votre collection de Favoris."
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:268
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:268
 msgid "Just click on the star icon."
-msgstr ""
+msgstr "Cliquez simplement sur l'icône de l'étoile."
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:272
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:272
 msgid "STEP 2: Access the travel planner, and select your traveling dates"
 msgstr ""
+"ÉTAPE 2 : Accéder à l'agenda de voyage, et sélectionnez votre dates de voyage"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:276
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:276
@@ -287,6 +258,8 @@ msgid ""
 "STEP 3: From your favorite collection, select those places that you would "
 "like to add to your journey plan."
 msgstr ""
+"ÉTAPE 3 : À partir de votre collection de favoris, sélectionnez les endroits "
+"que vous voulez ajouter à votre plan de voyage."
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:276
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:276
@@ -294,17 +267,21 @@ msgid ""
 "You can specify the day that most interests you to visit it and / or the "
 "time you want to spend there"
 msgstr ""
+"Vous pouvez indiquer le jour qui vous intéresse le plus à le visiter et / ou "
+"le temps que vous voulez y passer"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:280
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:280
 msgid "STEP 4: Press ‘Go to my plan’."
-msgstr ""
+msgstr "ÉTAPE 4: Appuyez sur 'Aller à mon plan."
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:280
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:280
 msgid ""
 "You can schedule visits as you wish by dragging and dropping the items. "
 msgstr ""
+"Vous pouvez programmer des visites que vous le souhaitez par glisser-déposer "
+"les éléments."
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:284
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:284
@@ -312,28 +289,30 @@ msgid ""
 "STEP 5: You can also optimize your day of visits. Simply click on 'Optimize "
 "day'"
 msgstr ""
+"ÉTAPE 5 : Vous pouvez également optimiser votre journée de visites. Cliquez "
+"simplement sur 'Optimiser jour'"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:288
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:288
 msgid "STEP 6: Follow your travel plan on your smartphone"
-msgstr ""
+msgstr "ÉTAPE 6 : suivez votre plan de voyage sur votre smartphone"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:289
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:289
 msgid "Step 6 - Travel Planner"
-msgstr ""
-
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:292
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:292
-msgid "Got it?"
-msgstr ""
+msgstr "Étape 6 - Planificateur de voyage"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:293
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:293
 msgid "Choose your dates and start your travel plan"
-msgstr ""
+msgstr "Choisissez vos dates et de lancer votre plan de voyage"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:296
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:296
 msgid "Select your dates"
-msgstr ""
+msgstr "Sélectionnez vos dates"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:292
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:292
+msgid "Shall we begin?"
+msgstr "Voulez vous commencer?"
