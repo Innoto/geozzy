@@ -179,6 +179,7 @@
         <div class="nestableActions">
           <button class="btnEdit btn-icon btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
           <button class="btnDelete btn-icon btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <a href="#resource/<%- resource.id %>"><button class="btnAccess btn-icon btn-default"><i class="fa fa-search" aria-hidden="true"></i></button></a>
         </div>
       </div>
 

@@ -14,6 +14,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     'click .travelPlannerPlan .plannerDay .optimizeDay': 'initOptimizeDay',
     'click .travelPlannerPlan .plannerDay .dd-item .btnDelete': 'removeResourceToDay',
     'click .travelPlannerPlan .plannerDay .dd-item .btnEdit': 'bindEditResourceToDay',
+    'click .travelPlannerPlan .plannerDay .dd-item .btnAccess': 'bindAccessResource',
     'mouseenter .travelPlannerPlan .plannerDay .dd-item': 'mouseenterResourceItem',
     'mouseleave .travelPlannerPlan .plannerDay .dd-item': 'mouseleaveResourceItem'
   },
@@ -159,6 +160,10 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
 
     that.parentTp.travelPlannerMapPlanView.clearDirectionsServiceRequest([day]);
     that.parentTp.travelPlannerMapPlanView.render();
+  },
+  bindAccessResource: function(e){
+    var that = this;
+    
   },
   mouseenterResourceItem: function(e){
     var that = this;
