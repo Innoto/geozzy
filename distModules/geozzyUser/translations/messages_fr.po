@@ -113,12 +113,12 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:78
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:77
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:81
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:80
 msgid "Surname"
-msgstr ""
+msgstr "Surname"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:84
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:83
@@ -128,17 +128,17 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:88
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:87
 msgid "Repeat email"
-msgstr ""
+msgstr "Répétez l'email"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:92
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:91
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:95
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:94
 msgid "Repeat password"
-msgstr ""
+msgstr "Répétez mot de passe"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:112
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:111
