@@ -43,7 +43,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:35
 msgid "Hay errores en el formulario"
-msgstr ""
+msgstr "Hai erros no formulario"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:36
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:33
@@ -104,7 +104,7 @@ msgstr ""
 #: /home/proxectos/canlers/app/tmp/tpl/recoveryPassword.tpl:5
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/recoveryPassword.tpl:5
 msgid "Enter a new password:"
-msgstr ""
+msgstr "Introduce un novo contrasinal"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/recoveryPassword.tpl:8
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_recoveryPassword.tpl:8
@@ -112,6 +112,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/recoveryPassword.tpl:8
 msgid "Your url has expired. Please restart the password recovery process"
 msgstr ""
+"A túa url expirou. Por favor, reinicia o proceso de recuperación de "
+"contrasinal"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/userProfile.tpl:4
@@ -163,11 +165,13 @@ msgid ""
 "Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la "
 "política de privacidad</a>"
 msgstr ""
+"Acepto as <a class=\"gzzAppPrivacidad\">condicións de servicio e a política "
+"de privacidade</a>"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:117
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:116
 msgid "Create account"
-msgstr ""
+msgstr "Crear conta"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:190
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:191

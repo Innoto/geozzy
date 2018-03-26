@@ -113,12 +113,12 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:78
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:77
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:81
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:80
 msgid "Surname"
-msgstr ""
+msgstr "Sobrenomes"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:84
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:83
@@ -128,17 +128,17 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:88
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:87
 msgid "Repeat email"
-msgstr ""
+msgstr "Repetir o e-mail"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:92
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:91
 msgid "Password"
-msgstr ""
+msgstr "Senha"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:95
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:94
 msgid "Repeat password"
-msgstr ""
+msgstr "Repetir a senha"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:112
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:111
@@ -146,11 +146,13 @@ msgid ""
 "Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la "
 "política de privacidad</a>"
 msgstr ""
+"Aceito as <a class=\"gzzAppPrivacidad\">Condições do serviço  e a Politica "
+"de privacidade</a>"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:117
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:116
 msgid "Create account"
-msgstr ""
+msgstr "Criar conta"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:190
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:191
