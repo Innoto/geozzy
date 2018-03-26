@@ -15,26 +15,32 @@ var AdminView = Backbone.View.extend({
 
   renderMenu: function(  ){
     //Categories
-    var menuCategoryElement =  _.template($("#menuCategoryElement").html());
-    var menuCategoriesDiv = $('#wrapper .navbar  .sidebar .categoriesList');
-    var menuCategoriesData = app.categories.toJSON();
-    if(menuCategoriesData.length === 0){
-      $('#side-menu .categories').hide();
-    }else{
-      menuCategoriesDiv.html( menuCategoryElement( { categories: menuCategoriesData } ) );
+    if($('#wrapper .navbar  .sidebar .categoriesList').lenght > 0){
+      var menuCategoryElement =  _.template($("#menuCategoryElement").html());
+      var menuCategoriesDiv = $('#wrapper .navbar  .sidebar .categoriesList');
+      var menuCategoriesData = app.categories.toJSON();
+      if(menuCategoriesData.length === 0){
+        $('#side-menu .categories').hide();
+      }else{
+        menuCategoriesDiv.html( menuCategoryElement( { categories: menuCategoriesData } ) );
+      }
     }
     //Topics
     var menuTopics =  _.template($("#menuTopics").html());
     var menuTopicsContainer = $('#wrapper #side-menu');
     menuTopicsContainer.prepend( menuTopics( { topics:  app.topics.toJSON()  } ) );
+
+
     //Starred
-    var menuStarred =  _.template($("#menuStarred").html());
-    var menuStarredContainer = $('#wrapper .navbar .sidebar .starredList');
-    var menuStarredData = app.starred.toJSON();
-    if(menuCategoriesData.length === 0){
-      $('#side-menu .starred').hide();
-    }else{
-      menuStarredContainer.prepend( menuStarred( { starred:  menuStarredData  } ) );
+    if($('#wrapper .navbar .sidebar .starredList').lenght > 0){
+      var menuStarred =  _.template($("#menuStarred").html());
+      var menuStarredContainer = $('#wrapper .navbar .sidebar .starredList');
+      var menuStarredData = app.starred.toJSON();
+      if(menuCategoriesData.length === 0){
+        $('#side-menu .starred').hide();
+      }else{
+        menuStarredContainer.prepend( menuStarred( { starred:  menuStarredData  } ) );
+      }
     }
   },
 
