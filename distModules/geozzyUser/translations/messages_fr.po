@@ -146,11 +146,13 @@ msgid ""
 "Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la "
 "política de privacidad</a>"
 msgstr ""
+"J'accepté les <a class=\"gzzAppPrivacidad\">conditions de service et la  "
+"politique de confidentialité</a>"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:117
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:116
 msgid "Create account"
-msgstr ""
+msgstr "Créer un compte "
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:190
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:191
