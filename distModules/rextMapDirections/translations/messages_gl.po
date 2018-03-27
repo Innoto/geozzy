@@ -96,3 +96,8 @@ msgstr "Imprimir ruta"
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
 msgid "No se ha podido localizar una ruta."
 msgstr "Non podemos localizar unha ruta"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:85
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:85
+msgid "Enter a location"
+msgstr "Introduce unha ubicación"
