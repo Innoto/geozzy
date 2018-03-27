@@ -150,7 +150,7 @@ msgid ""
 "Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la "
 "política de privacidad</a>"
 msgstr ""
-"I accept the <a class=\"gzzAppPrivacidad\">terms of service and the privacy "
+"I accept the <a class=\"gzzAppPrivacidad\">service conditions and privacy "
 "policy</a>"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:117

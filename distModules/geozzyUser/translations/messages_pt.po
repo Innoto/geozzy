@@ -118,7 +118,7 @@ msgstr "Nome"
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:81
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:80
 msgid "Surname"
-msgstr "Sobrenomes"
+msgstr "Apelidos"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:84
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:83
@@ -128,7 +128,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:88
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:87
 msgid "Repeat email"
-msgstr "Repetir o e-mail"
+msgstr "Repetir e-mail"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:92
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:91
@@ -138,7 +138,7 @@ msgstr "Senha"
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:95
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:94
 msgid "Repeat password"
-msgstr "Repetir a senha"
+msgstr "Repetir palavra-passe"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:112
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:111
@@ -146,7 +146,7 @@ msgid ""
 "Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la "
 "política de privacidad</a>"
 msgstr ""
-"Aceito as <a class=\"gzzAppPrivacidad\">Condições do serviço  e a Politica "
+"Aceito os <a class=\"gzzAppPrivacidad\">Termos de serviço  e a Política "
 "de privacidade</a>"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:117
