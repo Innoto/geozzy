@@ -28,7 +28,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/netubi-com-public.tpl:5
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/netubi-com-public.tpl:18
 msgid "Reserve"
-msgstr ""
+msgstr "Book"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/netubi-com-public.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:11
@@ -37,7 +37,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/booking-com-public.tpl:11
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/netubi-com-public.tpl:11
 msgid "Check in date - Check out date"
-msgstr ""
+msgstr "Arrival date - Departure date"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:18

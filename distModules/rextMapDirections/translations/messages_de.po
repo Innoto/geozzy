@@ -17,7 +17,7 @@ msgstr "Er kon geen route worden gevonden."
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
 msgid "Type a departure address"
-msgstr "Type vertrekadres"
+msgstr "Gib eine Startadresse ein"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:44
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:80
@@ -25,7 +25,7 @@ msgstr "Type vertrekadres"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:80
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
 msgid "Get directions"
-msgstr "Routebeschrijving"
+msgstr "Adressen abrufen"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:54
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:88

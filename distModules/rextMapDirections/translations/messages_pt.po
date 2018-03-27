@@ -17,7 +17,7 @@ msgstr "Não se pôde encontrar uma rota."
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
 msgid "Type a departure address"
-msgstr "Escreva uma direção de saída"
+msgstr "Escreva uma morada de saída"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:44
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:80
