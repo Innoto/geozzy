@@ -212,12 +212,12 @@ class GeozzyCollectionView extends View
     }
 
     if( !$form->existErrors() ) {
-      $elemIdForm = false;
+      // $elemIdForm = false;
 
       $valuesArray = $form->getValuesArray();
 
-      if( $form->isFieldDefined( 'id' ) ) {
-        $elemIdForm = $valuesArray[ 'id' ];
+      if( !empty( $valuesArray[ 'id' ] ) ) {
+        // $elemIdForm = $valuesArray[ 'id' ];
         unset( $valuesArray[ 'image' ] );
       }
     }
