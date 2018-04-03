@@ -16,10 +16,28 @@ $(document).ready( function() {
     var switchery = new Switchery( this, { color : '#58ba81', secondaryColor : '#FF6A4B'} );
   });
 
+  /* Anclas a paneles */
+   $('.panelBlocktoLink').each(function(){
+     var idBlock = $(this).attr('id');
+     var panelTag = '<li class="tagBlock" data-idBlockPanel="'+idBlock+'">['+idBlock.replace(/_/g," ")+']</li>';
+     $('.panelIdTags').append(panelTag);
+   });
+
+   $('.tagBlock').each(function(){
+       $(this).click(function(e){
+         scroll_to_anchor($(this).attr('data-idBlockPanel'));
+       });
+   });
+
   bindResourceForm();
   initializeMaps( );
 
 });
+
+function scroll_to_anchor(anchor_id){
+    var tag = $("#"+anchor_id+"");
+    $('html,body').animate({scrollTop: tag.offset().top-130},'slow');
+}
 
 function bindResourceForm(){
 
