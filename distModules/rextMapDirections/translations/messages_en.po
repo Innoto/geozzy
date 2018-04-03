@@ -23,7 +23,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:85
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:85
 msgid "Type a departure address"
-msgstr ""
+msgstr "Enter a departure address"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:84
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:84
@@ -121,4 +121,9 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
 msgid "No se ha podido localizar una ruta."
+msgstr ""
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:85
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:85
+msgid "Enter a location"
 msgstr ""

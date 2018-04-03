@@ -17,7 +17,7 @@ msgstr "Aucun itinéraire n' a pu être trouvé."
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:73
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
 msgid "Type a departure address"
-msgstr "Entrez l'adresse de départ"
+msgstr "Indiquez une adresse de départ"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:80
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:80
@@ -25,7 +25,7 @@ msgstr "Entrez l'adresse de départ"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:44
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
 msgid "Get directions"
-msgstr "Obtenir des instructions"
+msgstr "Obtenir des adresses"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock-pre171024.tpl:54
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:88
@@ -88,3 +88,8 @@ msgstr "Imprimer l'itinéraire"
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
 msgid "No se ha podido localizar una ruta."
 msgstr "Impossible de localiser les directions vers le destin"
+
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:85
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:85
+msgid "Enter a location"
+msgstr "Indiquez un lieu"

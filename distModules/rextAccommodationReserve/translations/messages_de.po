@@ -22,14 +22,14 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/ruralgest-net-public.tpl:4
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_thebookingbutton-com-public.tpl:5
 msgid "Reserve"
-msgstr "Reservieren"
+msgstr "Buchen"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/netubi-com-public.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:11
 msgid "Check in date - Check out date"
-msgstr "Check-in-Datum - Check-out-Datum"
+msgstr "Anreisedatum - Abreisedatum"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:18

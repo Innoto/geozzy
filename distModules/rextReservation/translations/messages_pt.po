@@ -29,7 +29,7 @@ msgstr "Reservar"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReservation_classes_view_templates_booking-com-public.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:11
 msgid "Check in date - Check out date"
-msgstr "Data de check-in - Data de check-out"
+msgstr "Data de entrada  - Data de saída"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReservation_classes_view_templates_booking-com-public.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:18

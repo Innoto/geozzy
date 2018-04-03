@@ -29,12 +29,12 @@ msgstr "Réserver"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:11
 msgid "Check in date - Check out date"
-msgstr "Date d'arrivée - Date de départ"
+msgstr "Date d’entrée - Date de sortie"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:18
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:18
 msgid "Rooms"
-msgstr "Hébergements"
+msgstr "Chambres"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:30
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:30
