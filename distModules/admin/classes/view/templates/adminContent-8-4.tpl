@@ -7,6 +7,7 @@
   resourceViewData = {if !empty($res.data)}{$res.data|@json_encode}{else}false{/if};
 </script>
 
+<ul class="clearfix panelIdTags"></ul>
 <div class="admin-cols-8-4">
   <div class="row">
 
