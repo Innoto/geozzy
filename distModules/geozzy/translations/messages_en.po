@@ -427,3 +427,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
 msgid "SEO: URL Secundaria (Alias)"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:320
+msgid "Unknown"
+msgstr ""
