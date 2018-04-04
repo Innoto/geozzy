@@ -72,6 +72,29 @@ label.resImageMoreInfo{ margin-bottom: 30px;}
 }
 
 /* FORM RESOURCE*/
+ul.panelIdTags{
+  position: fixed;
+  background-color:@gzzColor-positive;
+  z-index:10;
+  width:100%;
+  top:90px;
+  left:0px;
+  padding-left:240px;
+
+  li.tagBlock{
+    font-size:@font-size-small;
+    cursor:pointer;
+    display: inline-block;
+    list-style-type: none;
+    float:left;
+    margin:3px 6px;
+    color: @gzzColor-text-light;
+    &:hover{
+      color:@text-color;
+    }
+  }
+}
+
 .infoBasic{
   width:100%;
   background: white;

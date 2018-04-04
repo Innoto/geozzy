@@ -342,28 +342,37 @@ class AdminViewTranslates extends AdminViewMaster {
                 }
                 else {
                   if( $idField !== 'urlAlias' ) {
-                    // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
-                    // echo '<p>'.$idField.' Resource: '.$valueField.'</p>';
-                    $maxSizeField = 0;
-                    $currentSizeField = 0;
-                    if( !empty( $resModel::$cols[$idField]['size'] ) ) {
-                      $maxSizeField = (int) $resModel::$cols[$idField]['size'];
-                      $currentSizeField = mb_strlen( $valueField, $this->codificacion );
-                    }
-                    if( $resModel::$cols[$idField]['type'] === 'TEXT' ) {
-                      $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
-                      $currentSizeField = mb_strlen( $valueField, $this->codificacion );
-                    }
+                    if( is_string( $valueField ) ) {
+                      // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
+                      // echo '<p>'.$idField.' Resource: '.$valueField.'</p>';
+                      $maxSizeField = 0;
+                      $currentSizeField = 0;
+                      if( !empty( $resModel::$cols[$idField]['size'] ) ) {
+                        $maxSizeField = (int) $resModel::$cols[$idField]['size'];
+                        $currentSizeField = mb_strlen( $valueField, $this->codificacion );
+                      }
+                      if( $resModel::$cols[$idField]['type'] === 'TEXT' ) {
+                        $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
+                        $currentSizeField = mb_strlen( $valueField, $this->codificacion );
+                      }
 
-                    if( $maxSizeField < $currentSizeField ) {
-                      cogumelo::log( 'WARNING - Field: '.$idField.' ( ResourceModel - id: '.$resData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
-                      $valueField = mb_substr( $valueField, 0, $maxSizeField, $this->codificacion );
+                      if( $maxSizeField < $currentSizeField ) {
+                        cogumelo::log( 'WARNING - Field: '.$idField.' ( ResourceModel - id: '.$resData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
+                        $valueField = mb_substr( $valueField, 0, $maxSizeField, $this->codificacion );
+                        echo '<div class="alert alert-danger">';
+                        echo '<p><strong>Id '.$resData['id'].'</strong> do modelo ResourceModel:<p>';
+                        echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                        echo '</div>';
+                      }
+                      $resModel->setter( $idField, $valueField, $langToImport );
+                    }
+                    else {
+                      cogumelo::log( 'ERROR SETTER - Field: '.$idField.' ( ResourceModel - id: '.$resData['id'].' ) - NON É UN STRING, modificar o valor a "string"', 'AdminTranslates' );
                       echo '<div class="alert alert-danger">';
-                      echo '<p><strong>Id '.$resData['id'].'</strong> do modelo ResourceModel:<p>';
-                      echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                      echo '<p>Field: <ins>'.$idField.'</ins> ( Resource: '.$resData['id'].' )</p>';
+                      echo '<p><strong>NON É UN STRING <em>(modificar o valor a "string")</em></strong></p>';
                       echo '</div>';
                     }
-                    $resModel->setter( $idField, $valueField, $langToImport );
                   }
                 }
               }
@@ -375,23 +384,31 @@ class AdminViewTranslates extends AdminViewMaster {
                 cogumelo::log( 'SUCCESS SAVE - ResourceModel - id: '.$resData['id'], 'AdminTranslates' );
               }
 
-              // Una vez guardado el recurso, guardamos la urlAlias (empleamos método de colision de url de ResourceController)
-              $resCtrl = new ResourceController();
-              $url = $resCtrl->setUrl( $resData['id'], $langToImport, $resData['urlAlias'] );
+              if( is_string( $resData['urlAlias'] ) ) {
+                // Una vez guardado el recurso, guardamos la urlAlias (empleamos método de colision de url de ResourceController)
+                $resCtrl = new ResourceController();
+                $url = $resCtrl->setUrl( $resData['id'], $langToImport, $resData['urlAlias'] );
 
-              if( !empty( $url ) ) {
-                cogumelo::log( 'SUCCESS SAVE - UrlAliasModel - id: '.$url. ' ( resource '.$resData['id'].' )', 'AdminTranslates' );
-                // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
-                // echo '<p>UrlAliasModel gardado correctamente - <strong>Id url: '.$url.'</strong> (Resource: '.$resData['id'].')</p>';
+                if( !empty( $url ) ) {
+                  cogumelo::log( 'SUCCESS SAVE - UrlAliasModel - id: '.$url. ' ( resource '.$resData['id'].' )', 'AdminTranslates' );
+                  // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
+                  // echo '<p>UrlAliasModel gardado correctamente - <strong>Id url: '.$url.'</strong> (Resource: '.$resData['id'].')</p>';
+                }
+                else {
+                  cogumelo::log( 'ERROR SAVE - UrlAliasModel - id: '.$url. ' ( resource '.$resData['id'].' )', 'AdminTranslates' );
+                  echo '<div class="alert alert-danger">';
+                  echo '<p>( Resource: '.$resData['id'].' )</p>';
+                  echo '<p><strong>UrlAliasModel - ERROR gardando a url</strong></p>';
+                  echo '</div>';
+                }
               }
-              else {
-                cogumelo::log( 'ERROR SAVE - UrlAliasModel - id: '.$url. ' ( resource '.$resData['id'].' )', 'AdminTranslates' );
+              else{
+                cogumelo::log( 'ERROR SAVE - UrlAliasModel (NON É UN STRING, modificar o valor a "string") - ( resource '.$resData['id'].' )', 'AdminTranslates' );
                 echo '<div class="alert alert-danger">';
                 echo '<p>( Resource: '.$resData['id'].' )</p>';
-                echo '<p><strong>UrlAliasModel - ERROR gardando a url</strong></p>';
+                echo '<p><strong>UrlAliasModel - ERROR gardando a url - NON É UN STRING <em>(modificar o valor a "string")</em></strong></p>';
                 echo '</div>';
               }
-
             }
             echo '<p>FIN: Actualizando... "Resources"</p></div>';
           }
@@ -411,28 +428,37 @@ class AdminViewTranslates extends AdminViewMaster {
                     $resRelatedModel->setter( $idFieldModel, $valueFieldModel );
                   }
                   else {
-                    // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
-                    // echo '<p>'.$idFieldModel.' Ext: '.$valueFieldModel.'</p>';
-                    $maxSizeField = 0;
-                    $currentSizeField = 0;
-                    if( !empty( $resRelatedModel::$cols[$idFieldModel]['size'] ) ) {
-                      $maxSizeField = (int) $resRelatedModel::$cols[$idFieldModel]['size'];
-                      $currentSizeField = mb_strlen( $valueFieldModel, $this->codificacion );
-                    }
-                    if( $resRelatedModel::$cols[$idFieldModel]['type'] === 'TEXT' ) {
-                      $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
-                      $currentSizeField = mb_strlen( $valueFieldModel, $this->codificacion );
-                    }
+                    if( is_string( $valueFieldModel ) ) {
+                      // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
+                      // echo '<p>'.$idFieldModel.' Ext: '.$valueFieldModel.'</p>';
+                      $maxSizeField = 0;
+                      $currentSizeField = 0;
+                      if( !empty( $resRelatedModel::$cols[$idFieldModel]['size'] ) ) {
+                        $maxSizeField = (int) $resRelatedModel::$cols[$idFieldModel]['size'];
+                        $currentSizeField = mb_strlen( $valueFieldModel, $this->codificacion );
+                      }
+                      if( $resRelatedModel::$cols[$idFieldModel]['type'] === 'TEXT' ) {
+                        $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
+                        $currentSizeField = mb_strlen( $valueFieldModel, $this->codificacion );
+                      }
 
-                    if( $maxSizeField < $currentSizeField ) {
-                      cogumelo::log( 'WARNING - Field: '.$idFieldModel.' ( '.$modelRelatedName.' - id: '.$modelData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
-                      $valueFieldModel = mb_substr( $valueFieldModel, 0, $maxSizeField, $this->codificacion );
+                      if( $maxSizeField < $currentSizeField ) {
+                        cogumelo::log( 'WARNING - Field: '.$idFieldModel.' ( '.$modelRelatedName.' - id: '.$modelData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
+                        $valueFieldModel = mb_substr( $valueFieldModel, 0, $maxSizeField, $this->codificacion );
+                        echo '<div class="alert alert-danger">';
+                        echo '<p><strong>Id '.$modelData['id'].'</strong> do modelo '.$modelRelatedName.':<p>';
+                        echo '<p>O campo <strong>'.$idFieldModel.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                        echo '</div>';
+                      }
+                      $resRelatedModel->setter( $idFieldModel, $valueFieldModel, $langToImport );
+                    }
+                    else {
+                      cogumelo::log( 'ERROR SETTER - Field: '.$idFieldModel.' ( '.$modelRelatedName.' - id: '.$modelData['id'].' ) - NON É UN STRING, modificar o valor a "string"', 'AdminTranslates' );
                       echo '<div class="alert alert-danger">';
-                      echo '<p><strong>Id '.$modelData['id'].'</strong> do modelo '.$modelRelatedName.':<p>';
-                      echo '<p>O campo <strong>'.$idFieldModel.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                      echo '<p>Field: <ins>'.$idFieldModel.'</ins> ( Resource: '.$modelData['id'].' )</p>';
+                      echo '<p><strong>NON É UN STRING <em>(modificar o valor a "string")</em></strong></p>';
                       echo '</div>';
                     }
-                    $resRelatedModel->setter( $idFieldModel, $valueFieldModel, $langToImport );
                   }
                 }
 
@@ -461,28 +487,37 @@ class AdminViewTranslates extends AdminViewMaster {
                   $colModel->setter( $idField, $valueField );
                 }
                 else {
-                  // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
-                  // echo '<p>'.$idField.' Collection: '.$valueField.'</p>';
-                  $maxSizeField = 0;
-                  $currentSizeField = 0;
-                  if( !empty( $colModel::$cols[$idField]['size'] ) ) {
-                    $maxSizeField = (int) $colModel::$cols[$idField]['size'];
-                    $currentSizeField = mb_strlen( $valueField, $this->codificacion );
-                  }
-                  if( $colModel::$cols[$idField]['type'] === 'TEXT' ) {
-                    $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
-                    $currentSizeField = mb_strlen( $valueField, $this->codificacion );
-                  }
+                  if( is_string( $valueField ) ) {
+                    // TODO: descomentar la línea inferior para seguir el proceso de importación en admin
+                    // echo '<p>'.$idField.' Collection: '.$valueField.'</p>';
+                    $maxSizeField = 0;
+                    $currentSizeField = 0;
+                    if( !empty( $colModel::$cols[$idField]['size'] ) ) {
+                      $maxSizeField = (int) $colModel::$cols[$idField]['size'];
+                      $currentSizeField = mb_strlen( $valueField, $this->codificacion );
+                    }
+                    if( $colModel::$cols[$idField]['type'] === 'TEXT' ) {
+                      $maxSizeField = 65535;  //  En MYSQL el tipo de dato TEXT tiene como máximo 65535 caracteres
+                      $currentSizeField = mb_strlen( $valueField, $this->codificacion );
+                    }
 
-                  if( $maxSizeField < $currentSizeField ) {
-                    cogumelo::log( 'WARNING - Field: '.$idField.' ( CollectionModel - id: '.$colData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
-                    $valueField = mb_substr( $valueField, 0, $maxSizeField, $this->codificacion );
+                    if( $maxSizeField < $currentSizeField ) {
+                      cogumelo::log( 'WARNING - Field: '.$idField.' ( CollectionModel - id: '.$colData['id'].' ) - Caracteres max. '.$maxSizeField, 'AdminTranslates' );
+                      $valueField = mb_substr( $valueField, 0, $maxSizeField, $this->codificacion );
+                      echo '<div class="alert alert-danger">';
+                      echo '<p><strong>Id '.$colData['id'].'</strong> do modelo CollectionModel:<p>';
+                      echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                      echo '</div>';
+                    }
+                    $colModel->setter( $idField, $valueField, $langToImport );
+                  }
+                  else {
+                    cogumelo::log( 'ERROR SETTER - Field: '.$idField.' ( CollectionModel - id: '.$colData['id'].' ) - NON É UN STRING, modificar o valor a "string"', 'AdminTranslates' );
                     echo '<div class="alert alert-danger">';
-                    echo '<p><strong>Id '.$colData['id'].'</strong> do modelo CollectionModel:<p>';
-                    echo '<p>O campo <strong>'.$idField.'</strong> ('.$currentSizeField.' caract.) superou o límite de caracteres establecidos (máx. '.$maxSizeField.') <em>Procediuse a recortar o texto para cumprir as regras establecidas</em></p>';
+                    echo '<p>Field: <ins>'.$idField.'</ins> ( Resource: '.$colData['id'].' )</p>';
+                    echo '<p><strong>NON É UN STRING <em>(modificar o valor a "string")</em></strong></p>';
                     echo '</div>';
                   }
-                  $colModel->setter( $idField, $valueField, $langToImport );
                 }
               }
 

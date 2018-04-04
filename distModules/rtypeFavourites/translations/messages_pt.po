@@ -9,6 +9,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rtypeFavourites/classes/view/templates/js/favouritesView.js:16
+msgid "Remove from favourites"
+msgstr "Remover favoritos"
+
+#: /home/proxectos/geozzy/distModules/rtypeFavourites/classes/view/templates/js/favouritesView.js:8
+msgid "Remove from favorites"
+msgstr ""
+
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:31
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeFavourites_classes_view_templates_rTypeViewBlock.tpl:31
 msgid "Favourites page"

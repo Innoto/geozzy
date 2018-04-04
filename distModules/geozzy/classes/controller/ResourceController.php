@@ -1138,19 +1138,21 @@ class ResourceController {
       if( gettype( $taxAllList ) === 'object' ) {
         while( $taxTerm = $taxAllList->fetch() ) {
           $termId = $taxTerm->getter('id');
-          $taxTerms[ $termId ] = $taxTerm->getAllData( 'onlydata' );
+          $taxTerms[ $termId ] = $this->getAllTrData( $taxTerm );
 
-          // Añadimos los campos en el idioma actual o el idioma principal
-          $taxFields = $taxTerm->getCols();
-          foreach( $taxFields as $key => $value ) {
-            if( !isset( $taxTerms[ $termId ][ $key ] ) ) {
-              $taxTerms[ $termId ][ $key ] = $taxTerm->getter( $key );
-              // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
-              if( $taxTerms[ $termId ][ $key ] === '' && isset( $taxTerms[ $termId ][ $key.'_'.$langDefault ] ) ) {
-                $taxTerms[ $termId ][ $key ] = $taxTerms[ $termId ][ $key.'_'.$langDefault ];
-              }
-            }
-          }
+          //   $taxTerms[ $termId ] = $taxTerm->getAllData( 'onlydata' );
+          //
+          //   // Añadimos los campos en el idioma actual o el idioma principal
+          //   $taxFields = $taxTerm->getCols();
+          //   foreach( $taxFields as $key => $value ) {
+          //     if( !isset( $taxTerms[ $termId ][ $key ] ) ) {
+          //       $taxTerms[ $termId ][ $key ] = $taxTerm->getter( $key );
+          //       // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
+          //       if( $taxTerms[ $termId ][ $key ] === '' && isset( $taxTerms[ $termId ][ $key.'_'.$langDefault ] ) ) {
+          //         $taxTerms[ $termId ][ $key ] = $taxTerms[ $termId ][ $key.'_'.$langDefault ];
+          //       }
+          //     }
+          //   }
         }
       }
 
@@ -2209,7 +2211,7 @@ class ResourceController {
       foreach( $modelData as $key => $data ) {
         if( strpos($key,'_'.$this->actLang) ) { // existe en el idioma actual
           $key_parts = explode('_'.$this->actLang, $key);
-          if( $data && $data !== '' ) {
+          if( $data && $data !== '' && $data !== null ) {
             $modelData[ $key_parts[0] ] = $data;
           }
           else {
@@ -2232,7 +2234,7 @@ class ResourceController {
       foreach( $objModel->getCols() as $fieldName => $fieldInfo ) {
         $allData[ $fieldName ] = $objModel->getter( $fieldName );
         // Si en el idioma actual es una cadena vacia, buscamos el contenido en el idioma principal
-        if( $allData[ $fieldName ] === '' && isset( $allData[ $fieldName.'_'.$defLang ] ) ) {
+        if( ( $allData[ $fieldName ] === '' || $allData[ $fieldName ] === null ) && isset( $allData[ $fieldName.'_'.$defLang ] ) ) {
           $allData[ $fieldName ] = $allData[ $fieldName.'_'.$defLang ];
         }
       }

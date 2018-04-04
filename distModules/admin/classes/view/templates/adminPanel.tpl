@@ -7,7 +7,7 @@
 
 
   {if $icon ne '' or $title ne ''}
-  <div class="panel-heading">
+  <div id="{$title|replace:' ': '_'}" class="panel-heading panelBlocktoLink">
     <!--<i class="fa {$icon} fa-fw"></i>-->
     {$title}
   </div>
