@@ -10,6 +10,7 @@ table::autoIncludes();
 form::loadDependence('ckeditor');
 if( Cogumelo::getSetupValue('mod:geozzy:resource:htmlEditorBig') ) {
   form::loadDependence('grapesjs');
+  form::loadDependence('grapesjsPresetWebpage');
 }
 
 if( class_exists( 'rtypeStory' ) ) {
