@@ -9,17 +9,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
 msgid "Select options"
 msgstr "Seleccionar opcións"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:57
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:75
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:57
 msgid "Add existing resources"
 msgstr "Engadir recursos existentes"
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:88
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:70
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
 msgid "Edit Collection"

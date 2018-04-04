@@ -112,6 +112,25 @@ body{
             appearance: none;
             cursor: pointer;
           }
+          button.filterByFavourites{
+            font-size: 14px;
+            background: @gzzColor-bck-5;
+            color: @gzzColor-text-dark;
+            border: 1px solid @gzzColor-bck-1;
+            padding: 2px 5px;
+
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            &.active{
+              background: @gzzColor-RS;
+              color: @gzzColor-text-light;
+            }
+          }
           .mode2{
             .days{
               padding: 0;
@@ -813,10 +832,18 @@ body{
           border-top:none;
           padding-top:5px;
         }
+
+        &.end{
+          padding-bottom:10px;
+        }
       }
       .moreInfo{
         //padding-bottom:30px;
+        font-size:@font-size-big;
 
+        .title{
+          font-weight: bold;
+        }
 
       }
     }
