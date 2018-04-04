@@ -8,7 +8,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   parentTp : false,
 
   events: {
-    "change .travelPlannerFilterBar .filterByFavourites": "changeFilters",
+    "click .travelPlannerFilterBar .filterByFavourites": "changeFilters",
     "change .travelPlannerFilterBar .filterByRtype": "changeFilters",
     "mouseover .tpResourceItem": "resourceMouseenter",
     "mouseleave .tpResourceItem": "resourceMouseleave",
@@ -55,7 +55,7 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     }
 
     var rtypesFilters = [];
-    _.each( cogumelo.publicConf.geozzyTravelPlanner.rTypes, function(i, item){
+    _.each( cogumelo.publicConf.geozzyTravelPlanner.rTypes, function(item, i){
       rtypesFilters.push(that.parentTp.rtypes.where({ idName: item })[0].toJSON());
     });
     that.$el.html( that.interfaceTemplate({ rtypesFilters: rtypesFilters }) );
@@ -66,12 +66,12 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
     var that = this;
 
     var filterByRtype = that.$('select.filterByRtype').val();
-    var filterByFavourites = that.$('select.filterByFavourites').val();
+    var filterByFavourites = that.$('.filterByFavourites').hasClass('active') ? true : false;
     var resourcesToList = [];
 
     resourcesToList = that.parentTp.resources;
 
-    if(filterByFavourites === "fav"){
+    if(filterByFavourites === true){
       resourcesToList = new geozzy.collection.ResourceCollection( resourcesToList.filterById(that.parentTp.favResources) );
     }
     if(filterByRtype !== "*"){
@@ -100,9 +100,6 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
       that.$('.travelPlannerResources').append(that.resourceTemplate({ resource: item }));
     });
 
-
-
-
     that.parentTp.travelPlannerMapView.showMarkers( resourcesToList.pluck('id')  );
   },
   resourceMouseenter: function(e) {
@@ -117,6 +114,11 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   //Bind para cuando cambia un filtro
   changeFilters: function(e){
     var that = this;
+    if(that.$('.filterByFavourites').hasClass('active')){
+      that.$('.filterByFavourites').removeClass('active');
+    }else{
+      that.$('.filterByFavourites').addClass('active');
+    }
     that.listResources();
   },
   //Bind para añadir un recurso
