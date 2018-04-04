@@ -7,6 +7,7 @@ geozzy.rExtMapController = function( opts ) {
 
 
   var that = this;
+  var resourceLocation = __('Resource location');
 
   that.resourceMap = false;
   that.resourceMarker = false;
@@ -81,7 +82,7 @@ geozzy.rExtMapController = function( opts ) {
       that.resourceMarker = new google.maps.Marker({
         map: that.resourceMap,
         position: new google.maps.LatLng( that.options.lat, that.options.lng ),
-        title: 'Resource location',
+        title: resourceLocation,
         icon: icono
       });
 
@@ -93,6 +94,5 @@ geozzy.rExtMapController = function( opts ) {
       that.resourceMap = false;
     }
   };
-
 
 };
