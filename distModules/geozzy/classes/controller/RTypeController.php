@@ -317,7 +317,7 @@ class RTypeController {
         'cache' => $this->cacheQuery
       ])->fetch();
 
-      $userUpdateName = $userUpdate->getter('login');
+      $userUpdateName = is_object( $userUpdate ) ? $userUpdate->getter('login') : __( 'Unknown' );
       $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
       $templates['info']->assign( 'update', [ 'time' =>$timeLastUpdate, 'user' => $userUpdateName ] );
     }
