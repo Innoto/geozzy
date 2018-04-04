@@ -321,6 +321,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1042
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1627
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1774
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1776
 msgid "Error setting values"
 msgstr ""
 
@@ -329,6 +330,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1749
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1744
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1835
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1837
 msgid "Error setting collection values"
 msgstr ""
 
@@ -337,6 +339,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1848
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1843
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1934
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1936
 msgid "Error setting URL alias"
 msgstr ""
 
@@ -345,6 +348,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1862
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1857
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1948
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1950
 msgid "Error setting URL alias 2"
 msgstr ""
 
@@ -422,4 +426,8 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:395
 msgid "SEO: URL Secundaria (Alias)"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:320
+msgid "Unknown"
 msgstr ""

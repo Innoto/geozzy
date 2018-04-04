@@ -13,7 +13,7 @@ geozzy.favouritesView = geozzy.favouritesView || {
       .attr( {
         'data-toggle': 'tooltip',
         'data-placement': 'left',
-        'title': __( 'Remove from favorites' ),
+        'title': __('Remove from favourites'),
         'tabindex': '0'
       } )
       .on( 'click', geozzy.favouritesView.eventRemove )

@@ -11,10 +11,11 @@
       <div class="travelPlannerFilterBar clearfix">
         <div class="mode mode1">
           <span>{t}Filtros :{/t}</span>
-          <select class="filterByFavourites">
+          <button class="filterByFavourites active"><i class="fa fa-star"></i>&nbsp;{t}Sólo favoritos{/t}</button>
+          <!--<select class="filterByFavourites">
             <option value="*">{t}All{/t}</option>
             <option selected="selected" value="fav">{t}Favourites{/t}</option>
-          </select>
+          </select>-->
           <select class="filterByRtype">
             <option value="*">{t}All Contents{/t}</option>
             <% _.each( rtypesFilters, function( elem ) { %>

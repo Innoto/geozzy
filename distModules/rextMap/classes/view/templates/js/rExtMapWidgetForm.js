@@ -7,6 +7,7 @@ var geozzy = geozzy || {};
 
 geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   var that = this;
+  var resourceLocation = __('Resource location');
 
   that.segmentDIV = segmentDIV;
 
@@ -76,7 +77,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
         that.resourceMarker = new google.maps.Marker({
           position: new google.maps.LatLng( latValue, lonValue ),
-          title: 'Resource location',
+          title: resourceLocation,
           icon: my_marker,
           draggable: true
         });

@@ -46,7 +46,7 @@ msgstr "Appliquer"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:22
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerSaganInLanding.tpl:22
 msgid "Clear filters"
-msgstr "Éliminer les filtres"
+msgstr "Réinitialiser filtres"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:23
