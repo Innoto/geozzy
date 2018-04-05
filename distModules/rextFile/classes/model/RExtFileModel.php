@@ -29,7 +29,9 @@ class RExtFileModel extends Model {
     )
   );
 
-  static $extraFilters = array();
+  static $extraFilters = array(
+    'resourceIn' => ' geozzy_resource_rext_file.resource IN (?) '
+  );
 
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {
