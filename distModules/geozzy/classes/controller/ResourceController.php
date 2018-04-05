@@ -1483,6 +1483,20 @@ class ResourceController {
       'filters' => [ 'idIn' => $resIds, 'published' => 1 ],
       'cache' => $this->cacheQuery
     ]);
+
+    $fileModel = new RExtFileModel();
+    $fileList = $fileModel->listItems( [
+      'filters' => [ 'resourceIn' => $resIds ],
+      'cache' => $this->cacheQuery
+    ] );
+
+    $fieldsAuthor = [];
+    if( is_object( $fileList ) ) {
+      while( $fileObj = $fileList->fetch() ) {
+        $fieldsAuthor[ $fileObj->getter('resource') ] = $fileObj->getter('author');
+      }
+    }
+
     if( is_object( $resourceViewList ) ) {
       while( $resVal = $resourceViewList->fetch() ) {
         $resValId = $resVal->getter('id');
@@ -1502,6 +1516,10 @@ class ResourceController {
           'imageName' => $resVal->getter('imageName'),
           'imageAKey' => $resVal->getter('imageAKey'),
         );
+
+        if( !empty( $fieldsAuthor[ $resValId ] ) ) {
+          $resSonInfo[ $resValId ]['author'] = $fieldsAuthor[ $resValId ];
+        }
 
         //Añadimos rextUrlUrl a los recursos tipo link
         $rextUrlUrl = $resVal->getter('rextUrlUrl');
