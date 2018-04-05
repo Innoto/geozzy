@@ -382,6 +382,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:68
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:72
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:74
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewMaster.php:75
 msgid "Access denied"
 msgstr ""
 
