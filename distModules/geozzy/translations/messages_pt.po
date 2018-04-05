@@ -78,12 +78,12 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceMultimediaViewBlock.tpl:59
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:59
 msgid "See more..."
-msgstr ""
+msgstr "Ver mais..."
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceMultimediaViewBlock.tpl:61
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_resourceMultimediaViewBlock.tpl:61
 msgid "Less"
-msgstr ""
+msgstr "Menos"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:12
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceCollectionViewBlock.tpl:12

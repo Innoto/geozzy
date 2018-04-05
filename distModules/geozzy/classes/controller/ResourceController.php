@@ -26,7 +26,7 @@ class ResourceController {
   public $cacheQuery = true; // false, true or time in seconds
 
   public function __construct( $resId = false ) {
-    // error_log( 'ResourceController::__construct' );
+    // error_log(__METHOD__);
 
     common::autoIncludes();
     form::autoIncludes();
@@ -145,7 +145,7 @@ class ResourceController {
    * @return array OR false
    */
   public function getResourceData( $resId = false ) {
-    // error_log( "ResourceController: getResourceData()" );
+    // error_log(__METHOD__);
     $resourceData = false;
 
     // if( (!$this->resData || ( $resId && $resId !== $this->resData['id'] ) ) && $resObj=$this->loadResourceObject( $resId ) ) {
@@ -296,7 +296,7 @@ class ResourceController {
    * @return Obj-Form
    */
   public function getBaseFormObj( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
-    // error_log( "ResourceController: getBaseFormObj()" );
+    // error_log(__METHOD__);
     // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
 
     $form = new FormController( $formName, $urlAction );
@@ -482,11 +482,26 @@ class ResourceController {
     );
 
     $htmlEditorBig = Cogumelo::getSetupValue('mod:geozzy:resource:htmlEditorBig');
-    if( $htmlEditorBig && is_array($htmlEditorBig) ) {
-      foreach( $htmlEditorBig as $bigEditorField ) {
-        if( isset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] ) ) {
-          unset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] );
-          $fieldsInfo[ $bigEditorField ]['params']['htmlEditorBig'] = true;
+    if( is_array($htmlEditorBig) ) {
+      foreach( $htmlEditorBig as $bigEditorKey => $bigEditorFields ) {
+        if( is_string( $bigEditorFields ) ) {
+          // Nombra un campo. El indice no indica nada
+          if( isset( $fieldsInfo[ $bigEditorFields ]['params']['htmlEditor'] ) ) {
+            unset( $fieldsInfo[ $bigEditorFields ]['params']['htmlEditor'] );
+            $fieldsInfo[ $bigEditorFields ]['params']['htmlEditorBig'] = true;
+          }
+        }
+        else {
+          // Array de campos. El indice indica el nombre del RType
+          if( !empty( $valuesArray['rTypeIdName'] ) && $bigEditorKey === $valuesArray['rTypeIdName'] ) {
+            error_log( __METHOD__.' htmlEditorBig rTypeIdName: '.$valuesArray['rTypeIdName'] );
+            foreach( $bigEditorFields as $bigEditorField ) {
+              if( isset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] ) ) {
+                unset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] );
+                $fieldsInfo[ $bigEditorField ]['params']['htmlEditorBig'] = true;
+              }
+            }
+          }
         }
       }
     }
@@ -515,7 +530,7 @@ class ResourceController {
       }
 
       $form->loadArrayValues( $valuesArray );
-      // error_log( 'ResourceController getFormObj: ' . print_r( $valuesArray, true ) );
+      // error_log( __METHOD__.': ' . print_r( $valuesArray, true ) );
     }
 
     $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Send' ), 'class' => 'gzzAdminToMove' ) );
@@ -765,7 +780,7 @@ class ResourceController {
    *  Cargando IdName del RType
    */
   public function getRTypeIdName( $rTypeId = false, $resId = false ) {
-    // error_log( "ResourceController: getRTypeIdName( $rTypeId )" );
+    // error_log(__METHOD__.': '.$rTypeId );
     $rTypeIdName = false;
 
     if( $rTypeId === false ) {
@@ -810,7 +825,7 @@ class ResourceController {
    * Filedata methods
    */
   public function getFiledata( $fileIds ) {
-    // error_log( 'ResourceController: getFiledata(fileIds): ' . print_r( $fileIds, true ) );
+    // error_log( __METHOD__.' : '.print_r( $fileIds, true ) );
     $result = false;
 
     $fileDataModel = new FiledataModel();
@@ -945,7 +960,7 @@ class ResourceController {
     $fileGroupField = $form->getFieldValue( $fieldName );
     $filePrivateMode = $form->getFieldParam( $fieldName, 'privateMode' );
 
-    cogumelo::debug('ResourceController: *** setFormFilegroup *** '.$fieldName.' - '.$colName /*.' fileInfo: '. print_r( $fileGroupField, true )*/ );
+    cogumelo::debug(__METHOD__.': '.$fieldName.' - '.$colName /*.' fileInfo: '. print_r( $fileGroupField, true )*/ );
 
     $filedataCtrl = new FiledataController();
     $filegroupObj = false;
@@ -958,8 +973,8 @@ class ResourceController {
       foreach( $fileGroupField['multiple'] as $fileField ) {
         if( isset( $fileField['status'] ) ) {
 
-          cogumelo::debug('ResourceController: To Model - status: '.$fileField['status'] );
-          cogumelo::debug('ResourceController: ========' );
+          cogumelo::debug(__METHOD__.': To Model - status: '.$fileField['status'] );
+          cogumelo::debug(__METHOD__.': ========' );
 
           switch( $fileField['status'] ) {
             case 'LOADED':
@@ -969,7 +984,7 @@ class ResourceController {
               // $fileFieldValues = $fileField['values'];
 
               $newFilegroupObj = $filedataCtrl->saveToFileGroup( $fileField['values'], $filegroupId );
-              cogumelo::debug('ResourceController: To Model SAVE: newFilegroupObj idGroup, filedataId: '.
+              cogumelo::debug(__METHOD__.': To Model SAVE: newFilegroupObj idGroup, filedataId: '.
                 $newFilegroupObj->getter( 'idGroup' ).', '.$newFilegroupObj->getter( 'filedataId' ) );
               if( $newFilegroupObj ) {
                 $result = $newFilegroupObj;
@@ -986,7 +1001,7 @@ class ResourceController {
               $deleteId = $fileField['values']['id'];
 
               $result = $filedataCtrl->deleteFromFileGroup( $deleteId, $filegroupId );
-              cogumelo::debug('ResourceController: To Model Delete: '.json_encode($result) );
+              cogumelo::debug(__METHOD__.': To Model Delete: '.json_encode($result) );
 
               break;
 
@@ -1256,7 +1271,7 @@ class ResourceController {
   }
 
   public function getCollectionsSelect( $collsInfo ) {
-    // error_log( "ResourceController: getCollectionsInfo( $resId )" );
+    // error_log(__METHOD__);
     $collsSelect = array(
       'options' => array(),
       'values' => array()
@@ -1268,13 +1283,13 @@ class ResourceController {
         $collsSelect[ 'values' ][] = $collId;
     }
 
-    // error_log( "ResourceController: getCollectionsSelect = ". print_r( $collsSelect, true ) );
+    // error_log(__METHOD__.": = ". print_r( $collsSelect, true ) );
     return $collsSelect;
   }
 
 
   public function getCollectionsInfo( $resId ) {
-    // error_log( "ResourceController: getCollectionsInfo( $resId )" );
+    // error_log(__METHOD__.": $resId" );
     $colInfo = array(
       'options' => array(),
       'values' => array()
@@ -1299,12 +1314,12 @@ class ResourceController {
       }
     }
 
-    // error_log( "ResourceController: getCollectionsInfo = ". print_r( $colInfo, true ) );
+    // error_log(__METHOD__.": = ". print_r( $colInfo, true ) );
     return ( count( $colInfo['values'] ) > 0 ) ? $colInfo : false;
   }
 
   public function getMultimediaInfo( $resId ) {
-    // error_log( "ResourceController: getMultimediaInfo( $resId )" );
+    // error_log(__METHOD__.": $resId" );
     $multimediaInfo = array(
       'options' => array(),
       'values' => array()
@@ -1329,7 +1344,7 @@ class ResourceController {
       }
     }
 
-    // error_log( "ResourceController: getMultimediaInfo = ". print_r( $colInfo, true ) );
+    // error_log(__METHOD__.": = ". print_r( $colInfo, true ) );
     return ( count( $multimediaInfo['values'] ) > 0 ) ? $multimediaInfo : false;
   }
 
@@ -1468,6 +1483,20 @@ class ResourceController {
       'filters' => [ 'idIn' => $resIds, 'published' => 1 ],
       'cache' => $this->cacheQuery
     ]);
+
+    $fileModel = new RExtFileModel();
+    $fileList = $fileModel->listItems( [
+      'filters' => [ 'resourceIn' => $resIds ],
+      'cache' => $this->cacheQuery
+    ] );
+
+    $fieldsAuthor = [];
+    if( is_object( $fileList ) ) {
+      while( $fileObj = $fileList->fetch() ) {
+        $fieldsAuthor[ $fileObj->getter('resource') ] = $fileObj->getter('author');
+      }
+    }
+
     if( is_object( $resourceViewList ) ) {
       while( $resVal = $resourceViewList->fetch() ) {
         $resValId = $resVal->getter('id');
@@ -1487,6 +1516,10 @@ class ResourceController {
           'imageName' => $resVal->getter('imageName'),
           'imageAKey' => $resVal->getter('imageAKey'),
         );
+
+        if( !empty( $fieldsAuthor[ $resValId ] ) ) {
+          $resSonInfo[ $resValId ]['author'] = $fieldsAuthor[ $resValId ];
+        }
 
         //Añadimos rextUrlUrl a los recursos tipo link
         $rextUrlUrl = $resVal->getter('rextUrlUrl');
@@ -1941,7 +1974,7 @@ class ResourceController {
   }
 
   private function setFormAdminUrlAlias( $form, $fieldName, $resObj ) {
-    cogumelo::debug('ResourceController: '."setFormAdminUrlAlias( form, $fieldName, resObj )" );
+    cogumelo::debug(__METHOD__.": form, $fieldName, resObj " );
     if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
       $resId = $resObj->getter('id');
       foreach( $form->langAvailable as $langId ) {
@@ -2064,7 +2097,7 @@ class ResourceController {
 
 
   public function setUrlAdminAlias( $resId, $langId, $urlAlias ) {
-    cogumelo::debug('ResourceController: '."setUrlAdminAlias( $resId, $langId, $urlAlias )" );
+    cogumelo::debug(__METHOD__."( $resId, $langId, $urlAlias )" );
     $result = true;
 
     $aliasId = false;
@@ -2083,12 +2116,12 @@ class ResourceController {
     $aliasObj = ( gettype( $elemsList ) === 'object' ) ? $elemsList->fetch() : false;
     if( gettype( $aliasObj ) === 'object' ) {
       $aliasId = $aliasObj->getter( 'id' );
-      cogumelo::debug('ResourceController: setUrlAdminAlias: Xa existe - '.$aliasId );
+      cogumelo::debug(__METHOD__.': Xa existe - '.$aliasId );
     }
 
     if( empty( $urlAlias ) ) {
       if( $aliasId ) {
-        cogumelo::debug('ResourceController: setUrlAdminAlias: Borrando '.$aliasId );
+        cogumelo::debug(__METHOD__.': Borrando '.$aliasId );
         $aliasObj->delete();
       }
     }
@@ -2099,11 +2132,11 @@ class ResourceController {
       $elemModel = new UrlAliasModel( $aliasArray );
       if( $elemModel->save() === false ) {
         $result = false;
-        error_log( 'setUrlAdminAlias: ERROR gardando a url' );
+        error_log(__METHOD__.': ERROR gardando a url' );
       }
       else {
         $result = $elemModel->getter( 'id' );
-        cogumelo::debug('ResourceController: setUrlAdminAlias: Creada/Actualizada - '.$result );
+        cogumelo::debug(__METHOD__.': Creada/Actualizada - '.$result );
       }
     }
 
@@ -2158,7 +2191,7 @@ class ResourceController {
    * Datos y template por defecto del ResourceBlock
    */
   public function getViewBlockInfo( $resId = false ) {
-    // error_log( "ResourceController: getViewBlockInfo()" );
+    // error_log(__METHOD__);
 
     $viewBlockInfo = array(
       'template' => false,
