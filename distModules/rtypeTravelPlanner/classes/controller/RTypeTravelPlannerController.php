@@ -125,6 +125,8 @@ class RTypeTravelPlannerController extends RTypeController implements RTypeInter
     //$template->addClientScript( 'js/collection/ResourceCollection.js' , 'geozzy');
     //$template->addClientScript( 'js/model/ResourcetypeModel.js' , 'geozzy');
     //$template->addClientScript( 'js/collection/ResourcetypeCollection.js' , 'geozzy');
+    $viewBlockInfo['data']['title'] = __("Travel Planner");
+
     $favsResourcesInfo = ($viewBlockInfo['data']['id']) ? $this->getResourcesInfo( $viewBlockInfo['data']['id'] ) : false;
     $template->assign( 'favsResourcesInfo', $favsResourcesInfo );
 

@@ -143,6 +143,8 @@ class RTypeFavouritesController extends RTypeController implements RTypeInterfac
       // Preparamos los datos para visualizar el Recurso con sus extensiones
       $viewBlockInfo = parent::getViewBlockInfo( $resId );
 
+      $viewBlockInfo['data']['title'] = __("Favourites");
+
       // $template = new Template();
       $template = $viewBlockInfo['template']['full'];
       $template->setTpl( 'rTypeViewBlock.tpl', 'rtypeFavourites' );
