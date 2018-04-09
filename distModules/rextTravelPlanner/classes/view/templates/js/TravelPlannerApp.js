@@ -53,6 +53,8 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
   that.tpData = new geozzy.travelPlannerComponents.TravelPlannerModel();
   that.tpData.set('id',idTravelPlanner);
 
+
+
   that.getResourcesFav = function(){
     var formData = new FormData();
     formData.append( 'cmd', 'listFavs' );
@@ -157,6 +159,10 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
 
   that.initOptimizeDayModal = function( day ){
     that.travelPlannerOptimizeDayView = new geozzy.travelPlannerComponents.TravelPlannerOptimizeDayView(that, day);
+  };
+
+  that.initPrintDayModal = function( day ){
+    that.travelPlannerOptimizeDayView = new geozzy.travelPlannerComponents.TravelPlannerPrintDayView(that, day);
   };
 
   that.addToPlan = function(idRes){

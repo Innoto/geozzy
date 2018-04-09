@@ -358,6 +358,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
         that.directionsService.route(request, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             that.directionsServiceRequest[that.currentDay] = response;
+
             if(optimizeRes){
               var list = that.parentTp.tpData.get('list');
               var resourcesDay = list[that.currentDay];
