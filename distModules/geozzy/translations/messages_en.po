@@ -278,24 +278,28 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:511
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:494
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:521
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:536
 msgid "Send"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:513
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:496
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:523
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:538
 msgid "Cancel"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:583
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:562
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:593
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:608
 msgid "El servidor no considera válidos los datos recibidos."
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:588
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:567
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:598
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:613
 msgid ""
 "Ha sucedido un problema con los ficheros adjuntos. Puede que sea necesario "
 "subirlos otra vez."
@@ -304,6 +308,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:614
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:593
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:624
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:639
 msgid "La fecha de creación no es válida"
 msgstr ""
 
@@ -322,6 +327,9 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1627
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1774
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1776
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1057
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1662
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1809
 msgid "Error setting values"
 msgstr ""
 
@@ -331,6 +339,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1744
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1835
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1837
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1870
 msgid "Error setting collection values"
 msgstr ""
 
@@ -340,6 +349,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1843
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1934
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1936
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1969
 msgid "Error setting URL alias"
 msgstr ""
 
@@ -349,6 +359,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1857
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1948
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1950
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:1983
 msgid "Error setting URL alias 2"
 msgstr ""
 

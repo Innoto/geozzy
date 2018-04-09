@@ -9,7 +9,7 @@ class story extends Module {
   public $dependences = array(
     array(
       "id" =>"mathjs",
-      "params" => array("mathjs"),
+      "params" => array("mathjs|4.0.1"),
       "installer" => "bower",
       "includes" => array('dist/math.min.js')
     ),

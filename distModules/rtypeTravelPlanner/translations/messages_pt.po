@@ -14,6 +14,7 @@ msgstr ""
 msgid "Page"
 msgstr "Página"
 
+#: /home/proxectos/geozzy/distModules/rtypeTravelPlanner/classes/controller/RTypeTravelPlannerController.php:128
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeViewBlock.tpl:15
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rtypeTravelPlanner_classes_view_templates_rTypeViewBlock.tpl:15
 msgid "Travel Planner"
