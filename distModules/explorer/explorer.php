@@ -73,6 +73,12 @@ class explorer extends Module {
       'params' => array( 'jquery-mapael-2.1.0' ),
       'installer' => 'manual',
       'includes' => array( "js/jquery.mapael.min.js")
+    ),
+    array(
+     'id' =>'bootstrap-daterangepicker',
+     'params' => array( 'bootstrap-daterangepicker' ),
+     'installer' => 'bower',
+     'includes' => array( 'daterangepicker.js', 'daterangepicker.css' )
     )
   );
 
@@ -85,6 +91,7 @@ class explorer extends Module {
     'js/view/Templates.js',
     'js/view/ExplorerFilterView.js',
     'js/view/filters/ExplorerFilterButtonsView.js',
+    'js/view/filters/ExplorerFilterDatepickerView.js',    
     'js/view/filters/ExplorerFilterComboView.js',
     'js/view/filters/ExplorerFilterMinimapView.js',
     'js/view/filters/ExplorerFilterGeoView.js',
