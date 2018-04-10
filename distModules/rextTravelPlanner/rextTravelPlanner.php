@@ -38,6 +38,12 @@ class rextTravelPlanner extends Module {
       "includes" => array("jquery.nestable.js")
     ),
     array(
+      "id" =>"jQuery.print",
+      "params" => array("jQuery.print"),
+      "installer" => "bower",
+      "includes" => array("jQuery.print.js")
+    ),
+    array(
      'id' =>'bootstrap-daterangepicker',
      'params' => array( 'bootstrap-daterangepicker' ),
      'installer' => 'bower',
@@ -59,6 +65,7 @@ class rextTravelPlanner extends Module {
     'js/view/TravelPlannerGetDatesView.js',
     'js/view/TravelPlannerHelpView.js',
     'js/view/TravelPlannerOptimizeDayView.js',
+    'js/view/TravelPlannerPrintDayView.js',
     'js/router/TravelPlannerRouter.js',
     'js/model/TravelPlannerModel.js',
     'js/TravelPlannerApp.js',

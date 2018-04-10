@@ -8,7 +8,7 @@
 
   <!--galleryContainer -->
   <div class="explorerContainer explorer-loading" style="display:none;"><i class="fa  fa-compass fa-spin"></i></div>
-  <div class="explorerButton gzz-exit-sticky" data-toggle="tooltip" data-placement="left" title="{t}Return to content{/t}" tabindex="0"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+  <div class="explorerButton gzz-exit-sticky" data-toggle="tooltip" data-placement="left" title="{t}Return to content{/t}" tabindex="0"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i></div>
 
   <!-- mobile explorer buttons -->
   <div class="explorer-manage-mobile explorerElSticky">

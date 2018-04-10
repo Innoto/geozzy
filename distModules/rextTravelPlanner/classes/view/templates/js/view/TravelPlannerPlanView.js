@@ -12,6 +12,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
   events: {
     'click .travelPlannerPlan .plannerDay .showMap': 'showMapDay',
     'click .travelPlannerPlan .plannerDay .optimizeDay': 'initOptimizeDay',
+    'click .travelPlannerPlan .plannerDay .printDay': 'printDay',
     'click .travelPlannerPlan .plannerDay .dd-item .btnDelete': 'removeResourceToDay',
     'click .travelPlannerPlan .plannerDay .dd-item .btnEdit': 'bindEditResourceToDay',
     'click .travelPlannerPlan .plannerDay .dd-item .btnAccess': 'bindAccessResource',
@@ -163,7 +164,7 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
   },
   bindAccessResource: function(e){
     var that = this;
-    
+
   },
   mouseenterResourceItem: function(e){
     var that = this;
@@ -209,6 +210,12 @@ geozzy.travelPlannerComponents.TravelPlannerPlanView = Backbone.View.extend({
     var that = this;
     var day = $(e.target).closest('.plannerDay').attr('data-day');
     that.parentTp.initOptimizeDayModal( day );
+  },
+  printDay: function(e){
+    var that = this;
+    var day = $(e.target).closest('.plannerDay').attr('data-day');
+    that.parentTp.showMap( day );
+    that.parentTp.initPrintDayModal( day );
   },
   reorderDay: function( list ){
     var that = this;

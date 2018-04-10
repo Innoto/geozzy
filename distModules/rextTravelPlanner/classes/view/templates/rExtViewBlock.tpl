@@ -133,6 +133,7 @@
         </div>
         <div class="showMap"><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
         <div class="optimizeDay"><i class="fa fa-magic " aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
+        <!--<div class="printDay hidden-xs hidden-sm"><i class="fa fa-print " aria-hidden="true"></i>&nbsp;<span>{t}Print day{/t}</span></div>-->
       </div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
@@ -325,5 +326,12 @@
       <button type="button" class="btn btn-warning" data-dismiss="modal" aria-label="Close">{t}Cancel{/t}</button>
       <button type="button" class="optimizeRoute btn btn-success">{t}Optimize{/t}</button>
     <div>
+
+</script>
+
+<script type="text/template" id="printDayTpModalTemplate">
+
+    <div class="title">{t}Optimize route of day {/t}&nbsp;<%- data.day %></div>
+    <p>{t}The route between the first and the last place of the day will be optimized.{/t}<p>
 
 </script>
