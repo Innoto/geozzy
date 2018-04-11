@@ -133,7 +133,7 @@
         </div>
         <div class="showMap"><i class="fa fa-map-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
         <div class="optimizeDay"><i class="fa fa-magic " aria-hidden="true"></i>&nbsp;<span>{t}Optimize day{/t}</span></div>
-        <!--<div class="printDay hidden-xs hidden-sm"><i class="fa fa-print " aria-hidden="true"></i>&nbsp;<span>{t}Print day{/t}</span></div>-->
+        <!-- <div class="printDay hidden-xs hidden-sm"><i class="fa fa-print " aria-hidden="true"></i>&nbsp;<span>{t}Print day{/t}</span></div> -->
       </div>
     </div>
     <div class="plannerDayPlanner gzznestable dd">
@@ -331,7 +331,48 @@
 
 <script type="text/template" id="printDayTpModalTemplate">
 
-    <div class="title">{t}Optimize route of day {/t}&nbsp;<%- data.day %></div>
-    <p>{t}The route between the first and the last place of the day will be optimized.{/t}<p>
+    <!-- <div class="title">{t}Optimize route of day {/t}&nbsp;<%- data.day %></div>
+    <p>{t}The route between the first and the last place of the day will be optimized.{/t}<p> -->
+
+
+      <div class="title day text-center">{t}Day{/t} &nbsp;<%- data.day %></div>
+      <div class="timeTotal clearfix">
+        <div class="time infoTotalTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <%= data.stringTotalResourceTimes %></div>
+        <div class="infoTotalTimeTransport">
+           <%= data.stringRouteMode %> <%= data.stringTotalTimeTransport %>
+        </div>
+      </div>
+      <% _.each( data.resources, function( elem, iteration ) { %>
+        <div class="resource clearfix">
+          <div class="title name text-center"><%= elem.title %></div>
+          <div class="resourceData">
+            <% _.each( data.resourcesTimes, function( i, e ) { %>
+              <% if (i.id == elem.id) { %>
+                <div class="times clearfix">
+                    <% minutes = i.time % 60 %>
+                    <% hours = (i.time - minutes) / 60 %>
+                  <div class="time infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <%= hours %> h <%= minutes %> min</div>
+                  <div class="infoTimeTransport"><%= data.routeTimes[e].stringTime %></div>
+                </div>
+              <% } %>
+            <% }); %>
+            <div class="imgResource">
+              <img class="img-responsive center-block" src="/cgmlImg/<%- elem.image %>/travelPlannerList/<%- elem.image %>.jpg">
+            </div>
+            <div class="directions clearfix">
+            <% _.each( data.route.routes[0].legs, function( j, leg ) { %>
+              <% if (iteration == leg) { %>
+                <% _.each( j.steps, function( k, step ) { %>
+                <div class="infoDirections"><%= k.instructions %></div>
+                <% }); %>
+              <% } %>
+            <% }); %>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+
+
+
 
 </script>
