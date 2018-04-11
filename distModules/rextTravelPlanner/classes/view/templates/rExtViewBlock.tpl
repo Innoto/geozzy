@@ -332,7 +332,7 @@
 <script type="text/template" id="printDayTpModalTemplate">
     <!-- <div class="title">{t}Optimize route of day {/t}&nbsp;<%- data.day %></div>
     <p>{t}The route between the first and the last place of the day will be optimized.{/t}<p> -->
-      <div class="title day text-center">{t}Day{/t} &nbsp;<%- data.day %></div>
+      <h1 class="title day text-center">{t}Day{/t} &nbsp;<%- data.day %></h1>
       <div class="timeTotal clearfix">
         <div class="time infoTotalTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <%= data.stringTotalResourceTimes %></div>
         <div class="infoTotalTimeTransport">
@@ -341,7 +341,7 @@
       </div>
       <% _.each( data.resources, function( elem, iteration ) { %>
         <div class="resource clearfix">
-          <div class="title name text-center"><%= elem.title %></div>
+          <h2 class="title name text-center"><%= elem.title %></h2>
           <div class="resourceData">
             <% _.each( data.resourcesTimes, function( i, e ) { %>
               <% if (i.id == elem.id) { %>
