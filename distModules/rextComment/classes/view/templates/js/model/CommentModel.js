@@ -19,6 +19,9 @@ geozzy.commentComponents.CommentModel = Backbone.Model.extend({
     anonymousEmail: '',
     user: 0,
     userName: '',
+    userAvatarId: false,
+    userAvatarName: '',
+    userAvatarAKey: '',
     userEmail: '',
     userVerified: false
   }
