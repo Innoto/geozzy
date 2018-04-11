@@ -330,11 +330,8 @@
 </script>
 
 <script type="text/template" id="printDayTpModalTemplate">
-
     <!-- <div class="title">{t}Optimize route of day {/t}&nbsp;<%- data.day %></div>
     <p>{t}The route between the first and the last place of the day will be optimized.{/t}<p> -->
-
-
       <div class="title day text-center">{t}Day{/t} &nbsp;<%- data.day %></div>
       <div class="timeTotal clearfix">
         <div class="time infoTotalTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <%= data.stringTotalResourceTimes %></div>
@@ -360,19 +357,33 @@
               <img class="img-responsive center-block" src="/cgmlImg/<%- elem.image %>/travelPlannerList/<%- elem.image %>.jpg">
             </div>
             <div class="directions clearfix">
-            <% _.each( data.route.routes[0].legs, function( j, leg ) { %>
-              <% if (iteration == leg) { %>
-                <% _.each( j.steps, function( k, step ) { %>
-                <div class="infoDirections"><%= k.instructions %></div>
-                <% }); %>
-              <% } %>
-            <% }); %>
+              <% _.each( data.route.routes[0].legs, function( j, leg ) { %>
+                <% if (iteration == leg) { %>
+                  <table class="startAddress">
+                  <tr>
+                    <td><span class="start">{t}Comienzo{/t}: </span><%= j.start_address %></td>
+                  </tr>
+                  </table>
+                  <table class="steps">
+                  <% _.each( j.steps, function( k, step ) { %>
+                  <tr>
+                    <td><%= step+1 %>. </td>
+                    <td><%= k.instructions %></td>
+                    <td class="distance"><%= k.distance.text %></td>
+                    <td class="duration"><%= k.duration.text %></td>
+                  </tr>
+                  <% }); %>
+                  </table>
+                  <table class="endAddress">
+                  <tr>
+                    <td><span class="end">{t}Llegada{/t}: </span><%= j.end_address %></td>
+                  </tr>
+                  </table>
+                <% } %>
+              <% }); %>
+
             </div>
           </div>
         </div>
       <% }); %>
-
-
-
-
 </script>
