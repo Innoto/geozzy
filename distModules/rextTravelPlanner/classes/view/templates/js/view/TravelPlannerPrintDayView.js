@@ -72,26 +72,57 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
       data.resources = resourcesToList.toJSON();
       data.resourcesTimes = resSelectedAllInDay;
     }
-console.log(data);
 
 
-/*
-$.each(response.routes[0].legs, function( i, leg ) {
-  totalTimeTransport += leg.duration.value;
+  var totalTimeTransport = 0;
+  var totalResourcesTimes = 0;
+  var routeTimes = [];
+  routeTimes.push({stringTime : ''});
 
-  var stringTime = '';
+  //Calculamos el tiempo total de los recursos del usuario y lo pasamos a horas y minutos:
+  $.each(data.resourcesTimes, function(i, e) {
+     totalResourcesTimes += parseInt(e.time);
+  });
 
-  if( time !== ''){
-    if(cogumelo.publicConf.geozzyTravelPlanner.routeMode && cogumelo.publicConf.geozzyTravelPlanner.routeMode === 'WALKING'){
-      stringTime = '+<i class="fa fa-male"></i> '+time;
-    }else{
-      stringTime = '+ <i class="fa fa-car"></i> '+time;
+  var minutes = totalResourcesTimes % 60;
+  var hours = (totalResourcesTimes - minutes) / 60;
+  var stringTotalResourceTimes = hours + "h " + minutes + " min";
+
+  $.each(data.route.routes[0].legs, function( i, leg ) {
+     totalTimeTransport += parseInt(leg.duration.value);
+
+    var stringTime = '';
+
+
+    if( leg.duration.value !== ''){
+      if(cogumelo.publicConf.geozzyTravelPlanner.routeMode && cogumelo.publicConf.geozzyTravelPlanner.routeMode === 'WALKING'){
+        stringTime = '<i class="fa fa-male"></i> '+leg.duration.text;
+        stringRouteMode = '<i class="fa fa-male"></i>';
+      }else{
+        stringTime = '<i class="fa fa-car"></i> '+leg.duration.text;
+        stringRouteMode = '<i class="fa fa-car"></i>';
+      }
     }
-  }
+
+    routeTimes.push({stringTime});
+
+  });
 
 
-});
-*/
+  //Convertimos los minutos totales de transporte en horas y minutos para pintarlos en el tpl:
+  var seconds = totalTimeTransport % 60;
+  var rest = (totalTimeTransport - seconds) / 60;
+  var minutes = rest % 60;
+  var hours = (rest - minutes) / 60;
+  var stringTotalTimeTransport = hours + "h " + minutes + " min";
+
+  data.routeTimes = routeTimes;
+  data.stringTotalTimeTransport = stringTotalTimeTransport;
+  data.stringTotalResourceTimes = stringTotalResourceTimes;
+  data.stringRouteMode = stringRouteMode;
+
+  console.log(data);
+
 
     that.printDayTpModalTemplate = _.template( $('#printDayTpModalTemplate').html() );
     that.$('.modal-body').html( that.printDayTpModalTemplate({data: data}) );
