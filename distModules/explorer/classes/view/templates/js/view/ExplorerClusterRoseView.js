@@ -77,7 +77,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
         icono.css("border-radius", 300);
 
         //icono.css("border", '1px solid black');
-        icono.css("zIndex", 8);
+        icono.css("zIndex", 10);
 
 
         var iconTopOrigin = that.markerClustererHover.height()/2 - icono.height()/2;
@@ -98,7 +98,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
           queue: false,
           duration: 123,
           complete: function() {
-            icono.css("zIndex", 10);
+            icono.css("zIndex", 12);
           }
         });
 
@@ -159,7 +159,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   insideDiv.css('margin', '28px');
   insideDiv.css('border', '2px solid #fff');
   insideDiv.css("border-radius", (insideDiv.width()+4)/2);
-  insideDiv.css("zIndex", 9);
+  insideDiv.css("zIndex", 11);
 
   //insideDiv.find("i").hide();
   insideDiv.find("i").css('margin-left', '7px');
