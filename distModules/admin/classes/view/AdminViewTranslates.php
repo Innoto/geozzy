@@ -9,7 +9,7 @@ class AdminViewTranslates extends AdminViewMaster {
   public function __construct( $baseDir ) {
     parent::__construct($baseDir);
 
-    $cache = Cogumelo::getSetupValue('cache:geozzyAPIView');
+    $cache = Cogumelo::getSetupValue('cache:AdminViewTranslates');
     if( $cache !== null ) {
       Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
       $this->cacheQuery = $cache;
