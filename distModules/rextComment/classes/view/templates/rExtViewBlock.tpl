@@ -1,7 +1,7 @@
 <!-- rExtViewBlock.tpl en rExtComment module -->
 {if !isset($commentEmpty)}
 <div class="rExtCommentBar clearfix">
-  <h4>{t}Comentarios{/t}</h4>
+  <h4 class="commentTitle">{t}Comentarios{/t}</h4>
 
   <div class="averageRate">
     {if isset($resAverageVotes)}
@@ -20,7 +20,7 @@
       </div>
     {/if}
     {if isset($resNumberVotes)}
-      <div class="number">({$resNumberVotes})</div>
+      <div class="number"><span>(</span>{$resNumberVotes}<span>)</span></div>
     {/if}
   </div>
 
