@@ -58,6 +58,11 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
       if(item.userName){
         data.commentUserName = item.userName;
         data.commentUserId = item.user;
+        if(item.userAvatarId){
+          data.commentUserAvatarId = item.userAvatarId;
+          data.commentUserAvatarName = item.userAvatarName;
+          data.commentUserAvatarAKey = item.userAvatarAKey;
+        }
       }else{
         data.commentUserName = item.anonymousName;
       }
