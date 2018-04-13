@@ -96,6 +96,8 @@ msgstr "Hacer una sugerencia"
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:47
 #: /home/proxectos/profesores/app/tmp/tpl/rExtViewBlock.tpl:47
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:47
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:60
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:60
 msgid "Loading..."
 msgstr ""
 
