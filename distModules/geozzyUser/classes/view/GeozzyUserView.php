@@ -541,6 +541,7 @@ class GeozzyUserView extends View {
     $form->setSuccess( 'jsEval', 'geozzy.userSessionInstance.userRouter.successProfileForm();' );
 
     $fields = $this->commonFields();
+
     unset($fields['legal']);
     $fields['submit']['params']['value'] = __('Send');
     $form->definitionsToForm( $fields );
@@ -602,6 +603,7 @@ class GeozzyUserView extends View {
     $template->assign("userBaseFormFields", $form->getHtmlFieldsArray());
     $template->assign("userBaseFormClose", $form->getHtmlClose());
     $template->assign("userBaseFormValidations", $form->getScriptCode());
+    $template->assign('nickname', !empty(Cogumelo::getSetupValue('mod:user:nickname')) );
     $template->setTpl('userProfile.tpl', 'geozzyUser');
 
     $template->exec();
