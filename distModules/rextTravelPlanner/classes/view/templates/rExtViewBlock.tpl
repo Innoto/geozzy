@@ -343,8 +343,22 @@
     <% _.each( data.resources, function( elem, iteration ) { %>
       <% if (i.id == elem.id) { %>
         <div class="resource clearfix">
+          <% _.each( data.route.routes[0].legs, function( j, leg ) { %>
+            <% if (e == leg) { %>
+              <div class="startAddress center-block">
+                <table class="">
+                  <tr>
+                    <td>
+                      <span class="start">{t}Comienzo{/t}: </span>
+                        <%= j.start_address %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <% } %>
+            <% }); %>
           <h2 class="title name text-center"><%= elem.title %></h2>
-          <div class="resourceData">
+          <div class="resourceData clearfix">
             <div class="infoLeft">
               <div class="imgResource">
                 <img class="img-responsive center-block" src="/cgmlImg/<%- elem.image %>/travelPlannerList/<%- elem.image %>.jpg">
@@ -363,14 +377,14 @@
               <div class="directions clearfix">
                 <% _.each( data.route.routes[0].legs, function( j, leg ) { %>
                   <% if (e == leg) { %>
-                    <table class="startAddress">
+                    <!-- <table class="startAddress">
                       <tr>
                         <td>
                           <span class="start">{t}Comienzo{/t}: </span>
                             <%= j.start_address %>
                         </td>
                       </tr>
-                    </table>
+                    </table> -->
                     <table class="steps">
                       <% _.each( j.steps, function( k, step ) { %>
                         <tr>
@@ -381,19 +395,33 @@
                         </tr>
                       <% }); %>
                     </table>
-                    <table class="endAddress">
+                    <!-- <table class="endAddress">
                       <tr>
                         <td>
                           <span class="end">{t}Llegada{/t}: </span>
                             <%= j.end_address %>
                         </td>
                       </tr>
-                    </table>
+                    </table> -->
                   <% } %>
                 <% }); %>
               </div>
             </div>
           </div>
+          <% _.each( data.route.routes[0].legs, function( j, leg ) { %>
+            <% if (e == leg) { %>
+              <div class="endAddress center-block">
+                <table class="">
+                  <tr>
+                    <td>
+                      <span class="end">{t}Llegada{/t}: </span>
+                        <%= j.end_address %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            <% } %>
+          <% }); %>
         </div>
       <% } %>
     <% }); %>
