@@ -1,28 +1,4 @@
 <?php
-/*
-  Normas de estilo:
-
-  Nombres:
-  - Inicia por mod:nombreModulo: para configuración de modulos
-  - Fuera de módulos, de forma general, usaremos tema:subtema:variable
-  - Usar nombres finalizados en "Path" (variablePath) para rutas
-
-  Valores:
-  - Las rutas NO finalizan en /
-  - Las URL NO finalizan en /
-
-
-  Llamadas a metodos:
-
-  En ficheros de setup:
-  $conf->setSetupValue( 'mod:nombreModulo:level1:level2', $value );
-  $value = $conf->getSetupValue( 'mod:nombreModulo:level1:level2' );
-
-  En código cogumelo:
-  Cogumelo::setSetupValue( 'mod:nombreModulo:level1:level2', $value );
-  $value = Cogumelo::getSetupValue( 'mod:nombreModulo:level1:level2' );
-*/
-
 
 
 //
@@ -34,7 +10,7 @@ $conf->createSetupValue( 'date:timezone:project', 'Europe/Madrid' );
 
 
 //
-//  Templates
+//  Templates Smarty
 //
 // Constante usada directamente por Smarty - No eliminar!!!
 define( 'SMARTY_DIR', $conf->getSetupValue( 'setup:webBasePath' ).'/vendor/composer/smarty/smarty/libs/' );
@@ -53,9 +29,11 @@ $conf->createSetupValue( 'script:backupPath', $conf->getSetupValue( 'setup:appBa
 //
 //  Logs
 //
+// Importante para syslog: Configurar 'project:idName' o 'logs:idName'
+$conf->createSetupValue( 'logs:type', 'file' ); // file, syslog, disable
 $conf->createSetupValue( 'logs:path', $conf->getSetupValue( 'setup:appBasePath' ).'/log' ); // log files directory
-$conf->createSetupValue( 'logs:rawSql', false ); // Log RAW all SQL ¡WARNING! application passwords will dump into log files
 $conf->createSetupValue( 'logs:debug', true ); // Set Debug mode to log debug messages on log
+$conf->createSetupValue( 'logs:rawSql', false ); // Log RAW all SQL ¡WARNING! application passwords will dump into log files
 $conf->createSetupValue( 'logs:error', false ); // Display errors on screen. If you use devel module, you might disable it
 
 
@@ -92,21 +70,6 @@ include 'setup-800.defaults.filedataImageProfiles.php';
 //  Client localStorage
 //
 $conf->createSetupValue( 'clientLocalStorage:lifetime', 60 ); // 1h.
-
-
-//
-//  SESSION
-//
-// Session lifetime
-$conf->createSetupValue( 'session:lifetime', 4*60*60 ); // 4h.
-ini_set( 'session.gc_maxlifetime',  $conf->getSetupValue( 'session:lifetime' ) );
-ini_set( 'session.cookie_lifetime', 365*24*60*60 ); // 1 year
-// Enable session garbage collection with a 1% chance of running on each session_start()
-ini_set( 'session.gc_probability', 1 );
-ini_set( 'session.gc_divisor', 100 );
-// Our own session save path
-$conf->createSetupValue( 'session:savePath', $conf->getSetupValue( 'setup:appBasePath' ).'/php-sessions' );
-session_save_path( $conf->getSetupValue( 'session:savePath' ) );
 
 
 //

@@ -1,26 +1,8 @@
 <?php
 /*
-  Normas de estilo:
-
-  Nombres:
-  - Inicia por mod:nombreModulo: para configuración de modulos
-  - Fuera de módulos, de forma general, usaremos tema:subtema:variable
-  - Usar nombres finalizados en "Path" (variablePath) para rutas
-
   Valores:
   - Las rutas NO finalizan en /
   - Las URL NO finalizan en /
-
-
-  Llamadas a metodos:
-
-  En ficheros de setup:
-  $conf->setSetupValue( 'mod:nombreModulo:level1:level2', $value );
-  $value = $conf->getSetupValue( 'mod:nombreModulo:level1:level2' );
-
-  En código cogumelo:
-  Cogumelo::setSetupValue( 'mod:nombreModulo:level1:level2', $value );
-  $value = Cogumelo::getSetupValue( 'mod:nombreModulo:level1:level2' );
 */
 
 
@@ -28,7 +10,9 @@
 define( 'APP_TMP_PATH', APP_BASE_PATH.'/tmp' ); // Ficheros temporales
 
 $conf->setSetupValue( 'setup:cogumeloPath', COGUMELO_LOCATION );
-$conf->setSetupValue( 'setup:cogumeloDistPath', COGUMELO_DIST_LOCATION );
+if( defined('COGUMELO_DIST_LOCATION') && COGUMELO_DIST_LOCATION !== false ) {
+  $conf->setSetupValue( 'setup:cogumeloDistPath', COGUMELO_DIST_LOCATION );
+}
 
 $conf->setSetupValue( 'setup:webBasePath', WEB_BASE_PATH ); // Apache DocumentRoot
 $conf->setSetupValue( 'setup:prjBasePath', PRJ_BASE_PATH ); // Project Path (normalmente contiene app/ httpdocs/ formFiles/)
@@ -37,16 +21,11 @@ $conf->setSetupValue( 'setup:appTmpPath', APP_TMP_PATH ); // (normalmente 'setup
 $conf->setSetupValue( 'setup:isDevelEnv', IS_DEVEL_ENV );
 
 
-//
-//  memcached
-//
-require_once( $conf->getSetupValue( 'setup:appBasePath' ).'/conf/memcached.setup.php' );  //memcached options
-
 
 //
 //  Url settings
 //
-// TODO: Cuidado porque no se procesa el puerto
+// TODO: Cuidado - No se procesa el puerto
 define( 'SITE_PROTOCOL', isset( $_SERVER['HTTPS'] ) ? 'https' : 'http' );
 define( 'SITE_HOST', SITE_PROTOCOL.'://'.$_SERVER['HTTP_HOST']);  // solo HOST sin ('/')
 define( 'SITE_FOLDER', '/' );  // SITE_FOLDER STARTS AND ENDS WITH SLASH ('/')

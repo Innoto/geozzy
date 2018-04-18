@@ -64,6 +64,10 @@ $conf->createSetupValue( 'mod:filedata:profile:exp1', array( 'width' => 200, 'he
 $conf->createSetupValue( 'mod:filedata:profile:rec1', array( 'width' => 400, 'height' => 300, 'saveName' => 'rec1.png', 'saveFormat' => 'PNG' ) );
 
 
+/*-------------------------------- PERFILES DE POIS----------------------------------------*/
+$conf->createSetupValue( 'mod:filedata:profile:resourcePoisCollection', array( 'width' => 20, 'height' => 20, 'cut' => false, 'rasterColor' => '#FFFFFF',
+  'backgroundImg' => '/module/rextPoiCollection/img/chapaPOIS.png', 'padding' => 4, 'saveName' => 'marker.png', 'saveFormat' => 'PNG' ) );
+
 
 
 

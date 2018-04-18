@@ -46,6 +46,15 @@
 
 
 //
+// Google keys DEVELOPMENT
+//
+// $conf->setSetupValue( 'google:maps:key', 'A..................................Q' );
+// $conf->setSetupValue( 'google:recaptcha:key:site', '6..................................T' );
+// $conf->setSetupValue( 'google:recaptcha:key:secret', '6..................................d' );
+
+
+
+//
 // cogumeloScript Url settings
 //
 $conf->setSetupValue( 'script:cogumeloServerUrl', 'http://geozzySampleApp/cogumelo-server.php' );
@@ -54,8 +63,11 @@ $conf->setSetupValue( 'script:cogumeloServerUrl', 'http://geozzySampleApp/cogume
 //
 //  Logs
 //
-$conf->createSetupValue( 'logs:rawSql', true ); // Log RAW all SQL ¡WARNING! application passwords will dump into log files
-$conf->createSetupValue( 'logs:error', true ); // Display errors on screen. If you use devel module, you might disable it
+// Importante para syslog: Configurar 'project:idName' o 'logs:idName'
+$conf->setSetupValue( 'logs:type', 'file' ); // file, syslog, disable
+$conf->setSetupValue( 'logs:error', true ); // Display errors on screen. If you use devel module, you might disable it
+// $conf->setSetupValue( 'logs:rawSql', true ); // Log RAW all SQL ¡WARNING! Private information could be sent to the log
+$conf->setSetupValue( 'logs:disableLabels', ['AccessibilityMode', 'ACI', 'cache'] ); // Disable logs ...
 
 
 //

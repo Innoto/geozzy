@@ -44,44 +44,17 @@
 //
 // Google keys
 //
+// $conf->setSetupValue( 'google:analytics:key', 'UA-.......-1' );
 // $conf->setSetupValue( 'google:maps:key', 'A..................................Q' );
 // $conf->setSetupValue( 'google:recaptcha:key:site', '6..................................T' );
 // $conf->setSetupValue( 'google:recaptcha:key:secret', '6..................................d' );
 
 
-//
-// Lang
-//
-$conf->setSetupValue( 'lang', [
-  'available' => [
-    'es' => [
-      'i18n' => 'es_ES',
-      'name' => 'castellano'
-    ],
-    'gl' => [
-      'i18n' => 'gl_ES',
-      'name' => 'galego'
-    ]
-  ],
-  'default' => 'es'
-]);
-
-
-//
-// Redes sociles del proyecto
-//
-$conf->setSetupValue( 'socialNetworks', [
-  'facebook' => 'GeozzySampleApp',
-  'twitter' => 'GeozzySampleApp',
-  'youtube' => 'GeozzySampleApp',
-  'googleplus' => 'GeozzySampleApp',
-]);
-
 
 //
 // URL alias controller: Fichero que contiene una clase UrlAliasController con un metodo getAlternative
 //
-$conf->setSetupValue( 'urlAliasController:classFile',
+$conf->createSetupValue( 'urlAliasController:classFile',
   COGUMELO_DIST_LOCATION.'/distModules/geozzy/classes/controller/UrlAliasController.php' );
 
 
@@ -96,6 +69,13 @@ $conf->setSetupValue( 'urlError404:view', 'PageErrorView::page404' );
 // No se adminten URLs a ficheros solo con su Id
 //
 $conf->setSetupValue( 'mod:filedata:verifyAKeyUrl', true );
+
+
+//
+//Activación por defecto compartir redes sociales
+//
+// $conf->setSetupValue( 'shareSocialNetwork:default',true );
+
 
 //
 // Admin.
@@ -240,6 +220,19 @@ $conf->setSetupValue( 'mod:geozzy:resource:collectionTypeRules', [
   ]
 ]);
 
+//
+// Establecemos valores comunes para perfiles (colecciones tipo multimedia)
+//
+// $conf->setSetupValue( 'collections:imageProfile', [
+//   'default' => 'wmdpi4',
+//   'multimediaThumbnail' => 'imgMultimediaGallery',
+//   'multimediaLong' => 'imageMultimediaLarge'
+// ] );
+
+
+//
+// Reglas para comentarios
+//
 $conf->setSetupValue( 'mod:geozzy:resource:commentRules',
   array(
     'default' => array(
@@ -268,7 +261,11 @@ $conf->setSetupValue( 'mod:geozzy:sitemap:ignoreRTypes', [
   'rtypeUrl',
   'rtypeFile',
 ]);
-$conf->setSetupValue( 'mod:geozzy:sitemap:regexUrlDeny', [ '#/INTERNO[-_]#', '#/userverified/#' ] );
+$conf->setSetupValue( 'mod:geozzy:sitemap:regexUrlDeny', [
+  '#/INTERNO[-_]#',
+  '#^(/..)?/userverified/#',
+  '#^(/..)?/userprofile#',
+]);
 // $conf->setSetupValue( 'mod:geozzy:sitemap:regexUrlAllow', [ '#/politica-#', '#cookies#', '#user#' ] );
 // $conf->setSetupValue( 'mod:geozzy:sitemap:disable', true );
 
@@ -284,33 +281,16 @@ include 'setup-500.project.filedataImageProfiles.php';
 //
 //  Media server - SIEMPRE AL FINAL!!!
 //
-$conf->setSetupValue( 'publicConf:globalVars', [ 'C_LANG', 'C_SESSION_ID' ] );
 
-$conf->setSetupValue( 'publicConf:setupFields', [ 'socialNetworks', 'google:maps:key', 'google:recaptcha:key:site',
-  'session:lifetime', 'lang:available', 'lang:default', 'mod:geozzy:resource:directUrl', 'date:timezone', 'mod:admin:defaultURL' ] );
+// $conf->setSetupValue( 'publicConf:globalVars', [ 'ALGO' ] );
 
-$conf->setSetupValue( 'publicConf:vars:langDefault', $conf->getSetupValue( 'lang:default' ) );
-$conf->setSetupValue( 'publicConf:vars:langAvailableIds', array_keys( $conf->getSetupValue( 'lang:available' ) ) );
+// $conf->setSetupValue( 'publicConf:setupFields', [ 'mod:geozzy:resource:algo' ] );
 
-$conf->setSetupValue( 'publicConf:vars:mediaJs',
-  ( $conf->getSetupValue( 'mod:mediaserver:productionMode' ) === true &&
-    $conf->getSetupValue( 'mod:mediaserver:notCacheJs' ) !== true )
-    ? $conf->getSetupValue( 'mod:mediaserver:host' ).$conf->getSetupValue( 'mod:mediaserver:cachePath' )
-    : $conf->getSetupValue( 'mod:mediaserver:host' ).$conf->getSetupValue( 'mod:mediaserver:path' ) );
+// $conf->setSetupValue( 'publicConf:vars:algo', 1234 );
 
-$conf->setSetupValue( 'publicConf:vars:media',
-  ( $conf->getSetupValue( 'mod:mediaserver:productionMode' ) === true )
-    ? $conf->getSetupValue( 'mod:mediaserver:host' ).$conf->getSetupValue( 'mod:mediaserver:cachePath' )
-    : $conf->getSetupValue( 'mod:mediaserver:host' ).$conf->getSetupValue( 'mod:mediaserver:path' ) );
+// $conf->addSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields', 'user:session' );
 
-$conf->setSetupValue( 'publicConf:vars:mediaHost', $conf->getSetupValue( 'mod:mediaserver:host' ) );
-$conf->setSetupValue( 'publicConf:vars:site_host', SITE_HOST );
-
-$conf->setSetupValue( 'mod:mediaserver:publicConf:javascript', $conf->getSetupValue( 'publicConf' ) );
-$conf->setSetupValue( 'mod:mediaserver:publicConf:less', $conf->getSetupValue( 'publicConf' ) );
-$conf->setSetupValue( 'mod:mediaserver:publicConf:smarty', $conf->getSetupValue( 'publicConf' ) );
-
-$conf->addSetupValue( 'mod:mediaserver:publicConf:smarty:setupFields', 'user:session' );
 //
 //  Media server - SIEMPRE AL FINAL!!!
+//  setup-999.last.php repasa los minimos
 //

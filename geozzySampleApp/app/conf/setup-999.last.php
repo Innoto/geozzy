@@ -1,31 +1,4 @@
 <?php
-/*
-  Normas de estilo:
-
-  Nombres:
-  - Inicia por mod:nombreModulo: para configuración de modulos
-  - Fuera de módulos, de forma general, usaremos tema:subtema:variable
-  - Usar nombres finalizados en "Path" (variablePath) para rutas
-
-  Valores:
-  - Las rutas NO finalizan en /
-  - Las URL NO finalizan en /
-
-
-  Llamadas a metodos:
-
-  En ficheros de setup:
-  $conf->setSetupValue( 'mod:nombreModulo:level1:level2', $value );
-  $value = $conf->getSetupValue( 'mod:nombreModulo:level1:level2' );
-
-  En código cogumelo:
-  Cogumelo::setSetupValue( 'mod:nombreModulo:level1:level2', $value );
-  $value = Cogumelo::getSetupValue( 'mod:nombreModulo:level1:level2' );
-*/
-
-
-
-
 
 //
 //  Media server - SIEMPRE AL FINAL!!!
@@ -33,7 +6,7 @@
 $conf->mergeSetupValue( 'publicConf:globalVars', [ 'C_LANG', 'C_SESSION_ID' ] );
 
 $conf->mergeSetupValue( 'publicConf:setupFields', [
-  'google:maps:key', 'google:analytics:key', 'google:recaptcha:key:site',
+  'google:analytics:key', 'google:maps:key', 'google:recaptcha:key:site',
   'session:lifetime', 'lang:available', 'lang:default', 'date:timezone',
   'socialNetworks', 'mod:geozzy:resource:directUrl', 'mod:admin:defaultURL',
 ]);
