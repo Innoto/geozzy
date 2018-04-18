@@ -1,7 +1,7 @@
 <!-- rExtViewBlock.tpl en rExtComment module -->
 {if !isset($commentEmpty)}
 <div class="rExtCommentBar clearfix">
-  <h4>{t}Comentarios{/t}</h4>
+  <h4 class="commentTitle">{t}Comentarios{/t}</h4>
 
   <div class="averageRate">
     {if isset($resAverageVotes)}
@@ -20,24 +20,37 @@
       </div>
     {/if}
     {if isset($resNumberVotes)}
-      <div class="number">({$resNumberVotes})</div>
+      <div class="number"><span>(</span>{$resNumberVotes}<span>)</span></div>
     {/if}
   </div>
 
   <div class="commentButtons">
     {if isset($suggestButton) && isset($commentButton)}
-
       {if isset($commentButton)}
-        <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID});"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a comment or suggestion{/t}</button>
+        {if empty($anonymousPerms)}
+          <button class="btn btn-primary" onclick="geozzy.userSessionInstance.userControlAccess( function(){
+            geozzy.commentInstance.createComment({$resID});
+          });"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a comment or suggestion{/t}</button>
+        {else}
+          <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID});"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a comment or suggestion{/t}</button>
+        {/if}
       {/if}
 
     {else}
-
-      {if isset($commentButton)}
-        <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'comment');"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a comment{/t}</button>
-      {/if}
-      {if isset($suggestButton)}
-        <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'suggest');"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a suggestion{/t}</button>
+      {if empty($anonymousPerms)}
+        {if isset($commentButton)}
+          <button class="btn btn-primary" onclick="geozzy.userSessionInstance.userControlAccess( function(){ geozzy.commentInstance.createComment({$resID}, 'comment'); });"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a comment{/t}</button>
+        {/if}
+        {if isset($suggestButton)}
+          <button class="btn btn-primary" onclick="geozzy.userSessionInstance.userControlAccess( function(){ geozzy.commentInstance.createComment({$resID}, 'suggest'); });"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a suggestion{/t}</button>
+        {/if}
+      {else}
+        {if isset($commentButton)}
+          <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'comment');"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a comment{/t}</button>
+        {/if}
+        {if isset($suggestButton)}
+          <button class="btn btn-primary" onclick="geozzy.commentInstance.createComment({$resID}, 'suggest');"><i class="fa fa-plus" aria-hidden="true"></i>{t}Post a suggestion{/t}</button>
+        {/if}
       {/if}
 
     {/if}

@@ -194,7 +194,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
           e2.get('iconAKey') &&
           e2.get('icon')
         ) {
-          console.log(resourceId,iconProfile, cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/'+iconProfile+'/marker.png')
+          //console.log(resourceId,iconProfile, cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/'+iconProfile+'/marker.png')
           iconUrl = cogumelo.publicConf.mediaHost+'cgmlImg/'+e2.get('icon')+'-a'+e2.get('iconAKey')+'/'+iconProfile+'/marker.png';
 
           return;

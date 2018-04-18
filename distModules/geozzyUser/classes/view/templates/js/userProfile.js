@@ -2,6 +2,7 @@ var geozzy = geozzy || {};
 
 $(document).ready(function(){
   instanceProfileMap();
+  $('select.gzzSelect2').select2();
 });
 
 function instanceProfileMap(){

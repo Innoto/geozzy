@@ -59,11 +59,19 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:31
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:31
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:33
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:35
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:33
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:35
 msgid "Post a comment or suggestion"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:37
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:37
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:42
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:49
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:42
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:49
 msgid "Post a comment"
 msgstr ""
 
@@ -71,11 +79,19 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:55
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:40
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:55
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:45
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:52
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:68
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:45
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:52
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:68
 msgid "Post a suggestion"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:47
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:47
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:60
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_rExtViewBlock.tpl:60
 msgid "Loading..."
 msgstr ""
 

@@ -184,6 +184,15 @@ class CommentView extends View {
         $form->addFormError(__('An unexpected error has occurred'));
       }
       else {
+        $commentCtrl = new RExtCommentController();
+        $permissionsInfo = $commentCtrl->getPermissions( $valuesArray['resource'] );
+        $permissions = isset( $permissionsInfo[ $valuesArray['resource'] ] ) ? $permissionsInfo[ $valuesArray['resource'] ] : false;
+      
+        if( empty($valuesArray['user']) && empty($permissions['anonymous']) ){
+          Cogumelo::error("Comentarios anónimos no permitidos Resource:".$valuesArray['resource']);
+          exit;
+        }
+
         //TODO: Comprobar que el recurso tiene comentarios o sugerencias activadas en Conf y en BBDD
       }
     }

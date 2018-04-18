@@ -114,10 +114,12 @@ geozzy.travelPlannerComponents.TravelPlannerInterfaceView = Backbone.View.extend
   //Bind para cuando cambia un filtro
   changeFilters: function(e){
     var that = this;
-    if(that.$('.filterByFavourites').hasClass('active')){
-      that.$('.filterByFavourites').removeClass('active');
-    }else{
-      that.$('.filterByFavourites').addClass('active');
+    if($(e.currentTarget).hasClass('filterByFavourites')){      
+      if(that.$('.filterByFavourites').hasClass('active')){
+        that.$('.filterByFavourites').removeClass('active');
+      }else{
+        that.$('.filterByFavourites').addClass('active');
+      }
     }
     that.listResources();
   },

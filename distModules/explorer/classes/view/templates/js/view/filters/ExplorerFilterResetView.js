@@ -5,23 +5,20 @@ if(!geozzy.explorerComponents.filters) geozzy.explorerComponents.filters={};
 geozzy.explorerComponents.filters.filterResetView = geozzy.filterView.extend({
 
     isTaxonomyFilter: true,
-    template: _.template(
-      "<div class='<%= filterClass %>'>"+
-        "<button><%= title %></button> "+
-      "</div>"
-    ),
+    template: false,
 
     initialize: function( opts ) {
       var that = this;
 
       var options = {
         title: 'Reset filters',
+        template:  geozzy.explorerComponents.filterResetTemplate,
         onChange: function(){}
       };
 
       that.options = $.extend(true, {}, options, opts);
 
-
+      that.template = _.template( that.options.template );
     },
 
     filterAction: function( model ) {

@@ -62,7 +62,17 @@ class CommentAPIView extends View {
       while( $valueobject = $commentsList->fetch() ) {
         $allData = $valueobject->getAllData('onlydata');
         $user = $valueobject->getterDependence('user');
+
         if( $user ) {
+
+          if(!empty($user[0]->getter('avatar'))){
+            $filedataControl = new FiledataModel();
+            $avatar = $filedataControl->listItems( array('filters' => ['id' => $user[0]->getter('avatar')]))->fetch();
+            $allData['userAvatarName'] = $avatar->getter('name');
+            $allData['userAvatarId'] = $avatar->getter('id');
+            $allData['userAvatarAKey'] = $avatar->getter('aKey');
+          }
+
           $allData['userName'] = $user[0]->getter('name');
           $allData['userEmail'] = $user[0]->getter('email');
         }
@@ -299,7 +309,16 @@ class CommentAPIView extends View {
     while( $valueobject = $commentsList->fetch() ) {
       $allData = $valueobject->getAllData('onlydata');
       $user = $valueobject->getterDependence('user');
+
       if($user){
+        if(!empty($user[0]->getter('avatar'))){
+          $filedataControl = new FiledataModel();
+          $avatar = $filedataControl->listItems( array('filters' => ['id' => $user[0]->getter('avatar')]))->fetch();
+          $allData['userAvatarName'] = $avatar->getter('name');
+          $allData['userAvatarId'] = $avatar->getter('id');
+          $allData['userAvatarAKey'] = $avatar->getter('aKey');
+        }
+
         $allData['userName'] = $user[0]->getter('name');
         $allData['userEmail'] = $user[0]->getter('email');
       }

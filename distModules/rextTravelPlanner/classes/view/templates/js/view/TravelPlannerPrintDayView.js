@@ -41,7 +41,9 @@ geozzy.travelPlannerComponents.TravelPlannerPrintDayView = Backbone.View.extend(
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
 
-    setTimeout(function(){ that.$el.print(); }, 2000);
+    setTimeout(function(){
+      that.$el.print({timeout: 1000});
+     }, 2000);
 
     return that;
   },

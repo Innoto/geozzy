@@ -227,6 +227,15 @@ class RExtCommentController extends RExtController implements RExtInterface {
     if( $perms && in_array( 'suggest', $perms ) ) {
       $rExtViewBlockInfo['template']['full']->assign( 'suggestButton', true );
     }
+
+    $permsAll = $this->getPermissions( $resId );
+
+    if( !empty($permsAll[$resId]['anonymous']) ){
+      $rExtViewBlockInfo['template']['full']->assign( 'anonymousPerms', true);
+    }
+
+
+
     $rExtViewBlockInfo['template']['full']->assign( 'resID', $resId);
     if($resAverageData){
       $rExtViewBlockInfo['template']['full']->assign( 'resAverageVotes', $resAverageVotes);

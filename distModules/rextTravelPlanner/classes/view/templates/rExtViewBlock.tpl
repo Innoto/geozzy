@@ -330,60 +330,100 @@
 </script>
 
 <script type="text/template" id="printDayTpModalTemplate">
-    <!-- <div class="title">{t}Optimize route of day {/t}&nbsp;<%- data.day %></div>
-    <p>{t}The route between the first and the last place of the day will be optimized.{/t}<p> -->
-      <div class="title day text-center">{t}Day{/t} &nbsp;<%- data.day %></div>
-      <div class="timeTotal clearfix">
-        <div class="time infoTotalTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <%= data.stringTotalResourceTimes %></div>
-        <div class="infoTotalTimeTransport">
-           <%= data.stringRouteMode %> <%= data.stringTotalTimeTransport %>
-        </div>
-      </div>
-      <% _.each( data.resources, function( elem, iteration ) { %>
+  <h1 class="title day text-center">{t}Day{/t} &nbsp;<%- data.day %></h1>
+  <div class="timeTotal clearfix">
+    <div class="infoTotalTimeTransport">
+      <%= data.stringRouteMode %> <%= data.stringTotalTimeTransport %>
+    </div>
+    <div class="time infoTotalTime"><i class="fa fa-clock-o" aria-hidden="true"></i>
+      <%= data.stringTotalResourceTimes %>
+    </div>
+  </div>
+  <% _.each( data.resourcesTimes, function( i, e ) { %>
+    <% _.each( data.resources, function( elem, iteration ) { %>
+      <% if (i.id == elem.id) { %>
         <div class="resource clearfix">
-          <div class="title name text-center"><%= elem.title %></div>
-          <div class="resourceData">
-            <% _.each( data.resourcesTimes, function( i, e ) { %>
-              <% if (i.id == elem.id) { %>
-                <div class="times clearfix">
-                    <% minutes = i.time % 60 %>
-                    <% hours = (i.time - minutes) / 60 %>
-                  <div class="time infoTime"><i class="fa fa-clock-o" aria-hidden="true"></i> <%= hours %> h <%= minutes %> min</div>
-                  <div class="infoTimeTransport"><%= data.routeTimes[e].stringTime %></div>
-                </div>
+          <% _.each( data.route.routes[0].legs, function( j, leg ) { %>
+            <% if (e == leg) { %>
+              <div class="startAddress center-block">
+                <table class="">
+                  <tr>
+                    <td>
+                      <span class="start">{t}Comienzo{/t}: </span>
+                        <%= j.start_address %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
               <% } %>
             <% }); %>
-            <div class="imgResource">
-              <img class="img-responsive center-block" src="/cgmlImg/<%- elem.image %>/travelPlannerList/<%- elem.image %>.jpg">
+          <h2 class="title name text-center"><%= elem.title %></h2>
+          <div class="resourceData clearfix">
+            <div class="infoLeft">
+              <div class="imgResource">
+                <img class="img-responsive center-block" src="/cgmlImg/<%- elem.image %>/travelPlannerList/<%- elem.image %>.jpg">
+              </div>
+              <div class="times clearfix">
+                <% minutes = i.time % 60 %>
+                <% hours = (i.time - minutes) / 60 %>
+                <div class="infoTimeTransport"><%= data.routeTimes[e].stringTime %></div>
+                <div class="time infoTime">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    <%= hours %> h <%= minutes %> min
+                </div>
+              </div>
             </div>
-            <div class="directions clearfix">
-              <% _.each( data.route.routes[0].legs, function( j, leg ) { %>
-                <% if (iteration == leg) { %>
-                  <table class="startAddress">
-                  <tr>
-                    <td><span class="start">{t}Comienzo{/t}: </span><%= j.start_address %></td>
-                  </tr>
-                  </table>
-                  <table class="steps">
-                  <% _.each( j.steps, function( k, step ) { %>
-                  <tr>
-                    <td><%= step+1 %>. </td>
-                    <td><%= k.instructions %></td>
-                    <td class="distance"><%= k.distance.text %></td>
-                    <td class="duration"><%= k.duration.text %></td>
-                  </tr>
-                  <% }); %>
-                  </table>
-                  <table class="endAddress">
-                  <tr>
-                    <td><span class="end">{t}Llegada{/t}: </span><%= j.end_address %></td>
-                  </tr>
-                  </table>
-                <% } %>
-              <% }); %>
-
+            <div class="infoRight">
+              <div class="directions clearfix">
+                <% _.each( data.route.routes[0].legs, function( j, leg ) { %>
+                  <% if (e == leg) { %>
+                    <!-- <table class="startAddress">
+                      <tr>
+                        <td>
+                          <span class="start">{t}Comienzo{/t}: </span>
+                            <%= j.start_address %>
+                        </td>
+                      </tr>
+                    </table> -->
+                    <table class="steps">
+                      <% _.each( j.steps, function( k, step ) { %>
+                        <tr>
+                          <td><%= step+1 %>. </td>
+                          <td><%= k.instructions %></td>
+                          <td class="distance"><%= k.distance.text %></td>
+                          <td class="duration"><%= k.duration.text %></td>
+                        </tr>
+                      <% }); %>
+                    </table>
+                    <!-- <table class="endAddress">
+                      <tr>
+                        <td>
+                          <span class="end">{t}Llegada{/t}: </span>
+                            <%= j.end_address %>
+                        </td>
+                      </tr>
+                    </table> -->
+                  <% } %>
+                <% }); %>
+              </div>
             </div>
           </div>
+          <% _.each( data.route.routes[0].legs, function( j, leg ) { %>
+            <% if (e == leg) { %>
+              <div class="endAddress center-block">
+                <table class="">
+                  <tr>
+                    <td>
+                      <span class="end">{t}Llegada{/t}: </span>
+                        <%= j.end_address %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            <% } %>
+          <% }); %>
         </div>
-      <% }); %>
+      <% } %>
+    <% }); %>
+  <% }); %>
 </script>
