@@ -179,6 +179,11 @@ class RExtStoryStepController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'Use KML layer from other story step' ), 'type' => 'select', 'class' => 'gzzSelect2',
           'options' => $otherKmlOptions
         )
+      ),
+
+      'urlVideo' => array(
+        'params' => array( 'label' => __('Video Youtube') ),
+        'rules' => array( 'urlYoutube' => true )
       )
 
     );
