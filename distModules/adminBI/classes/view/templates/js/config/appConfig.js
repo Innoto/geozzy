@@ -80,7 +80,7 @@ define([], function () {
         FILTERS: [
             {
                 filterID: filterResource,
-                url: urlGeozzy + '/core/resourcelist/fields/id,title_es/filters/false/rtype/flase/rextmodels/false/category/false'
+                url: urlGeozzy + '/core/resourcelist/fields/id,title_es/filters/false/rtype/false/rextmodels/false/category/false'
             },
             {
                 filterID: filterResourceTypes,
