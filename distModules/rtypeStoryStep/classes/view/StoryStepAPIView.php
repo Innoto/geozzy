@@ -33,6 +33,8 @@ $tempo = microtime(true);
       case 'GET':
         if( isset( $resourceId ) && is_numeric( $resourceId ) ) {
 
+          $resCtrl = new ResourceController();
+
           story::load('model/AllstoryStepsViewModel.php');
           $resourceModel = new AllstoryStepsViewModel();
           $resources = $resourceModel->listItems([ 'filters'=>[ 'storyId' => $resourceId ]] );
@@ -82,6 +84,7 @@ error_log(sprintf( "%.3f", $tempo2-$tempo));
             $row['drawLine'] = $resource->getter('drawLine');
             $row['mapType'] = $resource->getter('mapType');
             $row['dialogPosition'] = $resource->getter('dialogPosition');
+            $row['idUrlVideo'] = $resCtrl->ytVidId( $resource->getter('urlVideo') );
 
 
 
