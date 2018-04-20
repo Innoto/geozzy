@@ -74,12 +74,17 @@ label.resImageMoreInfo{ margin-bottom: 30px;}
 /* FORM RESOURCE*/
 ul.panelIdTags{
   position: fixed;
-  background-color:@gzzColor-positive;
+  background-color:@gzzColor-rest;
   z-index:10;
   width:100%;
   top:90px;
   left:0px;
   padding-left:240px;
+  @media @mqLTTablet{
+    padding-left:20px;
+    top:80px;
+  }
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
 
   li.tagBlock{
     font-size:@font-size-small;
@@ -87,7 +92,7 @@ ul.panelIdTags{
     display: inline-block;
     list-style-type: none;
     float:left;
-    margin:3px 6px;
+    margin:2px 9px;
     color: @gzzColor-text-light;
     &:hover{
       color:@text-color;
