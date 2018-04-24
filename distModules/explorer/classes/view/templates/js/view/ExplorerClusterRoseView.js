@@ -41,15 +41,21 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
     that.markerClustererHover.css("top", top+'px' );
     that.markerClustererHover.css("left", left+'px' );
+    that.markerClustererHover.css("z-index", 11 );
     that.markerClustererHover.show();
 
     that.markerClustererHover.find(".markerClustererHoverCircle").unbind("click");
     that.markerClustererHover.find(".markerClustererHoverCircle").bind("click", function(){
+
       that.blocked = true;
       that.hide();
       that.options.mapView.map.setCenter(pos);
       that.options.mapView.map.setZoom( that.options.mapView.map.getZoom() + 1 );
-      that.blocked= false;
+
+      setTimeout( function(){
+        that.blocked= false;  
+      }, 100);
+
     });
 
 
