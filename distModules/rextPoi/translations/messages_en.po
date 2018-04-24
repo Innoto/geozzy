@@ -15,6 +15,8 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:11
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
 msgid "Datos Panorama"
 msgstr ""
 

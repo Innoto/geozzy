@@ -18,6 +18,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceViewBlock.tpl:10
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:73
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:361
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:10
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourceViewBlock.tpl:10
 msgid "Title"
 msgstr ""
 
@@ -25,6 +27,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceViewBlock.tpl:14
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:78
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:366
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:14
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourceViewBlock.tpl:14
 msgid "Short description"
 msgstr ""
 
@@ -32,39 +36,53 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceViewBlock.tpl:51
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:75
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:371
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:51
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourceViewBlock.tpl:51
 msgid "Medium description"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:56
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceViewBlock.tpl:56
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:376
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:56
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourceViewBlock.tpl:56
 msgid "Content"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:61
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceViewBlock.tpl:61
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:384
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:61
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourceViewBlock.tpl:61
 msgid "Image"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:67
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceViewBlock.tpl:67
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:67
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourceViewBlock.tpl:67
 msgid "None"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:73
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceViewBlock.tpl:73
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:73
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourceViewBlock.tpl:73
 msgid "External Url"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:80
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceViewBlock.tpl:80
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:430
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_resourceViewBlock.tpl:80
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourceViewBlock.tpl:80
 msgid "Collections"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 msgid ""
 "Haz click en el lugar donde se ubica tu centro educativo con la mayor "
 "precisión que puedas, podrás arrastrar y soltar la localización"
@@ -72,6 +90,8 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:31
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rTypeFormLocationPanel.tpl:31
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:31
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFormLocationPanel.tpl:31
 msgid "Automatic Location"
 msgstr ""
 
@@ -87,6 +107,8 @@ msgstr "Moins"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:12
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourceCollectionViewBlock.tpl:12
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourceCollectionViewBlock.tpl:12
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_resourceCollectionViewBlock.tpl:12
 msgid "Find out!"
 msgstr ""
 

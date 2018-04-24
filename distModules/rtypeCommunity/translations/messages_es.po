@@ -16,6 +16,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:11
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:11
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:11
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:11
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:11
 msgid "Tu Comunidad"
 msgstr ""
 
@@ -26,6 +28,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:20
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:20
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:20
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:20
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:20
 msgid "Mi perfil"
 msgstr ""
 
@@ -36,6 +40,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:39
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:39
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:39
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:39
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:39
 msgid "Editar"
 msgstr ""
 
@@ -46,6 +52,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:40
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:40
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:40
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:40
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:40
 msgid "Guardar"
 msgstr ""
 
@@ -56,6 +64,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:56
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:56
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:56
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:56
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:56
 msgid "Compartir mis datos con la comunidad"
 msgstr ""
 
@@ -66,6 +76,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:81
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:81
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:81
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:81
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:81
 msgid "Perfil enlazado con Facebook"
 msgstr ""
 
@@ -76,6 +88,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:82
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:82
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:82
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:82
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:82
 msgid "Enlazar mi perfil con Facebook"
 msgstr ""
 
@@ -86,6 +100,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:100
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:100
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:100
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:100
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:100
 msgid "Perfil enlazado con Twitter"
 msgstr ""
 
@@ -96,6 +112,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:101
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:101
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:101
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:101
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:101
 msgid "Enlazar mi perfil con Twitter"
 msgstr ""
 
@@ -113,6 +131,10 @@ msgstr ""
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:258
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:166
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:258
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:166
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:258
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:166
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:258
 msgid "Seguir"
 msgstr ""
 
@@ -130,6 +152,10 @@ msgstr ""
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:259
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:167
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:259
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:167
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:259
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:167
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:259
 msgid "Siguiendo"
 msgstr ""
 
@@ -147,6 +173,10 @@ msgstr ""
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:276
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:184
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:276
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:184
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:276
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:184
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:276
 msgid "Le gusta..."
 msgstr ""
 
@@ -164,6 +194,10 @@ msgstr ""
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:292
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:200
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:292
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:200
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:292
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:200
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:292
 msgid "ver todos"
 msgstr ""
 
@@ -174,6 +208,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:215
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:215
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:215
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:215
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:215
 msgid "Parece que todavía no has añadido a nadie a tu Comunidad..."
 msgstr ""
 
@@ -184,5 +220,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:228
 #: /home/proxectos/becarios/app/tmp/tpl/rTypeViewBlock.tpl:228
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:228
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeViewBlock.tpl:228
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rtypeCommunity_classes_view_templates_rTypeViewBlock.tpl:228
 msgid "Usuarios similares a tí..."
 msgstr ""

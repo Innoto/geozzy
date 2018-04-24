@@ -35,6 +35,10 @@ msgstr "Enter a departure address"
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:47
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:88
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:88
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:88
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:88
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:44
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock-pre171024.tpl:44
 msgid "Get directions"
 msgstr ""
 
@@ -48,6 +52,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:57
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:96
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:96
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:96
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:96
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:54
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock-pre171024.tpl:54
 msgid "Show route description"
 msgstr ""
 
@@ -57,6 +65,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:93
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:101
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:101
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:101
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:101
 msgid "Route by car"
 msgstr ""
 
@@ -66,6 +76,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:94
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:102
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:102
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:102
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:102
 msgid "Walking route"
 msgstr ""
 
@@ -75,6 +87,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:95
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:103
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:103
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:103
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:103
 msgid "Route by public transport"
 msgstr ""
 
@@ -88,6 +102,10 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:55
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:104
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:104
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:104
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:104
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:52
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock-pre171024.tpl:52
 msgid "Route information"
 msgstr ""
 
@@ -99,11 +117,17 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:122
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:121
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:122
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
 msgid "Print directions"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
 msgid "Print Map Directions"
 msgstr ""
 
@@ -111,6 +135,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:40
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock-pre171024.tpl:37
 msgid "Type an address or mark on the map the place of departure"
 msgstr ""
 

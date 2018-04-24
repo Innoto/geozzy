@@ -48,48 +48,66 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/modal.tpl:35
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/modal.tpl:15
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/modal.tpl:35
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/modal.tpl:15
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/modal.tpl:35
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_modal.tpl:15
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_modal.tpl:35
 msgid "Close"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_listAsignStarred.tpl:4
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/listAsignStarred.tpl:4
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/listAsignStarred.tpl:4
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/listAsignStarred.tpl:4
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_listAsignStarred.tpl:4
 msgid "Resources not starred yet"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:25
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:25
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:25
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:25
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:25
 msgid "User Profile"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:26
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:26
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:26
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:26
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:26
 msgid "Edit Profile"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:29
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:29
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:29
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:29
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:29
 msgid "Logout"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:52
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:52
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:52
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:52
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:52
 msgid "Charts"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:57
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:57
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:57
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:57
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:57
 msgid "Pages"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:63
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:63
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:62
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:63
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:63
 msgid "Starred"
 msgstr ""
 
@@ -100,24 +118,34 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:113
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:139
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:139
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:78
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:139
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:78
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:139
 msgid "Menu"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:83
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:83
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:78
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:83
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:83
 msgid "Comments"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:89
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:89
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:84
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:89
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:89
 msgid "Suggestions"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:95
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:95
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:90
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:95
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:95
 msgid "Contents"
 msgstr ""
 
@@ -126,6 +154,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:95
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:121
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:121
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:121
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:121
 msgid "Categories"
 msgstr ""
 
@@ -134,6 +164,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:110
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:136
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:136
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:136
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:136
 msgid "Settings"
 msgstr ""
 
@@ -142,6 +174,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:117
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:143
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:143
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:143
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:143
 msgid "Users"
 msgstr ""
 
@@ -152,6 +186,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:120
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:146
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:146
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:146
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:146
 msgid "User"
 msgstr ""
 
@@ -160,24 +196,32 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/adminMenu.tpl:123
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:149
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:149
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:149
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:149
 msgid "Roles"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin403.tpl:5
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_admin403.tpl:5
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/admin403.tpl:5
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin403.tpl:5
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_admin403.tpl:5
 msgid "Forbidden: Access is denied"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin403.tpl:6
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_admin403.tpl:6
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/admin403.tpl:6
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin403.tpl:6
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_admin403.tpl:6
 msgid "You don't have permission to access on this section"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_categoryEditor.tpl:14
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/categoryEditor.tpl:14
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:14
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/categoryEditor.tpl:14
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_categoryEditor.tpl:14
 msgid "Category management for"
 msgstr ""
 
@@ -187,6 +231,10 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/categoryEditor.tpl:57
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:19
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:57
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/categoryEditor.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/categoryEditor.tpl:57
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_categoryEditor.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_categoryEditor.tpl:57
 msgid "Add"
 msgstr ""
 
@@ -210,6 +258,18 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:59
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:21
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:59
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:18
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:54
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_resourcesStarredList.tpl:21
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_resourcesStarredList.tpl:59
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/categoryEditor.tpl:21
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/categoryEditor.tpl:59
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourcesStarredList.tpl:21
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourcesStarredList.tpl:59
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:18
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:54
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_categoryEditor.tpl:21
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_categoryEditor.tpl:59
 msgid "Cancel"
 msgstr ""
 
@@ -229,38 +289,62 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:60
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:22
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:60
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:55
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_resourcesStarredList.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_resourcesStarredList.tpl:60
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/categoryEditor.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/categoryEditor.tpl:60
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourcesStarredList.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourcesStarredList.tpl:60
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:55
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_categoryEditor.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_categoryEditor.tpl:60
 msgid "Save"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_categoryEditor.tpl:38
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/categoryEditor.tpl:38
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/categoryEditor.tpl:38
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/categoryEditor.tpl:38
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_categoryEditor.tpl:38
 msgid "List of terms for"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/menuTermEditor.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:11
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:11
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:11
 msgid "Menu management"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/menuTermEditor.tpl:16
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:16
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:16
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:16
 msgid "Add menu term"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/menuTermEditor.tpl:34
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:34
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:34
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:34
 msgid "List of menu terms"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/menuTermEditor.tpl:52
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:52
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/menuTermEditor.tpl:52
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_menuTermEditor.tpl:52
 msgid "Add term menu"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourcesStarredList.tpl:14
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_resourcesStarredList.tpl:14
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:14
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_resourcesStarredList.tpl:14
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourcesStarredList.tpl:14
 msgid "Resources Starred in"
 msgstr ""
 
@@ -272,18 +356,26 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:111
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:19
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:57
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_resourcesStarredList.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_resourcesStarredList.tpl:57
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourcesStarredList.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourcesStarredList.tpl:57
 msgid "Assign"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/resourcesStarredList.tpl:38
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_resourcesStarredList.tpl:38
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/resourcesStarredList.tpl:38
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_resourcesStarredList.tpl:38
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/resourcesStarredList.tpl:38
 msgid "List of resources for"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_listResourceOutTopic.tpl:4
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/listResourceOutTopic.tpl:4
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/listResourceOutTopic.tpl:4
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_listResourceOutTopic.tpl:4
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/listResourceOutTopic.tpl:4
 msgid "Available and unallocated resources"
 msgstr ""
 
@@ -587,6 +679,8 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:99
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:99
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:99
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:99
 msgid "Translates"
 msgstr ""
 
@@ -594,16 +688,22 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:103
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:66
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:67
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:103
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:103
 msgid "Export"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:105
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:105
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:105
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:105
 msgid "Resources"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:106
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:106
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:106
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:106
 msgid "Collections"
 msgstr ""
 
@@ -612,11 +712,15 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:222
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:235
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:247
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:110
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:110
 msgid "Import"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:112
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:112
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:112
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:112
 msgid "Files"
 msgstr ""
 
@@ -626,21 +730,31 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:90
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:91
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/translatesPage.tpl:91
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:53
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:91
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/translatesPage.tpl:53
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/translatesPage.tpl:91
 msgid "Send"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:37
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:37
 msgid "He olvidado mi contraseña"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:39
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:39
 msgid "Recuperar contraseña"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:40
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:40
 msgid ""
 "Introduce la dirección de correo electrónico asociada a tu cuenta y te "
 "enviaremos un enlace para restablecer tu contraseña"
@@ -648,16 +762,22 @@ msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:45
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:45
 msgid "Hay errores en el formulario"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:46
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:46
 msgid "Recuperar"
 msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:51
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:51
 msgid ""
 "Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
 msgstr ""

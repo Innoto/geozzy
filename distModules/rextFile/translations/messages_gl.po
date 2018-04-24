@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:9
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextFile_classes_view_templates_rExtViewBlock.tpl:9
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:9
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextFile_classes_view_templates_rExtViewBlock.tpl:9
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:9
@@ -16,6 +18,8 @@ msgstr ""
 msgid "File name"
 msgstr ""
 
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:15
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextFile_classes_view_templates_rExtViewBlock.tpl:15
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:15
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextFile_classes_view_templates_rExtViewBlock.tpl:15
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:15
@@ -23,6 +27,8 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextFile_classes_view_templates_rExtViewBlock.tpl:19
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:19
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextFile_classes_view_templates_rExtViewBlock.tpl:19
 #: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:19

@@ -61,7 +61,7 @@ msgstr "Aplicar"
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerBaseInLanding.tpl:20
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerSaganInLanding.tpl:20
 msgid "Clear filters"
-msgstr "Limpar filtros"
+msgstr "Limpar os filtros"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerList.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer.tpl:23

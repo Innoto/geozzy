@@ -51,6 +51,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:516
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:524
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:545
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:546
 msgid "Send"
 msgstr "Enviar"
 
@@ -108,6 +109,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/becarios/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/userProfile.tpl:4
 msgid "Perfil de Usuario"
 msgstr ""
 

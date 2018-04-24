@@ -41,6 +41,8 @@ msgstr "Está seguro de que quere marcar como irrelevante esta suxerencia"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
 #: /home/proxectos/canlers/app/tmp/tpl/mailCommentValidated.tpl:2
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/mailCommentValidated.tpl:2
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/mailCommentValidated.tpl:2
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextComment_classes_view_templates_mailCommentValidated.tpl:2
 msgid "Estimado usuario,"
 msgstr ""
 

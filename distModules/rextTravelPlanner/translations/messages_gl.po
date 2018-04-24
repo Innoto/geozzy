@@ -176,6 +176,8 @@ msgstr "Engadir sitios"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:13
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:13
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
 msgid "Filtros :"
 msgstr ""
 
@@ -204,6 +206,8 @@ msgstr "Optimizar"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:88
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:89
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:89
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 msgid "Plan"
 msgstr ""
 

@@ -24,6 +24,12 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:11
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:12
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:12
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:11
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerList.tpl:11
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:13
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:13
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:12
 msgid "Return to content"
 msgstr ""
 
@@ -38,6 +44,14 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorer.tpl:18
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerBaseInLanding.tpl:17
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerSaganInLanding.tpl:17
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer.tpl:17
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:17
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerList.tpl:17
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:17
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:19
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:19
 msgid "Apply"
 msgstr ""
 
@@ -52,6 +66,14 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorer.tpl:21
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerBaseInLanding.tpl:20
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerSaganInLanding.tpl:20
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer.tpl:20
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:20
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerList.tpl:20
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:20
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:22
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:22
 msgid "Clear filters"
 msgstr ""
 
@@ -63,6 +85,14 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:23
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:25
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:25
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer.tpl:23
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:23
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerList.tpl:23
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:23
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:25
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:25
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:25
 msgid "List"
 msgstr ""
 
@@ -72,6 +102,12 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:24
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorerBaseInLanding.tpl:26
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:26
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer.tpl:24
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:24
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:26
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:26
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:26
 msgid "Map"
 msgstr ""
 
@@ -86,5 +122,13 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorer.tpl:26
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerBaseInLanding.tpl:24
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/explorerSaganInLanding.tpl:24
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerBaseInLanding.tpl:27
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer.tpl:25
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerList.tpl:24
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerList.tpl:24
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorer.tpl:25
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorer_classes_view_templates_explorerSaganInLanding.tpl:27
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerSaganInLanding.tpl:27
+#: /home/proxectos/casteloSantaCruz/app/tmp/tpl/explorerBaseInLanding.tpl:27
 msgid "Filters"
 msgstr ""
