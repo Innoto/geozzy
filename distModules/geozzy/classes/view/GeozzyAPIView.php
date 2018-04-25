@@ -153,8 +153,9 @@ class geozzyAPIView extends View {
                 },
                 {
                   "name": "rextmodels",
-                  "description": "extension Models",
-                  "dataType": "boolean",
+                  "description": "extension Models: false, true or model names (separed by comma)",
+                  // "dataType": "boolean",
+                  "dataType": "string",
                   "paramType": "path",
                   "defaultValue": "false",
                   "required": false
