@@ -46,12 +46,12 @@
 
 
 //
-// Google keys DEVELOPMENT
+// Google keys DEVELOPMENT: *.geozzy.com 
+// Estas son para pruebas. Las del proyecto se definen en setup-500.project.php
 //
 // $conf->setSetupValue( 'google:maps:key', 'A..................................Q' );
-// $conf->setSetupValue( 'google:recaptcha:key:site', '6..................................T' );
-// $conf->setSetupValue( 'google:recaptcha:key:secret', '6..................................d' );
-
+// $conf->setSetupValue( 'google:recaptcha:key:site', '6LdUCwwUAAAAAOb026oMl2CS9_OT1pHbxmT6eqS6' );
+// $conf->setSetupValue( 'google:recaptcha:key:secret', '6LdUCwwUAAAAAFUEkes0vOPahU9vfRztGrRqj3Q-' );
 
 
 //
