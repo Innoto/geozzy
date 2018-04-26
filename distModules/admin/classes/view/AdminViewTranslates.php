@@ -198,8 +198,8 @@ class AdminViewTranslates extends AdminViewMaster {
         $filters['lastUpdatefrom'] = $timeLastUpdate;
       }*/
 
-      $resCollModel =  new CollectionModel();
-      $collResList = $resCollModel->listItems( array( 'filters' => $filters, 'cache' => $this->cacheQuery ) );
+      $collResModel = new CollectionResourcesListViewModel();
+      $collResList = $collResModel->listItems( array( 'filters' => $filters, 'cache' => $this->cacheQuery ) );
 
       cogumelo::log( 'EXPORT - CollectionModel - Idioma: '.$langFromExport, 'AdminTranslates' );
 
