@@ -10,6 +10,8 @@ geozzy.generateModal = function( options ) {
     size: 'md',
     btnClass: 'btn-primary',
     footerHidden: false,
+    show: true,
+    autoRemove : true,
     successOpened: function(){ return false; },
     successCallback: function() { return false; }
   });
@@ -42,7 +44,7 @@ geozzy.generateModal = function( options ) {
   that.initModal = function( ) {
     $('body').append(that.createModalTemplate());
     $('.gzzGenerateModal').modal({
-      'show' : true,
+      'show' : that.options.show,
       'keyboard': false,
     });
     $('.gzzGenerateModal').on('shown.bs.modal', function (e) {
@@ -51,7 +53,9 @@ geozzy.generateModal = function( options ) {
       }
     });
     $('.gzzGenerateModal').on('hidden.bs.modal', function (e) {
-      $(this).remove();
+      if(that.options.autoRemove){
+        $(this).remove();
+      }
       if( typeof that.options.successCallback != 'undefined' ){
         that.options.successCallback();
       }
