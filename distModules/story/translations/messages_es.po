@@ -9,6 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:21
+#: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:30
 #: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:15
 #: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:24
 #: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/StoryTemplates.js:28

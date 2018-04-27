@@ -89,3 +89,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:179
 msgid "Use KML layer from other story step"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextStoryStep/classes/controller/RExtStoryStepController.php:185
+msgid "Video Youtube"
+msgstr ""

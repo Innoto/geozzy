@@ -50,6 +50,10 @@ class RExtStoryStepModel extends Model
       'vo' => 'FiledataModel',
       'key' => 'id',
       'uploadDir' => '/RExtStoryStepFiles/'
+    ),
+    'urlVideo' => array(
+      'type'=> 'VARCHAR',
+      'size' => 2000
     )
   );
 
@@ -61,6 +65,11 @@ class RExtStoryStepModel extends Model
   }
 
   var $deploySQL = array(
+    array(
+      'version' => 'rextStoryStep#2',
+      'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep
+        ADD COLUMN urlVideo VARCHAR(2000);'
+    ),
     array(
       'version' => 'rextStoryStep#1.1',
       'sql'=> 'ALTER TABLE geozzy_resource_rext_storystep

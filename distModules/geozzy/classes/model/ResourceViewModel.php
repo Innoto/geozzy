@@ -162,7 +162,10 @@ class ResourceViewModel extends Model {
     'updatedfrom' => ' ( geozzy_resource_view.timeCreation >= ? OR geozzy_resource_view.timeLastUpdate >= ? ) ',
     'createdfrom' => ' ( geozzy_resource_view.timeCreation >= ? ) ',
     'lastUpdatefrom' => ' ( geozzy_resource_view.timeLastUpdate >= ? ) ',
-    'notInCollectionId' => 'geozzy_resource_view.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)'
+    'notInCollectionId' => 'geozzy_resource_view.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)',
+
+    'createdAfter' => ' ( geozzy_resource_view.timeCreation > ? ) ',
+    'createdBefore' => ' ( geozzy_resource_view.timeCreation < ? ) '
   );
 
 

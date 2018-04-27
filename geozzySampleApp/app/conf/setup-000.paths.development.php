@@ -1,9 +1,6 @@
 <?php
 /*
-  Normas de estilo:
-
-  Valores:
-  - Las rutas NO finalizan en /
+  Norma: Las rutas NO finalizan en /
 */
 
 

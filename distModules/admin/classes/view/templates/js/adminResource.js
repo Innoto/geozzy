@@ -19,7 +19,7 @@ $(document).ready( function() {
   /* Anclas a paneles */
    $('.panelBlocktoLink').each(function(){
      var idBlock = $(this).attr('id');
-     var panelTag = '<li class="tagBlock" data-idBlockPanel="'+idBlock+'">['+idBlock.replace(/_/g," ")+']</li>';
+     var panelTag = '<li class="tagBlock" data-idBlockPanel="'+idBlock+'">'+idBlock.replace(/_/g," ")+'</li>';
      $('.panelIdTags').append(panelTag);
    });
 

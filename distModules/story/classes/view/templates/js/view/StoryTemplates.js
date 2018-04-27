@@ -2,11 +2,17 @@ var geozzy = geozzy || {};
 if(!geozzy.storyComponents) geozzy.storyComponents={};
 
 geozzy.storyComponents.listElementTemplate = ''+
-    '<div class="storyStep" >' +
-      '<%if( img && dialogPosition == 0 ){%>'+
-        '<div><img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/storyCentered/<%-img%>.jpg" /></div>' +
-      '<%}else {%>'+
-        '<div><img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/fast_cut/<%-img%>.jpg" /></div>' +
+    '<div class="storyStep <%if( idUrlVideo ){%>embedVideo<%}%>" >' +
+      '<%if( idUrlVideo ){%>'+
+        '<div class="videoWrapper"><iframe src="https://www.youtube.com/embed/<%-idUrlVideo%>" allow="autoplay; encrypted-media" allowfullscreen="" width="640" height="480" frameborder="0"></iframe></div>'+
+      '<%}else{%>'+
+        '<%if( img ){%>'+
+          '<%if( dialogPosition == 0 ){%>'+
+            '<div><img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/storyCentered/<%-img%>.jpg" /></div>' +
+          '<%}else {%>'+
+            '<div><img class="img-responsive" src="'+cogumelo.publicConf.mediaHost+'cgmlImg/<%-img%>/elementExplorerImg/<%-img%>.jpg" /></div>' +
+          '<%}%>'+
+        '<%}%>'+
       '<%}%>'+
       '<div class="content">' +
         '<h3 class="title"><%= title %></h3>'+
