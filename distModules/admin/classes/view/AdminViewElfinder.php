@@ -14,11 +14,16 @@ class AdminViewElfinder extends AdminViewMaster {
 
   public function fileManagerBackend() {
 
-    if (!is_dir( Cogumelo::getSetupValue( 'mod:filedata:filePathPublic') )) {
-      @mkdir( Cogumelo::getSetupValue( 'mod:filedata:filePathPublic') );
+    $filePathPublic = Cogumelo::getSetupValue('mod:filedata:filePathPublic');
+    $filePath = Cogumelo::getSetupValue('mod:filedata:filePath');
+    $tmbURL = str_replace( $filePath, '', $filePathPublic );
+    $tmbURL = '/' . trim( $tmbURL, ' /' ) . '.tmb';
+
+    if( !empty( $filePathPublic ) && !is_dir( $filePathPublic ) ) {
+      @mkdir( $filePathPublic );
     }
 
-
+    
 
     // Documentation for connector options:
     // https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
@@ -26,13 +31,13 @@ class AdminViewElfinder extends AdminViewMaster {
       // 'debug' => true,
       'roots' => array(
         array(
-          'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
-          'path'          => Cogumelo::getSetupValue( 'mod:filedata:filePathPublic') ,                 // path to files (REQUIRED)
-          'tmbURL'        => Cogumelo::getSetupValue( 'mod:filedata:filePathPublic') . '.tmb',
+          'driver'        => 'LocalFileSystem',  // driver for accessing file system (REQUIRED)
+          'path'          => $filePathPublic,  // path to files (REQUIRED)
+          'tmbURL'        => '/cgmlformpublic' . $tmbURL,
 
           'hidden' => true,
 
-          'URL'           =>  '/cgmlformpublic', // URL to files (REQUIRED)
+          'URL'           => '/cgmlformpublic', // URL to files (REQUIRED)
           'uploadDeny'    => array('all'),                // All Mimetypes not allowed to upload
           'uploadAllow'   => array('image'),// Mimetype `image` and `text/plain` allowed to upload
           'uploadOrder'   => array('deny', 'allow'),      // allowed Mimetype `image` and `text/plain` only
