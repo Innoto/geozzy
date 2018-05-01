@@ -15,12 +15,10 @@ class AdminViewElfinder extends AdminViewMaster {
   public function fileManagerBackend() {
 
     $filePathPublic = Cogumelo::getSetupValue('mod:filedata:filePathPublic');
-    $filePath = Cogumelo::getSetupValue('mod:filedata:filePath');
-    $tmbURL = str_replace( $filePath, '', $filePathPublic );
-    $tmbURL = '/' . trim( $tmbURL, ' /' ) . '.tmb';
+    $baseURL = '/cgmlformpublic';
 
     if( !empty( $filePathPublic ) && !is_dir( $filePathPublic ) ) {
-      @mkdir( $filePathPublic );
+      @mkdir( $filePathPublic, 0750 );
     }
 
     
@@ -33,11 +31,11 @@ class AdminViewElfinder extends AdminViewMaster {
         array(
           'driver'        => 'LocalFileSystem',  // driver for accessing file system (REQUIRED)
           'path'          => $filePathPublic,  // path to files (REQUIRED)
-          'tmbURL'        => '/cgmlformpublic' . $tmbURL,
+          'tmbURL'        => $baseURL.'/.tmb',
+          'URL'           => $baseURL, // URL to files (REQUIRED)
 
           'hidden' => true,
 
-          'URL'           => '/cgmlformpublic', // URL to files (REQUIRED)
           'uploadDeny'    => array('all'),                // All Mimetypes not allowed to upload
           'uploadAllow'   => array('image'),// Mimetype `image` and `text/plain` allowed to upload
           'uploadOrder'   => array('deny', 'allow'),      // allowed Mimetype `image` and `text/plain` only

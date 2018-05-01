@@ -228,6 +228,9 @@ class admin extends Module {
     $this->addUrlPatterns( '#^admin/filemanagerfrontend#', 'view:AdminViewElfinder::fileManagerFrontend' );
     $this->addUrlPatterns( '#^admin/filemanagerbackend#', 'view:AdminViewElfinder::fileManagerBackend' );
 
+    // GrapesJS (file manager)
+    $this->addUrlPatterns( '#^admin/grapesJSFileUpload#', 'view:AdminViewGrapesJSFiles::fileUpload' );
+
     // translates (export)
     $this->addUrlPatterns( '#^admin/translates/export/resources$#', 'view:AdminViewTranslates::resourcesExportView' );
     $this->addUrlPatterns( '#^admin/translates/export/collections$#', 'view:AdminViewTranslates::collectionsExportView' );
