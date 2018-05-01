@@ -31,7 +31,7 @@ class AdminViewGrapesJSFiles extends AdminViewMaster {
     $baseURL = '/cgmlformpublic';
 
     if( !empty( $filePathPublic ) && !is_dir( $filePathPublic ) ) {
-      @mkdir( $filePathPublic, 0750 );
+      @mkdir( $filePathPublic, 0770 );
     }
 
 
@@ -143,7 +143,7 @@ class AdminViewGrapesJSFiles extends AdminViewMaster {
     }
 
     return $result;
-  } // function uploadFormFile() {
+  } // function makeUpload() {
 
 
 

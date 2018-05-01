@@ -6,19 +6,13 @@ geozzy::load( 'view/GeozzyResourceView.php' );
 
 class AdminViewElfinder extends AdminViewMaster {
 
-  public function __construct( $baseDir ) {
-    parent::__construct( $baseDir );
-  }
-
-
-
   public function fileManagerBackend() {
 
     $filePathPublic = Cogumelo::getSetupValue('mod:filedata:filePathPublic');
     $baseURL = '/cgmlformpublic';
 
     if( !empty( $filePathPublic ) && !is_dir( $filePathPublic ) ) {
-      @mkdir( $filePathPublic, 0750 );
+      @mkdir( $filePathPublic, 0770 );
     }
 
     
