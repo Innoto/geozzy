@@ -73,12 +73,6 @@ class explorer extends Module {
       'params' => array( 'jquery-mapael-2.1.0' ),
       'installer' => 'manual',
       'includes' => array( "js/jquery.mapael.min.js")
-    ),
-    array(
-     'id' =>'bootstrap-daterangepicker',
-     'params' => array( 'bootstrap-daterangepicker' ),
-     'installer' => 'bower',
-     'includes' => array( 'daterangepicker.js', 'daterangepicker.css' )
     )
   );
 
