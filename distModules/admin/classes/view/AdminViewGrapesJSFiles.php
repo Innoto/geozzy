@@ -6,6 +6,39 @@ geozzy::load('view/GeozzyResourceView.php');
 
 class AdminViewGrapesJSFiles extends AdminViewMaster {
 
+
+  public function __construct() {
+
+    $this->baseURL = '/cgmlformpublic';
+    $this->filePathPublic = Cogumelo::getSetupValue('mod:filedata:filePathPublic');
+    if( $this->filePathPublic ) {
+      $this->filePathPublic = rtrim( $this->filePathPublic, ' /' );
+    }
+
+    parent::__construct();
+  }
+
+  public function fileList() {
+    cogumelo::debug(__METHOD__);
+
+    $result = [];
+
+    if( !empty( $this->filePathPublic ) && is_dir( $this->filePathPublic ) ) {
+      $dirElements = scandir( $this->filePathPublic );
+      if( !empty( $dirElements ) ) {
+        foreach( $dirElements as $object ) {
+          if( $object !== '.' && $object !== '..' && !is_dir( $this->filePathPublic.'/'.$object ) ) {
+            $result[] = $this->baseURL .'/'. $object;
+          }
+        }
+      }
+    }
+
+    header('Content-type: application/json');
+    echo json_encode( $result );
+  } // function fileList() {
+
+
   public function fileUpload() {
     cogumelo::debug(__METHOD__);
 
@@ -27,11 +60,9 @@ class AdminViewGrapesJSFiles extends AdminViewMaster {
 
     $result = [];
 
-    $filePathPublic = Cogumelo::getSetupValue('mod:filedata:filePathPublic');
-    $baseURL = '/cgmlformpublic';
 
-    if( !empty( $filePathPublic ) && !is_dir( $filePathPublic ) ) {
-      @mkdir( $filePathPublic, 0770 );
+    if( !empty( $this->filePathPublic ) && !is_dir( $this->filePathPublic ) ) {
+      @mkdir( $this->filePathPublic, 0770 );
     }
 
 
@@ -99,7 +130,7 @@ class AdminViewGrapesJSFiles extends AdminViewMaster {
           $secureName = $form->secureFileName( $fileData['name'] );
           // $secureName = $fileData['name'];
 
-          $localeFile = $filePathPublic.'/'.$secureName;
+          $localeFile = $this->filePathPublic.'/'.$secureName;
 
 
 
@@ -114,11 +145,11 @@ class AdminViewGrapesJSFiles extends AdminViewMaster {
             $snName = $sn['filename'];
             $snExt = $sn['extension'];
 
-            while( file_exists( $filePathPublic.'/'.$snName.'-c'.$c.'.'.$snExt ) ) {
+            while( file_exists( $this->filePathPublic.'/'.$snName.'-c'.$c.'.'.$snExt ) ) {
               $c++;
             }
             $secureName = $snName.'-c'.$c.'.'.$snExt;
-            $localeFile = $filePathPublic.'/'.$secureName;
+            $localeFile = $this->filePathPublic.'/'.$secureName;
           }
 
 
@@ -131,7 +162,7 @@ class AdminViewGrapesJSFiles extends AdminViewMaster {
             $localeFile = false;
           }
           else {
-            $result[] = $baseURL .'/'. $secureName;
+            $result[] = $this->baseURL .'/'. $secureName;
           }
 
 
@@ -141,6 +172,7 @@ class AdminViewGrapesJSFiles extends AdminViewMaster {
         }
       }
     }
+
 
     return $result;
   } // function makeUpload() {
