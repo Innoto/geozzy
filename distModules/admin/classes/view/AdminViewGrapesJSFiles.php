@@ -65,7 +65,6 @@ class AdminViewGrapesJSFiles extends AdminViewMaster {
       @mkdir( $this->filePathPublic, 0770 );
     }
 
-
     if( !empty( $_FILES['grapesJSFilesUpload']['name'][0] ) ) {
 
       $numFiles = count( $_FILES['grapesJSFilesUpload']['name'] );
@@ -136,9 +135,7 @@ class AdminViewGrapesJSFiles extends AdminViewMaster {
 
 
 
-          /**
-           * TODO: FALTA VER QUE NON SE PISE UN ANTERIOR!!!
-           */
+          // TODO: FALTA VER QUE NON SE PISE UN ANTERIOR!!!
           if( file_exists( $localeFile ) ) {
             $c=1;
             $sn = pathinfo( $secureName );
@@ -170,8 +167,8 @@ class AdminViewGrapesJSFiles extends AdminViewMaster {
         else {
           // unlink( $fileData['tmp_name'] );
         }
-      }
-    }
+      } // for $p < $numFiles
+    } // if( !empty( $_FILES['grapesJSFilesUpload']['name'][0] ) )
 
 
     return $result;
