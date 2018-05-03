@@ -9,9 +9,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
 msgid "Select options"
@@ -488,8 +488,10 @@ msgstr "Editar rol"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:99
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:99
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:99
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:99
+#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:99
 msgid "Translates"
-msgstr ""
+msgstr "Traduccións"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:103
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:103
@@ -497,22 +499,28 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:67
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:103
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:103
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:103
+#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:103
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:105
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:105
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:105
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:105
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:105
+#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:105
 msgid "Resources"
-msgstr ""
+msgstr "Recursos"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:106
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:106
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:106
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:106
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:106
+#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:106
 msgid "Collections"
-msgstr ""
+msgstr "Coleccións"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:110
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:110
@@ -521,15 +529,19 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:247
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:110
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:110
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:110
+#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:110
 msgid "Import"
-msgstr ""
+msgstr "Importar"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:112
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/adminMenu.tpl:112
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:112
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/adminMenu.tpl:112
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_adminMenu.tpl:112
+#: /home/proxectos/canlers/app/tmp/tpl/adminMenu.tpl:112
 msgid "Files"
-msgstr ""
+msgstr "Ficheiros"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/translatesPage.tpl:53
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/translatesPage.tpl:90
@@ -541,27 +553,37 @@ msgstr ""
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:91
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/translatesPage.tpl:53
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/translatesPage.tpl:91
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:53
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_translatesPage.tpl:91
+#: /home/proxectos/canlers/app/tmp/tpl/translatesPage.tpl:53
+#: /home/proxectos/canlers/app/tmp/tpl/translatesPage.tpl:91
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:37
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:37
+#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:37
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:37
 msgid "He olvidado mi contraseña"
-msgstr ""
+msgstr "Esquecín o meu contrasinal"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:39
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:39
+#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:39
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:39
 msgid "Recuperar contraseña"
-msgstr ""
+msgstr "Recuperar o contrasinal"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:40
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:40
+#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:40
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:40
 msgid ""
 "Introduce la dirección de correo electrónico asociada a tu cuenta y te "
 "enviaremos un enlace para restablecer tu contraseña"
@@ -571,13 +593,17 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:45
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:45
+#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:45
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:45
 msgid "Hay errores en el formulario"
-msgstr ""
+msgstr "Hai erros no formulario"
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:46
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:46
+#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:46
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:46
 msgid "Recuperar"
 msgstr ""
 
@@ -585,6 +611,7 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/loginForm.tpl:51
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/loginForm.tpl:51
-msgid ""
-"Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
-msgstr ""
+#: /home/proxectos/canlers/app/tmp/tpl/loginForm.tpl:51
+#: /home/proxectos/canlers/app/tmp/tpl/admin_classes_view_templates_loginForm.tpl:51
+msgid "Se ha enviado un correo electrónico para recuperar tu cuenta de usuario."
+msgstr "Enviouse un correo electrónico para recuperar a túa conta de usuario."

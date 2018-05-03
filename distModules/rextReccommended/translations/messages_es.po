@@ -18,6 +18,7 @@ msgstr ""
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:1
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
+#: /home/proxectos/canlers/app/tmp/tpl/rextReccommended_classes_view_templates_rExtViewBlock.tpl:1
 msgid "Recursos recomendados:"
 msgstr ""
 

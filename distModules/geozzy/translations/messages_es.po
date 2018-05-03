@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:36
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:33
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:31
 msgid "Accept"
@@ -75,6 +76,7 @@ msgstr "Colecciones"
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/canlers/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 msgid ""
 "Haz click en el lugar donde se ubica tu centro educativo con la mayor "
 "precisión que puedas, podrás arrastrar y soltar la localización"
