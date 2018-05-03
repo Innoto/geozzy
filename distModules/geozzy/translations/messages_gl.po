@@ -74,6 +74,8 @@ msgid ""
 "Haz click en el lugar donde se ubica tu centro educativo con la mayor "
 "precisión que puedas, podrás arrastrar y soltar la localización"
 msgstr ""
+"Fai clic no lugar onde se localice o teu centro educativo ca maior "
+"precisión posible, poderás arrastrar e soltar a localización"
 
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:31
 msgid "Automatic Location"
