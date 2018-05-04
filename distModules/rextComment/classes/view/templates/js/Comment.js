@@ -22,7 +22,10 @@ geozzy.comment = function() {
     that.createCommentView.closeCreateCommentModal();
     that.initCommentOk();
     that.listComment( idResource );
-    geozzy.biMetricsInstances.resource.eventCommented( idResource, 'Resource comments' );
+    if(geozzy.biMetricsInstances){
+      geozzy.biMetricsInstances.resource.eventCommented( idResource, 'Resource comments' );
+    }
+
   }
   that.initCommentOk = function (){
     setTimeout(function() {
