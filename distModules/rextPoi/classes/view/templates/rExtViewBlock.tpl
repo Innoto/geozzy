@@ -19,7 +19,7 @@
 
   <div class="location">
     <div class="mapContainer">
-      <div class="descMap">Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización</div>
+      <div class="descMap">{t}Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización{/t}</div>
     </div>
     <div class="locationData">
       <div class="row">

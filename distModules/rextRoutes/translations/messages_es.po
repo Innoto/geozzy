@@ -45,6 +45,7 @@ msgstr "Ruta circular"
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:51
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
+#: /home/proxectos/canlers/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:51
 msgid "circular"
 msgstr ""
 
@@ -61,6 +62,7 @@ msgstr "Ruta lineal"
 #: /home/proxectos/becarios/app/tmp/tpl/geozzy_distModules_rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:62
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
+#: /home/proxectos/canlers/app/tmp/tpl/rextRoutes_classes_view_templates_rExtViewBlock.tpl:62
 msgid "lineal"
 msgstr ""
 

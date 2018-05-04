@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:36
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:33
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/generateModal.js:31
 msgid "Accept"
@@ -68,10 +69,13 @@ msgstr "coleccións"
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/canlers/app/tmp/tpl/geozzy_classes_view_templates_rTypeFormLocationPanel.tpl:16
 msgid ""
 "Haz click en el lugar donde se ubica tu centro educativo con la mayor "
 "precisión que puedas, podrás arrastrar y soltar la localización"
 msgstr ""
+"Fai clic no lugar onde se localice o teu centro educativo ca maior "
+"precisión posible, poderás arrastrar e soltar a localización"
 
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeFormLocationPanel.tpl:31
 msgid "Automatic Location"

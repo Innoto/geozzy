@@ -16,6 +16,7 @@ geozzy.generateModal = function( options ) {
     successCallback: function() { return false; }
   });
   that.options = $.extend(true, {}, opts, options );
+  that.options.modalClasses = that.options.classCss.replace(' ','.');
 
   // First Execution
   //
@@ -43,16 +44,16 @@ geozzy.generateModal = function( options ) {
 
   that.initModal = function( ) {
     $('body').append(that.createModalTemplate());
-    $('.gzzGenerateModal').modal({
+    $('.gzzGenerateModal.'+that.options.modalClasses).modal({
       'show' : that.options.show,
       'keyboard': false,
     });
-    $('.gzzGenerateModal').on('shown.bs.modal', function (e) {
+    $('.gzzGenerateModal.'+that.options.modalClasses).on('shown.bs.modal', function (e) {
       if( typeof that.options.successOpened != 'undefined' ){
         that.options.successOpened();
       }
     });
-    $('.gzzGenerateModal').on('hidden.bs.modal', function (e) {
+    $('.gzzGenerateModal.'+that.options.modalClasses).on('hidden.bs.modal', function (e) {
       if(that.options.autoRemove){
         $(this).remove();
       }
@@ -63,7 +64,7 @@ geozzy.generateModal = function( options ) {
   }
 
   that.closeModal = function( ) {
-    $('.gzzGenerateModal').modal('hide');
+    $('.gzzGenerateModal.'+that.options.modalClasses).modal('hide');
   }
 
 
