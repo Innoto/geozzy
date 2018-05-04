@@ -152,7 +152,7 @@ geozzy.explorerComponents.filters.filterGeoView = geozzy.filterView.extend({
   },
 
   reset: function() {
-    console.log('gEO')
+    //console.log('gEO')
     /*
     var that = this;
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');

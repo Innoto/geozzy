@@ -9,6 +9,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/canlers/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21
+msgid "If not uploaded, an automatic thumbnail will be created"
+msgstr "Se non se especifica, se xera unha miniatura"
+
 #: /home/proxectos/canlers/app/tmp/tpl/rTypeViewBlock.tpl:58
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:58
 msgid "volver"
@@ -18,11 +23,6 @@ msgstr "voltar"
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypeViewBlock.tpl:121
 msgid "Contact"
 msgstr "Contacto"
-
-#: /home/proxectos/canlers/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rTypePoiFormModalBlock.tpl:21
-msgid "If not uploaded, an automatic thumbnail will be created"
-msgstr "Se non se especifica, se xera unha miniatura"
 
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:60
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:54

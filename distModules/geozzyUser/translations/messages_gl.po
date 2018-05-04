@@ -122,6 +122,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:4
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/userProfile.tpl:4
+#: /home/proxectos/canlers/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:4
 msgid "Perfil de Usuario"
 msgstr ""
 
@@ -131,6 +132,8 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/userProfile.tpl:25
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:28
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/userProfile.tpl:28
+#: /home/proxectos/canlers/app/tmp/tpl/geozzyUser_classes_view_templates_userProfile.tpl:28
+#: /home/proxectos/canlers/app/tmp/tpl/userProfile.tpl:28
 msgid "Write only if you want to change the password"
 msgstr ""
 

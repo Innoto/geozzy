@@ -17,6 +17,8 @@ msgstr "Seleccione opcións"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:11
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:11
+#: /home/proxectos/canlers/app/tmp/tpl/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
 msgid "Datos Panorama"
 msgstr ""
 

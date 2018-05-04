@@ -148,7 +148,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
         section: 'Explorer: '+that.parentExplorer.options.explorerSectionName
       });
 
-      console.log(element.title, element.mapVisible, element.weight, element.distanceToCenterKm)
+      //console.log(element.title, element.mapVisible, element.weight, element.distanceToCenterKm)
 
 
       contentHtml += that.tplElement(element);

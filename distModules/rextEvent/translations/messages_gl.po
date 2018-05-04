@@ -15,6 +15,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:6
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBlock.tpl:6
+#: /home/proxectos/canlers/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:6
 msgid "Event init date"
 msgstr ""
 
@@ -24,6 +25,7 @@ msgstr ""
 #: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtFormBlock.tpl:19
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtFormBlock.tpl:19
+#: /home/proxectos/canlers/app/tmp/tpl/rextEvent_classes_view_templates_rExtFormBlock.tpl:19
 msgid "Event end date"
 msgstr ""
 

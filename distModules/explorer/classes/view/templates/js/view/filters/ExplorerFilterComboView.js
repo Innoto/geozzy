@@ -130,7 +130,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
   },
 
   reset: function() {
-    console.log('COMBO')
+    //console.log('COMBO')
     var that = this;
     var containerClassDots = '.'+that.options.containerClass.split(' ').join('.');
     $select = $( that.options.mainContainerClass + ' ' + containerClassDots + ' select' );

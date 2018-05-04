@@ -11,4 +11,4 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextParticipation/classes/controller/RExtParticipationController.php:64
 msgid "Observation"
-msgstr ""
+msgstr "Observación"

@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:365
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:329
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
 msgid "A route could not be found."
@@ -58,6 +59,10 @@ msgstr "Información de la ruta"
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtViewBlock.tpl:122
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
+#: /home/proxectos/canlers/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
+#: /home/proxectos/canlers/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:121
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:122
 msgid "Print directions"
 msgstr ""
 
@@ -65,6 +70,8 @@ msgstr ""
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
 #: /home/proxectos/casteloSantaCruz/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/canlers/app/tmp/tpl/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/canlers/app/tmp/tpl/rExtPrintDirectionsPageFull.tpl:10
 msgid "Print Map Directions"
 msgstr ""
 
