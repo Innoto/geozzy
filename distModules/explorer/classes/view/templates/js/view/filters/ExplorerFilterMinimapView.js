@@ -236,7 +236,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
         try {
           eval( 'mapaelDataObject.'+ e.get('idName') + ' = "' + e.get('geom') + '";' );
         } catch(err) {
-          console.log( 'Problema con idName de concello:', e.get('idName') );
+          console.log( 'Problema con idName :', e.get('idName') );
         }
       });
     }
