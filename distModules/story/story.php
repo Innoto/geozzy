@@ -4,7 +4,7 @@ Cogumelo::load("coreController/Module.php");
 
 class story extends Module {
   public $name = "story";
-  public $version = 2;
+  public $version = 3;
 
   public $dependences = array(
     array(
