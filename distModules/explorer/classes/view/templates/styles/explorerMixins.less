@@ -254,7 +254,7 @@
 }
 /*******************************************************************************************/
 /*******************************************************************************************/
-.explorerMobile( @expl-w: 100%, @expl-h: 100%, @buttonColor:#000, @buttonColorSelected:#000, @hheight: 0px ) {
+.explorerMobile( @expl-w: 100%, @expl-h: 100%, @buttonColor:#000, @buttonColorText:#fff, @buttonColorSelected:#000, @hheight: 0px ) {
   position: inherit;
   top: 0;
   .explorerLayout{
@@ -345,12 +345,12 @@
     }
     .explorerButton{
       background-color:@buttonColor;
-      color:#fff;
+      color: @buttonColorText;
       padding: 7px 10px;
       cursor:pointer;
       &.explorer-mobile-control-bmap,
       &.explorer-mobile-control-blist {
-        border-right: 1px solid #fff;
+        border-right: 1px solid @buttonColorText;
         position:fixed;
         bottom: 15px;
         right: 50%;
