@@ -53,7 +53,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
       that.options.mapView.map.setZoom( that.options.mapView.map.getZoom() + 1 );
 
       setTimeout( function(){
-        that.blocked= false;  
+        that.blocked= false;
       }, 100);
 
     });
@@ -170,6 +170,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
   //insideDiv.find("i").hide();
   insideDiv.find("i").css('margin-left', '7px');
   insideDiv.find("i").css('margin-top', '7px');
+  insideDiv.find("i").css('position', 'absolute');  
   insideDiv.find("i").css('color', '#fff');
   insideDiv.css( 'cursor', 'pointer' );
 /*  insideDiv.find("i").css('margin', 'auto');
