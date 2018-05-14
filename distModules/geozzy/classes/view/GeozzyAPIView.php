@@ -846,7 +846,6 @@ class geozzyAPIView extends View {
     error_log( 'API resourcelist: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
   }
 
-  // /resourcelist (Declarado en resources.json)
   public function resourceListV1( $param ) {
     Cogumelo::load('coreModel/DBUtils.php');
     geozzy::load('model/ResourceModel.php');

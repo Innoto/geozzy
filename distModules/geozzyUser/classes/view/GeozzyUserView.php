@@ -15,9 +15,9 @@ class GeozzyUserView extends View {
   }
 
   /**
-  * Evaluate the access conditions and report if can continue
-  * @return bool : true -> Access allowed
-  */
+   * Evaluate the access conditions and report if can continue
+   * @return bool : true -> Access allowed
+   */
   public function accessCheck(){
     return true;
   }
