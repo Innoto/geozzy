@@ -51,16 +51,6 @@
 
 
 //
-// Establecemos valores comunes para perfiles (colecciones tipo multimedia)
-//
-// $conf->setSetupValue( 'collections:imageProfile', [
-//   'default' => 'wmdpi4',
-//   'multimediaThumbnail' => 'imgMultimediaGallery',
-//   'multimediaLong' => 'imageMultimediaLarge'
-// ] );
-
-
-//
 // URL alias controller: Fichero que contiene una clase UrlAliasController con un metodo getAlternative
 //
 $conf->createSetupValue( 'urlAliasController:classFile',
