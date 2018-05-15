@@ -95,6 +95,10 @@ $conf->setSetupValue( 'mod:admin:titlePath', 'GeozzySampleApp Admin' );
 // $conf->setSetupValue( 'mod:admin:defaultURL', 'topic/10' );
 
 
+//  Nombre de la carpeta que se utiliza para importar traducciones (carpeta situada en la raíz del proyecto)
+// $conf->setSetupValue( 'mod:admin:importFolder', 'importTranslations' );
+
+
 //
 //  Module load
 //
