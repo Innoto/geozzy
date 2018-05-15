@@ -20,16 +20,16 @@
 
 
 {* SIN saltos de linea *}
-{block name="headKeywords"}{if isset($res.data.headKeywords) && $res.data.headKeywords!=''}{$res.data.headKeywords|escape:"html"}{else}educación, TIC,  pedagogía, tecnología, maestros, profesores{/if}{/block}
+{block name="headKeywords"}{if isset($res.data.headKeywords) && $res.data.headKeywords!=''}{$res.data.headKeywords|escape:"html"}{else}geozzySampleApp{/if}{/block}
 
 
 {block name="socialMeta" append}
 {$lang = $cogumelo.publicConf.C_LANG}
-  <meta property="og:site_name" content="Plataforma Proyecta">
+  <meta property="og:site_name" content="Geozzy Sample App">
   <meta property="og:locale" content="{$cogumelo.publicConf.lang_available[$lang]['i18n']}">
   <meta property="og:url" content="{$cogumelo.publicConf.site_host}{$res.data.urlAlias}">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Plataforma Proyecta. {if isset($res.data.headTitle) && $res.data.headTitle!=''}{$res.data.headTitle|escape:'html'}{else}{$res.data.title|escape:'html'}{/if}">
+  <meta property="og:title" content="Geozzy Sample App. {if isset($res.data.headTitle) && $res.data.headTitle!=''}{$res.data.headTitle|escape:'html'}{else}{$res.data.title|escape:'html'}{/if}">
 {if isset($res.ext.rextSocialNetwork.data["textFb"])}
   <meta property="og:description" content="{$res.ext.rextSocialNetwork.data['textFb']|escape:'html'}">
 {/if}
