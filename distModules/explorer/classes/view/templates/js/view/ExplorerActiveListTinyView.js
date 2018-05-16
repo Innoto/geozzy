@@ -41,7 +41,8 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
 
       tpl: geozzy.explorerComponents.activeListTinyViewTemplate ,
       tplElement: geozzy.explorerComponents.activeListTinyViewElement,
-      tplPager: geozzy.explorerComponents.activeListTinyViewPager
+      tplPager: geozzy.explorerComponents.activeListTinyViewPager,
+      tplEmpty: geozzy.explorerComponents.listEmpty
 
     });
     that.options = $.extend(true, {}, options, opts);
@@ -49,6 +50,7 @@ geozzy.explorerComponents.activeListTinyView = Backbone.View.extend({
     that.tpl= _.template( that.options.tpl);
     that.tplElement= _.template( that.options.tplElement);
     that.tplPager= _.template( that.options.tplPager);
+    that.tplEmpty = _.template(geozzy.explorerComponents.listEmpty);
   },
 
   setParentExplorer: function( parentExplorer ) {
