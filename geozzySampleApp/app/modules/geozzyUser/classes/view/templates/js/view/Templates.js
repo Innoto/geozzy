@@ -19,7 +19,7 @@ geozzy.userSessionComponents.modalMdTemplate = ''+
 geozzy.userSessionComponents.userLoginBoxTemplate = ''+
 '<div class="loginInfoContainer">'+
   /*'<h3>'+__("Necesitas tener una cuenta para participar")+'</h3>'+
-  '<button type="button" class="gotoregister btn btnProfesores">'+__("Crear una cuenta")+'</button>'+
+  '<button type="button" class="gotoregister btn btnGeozzySampleApp">'+__("Crear una cuenta")+'</button>'+
   '<hr />'+
   '<h3>'+__("¿Ya tienes una cuenta?")+'</h3>'+*/
   '<h3>'+__("Inicia sesión con tu cuenta para continuar")+'</h3>'+
@@ -30,20 +30,20 @@ geozzy.userSessionComponents.userLoginBoxTemplate = ''+
   '<h3>'+__("Recovery password")+'</h3>'+
   '<p>'+__("Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un enlace para restablecer tu contraseña")+'</p>'+
   '<form><div class="cgmMForm-wrap"><input type="text" class="recoveryPassEmail" placeholder="Email"></div>'+
-  '<div class="cgmMForm-wrap"><input value="'+__("Send")+'" type="button" class="recoveryPassSubmit btn btnProfesores pull-right"></div></form>'+
+  '<div class="cgmMForm-wrap"><input value="'+__("Send")+'" type="button" class="recoveryPassSubmit btn btnGeozzySampleApp pull-right"></div></form>'+
 '</div>'+
 '<div class="recoveryPasswordFinalMsg" style="display:none;">'+
   '<div class="alert alert-success" role="alert"><i class="fa fa-check-circle-o" aria-hidden="true"></i>    '+__("Correo electrónico enviado correctamente")+'</div>'+
 '</div>';
 
 geozzy.userSessionComponents.userRegisterBoxTemplate = ''+
-'<h3>'+__("Bienvenido al Programa de Formación para Profesores. Completa los campos solicitados a continuación para finalizar tu registro en la plataforma")+'.</h3>'+
+'<h3>'+__("Bienvenido a nuestra web Geozzy Sample App. Completa los campos solicitados a continuación para finalizar tu registro en la plataforma")+'.</h3>'+
 '<div class="registerModalForm"></div>';
 
 
 geozzy.userSessionComponents.userRegisterOkBoxTemplate = ''+
 '<h3>'+__("Muchas gracias")+'.</h3>'+
 '<h3>'+__("Tu cuenta se ha creado con éxito")+'</h3>'+
-'<p>'+__("En breve recibirás un correo-e de confirmación con tu número de expediente")+'.</p>'+
+// '<p>'+__("En breve recibirás un correo-e de confirmación con tu número de expediente")+'.</p>'+
 '<p>'+__("Si no lo recibes en las próximas horas, comprueba tu bandeja de SPAM")+'</p>'+
-'<button type="button" class="btn btnProfesores" data-dismiss="modal">'+__("Continuar")+'</button>';
+'<button type="button" class="btn btnGeozzySampleApp" data-dismiss="modal">'+__("Continuar")+'</button>';

@@ -36,14 +36,15 @@ geozzy.explorerComponents.activeListMobileView = Backbone.View.extend({
       totalPages: false,
 
       tpl: geozzy.explorerComponents.activeListViewTemplate,
-      tplElement: geozzy.explorerComponents.activeListViewElement
+      tplElement: geozzy.explorerComponents.activeListViewElement,
+      tplEmpty: geozzy.explorerComponents.listEmpty
     });
 
     that.options = $.extend(true, {}, options, opts);
 
     that.tpl = _.template(that.options.tpl);
     that.tplElement = _.template(that.options.tplElement);
-
+    that.tplEmpty = _.template(that.options.tplEmpty);
 
   },
 

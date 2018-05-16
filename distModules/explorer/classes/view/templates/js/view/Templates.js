@@ -36,6 +36,11 @@ geozzy.explorerComponents.mapInfoViewMobileTemplate = ''+
 '</div>';
 
 
+geozzy.explorerComponents.listEmpty = ''+
+  '<div class="explorerListEmpty">'+
+     __('No results found')+
+  '</div>';
+
 geozzy.explorerComponents.activeListTinyViewTemplate = ''+
   '<div class="explorerListPager">'+
     '<%=pager%>'+
