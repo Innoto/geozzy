@@ -27,6 +27,9 @@ geozzy.commentComponents.ListCommentView = Backbone.View.extend({
   },
 
   render: function() {
+    if( typeof cogumelo.publicConf.C_LANG === 'string' ) {
+      moment.locale(cogumelo.publicConf.C_LANG);
+    }
 
     var that = this;
     var commentsItems = '';

@@ -6,7 +6,7 @@ geozzy.commentComponents.CommentCollection = Backbone.Collection.extend({
     this.resource = options.resource;
   },
   url: function() {
-    return '/api/comments/false/resources/'+this.resource;
+    return '/'+cogumelo.publicConf.C_LANG+'/api/comments/false/resources/'+this.resource;
   },
   model: geozzy.commentComponents.CommentModel,
   sortKey: 'timeCreation',

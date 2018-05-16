@@ -5,8 +5,6 @@ $initResources = array();
 
 // PORTADA
 $initResources[] = array(
-  'version' =>'Cogumelo#1.0',
-  'executeOnGenerateModelToo' => true,
   'idName' => 'home',
   'rType' => 'rtypePage',
   'title' => array(
@@ -26,8 +24,6 @@ $initResources[] = array(
 
 
 $initResources[] = array(
-  'version' =>'Cogumelo#1.0',
-  'executeOnGenerateModelToo' => true,
   'idName' => 'legal',
   'rType' => 'rtypePage',
   'title' => array(
@@ -48,8 +44,6 @@ $initResources[] = array(
 
 
 $initResources[] = array(
-  'version' =>'Cogumelo#1.0',
-  'executeOnGenerateModelToo' => true,
   'idName' => 'privacidad',
   'rType' => 'rtypePage',
   'title' => array(
@@ -70,8 +64,6 @@ $initResources[] = array(
 
 
 $initResources[] = array(
-  'version' =>'Cogumelo#1.0',
-  'executeOnGenerateModelToo' => true,
   'idName' => 'cookies',
   'rType' => 'rtypePage',
   'title' => array(
