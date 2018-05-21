@@ -165,7 +165,9 @@ class ResourceViewModel extends Model {
     'notInCollectionId' => 'geozzy_resource_view.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)',
 
     'createdAfter' => ' ( geozzy_resource_view.timeCreation > ? ) ',
-    'createdBefore' => ' ( geozzy_resource_view.timeCreation < ? ) '
+    'createdBefore' => ' ( geozzy_resource_view.timeCreation < ? ) ',
+
+    'termIdListInSet' => ' FIND_IN_SET( ?, geozzy_resource_view.termIdList ) '
   );
 
 
