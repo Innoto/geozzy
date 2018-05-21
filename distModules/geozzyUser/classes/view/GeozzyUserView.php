@@ -423,10 +423,7 @@ class GeozzyUserView extends View {
 
 
       if ( !empty($userData['hashUnknownPass']) && $urlCode === $userData['hashUnknownPass'] ) {
-        // Desactivamos el hash una vez usado
-        $userVO->setter( 'hashUnknownPass', NULL );
-        $userVO->save();
-        error_log( '(Notice) OK, URL de recuperacion de contraseña. Login:'.$userData['login'].' Email:'.$userData['email'] );
+
 
         $userView = new UserView();
         $form = $userView->userChangePasswordFormDefine( $userId, $modeRecovery = true );
