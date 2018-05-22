@@ -1,6 +1,6 @@
 <?php
-geozzy::load( 'controller/RTypeController.php' );
-geozzy::load( 'controller/RExtController.php' );
+geozzy::load('controller/RTypeController.php');
+geozzy::load('controller/RExtController.php');
 cogumelo::load('coreController/Cache.php');
 
 /**
@@ -12,6 +12,8 @@ cogumelo::load('coreController/Cache.php');
  * @SuppressWarnings(PHPMD.Superglobals)
  * @SuppressWarnings(PHPMD.ElseExpression)
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.CamelCaseVariableName)
  */
 
 class ResourceController {
