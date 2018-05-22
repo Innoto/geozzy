@@ -3,13 +3,16 @@ geozzy::load( 'controller/RTypeController.php' );
 geozzy::load( 'controller/RExtController.php' );
 cogumelo::load('coreController/Cache.php');
 
-
-
 /**
-  METODOS A CAMBIAR/ELIMINAR
-  loadResourceObject
-  getResourceData: Controlar ben translate e cargar a maioria dos datos
-**/
+ * METODOS A CAMBIAR/ELIMINAR
+ * loadResourceObject
+ * getResourceData: Controlar ben translate e cargar a maioria dos datos
+ *
+ * PHPMD: Suppress all warnings from these rules.
+ * @SuppressWarnings(PHPMD.Superglobals)
+ * @SuppressWarnings(PHPMD.ElseExpression)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
 
 class ResourceController {
 
