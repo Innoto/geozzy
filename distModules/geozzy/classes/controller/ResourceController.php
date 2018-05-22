@@ -1,20 +1,15 @@
 <?php
-geozzy::load('controller/RTypeController.php');
-geozzy::load('controller/RExtController.php');
+geozzy::load( 'controller/RTypeController.php' );
+geozzy::load( 'controller/RExtController.php' );
 cogumelo::load('coreController/Cache.php');
 
+
+
 /**
- * METODOS A CAMBIAR/ELIMINAR
- * loadResourceObject
- * getResourceData: Controlar ben translate e cargar a maioria dos datos
- *
- * PHPMD: Suppress all warnings from these rules.
- * @SuppressWarnings(PHPMD.Superglobals)
- * @SuppressWarnings(PHPMD.ElseExpression)
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.CamelCaseVariableName)
- */
+  METODOS A CAMBIAR/ELIMINAR
+  loadResourceObject
+  getResourceData: Controlar ben translate e cargar a maioria dos datos
+**/
 
 class ResourceController {
 
@@ -860,12 +855,21 @@ class ResourceController {
     return $result;
   }
 
+  /* Actualización ficheros desde formulario */
   public function setFormFiledata( $form, $fieldName, $colName, $modelObj ) {
-    $result = false;
 
     $fileField = $form->getFieldValue( $fieldName );
     $filePrivateMode = $form->getFieldParam( $fieldName, 'privateMode' );
-    // error_log( 'setFormFiledata '.$fieldName.' - '.$colName.' fileInfo: '. print_r( $fileField, true ) );
+    $fileField['privateMode'] = $filePrivateMode;
+
+    $fileRes = $this->setFiledataValues($fieldName, $fileField, $modelObj);
+    return $fileRes;
+
+  }
+
+  /* Actualización ficheros sólo con objetos */
+  public function setFiledataValues(  $fieldName, $fileField, $modelObj ) {
+    $result = false;
 
     $filedataCtrl = new FiledataController();
     $newFiledataObj = false;
@@ -878,41 +882,41 @@ class ResourceController {
 
       switch( $fileField['status'] ) {
         case 'LOADED':
-          if( $filePrivateMode > 0 ) {
-            $fileField['values']['privateMode'] = $filePrivateMode;
+          if( $fileField['privateMode'] > 0 ) {
+            $fileField['values']['privateMode'] = $fileField['privateMode'];
           }
           $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
           // error_log( 'To Model - LOADED newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
-            $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
+            $modelObj->setter( $fieldName, $newFiledataObj->getter( 'id' ) );
             $result = $newFiledataObj;
           }
           break;
         case 'REPLACE':
           // error_log( 'To Model - fileInfoPrev: '. print_r( $fileField['prev'], true ) );
-          $prevFiledataId = $modelObj->getter( $colName );
-          if( $filePrivateMode > 0 ) {
-            $fileField['values']['privateMode'] = $filePrivateMode;
+          $prevFiledataId = $modelObj->getter( $fieldName );
+          if( $fileField['privateMode'] > 0 ) {
+            $fileField['values']['privateMode'] = $fileField['privateMode'];
           }
           $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
           // error_log( 'To Model - REPLACE newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
-            $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
+            $modelObj->setter( $fieldName, $newFiledataObj->getter( 'id' ) );
             // error_log( 'To Model - deleteFile ID: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
             $result = $newFiledataObj;
           }
           break;
         case 'DELETE':
-          if( $prevFiledataId = $modelObj->getter( $colName ) ) {
+          if( $prevFiledataId = $modelObj->getter( $fieldName ) ) {
             // error_log( 'To Model - DELETE prevFiledataId: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
-            $modelObj->setter( $colName, null );
+            $modelObj->setter( $fieldName, null );
             $result = 'DELETE';
           }
           break;
         case 'EXIST':
-          if( $prevFiledataId = $modelObj->getter( $colName ) ) {
+          if( $prevFiledataId = $modelObj->getter( $fieldName ) ) {
             // error_log( 'To Model - EXIST-UPDATE prevFiledataId: '.$prevFiledataId );
             $filedataCtrl->updateInfo( $prevFiledataId, $fileField['values'] );
             $result = 'EXIST-UPDATE';
@@ -964,15 +968,28 @@ class ResourceController {
     $error = false;
     $fileGroupField = $form->getFieldValue( $fieldName );
     $filePrivateMode = $form->getFieldParam( $fieldName, 'privateMode' );
+    $fileGroupField['privateMode'] = $filePrivateMode;
 
     cogumelo::debug(__METHOD__.': '.$fieldName.' - '.$colName /*.' fileInfo: '. print_r( $fileGroupField, true )*/ );
+
+    $filegroupRes = $this->setFilegroupValues($fieldName, $fileGroupField, $modelObj);
+
+    if( !$filegroupRes ) {
+      $form->addFieldRuleError( $fieldName, false, 'Se ha producido un error' );
+    }
+
+    return $filegroupRes;
+  }
+
+  public function setFilegroupValues( $fieldName, $fileGroupField, $modelObj ) {
+    $result = false;
 
     $filedataCtrl = new FiledataController();
     $filegroupObj = false;
 
     if( !empty( $fileGroupField['multiple'] ) && is_array( $fileGroupField['multiple'] ) ) {
 
-      $prevFilegroupId = $modelObj->getter( $colName );
+      $prevFilegroupId = $modelObj->getter( $fieldName );
       $filegroupId = ( $prevFilegroupId ) ? $prevFilegroupId : 0;
 
       foreach( $fileGroupField['multiple'] as $fileField ) {
@@ -983,8 +1000,8 @@ class ResourceController {
 
           switch( $fileField['status'] ) {
             case 'LOADED':
-              if( $filePrivateMode > 0 ) {
-                $fileField['values']['privateMode'] = $filePrivateMode;
+              if( $fileGroupField['privateMode'] > 0 ) {
+                $fileField['values']['privateMode'] = $fileGroupField['privateMode'];
               }
               // $fileFieldValues = $fileField['values'];
 
@@ -995,7 +1012,7 @@ class ResourceController {
                 $result = $newFilegroupObj;
                 if( !$filegroupId ) {
                   $filegroupId = $newFilegroupObj->getter('idGroup');
-                  $modelObj->setter( $colName, $filegroupId );
+                  $modelObj->setter( $fieldName, $filegroupId );
                 }
               }
               break;
@@ -1024,10 +1041,6 @@ class ResourceController {
     // ...
     // ...
     // ...
-
-    if( $error ) {
-      $form->addFieldRuleError( $fieldName, false, $error );
-    }
 
 
     return $result;
@@ -1769,7 +1782,7 @@ class ResourceController {
     // error_log(__METHOD__);
     $relPrevInfo = false;
     $baseId = $baseObj->getter( 'id' );
-    
+
     if( $taxTermIds !== false && !is_array( $taxTermIds ) ) {
       $taxTermIds = ( $taxTermIds !== '' &&  is_numeric( $taxTermIds ) ) ? array( $taxTermIds ) : false;
     }
