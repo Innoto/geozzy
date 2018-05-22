@@ -2,7 +2,7 @@
 
 Cogumelo::setSetupValue('mod:mediaserver:publicConf:javascript:vars:rextMapConf',
   array(
-    'defaultMarker' => Cogumelo::getSetupValue('publicConf:vars:media') . '/img/markerAzul.png',
+    'defaultMarker' => Cogumelo::getSetupValue('publicConf:vars:media') . '/img/publicMarker.png',
     'scrollwheel' => false,
     'mapTypeId' => 'roadmap',
     'defaultLat' => '42.494937',
